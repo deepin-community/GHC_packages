@@ -1,0 +1,18 @@
+
+GHC can be compiled either "unregisterised" or "registerised". A
+registerised build is about 25% faster than an unregisterised build, but
+it requires some bits of code be written specially for the architecture
+in question. Currently Debian has registerised builds for i386 and sparc.
+
+Part of the work has been done for ia64, powerpc, m68k, alpha, mips (=> mipsel
+too?) and hppa. This means that either it works but for a different
+operating system or that it worked at some point in the past but hasn't
+been maintained. No attempt has been made for arm or s390. Interested
+experts on any of these architectures are encouraged to try to get GHC
+working registerised; some information on what is needed is available at
+http://www.haskell.org/ghc/docs/latest/html/building/sec-porting-ghc.html
+and you may be able to get help on the GHC mailing lists if you get
+stuck.
+
+
+Ian Lynagh <igloo@debian.org>
