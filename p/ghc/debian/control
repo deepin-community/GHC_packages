@@ -8,7 +8,7 @@ Build-Depends: debhelper (>= 4), libgmp3-dev, xsltproc, libreadline5-dev | libre
 Package: ghc6
 Architecture: any
 Depends: haskell-utils, perl | perl5, gcc-3.3 (>= 1:3.3.4), libgmp3-dev, ${shlibs:Depends}, ${misc:Depends}, ${readline}
-Provides: haskell-compiler, ghc
+Provides: haskell-compiler, ghc, ${provided-devs}
 Conflicts: ghc4 (<= 4.08.1-4)
 Suggests: ghc6-prof, ghc6-doc, haskell-doc
 Description: GHC - the Glasgow Haskell Compilation system
@@ -25,7 +25,7 @@ Package: ghc6-hopengl
 Section: devel
 Architecture: any
 Depends: ghc6 (= ${Source-Version}), xlibmesa-gl-dev, xlibmesa-glu-dev, libglut3-dev, ${shlibs:Depends}, ${misc:Depends}
-Provides: ghc-hopengl
+Provides: ghc-hopengl, libghc6-opengl-dev, libghc6-opengl-prof, libghc6-glut-dev, libghc6-glut-prof
 Suggests: ghc6-doc
 Description: HOpenGL libraries for the Glasgow Haskell Compilation system
  This package contains additional HOpenGL libraries, including suitable
@@ -37,7 +37,7 @@ Description: HOpenGL libraries for the Glasgow Haskell Compilation system
 Package: ghc6-prof
 Section: devel
 Architecture: any
-Provides: ghc-prof
+Provides: ghc-prof, ${provided-profs}
 Depends: ghc6 (= ${Source-Version}), ${shlibs:Depends}, ${misc:Depends}
 Description: Profiling libraries for the Glasgow Haskell Compilation system
  Version 6 of the Glorious Glasgow Haskell Compilation system (GHC).  GHC is

@@ -1,3 +1,20 @@
+ghc6 (6.4-2) experimental; urgency=low
+
+  * Don't create user package.conf if not modifying.
+  * Change "#ifdef darwin_REGS" to "#if darwin_REGS" in
+    ghc/includes/MachRegs.h to fix build on powerpc (from upstream CVS).
+  * Add powerpc to the list of arches to do a registerised build with
+    object splitting.
+  * Fix checkFEDArgs in ghc/compiler/typecheck/TcForeign.lhs so it compiles
+    again.
+  * Remove OpenGL and GLUT packages from package.conf.shipped.
+    Have the postinst/prerm add/remove them.
+  * ghc6-hopengl provides libghc6-{opengl,glut}-{dev,prof}
+  * Other exposed libraries are provided as libghc6-foo-dev by ghc6 and
+    libghc6-foo-prof by ghc6-prof.
+
+ -- Ian Lynagh (wibble) <igloo@debian.org>  Mon, 21 Mar 2005 03:26:35 +0000
+
 ghc6 (6.4-1) experimental; urgency=low
 
   * New upstream release; just for experimental for now.
