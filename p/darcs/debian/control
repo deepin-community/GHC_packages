@@ -1,0 +1,29 @@
+Source: darcs
+Section: devel
+Priority: optional
+Maintainer: Isaac Jones <ijones@debian.org>
+Build-Depends: ghc6 (>> 6.2), tetex-extra, libcurl3-dev, debhelper (>> 4.0), tetex-bin, tex4ht | latex2html | hevea, exim4 | mail-transport-agent
+Standards-Version: 3.6.1.0
+
+Package: darcs
+Architecture: any
+Depends: ${shlibs:Depends}
+Recommends: exim4 | mail-transport-agent
+Suggests: darcs-server
+Description: an advanced revision control system
+ Darcs is a revision control system, along the lines of CVS or arch.  That
+ means that it keeps track of various revisions and branches of your
+ project, allows for changes to propogate from one branch to another.
+ Darcs is intended to be an ``advanced'' revision control system.  There
+ are, in particular, two senses in which it is supposed to be advanced: 1)
+ each copy of the source is a fully functional branch, and 2) underlying
+ darcs is a consistent and powerful theory of patches.
+
+Package: darcs-server
+Architecture: any
+Depends: darcs, sudo, ${shlibs:Depends}
+Recommends: apache2 | httpd, gnupg, exim4 | mail-transport-agent, xsltproc
+Description: the darcs server-side software
+ This is the server package for the darcs revision control system.  This
+ package contains the cgi script which allows users to conveniently browse
+ your repositories on the web.

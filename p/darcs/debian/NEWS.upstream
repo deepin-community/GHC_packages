@@ -1,0 +1,207 @@
+darcs (1.0.0-1) unstable; urgency=low
+
+  * Upstream News (From David Roundy):
+
+  * I'm pleased to announce the release of darcs version 1.0.0.  The
+    chances since 1.0.0rc4 consist of a few documentation fixes, a compile
+    error when configured with --enable-antimemoize, and a fix for a bug
+    which showed up only when working with international characters.
+
+  * In addition, I'd like to announce the availabilty of a darcs mirror of
+    the linux kernel repository, which is available at
+    http://darcs.net/linux.html
+
+  * This mirror is sponsored by Aktiom Networks (http://aktiom.net/),
+    which hosts the darcs.net web server.
+
+ -- Isaac Jones <ijones@debian.org>  Mon, 15 Nov 2004 7:54:18 -0500
+
+darcs (1.0.0rc4-1) unstable; urgency=low
+
+  * Upstream News (From David Roundy):
+
+  * I've just released the fourth (and final?) release candidate for darcs
+    1.0.0.  I hope to release 1.0.0 Very Soon Now, but don't let that stop
+    you from downloading the tarball and testing it out.
+
+  * Various bugs have been fixed since 1.0.0rc3, most notably in the build
+    system which was particularly broken for that release.  As far as new
+    features, the biggest changes are probably in the darcs.cgi system and
+    dealing with renamed files.
+
+ -- Isaac Jones <ijones@debian.org>  Mon, 15 Nov 2004 7:53:20 -0500
+
+darcs (1.0.0rc3-1) unstable; urgency=low
+
+  * Upstream News (From David Roundy):
+
+  * Alas, this time there are some real bugs fixed.  In particular, there
+    was a bug in the commutation of file renames and file adds that in
+    theory could lead to repository corruption, if you managed to reorder
+    the rename and the add, and then do a merge.  A few minor
+    non-repository-endangering bugs were also fixed.  Quite a bit of
+    documentation was updated, thanks to several contributors.  Support in
+    the interactive patch selection process for they'a' key which selects
+    all remaining patches was added.
+
+  * Hopefully soon I'll be comfortable calling this darcs 1.0.0, but this
+    was a somewhat discouraging round, since quite a few bugs showed up.
+    On the other hand, most were old bugs, not recently introduced, so at
+    least we seem to be converging on a bug-free darcs.
+
+ -- Isaac Jones <ijones@debian.org>  Sun,  3 Oct 2004 18:30:52 -0400
+
+darcs (1.0.0rc2-1) unstable; urgency=low
+
+  * Upstream News (From David Roundy):
+
+  * I'm pleased to announce the availablity of the second darcs 1.0.0
+    release candidate.  There have been a few minor bugfixes, a new
+    "reportbug" command was added, and a few miscellaneous interface
+    improvements were made.
+
+  * The "antimemoization" feature which was intended to improve memory
+    usage has received mixed reports of its effectiveness/ineffectiveness,
+    so it's not enabled by default.  However, I'm still interested in
+    evaluating it as at least an optional way of improving memory usage
+    for large repos.  So more testing would be welcome.
+
+ -- Isaac Jones <ijones@debian.org>  Thu, 16 Sep 2004 13:39:25 -0400
+
+darcs (1.0.0rc1-1) unstable; urgency=low
+
+  * Upstream News (From David Roundy):
+
+  * I've just tagged and tarred up darcs 1.0.0rc1 (the "Baby Tai" release,
+    since my nephew will arrive for a visit later today--he lives in
+    California, so I don't see him as often as I'd like).
+
+  * This release fixes a few minor bugs,
+
+  * adds a --reverse option to changes, and make darcs push finally work
+    on windows systems.
+
+  * An --exact-version option was added to darcs itself, which returns a
+    "context" from which the precise version of darcs with which it was
+    compiled can be recreated (provided there were no unrecorded changes).
+
+  * There were also a few improvements to the darcs.cgi script (thanks
+    especially to Will Glozer, its author).
+
+ -- Isaac Jones <ijones@debian.org>  Tue, 17 Aug 2004 11:39:16 -0400
+
+darcs (0.9.23-1) unstable; urgency=low
+
+  * Upstream News (From David Roundy):
+
+  * This time, fortunately, there isn't much exciting.  Version 0.9.22
+    didn't have any particularly serious bugs, apart from an unfixed
+    hard-to-reproduce problem that shows up on windows and the Mac which
+    has yet to be resolved.  Hopefully 0.9.23 will also be relatively
+    boring in this respect.
+
+  * Darcs now requires ghc 6.2.  Let me know if this is a problem, and
+    I'll add support at least for ghc 6.0.1.
+
+  * New features include:
+    - A new rerecord command, which allows you to add new changes to an
+    existing recorded command.  As with unrecord and friends, you don't
+    want to do this if other people already may have pulled the change.  I
+    already find this command extremely helpful.
+
+    - Support for a "message of the day".
+
+    - A new (still primitive) resolve command.
+
+ -- Isaac Jones <ijones@debian.org>  Tue,  3 Aug 2004 16:53:46 -0400
+
+darcs (0.9.22-1) unstable; urgency=low
+
+  * Upstream News (From David Roundy):
+
+  * This release fixes a number of bugs.  Most notably, it fixes the bug
+    in which darcs claimed to not get a lock on machines with both a long
+    hostname and PIDs having more than four digits.  It also fixes a bug
+    that caused darcs to generate incorrect timestamps.  A couple of bugs
+    were fixed in the interactive selection of patches which match a
+    pattern specified on the command line.
+
+  * On the feature side, the changes are pretty small.  A small change,
+    but surprisingly helpful, is the addition of number "(1/3)" indicating
+    which patch you looking at out of how many, in interactive commands
+    (thanks to Ian for this change).  Binary patches are no longer dumped
+    to the screen. Backslashes are now accepted as directory separators on
+    the command line under windows. The "--summary" output now displays
+    move changes appropriately.
+
+  * Patch bundles (created with "send") are now created with a hash of
+    their contents.  This insulates darcs from mailer corruption of
+    patches, but also will prevent certain hacks that were previously
+    possible (although not recommending) for dealing with the newline
+    issue on windows.
+
+  * Finally, a preliminary "--context" command was added to changes and
+    get, which allows you to create a "context" file using changes
+    --context, and then later specify that file with get --context to
+    recreate the original repository state.  The idea is that this
+    "context" can be embedded in a binary during the build process (of any
+    program under darcs), and then included in bug reports, so the precise
+    version that showed the bug can easily be duplicated.  Feedback on
+    this feature by anyone who is interested in using it would be
+    appreciated.  Expect this option to change (perhaps even in name) over
+    the next version or so...
+
+ -- Isaac Jones <ijones@debian.org>  Sat, 26 Jun 2004 15:28:44 -0400
+
+darcs (0.9.20-1) unstable; urgency=low
+
+  * Upstream News (From David Roundy): I've just released darcs version
+    0.9.20.  Not much new here, just a number of bugfixes, some better
+    error reporting and improved XML output via annotate and changes.
+
+ -- Isaac Jones <ijones@debian.org>  Wed, 26 May 2004 23:57:59 -0400
+
+darcs (0.9.19-1) unstable; urgency=low
+
+  * Upstream News (From David Roundy): This is mostly a bugfix release,
+    fixing several bugs that had sneaked into version 0.9.18.  The only
+    new feature is the addition of a --summary option to darcs changes.
+
+ -- Isaac Jones <ijones@debian.org>  Sun, 11 Apr 2004 16:27:57 -0400
+
+darcs (0.9.18-1) unstable; urgency=low
+
+  * Upstream News (From David Roundy): The most notable change in this
+    release is that functionality provided by the old "push" command has
+    been split into two commands: "send" for sending patch bundles by
+    email, and "push", which supports the functionality of the former
+    "push --and-apply" or "push --and-apply-as" commands.
+
+    Win32 support has been improved.  (SNIP)
+
+    Along with these major changes go a lot of code cleanups, bug fixes
+    and even performance improvements.  A big thanks to all those who sent
+    in bug reports, patches and feature requests!
+
+ -- Isaac Jones <ijones@debian.org>  Sun,  4 Apr 2004 00:15:47 -0500
+
+darcs (0.9.17-1) unstable; urgency=low
+
+  * Upstream News: There aren't many changes this time around because
+    (thanks to helpful reports) I found a couple of minor (no corruption)
+    but annoying bugs soon after releasing version 0.9.16.
+
+    The first bug was an annoying permissions bug that lead darcs to
+    occasionally remove read access by other users from its files.  The
+    second was a problem in apply where the --no-test flag would cause
+    darcs to fail.
+
+    On the plus side, support was added for giving file or directory
+    arguments to record, whatsnew and changes to restrict their output to
+    either the files listed, or any files in the directories given as
+    arguments.  Support for similar behavior had already (before 0.9.16)
+    been added to diff.  Still remaining to be extended in this way is
+    revert and perhaps some other commands that I haven't thought of.
+
+
+ -- Isaac Jones <ijones@debian.org>  Sat, 21 Feb 2004 22:05:43 -0500

@@ -1,0 +1,290 @@
+darcs (1.0.2-1) unstable; urgency=low
+
+  * New upstream release
+
+  * Darcs now has improved support for managing executable scripts
+    through the addition of the '--set-scripts-executable' flag.
+
+  * Ian Lynagh found and fixed a bug that caused mime decoding to fail,
+    which could cause procmail scripts that apply signed darcs patches to
+    fail.
+
+  * David Roundy fixed a bug in the merger commute code which in rare
+    conflicts could cause repository corruption.  There was also a fix for
+    bug that caused a local get from a repository owned by another user
+    (i.e. where you don't have write permission) to fail.
+
+  * Juliusz Chroboczek contributed a couple of optimization features
+
+  * See the "ChangeLog" file for a complete list of changes since 1.0.1.
+
+  * now depends on exim4 instead of exim (closes: #290320)
+
+ -- Isaac Jones <ijones@debian.org>  Sat, 12 Feb 2005 13:00:27 -0800
+
+darcs (1.0.1-1) unstable; urgency=low
+
+  * New upstream release
+
+  * Added a build-dependency and a recommendation on an MTA so that the
+    configure scripts will be sure to enable "darcs send" and friends
+    (closes: 283229).
+
+  * There was one bad bug in version 1.0.0 and earlier which has the
+    potential to cause repository corruption (closes: #287448).
+    Unfortunately, fixing this bug means that darcs is less lenient in
+    allowing certain types of patches to commute, which means you may have
+    trouble interacting between darcs version 1.0.1 and earlier versions
+    of darcs.  There is a page on the wiki devoted to this issue, so I'll
+    say no more here, and just point you there:
+
+    http://www.scannedinavian.org/DarcsWiki/Issues1_2e0_2e1
+
+  * A bug fix that is almost perhaps a new feature is that the MAPI email
+    code for windows had some fixes made, which may make this a workable
+    feature for windows users.  Support for arbitrary transport protocols
+    was added via the DARCS_GET_FOO, DARCS_MGET_FOO and DARCS_APPLY_FOO
+    environment variables.  There was some work on optimizations, although
+    I'm not sure how much of a difference it makes in which commands,
+    since I haven't run timings myself.
+  * See upstream changelog for more details about other bug fixes.
+
+ -- Isaac Jones <ijones@debian.org>  Wed, 29 Dec 2004 02:18:29 -0500
+
+darcs (1.0.0.final-4) unstable; urgency=low
+
+  * Pulled bugfixes from upstream:
+  * "Important fix for broken html manual" (closes: #282273)
+  * "add declaration for renameFile in Workaround."
+  * "fix problem where the --cc was ignored in apply if the patch
+    succeeded." (closes: #282130)
+
+ -- Isaac Jones <ijones@debian.org>  Sun, 21 Nov 2004 09:31:26 -0800
+
+darcs (1.0.0.final-3) unstable; urgency=low
+
+  * Added watchfile.
+
+ -- Isaac Jones <ijones@debian.org>  Sat, 20 Nov 2004 14:19:43 -0800
+
+darcs (1.0.0.final-2) unstable; urgency=low
+
+  * Added build-depends on tetex-extra (Closes: #281765)
+
+ -- Isaac Jones <ijones@debian.org>  Wed, 17 Nov 2004 13:20:41 -0800
+
+darcs (1.0.0.final-1) unstable; urgency=low
+
+  * New upstream release
+  * Now built with libcurl3 (Closes: #279469).
+  * Various (upstream) bugs have been fixed most notably in the build
+    system which was particularly broken for rc3.  As far as new features,
+    the biggest changes are probably in the darcs.cgi system and dealing
+    with renamed files.
+  * Since rc4 (not packaged) There have been a few documentation fixes, a
+    compile error when configured with --enable-antimemoize, and a fix for
+    a bug which showed up only when working with international characters.
+
+ -- Isaac Jones <ijones@debian.org>  Mon, 15 Nov 2004 7:47:37 -0500
+
+darcs (1.0.0rc3-2) unstable; urgency=low
+
+  * Pulled patches from upstream to fix some bugs:
+  * "don't accept newlines in patch names" (Closes: #276388)
+  * "handle better the case where unrevert context doesn't make sense."
+    (Closes: #274967)
+
+ -- Isaac Jones <ijones@debian.org>  Tue, 19 Oct 2004 14:08:31 -0400
+
+darcs (1.0.0rc3-1) unstable; urgency=low
+
+  * New upstream release.
+  * Fixed bug in commutation of file renames and file that in theory could
+    lead to repository corruption.
+  * A few minor non-repository-endangering bugs were also fixed.
+  * Documentation updates.
+
+ -- Isaac Jones <ijones@debian.org>  Sun,  3 Oct 2004 18:32:40 -0400
+
+darcs (1.0.0rc2-1) unstable; urgency=low
+
+  * New upstream release
+  * Upstream added --enable-antimemoize flag which may improve memory
+    usage for lage repositories (Closes: #263454).
+  * Moved NEWS.Debian to NEWS.upstream so that it won't be displayed
+    during upgrades (Closes: #267184).
+
+ -- Isaac Jones <ijones@debian.org>  Thu, 16 Sep 2004 13:40:05 -0400
+
+darcs (1.0.0rc1.debian-1) unstable; urgency=low
+
+  * Not a real upstream release.  Still trying to fix the upload.  There's
+    a problem with the upstream tarball.  I hope to close bug #269045 if
+    this works.
+
+ -- Isaac Jones <ijones@debian.org>  Tue, 31 Aug 2004 14:31:53 -0400
+
+darcs (1.0.0rc1-2) unstable; urgency=low
+
+  * Botched upload requires a new upload.  No changes from previous
+    version.
+
+ -- Isaac Jones <ijones@debian.org>  Sat, 28 Aug 2004 20:01:58 -0400
+
+darcs (1.0.0rc1-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Isaac Jones <ijones@debian.org>  Tue, 17 Aug 2004 11:38:01 -0400
+
+darcs (0.9.23-1) unstable; urgency=low
+
+  * New upstream release (Closes: #262933)
+  * Removed recommends on wget (Closes: #256786)
+  * Now depends on ghc 6.2
+
+ -- Isaac Jones <ijones@debian.org>  Tue,  3 Aug 2004 16:51:13 -0400
+
+darcs (0.9.22-1) unstable; urgency=low
+
+  * New upstream release (see NEWS)
+  * Now recommends xsltproc (from upstream) (Closes: #254853).
+
+ -- Isaac Jones <ijones@debian.org>  Sat, 26 Jun 2004 15:39:20 -0400
+
+darcs (0.9.20-1) unstable; urgency=low
+
+  * New upstream release (Closes: #249524).
+  * Includes the May 5 patch "fix bug in darcs-createrepo." which (Closes: #247307).
+  * Added Suggests: darcs-server (Closes: #245989).
+  * New standards version.
+
+ -- Isaac Jones <ijones@debian.org>  Wed, 26 May 2004 23:56:15 -0400
+
+darcs (0.9.19-1) unstable; urgency=low
+
+  * New upstream release.
+  * Includes the patch "better error messages in apply when patch bundle
+    isn't applicable." which (Closes: #242331).
+  * Now deleting the manual in the clean rule, since it gets regenerated
+    anyway.
+
+ -- Isaac Jones <ijones@debian.org>  Sun, 11 Apr 2004 15:40:54 -0400
+
+darcs (0.9.18-2) unstable; urgency=low
+
+  * Applied patch "fix bug in darcs diff." where the return value of diff
+    is treated properly (Closes: #242134).
+
+ -- Isaac Jones <ijones@debian.org>  Mon,  5 Apr 2004 18:40:47 -0400
+
+darcs (0.9.18-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Isaac Jones <ijones@debian.org>  Sat,  3 Apr 2004 15:08:51 -0500
+
+darcs (0.9.17-5) unstable; urgency=low
+
+  * This version does what the last version claims to do.  The last
+    version didn't actually contain the patch I tried to apply.  My
+    mistake (probably).
+
+ -- Isaac Jones <ijones@debian.org>  Sun, 21 Mar 2004 20:05:40 -0500
+
+darcs (0.9.17-4) unstable; urgency=low
+
+  * Applied upstream patch by Ian Lynagh <igloo@earth.li> "Match up Int
+    types between Haskell and C": "This fixes a problem where chr is
+    passed an Int > 2^32 on alpha. I haven't checked for other cases where
+    similar things should be done."  He thinks it'll fix a runtime problem
+    on alpha.
+
+ -- Isaac Jones <ijones@debian.org>  Sun, 21 Mar 2004 19:11:50 -0500
+
+darcs (0.9.17-3) unstable; urgency=low
+
+  * Forgot to run autoconf, caused autobuilder failures.
+
+ -- Isaac Jones <ijones@debian.org>  Sun,  7 Mar 2004 21:28:46 -0500
+
+darcs (0.9.17-2) unstable; urgency=low
+
+  * use curl-config to decide how to link with libcurl.  This fixes build
+    problem for PPC.
+
+  * added "-f" to rm for darcs.ps manual/index.html
+
+ -- Isaac Jones <ijones@debian.org>  Sun,  7 Mar 2004 17:22:25 -0500
+
+darcs (0.9.17-1) unstable; urgency=low
+
+  * First upload to Debian.
+  * New upstream release.
+  * Added -Wall to ghc flags.
+  * Added NEWS.
+  * New Maintainer.
+
+ -- Isaac Jones <ijones@debian.org>  Sat, 21 Feb 2004 16:47:48 -0500
+
+darcs (0.9.16-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- David Roundy <droundy@abridgegame.org>  Tue, 10 Feb 2004 06:50:26 -0500
+
+darcs (0.9.15-0.9.16pre-2) unstable; urgency=low
+
+  * New test release.
+  * Building "sid" deb on sarge so it will use older libcurl2-dev.
+
+ -- David Roundy <droundy@abridgegame.org>  Sat,  7 Feb 2004 07:22:09 -0500
+
+darcs (0.9.15-0.9.16pre-1) unstable; urgency=low
+
+  * Testing of new upstream.
+
+ -- David Roundy <droundy@abridgegame.org>  Fri,  6 Feb 2004 07:55:13 -0500
+
+darcs (0.9.15-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- David Roundy <droundy@abridgegame.org>  Fri, 12 Dec 2003 08:03:51 -0500
+
+darcs (0.9.14.15pre-3) unstable; urgency=low
+
+  * Fix bug when trying to delete a symlink to a directory.
+  * Fix creation of empty hunk patches when an empty file is added.
+
+ -- David Roundy <droundy@abridgegame.org>  Tue,  9 Dec 2003 09:01:28 -0500
+
+darcs (0.9.14.15pre-2) unstable; urgency=low
+
+  * Fix cgi script bugs.
+
+ -- David Roundy <droundy@abridgegame.org>  Sun,  7 Dec 2003 06:18:29 -0500
+
+darcs (0.9.14.15pre-1) unstable; urgency=low
+
+  * Test version for 0.9.15.
+
+ -- David Roundy <droundy@abridgegame.org>  Sat, 29 Nov 2003 07:45:44 -0500
+
+darcs (0.9.14-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- David Roundy <droundy@abridgegame.org>  Tue,  4 Nov 2003 09:15:17 -0500
+
+darcs (0.9.13-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- David Roundy <droundy@abridgegame.org>  Wed, 10 Sep 2003 07:33:45 -0400
+
+darcs (0.9.12-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- David Roundy <droundy@abridgegame.org>  Mon, 28 Jul 2003 08:18:28 -0400
