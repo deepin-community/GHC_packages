@@ -1,7 +1,7 @@
 #! /bin/sh
 # prerm script for ghc6
 #
-# SOURCE: ghc6.prerm.in
+# SOURCE: prerm.in
 
 set -e
 
@@ -21,9 +21,10 @@ bindir=$libdir/bin
 
 case "$1" in
     remove|upgrade|deconfigure|failed-upgrade)
-        update-alternatives --remove runhaskell $execdir/runghc
-        update-alternatives --remove haskell-compiler $execdir/ghc
-        update-alternatives --remove ghc $bindir/ghc
+        haskell-utils --remove-compiler /usr/bin/ghc6
+        haskell-utils --remove-compiler ghc6
+        update-alternatives --remove haskell-compiler $execdir/ghc6
+        update-alternatives --remove ghc $bindir/ghc-@VERSION@
     ;;
     *)
         echo "prerm called with unknown argument \`$1'" >&2

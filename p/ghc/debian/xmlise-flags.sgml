@@ -1,0 +1,19 @@
+#!/bin/sh
+
+(
+cat <<'EOF'
+<!DOCTYPE sect1 [
+<!ENTITY ndash  "-">
+<!ENTITY ldquo  "`">
+<!ENTITY rdquo  "'">
+]>
+EOF
+#sed -e 's/& /\&amp; /g' \
+#    -e 's/<xref \([^>]*\)>/<xref \1 \/>/g' \
+#    -e 's/=\([^" >]\+\)/="\1"/g' \
+perl -pe 's/& /\&amp; /g;
+          s/<xref ([^>]*)>/<xref \1 \/>/g;
+          s/=([^" <>]+)(?=[^<]*>)/="\1"/g' \
+  ghc/docs/users_guide/flags.sgml
+) > ghc/docs/users_guide/flags.xml
+
