@@ -35,7 +35,7 @@ build-stamp:
 
 	echo "SGMLDocWays   := html dvi ps" > mk/build.mk
 	echo "GhcRTSWays += debug_p thr_debug thr_debug_p" >> mk/build.mk
-ifeq '$(findstring $(shell dpkg-architecture -qDEB_HOST_ARCH), i386 sparc)' ''
+ifeq '$(findstring $(shell dpkg-architecture -qDEB_HOST_ARCH), i386 powerpc sparc)' ''
 	echo "GhcUnregisterised=YES" >> mk/build.mk
 	echo "SplitObjs=NO" >> mk/build.mk
 endif
@@ -91,6 +91,7 @@ install: build
 
 	echo "readline=`grep-status -r -FProvides '\<libreadline-dev\>' -a -FStatus installed -s Package -n | tr '\n' ,`" >> debian/ghc6.substvars
 
+	# Install the basic stuff
 	$(MAKE) prefix=`pwd`/debian/tmp/usr install
 	$(MAKE) prefix=`pwd`/debian/ghc6-doc/usr \
 	    datadir='$${prefix}/share/doc/ghc6-doc' install-docs
@@ -117,8 +118,27 @@ install: build
 	    | sort | uniq -u > debian/ghc6.install
 	dh_install
 	/usr/bin/install -c -m 755 -d debian/ghc6/usr/bin
+
+	# Sort out the package.conf files
+	ghc/utils/ghc-pkg/ghc-pkg-inplace unregister GLUT -f \
+	    debian/ghc6/usr/lib/ghc-$(ProjectVersion)/package.conf
+	ghc/utils/ghc-pkg/ghc-pkg-inplace unregister OpenGL -f \
+	    debian/ghc6/usr/lib/ghc-$(ProjectVersion)/package.conf
 	mv debian/ghc6/usr/lib/ghc-$(ProjectVersion)/package.conf \
 	   debian/ghc6/usr/lib/ghc-$(ProjectVersion)/package.conf.shipped
+	/usr/bin/install -c -m 755 -d \
+	    debian/ghc6-hopengl/usr/lib/ghc-$(ProjectVersion)/package.conflets
+	cp libraries/OpenGL/package.conf.installed debian/ghc6-hopengl/usr/lib/ghc-$(ProjectVersion)/package.conflets/OpenGL.package.conf
+	cp libraries/GLUT/package.conf.installed debian/ghc6-hopengl/usr/lib/ghc-$(ProjectVersion)/package.conflets/GLUT.package.conf
+	PACKAGE=`ghc/utils/ghc-pkg/ghc-pkg-inplace list -f debian/ghc6/usr/lib/ghc-6.4/package.conf.shipped | perl -ne 'print if $$foo; $$foo = 1 if /^debian/' | tr '\n,A-Z' '  a-z' | sed -e "s/([^)]*)//g" -e "s/-[0-9]\+\(\.[0-9]\+\)*//g" -e "s/^ *//" -e "s/ *$$//" -e "s/  */, /g"`; \
+	    { echo -n "provided-devs="; \
+	      echo "$$PACKAGE" | sed -e "s/\([a-z0-9.-]\+\)/libghc6-\1-dev/g"; } \
+	          >> debian/ghc6.substvars; \
+	    { echo -n "provided-profs="; \
+	      echo "$$PACKAGE" | sed -e "s/\([a-z0-9.-]\+\)/libghc6-\1-prof/g"; } \
+	          >> debian/ghc6-prof.substvars \
+
+	# Sort out the binaries
 	cd debian/ghc6/usr/lib/ghc-$(ProjectVersion)/bin && \
 	    for f in *-$(ProjectVersion); \
 	    do ln -s /usr/lib/ghc-$(ProjectVersion)/bin/$$f \
