@@ -3,6 +3,7 @@
 include ghc/mk/version.mk
 
 FILES = debian/ghc6.postinst debian/ghc6.prerm debian/ghc6.postrm \
+        debian/ghc6-hopengl.postinst debian/ghc6-hopengl.prerm \
 		debian/flags.xsl
 
 .PHONY: all clean
