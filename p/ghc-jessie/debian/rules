@@ -33,7 +33,7 @@ build-stamp:
 
 	touch configure
 
-	echo "SGMLDocWays   := html dvi ps" > mk/build.mk
+	echo "XMLDocWays   := html" > mk/build.mk
 	echo "GhcRTSWays += debug_p thr_debug thr_debug_p" >> mk/build.mk
 ifeq '$(findstring $(shell dpkg-architecture -qDEB_HOST_ARCH), i386 sparc)' ''
 	echo "GhcUnregisterised=YES" >> mk/build.mk
@@ -62,11 +62,11 @@ endif
 
 	mkdir debian/test-build
 	echo 'main = putStrLn "Foo"' > debian/test-build/foo.hs
-	ghc/compiler/ghc-inplace debian/test-build/foo.hs -o debian/test-build/foo
+	ghc/compiler/stage2/ghc-inplace debian/test-build/foo.hs -o debian/test-build/foo
 	[ "$$(debian/test-build/foo)" = "Foo" ]
 	rm debian/test-build/*
 	echo 'main = putStrLn "Foo"' > debian/test-build/foo.hs
-	ghc/compiler/ghc-inplace debian/test-build/foo.hs -o debian/test-build/foo -O2
+	ghc/compiler/stage2/ghc-inplace debian/test-build/foo.hs -o debian/test-build/foo -O2
 	[ "$$(debian/test-build/foo)" = "Foo" ]
 
 	$(MAKE) -f debian/scripts.mk all
