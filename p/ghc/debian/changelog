@@ -1,3 +1,17 @@
+ghc6 (6.4-4) unstable; urgency=low
+
+  * Use &(arr->payload) instead of BYTE_ARR_CTS(arr) in Adjustor.c on
+    ia64 as we no longer have the definition of BYTE_ARR_CTS to hand.
+  * Use ASSIGN_DBL and PK_DBL in generated C code from CMM code to avoid
+    unaligned access SIGBUSes on some arches. Closes: #309025.
+  * Use the stage2 ghc-inplace when checking "hello world" works.
+  * Build-dep on xmltex, docbook-xsl and docbook-xml.
+  * Set XMLDocWays rather than SGMLDocWays. Closes: #309016.
+  * Disable dvi and ps docs as they don't build.
+  * Remove ps and dvi sections from debian/ghc6-doc.doc-base.users-guide.
+
+ -- Ian Lynagh (wibble) <igloo@debian.org>  Fri, 20 May 2005 12:42:52 +0000
+
 ghc6 (6.4-3) unstable; urgency=low
 
   * Removed powerpc from the list of arches to do a registerised build with
