@@ -1,5 +1,20 @@
---- darcs-1.0.2+1.0.3rc1.orig/darcs.css
-+++ darcs-1.0.2+1.0.3rc1/darcs.css
+--- darcs-1.0.3.orig/darcs-createrepo.8
++++ darcs-1.0.3/darcs-createrepo.8
+@@ -6,9 +6,9 @@ darcs-createrepo \- create a pushable da
+ .SH DESCRIPTION
+
+ darcs-createrepo will create a new user and set up that user's home
+-directory in /var/lib/darcs with a repository, such that signed patches
+-sent to that user's email address.  For more information,
+-see the darcs documentation, which should be available at
++directory in /var/lib/darcs with a repository, such that signed
++patches can be sent to that user's email address.  For more
++information, see the darcs documentation, which should be available at
+ /usr/share/doc/darcs/manual/index.html.
+
+ .SH AUTHOR
+--- darcs-1.0.3.orig/darcs.css
++++ darcs-1.0.3/darcs.css
 @@ -1,82 +1,231 @@
 -BODY {
 -  background: white;
@@ -314,8 +329,15 @@
 +div#fancyvrb60{ border-top: solid 0.4pt; }
 +div#fancyvrb60{ border-bottom: solid 0.4pt; }
 +/* end css.sty */
---- darcs-1.0.2+1.0.3rc1.orig/.depend
-+++ darcs-1.0.2+1.0.3rc1/.depend
+--- darcs-1.0.3.orig/config.command
++++ darcs-1.0.3/config.command
+@@ -1,2 +1,2 @@
+-# configured Tue May 24 18:37:38 EDT 2005
+-sh ./configure
++# configured Sun Jun 5 15:57:53 PDT 2005
++sh ./configure --prefix=/usr --sysconfdir=/etc --libexecdir=/usr/lib --mandir=/usr/share/man
+--- darcs-1.0.3.orig/.depend
++++ darcs-1.0.3/.depend
 @@ -9,6 +9,7 @@ ColourPrinter.o : ./FastPackedString.hi
  ColourPrinter.o : ./Printer.hi
  ColourPrinter.o : ./External.hi
@@ -324,1291 +346,14 @@
  Pristine.o : Pristine.lhs
  Pristine.o : ./DarcsFlags.hi
  Pristine.o : ./PopulationData.hi
---- darcs-1.0.2+1.0.3rc1.orig/config.command
-+++ darcs-1.0.2+1.0.3rc1/config.command
-@@ -1,2 +1,2 @@
--# configured Tue Apr 26 03:52:25 EDT 2005
--sh ./configure
-+# configured Thu May 12 13:44:36 PDT 2005
-+sh ./configure --prefix=/usr --sysconfdir=/etc --libexecdir=/usr/lib --mandir=/usr/share/man
---- darcs-1.0.2+1.0.3rc1.orig/c_context.c
-+++ darcs-1.0.2+1.0.3rc1/c_context.c
-@@ -1,5 +1,1266 @@
- static const char context_string_value[] =
-- "unknown\n"
-+ "# configured Thu May 12 13:44:36 PDT 2005\n"
-+ "sh ./configure --prefix=/usr --sysconfdir=/etc --libexecdir=/usr/lib --mandir=/usr/share/man\n"
-+ "\n"
-+ "Context:\n"
-+ "\n"
-+ "[TAG 1.0.3rc1\n"
-+ "Tomasz Zielonka <tomasz.zielonka@gmail.com>**20050426002554] \n"
-+ "\n"
-+ "[bump version number to 1.0.3rc1 and update ChangeLog\n"
-+ "Tomasz Zielonka <tomasz.zielonka@gmail.com>**20050426002535] \n"
-+ "\n"
-+ "[update ChangeLog (colorization and escaping, --sendmail-command)\n"
-+ "Tomasz Zielonka <tomasz.zielonka@gmail.com>**20050424204421] \n"
-+ "\n"
-+ "[adjust version suffix for the stable repository\n"
-+ "Tomasz Zielonka <tomasz.zielonka@gmail.com>**20050420121711] \n"
-+ "\n"
-+ "[Replace my_memrchr() with strrchr().\n"
-+ "Ralph Corderoy <ralph@inputplus.co.uk>**20050417220534\n"
-+ " Given it's only ever called on a string, not an arbitrary lump of\n"
-+ " memory, my_memrchr() can be replaced with strrchr() which is in\n"
-+ " <string.h>.\n"
-+ "] \n"
-+ "\n"
-+ "[Correct argument help for \"darcs trackdown\"\n"
-+ "Erik Schnetter <schnetter@aei.mpg.de>**20050417145334] \n"
-+ "\n"
-+ "[Add suffix to version number\n"
-+ "Erik Schnetter <schnetter@aei.mpg.de>**20050417172053\n"
-+ " Add a suffix (release candidate #n/release/stable/unstable) etc. to\n"
-+ " the darcs version number.  This suffix should describe which branch\n"
-+ " (stable or unstable) a particulay darcs executable came from, and\n"
-+ " whether it includes additional modifications.\n"
-+ " \n"
-+ " Since there are no global changeset numbers in darcs, this suffix is\n"
-+ " necessarily incomplete and cannot replace --exact-version.\n"
-+ " \n"
-+ " The changes between the states have to be made manually in\n"
-+ " configure.ac.\n"
-+ "] \n"
-+ "\n"
-+ "[add HTTP cache control headers to darcs.cgi\n"
-+ "Will <will@glozer.net>**20050407204412] \n"
-+ "\n"
-+ "[Make FastPackedString more portable\n"
-+ "Ian Lynagh <igloo@earth.li>**20050402221035] \n"
-+ "\n"
-+ "[Cleanup command_prereq.  Failures and succeses exclusive.\n"
-+ "Aaron Denney <wnoise@ofb.net>**20050403165740\n"
-+ " Instead of returning (Maybe FilePath, String), it returns\n"
-+ " Either String FilePath.\n"
-+ "] \n"
-+ "\n"
-+ "[optimize most common case for add\n"
-+ "Benedikt Schmidt <beschmi@cloaked.de>**20050331131244\n"
-+ " try_to_shrink is O(n^2) where n is the number of patches. The most common\n"
-+ " case is a list containing only AddFile/AddDir patches where shrink is\n"
-+ " not necessary\n"
-+ "] \n"
-+ "\n"
-+ "[Resolve conflicts\n"
-+ "Ian Lynagh <igloo@earth.li>**20050418144643] \n"
-+ "\n"
-+ "[Correct some typos in the documentation\n"
-+ "Erik Schnetter <schnetter@aei.mpg.de>**20050417153927] \n"
-+ "\n"
-+ "[Remove reference to non-existing doc chapter\n"
-+ "Erik Schnetter <schnetter@aei.mpg.de>**20050417160232] \n"
-+ "\n"
-+ "[Correct some more typos in the documentation\n"
-+ "Erik Schnetter <schnetter@aei.mpg.de>**20050417155656] \n"
-+ "\n"
-+ "[Avoid stack overflow on large binary patches.\n"
-+ "peter@zarquon.se**20050417085200] \n"
-+ "\n"
-+ "[use \"C\" rather than \"c\" for locale name (in tests/printer.pl)\n"
-+ "Tomasz Zielonka <tomasz.zielonka@gmail.com>**20050417160250] \n"
-+ "\n"
-+ "[fix tests/printer.pl - in utf8 locales Perl was writing files in utf8\n"
-+ "Tomasz Zielonka <tomasz.zielonka@gmail.com>**20050417160217] \n"
-+ "\n"
-+ "[fix a few minor bugs in the date matcher.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050401121118] \n"
-+ "\n"
-+ "[Use strings for newlines as hPutBuf doesn't do the right thing when printing them\n"
-+ "Ian Lynagh <igloo@earth.li>**20050415173922] \n"
-+ "\n"
-+ "[fix bug in test which caused stray warning [RT#345]\n"
-+ "testerALL --ignore-times**20050416115030] \n"
-+ "\n"
-+ "[Added a wrapper script that lets you use Cygwin paths with the Windows binary.\n"
-+ "Kannan Goundan <kannan@cakoose.com>**20050411180255] \n"
-+ "\n"
-+ "[Don't assume the C compiler inlines functions in fpstring.c.\n"
-+ "Ralph Corderoy <ralph@inputplus.co.uk>**20050415163747\n"
-+ " Comments in fpstring.c suggest the author assumes the C compiler will\n"
-+ " inline some of the functions in fpstring.c.  Disassembling the Linux/x86\n"
-+ " executable confirms this doesn't happen.\n"
-+ " \n"
-+ " By re-writing some of these functions to be more idiomatic C with\n"
-+ " preprocessor macros a `darcs record' of a just-added 4MiB binary file\n"
-+ " containing bytes 0..255 repeated over and over took 1/16th less time.\n"
-+ "] \n"
-+ "\n"
-+ "[resolve conflict in tests/perl_harness\n"
-+ "David Roundy <droundy@abridgegame.org>**20050415111229] \n"
-+ "\n"
-+ "[switch to Perl built-in call for better portability\n"
-+ "Mark Stosberg <mark@summersault.com>**20050414120346] \n"
-+ "\n"
-+ "[new zsh completion based on _tla and _perforce\n"
-+ "Carlos Phillips <carlos.phillips@mail.mcgill.ca>**20050413134348] \n"
-+ "\n"
-+ "[Make Context.hs rather than c_context.c in predist\n"
-+ "Ian Lynagh <igloo@earth.li>**20050413034021\n"
-+ " This still isn't right; e.g. Context.hs is removed right afterwards\n"
-+ " by the distclean, amongst other problems. At least it's not just broken\n"
-+ " now, though  :-)\n"
-+ " Spotted by Marnix Klooster.\n"
-+ "] \n"
-+ "\n"
-+ "[put current-old in _darcs/ in repair.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050412121540] \n"
-+ "\n"
-+ "[fix bug in optimize --checkpoint.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050409163306\n"
-+ " What I don't understand is how I ever thought that this worked!\n"
-+ "] \n"
-+ "\n"
-+ "[Handle giving different flags to different modules better\n"
-+ "Ian Lynagh <igloo@earth.li>**20050409145655] \n"
-+ "\n"
-+ "[leave out surrounding braces when showing patch contents in changes.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050409150127] \n"
-+ "\n"
-+ "[Verbose changes should include the hunks themselves and a summary just the files\n"
-+ "Jim Radford <radford@blackbean.org>**20050408162443] \n"
-+ "\n"
-+ "[remove debug output from annotate failure message.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050402223235] \n"
-+ "\n"
-+ "[flag description should be in lowercase.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050402184740] \n"
-+ "\n"
-+ "[if user specifies only nonexisting files on record, then exit.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050330134133] \n"
-+ "\n"
-+ "[use color when showing patch contents in changes.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050409150105] \n"
-+ "\n"
-+ "[test if the test darcs wrapper is really the test darcs wrapper\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050416194657] \n"
-+ "\n"
-+ "[make sure test bin darcs wrapper is executable before test scripts run\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050416194144] \n"
-+ "\n"
-+ "[switch to Perl built-in call for better portability\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050416193842\n"
-+ " Copy the change made in perl_harness by Mark Stosberg to shel_harness.\n"
-+ "] \n"
-+ "\n"
-+ "[test bugfix, chomp newline from pwd when setting HOME\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050411211158] \n"
-+ "\n"
-+ "[add test for fancy printer\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050411155954] \n"
-+ "\n"
-+ "[remove file name escaping tests from test add.pl\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050410092325\n"
-+ " to move them to a special escaping test\n"
-+ "] \n"
-+ "\n"
-+ "[adjust broken-vi workaround for exec_interactive [RT#335]\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050412135126\n"
-+ " The old system call performed redirections, but the new raw system call\n"
-+ " in exec_interactive doesn't, so a wrapper script is needed.\n"
-+ "] \n"
-+ "\n"
-+ "[[RT#342] bugfix, special case escaping of empty string\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050413013350\n"
-+ " The escaped chars were concatenated with hcat, which returns Empty for\n"
-+ " empty lists.\n"
-+ "] \n"
-+ "\n"
-+ "[bugfix, changepref's first argument is not user data\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050413012655] \n"
-+ "\n"
-+ "[bufix in test 0_test.sh, make it work, really fix this time, promise...\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050413141722] \n"
-+ "\n"
-+ "[add darcs wrapper in test bin that automatically finds test target\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050412151408\n"
-+ " The 'darcs push' command invokes 'darcs apply' through the shell.\n"
-+ " This wrapper will catch that call (and all other calls to an unspecified\n"
-+ " darcs) and make sure the right darcs is used.  (It's no longer needed\n"
-+ " to explicitly locate the testing target in each test script.)\n"
-+ "] \n"
-+ "\n"
-+ "[bugfix in test 0_test.sh, remove quotes\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050412150256] \n"
-+ "\n"
-+ "[prepend test bin directory to PATH when running test scripts\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050411214124] \n"
-+ "\n"
-+ "[test to make sure testscripts are run in a predictable environment\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050411140222] \n"
-+ "\n"
-+ "[restore darcs test suite ignores ~/.darcs [RT#217]\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050411135506\n"
-+ " As first worked out by Yuval Kogman.\n"
-+ "] \n"
-+ "\n"
-+ "[preset a predictable and efficient environment for the tests (add perl_harness)\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050411125214\n"
-+ " All escaping and coloring are off.\n"
-+ "] \n"
-+ "\n"
-+ "[make escaped chars red instead of blue\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050406105243] \n"
-+ "\n"
-+ "[use new escape quoting in ColourPrinter\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050406104721] \n"
-+ "\n"
-+ "[remove verbatim markup from environment variable (for consistency)\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050407232903\n"
-+ " I actually discovered the espace at the end of this line thanks to the\n"
-+ " new trailing space escaping.  :-)\n"
-+ "] \n"
-+ "\n"
-+ "[use userchunk printer in PatchShow to escape trailing spaces [RT#306]\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050407190834] \n"
-+ "\n"
-+ "[use prefix in showHunk\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050407151054\n"
-+ " as suggested by Ian Lynagh\n"
-+ "] \n"
-+ "\n"
-+ "[document environment variables for controling color and escaping\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050407232529] \n"
-+ "\n"
-+ "[don't use hatQuote for all that many chars when escaping\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050407193945] \n"
-+ "\n"
-+ "[add _EXTRA environment variables for general non-/escaping\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050407193608\n"
-+ " All chars in DARCS_DONT_ESCAPE_EXTRA are not escaped.\n"
-+ " All chars in DARCS_ESCAPE_EXTRA are always escaped.\n"
-+ "] \n"
-+ "\n"
-+ "[explaining comments on policy options in ColourPrinter\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050407190741] \n"
-+ "\n"
-+ "[add userchunk printer that escapes trailing spaces [RT#306]\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050407190638] \n"
-+ "\n"
-+ "[color parentheses around patches and patch infos blue\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050406105542] \n"
-+ "\n"
-+ "[new functions for quoting escaped chars in ColourPrinter\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050406104303\n"
-+ " These are (hopefully) both general and recognized escape quotings.\n"
-+ "] \n"
-+ "\n"
-+ "[use isAscii and refactor no_escape in ColourPrinter to make it clearer\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050406103441] \n"
-+ "\n"
-+ "[fix add.pl test to work with new quoting of weird characters.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050408104435] \n"
-+ "\n"
-+ "[make highlighting of escaped char an own function\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050406101626\n"
-+ " To prepare for escaping of trailing spaces and eol:s\n"
-+ "] \n"
-+ "\n"
-+ "[make DARCS_DONT_COLOR take precedence over DARCS_ALWAYS_COLOR\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050406094730] \n"
-+ "\n"
-+ "[restore DARCS_USE_ISPRINT for backwards compatibility\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050405122849] \n"
-+ "\n"
-+ "[don't ask about number of colors if not a terminal\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050405122816] \n"
-+ "\n"
-+ "[add control of color in ColourPrinter with environment variables\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050404152659] \n"
-+ "\n"
-+ "[use unsafePerformIO to get policy in ColourPrinter\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050404143656] \n"
-+ "\n"
-+ "[make escaping of output controllable with environment variables\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050404122507\n"
-+ " DARCS_DONT_ESCAPE_ANYTHING  turns off all escaping\n"
-+ " DARCS_DONT_ESCAPE_ISPRINT   use systems locale (works for single-byte)\n"
-+ " DARCS_DONT_ESCAPE_8BIT      works for UTF-8\n"
-+ "] \n"
-+ "\n"
-+ "[propagate policy data all the way down to no_escape in ColourPrinter\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050404121904] \n"
-+ "\n"
-+ "[rewrite ColourPrinter with a policy data type (fixes RT#302)\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050403190223\n"
-+ " - better control of color and escaping\n"
-+ " - colored strings are escaped too\n"
-+ " - policy is determined with only synchronous IO\n"
-+ "] \n"
-+ "\n"
-+ "[print output from failed shell tests to STDOUT\n"
-+ "Mark Stosberg <mark@summersault.com>**20050416160723] \n"
-+ "\n"
-+ "[remind user about --case-ok when warning about files that differ only in case\n"
-+ "Mark Stosberg <mark@summersault.com>**20050413120425] \n"
-+ "\n"
-+ "[typo fix: sevaral -> several\n"
-+ "Mark Stosberg <mark@summersault.com>**20050402125818] \n"
-+ "\n"
-+ "[update Changelog for RT#305 - \"--patch\" removed from 'darcs changes'\n"
-+ "Mark Stosberg <mark@summersault.com>**20050331212123] \n"
-+ "\n"
-+ "[RT#231 - ChangeLog update\n"
-+ "Mark Stosberg <mark@summersault.com>**20050319162549] \n"
-+ "\n"
-+ "[add documentation for _darcs/prefs/motd to \"Configuring Darcs\"\n"
-+ "Mark Stosberg <mark@summersault.com>**20050402130713] \n"
-+ "\n"
-+ "[better document _darcs/prefs/email\n"
-+ "Mark Stosberg <mark@summersault.com>**20050402130320] \n"
-+ "\n"
-+ "[launder slurpies in Resolution--fixes createDirectory-failing bug.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050415125646] \n"
-+ "\n"
-+ "[Improve error message when a Haskell package is not found\n"
-+ "Erik Schnetter <schnetter@aei.mpg.de>**20050202124633] \n"
-+ "\n"
-+ "[fix unpull test to work with new message when no patches are selected.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050408104402] \n"
-+ "\n"
-+ "[resolve conflicts in missed_resolution.pl.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050407111503] \n"
-+ "\n"
-+ "[add author flag to unit tests\n"
-+ "Will <will@glozer.net>**20050406224718] \n"
-+ "\n"
-+ "[remove tabs from win32 workarounds\n"
-+ "Will <will@glozer.net>**20050406215853] \n"
-+ "\n"
-+ "[when no patches match on un{pull,record} give error message, not \"finished\".\n"
-+ "David Roundy <droundy@abridgegame.org>**20050406114140] \n"
-+ "\n"
-+ "[RT #303\n"
-+ "Aaron Denney <wnoise@ofb.net>**20050403143516\n"
-+ " A better error message on failures of am_not_in_repo, i.e. when calling\n"
-+ " \"darcs init\" in a pre-existing repository.\n"
-+ "] \n"
-+ "\n"
-+ "[RT#318 - add TODO test for 'darcs dist' failing on FreeBSD\n"
-+ "Mark Stosberg <mark@summersault.com>**20050404163600] \n"
-+ "\n"
-+ "[test for unpull --patch\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050403200008] \n"
-+ "\n"
-+ "[(RT#318) set output file to stdout explicitly in tar invocation (dist)\n"
-+ "Benedikt Schmidt <beschmi@cloaked.de>**20050404102300] \n"
-+ "\n"
-+ "[Remove another use of GHC internals\n"
-+ "Ian Lynagh <igloo@earth.li>**20050402223849] \n"
-+ "\n"
-+ "[Hack to avoid confusing cpp\n"
-+ "Ian Lynagh <igloo@earth.li>**20050402223406] \n"
-+ "\n"
-+ "[Set funfolding-use-threshold=20 for SHA1 rather than using ugly code\n"
-+ "Ian Lynagh <igloo@earth.li>**20050402215145] \n"
-+ "\n"
-+ "[Avoid cpp \\ line continuation\n"
-+ "Ian Lynagh <igloo@earth.li>**20050402194918] \n"
-+ "\n"
-+ "[Extra parens around assignment used as truth value\n"
-+ "Ian Lynagh <igloo@earth.li>**20050402193328] \n"
-+ "\n"
-+ "[Replace sequence_ $ map with mapM_\n"
-+ "Ian Lynagh <igloo@earth.li>**20050402192231] \n"
-+ "\n"
-+ "[Remove duplicate \\end{code}\n"
-+ "Ian Lynagh <igloo@earth.li>**20050402190212] \n"
-+ "\n"
-+ "[Fix which header to look in for execvp_no_vtalarm\n"
-+ "Ian Lynagh <igloo@earth.li>**20050402185440] \n"
-+ "\n"
-+ "[make some more flag descriptions lowercase\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050403131742] \n"
-+ "\n"
-+ "[specify author in resolve.pl.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050402205329] \n"
-+ "\n"
-+ "[automated tests for 'resolve'.\n"
-+ "Mark Stosberg <mark@summersault.com>**20050402144236\n"
-+ " \n"
-+ " This depends on echo_to_darcs() in Test::Darcs.\n"
-+ "] \n"
-+ "\n"
-+ "[resolve conflict\n"
-+ "Mark Stosberg <mark@summersault.com>**20050402132627] \n"
-+ "\n"
-+ "[refactor: get rid of test warnings\n"
-+ "Mark Stosberg <mark@summersault.com>**20050320200712] \n"
-+ "\n"
-+ "[fix bug with $DARCS not being exported\n"
-+ "Mark Stosberg <mark@summersault.com>**20050402014854\n"
-+ " \n"
-+ " This patch fixes the bug with $DARCS not being exported in unpull.pl.\n"
-+ " It should also also fix the problem some people had with this script\n"
-+ " hanging. \n"
-+ " \n"
-+ " It depends on adding echo_to_darcs() to Test::Darcs, which is in a separate\n"
-+ " patch, which may not have an official dependency, since --ask-deps was taking\n"
-+ " too long.\n"
-+ " \n"
-+ " Hopefully, if other test scripts are hanging, we can fix them like this, too. \n"
-+ " \n"
-+ " Thanks to Schwern for some of the logic help here. \n"
-+ " \n"
-+ "     Mark\n"
-+ "] \n"
-+ "\n"
-+ "[bug fix: add needed call to IPC::Open2;\n"
-+ "Mark Stosberg <mark@summersault.com>**20050402014231] \n"
-+ "\n"
-+ "[add echo_to_darcs to Test::Darcs\n"
-+ "Mark Stosberg <mark@summersault.com>**20050401134748] \n"
-+ "\n"
-+ "[resolve conflict in whatsnew.pl.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050330142532] \n"
-+ "\n"
-+ "[fix bugs in whatsnew.pl that I don't understand.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050330135557\n"
-+ " i.e. this was trial-and-error bugfixing.  :(\n"
-+ "] \n"
-+ "\n"
-+ "[fix non-existent file tests in record.pl.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050330135111] \n"
-+ "\n"
-+ "[comment out unpull all test that hangs on me... :(\n"
-+ "David Roundy <droundy@abridgegame.org>**20050330133459] \n"
-+ "\n"
-+ "[Uncommon file not actually being created\n"
-+ "schwern@pobox.com**20050324073620\n"
-+ " \n"
-+ " On OS X at least (perhaps elsewhere) `date >> \\\\` produces\n"
-+ " sh: -c: line 2: syntax error: unexpected end of file\n"
-+ " \n"
-+ " Replaced with Shell::Command's touch() so that the file named \\ is actually\n"
-+ " created.\n"
-+ "] \n"
-+ "\n"
-+ "[migrate missed_resolution.pl to Test::Darcs for better portability\n"
-+ "Mark Stosberg <mark@summersault.com>**20050324032502] \n"
-+ "\n"
-+ "[RT#233 - add test for unpull --last 1\n"
-+ "Mark Stosberg <mark@summersault.com>**20050321034712] \n"
-+ "\n"
-+ "[RT#233 - test that unpull confirms after selecting \"all\"\n"
-+ "Mark Stosberg <mark@summersault.com>**20050321033623] \n"
-+ "\n"
-+ "[export $DARCS from Test::Darcs in case we need it\n"
-+ "Mark Stosberg <mark@summersault.com>**20050321031827\n"
-+ " \n"
-+ " This seems to be the best way to handle piping input\n"
-+ " into darcs(). I can use open2() directly in my code\n"
-+ " along with $DARCS to solve that problem.\n"
-+ "] \n"
-+ "\n"
-+ "[RT#233 Add stub test scripts for 'unpull' and 'unrecord'\n"
-+ "Mark Stosberg <mark@summersault.com>**20050321022222] \n"
-+ "\n"
-+ "[fix TODO test (it was acciddently passing)\n"
-+ "Mark Stosberg <mark@summersault.com>**20050320204631] \n"
-+ "\n"
-+ "[fix silly test failure\n"
-+ "Mark Stosberg <mark@summersault.com>**20050320200824] \n"
-+ "\n"
-+ "[refactor to use Test::Darcs for better portability\n"
-+ "Mark Stosberg <mark@summersault.com>**20050319162341] \n"
-+ "\n"
-+ "[a new test for 'push' without a repo argument, and other cleanups\n"
-+ "Mark Stosberg <mark@summersault.com>**20050320175120] \n"
-+ "\n"
-+ "[switch to cwd() for better portability\n"
-+ "Mark Stosberg <mark@summersault.com>**20050320174152] \n"
-+ "\n"
-+ "[migrate to Test::Darcs for better portability\n"
-+ "Mark Stosberg <mark@summersault.com>**20050320173514] \n"
-+ "\n"
-+ "[Shell::Command to replace shell calls in perl tests\n"
-+ "schwern@pobox.com**20050312033530\n"
-+ " \n"
-+ " The perl tests make shell calls for trivial things which can be done\n"
-+ " just fine in Perl like touch, mkdir, rm -rf.  These are compatibility\n"
-+ " problems waiting to happen.\n"
-+ " \n"
-+ " There is an existing module which provides Perl functions similar to common\n"
-+ " shell commands, Shell::Command.  It is a wrapper around the core module\n"
-+ " ExtUtils::Command.  I've provided a copy here so darcs users do not have to\n"
-+ " download and install it to run the tests.\n"
-+ " \n"
-+ " This patch converts add.pl to use Shell::Command eliminating all `` calls\n"
-+ " in that test as a demonstration.\n"
-+ "] \n"
-+ "\n"
-+ "[Convert add_in_subdir test to Perl\n"
-+ "schwern@pobox.com**20050324060312\n"
-+ " \n"
-+ " To demonstrate converting a shell test into Perl using Shell::Command for\n"
-+ " better portability, diagnostics and debugging.\n"
-+ " \n"
-+ " Its pretty much a straightforward line-by-line mapping.\n"
-+ "] \n"
-+ "\n"
-+ "[RT#231 - new TODO test illustrating a bug is still present\n"
-+ "Mark Stosberg <mark@summersault.com>**20050319203457] \n"
-+ "\n"
-+ "[RT#231 - test for recording nonexistent files\n"
-+ "Mark Stosberg <mark@summersault.com>**20050319162406] \n"
-+ "\n"
-+ "[refactor: use Test::Darcs for better portability\n"
-+ "Mark Stosberg <mark@summersault.com>**20050319154204] \n"
-+ "\n"
-+ "[RT#245 - ChangeLog update and test\n"
-+ "Mark Stosberg <mark@summersault.com>**20050319154739] \n"
-+ "\n"
-+ "[refactor: fix test warning output and start Test::Darcs migration\n"
-+ "Mark Stosberg <mark@summersault.com>**20050319164331] \n"
-+ "\n"
-+ "[touch one in tests/tag.pl, AFAICS it doesn't test behaviour for missing files\n"
-+ "Tomasz Zielonka <tomasz.zielonka@gmail.com>**20050410060300] \n"
-+ "\n"
-+ "[fix bug in is_null_patch that lead to false positive when resolving (stable fix)\n"
-+ "Tomasz Zielonka <tomasz.zielonka@gmail.com>**20050409201619] \n"
-+ "\n"
-+ "[Depends.lhs: explicit error handling in get_common_and_uncommon_or_missing\n"
-+ "Tomasz Zielonka <tomasz.zielonka@gmail.com>**20050406204633\n"
-+ " Throwing errors in pure code, as in get_common_and_uncommon, was a\n"
-+ " source of some problems. For example, 'apply' was unable to print a\n"
-+ " proper error message if evaluation of get_common_and_uncommon's result\n"
-+ " pushed such (thrown in get_extra) error to top-level.\n"
-+ "] \n"
-+ "\n"
-+ "[Apply: use get_common_and_uncommon_or_missing\n"
-+ "Tomasz Zielonka <tomasz.zielonka@gmail.com>**20050406092824] \n"
-+ "\n"
-+ "[Depends.lhs: remove unnecessary case from get_extra\n"
-+ "Tomasz Zielonka <tomasz.zielonka@gmail.com>**20050404205515] \n"
-+ "\n"
-+ "[Depends.lhs: eliminate unnecessary function safehead\n"
-+ "Tomasz Zielonka <tomasz.zielonka@gmail.com>**20050404203006] \n"
-+ "\n"
-+ "[Depends.lhs: remove duplicated code from gcau by introducing gcau_simple\n"
-+ "Tomasz Zielonka <tomasz.zielonka@gmail.com>**20050404195227] \n"
-+ "\n"
-+ "[Canonize email address schnetter@aei.mpg.de\n"
-+ "Erik Schnetter <schnetter@aei.mpg.de>**20050403190311] \n"
-+ "\n"
-+ "[make whatsnew --look-for-adds respect --no-summary (fixing #326)\n"
-+ "Tomasz Zielonka <tomasz.zielonka@gmail.com>**20050407202208] \n"
-+ "\n"
-+ "[add to --match/--matches regexp match for author\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050401205908] \n"
-+ "\n"
-+ "['darcs add' prints errors to stderr, fail when no files added (fixes #53)\n"
-+ "Tomasz Zielonka <tomasz.zielonka@gmail.com>**20050403192831] \n"
-+ "\n"
-+ "[Add test for darcs add behaviour on missing files.\n"
-+ "Ralph Corderoy <ralph@inputplus.co.uk>**20041108134847\n"
-+ " Test for desired behaviour on adding a non-existant file, adding a file\n"
-+ " already added, etc.\n"
-+ "] \n"
-+ "\n"
-+ "[RT#266 - add ChangeLog entry\n"
-+ "Mark Stosberg <mark@summersault.com>**20050319152907] \n"
-+ "\n"
-+ "[Work around shopt extglob being off for some users\n"
-+ "Tuukka Hastrup <Tuukka.Hastrup@iki.fi>**20050401060527] \n"
-+ "\n"
-+ "[resolve conflict in DarcsArguments.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050401112333] \n"
-+ "\n"
-+ "[improve 'changes' description by mentioning 'changelog'\n"
-+ "Mark Stosberg <mark@summersault.com>**20050320210306\n"
-+ " \n"
-+ " I intentionally removed 'human-readable' from the description,\n"
-+ " since 'changes' now has XML output as well. \n"
-+ "] \n"
-+ "\n"
-+ "[make formatting of command name more consistent\n"
-+ "Mark Stosberg <mark@summersault.com>**20041108032029] \n"
-+ "\n"
-+ "[add documentation and license for sendmail-command\n"
-+ "Benedikt Schmidt <beschmi@cloaked.de>**20050330154205] \n"
-+ "\n"
-+ "[fix conflict with Tomasz' conflict resolution and mine.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050331120513] \n"
-+ "\n"
-+ "[fix double-import of stuff from Directory.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050330132638] \n"
-+ "\n"
-+ "[clarify docs for \"apply --cc\"\n"
-+ "Mark Stosberg <mark@summersault.com>**20050323021830] \n"
-+ "\n"
-+ "[clarify 'apply --reply=FROM' docs\n"
-+ "Mark Stosberg <mark@summersault.com>**20050323021333] \n"
-+ "\n"
-+ "[use comment verbatim in xml output\n"
-+ "glaweh@physik.fu-berlin.de**20050325103229\n"
-+ " without this patch, newlines were added before and after the comment\n"
-+ " content; additionally, the comment's first line was indented.\n"
-+ " both effects made it quite hard to transform the comment to html <pre>\n"
-+ " environments.\n"
-+ "] \n"
-+ "\n"
-+ "[Work around the colon issue in bash_completion\n"
-+ "Tuukka Hastrup <Tuukka.Hastrup@iki.fi>**20050329174505] \n"
-+ "\n"
-+ "[introduce withRepoLock to get rid of hardcoded \"./_darcs/lock\" strings\n"
-+ "Tomasz Zielonka <tomasz.zielonka@gmail.com>**20050331163645] \n"
-+ "\n"
-+ "[GNUmakefile: add test_coding_standards target, included in test/check\n"
-+ "Tomasz Zielonka <tomasz.zielonka@gmail.com>**20050331193442\n"
-+ " Currently it ensures that Haskell sources files contain no TABs. I\n"
-+ " checked that David prefers darcs sources to be tab-free. I found TABs\n"
-+ " only in a couple of places, so I figured it would be a good idea to\n"
-+ " remove them and enforce this in the future.\n"
-+ "] \n"
-+ "\n"
-+ "[remove TABs from Haskell source files\n"
-+ "Tomasz Zielonka <tomasz.zielonka@gmail.com>**20050331191041] \n"
-+ "\n"
-+ "[fix typo\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050330172211] \n"
-+ "\n"
-+ "[PR#194: add \"X-Darcs-Version:\" header to 'darcs send' messages\n"
-+ "Karel Gardas <kgardas@objectsecurity.com>**20050330161821] \n"
-+ "\n"
-+ "[Record.lhs: merge imports of Directory and System.Directory\n"
-+ "Tomasz Zielonka <tomasz.zielonka@gmail.com>**20050330190301] \n"
-+ "\n"
-+ "[Add a dummy handleToFd to win32/System/Posix.hs to avoid configure workaround on windows.\n"
-+ "peter@zarquon.se**20050328193453] \n"
-+ "\n"
-+ "[PR#231: fix record to report any non-existent file/directory given as an argument\n"
-+ "Karel Gardas <kgardas@objectsecurity.com>**20050324091401] \n"
-+ "\n"
-+ "[add sendmail-command option (#115)\n"
-+ "Benedikt Schmidt <beschmi@cloaked.de>**20050327030747\n"
-+ " - sendmail-command specifies the commandline used to send mail, the\n"
-+ "   commandline can contain some format strings to specify the recipient\n"
-+ " - the sendmail-command option is used on windows and is used instead of\n"
-+ "   mapi if specified\n"
-+ "             \n"
-+ "] \n"
-+ "\n"
-+ "[RT#278 - Add warnings to unpull, unrecord and amend-record docs\n"
-+ "Mark Stosberg <mark@summersault.com>**20050319141334] \n"
-+ "\n"
-+ "[RT#278 - resolve ticket with updated docs about unpull\n"
-+ "Mark Stosberg <mark@summersault.com>**20050319023020] \n"
-+ "\n"
-+ "[clarify description of --ask-deps option\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050319134738] \n"
-+ "\n"
-+ "[RT#25 - document that GUI is not currently functional.\n"
-+ "Mark Stosberg <mark@summersault.com>**20050319023847] \n"
-+ "\n"
-+ "[Fix RT#266. Introduce is_symlink instead of isnt_symlink.\n"
-+ "Tomasz Zielonka <tomasz.zielonka@gmail.com>**20050317121210] \n"
-+ "\n"
-+ "[PR#245: whatsnew --look-for-adds implies --summary usage\n"
-+ "Karel Gardas <kgardas@objectsecurity.com>**20050316194755] \n"
-+ "\n"
-+ "[[RT #258] accept darcs help foo as equivalent to darcs foo --help.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050316133828] \n"
-+ "\n"
-+ "[add newline to end of \"Nothing to do\" message in apply.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050316131617] \n"
-+ "\n"
-+ "[make apply work with patch bundle given as a relative path from a subdirectory.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050316131549] \n"
-+ "\n"
-+ "[update documentation for unrecord and unpull\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050313232216\n"
-+ " Document --from and --last options, and change from single patch to multiple\n"
-+ " patches\n"
-+ "] \n"
-+ "\n"
-+ "[make unrecord and unpull take --from and --last options\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050313231641] \n"
-+ "\n"
-+ "[fix typo\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050313225130] \n"
-+ "\n"
-+ "[new match option match_severla_or_last\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050313215644\n"
-+ " It only lets you select patches in a way so that everything\n"
-+ " can be commuted to the end.  Good for removal.\n"
-+ "] \n"
-+ "\n"
-+ "[fix typo\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050313213009] \n"
-+ "\n"
-+ "[Eliminate Can't exec \"cd\" error\n"
-+ "Nigel Rowe <rho@swiftdsl.com.au>**20050315002116] \n"
-+ "\n"
-+ "[get rid of commute_to_before in remove_from_unrevert_context\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050312124442\n"
-+ " as suggested by David Roundy\n"
-+ "] \n"
-+ "\n"
-+ "[write_patch reads old patch and only writes if new or changed\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050313141722] \n"
-+ "\n"
-+ "[Declare sloppy_atomic_create\n"
-+ "Nigel Rowe <rho@swiftdsl.com.au>**20050314105803\n"
-+ " Eliminate warning when compiling Lock.lhs\n"
-+ "] \n"
-+ "\n"
-+ "[[RT#268] Ship Test::Harness and Test::More\n"
-+ "schwern@pobox.com**20050313195506\n"
-+ " \n"
-+ " So we don't have to worry about what version of the Test modules users have,\n"
-+ " just ship em with darcs.  They're small.\n"
-+ " \n"
-+ " PS  I threw in the Test::Tutorial and Test::TAP files even though they're just\n"
-+ " documentation.  Makes upgrading easier (can just copy everything, don't have\n"
-+ " to worry about other files), they're small and who knows, someone might\n"
-+ " actually read them.\n"
-+ "] \n"
-+ "\n"
-+ "[typo fix - stray bracket in '--with-wx' help\n"
-+ "Martin Bays <mbays@freeshell.org>**20050312203521] \n"
-+ "\n"
-+ "[a TODO test which confirms that RT#266 is a regression\n"
-+ "Mark Stosberg <mark@summersault.com>**20050312220846\n"
-+ " \n"
-+ " I suspect of the recent symlink patches introduced this. \n"
-+ " Search 'darcs changes' for 'sym' to find it. \n"
-+ "] \n"
-+ "\n"
-+ "[RT#152 a TODO test for resolve after a conflict\n"
-+ "Mark Stosberg <mark@summersault.com>**20050312035601\n"
-+ " \n"
-+ " When pushing a conflict, darcs reports \"There is a conflict\".\n"
-+ " However, running 'darcs resolve' in the repo with the conflict\n"
-+ " reports no conflict. That seems like a big.\n"
-+ "] \n"
-+ "\n"
-+ "[RT#10 demostrate conflict resolution bug is resolved\n"
-+ "Mark Stosberg <mark@summersault.com>**20050312024532\n"
-+ " \n"
-+ " I translated the original shell script into (mostly!) Perl.\n"
-+ " \n"
-+ " I also tried running the shell script, and it passed to.\n"
-+ " \n"
-+ " It appears this bug has been fixed.\n"
-+ " \n"
-+ " Having this test in the test suite will help to prevent a regression.\n"
-+ " \n"
-+ "     Mark\n"
-+ "] \n"
-+ "\n"
-+ "[Allow parens to be optional when calling darcs() test command in some cases.\n"
-+ "Mark Stosberg <mark@summersault.com>**20050312142220] \n"
-+ "\n"
-+ "[Test::Darcs.  darcs() instead of `$DARCS ...`\n"
-+ "schwern@pobox.com**20050312031120\n"
-+ " \n"
-+ " All the perl tests repeat this mantra to find darcs:\n"
-+ " \n"
-+ "   use vars qw/$DARCS/;\n"
-+ " \n"
-+ "   die 'darcs not found' unless $ENV{DARCS} || (-x \"$ENV{PWD}/../darcs\");\n"
-+ "   $DARCS = $ENV{DARCS} || \"$ENV{PWD}/../darcs\";\n"
-+ " \n"
-+ " And then they call $DARCS directly via a shell command.  `$DARCS ...`\n"
-+ " Repeated code is bad and all that shell is likely to become a compatibility\n"
-+ " liability.\n"
-+ " \n"
-+ " This patch creats a library Test::Darcs and in it darcs() which replaces\n"
-+ " `$DARCS ...`.  I've converted add.pl to use it as a demonstration.\n"
-+ " \n"
-+ " One of the issues is now in order to run an individual Perl test file you\n"
-+ " must add -Ilib/perl so it can find Test::Darcs.  Alternatively one can \n"
-+ " add \"use lib qw(lib/perl)\" to all the Perl tests.  I don't know which is\n"
-+ " better for darcs developers.  The latter is redundant but potentially less\n"
-+ " confusing.\n"
-+ " \n"
-+ " More testing libraries for tests/lib/perl to follow.\n"
-+ " \n"
-+ "] \n"
-+ "\n"
-+ "[fix bug in merger tests.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050210131025] \n"
-+ "\n"
-+ "[copyedit section about special patches and pending in best_practices\n"
-+ "Martin Bays <mbays@freeshell.org>**20050311211035] \n"
-+ "\n"
-+ "[fix typo: 'n -> \\n\n"
-+ "Martin Bays <mbays@freeshell.org>**20050312175555] \n"
-+ "\n"
-+ "[turn wishful test into a TODO block so test script will succeed\n"
-+ "Mark Stosberg <mark@summersault.com>**20041214024314] \n"
-+ "\n"
-+ "[test for changes --last affecting only given files\n"
-+ "Mark Stosberg <mark@summersault.com>**20041026122610\n"
-+ " \n"
-+ " I added a test to confirm that \"--last\" only considers patches that\n"
-+ " the given files are in.\n"
-+ " \n"
-+ " It fails now because this is not implemented yet. You can save this test until\n"
-+ " you are ready to do that. :)\n"
-+ " \n"
-+ "     Mark\n"
-+ "] \n"
-+ "\n"
-+ "[MOre ChangeLog updates\n"
-+ "Mark Stosberg <mark@summersault.com>**20050312140805] \n"
-+ "\n"
-+ "[get rid of needless warnings in test suite run.\n"
-+ "Mark Stosberg <mark@summersault.com>**20050312140247\n"
-+ " \n"
-+ " Thanks to Schwern for pointing this out. \n"
-+ "] \n"
-+ "\n"
-+ "[RT #255 Comprehensible shell test output\n"
-+ "schwern@pobox.com**20050311212647] \n"
-+ "\n"
-+ "[typo fix - s/direcotry/directory/\n"
-+ "Mark Stosberg <mark@summersault.com>**20050311150658] \n"
-+ "\n"
-+ "[refuse to use mmap on nfs systems.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050311123821] \n"
-+ "\n"
-+ "[fix short description of --tag-name (which should be just --tag) in optimize.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050310130040] \n"
-+ "\n"
-+ "[command description and help patch\n"
-+ "peter@syncad.com**20050309230427] \n"
-+ "\n"
-+ "[RT#165 - TODO test for pull/rollback bug\n"
-+ "Mark Stosberg <mark@summersault.com>**20050310031811] \n"
-+ "\n"
-+ "[another TODO test for mv with absolute paths. This one is for the target argument.\n"
-+ "Mark Stosberg <mark@summersault.com>**20050309210815] \n"
-+ "\n"
-+ "[add TODO test for mv with absolute paths\n"
-+ "Mark Stosberg <mark@summersault.com>**20050309210134\n"
-+ " \n"
-+ " I'm using the ExtUtils::Command module as a perceived improvement for\n"
-+ " portability for some Unixy comands. It's part of the core Perl distribution so\n"
-+ " every should have it. (Although there are still more system calls which could\n"
-+ " be converted). \n"
-+ " \n"
-+ "     Mark\n"
-+ " \n"
-+ "] \n"
-+ "\n"
-+ "[record.pl conflict resolution and new tests\n"
-+ "Mark Stosberg <mark@summersault.com>**20050309135405] \n"
-+ "\n"
-+ "[adding test for 'record --logfile'\n"
-+ "Mark Stosberg <mark@summersault.com>**20041211213218] \n"
-+ "\n"
-+ "[provide example e-mail address format in prompt.\n"
-+ "Mark Stosberg <mark@summersault.com>**20050310023528] \n"
-+ "\n"
-+ "[make slurp_read_and_write_dirty respect --set-scripts-executable.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050309135827] \n"
-+ "\n"
-+ "[recommend that test suite is run as part of the install process\n"
-+ "Mark Stosberg <mark@summersault.com>**20050308174621] \n"
-+ "\n"
-+ "[add section about special patches and pending to best_practices\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050307213134] \n"
-+ "\n"
-+ "[RT#143, adding ChangeLog entry\n"
-+ "Mark Stosberg <mark@summersault.com>**20050308151004] \n"
-+ "\n"
-+ "[make record.pl a TODO test and s/darcs/\\$DARCS/.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050309122530] \n"
-+ "\n"
-+ "[bugfix reverse without invert for pull_lasts in PatchChoices\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050308165709\n"
-+ " The buggy return value is not used at present, but it migth be some day.\n"
-+ "] \n"
-+ "\n"
-+ "[more changelog updates: mention diff, unrecord, unpull and put improvements\n"
-+ "Mark Stosberg <mark@summersault.com>**20050309002610] \n"
-+ "\n"
-+ "[RT#247: a TODO test for files name \"\\\"\n"
-+ "Mark Stosberg <mark@summersault.com>**20050309025808\n"
-+ " \n"
-+ " The TODO block can be removed when the code is updated for the test to pass.\n"
-+ "] \n"
-+ "\n"
-+ "[convert whatsnew-with-absolutes-paths tests to a TODO test.\n"
-+ "Mark Stosberg <mark@summersault.com>**20050309025427\n"
-+ " \n"
-+ " TODO tests still 'succeed' when the test fails, thus test should now be OK to\n"
-+ " 'apply' to darcs before the code is written to match it. Hopefully, it may even\n"
-+ " be an incentive to help get started on that. \n"
-+ " \n"
-+ "] \n"
-+ "\n"
-+ "[switch to more portable constructs.\n"
-+ "Mark Stosberg <mark@summersault.com>**20050309025351] \n"
-+ "\n"
-+ "[test for record with absolute paths (current failing)\n"
-+ "Mark Stosberg <mark@summersault.com>**20041024000931] \n"
-+ "\n"
-+ "[a test for whatsnew with absolute paths\n"
-+ "Mark Stosberg <mark@summersault.com>**20041023235658\n"
-+ " It was recently reported on the -users list that 'whatsnew' doesn't work with absolute paths.\n"
-+ " This test confirms that bug (It current fails). \n"
-+ "] \n"
-+ "\n"
-+ "[tag needs author flag in tag.pl test.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050308131311] \n"
-+ "\n"
-+ "[document add command with symbolic links and boring option\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050308105604] \n"
-+ "\n"
-+ "[fix bug in new tag code pointed out by Mark (which caused his tests to fail).\n"
-+ "David Roundy <droundy@abridgegame.org>**20050308125801] \n"
-+ "\n"
-+ "[some tests for darcs tag.\n"
-+ "Mark Stosberg <mark@summersault.com>**20050308033818\n"
-+ " \n"
-+ " These tests were made to verify the new functionality by Josef\n"
-+ " to include the tag name on the command line. \n"
-+ " \n"
-+ " Currently there are two failing tests which illustrate that success is being reported\n"
-+ " different in this case, and more importantly, that the patch names generated are in \n"
-+ " a new format which does include 'tagged' in the name. \n"
-+ "] \n"
-+ "\n"
-+ "[improve doc for tag name\n"
-+ "Mark Stosberg <mark@summersault.com>**20050308033739] \n"
-+ "\n"
-+ "[Command tag now accepts patchname on the command line\n"
-+ "Josef Svenningsson <josef.svenningsson@gmail.com>**20050306013356] \n"
-+ "\n"
-+ "[user must confirm choice 'a' for unrecord and unpull\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050306201403] \n"
-+ "\n"
-+ "[update test suite for new multi-select interface to unrecord and unpull\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050306185536] \n"
-+ "\n"
-+ "[make unrecord and unpull use same interface as pull, to select multiple patches\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050306183140] \n"
-+ "\n"
-+ "[add function commute_to_end to Depends\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050306173752] \n"
-+ "\n"
-+ "[add function with_selected_last_changes_reversed to SelectChanges\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050306141917] \n"
-+ "\n"
-+ "[make remove_from_unrevert_context take a list of patches\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050306140701\n"
-+ " This will enable unpull and unrecord en masse\n"
-+ "] \n"
-+ "\n"
-+ "[Better error message when trying to add a symbolic link\n"
-+ "chucky@dtek.chalmers.se**20050305134958] \n"
-+ "\n"
-+ "[fix MacOS hard link HFS+ problem with GUI editors.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050305151537\n"
-+ " On HFS+, MacOS X has to emulate hard links, since they don't exist on the\n"
-+ " filesystem.  It does this moderately well, but many editors (including\n"
-+ " xcode, which is written by Apple) can't handle files that have formerly had\n"
-+ " hard links made.  All files created by darcs were in this category, since\n"
-+ " we reused our lock-grabbing code to create files.  I've modified the code\n"
-+ " to instead use the sloppy lock-grabbing code when we just want to create a\n"
-+ " file (which isn't really a lock).  This *should* fix the bug on MacOS X.\n"
-+ "] \n"
-+ "\n"
-+ "[add explanatory comment regarding snprintf on win32.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050305150309\n"
-+ " It's amazing some of the stuff I've learned working on darcs!\n"
-+ "] \n"
-+ "\n"
-+ "[Fix an off-by-one bug in win32 mkstemp.\n"
-+ "Josef Svenningsson <josef.svenningsson@gmail.com>**20050303151956] \n"
-+ "\n"
-+ "[add (optional) statistics output to list_authors.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050305134613\n"
-+ " I was just curious...\n"
-+ "] \n"
-+ "\n"
-+ "[fix LaTeX markup: ellipsis and a dash\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050224021423] \n"
-+ "\n"
-+ "[fix broken footnote in best_practises\n"
-+ "Tommy Pettersson <ptp@lysator.liu.se>**20050304003052] \n"
-+ "\n"
-+ "[update docs to reflect how darcs mv (and unix mv) actually work.\n"
-+ "Mark Stosberg <mark@summersault.com>**20050228192022\n"
-+ " \n"
-+ " I also updated the help syntax to use brackets, like 'darcs record' does.\n"
-+ "] \n"
-+ "\n"
-+ "[Fix path to pending_buggy in user message\n"
-+ "Thomas Zander <TZander@Factotummedia.nl>**20050225135841] \n"
-+ "\n"
-+ "[when patch has already been applied, exit with nicer message.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050226134928] \n"
-+ "\n"
-+ "[Improve diagnostic message with apply refuses to patch.\n"
-+ "Mark Stosberg <mark@summersault.com>**20050226033747\n"
-+ " \n"
-+ " Sometimes it's confusing when apply refuses to apply a patch\n"
-+ " that would cause a conflict. \n"
-+ " \n"
-+ " This is a documentation patch which explains to the user who to \n"
-+ " cause darcs to apply the patch and mark the conflicts anyway, \n"
-+ " if that's what they want. \n"
-+ "] \n"
-+ "\n"
-+ "[eliminate inappropriate singular flags in changes.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050225123849] \n"
-+ "\n"
-+ "[sort commands in \"Ambiguous command\" message.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050220141036] \n"
-+ "\n"
-+ "[Help texts clarification\n"
-+ "Thomas Zander <zander@kde.org>**20050219165049] \n"
-+ "\n"
-+ "[don't import head twice (fixes ghc 6.4 warning).\n"
-+ "David Roundy <droundy@abridgegame.org>**20050219120649] \n"
-+ "\n"
-+ "[move nubsort from PatchCommute to DarcsUtils\n"
-+ "Benedikt Schmidt <beschmi@cloaked.de>**20050219100534\n"
-+ " and change all nub . sort calls to nubsort.\n"
-+ "] \n"
-+ "\n"
-+ "[fix get over sftp using the putty sftp client\n"
-+ "Benedikt Schmidt <beschmi@cloaked.de>**20050219095413\n"
-+ " psftp doesn't change to the directory given on the commandline as\n"
-+ " user@host:dir. Change url given as arg to user@host: and add a\n"
-+ " cd dir command to the batchfile.\n"
-+ "] \n"
-+ "\n"
-+ "[add exec_interactive and use it instead of system in some places\n"
-+ "Benedikt Schmidt <beschmi@cloaked.de>**20050218022204\n"
-+ " exec_interactive just uses rawSystem wich works on posix systems\n"
-+ " (using execvp) and should work on windows too.\n"
-+ "] \n"
-+ "\n"
-+ "[clarify message and nub . sort instead of other way around\n"
-+ "Benedikt Schmidt <beschmi@cloaked.de>**20050218014042] \n"
-+ "\n"
-+ "[merge_three_patches-test-use-DARCS-not-darcs-for-get-tempOld-tempB\n"
-+ "petersen@haskell.org**20050217052705] \n"
-+ "\n"
-+ "[fix bug in what_sl test.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050217133957] \n"
-+ "\n"
-+ "[fix non-matching regexp in unit test\n"
-+ "Will <will@glozer.net>**20050217074209] \n"
-+ "\n"
-+ "[add self-test routines to cgi\n"
-+ "Will <will@glozer.net>**20050217071519] \n"
-+ "\n"
-+ "[canonize peter strand.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050217130626] \n"
-+ "\n"
-+ "[Revert to old behaviour for \"whatsnew -sl\" wrt. showing modified files (bug #210 in RT)\n"
-+ "peter@zarquon.se**20050216231858] \n"
-+ "\n"
-+ "[#217: darcs test suite ignores ~/.darcs\n"
-+ "Yuval Kogman <nothingmuch@woobling.org>**20050216000637\n"
-+ " Every test run has env HOME=`pwd` prepended to it, which causes darcs to look\n"
-+ " for .darcs in the src/darcs/test directory, instead of the actual home of the\n"
-+ " user running the test suite.\n"
-+ "] \n"
-+ "\n"
-+ "[Less ambiguous (and context-insensitive) docpatch for --look-for-adds\n"
-+ "Yuval Kogman <nothingmuch@woobling.org>**20050215233402\n"
-+ " lookforadds is documented in a way that could be interpreted as 'running \"darcs\n"
-+ " whatsnew -l\" will add files to the repo'. This doc patch tries to clarify the\n"
-+ " issue, but does a bad job of it.\n"
-+ " \n"
-+ " The reason is that lookforadds is documented once, while it actually means two\n"
-+ " different things in two different contexes - recording, and whatsnewing. The\n"
-+ " changed texts try to make sense in both contexes.\n"
-+ " \n"
-+ " Splitting the lookforadds documentation is beyond me, as it requires code\n"
-+ " modifications, but would definately be the Right Thing to do.\n"
-+ "] \n"
-+ "\n"
-+ "[add -lposix4 -lpthread to LDFLAGS when present, needed on Solaris\n"
-+ "Samuel Tardieu <sam@rfc1149.net>**20050214170152] \n"
-+ "\n"
-+ "[fixes to make darcs work with ghc 6.4.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050212125212] \n"
-+ "\n"
-+ "[quote filename passed to $EDITOR\n"
-+ "Benedikt Schmidt <beschmi@cloaked.de>**20050210193135\n"
-+ " fix bug when working directory contains spaces reported by\n"
-+ " Steven E. Harris.\n"
-+ "] \n"
-+ "\n"
-+ "[change tab to spaces.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050207131451] \n"
-+ "\n"
-+ "[improvements for darcs add and adding parent directories\n"
-+ "Benedikt Schmidt <beschmi@cloaked.de>**20050206000516\n"
-+ " Don't check for parents of recursively added files and\n"
-+ " order files given on commandline. Add test for new\n"
-+ " behaviour.\n"
-+ "] \n"
-+ "\n"
-+ "[index.html.in: \"Darcs is a revision control system.\"\n"
-+ "Thomas Schwinge <schwinge@nic-nac-project.de>**20050206150322\n"
-+ " I'd suggest this change; IMHO there's no need to compare darcs to CVS.\n"
-+ "] \n"
-+ "\n"
-+ "[Remove doubled 'on' from index.html.in.\n"
-+ "Thomas Schwinge <schwinge@nic-nac-project.de>**20050206145156] \n"
-+ "\n"
-+ "[RT#201 - add test for takeLock failure on pull\n"
-+ "Mark Stosberg <mark@summersault.com>**20050206040412] \n"
-+ "\n"
-+ "[changelog updates\n"
-+ "Mark Stosberg <mark@summersault.com>**20050206030948] \n"
-+ "\n"
-+ "[canonize AJ... :)\n"
-+ "David Roundy <droundy@abridgegame.org>**20050205212437] \n"
-+ "\n"
-+ "[Beautification\n"
-+ "Ian Lynagh <igloo@earth.li>**20050205131851] \n"
-+ "\n"
-+ "[clarify how bad the situation is when failure happens in pull.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050205135901\n"
-+ " This adds a function to DarcsUtils which can be used to add clarifications\n"
-+ " to existing error messages, so no information is lost to the user (although\n"
-+ " calling functions lose the type of the exception that was thrown).  It\n"
-+ " would be a good idea to throw these clarifications around pretty\n"
-+ " liberally.  I just did this to pull because that's where the relevant bug\n"
-+ " report (#201) was filed.\n"
-+ " \n"
-+ " I also reordered the writing to pending so less information will be lost if\n"
-+ " there is a problem writing changes to the working directory.\n"
-+ "] \n"
-+ "\n"
-+ "[be more careful not to do unnecesary slurps in write_pending.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050201115209] \n"
-+ "\n"
-+ "[Update copyright message: 2002-2005\n"
-+ "Jan-Benedict Glaw <jbglaw@lug-owl.de>**20050131133625] \n"
-+ "\n"
-+ "[Build-depend on libcurl2 or libcurl3\n"
-+ "Jan-Benedict Glaw <jbglaw@lug-owl.de>**20050131133404\n"
-+ " \n"
-+ " Darcs builds perfectly okay with libcurl3, so there's no need to force\n"
-+ " using an older version of this lib.\n"
-+ " \n"
-+ "] \n"
-+ "\n"
-+ "[Show patch number while (verbosely) downloading patches\n"
-+ "Jan-Benedict Glaw <jbglaw@lug-owl.de>**20050131121046] \n"
-+ "\n"
-+ "[Close both ends of pipes.\n"
-+ "Jan-Benedict Glaw <jbglaw@lug-owl.de>**20050130201542] \n"
-+ "\n"
-+ "[try to avoid email loops.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050129150828] \n"
-+ "\n"
-+ "[Show files starting with . in CGI script\n"
-+ "Kim Hansen <kim.hansen@hp.com>**20050128180541\n"
-+ " Files like .htaccess were not shown i the web interface.\n"
-+ " This patch changes the use of glob to opendir/readdir/closedir.\n"
-+ " It also shows repositories starting with ..\n"
-+ "] \n"
-+ "\n"
-+ "[Fix soul-hurting hardcoded file descriptor number\n"
-+ "Jan-Benedict Glaw <jbglaw@lug-owl.de>**20050127235644] \n"
-+ "\n"
-+ "[Fix eye-hurting whitespace\n"
-+ "Jan-Benedict Glaw <jbglaw@lug-owl.de>**20050127234921\n"
-+ " \n"
-+ " I admit that I don't like indenting with whitespaces either,\n"
-+ " but since the file is basically written with 4-spaces, I'll\n"
-+ " keep this habit (unless anybody allows me to send a larger\n"
-+ " patch :-)\n"
-+ " \n"
-+ "] \n"
-+ "\n"
-+ "[Fix off-by-one error in WIN32 version of mkstemp()\n"
-+ "Jan-Benedict Glaw <jbglaw@lug-owl.de>**20050127234048\n"
-+ " \n"
-+ " This patch solves different issues with the mkstemp() funktion provided\n"
-+ " for WIN32 versions of darcs:\n"
-+ " \n"
-+ " - THIS PATCH IS NOT TESTED: I'VE GOT NO WINDOWS AROUND!\n"
-+ " - Move file-local variable into the mkstemp() since it's only used\n"
-+ "   by mkstemp().\n"
-+ " - Remove unneeded variable p2.\n"
-+ " - Remove unneeded variable fd by directly returning the result of\n"
-+ "   open().\n"
-+ " - Correctly return EINVAL if the supplied template isn't at least\n"
-+ "   6 bytes long and doesn't end in 6 consecutive 'XXXXXX'.\n"
-+ " - Write 6 bytes of hex garbage instead of 5 bytes of decimal garbage.\n"
-+ "   This was caused because the final \\0 wasn't put into account for\n"
-+ "   the snprintf() call.\n"
-+ "] \n"
-+ "\n"
-+ "[Clarified success message for darcs pull.\n"
-+ "jemfinch@supybot.com**20050127065323\n"
-+ " When I first ran darcs pull, I saw the success message \"Finished pulling\" and\n"
-+ " wondered whether Darcs had just downloaded the patches, or whether it had\n"
-+ " also applied them.  To me (a new Darcs user) \"pull\" sounds like an exclusively\n"
-+ " network operation, so I wasn't sure whether the patches would be applied.  I\n"
-+ " think adding \"and applying\" clarifies to users that darcs pull not only grabs\n"
-+ " the patches, but applies them as well.\n"
-+ "] \n"
-+ "\n"
-+ "[simplify slurp_has using get_slurp\n"
-+ "Tomasz Zielonka <tomasz.zielonka@gmail.com>**20041221193648] \n"
-+ "\n"
-+ "[simplify slurp_hasfile using get_slurp\n"
-+ "Tomasz Zielonka <tomasz.zielonka@gmail.com>**20041221182015] \n"
-+ "\n"
-+ "[simplify slurp_modfile using get_slurp_context\n"
-+ "Tomasz Zielonka <tomasz.zielonka@gmail.com>**20041221175117] \n"
-+ "\n"
-+ "[implement get_slurp using get_slurp_context\n"
-+ "Tomasz Zielonka <tomasz.zielonka@gmail.com>**20041221170352] \n"
-+ "\n"
-+ "[simplify addslurp using get_slurp_context\n"
-+ "Tomasz Zielonka <tomasz.zielonka@gmail.com>**20041221140040] \n"
-+ "\n"
-+ "[simplify slurp_remove using get_slurp_context_maybe\n"
-+ "Tomasz Zielonka <tomasz.zielonka@gmail.com>**20041221131818] \n"
-+ "\n"
-+ "[add get_slurp_context, get_slurp_context_maybe and get_slurp_context_list\n"
-+ "Tomasz Zielonka <tomasz.zielonka@gmail.com>**20041221064941\n"
-+ " These functions allow to split a slurpy to a subtree specified by a file path\n"
-+ " and the rest of the tree (context). Hopefully this will allow to move most\n"
-+ " of slurpy traversal code to one place.\n"
-+ "] \n"
-+ "\n"
-+ "[automatically add parent directories for darcs add\n"
-+ "Benedikt Schmidt <beschmi@cloaked.de>**20050205014603\n"
-+ " \n"
-+ " Instead of complaining that the parent directory of the file isn't\n"
-+ " in the repo, add parent directories recursively. (See Bug #20)\n"
-+ "] \n"
-+ "\n"
-+ "[update web page to reflect new stable release.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050205120152] \n"
-+ "\n"
-+ "[make favicon alpha transparent.\n"
-+ "David Roundy <droundy@abridgegame.org>**20050205115820] \n"
-+ "\n"
-+ "[TAG 1.0.2-1\n"
-+ "Isaac Jones <ijones@syntaxpolice.org>**20050212221535] \n"
-  "";
- char *context_string(void) {
-   return (char *) context_string_value;
---- darcs-1.0.2+1.0.3rc1.orig/darcs_print.ps
-+++ darcs-1.0.2+1.0.3rc1/darcs_print.ps
+--- darcs-1.0.3.orig/darcs_print.ps
++++ darcs-1.0.3/darcs_print.ps
 @@ -10,7 +10,7 @@
  %DVIPSWebPage: (www.radicaleye.com)
  %DVIPSCommandLine: dvips -t letter -o darcs_print.ps darcs_print.dvi
  %DVIPSParameters: dpi=600, compressed
--%DVIPSSource:  TeX output 2005.04.26:0411
-+%DVIPSSource:  TeX output 2005.05.12:1350
+-%DVIPSSource:  TeX output 2005.05.24:1847
++%DVIPSSource:  TeX output 2005.06.05:1604
  %%BeginProcSet: texc.pro
  %!
  /TeXDict 300 dict def TeXDict begin/N{def}def/B{bind def}N/S{exch}N/X{S
@@ -1952,7 +697,7 @@
  readonly def
  /FontBBox{-32 -250 1048 750}readonly def
  /UniqueID 5087385 def
-@@ -771,73 +947,7 @@ end readonly def
+@@ -771,75 +947,7 @@ end readonly def
  /FontMatrix [0.001 0 0 0.001 0 0] readonly def
  /Encoding 256 array
  0 1 255 {1 index exch /.notdef put} for
@@ -1984,6 +729,7 @@
 -dup 72 /H put
 -dup 73 /I put
 -dup 74 /J put
+-dup 75 /K put
 -dup 76 /L put
 -dup 77 /M put
 -dup 78 /N put
@@ -2006,6 +752,7 @@
 -dup 103 /g put
 -dup 104 /h put
 -dup 105 /i put
+-dup 106 /j put
 -dup 107 /k put
 -dup 108 /l put
 -dup 109 /m put
@@ -2027,7 +774,7 @@
  readonly def
  /FontBBox{-53 -251 1139 750}readonly def
  /UniqueID 5000769 def
-@@ -1217,63 +1327,7 @@ end readonly def
+@@ -1230,63 +1338,7 @@ end readonly def
  /FontMatrix [0.001 0 0 0.001 0 0] readonly def
  /Encoding 256 array
  0 1 255 {1 index exch /.notdef put} for
@@ -2092,7 +839,7 @@
  readonly def
  /FontBBox{-36 -250 1070 750}readonly def
  /UniqueID 5000791 def
-@@ -1612,11 +1666,7 @@ end readonly def
+@@ -1625,13 +1677,7 @@ end readonly def
  /FontMatrix [0.001 0 0 0.001 0 0] readonly def
  /Encoding 256 array
  0 1 255 {1 index exch /.notdef put} for
@@ -2101,11 +848,13 @@
 -dup 51 /three put
 -dup 52 /four put
 -dup 53 /five put
+-dup 54 /six put
+-dup 55 /seven put
 +dup 0 /.notdef put
  readonly def
  /FontBBox{-27 -250 1122 750}readonly def
  /UniqueID 5000790 def
-@@ -1707,12 +1757,7 @@ end readonly def
+@@ -1732,12 +1778,7 @@ end readonly def
  /FontMatrix [0.001 0 0 0.001 0 0] readonly def
  /Encoding 256 array
  0 1 255 {1 index exch /.notdef put} for
@@ -2119,7 +868,7 @@
  readonly def
  /FontBBox{-29 -960 1116 775}readonly def
  /UniqueID 5000820 def
-@@ -1788,39 +1833,7 @@ end readonly def
+@@ -1813,39 +1854,7 @@ end readonly def
  /FontMatrix [0.001 0 0 0.001 0 0] readonly def
  /Encoding 256 array
  0 1 255 {1 index exch /.notdef put} for
@@ -2160,7 +909,7 @@
  readonly def
  /FontBBox{-5 -232 545 699}readonly def
  /UniqueID 5000830 def
-@@ -2035,12 +2048,7 @@ end readonly def
+@@ -2060,14 +2069,7 @@ end readonly def
  /FontMatrix [0.001 0 0 0.001 0 0] readonly def
  /Encoding 256 array
  0 1 255 {1 index exch /.notdef put} for
@@ -2170,11 +919,13 @@
 -dup 51 /three put
 -dup 52 /four put
 -dup 53 /five put
+-dup 54 /six put
+-dup 55 /seven put
 +dup 0 /.notdef put
  readonly def
  /FontBBox{-20 -250 1193 750}readonly def
  /UniqueID 5000789 def
-@@ -2136,99 +2144,7 @@ end readonly def
+@@ -2173,99 +2175,7 @@ end readonly def
  /FontMatrix [0.001 0 0 0.001 0 0] readonly def
  /Encoding 256 array
  0 1 255 {1 index exch /.notdef put} for
@@ -2275,7 +1026,7 @@
  readonly def
  /FontBBox{-4 -235 731 800}readonly def
  /UniqueID 5000832 def
-@@ -2734,51 +2650,7 @@ end readonly def
+@@ -2771,51 +2681,7 @@ end readonly def
  /FontMatrix [0.001 0 0 0.001 0 0] readonly def
  /Encoding 256 array
  0 1 255 {1 index exch /.notdef put} for
@@ -2328,7 +1079,7 @@
  readonly def
  /FontBBox{-163 -250 1146 969}readonly def
  /UniqueID 5000828 def
-@@ -3129,42 +3001,7 @@ end readonly def
+@@ -3166,42 +3032,7 @@ end readonly def
  /FontMatrix [0.001 0 0 0.001 0 0] readonly def
  /Encoding 256 array
  0 1 255 {1 index exch /.notdef put} for
@@ -2372,7 +1123,7 @@
  readonly def
  /FontBBox{-62 -250 1123 750}readonly def
  /UniqueID 5000798 def
-@@ -3433,66 +3270,7 @@ end readonly def
+@@ -3470,66 +3301,7 @@ end readonly def
  /FontMatrix [0.001 0 0 0.001 0 0] readonly def
  /Encoding 256 array
  0 1 255 {1 index exch /.notdef put} for
@@ -2440,7 +1191,7 @@
  readonly def
  /FontBBox{-301 -250 1164 946}readonly def
  /UniqueID 5000768 def
-@@ -3893,94 +3671,7 @@ end readonly def
+@@ -3930,94 +3702,7 @@ end readonly def
  /FontMatrix [0.001 0 0 0.001 0 0] readonly def
  /Encoding 256 array
  0 1 255 {1 index exch /.notdef put} for
@@ -2536,26 +1287,23 @@
  readonly def
  /FontBBox{-251 -250 1009 969}readonly def
  /UniqueID 5000793 def
-@@ -4517,25 +4208,7 @@ end readonly def
+@@ -4554,22 +4239,7 @@ end readonly def
  /FontMatrix [0.001 0 0 0.001 0 0] readonly def
  /Encoding 256 array
  0 1 255 {1 index exch /.notdef put} for
 -dup 44 /comma put
 -dup 48 /zero put
 -dup 50 /two put
+-dup 52 /four put
 -dup 53 /five put
--dup 54 /six put
--dup 65 /A put
 -dup 68 /D put
+-dup 77 /M put
 -dup 82 /R put
 -dup 97 /a put
 -dup 100 /d put
 -dup 105 /i put
--dup 108 /l put
 -dup 110 /n put
 -dup 111 /o put
--dup 112 /p put
--dup 114 /r put
 -dup 117 /u put
 -dup 118 /v put
 -dup 121 /y put
@@ -2563,198 +1311,156 @@
  readonly def
  /FontBBox{-34 -251 988 750}readonly def
  /UniqueID 5000794 def
-@@ -4567,105 +4240,91 @@ AA078CE16247A1335AD332DAA950D20395A7384C
- 4B7F768DA5AA89E8F163029ADD4A9209DE8A4F285766C06EA859639B92CCCDCA
- F59B1C2BB8D588CA754D1257BFF76B53984DF4937093AAEF79009D32A29A4C16
- FB610C7D6713482C48D7F9E8410C0F00AD6E67021056B6035534E79F05D14EF2
--4E87EDDEC33BE4856B885EC0B969DD2E7C8F2F9BF4DB0CD7E57BF8B4050C1434
--4031EBB95A69072D59DE7B4C42AFD5D88841EFCD1CCDB6A258E2A5D80C594B96
--D6AECC3AB046504F5C88D55CBC667ADFB2F1F15F45E35765F19DAF1F24EBD3F8
--866F1A46ECF961B9C9090ACAFF56898A343980FD407515151D934A1382C748C9
--75527F50FFFBB8F5966142CB57A8AEE7A1B59C397EC17B8C96FD1C60A37780F6
--B384BE280BDE753394C427E45CA9E0DD32314C28F6E2CDD56FE4C7E8443BFE47
--EF23E3C05915D9327C554CF3A66AE541C0E78027D5129483989C47B330E59079
--1FB06F07FA02F309E4DB7B1902B0B2AD32C25D41069B20A02F90A04E70B1AA63
--77AD56E9B90EA1BA5CFB1CCEBEE303DBC38ACD5CCEFBB4E8D111C410D3D421D8
--0DBA1694D2247962F328EAD58CF9F70B1676E1A3CC5435CC40AB246E999DA792
--033479BBF97040700292341E4A23C63F59482A847D24C6BF32695EB03747B510
--8DBE3886BF599C70FCE44BF5D938B1FEB1FB220518AB7A5642E0036051D93B67
--BF989E92540A768C854F36842C04FB63459B923FBF3E5856349FD3F424FAB552
--84729C4148EBDEDF7BA893D6E36AFEEE824958CEB6C332C94133CBA5041C642F
--B907AF9505EEF4CAC9AC3ECCA903D65633257A763E7705301E449BAF0508E849
--C7A1CAB3782B0E30E1E025AE02DA53B513C314FAECF3C9E2F7B899C3C3E02015
--87C32407BEC1A263D3FCF020AE7755DE0471E325CCCF5BF5DC58C9CB8D731E54
--F8F88CC901A626B7A38E2BCC328429C524911B2E7D2BD53BBA52D8CBEB5F4A65
--D869FDD164C9D35F9713DC6C22869CF1D1F2B1EE25778F31A043E841A7EC5970
--C7C25021989A356AE8C69F32D23EAD85970F6D10CDAF805C33E637AA1123BB86
--9B6290E0913EA54E27E0D9AB200B07FCAC8910046FD446A3A2380514664D0736
--463C76DFE564CD23E64AD556728BD73DAB1BA033CDEBA78424581AEB7891DEFA
--32BD4FA4521671ABFBC35AD969C9D4312DB34C9345F595ADE9DCD2789BBF73CC
--86183A8278CDE12A65E1A90160F65826B5A269DE9E68371068576B524DF06F20
--EBE7C2DDD916B0C355D77C39870B40095971F210E9E5816DFC877EC6AF23726D
--71D6E1556400C55755B5BD71E4B89B996BFF72FFBD25FD6222E65755715DCA2C
--7F931442AC1A6831EB0F835550C440573E0B3E92A4B20D9914CE6380F50E2B74
--C967498E4C275D860BCE003A0570AE2293EB6F947F0EEDF9103299C2DE5E31B4
--E599051F53D4C19A471E4D9F004788DE1132FBEEDE585A601A1364175ADA133D
--D1E445EB483AF3F7320425B832254AD0AC4909F4A07101B4C9A50AF8D1C018A1
--46521F88584CC93EE26B203DD764C28410CB87173C64FBDF5B0328FE6F27C40E
--3BD28FF43BBFD84DF23B3649B517FC43B4663050228C3183796BF581AF562E5E
--6824592D6AC030805A2914508771715C75C7B28566944019E6E8245C02189895
--25C93CDBCD0709FE9F63C8F32D4F1CBEC11AE49D10E6C42212BC932E7B7F7E76
--AFBD65CAE59AABA12E4B026E7C18F823C4C5D61E8D28CA095F2F68944D501D3A
--31E7299A9C3F015D643602B1399D80DFF6BA7F0DBC793FD642562F3113798BC4
--EFB9FA6565F0C47ED3593D9F6B89F322CD73BC7F367023962FDE299A6B19FC70
--BFC450ADF7B12A08D449AE0C9704FB8DC458E703595FC154B63E334A23EDF7E8
--7241E2E8EED9293ED0FB01A8E7EBD19401B793BC1A4E1147FA9EB2B040132A6A
--061C3E454934FF05DE439C7AEE71C0FA4D621EA387B89F7A40534FB43AF495E5
--83C96F5EDDEB1F7106E593B3F7A9776B0381360F0FDB95DAAFF8F496C31B5F85
--933809BD890B160D0938E5B81D119A1469879343923A38F15F614B2D3031BE2E
--7690EA3ED18224E107AFDEDAAC2CA96ED9CD459506CC4C316E87587A01504759
--A9B0D8599A565D19306416657C0853D3DB1051B50ED724217B8B75CF27E0EF41
--200FB5A1C3418DBD244D6B5358C4F9C887EE4FFB2FC7B7FAF0364E60ADBB3EF3
--667AF2C1A7B5FD35864A92A7D2173D9D647BFBC412047F9878A4B349749141CE
--1725D2DDB96912CB79162308A83065CCBD7256BDD205C1852020216E80DDAD80
--A2B709DF435B55C6A9B0A1AD251E6CA0AA0B3FA4C03D843CC2835DEC9E14AF23
--E90D28ECC34E027BEF5275D65DFB1DCAA209FD74C3DE3CDDD97099C02305423F
--87D9B69A3638882B86B2523E35CB388F2831309DA6483E9A8C553E2742A15C2C
--DAC7DD0AF8908139896528ED14E8C97527BD85CF51083800FE7EED8DB186D4C2
--2176D7F96FC55657D52FFBDAEB6FB029C339DF0D093ED89EAFA3444F1E85EF9E
--75E450DFD74CC481511D5400266C6EEEB02E6F146291815F67F3B489ACB8BDAB
--F41AF0907B64A17F8FA4EF6765F0E3CAC73CE82DEBE903998E9A5419D3ECE488
--F1E212BFCA6A449163F439FEAE7761DC4A4AE08E77145A5CD6E354CF9CE79412
--7DE3F9942A865B6685C3989FD1427F99F86241026233DEA044F1F995E1923D74
--81F6471C35B9E519E8A19B8B630D51C8749F1BB702F5B6263B3B933174C4788A
--E985F3875D84776C480DF4BF1E0E1413A74C84E15BC954D31170A38D101C82FC
--05391AC32DA2FCA2EE508103DFB7139DCD254AA23A02C550AE58B273C4D07DEC
--CEB295B2C933F02D0C3344DCF8779AFADCAD201632406525AC51CCA590574285
--DED2D7E3B9805E3A21E838203C7A097EAC9C25904E465ACC7F07A5AE592212C5
--918243F852E029D4EBA520069A5D0A60A620B5B53AFA6FA4D70EB71FE99C2835
--BBA01961A35403779DF41806CEF7E701E503342BC71FD6352E23917D39DFDE73
--E8A06667B57689B6DA9514DE44018999F49931E46310E04006BC5769D2195CEE
--9892E429E0A1C5F6E15873E56E094CC37F34899CEC297DD1FDF2F33E75E7F3CA
--B2DB6F3FB74DC21FF57E017C81998F448D7362B2ED9BFB5761B3397D83829C84
--E20827C9FD1FA0EE0FF2DE260AFB93174DD32D8B977FD5168D6074D0A02DEDDF
--5415E57DF0E73E76256082C9032D642F0ED82CC5B7F86CDD72128BA899A37809
--3BE118E51C8519AE8C2399A65AD5729895C8F0DD99C4856D53FF909EBCF759D7
--871F6576ED7B997112BDAD93429E282AD2F3B241D4F83C6A6D796C4A93DF1C20
--73E3039E5A42EE2CEFFAA4A601561E8701545EA3411387750B74AE6B6C36BE08
--D02A529B2C244296D982DFB9A7DC6A19AC93BD2438EDFC7F4C74AA9602BA0B14
--040D906A698A54486850F833322CDD9844F2D7E8353882935C0FF411F6CDF694
--CBB2AB9D0509C3ADFF84E2DA9E72C62711642AD095B5A5CADBF29ECDA68A853E
--7496DA5FB64C768849F3A338407D49C518C6A365117926FCC1439293362017C3
--A97FAAB04F112F6D411E47E237822AA9AB089F0AB28F19B6E36087E6ACED4946
--554E8F6DE73B5C95753139DB513F723B858F64647AB57A0F9AD01DD0ECC9FAD3
--7EF5B33C9EEB0F98B96AE573A1457EF5F9B846030B5BEE406B2E5CB8EA29FE70
--90F64B707A6F63522453CDEDA99C4D42EE08B256CF06A37CB79C3B7225BCA9DE
--187CDEFB10C37BFAEDE3DDCE4444A44649278FBD34EA5D3BD9334EEB938776AC
--291C7DB9A06A5D81BD425FAC60C0C8C6744B9AF3772A55DF24396F1F0008FF30
--9F1CC2A4F20708581A627C6CF59210D5151B1D0A115162E0C352FE7902767690
--F89D7823772E7DA5CC5147434E21F1F3D748DD7FC91C1C397522A01354747053
--840077D954D10AC0D0FD2898828BF7B1B779AAAECB6EBA7BDBC24FFCA25C261F
--D2DA1A88E8243E203D3190D7771C3AD6443A0CB398ACCDB19AC6C45C9F9E27FC
--7F451930ED40829216FE2035AB7FF92EC75B3274F03B14744E340892E9F1EE9C
--614DE5FBD63AABE6FBF46B743D3773C32437FF61866B3FB482AF23292A455739
--775BC0735CE4FCE7FB8575E032BBD7190239719205680AB2D0BCA2F10CF1252A
--DFB3B30C53AEE7FB8F04F9DCF9CB45F9208685716A821B7FEBA267E682F92849
--EFDA75169F7401FC3FB9AA45796E7D24832DF0477F26618D6DF6AD41FA4F0A49
--81FD8CBC3C0A48E604208F66842B1CEB40F75439ACA74009D250087552EC9621
--DBCB14AA4D65E1D43BB05EBA4273CC14DB9F6F4496562701E87917D904165787
--B2BB5B7C587BAC1F49D902D231C07E38EBF19110FC13FF441ADE5F87BACD3568
--19547AC67E5ECFDCDD2767DA41A60F9E0C00B9774B217B82A78C0B14F4315D48
--DC4B0AD9D1F596D353A620956878E5F70A16350C496B00A6379AC853121BAA5F
--F296DEE03691DECAC19A49256682EA4A00402DD1BDC8C2AB0A3D7BF0E3F8112A
--8161DD51CD715D09A02C0760D3E20B8F1AD4E5FD655F2B297BB3B97DED54E5A6
--6F7265767C6E2DA513475DA66E4275E076EB975BFA7F576A9E6257C332CDA126
--15902BA254D3937219F4FD1DC1974A68C9E128383E
-+4E8446A66B178B50DF4FD6F36E132DF58FA1AC48B8FE615FFF5211BEC93802BD
-+8CB6DFC20FEA4999F056F4D20E96DEE38BB2734FFEA8B87C631087F7A33ADA86
-+40253B003D48CA3326E42B3B4A9457D996181B8A7564CD2AA666D09B74795688
-+FA7F7865747521FAADCBEF8180C27C000FCEEC181B1AC3AD077B406682F6D10E
-+3A302B7B0A95053B668EC8667521C5D78ED8BE47FE37DA6FE4D23E848750DB0B
-+EB8B05A99B079C155D536E2025A07A8C948AB77B9A3391C09CD51468523B498F
-+25F9B23B0615E9D5A51EB45F39AF3104D079ED8253A7F0B1EE945700B5035EC3
-+B9ABA4B4F6C105F63D6184B03298D2EC62DEC5FA3A04A04CACC64418DEF074A6
-+E6ED5D10FEAEBE50318E7B03AB57A010A587672635EF6A6493599B6447FDA8EB
-+1CF645821EA60F6584F84F8E4F2B69E0B24F4D0857FD8F8C4B3B03CBCA50E712
-+292D6D74365CE50AA8A0BE71E5DD8C1E7FF76C204B0F0EE7C841E8084F6C325C
-+8BB8FF04F306851A06B6A8DEBB51F5A7AC63D006E87EDAA9D1E519E52187A6F6
-+BEB1A2537F454C2487651AF3144AB1231FB4037342ECC802FB97214D1C624974
-+6F773504A83D58BF6F9DAC25DF7F745493A4DF6BD4AF597561F8D4C14AB48CEC
-+BF99010060360D918AE4F6AB54CD863BC131EA124646A72B446BFB16850AD724
-+71F3F59AEBB63DCB25F9429FF6503D9EB49D968907E04919081897D63F1F6C39
-+A0883071FCD6B17D27DE954C62EF60A90823F78242F52D80E4226D605D22F793
-+DEBE32DC772CE777CC5F35D918D3FE4251FA5B0F81FE629F0C233DFEE9E5960C
-+F202489C0510F63FE7159F2A1FC21338801B5FF67C3C5C7D9F3855D2A5B7DEDA
-+A3743514C9D1CFD2548A805BD6618EF1BD2AAB67E1DF9E347ED0DED37EAFBD5B
-+BF71E90B9EEAC5CE286CECB72F476921D24CD8CD626A58701C5BB451D4DE5255
-+FF0B416C42F0830F94FD832C7D6A4F075F598B3AD620DDF14A542F7FCFA12363
-+9AF913DAAF27B240942560B736921D1ECD272CEEAFF498CE86C4F681F1F929DB
-+A29A501A4669008EA29C6DF16275B82E280DA0BB4D22E1E44D5B1F1F09BE9D95
-+5ACAFACD2E94E2C6CF4E9CC6E6E96217AD06EF33F4B104A69DF95402404A1531
-+BA3E82844CB0E30AEB8D9AC0837467AED5B0B67B641287BE560DB16A508615EE
-+F460A2FF1F1DDD65768D8BDD75D89E2AD8488DFF52F88C6EC957FCD12C6FE189
-+14684ECB58238DA6C8B11B47488BBFC1FE114FA6767C8AF05EBA078599C4A842
-+7CACDB1FB7717C72A70F82C7FE97B638CF6D319385244C19C877576AF244BCDD
-+2E006A34A375CC3C3A328D2466FA4D863F5CEF03C86FB92ECEA9F7CE096DDCAC
-+5AA3887902D4ED6A1D0D5A4C43E1B189C54956545FB89A082E51B9D096D7B674
-+11C5884F82022DFE90348449953138D5D3ECB24B45A3F27B1ABEE7725318DA8F
-+1DAFA2B9D552D86BC95321EF11EEE9E36F19D3620BFB63A6CF788354B81CCC90
-+721DB17FDAE6216B20A65A2A502B9A7982023F3ACFAA91E7DC76F318EE635717
-+C752A9362444F7DC888DBD9F5095C25B64F50D7D014DC1E7B6FC5B4DEECA982D
-+9BE4B1F8F3D36F0BAC7985B29C8FB731AD29236B9F02A31D6177638D6D0EDBB6
-+09EECEAD115E651976BEF90AD248D78D52E5F71DDB0507E64E263C13D502B1CB
-+5CF0D83096FF8658565B0BAF87FE865FAA11F888901C0F24FA8AC24F0E464206
-+DB61167E07CA6071044D674BFC8AF2A510B5F6E90902A77F72F3A4822E409EF6
-+5DEF3BA37599267328653AA53B1AFC569B6A2E71E69A400C3571661EA7E301B2
-+74F430BF3DA2330183741B86D4B07324E4F8ACF3A84146B68EEBBD33FBC4626F
-+3E350589EEF9CD517E01FD0CCF47E7A60337F0C981949CC68B2179A1942045D4
-+6C702D0EF5AEB3E5A2322EBF924C575013589517DD0D36DFB304F4B9FAB675C2
-+F737DEFE0DD9DCE958B2425E2572E6888686BCB5A73D975FC97C3C670CCB5E20
-+0056CC5B9FA5046CDDF0690D13C50CDBA21ABC9631ABC62AA50250AF93B16D1F
-+16D1602FE6622D10FA801793FED19F64894EB27B5CA857D0E7F7D58A7B9332A9
-+3CC5F955195B678CEF62E5E23A615AFE2D67D0D6FB78EAC41E85BA84147E0544
-+E7814C5EC33AE06244BA5843785C0198F8FE8DAA36DBC06AFA1C8F89A8223778
-+39892B4C5F5425FC6E077D8A7EB9A508ED2BD81AEB06170925CA210311205616
-+82F641D99F10328F671EC30F09CFFB05D0B5D543127466D1D901BDBB5AD331ED
-+33E0BAF58C8FF5736245D39FD4FEA4E9CE3E21525480341A72C1A0BC633BC3F4
-+09D7367063EB8227FB0A974DAF4C5FEC58F75FBC4E94AE0404235FD0C38AE89C
-+124519C04F5E5E4D1E4BA206C4D86D073FF4ED5D5B1E62F96F5E902981A69DAE
-+57ABC95466EED899BF1D30FE9D9C87610853B3C887D7C49D5EE297E96F13F10A
-+D7CCA71468C45C434EBFE9C4078D8AC90894EA2C6DB624F7D123CB3AC880360F
-+8558847F93A8F99D12F0F7427F59E3E15D30F51CA15A061B183CFA58A673FE9A
-+AAADF4C3C9BFAC74E8F9E9FFCEF956CA808EA3B4977AF107EB9986AF7F866C9C
-+24EBE436182F6C2A626ADDDFBA71B07A6714B0193721D6A3991603F2A0777B4E
-+02471CA9A0D69DF931914884A781620F2AAE2F4709083A9E55EA40C91A4B8EC6
-+E8F03BBFBA00E56ACFD53166293756A3FBEFB4709015060017848062814ECEF4
-+958DBDF6647A61BDEF22BF5807600765535BE50300A0F438BB4C72BADB680518
-+742146A7455C1BC3AD120C28777F667AA49BF6CE3697D788718A98C2461DC60B
-+B39BDEE36B9314411C319BCCE80619277875CA5519678BDA60BABA65158F251D
-+AF107BB47C9E53E8FE573DCD222820B3A4EB782E24583776C45C67383EFBFF03
-+8B1A97C69E57BF429C19DACB15FD1FF2E976C280E6669B5BB0B78FFE78FA49C0
-+BC72CEF3CE408BFEE98ED2D36C40A4DD50B7084FFBAEF1ED14A36909C913B07B
-+A7DA889339F968A922EA47B964B08694577027DFB60B092142BA80FB55AF07A9
-+D314AF69263EDD1F49FA43BFD7C2B0E503CBBB98E5B79F0D3392F6D24D444467
-+0E15E6EDD22D46B57C626F533FA4D6A10781FECFD46F5FA1FF6D0415449548A3
-+6201495E0C936269E93C99D436F5F323C7357D3450D1935291A2B3F41C7E50A4
-+800A5565C34BB0B597893EADC961CA4DCECDD446219A8E43EFA3E5F020C94889
-+137E6BD10768C4E915D45D176539645637CD721247DF83F68136E4B97E2673C7
-+78D22B08217BAE2C6108B4CAC5E0C5AC4F949A8E42779C2C8549F14D1ECD9F09
-+0C661123F152E1C2F14DBA2B61BD913EBEEFCCB47291FBDEB41FFE8AFB0D3BDA
-+F927F6DD5BAB693E8B68AD01AEDDC7C63F428B194AFE6EC3581157A18616D78F
-+823E002ABC6A9A72D0E426279ED32F8795C3BD4D1127AA1529AD2F8196B146C4
-+DE341969CBB0F1EAD5523E9F8078E57CFA9A127697D8903F1CE1A7A044907268
-+4C3B2FB76CA282A748ECA590915B6BF137AF480753C9C5A8075B78B51E144248
-+83E81761FBFC2DCAE40D841E6EE72A7B9BA3014B5F6C0BD304B45A4A44375DD4
-+5F47306BE8A8489E9CB25EA6B38F3C8D8B79A0564425BEF7FC78A4D272F575EC
-+7C60CAFE881E5F7814BD042A8805BFA77D0A6E5E16683D12C7765BE9092B69E8
-+A4F454635438EF9523411D1BA90650DAAA2C60869B3B7406D31A3426608C7FB2
-+1575307EC608734E4C2F6418F744925FE13AAA8C05ACB358CBA8C540BDF336FD
-+74B3743BB2FED1311A472BCA9B4ABC4C55CB9AE60F7339836901A835B6CA298D
-+F7E2DDA5EDC4CE8B92A68B6FE99C0A678AFECB28A747C6613C
+@@ -4615,78 +4285,76 @@ E6ED5D10FEAEBE50318E7B03AB57A010A5876726
+ 3D54FD224F14675CA9097E12A44E3624C3ABB5C30E33C492CDAB5646A6DC43E9
+ 520F87FAD4D93BD85DBB3EC5A9D03F784D61902FAFC01C72CA1605B0350C506E
+ 906ECA2985F7DFA33992BBEB605847CBF6158DACDF163A55BF7CEB30BBA22D73
+-D306B31983B84022719DB35C8096FFF2FE331114D90DC570F732EB9E9A934994
+-DB504DCE16238AAA8A2C61573E1EAD79A30644FD88EC72EEA00F31DE1D340A06
+-34B518690F415070E599DEFF9FF99C069344DAB5BD2B73E643366F37531DE11D
+-330CC97CCD8356D57B9ACAD865857E1A9578439020BABF9FF0C5864C2A355121
+-03D1085A5637C9F3524AD341A09E3CE42346B130DD114F01B54F9132C87FA16B
+-476C855FB25A223BAB51B5F607431AE2713D645E397993176D52A8D1BC7DB5C5
+-722E1242387B1D231B242FFEFC11215E0FAC0A3F96525D11A606F49E0DCA199D
+-0D4BDFAD411AAF01C25AE3DD2A710AE7EAF260432D6A2404A9F2D141323CB19D
+-32F50C135F0AE97F441ED03F83ABDA2A7B05B45A1B5485ED5EBDAA23CC414CF6
+-984CEF270182A277770CB3A490FB470122BF985E390EE6B2101F83ACEA0265BD
+-4DDC5DA7668CC0167395EFCDE2401300B9D5BB8F9A5B0207440E65B6DFE0B817
+-C1E91890F21BADA72FF0C4178E5290BC7DBDEC174F35B337307AEAA7FF4B0652
+-AC25DE28C6214383902833B1026EF29DA8855ABF611D3F4C4BD255B2D11876BA
+-60FB4F259EE72014F0404E4A5CB47049742850AE1DF4EED0FC5E5B1B60859C79
+-2EEC3573D11D03F1BCE67065D0F2CFFC457805E94B99474E2ADE1F4296422222
+-7C677E81AF5651709F4633D0FD7AD37770F5D6BADD40DFBBEF452F821EC3BE9E
+-BA1C02C8B2260866F043C69DE61F2DC5E7EB8E3779344B555B4809F856E7BD39
+-AA308767E67AE80336B4F85CD5B7D3B015A27704A7C87150A5A78A5528E18463
+-709C19D98AAB5D8AE612D3C305F61860ED043423FD386B9AF3339A78F3E8808A
+-ABC41E1A89A5A2F3022E5E04711FF061E41BA2DDF091DA0F86BAB2EACDBFE46F
+-729AA7B87D848A674D848483435FA028A576A16EDB11E0FF774FA216C63011A4
+-DCB418B7B9B649FC412EECF19ED96494575BE7A7EA27FD55739545F836308603
+-49BA14AD66A139B58493CD51818DFEB95AA37AF6FD42B6EEA56682AB5D23684F
+-06C3E880517333A1C9CDE4C51C306781F7AEA8D06459338F897F10A7BD6F9B95
+-189FCDF236B440718424618A520EA88806A023140100767AD01EC8042EC8A75A
+-51D0FE0A5DA3FEBD3D20968AF248E3C706F691CA35D4579958A9CB13A76B4504
+-D18BAD846A0040F5C9F50539D66B6C227FECA02FDF97CA909CE4F27E4DA0EC7A
+-5F9C2B6788D5CDB14E56CCC5E575B822052C271900DC825F991D3C402E08D771
+-373A0A4D6EEB8F1FE38E3BFA33C7A4674B47ABFFFC226E968B3A5BE26C7C53BC
+-AC36E8C75F142DD2E26CC3DCCEA6CE342E6BDB7F5D2552B560D59905018647B3
+-E131B07A56CAC5FE6BFD34D00F85D29DE80121317C753FAC4E41E16F89A358E1
+-B22594CB449BF7DE08D045ED9E75006A4470A9979B650E114BE8F4DDE64236EA
+-863CCD86A9F605CF7C0D2BE5BC16895EB8DB556BE62EC89C4ADA3D8084E11898
+-20D6AFCC0F26538A59EF6CAD7BCE7BB58101B125FCAA8EFBE1AA9A3F861E65C6
+-B44C8475E4DEA8518DF63814BCD6C24290BBD5EF474E03763E458826A31E114B
+-53D167346B4C65DBE377D37EDA11FAF8BBF77B13CABD1FFB0887546FE1219F75
+-DD94087F1882FCF12C52D35CB06670D16F27E9A4F669122ED08465678E66F9BE
+-0DFEB96AF798CAF2DF334729063CFD28F1D0D9DFCF548E22E6FAB0EE8C38B37A
+-FFFBFE4517EFA3131D59A63D64B352EA8F8990FBA8B236FBE9752BE133578E6D
+-141B3C69DA1A2F181AC9AD05BAB3F3FBCD86820455611BEE96FFB2639D570932
+-E12A3D416705A4A445BE7B938C3F2428745C4296CFAE3543C58D8C06DDE2A6DF
+-949087C1C9F2BFA786C5A7D24298D7CEF4037606D6379ADA3C10A726E8E26B7A
+-947381237817A4780C1AA6F6059D3E1BE75EDED12917740D457AF11D29579957
+-9285FFF82C7C502C792108410E80353BCA313D8B9C9B6207051B375DD045E420
+-012FE7DAF777ECE5AEB14F6D8C163E166F1FD80052FCB6672A50E91AB1E67878
+-2577CAB3D7201B3897DA278336742A3EBC33AB585661A6D4097C08483F219A20
+-DC3844970B4C1FD692B6C09D6D6A9E65EB26DC084E382953EF114DFBBB3CB811
+-6FF84BDCC0C80835D437B679179658304F881A2431FD0D6CAD621F05D36F6AEC
+-85F589DF7396CDD95A4339240131249F10FE1983C73211429B25A1DE875D80B8
+-22DC5EBDD03249858F19FCDD663EE3082A2247CB6B00EEFFE54F2FCA11672BC3
+-052725CE06A61C1D24C0E7BAC3467D2B3515C2FD52C53D842E98F7DBE0822256
+-6759AC076C0FA07E61614D6745EB6923196F1DECB2C8D6497B8D6422659E4E58
+-B9D6432784281CA7DB039DDA5954A80B88A0FF49D71C14BC002D0FCE13C6B677
+-EF942754FA3EFDA49B1F83A3A183F74F8BBE2A4FEFF53C6F97665A653D305176
+-06CD14E4095EEEEAD546BC7BA61CB86021F5CE3B2934AC2AFF328913B8064866
+-61577C0DBBCC28EAA3CFF74756CCCBEE769B0798DD521AE178611D0C6784B17B
+-D030349A8E057C7A93785C15E4FF8867CB2042E68BAFDCBAFCFBFF1CD8DA0492
+-8633C66D7FBD5132EF0D97C44A9D13D45FFAE871AEEB7BD399D57D4CE1769DB6
+-8979C930A96F4C05CB8D9EA11784B1D0E8C70A520FF04C12F5A3C329A6659F6A
+-FA52EF6C6FD12279F0198789A9C87ABB7B3159CDF0A6E248201CACBC1FAE0109
+-128B79BA159184CC3CE43E912968249D49A12244C087A238CD5D576BEF87954D
+-BAB236884C5926A40EED2F3A8EE65448E4E7D92413D173EBBED13AE101E3A41E
+-557A16D7B274529BF0D11E0A42F91B14B7ED16A98AFE394E814324736D0F26C0
+-C77B27429FC7484283D2F397C8DA495C43AE8C896E9FA2F64B7E5734CBE9B2A8
+-059185BCB566E461BF90BB50536CEA88C9C6E1D095946F8469EF4749B960704E
+-A8F32237B237F4C3D2F0D8BAB1F609B01AE7F120E7BA62551D59E7B3946F9F9D
+-0339883234E24FBCA934BCB831D2688E952D56806E154B6BDE5FEEF258C5531E
+-2D3A71AC78660A2BF1A32A04B703636C722B70D8438B74A11869FE4FEF61020A
+-71918D18BEEC3BFD8E5105D9A10FE49C0729CBE90DA7B98F6841E6B8BF29B5A2
+-7352E005F50D33ABA0DDAF74151804686C7FB6AD42733759927A37A4F941F7A9
+-F152967EEEF1D72B2BCBFE0D72E41493DF41A4A050BE87A38516075AAD3B06A1
+-1DDB4A2310C05E1388B7936C3EB3
++D306B31983B84658495A165E18E9512F87C647124A8AB60655E7B7AD22A4A5C7
++DE0DC8F13AD7EF4A239726A1AD19B2AE29DA0F73D3FA62D277C9CBD024931EC8
++C90BD36DE332E586DD62D8E2232EA47F8D1CB3CC3C3E122C89DBB1D26713E923
++9A9B20C2462C4FA47CC0A5E4575805EF63B0688E0DE0D4C310CC770F8238EBC3
++A7F38484D142691256DBE424E9C62DE097A292EEFB6907813749F2C13B03F64B
++7745AFC4F0FCEA58E2A2B45BC092162888692AF2131254802AA0267E433A76A9
++4D03733995B61CB5A8155801470AC2E0831CC65473DC731FCA75A98ADFB85B50
++D21BDC1537C75DE0FA4830979B4B531D3375001AAE87AA819FA22DC5E7246B9B
++D71F5864984E96CBC8188BD0C739B2AB7EC42508C9E06B4EE3DFAB8F7278EAB7
++85BABF0212711AC8C2110CDE07E92579E0339B74D617B632D13C0E267601DE4D
++9A3DEB033D7AC582A9BD28EC053855BCFB56445B798EB1BCA2F4EBED39C3AF1C
++A70B6C8EEF1710A0D1CDF861B3C7C4C4305B1959079AC6AEFA28C0C35BF8FA1E
++1988C4DA875285B946EA9F29C509BF82E6FDBF80496924BD1EFD741685CC2EB3
++0F527DB35FBD8F9F73DAD66588E79458DC9D9C12FE23F520FAF62D0D4E7E1C3D
++0DC5259E09B8FCDAB6F712AE6FE5C4A0DE1626B84EF0DC264B18B7F96A6738A9
++2E610AF0C20C411FF88F88B1E71A691C616373CDC36D8CD91524BDD138639245
++58963CF004BABDE39B3EA8A3742C8A46CE9DD31FBBEF227D0A87A95640D1754C
++8118093A4E151B2312577DD0ADE9A1AFD280283A464F57B1BE4E254998ECC5F6
++40F064BE6BBE6F3184529F542924D639B7AB8C8969FB83A97D5A5BE436FCE231
++CA56EA81A78BD882274EACA84081A760E5167E6D74423C706EB1939CDF559974
++BEC083E98B5889FA909B10C73E3FE7D1B4285799C18FD0CE30A7AD7025486094
++BF939B3D28C6677DBEECF1DC06AEA0EA3F3E5C27D778BA5E3DABAA848896B326
++5D426004D32CA10412DC4C2D30CC1049A4DF03C9FD844F8ADEB37C8B5250A0C2
++38DCFCA16653C622665A027F632733FCB2011D4470801875C37AEB17425271D0
++AC003C42C4FCFCE66CB855823826F8924BA31CDDCD39A3D529DC61F829193FDB
++0D502A77A2B164CBB1DFFB489DB4A80EEEA39A36F686EC8029FAE80D9DBAACD4
++38994B948847D6E8A6E0493D7282DFDCB44B6667E8A15FEE27FD94A151E1FDB5
++20E069C8F7924487462D26442C933F0920D0219807096B1EBE427ABD915C1300
++7D4E5E86791379C2809B7F13E32D7F6E90EAE25E383CE7C747ACA503F9A0AD32
++94AEE6572405A67F2249CD190ECB6DAB264578AE303287F2DD144978CAD877C8
++FDAC4B31793A0E474F7E25075BB50D862F45440DE2A9F55507A1372DED4C91B3
++E712FE9C221BC2C13C7537E6011C8D429F14F25655B9C0991B8FE3ED457D7E96
++13462E119157D9F46C031737F1B1D2A9C3BAA1970DC7583D9E1808DA78D682BD
++82DCA02E0753679EE179C0E57E754DCA3CFF0247BDE47EFEE7B16ADAB26CBBAE
++0D1059BE6214EAD42D877CB196442CD8298B57AC39237EA4B85B33E71FD04C0C
++8E0E62B22B5B4B6808B783583407A16C14090D492A41C7BAD01DB520F44629C3
++F2D90E6934855FB510600EC4514E4AC4AC294E00230C5D82D0C081C43A0B2DD1
++6133AA2194C512FDAC49EE6250B52916B4D9D3E869D978B7337447EE572D013D
++23389B0D5FFEE6CDA7533BA640BAC5906C98E1DD6986172E853B269990E5B916
++8F3F4EC3547899B69937A1EAE93B6557539E558CA2F08CA4ED53CA1342837BDD
++0B743186BD77F405CFFB2DABA736272D647822494382B739CD99669292C1AD82
++35AE58045C4223A32E584E0BDD513F69D39DBE77F60F94F96B1FDDAA51BC7325
++069D5086180D59840C9957862BADBD3E0A308A2BC6881F4DE9B2B1F78CB9A5C6
++254DBCE070E989F9CCA09CED807318DF244197757F68D205F6232628CCE614A7
++2CAE462B3980C56166C892E2DD9B9FEB38CAA688BC47B01E1CBC10BE4F3B1DAC
++A8E219AB298692736FCEDB5332AA8D28C3A2EA55A971A5EB6A466642BDCD34D5
++B1EB2193E864C1660ADE48E5104449D162DDDB06109A14E161071625CB8DD7B2
++24B3F7164AB822A410E4A13D14D68289F31116CF2441F5406C869F4377A3A1F5
++8EC7ED6B7631A185D0C9C9FE25F1A2EE9D1A7D57FFA7A342EFF93A9AE4E2953D
++81709619EB78D6174272A1B89BBC5EB0242175415F736D8E458E523EC38C5355
++16E0C80E8B149E6FF91F40122DEA1FBD8654F2948F9DE4823D65E160F7E3F201
++62DF441102286CB340E44B93F124587F3E6AA4DF8A2E41454308DC3BB9AB8A8B
++E2C5B61D04242AAA098E8C0B37E15E998D98AA7A22711EBC0F35F3919D6ECC9E
++4BC2ED3C40FE307BA01A6ACB9FFC46C524D756A62CEB091DD9E62E478B05CB3F
++F85FA1B8A997B3615911FD2BA624FBB6F238A7708DEA02D4ED2DC9512F527FD5
++751DE934BD8618EDABCE535D6CA1DAC01AB7B08F2F9F6BAFE9D0C5E522AFEA31
++8A7B6400489D62ABD09D3A1AB86DAA927620E1ED3C42B6DC57D3FFC282D12269
++76F35BC04B8178FB0CDF3CFAD42858D8098CC0600BF8ED1C6BBC6FCBAF919A53
++4C95A9C651D0A3D54DF72B6C35BC48B43E5F5B7B9FDAE043E14D81C4C87E4B75
++BFA9936276C519A0B1C22FA13960AD22265A49782F2E6CB646BC070C61639F20
++387BB25CC67FA1A9C469EC9BDB8734DF98350B9FF2F93BAFE6B66A2269148167
++574CC503D45DFC982CA427FF28A7BB72BB228F64CE6B18FA89B02822C6705049
++5EED66A1DDA7FE4F47C34553718AC29932CC07342A480605548ED00B40C72021
++F569F9A8F265C65DDAEBDB36522D3253011E31B1AC29BA5310C2FD6BC68C8415
++485BE250AE07801571A3953D65CE63C37C53122B29C8B3C0D6B11E26EC5BAE75
++AFCE2FF442C122E4D267B7236E33CF7AC339F7B44E5E22BC4157EFBC1B380E47
++932C98F2AFC38307F209C1A2076BCC1742A7FCA0AFAA487C13F6396D52ED6D55
++73A16EB697A4BA0115B038118B51FF249AD6EFCF0196F19F49E019FFAFF0F0BA
++577EC32FE6D78815C6F26D3C6E9F32DE35EA9283C989F2A53D0E27DB6F854DDE
++6524141F28C9EB3B5D
  0000000000000000000000000000000000000000000000000000000000000000
  0000000000000000000000000000000000000000000000000000000000000000
  0000000000000000000000000000000000000000000000000000000000000000
-@@ -4696,11 +4355,7 @@ end readonly def
+@@ -4717,11 +4385,7 @@ end readonly def
  /FontMatrix [0.001 0 0 0.001 0 0] readonly def
  /Encoding 256 array
  0 1 255 {1 index exch /.notdef put} for
@@ -2767,7 +1473,7 @@
  readonly def
  /FontBBox{-36 -251 1103 750}readonly def
  /UniqueID 5000829 def
-@@ -4790,23 +4445,7 @@ end readonly def
+@@ -4811,19 +4475,7 @@ end readonly def
  /FontMatrix [0.001 0 0 0.001 0 0] readonly def
  /Encoding 256 array
  0 1 255 {1 index exch /.notdef put} for
@@ -2780,19 +1486,15 @@
 -dup 68 /D put
 -dup 97 /a put
 -dup 99 /c put
--dup 100 /d put
 -dup 101 /e put
--dup 105 /i put
 -dup 108 /l put
--dup 110 /n put
 -dup 114 /r put
 -dup 115 /s put
--dup 116 /t put
 +dup 0 /.notdef put
  readonly def
  /FontBBox{-33 -250 945 749}readonly def
  /UniqueID 5000795 def
-@@ -4929,65 +4568,79 @@ cleartomark
+@@ -4930,65 +4582,80 @@ cleartomark
  TeXDict begin 40258431 52099146 1000 600 600 (darcs_print.dvi)
  @start /Fa 134[51 51 69 51 51 49 38 50 53 46 53 51 62
  43 53 1[25 51 53 44 46 52 49 48 51 4[46 7[65 51 9[34
@@ -2804,25 +1506,25 @@
 -95[{}1 66.4176 /CMMI8 rf /Fe 207[19 47[52{}2 58.1154
 -/CMSY7 rf /Ff 145[50 29[53 63 11[59 1[62 2[65 1[65 1[23
 -58[{}8 83.022 /CMMI10 rf /Fg 131[112 1[50 59 1[81 59
--62 44 44 46 1[62 56 62 93 31 59 1[31 62 56 34 51 62 50
--62 54 11[86 78 62 2[77 3[67 3[88 1[70 2[81 1[85 7[56
--56 56 56 56 56 56 56 56 2[31 37 33[65 11[{}45 99.6264
--/CMBX12 rf /Fh 128[35 2[71 1[31 37 37 51 37 39 27 28
--28 37 39 35 39 59 20 37 1[20 39 35 22 31 39 31 39 35
--4[35 4[72 2[51 39 52 2[55 53 4[25 53 1[46 2[51 50 53
--1[33 3[20 20 7[35 35 35 1[20 24 20 2[27 27 20 4[35 20
--19[39 39 41 11[{}57 66.4176 /CMR8 rf /Fi 202[33 33 33
--33 33 49[{}5 58.1154 /CMR7 rf /Fj 148[42 65[83 7[83 83
--16[42 1[83 13[{}6 83.022 /CMSY10 rf /Fk 133[35 35 35
--35 35 35 35 35 35 1[35 35 35 35 35 35 1[35 35 35 35 35
--35 35 35 35 9[35 16[35 1[35 35 1[35 6[35 10[35 35 35
--45[{}33 66.4176 /CMTT8 rf /Fl 202[30 30 30 30 30 30 48[{}6
--49.8132 /CMR6 rf /Fm 134[71 71 97 71 75 52 53 55 71 75
--67 75 112 37 71 1[37 75 67 41 61 75 60 75 65 7[102 102
--139 102 103 94 75 100 1[92 101 105 128 2[69 50 105 106
--85 88 103 97 96 102 6[37 67 67 67 67 67 67 67 67 67 2[37
--45 37 4[37 24[112 75 13[{}62 119.552 /CMBX12 rf /Fn 129[44
--44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44
+-62 44 44 46 1[62 56 62 93 31 59 34 31 62 56 34 51 62
+-50 62 54 11[86 78 62 84 1[77 2[106 67 88 2[88 1[70 1[86
+-81 80 85 6[31 56 56 56 56 56 56 56 56 56 2[31 37 31[62
+-1[65 11[{}53 99.6264 /CMBX12 rf /Fh 128[35 2[71 1[31
+-37 37 51 37 39 27 28 28 37 39 35 39 59 20 37 1[20 39
+-35 22 31 39 31 39 35 4[35 4[72 2[51 39 52 2[55 53 4[25
+-53 1[46 2[51 50 53 1[33 3[20 20 7[35 35 35 1[20 24 20
+-2[27 27 20 4[35 20 19[39 39 41 11[{}57 66.4176 /CMR8
+-rf /Fi 200[33 33 33 33 33 33 33 49[{}7 58.1154 /CMR7
+-rf /Fj 148[42 65[83 7[83 83 16[42 1[83 13[{}6 83.022
+-/CMSY10 rf /Fk 133[35 35 35 35 35 35 35 35 35 1[35 35
+-35 35 35 35 1[35 35 35 35 35 35 35 35 35 9[35 16[35 1[35
+-35 1[35 6[35 10[35 35 35 45[{}33 66.4176 /CMTT8 rf /Fl
+-200[30 30 30 30 30 30 30 30 48[{}8 49.8132 /CMR6 rf /Fm
+-134[71 71 97 71 75 52 53 55 71 75 67 75 112 37 71 1[37
+-75 67 41 61 75 60 75 65 7[102 102 139 102 103 94 75 100
+-1[92 101 105 128 2[69 50 105 106 85 88 103 97 96 102
+-6[37 67 67 67 67 67 67 67 67 67 2[37 45 37 4[37 24[112
+-75 13[{}62 119.552 /CMBX12 rf /Fn 129[44 44 44 44 44
 +3[62 2[64 18[46 27 31 27 2[36 36 5[46 34[{
 + TeX0ef0afcaEncoding ReEncodeFont }37 83.022 /CMCSC10
 +rf /Fb 134[73 3[73 71 55 72 1[67 76 73 89 61 2[36 1[77
@@ -2835,23 +1537,24 @@
 +58.1154 /CMSY7 rf /Ff 145[50 29[53 63 11[59 1[62 2[65
 +1[65 1[23 58[{ TeXaae443f0Encoding ReEncodeFont }8 83.022
 +/CMMI10 rf /Fg 131[112 1[50 59 1[81 59 62 44 44 46 1[62
-+56 62 93 31 59 1[31 62 56 34 51 62 50 62 54 11[86 78
-+62 2[77 3[67 3[88 1[70 2[81 1[85 7[56 56 56 56 56 56
-+56 56 56 2[31 37 33[65 11[{ TeXf7b6d320Encoding ReEncodeFont }45
-+99.6264 /CMBX12 rf /Fh 128[35 2[71 1[31 37 37 51 37 39
-+27 28 28 37 39 35 39 59 20 37 1[20 39 35 22 31 39 31
-+39 35 4[35 4[72 2[51 39 52 2[55 53 4[25 53 1[46 2[51
-+50 53 1[33 3[20 20 7[35 35 35 1[20 24 20 2[27 27 20 4[35
-+20 19[39 39 41 11[{ TeXf7b6d320Encoding ReEncodeFont }57
-+66.4176 /CMR8 rf /Fi 202[33 33 33 33 33 49[{
-+ TeXf7b6d320Encoding ReEncodeFont }5 58.1154 /CMR7 rf
++56 62 93 31 59 34 31 62 56 34 51 62 50 62 54 11[86 78
++62 84 1[77 2[106 67 88 2[88 1[70 1[86 81 80 85 6[31 56
++56 56 56 56 56 56 56 56 2[31 37 31[62 1[65 11[{
++ TeXf7b6d320Encoding ReEncodeFont }53 99.6264 /CMBX12
++rf /Fh 128[35 2[71 1[31 37 37 51 37 39 27 28 28 37 39
++35 39 59 20 37 1[20 39 35 22 31 39 31 39 35 4[35 4[72
++2[51 39 52 2[55 53 4[25 53 1[46 2[51 50 53 1[33 3[20
++20 7[35 35 35 1[20 24 20 2[27 27 20 4[35 20 19[39 39
++41 11[{ TeXf7b6d320Encoding ReEncodeFont }57 66.4176
++/CMR8 rf /Fi 200[33 33 33 33 33 33 33 49[{
++ TeXf7b6d320Encoding ReEncodeFont }7 58.1154 /CMR7 rf
 +/Fj 148[42 65[83 7[83 83 16[42 1[83 13[{
 + TeXbbad153fEncoding ReEncodeFont }6 83.022 /CMSY10 rf
 +/Fk 133[35 35 35 35 35 35 35 35 35 1[35 35 35 35 35 35
 +1[35 35 35 35 35 35 35 35 35 9[35 16[35 1[35 35 1[35
 +6[35 10[35 35 35 45[{ TeX09fbbfacEncoding ReEncodeFont }33
-+66.4176 /CMTT8 rf /Fl 202[30 30 30 30 30 30 48[{
-+ TeXf7b6d320Encoding ReEncodeFont }6 49.8132 /CMR6 rf
++66.4176 /CMTT8 rf /Fl 200[30 30 30 30 30 30 30 30 48[{
++ TeXf7b6d320Encoding ReEncodeFont }8 49.8132 /CMR6 rf
 +/Fm 134[71 71 97 71 75 52 53 55 71 75 67 75 112 37 71
 +1[37 75 67 41 61 75 60 75 65 7[102 102 139 102 103 94
 +75 100 1[92 101 105 128 2[69 50 105 106 85 88 103 97
@@ -2859,47 +1562,48 @@
 +24[112 75 13[{ TeXf7b6d320Encoding ReEncodeFont }62 119.552
 +/CMBX12 rf /Fn 129[44 44 44 44 44 44 44 44 44 44 44 44
  44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44
--44 44 44 44 44 44 44 44 1[44 44 44 44 44 44 44 44 44
 +44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 1[44 44
  44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44
+-44 44 44 44 1[44 44 44 44 44 44 44 44 44 44 44 44 44
  44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44
--44 44 44 33[{}93 83.022 /CMTT10 rf /Fo 134[40 1[55 38
--45 28 34 35 38 42 42 47 68 21 38 1[25 42 38 25 38 42
--38 38 42 4[43 2[62 1[83 2[59 1[61 1[56 64 62 1[52 2[32
--62 64 5[62 6[25 10[42 25 1[25 4[25 4[43 25 20[47 51 11[{}45
+-44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 33[{}93
 +44 44 44 44 44 44 44 44 44 44 33[{ TeX09fbbfacEncoding ReEncodeFont }93
-+83.022 /CMTT10 rf /Fo 134[40 1[55 38 45 28 34 35 38 42
-+42 47 68 21 38 1[25 42 38 25 38 42 38 38 42 4[43 2[62
-+1[83 2[59 1[61 1[56 64 62 1[52 2[32 62 64 5[62 6[25 10[42
+ 83.022 /CMTT10 rf /Fo 134[40 1[55 38 45 28 34 35 38 42
+ 42 47 68 21 38 1[25 42 38 25 38 42 38 38 42 4[43 2[62
+ 1[83 2[59 1[61 1[56 64 62 1[52 2[32 62 64 5[62 6[25 10[42
+-25 1[25 4[25 4[43 25 20[47 51 11[{}45 83.022 /CMTI10
+-rf /Fp 135[102 3[75 1[79 1[108 1[108 4[54 108 2[88 108
+-2[94 29[140 138 146 10[97 97 97 97 97 97 49[{}19 172.188
+-/CMBX12 rf /Fq 166[62 62 85 62 62 60 46 61 1[57 65 62
+-76 52 65 1[30 62 65 54 57 63 60 59 62 6[23 42 42 42 42
+-42 42 42 42 42 2[23 1[23 4[23 39[{}36 83.022 /CMSL10
+-rf /Fr 134[50 50 69 50 53 37 38 39 1[53 48 53 80 27 50
+-1[27 53 48 29 44 53 42 53 46 7[72 72 99 72 73 66 53 72
+-1[65 72 75 91 57 75 1[36 75 75 60 63 73 69 68 72 6[27
+-48 48 48 48 48 48 48 48 48 3[32 27 30[53 53 12[{}60 83.022
+-/CMBX10 rf /Fs 134[123 3[129 90 92 95 1[129 116 129 194
+-65 2[65 129 116 71 106 129 103 129 113 11[179 162 1[173
+-1[159 1[182 1[140 2[87 1[183 2[178 168 165 53[129 12[{}31
+-206.559 /CMBX12 rf /Ft 131[83 42 37 44 44 60 44 46 32
+-33 33 44 46 42 46 69 23 44 25 23 46 42 25 37 46 37 46
+-42 23 2[23 42 23 1[62 62 85 62 62 60 46 61 1[57 65 62
+-76 52 65 43 30 62 65 54 57 63 60 59 62 65 39 39 65 23
+-23 23 42 42 42 42 42 42 42 42 42 42 42 23 28 23 65 42
+-32 32 23 4[42 23 18[69 46 46 48 11[{}88 83.022 /CMR10
+-rf /Fu 134[51 2[51 54 5[49 54 4[27 4[54 2[49 14[72 4[89
+-8[75 14[49 49 1[49 1[49 3[27 44[{}16 99.6264 /CMR12 rf
+-/Fv 140[48 49 14[54 1[60 28[88 68[{}5 119.552 /CMTI12
 +25 1[25 4[25 4[43 25 20[47 51 11[{ TeX74afc74cEncoding ReEncodeFont }45
- 83.022 /CMTI10 rf /Fp 135[102 3[75 1[79 1[108 1[108 4[54
- 108 2[88 108 2[94 29[140 138 146 10[97 97 97 97 97 97
--49[{}19 172.188 /CMBX12 rf /Fq 166[62 62 85 62 62 60
--46 61 1[57 65 62 76 52 65 1[30 62 65 54 57 63 60 59 62
--6[23 42 42 42 42 42 42 42 42 42 2[23 1[23 4[23 39[{}36
++83.022 /CMTI10 rf /Fp 135[102 3[75 1[79 1[108 1[108 4[54
++108 2[88 108 2[94 29[140 138 146 10[97 97 97 97 97 97
 +49[{ TeXf7b6d320Encoding ReEncodeFont }19 172.188 /CMBX12
 +rf /Fq 166[62 62 85 62 62 60 46 61 1[57 65 62 76 52 65
 +1[30 62 65 54 57 63 60 59 62 6[23 42 42 42 42 42 42 42
 +42 42 2[23 1[23 4[23 39[{ TeXf7b6d320Encoding ReEncodeFont }36
- 83.022 /CMSL10 rf /Fr 134[50 50 69 50 53 37 38 39 1[53
- 48 53 80 27 50 1[27 53 48 29 44 53 42 53 46 7[72 72 99
- 72 73 66 53 72 1[65 72 75 91 57 75 1[36 75 75 60 63 73
- 69 68 72 6[27 48 48 48 48 48 48 48 48 48 3[32 27 30[53
--53 12[{}60 83.022 /CMBX10 rf /Fs 134[123 3[129 90 92
--95 1[129 116 129 194 65 2[65 129 116 71 106 129 103 129
--113 11[179 162 1[173 1[159 1[182 1[140 2[87 1[183 2[178
--168 165 53[129 12[{}31 206.559 /CMBX12 rf /Ft 131[83
--42 37 44 44 60 44 46 32 33 33 44 46 42 46 69 23 44 25
--23 46 42 25 37 46 37 46 42 23 2[23 42 23 1[62 62 85 62
--62 60 46 61 1[57 65 62 76 52 65 43 30 62 65 54 57 63
--60 59 62 65 39 39 65 23 23 23 42 42 42 42 42 42 42 42
--42 42 42 23 28 23 65 42 32 32 23 4[42 23 18[69 46 46
--48 11[{}88 83.022 /CMR10 rf /Fu 134[51 2[51 54 2[38 1[54
--49 54 1[27 2[27 4[54 2[49 14[72 13[75 2[73 10[49 49 2[49
--1[49 3[27 44[{}19 99.6264 /CMR12 rf /Fv 140[48 49 14[54
--1[60 28[88 68[{}5 119.552 /CMTI12 rf /Fw 139[51 52 51
--3[73 1[36 2[36 3[58 73 58 1[66 28[101 16[66 1[66 66 1[36
--4[51 51 40[{}17 143.462 /CMR17 rf end
++83.022 /CMSL10 rf /Fr 134[50 50 69 50 53 37 38 39 1[53
++48 53 80 27 50 1[27 53 48 29 44 53 42 53 46 7[72 72 99
++72 73 66 53 72 1[65 72 75 91 57 75 1[36 75 75 60 63 73
++69 68 72 6[27 48 48 48 48 48 48 48 48 48 3[32 27 30[53
 +53 12[{ TeXf7b6d320Encoding ReEncodeFont }60 83.022 /CMBX10
 +rf /Fs 134[123 3[129 90 92 95 1[129 116 129 194 65 2[65
 +129 116 71 106 129 103 129 113 11[179 162 1[173 1[159
@@ -2911,31 +1615,32 @@
 +62 65 54 57 63 60 59 62 65 39 39 65 23 23 23 42 42 42
 +42 42 42 42 42 42 42 42 23 28 23 65 42 32 32 23 4[42
 +23 18[69 46 46 48 11[{ TeXf7b6d320Encoding ReEncodeFont }88
-+83.022 /CMR10 rf /Fu 134[51 2[51 54 5[49 54 4[27 4[54
-+2[49 14[72 4[89 8[75 14[49 2[49 49 49 3[27 44[{
++83.022 /CMR10 rf /Fu 134[51 2[51 54 5[49 54 4[27 3[43
++54 2[49 14[72 7[50 5[75 14[49 2[49 1[49 3[27 44[{
 + TeXf7b6d320Encoding ReEncodeFont }16 99.6264 /CMR12
 +rf /Fv 140[48 49 14[54 1[60 28[88 68[{
 + TeX74afc74cEncoding ReEncodeFont }5 119.552 /CMTI12
-+rf /Fw 139[51 52 51 3[73 1[36 2[36 3[58 73 58 1[66 28[101
-+16[66 1[66 66 1[36 4[51 51 40[{ TeXf7b6d320Encoding ReEncodeFont }17
+ rf /Fw 140[52 51 5[36 6[58 1[58 1[66 28[101 16[66 1[66
+-66 1[36 4[51 51 40[{}13 143.462 /CMR17 rf end
++66 1[36 4[51 51 40[{ TeXf7b6d320Encoding ReEncodeFont }13
 +143.462 /CMR17 rf end
  %%EndProlog
  %%BeginSetup
  %%Feature: *Resolution 600dpi
-@@ -5000,7 +4653,7 @@ letter
+@@ -5001,7 +4668,7 @@ letter
  %%Page: 1 1
- TeXDict begin 1 0 bop 700 2140 a Fw(Darcs)43 b(1.0.3rc1)f(\(release)h
- (candidate)h(1\))1576 2322 y Fv(Dar)-6 b(cs)1412 2688
--y Fu(Da)m(vid)33 b(Roundy)1421 2928 y(April)g(26,)f(2005)p
-+y Fu(Da)m(vid)33 b(Roundy)1437 2928 y(Ma)m(y)g(12,)f(2005)p
- eop end
+ TeXDict begin 1 0 bop 1141 2140 a Fw(Darcs)43 b(1.0.3)f(\(release\))
+ 1576 2322 y Fv(Dar)-6 b(cs)1412 2688 y Fu(Da)m(vid)33
+-b(Roundy)1437 2928 y(Ma)m(y)g(24,)f(2005)p eop end
++b(Roundy)1454 2928 y(June)g(5,)g(2005)p eop end
  %%Page: 2 2
  TeXDict begin 2 1 bop 739 282 a Ft(2)p eop end
---- darcs-1.0.2+1.0.3rc1.orig/darcs.1
-+++ darcs-1.0.2+1.0.3rc1/darcs.1
+ %%Page: 3 3
+--- darcs-1.0.3.orig/darcs.1
++++ darcs-1.0.3/darcs.1
 @@ -1,4 +1,4 @@
--.TH DARCS "1" "April 2005" "darcs" "User Commands"
-+.TH DARCS "1" "May 2005" "darcs" "User Commands"
+-.TH DARCS "1" "May 2005" "darcs" "User Commands"
++.TH DARCS "1" "June 2005" "darcs" "User Commands"
  .SH NAME
  darcs \- an advanced revision control system
  .SH SYNOPSIS
@@ -2948,83 +1653,14 @@
  on each command, you can call `darcs COMMAND --help'
 
  .SH CREATING REPOSITORIES
---- darcs-1.0.2+1.0.3rc1.orig/AUTHORS
-+++ darcs-1.0.2+1.0.3rc1/AUTHORS
-@@ -4,27 +4,27 @@ created from the darcs repository, so if
- changes should be made to list_authors.hs.
-
- David Roundy <droundy@abridgegame.org>
--Ian Lynagh <igloo@earth.li>
- Mark Stosberg <mark@summersault.com>
--Juliusz Chroboczek <jch@pps.jussieu.fr>
-+Ian Lynagh <igloo@earth.li>
- Tommy Pettersson <ptp@lysator.liu.se>
-+Juliusz Chroboczek <jch@pps.jussieu.fr>
- Will <will@glozer.net>
- simons@cryp.to
- Samuel Tardieu <sam@rfc1149.net>
- Tomasz Zielonka <tomasz.zielonka@gmail.com>
- Peter Strand <peter@zarquon.se>
-+Erik Schnetter <schnetter@aei.mpg.de>
- Taral <taral@taral.net>
- Nigel Rowe <rho@swiftdsl.com.au>
--Karel Gardas <kgardas@objectsecurity.com>
- Benedikt Schmidt <beschmi@cloaked.de>
-+Karel Gardas <kgardas@objectsecurity.com>
- andrew@pimlott.net
- Mirian Crzig Lennox <mirian@cosmic.com>
- Jan-Benedict Glaw <jbglaw@lug-owl.de>
--Erik Schnetter <schnetter@aei.mpg.de>
- ei@vuokko.info
-+Ralph Corderoy <ralph@inputplus.co.uk>
- Jim Marshall <jmarshall99@qwest.net>
- Anthony Towns <aj@azure.humbug.org.au>
--Ralph Corderoy <ralph@inputplus.co.uk>
- lord@crocodile.org
- Andres Loeh <andres@cs.uu.nl>
- schwern@pobox.com
-@@ -34,6 +34,7 @@ zander@kde.org
- schaffner@gmx.li
- ketil@ii.uib.no
- Simon Michael <simon@joyful.com>
-+Isaac Jones <ijones@syntaxpolice.org>
- wnoise@ofb.net
- peter.maxwell@anu.edu.au
- janbraun@gmx.net
-@@ -51,8 +52,11 @@ Thomas Zander <zander@kde.org>
- Thomas Schwinge <schwinge@nic-nac-project.de>
- Lode Leroy <lode_leroy@hotmail.com>
- Josef Svenningsson <josef.svenningsson@gmail.com>
-+Jim Radford <radford@blackbean.org>
- Gabriel Ebner <ge@gabrielebner.at>
-+Aaron Denney <wnoise@ofb.net>
- thies@thieso.net
-+testerALL --ignore-times
- sreindl@triobit.de
- ser@germane-software.com
- sean.robinson@sccmail.maricopa.edu
-@@ -76,11 +80,11 @@ Nimrod A. Abing <nimrod.abing@gmail.com>
- Matt Brubeck <mbrubeck@cs.hmc.edu>
- Kirill Smelkov <kirr@landau.phys.spbu.ru>
- Kim Hansen <kim.hansen@hp.com>
-+Kannan Goundan <kannan@cakoose.com>
- John Meacham <john@repetae.net>
--Jim Radford <radford@blackbean.org>
- Jan Scheffczyk <jan@informatik.unibw-muenchen.de>
- Guillaume Outters <guillaume.outters@free.fr>
- Frank Ruell <stoerte@dreamwarrior.net>
- Christian Egli <egli@apache.org>
-+Carlos Phillips <carlos.phillips@mail.mcgill.ca>
- Brian Alliet <brian@brianweb.net>
--Aaron Denney <wnoise@ofb.net>
 --- /dev/null
-+++ darcs-1.0.2+1.0.3rc1/darcs.tmp
++++ darcs-1.0.3/darcs.tmp
 @@ -0,0 +1,2 @@
 +
 +/* css.sty */
 \ No newline at end of file
 --- /dev/null
-+++ darcs-1.0.2+1.0.3rc1/darcs.xref
++++ darcs-1.0.3/darcs.xref
 @@ -0,0 +1,479 @@
 +\:CrossWord{)F1F-}{darcs.html}{1}%
 +\:CrossWord{TITLE+}{ Darcs 1.0.3rc1 (release candidate 1)  {\it  Darcs} }{1}%
@@ -3506,7 +2142,7 @@
 +\:CrossWord{)Qx1-165038x12}{1}{201}%
 +\:CrossWord{)Qx1-166000C.1}{1}{202}%
 --- /dev/null
-+++ darcs-1.0.2+1.0.3rc1/darcs.4tc
++++ darcs-1.0.3/darcs.4tc
 @@ -0,0 +1,167 @@
 +\expandafter\ifx\csname doTocEntry\endcsname\relax \expandafter\endinput\fi
 +\doTocEntry\toclikechapter{}{\csname a:TocLink\endcsname{1}{x1-1000}{QQ2-1-1}{Contents}}{3}\relax
@@ -3676,7 +2312,7 @@
 +\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-165000C}{QQ2-1-165}{Preamble}}{195}\relax
 +\doTocEntry\tocsection{C.1}{\csname a:TocLink\endcsname{1}{x1-166000C.1}{QQ2-1-166}{Appendix: How to Apply These Terms to Your New Programs}}{202}\relax
 --- /dev/null
-+++ darcs-1.0.2+1.0.3rc1/darcs.4ct
++++ darcs-1.0.3/darcs.4ct
 @@ -0,0 +1,168 @@
 +\expandafter\ifx\csname doTocEntry\endcsname\relax \expandafter\endinput\fi
 +\doTocEntry\toclikechapter{}{\csname a:TocLink\endcsname{1}{x1-1000}{QQ2-1-1}{Contents}}{3}\relax
@@ -3847,7 +2483,7 @@
 +\doTocEntry\tocsection{C.1}{\csname a:TocLink\endcsname{1}{x1-166000C.1}{QQ2-1-166}{Appendix: How to Apply These Terms to Your New Programs}}{202}\relax
 +\par
 --- /dev/null
-+++ darcs-1.0.2+1.0.3rc1/darcs.lg
++++ darcs-1.0.3/darcs.lg
 @@ -0,0 +1,268 @@
 +htfcss: cmti  font-style: italic;
 +htfcss: cmtt font-family: monospace;
@@ -4118,7 +2754,7 @@
 +Font("cmcsc","10","10","144")
 +Font("cmcsc","10","10","100")
 --- /dev/null
-+++ darcs-1.0.2+1.0.3rc1/darcs.html
++++ darcs-1.0.3/darcs.html
 @@ -0,0 +1,10671 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -14792,7 +13428,7 @@
 +
 +
 --- /dev/null
-+++ darcs-1.0.2+1.0.3rc1/darcs2.html
++++ darcs-1.0.3/darcs2.html
 @@ -0,0 +1,23 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -14818,7 +13454,7 @@
 +
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.2+1.0.3rc1/darcs3.html
++++ darcs-1.0.3/darcs3.html
 @@ -0,0 +1,22 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -14843,7 +13479,7 @@
 +
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.2+1.0.3rc1/darcs4.html
++++ darcs-1.0.3/darcs4.html
 @@ -0,0 +1,38 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -14884,7 +13520,7 @@
 +
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.2+1.0.3rc1/darcs5.html
++++ darcs-1.0.3/darcs5.html
 @@ -0,0 +1,21 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -14908,7 +13544,7 @@
 +
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.2+1.0.3rc1/darcs6.html
++++ darcs-1.0.3/darcs6.html
 @@ -0,0 +1,21 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -14932,7 +13568,7 @@
 +
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.2+1.0.3rc1/darcs7.html
++++ darcs-1.0.3/darcs7.html
 @@ -0,0 +1,18 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -14953,7 +13589,7 @@
 +class="cmr-8">But it affects the repository and working directory targeted by the push</span></div>
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.2+1.0.3rc1/darcs8.html
++++ darcs-1.0.3/darcs8.html
 @@ -0,0 +1,18 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -14974,7 +13610,7 @@
 +class="cmr-8">As for the other end, see apply</span></div>
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.2+1.0.3rc1/darcs9.html
++++ darcs-1.0.3/darcs9.html
 @@ -0,0 +1,21 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -14998,7 +13634,7 @@
 +
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.2+1.0.3rc1/darcs10.html
++++ darcs-1.0.3/darcs10.html
 @@ -0,0 +1,21 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -15022,7 +13658,7 @@
 +
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.2+1.0.3rc1/darcs11.html
++++ darcs-1.0.3/darcs11.html
 @@ -0,0 +1,30 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -15055,7 +13691,7 @@
 +
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.2+1.0.3rc1/darcs12.html
++++ darcs-1.0.3/darcs12.html
 @@ -0,0 +1,25 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -15083,7 +13719,7 @@
 +
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.2+1.0.3rc1/darcs13.html
++++ darcs-1.0.3/darcs13.html
 @@ -0,0 +1,24 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -15110,7 +13746,7 @@
 +
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.2+1.0.3rc1/changelog
++++ darcs-1.0.3/changelog
 @@ -0,0 +1,675 @@
 +darcs (1.0.2)
 +
@@ -15788,7 +14424,7 @@
 +
 + -- David Roundy <droundy@abridgegame.org>  Wed,  3 Mar 2003 13:51:58 -0500
 --- /dev/null
-+++ darcs-1.0.2+1.0.3rc1/darcs14.html
++++ darcs-1.0.3/darcs14.html
 @@ -0,0 +1,39 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -15830,7 +14466,7 @@
 +
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.2+1.0.3rc1/darcs15.html
++++ darcs-1.0.3/darcs15.html
 @@ -0,0 +1,29 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -15861,8 +14497,8 @@
 +class="cmr-8">has?).</span></div>
 +
 +</body></html>
---- darcs-1.0.2+1.0.3rc1.orig/cgi/darcs.cgi
-+++ darcs-1.0.2+1.0.3rc1/cgi/darcs.cgi
+--- darcs-1.0.3.orig/cgi/darcs.cgi
++++ darcs-1.0.3/cgi/darcs.cgi
 @@ -54,7 +54,7 @@ my $xslt_program     = read_conf("xsltpr
  my $repository_root  = read_conf("reposdir", "/var/www");
 
@@ -15872,8 +14508,8 @@
 
  my $xslt_annotate = "$template_root/annotate.xslt";
  my $xslt_browse   = "$template_root/browse.xslt";
---- darcs-1.0.2+1.0.3rc1.orig/cgi/README
-+++ darcs-1.0.2+1.0.3rc1/cgi/README
+--- darcs-1.0.3.orig/cgi/README
++++ darcs-1.0.3/cgi/README
 @@ -20,7 +20,7 @@ installation
    2) copy cgi.conf to /etc/darcs/cgi.conf and edit appropriately.
       You can overwrite the cgi.conf used by the old darcs cgi script.
@@ -15883,8 +14519,8 @@
    4) copy xslt/styles.css to /etc/darcs/styles.css
 
    Test by browsing "http://<host>/cgi-bin/darcs.cgi/".
---- darcs-1.0.2+1.0.3rc1.orig/cgi/cgi.conf
-+++ darcs-1.0.2+1.0.3rc1/cgi/cgi.conf
+--- darcs-1.0.3.orig/cgi/cgi.conf
++++ darcs-1.0.3/cgi/cgi.conf
 @@ -17,7 +17,7 @@ PATH = /bin:/usr/bin:/usr/local/bin
  #xsltproc = xsltproc
 
