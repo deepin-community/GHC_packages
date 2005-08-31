@@ -57,7 +57,7 @@ endif
 	rm -f config.guess
 	ln -s /usr/share/misc/config.sub .
 	ln -s /usr/share/misc/config.guess .
-	./configure $(confflags) --enable-hopengl --prefix=/usr --bindir='$${libdir}/bin' $(EXTRA_CONFIGURE_FLAGS)
+	./configure $(confflags) --enable-hopengl --prefix=/usr --bindir='$${libdir}/bin' $(EXTRA_CONFIGURE_FLAGS) --with-gcc=gcc-3.3
 	$(MAKE)
 
 	mkdir debian/test-build
