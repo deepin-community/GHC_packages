@@ -1,3 +1,18 @@
+ghc6 (6.4-4.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * C++ ABI transition: Relink against new libgmp3c2 package.
+    This will require a manual bootstrapping on each arch since ghc6
+    build depends on itself and the new and old version of gmp3
+    conflict with each other.  (Closes: #319222)
+    - Versioned build dependency on libgmp3-dev (>= 4.1.4-6)
+  * Build using gcc-3.3 since this version doesn't build/work using 4.0
+    and a new upstream version that fixes it isn't available yet.
+
+  See instructions in debian/bootstrap-extracted on how to build this.
+
+ -- Kurt Roeckx <kurt@roeckx.be>  Wed, 31 Aug 2005 19:08:22 +0200
+
 ghc6 (6.4-4) unstable; urgency=low
 
   * Use &(arr->payload) instead of BYTE_ARR_CTS(arr) in Adjustor.c on
