@@ -1,0 +1,26 @@
+# This script can be used to bootstrap the the package when
+# a working older version of ghc6 is extracted in the source dir.
+# It should work with the following build dependencies not installed:
+# ghc6, haddock and haskell-utils
+# Instead, they should get extracted:
+# dpkg -x ghc6_$version_$arch.deb .
+# dpkg -x haskell-utils_$version_$arch.deb .
+# dpkg -x haddock_$version_$arch.deb .
+# Then run this script as: . ./debian/bootstrap-extracted
+# (It needs to set the PATH correctly)
+# dpkg-checkbuilddeps will complain about missing dependencies
+# for: haddock (>= 0.6) ghc6
+# It's safe to ignore those, and use the -d option.
+
+sed -i "s#/usr/#`pwd`/usr/#g" usr/bin/*
+for p in usr/lib/ghc-*/package.conf.shipped
+do sed -e "s#/usr/\(lib\|share\)/ghc#`pwd`&#g" \
+                       < "$p" > `echo "$p" | sed "s/\.shipped$//"`
+done
+for f in usr/bin/*6
+do
+    ln -s `echo "$f" | sed "s#.*/##"` `echo "$f" | sed "s/6$//"`
+done
+
+PATH=$PATH:`pwd`/usr/bin
+export PATH
