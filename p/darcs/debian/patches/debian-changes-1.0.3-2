@@ -334,18 +334,1105 @@
 @@ -1,2 +1,2 @@
 -# configured Tue May 24 18:37:38 EDT 2005
 -sh ./configure
-+# configured Sun Jun 5 15:57:53 PDT 2005
++# configured Wed Sep 7 14:42:40 PDT 2005
 +sh ./configure --prefix=/usr --sysconfdir=/etc --libexecdir=/usr/lib --mandir=/usr/share/man
 --- darcs-1.0.3.orig/.depend
 +++ darcs-1.0.3/.depend
-@@ -9,6 +9,7 @@ ColourPrinter.o : ./FastPackedString.hi
- ColourPrinter.o : ./Printer.hi
- ColourPrinter.o : ./External.hi
+@@ -1,168 +1,156 @@
+ # DO NOT DELETE: Beginning of Haskell dependencies
+-AntiMemo.o : AntiMemo.lhs
++Context.o : Context.lhs
++AtExit.o : AtExit.lhs
++FileSystem.o : FileSystem.hs
++Workaround.o : Workaround.hs
++UTF8.o : UTF8.lhs
++SignalHandler.o : SignalHandler.lhs
++SignalHandler.o : Workaround.hi
++RegChars.o : RegChars.lhs
++PatchMatchData.o : PatchMatchData.lhs
++IsoDate.o : IsoDate.lhs
++Exec.o : Exec.lhs
++DateMatcher.o : DateMatcher.lhs
++DateMatcher.o : IsoDate.hi
++CommandLine.o : CommandLine.lhs
++DarcsFlags.o : DarcsFlags.lhs
++DarcsFlags.o : PatchMatchData.hi
+ Autoconf.o : Autoconf.lhs
+-CheckFileSystem.o : CheckFileSystem.lhs
+-CheckFileSystem.o : ./Lock.hi
+-CheckFileSystem.o : ./DarcsUtils.hi
+-ColourPrinter.o : ColourPrinter.lhs
+-ColourPrinter.o : ./FastPackedString.hi
+-ColourPrinter.o : ./Printer.hi
+-ColourPrinter.o : ./External.hi
  Curl.o : Curl.hs
+-Pristine.o : Pristine.lhs
+-Pristine.o : ./DarcsFlags.hi
+-Pristine.o : ./PopulationData.hi
+-Pristine.o : ./PatchInfo.hi
+-Pristine.o : ./DarcsUtils.hi
+-Pristine.o : ./SlurpDirectory.hi
+-Pristine.o : ./Workaround.hi
+-Pristine.o : ./Diff.hi
+-Pristine.o : ./Lock.hi
+-DarcsArguments.o : DarcsArguments.lhs
+-DarcsArguments.o : ./DarcsUtils.hi
+-DarcsArguments.o : ./Printer.hi
+-DarcsArguments.o : ./SlurpDirectory.hi
+-DarcsArguments.o : ./Repository.hi
+-DarcsArguments.o : ./DarcsFlags.hi
+-DarcsArguments.o : ./PatchMatchData.hi
+-DarcsArguments.o : ./FileName.hi
+-DarcsArguments.o : ./RepoPrefs.hi
+-DarcsArguments.o : ./DarcsURL.hi
+-DarcsArguments.o : ./PatchInfo.hi
+-DarcsArguments.o : ./Patch.hi
+-DarcsArguments.o : Autoconf.hi
+-DarcsArguments.o : ./Exec.hi
+-DarcsFlags.o : DarcsFlags.lhs
+-DarcsFlags.o : ./PatchMatchData.hi
+-DarcsUtils.o : DarcsUtils.lhs
+-DarcsUtils.o : ./Printer.hi
+-DarcsUtils.o : ./Workaround.hi
+-CommandLine.o : CommandLine.lhs
+-DateMatcher.o : DateMatcher.lhs
+-DateMatcher.o : ./IsoDate.hi
+-Depends.o : Depends.lhs
+-Depends.o : DarcsUtils.hi
+-Depends.o : ./Printer.hi
+-Depends.o : ./RepoTypes.hi
+-Depends.o : ./PatchInfo.hi
+-Depends.o : ./Patch.hi
+-Diff.o : Diff.lhs
+-Diff.o : DarcsUtils.hi
+-Diff.o : DarcsFlags.hi
+-Diff.o : ./RepoPrefs.hi
+-Diff.o : ./Patch.hi
+-Diff.o : ./SlurpDirectory.hi
+-Diff.o : ./FastPackedString.hi
+-Diff.o : AntiMemo.hi
+-Exec.o : Exec.lhs
+-External.o : External.hs
+-External.o : DarcsUtils.hi
+-External.o : ./Printer.hi
+-External.o : ./DarcsURL.hi
+-External.o : Exec.hi
+-External.o : Curl.hi
+-External.o : Autoconf.hi
+-External.o : CommandLine.hi
+-External.o : ./Lock.hi
+-External.o : ./FastPackedString.hi
+-External.o : DarcsFlags.hi
+-External.o : ./Workaround.hi
 +Curl.o : Autoconf.hi
- Pristine.o : Pristine.lhs
- Pristine.o : ./DarcsFlags.hi
- Pristine.o : ./PopulationData.hi
+ FastPackedString.o : FastPackedString.hs
+ FastPackedString.o : Autoconf.hi
+ FileName.o : FileName.lhs
+ FileName.o : FastPackedString.hi
+-FileName.o : ./UTF8.hi
+-IsoDate.o : IsoDate.lhs
++FileName.o : UTF8.hi
+ Lcs.o : Lcs.lhs
+ Lcs.o : FastPackedString.hi
++PatchCheck.o : PatchCheck.lhs
++PatchCheck.o : FastPackedString.hi
++Printer.o : Printer.lhs
++Printer.o : FastPackedString.hi
++DarcsUtils.o : DarcsUtils.lhs
++DarcsUtils.o : Printer.hi
++DarcsUtils.o : Workaround.hi
++DarcsURL.o : DarcsURL.hs
++DarcsURL.o : DarcsUtils.hi
+ Lock.o : Lock.lhs
+-Lock.o : ./AtExit.hi
+-Lock.o : ./Printer.hi
+-Lock.o : ./SignalHandler.hi
++Lock.o : AtExit.hi
++Lock.o : Printer.hi
++Lock.o : SignalHandler.hi
+ Lock.o : FastPackedString.hi
+ Lock.o : DarcsUtils.hi
+-Lock.o : ./DarcsURL.hi
+-Lock.o : ./Workaround.hi
+-Match.o : Match.lhs
+-Match.o : DarcsUtils.hi
+-Match.o : ./Printer.hi
+-Match.o : ./PatchMatch.hi
+-Match.o : DarcsArguments.hi
+-Match.o : ./PatchBundle.hi
+-Match.o : FastPackedString.hi
+-Match.o : Depends.hi
+-Match.o : ./Repository.hi
+-Match.o : ./SlurpDirectory.hi
+-Match.o : ./Patch.hi
+-Match.o : ./PatchInfo.hi
++Lock.o : DarcsURL.hi
++Lock.o : Workaround.hi
++Lock.o : DarcsUtils.hi
++Lock.o : Workaround.hi
++CheckFileSystem.o : CheckFileSystem.lhs
++CheckFileSystem.o : Lock.hi
++CheckFileSystem.o : DarcsUtils.hi
++External.o : External.hs
++External.o : DarcsUtils.hi
++External.o : Printer.hi
++External.o : DarcsUtils.hi
++External.o : DarcsURL.hi
++External.o : Exec.hi
++External.o : Curl.hi
++External.o : Curl.hi
++External.o : Autoconf.hi
++External.o : CommandLine.hi
++External.o : Lock.hi
++External.o : FastPackedString.hi
++External.o : DarcsUtils.hi
++External.o : DarcsFlags.hi
++External.o : Workaround.hi
++External.o : Autoconf.hi
++ColourPrinter.o : ColourPrinter.lhs
++ColourPrinter.o : FastPackedString.hi
++ColourPrinter.o : Printer.hi
++ColourPrinter.o : External.hi
+ Motd.o : Motd.lhs
+ Motd.o : DarcsUtils.hi
+ Motd.o : FastPackedString.hi
+ Motd.o : External.hi
+ Motd.o : DarcsFlags.hi
+-Patch.o : Patch.lhs
+-Patch.o : ./PatchCommute.hi
+-Patch.o : ./PatchApply.hi
+-Patch.o : ./PatchViewing.hi
+-Patch.o : ./PatchShow.hi
+-Patch.o : ./PatchRead.hi
+-Patch.o : ./PatchCore.hi
+-Patch.o : ./PopulationData.hi
+-PatchApply.o : PatchApply.lhs
+-PatchApply.o : DarcsUtils.hi
+-PatchApply.o : AntiMemo.hi
+-PatchApply.o : ./RepoPrefs.hi
+-PatchApply.o : ./RegChars.hi
+-PatchApply.o : ./SlurpDirectory.hi
+-PatchApply.o : ./PatchCommute.hi
+-PatchApply.o : ./PatchCore.hi
+-PatchApply.o : ./PopulationData.hi
+-PatchApply.o : ./PatchInfo.hi
+-PatchApply.o : FileName.hi
+-PatchApply.o : FastPackedString.hi
+-PatchBundle.o : PatchBundle.lhs
+-PatchBundle.o : DarcsUtils.hi
+-PatchBundle.o : ./SHA1.hi
+-PatchBundle.o : FastPackedString.hi
+-PatchBundle.o : ./PatchInfo.hi
+-PatchBundle.o : ./SlurpDirectory.hi
+-PatchBundle.o : ./Printer.hi
+-PatchBundle.o : Patch.hi
+-PatchBundle.o : ./Repository.hi
+-PatchBundle.o : DarcsArguments.hi
+-PatchCheck.o : PatchCheck.lhs
+-PatchCheck.o : FastPackedString.hi
+-PatchChoices.o : PatchChoices.lhs
+-PatchChoices.o : Patch.hi
++RepoPrefs.o : RepoPrefs.lhs
++RepoPrefs.o : DarcsUtils.hi
++RepoPrefs.o : Lock.hi
++RepoPrefs.o : DarcsFlags.hi
++Zlib.o : Zlib.lhs
++Zlib.o : DarcsUtils.hi
++Zlib.o : Lock.hi
++Zlib.o : Workaround.hi
++Zlib.o : Workaround.hi
++Email.o : Email.hs
++Email.o : FastPackedString.hi
++Email.o : Printer.hi
++SHA1.o : SHA1.lhs
++SHA1.o : FastPackedString.hi
++SHA1.o : Autoconf.hi
++PatchInfo.o : PatchInfo.lhs
++PatchInfo.o : SHA1.hi
++PatchInfo.o : IsoDate.hi
++PatchInfo.o : Printer.hi
++PatchInfo.o : FastPackedString.hi
++PopulationData.o : PopulationData.lhs
++PopulationData.o : DarcsUtils.hi
++PopulationData.o : FastPackedString.hi
++PopulationData.o : PatchInfo.hi
++AntiMemo.o : AntiMemo.lhs
++PatchCore.o : PatchCore.lhs
++PatchCore.o : DarcsUtils.hi
++PatchCore.o : Printer.hi
++PatchCore.o : PatchInfo.hi
++PatchCore.o : FileName.hi
++PatchCore.o : FastPackedString.hi
++PatchCore.o : AntiMemo.hi
++PatchShow.o : PatchShow.lhs
++PatchShow.o : PatchCore.hi
++PatchShow.o : Printer.hi
++PatchShow.o : AntiMemo.hi
++PatchShow.o : Lock.hi
++PatchShow.o : Zlib.hi
++PatchShow.o : FileName.hi
++PatchShow.o : FastPackedString.hi
++PatchShow.o : PatchInfo.hi
++SlurpDirectory.o : SlurpDirectory.lhs
++SlurpDirectory.o : DarcsUtils.hi
++SlurpDirectory.o : FileSystem.hi
++SlurpDirectory.o : DarcsFlags.hi
++SlurpDirectory.o : DarcsUtils.hi
++SlurpDirectory.o : Lock.hi
++SlurpDirectory.o : FileName.hi
++SlurpDirectory.o : FastPackedString.hi
++SlurpDirectory.o : AntiMemo.hi
++SlurpDirectory.o : CheckFileSystem.hi
++SlurpDirectory.o : DarcsUtils.hi
++SlurpDirectory.o : Workaround.hi
+ PatchCommute.o : PatchCommute.lhs
+ PatchCommute.o : DarcsUtils.hi
+-PatchCommute.o : ./RegChars.hi
++PatchCommute.o : RegChars.hi
+ PatchCommute.o : Lcs.hi
+ PatchCommute.o : AntiMemo.hi
+-PatchCommute.o : ./SlurpDirectory.hi
+-PatchCommute.o : ./PatchShow.hi
+-PatchCommute.o : ./PatchCore.hi
+-PatchCommute.o : ./Printer.hi
++PatchCommute.o : SlurpDirectory.hi
++PatchCommute.o : PatchShow.hi
++PatchCommute.o : PatchCore.hi
++PatchCommute.o : DarcsUtils.hi
++PatchCommute.o : Printer.hi
+ PatchCommute.o : FileName.hi
+ PatchCommute.o : FastPackedString.hi
+-PatchCore.o : PatchCore.lhs
+-PatchCore.o : DarcsUtils.hi
+-PatchCore.o : ./Printer.hi
+-PatchCore.o : ./PatchInfo.hi
+-PatchCore.o : FileName.hi
+-PatchCore.o : FastPackedString.hi
+-PatchCore.o : AntiMemo.hi
+-PatchInfo.o : PatchInfo.lhs
+-PatchInfo.o : ./SHA1.hi
+-PatchInfo.o : IsoDate.hi
+-PatchInfo.o : ./Printer.hi
+-PatchInfo.o : FastPackedString.hi
+-PatchMatch.o : PatchMatch.lhs
+-PatchMatch.o : ./PatchMatchData.hi
+-PatchMatch.o : DateMatcher.hi
+-PatchMatch.o : Patch.hi
+-PatchMatch.o : PatchInfo.hi
+-PatchMatchData.o : PatchMatchData.lhs
++PatchCommute.o : AntiMemo.hi
++PatchApply.o : PatchApply.lhs
++PatchApply.o : DarcsUtils.hi
++PatchApply.o : AntiMemo.hi
++PatchApply.o : RepoPrefs.hi
++PatchApply.o : RegChars.hi
++PatchApply.o : SlurpDirectory.hi
++PatchApply.o : PatchCommute.hi
++PatchApply.o : PatchCore.hi
++PatchApply.o : PopulationData.hi
++PatchApply.o : PatchInfo.hi
++PatchApply.o : FileName.hi
++PatchApply.o : FastPackedString.hi
++PatchApply.o : AntiMemo.hi
+ PatchRead.o : PatchRead.lhs
+ PatchRead.o : DarcsUtils.hi
+ PatchRead.o : PatchCommute.hi
+@@ -171,15 +159,6 @@ PatchRead.o : AntiMemo.hi
+ PatchRead.o : FileName.hi
+ PatchRead.o : FastPackedString.hi
+ PatchRead.o : PatchInfo.hi
+-PatchShow.o : PatchShow.lhs
+-PatchShow.o : PatchCore.hi
+-PatchShow.o : ./Printer.hi
+-PatchShow.o : AntiMemo.hi
+-PatchShow.o : Lock.hi
+-PatchShow.o : ./Zlib.hi
+-PatchShow.o : FileName.hi
+-PatchShow.o : FastPackedString.hi
+-PatchShow.o : PatchInfo.hi
+ PatchViewing.o : PatchViewing.lhs
+ PatchViewing.o : DarcsUtils.hi
+ PatchViewing.o : PatchCommute.hi
+@@ -187,46 +166,61 @@ PatchViewing.o : PatchApply.hi
+ PatchViewing.o : PatchShow.hi
+ PatchViewing.o : PatchCore.hi
+ PatchViewing.o : PatchInfo.hi
+-PatchViewing.o : ./Printer.hi
++PatchViewing.o : Printer.hi
+ PatchViewing.o : FileName.hi
+ PatchViewing.o : AntiMemo.hi
+ PatchViewing.o : FastPackedString.hi
+-PatchViewing.o : ./SlurpDirectory.hi
+-Population.o : Population.lhs
+-Population.o : DarcsUtils.hi
+-Population.o : ./Printer.hi
+-Population.o : ./PopulationData.hi
+-Population.o : Pristine.hi
+-Population.o : ./Repository.hi
+-Population.o : Patch.hi
+-Population.o : PatchInfo.hi
+-Population.o : FileName.hi
+-Population.o : FastPackedString.hi
+-PopulationData.o : PopulationData.lhs
+-PopulationData.o : DarcsUtils.hi
+-PopulationData.o : FastPackedString.hi
+-PopulationData.o : PatchInfo.hi
+-PrintPatch.o : PrintPatch.lhs
+-PrintPatch.o : DarcsArguments.hi
+-PrintPatch.o : Lock.hi
+-PrintPatch.o : ColourPrinter.hi
+-PrintPatch.o : ./Printer.hi
+-PrintPatch.o : ./SlurpDirectory.hi
+-PrintPatch.o : Patch.hi
+-Printer.o : Printer.lhs
+-Printer.o : FastPackedString.hi
+-RegChars.o : RegChars.lhs
+-RepoPrefs.o : RepoPrefs.lhs
+-RepoPrefs.o : DarcsUtils.hi
+-RepoPrefs.o : Lock.hi
+-RepoPrefs.o : DarcsFlags.hi
++PatchViewing.o : SlurpDirectory.hi
++Patch.o : Patch.lhs
++Patch.o : PatchCommute.hi
++Patch.o : PatchApply.hi
++Patch.o : PatchViewing.hi
++Patch.o : PatchShow.hi
++Patch.o : PatchRead.hi
++Patch.o : PatchCore.hi
++Patch.o : PopulationData.hi
++Diff.o : Diff.lhs
++Diff.o : DarcsUtils.hi
++Diff.o : DarcsUtils.hi
++Diff.o : DarcsFlags.hi
++Diff.o : RepoPrefs.hi
++Diff.o : Patch.hi
++Diff.o : SlurpDirectory.hi
++Diff.o : FastPackedString.hi
++Diff.o : AntiMemo.hi
++Pristine.o : Pristine.lhs
++Pristine.o : DarcsFlags.hi
++Pristine.o : PopulationData.hi
++Pristine.o : PatchInfo.hi
++Pristine.o : DarcsUtils.hi
++Pristine.o : SlurpDirectory.hi
++Pristine.o : Workaround.hi
++Pristine.o : Diff.hi
++Pristine.o : Lock.hi
++PatchChoices.o : PatchChoices.lhs
++PatchChoices.o : Patch.hi
++PatchMatch.o : PatchMatch.lhs
++PatchMatch.o : PatchMatchData.hi
++PatchMatch.o : DateMatcher.hi
++PatchMatch.o : Patch.hi
++PatchMatch.o : PatchInfo.hi
+ RepoTypes.o : RepoTypes.lhs
+ RepoTypes.o : PatchInfo.hi
+ RepoTypes.o : Patch.hi
++Depends.o : Depends.lhs
++Depends.o : DarcsUtils.hi
++Depends.o : Printer.hi
++Depends.o : RepoTypes.hi
++Depends.o : PatchInfo.hi
++Depends.o : Patch.hi
++TouchesFiles.o : TouchesFiles.lhs
++TouchesFiles.o : Patch.hi
++TouchesFiles.o : PatchChoices.hi
+ Repository.o : Repository.lhs
+ Repository.o : DarcsUtils.hi
+ Repository.o : Printer.hi
+-Repository.o : ./DarcsURL.hi
++Repository.o : DarcsURL.hi
++Repository.o : DarcsUtils.hi
+ Repository.o : FileName.hi
+ Repository.o : RepoPrefs.hi
+ Repository.o : Pristine.hi
+@@ -239,10 +233,98 @@ Repository.o : Diff.hi
+ Repository.o : PatchInfo.hi
+ Repository.o : PatchCore.hi
+ Repository.o : Patch.hi
+-Repository.o : ./SlurpDirectory.hi
++Repository.o : SlurpDirectory.hi
++Repository.o : Lock.hi
+ Repository.o : FastPackedString.hi
+-Repository.o : ./SignalHandler.hi
+-Repository.o : ./Workaround.hi
++Repository.o : SignalHandler.hi
++Repository.o : DarcsUtils.hi
++Repository.o : Workaround.hi
++DarcsArguments.o : DarcsArguments.lhs
++DarcsArguments.o : DarcsUtils.hi
++DarcsArguments.o : Printer.hi
++DarcsArguments.o : SlurpDirectory.hi
++DarcsArguments.o : Repository.hi
++DarcsArguments.o : DarcsFlags.hi
++DarcsArguments.o : PatchMatchData.hi
++DarcsArguments.o : FileName.hi
++DarcsArguments.o : RepoPrefs.hi
++DarcsArguments.o : DarcsURL.hi
++DarcsArguments.o : DarcsUtils.hi
++DarcsArguments.o : PatchInfo.hi
++DarcsArguments.o : Patch.hi
++DarcsArguments.o : Autoconf.hi
++DarcsArguments.o : Exec.hi
++PrintPatch.o : PrintPatch.lhs
++PrintPatch.o : DarcsArguments.hi
++PrintPatch.o : Lock.hi
++PrintPatch.o : ColourPrinter.hi
++PrintPatch.o : Printer.hi
++PrintPatch.o : SlurpDirectory.hi
++PrintPatch.o : Patch.hi
++ArgumentDefaults.o : ArgumentDefaults.lhs
++ArgumentDefaults.o : RepoPrefs.hi
++ArgumentDefaults.o : DarcsArguments.hi
++DarcsCommands.o : DarcsCommands.lhs
++DarcsCommands.o : ArgumentDefaults.hi
++DarcsCommands.o : DarcsArguments.hi
++PatchBundle.o : PatchBundle.lhs
++PatchBundle.o : DarcsUtils.hi
++PatchBundle.o : SHA1.hi
++PatchBundle.o : FastPackedString.hi
++PatchBundle.o : PatchInfo.hi
++PatchBundle.o : SlurpDirectory.hi
++PatchBundle.o : Printer.hi
++PatchBundle.o : Patch.hi
++PatchBundle.o : Repository.hi
++PatchBundle.o : DarcsArguments.hi
++Match.o : Match.lhs
++Match.o : DarcsUtils.hi
++Match.o : Printer.hi
++Match.o : PatchMatch.hi
++Match.o : DarcsArguments.hi
++Match.o : PatchBundle.hi
++Match.o : FastPackedString.hi
++Match.o : Depends.hi
++Match.o : Depends.hi
++Match.o : Repository.hi
++Match.o : SlurpDirectory.hi
++Match.o : Patch.hi
++Match.o : PatchInfo.hi
++Population.o : Population.lhs
++Population.o : DarcsUtils.hi
++Population.o : Printer.hi
++Population.o : PopulationData.hi
++Population.o : Pristine.hi
++Population.o : Repository.hi
++Population.o : Patch.hi
++Population.o : PatchInfo.hi
++Population.o : FileName.hi
++Population.o : DarcsUtils.hi
++Population.o : FastPackedString.hi
++Init.o : Init.lhs
++Init.o : Repository.hi
++Init.o : Pristine.hi
++Init.o : RepoPrefs.hi
++Init.o : DarcsArguments.hi
++Init.o : DarcsCommands.hi
++SetPref.o : SetPref.lhs
++SetPref.o : DarcsUtils.hi
++SetPref.o : RepoPrefs.hi
++SetPref.o : Patch.hi
++SetPref.o : Repository.hi
++SetPref.o : DarcsArguments.hi
++SetPref.o : DarcsCommands.hi
++WhatsNew.o : WhatsNew.lhs
++WhatsNew.o : Printer.hi
++WhatsNew.o : Patch.hi
++WhatsNew.o : PrintPatch.hi
++WhatsNew.o : Patch.hi
++WhatsNew.o : Diff.hi
++WhatsNew.o : RepoPrefs.hi
++WhatsNew.o : Repository.hi
++WhatsNew.o : TouchesFiles.hi
++WhatsNew.o : DarcsArguments.hi
++WhatsNew.o : DarcsCommands.hi
+ Resolution.o : Resolution.lhs
+ Resolution.o : DarcsUtils.hi
+ Resolution.o : Lock.hi
+@@ -250,38 +332,16 @@ Resolution.o : Exec.hi
+ Resolution.o : RepoPrefs.hi
+ Resolution.o : Diff.hi
+ Resolution.o : Repository.hi
+-Resolution.o : ./SlurpDirectory.hi
++Resolution.o : SlurpDirectory.hi
++Resolution.o : DarcsUtils.hi
+ Resolution.o : Patch.hi
+-SHA1.o : SHA1.lhs
+-SHA1.o : FastPackedString.hi
+-SHA1.o : Autoconf.hi
+-SignalHandler.o : SignalHandler.lhs
+-SignalHandler.o : ./Workaround.hi
+-SlurpDirectory.o : SlurpDirectory.lhs
+-SlurpDirectory.o : DarcsUtils.hi
+-SlurpDirectory.o : ./FileSystem.hi
+-SlurpDirectory.o : DarcsFlags.hi
+-SlurpDirectory.o : Lock.hi
+-SlurpDirectory.o : FileName.hi
+-SlurpDirectory.o : FastPackedString.hi
+-SlurpDirectory.o : AntiMemo.hi
+-SlurpDirectory.o : CheckFileSystem.hi
+-SlurpDirectory.o : ./Workaround.hi
+ Test.o : Test.lhs
+ Test.o : Lock.hi
+ Test.o : RepoPrefs.hi
+ Test.o : SlurpDirectory.hi
+ Test.o : DarcsArguments.hi
+-Test.o : ./Workaround.hi
++Test.o : Workaround.hi
+ Test.o : DarcsUtils.hi
+-UTF8.o : UTF8.lhs
+-Workaround.o : Workaround.hs
+-Zlib.o : Zlib.lhs
+-Zlib.o : DarcsUtils.hi
+-Zlib.o : Lock.hi
+-Zlib.o : Workaround.hi
+-FileSystem.o : FileSystem.hs
+-AtExit.o : AtExit.lhs
+ Add.o : Add.lhs
+ Add.o : Lock.hi
+ Add.o : RepoPrefs.hi
+@@ -292,23 +352,7 @@ Add.o : Repository.hi
+ Add.o : IsoDate.hi
+ Add.o : DarcsUtils.hi
+ Add.o : DarcsArguments.hi
+-Add.o : ./DarcsCommands.hi
+-AmendRecord.o : AmendRecord.lhs
+-AmendRecord.o : DarcsUtils.hi
+-AmendRecord.o : Printer.hi
+-AmendRecord.o : Test.hi
+-AmendRecord.o : ./Unrevert.hi
+-AmendRecord.o : DarcsArguments.hi
+-AmendRecord.o : ./Record.hi
+-AmendRecord.o : ./DarcsCommands.hi
+-AmendRecord.o : ./SelectChanges.hi
+-AmendRecord.o : PatchInfo.hi
+-AmendRecord.o : Patch.hi
+-AmendRecord.o : Depends.hi
+-AmendRecord.o : Pristine.hi
+-AmendRecord.o : Repository.hi
+-AmendRecord.o : Lock.hi
+-AmendRecord.o : SignalHandler.hi
++Add.o : DarcsCommands.hi
+ Annotate.o : Annotate.lhs
+ Annotate.o : DarcsUtils.hi
+ Annotate.o : Printer.hi
+@@ -324,51 +368,30 @@ Annotate.o : Patch.hi
+ Annotate.o : Repository.hi
+ Annotate.o : SlurpDirectory.hi
+ Annotate.o : DarcsArguments.hi
+-Annotate.o : ./DarcsCommands.hi
++Annotate.o : DarcsCommands.hi
+ Annotate.o : Workaround.hi
+-Apply.o : Apply.lhs
+-Apply.o : DarcsUtils.hi
+-Apply.o : Printer.hi
+-Apply.o : PatchBundle.hi
+-Apply.o : Test.hi
+-Apply.o : ./SelectChanges.hi
+-Apply.o : Resolution.hi
+-Apply.o : Depends.hi
+-Apply.o : ./Pull.hi
+-Apply.o : Lock.hi
+-Apply.o : ./Email.hi
+-Apply.o : External.hi
+-Apply.o : FastPackedString.hi
+-Apply.o : SlurpDirectory.hi
+-Apply.o : PatchInfo.hi
+-Apply.o : Patch.hi
+-Apply.o : Pristine.hi
+-Apply.o : Repository.hi
+-Apply.o : DarcsArguments.hi
+-Apply.o : ./DarcsCommands.hi
+-Apply.o : SignalHandler.hi
+-ArgumentDefaults.o : ArgumentDefaults.lhs
+-ArgumentDefaults.o : RepoPrefs.hi
+-ArgumentDefaults.o : DarcsArguments.hi
+ Changes.o : Changes.lhs
+ Changes.o : DarcsUtils.hi
+ Changes.o : ColourPrinter.hi
+ Changes.o : Printer.hi
+ Changes.o : FastPackedString.hi
++Changes.o : DarcsUtils.hi
+ Changes.o : Annotate.hi
+ Changes.o : Match.hi
+ Changes.o : Patch.hi
+-Changes.o : ./TouchesFiles.hi
++Changes.o : TouchesFiles.hi
+ Changes.o : Depends.hi
+ Changes.o : PatchShow.hi
+ Changes.o : PatchInfo.hi
+ Changes.o : Repository.hi
+ Changes.o : DarcsArguments.hi
+-Changes.o : ./DarcsCommands.hi
++Changes.o : DarcsCommands.hi
++Changes.o : Depends.hi
+ Check.o : Check.lhs
+ Check.o : DarcsUtils.hi
+ Check.o : Printer.hi
+ Check.o : Depends.hi
++Check.o : DarcsUtils.hi
+ Check.o : RepoPrefs.hi
+ Check.o : Lock.hi
+ Check.o : Test.hi
+@@ -379,14 +402,19 @@ Check.o : Patch.hi
+ Check.o : Pristine.hi
+ Check.o : Repository.hi
+ Check.o : DarcsArguments.hi
+-Check.o : ./DarcsCommands.hi
++Check.o : DarcsCommands.hi
+ Check.o : Workaround.hi
+-Context.o : Context.lhs
+-DarcsCommands.o : DarcsCommands.lhs
+-DarcsCommands.o : ArgumentDefaults.hi
+-DarcsCommands.o : DarcsArguments.hi
+-DarcsURL.o : DarcsURL.hs
+-DarcsURL.o : DarcsUtils.hi
++Repair.o : Repair.lhs
++Repair.o : Printer.hi
++Repair.o : Check.hi
++Repair.o : Lock.hi
++Repair.o : Depends.hi
++Repair.o : Pristine.hi
++Repair.o : Repository.hi
++Repair.o : Patch.hi
++Repair.o : DarcsArguments.hi
++Repair.o : DarcsCommands.hi
++Repair.o : Workaround.hi
+ DiffCommand.o : DiffCommand.lhs
+ DiffCommand.o : Printer.hi
+ DiffCommand.o : Lock.hi
+@@ -409,12 +437,10 @@ Dist.o : Repository.hi
+ Dist.o : DarcsArguments.hi
+ Dist.o : DarcsCommands.hi
+ Dist.o : Workaround.hi
+-Email.o : Email.hs
+-Email.o : FastPackedString.hi
+-Email.o : Printer.hi
+ Get.o : Get.lhs
+ Get.o : DarcsUtils.hi
+ Get.o : Printer.hi
++Get.o : DarcsUtils.hi
+ Get.o : Match.hi
+ Get.o : Pristine.hi
+ Get.o : Motd.hi
+@@ -428,12 +454,6 @@ Get.o : Repository.hi
+ Get.o : DarcsArguments.hi
+ Get.o : DarcsCommands.hi
+ Get.o : Workaround.hi
+-Init.o : Init.lhs
+-Init.o : Repository.hi
+-Init.o : Pristine.hi
+-Init.o : RepoPrefs.hi
+-Init.o : DarcsArguments.hi
+-Init.o : DarcsCommands.hi
+ Mv.o : Mv.lhs
+ Mv.o : DarcsUtils.hi
+ Mv.o : Lock.hi
+@@ -450,6 +470,7 @@ Optimize.o : DarcsUtils.hi
+ Optimize.o : Pristine.hi
+ Optimize.o : SlurpDirectory.hi
+ Optimize.o : Printer.hi
++Optimize.o : DarcsUtils.hi
+ Optimize.o : Lock.hi
+ Optimize.o : Depends.hi
+ Optimize.o : FastPackedString.hi
+@@ -459,12 +480,51 @@ Optimize.o : Repository.hi
+ Optimize.o : RepoPrefs.hi
+ Optimize.o : DarcsArguments.hi
+ Optimize.o : DarcsCommands.hi
++Optimize.o : DarcsUtils.hi
++Remove.o : Remove.lhs
++Remove.o : DarcsUtils.hi
++Remove.o : FileName.hi
++Remove.o : Diff.hi
++Remove.o : RepoPrefs.hi
++Remove.o : Lock.hi
++Remove.o : SlurpDirectory.hi
++Remove.o : Patch.hi
++Remove.o : Repository.hi
++Remove.o : DarcsArguments.hi
++Remove.o : DarcsCommands.hi
++Replace.o : Replace.lhs
++Replace.o : DarcsUtils.hi
++Replace.o : RepoPrefs.hi
++Replace.o : Diff.hi
++Replace.o : Lock.hi
++Replace.o : RegChars.hi
++Replace.o : FileName.hi
++Replace.o : SlurpDirectory.hi
++Replace.o : Patch.hi
++Replace.o : Repository.hi
++Replace.o : DarcsArguments.hi
++Replace.o : DarcsCommands.hi
++SelectChanges.o : SelectChanges.lhs
++SelectChanges.o : DarcsUtils.hi
++SelectChanges.o : Printer.hi
++SelectChanges.o : DarcsUtils.hi
++SelectChanges.o : DarcsFlags.hi
++SelectChanges.o : Match.hi
++SelectChanges.o : SlurpDirectory.hi
++SelectChanges.o : PrintPatch.hi
++SelectChanges.o : TouchesFiles.hi
++SelectChanges.o : PatchChoices.hi
++SelectChanges.o : PatchInfo.hi
++SelectChanges.o : Patch.hi
++SelectChanges.o : Repository.hi
+ Pull.o : Pull.lhs
+ Pull.o : DarcsUtils.hi
+ Pull.o : Printer.hi
+ Pull.o : Test.hi
++Pull.o : DarcsUtils.hi
+ Pull.o : DarcsURL.hi
+-Pull.o : ./SelectChanges.hi
++Pull.o : DarcsUtils.hi
++Pull.o : SelectChanges.hi
+ Pull.o : Lock.hi
+ Pull.o : Resolution.hi
+ Pull.o : Depends.hi
+@@ -473,18 +533,44 @@ Pull.o : Motd.hi
+ Pull.o : RepoPrefs.hi
+ Pull.o : SlurpDirectory.hi
+ Pull.o : PatchInfo.hi
++Pull.o : SelectChanges.hi
+ Pull.o : Patch.hi
+ Pull.o : Repository.hi
+ Pull.o : DarcsArguments.hi
+ Pull.o : DarcsCommands.hi
+ Pull.o : SignalHandler.hi
++Apply.o : Apply.lhs
++Apply.o : DarcsUtils.hi
++Apply.o : Printer.hi
++Apply.o : DarcsUtils.hi
++Apply.o : PatchBundle.hi
++Apply.o : Test.hi
++Apply.o : SelectChanges.hi
++Apply.o : Resolution.hi
++Apply.o : Depends.hi
++Apply.o : Pull.hi
++Apply.o : Lock.hi
++Apply.o : Email.hi
++Apply.o : External.hi
++Apply.o : FastPackedString.hi
++Apply.o : SlurpDirectory.hi
++Apply.o : PatchInfo.hi
++Apply.o : Patch.hi
++Apply.o : Pristine.hi
++Apply.o : Repository.hi
++Apply.o : DarcsArguments.hi
++Apply.o : DarcsArguments.hi
++Apply.o : DarcsCommands.hi
++Apply.o : SignalHandler.hi
++Apply.o : DarcsUtils.hi
+ Push.o : Push.lhs
+ Push.o : DarcsUtils.hi
+ Push.o : Printer.hi
+ Push.o : Depends.hi
+ Push.o : DarcsURL.hi
+-Push.o : ./SelectChanges.hi
++Push.o : SelectChanges.hi
+ Push.o : Lock.hi
++Push.o : DarcsURL.hi
+ Push.o : External.hi
+ Push.o : RepoPrefs.hi
+ Push.o : PatchInfo.hi
+@@ -497,56 +583,34 @@ Record.o : DarcsUtils.hi
+ Record.o : Printer.hi
+ Record.o : IsoDate.hi
+ Record.o : Test.hi
++Record.o : DarcsUtils.hi
+ Record.o : DarcsArguments.hi
+ Record.o : DarcsCommands.hi
+ Record.o : SlurpDirectory.hi
+-Record.o : ./SelectChanges.hi
++Record.o : SelectChanges.hi
+ Record.o : PatchChoices.hi
+ Record.o : FileName.hi
++Record.o : SlurpDirectory.hi
+ Record.o : PatchInfo.hi
+ Record.o : Patch.hi
+ Record.o : Pristine.hi
+ Record.o : Repository.hi
+ Record.o : Lock.hi
+ Record.o : SignalHandler.hi
+-Remove.o : Remove.lhs
+-Remove.o : DarcsUtils.hi
+-Remove.o : FileName.hi
+-Remove.o : Diff.hi
+-Remove.o : RepoPrefs.hi
+-Remove.o : Lock.hi
+-Remove.o : SlurpDirectory.hi
+-Remove.o : Patch.hi
+-Remove.o : Repository.hi
+-Remove.o : DarcsArguments.hi
+-Remove.o : DarcsCommands.hi
+-Repair.o : Repair.lhs
+-Repair.o : Printer.hi
+-Repair.o : Check.hi
+-Repair.o : Lock.hi
+-Repair.o : Depends.hi
+-Repair.o : Pristine.hi
+-Repair.o : Repository.hi
+-Repair.o : Patch.hi
+-Repair.o : DarcsArguments.hi
+-Repair.o : DarcsCommands.hi
+-Repair.o : Workaround.hi
+-Replace.o : Replace.lhs
+-Replace.o : DarcsUtils.hi
+-Replace.o : RepoPrefs.hi
+-Replace.o : Diff.hi
+-Replace.o : Lock.hi
+-Replace.o : RegChars.hi
+-Replace.o : FileName.hi
+-Replace.o : SlurpDirectory.hi
+-Replace.o : Patch.hi
+-Replace.o : Repository.hi
+-Replace.o : DarcsArguments.hi
+-Replace.o : DarcsCommands.hi
++Tag.o : Tag.lhs
++Tag.o : Lock.hi
++Tag.o : Record.hi
++Tag.o : Depends.hi
++Tag.o : PatchInfo.hi
++Tag.o : Patch.hi
++Tag.o : Repository.hi
++Tag.o : DarcsUtils.hi
++Tag.o : DarcsArguments.hi
++Tag.o : DarcsCommands.hi
+ Resolve.o : Resolve.lhs
+ Resolve.o : DarcsUtils.hi
+ Resolve.o : Lock.hi
+-Resolve.o : ./SelectChanges.hi
++Resolve.o : SelectChanges.hi
+ Resolve.o : SlurpDirectory.hi
+ Resolve.o : Resolution.hi
+ Resolve.o : Patch.hi
+@@ -554,21 +618,9 @@ Resolve.o : Repository.hi
+ Resolve.o : DarcsArguments.hi
+ Resolve.o : DarcsCommands.hi
+ Resolve.o : SignalHandler.hi
+-Revert.o : Revert.lhs
+-Revert.o : ./Unrevert.hi
+-Revert.o : ./TouchesFiles.hi
+-Revert.o : ./SelectChanges.hi
+-Revert.o : Lock.hi
+-Revert.o : SlurpDirectory.hi
+-Revert.o : Patch.hi
+-Revert.o : Repository.hi
+-Revert.o : DarcsUtils.hi
+-Revert.o : DarcsArguments.hi
+-Revert.o : DarcsCommands.hi
+-Revert.o : SignalHandler.hi
+ Rollback.o : Rollback.lhs
+ Rollback.o : DarcsUtils.hi
+-Rollback.o : ./SelectChanges.hi
++Rollback.o : SelectChanges.hi
+ Rollback.o : Lock.hi
+ Rollback.o : PatchInfo.hi
+ Rollback.o : Depends.hi
+@@ -578,22 +630,11 @@ Rollback.o : Repository.hi
+ Rollback.o : DarcsArguments.hi
+ Rollback.o : DarcsCommands.hi
+ Rollback.o : SignalHandler.hi
+-SelectChanges.o : SelectChanges.lhs
+-SelectChanges.o : DarcsUtils.hi
+-SelectChanges.o : Printer.hi
+-SelectChanges.o : DarcsFlags.hi
+-SelectChanges.o : Match.hi
+-SelectChanges.o : SlurpDirectory.hi
+-SelectChanges.o : PrintPatch.hi
+-SelectChanges.o : ./TouchesFiles.hi
+-SelectChanges.o : PatchChoices.hi
+-SelectChanges.o : PatchInfo.hi
+-SelectChanges.o : Patch.hi
+-SelectChanges.o : Repository.hi
+ Send.o : Send.lhs
+ Send.o : DarcsUtils.hi
+ Send.o : Printer.hi
+ Send.o : Email.hi
++Send.o : DarcsUtils.hi
+ Send.o : PatchBundle.hi
+ Send.o : Depends.hi
+ Send.o : SelectChanges.hi
+@@ -606,56 +647,6 @@ Send.o : Patch.hi
+ Send.o : Repository.hi
+ Send.o : DarcsArguments.hi
+ Send.o : DarcsCommands.hi
+-SetPref.o : SetPref.lhs
+-SetPref.o : DarcsUtils.hi
+-SetPref.o : RepoPrefs.hi
+-SetPref.o : Patch.hi
+-SetPref.o : Repository.hi
+-SetPref.o : DarcsArguments.hi
+-SetPref.o : DarcsCommands.hi
+-Tag.o : Tag.lhs
+-Tag.o : Lock.hi
+-Tag.o : Record.hi
+-Tag.o : Depends.hi
+-Tag.o : PatchInfo.hi
+-Tag.o : Patch.hi
+-Tag.o : Repository.hi
+-Tag.o : DarcsUtils.hi
+-Tag.o : DarcsArguments.hi
+-Tag.o : DarcsCommands.hi
+-TheCommands.o : TheCommands.lhs
+-TheCommands.o : Resolve.hi
+-TheCommands.o : Repair.hi
+-TheCommands.o : Annotate.hi
+-TheCommands.o : AmendRecord.hi
+-TheCommands.o : Rollback.hi
+-TheCommands.o : Optimize.hi
+-TheCommands.o : ./TrackDown.hi
+-TheCommands.o : ./Unrevert.hi
+-TheCommands.o : Changes.hi
+-TheCommands.o : SetPref.hi
+-TheCommands.o : DiffCommand.hi
+-TheCommands.o : Apply.hi
+-TheCommands.o : Send.hi
+-TheCommands.o : Push.hi
+-TheCommands.o : Tag.hi
+-TheCommands.o : Replace.hi
+-TheCommands.o : Mv.hi
+-TheCommands.o : Dist.hi
+-TheCommands.o : Pull.hi
+-TheCommands.o : Get.hi
+-TheCommands.o : Revert.hi
+-TheCommands.o : Check.hi
+-TheCommands.o : ./Unrecord.hi
+-TheCommands.o : Record.hi
+-TheCommands.o : ./WhatsNew.hi
+-TheCommands.o : Remove.hi
+-TheCommands.o : Add.hi
+-TheCommands.o : Init.hi
+-TheCommands.o : DarcsCommands.hi
+-TouchesFiles.o : TouchesFiles.lhs
+-TouchesFiles.o : Patch.hi
+-TouchesFiles.o : PatchChoices.hi
+ TrackDown.o : TrackDown.lhs
+ TrackDown.o : DarcsUtils.hi
+ TrackDown.o : Lock.hi
+@@ -667,27 +658,13 @@ TrackDown.o : PatchInfo.hi
+ TrackDown.o : Repository.hi
+ TrackDown.o : DarcsArguments.hi
+ TrackDown.o : DarcsCommands.hi
+-Unrecord.o : Unrecord.lhs
+-Unrecord.o : DarcsUtils.hi
+-Unrecord.o : SelectChanges.hi
+-Unrecord.o : ./Unrevert.hi
+-Unrecord.o : Lock.hi
+-Unrecord.o : Depends.hi
+-Unrecord.o : SlurpDirectory.hi
+-Unrecord.o : PatchInfo.hi
+-Unrecord.o : Patch.hi
+-Unrecord.o : Pristine.hi
+-Unrecord.o : Repository.hi
+-Unrecord.o : Match.hi
+-Unrecord.o : DarcsArguments.hi
+-Unrecord.o : DarcsCommands.hi
+-Unrecord.o : SignalHandler.hi
+ Unrevert.o : Unrevert.lhs
+ Unrevert.o : DarcsUtils.hi
+ Unrevert.o : SignalHandler.hi
+ Unrevert.o : IsoDate.hi
+ Unrevert.o : SelectChanges.hi
+ Unrevert.o : PatchBundle.hi
++Unrevert.o : DarcsUtils.hi
+ Unrevert.o : Resolution.hi
+ Unrevert.o : Depends.hi
+ Unrevert.o : Pull.hi
+@@ -695,20 +672,84 @@ Unrevert.o : Lock.hi
+ Unrevert.o : FastPackedString.hi
+ Unrevert.o : SlurpDirectory.hi
+ Unrevert.o : PatchInfo.hi
++Unrevert.o : SelectChanges.hi
+ Unrevert.o : Patch.hi
+ Unrevert.o : Repository.hi
+ Unrevert.o : DarcsArguments.hi
+ Unrevert.o : DarcsCommands.hi
+-WhatsNew.o : WhatsNew.lhs
+-WhatsNew.o : Printer.hi
+-WhatsNew.o : Patch.hi
+-WhatsNew.o : PrintPatch.hi
+-WhatsNew.o : Diff.hi
+-WhatsNew.o : RepoPrefs.hi
+-WhatsNew.o : Repository.hi
+-WhatsNew.o : TouchesFiles.hi
+-WhatsNew.o : DarcsArguments.hi
+-WhatsNew.o : DarcsCommands.hi
++AmendRecord.o : AmendRecord.lhs
++AmendRecord.o : DarcsUtils.hi
++AmendRecord.o : Printer.hi
++AmendRecord.o : Test.hi
++AmendRecord.o : Unrevert.hi
++AmendRecord.o : DarcsArguments.hi
++AmendRecord.o : Record.hi
++AmendRecord.o : DarcsCommands.hi
++AmendRecord.o : SelectChanges.hi
++AmendRecord.o : PatchInfo.hi
++AmendRecord.o : Patch.hi
++AmendRecord.o : Depends.hi
++AmendRecord.o : Pristine.hi
++AmendRecord.o : Repository.hi
++AmendRecord.o : Lock.hi
++AmendRecord.o : SignalHandler.hi
++Revert.o : Revert.lhs
++Revert.o : Unrevert.hi
++Revert.o : TouchesFiles.hi
++Revert.o : SelectChanges.hi
++Revert.o : Lock.hi
++Revert.o : SlurpDirectory.hi
++Revert.o : Patch.hi
++Revert.o : Repository.hi
++Revert.o : DarcsUtils.hi
++Revert.o : DarcsArguments.hi
++Revert.o : DarcsCommands.hi
++Revert.o : SignalHandler.hi
++Unrecord.o : Unrecord.lhs
++Unrecord.o : DarcsUtils.hi
++Unrecord.o : SelectChanges.hi
++Unrecord.o : Unrevert.hi
++Unrecord.o : Lock.hi
++Unrecord.o : Depends.hi
++Unrecord.o : SlurpDirectory.hi
++Unrecord.o : PatchInfo.hi
++Unrecord.o : Patch.hi
++Unrecord.o : Pristine.hi
++Unrecord.o : Repository.hi
++Unrecord.o : Match.hi
++Unrecord.o : DarcsArguments.hi
++Unrecord.o : DarcsCommands.hi
++Unrecord.o : SignalHandler.hi
++TheCommands.o : TheCommands.lhs
++TheCommands.o : Resolve.hi
++TheCommands.o : Repair.hi
++TheCommands.o : Annotate.hi
++TheCommands.o : AmendRecord.hi
++TheCommands.o : Rollback.hi
++TheCommands.o : Optimize.hi
++TheCommands.o : TrackDown.hi
++TheCommands.o : Unrevert.hi
++TheCommands.o : Changes.hi
++TheCommands.o : SetPref.hi
++TheCommands.o : DiffCommand.hi
++TheCommands.o : Apply.hi
++TheCommands.o : Send.hi
++TheCommands.o : Push.hi
++TheCommands.o : Tag.hi
++TheCommands.o : Replace.hi
++TheCommands.o : Mv.hi
++TheCommands.o : Dist.hi
++TheCommands.o : Pull.hi
++TheCommands.o : Get.hi
++TheCommands.o : Revert.hi
++TheCommands.o : Check.hi
++TheCommands.o : Unrecord.hi
++TheCommands.o : Record.hi
++TheCommands.o : WhatsNew.hi
++TheCommands.o : Remove.hi
++TheCommands.o : Add.hi
++TheCommands.o : Init.hi
++TheCommands.o : DarcsCommands.hi
+ PatchTest.o : PatchTest.lhs
+ PatchTest.o : DarcsUtils.hi
+ PatchTest.o : PatchCore.hi
 --- darcs-1.0.3.orig/darcs_print.ps
 +++ darcs-1.0.3/darcs_print.ps
 @@ -10,7 +10,7 @@
@@ -353,7 +1440,7 @@
  %DVIPSCommandLine: dvips -t letter -o darcs_print.ps darcs_print.dvi
  %DVIPSParameters: dpi=600, compressed
 -%DVIPSSource:  TeX output 2005.05.24:1847
-+%DVIPSSource:  TeX output 2005.06.05:1604
++%DVIPSSource:  TeX output 2005.06.05:1617
  %%BeginProcSet: texc.pro
  %!
  /TeXDict 300 dict def TeXDict begin/N{def}def/B{bind def}N/S{exch}N/X{S
