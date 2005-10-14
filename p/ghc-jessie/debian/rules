@@ -57,7 +57,7 @@ endif
 	rm -f config.guess
 	ln -s /usr/share/misc/config.sub .
 	ln -s /usr/share/misc/config.guess .
-	./configure $(confflags) --enable-hopengl --prefix=/usr --bindir='$${libdir}/bin' $(EXTRA_CONFIGURE_FLAGS) --with-gcc=gcc-3.3
+	./configure $(confflags) --enable-hopengl --prefix=/usr --bindir='$${libdir}/bin' $(EXTRA_CONFIGURE_FLAGS)
 	$(MAKE)
 
 	mkdir debian/test-build
@@ -153,7 +153,7 @@ install: build
 	rm -f debian/ghc6/usr/bin/runhaskell6
 
 	/usr/bin/install -c -m 755 -d debian/ghc6/`dirname $(VARFILE)`
-	echo 'ghc6_arches="alpha amd64 hppa i386 ia64 m68k powerpc s390 sparc"' > debian/ghc6/$(VARFILE)
+	echo 'ghc6_arches="alpha amd64 hppa i386 ia64 kfreebsd-i386 m68k powerpc s390 sparc"' > debian/ghc6/$(VARFILE)
 	echo 'ghc6_lib_bdeps="ghc6 (>= $(ProjectVersion)) [$$ghc6_arches], ghc6 (<< $(ProjectVersion)+) [$$ghc6_arches]"' >> debian/ghc6/$(VARFILE)
 	echo 'ghc6_lib_deps="ghc6 (>= $(ProjectVersion)), ghc6 (<< $(ProjectVersion)+)"' >> debian/ghc6/$(VARFILE)
 	echo 'ghc6_app_bdeps="ghc6 [$$ghc6_arches]"' >> debian/ghc6/$(VARFILE)
