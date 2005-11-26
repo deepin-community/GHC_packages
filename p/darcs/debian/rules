@@ -6,7 +6,7 @@ export DH_COMPAT=4
 configure: configure-stamp
 configure-stamp:
 	dh_testdir
-	sh ./configure --prefix=/usr --sysconfdir=/etc --libexecdir=/usr/lib --mandir=/usr/share/man
+	sh ./configure --with-sendmail=/usr/sbin/sendmail --prefix=/usr --sysconfdir=/etc --libexecdir=/usr/lib --mandir=/usr/share/man
 	touch configure-stamp
 
 build: build-stamp

@@ -1,5 +1,5 @@
---- darcs-1.0.3.orig/darcs-createrepo.8
-+++ darcs-1.0.3/darcs-createrepo.8
+--- darcs-1.0.4.orig/darcs-createrepo.8
++++ darcs-1.0.4/darcs-createrepo.8
 @@ -6,9 +6,9 @@ darcs-createrepo \- create a pushable da
  .SH DESCRIPTION
 
@@ -13,8 +13,8 @@
  /usr/share/doc/darcs/manual/index.html.
 
  .SH AUTHOR
---- darcs-1.0.3.orig/darcs.css
-+++ darcs-1.0.3/darcs.css
+--- darcs-1.0.4.orig/darcs.css
++++ darcs-1.0.4/darcs.css
 @@ -1,82 +1,231 @@
 -BODY {
 -  background: white;
@@ -329,19 +329,12 @@
 +div#fancyvrb60{ border-top: solid 0.4pt; }
 +div#fancyvrb60{ border-bottom: solid 0.4pt; }
 +/* end css.sty */
---- darcs-1.0.3.orig/config.command
-+++ darcs-1.0.3/config.command
-@@ -1,2 +1,2 @@
--# configured Tue May 24 18:37:38 EDT 2005
--sh ./configure
-+# configured Wed Sep 7 14:42:40 PDT 2005
-+sh ./configure --prefix=/usr --sysconfdir=/etc --libexecdir=/usr/lib --mandir=/usr/share/man
---- darcs-1.0.3.orig/.depend
-+++ darcs-1.0.3/.depend
-@@ -1,168 +1,156 @@
+--- darcs-1.0.4.orig/.depend
++++ darcs-1.0.4/.depend
+@@ -1,212 +1,191 @@
  # DO NOT DELETE: Beginning of Haskell dependencies
--AntiMemo.o : AntiMemo.lhs
-+Context.o : Context.lhs
++Context.o : Context.hs
++GitRepo.o : GitRepo.lhs
 +AtExit.o : AtExit.lhs
 +FileSystem.o : FileSystem.hs
 +Workaround.o : Workaround.hs
@@ -350,6 +343,7 @@
 +SignalHandler.o : Workaround.hi
 +RegChars.o : RegChars.lhs
 +PatchMatchData.o : PatchMatchData.lhs
++Map.o : Map.hs
 +IsoDate.o : IsoDate.lhs
 +Exec.o : Exec.lhs
 +DateMatcher.o : DateMatcher.lhs
@@ -357,7 +351,9 @@
 +CommandLine.o : CommandLine.lhs
 +DarcsFlags.o : DarcsFlags.lhs
 +DarcsFlags.o : PatchMatchData.hi
++ThisVersion.o : ThisVersion.lhs
  Autoconf.o : Autoconf.lhs
+-Autoconf.o : ./ThisVersion.hi
 -CheckFileSystem.o : CheckFileSystem.lhs
 -CheckFileSystem.o : ./Lock.hi
 -CheckFileSystem.o : ./DarcsUtils.hi
@@ -365,8 +361,20 @@
 -ColourPrinter.o : ./FastPackedString.hi
 -ColourPrinter.o : ./Printer.hi
 -ColourPrinter.o : ./External.hi
++Autoconf.o : ThisVersion.hi
  Curl.o : Curl.hs
+-DarcsIO.o : DarcsIO.lhs
+-DarcsIO.o : ./Workaround.hi
+-DarcsIO.o : ./Lock.hi
+-DarcsIO.o : ./FileName.hi
+-DarcsIO.o : ./Printer.hi
+-DarcsIO.o : ./DarcsUtils.hi
+-DarcsIO.o : ./FastPackedString.hi
 -Pristine.o : Pristine.lhs
+-Pristine.o : ./External.hi
+-Pristine.o : ./FileName.hi
+-Pristine.o : ./Patch.hi
+-Pristine.o : DarcsIO.hi
 -Pristine.o : ./DarcsFlags.hi
 -Pristine.o : ./PopulationData.hi
 -Pristine.o : ./PatchInfo.hi
@@ -379,15 +387,15 @@
 -DarcsArguments.o : ./DarcsUtils.hi
 -DarcsArguments.o : ./Printer.hi
 -DarcsArguments.o : ./SlurpDirectory.hi
+-DarcsArguments.o : ./DarcsRepo.hi
 -DarcsArguments.o : ./Repository.hi
 -DarcsArguments.o : ./DarcsFlags.hi
 -DarcsArguments.o : ./PatchMatchData.hi
--DarcsArguments.o : ./FileName.hi
+-DarcsArguments.o : ./FilePathUtils.hi
 -DarcsArguments.o : ./RepoPrefs.hi
--DarcsArguments.o : ./DarcsURL.hi
+-DarcsArguments.o : ./PatchShow.hi
 -DarcsArguments.o : ./PatchInfo.hi
 -DarcsArguments.o : ./Patch.hi
--DarcsArguments.o : Autoconf.hi
 -DarcsArguments.o : ./Exec.hi
 -DarcsFlags.o : DarcsFlags.lhs
 -DarcsFlags.o : ./PatchMatchData.hi
@@ -410,7 +418,6 @@
 -Diff.o : ./Patch.hi
 -Diff.o : ./SlurpDirectory.hi
 -Diff.o : ./FastPackedString.hi
--Diff.o : AntiMemo.hi
 -Exec.o : Exec.lhs
 -External.o : External.hs
 -External.o : DarcsUtils.hi
@@ -430,10 +437,18 @@
  FileName.o : FileName.lhs
  FileName.o : FastPackedString.hi
 -FileName.o : ./UTF8.hi
+-FilePathMonad.o : FilePathMonad.lhs
+-FilePathMonad.o : DarcsUtils.hi
+-FilePathMonad.o : FileName.hi
+-FilePathMonad.o : ./PatchCommute.hi
+-FilePathMonad.o : DarcsIO.hi
+-FilePathUtils.o : FilePathUtils.hs
+-FilePathUtils.o : DarcsUtils.hi
+-FilePathUtils.o : ./DarcsURL.hi
+-FilePathUtils.o : FileName.hi
+-FilePathUtils.o : Autoconf.hi
 -IsoDate.o : IsoDate.lhs
 +FileName.o : UTF8.hi
- Lcs.o : Lcs.lhs
- Lcs.o : FastPackedString.hi
 +PatchCheck.o : PatchCheck.lhs
 +PatchCheck.o : FastPackedString.hi
 +Printer.o : Printer.lhs
@@ -441,6 +456,11 @@
 +DarcsUtils.o : DarcsUtils.lhs
 +DarcsUtils.o : Printer.hi
 +DarcsUtils.o : Workaround.hi
+ Lcs.o : Lcs.lhs
+ Lcs.o : DarcsUtils.hi
+-Lcs.o : ./Map.hi
++Lcs.o : Map.hi
+ Lcs.o : FastPackedString.hi
 +DarcsURL.o : DarcsURL.hs
 +DarcsURL.o : DarcsUtils.hi
  Lock.o : Lock.lhs
@@ -454,6 +474,7 @@
  Lock.o : DarcsUtils.hi
 -Lock.o : ./DarcsURL.hi
 -Lock.o : ./Workaround.hi
+-Map.o : Map.hs
 -Match.o : Match.lhs
 -Match.o : DarcsUtils.hi
 -Match.o : ./Printer.hi
@@ -462,10 +483,12 @@
 -Match.o : ./PatchBundle.hi
 -Match.o : FastPackedString.hi
 -Match.o : Depends.hi
+-Match.o : ./DarcsRepo.hi
 -Match.o : ./Repository.hi
--Match.o : ./SlurpDirectory.hi
 -Match.o : ./Patch.hi
 -Match.o : ./PatchInfo.hi
+-Match.o : ./Workaround.hi
+-Match.o : Pristine.hi
 +Lock.o : DarcsURL.hi
 +Lock.o : Workaround.hi
 +Lock.o : DarcsUtils.hi
@@ -473,6 +496,13 @@
 +CheckFileSystem.o : CheckFileSystem.lhs
 +CheckFileSystem.o : Lock.hi
 +CheckFileSystem.o : DarcsUtils.hi
++DarcsIO.o : DarcsIO.lhs
++DarcsIO.o : Workaround.hi
++DarcsIO.o : Lock.hi
++DarcsIO.o : FileName.hi
++DarcsIO.o : Printer.hi
++DarcsIO.o : DarcsUtils.hi
++DarcsIO.o : FastPackedString.hi
 +External.o : External.hs
 +External.o : DarcsUtils.hi
 +External.o : Printer.hi
@@ -508,7 +538,8 @@
 -Patch.o : ./PopulationData.hi
 -PatchApply.o : PatchApply.lhs
 -PatchApply.o : DarcsUtils.hi
--PatchApply.o : AntiMemo.hi
+-PatchApply.o : FilePathMonad.hi
+-PatchApply.o : DarcsIO.hi
 -PatchApply.o : ./RepoPrefs.hi
 -PatchApply.o : ./RegChars.hi
 -PatchApply.o : ./SlurpDirectory.hi
@@ -518,6 +549,7 @@
 -PatchApply.o : ./PatchInfo.hi
 -PatchApply.o : FileName.hi
 -PatchApply.o : FastPackedString.hi
+-PatchApply.o : DarcsFlags.hi
 -PatchBundle.o : PatchBundle.lhs
 -PatchBundle.o : DarcsUtils.hi
 -PatchBundle.o : ./SHA1.hi
@@ -531,66 +563,73 @@
 -PatchCheck.o : PatchCheck.lhs
 -PatchCheck.o : FastPackedString.hi
 -PatchChoices.o : PatchChoices.lhs
+-PatchChoices.o : DarcsUtils.hi
 -PatchChoices.o : Patch.hi
-+RepoPrefs.o : RepoPrefs.lhs
-+RepoPrefs.o : DarcsUtils.hi
-+RepoPrefs.o : Lock.hi
-+RepoPrefs.o : DarcsFlags.hi
-+Zlib.o : Zlib.lhs
-+Zlib.o : DarcsUtils.hi
-+Zlib.o : Lock.hi
-+Zlib.o : Workaround.hi
-+Zlib.o : Workaround.hi
++RemoteApply.o : RemoteApply.lhs
++RemoteApply.o : Printer.hi
++RemoteApply.o : External.hi
++RemoteApply.o : DarcsURL.hi
++RemoteApply.o : DarcsFlags.hi
++RepoFormat.o : RepoFormat.lhs
++RepoFormat.o : DarcsUtils.hi
++RepoFormat.o : DarcsUtils.hi
++RepoFormat.o : FastPackedString.hi
++RepoFormat.o : External.hi
++SlurpDirectory.o : SlurpDirectory.lhs
++SlurpDirectory.o : DarcsUtils.hi
++SlurpDirectory.o : FileName.hi
++SlurpDirectory.o : FastPackedString.hi
++SlurpDirectory.o : DarcsIO.hi
++SlurpDirectory.o : CheckFileSystem.hi
++SlurpDirectory.o : DarcsUtils.hi
++SlurpDirectory.o : Workaround.hi
++Stringalike.o : Stringalike.hs
++Stringalike.o : FastPackedString.hi
++Stringalike.o : FileName.hi
++PatchReadMonads.o : PatchReadMonads.hs
++PatchReadMonads.o : Stringalike.hi
 +Email.o : Email.hs
 +Email.o : FastPackedString.hi
 +Email.o : Printer.hi
++FilePathUtils.o : FilePathUtils.hs
++FilePathUtils.o : DarcsUtils.hi
++FilePathUtils.o : DarcsURL.hi
++FilePathUtils.o : FileName.hi
++FilePathUtils.o : Autoconf.hi
++RepoPrefs.o : RepoPrefs.lhs
++RepoPrefs.o : FilePathUtils.hi
++RepoPrefs.o : FileName.hi
++RepoPrefs.o : DarcsIO.hi
++RepoPrefs.o : DarcsUtils.hi
++RepoPrefs.o : DarcsFlags.hi
 +SHA1.o : SHA1.lhs
 +SHA1.o : FastPackedString.hi
 +SHA1.o : Autoconf.hi
 +PatchInfo.o : PatchInfo.lhs
++PatchInfo.o : PatchReadMonads.hi
 +PatchInfo.o : SHA1.hi
 +PatchInfo.o : IsoDate.hi
 +PatchInfo.o : Printer.hi
 +PatchInfo.o : FastPackedString.hi
-+PopulationData.o : PopulationData.lhs
-+PopulationData.o : DarcsUtils.hi
-+PopulationData.o : FastPackedString.hi
-+PopulationData.o : PatchInfo.hi
-+AntiMemo.o : AntiMemo.lhs
 +PatchCore.o : PatchCore.lhs
 +PatchCore.o : DarcsUtils.hi
 +PatchCore.o : Printer.hi
 +PatchCore.o : PatchInfo.hi
 +PatchCore.o : FileName.hi
 +PatchCore.o : FastPackedString.hi
-+PatchCore.o : AntiMemo.hi
 +PatchShow.o : PatchShow.lhs
 +PatchShow.o : PatchCore.hi
 +PatchShow.o : Printer.hi
-+PatchShow.o : AntiMemo.hi
 +PatchShow.o : Lock.hi
-+PatchShow.o : Zlib.hi
 +PatchShow.o : FileName.hi
 +PatchShow.o : FastPackedString.hi
 +PatchShow.o : PatchInfo.hi
-+SlurpDirectory.o : SlurpDirectory.lhs
-+SlurpDirectory.o : DarcsUtils.hi
-+SlurpDirectory.o : FileSystem.hi
-+SlurpDirectory.o : DarcsFlags.hi
-+SlurpDirectory.o : DarcsUtils.hi
-+SlurpDirectory.o : Lock.hi
-+SlurpDirectory.o : FileName.hi
-+SlurpDirectory.o : FastPackedString.hi
-+SlurpDirectory.o : AntiMemo.hi
-+SlurpDirectory.o : CheckFileSystem.hi
-+SlurpDirectory.o : DarcsUtils.hi
-+SlurpDirectory.o : Workaround.hi
  PatchCommute.o : PatchCommute.lhs
  PatchCommute.o : DarcsUtils.hi
 -PatchCommute.o : ./RegChars.hi
++PatchCommute.o : DarcsUtils.hi
 +PatchCommute.o : RegChars.hi
  PatchCommute.o : Lcs.hi
- PatchCommute.o : AntiMemo.hi
 -PatchCommute.o : ./SlurpDirectory.hi
 -PatchCommute.o : ./PatchShow.hi
 -PatchCommute.o : ./PatchCore.hi
@@ -598,7 +637,6 @@
 +PatchCommute.o : SlurpDirectory.hi
 +PatchCommute.o : PatchShow.hi
 +PatchCommute.o : PatchCore.hi
-+PatchCommute.o : DarcsUtils.hi
 +PatchCommute.o : Printer.hi
  PatchCommute.o : FileName.hi
  PatchCommute.o : FastPackedString.hi
@@ -608,8 +646,8 @@
 -PatchCore.o : ./PatchInfo.hi
 -PatchCore.o : FileName.hi
 -PatchCore.o : FastPackedString.hi
--PatchCore.o : AntiMemo.hi
 -PatchInfo.o : PatchInfo.lhs
+-PatchInfo.o : ./PatchReadMonads.hi
 -PatchInfo.o : ./SHA1.hi
 -PatchInfo.o : IsoDate.hi
 -PatchInfo.o : ./Printer.hi
@@ -620,10 +658,37 @@
 -PatchMatch.o : Patch.hi
 -PatchMatch.o : PatchInfo.hi
 -PatchMatchData.o : PatchMatchData.lhs
-+PatchCommute.o : AntiMemo.hi
++FilePathMonad.o : FilePathMonad.lhs
++FilePathMonad.o : DarcsUtils.hi
++FilePathMonad.o : FileName.hi
++FilePathMonad.o : PatchCommute.hi
++FilePathMonad.o : DarcsIO.hi
+ PatchRead.o : PatchRead.lhs
+ PatchRead.o : DarcsUtils.hi
+-PatchRead.o : ./PatchReadMonads.hi
++PatchRead.o : PatchReadMonads.hi
+ PatchRead.o : PatchCommute.hi
+ PatchRead.o : PatchCore.hi
+ PatchRead.o : FileName.hi
+ PatchRead.o : FastPackedString.hi
+ PatchRead.o : PatchInfo.hi
+-PatchReadMonads.o : PatchReadMonads.hs
+-PatchReadMonads.o : ./Stringalike.hi
+-PatchShow.o : PatchShow.lhs
+-PatchShow.o : PatchCore.hi
+-PatchShow.o : ./Printer.hi
+-PatchShow.o : Lock.hi
+-PatchShow.o : FileName.hi
+-PatchShow.o : FastPackedString.hi
+-PatchShow.o : PatchInfo.hi
++PopulationData.o : PopulationData.lhs
++PopulationData.o : DarcsUtils.hi
++PopulationData.o : FastPackedString.hi
++PopulationData.o : PatchInfo.hi
 +PatchApply.o : PatchApply.lhs
 +PatchApply.o : DarcsUtils.hi
-+PatchApply.o : AntiMemo.hi
++PatchApply.o : FilePathMonad.hi
++PatchApply.o : DarcsIO.hi
 +PatchApply.o : RepoPrefs.hi
 +PatchApply.o : RegChars.hi
 +PatchApply.o : SlurpDirectory.hi
@@ -633,34 +698,17 @@
 +PatchApply.o : PatchInfo.hi
 +PatchApply.o : FileName.hi
 +PatchApply.o : FastPackedString.hi
-+PatchApply.o : AntiMemo.hi
- PatchRead.o : PatchRead.lhs
- PatchRead.o : DarcsUtils.hi
- PatchRead.o : PatchCommute.hi
-@@ -171,15 +159,6 @@ PatchRead.o : AntiMemo.hi
- PatchRead.o : FileName.hi
- PatchRead.o : FastPackedString.hi
- PatchRead.o : PatchInfo.hi
--PatchShow.o : PatchShow.lhs
--PatchShow.o : PatchCore.hi
--PatchShow.o : ./Printer.hi
--PatchShow.o : AntiMemo.hi
--PatchShow.o : Lock.hi
--PatchShow.o : ./Zlib.hi
--PatchShow.o : FileName.hi
--PatchShow.o : FastPackedString.hi
--PatchShow.o : PatchInfo.hi
++PatchApply.o : DarcsFlags.hi
  PatchViewing.o : PatchViewing.lhs
  PatchViewing.o : DarcsUtils.hi
  PatchViewing.o : PatchCommute.hi
-@@ -187,46 +166,61 @@ PatchViewing.o : PatchApply.hi
+@@ -214,51 +193,64 @@ PatchViewing.o : PatchApply.hi
  PatchViewing.o : PatchShow.hi
  PatchViewing.o : PatchCore.hi
  PatchViewing.o : PatchInfo.hi
 -PatchViewing.o : ./Printer.hi
 +PatchViewing.o : Printer.hi
  PatchViewing.o : FileName.hi
- PatchViewing.o : AntiMemo.hi
  PatchViewing.o : FastPackedString.hi
 -PatchViewing.o : ./SlurpDirectory.hi
 -Population.o : Population.lhs
@@ -668,7 +716,7 @@
 -Population.o : ./Printer.hi
 -Population.o : ./PopulationData.hi
 -Population.o : Pristine.hi
--Population.o : ./Repository.hi
+-Population.o : ./DarcsRepo.hi
 -Population.o : Patch.hi
 -Population.o : PatchInfo.hi
 -Population.o : FileName.hi
@@ -687,9 +735,15 @@
 -Printer.o : Printer.lhs
 -Printer.o : FastPackedString.hi
 -RegChars.o : RegChars.lhs
+-RepoFormat.o : RepoFormat.lhs
+-RepoFormat.o : DarcsUtils.hi
+-RepoFormat.o : FastPackedString.hi
+-RepoFormat.o : External.hi
 -RepoPrefs.o : RepoPrefs.lhs
+-RepoPrefs.o : FilePathUtils.hi
+-RepoPrefs.o : FileName.hi
+-RepoPrefs.o : DarcsIO.hi
 -RepoPrefs.o : DarcsUtils.hi
--RepoPrefs.o : Lock.hi
 -RepoPrefs.o : DarcsFlags.hi
 +PatchViewing.o : SlurpDirectory.hi
 +Patch.o : Patch.lhs
@@ -708,8 +762,11 @@
 +Diff.o : Patch.hi
 +Diff.o : SlurpDirectory.hi
 +Diff.o : FastPackedString.hi
-+Diff.o : AntiMemo.hi
 +Pristine.o : Pristine.lhs
++Pristine.o : External.hi
++Pristine.o : FileName.hi
++Pristine.o : Patch.hi
++Pristine.o : DarcsIO.hi
 +Pristine.o : DarcsFlags.hi
 +Pristine.o : PopulationData.hi
 +Pristine.o : PatchInfo.hi
@@ -719,12 +776,16 @@
 +Pristine.o : Diff.hi
 +Pristine.o : Lock.hi
 +PatchChoices.o : PatchChoices.lhs
++PatchChoices.o : DarcsUtils.hi
 +PatchChoices.o : Patch.hi
 +PatchMatch.o : PatchMatch.lhs
 +PatchMatch.o : PatchMatchData.hi
 +PatchMatch.o : DateMatcher.hi
 +PatchMatch.o : Patch.hi
 +PatchMatch.o : PatchInfo.hi
++TouchesFiles.o : TouchesFiles.lhs
++TouchesFiles.o : Patch.hi
++TouchesFiles.o : PatchChoices.hi
  RepoTypes.o : RepoTypes.lhs
  RepoTypes.o : PatchInfo.hi
  RepoTypes.o : Patch.hi
@@ -734,45 +795,72 @@
 +Depends.o : RepoTypes.hi
 +Depends.o : PatchInfo.hi
 +Depends.o : Patch.hi
-+TouchesFiles.o : TouchesFiles.lhs
-+TouchesFiles.o : Patch.hi
-+TouchesFiles.o : PatchChoices.hi
+ DarcsRepo.o : DarcsRepo.lhs
+ DarcsRepo.o : DarcsUtils.hi
+ DarcsRepo.o : Printer.hi
+-DarcsRepo.o : ./DarcsURL.hi
++DarcsRepo.o : DarcsURL.hi
++DarcsRepo.o : DarcsUtils.hi
+ DarcsRepo.o : FileName.hi
+ DarcsRepo.o : RepoPrefs.hi
+ DarcsRepo.o : Pristine.hi
+@@ -270,26 +262,111 @@ DarcsRepo.o : External.hi
+ DarcsRepo.o : Diff.hi
+ DarcsRepo.o : PatchInfo.hi
+ DarcsRepo.o : Patch.hi
+-DarcsRepo.o : ./SlurpDirectory.hi
++DarcsRepo.o : SlurpDirectory.hi
++DarcsRepo.o : Lock.hi
+ DarcsRepo.o : FastPackedString.hi
+-DarcsRepo.o : ./SignalHandler.hi
+-DarcsRepo.o : ./Workaround.hi
++DarcsRepo.o : SignalHandler.hi
++DarcsRepo.o : DarcsUtils.hi
++DarcsRepo.o : Workaround.hi
++Population.o : Population.lhs
++Population.o : DarcsUtils.hi
++Population.o : Printer.hi
++Population.o : PopulationData.hi
++Population.o : Pristine.hi
++Population.o : DarcsRepo.hi
++Population.o : Patch.hi
++Population.o : PatchInfo.hi
++Population.o : FileName.hi
++Population.o : DarcsUtils.hi
++Population.o : FastPackedString.hi
  Repository.o : Repository.lhs
- Repository.o : DarcsUtils.hi
- Repository.o : Printer.hi
--Repository.o : ./DarcsURL.hi
-+Repository.o : DarcsURL.hi
-+Repository.o : DarcsUtils.hi
- Repository.o : FileName.hi
+ Repository.o : Lock.hi
  Repository.o : RepoPrefs.hi
- Repository.o : Pristine.hi
-@@ -239,10 +233,98 @@ Repository.o : Diff.hi
- Repository.o : PatchInfo.hi
- Repository.o : PatchCore.hi
+ Repository.o : DarcsUtils.hi
+-Repository.o : ./Workaround.hi
++Repository.o : Workaround.hi
+ Repository.o : RepoTypes.hi
+ Repository.o : Diff.hi
  Repository.o : Patch.hi
+ Repository.o : PatchInfo.hi
+ Repository.o : DarcsFlags.hi
+-Repository.o : ./GitRepo.hi
++Repository.o : GitRepo.hi
+ Repository.o : DarcsRepo.hi
 -Repository.o : ./SlurpDirectory.hi
 +Repository.o : SlurpDirectory.hi
-+Repository.o : Lock.hi
- Repository.o : FastPackedString.hi
--Repository.o : ./SignalHandler.hi
--Repository.o : ./Workaround.hi
-+Repository.o : SignalHandler.hi
-+Repository.o : DarcsUtils.hi
-+Repository.o : Workaround.hi
+ Repository.o : RepoFormat.hi
+ Repository.o : Pristine.hi
+ Repository.o : External.hi
 +DarcsArguments.o : DarcsArguments.lhs
 +DarcsArguments.o : DarcsUtils.hi
 +DarcsArguments.o : Printer.hi
 +DarcsArguments.o : SlurpDirectory.hi
++DarcsArguments.o : DarcsRepo.hi
 +DarcsArguments.o : Repository.hi
 +DarcsArguments.o : DarcsFlags.hi
 +DarcsArguments.o : PatchMatchData.hi
-+DarcsArguments.o : FileName.hi
++DarcsArguments.o : FilePathUtils.hi
 +DarcsArguments.o : RepoPrefs.hi
-+DarcsArguments.o : DarcsURL.hi
 +DarcsArguments.o : DarcsUtils.hi
++DarcsArguments.o : PatchShow.hi
 +DarcsArguments.o : PatchInfo.hi
 +DarcsArguments.o : Patch.hi
-+DarcsArguments.o : Autoconf.hi
 +DarcsArguments.o : Exec.hi
 +PrintPatch.o : PrintPatch.lhs
 +PrintPatch.o : DarcsArguments.hi
@@ -781,12 +869,30 @@
 +PrintPatch.o : Printer.hi
 +PrintPatch.o : SlurpDirectory.hi
 +PrintPatch.o : Patch.hi
++Test.o : Test.lhs
++Test.o : DarcsUtils.hi
++Test.o : Lock.hi
++Test.o : RepoPrefs.hi
++Test.o : DarcsArguments.hi
++Test.o : DarcsRepo.hi
++Test.o : Patch.hi
++Test.o : Workaround.hi
++Test.o : DarcsUtils.hi
 +ArgumentDefaults.o : ArgumentDefaults.lhs
 +ArgumentDefaults.o : RepoPrefs.hi
 +ArgumentDefaults.o : DarcsArguments.hi
 +DarcsCommands.o : DarcsCommands.lhs
 +DarcsCommands.o : ArgumentDefaults.hi
++DarcsCommands.o : DarcsUtils.hi
 +DarcsCommands.o : DarcsArguments.hi
++DarcsCommands.o : Workaround.hi
++DarcsCommands.o : Test.hi
++Init.o : Init.lhs
++Init.o : DarcsRepo.hi
++Init.o : Pristine.hi
++Init.o : RepoPrefs.hi
++Init.o : DarcsArguments.hi
++Init.o : DarcsCommands.hi
 +PatchBundle.o : PatchBundle.lhs
 +PatchBundle.o : DarcsUtils.hi
 +PatchBundle.o : SHA1.hi
@@ -802,31 +908,154 @@
 +Match.o : Printer.hi
 +Match.o : PatchMatch.hi
 +Match.o : DarcsArguments.hi
++Match.o : DarcsUtils.hi
 +Match.o : PatchBundle.hi
 +Match.o : FastPackedString.hi
 +Match.o : Depends.hi
 +Match.o : Depends.hi
++Match.o : DarcsRepo.hi
 +Match.o : Repository.hi
-+Match.o : SlurpDirectory.hi
 +Match.o : Patch.hi
 +Match.o : PatchInfo.hi
-+Population.o : Population.lhs
-+Population.o : DarcsUtils.hi
-+Population.o : Printer.hi
-+Population.o : PopulationData.hi
-+Population.o : Pristine.hi
-+Population.o : Repository.hi
-+Population.o : Patch.hi
-+Population.o : PatchInfo.hi
-+Population.o : FileName.hi
-+Population.o : DarcsUtils.hi
-+Population.o : FastPackedString.hi
-+Init.o : Init.lhs
-+Init.o : Repository.hi
-+Init.o : Pristine.hi
-+Init.o : RepoPrefs.hi
-+Init.o : DarcsArguments.hi
-+Init.o : DarcsCommands.hi
++Match.o : Workaround.hi
++Match.o : Pristine.hi
+ Resolution.o : Resolution.lhs
+ Resolution.o : DarcsUtils.hi
+ Resolution.o : External.hi
+@@ -299,37 +376,9 @@ Resolution.o : RepoPrefs.hi
+ Resolution.o : Diff.hi
+ Resolution.o : DarcsRepo.hi
+ Resolution.o : Repository.hi
+-Resolution.o : ./SlurpDirectory.hi
++Resolution.o : SlurpDirectory.hi
++Resolution.o : DarcsUtils.hi
+ Resolution.o : Patch.hi
+-SHA1.o : SHA1.lhs
+-SHA1.o : FastPackedString.hi
+-SHA1.o : Autoconf.hi
+-SignalHandler.o : SignalHandler.lhs
+-SignalHandler.o : ./Workaround.hi
+-SlurpDirectory.o : SlurpDirectory.lhs
+-SlurpDirectory.o : DarcsUtils.hi
+-SlurpDirectory.o : FileName.hi
+-SlurpDirectory.o : FastPackedString.hi
+-SlurpDirectory.o : DarcsIO.hi
+-SlurpDirectory.o : CheckFileSystem.hi
+-SlurpDirectory.o : ./Workaround.hi
+-Stringalike.o : Stringalike.hs
+-Stringalike.o : FastPackedString.hi
+-Stringalike.o : FileName.hi
+-Test.o : Test.lhs
+-Test.o : DarcsUtils.hi
+-Test.o : Lock.hi
+-Test.o : RepoPrefs.hi
+-Test.o : DarcsArguments.hi
+-Test.o : DarcsRepo.hi
+-Test.o : Patch.hi
+-Test.o : ./Workaround.hi
+-ThisVersion.o : ThisVersion.lhs
+-UTF8.o : UTF8.lhs
+-Workaround.o : Workaround.hs
+-FileSystem.o : FileSystem.hs
+-AtExit.o : AtExit.lhs
+-GitRepo.o : GitRepo.lhs
+ Add.o : Add.lhs
+ Add.o : RepoPrefs.hi
+ Add.o : FilePathUtils.hi
+@@ -340,23 +389,97 @@ Add.o : Repository.hi
+ Add.o : IsoDate.hi
+ Add.o : DarcsUtils.hi
+ Add.o : DarcsArguments.hi
+-Add.o : ./DarcsCommands.hi
+-AmendRecord.o : AmendRecord.lhs
+-AmendRecord.o : DarcsUtils.hi
+-AmendRecord.o : Printer.hi
+-AmendRecord.o : Test.hi
+-AmendRecord.o : ./Unrevert.hi
+-AmendRecord.o : DarcsArguments.hi
+-AmendRecord.o : ./Record.hi
+-AmendRecord.o : ./DarcsCommands.hi
+-AmendRecord.o : ./SelectChanges.hi
+-AmendRecord.o : PatchInfo.hi
+-AmendRecord.o : Patch.hi
+-AmendRecord.o : Depends.hi
+-AmendRecord.o : Pristine.hi
+-AmendRecord.o : DarcsRepo.hi
+-AmendRecord.o : Repository.hi
+-AmendRecord.o : SignalHandler.hi
++Add.o : DarcsCommands.hi
++Dist.o : Dist.lhs
++Dist.o : Exec.hi
++Dist.o : Lock.hi
++Dist.o : RepoPrefs.hi
++Dist.o : DarcsRepo.hi
++Dist.o : Repository.hi
++Dist.o : DarcsArguments.hi
++Dist.o : DarcsCommands.hi
++Dist.o : Workaround.hi
++Mv.o : Mv.lhs
++Mv.o : DarcsUtils.hi
++Mv.o : FileName.hi
++Mv.o : SlurpDirectory.hi
++Mv.o : Patch.hi
++Mv.o : Repository.hi
++Mv.o : Workaround.hi
++Mv.o : FilePathUtils.hi
++Mv.o : DarcsArguments.hi
++Mv.o : DarcsCommands.hi
++Mv.o : SignalHandler.hi
++Put.o : Put.lhs
++Put.o : DarcsUtils.hi
++Put.o : RemoteApply.hi
++Put.o : Exec.hi
++Put.o : SlurpDirectory.hi
++Put.o : Pristine.hi
++Put.o : Printer.hi
++Put.o : DarcsUtils.hi
++Put.o : DarcsURL.hi
++Put.o : RepoPrefs.hi
++Put.o : Match.hi
++Put.o : PatchBundle.hi
++Put.o : Patch.hi
++Put.o : DarcsRepo.hi
++Put.o : Repository.hi
++Put.o : DarcsArguments.hi
++Put.o : DarcsCommands.hi
++QueryManifest.o : QueryManifest.lhs
++QueryManifest.o : PatchCore.hi
++QueryManifest.o : FileName.hi
++QueryManifest.o : ColourPrinter.hi
++QueryManifest.o : Printer.hi
++QueryManifest.o : SlurpDirectory.hi
++QueryManifest.o : Repository.hi
++QueryManifest.o : DarcsCommands.hi
++QueryManifest.o : DarcsArguments.hi
++Query.o : Query.lhs
++Query.o : Repository.hi
++Query.o : QueryManifest.hi
++Query.o : DarcsCommands.hi
++Remove.o : Remove.lhs
++Remove.o : DarcsUtils.hi
++Remove.o : FileName.hi
++Remove.o : Diff.hi
++Remove.o : RepoPrefs.hi
++Remove.o : SlurpDirectory.hi
++Remove.o : Patch.hi
++Remove.o : Repository.hi
++Remove.o : DarcsArguments.hi
++Remove.o : DarcsCommands.hi
++Replace.o : Replace.lhs
++Replace.o : DarcsUtils.hi
++Replace.o : RepoPrefs.hi
++Replace.o : Diff.hi
++Replace.o : RegChars.hi
++Replace.o : FileName.hi
++Replace.o : SlurpDirectory.hi
++Replace.o : Patch.hi
++Replace.o : DarcsRepo.hi
++Replace.o : Repository.hi
++Replace.o : DarcsArguments.hi
++Replace.o : DarcsCommands.hi
 +SetPref.o : SetPref.lhs
 +SetPref.o : DarcsUtils.hi
 +SetPref.o : RepoPrefs.hi
@@ -845,77 +1074,10 @@
 +WhatsNew.o : TouchesFiles.hi
 +WhatsNew.o : DarcsArguments.hi
 +WhatsNew.o : DarcsCommands.hi
- Resolution.o : Resolution.lhs
- Resolution.o : DarcsUtils.hi
- Resolution.o : Lock.hi
-@@ -250,38 +332,16 @@ Resolution.o : Exec.hi
- Resolution.o : RepoPrefs.hi
- Resolution.o : Diff.hi
- Resolution.o : Repository.hi
--Resolution.o : ./SlurpDirectory.hi
-+Resolution.o : SlurpDirectory.hi
-+Resolution.o : DarcsUtils.hi
- Resolution.o : Patch.hi
--SHA1.o : SHA1.lhs
--SHA1.o : FastPackedString.hi
--SHA1.o : Autoconf.hi
--SignalHandler.o : SignalHandler.lhs
--SignalHandler.o : ./Workaround.hi
--SlurpDirectory.o : SlurpDirectory.lhs
--SlurpDirectory.o : DarcsUtils.hi
--SlurpDirectory.o : ./FileSystem.hi
--SlurpDirectory.o : DarcsFlags.hi
--SlurpDirectory.o : Lock.hi
--SlurpDirectory.o : FileName.hi
--SlurpDirectory.o : FastPackedString.hi
--SlurpDirectory.o : AntiMemo.hi
--SlurpDirectory.o : CheckFileSystem.hi
--SlurpDirectory.o : ./Workaround.hi
- Test.o : Test.lhs
- Test.o : Lock.hi
- Test.o : RepoPrefs.hi
- Test.o : SlurpDirectory.hi
- Test.o : DarcsArguments.hi
--Test.o : ./Workaround.hi
-+Test.o : Workaround.hi
- Test.o : DarcsUtils.hi
--UTF8.o : UTF8.lhs
--Workaround.o : Workaround.hs
--Zlib.o : Zlib.lhs
--Zlib.o : DarcsUtils.hi
--Zlib.o : Lock.hi
--Zlib.o : Workaround.hi
--FileSystem.o : FileSystem.hs
--AtExit.o : AtExit.lhs
- Add.o : Add.lhs
- Add.o : Lock.hi
- Add.o : RepoPrefs.hi
-@@ -292,23 +352,7 @@ Add.o : Repository.hi
- Add.o : IsoDate.hi
- Add.o : DarcsUtils.hi
- Add.o : DarcsArguments.hi
--Add.o : ./DarcsCommands.hi
--AmendRecord.o : AmendRecord.lhs
--AmendRecord.o : DarcsUtils.hi
--AmendRecord.o : Printer.hi
--AmendRecord.o : Test.hi
--AmendRecord.o : ./Unrevert.hi
--AmendRecord.o : DarcsArguments.hi
--AmendRecord.o : ./Record.hi
--AmendRecord.o : ./DarcsCommands.hi
--AmendRecord.o : ./SelectChanges.hi
--AmendRecord.o : PatchInfo.hi
--AmendRecord.o : Patch.hi
--AmendRecord.o : Depends.hi
--AmendRecord.o : Pristine.hi
--AmendRecord.o : Repository.hi
--AmendRecord.o : Lock.hi
--AmendRecord.o : SignalHandler.hi
-+Add.o : DarcsCommands.hi
  Annotate.o : Annotate.lhs
  Annotate.o : DarcsUtils.hi
  Annotate.o : Printer.hi
-@@ -324,51 +368,30 @@ Annotate.o : Patch.hi
+@@ -373,50 +496,30 @@ Annotate.o : DarcsRepo.hi
  Annotate.o : Repository.hi
  Annotate.o : SlurpDirectory.hi
  Annotate.o : DarcsArguments.hi
@@ -938,7 +1100,6 @@
 -Apply.o : SlurpDirectory.hi
 -Apply.o : PatchInfo.hi
 -Apply.o : Patch.hi
--Apply.o : Pristine.hi
 -Apply.o : Repository.hi
 -Apply.o : DarcsArguments.hi
 -Apply.o : ./DarcsCommands.hi
@@ -973,40 +1134,61 @@
  Check.o : RepoPrefs.hi
  Check.o : Lock.hi
  Check.o : Test.hi
-@@ -379,14 +402,19 @@ Check.o : Patch.hi
+@@ -427,47 +530,24 @@ Check.o : Patch.hi
  Check.o : Pristine.hi
- Check.o : Repository.hi
+ Check.o : DarcsRepo.hi
  Check.o : DarcsArguments.hi
 -Check.o : ./DarcsCommands.hi
 +Check.o : DarcsCommands.hi
  Check.o : Workaround.hi
--Context.o : Context.lhs
+-Context.o : Context.hs
 -DarcsCommands.o : DarcsCommands.lhs
 -DarcsCommands.o : ArgumentDefaults.hi
+-DarcsCommands.o : DarcsUtils.hi
 -DarcsCommands.o : DarcsArguments.hi
+-DarcsCommands.o : Workaround.hi
+-DarcsCommands.o : Test.hi
 -DarcsURL.o : DarcsURL.hs
 -DarcsURL.o : DarcsUtils.hi
+-DiffCommand.o : DiffCommand.lhs
+-DiffCommand.o : Printer.hi
+-DiffCommand.o : Lock.hi
+-DiffCommand.o : External.hi
+-DiffCommand.o : PatchInfo.hi
+-DiffCommand.o : Pristine.hi
+-DiffCommand.o : SlurpDirectory.hi
+-DiffCommand.o : DarcsRepo.hi
+-DiffCommand.o : Repository.hi
+-DiffCommand.o : Match.hi
+-DiffCommand.o : DarcsArguments.hi
+-DiffCommand.o : DarcsCommands.hi
+-DiffCommand.o : Autoconf.hi
+-DiffCommand.o : DarcsUtils.hi
+-DiffCommand.o : Workaround.hi
+-Dist.o : Dist.lhs
+-Dist.o : Exec.hi
+-Dist.o : Lock.hi
+-Dist.o : RepoPrefs.hi
+-Dist.o : DarcsRepo.hi
+-Dist.o : Repository.hi
+-Dist.o : DarcsArguments.hi
+-Dist.o : DarcsCommands.hi
+-Dist.o : Workaround.hi
+-Email.o : Email.hs
+-Email.o : FastPackedString.hi
+-Email.o : Printer.hi
 +Repair.o : Repair.lhs
 +Repair.o : Printer.hi
 +Repair.o : Check.hi
 +Repair.o : Lock.hi
 +Repair.o : Depends.hi
 +Repair.o : Pristine.hi
++Repair.o : DarcsRepo.hi
 +Repair.o : Repository.hi
 +Repair.o : Patch.hi
 +Repair.o : DarcsArguments.hi
 +Repair.o : DarcsCommands.hi
 +Repair.o : Workaround.hi
- DiffCommand.o : DiffCommand.lhs
- DiffCommand.o : Printer.hi
- DiffCommand.o : Lock.hi
-@@ -409,12 +437,10 @@ Dist.o : Repository.hi
- Dist.o : DarcsArguments.hi
- Dist.o : DarcsCommands.hi
- Dist.o : Workaround.hi
--Email.o : Email.hs
--Email.o : FastPackedString.hi
--Email.o : Printer.hi
  Get.o : Get.lhs
  Get.o : DarcsUtils.hi
  Get.o : Printer.hi
@@ -1014,20 +1196,29 @@
  Get.o : Match.hi
  Get.o : Pristine.hi
  Get.o : Motd.hi
-@@ -428,12 +454,6 @@ Get.o : Repository.hi
+@@ -480,28 +560,12 @@ Get.o : DarcsRepo.hi
  Get.o : DarcsArguments.hi
  Get.o : DarcsCommands.hi
  Get.o : Workaround.hi
 -Init.o : Init.lhs
--Init.o : Repository.hi
+-Init.o : DarcsRepo.hi
 -Init.o : Pristine.hi
 -Init.o : RepoPrefs.hi
 -Init.o : DarcsArguments.hi
 -Init.o : DarcsCommands.hi
- Mv.o : Mv.lhs
- Mv.o : DarcsUtils.hi
- Mv.o : Lock.hi
-@@ -450,6 +470,7 @@ Optimize.o : DarcsUtils.hi
+-Mv.o : Mv.lhs
+-Mv.o : DarcsUtils.hi
+-Mv.o : FileName.hi
+-Mv.o : SlurpDirectory.hi
+-Mv.o : Patch.hi
+-Mv.o : Repository.hi
+-Mv.o : Workaround.hi
+-Mv.o : FilePathUtils.hi
+-Mv.o : DarcsArguments.hi
+-Mv.o : DarcsCommands.hi
+-Mv.o : SignalHandler.hi
+ Optimize.o : Optimize.lhs
+ Optimize.o : DarcsUtils.hi
  Optimize.o : Pristine.hi
  Optimize.o : SlurpDirectory.hi
  Optimize.o : Printer.hi
@@ -1035,34 +1226,11 @@
  Optimize.o : Lock.hi
  Optimize.o : Depends.hi
  Optimize.o : FastPackedString.hi
-@@ -459,12 +480,51 @@ Optimize.o : Repository.hi
+@@ -512,31 +576,74 @@ Optimize.o : Repository.hi
  Optimize.o : RepoPrefs.hi
  Optimize.o : DarcsArguments.hi
  Optimize.o : DarcsCommands.hi
 +Optimize.o : DarcsUtils.hi
-+Remove.o : Remove.lhs
-+Remove.o : DarcsUtils.hi
-+Remove.o : FileName.hi
-+Remove.o : Diff.hi
-+Remove.o : RepoPrefs.hi
-+Remove.o : Lock.hi
-+Remove.o : SlurpDirectory.hi
-+Remove.o : Patch.hi
-+Remove.o : Repository.hi
-+Remove.o : DarcsArguments.hi
-+Remove.o : DarcsCommands.hi
-+Replace.o : Replace.lhs
-+Replace.o : DarcsUtils.hi
-+Replace.o : RepoPrefs.hi
-+Replace.o : Diff.hi
-+Replace.o : Lock.hi
-+Replace.o : RegChars.hi
-+Replace.o : FileName.hi
-+Replace.o : SlurpDirectory.hi
-+Replace.o : Patch.hi
-+Replace.o : Repository.hi
-+Replace.o : DarcsArguments.hi
-+Replace.o : DarcsCommands.hi
 +SelectChanges.o : SelectChanges.lhs
 +SelectChanges.o : DarcsUtils.hi
 +SelectChanges.o : Printer.hi
@@ -1085,10 +1253,9 @@
 -Pull.o : ./SelectChanges.hi
 +Pull.o : DarcsUtils.hi
 +Pull.o : SelectChanges.hi
- Pull.o : Lock.hi
  Pull.o : Resolution.hi
  Pull.o : Depends.hi
-@@ -473,18 +533,44 @@ Pull.o : Motd.hi
+ Pull.o : Motd.hi
  Pull.o : RepoPrefs.hi
  Pull.o : SlurpDirectory.hi
  Pull.o : PatchInfo.hi
@@ -1115,7 +1282,7 @@
 +Apply.o : SlurpDirectory.hi
 +Apply.o : PatchInfo.hi
 +Apply.o : Patch.hi
-+Apply.o : Pristine.hi
++Apply.o : Patch.hi
 +Apply.o : Repository.hi
 +Apply.o : DarcsArguments.hi
 +Apply.o : DarcsArguments.hi
@@ -1124,17 +1291,54 @@
 +Apply.o : DarcsUtils.hi
  Push.o : Push.lhs
  Push.o : DarcsUtils.hi
+-Push.o : ./RemoteApply.hi
++Push.o : RemoteApply.hi
  Push.o : Printer.hi
+ Push.o : PatchBundle.hi
  Push.o : Depends.hi
  Push.o : DarcsURL.hi
 -Push.o : ./SelectChanges.hi
++Push.o : DarcsUtils.hi
 +Push.o : SelectChanges.hi
- Push.o : Lock.hi
 +Push.o : DarcsURL.hi
  Push.o : External.hi
  Push.o : RepoPrefs.hi
  Push.o : PatchInfo.hi
-@@ -497,56 +583,34 @@ Record.o : DarcsUtils.hi
+@@ -544,112 +651,36 @@ Push.o : DarcsRepo.hi
+ Push.o : Repository.hi
+ Push.o : DarcsArguments.hi
+ Push.o : DarcsCommands.hi
+-Put.o : Put.lhs
+-Put.o : DarcsUtils.hi
+-Put.o : ./RemoteApply.hi
+-Put.o : Exec.hi
+-Put.o : SlurpDirectory.hi
+-Put.o : Pristine.hi
+-Put.o : Printer.hi
+-Put.o : DarcsURL.hi
+-Put.o : RepoPrefs.hi
+-Put.o : Match.hi
+-Put.o : PatchBundle.hi
+-Put.o : Patch.hi
+-Put.o : DarcsRepo.hi
+-Put.o : Repository.hi
+-Put.o : DarcsArguments.hi
+-Put.o : DarcsCommands.hi
+-Query.o : Query.lhs
+-Query.o : Repository.hi
+-Query.o : ./QueryManifest.hi
+-Query.o : DarcsCommands.hi
+-QueryManifest.o : QueryManifest.lhs
+-QueryManifest.o : PatchCore.hi
+-QueryManifest.o : FileName.hi
+-QueryManifest.o : ColourPrinter.hi
+-QueryManifest.o : Printer.hi
+-QueryManifest.o : SlurpDirectory.hi
+-QueryManifest.o : Repository.hi
+-QueryManifest.o : DarcsCommands.hi
+-QueryManifest.o : DarcsArguments.hi
+ Record.o : Record.lhs
+ Record.o : DarcsUtils.hi
  Record.o : Printer.hi
  Record.o : IsoDate.hi
  Record.o : Test.hi
@@ -1149,16 +1353,19 @@
 +Record.o : SlurpDirectory.hi
  Record.o : PatchInfo.hi
  Record.o : Patch.hi
- Record.o : Pristine.hi
  Record.o : Repository.hi
  Record.o : Lock.hi
  Record.o : SignalHandler.hi
+-RemoteApply.o : RemoteApply.lhs
+-RemoteApply.o : Printer.hi
+-RemoteApply.o : External.hi
+-RemoteApply.o : DarcsURL.hi
+-RemoteApply.o : DarcsFlags.hi
 -Remove.o : Remove.lhs
 -Remove.o : DarcsUtils.hi
 -Remove.o : FileName.hi
 -Remove.o : Diff.hi
 -Remove.o : RepoPrefs.hi
--Remove.o : Lock.hi
 -Remove.o : SlurpDirectory.hi
 -Remove.o : Patch.hi
 -Remove.o : Repository.hi
@@ -1170,6 +1377,7 @@
 -Repair.o : Lock.hi
 -Repair.o : Depends.hi
 -Repair.o : Pristine.hi
+-Repair.o : DarcsRepo.hi
 -Repair.o : Repository.hi
 -Repair.o : Patch.hi
 -Repair.o : DarcsArguments.hi
@@ -1179,33 +1387,21 @@
 -Replace.o : DarcsUtils.hi
 -Replace.o : RepoPrefs.hi
 -Replace.o : Diff.hi
--Replace.o : Lock.hi
 -Replace.o : RegChars.hi
 -Replace.o : FileName.hi
 -Replace.o : SlurpDirectory.hi
 -Replace.o : Patch.hi
+-Replace.o : DarcsRepo.hi
 -Replace.o : Repository.hi
 -Replace.o : DarcsArguments.hi
 -Replace.o : DarcsCommands.hi
-+Tag.o : Tag.lhs
-+Tag.o : Lock.hi
-+Tag.o : Record.hi
-+Tag.o : Depends.hi
-+Tag.o : PatchInfo.hi
-+Tag.o : Patch.hi
-+Tag.o : Repository.hi
-+Tag.o : DarcsUtils.hi
-+Tag.o : DarcsArguments.hi
-+Tag.o : DarcsCommands.hi
  Resolve.o : Resolve.lhs
  Resolve.o : DarcsUtils.hi
- Resolve.o : Lock.hi
 -Resolve.o : ./SelectChanges.hi
 +Resolve.o : SelectChanges.hi
- Resolve.o : SlurpDirectory.hi
  Resolve.o : Resolution.hi
  Resolve.o : Patch.hi
-@@ -554,21 +618,9 @@ Resolve.o : Repository.hi
+ Resolve.o : Repository.hi
  Resolve.o : DarcsArguments.hi
  Resolve.o : DarcsCommands.hi
  Resolve.o : SignalHandler.hi
@@ -1213,8 +1409,6 @@
 -Revert.o : ./Unrevert.hi
 -Revert.o : ./TouchesFiles.hi
 -Revert.o : ./SelectChanges.hi
--Revert.o : Lock.hi
--Revert.o : SlurpDirectory.hi
 -Revert.o : Patch.hi
 -Revert.o : Repository.hi
 -Revert.o : DarcsUtils.hi
@@ -1225,10 +1419,10 @@
  Rollback.o : DarcsUtils.hi
 -Rollback.o : ./SelectChanges.hi
 +Rollback.o : SelectChanges.hi
- Rollback.o : Lock.hi
  Rollback.o : PatchInfo.hi
  Rollback.o : Depends.hi
-@@ -578,22 +630,11 @@ Rollback.o : Repository.hi
+ Rollback.o : Patch.hi
+@@ -657,22 +688,55 @@ Rollback.o : Repository.hi
  Rollback.o : DarcsArguments.hi
  Rollback.o : DarcsCommands.hi
  Rollback.o : SignalHandler.hi
@@ -1244,6 +1438,50 @@
 -SelectChanges.o : PatchInfo.hi
 -SelectChanges.o : Patch.hi
 -SelectChanges.o : Repository.hi
++Unrevert.o : Unrevert.lhs
++Unrevert.o : DarcsUtils.hi
++Unrevert.o : SignalHandler.hi
++Unrevert.o : IsoDate.hi
++Unrevert.o : SelectChanges.hi
++Unrevert.o : PatchBundle.hi
++Unrevert.o : DarcsUtils.hi
++Unrevert.o : Resolution.hi
++Unrevert.o : Depends.hi
++Unrevert.o : Pull.hi
++Unrevert.o : Lock.hi
++Unrevert.o : FastPackedString.hi
++Unrevert.o : SlurpDirectory.hi
++Unrevert.o : SelectChanges.hi
++Unrevert.o : Patch.hi
++Unrevert.o : Repository.hi
++Unrevert.o : DarcsArguments.hi
++Unrevert.o : DarcsCommands.hi
++AmendRecord.o : AmendRecord.lhs
++AmendRecord.o : DarcsUtils.hi
++AmendRecord.o : Printer.hi
++AmendRecord.o : Test.hi
++AmendRecord.o : Unrevert.hi
++AmendRecord.o : DarcsArguments.hi
++AmendRecord.o : Record.hi
++AmendRecord.o : DarcsCommands.hi
++AmendRecord.o : SelectChanges.hi
++AmendRecord.o : PatchInfo.hi
++AmendRecord.o : Patch.hi
++AmendRecord.o : Depends.hi
++AmendRecord.o : Pristine.hi
++AmendRecord.o : DarcsRepo.hi
++AmendRecord.o : Repository.hi
++AmendRecord.o : SignalHandler.hi
++Revert.o : Revert.lhs
++Revert.o : Unrevert.hi
++Revert.o : TouchesFiles.hi
++Revert.o : SelectChanges.hi
++Revert.o : Patch.hi
++Revert.o : Repository.hi
++Revert.o : DarcsUtils.hi
++Revert.o : DarcsArguments.hi
++Revert.o : DarcsCommands.hi
++Revert.o : SignalHandler.hi
  Send.o : Send.lhs
  Send.o : DarcsUtils.hi
  Send.o : Printer.hi
@@ -1252,7 +1490,7 @@
  Send.o : PatchBundle.hi
  Send.o : Depends.hi
  Send.o : SelectChanges.hi
-@@ -606,56 +647,6 @@ Send.o : Patch.hi
+@@ -685,13 +749,6 @@ Send.o : Patch.hi
  Send.o : Repository.hi
  Send.o : DarcsArguments.hi
  Send.o : DarcsCommands.hi
@@ -1263,19 +1501,18 @@
 -SetPref.o : Repository.hi
 -SetPref.o : DarcsArguments.hi
 -SetPref.o : DarcsCommands.hi
--Tag.o : Tag.lhs
--Tag.o : Lock.hi
--Tag.o : Record.hi
--Tag.o : Depends.hi
--Tag.o : PatchInfo.hi
--Tag.o : Patch.hi
--Tag.o : Repository.hi
--Tag.o : DarcsUtils.hi
--Tag.o : DarcsArguments.hi
--Tag.o : DarcsCommands.hi
+ Tag.o : Tag.lhs
+ Tag.o : Record.hi
+ Tag.o : Depends.hi
+@@ -702,41 +759,6 @@ Tag.o : Repository.hi
+ Tag.o : DarcsUtils.hi
+ Tag.o : DarcsArguments.hi
+ Tag.o : DarcsCommands.hi
 -TheCommands.o : TheCommands.lhs
+-TheCommands.o : Put.hi
 -TheCommands.o : Resolve.hi
 -TheCommands.o : Repair.hi
+-TheCommands.o : Query.hi
 -TheCommands.o : Annotate.hi
 -TheCommands.o : AmendRecord.hi
 -TheCommands.o : Rollback.hi
@@ -1309,44 +1546,35 @@
  TrackDown.o : TrackDown.lhs
  TrackDown.o : DarcsUtils.hi
  TrackDown.o : Lock.hi
-@@ -667,27 +658,13 @@ TrackDown.o : PatchInfo.hi
- TrackDown.o : Repository.hi
- TrackDown.o : DarcsArguments.hi
- TrackDown.o : DarcsCommands.hi
--Unrecord.o : Unrecord.lhs
--Unrecord.o : DarcsUtils.hi
--Unrecord.o : SelectChanges.hi
+@@ -751,7 +773,7 @@ TrackDown.o : DarcsCommands.hi
+ Unrecord.o : Unrecord.lhs
+ Unrecord.o : DarcsUtils.hi
+ Unrecord.o : SelectChanges.hi
 -Unrecord.o : ./Unrevert.hi
--Unrecord.o : Lock.hi
--Unrecord.o : Depends.hi
--Unrecord.o : SlurpDirectory.hi
--Unrecord.o : PatchInfo.hi
--Unrecord.o : Patch.hi
--Unrecord.o : Pristine.hi
--Unrecord.o : Repository.hi
--Unrecord.o : Match.hi
--Unrecord.o : DarcsArguments.hi
--Unrecord.o : DarcsCommands.hi
--Unrecord.o : SignalHandler.hi
- Unrevert.o : Unrevert.lhs
- Unrevert.o : DarcsUtils.hi
- Unrevert.o : SignalHandler.hi
- Unrevert.o : IsoDate.hi
- Unrevert.o : SelectChanges.hi
- Unrevert.o : PatchBundle.hi
-+Unrevert.o : DarcsUtils.hi
- Unrevert.o : Resolution.hi
- Unrevert.o : Depends.hi
- Unrevert.o : Pull.hi
-@@ -695,20 +672,84 @@ Unrevert.o : Lock.hi
- Unrevert.o : FastPackedString.hi
- Unrevert.o : SlurpDirectory.hi
- Unrevert.o : PatchInfo.hi
-+Unrevert.o : SelectChanges.hi
- Unrevert.o : Patch.hi
- Unrevert.o : Repository.hi
- Unrevert.o : DarcsArguments.hi
- Unrevert.o : DarcsCommands.hi
++Unrecord.o : Unrevert.hi
+ Unrecord.o : Depends.hi
+ Unrecord.o : PatchInfo.hi
+ Unrecord.o : Patch.hi
+@@ -762,32 +784,6 @@ Unrecord.o : Match.hi
+ Unrecord.o : DarcsArguments.hi
+ Unrecord.o : DarcsCommands.hi
+ Unrecord.o : SignalHandler.hi
+-Unrevert.o : Unrevert.lhs
+-Unrevert.o : DarcsUtils.hi
+-Unrevert.o : SignalHandler.hi
+-Unrevert.o : IsoDate.hi
+-Unrevert.o : SelectChanges.hi
+-Unrevert.o : PatchBundle.hi
+-Unrevert.o : Resolution.hi
+-Unrevert.o : Depends.hi
+-Unrevert.o : Pull.hi
+-Unrevert.o : Lock.hi
+-Unrevert.o : FastPackedString.hi
+-Unrevert.o : SlurpDirectory.hi
+-Unrevert.o : Patch.hi
+-Unrevert.o : Repository.hi
+-Unrevert.o : DarcsArguments.hi
+-Unrevert.o : DarcsCommands.hi
 -WhatsNew.o : WhatsNew.lhs
 -WhatsNew.o : Printer.hi
 -WhatsNew.o : Patch.hi
@@ -1357,52 +1585,33 @@
 -WhatsNew.o : TouchesFiles.hi
 -WhatsNew.o : DarcsArguments.hi
 -WhatsNew.o : DarcsCommands.hi
-+AmendRecord.o : AmendRecord.lhs
-+AmendRecord.o : DarcsUtils.hi
-+AmendRecord.o : Printer.hi
-+AmendRecord.o : Test.hi
-+AmendRecord.o : Unrevert.hi
-+AmendRecord.o : DarcsArguments.hi
-+AmendRecord.o : Record.hi
-+AmendRecord.o : DarcsCommands.hi
-+AmendRecord.o : SelectChanges.hi
-+AmendRecord.o : PatchInfo.hi
-+AmendRecord.o : Patch.hi
-+AmendRecord.o : Depends.hi
-+AmendRecord.o : Pristine.hi
-+AmendRecord.o : Repository.hi
-+AmendRecord.o : Lock.hi
-+AmendRecord.o : SignalHandler.hi
-+Revert.o : Revert.lhs
-+Revert.o : Unrevert.hi
-+Revert.o : TouchesFiles.hi
-+Revert.o : SelectChanges.hi
-+Revert.o : Lock.hi
-+Revert.o : SlurpDirectory.hi
-+Revert.o : Patch.hi
-+Revert.o : Repository.hi
-+Revert.o : DarcsUtils.hi
-+Revert.o : DarcsArguments.hi
-+Revert.o : DarcsCommands.hi
-+Revert.o : SignalHandler.hi
-+Unrecord.o : Unrecord.lhs
-+Unrecord.o : DarcsUtils.hi
-+Unrecord.o : SelectChanges.hi
-+Unrecord.o : Unrevert.hi
-+Unrecord.o : Lock.hi
-+Unrecord.o : Depends.hi
-+Unrecord.o : SlurpDirectory.hi
-+Unrecord.o : PatchInfo.hi
-+Unrecord.o : Patch.hi
-+Unrecord.o : Pristine.hi
-+Unrecord.o : Repository.hi
-+Unrecord.o : Match.hi
-+Unrecord.o : DarcsArguments.hi
-+Unrecord.o : DarcsCommands.hi
-+Unrecord.o : SignalHandler.hi
+ PatchTest.o : PatchTest.lhs
+ PatchTest.o : DarcsUtils.hi
+ PatchTest.o : PatchCore.hi
+@@ -798,4 +794,51 @@ PatchTest.o : FastPackedString.hi
+ PatchTest.o : RegChars.hi
+ PatchTest.o : PatchCheck.hi
+ PatchTest.o : PatchInfo.hi
++DiffCommand.o : DiffCommand.lhs
++DiffCommand.o : Printer.hi
++DiffCommand.o : Lock.hi
++DiffCommand.o : External.hi
++DiffCommand.o : PatchInfo.hi
++DiffCommand.o : Pristine.hi
++DiffCommand.o : SlurpDirectory.hi
++DiffCommand.o : DarcsRepo.hi
++DiffCommand.o : Repository.hi
++DiffCommand.o : Match.hi
++DiffCommand.o : DarcsArguments.hi
++DiffCommand.o : DarcsCommands.hi
++DiffCommand.o : Autoconf.hi
++DiffCommand.o : DarcsUtils.hi
++DiffCommand.o : Workaround.hi
 +TheCommands.o : TheCommands.lhs
++TheCommands.o : Put.hi
 +TheCommands.o : Resolve.hi
 +TheCommands.o : Repair.hi
++TheCommands.o : Query.hi
 +TheCommands.o : Annotate.hi
 +TheCommands.o : AmendRecord.hi
 +TheCommands.o : Rollback.hi
@@ -1430,1307 +1639,582 @@
 +TheCommands.o : Add.hi
 +TheCommands.o : Init.hi
 +TheCommands.o : DarcsCommands.hi
- PatchTest.o : PatchTest.lhs
- PatchTest.o : DarcsUtils.hi
- PatchTest.o : PatchCore.hi
---- darcs-1.0.3.orig/darcs_print.ps
-+++ darcs-1.0.3/darcs_print.ps
-@@ -10,7 +10,7 @@
+ # DO NOT DELETE: End of Haskell dependencies
+--- darcs-1.0.4.orig/darcs_print.ps
++++ darcs-1.0.4/darcs_print.ps
+@@ -1,17 +1,18 @@
+ %!PS-Adobe-2.0
+-%%Creator: dvips(k) 5.92b Copyright 2002 Radical Eye Software
++%%Creator: dvips(k) 5.95a Copyright 2005 Radical Eye Software
+ %%Title: darcs_print.dvi
+ %%Pages: 108
+ %%PageOrder: Ascend
+ %%BoundingBox: 0 0 612 792
+ %%DocumentFonts: CMR17 CMTI12 CMR12 CMR10 CMBX12 CMBX10 CMSL10 CMTI10
+ %%+ CMTT10 CMR6 CMTT8 CMSY10 CMR7 CMR8 CMMI10 CMSY7 CMMI8 CMTI8 CMCSC10
++%%DocumentPaperSizes: Letter
+ %%EndComments
  %DVIPSWebPage: (www.radicaleye.com)
  %DVIPSCommandLine: dvips -t letter -o darcs_print.ps darcs_print.dvi
- %DVIPSParameters: dpi=600, compressed
--%DVIPSSource:  TeX output 2005.05.24:1847
-+%DVIPSSource:  TeX output 2005.06.05:1617
- %%BeginProcSet: texc.pro
+-%DVIPSParameters: dpi=600, compressed
+-%DVIPSSource:  TeX output 2005.11.13:1639
+-%%BeginProcSet: texc.pro
++%DVIPSParameters: dpi=600
++%DVIPSSource:  TeX output 2005.11.26:1407
++%%BeginProcSet: tex.pro 0 0
  %!
  /TeXDict 300 dict def TeXDict begin/N{def}def/B{bind def}N/S{exch}N/X{S
-@@ -69,6 +69,238 @@ p -2 w}B/o{p -1 w}B/q{p 1 w}B/r{p 2 w}B/
+ N}B/A{dup}B/TR{translate}N/isls false N/vsize 11 72 mul N/hsize 8.5 72
+@@ -30,22 +31,10 @@ df-tail}B/dfs{div/sf X/fntrx[sf 0 0 sf n
+ definefont setfont}B/Cw{Cd A length 5 sub get}B/Ch{Cd A length 4 sub get
+ }B/Cx{128 Cd A length 3 sub get sub}B/Cy{Cd A length 2 sub get 127 sub}
+ B/Cdx{Cd A length 1 sub get}B/Ci{Cd A type/stringtype ne{ctr get/ctr ctr
+-1 add N}if}B/id 0 N/rw 0 N/rc 0 N/gp 0 N/cp 0 N/G 0 N/CharBuilder{save 3
+-1 roll S A/base get 2 index get S/BitMaps get S get/Cd X pop/ctr 0 N Cdx
+-0 Cx Cy Ch sub Cx Cw add Cy setcachedevice Cw Ch true[1 0 0 -1 -.1 Cx
+-sub Cy .1 sub]/id Ci N/rw Cw 7 add 8 idiv string N/rc 0 N/gp 0 N/cp 0 N{
+-rc 0 ne{rc 1 sub/rc X rw}{G}ifelse}imagemask restore}B/G{{id gp get/gp
+-gp 1 add N A 18 mod S 18 idiv pl S get exec}loop}B/adv{cp add/cp X}B
+-/chg{rw cp id gp 4 index getinterval putinterval A gp add/gp X adv}B/nd{
+-/cp 0 N rw exit}B/lsh{rw cp 2 copy get A 0 eq{pop 1}{A 255 eq{pop 254}{
+-A A add 255 and S 1 and or}ifelse}ifelse put 1 adv}B/rsh{rw cp 2 copy
+-get A 0 eq{pop 128}{A 255 eq{pop 127}{A 2 idiv S 128 and or}ifelse}
+-ifelse put 1 adv}B/clr{rw cp 2 index string putinterval adv}B/set{rw cp
+-fillstr 0 4 index getinterval putinterval adv}B/fillstr 18 string 0 1 17
+-{2 copy 255 put pop}for N/pl[{adv 1 chg}{adv 1 chg nd}{1 add chg}{1 add
+-chg nd}{adv lsh}{adv lsh nd}{adv rsh}{adv rsh nd}{1 add adv}{/rc X nd}{
+-1 add set}{1 add clr}{adv 2 chg}{adv 2 chg nd}{pop nd}]A{bind pop}
+-forall N/D{/cc X A type/stringtype ne{]}if nn/base get cc ctr put nn
++1 add N}if}B/CharBuilder{save 3 1 roll S A/base get 2 index get S
++/BitMaps get S get/Cd X pop/ctr 0 N Cdx 0 Cx Cy Ch sub Cx Cw add Cy
++setcachedevice Cw Ch true[1 0 0 -1 -.1 Cx sub Cy .1 sub]{Ci}imagemask
++restore}B/D{/cc X A type/stringtype ne{]}if nn/base get cc ctr put nn
+ /BitMaps get S ctr S sf 1 ne{A A length 1 sub A 2 index S get sf div put
+ }if put/ctr ctr 1 add N}B/I{cc 1 add D}B/bop{userdict/bop-hook known{
+ bop-hook}if/SI save N @rigin 0 0 moveto/V matrix currentmatrix A 1 get A
+@@ -69,7 +58,7 @@ p -2 w}B/o{p -1 w}B/q{p 1 w}B/r{p 2 w}B/
  rmoveto}B/y{3 2 roll p a}B/bos{/SS save N}B/eos{SS restore}B end
 
  %%EndProcSet
-+%%BeginProcSet: f7b6d320.enc
-+% Thomas Esser, Dec 2002. public domain
-+%
-+% Encoding for:
-+%     cmb10 cmbx10 cmbx12 cmbx5 cmbx6 cmbx7 cmbx8 cmbx9 cmbxsl10
-+%     cmdunh10 cmr10 cmr12 cmr17cmr6 cmr7 cmr8 cmr9 cmsl10 cmsl12 cmsl8
-+%     cmsl9 cmss10cmss12 cmss17 cmss8 cmss9 cmssbx10 cmssdc10 cmssi10
-+%     cmssi12 cmssi17 cmssi8cmssi9 cmssq8 cmssqi8 cmvtt10
-+%
-+/TeXf7b6d320Encoding [
-+/Gamma /Delta /Theta /Lambda /Xi /Pi /Sigma /Upsilon /Phi /Psi /Omega
-+/ff /fi /fl /ffi /ffl /dotlessi /dotlessj /grave /acute /caron /breve
-+/macron /ring /cedilla /germandbls /ae /oe /oslash /AE /OE /Oslash
-+/suppress /exclam /quotedblright /numbersign /dollar /percent /ampersand
-+/quoteright /parenleft /parenright /asterisk /plus /comma /hyphen
-+/period /slash /zero /one /two /three /four /five /six /seven /eight
-+/nine /colon /semicolon /exclamdown /equal /questiondown /question /at
-+/A /B /C /D /E /F /G /H /I /J /K /L /M /N /O /P /Q /R /S /T /U /V /W /X
-+/Y /Z /bracketleft /quotedblleft /bracketright /circumflex /dotaccent
-+/quoteleft /a /b /c /d /e /f /g /h /i /j /k /l /m /n /o /p /q /r /s /t /u
-+/v /w /x /y /z /endash /emdash /hungarumlaut /tilde /dieresis /suppress
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /space
-+/Gamma /Delta /Theta /Lambda /Xi /Pi /Sigma /Upsilon /Phi /Psi /.notdef
-+/.notdef /Omega /ff /fi /fl /ffi /ffl /dotlessi /dotlessj /grave /acute
-+/caron /breve /macron /ring /cedilla /germandbls /ae /oe /oslash /AE
-+/OE /Oslash /suppress /dieresis /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+] def
-+
-+%%EndProcSet
-+%%BeginProcSet: 74afc74c.enc
-+% Thomas Esser, Dec 2002. public domain
-+%
-+% Encoding for:
-+%     cmbxti10 cmff10 cmfi10 cmfib8 cmti10 cmti12 cmti7 cmti8cmti9 cmu10
-+%
-+/TeX74afc74cEncoding [
-+/Gamma /Delta /Theta /Lambda /Xi /Pi /Sigma /Upsilon /Phi /Psi /Omega
-+/ff /fi /fl /ffi /ffl /dotlessi /dotlessj /grave /acute /caron /breve
-+/macron /ring /cedilla /germandbls /ae /oe /oslash /AE /OE /Oslash
-+/suppress /exclam /quotedblright /numbersign /sterling /percent
-+/ampersand /quoteright /parenleft /parenright /asterisk /plus /comma
-+/hyphen /period /slash /zero /one /two /three /four /five /six /seven
-+/eight /nine /colon /semicolon /exclamdown /equal /questiondown /question
-+/at /A /B /C /D /E /F /G /H /I /J /K /L /M /N /O /P /Q /R /S /T /U /V /W
-+/X /Y /Z /bracketleft /quotedblleft /bracketright /circumflex /dotaccent
-+/quoteleft /a /b /c /d /e /f /g /h /i /j /k /l /m /n /o /p /q /r /s /t /u
-+/v /w /x /y /z /endash /emdash /hungarumlaut /tilde /dieresis /suppress
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /space
-+/Gamma /Delta /Theta /Lambda /Xi /Pi /Sigma /Upsilon /Phi /Psi /.notdef
-+/.notdef /Omega /ff /fi /fl /ffi /ffl /dotlessi /dotlessj /grave /acute
-+/caron /breve /macron /ring /cedilla /germandbls /ae /oe /oslash /AE
-+/OE /Oslash /suppress /dieresis /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+] def
-+
-+%%EndProcSet
-+%%BeginProcSet: 09fbbfac.enc
-+% Thomas Esser, Dec 2002. public domain
-+%
-+% Encoding for:
-+%     cmsltt10 cmtt10 cmtt12 cmtt8 cmtt9
-+/TeX09fbbfacEncoding [
-+/Gamma /Delta /Theta /Lambda /Xi /Pi /Sigma /Upsilon /Phi /Psi
-+/Omega /arrowup /arrowdown /quotesingle /exclamdown /questiondown
-+/dotlessi /dotlessj /grave /acute /caron /breve /macron /ring /cedilla
-+/germandbls /ae /oe /oslash /AE /OE /Oslash /visiblespace /exclam
-+/quotedbl /numbersign /dollar /percent /ampersand /quoteright /parenleft
-+/parenright /asterisk /plus /comma /hyphen /period /slash /zero /one
-+/two /three /four /five /six /seven /eight /nine /colon /semicolon /less
-+/equal /greater /question /at /A /B /C /D /E /F /G /H /I /J /K /L /M /N
-+/O /P /Q /R /S /T /U /V /W /X /Y /Z /bracketleft /backslash /bracketright
-+/asciicircum /underscore /quoteleft /a /b /c /d /e /f /g /h /i /j /k /l
-+/m /n /o /p /q /r /s /t /u /v /w /x /y /z /braceleft /bar /braceright
-+/asciitilde /dieresis /visiblespace /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /space /Gamma /Delta /Theta /Lambda /Xi /Pi
-+/Sigma /Upsilon /Phi /Psi /.notdef /.notdef /Omega /arrowup /arrowdown
-+/quotesingle /exclamdown /questiondown /dotlessi /dotlessj /grave /acute
-+/caron /breve /macron /ring /cedilla /germandbls /ae /oe /oslash /AE
-+/OE /Oslash /visiblespace /dieresis /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+] def
-+
-+%%EndProcSet
-+%%BeginProcSet: bbad153f.enc
-+% Thomas Esser, Dec 2002. public domain
-+%
-+% Encoding for:
-+%     cmsy10 cmsy5 cmsy6 cmsy7 cmsy8 cmsy9
-+%
-+/TeXbbad153fEncoding [
-+/minus /periodcentered /multiply /asteriskmath /divide /diamondmath
-+/plusminus /minusplus /circleplus /circleminus /circlemultiply
-+/circledivide /circledot /circlecopyrt /openbullet /bullet
-+/equivasymptotic /equivalence /reflexsubset /reflexsuperset /lessequal
-+/greaterequal /precedesequal /followsequal /similar /approxequal
-+/propersubset /propersuperset /lessmuch /greatermuch /precedes /follows
-+/arrowleft /arrowright /arrowup /arrowdown /arrowboth /arrownortheast
-+/arrowsoutheast /similarequal /arrowdblleft /arrowdblright /arrowdblup
-+/arrowdbldown /arrowdblboth /arrownorthwest /arrowsouthwest /proportional
-+/prime /infinity /element /owner /triangle /triangleinv /negationslash
-+/mapsto /universal /existential /logicalnot /emptyset /Rfractur /Ifractur
-+/latticetop /perpendicular /aleph /A /B /C /D /E /F /G /H /I /J /K
-+/L /M /N /O /P /Q /R /S /T /U /V /W /X /Y /Z /union /intersection
-+/unionmulti /logicaland /logicalor /turnstileleft /turnstileright
-+/floorleft /floorright /ceilingleft /ceilingright /braceleft /braceright
-+/angbracketleft /angbracketright /bar /bardbl /arrowbothv /arrowdblbothv
-+/backslash /wreathproduct /radical /coproduct /nabla /integral
-+/unionsq /intersectionsq /subsetsqequal /supersetsqequal /section
-+/dagger /daggerdbl /paragraph /club /diamond /heart /spade /arrowleft
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/minus /periodcentered /multiply /asteriskmath /divide /diamondmath
-+/plusminus /minusplus /circleplus /circleminus /.notdef /.notdef
-+/circlemultiply /circledivide /circledot /circlecopyrt /openbullet
-+/bullet /equivasymptotic /equivalence /reflexsubset /reflexsuperset
-+/lessequal /greaterequal /precedesequal /followsequal /similar
-+/approxequal /propersubset /propersuperset /lessmuch /greatermuch
-+/precedes /follows /arrowleft /spade /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+] def
-+
-+%%EndProcSet
-+%%BeginProcSet: aae443f0.enc
-+% Thomas Esser, Dec 2002. public domain
-+%
-+% Encoding for:
-+%     cmmi10 cmmi12 cmmi5 cmmi6 cmmi7 cmmi8 cmmi9 cmmib10
-+%
-+/TeXaae443f0Encoding [
-+/Gamma /Delta /Theta /Lambda /Xi /Pi /Sigma /Upsilon /Phi /Psi /Omega
-+/alpha /beta /gamma /delta /epsilon1 /zeta /eta /theta /iota /kappa
-+/lambda /mu /nu /xi /pi /rho /sigma /tau /upsilon /phi /chi /psi
-+/omega /epsilon /theta1 /pi1 /rho1 /sigma1 /phi1 /arrowlefttophalf
-+/arrowleftbothalf /arrowrighttophalf /arrowrightbothalf /arrowhookleft
-+/arrowhookright /triangleright /triangleleft /zerooldstyle /oneoldstyle
-+/twooldstyle /threeoldstyle /fouroldstyle /fiveoldstyle /sixoldstyle
-+/sevenoldstyle /eightoldstyle /nineoldstyle /period /comma /less /slash
-+/greater /star /partialdiff /A /B /C /D /E /F /G /H /I /J /K /L /M /N
-+/O /P /Q /R /S /T /U /V /W /X /Y /Z /flat /natural /sharp /slurbelow
-+/slurabove /lscript /a /b /c /d /e /f /g /h /i /j /k /l /m /n /o /p
-+/q /r /s /t /u /v /w /x /y /z /dotlessi /dotlessj /weierstrass /vector
-+/tie /psi /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/space /Gamma /Delta /Theta /Lambda /Xi /Pi /Sigma /Upsilon /Phi /Psi
-+/.notdef /.notdef /Omega /alpha /beta /gamma /delta /epsilon1 /zeta /eta
-+/theta /iota /kappa /lambda /mu /nu /xi /pi /rho /sigma /tau /upsilon
-+/phi /chi /psi /tie /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef
-+] def
-+
-+%%EndProcSet
-+%%BeginProcSet: 0ef0afca.enc
-+% Thomas Esser, Dec 2002. public domain
-+%
-+% Encoding for:
-+%     cmr5
-+%
-+/TeX0ef0afcaEncoding [
-+/Gamma /Delta /Theta /Lambda /Xi /Pi /Sigma /Upsilon /Phi /Psi /Omega
-+/arrowup /arrowdown /quotesingle /exclamdown /questiondown /dotlessi
-+/dotlessj /grave /acute /caron /breve /macron /ring /cedilla /germandbls
-+/ae /oe /oslash /AE /OE /Oslash /suppress /exclam /quotedblright
-+/numbersign /dollar /percent /ampersand /quoteright /parenleft
-+/parenright /asterisk /plus /comma /hyphen /period /slash /zero /one
-+/two /three /four /five /six /seven /eight /nine /colon /semicolon
-+/less /equal /greater /question /at /A /B /C /D /E /F /G /H /I /J /K
-+/L /M /N /O /P /Q /R /S /T /U /V /W /X /Y /Z /bracketleft /quotedblleft
-+/bracketright /circumflex /dotaccent /quoteleft /a /b /c /d /e /f /g /h
-+/i /j /k /l /m /n /o /p /q /r /s /t /u /v /w /x /y /z /endash /emdash
-+/hungarumlaut /tilde /dieresis /suppress /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /space /Gamma /Delta /Theta /Lambda
-+/Xi /Pi /Sigma /Upsilon /Phi /Psi /.notdef /.notdef /Omega /arrowup
-+/arrowdown /quotesingle /exclamdown /questiondown /dotlessi /dotlessj
-+/grave /acute /caron /breve /macron /ring /cedilla /germandbls /ae /oe
-+/oslash /AE /OE /Oslash /suppress /dieresis /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-+] def
-+
-+%%EndProcSet
- %%BeginProcSet: texps.pro
+-%%BeginProcSet: texps.pro
++%%BeginProcSet: texps.pro 0 0
  %!
  TeXDict begin/rf{findfont dup length 1 add dict begin{1 index/FID ne 2
-@@ -106,53 +338,7 @@ end readonly def
- /FontMatrix [0.001 0 0 0.001 0 0] readonly def
- /Encoding 256 array
- 0 1 255 {1 index exch /.notdef put} for
--dup 34 /quotedblright put
--dup 40 /parenleft put
--dup 41 /parenright put
--dup 44 /comma put
--dup 45 /hyphen put
--dup 46 /period put
--dup 47 /slash put
--dup 66 /B put
--dup 67 /C put
--dup 68 /D put
--dup 69 /E put
--dup 70 /F put
--dup 71 /G put
--dup 73 /I put
--dup 76 /L put
--dup 77 /M put
--dup 78 /N put
--dup 80 /P put
--dup 83 /S put
--dup 84 /T put
--dup 85 /U put
--dup 87 /W put
--dup 92 /quotedblleft put
--dup 97 /a put
--dup 98 /b put
--dup 99 /c put
--dup 100 /d put
--dup 101 /e put
--dup 102 /f put
--dup 103 /g put
--dup 104 /h put
--dup 105 /i put
--dup 107 /k put
--dup 108 /l put
--dup 109 /m put
--dup 110 /n put
--dup 111 /o put
--dup 112 /p put
--dup 113 /q put
--dup 114 /r put
--dup 115 /s put
--dup 116 /t put
--dup 117 /u put
--dup 118 /v put
--dup 119 /w put
--dup 120 /x put
--dup 121 /y put
-+dup 0 /.notdef put
+ index/UniqueID ne and{def}{pop pop}ifelse}forall[1 index 0 6 -1 roll
+@@ -155,7 +144,6 @@ dup 120 /x put
+ dup 121 /y put
  readonly def
  /FontBBox{14 -250 1077 750}readonly def
- /UniqueID 5000772 def
-@@ -447,9 +633,7 @@ end readonly def
- /FontMatrix [0.001 0 0 0.001 0 0] readonly def
- /Encoding 256 array
- 0 1 255 {1 index exch /.notdef put} for
--dup 97 /a put
--dup 99 /c put
--dup 110 /n put
-+dup 0 /.notdef put
+-/UniqueID 5000772 def
+ currentdict end
+ currentfile eexec
+ D9D66F633B846A97B686A97E45A3D0AA0529731C99A784CCBE85B4993B2EEBDE
+@@ -452,7 +440,6 @@ dup 99 /c put
+ dup 110 /n put
  readonly def
  /FontBBox{-35 -250 1190 750}readonly def
- /UniqueID 5000826 def
-@@ -532,7 +716,7 @@ end readonly def
- /FontMatrix [0.001 0 0 0.001 0 0] readonly def
- /Encoding 256 array
- 0 1 255 {1 index exch /.notdef put} for
--dup 95 /slurabove put
-+dup 0 /.notdef put
+-/UniqueID 5000826 def
+ currentdict end
+ currentfile eexec
+ D9D66F633B846A97B686A97E45A3D0AA0529731C99A784CCBE85B4993B2EEBDE
+@@ -535,7 +522,6 @@ end readonly def
+ dup 95 /slurabove put
  readonly def
  /FontBBox{-24 -250 1110 750}readonly def
- /UniqueID 5087383 def
-@@ -601,8 +785,7 @@ end readonly def
- /FontMatrix [0.001 0 0 0.001 0 0] readonly def
- /Encoding 256 array
- 0 1 255 {1 index exch /.notdef put} for
--dup 0 /minus put
--dup 48 /prime put
-+dup 0 /.notdef put
+-/UniqueID 5087383 def
+ currentdict end
+ currentfile eexec
+ D9D66F633B846A97B686A97E45A3D0AA0529731C99A784CCBE85B4993B2EEBDE
+@@ -605,7 +591,6 @@ dup 0 /minus put
+ dup 48 /prime put
  readonly def
  /FontBBox{-15 -951 1252 782}readonly def
- /UniqueID 5000817 def
-@@ -660,14 +843,7 @@ end readonly def
- /FontMatrix [0.001 0 0 0.001 0 0] readonly def
- /Encoding 256 array
- 0 1 255 {1 index exch /.notdef put} for
--dup 58 /period put
--dup 60 /less put
--dup 62 /greater put
--dup 65 /A put
--dup 67 /C put
--dup 79 /O put
--dup 80 /P put
--dup 110 /n put
-+dup 0 /.notdef put
+-/UniqueID 5000817 def
+ currentdict end
+ currentfile eexec
+ D9D66F633B846A97B686A97E45A3D0AA052F09F9C8ADE9D907C058B87E9B6964
+@@ -670,7 +655,6 @@ dup 80 /P put
+ dup 110 /n put
  readonly def
  /FontBBox{-32 -250 1048 750}readonly def
- /UniqueID 5087385 def
-@@ -771,75 +947,7 @@ end readonly def
- /FontMatrix [0.001 0 0 0.001 0 0] readonly def
- /Encoding 256 array
- 0 1 255 {1 index exch /.notdef put} for
--dup 11 /ff put
--dup 12 /fi put
--dup 13 /fl put
--dup 14 /ffi put
--dup 39 /quoteright put
--dup 44 /comma put
--dup 45 /hyphen put
--dup 46 /period put
--dup 49 /one put
--dup 50 /two put
--dup 51 /three put
--dup 52 /four put
--dup 53 /five put
--dup 54 /six put
--dup 55 /seven put
--dup 56 /eight put
--dup 57 /nine put
--dup 58 /colon put
--dup 65 /A put
--dup 66 /B put
--dup 67 /C put
--dup 68 /D put
--dup 69 /E put
--dup 70 /F put
--dup 71 /G put
--dup 72 /H put
--dup 73 /I put
--dup 74 /J put
--dup 75 /K put
--dup 76 /L put
--dup 77 /M put
--dup 78 /N put
--dup 79 /O put
--dup 80 /P put
--dup 82 /R put
--dup 83 /S put
--dup 84 /T put
--dup 85 /U put
--dup 86 /V put
--dup 87 /W put
--dup 88 /X put
--dup 89 /Y put
--dup 97 /a put
--dup 98 /b put
--dup 99 /c put
--dup 100 /d put
--dup 101 /e put
--dup 102 /f put
--dup 103 /g put
--dup 104 /h put
--dup 105 /i put
--dup 106 /j put
--dup 107 /k put
--dup 108 /l put
--dup 109 /m put
--dup 110 /n put
--dup 111 /o put
--dup 112 /p put
--dup 113 /q put
--dup 114 /r put
--dup 115 /s put
--dup 116 /t put
--dup 117 /u put
--dup 118 /v put
--dup 119 /w put
--dup 120 /x put
--dup 121 /y put
--dup 122 /z put
--dup 124 /emdash put
-+dup 0 /.notdef put
+-/UniqueID 5087385 def
+ currentdict end
+ currentfile eexec
+ D9D66F633B846A97B686A97E45A3D0AA0529731C99A784CCBE85B4993B2EEBDE
+@@ -843,7 +827,6 @@ dup 122 /z put
+ dup 124 /emdash put
  readonly def
  /FontBBox{-53 -251 1139 750}readonly def
- /UniqueID 5000769 def
-@@ -1230,63 +1338,7 @@ end readonly def
- /FontMatrix [0.001 0 0 0.001 0 0] readonly def
- /Encoding 256 array
- 0 1 255 {1 index exch /.notdef put} for
--dup 11 /ff put
--dup 12 /fi put
--dup 13 /fl put
--dup 33 /exclam put
--dup 34 /quotedblright put
--dup 39 /quoteright put
--dup 40 /parenleft put
--dup 41 /parenright put
--dup 44 /comma put
--dup 45 /hyphen put
--dup 46 /period put
--dup 48 /zero put
--dup 49 /one put
--dup 50 /two put
--dup 58 /colon put
--dup 59 /semicolon put
--dup 63 /question put
--dup 65 /A put
--dup 66 /B put
--dup 67 /C put
--dup 70 /F put
--dup 72 /H put
--dup 73 /I put
--dup 78 /N put
--dup 79 /O put
--dup 82 /R put
--dup 83 /S put
--dup 84 /T put
--dup 87 /W put
--dup 92 /quotedblleft put
--dup 97 /a put
--dup 98 /b put
--dup 99 /c put
--dup 100 /d put
--dup 101 /e put
--dup 102 /f put
--dup 103 /g put
--dup 104 /h put
--dup 105 /i put
--dup 107 /k put
--dup 108 /l put
--dup 109 /m put
--dup 110 /n put
--dup 111 /o put
--dup 112 /p put
--dup 113 /q put
--dup 114 /r put
--dup 115 /s put
--dup 116 /t put
--dup 117 /u put
--dup 118 /v put
--dup 119 /w put
--dup 120 /x put
--dup 121 /y put
--dup 122 /z put
--dup 124 /emdash put
--dup 127 /dieresis put
-+dup 0 /.notdef put
+-/UniqueID 5000769 def
+ currentdict end
+ currentfile eexec
+ D9D66F633B846A97B686A97E45A3D0AA052A014267B7904EB3C0D3BD0B83D891
+@@ -1290,7 +1273,6 @@ dup 124 /emdash put
+ dup 127 /dieresis put
  readonly def
  /FontBBox{-36 -250 1070 750}readonly def
- /UniqueID 5000791 def
-@@ -1625,13 +1677,7 @@ end readonly def
- /FontMatrix [0.001 0 0 0.001 0 0] readonly def
- /Encoding 256 array
- 0 1 255 {1 index exch /.notdef put} for
--dup 49 /one put
--dup 50 /two put
--dup 51 /three put
--dup 52 /four put
--dup 53 /five put
--dup 54 /six put
--dup 55 /seven put
-+dup 0 /.notdef put
+-/UniqueID 5000791 def
+ currentdict end
+ currentfile eexec
+ D9D66F633B846A97B686A97E45A3D0AA052A014267B7904EB3C0D3BD0B83D891
+@@ -1616,7 +1598,6 @@ dup 54 /six put
+ dup 55 /seven put
  readonly def
  /FontBBox{-27 -250 1122 750}readonly def
- /UniqueID 5000790 def
-@@ -1732,12 +1778,7 @@ end readonly def
- /FontMatrix [0.001 0 0 0.001 0 0] readonly def
- /Encoding 256 array
- 0 1 255 {1 index exch /.notdef put} for
--dup 13 /circlecopyrt put
--dup 15 /bullet put
--dup 32 /arrowleft put
--dup 33 /arrowright put
--dup 41 /arrowdblright put
--dup 107 /bardbl put
-+dup 0 /.notdef put
+-/UniqueID 5000790 def
+ currentdict end
+ currentfile eexec
+ D9D66F633B846A97B686A97E45A3D0AA052A014267B7904EB3C0D3BD0B83D891
+@@ -1722,7 +1703,6 @@ dup 41 /arrowdblright put
+ dup 107 /bardbl put
  readonly def
  /FontBBox{-29 -960 1116 775}readonly def
- /UniqueID 5000820 def
-@@ -1813,39 +1854,7 @@ end readonly def
- /FontMatrix [0.001 0 0 0.001 0 0] readonly def
- /Encoding 256 array
- 0 1 255 {1 index exch /.notdef put} for
--dup 45 /hyphen put
--dup 46 /period put
--dup 47 /slash put
--dup 58 /colon put
--dup 65 /A put
--dup 67 /C put
--dup 68 /D put
--dup 70 /F put
--dup 87 /W put
--dup 97 /a put
--dup 98 /b put
--dup 99 /c put
--dup 100 /d put
--dup 101 /e put
--dup 102 /f put
--dup 103 /g put
--dup 104 /h put
--dup 105 /i put
--dup 107 /k put
--dup 108 /l put
--dup 109 /m put
--dup 110 /n put
--dup 111 /o put
--dup 112 /p put
--dup 114 /r put
--dup 115 /s put
--dup 116 /t put
--dup 117 /u put
--dup 118 /v put
--dup 119 /w put
--dup 120 /x put
--dup 121 /y put
--dup 122 /z put
-+dup 0 /.notdef put
+-/UniqueID 5000820 def
+ currentdict end
+ currentfile eexec
+ D9D66F633B846A97B686A97E45A3D0AA052F09F9C8ADE9D907C058B87E9B6964
+@@ -1829,7 +1809,6 @@ dup 121 /y put
+ dup 122 /z put
  readonly def
  /FontBBox{-5 -232 545 699}readonly def
- /UniqueID 5000830 def
-@@ -2060,14 +2069,7 @@ end readonly def
- /FontMatrix [0.001 0 0 0.001 0 0] readonly def
- /Encoding 256 array
- 0 1 255 {1 index exch /.notdef put} for
--dup 48 /zero put
--dup 49 /one put
--dup 50 /two put
--dup 51 /three put
--dup 52 /four put
--dup 53 /five put
--dup 54 /six put
--dup 55 /seven put
-+dup 0 /.notdef put
+-/UniqueID 5000830 def
+ currentdict end
+ currentfile eexec
+ D9D66F633B846A97B686A97E45A3D0AA052A014267B7904EB3C0D3BD0B83D891
+@@ -2049,7 +2028,6 @@ dup 54 /six put
+ dup 55 /seven put
  readonly def
  /FontBBox{-20 -250 1193 750}readonly def
- /UniqueID 5000789 def
-@@ -2173,99 +2175,7 @@ end readonly def
- /FontMatrix [0.001 0 0 0.001 0 0] readonly def
- /Encoding 256 array
- 0 1 255 {1 index exch /.notdef put} for
--dup 33 /exclam put
--dup 34 /quotedbl put
--dup 35 /numbersign put
--dup 36 /dollar put
--dup 37 /percent put
--dup 38 /ampersand put
--dup 39 /quoteright put
--dup 40 /parenleft put
--dup 41 /parenright put
--dup 42 /asterisk put
--dup 43 /plus put
--dup 44 /comma put
--dup 45 /hyphen put
--dup 46 /period put
--dup 47 /slash put
--dup 48 /zero put
--dup 49 /one put
--dup 50 /two put
--dup 51 /three put
--dup 52 /four put
--dup 53 /five put
--dup 54 /six put
--dup 55 /seven put
--dup 56 /eight put
--dup 57 /nine put
--dup 58 /colon put
--dup 59 /semicolon put
--dup 60 /less put
--dup 61 /equal put
--dup 62 /greater put
--dup 63 /question put
--dup 64 /at put
--dup 65 /A put
--dup 66 /B put
--dup 67 /C put
--dup 68 /D put
--dup 69 /E put
--dup 70 /F put
--dup 71 /G put
--dup 72 /H put
--dup 73 /I put
--dup 74 /J put
--dup 75 /K put
--dup 76 /L put
--dup 77 /M put
--dup 78 /N put
--dup 79 /O put
--dup 80 /P put
--dup 82 /R put
--dup 83 /S put
--dup 84 /T put
--dup 85 /U put
--dup 86 /V put
--dup 87 /W put
--dup 88 /X put
--dup 89 /Y put
--dup 90 /Z put
--dup 91 /bracketleft put
--dup 92 /backslash put
--dup 93 /bracketright put
--dup 94 /asciicircum put
--dup 95 /underscore put
--dup 96 /quoteleft put
--dup 97 /a put
--dup 98 /b put
--dup 99 /c put
--dup 100 /d put
--dup 101 /e put
--dup 102 /f put
--dup 103 /g put
--dup 104 /h put
--dup 105 /i put
--dup 106 /j put
--dup 107 /k put
--dup 108 /l put
--dup 109 /m put
--dup 110 /n put
--dup 111 /o put
--dup 112 /p put
--dup 113 /q put
--dup 114 /r put
--dup 115 /s put
--dup 116 /t put
--dup 117 /u put
--dup 118 /v put
--dup 119 /w put
--dup 120 /x put
--dup 121 /y put
--dup 122 /z put
--dup 123 /braceleft put
--dup 124 /bar put
--dup 125 /braceright put
--dup 126 /asciitilde put
-+dup 0 /.notdef put
+-/UniqueID 5000789 def
+ currentdict end
+ currentfile eexec
+ D9D66F633B846A97B686A97E45A3D0AA052A014267B7904EB3C0D3BD0B83D891
+@@ -2248,7 +2226,6 @@ dup 125 /braceright put
+ dup 126 /asciitilde put
  readonly def
  /FontBBox{-4 -235 731 800}readonly def
- /UniqueID 5000832 def
-@@ -2771,51 +2681,7 @@ end readonly def
- /FontMatrix [0.001 0 0 0.001 0 0] readonly def
- /Encoding 256 array
- 0 1 255 {1 index exch /.notdef put} for
--dup 11 /ff put
--dup 12 /fi put
--dup 33 /exclam put
--dup 34 /quotedblright put
--dup 39 /quoteright put
--dup 44 /comma put
--dup 46 /period put
--dup 47 /slash put
--dup 58 /colon put
--dup 65 /A put
--dup 71 /G put
--dup 72 /H put
--dup 73 /I put
--dup 76 /L put
--dup 78 /N put
--dup 79 /O put
--dup 80 /P put
--dup 82 /R put
--dup 84 /T put
--dup 87 /W put
--dup 89 /Y put
--dup 92 /quotedblleft put
--dup 97 /a put
--dup 98 /b put
--dup 99 /c put
--dup 100 /d put
--dup 101 /e put
--dup 102 /f put
--dup 103 /g put
--dup 104 /h put
--dup 105 /i put
--dup 107 /k put
--dup 108 /l put
--dup 109 /m put
--dup 110 /n put
--dup 111 /o put
--dup 112 /p put
--dup 113 /q put
--dup 114 /r put
--dup 115 /s put
--dup 116 /t put
--dup 117 /u put
--dup 118 /v put
--dup 119 /w put
--dup 121 /y put
-+dup 0 /.notdef put
+-/UniqueID 5000832 def
+ currentdict end
+ currentfile eexec
+ D9D66F633B846A97B686A97E45A3D0AA052A014267B7904EB3C0D3BD0B83D891
+@@ -2805,7 +2782,6 @@ dup 119 /w put
+ dup 121 /y put
  readonly def
  /FontBBox{-163 -250 1146 969}readonly def
- /UniqueID 5000828 def
-@@ -3166,42 +3032,7 @@ end readonly def
- /FontMatrix [0.001 0 0 0.001 0 0] readonly def
- /Encoding 256 array
- 0 1 255 {1 index exch /.notdef put} for
--dup 39 /quoteright put
--dup 44 /comma put
--dup 46 /period put
--dup 49 /one put
--dup 50 /two put
--dup 51 /three put
--dup 52 /four put
--dup 53 /five put
--dup 54 /six put
--dup 55 /seven put
--dup 56 /eight put
--dup 57 /nine put
--dup 58 /colon put
--dup 65 /A put
--dup 66 /B put
--dup 67 /C put
--dup 68 /D put
--dup 69 /E put
--dup 70 /F put
--dup 71 /G put
--dup 72 /H put
--dup 73 /I put
--dup 75 /K put
--dup 76 /L put
--dup 77 /M put
--dup 78 /N put
--dup 79 /O put
--dup 80 /P put
--dup 82 /R put
--dup 83 /S put
--dup 84 /T put
--dup 85 /U put
--dup 86 /V put
--dup 87 /W put
--dup 88 /X put
--dup 89 /Y put
-+dup 0 /.notdef put
+-/UniqueID 5000828 def
+ currentdict end
+ currentfile eexec
+ D9D66F633B846A97B686A97E45A3D0AA0529731C99A784CCBE85B4993B2EEBDE
+@@ -3193,7 +3169,6 @@ dup 88 /X put
+ dup 89 /Y put
  readonly def
  /FontBBox{-62 -250 1123 750}readonly def
- /UniqueID 5000798 def
-@@ -3470,66 +3301,7 @@ end readonly def
- /FontMatrix [0.001 0 0 0.001 0 0] readonly def
- /Encoding 256 array
- 0 1 255 {1 index exch /.notdef put} for
--dup 12 /fi put
--dup 13 /fl put
--dup 44 /comma put
--dup 45 /hyphen put
--dup 49 /one put
--dup 50 /two put
--dup 51 /three put
--dup 52 /four put
--dup 53 /five put
--dup 54 /six put
--dup 55 /seven put
--dup 56 /eight put
--dup 57 /nine put
--dup 58 /colon put
--dup 65 /A put
--dup 66 /B put
--dup 67 /C put
--dup 68 /D put
--dup 69 /E put
--dup 70 /F put
--dup 71 /G put
--dup 72 /H put
--dup 73 /I put
--dup 75 /K put
--dup 76 /L put
--dup 77 /M put
--dup 78 /N put
--dup 79 /O put
--dup 80 /P put
--dup 82 /R put
--dup 83 /S put
--dup 84 /T put
--dup 85 /U put
--dup 86 /V put
--dup 87 /W put
--dup 88 /X put
--dup 89 /Y put
--dup 97 /a put
--dup 98 /b put
--dup 99 /c put
--dup 100 /d put
--dup 101 /e put
--dup 102 /f put
--dup 103 /g put
--dup 104 /h put
--dup 105 /i put
--dup 107 /k put
--dup 108 /l put
--dup 109 /m put
--dup 110 /n put
--dup 111 /o put
--dup 112 /p put
--dup 114 /r put
--dup 115 /s put
--dup 116 /t put
--dup 117 /u put
--dup 118 /v put
--dup 119 /w put
--dup 120 /x put
--dup 121 /y put
-+dup 0 /.notdef put
+-/UniqueID 5000798 def
+ currentdict end
+ currentfile eexec
+ D9D66F633B846A97B686A97E45A3D0AA0529731C99A784CCBE85B4993B2EEBDE
+@@ -3527,7 +3502,6 @@ dup 120 /x put
+ dup 121 /y put
  readonly def
  /FontBBox{-301 -250 1164 946}readonly def
- /UniqueID 5000768 def
-@@ -3930,94 +3702,7 @@ end readonly def
- /FontMatrix [0.001 0 0 0.001 0 0] readonly def
- /Encoding 256 array
- 0 1 255 {1 index exch /.notdef put} for
--dup 11 /ff put
--dup 12 /fi put
--dup 13 /fl put
--dup 14 /ffi put
--dup 33 /exclam put
--dup 34 /quotedblright put
--dup 39 /quoteright put
--dup 40 /parenleft put
--dup 41 /parenright put
--dup 42 /asterisk put
--dup 43 /plus put
--dup 44 /comma put
--dup 45 /hyphen put
--dup 46 /period put
--dup 47 /slash put
--dup 48 /zero put
--dup 49 /one put
--dup 50 /two put
--dup 51 /three put
--dup 52 /four put
--dup 53 /five put
--dup 54 /six put
--dup 55 /seven put
--dup 56 /eight put
--dup 57 /nine put
--dup 58 /colon put
--dup 59 /semicolon put
--dup 60 /exclamdown put
--dup 61 /equal put
--dup 62 /questiondown put
--dup 63 /question put
--dup 64 /at put
--dup 65 /A put
--dup 66 /B put
--dup 67 /C put
--dup 68 /D put
--dup 69 /E put
--dup 70 /F put
--dup 71 /G put
--dup 72 /H put
--dup 73 /I put
--dup 74 /J put
--dup 75 /K put
--dup 76 /L put
--dup 77 /M put
--dup 78 /N put
--dup 79 /O put
--dup 80 /P put
--dup 82 /R put
--dup 83 /S put
--dup 84 /T put
--dup 85 /U put
--dup 86 /V put
--dup 87 /W put
--dup 88 /X put
--dup 89 /Y put
--dup 91 /bracketleft put
--dup 92 /quotedblleft put
--dup 93 /bracketright put
--dup 96 /quoteleft put
--dup 97 /a put
--dup 98 /b put
--dup 99 /c put
--dup 100 /d put
--dup 101 /e put
--dup 102 /f put
--dup 103 /g put
--dup 104 /h put
--dup 105 /i put
--dup 106 /j put
--dup 107 /k put
--dup 108 /l put
--dup 109 /m put
--dup 110 /n put
--dup 111 /o put
--dup 112 /p put
--dup 113 /q put
--dup 114 /r put
--dup 115 /s put
--dup 116 /t put
--dup 117 /u put
--dup 118 /v put
--dup 119 /w put
--dup 120 /x put
--dup 121 /y put
--dup 122 /z put
--dup 123 /endash put
--dup 124 /emdash put
-+dup 0 /.notdef put
+-/UniqueID 5000768 def
+ currentdict end
+ currentfile eexec
+ D9D66F633B846A97B686A97E45A3D0AA052A014267B7904EB3C0D3BD0B83D891
+@@ -4015,7 +3989,6 @@ dup 123 /endash put
+ dup 124 /emdash put
  readonly def
  /FontBBox{-251 -250 1009 969}readonly def
- /UniqueID 5000793 def
-@@ -4554,22 +4239,7 @@ end readonly def
- /FontMatrix [0.001 0 0 0.001 0 0] readonly def
- /Encoding 256 array
+-/UniqueID 5000793 def
+ currentdict end
+ currentfile eexec
+ D9D66F633B846A97B686A97E45A3D0AA052A014267B7904EB3C0D3BD0B83D891
+@@ -4551,10 +4524,9 @@ end readonly def
  0 1 255 {1 index exch /.notdef put} for
--dup 44 /comma put
--dup 48 /zero put
--dup 50 /two put
--dup 52 /four put
--dup 53 /five put
--dup 68 /D put
--dup 77 /M put
--dup 82 /R put
--dup 97 /a put
--dup 100 /d put
--dup 105 /i put
--dup 110 /n put
--dup 111 /o put
--dup 117 /u put
--dup 118 /v put
--dup 121 /y put
-+dup 0 /.notdef put
+ dup 44 /comma put
+ dup 48 /zero put
+-dup 49 /one put
+ dup 50 /two put
+-dup 51 /three put
+ dup 53 /five put
++dup 54 /six put
+ dup 68 /D put
+ dup 78 /N put
+ dup 82 /R put
+@@ -4572,7 +4544,6 @@ dup 118 /v put
+ dup 121 /y put
  readonly def
  /FontBBox{-34 -251 988 750}readonly def
- /UniqueID 5000794 def
-@@ -4615,78 +4285,76 @@ E6ED5D10FEAEBE50318E7B03AB57A010A5876726
- 3D54FD224F14675CA9097E12A44E3624C3ABB5C30E33C492CDAB5646A6DC43E9
- 520F87FAD4D93BD85DBB3EC5A9D03F784D61902FAFC01C72CA1605B0350C506E
- 906ECA2985F7DFA33992BBEB605847CBF6158DACDF163A55BF7CEB30BBA22D73
--D306B31983B84022719DB35C8096FFF2FE331114D90DC570F732EB9E9A934994
--DB504DCE16238AAA8A2C61573E1EAD79A30644FD88EC72EEA00F31DE1D340A06
--34B518690F415070E599DEFF9FF99C069344DAB5BD2B73E643366F37531DE11D
--330CC97CCD8356D57B9ACAD865857E1A9578439020BABF9FF0C5864C2A355121
--03D1085A5637C9F3524AD341A09E3CE42346B130DD114F01B54F9132C87FA16B
--476C855FB25A223BAB51B5F607431AE2713D645E397993176D52A8D1BC7DB5C5
--722E1242387B1D231B242FFEFC11215E0FAC0A3F96525D11A606F49E0DCA199D
--0D4BDFAD411AAF01C25AE3DD2A710AE7EAF260432D6A2404A9F2D141323CB19D
--32F50C135F0AE97F441ED03F83ABDA2A7B05B45A1B5485ED5EBDAA23CC414CF6
--984CEF270182A277770CB3A490FB470122BF985E390EE6B2101F83ACEA0265BD
--4DDC5DA7668CC0167395EFCDE2401300B9D5BB8F9A5B0207440E65B6DFE0B817
--C1E91890F21BADA72FF0C4178E5290BC7DBDEC174F35B337307AEAA7FF4B0652
--AC25DE28C6214383902833B1026EF29DA8855ABF611D3F4C4BD255B2D11876BA
--60FB4F259EE72014F0404E4A5CB47049742850AE1DF4EED0FC5E5B1B60859C79
--2EEC3573D11D03F1BCE67065D0F2CFFC457805E94B99474E2ADE1F4296422222
--7C677E81AF5651709F4633D0FD7AD37770F5D6BADD40DFBBEF452F821EC3BE9E
--BA1C02C8B2260866F043C69DE61F2DC5E7EB8E3779344B555B4809F856E7BD39
--AA308767E67AE80336B4F85CD5B7D3B015A27704A7C87150A5A78A5528E18463
--709C19D98AAB5D8AE612D3C305F61860ED043423FD386B9AF3339A78F3E8808A
--ABC41E1A89A5A2F3022E5E04711FF061E41BA2DDF091DA0F86BAB2EACDBFE46F
--729AA7B87D848A674D848483435FA028A576A16EDB11E0FF774FA216C63011A4
--DCB418B7B9B649FC412EECF19ED96494575BE7A7EA27FD55739545F836308603
--49BA14AD66A139B58493CD51818DFEB95AA37AF6FD42B6EEA56682AB5D23684F
--06C3E880517333A1C9CDE4C51C306781F7AEA8D06459338F897F10A7BD6F9B95
--189FCDF236B440718424618A520EA88806A023140100767AD01EC8042EC8A75A
--51D0FE0A5DA3FEBD3D20968AF248E3C706F691CA35D4579958A9CB13A76B4504
--D18BAD846A0040F5C9F50539D66B6C227FECA02FDF97CA909CE4F27E4DA0EC7A
--5F9C2B6788D5CDB14E56CCC5E575B822052C271900DC825F991D3C402E08D771
--373A0A4D6EEB8F1FE38E3BFA33C7A4674B47ABFFFC226E968B3A5BE26C7C53BC
--AC36E8C75F142DD2E26CC3DCCEA6CE342E6BDB7F5D2552B560D59905018647B3
--E131B07A56CAC5FE6BFD34D00F85D29DE80121317C753FAC4E41E16F89A358E1
--B22594CB449BF7DE08D045ED9E75006A4470A9979B650E114BE8F4DDE64236EA
--863CCD86A9F605CF7C0D2BE5BC16895EB8DB556BE62EC89C4ADA3D8084E11898
--20D6AFCC0F26538A59EF6CAD7BCE7BB58101B125FCAA8EFBE1AA9A3F861E65C6
--B44C8475E4DEA8518DF63814BCD6C24290BBD5EF474E03763E458826A31E114B
--53D167346B4C65DBE377D37EDA11FAF8BBF77B13CABD1FFB0887546FE1219F75
--DD94087F1882FCF12C52D35CB06670D16F27E9A4F669122ED08465678E66F9BE
--0DFEB96AF798CAF2DF334729063CFD28F1D0D9DFCF548E22E6FAB0EE8C38B37A
--FFFBFE4517EFA3131D59A63D64B352EA8F8990FBA8B236FBE9752BE133578E6D
--141B3C69DA1A2F181AC9AD05BAB3F3FBCD86820455611BEE96FFB2639D570932
--E12A3D416705A4A445BE7B938C3F2428745C4296CFAE3543C58D8C06DDE2A6DF
--949087C1C9F2BFA786C5A7D24298D7CEF4037606D6379ADA3C10A726E8E26B7A
--947381237817A4780C1AA6F6059D3E1BE75EDED12917740D457AF11D29579957
--9285FFF82C7C502C792108410E80353BCA313D8B9C9B6207051B375DD045E420
--012FE7DAF777ECE5AEB14F6D8C163E166F1FD80052FCB6672A50E91AB1E67878
--2577CAB3D7201B3897DA278336742A3EBC33AB585661A6D4097C08483F219A20
--DC3844970B4C1FD692B6C09D6D6A9E65EB26DC084E382953EF114DFBBB3CB811
--6FF84BDCC0C80835D437B679179658304F881A2431FD0D6CAD621F05D36F6AEC
--85F589DF7396CDD95A4339240131249F10FE1983C73211429B25A1DE875D80B8
--22DC5EBDD03249858F19FCDD663EE3082A2247CB6B00EEFFE54F2FCA11672BC3
--052725CE06A61C1D24C0E7BAC3467D2B3515C2FD52C53D842E98F7DBE0822256
--6759AC076C0FA07E61614D6745EB6923196F1DECB2C8D6497B8D6422659E4E58
--B9D6432784281CA7DB039DDA5954A80B88A0FF49D71C14BC002D0FCE13C6B677
--EF942754FA3EFDA49B1F83A3A183F74F8BBE2A4FEFF53C6F97665A653D305176
--06CD14E4095EEEEAD546BC7BA61CB86021F5CE3B2934AC2AFF328913B8064866
--61577C0DBBCC28EAA3CFF74756CCCBEE769B0798DD521AE178611D0C6784B17B
--D030349A8E057C7A93785C15E4FF8867CB2042E68BAFDCBAFCFBFF1CD8DA0492
--8633C66D7FBD5132EF0D97C44A9D13D45FFAE871AEEB7BD399D57D4CE1769DB6
--8979C930A96F4C05CB8D9EA11784B1D0E8C70A520FF04C12F5A3C329A6659F6A
--FA52EF6C6FD12279F0198789A9C87ABB7B3159CDF0A6E248201CACBC1FAE0109
--128B79BA159184CC3CE43E912968249D49A12244C087A238CD5D576BEF87954D
--BAB236884C5926A40EED2F3A8EE65448E4E7D92413D173EBBED13AE101E3A41E
--557A16D7B274529BF0D11E0A42F91B14B7ED16A98AFE394E814324736D0F26C0
--C77B27429FC7484283D2F397C8DA495C43AE8C896E9FA2F64B7E5734CBE9B2A8
--059185BCB566E461BF90BB50536CEA88C9C6E1D095946F8469EF4749B960704E
--A8F32237B237F4C3D2F0D8BAB1F609B01AE7F120E7BA62551D59E7B3946F9F9D
--0339883234E24FBCA934BCB831D2688E952D56806E154B6BDE5FEEF258C5531E
--2D3A71AC78660A2BF1A32A04B703636C722B70D8438B74A11869FE4FEF61020A
--71918D18BEEC3BFD8E5105D9A10FE49C0729CBE90DA7B98F6841E6B8BF29B5A2
--7352E005F50D33ABA0DDAF74151804686C7FB6AD42733759927A37A4F941F7A9
--F152967EEEF1D72B2BCBFE0D72E41493DF41A4A050BE87A38516075AAD3B06A1
--1DDB4A2310C05E1388B7936C3EB3
-+D306B31983B84658495A165E18E9512F87C647124A8AB60655E7B7AD22A4A5C7
-+DE0DC8F13AD7EF4A239726A1AD19B2AE29DA0F73D3FA62D277C9CBD024931EC8
-+C90BD36DE332E586DD62D8E2232EA47F8D1CB3CC3C3E122C89DBB1D26713E923
-+9A9B20C2462C4FA47CC0A5E4575805EF63B0688E0DE0D4C310CC770F8238EBC3
-+A7F38484D142691256DBE424E9C62DE097A292EEFB6907813749F2C13B03F64B
-+7745AFC4F0FCEA58E2A2B45BC092162888692AF2131254802AA0267E433A76A9
-+4D03733995B61CB5A8155801470AC2E0831CC65473DC731FCA75A98ADFB85B50
-+D21BDC1537C75DE0FA4830979B4B531D3375001AAE87AA819FA22DC5E7246B9B
-+D71F5864984E96CBC8188BD0C739B2AB7EC42508C9E06B4EE3DFAB8F7278EAB7
-+85BABF0212711AC8C2110CDE07E92579E0339B74D617B632D13C0E267601DE4D
-+9A3DEB033D7AC582A9BD28EC053855BCFB56445B798EB1BCA2F4EBED39C3AF1C
-+A70B6C8EEF1710A0D1CDF861B3C7C4C4305B1959079AC6AEFA28C0C35BF8FA1E
-+1988C4DA875285B946EA9F29C509BF82E6FDBF80496924BD1EFD741685CC2EB3
-+0F527DB35FBD8F9F73DAD66588E79458DC9D9C12FE23F520FAF62D0D4E7E1C3D
-+0DC5259E09B8FCDAB6F712AE6FE5C4A0DE1626B84EF0DC264B18B7F96A6738A9
-+2E610AF0C20C411FF88F88B1E71A691C616373CDC36D8CD91524BDD138639245
-+58963CF004BABDE39B3EA8A3742C8A46CE9DD31FBBEF227D0A87A95640D1754C
-+8118093A4E151B2312577DD0ADE9A1AFD280283A464F57B1BE4E254998ECC5F6
-+40F064BE6BBE6F3184529F542924D639B7AB8C8969FB83A97D5A5BE436FCE231
-+CA56EA81A78BD882274EACA84081A760E5167E6D74423C706EB1939CDF559974
-+BEC083E98B5889FA909B10C73E3FE7D1B4285799C18FD0CE30A7AD7025486094
-+BF939B3D28C6677DBEECF1DC06AEA0EA3F3E5C27D778BA5E3DABAA848896B326
-+5D426004D32CA10412DC4C2D30CC1049A4DF03C9FD844F8ADEB37C8B5250A0C2
-+38DCFCA16653C622665A027F632733FCB2011D4470801875C37AEB17425271D0
-+AC003C42C4FCFCE66CB855823826F8924BA31CDDCD39A3D529DC61F829193FDB
-+0D502A77A2B164CBB1DFFB489DB4A80EEEA39A36F686EC8029FAE80D9DBAACD4
-+38994B948847D6E8A6E0493D7282DFDCB44B6667E8A15FEE27FD94A151E1FDB5
-+20E069C8F7924487462D26442C933F0920D0219807096B1EBE427ABD915C1300
-+7D4E5E86791379C2809B7F13E32D7F6E90EAE25E383CE7C747ACA503F9A0AD32
-+94AEE6572405A67F2249CD190ECB6DAB264578AE303287F2DD144978CAD877C8
-+FDAC4B31793A0E474F7E25075BB50D862F45440DE2A9F55507A1372DED4C91B3
-+E712FE9C221BC2C13C7537E6011C8D429F14F25655B9C0991B8FE3ED457D7E96
-+13462E119157D9F46C031737F1B1D2A9C3BAA1970DC7583D9E1808DA78D682BD
-+82DCA02E0753679EE179C0E57E754DCA3CFF0247BDE47EFEE7B16ADAB26CBBAE
-+0D1059BE6214EAD42D877CB196442CD8298B57AC39237EA4B85B33E71FD04C0C
-+8E0E62B22B5B4B6808B783583407A16C14090D492A41C7BAD01DB520F44629C3
-+F2D90E6934855FB510600EC4514E4AC4AC294E00230C5D82D0C081C43A0B2DD1
-+6133AA2194C512FDAC49EE6250B52916B4D9D3E869D978B7337447EE572D013D
-+23389B0D5FFEE6CDA7533BA640BAC5906C98E1DD6986172E853B269990E5B916
-+8F3F4EC3547899B69937A1EAE93B6557539E558CA2F08CA4ED53CA1342837BDD
-+0B743186BD77F405CFFB2DABA736272D647822494382B739CD99669292C1AD82
-+35AE58045C4223A32E584E0BDD513F69D39DBE77F60F94F96B1FDDAA51BC7325
-+069D5086180D59840C9957862BADBD3E0A308A2BC6881F4DE9B2B1F78CB9A5C6
-+254DBCE070E989F9CCA09CED807318DF244197757F68D205F6232628CCE614A7
-+2CAE462B3980C56166C892E2DD9B9FEB38CAA688BC47B01E1CBC10BE4F3B1DAC
-+A8E219AB298692736FCEDB5332AA8D28C3A2EA55A971A5EB6A466642BDCD34D5
-+B1EB2193E864C1660ADE48E5104449D162DDDB06109A14E161071625CB8DD7B2
-+24B3F7164AB822A410E4A13D14D68289F31116CF2441F5406C869F4377A3A1F5
-+8EC7ED6B7631A185D0C9C9FE25F1A2EE9D1A7D57FFA7A342EFF93A9AE4E2953D
-+81709619EB78D6174272A1B89BBC5EB0242175415F736D8E458E523EC38C5355
-+16E0C80E8B149E6FF91F40122DEA1FBD8654F2948F9DE4823D65E160F7E3F201
-+62DF441102286CB340E44B93F124587F3E6AA4DF8A2E41454308DC3BB9AB8A8B
-+E2C5B61D04242AAA098E8C0B37E15E998D98AA7A22711EBC0F35F3919D6ECC9E
-+4BC2ED3C40FE307BA01A6ACB9FFC46C524D756A62CEB091DD9E62E478B05CB3F
-+F85FA1B8A997B3615911FD2BA624FBB6F238A7708DEA02D4ED2DC9512F527FD5
-+751DE934BD8618EDABCE535D6CA1DAC01AB7B08F2F9F6BAFE9D0C5E522AFEA31
-+8A7B6400489D62ABD09D3A1AB86DAA927620E1ED3C42B6DC57D3FFC282D12269
-+76F35BC04B8178FB0CDF3CFAD42858D8098CC0600BF8ED1C6BBC6FCBAF919A53
-+4C95A9C651D0A3D54DF72B6C35BC48B43E5F5B7B9FDAE043E14D81C4C87E4B75
-+BFA9936276C519A0B1C22FA13960AD22265A49782F2E6CB646BC070C61639F20
-+387BB25CC67FA1A9C469EC9BDB8734DF98350B9FF2F93BAFE6B66A2269148167
-+574CC503D45DFC982CA427FF28A7BB72BB228F64CE6B18FA89B02822C6705049
-+5EED66A1DDA7FE4F47C34553718AC29932CC07342A480605548ED00B40C72021
-+F569F9A8F265C65DDAEBDB36522D3253011E31B1AC29BA5310C2FD6BC68C8415
-+485BE250AE07801571A3953D65CE63C37C53122B29C8B3C0D6B11E26EC5BAE75
-+AFCE2FF442C122E4D267B7236E33CF7AC339F7B44E5E22BC4157EFBC1B380E47
-+932C98F2AFC38307F209C1A2076BCC1742A7FCA0AFAA487C13F6396D52ED6D55
-+73A16EB697A4BA0115B038118B51FF249AD6EFCF0196F19F49E019FFAFF0F0BA
-+577EC32FE6D78815C6F26D3C6E9F32DE35EA9283C989F2A53D0E27DB6F854DDE
-+6524141F28C9EB3B5D
+-/UniqueID 5000794 def
+ currentdict end
+ currentfile eexec
+ D9D66F633B846A97B686A97E45A3D0AA052A014267B7904EB3C0D3BD0B83D891
+@@ -4601,117 +4572,113 @@ AA078CE16247A1335AD332DAA950D20395A7384C
+ 4B7F768DA5AA89E8F163029ADD4A9209DE8A4F285766C06EA859639B92CCCDCA
+ F59B1C2BB8D588CA754D1257BFF76B53984DF4937093AAEF79009D32A29A4C16
+ FB610C7D6713482C48D7F9E8410C0F00AD6E67021056B6035534E79F05D14EF2
+-4E87EFBBC78025C4ADBC3DE74A336EC02D73FE6C050938F5CD406782B5A9DF8F
+-338D72D0765347FE4F25A4A7230085F7C80BF1D98A56B28373E96E6837369ED5
+-3A710DFDDF735C957F93C9745071B3AE5EBB0EEE8DE17A81E1212C0C0EA96AF3
+-37936CE99E0740FF1955ADC7D7ED7E52A1A25187EE6C2026D338D3E69325ECDD
+-F2CCCA0E59B9229A1410C04B9ED9FF69A335B0AA7F09264E8908812B35389A39
+-799DEC5353E3AA43772A676CE270FB96A09A2A56343649C844E1D112067F0018
+-6CCB4611300DF15D93C5343B7D83AF4445B6CB6E6CF53D9D8576FD5A50E48196
+-1B4C122997B07669B3F924FCBA83DE210EC74BDE07F51300BE88B66440892A51
+-23A3E9FF15D83C145B5FB894B0E31FF1E06E86A9B402208D433CC0BF199F70BC
+-458971DD2AA4A6AAD844B4A617CA052D1FC2C88A953F59327AAE937ABCA85BF5
+-0A9091C4E0B8D3D6D4A372752A9191F5B827954FA7806C205AB8784DD41D385C
+-7F1B0720C78087469062E36417D5DC6B239AD1725BA5EB940B953578A6EE6B02
+-234ADA736FAFA41536C706A8072EA99C4E72DFC3C8FBD5210C10F6754476695D
+-2823466089D8AB436249214337AAF9553DA1F68F979CB72F26461EC67425535C
+-6E49BD45E96DA1AC4A0E9BC1FC9720E4D70B88103B7510A5AB05ECA43901DDC3
+-41ED9E8A47B7C4CB71E5B59E81AE9D973E669952B1085A221B5246AAFB1C78CA
+-1117C2ABD74E42DBE21153D3C042BA2AB2A6594C3B513E5060A1D6CFC6A5DB61
+-ED4B4A7FF9F82AB0E2EEDD948FB501B15CA0FF658DC739D1BBD78A82D9DCFBF9
+-6C2ED84B0E2527A0F4DDCE3D886015CABF21141F0C41D7C1026D3D533081202E
+-54F9AC95A0829DE1F55F1DCCE3DF3B43F930B83D61B77E77977C6725D1B6677D
+-4486F2C92C24110298F71555FF357A7984A4536BE5BE60D69F1BA20F5FE0CCBF
+-6C64CA57F6CBCA5E0D0AF708657498048B8F06328468719E75C1ABD8DCE9881E
+-007343868FE82EC28EF36E6E5EA209EDBA86270648E201948D60F94228AAAC24
+-FB73CB6BDBE01C85443A81E278B76BE16DA4609D764F17D477468D94F8B25645
+-C2413CB1A3756CD9697A1DA7A6D2ECBB27C3550B0ECA3E91F4B9B000D384D15E
+-861A72B2DED17D4345859833121053985BED4E6BD73E57E9E00E500CBA067FB3
+-E25297DDA5CEDCEE16236514B6694EAA886A917D36928B26D06CF0F6AC651E38
+-05AECF8FBFE1D20BEF6A265321A1CD97E88CD665B32703F0BD6655634BC1EFE9
+-90C976288BACB1477151A6C350E4660772239D1FC7790E3227B5D69ACC03B5D6
+-918A3C394BFCD97219FA68CD21F6E1332F5BB39DDB3C30742D17059BE970260E
+-F6AB296CC6C2EA05C0F734FD5073E21E7082EB13C4DA1613D540479C74676160
+-0AA9FA502F80AA9C4115CB9C36C4DC1C7ED35FE6A6B2B2EE99AB33DBCD64B760
+-BDA25F64F6C3F5B9A8E395C0A680D0F565DFFE9D1BD9DA884CB967F4284112E3
+-9922164D1AC37A7DC8A936ADE9395B66D6E5C114A91D1B1BF72B6EC865A718CB
+-54E4F7F01FBF9DFF254380BB2B38DB2B7E284BC4A94EBBDAD5ADB03CD54C4459
+-23D43216C0DFCA7779A73BA7232CF8271F9511E3EF4CB97238B74A4DC3B82F3D
+-82A2715FBFA59C2B2890CB64CC83310B6F684C98140B525159BA020D874DD61C
+-141034A193DE34A5C0C29D1F7F4976AADC3B32C33469D0BE1E779B20B690B5C8
+-55CA0E595C9F6EADED099E69932BB07C27ABADFD0DC102EF62976ACD85FA246E
+-5494E0054A7179FD899FBB4491DFA7DEE080682CFF522BA6ABCCC0938D14E34E
+-8E2A1690A56235E11972E5CE1A525AFE921590FCC83CF0948AC6A78D9F8513C4
+-DFC5BBB1E4943ADA12E4A7B4C1CFEC3D35006CE28EA943D0A0862A7D541B734C
+-4DDE0696F4B50B5A932BB968B3FA23E87C5910B56EDEB03CC79FA7E94EEF9FB3
+-E0EFBBC346407B8913A4C35ED49AE42C6BD4745BC309D99C34D476F767C85E32
+-AA36B95C5E7F2B0B39FC1F47E01AAE57D80DDB1214C0F552038E24EF154ED9EF
+-2C2A71E4D5F1E0231837E54D2CB2247FBB0DB1DDBC314D39A3C0B11E37FA96E0
+-2F18FA7CC3C0A4D6AB0F5F0E6B4CF03AA487E96C1008738D6F233CA9F6C5B561
+-19224B45BCD824FE856F8D41193FA29650D1D693B29C3C69F4EF09B294EF29E6
+-3450076030F9DF023305D785E12452452E79741A772DBC31A816472D50F46486
+-19DE58A0F729ABA271A0E067981B70B1CFCEEABA35DF77C589420E6EA766C7B6
+-597D720675A74EEAE08851962FD4803DD3987544DFBD5D3F5117DA1A84E462E2
+-270F6C958B836589B7B8718BE816ECF2223468B08B4F2CD419BE6D650CC8A610
+-574279BD182E340F7D2025565D72F28070F6D311BDF4F7200D6F0AD57502BFA3
+-846F7BAA554E7D2D259A2A8F8E7DBC9DD89C56648F566895203BE6C117403274
+-A851143D8BDC58CE6A7591A79F0F9CAADF54AA92F591392FD25B62F8D1893B06
+-E9067F2578215B3B66C03AF8701C5C0F7B349C0EF9ECC10D5BFDF4F322FAE7E4
+-7EAAADAE1916DB5443D600810E04BD07EABA3639C46C17259BC5E2038C371A72
+-4D8041E58034CFE4EA079D886909579FFEBCA2F7402CBD1DD872E2E55984B1B2
+-DD70333C18B1A48954D0B3DC6496C069F3BC7F78CDBCABD7707C2A9D2B79C509
+-D4350876E6550FEB97DFA2B1BA3AA9F28895766BC2A8A763C6B1C5114AA4DFB3
+-9B3BC29DB570519EE3C2EA9DE32ECFC09DDA7811E6B1CE03C68F5EF3AC0E756C
+-9054D779153BEF49BC57CFEC6038D0E1754ED120E2F99EEC6BE7F43FCBF753F8
+-D4A67B49213C604B6807902310AA60C39D4FF5DE2DB1F6199F7F62437B36DF0E
+-D6302C5E00EC5782BA29F6370F8B944A49722C434CC2FDE36C687D60500B1F0F
+-9F143AB44767067E4487AC8F6C2B439CD3BB9B7B29110BF69F1B6B3E7EF71A05
+-9093ABAC0FF48AF19BBB3E80A3B7FFCD6E4283BA44DC530D3F30777341942DF3
+-6DF98E2D3E7FE52D17E73BFCB4A84C741EA31308E0075D3321F52E64DD1C5862
+-C5BD33CE6984A473BE642B4D50EEF4F756B9375928890543D7AC9C20DF527EE4
+-979F192374C52E992BC8BF5C2A56C62BE5231876289ABD50C7019A2B6CEBB207
+-D02191FF56D4777C08EB22788C2E50624CAC9934D4C23F8BC82617CF0FCD810F
+-CC1C0D670DC3B99ACDAC35B88FFEC208825E0B92A16B3AF0501FB42F47255322
+-3AEC353C2B59181626D3AC3D628EBE9CE9F29317984945227694862C191DB56F
+-ED10CEDB6CF84B61915B9FAAAD522829BC8F4D1C6369422406AA3CF72C996561
+-A68E33EAB1D72ACD0CF16AA86142331269370297AE165E11D15AD9194FBFE667
+-6F558385CD6A60A5E6D07122F111DCD95D83193DA72871D0C0D707F5020AF63E
+-7979485CC3D6583C3B5435244D9B067E50497B9C1054AC591720E19585D11B21
+-556865870A4DDF9D9AB73C171343C64934918E87EEA485650D98D41EA5B55886
+-9F8934E65B4A8785CCA5598E37A9167F7FADF3976F744D735531ED916C12F77B
+-0210C880DC37EF39E9B307B7B0BF5618050F66CBFAD52D7C7C35805D97E7B944
+-CE6FBF18DD6D0A83E7DA708C3C0837E47B3A8B7874F47F46B8D56134A6B27EDB
+-1DBE99BA0C8B1C34868E76E24C876A39DE443C2D191952DE2469FF36E52FAA1A
+-D78C860D521B200934804BD2A511C3B184DA103354F42BAAC7857F88FC23E51A
+-6C3147650BB36107BBDA397353770CE50F5B3EFE5121CD4FAA1A41BBC126C006
+-16F5052C169C7F75271511611DEBB5302A9F627279893F2B99703FF3B431725C
+-AFCAEC79D7A9DB1E0122CD96DA67FE5862655AF2B43E60959F260EFD68B61AEC
+-B8F8E4346A11BBF44D4ACF6198F92CDE71670322C04FBA05BE2FFA4E0393E9CF
+-E63F026D08FB15A14655D338A1FE361A624FA0ACD9EB8541A8054C497E2737DE
+-CB47BAA63B8BD6AE1E6D05E947968770DB33303C7EE60312B91E66FF7F37D56F
+-CBFE9CE59952AAFD2B717FCFE05967F6970F864CF0E25F6886645153A3DF37A5
+-8693848C8FF358A3C2BBBA54EC297571ABB59FA35CA79B1FECE310A0C3BEB1EC
+-01BE7450CD89E8E8BEB2DF5A9A63232F7D5B46B04949E511761F9CACCBD9BC66
+-EACD1AEC41B45750B7B01797D3C221903596EB548FFB287C116FA7CE2A44FE1B
+-82B58BD03129929D769B71817AAD04DD244D8B400722A1D4A1A25025F41A675F
+-44EB77DAF130DD7A9E0061D58B4B548ED4A2DA7B3CAF7213005EEB917265E4D6
+-75BA4F0D90DA5C4272EC180322F8C32C4B0CD4AF0EA61E669264E07FA71E4385
+-3D5328834589B18F5E67B6F40F56A1D1544874999150D961449EFB723A3E4828
+-6F16725320B3903143018CA844CD0C0A667107977F6E4D6A1F5365BC25BBAF72
+-F19539BCDA7D57587D7A0AD8449599961A0B9AA281E2F64D5559072BBB9BAFCD
+-1840D83B61D5F11DC76D72575AE84BFAAC47E4F7C44B056CB79AC2E960034B90
+-5D2F5B7635394F7C2FA3EB0D94D4AB0BFF8AABB4E828298483291A7971D816A3
+-1186C787591A76135D96E914485E498048CBAF057090E367BD51B4388BE08518
+-98616BF9EA68CB7509DBAFEEC83776B1F8058A5997A5997278EB02977515ACE0
+-509A9EF180CBB143F7BDE0995256EE3FD115360AF01E41C749AAD56346D3EB55
+-F5716339441E75174F0C13826E18FC357BF5849F6536597A5639B5E9A91C5384
+-743C2474D091AD99D34BDEF2E8B498C8FC6503EEBCE0219F6B7A5A7183939F12
+-C6241133ECBF77E255F42A246EB32858647E85CE8C0D7E2964DF09E1A7E94E23
+-34233E7E80326EE0D6EDB1ACB93916F3C2F2A781C11F507156F16A6DD8B360C3
+-9C1C83FF4FA80C08C683239B7A309FB5054836AD3FABF0AAD1930A432CB5D3E8
+-6987EDB357D3A0159158262E5671D05F6D9E22B8CBDDD82A3C41F07AB64F821C
+-88ACA493CCD98E92D6A384A3AD718626682705D18AA54086EE944D0F5F4AE67A
+-EC8B9C9E27C0A90767851E74D76AB521E79A
++4E87EC1095D4AC55EA157825F1ED75B24E533B7436F27DCBE4EE75D8E176B50D
++DD40EB16AF9C59EFA78B58C8356F96FFF42A6C54572A08CDC358F8D95C8E8233
++02D14AAB0728CF0A40287DE262C73BCFDF1A461237F75B590C7B58A9A4024455
++051F00BF60DF40B8BEA98ABF5BBE22F5B8877450707A37E389AF8002B7CB826F
++17B081CB2217C795B0C7C8F5B0361F6CDA892B0AFB0F9AF3FA48EA1CE40DFC37
++FBD8197324A82D1F4C84AE6DEF7ACC8FCFD194FEB4E5B1E043420B4253D5AD52
++24ABA3AF0949124F2BACB0DCA06251C90E4E4B8007A6BA2C7EA62AEE36F54325
++052891AC994D3AA97A64F4B27DAB675FF6188A5964F9557F909882F21A8817B6
++2A2A39AD73FA2062A0DA2E8B821D291BCE034465FD6F4431F52AF6F0EBA4C2D5
++18876F17CF438EE8579F2EFD9AD8CF5F04448D5EC423EA420750AC2736272EC4
++5FDB3D23786D3F40458A0E2051BE6ACB894B737426B3A10248394E9506F5CF24
++7DF900F0D3F5825853B5073986AC5A2B16247C0072BABAC3D6E8B83C98212E0A
++8DE9E66BD21060169F9E0E6444A8AE5F1A93DDDD4D35F150949F43734914BF2D
++0B3C01C4F84986808EF84F8FD6674A46AD032DD493D290E94E0A738B02DF4AA7
++977DE1A0A3AA56B5668C4A4D9A9865887D26F8E213B82C358A85A986304B0DAA
++67D77CCE6B422DC8FF53667A0EF1C066BC5447A4FC048D452737B51D9C5B7B27
++A847A9246AB259908F51FABE7B931BE6BF7E59C898C4B1577D806CE69B043EEF
++08014BF59EFD3BCFF5CC1B9D78CF59C348156A65A18BC5DA2CFA1BC6449F5267
++0FF08CBD16322F75E20D47B226B2ADA287C853F1512949A1E43C2ABB1D4B3126
++2C3507DA836A08C8485E88AC4C4624A2C01FB692120D05A3036889CEFFD6B5B9
++B97B1F5CA4648BAF688761AD8DBA33BE942B2A071198C52E75E55EC745832EF0
++A38BB6B896DCF584B0D4AFD54E3A8ACA2FBD4EE2271D1AAAE039C91B05491F49
++6EFF07187FF2890FF075482CA679E9D0088F4773FC1450D190F154949EC3408A
++BAFE330D4E24A1F8482E521DBBFD38562F51C14E121A67798F93D2B19BEF5D54
++C3311436A72B563014120834FA8BF74D4B03F1C47DB13E52DFDEECD124067730
++12A19F55C6BBC8A401A64445FDF758DF506999325ED4FD3C42A6BCF0C96CBD1C
++E00E89921D242E28038DF4A71327F8D8FC787334F554728082178F4E160D66C3
++03727E1E7EE3022D0A01A71C90E3ED2DAF4341DF9490B290802728A63AFD8927
++5DD077C651FCCC5539599B98A8432AAFD4C25BE67D9E3F46F22D62202209AA3E
++6C9BE302D23F82446FB40A56D0DE561B9107654DD343AA5FAB5860A3880FE34A
++693E59DFF0C3A3A7122BF83D6F4A4ADD9C71426406E87D5A51E02CBC52D0F868
++B9B4890F2BC5D68E000B0BB56CD42AB693789A8D767584B991225B8146B9013B
++9C155B2BF76505743CE3CC3029EF4B471801B22A7AED5D2C05E6D496781B7938
++FB485F2A4C0C78AE5A61019A0573EB4E70AA77578D87B548A45A510F69BA2A95
++BF9A970CA6AEA8CE4B6EFC782D6BFE0765B03062738370B33A9B712D86E3B81E
++4232FDE6642173E34178B910D403CC9D37FAC66FC62B37E09E9624D0E27CEBA6
++3A53C1F47B8F39E47C0BE56B99286C4E76A6D73B4538540C9332FBAE567623C9
++442B99ADD3C65DF36BC520DED1C1165947B793265A1CD29BB31FECBEBCDE416E
++363E6851F8C49F998459E91B29159447E1376049DCBEF2355F99F5340C2D568D
++F1A1FCC515E5A1E20A941020679A4448E570710D929929F398E81FC41AA90236
++AAA3A2E590EFF92A2FBE8D8E387A4D1F13B49E546FC14215A8D1E32B783B544D
++E92167B72DAD509FDF01AF482F12A99FBDFAD8F7B9DC4D5BC50DE1BE957D2214
++FEB4CE369CC553A39A030BE75BDDFAE7A288A251DF7577AB5F938FB671390EF2
++620C8014541250EFE9613BBA4FD088A671BEF3AE9BD1C47373846D3F56D2E287
++6111D0F948BB54919256A25211249EAE67FA954E07A7896BC1C49DDFC8748DFA
++95F24AAFA81A01D6E4EA3471570D3013DE74ECF7E226AF4BF5CBCDD74F1A29EC
++5BCD9E770B3CEBB4028FE132DD9061FA1EBB5F4E7BA9C214FC2026898663EDAF
++0F25C632C7CC1EDECDC8CF69B3A9A43E4FDDE09B48788925540CF75FD2A2AF90
++6E70B46FF38C5ECB7283152DC63ED4490C1D6945A6C8C4577ABE6713E2E91582
++62EDA0C2EC1702F00F68E473A6DCA57012D3E63EB318D7720C67B2C801382656
++3D8F6AC9B3FB22EF47C82E548B118DE48B665D3CA3F2CFED84A06B0B2F688086
++835EF657F8E683D29691F318EBB8E782CDE249AFD63419B2341175E0BA899DDF
++DBB69D0C3F1B0C8E9F188229294AAF7CC4A419383ACDDB9953E26D8BC48835AA
++0E5AF70B5A0892A58560F45D120EDDA22977C486375A98EE1147CF2E92D1EF7E
++9C00DD0818F3BA10F0920EEF7E4EF3EE702605ACC52DDCAA105FCD0A11EFEE3C
++7F4A810046581522A27983F44BD97311BDDD584431DA95D08F37EE0A7F2FA73E
++F7D3802E1CC081D2DC574D952F510B086AF99B4BDB5AC0F53284BB49A29AFFB1
++11F496BD806DD4B9034D5E968F1A04E6157FA81911DBDF45438FE5228BA8CFC8
++1B0A9B55DB15D0923A6ABA117CD10DFA7AD2CCE00FFE66675311E0F3CE4E92CF
++440AA5E10CED6CBA17C35ACC3D02797A5120E7AEC85A7DDFA3BB67D0688BFC60
++52350D7F23AA7A47A4C5D23185F66C69EACE01A26519144ADA4A21991F9B0046
++0C81B8F5EE8C9CE7E999FF949AF376FA045B177FCC37C8591C46460D7095BBBC
++2D278D3D828C16E5BD8A18E07CDBC8BC400381E1FD4806867611FB7424FE4081
++8D26D7A77313478C9B13BAE0BD5087A26D6E10B8819FC5B333AFDC9F7B713930
++A682908FC431E6D052817BF74F58835E51466207BEFE564AA7F257EA7FAAFFEA
++BCD6094AD8F5618166182FC76CD39375D8B512595EFE9A383439C6AC3CC31229
++BACA9802190667634D033B762B4F93A4F39B683A2D8A3D2D76741C6CF03270F7
++5A83558F188F9CF0E608F27302725804C9033A1EF3871B4E0292C97544742BD2
++04FBFF78EF0DC6D98E11BF1C4671B643CDF3F6DE1CEC3F1F74F2BC2E21F419B8
++102D93224B2D471E70A408B29BC3E83D3D7EE8364C4D69CD88AB327EFF67138C
++CCBF7ADA6E1F18DF6ACB99C06F377A4E649D4D7165831BEDB9924D3861E9855B
++8748B5CA15BD63C9A48114477583D6083FA828D26B7B6B21CF0F0DF0988D2269
++315211F2FE547D1C4F366CED4BDF4DEB7D9384053ED4EA69C21FCADA913B501B
++D5685D4E8ECBEAF1EF611D6F1059D3B9CBCB2B5F9F2E147E2878209A15888C6A
++0F3923F2F8EB509918A64E4F9ECA4C7DBBF9D7AA5098258DE110737AA679BF7C
++4B83F4307DCCAE0C967B4DA1C9BC3E6725C551678D18AB29F0EE875A76C9CECB
++F73C68F5980E7C3C8277F3EB42D0F31CAAC10881307953ABEC1BCF27A5B64D71
++934519F49B9CB4B0341361B6665060800350A18CD05A742A7DA9D43E3B36E10D
++14C3A926CE3054A5A1FE2D15E5D85146C16D59BD72EE88468E8ED27794D03BDC
++556C01C0711C9CCF9FDA26903D0D28DDEF51985E86F0D8F44BCB4F5B344DD5A9
++A29765397333E9D1CE346F944270174D1AD4437DAB586D4F537B9800199E201A
++011DD6FE733D6A15CC5EFFE24C195C514F414A0BB9B2CCB4C32F0A09E263111C
++1F1F076742273D488580005209F35C3E687E509CAD14294FD83D101019CE9C74
++F3A63028EAF41B68FED1A4F7703F3EF7678F5793BAAA5CF4D328034A2AC5D6DC
++100C99BBC7F2673846088B5DCEA18AD59814571C3F392BC8106F4113FC0C8A8E
++ACD05C351AF95F11C29C5B8BCE9EB58AE8CC56291DB9F547FB84B6F71476C689
++6D54A22547F7E9C89CD735C661F1A3241B6FC645453EF3825BE4B12326029B28
++13DDE690477A6E16BB29B2D37AA9F31397D1758F32A7071AEC454CCA4F50577B
++BAE19264D214DB6EDCADA40DFEA95C3AD12D6C194A7CA35F614680125ABF7473
++9410001117EA2C3DD2906B216B38522E44E4842DC07537BD5890FB0CBB5B44F6
++12C76C8F921939E757A7634A8B74B84986209C0DC2C644861B264649DA629978
++03F0176EFD04C85F5CC291491903EACCADAC1851069889FD9CDBE5890F002148
++DB9E554DDAEE83A24CDA98A9A9F1D13C1E59D87BBCB8D41B519567993503ACB2
++2C6C219278A7CB5BBCF4312B09FF33B9704BDA72BDC40E69760FAAD3A4BC1A60
++F9A0EDB275589DA61A3E06B178EA0165AACD145AE1A786E45A3548350776FA02
++4BB870C34B6D427DBC8EED13749A2387E2B26C5D0FB6C9B0BEE85FE075562839
++A7A19CB7C39E5BA1134837C7F8E8D415049688E041C4770FDC3F1CB5B577A08D
++313F9915C8B958086CD0B1AFE3C54804D1A5A9091CBEE6F11FBCF40FD63A4E77
++3C46093E4BEAB2D4AE194BDD38BA630A0C71C5770120E7A6BE27DF570D2A7075
++FE9B45C2589E952306D3BDBCFD74EC2481DEB94E3C37DD8939EE74D44E82D575
++182374B3EFE3EC72769061627D6AAA2425278AE2C39FFC594580DDA4BCF6E87A
++3714EAB4943E0F3F648EC95EAC30A372CBFB32A93730104350F0A8AD0816811C
++518CEF9B51AE879382716C6A63105B35DEF4536AFF13CA436C7E481A85D10267
++153A59C2C73692A5D54CB472BA0D09580BD3383D8433E07AF58941B455C7799B
++BD5E1D5606C135EE95892D73C94D1BD96242CB5A5C938CF61A1FEC2813591744
++B7ECB4E0CAC38415444D391AC53334A8A44F90BD73E742C673B4F42224E257BA
++0403DCF7A3DE2FAAAF4F78C32F430AD5976978E32432F8
  0000000000000000000000000000000000000000000000000000000000000000
  0000000000000000000000000000000000000000000000000000000000000000
  0000000000000000000000000000000000000000000000000000000000000000
-@@ -4717,11 +4385,7 @@ end readonly def
- /FontMatrix [0.001 0 0 0.001 0 0] readonly def
- /Encoding 256 array
- 0 1 255 {1 index exch /.notdef put} for
--dup 68 /D put
--dup 97 /a put
--dup 99 /c put
--dup 114 /r put
--dup 115 /s put
-+dup 0 /.notdef put
+@@ -4749,7 +4716,6 @@ dup 114 /r put
+ dup 115 /s put
  readonly def
  /FontBBox{-36 -251 1103 750}readonly def
- /UniqueID 5000829 def
-@@ -4811,19 +4475,7 @@ end readonly def
- /FontMatrix [0.001 0 0 0.001 0 0] readonly def
- /Encoding 256 array
- 0 1 255 {1 index exch /.notdef put} for
--dup 40 /parenleft put
--dup 41 /parenright put
--dup 46 /period put
--dup 48 /zero put
--dup 49 /one put
--dup 51 /three put
--dup 68 /D put
--dup 97 /a put
--dup 99 /c put
--dup 101 /e put
--dup 108 /l put
--dup 114 /r put
--dup 115 /s put
-+dup 0 /.notdef put
+-/UniqueID 5000829 def
+ currentdict end
+ currentfile eexec
+ D9D66F633B846A97B686A97E45A3D0AA0529731C99A784CCBE85B4993B2EEBDE
+@@ -4854,7 +4820,6 @@ dup 117 /u put
+ dup 119 /w put
  readonly def
  /FontBBox{-33 -250 945 749}readonly def
- /UniqueID 5000795 def
-@@ -4930,65 +4582,80 @@ cleartomark
- TeXDict begin 40258431 52099146 1000 600 600 (darcs_print.dvi)
- @start /Fa 134[51 51 69 51 51 49 38 50 53 46 53 51 62
- 43 53 1[25 51 53 44 46 52 49 48 51 4[46 7[65 51 9[34
--3[62 2[64 18[46 27 31 27 2[36 36 5[46 34[{}37 83.022
--/CMCSC10 rf /Fb 134[73 3[73 71 55 72 1[67 76 73 89 61
--2[36 1[77 64 67 75 71 69 73 9[132 1[97 94 3[89 1[97 118
--82 4[102 85 89 99 94 22[38 44[{}31 119.552 /CMCSC10 rf
--/Fc 145[40 10[33 1[36 97[{}3 66.4176 /CMTI8 rf /Fd 160[71
--95[{}1 66.4176 /CMMI8 rf /Fe 207[19 47[52{}2 58.1154
--/CMSY7 rf /Ff 145[50 29[53 63 11[59 1[62 2[65 1[65 1[23
--58[{}8 83.022 /CMMI10 rf /Fg 131[112 1[50 59 1[81 59
--62 44 44 46 1[62 56 62 93 31 59 34 31 62 56 34 51 62
--50 62 54 11[86 78 62 84 1[77 2[106 67 88 2[88 1[70 1[86
--81 80 85 6[31 56 56 56 56 56 56 56 56 56 2[31 37 31[62
--1[65 11[{}53 99.6264 /CMBX12 rf /Fh 128[35 2[71 1[31
--37 37 51 37 39 27 28 28 37 39 35 39 59 20 37 1[20 39
--35 22 31 39 31 39 35 4[35 4[72 2[51 39 52 2[55 53 4[25
--53 1[46 2[51 50 53 1[33 3[20 20 7[35 35 35 1[20 24 20
--2[27 27 20 4[35 20 19[39 39 41 11[{}57 66.4176 /CMR8
--rf /Fi 200[33 33 33 33 33 33 33 49[{}7 58.1154 /CMR7
--rf /Fj 148[42 65[83 7[83 83 16[42 1[83 13[{}6 83.022
--/CMSY10 rf /Fk 133[35 35 35 35 35 35 35 35 35 1[35 35
--35 35 35 35 1[35 35 35 35 35 35 35 35 35 9[35 16[35 1[35
--35 1[35 6[35 10[35 35 35 45[{}33 66.4176 /CMTT8 rf /Fl
--200[30 30 30 30 30 30 30 30 48[{}8 49.8132 /CMR6 rf /Fm
--134[71 71 97 71 75 52 53 55 71 75 67 75 112 37 71 1[37
--75 67 41 61 75 60 75 65 7[102 102 139 102 103 94 75 100
--1[92 101 105 128 2[69 50 105 106 85 88 103 97 96 102
--6[37 67 67 67 67 67 67 67 67 67 2[37 45 37 4[37 24[112
--75 13[{}62 119.552 /CMBX12 rf /Fn 129[44 44 44 44 44
-+3[62 2[64 18[46 27 31 27 2[36 36 5[46 34[{
-+ TeX0ef0afcaEncoding ReEncodeFont }37 83.022 /CMCSC10
-+rf /Fb 134[73 3[73 71 55 72 1[67 76 73 89 61 2[36 1[77
-+64 67 75 71 69 73 9[132 1[97 94 3[89 1[97 118 82 4[102
-+85 89 99 94 22[38 44[{ TeX0ef0afcaEncoding ReEncodeFont }31
-+119.552 /CMCSC10 rf /Fc 145[40 10[33 1[36 97[{
-+ TeX74afc74cEncoding ReEncodeFont }3 66.4176 /CMTI8 rf
-+/Fd 160[71 95[{ TeXaae443f0Encoding ReEncodeFont }1 66.4176
-+/CMMI8 rf /Fe 207[19 47[52{ TeXbbad153fEncoding ReEncodeFont }2
-+58.1154 /CMSY7 rf /Ff 145[50 29[53 63 11[59 1[62 2[65
-+1[65 1[23 58[{ TeXaae443f0Encoding ReEncodeFont }8 83.022
-+/CMMI10 rf /Fg 131[112 1[50 59 1[81 59 62 44 44 46 1[62
-+56 62 93 31 59 34 31 62 56 34 51 62 50 62 54 11[86 78
-+62 84 1[77 2[106 67 88 2[88 1[70 1[86 81 80 85 6[31 56
-+56 56 56 56 56 56 56 56 2[31 37 31[62 1[65 11[{
-+ TeXf7b6d320Encoding ReEncodeFont }53 99.6264 /CMBX12
-+rf /Fh 128[35 2[71 1[31 37 37 51 37 39 27 28 28 37 39
-+35 39 59 20 37 1[20 39 35 22 31 39 31 39 35 4[35 4[72
-+2[51 39 52 2[55 53 4[25 53 1[46 2[51 50 53 1[33 3[20
-+20 7[35 35 35 1[20 24 20 2[27 27 20 4[35 20 19[39 39
-+41 11[{ TeXf7b6d320Encoding ReEncodeFont }57 66.4176
-+/CMR8 rf /Fi 200[33 33 33 33 33 33 33 49[{
-+ TeXf7b6d320Encoding ReEncodeFont }7 58.1154 /CMR7 rf
-+/Fj 148[42 65[83 7[83 83 16[42 1[83 13[{
-+ TeXbbad153fEncoding ReEncodeFont }6 83.022 /CMSY10 rf
-+/Fk 133[35 35 35 35 35 35 35 35 35 1[35 35 35 35 35 35
-+1[35 35 35 35 35 35 35 35 35 9[35 16[35 1[35 35 1[35
-+6[35 10[35 35 35 45[{ TeX09fbbfacEncoding ReEncodeFont }33
-+66.4176 /CMTT8 rf /Fl 200[30 30 30 30 30 30 30 30 48[{
-+ TeXf7b6d320Encoding ReEncodeFont }8 49.8132 /CMR6 rf
-+/Fm 134[71 71 97 71 75 52 53 55 71 75 67 75 112 37 71
-+1[37 75 67 41 61 75 60 75 65 7[102 102 139 102 103 94
-+75 100 1[92 101 105 128 2[69 50 105 106 85 88 103 97
-+96 102 6[37 67 67 67 67 67 67 67 67 67 2[37 45 37 4[37
-+24[112 75 13[{ TeXf7b6d320Encoding ReEncodeFont }62 119.552
-+/CMBX12 rf /Fn 129[44 44 44 44 44 44 44 44 44 44 44 44
- 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44
-+44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 1[44 44
- 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44
--44 44 44 44 1[44 44 44 44 44 44 44 44 44 44 44 44 44
- 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44
--44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 33[{}93
-+44 44 44 44 44 44 44 44 44 44 33[{ TeX09fbbfacEncoding ReEncodeFont }93
- 83.022 /CMTT10 rf /Fo 134[40 1[55 38 45 28 34 35 38 42
- 42 47 68 21 38 1[25 42 38 25 38 42 38 38 42 4[43 2[62
- 1[83 2[59 1[61 1[56 64 62 1[52 2[32 62 64 5[62 6[25 10[42
--25 1[25 4[25 4[43 25 20[47 51 11[{}45 83.022 /CMTI10
--rf /Fp 135[102 3[75 1[79 1[108 1[108 4[54 108 2[88 108
--2[94 29[140 138 146 10[97 97 97 97 97 97 49[{}19 172.188
--/CMBX12 rf /Fq 166[62 62 85 62 62 60 46 61 1[57 65 62
--76 52 65 1[30 62 65 54 57 63 60 59 62 6[23 42 42 42 42
--42 42 42 42 42 2[23 1[23 4[23 39[{}36 83.022 /CMSL10
--rf /Fr 134[50 50 69 50 53 37 38 39 1[53 48 53 80 27 50
--1[27 53 48 29 44 53 42 53 46 7[72 72 99 72 73 66 53 72
--1[65 72 75 91 57 75 1[36 75 75 60 63 73 69 68 72 6[27
--48 48 48 48 48 48 48 48 48 3[32 27 30[53 53 12[{}60 83.022
--/CMBX10 rf /Fs 134[123 3[129 90 92 95 1[129 116 129 194
--65 2[65 129 116 71 106 129 103 129 113 11[179 162 1[173
--1[159 1[182 1[140 2[87 1[183 2[178 168 165 53[129 12[{}31
--206.559 /CMBX12 rf /Ft 131[83 42 37 44 44 60 44 46 32
--33 33 44 46 42 46 69 23 44 25 23 46 42 25 37 46 37 46
--42 23 2[23 42 23 1[62 62 85 62 62 60 46 61 1[57 65 62
--76 52 65 43 30 62 65 54 57 63 60 59 62 65 39 39 65 23
--23 23 42 42 42 42 42 42 42 42 42 42 42 23 28 23 65 42
--32 32 23 4[42 23 18[69 46 46 48 11[{}88 83.022 /CMR10
--rf /Fu 134[51 2[51 54 5[49 54 4[27 4[54 2[49 14[72 4[89
--8[75 14[49 49 1[49 1[49 3[27 44[{}16 99.6264 /CMR12 rf
--/Fv 140[48 49 14[54 1[60 28[88 68[{}5 119.552 /CMTI12
-+25 1[25 4[25 4[43 25 20[47 51 11[{ TeX74afc74cEncoding ReEncodeFont }45
-+83.022 /CMTI10 rf /Fp 135[102 3[75 1[79 1[108 1[108 4[54
-+108 2[88 108 2[94 29[140 138 146 10[97 97 97 97 97 97
-+49[{ TeXf7b6d320Encoding ReEncodeFont }19 172.188 /CMBX12
-+rf /Fq 166[62 62 85 62 62 60 46 61 1[57 65 62 76 52 65
-+1[30 62 65 54 57 63 60 59 62 6[23 42 42 42 42 42 42 42
-+42 42 2[23 1[23 4[23 39[{ TeXf7b6d320Encoding ReEncodeFont }36
-+83.022 /CMSL10 rf /Fr 134[50 50 69 50 53 37 38 39 1[53
-+48 53 80 27 50 1[27 53 48 29 44 53 42 53 46 7[72 72 99
-+72 73 66 53 72 1[65 72 75 91 57 75 1[36 75 75 60 63 73
-+69 68 72 6[27 48 48 48 48 48 48 48 48 48 3[32 27 30[53
-+53 12[{ TeXf7b6d320Encoding ReEncodeFont }60 83.022 /CMBX10
-+rf /Fs 134[123 3[129 90 92 95 1[129 116 129 194 65 2[65
-+129 116 71 106 129 103 129 113 11[179 162 1[173 1[159
-+1[182 1[140 2[87 1[183 2[178 168 165 53[129 12[{
-+ TeXf7b6d320Encoding ReEncodeFont }31 206.559 /CMBX12
-+rf /Ft 131[83 42 37 44 44 60 44 46 32 33 33 44 46 42
-+46 69 23 44 25 23 46 42 25 37 46 37 46 42 23 2[23 42
-+23 1[62 62 85 62 62 60 46 61 1[57 65 62 76 52 65 43 30
-+62 65 54 57 63 60 59 62 65 39 39 65 23 23 23 42 42 42
-+42 42 42 42 42 42 42 42 23 28 23 65 42 32 32 23 4[42
-+23 18[69 46 46 48 11[{ TeXf7b6d320Encoding ReEncodeFont }88
-+83.022 /CMR10 rf /Fu 134[51 2[51 54 5[49 54 4[27 3[43
-+54 2[49 14[72 7[50 5[75 14[49 2[49 1[49 3[27 44[{
-+ TeXf7b6d320Encoding ReEncodeFont }16 99.6264 /CMR12
-+rf /Fv 140[48 49 14[54 1[60 28[88 68[{
-+ TeX74afc74cEncoding ReEncodeFont }5 119.552 /CMTI12
- rf /Fw 140[52 51 5[36 6[58 1[58 1[66 28[101 16[66 1[66
--66 1[36 4[51 51 40[{}13 143.462 /CMR17 rf end
-+66 1[36 4[51 51 40[{ TeXf7b6d320Encoding ReEncodeFont }13
-+143.462 /CMR17 rf end
- %%EndProlog
- %%BeginSetup
- %%Feature: *Resolution 600dpi
-@@ -5001,7 +4668,7 @@ letter
+-/UniqueID 5000795 def
+ currentdict end
+ currentfile eexec
+ D9D66F633B846A97B686A97E45A3D0AA052A014267B7904EB3C0D3BD0B83D891
+@@ -5029,7 +4994,7 @@ rf /Fr 134[50 50 69 50 53 37 38 39 1[53
+ 23 23 42 42 42 42 42 42 42 42 42 42 42 23 28 23 65 42
+ 32 32 23 4[42 23 18[69 46 46 48 11[{}88 83.022 /CMR10
+ rf /Fu 134[51 2[51 54 2[38 2[49 54 81 3[27 3[43 54 1[54
+-49 14[72 3[73 9[75 14[49 1[49 49 49 49 3[27 44[{}21 99.6264
++49 14[72 3[73 9[75 13[49 49 2[49 1[49 3[27 44[{}20 99.6264
+ /CMR12 rf /Fv 140[48 49 14[54 1[60 28[88 68[{}5 119.552
+ /CMTI12 rf /Fw 136[96 1[73 1[52 51 2[66 73 2[70 7[58
+ 1[66 28[101 15[66 2[66 66 1[36 4[51 51 40[{}16 143.462
+@@ -5046,7 +5011,7 @@ letter
  %%Page: 1 1
- TeXDict begin 1 0 bop 1141 2140 a Fw(Darcs)43 b(1.0.3)f(\(release\))
+ TeXDict begin 1 0 bop 1070 2140 a Fw(Darcs)43 b(1.0.4)f(\(unkno)l(wn\))
  1576 2322 y Fv(Dar)-6 b(cs)1412 2688 y Fu(Da)m(vid)33
--b(Roundy)1437 2928 y(Ma)m(y)g(24,)f(2005)p eop end
-+b(Roundy)1454 2928 y(June)g(5,)g(2005)p eop end
+-b(Roundy)1316 2928 y(No)m(v)m(em)m(b)s(er)i(13,)d(2005)p
++b(Roundy)1316 2928 y(No)m(v)m(em)m(b)s(er)i(26,)d(2005)p
+ eop end
  %%Page: 2 2
  TeXDict begin 2 1 bop 739 282 a Ft(2)p eop end
- %%Page: 3 3
---- darcs-1.0.3.orig/darcs.1
-+++ darcs-1.0.3/darcs.1
-@@ -1,4 +1,4 @@
--.TH DARCS "1" "May 2005" "darcs" "User Commands"
-+.TH DARCS "1" "June 2005" "darcs" "User Commands"
- .SH NAME
- darcs \- an advanced revision control system
- .SH SYNOPSIS
+@@ -5202,7 +5167,7 @@ b(send)h(.)42 b(.)f(.)h(.)g(.)f(.)h(.)f(
+ (.)h(.)g(.)f(.)h(.)f(.)h(.)f(.)h(.)g(.)f(.)h(.)f(.)h(.)f(.)h(.)g(.)f(.)
+ 90 b(64)863 3999 y(6.6)84 b(Seeing)28 b(what)f(y)n(ou'v)n(e)g(done)37
+ b(.)k(.)h(.)f(.)h(.)f(.)h(.)g(.)f(.)h(.)f(.)h(.)f(.)h(.)g(.)f(.)h(.)f
+-(.)h(.)f(.)h(.)g(.)f(.)90 b(67)1054 4098 y(6.6.1)k(darcs)27
++(.)h(.)f(.)h(.)g(.)f(.)90 b(67)1054 4099 y(6.6.1)k(darcs)27
+ b(whatsnew)h(.)42 b(.)f(.)h(.)f(.)h(.)f(.)h(.)g(.)f(.)h(.)f(.)h(.)f(.)h
+ (.)g(.)f(.)h(.)f(.)h(.)f(.)h(.)g(.)f(.)90 b(67)1054 4198
+ y(6.6.2)k(darcs)27 b(c)n(hanges)38 b(.)k(.)g(.)f(.)h(.)f(.)h(.)f(.)h(.)
+@@ -5638,7 +5603,7 @@ b Ft(Y)-7 b(ou)31 b(can)f(use)g(the)g(\\
+ (to)g(mo)r(dify)g(all)g(o)r(c-)291 1655 y(currences)25
+ b(of)h(a)g(particular)f(tok)n(en)h(\(de\014ned)h(b)n(y)f(a)g
+ (con\014gurable)f(set)h(of)h(c)n(haracters)d(that)291
+-1755 y(are)35 b(allo)n(w)n(ed)h(in)g(\\tok)n(ens"\))g(in)h(a)f(\014le.)
++1755 y(are)35 b(allo)n(w)n(ed)h(in)g(\\tok)n(ens"\))g(in)g(a)h(\014le.)
+ 64 b(This)37 b(has)f(the)h(adv)-5 b(an)n(tage)35 b(that)i(merges)e
+ (with)291 1854 y(c)n(hanges)22 b(that)i(in)n(tro)r(duce)g(new)g(copies)
+ f(of)h(the)g(old)g(tok)n(en)f(will)h(ha)n(v)n(e)f(the)h(e\013ect)g(of)g
+@@ -6399,8 +6364,8 @@ f(simply)h(don't)g(w)n(an)n(t)g(to)g(b)r
+ 715 y(separate)31 b(user,)k(y)n(ou)d(can)h(set)h(up)f(a)g(darcs)f(rep)r
+ (ository)g(using)h(pro)r(cmail)g(to)g(\014lter)g(y)n(our)291
+ 814 y(mail.)46 b(I)31 b(will)g(assume)g(that)g(y)n(ou)f(already)g(use)g
+-(pro)r(cmail)g(to)h(\014lter)g(y)n(our)f(email.)46 b(If)32
+-b(not,)291 914 y(y)n(ou)i(will)h(need)g(to)f(read)g(up)i(on)e(it,)j(or)
++(pro)r(cmail)g(to)h(\014lter)g(y)n(our)f(email.)47 b(If)31
++b(not,)291 914 y(y)n(ou)j(will)h(need)g(to)f(read)g(up)i(on)e(it,)j(or)
+ d(p)r(erhaps)g(should)h(use)g(a)f(di\013eren)n(t)h(metho)r(d)g(for)291
+ 1013 y(routing)26 b(the)i(email)g(to)f(darcs.)415 1113
+ y(T)-7 b(o)40 b(b)r(egin)g(with,)j(y)n(ou)c(m)n(ust)h(con\014gure)f(y)n
+@@ -6547,8 +6512,8 @@ TeXDict begin 27 26 bop 291 282 a Fq(3.6
+ b(DISK)e(SP)-7 b(A)n(CE)27 b(USA)n(GE)1278 b Ft(27)415
+ 515 y(Under)36 b(some)f(circumstances,)h(k)n(eeping)f(a)g(whole)g
+ (pristine)h(tree)f(is)g(not)h(desirable.)291 615 y(This)g(is)h(the)g
+-(case)f(when)h(preparing)e(a)h(rep)r(ository)g(to)g(bac)n(k)g(up,)j
+-(when)e(publishing)g(a)291 715 y(rep)r(ository)16 b(on)j(a)f(public)g
++(case)f(when)h(preparing)e(a)h(rep)r(ository)g(to)g(bac)n(k)g(up,)k
++(when)c(publishing)h(a)291 715 y(rep)r(ository)16 b(on)j(a)f(public)g
+ (w)n(eb)h(serv)n(er)d(with)j(limited)g(space,)h(or)e(when)g(storing)g
+ (a)g(rep)r(ository)291 814 y(on)29 b(\015oppies)h(or)f(small)g(USB)h(k)
+ n(eys.)43 b(In)30 b(suc)n(h)g(cases,)f(it)h(is)g(p)r(ossible)g(to)f
+@@ -7150,7 +7115,7 @@ y(If)39 b(y)n(ou)e Fn(unrecord)d Ft(a)k(
+ (will)g(b)r(e)g(deleted)g(from)g Fo(pristine)p Ft(.)68
+ b(This)739 3644 y(will)35 b(cause)g Fo(working)44 b Ft(to)35
+ b(b)r(e)h(di\013eren)n(t)f(from)g Fo(pristine)p Ft(,)j(and)d
+-Fn(whatsnew)d Ft(to)k(rep)r(ort)e(un-)739 3744 y(recorded)h(c)n
++Fn(whatsnew)e Ft(to)i(rep)r(ort)f(un-)739 3744 y(recorded)h(c)n
+ (hanges.)63 b(The)37 b(di\013erence)g(will)g(b)r(e)g(the)g(same)f(as)h
+ (just)g(b)r(efore)f(that)i(patc)n(h)739 3843 y(w)n(as)26
+ b Fn(record)p Ft(ed.)34 b(Think)27 b(ab)r(out)f(it.)37
+@@ -7198,8 +7163,8 @@ b(it)g(with)g(care.)415 1130 y(All)38 b(
+ (ed")h(patc)n(h)291 1230 y(in)c(this)h(w)n(a)n(y!)53
+ b(If)34 b(an)f(erroneous)e(patc)n(h)i(is)g(deleted)h(and)f(replaced)g
+ (with)h(a)e(b)r(etter)i(one,)291 1330 y(y)n(ou)29 b(ha)n(v)n(e)h(to)g
+-(replace)g(it)g(in)h Fo(al)t(l)40 b Ft(rep)r(ositories)29
+-b(that)i(ha)n(v)n(e)e(a)h(cop)n(y)g(of)h(it.)46 b(This)30
++(replace)g(it)g(in)h Fo(al)t(l)41 b Ft(rep)r(ositories)28
++b(that)j(ha)n(v)n(e)e(a)h(cop)n(y)g(of)h(it.)46 b(This)30
+ b(ma)n(y)g(not)291 1429 y(b)r(e)f(feasible,)h(unless)e(it's)i(all)f
+ (priv)-5 b(ate)29 b(rep)r(ositories.)39 b(If)30 b(other)f(dev)n(elop)r
+ (ers)e(ha)n(v)n(e)h(already)291 1529 y(made)e(patc)n(hes)h(or)f(tags)g
+@@ -7471,7 +7436,7 @@ b(If)20 b(patc)n(h)g(A)h(c)n(hanges)e(th
+ 2661 y(patc)n(hes)j(meet.)37 b(All)28 b(other)f(c)n(hanges)f(made)i(b)n
+ (y)f(A)h(and)f(B)h(are)e(p)r(erformed)i(as)f(normal.)863
+ 2761 y(Darcs)33 b(can)h(mark)e(a)i(con\015ict)f(for)g(y)n(ou)g(in)h
+-Fo(working)p Ft(.)56 b(This)34 b(is)g(done)f(with)h Fn(resolve)739
++Fo(working)p Ft(.)56 b(This)34 b(is)f(done)h(with)g Fn(resolve)739
+ 2860 y Ft(\(whic)n(h)23 b(isn't)h(a)f(v)n(ery)f(go)r(o)r(d)h(name\).)35
+ b(Con\015icts)24 b(are)e(mark)n(ed)g(suc)n(h)h(that)h(b)r(oth)g
+ (con\015icting)739 2960 y(c)n(hanges)32 b(are)h(inserted)h(with)g(sp)r
+@@ -8353,7 +8318,7 @@ Fn(.)p Ft(',)j(y)n(ou)d(will)h(then)f(\(
+ (tok)n(en)739 3903 y(\(p)r(erhaps)44 b(b)r(ecause)g(y)n(ou)g(are)f
+ (programming)f(in)j(some)f(other)g(language\),)j(y)n(ou)d(ma)n(y)739
+ 4002 y(do)c(so)f(with)h(the)g Fn(--token-chars)35 b Ft(option.)74
+-b(Y)-7 b(ou)39 b(ma)n(y)h(prefer)f(to)h(de\014ne)g(tok)n(ens)f(in)739
++b(Y)-7 b(ou)40 b(ma)n(y)f(prefer)g(to)h(de\014ne)g(tok)n(ens)f(in)739
+ 4102 y(terms)25 b(of)h(delimiting)g(c)n(haracters)d(instead)i(of)g
+ (allo)n(w)n(ed)g(c)n(haracters)e(using)i(a)g(\015ag)g(suc)n(h)g(as)739
+ 4201 y Fn(--token-chars)38 b('[^)k(\\n\\t]')p Ft(,)27
+@@ -9070,7 +9035,7 @@ Fn(--interactive)21 b Ft(or)k Fn(--gui)f
+ (h)f(bundle)i(whether)e(or)g(not)h(y)n(ou)f(wish)h(to)f(apply)h(that)g
+ (c)n(hange.)35 b(The)739 3876 y(opp)r(osite)30 b(is)g(the)g
+ Fn(--all)e Ft(\015ag,)i(whic)n(h)g(can)g(b)r(e)h(used)f(to)g(o)n(v)n
+-(erride)d(an)j(in)n(teractiv)n(e)f(or)g(gui)739 3975
++(erride)e(an)h(in)n(teractiv)n(e)g(or)g(gui)739 3975
+ y(whic)n(h)e(migh)n(t)h(b)r(e)g(set)g(in)f(y)n(our)g(\\defaults")g
+ (\014le.)863 4075 y(NOTE:)e(The)f(GUI)i(is)e(not)h(curren)n(tly)f
+ (functional,)h(but)h(is)e(exp)r(ected)h(to)g(re-app)r(ear)e(in)739
+@@ -9661,7 +9626,7 @@ b(the)g(rep)r(ository)e(directory)h(in)g
+ (deleting)739 1353 y(that)28 b(patc)n(h.)38 b(Instead,)28
+ b(it)g(applies)g(the)g(in)n(v)n(erse)f(patc)n(h)h(as)f(a)h(new)g(patc)n
+ (h.)38 b(Unlik)n(e)28 b(unpull)739 1453 y(and)g(unrecord)f(\(whic)n(h)i
+-(accomplish)e(a)h(similar)g(goal\))f(rollbac)n(k)f(is)j(p)r(erfectly)f
++(accomplish)e(a)h(similar)g(goal\))f(rollbac)n(k)g(is)h(p)r(erfectly)g
+ (safe,)g(since)739 1552 y(it)34 b(lea)n(v)n(es)d(in)j(the)f(rep)r
+ (ository)f(a)h(record)f(of)h(the)h(patc)n(h)f(it)g(is)h(remo)n(ving.)52
+ b(If)34 b(y)n(ou)e(decide)739 1652 y(y)n(ou)23 b(didn't)j(w)n(an)n(t)d
+@@ -10262,7 +10227,7 @@ Ft(w)n(ould)29 b(result)h(in)h(compiling
+ (the)h(rep)r(ository{whic)n(h)d(is)i(a)g(rather)f(te-)291
+ 3221 y(dious)e(prosp)r(ect.)291 3434 y Fr(Example)k(usage)291
+ 3587 y Ft(If)d(y)n(ou)g(w)n(an)n(t)f(to)i(\014nd)f(the)h(last)f(v)n
+-(ersion)f(of)h(darcs)f(that)i(had)f(a)g(FIXME)g(note)g(in)h(the)g
++(ersion)f(of)h(darcs)f(that)i(had)f(a)g(FIXME)g(note)h(in)f(the)h
+ (\014le)291 3687 y(Record.lhs,)d(y)n(ou)h(could)h(run)291
+ 3839 y Fn(\045)43 b(darcs)e(trackdown)f('grep)i(FIXME)f(Record.lhs')415
+ 3991 y Ft(T)-7 b(o)27 b(\014nd)h(the)g(latest)g(v)n(ersion)e(that)i
+--- darcs-1.0.4.orig/darcs.1
++++ darcs-1.0.4/darcs.1
 @@ -8,7 +8,7 @@ darcs \- an advanced revision control sy
 
  darcs is a nifty revision control tool.  For more a detailed description,
@@ -2741,13 +2225,13 @@
 
  .SH CREATING REPOSITORIES
 --- /dev/null
-+++ darcs-1.0.3/darcs.tmp
++++ darcs-1.0.4/darcs.tmp
 @@ -0,0 +1,2 @@
 +
 +/* css.sty */
 \ No newline at end of file
 --- /dev/null
-+++ darcs-1.0.3/darcs.xref
++++ darcs-1.0.4/darcs.xref
 @@ -0,0 +1,479 @@
 +\:CrossWord{)F1F-}{darcs.html}{1}%
 +\:CrossWord{TITLE+}{ Darcs 1.0.3rc1 (release candidate 1)  {\it  Darcs} }{1}%
@@ -3229,7 +2713,7 @@
 +\:CrossWord{)Qx1-165038x12}{1}{201}%
 +\:CrossWord{)Qx1-166000C.1}{1}{202}%
 --- /dev/null
-+++ darcs-1.0.3/darcs.4tc
++++ darcs-1.0.4/darcs.4tc
 @@ -0,0 +1,167 @@
 +\expandafter\ifx\csname doTocEntry\endcsname\relax \expandafter\endinput\fi
 +\doTocEntry\toclikechapter{}{\csname a:TocLink\endcsname{1}{x1-1000}{QQ2-1-1}{Contents}}{3}\relax
@@ -3399,7 +2883,7 @@
 +\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-165000C}{QQ2-1-165}{Preamble}}{195}\relax
 +\doTocEntry\tocsection{C.1}{\csname a:TocLink\endcsname{1}{x1-166000C.1}{QQ2-1-166}{Appendix: How to Apply These Terms to Your New Programs}}{202}\relax
 --- /dev/null
-+++ darcs-1.0.3/darcs.4ct
++++ darcs-1.0.4/darcs.4ct
 @@ -0,0 +1,168 @@
 +\expandafter\ifx\csname doTocEntry\endcsname\relax \expandafter\endinput\fi
 +\doTocEntry\toclikechapter{}{\csname a:TocLink\endcsname{1}{x1-1000}{QQ2-1-1}{Contents}}{3}\relax
@@ -3570,7 +3054,7 @@
 +\doTocEntry\tocsection{C.1}{\csname a:TocLink\endcsname{1}{x1-166000C.1}{QQ2-1-166}{Appendix: How to Apply These Terms to Your New Programs}}{202}\relax
 +\par
 --- /dev/null
-+++ darcs-1.0.3/darcs.lg
++++ darcs-1.0.4/darcs.lg
 @@ -0,0 +1,268 @@
 +htfcss: cmti  font-style: italic;
 +htfcss: cmtt font-family: monospace;
@@ -3841,7 +3325,7 @@
 +Font("cmcsc","10","10","144")
 +Font("cmcsc","10","10","100")
 --- /dev/null
-+++ darcs-1.0.3/darcs.html
++++ darcs-1.0.4/darcs.html
 @@ -0,0 +1,10671 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -14515,7 +13999,7 @@
 +
 +
 --- /dev/null
-+++ darcs-1.0.3/darcs2.html
++++ darcs-1.0.4/darcs2.html
 @@ -0,0 +1,23 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -14541,7 +14025,7 @@
 +
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.3/darcs3.html
++++ darcs-1.0.4/darcs3.html
 @@ -0,0 +1,22 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -14566,7 +14050,7 @@
 +
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.3/darcs4.html
++++ darcs-1.0.4/darcs4.html
 @@ -0,0 +1,38 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -14607,7 +14091,7 @@
 +
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.3/darcs5.html
++++ darcs-1.0.4/darcs5.html
 @@ -0,0 +1,21 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -14631,7 +14115,7 @@
 +
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.3/darcs6.html
++++ darcs-1.0.4/darcs6.html
 @@ -0,0 +1,21 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -14655,7 +14139,7 @@
 +
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.3/darcs7.html
++++ darcs-1.0.4/darcs7.html
 @@ -0,0 +1,18 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -14676,7 +14160,7 @@
 +class="cmr-8">But it affects the repository and working directory targeted by the push</span></div>
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.3/darcs8.html
++++ darcs-1.0.4/darcs8.html
 @@ -0,0 +1,18 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -14697,7 +14181,7 @@
 +class="cmr-8">As for the other end, see apply</span></div>
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.3/darcs9.html
++++ darcs-1.0.4/darcs9.html
 @@ -0,0 +1,21 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -14721,7 +14205,7 @@
 +
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.3/darcs10.html
++++ darcs-1.0.4/darcs10.html
 @@ -0,0 +1,21 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -14745,7 +14229,7 @@
 +
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.3/darcs11.html
++++ darcs-1.0.4/darcs11.html
 @@ -0,0 +1,30 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -14778,7 +14262,7 @@
 +
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.3/darcs12.html
++++ darcs-1.0.4/darcs12.html
 @@ -0,0 +1,25 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -14806,7 +14290,7 @@
 +
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.3/darcs13.html
++++ darcs-1.0.4/darcs13.html
 @@ -0,0 +1,24 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -14833,7 +14317,7 @@
 +
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.3/changelog
++++ darcs-1.0.4/changelog
 @@ -0,0 +1,675 @@
 +darcs (1.0.2)
 +
@@ -15511,7 +14995,7 @@
 +
 + -- David Roundy <droundy@abridgegame.org>  Wed,  3 Mar 2003 13:51:58 -0500
 --- /dev/null
-+++ darcs-1.0.3/darcs14.html
++++ darcs-1.0.4/darcs14.html
 @@ -0,0 +1,39 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -15553,7 +15037,7 @@
 +
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.3/darcs15.html
++++ darcs-1.0.4/darcs15.html
 @@ -0,0 +1,29 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -15584,36 +15068,3 @@
 +class="cmr-8">has?).</span></div>
 +
 +</body></html>
---- darcs-1.0.3.orig/cgi/darcs.cgi
-+++ darcs-1.0.3/cgi/darcs.cgi
-@@ -54,7 +54,7 @@ my $xslt_program     = read_conf("xsltpr
- my $repository_root  = read_conf("reposdir", "/var/www");
-
- # XSLT template locations
--my $template_root = read_conf("xslt_dir", "/usr/local/share/darcs/xslt");
-+my $template_root = read_conf("xslt_dir", "/usr/share/darcs/xslt");
-
- my $xslt_annotate = "$template_root/annotate.xslt";
- my $xslt_browse   = "$template_root/browse.xslt";
---- darcs-1.0.3.orig/cgi/README
-+++ darcs-1.0.3/cgi/README
-@@ -20,7 +20,7 @@ installation
-   2) copy cgi.conf to /etc/darcs/cgi.conf and edit appropriately.
-      You can overwrite the cgi.conf used by the old darcs cgi script.
-      You probably don't need to change anything here.
--  3) copy the xslt directory to /usr/local/share/darcs/xslt
-+  3) copy the xslt directory to /usr/share/darcs/xslt
-   4) copy xslt/styles.css to /etc/darcs/styles.css
-
-   Test by browsing "http://<host>/cgi-bin/darcs.cgi/".
---- darcs-1.0.3.orig/cgi/cgi.conf
-+++ darcs-1.0.3/cgi/cgi.conf
-@@ -17,7 +17,7 @@ PATH = /bin:/usr/bin:/usr/local/bin
- #xsltproc = xsltproc
-
- # Path to XSLT templates (default is /usr/local/share/darcs/xslt)
--xslt_dir = /usr/local/share/darcs/xslt
-+xslt_dir = /usr/share/darcs/xslt
-
- # HTTP request path of the style sheet, the default will magically read
- # /etc/darcs/styles.css
