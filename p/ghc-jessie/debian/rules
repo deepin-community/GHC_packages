@@ -35,8 +35,9 @@ build-stamp:
 
 	echo "XMLDocWays   := html" > mk/build.mk
 	echo "GhcRTSWays += debug_p thr_debug thr_debug_p" >> mk/build.mk
-ifeq '$(findstring $(shell dpkg-architecture -qDEB_HOST_ARCH), i386 sparc)' ''
+ifeq '$(findstring $(shell dpkg-architecture -qDEB_HOST_ARCH), i386 amd64)' ''
 	echo "GhcUnregisterised=YES" >> mk/build.mk
+	echo "GhcWithNativeCodeGen=NO" >> mk/build.mk
 	echo "SplitObjs=NO" >> mk/build.mk
 endif
 ifneq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
@@ -75,7 +76,7 @@ endif
 	  echo "<!DOCTYPE sect1 [<!ENTITY ndash  \"-\"> \
 	                         <!ENTITY ldquo  \"\`\"> \
 	                         <!ENTITY rdquo  \"'\">]>"; \
-	  tail +2 ghc/docs/users_guide/flags.xml; } \
+	  tail -n +2 ghc/docs/users_guide/flags.xml; } \
 	      | xsltproc debian/flags.xsl - > debian/ghc6.1
 	for m in ghci6 ghc-$(ProjectVersion) ghci-$(ProjectVersion); do echo ".so man1/ghc6.1" > debian/$$m.1; done
 	cp ghc/utils/hp2ps/hp2ps.1 debian/hp2ps-ghc6.1

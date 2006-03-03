@@ -1,3 +1,34 @@
+ghc6 (6.4.1-2) unstable; urgency=low
+
+  * Due to problems with xmltex's uninstallability and its long-standing
+    bugs with lists rendering some docs unbuildable:
+    * Set XMLDocWays to "html" in debian/rules, rather than "html dvi ps".
+    * Remove build-deps on jade, docbook-utils, xmltex, docbook-xml.
+  * Change ghc6-hopengl's dep on "libc6-dev" to
+    "libc6-dev | libc6.1-dev | libc-dev"
+  * Fix building cabal packages that build executables with HS-Source-Dir.
+    Closes: #337909.
+  * Use "tail -n +2" rather than the deprecated "tail +2" in debian/rules.
+    Closes: #339606.
+  * On the list of arches we build registerised:
+    * Add amd64. Closes: #354872.
+    * Remove sparc (it has bitrotted).
+    List now reads "i386 amd64".
+  * Remove ghc6.README.Debian (appeal for registerised ports). The problems
+    when they bitrot outweigh the advantages IMO, at least until we have a
+    testsuite we can run when building.
+  * Apply fix for ghci failing to start ("Unable to mmap( MAP_FIXED ) for
+    Jump Islands") from Ryan Lortie. Closes: #343428.
+  * Delete ".SECONDARY:" from mk/suffix.mk as make >3.80 was taking
+    forever due to bug #346248. Closes: #348633.
+  * Changed xlibs-dev build-dep to:
+    libx11-dev, libsm-dev, libice-dev, libxmu-dev, libxi-dev.
+    Closes: #346752.
+  * Add "GhcWithNativeCodeGen=NO" to mk/build.mk when we are building
+    unregisterised.
+
+ -- Ian Lynagh (wibble) <igloo@debian.org>  Fri, 03 Mar 2006 00:32:06 +0000
+
 ghc6 (6.4.1-1) unstable; urgency=low
 
   * New upstream release. Closes: #329322.
