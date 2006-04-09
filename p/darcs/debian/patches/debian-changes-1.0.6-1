@@ -1,5 +1,37 @@
---- darcs-1.0.5.orig/GNUmakefile
-+++ darcs-1.0.5/GNUmakefile
+--- darcs-1.0.6.orig/DarcsArguments.lhs
++++ darcs-1.0.6/DarcsArguments.lhs
+@@ -867,6 +867,7 @@ edit_file :: String -> IO ExitCode
+ edit_file f = do
+   ed <- get_editor
+   exec_interactive ed [f]
++             `ortryrunning` exec_interactive "vi" [f]
+              `ortryrunning` exec_interactive "emacs" [f]
+              `ortryrunning` exec_interactive "emacs" ["-nw",f]
+              `ortryrunning` exec_interactive "nano" [f]
+@@ -874,7 +875,7 @@ get_editor :: IO String
+ get_editor = getEnv "DARCS_EDITOR" `catchall`
+              getEnv "DARCSEDITOR" `catchall`
+              getEnv "VISUAL" `catchall`
+-             getEnv "EDITOR" `catchall` return "vi"
++             getEnv "EDITOR" `catchall` return "sensible-editor"
+ \end{code}
+
+ \begin{code}
+@@ -882,10 +883,11 @@ view_file :: String -> IO ExitCode
+ view_file f = do
+   viewer <- get_viewer
+   exec_interactive viewer [f]
++             `ortryrunning` exec_interactive "less" [f]
+              `ortryrunning` exec_interactive "more" [f]
+ get_viewer :: IO String
+ get_viewer = getEnv "DARCS_PAGER" `catchall`
+-             getEnv "PAGER" `catchall` return "less"
++             getEnv "PAGER" `catchall` return "pager"
+ \end{code}
+
+ \begin{code}
+--- darcs-1.0.6.orig/GNUmakefile
++++ darcs-1.0.6/GNUmakefile
 @@ -200,7 +200,7 @@ website: darcs-stable.tar.gz darcs.ps ma
 	index.html
 
@@ -9,23 +41,8 @@
 	cp -f darcs.css manual/darcs.css
 
  manual/bigpage.html: darcs.tex gpl.tex darcs.css
---- darcs-1.0.5.orig/darcs-createrepo.8
-+++ darcs-1.0.5/darcs-createrepo.8
-@@ -6,9 +6,9 @@ darcs-createrepo \- create a pushable da
- .SH DESCRIPTION
-
- darcs-createrepo will create a new user and set up that user's home
--directory in /var/lib/darcs with a repository, such that signed patches
--sent to that user's email address.  For more information,
--see the darcs documentation, which should be available at
-+directory in /var/lib/darcs with a repository, such that signed
-+patches can be sent to that user's email address.  For more
-+information, see the darcs documentation, which should be available at
- /usr/share/doc/darcs/manual/index.html.
-
- .SH AUTHOR
---- darcs-1.0.5.orig/darcs.css
-+++ darcs-1.0.5/darcs.css
+--- darcs-1.0.6.orig/darcs.css
++++ darcs-1.0.6/darcs.css
 @@ -1,82 +1,231 @@
 -BODY {
 -  background: white;
@@ -340,9 +357,9 @@
 +div#fancyvrb60{ border-top: solid 0.4pt; }
 +div#fancyvrb60{ border-bottom: solid 0.4pt; }
 +/* end css.sty */
---- darcs-1.0.5.orig/.depend
-+++ darcs-1.0.5/.depend
-@@ -1,212 +1,191 @@
+--- darcs-1.0.6.orig/.depend
++++ darcs-1.0.6/.depend
+@@ -1,219 +1,197 @@
  # DO NOT DELETE: Beginning of Haskell dependencies
 +Context.o : Context.hs
 +GitRepo.o : GitRepo.lhs
@@ -350,9 +367,8 @@
 +FileSystem.o : FileSystem.hs
 +Workaround.o : Workaround.hs
 +UTF8.o : UTF8.lhs
-+SignalHandler.o : SignalHandler.lhs
-+SignalHandler.o : Workaround.hi
 +RegChars.o : RegChars.lhs
++RawMode.o : RawMode.hs
 +PatchMatchData.o : PatchMatchData.lhs
 +Map.o : Map.hs
 +IsoDate.o : IsoDate.lhs
@@ -372,6 +388,9 @@
 -ColourPrinter.o : ./FastPackedString.hi
 -ColourPrinter.o : ./Printer.hi
 -ColourPrinter.o : ./External.hi
+-Compat.o : Compat.hs
+-Compat.o : ./Workaround.hi
+-Compat.o : ./DarcsUtils.hi
 +Autoconf.o : ThisVersion.hi
  Curl.o : Curl.hs
 -DarcsIO.o : DarcsIO.lhs
@@ -419,7 +438,7 @@
 -Depends.o : Depends.lhs
 -Depends.o : DarcsUtils.hi
 -Depends.o : ./Printer.hi
--Depends.o : ./RepoTypes.hi
+-Depends.o : ./PatchSet.hi
 -Depends.o : ./PatchInfo.hi
 -Depends.o : ./Patch.hi
 -Diff.o : Diff.lhs
@@ -467,6 +486,12 @@
 +DarcsUtils.o : DarcsUtils.lhs
 +DarcsUtils.o : Printer.hi
 +DarcsUtils.o : Workaround.hi
++Compat.o : Compat.hs
++Compat.o : Workaround.hi
++Compat.o : DarcsUtils.hi
++SignalHandler.o : SignalHandler.lhs
++SignalHandler.o : Compat.hi
++SignalHandler.o : Workaround.hi
  Lcs.o : Lcs.lhs
  Lcs.o : DarcsUtils.hi
 -Lcs.o : ./Map.hi
@@ -475,6 +500,7 @@
 +DarcsURL.o : DarcsURL.hs
 +DarcsURL.o : DarcsUtils.hi
  Lock.o : Lock.lhs
+ Lock.o : Compat.hi
 -Lock.o : ./AtExit.hi
 -Lock.o : ./Printer.hi
 -Lock.o : ./SignalHandler.hi
@@ -685,6 +711,9 @@
  PatchRead.o : PatchInfo.hi
 -PatchReadMonads.o : PatchReadMonads.hs
 -PatchReadMonads.o : ./Stringalike.hi
+-PatchSet.o : PatchSet.lhs
+-PatchSet.o : PatchInfo.hi
+-PatchSet.o : Patch.hi
 -PatchShow.o : PatchShow.lhs
 -PatchShow.o : PatchCore.hi
 -PatchShow.o : ./Printer.hi
@@ -713,7 +742,7 @@
  PatchViewing.o : PatchViewing.lhs
  PatchViewing.o : DarcsUtils.hi
  PatchViewing.o : PatchCommute.hi
-@@ -214,51 +193,64 @@ PatchViewing.o : PatchApply.hi
+@@ -221,49 +199,64 @@ PatchViewing.o : PatchApply.hi
  PatchViewing.o : PatchShow.hi
  PatchViewing.o : PatchCore.hi
  PatchViewing.o : PatchInfo.hi
@@ -745,6 +774,7 @@
 -PrintPatch.o : Patch.hi
 -Printer.o : Printer.lhs
 -Printer.o : FastPackedString.hi
+-RawMode.o : RawMode.hs
 -RegChars.o : RegChars.lhs
 -RepoFormat.o : RepoFormat.lhs
 -RepoFormat.o : DarcsUtils.hi
@@ -794,18 +824,18 @@
 +PatchMatch.o : DateMatcher.hi
 +PatchMatch.o : Patch.hi
 +PatchMatch.o : PatchInfo.hi
-+TouchesFiles.o : TouchesFiles.lhs
-+TouchesFiles.o : Patch.hi
-+TouchesFiles.o : PatchChoices.hi
- RepoTypes.o : RepoTypes.lhs
- RepoTypes.o : PatchInfo.hi
- RepoTypes.o : Patch.hi
++PatchSet.o : PatchSet.lhs
++PatchSet.o : PatchInfo.hi
++PatchSet.o : Patch.hi
 +Depends.o : Depends.lhs
 +Depends.o : DarcsUtils.hi
 +Depends.o : Printer.hi
-+Depends.o : RepoTypes.hi
++Depends.o : PatchSet.hi
 +Depends.o : PatchInfo.hi
 +Depends.o : Patch.hi
++TouchesFiles.o : TouchesFiles.lhs
++TouchesFiles.o : Patch.hi
++TouchesFiles.o : PatchChoices.hi
  DarcsRepo.o : DarcsRepo.lhs
  DarcsRepo.o : DarcsUtils.hi
  DarcsRepo.o : Printer.hi
@@ -815,7 +845,7 @@
  DarcsRepo.o : FileName.hi
  DarcsRepo.o : RepoPrefs.hi
  DarcsRepo.o : Pristine.hi
-@@ -270,26 +262,111 @@ DarcsRepo.o : External.hi
+@@ -275,193 +268,130 @@ DarcsRepo.o : External.hi
  DarcsRepo.o : Diff.hi
  DarcsRepo.o : PatchInfo.hi
  DarcsRepo.o : Patch.hi
@@ -845,7 +875,7 @@
  Repository.o : DarcsUtils.hi
 -Repository.o : ./Workaround.hi
 +Repository.o : Workaround.hi
- Repository.o : RepoTypes.hi
+ Repository.o : PatchSet.hi
  Repository.o : Diff.hi
  Repository.o : Patch.hi
  Repository.o : PatchInfo.hi
@@ -858,6 +888,150 @@
  Repository.o : RepoFormat.hi
  Repository.o : Pristine.hi
  Repository.o : External.hi
+-Resolution.o : Resolution.lhs
+-Resolution.o : DarcsUtils.hi
+-Resolution.o : External.hi
+-Resolution.o : Lock.hi
+-Resolution.o : Exec.hi
+-Resolution.o : RepoPrefs.hi
+-Resolution.o : Diff.hi
+-Resolution.o : DarcsRepo.hi
+-Resolution.o : Repository.hi
+-Resolution.o : ./SlurpDirectory.hi
+-Resolution.o : Patch.hi
+-SHA1.o : SHA1.lhs
+-SHA1.o : FastPackedString.hi
+-SHA1.o : Autoconf.hi
+-SignalHandler.o : SignalHandler.lhs
+-SignalHandler.o : Compat.hi
+-SignalHandler.o : ./Workaround.hi
+-SlurpDirectory.o : SlurpDirectory.lhs
+-SlurpDirectory.o : DarcsUtils.hi
+-SlurpDirectory.o : FileName.hi
+-SlurpDirectory.o : FastPackedString.hi
+-SlurpDirectory.o : DarcsIO.hi
+-SlurpDirectory.o : CheckFileSystem.hi
+-SlurpDirectory.o : ./Workaround.hi
+-Stringalike.o : Stringalike.hs
+-Stringalike.o : FastPackedString.hi
+-Stringalike.o : FileName.hi
+-Test.o : Test.lhs
+-Test.o : DarcsUtils.hi
+-Test.o : Lock.hi
+-Test.o : RepoPrefs.hi
+-Test.o : DarcsArguments.hi
+-Test.o : DarcsRepo.hi
+-Test.o : PatchInfo.hi
+-Test.o : PatchCore.hi
+-Test.o : Patch.hi
+-Test.o : ./Workaround.hi
+-ThisVersion.o : ThisVersion.lhs
+-UTF8.o : UTF8.lhs
+-Workaround.o : Workaround.hs
+-FileSystem.o : FileSystem.hs
+-AtExit.o : AtExit.lhs
+-GitRepo.o : GitRepo.lhs
+-Add.o : Add.lhs
+-Add.o : RepoPrefs.hi
+-Add.o : FilePathUtils.hi
+-Add.o : FileName.hi
+-Add.o : SlurpDirectory.hi
+-Add.o : Patch.hi
+-Add.o : Repository.hi
+-Add.o : IsoDate.hi
+-Add.o : DarcsUtils.hi
+-Add.o : DarcsArguments.hi
+-Add.o : ./DarcsCommands.hi
+-AmendRecord.o : AmendRecord.lhs
+-AmendRecord.o : DarcsUtils.hi
+-AmendRecord.o : Printer.hi
+-AmendRecord.o : Test.hi
+-AmendRecord.o : ./Unrevert.hi
+-AmendRecord.o : DarcsArguments.hi
+-AmendRecord.o : ./Record.hi
+-AmendRecord.o : ./DarcsCommands.hi
+-AmendRecord.o : ./SelectChanges.hi
+-AmendRecord.o : PatchInfo.hi
+-AmendRecord.o : Patch.hi
+-AmendRecord.o : Depends.hi
+-AmendRecord.o : Pristine.hi
+-AmendRecord.o : DarcsRepo.hi
+-AmendRecord.o : Repository.hi
+-AmendRecord.o : SignalHandler.hi
+-Annotate.o : Annotate.lhs
+-Annotate.o : DarcsUtils.hi
+-Annotate.o : Printer.hi
+-Annotate.o : Lock.hi
+-Annotate.o : Match.hi
+-Annotate.o : FileName.hi
+-Annotate.o : Population.hi
+-Annotate.o : PopulationData.hi
+-Annotate.o : PatchInfo.hi
+-Annotate.o : PrintPatch.hi
+-Annotate.o : FastPackedString.hi
+-Annotate.o : Patch.hi
+-Annotate.o : DarcsRepo.hi
+-Annotate.o : Repository.hi
+-Annotate.o : SlurpDirectory.hi
+-Annotate.o : DarcsArguments.hi
+-Annotate.o : ./DarcsCommands.hi
+-Annotate.o : Workaround.hi
+-Apply.o : Apply.lhs
+-Apply.o : DarcsUtils.hi
+-Apply.o : Printer.hi
+-Apply.o : PatchBundle.hi
+-Apply.o : Test.hi
+-Apply.o : ./SelectChanges.hi
+-Apply.o : Resolution.hi
+-Apply.o : Depends.hi
+-Apply.o : ./Pull.hi
+-Apply.o : Lock.hi
+-Apply.o : ./Email.hi
+-Apply.o : External.hi
+-Apply.o : FastPackedString.hi
+-Apply.o : SlurpDirectory.hi
+-Apply.o : PatchInfo.hi
+-Apply.o : Patch.hi
+-Apply.o : Repository.hi
+-Apply.o : DarcsArguments.hi
+-Apply.o : ./DarcsCommands.hi
+-Apply.o : SignalHandler.hi
+-ArgumentDefaults.o : ArgumentDefaults.lhs
+-ArgumentDefaults.o : RepoPrefs.hi
+-ArgumentDefaults.o : DarcsArguments.hi
+-Changes.o : Changes.lhs
+-Changes.o : DarcsUtils.hi
+-Changes.o : ./SelectChanges.hi
+-Changes.o : ColourPrinter.hi
+-Changes.o : Printer.hi
+-Changes.o : FastPackedString.hi
+-Changes.o : Annotate.hi
+-Changes.o : Match.hi
+-Changes.o : Patch.hi
+-Changes.o : ./TouchesFiles.hi
+-Changes.o : Depends.hi
+-Changes.o : PatchShow.hi
+-Changes.o : PatchInfo.hi
+-Changes.o : Repository.hi
+-Changes.o : DarcsArguments.hi
+-Changes.o : ./DarcsCommands.hi
+-Check.o : Check.lhs
+-Check.o : DarcsUtils.hi
+-Check.o : Printer.hi
+-Check.o : Depends.hi
+-Check.o : RepoPrefs.hi
+-Check.o : Lock.hi
+-Check.o : Test.hi
+-Check.o : Diff.hi
+-Check.o : SlurpDirectory.hi
+-Check.o : PatchInfo.hi
+-Check.o : Patch.hi
+-Check.o : Pristine.hi
+-Check.o : DarcsRepo.hi
+-Check.o : DarcsArguments.hi
+-Check.o : ./DarcsCommands.hi
+-Check.o : Workaround.hi
+-Context.o : Context.hs
 +DarcsArguments.o : DarcsArguments.lhs
 +DarcsArguments.o : DarcsUtils.hi
 +DarcsArguments.o : Printer.hi
@@ -880,30 +1054,9 @@
 +PrintPatch.o : Printer.hi
 +PrintPatch.o : SlurpDirectory.hi
 +PrintPatch.o : Patch.hi
-+Test.o : Test.lhs
-+Test.o : DarcsUtils.hi
-+Test.o : Lock.hi
-+Test.o : RepoPrefs.hi
-+Test.o : DarcsArguments.hi
-+Test.o : DarcsRepo.hi
-+Test.o : Patch.hi
-+Test.o : Workaround.hi
-+Test.o : DarcsUtils.hi
 +ArgumentDefaults.o : ArgumentDefaults.lhs
 +ArgumentDefaults.o : RepoPrefs.hi
 +ArgumentDefaults.o : DarcsArguments.hi
-+DarcsCommands.o : DarcsCommands.lhs
-+DarcsCommands.o : ArgumentDefaults.hi
-+DarcsCommands.o : DarcsUtils.hi
-+DarcsCommands.o : DarcsArguments.hi
-+DarcsCommands.o : Workaround.hi
-+DarcsCommands.o : Test.hi
-+Init.o : Init.lhs
-+Init.o : DarcsRepo.hi
-+Init.o : Pristine.hi
-+Init.o : RepoPrefs.hi
-+Init.o : DarcsArguments.hi
-+Init.o : DarcsCommands.hi
 +PatchBundle.o : PatchBundle.lhs
 +PatchBundle.o : DarcsUtils.hi
 +PatchBundle.o : SHA1.hi
@@ -930,91 +1083,104 @@
 +Match.o : PatchInfo.hi
 +Match.o : Workaround.hi
 +Match.o : Pristine.hi
- Resolution.o : Resolution.lhs
- Resolution.o : DarcsUtils.hi
- Resolution.o : External.hi
-@@ -299,37 +376,9 @@ Resolution.o : RepoPrefs.hi
- Resolution.o : Diff.hi
- Resolution.o : DarcsRepo.hi
- Resolution.o : Repository.hi
--Resolution.o : ./SlurpDirectory.hi
++Resolution.o : Resolution.lhs
++Resolution.o : DarcsUtils.hi
++Resolution.o : External.hi
++Resolution.o : Lock.hi
++Resolution.o : Exec.hi
++Resolution.o : RepoPrefs.hi
++Resolution.o : Diff.hi
++Resolution.o : DarcsRepo.hi
++Resolution.o : Repository.hi
 +Resolution.o : SlurpDirectory.hi
 +Resolution.o : DarcsUtils.hi
- Resolution.o : Patch.hi
--SHA1.o : SHA1.lhs
--SHA1.o : FastPackedString.hi
--SHA1.o : Autoconf.hi
--SignalHandler.o : SignalHandler.lhs
--SignalHandler.o : ./Workaround.hi
--SlurpDirectory.o : SlurpDirectory.lhs
--SlurpDirectory.o : DarcsUtils.hi
--SlurpDirectory.o : FileName.hi
--SlurpDirectory.o : FastPackedString.hi
--SlurpDirectory.o : DarcsIO.hi
--SlurpDirectory.o : CheckFileSystem.hi
--SlurpDirectory.o : ./Workaround.hi
--Stringalike.o : Stringalike.hs
--Stringalike.o : FastPackedString.hi
--Stringalike.o : FileName.hi
--Test.o : Test.lhs
--Test.o : DarcsUtils.hi
--Test.o : Lock.hi
--Test.o : RepoPrefs.hi
--Test.o : DarcsArguments.hi
--Test.o : DarcsRepo.hi
--Test.o : Patch.hi
--Test.o : ./Workaround.hi
--ThisVersion.o : ThisVersion.lhs
--UTF8.o : UTF8.lhs
--Workaround.o : Workaround.hs
--FileSystem.o : FileSystem.hs
--AtExit.o : AtExit.lhs
--GitRepo.o : GitRepo.lhs
- Add.o : Add.lhs
- Add.o : RepoPrefs.hi
- Add.o : FilePathUtils.hi
-@@ -340,23 +389,97 @@ Add.o : Repository.hi
- Add.o : IsoDate.hi
- Add.o : DarcsUtils.hi
- Add.o : DarcsArguments.hi
--Add.o : ./DarcsCommands.hi
--AmendRecord.o : AmendRecord.lhs
--AmendRecord.o : DarcsUtils.hi
--AmendRecord.o : Printer.hi
--AmendRecord.o : Test.hi
--AmendRecord.o : ./Unrevert.hi
--AmendRecord.o : DarcsArguments.hi
--AmendRecord.o : ./Record.hi
--AmendRecord.o : ./DarcsCommands.hi
--AmendRecord.o : ./SelectChanges.hi
--AmendRecord.o : PatchInfo.hi
--AmendRecord.o : Patch.hi
--AmendRecord.o : Depends.hi
--AmendRecord.o : Pristine.hi
--AmendRecord.o : DarcsRepo.hi
--AmendRecord.o : Repository.hi
--AmendRecord.o : SignalHandler.hi
++Resolution.o : Patch.hi
++Test.o : Test.lhs
++Test.o : DarcsUtils.hi
++Test.o : Lock.hi
++Test.o : RepoPrefs.hi
++Test.o : DarcsArguments.hi
++Test.o : DarcsRepo.hi
++Test.o : PatchInfo.hi
++Test.o : PatchCore.hi
++Test.o : Patch.hi
++Test.o : Workaround.hi
++Test.o : DarcsUtils.hi
+ DarcsCommands.o : DarcsCommands.lhs
+ DarcsCommands.o : ArgumentDefaults.hi
+ DarcsCommands.o : DarcsUtils.hi
+ DarcsCommands.o : DarcsArguments.hi
+ DarcsCommands.o : Workaround.hi
+ DarcsCommands.o : Test.hi
+-DarcsURL.o : DarcsURL.hs
+-DarcsURL.o : DarcsUtils.hi
+-DiffCommand.o : DiffCommand.lhs
+-DiffCommand.o : Printer.hi
+-DiffCommand.o : Lock.hi
+-DiffCommand.o : External.hi
+-DiffCommand.o : PatchInfo.hi
+-DiffCommand.o : Pristine.hi
+-DiffCommand.o : SlurpDirectory.hi
+-DiffCommand.o : DarcsRepo.hi
+-DiffCommand.o : Repository.hi
+-DiffCommand.o : Match.hi
+-DiffCommand.o : DarcsArguments.hi
+-DiffCommand.o : DarcsCommands.hi
+-DiffCommand.o : Autoconf.hi
+-DiffCommand.o : DarcsUtils.hi
+-DiffCommand.o : Workaround.hi
++Add.o : Add.lhs
++Add.o : RepoPrefs.hi
++Add.o : FilePathUtils.hi
++Add.o : FileName.hi
++Add.o : SlurpDirectory.hi
++Add.o : Patch.hi
++Add.o : Repository.hi
++Add.o : IsoDate.hi
++Add.o : DarcsUtils.hi
++Add.o : DarcsArguments.hi
 +Add.o : DarcsCommands.hi
-+Dist.o : Dist.lhs
-+Dist.o : Exec.hi
-+Dist.o : Lock.hi
-+Dist.o : RepoPrefs.hi
-+Dist.o : DarcsRepo.hi
-+Dist.o : Repository.hi
-+Dist.o : DarcsArguments.hi
-+Dist.o : DarcsCommands.hi
-+Dist.o : Workaround.hi
-+Mv.o : Mv.lhs
-+Mv.o : DarcsUtils.hi
-+Mv.o : FileName.hi
-+Mv.o : SlurpDirectory.hi
-+Mv.o : Patch.hi
-+Mv.o : Repository.hi
-+Mv.o : Workaround.hi
-+Mv.o : FilePathUtils.hi
-+Mv.o : DarcsArguments.hi
-+Mv.o : DarcsCommands.hi
-+Mv.o : SignalHandler.hi
+ Dist.o : Dist.lhs
+ Dist.o : Exec.hi
+ Dist.o : Lock.hi
+@@ -471,33 +401,6 @@ Dist.o : Repository.hi
+ Dist.o : DarcsArguments.hi
+ Dist.o : DarcsCommands.hi
+ Dist.o : Workaround.hi
+-Email.o : Email.hs
+-Email.o : FastPackedString.hi
+-Email.o : Printer.hi
+-Get.o : Get.lhs
+-Get.o : DarcsUtils.hi
+-Get.o : Repository.hi
+-Get.o : ./Unrecord.hi
+-Get.o : Workaround.hi
+-Get.o : SlurpDirectory.hi
+-Get.o : Printer.hi
+-Get.o : Match.hi
+-Get.o : Pristine.hi
+-Get.o : Motd.hi
+-Get.o : RepoPrefs.hi
+-Get.o : Depends.hi
+-Get.o : External.hi
+-Get.o : PatchInfo.hi
+-Get.o : Patch.hi
+-Get.o : DarcsRepo.hi
+-Get.o : DarcsArguments.hi
+-Get.o : DarcsCommands.hi
+-Help.o : Help.lhs
+-Help.o : ./TheCommands.hi
+-Help.o : DarcsUtils.hi
+-Help.o : DarcsArguments.hi
+-Help.o : DarcsCommands.hi
+-Help.o : Autoconf.hi
+ Init.o : Init.lhs
+ Init.o : DarcsRepo.hi
+ Init.o : Pristine.hi
+@@ -515,11 +418,128 @@ Mv.o : FilePathUtils.hi
+ Mv.o : DarcsArguments.hi
+ Mv.o : DarcsCommands.hi
+ Mv.o : SignalHandler.hi
 +Put.o : Put.lhs
 +Put.o : DarcsUtils.hi
 +Put.o : RemoteApply.hi
@@ -1027,7 +1193,6 @@
 +Put.o : RepoPrefs.hi
 +Put.o : Match.hi
 +Put.o : PatchBundle.hi
-+Put.o : Patch.hi
 +Put.o : DarcsRepo.hi
 +Put.o : Repository.hi
 +Put.o : DarcsArguments.hi
@@ -1085,109 +1250,41 @@
 +WhatsNew.o : TouchesFiles.hi
 +WhatsNew.o : DarcsArguments.hi
 +WhatsNew.o : DarcsCommands.hi
- Annotate.o : Annotate.lhs
- Annotate.o : DarcsUtils.hi
- Annotate.o : Printer.hi
-@@ -373,50 +496,30 @@ Annotate.o : DarcsRepo.hi
- Annotate.o : Repository.hi
- Annotate.o : SlurpDirectory.hi
- Annotate.o : DarcsArguments.hi
--Annotate.o : ./DarcsCommands.hi
++Annotate.o : Annotate.lhs
++Annotate.o : DarcsUtils.hi
++Annotate.o : Printer.hi
++Annotate.o : Lock.hi
++Annotate.o : Match.hi
++Annotate.o : FileName.hi
++Annotate.o : Population.hi
++Annotate.o : PopulationData.hi
++Annotate.o : PatchInfo.hi
++Annotate.o : PrintPatch.hi
++Annotate.o : FastPackedString.hi
++Annotate.o : Patch.hi
++Annotate.o : DarcsRepo.hi
++Annotate.o : Repository.hi
++Annotate.o : SlurpDirectory.hi
++Annotate.o : DarcsArguments.hi
 +Annotate.o : DarcsCommands.hi
- Annotate.o : Workaround.hi
--Apply.o : Apply.lhs
--Apply.o : DarcsUtils.hi
--Apply.o : Printer.hi
--Apply.o : PatchBundle.hi
--Apply.o : Test.hi
--Apply.o : ./SelectChanges.hi
--Apply.o : Resolution.hi
--Apply.o : Depends.hi
--Apply.o : ./Pull.hi
--Apply.o : Lock.hi
--Apply.o : ./Email.hi
--Apply.o : External.hi
--Apply.o : FastPackedString.hi
--Apply.o : SlurpDirectory.hi
--Apply.o : PatchInfo.hi
--Apply.o : Patch.hi
--Apply.o : Repository.hi
--Apply.o : DarcsArguments.hi
--Apply.o : ./DarcsCommands.hi
--Apply.o : SignalHandler.hi
--ArgumentDefaults.o : ArgumentDefaults.lhs
--ArgumentDefaults.o : RepoPrefs.hi
--ArgumentDefaults.o : DarcsArguments.hi
- Changes.o : Changes.lhs
- Changes.o : DarcsUtils.hi
- Changes.o : ColourPrinter.hi
- Changes.o : Printer.hi
- Changes.o : FastPackedString.hi
-+Changes.o : DarcsUtils.hi
- Changes.o : Annotate.hi
- Changes.o : Match.hi
- Changes.o : Patch.hi
--Changes.o : ./TouchesFiles.hi
-+Changes.o : TouchesFiles.hi
- Changes.o : Depends.hi
- Changes.o : PatchShow.hi
- Changes.o : PatchInfo.hi
- Changes.o : Repository.hi
- Changes.o : DarcsArguments.hi
--Changes.o : ./DarcsCommands.hi
-+Changes.o : DarcsCommands.hi
-+Changes.o : Depends.hi
- Check.o : Check.lhs
- Check.o : DarcsUtils.hi
- Check.o : Printer.hi
- Check.o : Depends.hi
++Annotate.o : Workaround.hi
++Check.o : Check.lhs
 +Check.o : DarcsUtils.hi
- Check.o : RepoPrefs.hi
- Check.o : Lock.hi
- Check.o : Test.hi
-@@ -427,47 +530,24 @@ Check.o : Patch.hi
- Check.o : Pristine.hi
- Check.o : DarcsRepo.hi
- Check.o : DarcsArguments.hi
--Check.o : ./DarcsCommands.hi
++Check.o : Printer.hi
++Check.o : Depends.hi
++Check.o : DarcsUtils.hi
++Check.o : RepoPrefs.hi
++Check.o : Lock.hi
++Check.o : Test.hi
++Check.o : Diff.hi
++Check.o : SlurpDirectory.hi
++Check.o : PatchInfo.hi
++Check.o : Patch.hi
++Check.o : Pristine.hi
++Check.o : DarcsRepo.hi
++Check.o : DarcsArguments.hi
 +Check.o : DarcsCommands.hi
- Check.o : Workaround.hi
--Context.o : Context.hs
--DarcsCommands.o : DarcsCommands.lhs
--DarcsCommands.o : ArgumentDefaults.hi
--DarcsCommands.o : DarcsUtils.hi
--DarcsCommands.o : DarcsArguments.hi
--DarcsCommands.o : Workaround.hi
--DarcsCommands.o : Test.hi
--DarcsURL.o : DarcsURL.hs
--DarcsURL.o : DarcsUtils.hi
--DiffCommand.o : DiffCommand.lhs
--DiffCommand.o : Printer.hi
--DiffCommand.o : Lock.hi
--DiffCommand.o : External.hi
--DiffCommand.o : PatchInfo.hi
--DiffCommand.o : Pristine.hi
--DiffCommand.o : SlurpDirectory.hi
--DiffCommand.o : DarcsRepo.hi
--DiffCommand.o : Repository.hi
--DiffCommand.o : Match.hi
--DiffCommand.o : DarcsArguments.hi
--DiffCommand.o : DarcsCommands.hi
--DiffCommand.o : Autoconf.hi
--DiffCommand.o : DarcsUtils.hi
--DiffCommand.o : Workaround.hi
--Dist.o : Dist.lhs
--Dist.o : Exec.hi
--Dist.o : Lock.hi
--Dist.o : RepoPrefs.hi
--Dist.o : DarcsRepo.hi
--Dist.o : Repository.hi
--Dist.o : DarcsArguments.hi
--Dist.o : DarcsCommands.hi
--Dist.o : Workaround.hi
--Email.o : Email.hs
--Email.o : FastPackedString.hi
--Email.o : Printer.hi
++Check.o : Workaround.hi
 +Repair.o : Repair.lhs
 +Repair.o : Printer.hi
 +Repair.o : Check.hi
@@ -1200,34 +1297,6 @@
 +Repair.o : DarcsArguments.hi
 +Repair.o : DarcsCommands.hi
 +Repair.o : Workaround.hi
- Get.o : Get.lhs
- Get.o : DarcsUtils.hi
- Get.o : Printer.hi
-+Get.o : DarcsUtils.hi
- Get.o : Match.hi
- Get.o : Pristine.hi
- Get.o : Motd.hi
-@@ -480,28 +560,12 @@ Get.o : DarcsRepo.hi
- Get.o : DarcsArguments.hi
- Get.o : DarcsCommands.hi
- Get.o : Workaround.hi
--Init.o : Init.lhs
--Init.o : DarcsRepo.hi
--Init.o : Pristine.hi
--Init.o : RepoPrefs.hi
--Init.o : DarcsArguments.hi
--Init.o : DarcsCommands.hi
--Mv.o : Mv.lhs
--Mv.o : DarcsUtils.hi
--Mv.o : FileName.hi
--Mv.o : SlurpDirectory.hi
--Mv.o : Patch.hi
--Mv.o : Repository.hi
--Mv.o : Workaround.hi
--Mv.o : FilePathUtils.hi
--Mv.o : DarcsArguments.hi
--Mv.o : DarcsCommands.hi
--Mv.o : SignalHandler.hi
  Optimize.o : Optimize.lhs
  Optimize.o : DarcsUtils.hi
  Optimize.o : Pristine.hi
@@ -1237,13 +1306,14 @@
  Optimize.o : Lock.hi
  Optimize.o : Depends.hi
  Optimize.o : FastPackedString.hi
-@@ -512,31 +576,74 @@ Optimize.o : Repository.hi
+@@ -530,31 +550,93 @@ Optimize.o : Repository.hi
  Optimize.o : RepoPrefs.hi
  Optimize.o : DarcsArguments.hi
  Optimize.o : DarcsCommands.hi
 +Optimize.o : DarcsUtils.hi
 +SelectChanges.o : SelectChanges.lhs
 +SelectChanges.o : DarcsUtils.hi
++SelectChanges.o : RawMode.hi
 +SelectChanges.o : Printer.hi
 +SelectChanges.o : DarcsUtils.hi
 +SelectChanges.o : DarcsFlags.hi
@@ -1255,6 +1325,24 @@
 +SelectChanges.o : PatchInfo.hi
 +SelectChanges.o : Patch.hi
 +SelectChanges.o : Repository.hi
++Changes.o : Changes.lhs
++Changes.o : DarcsUtils.hi
++Changes.o : SelectChanges.hi
++Changes.o : ColourPrinter.hi
++Changes.o : Printer.hi
++Changes.o : FastPackedString.hi
++Changes.o : DarcsUtils.hi
++Changes.o : Annotate.hi
++Changes.o : Match.hi
++Changes.o : Patch.hi
++Changes.o : TouchesFiles.hi
++Changes.o : Depends.hi
++Changes.o : PatchShow.hi
++Changes.o : PatchInfo.hi
++Changes.o : Repository.hi
++Changes.o : DarcsArguments.hi
++Changes.o : DarcsCommands.hi
++Changes.o : Depends.hi
  Pull.o : Pull.lhs
  Pull.o : DarcsUtils.hi
  Pull.o : Printer.hi
@@ -1315,7 +1403,7 @@
  Push.o : External.hi
  Push.o : RepoPrefs.hi
  Push.o : PatchInfo.hi
-@@ -544,112 +651,36 @@ Push.o : DarcsRepo.hi
+@@ -562,111 +644,36 @@ Push.o : DarcsRepo.hi
  Push.o : Repository.hi
  Push.o : DarcsArguments.hi
  Push.o : DarcsCommands.hi
@@ -1330,7 +1418,6 @@
 -Put.o : RepoPrefs.hi
 -Put.o : Match.hi
 -Put.o : PatchBundle.hi
--Put.o : Patch.hi
 -Put.o : DarcsRepo.hi
 -Put.o : Repository.hi
 -Put.o : DarcsArguments.hi
@@ -1433,12 +1520,13 @@
  Rollback.o : PatchInfo.hi
  Rollback.o : Depends.hi
  Rollback.o : Patch.hi
-@@ -657,22 +688,55 @@ Rollback.o : Repository.hi
+@@ -674,24 +681,56 @@ Rollback.o : Repository.hi
  Rollback.o : DarcsArguments.hi
  Rollback.o : DarcsCommands.hi
  Rollback.o : SignalHandler.hi
 -SelectChanges.o : SelectChanges.lhs
 -SelectChanges.o : DarcsUtils.hi
+-SelectChanges.o : RawMode.hi
 -SelectChanges.o : Printer.hi
 -SelectChanges.o : DarcsFlags.hi
 -SelectChanges.o : Match.hi
@@ -1495,13 +1583,14 @@
 +Revert.o : SignalHandler.hi
  Send.o : Send.lhs
  Send.o : DarcsUtils.hi
+ Send.o : FileName.hi
  Send.o : Printer.hi
  Send.o : Email.hi
 +Send.o : DarcsUtils.hi
  Send.o : PatchBundle.hi
  Send.o : Depends.hi
  Send.o : SelectChanges.hi
-@@ -685,13 +749,6 @@ Send.o : Patch.hi
+@@ -704,13 +743,6 @@ Send.o : Patch.hi
  Send.o : Repository.hi
  Send.o : DarcsArguments.hi
  Send.o : DarcsCommands.hi
@@ -1515,7 +1604,7 @@
  Tag.o : Tag.lhs
  Tag.o : Record.hi
  Tag.o : Depends.hi
-@@ -702,41 +759,6 @@ Tag.o : Repository.hi
+@@ -721,41 +753,6 @@ Tag.o : Repository.hi
  Tag.o : DarcsUtils.hi
  Tag.o : DarcsArguments.hi
  Tag.o : DarcsCommands.hi
@@ -1557,7 +1646,7 @@
  TrackDown.o : TrackDown.lhs
  TrackDown.o : DarcsUtils.hi
  TrackDown.o : Lock.hi
-@@ -751,7 +773,7 @@ TrackDown.o : DarcsCommands.hi
+@@ -770,7 +767,7 @@ TrackDown.o : DarcsCommands.hi
  Unrecord.o : Unrecord.lhs
  Unrecord.o : DarcsUtils.hi
  Unrecord.o : SelectChanges.hi
@@ -1566,7 +1655,7 @@
  Unrecord.o : Depends.hi
  Unrecord.o : PatchInfo.hi
  Unrecord.o : Patch.hi
-@@ -762,32 +784,6 @@ Unrecord.o : Match.hi
+@@ -781,32 +778,26 @@ Unrecord.o : Match.hi
  Unrecord.o : DarcsArguments.hi
  Unrecord.o : DarcsCommands.hi
  Unrecord.o : SignalHandler.hi
@@ -1596,10 +1685,30 @@
 -WhatsNew.o : TouchesFiles.hi
 -WhatsNew.o : DarcsArguments.hi
 -WhatsNew.o : DarcsCommands.hi
++Get.o : Get.lhs
++Get.o : DarcsUtils.hi
++Get.o : Repository.hi
++Get.o : Unrecord.hi
++Get.o : Workaround.hi
++Get.o : SlurpDirectory.hi
++Get.o : Printer.hi
++Get.o : DarcsUtils.hi
++Get.o : Match.hi
++Get.o : Pristine.hi
++Get.o : Motd.hi
++Get.o : RepoPrefs.hi
++Get.o : Depends.hi
++Get.o : External.hi
++Get.o : PatchInfo.hi
++Get.o : Patch.hi
++Get.o : DarcsRepo.hi
++Get.o : DarcsArguments.hi
++Get.o : DarcsCommands.hi
++Get.o : Workaround.hi
  PatchTest.o : PatchTest.lhs
  PatchTest.o : DarcsUtils.hi
  PatchTest.o : PatchCore.hi
-@@ -798,4 +794,51 @@ PatchTest.o : FastPackedString.hi
+@@ -817,4 +808,57 @@ PatchTest.o : FastPackedString.hi
  PatchTest.o : RegChars.hi
  PatchTest.o : PatchCheck.hi
  PatchTest.o : PatchInfo.hi
@@ -1650,15 +1759,21 @@
 +TheCommands.o : Add.hi
 +TheCommands.o : Init.hi
 +TheCommands.o : DarcsCommands.hi
++Help.o : Help.lhs
++Help.o : TheCommands.hi
++Help.o : DarcsUtils.hi
++Help.o : DarcsArguments.hi
++Help.o : DarcsCommands.hi
++Help.o : Autoconf.hi
  # DO NOT DELETE: End of Haskell dependencies
---- darcs-1.0.5.orig/darcs_print.ps
-+++ darcs-1.0.5/darcs_print.ps
+--- darcs-1.0.6.orig/darcs_print.ps
++++ darcs-1.0.6/darcs_print.ps
 @@ -1,17 +1,18 @@
  %!PS-Adobe-2.0
 -%%Creator: dvips(k) 5.92b Copyright 2002 Radical Eye Software
 +%%Creator: dvips(k) 5.95a Copyright 2005 Radical Eye Software
  %%Title: darcs_print.dvi
- %%Pages: 110
+ %%Pages: 108
  %%PageOrder: Ascend
  %%BoundingBox: 0 0 612 792
  %%DocumentFonts: CMR17 CMTI12 CMR12 CMR10 CMBX12 CMBX10 CMSL10 CMTI10
@@ -1668,10 +1783,10 @@
  %DVIPSWebPage: (www.radicaleye.com)
  %DVIPSCommandLine: dvips -t letter -o darcs_print.ps darcs_print.dvi
 -%DVIPSParameters: dpi=600, compressed
--%DVIPSSource:  TeX output 2005.12.07:0725
+-%DVIPSSource:  TeX output 2006.02.28:0744
 -%%BeginProcSet: texc.pro
 +%DVIPSParameters: dpi=600
-+%DVIPSSource:  TeX output 2006.01.14:1435
++%DVIPSSource:  TeX output 2006.04.09:2212
 +%%BeginProcSet: tex.pro 0 0
  %!
  /TeXDict 300 dict def TeXDict begin/N{def}def/B{bind def}N/S{exch}N/X{S
@@ -1808,7 +1923,7 @@
  currentdict end
  currentfile eexec
  D9D66F633B846A97B686A97E45A3D0AA052A014267B7904EB3C0D3BD0B83D891
-@@ -2805,7 +2782,6 @@ dup 119 /w put
+@@ -2802,7 +2779,6 @@ dup 119 /w put
  dup 121 /y put
  readonly def
  /FontBBox{-163 -250 1146 969}readonly def
@@ -1816,7 +1931,7 @@
  currentdict end
  currentfile eexec
  D9D66F633B846A97B686A97E45A3D0AA0529731C99A784CCBE85B4993B2EEBDE
-@@ -3193,7 +3169,6 @@ dup 88 /X put
+@@ -3172,7 +3148,6 @@ dup 88 /X put
  dup 89 /Y put
  readonly def
  /FontBBox{-62 -250 1123 750}readonly def
@@ -1824,7 +1939,7 @@
  currentdict end
  currentfile eexec
  D9D66F633B846A97B686A97E45A3D0AA0529731C99A784CCBE85B4993B2EEBDE
-@@ -3528,7 +3503,6 @@ dup 120 /x put
+@@ -3507,7 +3482,6 @@ dup 120 /x put
  dup 121 /y put
  readonly def
  /FontBBox{-301 -250 1164 946}readonly def
@@ -1832,7 +1947,7 @@
  currentdict end
  currentfile eexec
  D9D66F633B846A97B686A97E45A3D0AA052A014267B7904EB3C0D3BD0B83D891
-@@ -4018,7 +3992,6 @@ dup 123 /endash put
+@@ -3998,7 +3972,6 @@ dup 123 /endash put
  dup 124 /emdash put
  readonly def
  /FontBBox{-251 -250 1009 969}readonly def
@@ -1840,30 +1955,28 @@
  currentdict end
  currentfile eexec
  D9D66F633B846A97B686A97E45A3D0AA052A014267B7904EB3C0D3BD0B83D891
-@@ -4544,18 +4517,16 @@ end readonly def
- 0 1 255 {1 index exch /.notdef put} for
- dup 44 /comma put
+@@ -4529,24 +4502,23 @@ dup 44 /comma put
  dup 48 /zero put
-+dup 49 /one put
  dup 50 /two put
--dup 53 /five put
--dup 55 /seven put
-+dup 52 /four put
-+dup 54 /six put
+ dup 54 /six put
+-dup 56 /eight put
++dup 57 /nine put
++dup 65 /A put
  dup 68 /D put
-+dup 74 /J put
+-dup 70 /F put
  dup 82 /R put
  dup 97 /a put
 -dup 98 /b put
--dup 99 /c put
  dup 100 /d put
 -dup 101 /e put
  dup 105 /i put
--dup 109 /m put
++dup 108 /l put
  dup 110 /n put
  dup 111 /o put
++dup 112 /p put
  dup 114 /r put
-@@ -4564,7 +4535,6 @@ dup 118 /v put
+ dup 117 /u put
+ dup 118 /v put
  dup 121 /y put
  readonly def
  /FontBBox{-34 -251 988 750}readonly def
@@ -1871,208 +1984,172 @@
  currentdict end
  currentfile eexec
  D9D66F633B846A97B686A97E45A3D0AA052A014267B7904EB3C0D3BD0B83D891
-@@ -4593,110 +4563,96 @@ AA078CE16247A1335AD332DAA950D20395A7384C
- 4B7F768DA5AA89E8F163029ADD4A9209DE8A4F285766C06EA859639B92CCCDCA
- F59B1C2BB8D588CA754D1257BFF76B53984DF4937093AAEF79009D32A29A4C16
- FB610C7D6713482C48D7F9E8410C0F00AD6E67021056B6035534E79F05D14EF2
--4E87EC1095D4AC55EA157825F1ED75B24E533B7436F27DCBE4EE75D8E176B50D
--DD40EB16AF9C59EFA78B58C8356F96FFF42A6C54572A08CDC358F8D95C8E8233
--02D14AAB0728CF0A40287DE262C73BCFDF1A461237F75B590C7B58A9A4024455
--051F00BF60DF40B8BEA98ABF5BBE22F5B8877450707A37E389AF8002B7CB826F
--17B081CB2217C795B0C7C8F5B0361F6CDA892B0AFB0F9AF3FA48EA1CE40DFC37
--FBD8197324A82D1F4C84AE6DEF7ACC8FCFD194FEB4E5B1E043420B4253D5AD52
--24ABA3AF0949124F2BACB0DCA06251C90E4E4B8007A6BA2C7EA62AEE36F54325
--052891AC994D3AA97A64F4B27DAB675FF6188A5964F9557F909882F21A8817B6
--2A2A39AD73FA2062A0DA2E8B821D291BCE034465FD6F4431F52AF6F0EBA4C2D5
--18876F17CF438EE8579F2EFD9AD8CF5F04448D5EC423EA420750AC2736272EC4
--5FDB3D23786D3F40458A0E2051BE6ACB894B737426B3A10248394E9506F5CF24
--7DF900F0D3F5825853B5073986AC5A2B16247C0072BABAC3D6E8B83C98212E0A
--8DE9E66BD21060169F9E0E6444A8AE5F1A93DDDD4D35F150949F43734914BF2D
--0B3C01C4F84986808EF84F8FD6674A46AD032DD493D290E94E0A738B02DF4AA7
--977DE1A0A3AA56B5668C4A4D9A9865887D26F8E213B82C358A85A986304B0DAA
--67D77CCE6B422DC8FF53667A0EF1C066BC5447A4FC048D452737B51D9C5B7B27
--A847A9246AB259908F51FABE7B931BE6BF7E59C898C4B1577D806CE69B043EEF
--08014BF59EFD3BCFF5CC1B9D78CF59C348156A65A18BC5DA2CFA1BC6449F5267
--0FF08CBD16322F75E20D47B226B2ADA287C853F1512949A1E43C2ABB1D4B3126
--2C3507DA836A08C8485E88AC4C4624A2C01FB692120D05A3036889CEFFD6B5B9
--B97B1F5CA4648BAF688761AD8DBA33BE942B2A071198C52E75E55EC745832EF0
--A387E31290830493E43573521ADA89A5435824BDEE4F2B4CABF40A23DC9A1C61
--7CB6BD0EEF3C004FD62722397D3AAAA6403A9B75017A1AA3BE297A96DDFB8F39
--C71C148672D76088E6CDDBDC48680B2F15247E904C5938924DE92AA5DD923264
--10E1835DEEC0D21F232729240E7558931C6D106EAB43D56B1F76B484EBA011A8
--EAA5861C5D2C91C33C91028084458626EC3512BC3514C38C378B5BF7839C4F14
--5C71D355A7ED22DEAAAC0DC18329A4645263AB9EF74BE7D78BB0CE70E7FFFF3E
--8F58A198EEED67CD258CF06F143989914494243C7117ECFF6DDEC8AC2E9966CF
--76A608300226ACF308A79E9D02CDAFB63A5881DD012651B5CBB8CBFE7C02B5F7
--2B2072E556DF625B14A088E7E6514EA09DBE331E3D1F24EE1D3EE1B7E22EE1F4
--360A6EEBE4E2563DA698DBB4CFFA3DA1163C57E5C230054CA5A54A1E59E49FA9
--E7547ED312581E11EBD3D21AFFF517D04248A1F9839A10296E8D2D280B941984
--F88B1B7EDE7A6405A146CD7AE4C8B900094FBD057BFEC63A488E54E6D5939BF4
--6CD4CE84901F36C89BB265B92250344DA864F56C24E708732F532E3FB8884EFB
--8C44CBAC2B1A11EA59CFA421C7AC2D5DBFD8E019CD22DDD41AB008CD35791E01
--201E1570441895B683C87F8800E97FF9A07770D4DEAF28BF13493EF89443002D
--DA108C2865D51ACECAE03C2503643F9707317EDF2D7C41A3E39C204F8A3A269B
--22D3EE5121475680372ECA07E004649145845BDDB3F972C383D79C8829766A60
--A97F067E28658C3881162C5CB7230FA4857D6CE0F3688FBC072B43CFB981E4E6
--1367F9D777FD30EADC0747B0B2032F4F16BC6C739C057FDBC3F0C09E0982FEE9
--34B8772BF8E7C28EDAD89DED1B08078A2FE53D3C4093E08AC5EC489D9A832B40
--B2E084814F4742F10AF14BEC22F5544F7AE1A975CF59EF64021F313680004487
--B6F874E063A9AC21A09128CBC2AB120B842E3869BC21EA17DFADA554E64AD2F7
--4D8010A15FD201DAF87E3832F5F920F5D3335C9F3EBEEE39CDBA09E502A1A9D6
--A8388AA8E713026AC6AF10AFFA856E5E3ED1C7D5E2B401C388D5CC4F50523309
--29286089DB525CB4D97DB9CA745354ABEE904D903619D3B3FE70224FEC201F46
--7A730954327247B47F6C044F694D400790D3384FC938E89777030F4FE2B1EC4E
--277735A7009C8B9CBE9545059940D03381ED2FFBFC5E90076A43E882A6D4AEF3
--5043802D171E6350FC7744FCE3C085EF36118A29F3FA48591870A615B38C5B7D
--B2CF1D99A395DD029CBFCCA1CE03255A34E13A9D13C6CBB6DF205C34D1079C47
--72ED6C3ED19DF73E026FE6ABAC7002E9E138F8DBA85E603D7F86428CE2EDA776
--F76328EDCC2D66F54F4DF71C2ADF34E26C0E6C81C091B945D2290425976C50EE
--C5C9D9C0D572EB0CC3F780CC730724511D0F8E0741C952D4D54065D24E3CF8A5
--D384A131D9202A663867224A8DF9C90CA4FEF6D50896B553AD5FBE65255E175A
--7599F7C1C6A5B42BDC2D8A3C618EE2D7E92446CC6AAA1794503CEF9424292F4B
--FCA85449BF38082607BD6682D6DE723AFBC129E6FEE525D3D1B410756455FC02
--9E24B05563FEFD1103654068EF912D167DAB40C6337AD8FC46365A927B29F04C
--905CF9360726D4F719C7A1A21BFDBCE0B7699E2FE6E3E56A4D48F4275F4C5F9F
--6FEEC2AAB0431E77D8D1198555170C487AFD84E5EAB4E79061C2BE8A0AFCA1A6
--5DFB1EAAEF273D54A5BA6EF97B6E7ED58E452C7DDB686BE7ACE2E240F1DFC2C0
--7C7A57CDFECF3AA96FA88EA7E6F6112604500A53E92D77EB5F0BB5766FD8B7D0
--95E5B3C369EC32D4C58936925A5E82DC32F6F06E8AEDCDF91EB3B5CFA5A32168
--7D873EB9B41FD00DBD527912DFD0A85BC15A3849EF2826ECE0CF48CDE86CF5A0
--A2EF160F554C79125BF74193C5F16572E6EF1A3A2FF4BF5D9E553220E3571618
--48447E1B7B09DF1D22559A1724DD771203E5895C607DCBAEFE63C536F0D1BDD3
--21DC1E0F6625BB3892107D228E9BFBC792B523341EAFD88485079985EEF9EACC
--1A93B04BF4AB2B3E29B354823C10E598E52A965D2D5AC46112961AD0718B3E5F
--95573D5781263E2403F82EDF8B89A942580D943E4EE52E1A0EE084C1ABF45B4E
--B8E0A1ABA0089F264BD7FF1108AAAC754E8E711D5F9178235F2C8C38518CFC7F
--5E8DA6E2AB2441D84595C5BC94102C4032C0C8AC05688332D43D1FE308E4CEF7
--340D206E42FC6AF84EA10B6DAD202181E75CAB9A267B180A0748C787AC714688
--6A56CE429ACBEFACD2412A386141D20A6A1EE2A4606225F58290AA792E2101AF
--7FA2BE21119B77614ABC3C66A9DF7B792B5CB258054C0DB1925F514FCE6FF70C
--147F764BDCB0D3CC8BDAAA3586708632501891690A76FF74A42281B761B346AA
--91A02061BF413D988EA7CA3CCAADB6F0DBA457406E62C6ADF2F80C24A506DC10
--00AE48C7C38644F3D000F1B1319D3AC7B73B0087F922B80E4F0524104E74705F
--8C4195183D59886C4E75C31EBEDED11196AC3C61C5CD126C595CFA2A3442433C
--77608C3FBD0A18038CF73C0E11E86B61B50158F8CF590231A3D81085B292FDAD
--D218E6C4DEE1C673298F73071FD61F6D92BB787B288BCA3095DCCE08BB23B96D
--9FBCDA8CF43EA7015A05246DB32DB8D07F5F818763FE8283379EAE6623E053EC
--EE32292C1DE2E385ADB896869785561B91FDCCFA70BE7049555E6E92F199BD60
--E451224ABCC27988EA24EE8EFE995EE50D599D88EF8EC2D46AD613FC1E4D47F3
--7EA3805B0CCDB1BEF9CAA5CD01F25359EFF3BCEE5120BE88B6F0D263F45339C5
--571E404DDE2A92A1FD13499511A437956511697C411AFD1252F15F7736E3161B
--AAD93526A469856ABE036CDC5E0E52F3E82D6C071BDD27F2C2D956C40F97B825
--8C0F23EC97514F6E8DF75CDE08645E81B2EDD5A8896E5BBFC678DBA3F3143EE7
--875E1510F4B18F9BF29A404A893591119DB8F9F9571867FAAF42FE26DB57AE97
--73BA1BCEB078F17970CFCD2A2E4B6570F8BF3419E902CE788C9902680B281607
--0E9A287715FA65F56C0E7044A970DCB2CD1EC7B7B75A048401869E81791517E9
--A3ED38727E0BF268B1516831810C68ABE34D15CFB00C0A7D661A74B3B8B6476A
--CCBB7535B6430834D7ED3AAA44619EB2882578FBC5F908DC76E8EA1120722062
--4BF3EE61E3A465072B3851089654053B641B9C5FD5D7341E5CC72C60E92DD69F
--A4D37A1A1C6A540D253448C2BDBE0DDBFCA257E29F91B3E89C5365DCD124B5A7
--84CA1940C90A52D99D5F7F7BFE9C66AB7D07528E23082FB4B46CA2A9FFDB5DC0
--B7FCBA79EB8BBD2B795699F65BA550DCEFE81C8CE4A416136017DC0C0A10FC1F
--D9738B9F89DF2CB9D924FF9CE43E07221C3C1A18B9ECD1051140723EA6743B12
--B836A9199686D7A3DE0DC39ACF40B34468BE9D695194401FEDE8EB6F40DC1013
--0BD5FD202233753244631FCCF17CAE10595CAFDE63A99FBD20F0EE95B2C27732
--388936D3746DCD87011FD2CADF3A36DE507AC4708E3746A855803849C45CC8FD
--E16822B95C20DA0EF2309F9CC361B446740E6C34724A1CDAFD4235552A1645F9
--39907C48BB7C2B20BAFE9555BFEC8E8F77CB5E0C58F0C194C7F4EB6CE9BD2CEF
--A068F13055C3406B1FA34F8948D1AA84D1AE1D9AA8EF5D030F1B5D1D8C5CBE81
--C6C4E034A81C9A3A9BBC9D7715C5499A8345F9E7B2DC0ED231217E3E38076E54
--8D5587D6BABD546FD09DD4946EDF7FCBB7430CB8BDB4EA739E9A
-+4E84480262A2CABB0E39DE7BB6BD48572F469F2406B4CBA91566D4FDB81AE0B9
-+D95D9C3FFADCD55E5E04C71E2A8FFC2FDAE4A6B2EEC5F71E9ABCDB17A7007175
-+592DABD21274CB17949AB0AC8AD11C1A1A046228E5385E15509D8CDEB3E6C6B9
-+DDF152A62C9D31CDEDA3DB7C0D8A9DBB24AE36B47059BB5AC93914D2828D0783
-+65736618FEBB08ADCE75074A634195CE2EFF0FFFC59C918F1C1961238F500CEC
-+24542253E01B6E8E759BD42183562F471C23514CE3F82A943F965D43091E38E6
-+E9727FA8152928FF09A58F710C3ED370575BEF82E49B2E6048F1E994255BB4D9
-+4CF5B5008F43E8C9E60D775020272BEC16AC72FB1D9935A2076A0BEB25B23540
-+D67856FAE40EEA6DB1BC187F0D6C8923C743D236D32D2E05FA4E4033CA3F4F01
-+BDAB85ACDA636ABEC3EFA3E7096C5A49A817B087599EBF2F86B36212E90CFCDE
-+A88CDCE123B3878F535171CC0D81DF431BDD8942BC9DD359535C83E2B8308FE1
-+53A95EC53D78436D693505FEDDB23A171B9A6FFFB7343DEC6643E40A84FB1F5B
-+7612BBA57D115507D1DF079565D0B2C861D4CA17134A2ED29961AEF9894A5984
-+1C0EAA2AAEF688DA64D5E24735AD9E9991398CF29B4CECC215504C3FB501B622
-+5980B684EAA57B9AB6013352B13A9A4339B847C1DBD26EF69BED5D25DE4D3900
-+A8B582B7F2EFDD9CDEDBFA861902D91924D2C997E870F19900B9CD32AD96C3BC
-+F662984B25176039FE082A3F66027FDF0BF70B32D7032A225A57EED1C48E24E0
-+9850094A0B4408189AB526931F402C646EACC1BEE3AF127C6C7F4EF8AC4806BE
-+42D5694D980A580188891CBD2835E83B8452334EC39246B81BF5594D2030442E
-+1718FE64706E4F83635602E75817E2C18303A2AEBDC46E985DBF11D8F04C830E
-+687093890796B8A6B8BC8BDBD94814661599E805E3FD1AAB174F2DFDA91BE0CB
-+800F86A62C9F6812130F4A98CEDF8FB7CCE8F6D016E636829B0DF4F7142289DE
-+35A40792A2A240ADAD44F044AE92107A5237F73E21C34F23C0D03D3DF1E5CA34
-+B33733B0D9BB1067E91954EFE7505D1B593D6428E140A7774E3362B7F0E92965
-+C3635F040A3EE2B71F4498F90EF27A1A46995E90FCFDC3FBDE1A52536F9BD9A5
-+385781383613E2D3E1AAAE826BEEA9DB4C9E145B16374BDA8CE5EEE8C014BA23
-+5E028A2FAF7C4EDBFCD51F35C3423D86FA1FDFA881C5D311D6AC2C72E48CAB21
-+DB29176B1D6FA12D91B0B44DBB076C85645A5775E4879297F4357D2E472E2BE2
-+45AB8833C1985DA578F3CA8E50852F6E045761411E6CCD2BEAF9275AB7D05D70
-+67443DF5B7843BE20360DD9CE1EE90EC7AE5E9289D21958DE24B7E4371DAEF3B
-+49F4149D784B5D307EDBD3D6E9E726AF9B8E3ACE57EE3217DDE22BC89A1D56CF
-+B0080D4835E645EFD9A6A9D591C97B89B31597BFE7F3991729799433551B6E7B
-+B5DEADC4C1A5AFAC04851A2FADAB544ED111697B7D240AE5841E710E5622F868
-+EB541B935EB798920032A35D8B24A1E746E7C7BC8EB8A6973F704F44C8E80511
-+49430E9E917E33A3221338D83A1E384D17AA83AE2757B29CA029E7034E45EBC9
-+96B47DB46720183BD39B93AC0F7BEDBC57C3C669B7503E65F1D59A6E05CFD512
-+E139914944C483065018BF740DE0BB1D880B3B662B098C69EE1013629B3D280A
-+F4DB5C2EF204986EF0FCF945C0CFA922B68267DB355701619EC584EF2BBB4728
-+BBF527016ED06055971E348B863255797D4B6A85909D6DCF3035D1CCA0A8F37E
-+0682696F71777521494CC1F7A71E2C211C2F78C57C4662E535FFEF4E2A1EF175
-+564FDC990972DE49E74F117C7C971ABF90E22900425F730D3154821A55B58093
-+EE64C8EE26A3BF08D6FA852659BDCD94E3B7D71A81C586DA5F085666D0F49FE3
-+FE9EEDF5B6D5F4E14584A57E4978CAA5F1964308F55EB7249155C2F36195C7E9
-+56EA08DB291A2B2BC7E8B939705EE602463B190F6E995A52030EA812D672DD39
-+7902DC43A74AB9759EEAA3FF036E3EEB7881329E55716432E5642B8C951FCC45
-+73D43FFD5A9102F9BC0342735F5EC92D3BAD926CE63E2092CFA65C698DB96F90
-+B593B6CE7F6B83186D7A59EC5D2FE524D67E7322B6FB12FE4967255AFF2C5886
-+7FA07ABADC96F4B085A1FE6DCEDAA41F6AA415C72312E8E4E0E1327FD75CFA1C
-+B6D1611085FAEF6982D7B1727A5EA87836CF8B53D080BA978391589B01F2486A
-+190B1CC9A25E147FB9E47F2C54CA417FF4497D6C1B2089AEF929EEDEF83444E7
-+C1366AEE5C93855BF4DC8F4A749948C34A274D49462A19C4B85142955CD3807B
-+B970F7C18B5CCED39C363E1C740EBBEB59EE1E06658ECD5D9C933E6D44A63F07
-+D8112093D3D3A5444A27C0B172696F96EC0C176E06B2F5E52E9BB00E4E051F5F
-+81803D8EA1F5F8C648F8BDC2A9CE9A9B067CD0A3B4858659B48BD302868FF4F8
-+0C99BF31FFE0D2F6BA27A9F2D6CE916CB75498181E07CAB8519388010CD09B17
-+58A028D9A6314B6262589B60D21A4B876759552C5782AF7B65D535F5E29A2943
-+62EEC9D3835C30FD56F7DE1BC2BB7B930B3A50A237F1E3DCF9449DF76ACAEF34
-+8DD7CE0A661925955546133BCFC89F64B76C738557BE16FDED4C36270C2E8423
-+38C5E89A9C099CF23ADCDD9BE12633C445352FECA9585A3FF6509F1565D446EE
-+B80A56F49E0C66C659163A1F4BDBE6C6ED7EEA2B8FE6D928027A0EDC7685DF66
-+7ABCB836B08370FF4619953C47416525E76EE79B0A26ECC13471432AEA544747
-+80AAA4059AE14111E1430F689C4DA48FBBE129EC1792B718CB3A13257E5AF2B1
-+674B0A3F41BEFA18405BE184E39A1B54620432DCA21DF69B93E5AF27458B8BA0
-+0EF91A278764E7A41A32F1E2ED8424800B956738B93417177ED6E44158D184AD
-+61BA1D0235A280EF34777B49313FDA380D4AA8242EFD1E7C1AE031D52FDA5B49
-+9C7B105827986463271C123C70890C913E9313EB9A4FAD225C3BD55442DF7691
-+B5BBCE6ED4DC681A0EC2ED340F45504F4C173EFB3A419558370C9AA23560E13B
-+6F5610D01FEC31D3DCBD5929C6B98907A0711140B651E7358C1BBD0EE6FA499F
-+F4040283E30C001E17E95D3B9B873DD0C9C629579C0454AAA0222A4DDF22F37C
-+65DD6AD6046FE539AC230EB7F440E24C975BB782956DC65AA41364A7AA0AB7FE
-+696D985F68AA2CBACEF9CE725EB1E8CB8B06E0B758457A2E40CB188E59F4244C
-+12C5C9781B9684ADBEB35AE22BAB8B8C3DCCCDD212654CD776FFB4057B2A52A6
-+753017508CC0BC4BE019418A3423B26D1DA4B70762DA96CD66CB74A7749C8350
-+03FD44EC2574FA52EEABC8A2E75991339FF51861B485508FEF98D2C4D296BE04
-+EAAC74953924E59699AB9997490E048C1E2704B5A9A530545E7D16408B6DD8F0
-+942DC35126E7731C1041B89C374E4F7FB0D7CB997AC5F384AA898984534442DF
-+D9DD32C6E36690AC26A4548354C97210CA5421EA3C6B3E02D85100EF048C0277
-+75EC8A58563A8D817CFA72740513114B7F619F0CF25743DD87AD5757097FE719
-+FD67B3D0AFFBB70F0E0B470F9CC45BF436168F03AD2BDD0ED89EF6DDDF061433
-+B40B5DBD92965E2B105CE3C68A22FEAA0316FD2713E627F843204E05E40E5E1D
-+C1B98546A4F313C68DFB950C428E84E304B8A2A8460C28FB439E296D9D08CE02
-+FE1CCC09D1BC08FA5796D373DD22696355D5C6B85D7EB1C77088861BCE9F0D11
-+0D107DCB9424EC55FF3726508E0BFA49427F3E550B892A8B1C0471BD348BCAA3
-+BF507286DCA8B0BD083B066A85E2143CD8A85098DFAB8E2632B745416AD6F205
-+13572D1935C91C699D6EC947B4122DD857A704E3754FCEE5FBDDDD1B2252341A
-+47D32432A3B2E114BB7FB28C86FE1292CAB0A0F2EEC42DFC26B9BCD253FE74A2
-+4BCE43F66E20D9215CA3C9CD5A5CC2239DB04EB5EBB2A83FA6A5B0F3D85C3296
-+9A5621C00826A07F068F31FF21B8B5BB5DD3AB729E5EDD2355C7E654984B50E6
-+6808BE76D12DF93632EC1018E1D558592F3E85BE2737A2D5C13DE23021715FC1
-+CAE332FCFDCE37333888533833BFEE6525BB9BEE05
+@@ -4594,85 +4566,85 @@ B907AF9505FB705B824EF7F5618CA21942A2E7D6
+ B6E08A287E27AA2F4780A38ABBC11D70A4A7B5D6CE24BB64CE430C0EDAFA1409
+ E716A66C3035AF021DC231F0B107544072D07E942AC5402D4818F1F07A8A2A29
+ 15BF1A1C7F30AC5F1947C73A3FA3F2C9929A064A06CCCC9BD570C4176AE59192
+-E77122416E76AB88706193FA0A4BD46B71C134A8613BDCED438733FFB359CFB9
+-87B9D2549A8AE80B1C676166270FADABB4A917AAC2BEEFF820953C43A00D7780
+-931B8D4ADF4C5FC9D4DCDCF104C633B593E30BF8663B0AE2583FD8E509DE02E7
+-9318A1365A276208548D904142D63A9824F09EF0A97CB1A26E7369C180EF4A66
+-8F447B1676DFD4B69DD2AA4A3AD1BD76EB836259CAEBE695ADEDDE76FBBB2D73
+-1FD8D304406D628AF2EEFB6736A22F3CFB239659563B8BDB478CB12509A4A58F
+-7B3046967B4EB459535C3B92C1F87AE88DE8B9D7DFFE4A2AC8612D63719358C8
+-D7F45A178214130C22067569C105961665239080CB88D9C627586755444DAE6B
+-267B62B92A244AC8E3A84499FECD595F576114253A57C19768B93FFE6273F7F8
+-9FC37C24050F9B3976B251AAE9103E6DAE81AECE4E7D7DBDD53C4ABE70B13592
+-A1ED5AE172A99AAFBDB0C81B08806C07323BDEB5220BECFD4FEBE191232DB017
+-92C08AA37813C13365B1C50504BADA583A1A5AA3F15AE7A82BE79CE7892B5F91
+-142BC3F1F3B5446F1852C0C1931AEDD11B42541BFD5D276CE24DA4167D742F45
+-A7768F686EDB79215E0870041CACC241B017925A684A8FE0AD22A3A1CA9483A0
+-4E1431FC59C5A27F61F11A5E81FEBAF318D575D67A5576757CC6FE50FBD1D4B6
+-017E8A082E218C7D2E62AA9A10A91111606BF3D773D5EC0C2394A9A0C86E4F2B
+-744FFEA646ACA5D50AE8C25388ABD74022D204A59F7F1C579B678A79E58EFF5B
+-0D542D75F82011266B3D8F3F2BB3EE370DE0BF8C5FE0B14C182D66086F2396F4
+-E2EA2D27C1D30E576C323B20852E8F1E255A857045E2FD4C0C5222ED8F534A5C
+-D9472D06D704E5C19D2A3D1BB628BB262DFBFFD503DC3254E73F5985E7451E85
+-7459C923899585895F0BCE6676F16AF863CF16C8B6149BA8531893A8EA9675AF
+-F85656BBC9D99F9D10F1EA437A68E7F065987465AA92CCE6F2CA14E7B030F383
+-9689B6580349EA8D6CB166BF5BB3300A865957A83C1E2B501CDF82449B981214
+-8A262ECE1184F05706DE269C35CD402A6099753B625DF1E6757A164B7D12BB0B
+-C632C34A193185EF3E5EAFF3CB10BFD4F94E14D282D49BD391F2C6A9E49DDCEC
+-8A6125743617EE911C19580EB9C10709DC027AEEF4E715C1377123A88AB1F471
+-D8B7F1E591355C222E0551F1395D2FDD66DD8405C34D110957CED0E03A8A5415
+-142145374B57A5AAF0683AE5A8D131BEE56A0EF775AA7925BD4C8BDEBDA74FDF
+-26DB64D831144398E0957D39CBA4D6561CB286551A6A874AD1AD32C7F75E90A1
+-4673CD6BB8F1C0FA376C35803994C737D15F49D8780177715398D5B4A94FC839
+-1CF9664204D4F88D3B4FFBD44F9B0DB519E08378F54C106DAB378F0CC58C8D10
+-D35A93D21000E2E1FD628B5E1A0128307D016006517B8447EA67D34D8197A828
+-0A9BCEC5AB9751F30CBB8A910840B00C8D48718FC4A1A46EACAC53B8D84358D8
+-2FE6BEEB314A6B36CEF8D91C2D4250919741ACCA43FB60FE2B64BB6DA46C835E
+-83114150020B248640A75FE18629E7084AD2FE2B39E954B73B7F6C9456E85D09
+-93EDBBDBA845EF6968151F4D5675A616D9502E28B860EC913A3F64BF9DD5196D
+-8075F265E28CF2F2C9CA61190410D67A60BC116306D05FA26B6BC5F750BFE82F
+-681806F286B8CC9DC1806E90F8B6976D1EEE1C8FEDE58B25069A39A3E7E13947
+-CC64AF882D6DD9445A482C4D5EABD1DD14772D5F9CA449A3264708433342CA6B
+-1F7D3A5D748B3FCDF57CF1E1DCEE04621FB01DAA81D0B27A73A8D4A167470505
+-22A99A64AA59CFC57940E05D5854A8F9C91ABBCA5BA834DC77B5520FEE892D65
+-3D5EF91E7C497BC3D23E10ED17496903D3A254ECC0AB2EEB8C2DBE3756818ACE
+-0BA0519558A91DFEB5BA2B331D87297102F4AB2DCAF3845A650DC5E2CD787C58
+-7EB0ABBA609BF95F0B3364231613C251D092051DF0D43DC1E71FAF33E7AA364C
+-008EA7363E04B32D78B9E1148D62A98F034CF7C2EE1DDEF49F13833E43EA7A65
+-FBC9AABED360377C6B27EE1690D8F2CE9AB00F8F86E6391DC738A9255B931CD8
+-9D8943D03A0469D9A659425FB9BF03A5BA6C1A83A859581D66F3A724D187AED5
+-84A139E1D05F3B284E1F7B91ADD71AA1D75A79C9C0B226B5ECEFF7002FD72A86
+-ED026019EA226BBCCDC2151901D14E0B37A9AB8E923F80A69C83655CD03AB2D3
+-F03B50580F830AE7987B76128ACFBF2A4A15E6F10DFBD4CAC97040AFC91D3330
+-E92B5F53D93E44D8666A7BA8D6B1A37A99C20CF0635744067F40DCA339C0D124
+-72CD975C40D7D222DB533A9F8FF0D2FEF6897EF10808DA641D2D7D2C77B9E2A5
+-C915754DEF505D636A60F18FDB1730B337E08B947F2248866CAA7A209DA68DEF
+-094480E84145BA9E97F73A27D1BC3AEFB520C8426BD356485F6498A907943454
+-64A5566729ED3A52BBF61138EB5DEE453EC7220DAE4D875957A1F67C67815691
+-D19E834A93EB48F04FA7CB4964FA84C0B802EDE74AB47A3EE030236C9371E674
+-14BAF7E94D0AF3ECD65C16E39A3EEB63F992208CF0CA2ED134568CC269DE08DA
+-15308A2760115367D946BC8D4BA7878BB604051FD30DC505A9D84596EB4DC175
+-05FF63D1885D7ABCD92F1D2CA0CBEB195F9F9CA2C4306CCD796A3164B39B378C
+-A8208F49FA5977AF2ED10C65BBC42F06077D63ACA35878B77B4AADE4E876DB7B
+-9B2630B9E0493E5A1B727A937F8D4BE2046653155536C5E1C26BA9113ADB2D00
+-B3288A3CAB0E10C4DCE2724A5FF9CCBF72787858EFC925F22F121890FDB29064
+-43DE6700395544FD5FE621BE8FD0FA5C7AE5CD59CB5067F976868CCCEF323FE5
+-712E358D33FB61CCCA83D2E4E65622DE63A85EE0DF922DB455EA221496E25301
+-45D8325D7A25B7672B1BA405F83D691D3A2ECC40C11D84895D0A9DF30ADEFA95
+-B37D2270B57523A0022E30ACB5943F081F3CD42D54B6279F63CAA70C947F100C
+-556F0FD101ED079AC9E9F31F85C57355169781CA9F08F4A94B4C645316EFD179
+-044D3BC1A4FAA1D4498F4B539D75E30FEE305CA8CA4CC357E384AC970DF80B10
+-1239231C464AF2D4AEFD4FA5B1637EFF3C882E78105E131676B9C789FBDDCC88
+-7E23C99C2CE947C10CB447E8B88AB08A7DE7B5B5DAFDF26A8D74AA981132303E
+-8FF769B6BF4B00346327A8B6FD6CE59240F552CA7D6316C52449909FCEFA2645
+-CC80914E5D8B0D87D42E75AD700A4BC8CFBD36445B01F4993B7F1ACE2E7BDD5A
+-7056CC5446E99CF9AE56D92C6B8F62C8538C769D689548FCD8993FC1CB3FB887
+-B3F7C06197223B63828AB04B8CB18522EB6325B0797C2C42E4C4D1541C6DC358
+-F4687DE517C32E1BF1D67926B248E8849E049CA7652AB67FA28CB061B7EA1714
+-2C2A3D5431FA5BB02ADDF6ED78169DE1AC5297E060A957493B497F7321EAE106
+-359AA5842927A8BE3460EA775C6F58985739525CE85F683F1712976462A765E6
+-F095ED8B8ACDBA568DB1965A29C4CF5FE3F3CA7A8BD3ED5E4CA53C705A081767
+-07E2052C0EA89E40D7FA8C9F
++E77122416E76AB88706193FA0A4BD46B71C134A8613BDCED438738F70B73D3AA
++73066C2694DBD9A723798431E1E55CABCDE12199008C6FCAABC66F7A850FDD30
++BEA9166D791180AA47017AEB300DF767AB74AD232645EE0D305511ECAA391FEC
++102EC7244E9297E045C9254C50518DCC0CB41DDA81B2148FF5E00B065DDBEECC
++ADE84BD53302F38CD88E194EEB6A16A437A5C3205B2084B365573EEFE9FBA35E
++DF861DAD06CE1DB74E24605F0F3CEDC105DF98B89643EB9658499EF797928AAD
++F5F78DC5F41701047D03376F235570EEAAD53501AA6DA5FBFAD628CAA1DB1466
++6150217AA37F3C018F7BA0EDE7660EDD8A067AC2224353F4F3E883786C6CE1B5
++FAEA7273F58B8DB323CC240A943D2790E79F95686C012D2B196821208C7A38D3
++D91E5E451181EF76EA7CD86A865CF0D32BAAA4288ED2DB92D30F5C575D089947
++6A838F5EC14A7D6236D4AA39112828AD3084D9EBF0EE7658C83BF000C3D41EF5
++24CF44E3DD0C4512DD8E6B5C54DEF96A37943093C1D5EF16823C14C8B66731EE
++2642E812C03A42B4ADC68F62AF0787EAEC9ACB1B93693CC501738A40AEAB2451
++46A44B0E97D76A35CC325185D5458FF5772E0DB712D7173C7F8A720824110F33
++4459BCD1831AA01B2DE29F9F59E62935CDA16D93E3E106E9490D55601BC9284B
++1B2C384DE5EFADABA842371DE07DA5C8534FF747EF2413FA4E1FFFF6A376306F
++93BE546D1CB17B1BD422131040692518E8576CAF7124DD11E930C924E217EE9A
++9698B84F1EAC26B6F318E8A298CD11CDED5969A14BF3C99A63A8F53BD834D717
++9E8835AFA60C7DAF90B27C3ECD6193C903A366F346A033CE1231F2D6A9DD0ED2
++20B66289D2FEE96D30D74685BE1F4B7029343A3A6AE3E5D31F606FE67E424C46
++955DC9D61B298B5083377000A75C25CCCA80A033A7D27378C6DF3A646733CC0E
++CF6416AD95EF551F07A4944D2EDE0AD18241BD43F0A87CD61196A1FFDC654E9F
++B2E63AE16460B647B03019027CB8BADB1FDBF067A1C96F6C196428046F90429F
++46E1158F824440C9E7C4FCF5F38B307DC8D61323240E432A4F0BE453A5B72A03
++DFD4EDBF3216551C3E9EEFF76D03FA1C996CE01B40DD2470D69EAF8E36EE18CA
++07AB766A6012517213625321D173560BF0B8131A83E970E2D39C34DF1605B0B2
++0EABBDDA6D9CEB12A58287649C8FC36209C263165B65E1A72574EE308F52A739
++B64CA2724682A75BE37FBF92F1CF21B3D838BC583C4ABCECBB2D4438BA48A624
++DFF33EC93BBC443DB018A034F1D159C3577B3F988AC6300EDC6C1D0AF9035026
++8496944A859C11BAD8D511280295B13D0ED2FA28BAA1653790B52540D9BAB3B2
++D21F236A31F75A6E195F8856517D53C3817411C1289971C5DB3BE4DA66A7AB8B
++7E2FBD7A5030ADDE35AFA4DBB979853555298C9659F03C9C56E477F27184802E
++389748A06D1D85F05FE06C2F8DACE3B9842AEEE25AF3FB13E804FB98C15F94F9
++33F03E947553D92ED2DD004E2B8B075807C7C986E1C74F5F9E71CD7A60DB273C
++53A2FC18954094704B2CCA0A6619259552DB49F38D3665B519A269E978C2F1EA
++B3A86696344340838DF870AA38CC2085F494AE134BDBF5CD60B7989461376081
++C42722773098A2D756E16080A2E406535DB065A408F42A690E550879AF3D5DD8
++1B3729BE8DEB791E662734FBE3C097913857CEB76F29795010174B20C6936246
++F4A7AFBF5E86D3519BEE2F1E59ACD499AE172EBDBE739CA7FD5EAA8D48E26474
++6E95B5193C469EFE92A72C0E1B1EAD649154ED84A65CEB4B85CB58DC1BC3F1CC
++E2D460EA4B254DAB54A1314A4819A861F05F7C6FBFCBBC57A43AA75396B0AA07
++C1CBCB7194F5F9D8D49042A6904C54F7602A556DD6673601E788DF70DC49267A
++704EAE7F94DD8BB4B705C6BBD0A48991DCC52924AA185C938B3CF2D737094A40
++8F4F2EF94C2C23B92DC41539C5CF1B34A68CA69AF6EA55ECAE2F0A930B364E26
++4AD419CD91F33F91B7C3167BE000D7CF7D0D5F1DFA3D14660E673CC5B168538D
++84A351B206709DB390909F2AD3CFA2685747A6882D4827E516979F6851B842D3
++2B318336854BF41A814C8F2ED16C979D68BBFF59EB267274360719053E0F0716
++2721E6AB00964C1E8B4AD2E9B5B81A27F8E7934D8E1E835B5341F1905869ADA8
++320297142FAE44B0521F24D670BB0C45C241EC587E0F60DCA85A05B874C7BBB2
++BE4A2ABAB6A1587C5563392277BBFDD0C3B51AE8508CE9A12A1EDF62D97E279F
++307DF4150CE66871E72A33B301A40DC701436FF3A34A674C31DB8D558FC0F3C5
++01AAA39759A92D30551BA11366D0AA3D5442BA46AAB233AE92FE13937A4420A8
++18D2CCFC2180A19AE94C1D99E634FED2D0E53CE8F4BA9CA5B6BF210790F86343
++EF0F302CFCFBD71264DE142BC56BCDA57E4CDFDCFDA6C0AA63BE06284C548D59
++A7EE701BF8B102E767AD7D2F30AD1FE92B8513C070EC472628A4CDCC8967C652
++402D354747C8A0481CC5D87E11DE2A7CEAB03691391739035081D3CEADAB7FCE
++7B3E1C00016A67E7074BB4D8FA80088CB4829EA93A5F6FFEF3915BF8DBB8AEBC
++F207E7332332B6009C9876718B2ED39007061FF836EBAE23C05BE1F89B38A549
++95BEAA389CF53495B5014026302D9EFC9B513DE8DCC74B06B7235B6A2E54434C
++95DEB0C461AA64BC0B2700DCAB32BD0D845904B8442B6A3AF083C73C4EBF122D
++EA21BB33603122CD4AC589203F2E8C57FFD5F6C2E251B947F4315B882471A022
++624459C88FDC3A904D4DA231F90DFAEE415F4BF72ACAB0356835F62EAA1D5B09
++7D46E466A6F19006C82218F70E5329681FB95AE05F04445C275F77A09436058D
++CAF0EE0F9720D1696E6821F853D8E830788861CDC5204C7D39FA36110D0E0929
++DFAA90B930B7AF5FA6DC8BBC3FFE7780F49F2C40246239B030238F133A7CC8CA
++1745B28686FA3212C3489674AE3F019ADB24AD067E579220601BACB137EFBC1B
++E329844539D82D3E85BB3A4315803168223D007A29FC80112D442A6ACBE28265
++2F02FC309446C2025E9071BA1AF989DBD05A9231781374BC705DCBC3E726DA78
++F50EF3EAE6F82942518A72B5C65D4D444143B4B1809C236B844C11BB19546883
++496E545B9347406BA85D67DCE3B5B2CC8F3318A51C5A61D326B07313F2B26DAB
++9570D601FFADA4800026F1E29E7B55EC1617F0A3C8CF4DD8EB4D833D0DA6CD74
++A8590178F633729E9F12BFA364103B547081037C59FC5E8B78559AB41D56A62F
++3B59D591EEB71968AF9535EBEA7363E70D7CF90DFFD57E4470E11DFC5A590B6E
++8873E4C6A30F788E998D9F6AD407AEB9438FDFF77C1B8A294CB69B58BDB5585E
++4ED7B5D6D18AF253367A4D7C35A613FCDD01DB4B4164C48C23C61FD5E7E309C3
++38DB0C09E24C5D801973D54A2DB58612AD940B2DE6C4BAC7707EE1A6D33AC7AB
++0E7E7B98AEBB210E3B86B56709EB72CC40CB498F4A75C572FC01E1608F7CB2AB
++6CED4EDB927E36A0A66C8AC3437CCCBF0905260F7BA32F3597FF0BCC3AF92F7E
++E0DA4C272CA6355D1BE8340C0BD6ABB9D39B
  0000000000000000000000000000000000000000000000000000000000000000
  0000000000000000000000000000000000000000000000000000000000000000
  0000000000000000000000000000000000000000000000000000000000000000
-@@ -4734,7 +4690,6 @@ dup 114 /r put
+@@ -4710,7 +4682,6 @@ dup 114 /r put
  dup 115 /s put
  readonly def
  /FontBBox{-36 -251 1103 750}readonly def
@@ -2080,7 +2157,7 @@
  currentdict end
  currentfile eexec
  D9D66F633B846A97B686A97E45A3D0AA0529731C99A784CCBE85B4993B2EEBDE
-@@ -4830,16 +4785,12 @@ dup 53 /five put
+@@ -4806,16 +4777,12 @@ dup 54 /six put
  dup 68 /D put
  dup 97 /a put
  dup 99 /c put
@@ -2099,7 +2176,7 @@
  currentdict end
  currentfile eexec
  D9D66F633B846A97B686A97E45A3D0AA052A014267B7904EB3C0D3BD0B83D891
-@@ -4866,89 +4817,70 @@ A2E55463EC71A97BE4C04B39E68112956117C825
+@@ -4842,88 +4809,69 @@ A2E55463EC71A97BE4C04B39E68112956117C825
  80001321D4397771F728FD9EE57CFE7D9192B887EC883EB1505068261DC40089
  7B7D2820F06515CD74513521F6397FEAB3AD3572D9A8269430E407E357422461
  1785FC2782047F4C0339D79B16862D939F3A37F78E4E2174E4FBF132539CB760
@@ -2123,69 +2200,68 @@
 -B01770AD1329B3B4E05788A1A8AE8ABF655F29F7BC4E6813129BF387623F722F
 -D03670496F88199B5EF2A86FC9B5E2A05B38A393467DEBDB796A776706AD1D3E
 -BE50554F65775DB9FD4968998CF6A4152E9381B25A205F8CF7B2280002201F30
--7244459F90CC9DEE270C7C06EC7C422350F1B30BB1D7D404C712AC63213BFA74
--9FAB515A0578346BE2C81B6BF06AB168FC780F7B1F998D71AB49C07A82E23441
--C79E934FF202EF71EA73B49C58D636D573104CDC23D001974892A3B48763B8A3
--82509B3276BE82692FD769E28EE952BEECEE97933EF1429491855F0A3AF64E3B
--B6DA8C30C952C0982D61754A67E1CC5D239B91A20024D11856E390827FAA897D
--358EE6FF3322D0325ADE43B34CA616D2BE8B83923F37F3E9A8D6A2E2B0094153
--C2F73BA17F227C7724E9F245704FC3FD115510826DC8BB4150BC06F48207BB69
--92E785801F75F9B410B10FEF5147FD284ECF4AF1B3723D1CC57A2DBBE3B881AC
--E00FC5214FCF1BE98209B23C50BFC1ED6AB1E81ED7656773D050B833D13BDADD
--B5BC0806322C4141F6F34989F593325262EB36224CA0F967670BC165147A4E11
--627CCCE44312E83E2ED187D9FAC22407FDB9CD55DB626702432A3374A9A19A82
--7A4073DE193B1722D958BC2D9953D9ED5009FBF2B567DE59E6E23F060D7E1750
--05E68346F34F45D101C635DC0B907CD0CB35FA612FE77193AAFD6BAD95C15D0E
--D8047BBE9D3A802AFAFD169857CABD5E7C7236730AE5BE807CAF6DF208B1765B
--0CCE22E6B01CB01BABD5B837E2D43CAE737FE8FF39E02415385A2CF08859EB57
--12A6AAFAD989DABD091B819DDF5E6C3597CAEB49B3D498E65FEA77626672634F
--4AF7FED2D7539683875C27AD325E646871DBDD5EB88BD65000F436FE29DA9D4B
--3A4FEE611E44DB0ADCAC94665166E8BD8866291AC6D6DB92F2E0571CC1046FBD
--8D32BFFE3F47FC4670E58E048AB03381B01C204B4A403C56F921294893976AD2
--B95F4AFC44ABD80672ABAEC169B0208CA923BE41C8009F3F355F072DFF615705
--AD77A3ED57C0B7F0490F6D01FFF87FBC634CF39B6150C17E40B9C8A031D36FD9
--0D6DB85668D08E19AF7ED85914E563A9A0DC64860121CE68A552AA2305893526
--E489742C792F0CD81D590E0C21A430FCF3BB6D884CE28D2138BEAE436C6C81CF
--155573F108DD65A982513915AAB64BE49DB9812E41D73FC46B1224AF5D6A0620
--AF36AC6E7B903051CC0B43479DA666E9196CB3929001B47A4BEDF65436C99453
--0B44A09692F2B16739E58D7B089B9EBE594C9475BD4CF4BA4F67987D0C40A6C0
--6C030DC260E643F366B317EBC36DB8851E257DEE60142B4E82823490B8F84B83
--CAF3BACA5C1BA8122C8602AF7F717C36A7D304E30576D81917C6E9ECBB8B169D
--71BB58159FFF68B14F83B101F0DB600C696A5CF075069C77D8AD50B91B51FE94
--8F98D2451650D266F3F19CD2298C1FCE8C859E636FA12A447F134C1873F4EC8B
--C917C0CE34AF3C2365EE2D0FE4D8E27904CD38DB3992C73CDE4090E3E2247168
--3338B4A322CE6E8D9184CACFCE8A63BCD96FFDA1BDA34622FCD14453DC2A00D9
--8B7A74ADBE07F85E7B692B4F15291A0F623F461FC441F1C153F2427F1B91A1B5
--B917750C70E7E0730774CB27BD8D1C2DAB214458347B9516C8C8F283B7119770
--DF704F876F3FCEAC5C33E4B4376962CD95D9B67AF4E10C5CE54E06A9CCBFE4C1
--0A996DB409770C0E04D692FA8A1374AD7E948AEDD06BFE6E42E0052E5C55690C
--2CA4DD97139EB20362134067D11E7DBFE8DC09BADD909C7004F08DB1765AF1DF
--2B1AFB9505667B8C8328D86B84BD5C203EDA970D9CAF100F944DF03DC396498D
--CD813B73390E8A4E302B34186FC5AC75F4FC744CFE4E9731F920722E62EE5979
--2DCB91BB295CC48DEFE6CEE464757477513B2F4A4CF492207F4F190313548D39
--EB2405B9C25607C3A5C2E442536695B639EA4BA22F9FDC034A274E81E67EEE95
--3290A4817DF59A32274984B76F19B3A901F06B78DED193EE9AE0C5F982B37BC2
--1F96ABB65F6C4AF12A45FD6AE2FE00EAFBE14F95BCFA30C778199EE24F0A317B
--A276884D2708043ABDD413E631D1531E488F94F45167E0F3489F8612ED783A48
--362C7B7592344D8021C66A523B11723DCCF7237F1D5996B624315D48D6DD23AE
--1AD88C718C936EE379D1CE4A6A6A51341C3906088D3395EE3E7C58C615EEC1DF
--E765CD7116884662971AFF1EA80CD2D0A01D407E37ACEEA0A125E4DD53623AA9
--38C38E8BA770E1B692DC8D571DD7A4C15E41C1CA980ABC0846208D0468E9ADE8
--9D09C022820EEB38B74F95BC9E4409F629988254316EA9DE763794320041BD96
--955D867ECB0D03FA353C62F74FCCE14BB50B63A48680B24B1D014ACDE5A0F653
--F9D2C2C730578E656F62681371F04B8147B7C0BB42C4D80F26175D45297FC5AB
--9B0C46FAC5CFBBE3586D10C730457B3F7DBA8EE89BB535B3CECA7BE03A690CB7
--BD9CBD7DC1E63709146BE2FF6E485243155577918C6F757C3DC2403F22892FB6
--C5B24E22BD41080FD4B57909C1BF40975D2038848E9297C018064F7A68275EAD
--A42EE99BB497112F846EEB190A2D3E55F3181BEEE58BD774301B600927BDB46E
--76A15E45484338452C2E21734F96A62709F2FE0457BDD9955EA5B168F064FD4B
--3FCD928486B83DDBE05BEBAEC64FA9E4BFCAF289E9558A1A9E8B9A158FCF700A
--2070F1D1AFD6D9B4537390C5A0187F2BB3548C2CBF2364AF67106089ED1EE55B
--5AB23E02E68C069A1738ADD9E4305861073333143282C26A49DE773DA2E5D442
--456E39D8C1C5ED44235D698BC23566845B5CC32517E0BF9A125427E4FFB5C713
--6B698FB95CB38380E012D1B1E0AAF4F91E878993F03781A40AEDAE8FD9F87EFF
--E855AB5C94593FC6770AEB8F5BD25651692D587ABED042A24DD17F4E22A222F8
--22761554315F1915FB59
+-7244459F90CC9DEE270C7C06EC7C422350F1B30BB1D7D41143B3321733D5A842
+-4CBB76E4882118F3BCBBEA289817986D1E92063233E4FE8FEBBBD58A3BC256BC
+-59756859D31B71A7C2BB9354857DD7347FF2F675777BF81E88663E4CBA6B8A35
+-971800F773D61B61D29AD0230D3F4136F3F9D4353D5453182850D24FF7BF6B10
+-750D755584529638DEDC23A24180686300FBFCED83E244306FC1554E02740871
+-E398624B959CB45BF22B38BD80D4C00CEEDCF6DDF98A45AB61487714DC224B7B
+-B42B4813462A5F0E76B0F9D703F6D3FCEFB33879F9119BB43C58D218E0D1B2AC
+-64351CD30C697C59B80651694D7499FA9FC96D4D2F928CFD74A296627F80D78C
+-B9E31592032A522A094FA38BA4CD2B4BDAC870729A55B081A6526846318D7174
+-1F13AF60C8F24E47AC6734DE8AB33A925FA81607DE6605ACA95A65DF4E8DB07B
+-AE4473D73642596A949AC67D712B852320A6984CA4049A9F1F23EE2F1A164933
+-FDD3AF5139F42C00148C59265B14B1281D1158339D6A7F8FFC9C0278D46B8E3C
+-E7D404C1EFFB98706B89C484A9C479C2CE38D6C7DBD6FC579E86656D865B0517
+-11CC5CAF9E6AB19C76D6F926767803E068FACDF3BC3AD683E8B0773F999425A3
+-452B90A061BB6F51F7048B573919A5C09B7B30381DE5BC7401563146474C509E
+-2811D5BD6E82D51884CEFA13DF2501AE81DD2B9108355E8CF1FB1895693017E3
+-02D2A0471286072744924E8816BF4E5EA18A0F9467CDD554D9E6088BAD7BF801
+-94F147E9A6E9EB0F9101463B778A60BBF10DD2AFC32E0C568F74732CAB43D121
+-F860584F4E8E5151581531E3E91AF06EA20AD1ABB4E67DA10EDDBC63DB83BCB2
+-042EFAE7B0C8871165A2EBB810BB801C5DC520BBE609FE38DD9BE5EAD296D0BA
+-134F6E8260F1A42B3AB99295FD84DB50913FC874E4C950BF8DFB3223A5CC1DE4
+-FB34E2BA79C035D77A5153A9E92E3AC5066B41F29C9B45A87EFFE757DA79386C
+-05BA198B3D2458B557440AE8C79D955CD179C59A8101A1023EB8EB05EF7D1D53
+-3454277AE5768DEBA598BA81A292A51F3202A95ADD627D6C8FF68DDC5A4E8DBA
+-5AD899EB004DE5B171835B6DFD1BEA80794B5031E3F90D38574F21E7C1622BFB
+-7F13B4A13927D9C647399302B781FD224E9B3096C1B399A1D95236EDDCEAFA1F
+-6D9894B85CA50C12E75D32AB15D1D471B9A76B499DF8F834B3F8F9E96D8651BC
+-92B7B0AFF6B98EC64119DE495EEA583D852635BA87DAC5DAAE651AE7CF510D90
+-BDCA8913415E086031E26CD59BF230CC08397F5EECA86B1A8207AE4A92BD12E1
+-872C53B335698E441EB0AE71036285F5AD9FF7D1B04010E2BA225B7C15DD0187
+-693BA6D2C025E60417B1028F099483F4477515EF912FC8A258E868F835B4F87E
+-26B331748062FEC5B951648A2F19C27F9040AD0DB41D461C01DC0238500CCAB0
+-D8AB36883EEC9347514A83C669B07BD89B2513988ED6E302A7D3C739F77DF453
+-8A544FA6074ECDA4E6F379B6D4F3580444DD7BAD826FBDF4C59BFE3D24E839DA
+-683EB562D5128987FC295D24385D34495D5681A29871E51AE2B6212E6977207E
+-D0C62D2BBEF1F4EF6A97C87951BB0DEE5D73E589D607C323DCDDDF4DF5AEEE14
+-F0A1869A76CF1722F3F31ABFB5CA889F8EB0D790F4F1F5AB975CD3E055B1E554
+-81685B7FD1DDCC51FEB8B2AF7F21FD7F2A25DCA3A5090C5C5FC50008279E0C59
+-789B15CBD9F30DDF3725168DC38A33A55FCCDF6FF499B865F1A1F7C3992FC35D
+-5744DC2177FDDE163A076534F260E94E087D9E8A648D3F02EEA63983F9057332
+-D6E8B1D4D40F80EC361924BAD9C4F396730E1551C142F516760031DC0B570080
+-7DBEC036CE0243AC4DEFCB88C6DB12DA047BDBA21D908D512ADDFEC0815AE7A9
+-35B833F977D09D490C2898BE7F2003476A44CF369E3DBA65273F5AC86EF8E187
+-BE2E4D2103BECEC6E41B9F4CF6E1B70A0F9E57F85BD1D5990B3D87E188B3B9BA
+-D1B1A76586F2D4E4694BE55BA4E6EBB525206B3459FD65660B04F2D2E9DF39F0
+-0A14284DE9DD2C50177769BDA26F0012EAB6EEF2DC97C52EE3D2279C11E249DC
+-15AB72D235FBCAB4B5C01B33326151DC54270BFCF71FE8266F33E4D0A6E53795
+-9441CC5C7EF0322A771B66DB821156E9419DFF575CB13A2CAFA77B9D670FED27
+-76F1AEC7112DDEC4E5024A5254BADDFEB3BE5CE74BD37CC2CF451B05F2CD5F58
+-2D0706D5DA5F00AF96CAF407E78E628E295A25E7365779311A2DDA2F07430B48
+-E306FF12882544208C940A79E8AB3922A3B0DC1CE94805E349588B1F896ED7A8
+-A54B1F4C9964FDC26F8F0D8ECE6FA612A7A9E0DEDD9A39C2B95849F714FF2B81
+-DDB1568FB2AAED4D433E4E61D199F6C9D407579A2E216E9A8A9A6D98B78B8A48
+-DD9AB385D71FB29C1332D9BC479A48785B4EC399091EDD0BFCD466820F08906D
+-9FD1394BC52AA87F017699600825F724AEEAE7F5C5759CD3C9453D3893C8FFCD
+-F697220B42B7A87F3045B6366DCA338743B7DEC9E4238306A01608E7D4097E15
+-4B3DBDC88FD85A071286BEBC7336977A181D084A0FFBAA4BAFB93D42A4081D39
+-282731897854AD907ECE441C4416638C541DF5285738784572E0046FBFBBA7F0
+-552492E102E7E8D1D9D550AB7B841160FD8B56E22654A53DFDF7623E32854566
+-384292C6AA3F10C3D8426F1C796C3F1C80945F2004152D5AFB1B4E3D7861F38F
+-C8D968746B98C157516A6BA6DC4F53798037E3733A545E2C71333017970D4E83
+-CCA983B6CE
 +207999FF86F6A3EBE48EB0A1CA635450FDEEF79EB16D853F3BF4B419A9216F98
 +1063948FBA78EAA663E7C1319CA47F0283D566D0FF0DAD29A33B81FCC99AC455
 +B7B49E5543CB015DBFA6892E4CF95A65464890C411EA170D2EF93ECE6EF1E101
@@ -2206,94 +2282,92 @@
 +3D6ACEF9D0E82B7762F9814E0BA85BA45B667EE3D67984978B953355C475D2D0
 +743E3B4BBCE2C65D623C689AD6BE1BC170EE5DD32594447812565A7063A4D637
 +AD0C048FC670F1451BFBE7674A63E95E1A7EF92324D440E5A50C9C776F4B6451
-+051EFA09ADBC6B708D9B8F1C7DE8DA6C677BE2338D907EF14122453F0B792588
-+47D23F1F099A0C173D2699458AE7EF4748D47E5A3748043AAF568C91ACE7BC5C
-+6FE1B753FAB44A3039764C0F295384063159D1A02512EA6FEA769DCA29D2838D
-+7A1A50D4CCA8FC853FFE8DF0EF8F0075FDA66BFC02075F4521926D3BFA3352B9
-+40492194CC48E9138039A0634E3BCD14200874536463F4D408BB1CF20642D677
-+54B54C83AFE32AE950AAE8518009F5EC5ECB4F1839CFBE0F45FFB2E7850D3F72
-+D8A4627CFEEB6F789A9D8CFB26EEC4C70EC2046777EFD96D1CC22C1709111289
-+3F2B4A32C685D48C336D60A2A9E717F3ED858B72DCCFFB6AE4CC9C7B2B1632DB
-+8A786CA7B2CD2CFC92CD045C8E1CF32CEE9EDDEB5781B72ECB0D6A0B4BDF066A
-+64BF07D965D78FDF860F5208F5B9EF5E294525F47A2A24FD16D6D59692DC9AED
-+3DDD46A1CD3BC60D61A6E822DC2106B32604E4A222CDE64514D8CDC36E23F90D
-+97137188FC73A7B528AC544EAF671DFB78F69F5DAC269B7634A5A28E7C9124C8
-+48AB18306FAC3856A98894670F06B0A49AF6CA8C99ED00F3D783E3AD6D629FBF
-+895FD141A1F6C23AF517F79CB2A364EA00720966CDA16375287D667AD9FC662B
-+8F54A4119CBD6065FE265FBAEA87948A621695C21A546DF235F58B2F7D6BB354
-+A43C252EB4FCD744DCDC8F058CD5019E715C9B1E497D867FE2143A00E10CDE96
-+3FE745D04964A54D024A8EF2D58073EC121C41C1A67D3B95CAE34B283B258F2C
-+AA3C7F9225F34E7DBCE7BC9E00380308ED1A1503F31ECD5C2CCD543A88EF36B4
-+A573E58302D65820E2B0CA25D79626B2D5E0C2E46A40726CFA3379472332A027
-+9A4516AC03EFB1ABDEFDAFE4B239BC7F96C741903D3F2EB35F6456BB3CAECB91
-+835DA34B7035AC7E2D26B771EB8A157CA54FBA56A5636ECD9B46B621EF25024A
-+4E51207EDAE35B961C56B381E20C0E367BF7B05E5B8317DCD994245BFED7C477
-+46AB430371366804B4851ADD1EB2406C0954F1C4D06750C9C04F5464A3245F4D
-+6F74F943D16AB2058E227794F56B8B88513CB5D62A11E0AEB745FAEA94A47522
-+901E76E293BD92FBA2D859782638BA33FED7BA82FF1A6BCF7626450BB17FC0BD
-+35A08FE62CCEBCBE3E740261EE73CAB7DA64A3287AF380E4F5C0E84519DE70D4
-+4A44F16D9419B52156E33CCCC929CAAF23C15F6722CC04DAB61D5696654C7DA3
-+5CE55D6AF99254B89F12461E8FC05D1C38D8B527CDADB00948413095B47D1204
-+C827E70E6804EE4FF2A03AF4BC768C1EC0BA32190F6D882CFC574F0E357E7257
-+42A34881FE2385E60989D801AFA9569CD9D44E61594D675B44438D0889470557
-+AC1E67E0576D963592B582191B38999D99B08A802E5C7D6129D46545FD5D477D
-+643F0093CF74E3495DE95F2174EBFE963F956D272B64B36E6743598DC48C5954
-+67620276E38B5488673D1164385760F2CEA7BC5436D996811140A56A9ED8063E
-+D49829D79B5D0AA72BAA08AC426CC33E80559739E9F0CBFFEF32A8740E7F7703
-+57C6B6DFFA1287315933386A7EE38ECBBEDF4778E64C4015AE1E89AC09F3F625
-+5136231E3FD80E64B67082E2B60FB112E3421305C695DBE2D1E5A8DF7182FC4B
-+0C42E83AA0F1D273D2676ECFF4AEDCDCFE44D7AC023B396AC42CFBDDA851BB45
-+97BEC3A9CB693ABCBFC62B0E10E93E10B9590B6FF05DA0B3E67F283CDE10AF2E
-+8DC47DD6E7EC83814FF0F5F29B9771499C17D1D34606C4652325A07983B4DA02
-+D15B8B42DD0F633E0C6FBF101011FEC0A6D6012CC98C0443815633794F783BCB
-+1587ACBA7E9388E10EFE3FB2CEBBCA53CF1204192CC259FA322030B9A5D47AF7
-+3D94C7768AE061392660EF0FEA251BF9FED8A0B86A102DFA4BA5833A5D6DE97D
-+292404A221347F50422D624F8047094145F85A4B17D2B6C048EB32FC9972C576
-+23FE30B09D9D1622
++051EFA09ADBC6B708D9B8F1C7DE8DA6C677BE2338D907EE4C5954388B4C626F7
++1056694D97F90731838B07A2BDEA471FF52796B37677952E5E87E32FFCEC746F
++BAAD2FCEBE0638CE90371B42EEF4E4381D8A5C85A29FB2A134D9C86D7258905C
++820C346408BDCFA12B915653A3A88406F81CF0A3DA86FFF3295D14DC4F480243
++1E19F895D7FEAC3BED82D48514FA27937503A7727C984722438B278D1E1E8F4C
++25CB793FADDFBFFA245DD24EA036C5BFF0F01536803DAD7A07B83DFE0B507730
++4332A05500532ECC778584CB7507D1EC4BEB6D049E4BACF1BEA33C5AA117E192
++936FB6FA94264081AE1CA24E249B52BD4A80A076F055630DF00207B7A75299EF
++9D015D9AB26C50EBE2859CD1A3646565B883746B230AEA04E6F33302A8205B8F
++BEBE3F7D5A1B822F3179ADE60654F7557F218FDCF17912690C63F2877677EF7F
++0E8E457D3B5C3A2AF5BD6268B6729BEB712E6A32744E3FB8667C52AE802B547B
++D5796E6D7C8E504EBF95040FE0E413D784501A3369A84AE590566B9C278EDD84
++E9B9DAF3F9D64355142B83CDD7BD0D7A2808E4C6E42D9E071A77F5C2C0F18B68
++2BB22DDA9D510B2521CAC8D500237CCF08D113E24A693A501B98D29E92448591
++408053DB9FBFF90C68E548EE784C8681FD38090EE4A691C8DCE3EBDB82555678
++AB6473B9205DA585FABA0D5E6489CF6C93688AAF28ED94454929B9C63240BEE5
++14A65AE1C80B511010565C0A47AE1EB64EE46C9773AC7EDEF938A6F205254B60
++9B11E0268F94F8B83CA071CDFCBAF21D38F60DBAECF464169B18CAC26260DD71
++5D2A9E28939F91EA5EA08047A568DC50ED863C33A3E4E995312413942E1DC2AF
++6B0B00664D7BB9022E95E23886B38D2870B6FA365872F9AFCA951253DB9BA830
++C5541DEA61484263946CD9D24E3D065DF26D4685B48DB7C4E04799EC2780BF6B
++A41B926644D7F278678554415C02364542AC1C839ECDA99253FF1AF4BBE22B7A
++F79801F81DF0A734A5B9CA82EDB41BE9B8A9041B4DA41A82CC0566AF9B64DC6A
++F256BE08C93F09730EE284478623F928F514873A8CE08F486788C6B80F2AEFF9
++1AC8C452BC0F8ADB45F7CDE0DBE343C934028FFBC05E8687AF32E17AE956346D
++D36C6530D5A3CD77419E0CA1F9937288FF81DA9CB63512234D7DA09B9C6D1DA5
++7CF53537270E5B6339B091868C2B1BCE3C4D00970EAFAB7FDE5F30DD7DDB9E72
++31F56BC48397B89D94446946C9A25DD43C4E684273743CEA29E5DC1EC7E13C96
++F968AE12A56A1A4E45867B2ACA96AAA9F4A9500D1619EED1B3B51663135AE65E
++C0FEE49C269BF8CC87EB274C488D6B5E44ADE9B309F625B162DC72D5DC738F8F
++3D491F05BFCFC37EBA693B191F07352E007E7E0ADDCD026E89B4D990DF4BFC6C
++FD1731CD3043B3F1CEBDE85332BB7CB77BF0E57789158821EFBC9CBD6B2D5687
++C6F19756341670FB508AE11C4401882733C70C77959941C1FA6BEBD422C1CD34
++58033CD83D8F86638AE59B61976BE8E44FCF5334B2B75D6FBCB1A72137702C42
++3A41212362E9D3F160F341816460E300CB49CDE61BF94ABCC5E54B14319EBC68
++A0B863FF19F678952E1AB1729B240FE0D6E1C6B0B1CB92A7B2985926757CF0B9
++EC5E4E4A74CEAA12DAF362BDD7F34B4C37589D2AA04A5F07D80827B6E8E32E49
++5586CB63505406CE16EC7E452889FAED7D3E246FCD50D0D3F4B6FBE2C0951404
++CFA4FD0A9179013597A115AE8AF7859C56E5D7454CCBE3F035B238A138ED17D8
++C3BEE7191EB2AE6FFE9B45316C4C8FED3209DF390FF1CD8D39A76DECE79CBA91
++E2E5737B6553AEAC363AFFA4F00177796B5300F567FFC2853E6AF7A2AA94176F
++FE717DE7B98F026AA009B2ADBDB2A990F3449058E618334236365F3C5B876D65
++FA659E
  0000000000000000000000000000000000000000000000000000000000000000
  0000000000000000000000000000000000000000000000000000000000000000
  0000000000000000000000000000000000000000000000000000000000000000
-@@ -5016,12 +4948,11 @@ rf /Fr 134[50 50 69 50 53 37 38 39 1[53
- 61 1[57 65 62 76 52 65 43 30 62 65 54 57 63 60 59 62
- 65 39 1[65 1[23 23 42 42 42 42 42 42 42 42 42 42 42 23
- 28 23 65 42 32 32 23 4[42 23 18[69 46 46 48 11[{}86 83.022
--/CMR10 rf /Fu 134[51 2[51 54 2[38 2[49 54 81 3[27 3[43
--54 43 54 49 14[72 13[75 12[49 1[49 2[49 1[49 3[27 44[{}20
--99.6264 /CMR12 rf /Fv 140[48 49 14[54 1[60 28[88 68[{}5
--119.552 /CMTI12 rf /Fw 136[96 1[73 1[52 51 2[66 73 2[70
--7[58 1[66 28[101 14[66 3[66 66 1[36 4[51 51 40[{}16 143.462
--/CMR17 rf end
-+/CMR10 rf /Fu 134[51 2[51 54 2[38 2[49 54 4[27 4[54 2[49
-+14[72 7[50 5[75 13[49 1[49 1[49 49 49 3[27 44[{}18 99.6264
-+/CMR12 rf /Fv 140[48 49 14[54 1[60 28[88 68[{}5 119.552
-+/CMTI12 rf /Fw 140[52 51 5[36 6[58 1[58 1[66 28[101 14[66
-+3[66 66 1[36 4[51 51 40[{}13 143.462 /CMR17 rf end
+@@ -4991,12 +4939,11 @@ rf /Fs 134[123 3[129 90 92 95 1[129 116
+ 43 30 62 65 54 57 63 60 59 62 65 39 1[65 1[23 23 42 42
+ 42 42 42 42 42 42 42 42 42 23 28 23 65 42 32 32 23 4[42
+ 23 18[69 46 46 48 11[{}87 83.022 /CMR10 rf /Fu 134[51
+-2[51 54 2[38 2[49 54 4[27 3[43 54 1[54 49 14[72 11[64
+-1[75 11[49 1[49 3[49 1[49 3[27 44[{}19 99.6264 /CMR12
++2[51 54 2[38 1[54 49 54 1[27 2[27 4[54 2[49 14[72 13[75
++2[73 7[49 2[49 3[49 1[49 3[27 44[{}19 99.6264 /CMR12
+ rf /Fv 140[48 49 14[54 1[60 28[88 68[{}5 119.552 /CMTI12
+-rf /Fw 136[96 1[73 1[52 51 2[66 73 2[70 7[58 1[66 28[101
+-13[66 4[66 66 1[36 4[51 51 40[{}16 143.462 /CMR17 rf
+-end
++rf /Fw 140[52 51 5[36 6[58 1[58 1[66 28[101 13[66 4[66
++66 1[36 4[51 51 40[{}13 143.462 /CMR17 rf end
  %%EndProlog
  %%BeginSetup
  %%Feature: *Resolution 600dpi
-@@ -5032,10 +4963,9 @@ letter
+@@ -5007,10 +4954,9 @@ letter
   end
  %%EndSetup
  %%Page: 1 1
--TeXDict begin 1 0 bop 1070 2140 a Fw(Darcs)43 b(1.0.5)f(\(unkno)l(wn\))
-+TeXDict begin 1 0 bop 1141 2140 a Fw(Darcs)43 b(1.0.5)f(\(release\))
+-TeXDict begin 1 0 bop 1070 2140 a Fw(Darcs)43 b(1.0.6)f(\(unkno)l(wn\))
++TeXDict begin 1 0 bop 1141 2140 a Fw(Darcs)43 b(1.0.6)f(\(release\))
  1576 2322 y Fv(Dar)-6 b(cs)1412 2688 y Fu(Da)m(vid)33
--b(Roundy)1344 2928 y(Decem)m(b)s(er)h(7,)e(2005)p eop
--end
-+b(Roundy)1359 2928 y(Jan)m(uary)g(14,)f(2006)p eop end
+-b(Roundy)1339 2928 y(F)-8 b(ebruary)33 b(28,)f(2006)p
+-eop end
++b(Roundy)1445 2928 y(April)g(9,)f(2006)p eop end
  %%Page: 2 2
  TeXDict begin 2 1 bop 739 282 a Ft(2)p eop end
  %%Page: 3 3
-@@ -5190,7 +5120,7 @@ b(send)h(.)42 b(.)f(.)h(.)g(.)f(.)h(.)f(
- (.)h(.)g(.)f(.)h(.)f(.)h(.)f(.)h(.)g(.)f(.)h(.)f(.)h(.)f(.)h(.)g(.)f(.)
- 90 b(64)863 3999 y(6.6)84 b(Seeing)28 b(what)f(y)n(ou'v)n(e)g(done)37
- b(.)k(.)h(.)f(.)h(.)f(.)h(.)g(.)f(.)h(.)f(.)h(.)f(.)h(.)g(.)f(.)h(.)f
--(.)h(.)f(.)h(.)g(.)f(.)90 b(68)1054 4098 y(6.6.1)k(darcs)27
-+(.)h(.)f(.)h(.)g(.)f(.)90 b(68)1054 4099 y(6.6.1)k(darcs)27
- b(whatsnew)h(.)42 b(.)f(.)h(.)f(.)h(.)f(.)h(.)g(.)f(.)h(.)f(.)h(.)f(.)h
- (.)g(.)f(.)h(.)f(.)h(.)f(.)h(.)g(.)f(.)90 b(68)1054 4198
- y(6.6.2)k(darcs)27 b(c)n(hanges)38 b(.)k(.)g(.)f(.)h(.)f(.)h(.)f(.)h(.)
-@@ -5626,7 +5556,7 @@ b Ft(Y)-7 b(ou)31 b(can)f(use)g(the)g(\\
+@@ -5165,7 +5111,7 @@ b(61)1054 3899 y(6.6.3)k(darcs)27 b(push
+ f(.)h(.)f(.)h(.)g(.)f(.)h(.)f(.)h(.)f(.)h(.)g(.)f(.)h(.)f(.)h(.)f(.)h
+ (.)g(.)f(.)90 b(63)1054 3999 y(6.6.4)k(darcs)27 b(send)h(.)42
+ b(.)f(.)h(.)g(.)f(.)h(.)f(.)h(.)f(.)h(.)g(.)f(.)h(.)f(.)h(.)f(.)h(.)g
+-(.)f(.)h(.)f(.)h(.)f(.)h(.)g(.)f(.)90 b(65)1054 4098
++(.)f(.)h(.)f(.)h(.)f(.)h(.)g(.)f(.)90 b(65)1054 4099
+ y(6.6.5)k(darcs)27 b(apply)54 b(.)41 b(.)h(.)g(.)f(.)h(.)f(.)h(.)f(.)h
+ (.)g(.)f(.)h(.)f(.)h(.)f(.)h(.)g(.)f(.)h(.)f(.)h(.)f(.)h(.)g(.)f(.)90
+ b(68)863 4198 y(6.7)84 b(Seeing)28 b(what)f(y)n(ou'v)n(e)g(done)37
+@@ -5602,7 +5548,7 @@ b Ft(Y)-7 b(ou)31 b(can)f(use)g(the)g(\\
  (to)g(mo)r(dify)g(all)g(o)r(c-)291 1655 y(currences)25
  b(of)h(a)g(particular)f(tok)n(en)h(\(de\014ned)h(b)n(y)f(a)g
  (con\014gurable)f(set)h(of)h(c)n(haracters)d(that)291
@@ -2302,29 +2376,7 @@
  64 b(This)37 b(has)f(the)h(adv)-5 b(an)n(tage)35 b(that)i(merges)e
  (with)291 1854 y(c)n(hanges)22 b(that)i(in)n(tro)r(duce)g(new)g(copies)
  f(of)h(the)g(old)g(tok)n(en)f(will)h(ha)n(v)n(e)f(the)h(e\013ect)g(of)g
-@@ -6387,8 +6317,8 @@ f(simply)h(don't)g(w)n(an)n(t)g(to)g(b)r
- 715 y(separate)31 b(user,)k(y)n(ou)d(can)h(set)h(up)f(a)g(darcs)f(rep)r
- (ository)g(using)h(pro)r(cmail)g(to)g(\014lter)g(y)n(our)291
- 814 y(mail.)46 b(I)31 b(will)g(assume)g(that)g(y)n(ou)f(already)g(use)g
--(pro)r(cmail)g(to)h(\014lter)g(y)n(our)f(email.)46 b(If)32
--b(not,)291 914 y(y)n(ou)i(will)h(need)g(to)f(read)g(up)i(on)e(it,)j(or)
-+(pro)r(cmail)g(to)h(\014lter)g(y)n(our)f(email.)47 b(If)31
-+b(not,)291 914 y(y)n(ou)j(will)h(need)g(to)f(read)g(up)i(on)e(it,)j(or)
- d(p)r(erhaps)g(should)h(use)g(a)f(di\013eren)n(t)h(metho)r(d)g(for)291
- 1013 y(routing)26 b(the)i(email)g(to)f(darcs.)415 1113
- y(T)-7 b(o)40 b(b)r(egin)g(with,)j(y)n(ou)c(m)n(ust)h(con\014gure)f(y)n
-@@ -6535,8 +6465,8 @@ TeXDict begin 27 26 bop 291 282 a Fq(3.6
- b(DISK)e(SP)-7 b(A)n(CE)27 b(USA)n(GE)1278 b Ft(27)415
- 515 y(Under)36 b(some)f(circumstances,)h(k)n(eeping)f(a)g(whole)g
- (pristine)h(tree)f(is)g(not)h(desirable.)291 615 y(This)g(is)h(the)g
--(case)f(when)h(preparing)e(a)h(rep)r(ository)g(to)g(bac)n(k)g(up,)j
--(when)e(publishing)g(a)291 715 y(rep)r(ository)16 b(on)j(a)f(public)g
-+(case)f(when)h(preparing)e(a)h(rep)r(ository)g(to)g(bac)n(k)g(up,)k
-+(when)c(publishing)h(a)291 715 y(rep)r(ository)16 b(on)j(a)f(public)g
- (w)n(eb)h(serv)n(er)d(with)j(limited)g(space,)h(or)e(when)g(storing)g
- (a)g(rep)r(ository)291 814 y(on)29 b(\015oppies)h(or)f(small)g(USB)h(k)
- n(eys.)43 b(In)30 b(suc)n(h)g(cases,)f(it)h(is)g(p)r(ossible)g(to)f
-@@ -7137,7 +7067,7 @@ y(If)39 b(y)n(ou)e Fn(unrecord)d Ft(a)k(
+@@ -7093,7 +7039,7 @@ y(If)39 b(y)n(ou)e Fn(unrecord)d Ft(a)k(
  (will)g(b)r(e)g(deleted)g(from)g Fo(pristine)p Ft(.)68
  b(This)739 3644 y(will)35 b(cause)g Fo(working)44 b Ft(to)35
  b(b)r(e)h(di\013eren)n(t)f(from)g Fo(pristine)p Ft(,)j(and)d
@@ -2333,18 +2385,18 @@
  (hanges.)63 b(The)37 b(di\013erence)g(will)g(b)r(e)g(the)g(same)f(as)h
  (just)g(b)r(efore)f(that)i(patc)n(h)739 3843 y(w)n(as)26
  b Fn(record)p Ft(ed.)34 b(Think)27 b(ab)r(out)f(it.)37
-@@ -7185,8 +7115,8 @@ b(it)g(with)g(care.)415 1130 y(All)38 b(
- (ed")h(patc)n(h)291 1230 y(in)c(this)h(w)n(a)n(y!)53
+@@ -7141,8 +7087,8 @@ b(it)g(with)g(care.)415 1136 y(All)38 b(
+ (ed")h(patc)n(h)291 1235 y(in)c(this)h(w)n(a)n(y!)53
  b(If)34 b(an)f(erroneous)e(patc)n(h)i(is)g(deleted)h(and)f(replaced)g
- (with)h(a)e(b)r(etter)i(one,)291 1330 y(y)n(ou)29 b(ha)n(v)n(e)h(to)g
+ (with)h(a)e(b)r(etter)i(one,)291 1335 y(y)n(ou)29 b(ha)n(v)n(e)h(to)g
 -(replace)g(it)g(in)h Fo(al)t(l)40 b Ft(rep)r(ositories)29
 -b(that)i(ha)n(v)n(e)e(a)h(cop)n(y)g(of)h(it.)46 b(This)30
 +(replace)g(it)g(in)h Fo(al)t(l)41 b Ft(rep)r(ositories)28
 +b(that)j(ha)n(v)n(e)e(a)h(cop)n(y)g(of)h(it.)46 b(This)30
- b(ma)n(y)g(not)291 1429 y(b)r(e)f(feasible,)h(unless)e(it's)i(all)f
+ b(ma)n(y)g(not)291 1434 y(b)r(e)f(feasible,)h(unless)e(it's)i(all)f
  (priv)-5 b(ate)29 b(rep)r(ositories.)39 b(If)30 b(other)f(dev)n(elop)r
- (ers)e(ha)n(v)n(e)h(already)291 1529 y(made)e(patc)n(hes)h(or)f(tags)g
-@@ -7458,7 +7388,7 @@ b(If)20 b(patc)n(h)g(A)h(c)n(hanges)e(th
+ (ers)e(ha)n(v)n(e)h(already)291 1534 y(made)e(patc)n(hes)h(or)f(tags)g
+@@ -7414,7 +7360,7 @@ b(If)20 b(patc)n(h)g(A)h(c)n(hanges)e(th
  2661 y(patc)n(hes)j(meet.)37 b(All)28 b(other)f(c)n(hanges)f(made)i(b)n
  (y)f(A)h(and)f(B)h(are)e(p)r(erformed)i(as)f(normal.)863
  2761 y(Darcs)33 b(can)h(mark)e(a)i(con\015ict)f(for)g(y)n(ou)g(in)h
@@ -2353,58 +2405,40 @@
  2860 y Ft(\(whic)n(h)23 b(isn't)h(a)f(v)n(ery)f(go)r(o)r(d)h(name\).)35
  b(Con\015icts)24 b(are)e(mark)n(ed)g(suc)n(h)h(that)h(b)r(oth)g
  (con\015icting)739 2960 y(c)n(hanges)32 b(are)h(inserted)h(with)g(sp)r
-@@ -8392,7 +8322,7 @@ Fn(--token-chars)p Ft(,)d(since)k(y)n(ou
- (ens)g(de-)291 3896 y(\014ned)e(in)f(the)h(same)f(w)n(a)n(y)-7
- b(.)415 3996 y(When)31 b(using)e(darcs)g(replace,)g(the)i(\\new")e(tok)
- n(en)g(ma)n(y)g(not)h(already)e(app)r(ear)h(in)i(the)291
--4096 y(\014le|if)f(that)h(is)e(the)i(case,)f(the)g(replace)f(c)n(hange)
-+4096 y(\014le|if)f(that)h(is)f(the)g(case,)g(the)g(replace)f(c)n(hange)
- g(w)n(ould)h(not)g(b)r(e)g(in)n(v)n(ertible.)44 b(This)30
- b(limi-)291 4195 y(tation)d(holds)g(only)g(on)h(the)g(already-recorded)
- c(v)n(ersion)i(of)i(the)g(\014le.)415 4295 y(There)g(is)h(a)f(p)r(oten)
-@@ -9411,7 +9341,7 @@ b(|)g(a)g(command)g(to)g(run)h(prior)e(t
- g(\014le)g(to)g(read)f(instead)h(of)g(the)g(\\b)r(oring")e(prefs)i
- (\014le.)863 4899 y Fj(\017)41 b Ft(\\binaries\014le")27
- b(|)h(the)h(name)f(of)g(a)g(\014le)h(to)f(read)f(instead)h(of)g(the)h
--(\\binaries")d(prefs)946 4998 y(\014le.)p eop end
-+(\\binaries")e(prefs)946 4998 y(\014le.)p eop end
- %%Page: 75 75
- TeXDict begin 75 74 bop 291 282 a Fq(6.7.)63 b(MORE)27
- b(AD)n(V)-9 b(ANCED)29 b(COMMANDS)1283 b Ft(75)291 515
-@@ -10112,7 +10042,7 @@ Fn(--human-readabl)o(e)291 4301 y Ft(opt
+@@ -8369,7 +8315,7 @@ b(y)n(ou)f(prefer)f(to)h(c)n(ho)r(ose)f(
+ 615 y(\(p)r(erhaps)44 b(b)r(ecause)g(y)n(ou)g(are)f(programming)f(in)j
+ (some)f(other)g(language\),)j(y)n(ou)d(ma)n(y)739 715
+ y(do)c(so)f(with)h(the)g Fn(--token-chars)35 b Ft(option.)74
+-b(Y)-7 b(ou)39 b(ma)n(y)h(prefer)f(to)h(de\014ne)g(tok)n(ens)f(in)739
++b(Y)-7 b(ou)40 b(ma)n(y)f(prefer)g(to)h(de\014ne)g(tok)n(ens)f(in)739
+ 814 y(terms)25 b(of)h(delimiting)g(c)n(haracters)d(instead)i(of)g(allo)
+ n(w)n(ed)g(c)n(haracters)e(using)i(a)g(\015ag)g(suc)n(h)g(as)739
+ 914 y Fn(--token-chars)38 b('[^)k(\\n\\t]')p Ft(,)27
+@@ -10108,7 +10054,7 @@ Fn(--human-readabl)o(e)291 4600 y Ft(opt
  (results.)35 b(It)24 b(is)g(do)r(cumen)n(ted)f(fully)i(in)e(the)h
- (`common)g(options')f(p)r(or-)291 4400 y(tion)k(of)h(the)g(man)n(ual.)
- 415 4500 y(Giving)h(the)g Fn(--unified)d Ft(\015ag)i(implies)h
+ (`common)g(options')f(p)r(or-)291 4700 y(tion)k(of)h(the)g(man)n(ual.)
+ 415 4799 y(Giving)h(the)g Fn(--unified)d Ft(\015ag)i(implies)h
 -Fn(--human-readable)o Ft(,)24 b(and)29 b(causes)f(the)h(out-)291
 +Fn(--human-readable)p Ft(,)23 b(and)29 b(causes)f(the)h(out-)291
- 4600 y(put)37 b(to)g(remain)g(in)g(a)g(darcs-sp)r(eci\014c)f(format)g
+ 4899 y(put)37 b(to)g(remain)g(in)g(a)g(darcs-sp)r(eci\014c)f(format)g
  (that)i(is)f(similar)f(to)h(that)g(pro)r(duced)g(b)n(y)291
- 4699 y Fn(diff)42 b(--unified)p Ft(.)415 4799 y(If)20
---- darcs-1.0.5.orig/darcs.1
-+++ darcs-1.0.5/darcs.1
+ 4998 y Fn(diff)42 b(--unified)p Ft(.)p eop end
+--- darcs-1.0.6.orig/darcs.1
++++ darcs-1.0.6/darcs.1
 @@ -1,4 +1,4 @@
--.TH DARCS "1" "December 2005" "darcs" "User Commands"
-+.TH DARCS "1" "January 2006" "darcs" "User Commands"
+-.TH DARCS "1" "February 2006" "darcs" "User Commands"
++.TH DARCS "1" "April 2006" "darcs" "User Commands"
  .SH NAME
  darcs \- an advanced revision control system
  .SH SYNOPSIS
-@@ -8,7 +8,7 @@ darcs \- an advanced revision control sy
-
- darcs is a nifty revision control tool.  For more a detailed description,
- see the html documentation, which should be available at
--/usr/local/share/doc/darcs/manual/index.html.  To easily get more specific help
-+/usr/share/doc/darcs/manual/index.html.  To easily get more specific help
- on each command, you can call `darcs COMMAND --help'
-
- .SH CREATING REPOSITORIES
 --- /dev/null
-+++ darcs-1.0.5/darcs.tmp
++++ darcs-1.0.6/darcs.tmp
 @@ -0,0 +1,2 @@
 +
 +/* css.sty */
 \ No newline at end of file
 --- /dev/null
-+++ darcs-1.0.5/darcs.xref
++++ darcs-1.0.6/darcs.xref
 @@ -0,0 +1,479 @@
 +\:CrossWord{)F1F-}{darcs.html}{1}%
 +\:CrossWord{TITLE+}{ Darcs 1.0.3rc1 (release candidate 1)  {\it  Darcs} }{1}%
@@ -2886,7 +2920,7 @@
 +\:CrossWord{)Qx1-165038x12}{1}{201}%
 +\:CrossWord{)Qx1-166000C.1}{1}{202}%
 --- /dev/null
-+++ darcs-1.0.5/darcs.4tc
++++ darcs-1.0.6/darcs.4tc
 @@ -0,0 +1,167 @@
 +\expandafter\ifx\csname doTocEntry\endcsname\relax \expandafter\endinput\fi
 +\doTocEntry\toclikechapter{}{\csname a:TocLink\endcsname{1}{x1-1000}{QQ2-1-1}{Contents}}{3}\relax
@@ -3056,7 +3090,7 @@
 +\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-165000C}{QQ2-1-165}{Preamble}}{195}\relax
 +\doTocEntry\tocsection{C.1}{\csname a:TocLink\endcsname{1}{x1-166000C.1}{QQ2-1-166}{Appendix: How to Apply These Terms to Your New Programs}}{202}\relax
 --- /dev/null
-+++ darcs-1.0.5/darcs.4ct
++++ darcs-1.0.6/darcs.4ct
 @@ -0,0 +1,168 @@
 +\expandafter\ifx\csname doTocEntry\endcsname\relax \expandafter\endinput\fi
 +\doTocEntry\toclikechapter{}{\csname a:TocLink\endcsname{1}{x1-1000}{QQ2-1-1}{Contents}}{3}\relax
@@ -3227,7 +3261,7 @@
 +\doTocEntry\tocsection{C.1}{\csname a:TocLink\endcsname{1}{x1-166000C.1}{QQ2-1-166}{Appendix: How to Apply These Terms to Your New Programs}}{202}\relax
 +\par
 --- /dev/null
-+++ darcs-1.0.5/darcs.lg
++++ darcs-1.0.6/darcs.lg
 @@ -0,0 +1,268 @@
 +htfcss: cmti  font-style: italic;
 +htfcss: cmtt font-family: monospace;
@@ -3498,7 +3532,7 @@
 +Font("cmcsc","10","10","144")
 +Font("cmcsc","10","10","100")
 --- /dev/null
-+++ darcs-1.0.5/darcs.html
++++ darcs-1.0.6/darcs.html
 @@ -0,0 +1,10671 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -14172,7 +14206,7 @@
 +
 +
 --- /dev/null
-+++ darcs-1.0.5/darcs2.html
++++ darcs-1.0.6/darcs2.html
 @@ -0,0 +1,23 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -14198,7 +14232,7 @@
 +
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.5/darcs3.html
++++ darcs-1.0.6/darcs3.html
 @@ -0,0 +1,22 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -14223,7 +14257,7 @@
 +
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.5/darcs4.html
++++ darcs-1.0.6/darcs4.html
 @@ -0,0 +1,38 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -14264,7 +14298,7 @@
 +
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.5/darcs5.html
++++ darcs-1.0.6/darcs5.html
 @@ -0,0 +1,21 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -14288,7 +14322,7 @@
 +
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.5/darcs6.html
++++ darcs-1.0.6/darcs6.html
 @@ -0,0 +1,21 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -14312,7 +14346,7 @@
 +
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.5/darcs7.html
++++ darcs-1.0.6/darcs7.html
 @@ -0,0 +1,18 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -14333,7 +14367,7 @@
 +class="cmr-8">But it affects the repository and working directory targeted by the push</span></div>
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.5/darcs8.html
++++ darcs-1.0.6/darcs8.html
 @@ -0,0 +1,18 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -14354,7 +14388,7 @@
 +class="cmr-8">As for the other end, see apply</span></div>
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.5/darcs9.html
++++ darcs-1.0.6/darcs9.html
 @@ -0,0 +1,21 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -14378,7 +14412,7 @@
 +
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.5/darcs10.html
++++ darcs-1.0.6/darcs10.html
 @@ -0,0 +1,21 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -14402,7 +14436,7 @@
 +
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.5/darcs11.html
++++ darcs-1.0.6/darcs11.html
 @@ -0,0 +1,30 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -14435,7 +14469,7 @@
 +
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.5/darcs12.html
++++ darcs-1.0.6/darcs12.html
 @@ -0,0 +1,25 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -14463,7 +14497,7 @@
 +
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.5/darcs13.html
++++ darcs-1.0.6/darcs13.html
 @@ -0,0 +1,24 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -14490,7 +14524,7 @@
 +
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.5/changelog
++++ darcs-1.0.6/changelog
 @@ -0,0 +1,675 @@
 +darcs (1.0.2)
 +
@@ -15168,7 +15202,7 @@
 +
 + -- David Roundy <droundy@abridgegame.org>  Wed,  3 Mar 2003 13:51:58 -0500
 --- /dev/null
-+++ darcs-1.0.5/darcs14.html
++++ darcs-1.0.6/darcs14.html
 @@ -0,0 +1,39 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -15210,7 +15244,7 @@
 +
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.5/darcs15.html
++++ darcs-1.0.6/darcs15.html
 @@ -0,0 +1,29 @@
 +<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 +  "http://www.w3.org/TR/html4/loose.dtd">
@@ -15242,43 +15276,7 @@
 +
 +</body></html>
 --- /dev/null
-+++ darcs-1.0.5/Workaround.hs.ending
-@@ -0,0 +1,7 @@
-+
-+{-
-+Work around change in the GHC.Handle.openFd API.
-+-}
-+openFd :: Int -> Maybe FDType -> FilePath -> IOMode -> Bool -> Bool -> IO Handle
-+openFd fd x y z a b = GHC.Handle.openFd fd x b y z a
-+
---- /dev/null
-+++ darcs-1.0.5/Workaround.hs.prefix
-@@ -0,0 +1,12 @@
-+{-# OPTIONS -w #-}
-+{- Workaround.hs
-+
-+This file was created automatically by configure.  We disable warnings to
-+avoid issues with duplicate imports.
-+
-+-}
-+
-+module Workaround(
-+           openFd,
-+installHandler, Handler(..), Signal,
-+                         sigINT, sigHUP, sigABRT, sigALRM, sigTERM, sigPIPE,
---- /dev/null
-+++ darcs-1.0.5/Workaround.hs.beginning
-@@ -0,0 +1,8 @@
-+ ) where
-+
-+import qualified GHC.Handle ( openFd )
-+import System.IO ( Handle, IOMode )
-+import System.Posix.Internals ( FDType )
-+
-+import System.Posix.Signals(installHandler, Handler(..), Signal,
-+                         sigINT, sigHUP, sigABRT, sigALRM, sigTERM, sigPIPE,)
---- /dev/null
-+++ darcs-1.0.5/semantic.cache
++++ darcs-1.0.6/semantic.cache
 @@ -0,0 +1,15 @@
 +;; Object darcs-1.0.5/
 +;; SEMANTICDB Tags save file
@@ -15295,3 +15293,111 @@
 +  :semantic-tag-version "2.0pre3"
 +  :semanticdb-version "2.0pre3"
 +  )
+--- /dev/null
++++ darcs-1.0.6/index.html
+@@ -0,0 +1,105 @@
++<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
++<html lang="en">
++  <head>
++    <title>darcs</title>
++    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
++    <meta name="description" content="darcs is an advanced revision control system.">
++    <meta name="keywords" content="darcs revision control system free software gpl linux debian">
++    <link rel="stylesheet" type="text/css" href="darcs.css"/>
++  </head>
++
++  <body>
++
++      <div align="center">
++            <img src="http://www.darcs.net/logos/logo.png" border="0" width="242" height"79">
++      </div>
++
++      <table align="center" >
++          <tr>
++              <td width="150" valign="top">
++                  <p>&nbsp;</p>
++                  <p>&nbsp;</p>
++                  <p>&nbsp;</p>
++                  <div style="font-size:smaller; background-color:#CCCCFF; padding: 4px; ">
++                      <i>"Project leaders should certainly consider its adoption." <br />
++                          &mdash;<a href="http://lwn.net/Articles/109719/">Linux Weekly News</a></i>
++                  </div>
++
++
++              </td>
++              <td width="15"></td>
++              <td width="450">
++      <p> Hello, I'm David Roundy, the author of darcs. </p>
++
++      <a name="intro">Darcs is a revision control system</a>. Darcs is simple
++      to learn and use, with a powerful new approach to meet the needs
++      of today's distributed software projects. Darcs is
++      decentralized, based on  a "theory of patches" with roots
++      in quantum mechanics.  Darcs is free software, licensed under the
++      <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a>.
++
++      <p>
++      Written in Haskell, darcs is used on many operating systems including
++      Linux, MacOS X, FreeBSD, and Windows.  Darcs includes a <a
++          href="http://abridgegame.org/cgi-bin/darcs.cgi/darcs/">CGI
++          script</a> to browse your repository from the web.</p>
++
++      <p><b><a href="http://darcs.net/DarcsWiki">Learn more at the wiki</a></b>, the community-maintained site for all things darcs.</p>
++
++
++  <h2>Download</h2>
++<ul>
++    <li><a href="http://darcs.net/DarcsWiki/CategoryBinaries">Precompiled binaries</a> of the latest stable release of darcs for various platforms including Windows, Mac OS X, FreeBSD and its siblings, Solaris, and AIX, a dozen flavors of Linux, and Cygwin.<br>
++</ul>
++
++  <h2>Documentation</h2>
++<ul>
++    <li><a href="manual/">The manual</a><br>
++    <span style="font-size:smaller">
++    (Also available as <a href="darcs.ps">Postscript</a>, and in one <a href="manual/bigpage.html">large HTML file</a>. )
++    </span>
++
++</li>
++</ul>
++
++  <h2>Code</h2>
++  <p>Darcs is written in Haskell, not in C, so a Haskell compiler is required to compile darcs.  In addition, the Haskell compiler is written in Haskell, not in C, so you may experience a bootstrapping problem if a precompiled binary of the Haskell compiler is not available for your machine.  For most users, it is not necessary to build darcs from source, and instead one of the precompiled binary packages linked above will suffice.</p>
++
++<ul>
++    <li><a href="darcs-1.0.6.tar.gz">Latest Prerelease Source</a> (1.0.6).  <br/>
++    <li><a href="darcs-1.0.5.tar.gz">Latest Stable Source</a> (1.0.5).  <br/>
++    <li> You can also get the latest development source directly via darcs:
++        <pre>
++darcs get http://www.abridgegame.org/repos/darcs-unstable/
++</pre>
++    </li>
++    <li> or the latest source selected for next release:
++        <pre>
++darcs get http://www.abridgegame.org/repos/darcs/
++</pre>
++    </li>
++</ul>
++  <p>The manual includes a section on <a href="http://www.darcs.net/manual/node3.html#SECTION00300050000000000000">how to build darcs from source</a>.</p>
++
++
++  <h2>Community</h2>
++
++<ul>
++ <li><a href="http://darcs.net/DarcsWiki">Community-maintained darcs website</a></p>
++ <li><a href="http://www.abridgegame.org/mailman/listinfo/darcs-users">users mailing list</a> </li>
++ <li><a href="http://www.abridgegame.org/mailman/listinfo/darcs-devel">developers mailing list</a> </li>
++ <li><a href="http://bugs.darcs.net/?user=guest;pass=guest">Bug Tracking System</a> </li>
++ <li><a href="http://abridgegame.org/cgi-bin/darcs.cgi/darcs/">Darcs repository browser</a></li>
++ <li><a href="http://www.darcs.net/linux.html">darcs mirror of the Linux kernel repository</a></li>
++</ul>
++
++I hope you enjoy darcs!
++<p>
++<a href="mailto:droundy@abridgegame.org">David</a>
++      </td>
++      <td width="150"></td>
++</tr></table>
++
++  </body>
++</html>
++

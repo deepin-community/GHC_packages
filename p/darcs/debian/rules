@@ -15,6 +15,7 @@ build-stamp: configure-stamp
 #	$(MAKE)
 #	rm -f darcs.ps manual/index.html # Need to get table of contents right...
 	$(MAKE)
+	$(MAKE) index.html
 	touch build-stamp
 
 clean:
@@ -47,7 +48,7 @@ binary-arch: build install
 	dh_installdocs -a
 	dh_installexamples -a
 	dh_installman -pdarcs darcs.1
-	dh_installman -pdarcs-server darcs-createrepo.8
+	dh_installman -pdarcs-server
 	dh_installchangelogs -a
 	dh_strip -a
 	dh_link -a
