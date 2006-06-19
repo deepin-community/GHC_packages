@@ -35,9 +35,11 @@ build-stamp:
 
 	echo "XMLDocWays   := html" > mk/build.mk
 	echo "GhcRTSWays += debug_p thr_debug thr_debug_p" >> mk/build.mk
+	echo "XSLTPROC_OPTS += --nonet" >> mk/build.mk
 ifeq '$(findstring $(shell dpkg-architecture -qDEB_HOST_ARCH), i386 amd64)' ''
 	echo "GhcUnregisterised=YES" >> mk/build.mk
 	echo "GhcWithNativeCodeGen=NO" >> mk/build.mk
+	echo "GhcWithInterpreter=NO" >> mk/build.mk
 	echo "SplitObjs=NO" >> mk/build.mk
 endif
 ifneq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
