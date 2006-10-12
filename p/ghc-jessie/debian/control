@@ -3,7 +3,7 @@ Section: devel
 Priority: optional
 Maintainer: Ian Lynagh (wibble) <igloo@debian.org>
 Standards-Version: 3.6.2
-Build-Depends: debhelper (>= 4), libgmp3-dev, xsltproc, libreadline5-dev | libreadline-dev, xlibmesa-gl-dev, libglu1-xorg-dev | libglu-dev, libglut3-dev, time, xutils, devscripts, haddock (>= 0.6), ghc6, cpio, libx11-dev, libsm-dev, libice-dev, libxmu-dev, libxi-dev, grep-dctrl, autotools-dev, docbook-xsl, docbook-xml
+Build-Depends: debhelper (>= 4), libgmp3-dev, xsltproc, libreadline5-dev | libreadline-dev, time, xutils, devscripts, haddock (>= 0.6), ghc6, cpio, libx11-dev, libsm-dev, libice-dev, libxmu-dev, libxi-dev, grep-dctrl, autotools-dev, docbook-xsl, docbook-xml
 
 Package: ghc6
 Architecture: any
@@ -20,19 +20,6 @@ Description: GHC - the Glasgow Haskell Compilation system
  additional documentation can be found in the `haskell-doc' package.
  Alternatively, there is an online version at
  http://haskell.org/onlinereport/.
-
-Package: ghc6-hopengl
-Section: devel
-Architecture: any
-Depends: ghc6 (= ${Source-Version}), xlibmesa-gl-dev, libglu1-xorg-dev | libglu-dev, libglut3-dev, libx11-dev, libsm-dev, libice-dev, libxmu-dev, libxi-dev, libc6-dev | libc6.1-dev | libc-dev, ${shlibs:Depends}, ${misc:Depends}
-Provides: ghc-hopengl, libghc6-opengl-dev, libghc6-opengl-prof, libghc6-glut-dev, libghc6-glut-prof
-Suggests: ghc6-doc
-Description: HOpenGL libraries for the Glasgow Haskell Compilation system
- This package contains additional HOpenGL libraries, including suitable
- profiling libraries for the Glorious Glasgow Haskell Compilation
- system (GHC).
- .
- The documentation for HOpenGL can be found in the ghc6-doc package.
 
 Package: ghc6-prof
 Section: devel
