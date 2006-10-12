@@ -1,3 +1,50 @@
+ghc6 (6.6-1) unstable; urgency=low
+
+  * New upstream version.
+  * Drop ghc6-hopengl package as HOpenGL is now split off from the
+    GHC core.
+  * Removed:
+    * ghc6-hopengl.README.debian
+    * ghc6-hopengl.examples
+    * ghc6-hopengl.postinst.in
+    * ghc6-hopengl.prerm.in
+  * Removed opengl examples.
+  * debian/scripts.mk no longer makes:
+    * debian/ghc6-hopengl.postinst
+    * debian/ghc6-hopengl.prerm
+  * Removed all opengl-related commands from debian/rules.
+  * Drop build-deps on
+      xlibmesa-gl-dev, libglu1-xorg-dev | libglu-dev, libglut3-dev
+    now we don't build the OpenGL libs.
+  * Added note to manpage that ghci is not yet available on all arches.
+  * Add ppc64 to the list of arches that have ghc6. Closes: #375623.
+  * Update locations of README and ANNOUNCE in ghc6.docs.
+  * Don't include ghc/mk/version.mk in debian/scripts.mk as it no longer
+    exists. Instead, get ProjectVersion with some shell magic.
+  * Don't include ghc/mk/version.mk in debian/scripts.mk as it no longer
+    exists. Instead, pass $(ProjectVersion) in from debian/rules.
+  * Remove mk/build.mk before we start filling it so the commands can be
+    more symmetric.
+  * Don't build the threaded RTS except on x86/amd64.
+  * Don't try to link ghc6 with the threaded RTS except on x86/amd64.
+  * Remove debian/test-build before creating it, so we can restart
+    builds part-way through without them falling over.
+  * Various paths in debian/rules lose their ghc/ prefix.
+  * Clean up debian/test-build/ after doing the test.
+  * hslibs no longer exists, so remove everything relating to it in
+    debian/rules.
+  * Remove register declarations from rts/StgCRun.c that break the
+    unregisterised build on alpha.
+  * Add to compiler/cmm/PprC.hs an option for loads and stores to be
+    printed in a way that works if they are not aligned as the arch
+    wishes. Enable this option for alpha.
+  * Remove the --source-module argument to haddock in mk/package.mk
+    as haddock 0.7 doesn't support it.
+  * Re-add the -optP-P when generating .raw-hs files as haddock 0.7
+    doesn't cope with line numbers in the files.
+
+ -- Ian Lynagh (wibble) <igloo@debian.org>  Thu, 12 Oct 2006 01:22:24 +0000
+
 ghc6 (6.4.2-2) unstable; urgency=low
 
   * Have ghc-pkg not create ~/.ghc when it doesn't need to, and return
