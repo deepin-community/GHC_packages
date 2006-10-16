@@ -146,7 +146,7 @@ install: build
 	rm -f debian/ghc6/usr/bin/runhaskell6
 
 	/usr/bin/install -c -m 755 -d debian/ghc6/`dirname $(VARFILE)`
-	echo 'ghc6_arches="alpha amd64 hppa i386 ia64 kfreebsd-i386 m68k powerpc ppc64 s390 sparc"' > debian/ghc6/$(VARFILE)
+	echo 'ghc6_arches="alpha amd64 hppa i386 ia64 kfreebsd-i386 m68k mips mipsel powerpc ppc64 s390 sparc"' > debian/ghc6/$(VARFILE)
 	echo 'ghc6_lib_bdeps="ghc6 (>= $(ProjectVersion)) [$$ghc6_arches], ghc6 (<< $(ProjectVersion)+) [$$ghc6_arches]"' >> debian/ghc6/$(VARFILE)
 	echo 'ghc6_lib_deps="ghc6 (>= $(ProjectVersion)), ghc6 (<< $(ProjectVersion)+)"' >> debian/ghc6/$(VARFILE)
 	echo 'ghc6_app_bdeps="ghc6 [$$ghc6_arches]"' >> debian/ghc6/$(VARFILE)
