@@ -1,3 +1,33 @@
+darcs (1.0.9~rc1-0.1) unstable; urgency=low
+
+  * Non-maintainer upload with permission of maintainer.
+  * New upstream release.
+  * Cleanup the diff.gz from all the cruft.
+  * Fix FTBFS with GHC 6.6 (Closes: 393599):
+    - debian/control: add libghc6-html-dev, libghc6-mlt-dev and
+      libghc6-quickcheck-dev to Build-Depends
+    - configure.ac: also check regex-compat for Text.Regex
+  * Fix generation of manual in HTML form (Closes: 362508) :
+     - debian/control: add tex4ht to Build-Depends
+     - configure.ac: set TEX4HTENV=/etc/tex4ht/tex4ht.env before calling
+       htlatex
+  * Run autoconf ; rm -r autom4te.cache/ to update configure from
+    configure.ac
+  * debian/control: bump Standards-Version. No changes needed.
+  * debian/darcs.docs: removed.
+  * debian/darcs.doc-base: register manual with doc-base.
+  * debian/rules:
+    - Do not export DH_COMPAT but use debian/compat file.
+    - Call configure with --datadir=/usr/share to make sure there are no
+      references to ${prefix} left in Autoconf.lhs, cgi/darcs.cgi,
+      cgi/darcs.cgi and cgi/cgi.conf
+    - Remove darcs.1, darcs_print.ps and index.html on clean to keep the
+      diff.gz small and tidy.
+    - Call dh_installchangelogs with the name of the upstream changelog
+      file so it gets installed following policy guidelines.
+
+ -- Arjan Oosting <arjan@debian.org>  Tue, 31 Oct 2006 01:18:24 +0100
+
 darcs (1.0.8-1) unstable; urgency=low
 
   * New upstream release (Closes: #375353).

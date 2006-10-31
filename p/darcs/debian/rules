@@ -1,12 +1,11 @@
 #!/usr/bin/make -f
 
-# This is the debhelper compatibility version to use.
-export DH_COMPAT=4
-
 configure: configure-stamp
 configure-stamp:
 	dh_testdir
-	sh ./configure --with-sendmail=/usr/sbin/sendmail --prefix=/usr --sysconfdir=/etc --libexecdir=/usr/lib --mandir=/usr/share/man
+	sh ./configure --with-sendmail=/usr/sbin/sendmail \
+	  --prefix=/usr --sysconfdir=/etc --libexecdir=/usr/lib \
+	  --mandir=/usr/share/man --datadir=/usr/share
 	touch configure-stamp
 
 build: build-stamp
@@ -22,9 +21,12 @@ clean:
 	dh_testdir
 	dh_testroot
 	rm -f build-stamp configure-stamp
-	rm -rf manual/*
+	rm -f manual/*
 	rm -f xine-out.wav authors
 	$(MAKE) distclean
+	rm -f .depend darcs.1 darcs_print.ps index.html \
+	  Workaround.hs.beginning Workaround.hs.ending \
+	  Workaround.hs.prefix
 	dh_clean
 
 install: DH_OPTIONS=
@@ -35,6 +37,10 @@ install: build
 	dh_installdirs
 
 	DESTDIR=$(CURDIR)/debian/darcs $(MAKE) install
+	# remove installed cruft
+	cd debian/darcs/usr/share/doc/darcs/manual && rm -f darcs.4tc \
+	  darcs.aux darcs.idv darcs.lg darcs.xref darcs.tmp darcs.4ct \
+	  darcs.log
 	DESTDIR=$(CURDIR)/debian/darcs-server $(MAKE) installserver
 
 # Build architecture-independent files here.
@@ -49,7 +55,7 @@ binary-arch: build install
 	dh_installexamples -a
 	dh_installman -pdarcs darcs.1
 	dh_installman -pdarcs-server
-	dh_installchangelogs -a
+	dh_installchangelogs -a ChangeLog
 	dh_strip -a
 	dh_link -a
 	dh_compress -a
