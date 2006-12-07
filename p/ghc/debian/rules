@@ -8,6 +8,9 @@
 # Uncomment this to turn on verbose mode. 
 #export DH_VERBOSE=1
 
+# This has to be exported to make some magic below work.
+export DH_OPTIONS
+
 # From /usr/share/doc/autotools-dev/examples/rules.gz:
 export DEB_HOST_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 export DEB_BUILD_GNU_TYPE ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
@@ -22,15 +25,16 @@ ProjectVersion=$(shell awk -F\' "/^PACKAGE_VERSION='[0-9.]+'\$$/ { print \$$2 }"
 GHC=$(firstword $(shell bash -c "type -p ghc6 ghc"))
 EXTRA_CONFIGURE_FLAGS=--with-ghc="$(GHC)"
 
-configure: configure-stamp
-configure-stamp:
+VARFILE=/usr/lib/haskell-utils/ghc6_vars
+
+build: build-stamp
+build-stamp:
 	dh_testdir
 
 	touch configure
 
 	rm -f mk/build.mk
 	echo "XMLDocWays := html" >> mk/build.mk
-	echo "HADDOCK_DOCS := YES" >> mk/build.mk
 	echo "GhcRTSWays += debug_p thr_debug thr_debug_p" >> mk/build.mk
 	echo "XSLTPROC_OPTS += --nonet" >> mk/build.mk
 ifeq '$(findstring $(shell dpkg-architecture -qDEB_HOST_ARCH), i386 amd64)' ''
@@ -56,50 +60,39 @@ ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
 	# echo "GhcLibHcOpts  += -O0" >> mk/build.mk
 	echo "GhcRtsCcOpts  += -O0" >> mk/build.mk
 endif
-	# We can't do this with a configure flag in 6.8.1 as libdir is not
-	# defined at the point at which we := it
-	echo 'bindir  := $${libdir}/bin' >> mk/build.mk
-	# docdir doesn't have a configure flag, and unfortunately
-	# we also need to explicitly define all of its dependents as they
-	# are set with :=
-	echo 'docdir  := $$(datarootdir)/doc/ghc6-doc' >> mk/build.mk
-	echo 'htmldir := $$(docdir)'                   >> mk/build.mk
-	echo 'dvidir  := $$(docdir)'                   >> mk/build.mk
-	echo 'pdfdir  := $$(docdir)'                   >> mk/build.mk
-	echo 'psdir   := $$(docdir)'                   >> mk/build.mk
 	rm -f config.sub
 	rm -f config.guess
 	ln -s /usr/share/misc/config.sub .
 	ln -s /usr/share/misc/config.guess .
-	./configure $(confflags) --prefix=/usr $(EXTRA_CONFIGURE_FLAGS)
-
-	touch $@
-
-build: build-stamp
-build-stamp: configure-stamp
-	dh_testdir
-	sh debian/watcher.sh "$$PPID" "`pwd`" "`pwd`/build-stamp" 'ghc\|gcc' &
+	./configure $(confflags) --prefix=/usr --bindir='$${libdir}/bin' $(EXTRA_CONFIGURE_FLAGS)
 	$(MAKE)
 
-	# Do some very simple tests that the compiler actually works
-	rm -rf debian/testghc
-	mkdir debian/testghc
-	echo 'main = putStrLn "Foo"' > debian/testghc/foo.hs
-	compiler/stage2/ghc-inplace debian/testghc/foo.hs -o debian/testghc/foo
-	[ "$$(debian/testghc/foo)" = "Foo" ]
-	rm debian/testghc/*
-	echo 'main = putStrLn "Foo"' > debian/testghc/foo.hs
-	compiler/stage2/ghc-inplace debian/testghc/foo.hs -o debian/testghc/foo -O2
-	[ "$$(debian/testghc/foo)" = "Foo" ]
-	rm debian/testghc/*
+	rm -rf debian/test-build
+	mkdir debian/test-build
+	echo 'main = putStrLn "Foo"' > debian/test-build/foo.hs
+	compiler/stage2/ghc-inplace debian/test-build/foo.hs -o debian/test-build/foo
+	[ "$$(debian/test-build/foo)" = "Foo" ]
+	rm debian/test-build/*
+	echo 'main = putStrLn "Foo"' > debian/test-build/foo.hs
+	compiler/stage2/ghc-inplace debian/test-build/foo.hs -o debian/test-build/foo -O2
+	[ "$$(debian/test-build/foo)" = "Foo" ]
+	rm debian/test-build/*
 
-	touch $@
+	ProjectVersion=$(ProjectVersion) $(MAKE) -f debian/scripts.mk all
+	# Put some entities before the <?xml tag and then manpagify flags.xml
+	{ head -1 docs/users_guide/flags.xml; \
+	  echo "<!DOCTYPE sect1 [<!ENTITY ndash  \"-\"> \
+	                         <!ENTITY ldquo  \"\`\"> \
+	                         <!ENTITY rdquo  \"'\">]>"; \
+	  tail -n +2 docs/users_guide/flags.xml; } \
+	      | xsltproc debian/flags.xsl - > debian/ghc6.1
+	for m in ghci6 ghc-$(ProjectVersion) ghci-$(ProjectVersion); do echo ".so man1/ghc6.1" > debian/$$m.1; done
+	cp utils/hp2ps/hp2ps.1 debian/hp2ps-ghc6.1
+	echo debian/*.1 > debian/ghc6.manpages
 
-FILES = \( -type f -o -type l \)
-PROF_FILE = \( -name "*.p_*" -o -name "lib*_p.a" \)
+	touch build-stamp
 
-install: install-stamp
-install-stamp: build-stamp
+install: build
 	dh_testdir
 	dh_testroot
 	dh_clean -k
@@ -108,117 +101,91 @@ install-stamp: build-stamp
 	echo "readline=`grep-status -r -FProvides '\<libreadline-dev\>' -a -FStatus installed -s Package -n | tr '\n' ,`" >> debian/ghc6.substvars
 
 	# Install the basic stuff
-	$(MAKE) DESTDIR=`pwd`/debian/tmp install
-	$(MAKE) DESTDIR=`pwd`/debian/tmp install-docs
+	$(MAKE) prefix=`pwd`/debian/tmp/usr install
+	$(MAKE) prefix=`pwd`/debian/ghc6-doc/usr \
+	    datadir='$${prefix}/share/doc/ghc6-doc' install-docs
+	cd libraries && find . \( -type f -o -type l \) \
+	                       \( -name "*.hs" -o -name "*.lhs" \) -print0 \
+	    | cpio -updV0 ../debian/ghc6-libsrc/usr/share/doc/ghc6-libsrc
 
-	# Delete all the library LICENSE files
-	rm debian/tmp/usr/share/doc/ghc6-doc/libraries/*/LICENSE
-
-	# Generate lintian overrides
-	mkdir -p debian/tmp/usr/share/lintian/overrides
-	echo "ghc6 binary: extra-license-file `cd debian/tmp && echo usr/lib/ghc-*/lib/Cabal-*/Distribution/License.hi`" >> debian/tmp/usr/share/lintian/overrides/ghc6
-	echo "ghc6-prof binary: extra-license-file `cd debian/tmp && echo usr/lib/ghc-*/lib/Cabal-*/Distribution/License.p_hi`" >> debian/tmp/usr/share/lintian/overrides/ghc6-prof
+	# Put all the profiling files in ghc6-prof
+	find debian/tmp \( -type f -o -type l \) \
+	                \( -name "*.p_hi" -o -name "*_p.a" \) \
+	    > debian/ghc6-prof.install
+	# Take anything left and put it in ghc6 itself
+	{ find debian/tmp -type f -o -type l ; \
+	  cat debian/ghc6-prof.install; \
+	  cat debian/ghc6-prof.install; } \
+	    | sort | uniq -u > debian/ghc6.install
+	dh_install
+	/usr/bin/install -c -m 755 -d debian/ghc6/usr/bin
 
 	# Sort out the package.conf files
-	mv debian/tmp/usr/lib/ghc-$(ProjectVersion)/package.conf \
-	   debian/tmp/usr/lib/ghc-$(ProjectVersion)/package.conf.shipped
-	PACKAGE=`utils/ghc-pkg/ghc-pkg-inplace list -f debian/tmp/usr/lib/ghc-$(ProjectVersion)/package.conf.shipped | perl -ne 'print if $$foo; $$foo = 1 if /^debian/' | tr '\n,A-Z' '  a-z' | sed -e "s/([^)]*)//g" -e "s/-[0-9]\+\(\.[0-9]\+\)*//g" -e "s/^ *//" -e "s/ *$$//" -e "s/  */, /g"`; \
+	mv debian/ghc6/usr/lib/ghc-$(ProjectVersion)/package.conf \
+	   debian/ghc6/usr/lib/ghc-$(ProjectVersion)/package.conf.shipped
+	PACKAGE=`utils/ghc-pkg/ghc-pkg-inplace list -f debian/ghc6/usr/lib/ghc-$(ProjectVersion)/package.conf.shipped | perl -ne 'print if $$foo; $$foo = 1 if /^debian/' | tr '\n,A-Z' '  a-z' | sed -e "s/([^)]*)//g" -e "s/-[0-9]\+\(\.[0-9]\+\)*//g" -e "s/^ *//" -e "s/ *$$//" -e "s/  */, /g"`; \
 	    { echo -n "provided-devs="; \
 	      echo "$$PACKAGE" | sed -e "s/\([a-z0-9.-]\+\)/libghc6-\1-dev/g"; } \
 	          >> debian/ghc6.substvars; \
 	    { echo -n "provided-profs="; \
 	      echo "$$PACKAGE" | sed -e "s/\([a-z0-9.-]\+\)/libghc6-\1-prof/g"; } \
-	          >> debian/ghc6-prof.substvars; \
-	    { echo -n "provided-docs="; \
-	      echo "$$PACKAGE" | sed -e "s/\([a-z0-9.-]\+\)/libghc6-\1-doc/g"; } \
-	          >> debian/ghc6-doc.substvars
+	          >> debian/ghc6-prof.substvars
 
 	# Sort out the binaries
-	mkdir debian/tmp/usr/bin
-	cd debian/tmp/usr/lib/ghc-$(ProjectVersion)/bin && \
+	cd debian/ghc6/usr/lib/ghc-$(ProjectVersion)/bin && \
 	    for f in *-$(ProjectVersion); \
 	    do ln -s /usr/lib/ghc-$(ProjectVersion)/bin/$$f \
 	             ../../../bin/; \
 	    done
-	cd debian/tmp/usr/lib/ghc-$(ProjectVersion)/bin && \
+	cd debian/ghc6/usr/lib/ghc-$(ProjectVersion)/bin && \
 	    for f in *; \
 	    do ln -s /usr/lib/ghc-$(ProjectVersion)/bin/$$f \
 	             ../../../bin/$${f}6; \
 	    done
-	rm -f debian/tmp/usr/bin/*-$(ProjectVersion)6
-	rm -f debian/tmp/usr/bin/runhaskell6
-	# gen_contents_index is a script, so move it into /usr/lib
-	mkdir debian/tmp/usr/lib/ghc6-doc
-	mv debian/tmp/usr/share/doc/ghc6-doc/libraries/gen_contents_index \
-	   debian/tmp/usr/lib/ghc6-doc
+	rm -f debian/ghc6/usr/bin/*-$(ProjectVersion)6
+	rm -f debian/ghc6/usr/bin/runhaskell6
 
-	# manpages
-	ProjectVersion=$(ProjectVersion) $(MAKE) -f debian/scripts.mk all
-	for m in ghci6 ghc-$(ProjectVersion) ghci-$(ProjectVersion); do echo ".so man1/ghc6.1" > debian/$$m.1; done
-	mv debian/tmp/usr/share/man/man1/ghc.1 debian/ghc6.1
-	cp utils/hp2ps/hp2ps.1 debian/hp2ps-ghc6.1
-	echo debian/*.1 > debian/ghc6.manpages
-
-	# varfile
-	echo 'ghc6_arches="alpha amd64 arm hppa i386 ia64 kfreebsd-i386 m68k mips mipsel powerpc ppc64 s390 sparc"' > debian/ghc6_vars
-	echo 'ghc6_lib_bdeps="ghc6 (>= $(ProjectVersion)) [$$ghc6_arches], ghc6 (<< $(ProjectVersion)+) [$$ghc6_arches]"' >> debian/ghc6_vars
-	echo 'ghc6_lib_deps="ghc6 (>= $(ProjectVersion)), ghc6 (<< $(ProjectVersion)+)"' >> debian/ghc6_vars
-	echo 'ghc6_app_bdeps="ghc6 [$$ghc6_arches]"' >> debian/ghc6_vars
-
-	# ####################
-	# Now all the files are sorted, create the package filelists
-	
-	# ghc6
-	find debian/tmp/usr/bin $(FILES)                  > debian/ghc6.install
-	find debian/tmp/usr/share/ghc* $(FILES)          >> debian/ghc6.install
-	find debian/tmp/usr/share/man $(FILES)           >> debian/ghc6.install
-	find debian/tmp/usr/lib/ghc-$(ProjectVersion) $(FILES) ! $(PROF_FILE)  >> debian/ghc6.install
-	echo debian/tmp/usr/share/lintian/overrides/ghc6 >> debian/ghc6.install
-	echo debian/ghc6_vars /usr/lib/haskell-utils     >> debian/ghc6.install
-	# ghc6-prof
-	find debian/tmp/usr/lib $(FILES) $(PROF_FILE) > debian/ghc6-prof.install
-	echo debian/tmp/usr/share/lintian/overrides/ghc6-prof >> debian/ghc6-prof.install
-	# ghc6-doc
-	find debian/tmp/usr/share/doc    $(FILES)  > debian/ghc6-doc.install
-	find debian/tmp/usr/lib/ghc6-doc $(FILES) >> debian/ghc6-doc.install
-
-	touch $@
+	/usr/bin/install -c -m 755 -d debian/ghc6/`dirname $(VARFILE)`
+	echo 'ghc6_arches="alpha amd64 arm hppa i386 ia64 kfreebsd-i386 m68k mips mipsel powerpc ppc64 s390 sparc"' > debian/ghc6/$(VARFILE)
+	echo 'ghc6_lib_bdeps="ghc6 (>= $(ProjectVersion)) [$$ghc6_arches], ghc6 (<< $(ProjectVersion)+) [$$ghc6_arches]"' >> debian/ghc6/$(VARFILE)
+	echo 'ghc6_lib_deps="ghc6 (>= $(ProjectVersion)), ghc6 (<< $(ProjectVersion)+)"' >> debian/ghc6/$(VARFILE)
+	echo 'ghc6_app_bdeps="ghc6 [$$ghc6_arches]"' >> debian/ghc6/$(VARFILE)
 
 clean:
 	dh_testdir
 	dh_testroot
-	rm -f configure-stamp build-stamp install-stamp binary-common-stamp
+	rm -f build-stamp
 
 	touch configure
 	
-	[ ! -f mk/config.mk ] || $(MAKE) distclean
+	-$(MAKE) distclean
 	rm -f config.sub config.guess
 	rm -f debian/*.install
 	rm -f debian/*.1
 	rm -f debian/ghc6.manpages
-	rm -f debian/ghc6_vars
 	rm -f mk/build.mk
 	$(MAKE) -f debian/scripts.mk clean
-	rm -rf debian/testghc
+	rm -rf debian/test-build
 
 	# Hacks:
-	rm -f compiler/stage2/ghc-6.8.2
+	rm -f compiler/stage2/ghc-6.6
 	rm -f libraries/readline/config.status
 	rm -f compiler/stage1/ghc_boot_platform.h
 	rm -f compiler/stage2/ghc_boot_platform.h
-	rm -f compiler/stage1/ghc-inplace.o
-	rm -f compiler/stage2/ghc-inplace.o
+	rm -rf libraries/html-docs/
 
 	dh_clean
 
-binary-common: binary-common-stamp
-binary-common-stamp: install-stamp
+# This single target is used to build all the packages, all at once, or
+# one at a time. So keep in mind: any options passed to commands here will
+# affect _all_ packages. Anything you want to only affect one package
+# should be put in another target, such as the install target.
+binary-common:
 	dh_testdir
 	dh_testroot
 	dh_installchangelogs
 	dh_installdocs
 	dh_installexamples
-	dh_install --fail-missing
 	dh_installmenu
 #	dh_installdebconf
 #	dh_installlogrotate
@@ -233,7 +200,7 @@ binary-common-stamp: install-stamp
 #	dh_undocumented
 	dh_strip
 	dh_link
-	dh_compress -X.haddock
+	dh_compress
 	dh_fixperms
 #	dh_perl
 #	dh_python
@@ -243,17 +210,18 @@ binary-common-stamp: install-stamp
 	dh_gencontrol
 	dh_md5sums
 	dh_builddeb
-	
-	touch $@
-
-# binary-indep and binary-arch both build everything, as otherwise
-# "dh_install --fail-missing" falls over
 
 # Build architecture independant packages using the common target.
-binary-indep: binary-common-stamp
+binary-indep: build install
+	$(MAKE) -f debian/rules DH_OPTIONS=-i binary-common
 
 # Build architecture dependant packages using the common target.
-binary-arch: binary-common-stamp
+binary-arch: build install
+	$(MAKE) -f debian/rules DH_OPTIONS=-a binary-common
+
+# Any other binary targets build just one binary package at a time.
+binary-%: build install
+	make -f debian/rules binary-common DH_OPTIONS=-p$*
 
 binary: binary-indep binary-arch
 .PHONY: build install clean binary-indep binary-arch binary-common binary
