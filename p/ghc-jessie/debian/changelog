@@ -1,3 +1,72 @@
+ghc6 (6.6.1-1) unstable; urgency=low
+
+  * New upstream version.
+  * Policy 3.7.2 compliant.
+  * ghc6-doc provides libghc6-PACKAGE-doc for the various packages it
+    has docs for.
+  * Tweaked debian/rules to handle changes.
+  * Remove build-dep on xutils; we no longer use lndir (which has now
+    moved to xutils-dev anyway!)
+  * Remove build-dep on cpio; we now let dh_install do all the moving
+    rather than doing it ourselves with cpio.
+  * Remove build-dep on time; no longer used.
+  * Remove build-deps on libx11-dev, libsm-dev, libice-dev, libxmu-dev,
+    libxi-dev; the X11 stuff is now in separate Cabal packages.
+  * Manpages generation script removed s it is now in upstream.
+  * Pass --datadir to ./configure rather than "make install-docs"
+    so the haddock fields in package.conf get set correctly.
+    Closes: #417325.
+  * In mk/config.mk.in, don't put ghc-6.6.1/ on the end of datadir.
+  * Use $(INSTALL) rather than hardcoding /usr/bin/install everywhere.
+  * Don't generate or install library HTML doc contents and index.
+  * Do install libraries-footer.txt, libraries-header.txt and the various
+    prologue.txt's.
+  * Install a gen_contents_index script for generating the haddock
+    contents and index.
+  * Add -X.haddock to the dh_compress call to make sure the .haddock
+    files aren't getting compressed.
+  * Give ghc6-doc a postinst to generate the haddock contents and index
+    when it is installed.
+  * Give ghc6-doc a prerm to clean up the above.
+  * Revert these earlier changes as we now have haddock 0.8:
+    * Remove the --source-module argument to haddock in mk/package.mk
+      as haddock 0.7 doesn't support it.
+    * Re-add the -optP-P when generating .raw-hs files as haddock 0.7
+      doesn't cope with line numbers in the files.
+
+ -- Ian Lynagh (wibble) <igloo@debian.org>  Sun, 29 Apr 2007 00:47:00 +0100
+
+ghc6 (6.6-3) unstable; urgency=low
+
+  * Add arm to the list of arches that have ghc6.
+  * Add arm to the arches in compiler/cmm/PprC.hs for which
+    loads and stores to be printed in a way that works if they are not
+    aligned as the arch wishes.
+  * For arm's odd floating point numbers:
+    * Add FPTOOLS_FLOAT_WORD_ORDER_BIGENDIAN test to aclocal.m4
+    * Call FPTOOLS_FLOAT_WORD_ORDER_BIGENDIAN after AC_C_BIGENDIAN
+      in configure.ac.
+    * Extra section for the FPTOOLS_FLOAT_WORD_ORDER_BIGENDIAN test in
+      configure.
+    * Add "#undef FLOAT_WORDS_BIGENDIAN" to mk/config.h.in.
+    * Add FLOAT_WORDS_BIGENDIAN cases to rts/StgPrimFloat.c.
+  * Apply the following upstream patch, to fix potential problems
+    compiling ghc6 on amd64 (and possibly others):
+
+    Fri Oct 20 16:39:25 BST 2006  Simon Marlow <simonmar@microsoft.com>
+      * In hashExpr, use Word32 rather than relying on wrapping behaviour of Int
+      Fixes #952, as it turns out.
+
+      When compiling via C, we are at the mercy of C's undefined behaviour
+      with respect to overflow of signed integer operations, and this was
+      biting us here.
+
+      Perhaps we should always add the -fwrapv flag to gcc, but since
+      Haskell doesn't define overflow on Int either, it seemed the right
+      thing to do to fix this code anyway.
+
+ -- Ian Lynagh (wibble) <igloo@debian.org>  Sun, 22 Oct 2006 22:36:32 +0000
+
 ghc6 (6.6-2) unstable; urgency=low
 
   * Add mips and mipsel to the list of arches that have ghc6.

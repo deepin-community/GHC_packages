@@ -1,0 +1,37 @@
+#!/bin/sh
+
+set -e
+
+HADDOCK_FILES=`ls -1 */*.haddock | sort`
+
+# Automagically create the prologue for the combined index via a
+# header, the package prologues (in alphabetical order of the
+# packages) and a footer.
+{
+    cat libraries-header.txt
+    echo
+    # Hack to find out if we're in a build tree or installed docs
+    for HADDOCK_FILE in $HADDOCK_FILES
+    do
+        NAME=`echo "$HADDOCK_FILE" | sed "s#/.*##"`
+        PROLOGUE="$NAME"/prologue.txt
+        if [ "$NAME" != haskell98 ]
+        then
+            echo "[@${NAME}@]"
+            if [ -e "$PROLOGUE" ]
+            then
+                grep -v '^ *$$' "$PROLOGUE"
+            fi
+            echo
+            HADDOCK_ARGS="$HADDOCK_ARGS --read-interface=$NAME,$HADDOCK_FILE"
+        fi
+    done
+    cat libraries-footer.txt
+    echo
+} > libraries.txt
+
+# Now create the combined contents and index pages
+haddock --gen-index --gen-contents -o . \
+        -t "Haskell Hierarchical Libraries" \
+        -p libraries.txt \
+        $HADDOCK_ARGS
