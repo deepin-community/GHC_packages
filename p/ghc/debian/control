@@ -2,8 +2,8 @@ Source: ghc6
 Section: devel
 Priority: optional
 Maintainer: Ian Lynagh (wibble) <igloo@debian.org>
-Standards-Version: 3.6.2
-Build-Depends: debhelper (>= 4), libgmp3-dev, xsltproc, libreadline5-dev | libreadline-dev, time, xutils, devscripts, haddock (>= 0.6), ghc6, cpio, libx11-dev, libsm-dev, libice-dev, libxmu-dev, libxi-dev, grep-dctrl, autotools-dev, docbook-xsl, docbook-xml
+Standards-Version: 3.7.2
+Build-Depends: debhelper (>= 4), libgmp3-dev, xsltproc, libreadline5-dev | libreadline-dev, devscripts, haddock (>= 0.6), ghc6, grep-dctrl, autotools-dev, docbook-xsl, docbook-xml
 
 Package: ghc6
 Architecture: any
@@ -44,6 +44,8 @@ Package: ghc6-doc
 Section: doc
 Architecture: all
 Suggests: haskell-doc
+Provides: ${provided-docs}
+Depends: haddock, ${shlibs:Depends}, ${misc:Depends}
 Description: Documentation for the Glasgow Haskell Compilation system
  Version 6 of the Glorious Glasgow Haskell Compilation system (GHC).  GHC is
  a compiler for Haskell98.
@@ -61,6 +63,7 @@ Package: ghc6-libsrc
 Section: doc
 Suggests: ghc6-doc, haskell-doc
 Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Library Sources of GHC, the Glasgow Haskell Compilation system
  Version 6 of the Glorious Glasgow Haskell Compilation system (GHC). GHC is
  a compiler for Haskell98.
