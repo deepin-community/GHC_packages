@@ -1,7 +1,6 @@
 #!/usr/bin/make -f
 
-FILES = debian/ghc6.postinst debian/ghc6.prerm debian/ghc6.postrm \
-		debian/flags.xsl
+FILES = debian/ghc6.postinst debian/ghc6.prerm debian/ghc6.postrm
 
 .PHONY: all clean
 
