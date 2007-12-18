@@ -1,6 +1,7 @@
 #!/usr/bin/make -f
 
-FILES = debian/ghc6.postinst debian/ghc6.prerm debian/ghc6.postrm
+FILES  = debian/ghc6.postinst debian/ghc6.prerm debian/ghc6.postrm
+FILES += debian/ghc6-doc.postinst
 
 .PHONY: all clean
 
