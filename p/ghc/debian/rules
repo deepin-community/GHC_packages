@@ -30,6 +30,7 @@ configure-stamp:
 
 	rm -f mk/build.mk
 	echo "XMLDocWays := html" >> mk/build.mk
+	echo "HADDOCK_DOCS := YES" >> mk/build.mk
 	echo "GhcRTSWays += debug_p thr_debug thr_debug_p" >> mk/build.mk
 	echo "XSLTPROC_OPTS += --nonet" >> mk/build.mk
 ifeq '$(findstring $(shell dpkg-architecture -qDEB_HOST_ARCH), i386 amd64)' ''
@@ -55,11 +56,22 @@ ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
 	# echo "GhcLibHcOpts  += -O0" >> mk/build.mk
 	echo "GhcRtsCcOpts  += -O0" >> mk/build.mk
 endif
+	# We can't do this with a configure flag in 6.8.1 as libdir is not
+	# defined at the point at which we := it
+	echo 'bindir  := $${libdir}/bin' >> mk/build.mk
+	# docdir doesn't have a configure flag, and unfortunately
+	# we also need to explicitly define all of its dependents as they
+	# are set with :=
+	echo 'docdir  := $$(datarootdir)/doc/ghc6-doc' >> mk/build.mk
+	echo 'htmldir := $$(docdir)'                   >> mk/build.mk
+	echo 'dvidir  := $$(docdir)'                   >> mk/build.mk
+	echo 'pdfdir  := $$(docdir)'                   >> mk/build.mk
+	echo 'psdir   := $$(docdir)'                   >> mk/build.mk
 	rm -f config.sub
 	rm -f config.guess
 	ln -s /usr/share/misc/config.sub .
 	ln -s /usr/share/misc/config.guess .
-	./configure $(confflags) --prefix=/usr --bindir='$${libdir}/bin' --datadir='$${prefix}/share/doc/ghc6-doc' $(EXTRA_CONFIGURE_FLAGS)
+	./configure $(confflags) --prefix=/usr $(EXTRA_CONFIGURE_FLAGS)
 
 	touch $@
 
@@ -95,8 +107,16 @@ install-stamp: build-stamp
 	echo "readline=`grep-status -r -FProvides '\<libreadline-dev\>' -a -FStatus installed -s Package -n | tr '\n' ,`" >> debian/ghc6.substvars
 
 	# Install the basic stuff
-	$(MAKE) prefix=`pwd`/debian/tmp/usr install
-	$(MAKE) prefix=`pwd`/debian/tmp/usr install-docs
+	$(MAKE) DESTDIR=`pwd`/debian/tmp install
+	$(MAKE) DESTDIR=`pwd`/debian/tmp install-docs
+
+	# Delete all the library LICENSE files
+	rm debian/tmp/usr/share/doc/ghc6-doc/libraries/*/LICENSE
+
+	# Generate lintian overrides
+	mkdir -p debian/tmp/usr/share/lintian/overrides
+	echo "ghc6 binary: extra-license-file `cd debian/tmp && echo usr/lib/ghc-*/lib/Cabal-*/Distribution/License.hi`" >> debian/tmp/usr/share/lintian/overrides/ghc6
+	echo "ghc6-prof binary: extra-license-file `cd debian/tmp && echo usr/lib/ghc-*/lib/Cabal-*/Distribution/License.p_hi`" >> debian/tmp/usr/share/lintian/overrides/ghc6-prof
 
 	# Sort out the package.conf files
 	mv debian/tmp/usr/lib/ghc-$(ProjectVersion)/package.conf \
@@ -126,17 +146,15 @@ install-stamp: build-stamp
 	    done
 	rm -f debian/tmp/usr/bin/*-$(ProjectVersion)6
 	rm -f debian/tmp/usr/bin/runhaskell6
-
-	# library documentation
-	chmod +x debian/gen_contents_index
-
-	# library source
-	ln -s ../../../../../libraries debian/tmp/usr/share/doc/ghc6-libsrc
+	# gen_contents_index is a script, so move it into /usr/lib
+	mkdir debian/tmp/usr/lib/ghc6-doc
+	mv debian/tmp/usr/share/doc/ghc6-doc/libraries/gen_contents_index \
+	   debian/tmp/usr/lib/ghc6-doc
 
 	# manpages
 	ProjectVersion=$(ProjectVersion) $(MAKE) -f debian/scripts.mk all
 	for m in ghci6 ghc-$(ProjectVersion) ghci-$(ProjectVersion); do echo ".so man1/ghc6.1" > debian/$$m.1; done
-	mv debian/tmp/usr/man/man1/ghc.1 debian/ghc6.1
+	mv debian/tmp/usr/share/man/man1/ghc.1 debian/ghc6.1
 	cp utils/hp2ps/hp2ps.1 debian/hp2ps-ghc6.1
 	echo debian/*.1 > debian/ghc6.manpages
 
@@ -150,18 +168,18 @@ install-stamp: build-stamp
 	# Now all the files are sorted, create the package filelists
 
 	# ghc6
-	find debian/tmp/usr/bin $(FILES)                 > debian/ghc6.install
-	find debian/tmp/usr/man $(FILES)                >> debian/ghc6.install
-	find debian/tmp/usr/lib $(FILES) ! $(PROF_FILE) >> debian/ghc6.install
-	echo debian/ghc6_vars /usr/lib/haskell-utils    >> debian/ghc6.install
+	find debian/tmp/usr/bin $(FILES)                  > debian/ghc6.install
+	find debian/tmp/usr/share/ghc* $(FILES)          >> debian/ghc6.install
+	find debian/tmp/usr/share/man $(FILES)           >> debian/ghc6.install
+	find debian/tmp/usr/lib/ghc-$(ProjectVersion) $(FILES) ! $(PROF_FILE)  >> debian/ghc6.install
+	echo debian/tmp/usr/share/lintian/overrides/ghc6 >> debian/ghc6.install
+	echo debian/ghc6_vars /usr/lib/haskell-utils     >> debian/ghc6.install
 	# ghc6-prof
-	find debian/tmp/usr/lib $(FILES)   $(PROF_FILE) > debian/ghc6-prof.install
+	find debian/tmp/usr/lib $(FILES) $(PROF_FILE) > debian/ghc6-prof.install
+	echo debian/tmp/usr/share/lintian/overrides/ghc6-prof >> debian/ghc6-prof.install
 	# ghc6-doc
-	find debian/tmp/usr/share/doc $(FILES)            > debian/ghc6-doc.install
-	echo debian/gen_contents_index /usr/lib/ghc6-doc >> debian/ghc6-doc.install
-	# ghc6-libsrc
-	find debian/tmp/usr/share/doc/ghc6-libsrc/ $(FILES) -name "*.*hs" \
-	                                               > debian/ghc6-libsrc.install
+	find debian/tmp/usr/share/doc    $(FILES)  > debian/ghc6-doc.install
+	find debian/tmp/usr/lib/ghc6-doc $(FILES) >> debian/ghc6-doc.install
 
 	touch $@
 
@@ -172,7 +190,7 @@ clean:
 
 	touch configure
 
-	-$(MAKE) distclean
+	[ ! -f mk/config.mk ] || $(MAKE) distclean
 	rm -f config.sub config.guess
 	rm -f debian/*.install
 	rm -f debian/*.1
@@ -183,11 +201,12 @@ clean:
 	rm -rf debian/testghc
 
 	# Hacks:
-	rm -f compiler/stage2/ghc-6.6.1
+	rm -f compiler/stage2/ghc-6.8.2
 	rm -f libraries/readline/config.status
 	rm -f compiler/stage1/ghc_boot_platform.h
 	rm -f compiler/stage2/ghc_boot_platform.h
-	rm -rf libraries/html-docs/
+	rm -f compiler/stage1/ghc-inplace.o
+	rm -f compiler/stage2/ghc-inplace.o
 
 	dh_clean
 
