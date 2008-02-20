@@ -3,11 +3,11 @@ Section: devel
 Priority: optional
 Maintainer: Ian Lynagh (wibble) <igloo@debian.org>
 Standards-Version: 3.7.3
-Build-Depends: debhelper (>= 4), libgmp3-dev, xsltproc, libreadline5-dev | libreadline-dev, devscripts, haddock (>= 0.8-2), hscolour, ghc6, grep-dctrl, autotools-dev, docbook-xsl, docbook-xml
+Build-Depends: debhelper (>= 4), libgmp3-dev, xsltproc, libreadline5-dev | libreadline-dev, devscripts, haddock (>= 0.8-2), hscolour, ghc6, grep-dctrl, autotools-dev, docbook-xsl, docbook-xml, gcc (>= 4:4.2)
 
 Package: ghc6
 Architecture: any
-Depends: haskell-utils, perl | perl5, gcc, libgmp3-dev, ${shlibs:Depends}, ${misc:Depends}, ${readline}
+Depends: haskell-utils, perl | perl5, gcc (>= 4:4.2), libgmp3-dev, ${shlibs:Depends}, ${misc:Depends}, ${readline}
 Provides: haskell-compiler, ghc, ${provided-devs}
 Conflicts: ghc4 (<= 4.08.1-4)
 Suggests: ghc6-prof, ghc6-doc, haskell-doc

@@ -1,3 +1,20 @@
+ghc6 (6.8.2-2) unstable; urgency=low
+
+  * Apply upstream patch:
+        Tweak the splitter
+        Ian Lynagh <igloo@earth.li>**20080116195612
+        We were generating a label ".LnLC7", which the splitter was confusing
+        with a literal constant (LC). The end result was the assembler tripping
+        up on ".Ln.text".
+    Closes: #466262.
+  * Make an hpc symlink in /usr/bin. Closes: #461146.
+  * Add a dep and build-dep on gcc >= 4:4.2 as we need the
+    -fno-toplevel-reorder flag. Closes: #461332.
+  * Put the right upstream source URL in debian/copyright.
+    Closes: #465058.
+
+ -- Ian Lynagh (wibble) <igloo@debian.org>  Wed, 20 Feb 2008 17:32:52 +0000
+
 ghc6 (6.8.2-1) unstable; urgency=low
 
   * Strengthen haddock dep and build-dep to 0.8-2 as we need the
