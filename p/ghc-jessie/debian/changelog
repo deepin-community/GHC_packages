@@ -1,3 +1,16 @@
+ghc6 (6.8.2-3) unstable; urgency=low
+
+  * Every 10 minutes, print any "ps ux" lines that mention gcc or ghc.
+    According to folks on IRC, this is standard practice. It means that
+    we don't have to worry about security buildds having different
+    timeouts to the normal builders.
+  * Apply upstream patch:
+        FIX #2073: Don't add empty lines to GHCI's history
+        Ian Lynagh <igloo@earth.li>**20080224143256
+    Closes: #461170.
+
+ -- Ian Lynagh (wibble) <igloo@debian.org>  Mon, 24 Mar 2008 22:09:02 +0000
+
 ghc6 (6.8.2-2) unstable; urgency=low
 
   * Apply upstream patch:
