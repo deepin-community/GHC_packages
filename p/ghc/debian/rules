@@ -78,6 +78,7 @@ endif
 build: build-stamp
 build-stamp: configure-stamp
 	dh_testdir
+	sh debian/watcher.sh "$$PPID" "`pwd`" "`pwd`/build-stamp" 'ghc\|gcc' &
 	$(MAKE)
 
 	# Do some very simple tests that the compiler actually works
