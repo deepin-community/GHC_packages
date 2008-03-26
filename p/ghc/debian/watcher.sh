@@ -11,10 +11,10 @@ DIR="$2"
 FILE="$3"
 GREP_FOR="$4"
 
-echo "Check PID: $CHECK_PID"
-echo "Directory: $DIR"
-echo "File: $FILE"
-echo "Grep for: $GREP_FOR"
+echo "Watcher: Check PID: $CHECK_PID"
+echo "Watcher: Directory: $DIR"
+echo "Watcher: File: $FILE"
+echo "Watcher: Grep for: $GREP_FOR"
 
 # If the PID we are told still exists (our caller is still running),
 # the directory we are told (the working directory still exists) and
@@ -25,7 +25,9 @@ while ps "$CHECK_PID" > /dev/null &&
       [ ! -f "$FILE" ]
 do
     sleep 600
+    echo "Watcher: Tick."
     ps ux | grep -- "$GREP_FOR" | grep -v grep
 done
 
-echo "Watcher terminating."
+echo "Watcher: Terminating."
+
