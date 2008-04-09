@@ -5,7 +5,7 @@ configure-stamp:
 	dh_testdir
 	sh ./configure --with-sendmail=/usr/sbin/sendmail \
 	  --prefix=/usr --sysconfdir=/etc --libexecdir=/usr/lib \
-	  --mandir=/usr/share/man --datadir=/usr/share
+	  --mandir=/usr/share/man --datadir=/usr/share --enable-pipelining
 	touch configure-stamp
 
 build: build-stamp
