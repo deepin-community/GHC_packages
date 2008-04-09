@@ -1,0 +1,61 @@
+--- darcs-1.0.9.orig/configure
++++ darcs-1.0.9/configure
+@@ -871,6 +871,12 @@
+   | --ht=*)
+     htmldir=$ac_optarg ;;
+
++  -htmldir | --htmldir | --htmldi | --htmld | --html | --htm | --ht)
++    ac_prev=htmldir ;;
++  -htmldir=* | --htmldir=* | --htmldi=* | --htmld=* | --html=* | --htm=* \
++  | --ht=*)
++    htmldir=$ac_optarg ;;
++
+   -includedir | --includedir | --includedi | --included | --include \
+   | --includ | --inclu | --incl | --inc)
+     ac_prev=includedir ;;
+@@ -979,6 +985,16 @@
+   -psdir=* | --psdir=* | --psdi=* | --psd=* | --ps=*)
+     psdir=$ac_optarg ;;
+
++  -pdfdir | --pdfdir | --pdfdi | --pdfd | --pdf | --pd)
++    ac_prev=pdfdir ;;
++  -pdfdir=* | --pdfdir=* | --pdfdi=* | --pdfd=* | --pdf=* | --pd=*)
++    pdfdir=$ac_optarg ;;
++
++  -psdir | --psdir | --psdi | --psd | --ps)
++    ac_prev=psdir ;;
++  -psdir=* | --psdir=* | --psdi=* | --psd=* | --ps=*)
++    psdir=$ac_optarg ;;
++
+   -q | -quiet | --quiet | --quie | --qui | --qu | --q \
+   | -silent | --silent | --silen | --sile | --sil)
+     silent=yes ;;
+@@ -1644,6 +1660,7 @@
+     . "$ac_site_file"
+   fi
+ done
++IFS=$as_save_IFS
+
+ if test -r "$cache_file"; then
+   # Some versions of bash will fail to source /dev/null (special
+@@ -2957,12 +2974,6 @@
+    { (exit 1); exit 1; }; }
+ fi
+
+-ac_ext=c
+-ac_cpp='$CPP $CPPFLAGS'
+-ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
+-ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
+-ac_compiler_gnu=$ac_cv_c_compiler_gnu
+-
+
+
+ ac_aux_dir=
+@@ -3635,6 +3646,7 @@
+     $ac_path_GREP_found && break 3
+   done
+ done
++IFS=$as_save_IFS
+
+ done
+ IFS=$as_save_IFS

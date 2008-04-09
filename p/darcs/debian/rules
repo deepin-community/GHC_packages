@@ -14,7 +14,7 @@ build-stamp: configure-stamp
 #	$(MAKE)
 #	rm -f darcs.ps manual/index.html # Need to get table of contents right...
 	$(MAKE)
-	$(MAKE) index.html
+	$(MAKE) doc/index.html
 	touch build-stamp
 
 clean:
@@ -24,7 +24,7 @@ clean:
 	rm -f manual/*
 	rm -f xine-out.wav authors
 	$(MAKE) distclean
-	rm -f .depend darcs.1 darcs_print.ps index.html \
+	rm -f .depend doc/darcs.1 darcs_print.ps doc/index.html \
 	  Workaround.hs.beginning Workaround.hs.ending \
 	  Workaround.hs.prefix
 	dh_clean
@@ -53,7 +53,7 @@ binary-arch: build install
 	dh_testroot -a
 	dh_installdocs -a
 	dh_installexamples -a
-	dh_installman -pdarcs darcs.1
+	dh_installman -pdarcs doc/darcs.1
 	dh_installman -pdarcs-server
 	dh_installchangelogs -a ChangeLog
 	dh_strip -a

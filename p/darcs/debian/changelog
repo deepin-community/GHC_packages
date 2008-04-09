@@ -1,3 +1,21 @@
+darcs (2.0.0-1) unstable; urgency=low
+
+  * New upstream release (Closes: 456618).
+
+    - Ignores .hg (Mercurial) metadata by default (Closes: #447100).
+    - Ignores Waf metadata by default (Closes: #457656).
+    - Doesn't silently overwrite unadded files when applying/pulling a
+      patch that adds the same file (Closes: #394721).
+    - Can reuse ssh connections more (Closes: #466452).
+
+  * Bump curl dependency to libcurl4-dev.
+  * Delete semantic.cache's (Closes: 457259).
+  * debian/watch: update format (Closes: #457258).
+  * Remove some patches to configure, since they look like noops.
+    The file is in debian/patches/obsolete in case anybody complains.
+
+ -- Trent W. Buck <trentbuck@gmail.com>  Wed, 09 Apr 2008 13:37:59 +1000
+
 darcs (1.0.9-1) unstable; urgency=low
 
   * New upstream release (Closes: 430950).
