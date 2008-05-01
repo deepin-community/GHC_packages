@@ -1,3 +1,12 @@
+ghc6 (6.8.2-5) unstable; urgency=low
+
+  * Don't build template-haskell if we're not building GHCi.
+    The package is largely useless without GHCi, and some of the buildds
+    were having trouble building template-haskell. We'll need to fix
+    this some other way if GHCi is to be available on every arch, though...
+
+ -- Ian Lynagh (wibble) <igloo@debian.org>  Thu, 01 May 2008 12:32:13 +0000
+
 ghc6 (6.8.2-4) unstable; urgency=low
 
   * Small wibbles to debian/watcher.sh.
