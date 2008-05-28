@@ -24,9 +24,17 @@ clean:
 	rm -f manual/*
 	rm -f xine-out.wav authors
 	$(MAKE) distclean
-	rm -f .depend doc/darcs.1 darcs_print.ps doc/index.html \
+	rm -f darcs_print.ps doc/index.html \
 	  Workaround.hs.beginning Workaround.hs.ending \
 	  Workaround.hs.prefix
+	# FIXME, index.html is in tarball but borked by build...
+	rm -f doc/manual/{darcs,index}.html
+	rm -f doc/manual/darcs.{idv,dvi,log,xref,4ct,aux,lg}
+	rm -f doc/manual/darcs[0-9].html doc/manual/darcs[0-9][0-9].html
+	rm -f doc/manual/darcs[0-6]x.png
+	rm -f doc/manual/darcs.tmp
+	rm -f src/darcs_print.pdf src/patch-theory.pdf
+	rm -f microbench
 	dh_clean
 
 install: DH_OPTIONS=
