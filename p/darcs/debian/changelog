@@ -1,3 +1,26 @@
+darcs (2.0.0-4) unstable; urgency=low
+
+  * Adopt CDBS (Closes: #484375).
+    * Don't install intermediary DVI and PostScript doc formats.
+    * Add horrible --datadir=/usr/share (is this necessary?)
+  * Drop paranoiac minimum versions from GHC dev packages to appease
+    lintian.
+  * Fix doc-base section to appease lintian.
+  * Indent initialize's docstring to avoid manpage render warning:
+    `initialize'' not defined (probable missing space after `in')
+  * Extend upstream's distclean target to include parts of
+    maintainer-clean, to appease dpkg-source -b in rebuilds.
+  * Whoops, I lost the 1.0.9-1.1 changes.  The only change that I
+    didn't already re-invent in 2.0.0-1 was related to the openFd bug,
+    which upstream fixed in darcs 2 by looking for fdToHandle (Closes:
+    #470376).  Closing it here convinces the Debian BTS that this bug
+    really *is* fixed in Lenny.
+  * Change build dependency "tex4ht | latex2html" back to just
+    "tex4ht", since the latter's upstream is quite old, and I've never
+    tested it.
+
+ -- Trent W. Buck <trentbuck@gmail.com>  Thu, 05 Jun 2008 14:24:16 +1000
+
 darcs (2.0.0-3) unstable; urgency=low
 
   * Flip maintainer to Trent, add Isaac and myself to Uploaders.

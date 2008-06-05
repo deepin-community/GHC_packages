@@ -1,78 +1,33 @@
 #!/usr/bin/make -f
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+include /usr/share/cdbs/1/class/autotools.mk
 
-configure: configure-stamp
-configure-stamp:
-	dh_testdir
-	sh ./configure --with-sendmail=/usr/sbin/sendmail \
-	  --prefix=/usr --sysconfdir=/etc --libexecdir=/usr/lib \
-	  --mandir=/usr/share/man --datadir=/usr/share --enable-pipelining
-	touch configure-stamp
+DEB_CONFIGURE_EXTRA_FLAGS += --with-sendmail=/usr/sbin/sendmail
+DEB_CONFIGURE_EXTRA_FLAGS += --enable-pipelining
+# Avoid breakage in darcs.cgi and cgi.conf?
+DEB_CONFIGURE_EXTRA_FLAGS += --datadir="/usr/share"
+DEB_MAKE_INSTALL_TARGET += installdocs installserver
 
-build: build-stamp
-build-stamp: configure-stamp
-	dh_testdir
-#	$(MAKE)
-#	rm -f darcs.ps manual/index.html # Need to get table of contents right...
-	$(MAKE)
-	$(MAKE) doc/index.html
-	touch build-stamp
-
-clean:
-	dh_testdir
-	dh_testroot
-	rm -f build-stamp configure-stamp
-	rm -f manual/*
-	rm -f xine-out.wav authors
-	$(MAKE) distclean
-	rm -f darcs_print.ps doc/index.html \
-	  Workaround.hs.beginning Workaround.hs.ending \
-	  Workaround.hs.prefix
-	# FIXME, index.html is in tarball but borked by build...
-	rm -f doc/manual/{darcs,index}.html
-	rm -f doc/manual/darcs.{idv,dvi,log,xref,4ct,aux,lg}
-	rm -f doc/manual/darcs[0-9].html doc/manual/darcs[0-9][0-9].html
-	rm -f doc/manual/darcs[0-6]x.png
-	rm -f doc/manual/darcs.tmp
-	rm -f src/darcs_print.pdf src/patch-theory.pdf
+# The upstream makefile's "all" target rebuilds a bunch of files that
+# are included in the source tarball.  This upsets dpkg-source -b if
+# you rerun dpkg-buildpackage, because it looks like they were
+# patched.
+#
+# It happens that the upstream makefile has a "distclean" target,
+# which is too liberal, and a "maintainer-clean" target, which is too
+# agressive; the latter deletes files that require _darcs to rebuild.
+#
+# Rather than patching upstream's distclean rule, we just extend the
+# clean target here.  This is code duplication, but probably easier to
+# understand and maintain.
+clean::
+# from upstream's maintainer-clean
+	rm -f doc/darcs.1 doc/manual/*.html doc/manual/darcs*.???
+# typo in upstream's distclean rule
+	rm -f src/Workaround.hs
+# never cleaned upstream
 	rm -f microbench
-	dh_clean
-
-install: DH_OPTIONS=
-install: build
-	dh_testdir
-	dh_testroot
-	dh_clean -k
-	dh_installdirs
-
-	DESTDIR=$(CURDIR)/debian/darcs $(MAKE) install
-	# remove installed cruft
-	cd debian/darcs/usr/share/doc/darcs/manual && rm -f darcs.4tc \
-	  darcs.aux darcs.idv darcs.lg darcs.xref darcs.tmp darcs.4ct \
-	  darcs.log
-	DESTDIR=$(CURDIR)/debian/darcs-server $(MAKE) installserver
-
-# Build architecture-independent files here.
-# Pass -i to all debhelper commands in this target to reduce clutter.
-binary-indep: build install
-
-# Build architecture-dependent files here.
-binary-arch: build install
-	dh_testdir -a
-	dh_testroot -a
-	dh_installdocs -a
-	dh_installexamples -a
-	dh_installman -pdarcs doc/darcs.1
-	dh_installman -pdarcs-server
-	dh_installchangelogs -a ChangeLog
-	dh_strip -a
-	dh_link -a
-	dh_compress -a
-	dh_fixperms -a
-	dh_installdeb -a
-	dh_shlibdeps -a
-	dh_gencontrol -a
-	dh_md5sums -a
-	dh_builddeb -a
-
-binary: binary-indep binary-arch
-.PHONY: build clean binary-indep binary-arch binary install configure
+	rm -f doc/manual/darcs.xref doc/manual/darcs.lg
+	rm -f src/darcs_print.pdf src/patch-theory.pdf
+	rm -f src/darcs_print.ps src/patch-theory.ps
