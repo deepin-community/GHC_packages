@@ -1,3 +1,17 @@
-Does darcs-server even work anymore?  I've never used it, but when I
-tried to test it both with and without --datadir, and with the
-1.0.9-1.1 package, it didn't seem to do anything.
+* Find testers for darcs-server.
+
+I don't grok darcs-server, and can't get either the 1.x or 2.x
+versions to work.  I'd like to drop the --datadir thing from rules,
+but I don't know if this breaks darcs-server.
+
+* Keep debian/ tree under version control.
+
+* Move documentation into a separate darcs-doc package?
+
+Lintian doesn't raise arch-dep-package-has-big-usr-share.  From
+reading /usr/share/lintian/checks/huge-usr-share, the conditions for
+this warning appear to be: package is architecture-dependent; and
+/usr/share is over 2MB or constitutes at least 50% of package (by
+size) and over 1MB.
+
+Not considering this until lintian complains.

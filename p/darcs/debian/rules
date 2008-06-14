@@ -6,8 +6,14 @@ include /usr/share/cdbs/1/class/autotools.mk
 DEB_CONFIGURE_EXTRA_FLAGS += --with-sendmail=/usr/sbin/sendmail
 DEB_CONFIGURE_EXTRA_FLAGS += --enable-pipelining
 # Avoid breakage in darcs.cgi and cgi.conf?
-DEB_CONFIGURE_EXTRA_FLAGS += --datadir="/usr/share"
+DEB_CONFIGURE_EXTRA_FLAGS += --datadir=/usr/share
 DEB_MAKE_INSTALL_TARGET += installdocs installserver
+
+# Work around #481592 (Closes: #485631).
+# Remove me when #481592 is closed!
+ifeq ($(DEB_HOST_ARCH),ia64)
+CFLAGS := $(filter-out -g,$(CFLAGS))
+endif
 
 # The upstream makefile's "all" target rebuilds a bunch of files that
 # are included in the source tarball.  This upsets dpkg-source -b if
