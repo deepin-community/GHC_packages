@@ -1,0 +1,174 @@
+#!/usr/bin/make -f
+
+include /usr/share/quilt/quilt.make
+.PHONY: patch unpatch
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+# Be specific about the version of autotools we use
+export AUTOMAKE := automake-1.10
+export ACLOCAL := aclocal-1.10
+
+# These are used for cross-compiling and for saving the configure script
+# from having to guess our platform (since we know it already)
+DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+configure_flags := --build $(DEB_BUILD_GNU_TYPE)
+ifneq ($(DEB_BUILD_GNU_TYPE), $(DEB_HOST_GNU_TYPE))
+	configure_flags += --host $(DEB_HOST_GNU_TYPE)
+endif
+configure_flags += --enable-packager-mode --with-c2hs=no --prefix=/usr
+
+configure_flags += --with-hcflags="-O"
+
+# Which bits of Gtk2Hs do we want?
+configure_flags += --enable-libglade
+configure_flags += --enable-gconf
+configure_flags += --enable-sourceview
+configure_flags += --enable-cairo
+configure_flags += --enable-opengl
+configure_flags += --enable-docs
+configure_flags += --enable-gnomevfs
+configure_flags += --enable-gstreamer
+#configure_flags += --enable-mozilla   # not compatible with new xulrunner-dev yet
+#configure_flags += --enable-svg-cairo # needs libsvg-cairo-dev, not in Debian
+
+# necessary to build applications in s390
+configure_flags += --disable-split-objs
+
+# -g removed to build in IA64
+CFLAGS := -Wall
+ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+	CFLAGS += -O0
+else
+	CFLAGS += -O2
+endif
+ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
+	INSTALL_PROGRAM += -s
+endif
+
+
+PKGS := glib cairo gconf gtk glade gtkglext sourceview soegtk gnomevfs gstreamer
+VERSION := $(shell sed -ne '/([0-9.]\+-.*)/ { s/^.*(\([0-9.]\+\)-.*).*$$/\1/p; q }' < debian/changelog)
+
+# configure --libdir: where the libs are temporarily installed (under
+# debian/tmp) before moving them to the correct package build hierarchy.
+# We need to set this explicitly for path mangling purposes.
+TMP_LIBDIR := /usr/lib
+
+# Helper macros
+DEB = libghc6-$(1)-dev
+PKGLIB_DIR = usr/lib/haskell-packages/ghc6/lib/$(1)-$(VERSION)
+PKGLIB_BUILD = debian/$(call DEB,$(1))/$(call PKGLIB_DIR,$(1))
+# shortcut for mk-haskell-deps
+HDEP = $(1):$(call PKGLIB_BUILD,$(1))/$(1).package.conf
+
+config.status: configure.ac patch
+	dh_testdir
+	cp -f /usr/share/misc/config.sub config.sub
+	cp -f /usr/share/misc/config.guess config.guess
+	autoreconf
+	./configure $(configure_flags) --libdir=$(TMP_LIBDIR)
+
+.PHONY: build
+build: build-stamp
+build-stamp: config.status
+	dh_testdir
+	$(MAKE)
+	touch $@
+
+.PHONY: install
+install: install-stamp
+install-stamp: build-stamp
+	dh_testdir
+	dh_testroot
+	dh_clean -k --exclude=build-stamp
+	$(MAKE) install DESTDIR=$(CURDIR)/debian/tmp
+	touch $@
+
+.PHONY: pkgmeta
+pkgmeta: pkgmeta-install-stamp pkgmeta-postinst-stamp pkgmeta-prerm-stamp
+pkgmeta-%-stamp: debian/%.in
+	for pkg in $(PKGS) ; do \
+		sed -e "s#@PKGLIB_DIR@#$(call PKGLIB_DIR,$$pkg)#g; \
+			s#@PKG@#$$pkg#g; \
+			s#@VERSION@#$(VERSION)#g; \
+			s#@TMP_LIBDIR@#$(TMP_LIBDIR)#g" \
+			< $^ > debian/$(call DEB,$$pkg).$* ; \
+	done
+	test "$*" = "install" && echo "debian/tmp$(TMP_LIBDIR)/gtk2hs/include $(call PKGLIB_DIR,glib)" >> debian/$(call DEB,glib).install || true
+	touch $@
+
+.PHONY: clean clean-real
+clean: clean-real unpatch
+clean-real:
+	dh_testdir
+	dh_testroot
+	[ ! -e Makefile ] || $(MAKE) clean distclean
+	dh_clean aclocal.m4 Makefile.in configure \
+		config.guess config.sub config.log \
+		build-stamp install-stamp pkgmeta-*-stamp \
+		debian/*-dev.install \
+		debian/*.postinst debian/*.prerm
+
+# Build architecture-independent files here.
+.PHONY: binary-indep
+binary-indep: install pkgmeta
+	dh_testdir -i
+	dh_testroot -i
+	dh_clean -k --exclude=build-stamp --exclude=install-stamp --exclude=debian/tmp
+	dh_installdirs -i
+	dh_installchangelogs -i ChangeLog
+	dh_installdocs -i
+	dh_installexamples -i
+	dh_install -i
+	dh_compress -i
+	dh_fixperms -i
+	dh_installdeb -i
+	dh_gencontrol -i
+	dh_md5sums -i
+	dh_builddeb -i
+
+# Build architecture-dependent files here.
+.PHONY: binary-arch
+binary-arch: install pkgmeta
+	dh_testdir -a
+	dh_testroot -a
+	dh_clean -k --exclude=build-stamp --exclude=install-stamp --exclude=debian/tmp
+	dh_installdirs -a
+	dh_installchangelogs -a ChangeLog
+	dh_installdocs -a
+	# move everything into place
+	dh_install -a
+	# mangle paths in $$pkg.package.conf
+	for pkg in $(PKGS) ; do \
+		sed --in-place -e \
+			"s#$(TMP_LIBDIR)/gtk2hs/imports/$$pkg#/$(call PKGLIB_DIR,$$pkg)/imports#g; \
+			 s#$(TMP_LIBDIR)/gtk2hs#/$(call PKGLIB_DIR,$$pkg)#g;" \
+			$(call PKGLIB_BUILD,$$pkg)/$$pkg.package.conf ; \
+	done
+	sh -e debian/mk-haskell-deps $(call DEB,glib) $(call HDEP,glib)
+	for pkg in cairo gconf gnomevfs gstreamer ; do \
+		sh -e debian/mk-haskell-deps $(call DEB,$$pkg) \
+			$(call HDEP,glib) $(call HDEP,$$pkg) ; \
+	done
+	sh -e debian/mk-haskell-deps $(call DEB,gtk) \
+		$(call HDEP,glib) $(call HDEP,cairo) $(call HDEP,gtk)
+	for pkg in glade gtkglext sourceview soegtk ; do \
+		sh -e debian/mk-haskell-deps $(call DEB,$$pkg) \
+			$(call HDEP,glib) $(call HDEP,cairo) \
+			$(call HDEP,gtk) $(call HDEP,$$pkg) ; \
+	done
+	dh_strip -a
+	dh_compress -a
+	dh_fixperms -a
+	dh_makeshlibs -a
+	dh_installdeb -a
+	dh_shlibdeps -a
+	dh_gencontrol -a
+	dh_md5sums -a
+	dh_builddeb -a
+
+.PHONY: binary
+binary: binary-indep binary-arch

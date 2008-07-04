@@ -1,0 +1,13 @@
+Index: gtk2hs-0.9.13/Makefile.am
+===================================================================
+--- gtk2hs-0.9.13.orig/Makefile.am	2008-07-03 18:25:56.000000000 -0300
++++ gtk2hs-0.9.13/Makefile.am	2008-07-03 18:26:12.000000000 -0300
+@@ -2217,7 +2217,7 @@
+	docs/reference/haddock-util.js						  \
+	docs/reference/index.html docs/reference/doc-index.html			  \
+	docs/reference/gtk2hs.haddock
+-if WIN32
++if !WIN32
+ htmldoc_DATA +=
+	$(foreach LETTER, A B C D E F G H I J K L M N O P Q R S T U V W X Y
+		58 , docs/reference/doc-index-$(LETTER).html) #missing Z < > |, i.e. 60 62 124

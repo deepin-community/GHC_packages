@@ -1,0 +1,14 @@
+#!/bin/sh -e
+
+case "$1" in
+remove|upgrade|deconfigure|failed-upgrade)
+	ghc-pkg unregister @PKG@-@VERSION@
+	;;
+*)
+	echo "prerm called with unknown argument \`$1'" >&2
+	exit 1 ;;
+esac
+
+#DEBHELPER#
+
+exit 0

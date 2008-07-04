@@ -1,0 +1,127 @@
+gtk2hs (0.9.13-1) unstable; urgency=low
+
+  * New upstream release.
+  * Removed package libghc6-mozembed-dev, since this version of Gtk2hs is
+    not compatible with xulrunner-dev in sid. (Closes: #480805)
+  * New packages gnomevfs and gstreamer.
+  * Use automake and aclocal 1.10.
+  * Removed integration with haskell-utils, since update-haskell-control only
+    works with Cabal.
+  * debian/control:
+    - Removed alpha from supported architectures. (Closes: #410594)
+    - Build-depends on libghc6-mtl-doc.
+    - Specific version for libghc6-mtl-dev.
+    - Use ${binary:Version} instead of ${Source-Version}.
+    - Use Standards-Version 3.8.0.
+  * debian/gtk2hs-doc.doc-base: Use Programming instead of devel as
+    Section.
+  * debian/rules:
+    - CFLAGS -g removed to build in IA64. (Closes: #481593)
+    - Use --disable-split-objs to make applications possible in
+      s390. (Closes: #482503)
+  * debian/watch: Use sourceforge mirror instead of gtk2hs site.
+    (Closes: #450342)
+  * debian/patches/win32.diff: Correct bug from upstream that didn't
+    install doc-index-* files.
+
+ -- Marco Túlio Gontijo e Silva <marcot@riseup.net>  Thu, 29 Jun 2008 17:29:33 -0300
+
+gtk2hs (0.9.12.1-1.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * add armel and armeb to debian/control (Closes: #458911)
+  * Don't use gcc-4.1 (Closes: #471634)
+
+ -- Colin Tuckley <colint@debian.org>  Mon, 28 Apr 2008 11:45:39 +0100
+
+gtk2hs (0.9.12.1-1) unstable; urgency=low
+
+  * New upstream release (Closes: #461245)
+  * Update ghc6 dependency to ghc6-6.8.2
+  * Removing patches
+	- index-Y.diff
+	- CUInt-fix.diff
+  * Move Homepage to a proper control field
+  * Bump standards version
+
+ -- Joachim Breitner <nomeata@debian.org>  Thu, 17 Jan 2008 23:31:09 +0100
+
+gtk2hs (0.9.12-1) unstable; urgency=low
+
+  * New upstream release
+  * base.haddock special handling not necessary any more, since 0.9.11-1
+  * Subsequent build process fails, thx for the patch to duncan (Closes: #427796)
+  * Install ghci library files, Closes: 410389
+  * Force using gcc-4.1, because of
+    http://hackage.haskell.org/trac/ghc/ticket/1427
+    This can be disabled once the fix reached debian, e.g. with ghc 6.8
+
+ -- Joachim Breitner <nomeata@debian.org>  Mon, 03 Sep 2007 16:11:34 +0200
+
+gtk2hs (0.9.11-2) unstable; urgency=low
+
+  * libghc6-cairo-dev added missing dependency on libghc6-mtl-dev
+    (Closes: #413283)
+
+ -- Joachim Breitner <nomeata@debian.org>  Tue, 17 Jul 2007 16:48:49 +0200
+
+gtk2hs (0.9.11-1) unstable; urgency=low
+
+  * New upstream release
+  * $(GHC_DOCDIR)/base/base.haddock is no longer zipped
+  * Adjust Makefile.am-patch
+  * Do not conflict with ghc 6.6.1 (Closes: #425657)
+
+ -- Joachim Breitner <nomeata@debian.org>  Thu, 31 May 2007 08:18:12 +0200
+
+gtk2hs (0.9.10.5-1) unstable; urgency=low
+
+  * New upstream version.
+  * Fixed Haddock linking to GHC base docs.
+
+ -- Liyang HU <debian.org@liyang.hu>  Wed, 24 Jan 2007 14:03:42 +0000
+gtk2hs (0.9.10.4-1) unstable; urgency=low
+
+  * New upstream version.
+  * Compiled for GHC 6.6. Thanks for Arjan Oosting <arjan@debian.org> and
+    <cb@kittenz.org>. Closes: #398227, #393600
+  * Update depends from mozilla-dev to libxul-dev. Thanks for Emilio Jesus
+    Gallego Arias <egallego@telefonica.net>. Closes: #386610
+  * Added packages libghc6-gtkglext-dev and libghc6-soegtk-dev and removed
+    package libghc6-mogul-dev.
+  * Removed libglib2.0-dev, libgtk2.0-dev and libcairo2-dev from Build-Depends.
+  * debian/rules: using quilt instead of dpatch to handle debian/patches.
+
+ -- Marco Túlio Gontijo e Silva <malebria@riseup.net>  Tue,  9 Jan 2007 15:36:06 -0200
+
+gtk2hs (0.9.10-2) unstable; urgency=low
+
+  * Compiled for GHC 6.4.2.
+  * More specific Architecture lines (via update-haskell-control).
+  * debian/rules: manual rule to update debian/control.
+  * htmldir already defined in latest autotools. (Patched)
+  * debian/rules: remove aclocal.m4 to make the diff.gz even smaller.
+
+ -- Liyang HU <debian.org@liyang.hu>  Sat, 22 Jul 2006 21:31:58 +0100
+
+gtk2hs (0.9.10-1.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Build-Conflicts against autoconf2.13 and automake1.4
+  * Added autotools-dev to Build-Depends.
+  * debian/rules: remove config.guess and config.sub on clean to keep
+    the diff.gz small.
+
+ -- Arjan Oosting <arjanoosting@home.nl>  Thu, 13 Apr 2006 23:17:11 +0200
+
+gtk2hs (0.9.10-1) unstable; urgency=low
+
+  * Repackaged and updated to latest version.
+
+ -- Liyang HU <debian.org@liyang.hu>  Wed, 01 Mar 2006 19:39:41 +0000
+
+gtk2hs (0.9.6-0pre1) unstable; urgency=low
+
+  * Prerelease to haskell-unsafe.
+
+ -- Martin Sjögren <sjogren@debian.org>  Sun,  5 Sep 2004 10:07:42 +0200
