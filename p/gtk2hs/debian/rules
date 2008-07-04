@@ -1,8 +1,5 @@
 #!/usr/bin/make -f
 
-include /usr/share/quilt/quilt.make
-.PHONY: patch unpatch
-
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
@@ -64,7 +61,7 @@ PKGLIB_BUILD = debian/$(call DEB,$(1))/$(call PKGLIB_DIR,$(1))
 # shortcut for mk-haskell-deps
 HDEP = $(1):$(call PKGLIB_BUILD,$(1))/$(1).package.conf
 
-config.status: configure.ac patch
+config.status: configure.ac
 	dh_testdir
 	cp -f /usr/share/misc/config.sub config.sub
 	cp -f /usr/share/misc/config.guess config.guess
@@ -101,7 +98,7 @@ pkgmeta-%-stamp: debian/%.in
 	touch $@
 
 .PHONY: clean clean-real
-clean: clean-real unpatch
+clean: clean-real
 clean-real:
 	dh_testdir
 	dh_testroot
