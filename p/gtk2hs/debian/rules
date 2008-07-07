@@ -82,6 +82,7 @@ install-stamp: build-stamp
 	dh_testroot
 	dh_clean -k --exclude=build-stamp
 	$(MAKE) install DESTDIR=$(CURDIR)/debian/tmp
+	debian/dh_haskell_depends --package-conf
 	touch $@
 
 .PHONY: pkgmeta
