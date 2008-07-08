@@ -82,7 +82,6 @@ install-stamp: build-stamp
 	dh_testroot
 	dh_clean -k --exclude=build-stamp
 	$(MAKE) install DESTDIR=$(CURDIR)/debian/tmp
-	sh debian/dh_haskell_depends --gtk2hs
 	touch $@
 
 .PHONY: pkgmeta
@@ -158,6 +157,7 @@ binary-arch: install pkgmeta
 			$(call HDEP,glib) $(call HDEP,cairo) \
 			$(call HDEP,gtk) $(call HDEP,$$pkg) ; \
 	done
+	sh debian/dh_haskell_depends --gtk2hs
 	dh_strip -a
 	dh_compress -a
 	dh_fixperms -a
