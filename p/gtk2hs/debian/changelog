@@ -2,14 +2,16 @@ gtk2hs (0.9.13-1) unstable; urgency=low
 
   * New upstream release.
   * Removed package libghc6-mozembed-dev, since this version of Gtk2hs is
-    not compatible with xulrunner-dev in sid. (Closes: #480805)
+    not compatible with xulrunner-dev in sid. Thanks to Mike Hommey and
+    Duncan Coutts. (Closes: #480805)
   * New packages gnomevfs and gstreamer.
   * Removed unused quilt dependency.
   * Use automake and aclocal 1.10.
   * Removed integration with haskell-utils, since update-haskell-control only
-    works with Cabal; now uses haskell-devscripts.
+    works with Cabal; now uses a patched version of dh_haskell_depends.
   * debian/control:
-    - Removed alpha from supported architectures. (Closes: #410594)
+    - Removed alpha from supported architectures. Thanks to Falk Hueffner
+      and Axel Simon. (Closes: #410594)
     - Build-depends on libghc6-mtl-doc.
     - Specific version for libghc6-mtl-dev.
     - Use ${binary:Version} instead of ${Source-Version}.
@@ -19,13 +21,14 @@ gtk2hs (0.9.13-1) unstable; urgency=low
   * debian/rules:
     - CFLAGS -g removed to build in IA64. (Closes: #481593)
     - Use --disable-split-objs to make applications possible in
-      s390. (Closes: #482503)
-  * debian/watch: Use sourceforge mirror instead of gtk2hs site.
-    (Closes: #450342)
+      s390. Thanks to Bastian Blank, Axel Simon and Duncan
+      Coutts. (Closes: #482503)
+  * debian/watch: Use sourceforge mirror instead of gtk2hs site. Thanks to
+    Raphael Geissert. (Closes: #450342)
   * debian/gtk2hs-doc.install: Correct bug from upstream that didn't
-    install doc-index-* files.
+    install doc-index-* files. Thanks to Gustavo Noronha.
 
- -- Marco Túlio Gontijo e Silva <marcot@riseup.net>  Thu, 29 Jun 2008 17:29:33 -0300
+ -- Marco Túlio Gontijo e Silva <marcot@riseup.net>  Thu, 8 Jul 2008 11:16:33 -0300
 
 gtk2hs (0.9.12.1-1.1) unstable; urgency=low
 
