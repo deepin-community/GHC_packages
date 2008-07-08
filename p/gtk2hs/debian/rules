@@ -157,7 +157,7 @@ binary-arch: install pkgmeta
 			$(call HDEP,glib) $(call HDEP,cairo) \
 			$(call HDEP,gtk) $(call HDEP,$$pkg) ; \
 	done
-	sh debian/dh_haskell_depends --gtk2hs
+	sh debian/dh_haskell_depends --package-conf
 	dh_strip -a
 	dh_compress -a
 	dh_fixperms -a

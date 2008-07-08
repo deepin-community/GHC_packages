@@ -183,7 +183,7 @@ find_config_for_ghc6(){
 	*)
 	    ;;
     esac
-    if [ -z $gtk2hs ] ; then
+    if [ -z $packageconf ] ; then
         conf=installed-pkg-config
     else
         conf=*.package.conf
@@ -205,7 +205,7 @@ fi
 args=
 ignores=
 files=
-gtk2hs=
+packageconf=
 until [ -z "$1" ]
 do
   case "$1" in
@@ -219,8 +219,8 @@ do
 	  ignores="$ignores $pkg"
 	  ;;
 
-      --gtk2hs)
-          gtk2hs=True
+      --package-conf)
+          packageconf=True
           ;;
 
       -*)
