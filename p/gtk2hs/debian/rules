@@ -32,7 +32,9 @@ configure_flags += --enable-gstreamer
 #configure_flags += --enable-svg-cairo # needs libsvg-cairo-dev, not in Debian
 
 # necessary to build applications in s390
-configure_flags += --disable-split-objs
+ifeq (s390,'$(shell dpkg-architecture -qDEB_HOST_ARCH)')
+        configure_flags += --disable-split-objs
+endif
 
 # -g removed to build in IA64
 CFLAGS := -Wall
