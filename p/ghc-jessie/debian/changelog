@@ -1,3 +1,14 @@
+ghc6 (6.8.2-6) unstable; urgency=medium
+
+  * New maintainer.
+  * Made the perl script driver/split/ghc-split not use the obsolete $*
+    var (Closes: #489157)
+  * Copied libraries/unix/System/Posix/Resource.hsc and
+    libraries/base/include/HsBase.h from 6.8.3 to fix issues with
+    setResourceLimit. (Closes: #491909)
+
+ -- Kari Pahula <kaol@debian.org>  Wed, 03 Sep 2008 23:41:18 +0300
+
 ghc6 (6.8.2-5) unstable; urgency=low
 
   * Don't build template-haskell if we're not building GHCi.
