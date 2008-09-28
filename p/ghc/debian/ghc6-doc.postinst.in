@@ -3,6 +3,8 @@
 #
 set -e
 
+libdir=/usr/lib/ghc6-doc
+
 # summary of how this script can be called:
 #        * <postinst> `configure' <most-recently-configured-version>
 #        * <old-postinst> `abort-upgrade' <new version>
@@ -22,8 +24,8 @@ set -e
 
 case "$1" in
     configure|abort-upgrade|abort-remove|abort-deconfigure)
-        cd /usr/share/doc/ghc6-doc/html/libraries
-        /usr/lib/ghc6-doc/gen_contents_index
+        cd /usr/share/doc/ghc6-doc/libraries
+        "$libdir"/gen_contents_index
     ;;
     *)
         echo "postinst called with unknown argument \`$1'" >&2
