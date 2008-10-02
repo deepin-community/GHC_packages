@@ -1,0 +1,134 @@
+#!/usr/bin/make -f
+# Generic Haskell cabal library debian/rules v9 by Ian Lynagh,
+# based on the example by Joey Hess.
+# This file is public domain software.
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+# Get the Cabal package name, lower-cased.
+# Assumes that the Debian package name is standard.
+CABAL_PACKAGE = $(shell dpkg-parsechangelog | sed "1s/source: haskell-//i; q")
+
+GHC6_PACKAGE      = libghc6-$(CABAL_PACKAGE)-dev
+GHC6_PROF_PACKAGE = libghc6-$(CABAL_PACKAGE)-prof
+GHC6_DOC_PACKAGE  = libghc6-$(CABAL_PACKAGE)-doc
+
+# Find ghc. The ghc in the path might point to some other version of
+# GHC, so use ghc6 if it exists (which it ought to when building for
+# Debian)
+GHC := $(firstword $(shell bash -c "type -p ghc6 ghc"))
+
+CONFIGURE_OPTS  = --enable-library-vanilla \
+                  --enable-library-profiling \
+                  --enable-library-for-ghci
+ifneq '$(findstring $(shell dpkg-architecture -qDEB_HOST_ARCH), i386 amd64)' ''
+CONFIGURE_OPTS += --enable-split-objs
+endif
+
+build: build-stamp
+build-stamp:
+	dh_testdir
+
+	update-haskell-control --check
+	$(GHC) --make Setup.*hs -o setup-ghc
+	./setup-ghc configure --ghc --with-compiler=$(GHC) --prefix=/usr --docdir=/usr/share/doc/ghc6-doc/libraries/$(CABAL_PACKAGE)  --htmldir=/usr/share/doc/ghc6-doc/libraries/$(CABAL_PACKAGE) $(CONFIGURE_OPTS)
+	./setup-ghc build
+	./setup-ghc haddock --hyperlink-source
+
+	touch $@
+
+FILES = -type f
+PROF_FILE = \( -name "*.p_*" -o -name "lib*_p.a" \)
+
+install: install-stamp
+install-stamp: build-stamp
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs
+
+	./setup-ghc copy --destdir=debian/tmp/
+	# XXX The file isn't necessarily called LICENSE, and may not even
+	# exist at all
+	rm debian/tmp/usr/share/doc/ghc6-doc/libraries/$(CABAL_PACKAGE)/LICENSE
+	find debian/tmp/usr/lib -type f ! $(PROF_FILE) \
+	                                 > debian/$(GHC6_PACKAGE).install
+	find debian/tmp -type d -empty  >> debian/$(GHC6_PACKAGE).install
+	find debian/tmp/usr/lib -type f   $(PROF_FILE) \
+	                                 > debian/$(GHC6_PROF_PACKAGE).install
+	echo "debian/tmp/usr/share/doc"  > debian/$(GHC6_DOC_PACKAGE).install
+
+	./setup-ghc register --gen-script
+	./setup-ghc unregister --gen-script
+	mkdir -p         debian/$(GHC6_PACKAGE)/usr/lib/$(GHC6_PACKAGE)
+	mv register.sh   debian/$(GHC6_PACKAGE)/usr/lib/$(GHC6_PACKAGE)
+	mv unregister.sh debian/$(GHC6_PACKAGE)/usr/lib/$(GHC6_PACKAGE)
+
+	touch $@
+
+update-generated-files:
+	update-debian-haskell-files
+	update-haskell-control
+	sed "s/@PACKAGE@/$(GHC6_PACKAGE)/g" debian/$(GHC6_PACKAGE).prerm.in \
+	                                  > debian/$(GHC6_PACKAGE).prerm
+	sed "s/@PACKAGE@/$(GHC6_PACKAGE)/g" debian/$(GHC6_PACKAGE).postinst.in \
+	                                  > debian/$(GHC6_PACKAGE).postinst
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp install-stamp binary-common-stamp
+
+	-./setup-ghc clean
+	rm -f Setup.o Setup.hi setup-ghc
+	rm -f debian/*.install
+
+	dh_clean
+
+# Build architecture-dependent files here.
+binary-common: binary-common-stamp
+binary-common-stamp: install-stamp
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs
+	dh_installdocs
+	dh_installexamples
+	dh_install --fail-missing
+#	dh_installmenu
+#	dh_installdebconf
+#	dh_installlogrotate
+#	dh_installemacsen
+#	dh_installcatalogs
+#	dh_installpam
+#	dh_installmime
+#	dh_installinit
+#	dh_installcron
+#	dh_installinfo
+#	dh_undocumented
+	dh_installman
+	dh_link
+	dh_strip
+	dh_compress -X.haddock
+	dh_fixperms
+#	dh_perl
+#	dh_python
+#	dh_makeshlibs
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+# binary-indep and binary-arch both build everything, as otherwise
+# # "dh_install --fail-missing" falls over
+
+# Build architecture-independent files here.
+binary-indep: binary-common-stamp
+# We have nothing to do by default.
+
+# Build architecture-dependent files here.
+binary-arch: binary-common-stamp
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary-common binary install
