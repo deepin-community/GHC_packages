@@ -68,7 +68,6 @@ install-stamp: build-stamp
 	touch $@
 
 update-generated-files:
-	update-debian-haskell-files
 	update-haskell-control
 	sed "s/@PACKAGE@/$(GHC6_PACKAGE)/g" debian/$(GHC6_PACKAGE).prerm.in \
 	                                  > debian/$(GHC6_PACKAGE).prerm
