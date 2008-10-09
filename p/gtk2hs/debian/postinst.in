@@ -1,8 +1,10 @@
 #!/bin/sh -e
 
+GHC_PKG=/usr/bin/ghc-pkg6
+
 case "$1" in
 configure|abort-upgrade|abort-remove|abort-deconfigure)
-	ghc-pkg register /@PKGLIB_DIR@/@PKG@.package.conf ;;
+	${GHC_PKG} register /@PKGLIB_DIR@/@PKG@.package.conf ;;
 *)
 	echo "postinst called with unknown argument \`$1'" >&2
 	exit 1 ;;
