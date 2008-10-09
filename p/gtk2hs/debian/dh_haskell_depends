@@ -174,7 +174,6 @@ depends_for_hugs(){
 find_config_for_ghc6(){
     local f
     local pkg
-    local conf
     pkg=$1
     case "$pkg" in
 	libghc6-*-prof)
@@ -183,12 +182,7 @@ find_config_for_ghc6(){
 	*)
 	    ;;
     esac
-    if [ -z $packageconf ] ; then
-        conf=installed-pkg-config
-    else
-        conf=*.package.conf
-    fi
-    for f in debian/$pkg/usr/lib/haskell-packages/ghc6/lib/*/$conf ; do
+    for f in debian/$pkg/usr/lib/haskell-packages/ghc6/lib/*/installed-pkg-config ; do
 	if [ -f "$f" ] ; then
 	    echo $f
 	    break
@@ -205,7 +199,6 @@ fi
 args=
 ignores=
 files=
-packageconf=
 until [ -z "$1" ]
 do
   case "$1" in
@@ -218,10 +211,6 @@ do
 	  pkg=${1##--exclude=}
 	  ignores="$ignores $pkg"
 	  ;;
-
-      --package-conf)
-          packageconf=True
-          ;;
 
       -*)
 	  args="$args $1"
@@ -246,19 +235,19 @@ for pkg in `dh_listpackages $args`; do
 	libghc6-*-dev|libghc6-*-prof)
 	    config=`find_config_for_ghc6 $pkg`
 	    if [ -f "$config" ] ; then
-		cfiles="$files $config"
-	    fi
-	    if [ -z "$cfiles" ] ; then
+		files="$files $config"
+            fi
+	    if [ -z "$files" ] ; then
 	      echo "No installed package description files can not be found" >&2
 	      exit 1
 	    fi
 	    grep -v ^haskell:Depends $sfile > $sfile.tmp || true
 	    case "$pkg" in
 		libghc6-*-dev)
-		    echo "haskell:Depends=`depends_for_ghc6 $cfiles`" >> $sfile.tmp
+		    echo "haskell:Depends=`depends_for_ghc6 $files`" >> $sfile.tmp
 		    ;;
 		libghc6-*-prof)
-		    echo "haskell:Depends=`depends_for_ghc6_prof $cfiles`" >> $sfile.tmp
+		    echo "haskell:Depends=`depends_for_ghc6_prof $files`" >> $sfile.tmp
 		    ;;
 	    esac
 	    mv $sfile.tmp $sfile

@@ -60,8 +60,9 @@ TMP_LIBDIR := /usr/lib
 DEB = libghc6-$(1)-dev
 PKGLIB_DIR = usr/lib/haskell-packages/ghc6/lib/$(1)-$(VERSION)
 PKGLIB_BUILD = debian/$(call DEB,$(1))/$(call PKGLIB_DIR,$(1))
+SHORT_HDEP = $(call PKGLIB_BUILD,$(1))/$(1).package.conf
 # shortcut for mk-haskell-deps
-HDEP = $(1):$(call PKGLIB_BUILD,$(1))/$(1).package.conf
+HDEP = $(1):$(call SHORT_HDEP,$(1))
 
 config.status: configure.ac
 	dh_testdir
@@ -159,7 +160,8 @@ binary-arch: install pkgmeta
 			$(call HDEP,glib) $(call HDEP,cairo) \
 			$(call HDEP,gtk) $(call HDEP,$$pkg) ; \
 	done
-	sh debian/dh_haskell_depends --package-conf
+	sh debian/dh_haskell_depends \
+		`for pkg in $(PKGS) ; do echo $(call SHORT_HDEP,$$pkg); done`
 	dh_strip -a
 	dh_compress -a
 	dh_fixperms -a
