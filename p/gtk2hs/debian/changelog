@@ -1,3 +1,19 @@
+gtk2hs (0.9.13-3) unstable; urgency=low
+
+  * debian/postinst, debian/prerm:
+    - Use ghc-pkg6 instead of ghc-pkg.  Thanks to
+      Stefan Potyra <sistpoty@ubuntu.com>.  (Closes: #501052)
+    - Try to determine old upstream version. (Closes: #484928)
+  * Use closer version to haskell-devscripts of dh_haskell_depends.
+  * debian/control:
+    - Adds Vcs-Darcs field.  Thanks to KiBi.
+    - Removes Build-Depends on haskell-devscripts, and added on dctrl-tools.
+  * debian/dh_haskell_depends: new parameter -P, asked for inclusion in
+    haskell-devscripts in bug #502099.
+  * debian/watch: Using sf.net directly.
+
+ -- Marco Túlio Gontijo e Silva <marcot@riseup.net>  Fri, 03 Oct 2008 13:57:15 -0300
+
 gtk2hs (0.9.13-2) unstable; urgency=low
 
   * debian/control: depends on -dev packages of the C libraries.
