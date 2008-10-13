@@ -199,6 +199,7 @@ fi
 args=
 ignores=
 files=
+pkgs=
 until [ -z "$1" ]
 do
   case "$1" in
@@ -211,6 +212,16 @@ do
 	  pkg=${1##--exclude=}
 	  ignores="$ignores $pkg"
 	  ;;
+
+      -P*)
+          pkg=${1##-P}
+          pkgs="$pkgs $pkg"
+          ;;
+
+      --package=*)
+          pkg=${1##--exclude=}
+          pkgs="$pkgs $pkg"
+          ;;
 
       -*)
 	  args="$args $1"
@@ -226,8 +237,11 @@ do
   esac
   shift
 done
+if [ -z "$pkgs$" ] ; then
+    pkgs=`dh_listpackages $args`
+fi
 
-for pkg in `dh_listpackages $args`; do
+for pkg in $pkgs; do
     sfile=debian/$pkg.substvars
     touch $sfile
 

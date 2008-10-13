@@ -160,8 +160,11 @@ binary-arch: install pkgmeta
 			$(call HDEP,glib) $(call HDEP,cairo) \
 			$(call HDEP,gtk) $(call HDEP,$$pkg) ; \
 	done
-	sh debian/dh_haskell_depends \
-		`for pkg in $(PKGS) ; do echo $(call SHORT_HDEP,$$pkg); done`
+	for pkg in $(PKGS) ; do \
+		sh debian/dh_haskell_depends \
+			-P$(call DEB,$$pkg) \
+			$(call SHORT_HDEP,$$pkg) ; \
+	done
 	dh_strip -a
 	dh_compress -a
 	dh_fixperms -a
