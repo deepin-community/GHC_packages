@@ -161,8 +161,8 @@ binary-arch: install pkgmeta
 			$(call HDEP,gtk) $(call HDEP,$$pkg) ; \
 	done
 	for pkg in $(PKGS) ; do \
-		sh debian/dh_haskell_depends \
-			-P$(call DEB,$$pkg) \
+		dh_haskell_depends \
+			-p$(call DEB,$$pkg) \
 			$(call SHORT_HDEP,$$pkg) ; \
 	done
 	dh_strip -a
