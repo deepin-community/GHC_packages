@@ -1,0 +1,30 @@
+# The upstream makefile's "all" target rebuilds a bunch of files that
+# are included in the source tarball.  This upsets dpkg-source -b if
+# you rerun dpkg-buildpackage, because it looks like they were
+# patched.
+#
+# It happens that the upstream makefile has a "distclean" target,
+# which is too liberal, and a "maintainer-clean" target, which is too
+# agressive; the latter deletes files that require _darcs to rebuild.
+#
+# Rather than patching upstream's distclean rule, we just extend the
+# clean target here.  This is code duplication, but probably easier to
+# understand and maintain.
+
+# from upstream's maintainer-clean
+doc/darcs.1
+doc/manual/*.html
+doc/manual/darcs*.???
+
+# typo in upstream's distclean rule
+src/Workaround.hs
+
+# never cleaned upstream
+microbench
+.depend
+doc/manual/darcs.xref
+doc/manual/darcs.lg
+src/darcs_print.ps
+src/darcs_print.pdf
+src/patch-theory.ps
+src/patch-theory.pdf

@@ -8,7 +8,7 @@ match that of the orig tarball (which contains generated files).
 You will first need the current orig tarball from upstream (http://darcs.net)
 to create the diff against (in the parent directory of the repository):
 
-    wget http://darcs.net/darcs-2.0.2.tar.gz -O darcs_2.0.2.orig.tar.gz
+    uscan --force-download
 
 The procedure is (in a clean repository, after a get or make maintainer-clean):
 
@@ -36,3 +36,9 @@ When you get a copy of the repository, the source tree is in an editable
 state. To record changes, you can use
 
     darcs rec
+
+You can then use
+
+    darcs send
+
+to mail the changes you have recorded to maintainers.

@@ -1,3 +1,32 @@
+darcs (2.1.0-1) unstable; urgency=low
+
+  * New upstream release.
+    * Manpage patch included upstream, so remove patch support.
+      It can be re-added later if necessary.
+    * Warn user when remote host has darcs1 (Closes: #494109).
+    * fix fix_filepath to work with --repodir (Closes: #458629).
+    * darcs trackdown --set-scripts-executable (Closes: #462917).
+  * Abolish darcs-server binary package
+    (Closes: #498542, #489131, #339770, #486192).
+  * Symlink identical HTML files (Closes: #491875).
+  * Adopt "standard" copyright file format.
+    Note that this patch only changes the format!  The
+    copyright and license information still needs to be
+    checked against current releases of Darcs; corrections
+    will be a separate patch.
+  * Correctly munge prerelease version strings.
+  * control:
+    * fix VCS URL.
+    * enable DMs listed in Uploaders to upload directly.  For more
+      information, see http://wiki.debian.org/Maintainers
+    * refactor description field based on darcs homepage.
+    * bump Standards-Version to 3.8.0.
+      Add a Homepage field.
+      Hard-wrap long fields (Uploads, Build-Depends) for readability.
+    * Bump debhelper dependency so debian/clean works.
+
+ -- Trent W. Buck <trentbuck@gmail.com>  Sun, 19 Oct 2008 13:48:20 +1100
+
 darcs (2.0.2-3) unstable; urgency=low
 
   * Bump ghc6 build-depends to >= 6.8.2-7 (Closes: #500563).

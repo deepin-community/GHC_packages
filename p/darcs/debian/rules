@@ -1,39 +1,12 @@
 #!/usr/bin/make -f
 include /usr/share/cdbs/1/rules/debhelper.mk
-include /usr/share/cdbs/1/rules/simple-patchsys.mk
 include /usr/share/cdbs/1/class/autotools.mk
 
 DEB_CONFIGURE_EXTRA_FLAGS += --with-sendmail=/usr/sbin/sendmail
 DEB_CONFIGURE_EXTRA_FLAGS += --enable-pipelining
-# Avoid breakage in darcs.cgi and cgi.conf?
-DEB_CONFIGURE_EXTRA_FLAGS += --datadir=/usr/share
-DEB_MAKE_INSTALL_TARGET += installdocs installserver
 
 # Work around #481592 (Closes: #485631).
 # Remove me when #481592 is closed!
 ifeq ($(DEB_HOST_ARCH),ia64)
 CFLAGS := $(filter-out -g,$(CFLAGS))
 endif
-
-# The upstream makefile's "all" target rebuilds a bunch of files that
-# are included in the source tarball.  This upsets dpkg-source -b if
-# you rerun dpkg-buildpackage, because it looks like they were
-# patched.
-#
-# It happens that the upstream makefile has a "distclean" target,
-# which is too liberal, and a "maintainer-clean" target, which is too
-# agressive; the latter deletes files that require _darcs to rebuild.
-#
-# Rather than patching upstream's distclean rule, we just extend the
-# clean target here.  This is code duplication, but probably easier to
-# understand and maintain.
-clean::
-# from upstream's maintainer-clean
-	rm -f doc/darcs.1 doc/manual/*.html doc/manual/darcs*.???
-# typo in upstream's distclean rule
-	rm -f src/Workaround.hs
-# never cleaned upstream
-	rm -f microbench
-	rm -f doc/manual/darcs.xref doc/manual/darcs.lg
-	rm -f src/darcs_print.pdf src/patch-theory.pdf
-	rm -f src/darcs_print.ps src/patch-theory.ps

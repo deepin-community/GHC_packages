@@ -2,30 +2,39 @@ Source: darcs
 Section: devel
 Priority: optional
 Maintainer: Trent W. Buck <trentbuck@gmail.com>
-Uploaders: Isaac Jones <ijones@debian.org>, Petr Rockai <mornfall@debian.org>
-Build-Depends: debhelper (>> 4.0), cdbs, patchutils, ghc6 (>= 6.8.2-7), libghc6-html-dev, libghc6-http-dev, libghc6-parsec-dev, libghc6-regex-compat-dev, libghc6-http-dev, libghc6-mtl-dev, libghc6-quickcheck-dev, libcurl4-openssl-dev | libcurl4-gnutls-dev, libkrb5-dev, texlive, tex4ht
-Vcs-Darcs: http://repos.mornfall.net/debian-darcs
-Standards-Version: 3.7.2
+Uploaders: Isaac Jones <ijones@debian.org>,
+ Petr Rockai <mornfall@debian.org>
+DM-Upload-Allowed: yes
+Build-Depends: debhelper (>= 7), cdbs, ghc6 (>= 6.8.2-7),
+ libghc6-html-dev, libghc6-http-dev, libghc6-parsec-dev,
+ libghc6-regex-compat-dev, libghc6-http-dev, libghc6-mtl-dev,
+ libghc6-quickcheck-dev, libcurl4-openssl-dev | libcurl4-gnutls-dev,
+ libkrb5-dev, texlive, tex4ht
+Homepage: http://darcs.net/
+Vcs-Darcs: http://repos.mornfall.net/darcs/debian
+Standards-Version: 3.8.0
 
 Package: darcs
 Architecture: any
 Depends: ${shlibs:Depends}
 Recommends: exim4 | mail-transport-agent
-Suggests: darcs-server
-Description: an advanced revision control system
- Darcs is a revision control system, along the lines of CVS or arch.  That
- means that it keeps track of various revisions and branches of your
- project, allows for changes to propagate from one branch to another.
- Darcs is intended to be an ``advanced'' revision control system.  There
- are, in particular, two senses in which it is supposed to be advanced: 1)
- each copy of the source is a fully functional branch, and 2) underlying
- darcs is a consistent and powerful theory of patches.
-
-Package: darcs-server
-Architecture: any
-Depends: darcs, sudo, xsltproc, ${shlibs:Depends}
-Recommends: apache2 | httpd, gnupg, exim4 | mail-transport-agent
-Description: a cgi script for browsing darcs repositories on the web
- This package contains the cgi script which allows users to
- conveniently browse your repositories on the web.  Darcs is a
- revision control system, along the lines of CVS or arch.
+Description: a distributed, interactive, smart revision control system
+ Darcs is a free, open source revision control system.  It is:
+ .
+  * Distributed: Every user has access to the full command set,
+    removing boundaries between server and client or committer and
+    non-committers.
+ .
+  * Interactive: Darcs is easy to learn and efficient to use because
+    it asks you questions in response to simple commands, giving you
+    choices in your work flow. You can choose to record one change in
+    a file, while ignoring another. As you update from upstream, you
+    can review each patch name, even the full "diff" for interesting
+    patches.
+ .
+  * Smart: Originally developed by physicist David Roundy, darcs is
+    based on a unique algebra of patches.
+ .
+    This smartness lets you respond to changing demands in ways that
+    would otherwise not be possible. Learn more about spontaneous
+    branches with darcs.
