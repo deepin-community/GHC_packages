@@ -29,7 +29,7 @@ configure_flags += --enable-docs
 configure_flags += --enable-gnomevfs
 configure_flags += --enable-gstreamer
 #configure_flags += --enable-mozilla   # not compatible with new xulrunner-dev yet
-#configure_flags += --enable-svg-cairo # needs libsvg-cairo-dev, not in Debian
+configure_flags += --enable-svg
 
 # necessary to build applications in s390
 ifeq (s390,'$(shell dpkg-architecture -qDEB_HOST_ARCH)')
@@ -48,7 +48,7 @@ ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
 endif
 
 
-PKGS := glib cairo gconf gnomevfs gstreamer gtk glade gtkglext sourceview soegtk
+PKGS := glib cairo gconf gnomevfs gstreamer gtk svgcairo glade gtkglext sourceview soegtk
 VERSION := $(shell sed -ne '/([0-9.]\+-.*)/ { s/^.*(\([0-9.]\+\)-.*).*$$/\1/p; q }' < debian/changelog)
 
 # configure --libdir: where the libs are temporarily installed (under
@@ -153,8 +153,10 @@ binary-arch: install pkgmeta
 		sh -e debian/mk-haskell-deps $(call DEB,$$pkg) \
 			$(call HDEP,glib) $(call HDEP,$$pkg) ; \
 	done
-	sh -e debian/mk-haskell-deps $(call DEB,gtk) \
-		$(call HDEP,glib) $(call HDEP,cairo) $(call HDEP,gtk)
+	for pkg in gtk svgcairo ; do \
+		sh -e debian/mk-haskell-deps $(call DEB,$$pkg) \
+			$(call HDEP,glib) $(call HDEP,cairo) $(call HDEP,$$pkg) ;\
+	done
 	for pkg in glade gtkglext sourceview soegtk ; do \
 		sh -e debian/mk-haskell-deps $(call DEB,$$pkg) \
 			$(call HDEP,glib) $(call HDEP,cairo) \

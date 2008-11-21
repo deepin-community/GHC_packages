@@ -3,7 +3,7 @@ Priority: optional
 Section: libdevel
 Maintainer: Marco Túlio Gontijo e Silva <marcot@holoscopio.com>
 Uploaders: Joachim Breitner <nomeata@debian.org>
-Build-Depends: debhelper (>= 5), autoconf, automake, autotools-dev, haskell-devscripts, haddock, ghc6 (>= 6.8.2) [amd64 arm hppa i386 ia64 kfreebsd-i386 m68k mips mipsel powerpc ppc64 s390 sparc], ghc6 (<< 6.8.2+) [amd64 arm hppa i386 ia64 kfreebsd-i386 m68k mips mipsel powerpc ppc64 s390 sparc], ghc6-doc (>= 6.8.2), ghc6-doc (<< 6.8.2+), libghc6-mtl-dev (>= 1.1.0.0), libghc6-mtl-dev (<< 1.1.0.0+), libghc6-mtl-doc (>= 1.1.0.0), libghc6-mtl-doc (<< 1.1.0.0+), libgconf2-dev, libgnomevfs2-dev, libgstreamer-plugins-base0.10-dev, libglade2-dev, libgtkglext1-dev, libgtksourceview-dev, dctrl-tools
+Build-Depends: debhelper (>= 5), autoconf, automake, autotools-dev, haskell-devscripts, haddock, ghc6 (>= 6.8.2) [amd64 arm hppa i386 ia64 kfreebsd-i386 m68k mips mipsel powerpc ppc64 s390 sparc], ghc6 (<< 6.8.2+) [amd64 arm hppa i386 ia64 kfreebsd-i386 m68k mips mipsel powerpc ppc64 s390 sparc], ghc6-doc (>= 6.8.2), ghc6-doc (<< 6.8.2+), libghc6-mtl-dev (>= 1.1.0.0), libghc6-mtl-dev (<< 1.1.0.0+), libghc6-mtl-doc (>= 1.1.0.0), libghc6-mtl-doc (<< 1.1.0.0+), libgconf2-dev, libgnomevfs2-dev, libgstreamer-plugins-base0.10-dev, librsvg2-dev, libglade2-dev, libgtkglext1-dev, libgtksourceview-dev, dctrl-tools
 Standards-Version: 3.8.0
 Homepage: http://haskell.org/gtk2hs/
 Vcs-Darcs: http://code.haskell.org/debian/gtk2hs/
@@ -108,6 +108,23 @@ Description: A GUI library for Haskell (Gtk2Hs) -- GTK+ bindings
  .
  This package provides bindings for GTK+, a multi-platform toolkit for
  creating graphical user interfaces.
+
+Package: libghc6-svgcairo-dev
+Architecture: amd64 arm armel armeb hppa i386 ia64 kfreebsd-i386 m68k mips mipsel powerpc ppc64 s390 sparc
+Depends: librsvg2-dev, libghc6-glib-dev (= ${binary:Version}), libghc6-cairo-dev (= ${binary:Version}), ${haskell:Depends}, ${shlibs:Depends}
+Suggests: gtk2hs-doc
+Description: A GUI library for Haskell (Gtk2Hs) -- GTK+ bindings
+ Gtk2Hs is a GUI library for Haskell based on GTK+, an extensive and
+ mature multi-platform GUI toolkit featuring:
+ .
+  - Automatic memory management.
+  - Near complete coverage of the GTK+ API.
+  - Unicode support.
+  - Extensive reference documentation.
+  - Support for Linux, Windows, Mac OS X and other Unix platforms.
+ .
+ This package provides bindings for libsvg-cairo a library used to render SVG
+ with cairo.
 
 Package: libghc6-glade-dev
 Architecture: amd64 arm armel armeb hppa i386 ia64 kfreebsd-i386 m68k mips mipsel powerpc ppc64 s390 sparc
