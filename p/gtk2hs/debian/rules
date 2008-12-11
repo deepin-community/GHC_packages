@@ -31,8 +31,8 @@ configure_flags += --enable-gstreamer
 #configure_flags += --enable-mozilla   # not compatible with new xulrunner-dev yet
 configure_flags += --enable-svg
 
-# necessary to build applications in s390
-ifeq (s390,'$(shell dpkg-architecture -qDEB_HOST_ARCH)')
+# it's only working in these arches
+ifeq (,$(filter amd64 i386,$(shell dpkg-architecture -qDEB_HOST_ARCH)))
         configure_flags += --disable-split-objs
 endif
 
