@@ -1,8 +1,159 @@
-ghc6 (6.6-3~bpo.1) sarge-backports; urgency=low
+ghc6 (6.8.2dfsg1-1) unstable; urgency=medium
 
-  * Rebuild for Sarge.
+  * Repackaged the upstream tarball to remove a copy of GNU MP library
+    with GFDLed docs w/ invariant sections.  (Closes: #511756)
 
- -- Sebastian Harl <sh@tokkee.org>  Thu,  7 Dec 2006 13:47:15 +0100
+ -- Kari Pahula <kaol@debian.org>  Thu, 15 Jan 2009 07:42:47 +0200
+
+ghc6 (6.8.2-7) unstable; urgency=medium
+
+  * Build-Depend on hurd as an alternative to procps. (Closes: #481343)
+  * Added AC_SYS_LARGEFILE to libraries/unix/configure.ac and ran
+    autoreconf. (Closes: #500407)
+
+ -- Kari Pahula <kaol@debian.org>  Sun, 28 Sep 2008 10:32:20 +0300
+
+ghc6 (6.8.2-6) unstable; urgency=medium
+
+  * New maintainer.
+  * Made the perl script driver/split/ghc-split not use the obsolete $*
+    var (Closes: #489157)
+  * Copied libraries/unix/System/Posix/Resource.hsc and
+    libraries/base/include/HsBase.h from 6.8.3 to fix issues with
+    setResourceLimit. (Closes: #491909)
+
+ -- Kari Pahula <kaol@debian.org>  Wed, 03 Sep 2008 23:41:18 +0300
+
+ghc6 (6.8.2-5) unstable; urgency=low
+
+  * Don't build template-haskell if we're not building GHCi.
+    The package is largely useless without GHCi, and some of the buildds
+    were having trouble building template-haskell. We'll need to fix
+    this some other way if GHCi is to be available on every arch, though...
+
+ -- Ian Lynagh (wibble) <igloo@debian.org>  Thu, 01 May 2008 12:32:13 +0000
+
+ghc6 (6.8.2-4) unstable; urgency=low
+
+  * Small wibbles to debian/watcher.sh.
+  * Add a build-dep on procps (debian/watcher.sh runs ps).
+
+ -- Ian Lynagh (wibble) <igloo@debian.org>  Wed, 26 Mar 2008 17:12:18 +0000
+
+ghc6 (6.8.2-3) unstable; urgency=low
+
+  * Every 10 minutes, print any "ps ux" lines that mention gcc or ghc.
+    According to folks on IRC, this is standard practice. It means that
+    we don't have to worry about security buildds having different
+    timeouts to the normal builders.
+  * Apply upstream patch:
+        FIX #2073: Don't add empty lines to GHCI's history
+        Ian Lynagh <igloo@earth.li>**20080224143256
+    Closes: #461170.
+
+ -- Ian Lynagh (wibble) <igloo@debian.org>  Mon, 24 Mar 2008 22:09:02 +0000
+
+ghc6 (6.8.2-2) unstable; urgency=low
+
+  * Apply upstream patch:
+        Tweak the splitter
+        Ian Lynagh <igloo@earth.li>**20080116195612
+        We were generating a label ".LnLC7", which the splitter was confusing
+        with a literal constant (LC). The end result was the assembler tripping
+        up on ".Ln.text".
+    Closes: #466262.
+  * Make an hpc symlink in /usr/bin. Closes: #461146.
+  * Add a dep and build-dep on gcc >= 4:4.2 as we need the
+    -fno-toplevel-reorder flag. Closes: #461332.
+  * Put the right upstream source URL in debian/copyright.
+    Closes: #465058.
+
+ -- Ian Lynagh (wibble) <igloo@debian.org>  Wed, 20 Feb 2008 17:32:52 +0000
+
+ghc6 (6.8.2-1) unstable; urgency=low
+
+  * Strengthen haddock dep and build-dep to 0.8-2 as we need the
+    version that makes compatible files on 32 and 64 bit arches.
+    Closes: #433251.
+  * Add a build-dep on hscolour. We now use it when making the
+    documentation, so the haddock docs link to syntax highlighted
+    source.
+  * Remove the libsrc package. ghc6-doc now includes the sources anyway.
+    Closes: #432706.
+  * gen_contents_index is now provided by the upstream install, so we
+    no longer ship our own copy. However, we do have to move it into
+    /usr/lib rather than /usr/share/doc.
+  * Remove the stat2resid slave of the GHC symlink, as stat2resid
+    no longer exists. Closes: #432715.
+  * We set bindir, docdir, htmldir, dvidir, pdfdir and psdir in
+    mk/build.mk rather than with configure flags, as the way configure
+    currently works means they can't be set relative to other variables
+    if set with configure flags.
+  * We no longer pass --datadir to configure; we used to use this to
+    get the docs in the right place.
+  * When doing the install step, we now use DESTDIR rather than prefix
+    to override where the files go.
+  * We now need to set HADDOCK_DOCS=YES in mk/build.mk in order to get the
+    haddock docks built.
+  * Removed "html/" from the documentation path in ghc6-doc.postinst,
+    ghc6-doc.prerm and ghc6-doc.doc-base.users-guide.
+  * Use "[ ! -f mk/config.mk ] ||" to guard "make distclean" rather than
+    ignoring all errors from it.
+  * Use ${binary:Version} rather than ${Source-Version} to specify the
+    dependency of ghc6-prof on ghc6.
+  * All the libraries now install LICENSE files, so we remove them after
+    the install step.
+  * Follow change in man path from /usr/man to /usr/share/man.
+  * lintian thinks that Cabal's Distribution/License.hi is an extra
+    licence file, so add a lintian override.
+
+ -- Ian Lynagh (wibble) <igloo@debian.org>  Tue, 18 Dec 2007 22:05:22 +0000
+
+ghc6 (6.6.1-2) unstable; urgency=low
+
+  * ghc6-doc now depends on haddock as it needs to run
+    gen_contents_index in postinst. Closes: #423561.
+  * ghc6-doc and ghc6-libsrc depend on ${shlibs:Depends}, ${misc:Depends}.
+
+ -- Ian Lynagh (wibble) <igloo@debian.org>  Tue, 15 May 2007 14:12:53 +0000
+
+ghc6 (6.6.1-1) unstable; urgency=low
+
+  * New upstream version.
+  * Policy 3.7.2 compliant.
+  * ghc6-doc provides libghc6-PACKAGE-doc for the various packages it
+    has docs for.
+  * Tweaked debian/rules to handle changes.
+  * Remove build-dep on xutils; we no longer use lndir (which has now
+    moved to xutils-dev anyway!)
+  * Remove build-dep on cpio; we now let dh_install do all the moving
+    rather than doing it ourselves with cpio.
+  * Remove build-dep on time; no longer used.
+  * Remove build-deps on libx11-dev, libsm-dev, libice-dev, libxmu-dev,
+    libxi-dev; the X11 stuff is now in separate Cabal packages.
+  * Manpages generation script removed s it is now in upstream.
+  * Pass --datadir to ./configure rather than "make install-docs"
+    so the haddock fields in package.conf get set correctly.
+    Closes: #417325.
+  * In mk/config.mk.in, don't put ghc-6.6.1/ on the end of datadir.
+  * Use $(INSTALL) rather than hardcoding /usr/bin/install everywhere.
+  * Don't generate or install library HTML doc contents and index.
+  * Do install libraries-footer.txt, libraries-header.txt and the various
+    prologue.txt's.
+  * Install a gen_contents_index script for generating the haddock
+    contents and index.
+  * Add -X.haddock to the dh_compress call to make sure the .haddock
+    files aren't getting compressed.
+  * Give ghc6-doc a postinst to generate the haddock contents and index
+    when it is installed.
+  * Give ghc6-doc a prerm to clean up the above.
+  * Revert these earlier changes as we now have haddock 0.8:
+    * Remove the --source-module argument to haddock in mk/package.mk
+      as haddock 0.7 doesn't support it.
+    * Re-add the -optP-P when generating .raw-hs files as haddock 0.7
+      doesn't cope with line numbers in the files.
+
+ -- Ian Lynagh (wibble) <igloo@debian.org>  Sun, 29 Apr 2007 00:47:00 +0100
 
 ghc6 (6.6-3) unstable; urgency=low
 
