@@ -8,6 +8,8 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
+include /usr/share/quilt/quilt.make
+
 # From /usr/share/doc/autotools-dev/examples/rules.gz:
 export DEB_HOST_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 export DEB_BUILD_GNU_TYPE ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
@@ -23,7 +25,7 @@ GHC=$(firstword $(shell bash -c "type -p ghc6 ghc"))
 EXTRA_CONFIGURE_FLAGS=--with-ghc="$(GHC)"
 
 configure: configure-stamp
-configure-stamp:
+configure-stamp: patch
 	dh_testdir
 
 	touch configure
@@ -33,15 +35,16 @@ configure-stamp:
 	echo "HADDOCK_DOCS := YES" >> mk/build.mk
 	echo "GhcRTSWays += debug_p thr_debug thr_debug_p" >> mk/build.mk
 	echo "XSLTPROC_OPTS += --nonet" >> mk/build.mk
-ifeq '$(findstring $(shell dpkg-architecture -qDEB_HOST_ARCH), i386 amd64)' ''
-	echo "GhcUnregisterised=YES" >> mk/build.mk
-	echo "GhcWithNativeCodeGen=NO" >> mk/build.mk
-	echo "GhcWithInterpreter=NO" >> mk/build.mk
-	echo "SplitObjs=NO" >> mk/build.mk
-	# The threaded RTS doesn't seem happy on non-x86/amd64
-	echo 'GhcRTSWays := $$(shell echo $$(GhcRTSWays) | sed "s/\<[a-z_]*thr[a-z_]*\>//g")' >> mk/build.mk
-	echo "GhcNotThreaded=YES" >> mk/build.mk
-endif
+# Let's see if we could do without this with 6.10.1.
+#ifeq '$(findstring $(shell dpkg-architecture -qDEB_HOST_ARCH), i386 amd64)' ''
+#	echo "GhcUnregisterised=YES" >> mk/build.mk
+#	echo "GhcWithNativeCodeGen=NO" >> mk/build.mk
+#	echo "GhcWithInterpreter=NO" >> mk/build.mk
+#	echo "SplitObjs=NO" >> mk/build.mk
+#	# The threaded RTS doesn't seem happy on non-x86/amd64
+#	echo 'GhcRTSWays := $$(shell echo $$(GhcRTSWays) | sed "s/\<[a-z_]*thr[a-z_]*\>//g")' >> mk/build.mk
+#	echo "GhcNotThreaded=YES" >> mk/build.mk
+#endif
 ifneq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
 	echo "SRC_HC_OPTS   += -H32m -O0" >> mk/build.mk
 	echo "GhcHcOpts     += -Rghc-timing -DDEBUG" >> mk/build.mk
@@ -85,11 +88,12 @@ build-stamp: configure-stamp
 	rm -rf debian/testghc
 	mkdir debian/testghc
 	echo 'main = putStrLn "Foo"' > debian/testghc/foo.hs
-	compiler/stage2/ghc-inplace debian/testghc/foo.hs -o debian/testghc/foo
+#	compiler/stage2/ghc-inplace debian/testghc/foo.hs -o debian/testghc/foo
+	ghc/stage2-inplace/ghc debian/testghc/foo.hs -o debian/testghc/foo
 	[ "$$(debian/testghc/foo)" = "Foo" ]
 	rm debian/testghc/*
 	echo 'main = putStrLn "Foo"' > debian/testghc/foo.hs
-	compiler/stage2/ghc-inplace debian/testghc/foo.hs -o debian/testghc/foo -O2
+	ghc/stage2-inplace/ghc debian/testghc/foo.hs -o debian/testghc/foo -O2
 	[ "$$(debian/testghc/foo)" = "Foo" ]
 	rm debian/testghc/*
 
@@ -113,11 +117,12 @@ install-stamp: build-stamp
 
 	# Delete all the library LICENSE files
 	rm debian/tmp/usr/share/doc/ghc6-doc/libraries/*/LICENSE
+	rm debian/tmp/usr/share/doc/ghc6-doc/LICENSE
 
 	# Generate lintian overrides
 	mkdir -p debian/tmp/usr/share/lintian/overrides
-	echo "ghc6 binary: extra-license-file `cd debian/tmp && echo usr/lib/ghc-*/lib/Cabal-*/Distribution/License.hi`" >> debian/tmp/usr/share/lintian/overrides/ghc6
-	echo "ghc6-prof binary: extra-license-file `cd debian/tmp && echo usr/lib/ghc-*/lib/Cabal-*/Distribution/License.p_hi`" >> debian/tmp/usr/share/lintian/overrides/ghc6-prof
+	echo "ghc6 binary: extra-license-file `cd debian/tmp && echo usr/lib/ghc-*/Cabal-*/Distribution/License.hi`" >> debian/tmp/usr/share/lintian/overrides/ghc6
+	echo "ghc6-prof binary: extra-license-file `cd debian/tmp && echo usr/lib/ghc-*/Cabal-*/Distribution/License.p_hi`" >> debian/tmp/usr/share/lintian/overrides/ghc6-prof
 
 	# Sort out the package.conf files
 	mv debian/tmp/usr/lib/ghc-$(ProjectVersion)/package.conf \
@@ -170,7 +175,7 @@ install-stamp: build-stamp
 
 	# ghc6
 	find debian/tmp/usr/bin $(FILES)                  > debian/ghc6.install
-	find debian/tmp/usr/share/ghc* $(FILES)          >> debian/ghc6.install
+#	find debian/tmp/usr/share/ghc* $(FILES)          >> debian/ghc6.install
 	find debian/tmp/usr/share/man $(FILES)           >> debian/ghc6.install
 	find debian/tmp/usr/lib/ghc-$(ProjectVersion) $(FILES) ! $(PROF_FILE)  >> debian/ghc6.install
 	echo debian/tmp/usr/share/lintian/overrides/ghc6 >> debian/ghc6.install
@@ -184,7 +189,7 @@ install-stamp: build-stamp
 
 	touch $@
 
-clean:
+clean: unpatch
 	dh_testdir
 	dh_testroot
 	rm -f configure-stamp build-stamp install-stamp binary-common-stamp
@@ -208,6 +213,14 @@ clean:
 	rm -f compiler/stage2/ghc_boot_platform.h
 	rm -f compiler/stage1/ghc-inplace.o
 	rm -f compiler/stage2/ghc-inplace.o
+	rm -f ghc/inplace-datadir/package.conf
+
+	rm -f utils/pwd/pwd utils/pwd/pwd.hi utils/pwd/pwd.o
+	rm -f config.log
+	rm -f libraries/ghc-prim/GHC/PrimopWrappers.hs
+	rm -f libraries/ghc-prim/GHC/Prim.hs
+
+	rm -rf .pc
 
 	dh_clean
 
