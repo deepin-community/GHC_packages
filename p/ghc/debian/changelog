@@ -1,3 +1,31 @@
+ghc6 (6.10.1+dfsg1-1) experimental; urgency=low
+
+  * New upstream release (Closes: #495126)
+    * Change the calling conventions for unboxed tuples slightly.
+      (Closes: #365497)
+    * Better documentation for swapMVar. (Closes: #405717)
+    * Don't change code in error messages. (Closes: #499137)
+    * Improve error reporting for 'deriving' (Closes: #499216)
+    * Better error message when -XRankNTypes is missing. (Closes: #499217)
+    * ghc-pkg respects --global with 'field' option. (Closes: #510499)
+  * Repackaged to remove a copy of GNU MP library.
+  * Enable building the stage2 compiler on all architectures.
+  * Added information about libffi (which is included with GHC) to
+    debian/copyright.
+  * Manage changes to the source with quilt.
+  * Link against the system's libffi and add libffi-dev as a build
+    dependency.
+  * Build-dep on haddock >= 2.4.1-1.
+  * Build-dep on libedit-dev, removed build-dep on libreadline-dev.
+  * Patched gen_contents_index: fixed the case when not run inplace; trac
+    #2764
+  * Patched libraries/base/Data/Data.hs: use Prelude.(,,) for
+    tuple3DataType; trac #2750
+  * Added a trigger to ghc6-doc for /usr/share/doc/ghc6-doc/libraries to
+    run gen_contents_index. (Closes: #506568)
+
+ -- Kari Pahula <kaol@debian.org>  Mon, 19 Jan 2009 12:03:16 +0200
+
 ghc6 (6.8.2dfsg1-1) unstable; urgency=medium
 
   * Repackaged the upstream tarball to remove a copy of GNU MP library

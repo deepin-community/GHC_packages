@@ -1,0 +1,13 @@
+Index: ghc6-6.10.1+dfsg1/libraries/gen_contents_index
+===================================================================
+--- ghc6-6.10.1+dfsg1.orig/libraries/gen_contents_index	2009-01-18 21:25:23.000000000 +0200
++++ ghc6-6.10.1+dfsg1/libraries/gen_contents_index	2009-01-18 21:25:50.000000000 +0200
+@@ -23,7 +23,7 @@
+ 
+ for HADDOCK_FILE in $HADDOCK_FILES
+ do
+-    NAME=` echo "$HADDOCK_FILE" | sed 's#/dist/.*##' | sed 's#.*/##' `
++    NAME=` echo "$HADDOCK_FILE" | sed 's#/dist/.*##' | sed 's#.*/##' | sed 's#\.haddock##' `
+     HADDOCK_ARGS="$HADDOCK_ARGS --read-interface=$NAME,$HADDOCK_FILE"
+     NAMES="$NAMES $NAME"
+ done

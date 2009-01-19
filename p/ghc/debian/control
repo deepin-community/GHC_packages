@@ -2,8 +2,9 @@ Source: ghc6
 Section: devel
 Priority: optional
 Maintainer: Kari Pahula <kaol@debian.org>
-Standards-Version: 3.7.3
-Build-Depends: debhelper (>= 4), libgmp3-dev, xsltproc, libreadline5-dev | libreadline-dev, devscripts, haddock (>= 0.8-2), hscolour, ghc6, grep-dctrl, autotools-dev, docbook-xsl, docbook-xml, gcc (>= 4:4.2), procps | hurd
+Standards-Version: 3.8.0
+Build-Depends: debhelper (>= 4), libgmp3-dev, xsltproc, libedit-dev, devscripts, haddock (>= 2.4.1), hscolour, ghc6, grep-dctrl, autotools-dev, docbook-xsl, docbook-xml, gcc (>= 4:4.2), procps | hurd, quilt, libffi-dev, autoconf
+Homepage: http://haskell.org/
 
 Package: ghc6
 Architecture: any
@@ -25,7 +26,7 @@ Package: ghc6-prof
 Section: devel
 Architecture: any
 Provides: ghc-prof, ${provided-profs}
-Depends: ghc6 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
+Depends: ghc6 (= ${binary:Version}), ${misc:Depends}
 Description: Profiling libraries for the Glasgow Haskell Compilation system
  Version 6 of the Glorious Glasgow Haskell Compilation system (GHC).  GHC is
  a compiler for Haskell98.
@@ -45,7 +46,7 @@ Section: doc
 Architecture: all
 Suggests: haskell-doc
 Provides: ${provided-docs}
-Depends: haddock (>= 0.8-2), ${shlibs:Depends}, ${misc:Depends}
+Depends: haddock (>= 2.4.1-1), ${misc:Depends}
 Description: Documentation for the Glasgow Haskell Compilation system
  Version 6 of the Glorious Glasgow Haskell Compilation system (GHC).  GHC is
  a compiler for Haskell98.
