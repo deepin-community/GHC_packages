@@ -1,0 +1,12 @@
+Index: ghc6-6.10.1+dfsg1/compiler/Makefile
+===================================================================
+--- ghc6-6.10.1+dfsg1.orig/compiler/Makefile	2009-01-21 23:25:59.000000000 +0200
++++ ghc6-6.10.1+dfsg1/compiler/Makefile	2009-01-21 23:31:41.000000000 +0200
+@@ -144,7 +144,7 @@
+ ifeq "$(GhcUnregisterised)" "NO"
+ ifeq "$(HOSTPLATFORM)" "ia64-unknown-linux"
+ # needed for generating proper relocation in large binaries: trac #856
+-COMMON_CONFIGURE_FLAGS += --ld-option=-Wl,--relax
++COMMON_CONFIGURE_FLAGS += --ld-option=--relax
+ endif
+ endif
