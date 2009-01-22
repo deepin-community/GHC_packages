@@ -1,12 +1,19 @@
 #!/usr/bin/make -f
-include /usr/share/cdbs/1/rules/debhelper.mk
-include /usr/share/cdbs/1/class/autotools.mk
-
-DEB_CONFIGURE_EXTRA_FLAGS += --with-sendmail=/usr/sbin/sendmail
-DEB_CONFIGURE_EXTRA_FLAGS += --enable-pipelining
-
-# Work around #481592 (Closes: #485631).
-# Remove me when #481592 is closed!
-ifeq ($(DEB_HOST_ARCH),ia64)
+# Work around #481592 (Closes: #485631).  Remove when #481592 closes!
 CFLAGS := $(filter-out -g,$(CFLAGS))
-endif
+
+# There might not be an MTA installed at build time, so we need to
+# explicitly tell ./configure that there *WILL* be one.
+DEB_CONFIGURE_EXTRA_FLAGS += --with-sendmail=/usr/sbin/sendmail
+
+# LaTeX might be installed at compile time, be we don't want to waste
+# time recompiling the HTML and PDF versions -- upstream provides
+# perfectly good copies in the source tarball.
+DEB_CONFIGURE_EXTRA_FLAGS += --without-manual
+
+%:
+	dh $@
+build:
+	dh build --before configure
+	dh_auto_configure -- $(DEB_CONFIGURE_EXTRA_FLAGS)
+	dh build --remaining
