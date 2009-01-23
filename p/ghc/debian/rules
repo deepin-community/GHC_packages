@@ -37,16 +37,16 @@ configure-stamp: patch
 	echo "HADDOCK_DOCS := $(BUILD_HADDOCK_DOCS)" >> mk/build.mk
 	echo "GhcRTSWays += debug_p thr_debug thr_debug_p" >> mk/build.mk
 	echo "XSLTPROC_OPTS += --nonet" >> mk/build.mk
-ifeq '$(findstring $(shell dpkg-architecture -qDEB_HOST_ARCH), i386 amd64)' ''
-	echo "GhcUnregisterised=YES" >> mk/build.mk
-	echo "GhcWithNativeCodeGen=NO" >> mk/build.mk
-	echo "GhcWithInterpreter=NO" >> mk/build.mk
-	echo "SplitObjs=NO" >> mk/build.mk
+#ifeq '$(findstring $(shell dpkg-architecture -qDEB_HOST_ARCH), i386 amd64)' ''
+#	echo "GhcUnregisterised=YES" >> mk/build.mk
+#	echo "GhcWithNativeCodeGen=NO" >> mk/build.mk
+#	echo "GhcWithInterpreter=NO" >> mk/build.mk
+#	echo "SplitObjs=NO" >> mk/build.mk
 # Let's see if we could do without this with 6.10.1.
 #	# The threaded RTS doesn't seem happy on non-x86/amd64
 #	echo 'GhcRTSWays := $$(shell echo $$(GhcRTSWays) | sed "s/\<[a-z_]*thr[a-z_]*\>//g")' >> mk/build.mk
 #	echo "GhcNotThreaded=YES" >> mk/build.mk
-endif
+#endif
 ifneq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
 	echo "SRC_HC_OPTS   += -H32m -O0" >> mk/build.mk
 	echo "GhcHcOpts     += -Rghc-timing -DDEBUG" >> mk/build.mk
