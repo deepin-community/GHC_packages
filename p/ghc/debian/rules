@@ -37,8 +37,9 @@ configure-stamp: patch
 	echo "HADDOCK_DOCS := $(BUILD_HADDOCK_DOCS)" >> mk/build.mk
 	echo "GhcRTSWays += debug_p thr_debug thr_debug_p" >> mk/build.mk
 	echo "XSLTPROC_OPTS += --nonet" >> mk/build.mk
-#ifeq '$(findstring $(shell dpkg-architecture -qDEB_HOST_ARCH), i386 amd64)' ''
-#	echo "GhcUnregisterised=YES" >> mk/build.mk
+ifeq '$(findstring $(shell dpkg-architecture -qDEB_HOST_ARCH), i386 amd64 powerpc ia64)' ''
+	echo "GhcUnregisterised=YES" >> mk/build.mk
+endif
 #	echo "GhcWithNativeCodeGen=NO" >> mk/build.mk
 #	echo "GhcWithInterpreter=NO" >> mk/build.mk
 #	echo "SplitObjs=NO" >> mk/build.mk

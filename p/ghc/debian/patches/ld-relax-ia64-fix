@@ -1,12 +1,18 @@
 Index: ghc6-6.10.1+dfsg1/compiler/Makefile
 ===================================================================
---- ghc6-6.10.1+dfsg1.orig/compiler/Makefile	2009-01-21 23:25:59.000000000 +0200
-+++ ghc6-6.10.1+dfsg1/compiler/Makefile	2009-01-21 23:31:41.000000000 +0200
-@@ -144,7 +144,7 @@
- ifeq "$(GhcUnregisterised)" "NO"
- ifeq "$(HOSTPLATFORM)" "ia64-unknown-linux"
- # needed for generating proper relocation in large binaries: trac #856
+--- ghc6-6.10.1+dfsg1.orig/compiler/Makefile	2009-01-26 11:14:44.000000000 +0200
++++ ghc6-6.10.1+dfsg1/compiler/Makefile	2009-01-26 11:15:11.000000000 +0200
+@@ -141,13 +141,6 @@
+ COMMON_CONFIGURE_FLAGS += --ld-options=-E
+ endif
+
+-ifeq "$(GhcUnregisterised)" "NO"
+-ifeq "$(HOSTPLATFORM)" "ia64-unknown-linux"
+-# needed for generating proper relocation in large binaries: trac #856
 -COMMON_CONFIGURE_FLAGS += --ld-option=-Wl,--relax
-+COMMON_CONFIGURE_FLAGS += --ld-option=--relax
- endif
- endif
+-endif
+-endif
+-
+ # We need to turn on profiling either if we have been asked to
+ # (GhcLibProfiled = YES) or if we want GHC itself to be compiled with
+ # profiling enabled (GhcProfiled = YES).
