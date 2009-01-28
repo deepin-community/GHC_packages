@@ -35,9 +35,9 @@ configure-stamp: patch
 	rm -f mk/build.mk
 	echo "XMLDocWays := html" >> mk/build.mk
 	echo "HADDOCK_DOCS := $(BUILD_HADDOCK_DOCS)" >> mk/build.mk
-	echo "GhcRTSWays += debug_p thr_debug thr_debug_p" >> mk/build.mk
+#	echo "GhcRTSWays += debug_p thr_debug thr_debug_p" >> mk/build.mk
 	echo "XSLTPROC_OPTS += --nonet" >> mk/build.mk
-ifeq '$(findstring $(shell dpkg-architecture -qDEB_HOST_ARCH), i386 amd64 powerpc ia64)' ''
+ifeq '$(findstring $(shell dpkg-architecture -qDEB_HOST_ARCH), i386 amd64 powerpc ia64 kfreebsd-i386)' ''
 	echo "GhcUnregisterised=YES" >> mk/build.mk
 endif
 #	echo "GhcWithNativeCodeGen=NO" >> mk/build.mk
@@ -112,7 +112,7 @@ install-stamp: build-stamp
 	dh_clean -k
 	dh_installdirs
 
-	echo "readline=`grep-status -r -FProvides '\<libreadline-dev\>' -a -FStatus installed -s Package -n | tr '\n' ,`" >> debian/ghc6.substvars
+#	echo "readline=`grep-status -r -FProvides '\<libreadline-dev\>' -a -FStatus installed -s Package -n | tr '\n' ,`" >> debian/ghc6.substvars
 
 	# Install the basic stuff
 	$(MAKE) DESTDIR=`pwd`/debian/tmp install
@@ -213,7 +213,7 @@ clean: unpatch
 
 	# Hacks:
 	rm -f compiler/stage2/ghc-6.8.2
-	rm -f libraries/readline/config.status
+	rm -f libraries/editline/config.status
 	rm -f compiler/stage1/ghc_boot_platform.h
 	rm -f compiler/stage2/ghc_boot_platform.h
 	rm -f compiler/stage1/ghc-inplace.o
