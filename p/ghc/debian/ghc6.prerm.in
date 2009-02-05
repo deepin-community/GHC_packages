@@ -21,8 +21,6 @@ bindir=$libdir/bin
 
 case "$1" in
     remove|upgrade|deconfigure|failed-upgrade)
-        haskell-utils --remove-compiler /usr/bin/ghc6
-        haskell-utils --remove-compiler ghc6
         update-alternatives --remove runhaskell $execdir/runghc6
         update-alternatives --remove haskell-compiler $execdir/ghc6
         update-alternatives --remove ghc $bindir/ghc

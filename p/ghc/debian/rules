@@ -24,7 +24,7 @@ ProjectVersion=$(shell awk -F\' "/^PACKAGE_VERSION='[0-9.]+'\$$/ { print \$$2 }"
 GHC=$(firstword $(shell bash -c "type -p ghc6 ghc"))
 EXTRA_CONFIGURE_FLAGS=--with-ghc="$(GHC)"
 # "YES" if yes
-BUILD_HADDOCK_DOCS=NO
+BUILD_HADDOCK_DOCS=$(shell dpkg-architecture -qDEB_HOST_ARCH | egrep -qe '^(i386|amd64)$$' && echo YES || echo NO)
 
 configure: configure-stamp
 configure-stamp: patch
@@ -37,7 +37,7 @@ configure-stamp: patch
 	echo "HADDOCK_DOCS := $(BUILD_HADDOCK_DOCS)" >> mk/build.mk
 #	echo "GhcRTSWays += debug_p thr_debug thr_debug_p" >> mk/build.mk
 	echo "XSLTPROC_OPTS += --nonet" >> mk/build.mk
-ifeq '$(findstring $(shell dpkg-architecture -qDEB_HOST_ARCH), i386 amd64 powerpc ia64 kfreebsd-i386)' ''
+ifeq '$(findstring $(shell dpkg-architecture -qDEB_HOST_ARCH), i386 amd64 powerpc kfreebsd-i386)' ''
 	echo "GhcUnregisterised=YES" >> mk/build.mk
 endif
 #	echo "GhcWithNativeCodeGen=NO" >> mk/build.mk
@@ -91,7 +91,6 @@ build-stamp: configure-stamp
 	rm -rf debian/testghc
 	mkdir debian/testghc
 	echo 'main = putStrLn "Foo"' > debian/testghc/foo.hs
-#	compiler/stage2/ghc-inplace debian/testghc/foo.hs -o debian/testghc/foo
 	ghc/stage2-inplace/ghc debian/testghc/foo.hs -o debian/testghc/foo
 	[ "$$(debian/testghc/foo)" = "Foo" ]
 	rm debian/testghc/*
@@ -184,7 +183,6 @@ endif
 	find debian/tmp/usr/share/man $(FILES)           >> debian/ghc6.install
 	find debian/tmp/usr/lib/ghc-$(ProjectVersion) $(FILES) ! $(PROF_FILE)  >> debian/ghc6.install
 	echo debian/tmp/usr/share/lintian/overrides/ghc6 >> debian/ghc6.install
-	echo debian/ghc6_vars /usr/lib/haskell-utils     >> debian/ghc6.install
 	# ghc6-prof
 	find debian/tmp/usr/lib $(FILES) $(PROF_FILE) > debian/ghc6-prof.install
 	echo debian/tmp/usr/share/lintian/overrides/ghc6-prof >> debian/ghc6-prof.install
@@ -234,9 +232,6 @@ binary-common: binary-common-stamp
 binary-common-stamp: install-stamp
 	dh_testdir
 	dh_testroot
-ifeq ($(BUILD_HADDOCK_DOCS),YES)
-	echo "interest /usr/share/doc/ghc6-doc/libraries" > debian/ghc6-doc/DEBIAN/triggers
-endif
 	dh_installchangelogs
 	dh_installdocs
 	dh_installexamples
@@ -261,6 +256,9 @@ endif
 #	dh_python
 #	dh_makeshlibs
 	dh_installdeb
+ifeq ($(BUILD_HADDOCK_DOCS),YES)
+	echo "interest /usr/share/doc/ghc6-doc/libraries" > debian/ghc6-doc/DEBIAN/triggers
+endif
 	dh_shlibdeps
 	dh_gencontrol
 	dh_md5sums
