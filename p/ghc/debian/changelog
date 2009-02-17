@@ -1,3 +1,31 @@
+ghc6 (6.10.1+dfsg1-9) unstable; urgency=low
+
+  * Made ghc6-doc's postinst only call haddock on haddock files that are
+    actually installed.
+
+ -- Kari Pahula <kaol@debian.org>  Tue, 17 Feb 2009 12:52:37 +0200
+
+ghc6 (6.10.1+dfsg1-8) unstable; urgency=low
+
+  * Moved xsltproc, docbook-xsl, docbook-xml back as Build-Depends.
+
+ -- Kari Pahula <kaol@debian.org>  Tue, 17 Feb 2009 09:52:55 +0200
+
+ghc6 (6.10.1+dfsg1-7) unstable; urgency=low
+
+  * Set build deps related to doc building as Build-Depends-Indep.
+  * Set BUILD_HADDOCK_DOCS at build time, depending on haddock's
+    presence.  See debian/rules for rationale.
+  * Replaced /usr/lib/ghc6-doc/gen_contents_index with a symlink to
+    /bin/true.
+  * Amended ghc6-doc's "postinst triggered" to perform what g_c_i did.
+  * Added GhcDebugged=YES and some other flags to build.mk on ia64 and hppa.
+  * Moved provided-{dev,prof,doc} generation to its own script and catch
+    errors in it. (Closes: #514085, #514086)
+  * Further cleanups to debian/rules.
+
+ -- Kari Pahula <kaol@debian.org>  Mon, 16 Feb 2009 12:28:56 +0200
+
 ghc6 (6.10.1+dfsg1-6) experimental; urgency=low
 
   * This time actually change the build on ia64 to be unregisterised.

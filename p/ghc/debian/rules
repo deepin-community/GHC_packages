@@ -23,8 +23,19 @@ ProjectVersion=$(shell awk -F\' "/^PACKAGE_VERSION='[0-9.]+'\$$/ { print \$$2 }"
 
 GHC=$(firstword $(shell bash -c "type -p ghc6 ghc"))
 EXTRA_CONFIGURE_FLAGS=--with-ghc="$(GHC)"
-# "YES" if yes
-BUILD_HADDOCK_DOCS=$(shell dpkg-architecture -qDEB_HOST_ARCH | egrep -qe '^(i386|amd64)$$' && echo YES || echo NO)
+
+# This thing violates the principle that builds should work the same
+# way or fail uniformly and not be otherwise affected by what packages
+# are installed.  Optimally, the rules file should have a
+# configure-indep target that would add HADDOCK_DOCS=YES to
+# mk/build.mk.  But as long as we can't use build-arch on buildds,
+# this is IMHO the best option.  I don't want to build GHC as root,
+# via binary-arch, nor make a build target that doesn't actually build
+# docs when B-D-I are present.  A plain Build-Depends on haddock is an
+# option, but as haddock Build-Depends on ghc6, I'd rather break the
+# loop.
+BUILD_HADDOCK_DOCS=$(shell test -x /usr/bin/haddock && echo YES || echo NO)
+$(warning BUILD_HADDOCK_DOCS set at build time to $(BUILD_HADDOCK_DOCS))
 
 configure: configure-stamp
 configure-stamp: patch
@@ -35,19 +46,16 @@ configure-stamp: patch
 	rm -f mk/build.mk
 	echo "XMLDocWays := html" >> mk/build.mk
 	echo "HADDOCK_DOCS := $(BUILD_HADDOCK_DOCS)" >> mk/build.mk
-#	echo "GhcRTSWays += debug_p thr_debug thr_debug_p" >> mk/build.mk
 	echo "XSLTPROC_OPTS += --nonet" >> mk/build.mk
-ifeq '$(findstring $(shell dpkg-architecture -qDEB_HOST_ARCH), i386 amd64 powerpc kfreebsd-i386)' ''
+ifeq (,$(findstring $(shell dpkg-architecture -qDEB_HOST_ARCH), i386 amd64 kfreebsd-i386 powerpc))
 	echo "GhcUnregisterised=YES" >> mk/build.mk
 endif
-#	echo "GhcWithNativeCodeGen=NO" >> mk/build.mk
-#	echo "GhcWithInterpreter=NO" >> mk/build.mk
-#	echo "SplitObjs=NO" >> mk/build.mk
-# Let's see if we could do without this with 6.10.1.
-#	# The threaded RTS doesn't seem happy on non-x86/amd64
-#	echo 'GhcRTSWays := $$(shell echo $$(GhcRTSWays) | sed "s/\<[a-z_]*thr[a-z_]*\>//g")' >> mk/build.mk
-#	echo "GhcNotThreaded=YES" >> mk/build.mk
-#endif
+ifneq (,$(findstring $(shell dpkg-architecture -qDEB_HOST_ARCH), hppa ia64))
+	echo "GhcWithInterpreter=NO" >> mk/build.mk
+	echo "SplitObjs=NO" >> mk/build.mk
+	echo "GhcThreaded=NO" >> mk/build.mk
+	echo "GhcDebugged=YES" >> mk/build.mk
+endif
 ifneq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
 	echo "SRC_HC_OPTS   += -H32m -O0" >> mk/build.mk
 	echo "GhcHcOpts     += -Rghc-timing -DDEBUG" >> mk/build.mk
@@ -111,8 +119,6 @@ install-stamp: build-stamp
 	dh_clean -k
 	dh_installdirs
 
-#	echo "readline=`grep-status -r -FProvides '\<libreadline-dev\>' -a -FStatus installed -s Package -n | tr '\n' ,`" >> debian/ghc6.substvars
-
 	# Install the basic stuff
 	$(MAKE) DESTDIR=`pwd`/debian/tmp install
 	$(MAKE) DESTDIR=`pwd`/debian/tmp install-docs
@@ -129,16 +135,7 @@ install-stamp: build-stamp
 	# Sort out the package.conf files
 	mv debian/tmp/usr/lib/ghc-$(ProjectVersion)/package.conf \
 	   debian/tmp/usr/lib/ghc-$(ProjectVersion)/package.conf.shipped
-	PACKAGE=`utils/ghc-pkg/ghc-pkg-inplace list -f debian/tmp/usr/lib/ghc-$(ProjectVersion)/package.conf.shipped | perl -ne 'print if $$foo; $$foo = 1 if /^debian/' | tr '\n,A-Z' '  a-z' | sed -e "s/([^)]*)//g" -e "s/-[0-9]\+\(\.[0-9]\+\)*//g" -e "s/^ *//" -e "s/ *$$//" -e "s/  */, /g"`; \
-	    { echo -n "provided-devs="; \
-	      echo "$$PACKAGE" | sed -e "s/\([a-z0-9.-]\+\)/libghc6-\1-dev/g"; } \
-	          >> debian/ghc6.substvars; \
-	    { echo -n "provided-profs="; \
-	      echo "$$PACKAGE" | sed -e "s/\([a-z0-9.-]\+\)/libghc6-\1-prof/g"; } \
-	          >> debian/ghc6-prof.substvars; \
-	    { echo -n "provided-docs="; \
-	      echo "$$PACKAGE" | sed -e "s/\([a-z0-9.-]\+\)/libghc6-\1-doc/g"; } \
-	          >> debian/ghc6-doc.substvars
+	sh -c "debian/mk_provided_substvars $(ProjectVersion)"
 
 	# Sort out the binaries
 	mkdir debian/tmp/usr/bin
@@ -154,12 +151,9 @@ install-stamp: build-stamp
 	    done
 	rm -f debian/tmp/usr/bin/*-$(ProjectVersion)6
 	rm -f debian/tmp/usr/bin/runhaskell6
-	# gen_contents_index is a script, so move it into /usr/lib
-	mkdir debian/tmp/usr/lib/ghc6-doc
-ifeq ($(BUILD_HADDOCK_DOCS),YES)
-	mv debian/tmp/usr/share/doc/ghc6-doc/libraries/gen_contents_index \
-	   debian/tmp/usr/lib/ghc6-doc
-endif
+
+	mkdir -p debian/tmp/usr/lib/ghc6-doc
+	ln -s /bin/true debian/tmp/usr/lib/ghc6-doc/gen_contents_index
 
 	# manpages
 	ProjectVersion=$(ProjectVersion) $(MAKE) -f debian/scripts.mk all
@@ -167,12 +161,6 @@ endif
 	mv debian/tmp/usr/share/man/man1/ghc.1 debian/ghc6.1
 	cp utils/hp2ps/hp2ps.1 debian/hp2ps-ghc6.1
 	echo debian/*.1 > debian/ghc6.manpages
-
-	# varfile
-	echo 'ghc6_arches="alpha amd64 arm hppa i386 ia64 kfreebsd-i386 m68k mips mipsel powerpc ppc64 s390 sparc"' > debian/ghc6_vars
-	echo 'ghc6_lib_bdeps="ghc6 (>= $(ProjectVersion)) [$$ghc6_arches], ghc6 (<< $(ProjectVersion)+) [$$ghc6_arches]"' >> debian/ghc6_vars
-	echo 'ghc6_lib_deps="ghc6 (>= $(ProjectVersion)), ghc6 (<< $(ProjectVersion)+)"' >> debian/ghc6_vars
-	echo 'ghc6_app_bdeps="ghc6 [$$ghc6_arches]"' >> debian/ghc6_vars
 
 	# ####################
 	# Now all the files are sorted, create the package filelists
@@ -204,18 +192,14 @@ clean: unpatch
 	rm -f debian/*.install
 	rm -f debian/*.1
 	rm -f debian/ghc6.manpages
-	rm -f debian/ghc6_vars
 	rm -f mk/build.mk
 	$(MAKE) -f debian/scripts.mk clean
 	rm -rf debian/testghc
 
 	# Hacks:
-	rm -f compiler/stage2/ghc-6.8.2
 	rm -f libraries/editline/config.status
 	rm -f compiler/stage1/ghc_boot_platform.h
 	rm -f compiler/stage2/ghc_boot_platform.h
-	rm -f compiler/stage1/ghc-inplace.o
-	rm -f compiler/stage2/ghc-inplace.o
 	rm -f ghc/inplace-datadir/package.conf
 
 	rm -f utils/pwd/pwd utils/pwd/pwd.hi utils/pwd/pwd.o
@@ -237,28 +221,12 @@ binary-common-stamp: install-stamp
 	dh_installexamples
 	dh_install --fail-missing
 	dh_installmenu
-#	dh_installdebconf
-#	dh_installlogrotate
-#	dh_installemacsen
-#	dh_installcatalogs
-#	dh_installpam
-#	dh_installmime
-#	dh_installinit
 	dh_installman
-#	dh_installcron
-#	dh_installinfo
-#	dh_undocumented
 	dh_strip
 	dh_link
 	dh_compress -X.haddock
 	dh_fixperms
-#	dh_perl
-#	dh_python
-#	dh_makeshlibs
 	dh_installdeb
-ifeq ($(BUILD_HADDOCK_DOCS),YES)
-	echo "interest /usr/share/doc/ghc6-doc/libraries" > debian/ghc6-doc/DEBIAN/triggers
-endif
 	dh_shlibdeps
 	dh_gencontrol
 	dh_md5sums
@@ -276,4 +244,4 @@ binary-indep: binary-common-stamp
 binary-arch: binary-common-stamp
 
 binary: binary-indep binary-arch
-.PHONY: build install clean binary-indep binary-arch binary-common binary
+.PHONY: build install clean binary-indep binary-arch binary-common binary patch
