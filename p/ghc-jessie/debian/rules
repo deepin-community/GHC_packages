@@ -135,7 +135,9 @@ install-stamp: build-stamp
 	# Sort out the package.conf files
 	mv debian/tmp/usr/lib/ghc-$(ProjectVersion)/package.conf \
 	   debian/tmp/usr/lib/ghc-$(ProjectVersion)/package.conf.shipped
-	sh -c "debian/mk_provided_substvars $(ProjectVersion)"
+	chmod +x debian/mk_provided_substvars
+	debian/mk_provided_substvars $(ProjectVersion)
+	chmod -x debian/mk_provided_substvars
 
 	# Sort out the binaries
 	mkdir debian/tmp/usr/bin
