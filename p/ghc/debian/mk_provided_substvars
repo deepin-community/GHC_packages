@@ -1,0 +1,28 @@
+#! /bin/sh
+
+set -e
+
+test -x utils/ghc-pkg/dist-inplace/build/ghc-pkg/ghc-pkg
+test -n $1
+
+{
+    utils/ghc-pkg/dist-inplace/build/ghc-pkg/ghc-pkg \
+	list --global-conf debian/tmp/usr/lib/ghc-$1/package.conf.shipped \
+	--simple-output | tr ' A-Z' '\na-z' | \
+	sed -e "s/([^)]*)//g" -e "s/-[0-9]\+\(\.[0-9]\+\)*//g" \
+	-e "s/^ *//" -e "s/ *$$//" -e "s/  */, /g" ;
+} |
+{ read PACKAGES
+    {
+	echo -n "provided-devs=" 
+	echo "$PACKAGES" | sed -e "s/\([a-z0-9.-]\+\)/libghc6-\1-dev/g" ;
+    } >> debian/ghc6.substvars 
+    {
+	echo -n "provided-profs="
+	echo "$PACKAGES" | sed -e "s/\([a-z0-9.-]\+\)/libghc6-\1-prof/g" ;
+    } >> debian/ghc6-prof.substvars
+    {
+	echo -n "provided-docs="
+	echo "$$PACKAGE" | sed -e "s/\([a-z0-9.-]\+\)/libghc6-\1-doc/g" ;
+    } >> debian/ghc6-doc.substvars ;
+}

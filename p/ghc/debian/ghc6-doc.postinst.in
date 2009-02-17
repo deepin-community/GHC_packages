@@ -22,10 +22,38 @@ libdir=/usr/lib/ghc6-doc
 #     installation fails and the `postinst' is called with `abort-upgrade',
 #     `abort-remove' or `abort-deconfigure'.
 
+gen_contents_index () {
+    NAMES=
+    HADDOCK_ARGS=
+    for CABAL in `ghc-pkg list --global --simple-output` ; do
+	PKG=`echo $CABAL | perl -ne 'm((.*)-[^-]*$); print $1;' | tr 'A-Z' 'a-z'`
+	if [ $PKG != ghc ] && echo $NAMES | grep -vq " $PKG " ; then
+	    NAMES=" $NAMES $PKG "
+	    HADDOCK_FILE=`ghc-pkg field $CABAL haddock-interfaces | cut -d' ' -f 2-`
+	    if [ -e $HADDOCK_FILE ] ; then
+		HTML=`ghc-pkg field $CABAL haddock-html | cut -d' ' -f 2-`
+		HPATH=
+		if echo $HTML | egrep -q '^/usr/share/doc/[^/]*-doc/html/' ; then
+		    HPATH="../../`echo $HTML | cut -d/ -f 5-`" ;
+		elif echo $HTML | egrep -q '^/usr/share/doc/ghc6-doc/libraries/' ; then
+		    HPATH="`echo $HTML | cut -d/ -f 7-`" ;
+		fi
+		if [ -n "$HPATH" ] ; then
+		    HADDOCK_ARGS="$HADDOCK_ARGS --read-interface=$HPATH,$HADDOCK_FILE"
+		fi
+	    fi
+	fi
+    done
+    /usr/bin/haddock --gen-index --gen-contents \
+	-o /usr/share/doc/ghc6-doc/libraries/ \
+	-t "Haskell Hierarchical Libraries" \
+	-p /usr/share/doc/ghc6-doc/libraries/prologue.txt \
+	$HADDOCK_ARGS
+}
+
 case "$1" in
     triggered)
-        cd /usr/share/doc/ghc6-doc/libraries
-        "$libdir"/gen_contents_index
+        gen_contents_index
 	;;
     configure|abort-upgrade|abort-remove|abort-deconfigure)
 	;;
