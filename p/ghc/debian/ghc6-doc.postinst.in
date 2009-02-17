@@ -30,17 +30,15 @@ gen_contents_index () {
 	if [ $PKG != ghc ] && echo $NAMES | grep -vq " $PKG " ; then
 	    NAMES=" $NAMES $PKG "
 	    HADDOCK_FILE=`ghc-pkg field $CABAL haddock-interfaces | cut -d' ' -f 2-`
-	    if [ -e $HADDOCK_FILE ] ; then
-		HTML=`ghc-pkg field $CABAL haddock-html | cut -d' ' -f 2-`
-		HPATH=
-		if echo $HTML | egrep -q '^/usr/share/doc/[^/]*-doc/html/' ; then
-		    HPATH="../../`echo $HTML | cut -d/ -f 5-`" ;
-		elif echo $HTML | egrep -q '^/usr/share/doc/ghc6-doc/libraries/' ; then
-		    HPATH="`echo $HTML | cut -d/ -f 7-`" ;
-		fi
-		if [ -n "$HPATH" ] ; then
-		    HADDOCK_ARGS="$HADDOCK_ARGS --read-interface=$HPATH,$HADDOCK_FILE"
-		fi
+	    HTML=`ghc-pkg field $CABAL haddock-html | cut -d' ' -f 2-`
+	    HPATH=
+	    if echo $HTML | egrep -q '^/usr/share/doc/[^/]*-doc/html/' ; then
+		HPATH="../../`echo $HTML | cut -d/ -f 5-`" ;
+	    elif echo $HTML | egrep -q '^/usr/share/doc/ghc6-doc/libraries/' ; then
+		HPATH="`echo $HTML | cut -d/ -f 7-`" ;
+	    fi
+	    if [ -n "$HPATH" ] ; then
+		HADDOCK_ARGS="$HADDOCK_ARGS --read-interface=$HPATH,$HADDOCK_FILE"
 	    fi
 	fi
     done
