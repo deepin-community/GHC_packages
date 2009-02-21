@@ -28,7 +28,7 @@ configure_flags += --enable-gtk
 configure_flags += --enable-svg
 configure_flags += --enable-libglade
 configure_flags += --enable-opengl
-configure_flags += --enable-sourceview
+configure_flags += --enable-gtksourceview2
 #configure_flags += --enable-mozilla   # not compatible with new xulrunner-dev yet
 configure_flags += --enable-docs
 
@@ -58,7 +58,7 @@ PKGS \
   svgcairo \
   glade \
   gtkglext \
-  sourceview \
+  gtksourceview2 \
   soegtk
 VERSION := $(shell sed -ne '/([0-9.]\+-.*)/ { s/^.*(\([0-9.]\+\)-.*).*$$/\1/p; q }' < debian/changelog)
 
