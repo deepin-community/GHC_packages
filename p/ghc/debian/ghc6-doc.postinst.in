@@ -24,27 +24,25 @@ libdir=/usr/lib/ghc6-doc
 
 gen_contents_index () {
     NAMES=
-    HADDOCK_ARGS=
-    for CABAL in `ghc-pkg list --global --simple-output` ; do
-	PKG=`echo $CABAL | perl -ne 'm((.*)-[^-]*$); print $1;' | tr 'A-Z' 'a-z'`
-	if [ $PKG != ghc ] && echo $NAMES | grep -vq " $PKG " ; then
-	    NAMES=" $NAMES $PKG "
-	    HADDOCK_FILE=`ghc-pkg field $CABAL haddock-interfaces | cut -d' ' -f 2-`
-	    if [ -e $HADDOCK_FILE ] ; then
-		HTML=`ghc-pkg field $CABAL haddock-html | cut -d' ' -f 2-`
-		HPATH=
-		if echo $HTML | egrep -q '^/usr/share/doc/[^/]*-doc/html/' ; then
-		    HPATH="../../`echo $HTML | cut -d/ -f 5-`" ;
-		elif echo $HTML | egrep -q '^/usr/share/doc/ghc6-doc/libraries/' ; then
-		    HPATH="`echo $HTML | cut -d/ -f 7-`" ;
-		fi
-		if [ -n "$HPATH" ] ; then
-		    HADDOCK_ARGS="$HADDOCK_ARGS --read-interface=$HPATH,$HADDOCK_FILE"
-		fi
-	    fi
-	fi
-    done
-    /usr/bin/haddock --gen-index --gen-contents \
+    HADDOCK_ARGS=`cat /usr/lib/ghc-@VERSION@/package.conf | perl -ne '
+$pkg = $1 if /PackageName "(.*?)"/;
+next if $pkg eq "ghc";
+$pkg =~ y/A-Z/a-z/;
+$skip = 0; foreach my $name (@names) {if ($name eq $pkg) {$skip=1; last;}}
+push @names, $pkg;
+next if $skip;
+next unless /haddockInterfaces = \["(.*?)"/;
+$iface = $1;
+next unless -r $iface;
+next unless /haddockHTMLs = \["(.*?)"/;
+$html = $1;
+undef $hpath;
+if ($html =~ m,^/usr/share/doc/([^/]*-doc/html/.*),) {$hpath = "../../$1";}
+elsif ($html =~ m,^/usr/share/doc/ghc6-doc/libraries/(.*),) {$hpath = $1;}
+else {next;}
+print "--read-interface=$hpath,$iface\n";
+'`
+    haddock --gen-index --gen-contents \
 	-o /usr/share/doc/ghc6-doc/libraries/ \
 	-t "Haskell Hierarchical Libraries" \
 	-p /usr/share/doc/ghc6-doc/libraries/prologue.txt \
@@ -52,10 +50,10 @@ gen_contents_index () {
 }
 
 case "$1" in
-    triggered)
+    triggered|configure)
         gen_contents_index
 	;;
-    configure|abort-upgrade|abort-remove|abort-deconfigure)
+    abort-upgrade|abort-remove|abort-deconfigure)
 	;;
     *)
         echo "postinst called with unknown argument \`$1'" >&2
