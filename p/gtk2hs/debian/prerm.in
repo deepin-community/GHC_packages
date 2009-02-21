@@ -4,12 +4,12 @@ GHC_PKG=/usr/bin/ghc-pkg6
 
 case "$1" in
 remove|upgrade|deconfigure)
-	${GHC_PKG} unregister @PKG@-@VERSION@
+	${GHC_PKG} unregister @PKG@-@VERSION@ || true
 	;;
 failed-upgrade)
 	# determine upstream version from old version number.
 	UPSTREAM=$(echo $2 | cut -d'-' -f1)
-	${GHC_PKG} unregister @PKG@-${UPSTREAM}
+	${GHC_PKG} unregister @PKG@-${UPSTREAM} || true
 	;;
 *)
 	echo "prerm called with unknown argument \`$1'" >&2
