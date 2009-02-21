@@ -27,14 +27,21 @@ packages=
 for pkgpair in $@; do
     pkg=`echo $pkgpair | cut -d: -f1`
     pkgconf=`echo $pkgpair | cut -d: -f2`
+    pkgconflocal=$T_DIR/$pkg.package.conf
     pkgdir=`echo $pkgconf | sed -ne "s#^.*debian/libghc6-$pkg-dev\(/.*\)/\([^/]\+\)#\1#p"`
     packages="$packages -package $pkg"
-    ghc-pkg -f $T_DIR/package.conf -r $pkg --force 2>&1 > /dev/null || true
-    cat $pkgconf | sed -e "/^\(import\|library\|include\)-dirs: / { s#\"$pkgdir#\"$PWD/debian/libghc6-$pkg-dev$pkgdir#g }" \
-                 | ghc-pkg -f $T_DIR/package.conf -u --force
+    cat $pkgconf \
+      | sed -e \
+        "/^\(import\|library\|include\)-dirs: / { \
+          s#\"$pkgdir#\"$PWD/debian/libghc6-$pkg-dev$pkgdir#g }" \
+      > $pkgconflocal
+    ghc-pkg -f $T_DIR/package.conf register $pkgconflocal --force 2>&1 > /dev/null || true
 done
 echo "module Main where main = return ()" > $T_DIR/a.hs
 ghc --make $T_DIR/a.hs -o $T_DIR/a.out -package-conf $T_DIR/package.conf $packages
+for pkgpair in $@; do
+    pkg=`echo $pkgpair | cut -d: -f1`
+    ghc-pkg -f $T_DIR/package.conf unregister $pkg --force
+done;
 dpkg-shlibdeps -Tdebian/$deb.substvars $T_DIR/a.out
-
 rm -rf $T_DIR
