@@ -120,8 +120,8 @@ install-stamp: build-stamp
 	dh_installdirs
 
 	# Install the basic stuff
-	$(MAKE) DESTDIR=`pwd`/debian/tmp install
-	$(MAKE) DESTDIR=`pwd`/debian/tmp install-docs
+	$(MAKE) DESTDIR=$(CURDIR)/debian/tmp install
+	$(MAKE) DESTDIR=$(CURDIR)/debian/tmp install-docs
 
 	# Delete all the library LICENSE files
 	rm debian/tmp/usr/share/doc/ghc6-doc/libraries/*/LICENSE
@@ -177,6 +177,7 @@ install-stamp: build-stamp
 	find debian/tmp/usr/lib $(FILES) $(PROF_FILE) > debian/ghc6-prof.install
 	echo debian/tmp/usr/share/lintian/overrides/ghc6-prof >> debian/ghc6-prof.install
 	# ghc6-doc
+	find debian/tmp/usr/share/doc    $(FILES) -name '*.haddock' -exec rm '{}' ';'
 	find debian/tmp/usr/share/doc    $(FILES)  > debian/ghc6-doc.install
 	find debian/tmp/usr/lib/ghc6-doc $(FILES) >> debian/ghc6-doc.install
 

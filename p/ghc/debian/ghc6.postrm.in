@@ -15,7 +15,7 @@ case "$1" in
         rm -f $libdir/package.conf.old
     ;;
     upgrade)
-        if dpkg --compare-versions "$2" ge "@VERSION@+" ||
+        if dpkg --compare-versions "$2" ge "@VERSION@++" ||
            dpkg --compare-versions "$2" lt "@VERSION@"
         then
             rm -f $libdir/package.conf
