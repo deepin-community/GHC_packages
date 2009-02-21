@@ -22,6 +22,7 @@ configure_flags += --with-hcflags="-O"
 # Which bits of Gtk2Hs do we want?
 configure_flags += --enable-cairo
 configure_flags += --enable-gconf
+configure_flags += --enable-gio
 configure_flags += --enable-gnomevfs
 configure_flags += --enable-gstreamer
 configure_flags += --enable-gtk
@@ -52,6 +53,7 @@ PKGS \
   := glib \
   cairo \
   gconf \
+  gio \
   gnomevfs \
   gstreamer \
   gtk \
@@ -159,6 +161,10 @@ binary-arch: install pkgmeta
 			 s#$(TMP_LIBDIR)/gtk2hs#/$(call PKGLIB_DIR,$$pkg)#g;" \
 			$(call PKGLIB_BUILD,$$pkg)/$$pkg.package.conf ; \
 	done
+	# Correct gio include dir to use glibs
+	sed --in-place -e \
+		"s#$(call PKGLIB_DIR,gio)/include#$(call PKGLIB_DIR,glib)#g;" \
+		$(call PKGLIB_BUILD,gio)/gio.package.conf
 	sh -e debian/mk-haskell-deps $(call DEB,glib) $(call HDEP,glib)
 	for pkg in cairo gconf gnomevfs gstreamer ; do \
 		sh -e debian/mk-haskell-deps $(call DEB,$$pkg) \
