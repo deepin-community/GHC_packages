@@ -20,16 +20,17 @@ configure_flags += --enable-packager-mode --with-c2hs=no --prefix=/usr
 configure_flags += --with-hcflags="-O"
 
 # Which bits of Gtk2Hs do we want?
-configure_flags += --enable-libglade
-configure_flags += --enable-gconf
-configure_flags += --enable-sourceview
 configure_flags += --enable-cairo
-configure_flags += --enable-opengl
-configure_flags += --enable-docs
+configure_flags += --enable-gconf
 configure_flags += --enable-gnomevfs
 configure_flags += --enable-gstreamer
-#configure_flags += --enable-mozilla   # not compatible with new xulrunner-dev yet
+configure_flags += --enable-gtk
 configure_flags += --enable-svg
+configure_flags += --enable-libglade
+configure_flags += --enable-opengl
+configure_flags += --enable-sourceview
+#configure_flags += --enable-mozilla   # not compatible with new xulrunner-dev yet
+configure_flags += --enable-docs
 
 # it's only working in these arches
 ifeq (,$(filter amd64 i386,$(shell dpkg-architecture -qDEB_HOST_ARCH)))
@@ -47,8 +48,18 @@ ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
 	INSTALL_PROGRAM += -s
 endif
 
-
-PKGS := glib cairo gconf gnomevfs gstreamer gtk svgcairo glade gtkglext sourceview soegtk
+PKGS \
+  := glib \
+  cairo \
+  gconf \
+  gnomevfs \
+  gstreamer \
+  gtk \
+  svgcairo \
+  glade \
+  gtkglext \
+  sourceview \
+  soegtk
 VERSION := $(shell sed -ne '/([0-9.]\+-.*)/ { s/^.*(\([0-9.]\+\)-.*).*$$/\1/p; q }' < debian/changelog)
 
 # configure --libdir: where the libs are temporarily installed (under
