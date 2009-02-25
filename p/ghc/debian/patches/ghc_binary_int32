@@ -1,0 +1,20 @@
+Index: ghc6-6.10.1+dfsg1/compiler/utils/Binary.hs
+===================================================================
+--- ghc6-6.10.1+dfsg1.orig/compiler/utils/Binary.hs	2009-02-25 05:49:14.000000000 +0200
++++ ghc6-6.10.1+dfsg1/compiler/utils/Binary.hs	2009-02-25 07:25:39.000000000 +0200
+@@ -404,10 +404,13 @@
+         x <- get bh
+         return $! (fromIntegral (x :: Int32))
+ #elif SIZEOF_HSINT == 8
+-    put_ bh i = put_ bh (fromIntegral i :: Int64)
++    put_ bh i = if (i < (fromIntegral (minBound::Int32))
++                          || i > (fromIntegral (maxBound::Int32)))
++                then error "Binary.instance Binary Int: Int out of bounds for Int32"
++                else put_ bh (fromIntegral i :: Int32)
+     get  bh = do
+         x <- get bh
+-        return $! (fromIntegral (x :: Int64))
++        return $! (fromIntegral (x :: Int32))
+ #else
+ #error "unsupported sizeof(HsInt)"
+ #endif
