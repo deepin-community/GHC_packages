@@ -3,7 +3,7 @@ Section: libdevel
 Priority: optional
 Maintainer: Marco Túlio Gontijo e Silva <marcot@holoscopio.com>
 Standards-Version: 3.8.0
-Build-Depends: debhelper (>= 5), cdbs, haskell-devscripts (>= 0.6.15+nmu1), ghc6, ghc6-prof, hugs, zlib1g-dev
+Build-Depends: debhelper (>= 5), cdbs, haskell-devscripts (>= 0.6.15+nmu1), ghc6, ghc6-prof, zlib1g-dev
 Build-Depends-Indep: ghc6-doc, haddock, hscolour
 Homepage: http://hackage.haskell.org/cgi-bin/hackage-scripts/package/zlib
 Vcs-Darcs: http://code.haskell.org/debian/haskell-zlib/
@@ -39,23 +39,6 @@ Description: Compression and decompression in the gzip and zlib formats; profili
  compression formats.
  .
  It provides a convenient high level API suitable for most tasks and for the
- few cases where more control is needed it provides access to the full zlib
- feature set.
-
-Package: libhugs-zlib
-Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Suggests: haskell-zlib-doc (= ${binary:Version})
-Description: Compression and decompression in the gzip and zlib formats
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
- .
- This package provides a pure interface for compressing and decompressing
- streams of data represented as lazy ByteStrings. It uses the zlib C library so
- it has high performance. It supports the \"zlib\", \"gzip\" and \"raw\"
- compression formats.
- .
- It provides a convenient high level api suitable for most tasks and for the
  few cases where more control is needed it provides access to the full zlib
  feature set.
 
