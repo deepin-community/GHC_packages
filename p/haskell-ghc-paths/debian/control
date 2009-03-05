@@ -1,0 +1,45 @@
+Source: haskell-ghc-paths
+Section: libdevel
+Priority: optional
+Maintainer: Marco Túlio Gontijo e Silva <marcot@holoscopio.com>
+Build-Depends: debhelper (>= 5), cdbs, dpatch, haskell-devscripts (>= 0.6.15+nmu1), ghc6, ghc6-prof
+Build-Depends-Indep: ghc6-doc, haddock, hscolour (>= 1.8)
+Standards-Version: 3.8.0
+Homepage: http://hackage.haskell.org/cgi-bin/hackage-scripts/package/ghc-paths
+Vcs-Darcs: http://code.haskell.org/debian/haskell-ghc-paths
+
+Package: libghc6-ghc-paths-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Suggests: libghc6-ghc-paths-doc (= ${binary:Version}), libghc6-ghc-paths-prof (= ${binary:Version})
+Description: Knowledge of GHC's installation directories
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This package provides constants with the installation directories of the
+ Glasgow Haskell Compiler.
+
+Package: libghc6-ghc-paths-prof
+Architecture: any
+Depends: libghc6-ghc-paths-dev (= ${binary:Version}), ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Description: Knowledge of GHC's installation directories; profiling libraries
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This package provides constants with the installation directories of the
+ Glasgow Haskell Compiler.
+
+Package: libghc6-ghc-paths-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}
+Recommends: ghc6-doc
+Suggests: libghc6-ghc-paths-dev (= ${binary:Version})
+Description: Knowledge of GHC's installation directories; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This package provides constants with the installation directories of the
+ Glasgow Haskell Compiler.
