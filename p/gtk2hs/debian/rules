@@ -166,7 +166,7 @@ binary-arch: install pkgmeta
 		"s#$(call PKGLIB_DIR,gio)/include#$(call PKGLIB_DIR,glib)#g;" \
 		$(call PKGLIB_BUILD,gio)/gio.package.conf
 	sh -e debian/mk-haskell-deps $(call DEB,glib) $(call HDEP,glib)
-	for pkg in cairo gconf gnomevfs gstreamer ; do \
+	for pkg in cairo gconf gio gnomevfs gstreamer ; do \
 		sh -e debian/mk-haskell-deps $(call DEB,$$pkg) \
 			$(call HDEP,glib) $(call HDEP,$$pkg) ; \
 	done
@@ -174,7 +174,7 @@ binary-arch: install pkgmeta
 		sh -e debian/mk-haskell-deps $(call DEB,$$pkg) \
 			$(call HDEP,glib) $(call HDEP,cairo) $(call HDEP,$$pkg) ;\
 	done
-	for pkg in glade gtkglext sourceview soegtk ; do \
+	for pkg in glade gtkglext gtksourceview2 soegtk ; do \
 		sh -e debian/mk-haskell-deps $(call DEB,$$pkg) \
 			$(call HDEP,glib) $(call HDEP,cairo) \
 			$(call HDEP,gtk) $(call HDEP,$$pkg) ; \
