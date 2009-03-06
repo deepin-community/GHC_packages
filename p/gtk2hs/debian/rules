@@ -127,7 +127,8 @@ clean-real:
 
 # Build architecture-independent files here.
 .PHONY: binary-indep
-binary-indep: install pkgmeta
+binary-indep: binary-indep-stamp
+binary-indep-stamp: install-stamp pkgmeta
 	dh_testdir -i
 	dh_testroot -i
 	dh_clean -k --exclude=build-stamp --exclude=install-stamp --exclude=debian/tmp
@@ -142,10 +143,12 @@ binary-indep: install pkgmeta
 	dh_gencontrol -i
 	dh_md5sums -i
 	dh_builddeb -i
+	touch $@
 
 # Build architecture-dependent files here.
 .PHONY: binary-arch
-binary-arch: install pkgmeta
+binary-arch: binary-arch-stamp
+binary-arch-stamp: install-stamp pkgmeta
 	dh_testdir -a
 	dh_testroot -a
 	dh_clean -k --exclude=build-stamp --exclude=install-stamp --exclude=debian/tmp
@@ -193,6 +196,9 @@ binary-arch: install pkgmeta
 	dh_gencontrol -a
 	dh_md5sums -a
 	dh_builddeb -a
+	touch $@
 
 .PHONY: binary
-binary: binary-indep binary-arch
+binary: binary-stamp
+binary-stamp: binary-indep-stamp binary-arch-stamp
+	touch $@
