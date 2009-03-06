@@ -1,0 +1,43 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 01_extensible-exceptions by Marco Túlio Gontijo e Silva <marcot@holoscopio.com>
+##
+## DP: Remove dependency in extensible-exceptions.
+diff -Nudar terminfo-0.3.0.1.orig/System/Console/Terminfo/Base.hs terminfo-0.3.0.1/System/Console/Terminfo/Base.hs
+--- terminfo-0.3.0.1.orig/System/Console/Terminfo/Base.hs	2009-02-06 18:45:04.000000000 -0200
++++ terminfo-0.3.0.1/System/Console/Terminfo/Base.hs	2009-03-06 11:53:22.000000000 -0300
+@@ -46,7 +46,11 @@
+ import System.Environment (getEnv)
+ import System.IO.Unsafe (unsafePerformIO)
+ import System.IO
++#ifdef USE_NEW_EXCEPTIONS
++import Control.Exception
++#else
+ import Control.Exception.Extensible
++#endif
+ import Data.Typeable
+
+
+diff -Nudar terminfo-0.3.0.1.orig/terminfo.cabal terminfo-0.3.0.1/terminfo.cabal
+--- terminfo-0.3.0.1.orig/terminfo.cabal	2009-02-06 18:45:04.000000000 -0200
++++ terminfo-0.3.0.1/terminfo.cabal	2009-03-06 11:55:30.000000000 -0300
+@@ -15,11 +15,17 @@
+ Homepage:       http://code.haskell.org/terminfo
+ Stability:      Experimental
+ Build-type:     Configure
+-Build-depends:  base>=1.0, extensible-exceptions>=0.1.1.0 && < 0.2
+ extra-source-files: configure.ac configure terminfo.buildinfo.in
+ extra-tmp-files: config.log config.status autom4te.cache terminfo.buildinfo
+-Extensions:     ForeignFunctionInterface, DeriveDataTypeable
+-Exposed-Modules:
++Library
++  if impl(ghc>6.9)
++    Build-depends: base>=1.0
++    Extensions:     ForeignFunctionInterface, DeriveDataTypeable, CPP
++    CPP-Options: -DUSE_NEW_EXCEPTIONS
++  else
++    Build-depends:  base>=1.0, extensible-exceptions>=0.1.1.0 && < 0.2
++    Extensions:     ForeignFunctionInterface, DeriveDataTypeable
++  Exposed-Modules:
+                 System.Console.Terminfo
+                 System.Console.Terminfo.Base
+                 System.Console.Terminfo.Cursor
