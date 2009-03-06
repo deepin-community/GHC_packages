@@ -100,8 +100,8 @@ install-stamp: build-stamp
 	$(MAKE) install DESTDIR=$(CURDIR)/debian/tmp
 	touch $@
 
-.PHONY: pkgmeta
-pkgmeta: pkgmeta-install-stamp pkgmeta-postinst-stamp pkgmeta-prerm-stamp
+pkgmeta = pkgmeta-install-stamp pkgmeta-postinst-stamp pkgmeta-prerm-stamp
+
 pkgmeta-%-stamp: debian/%.in
 	for pkg in $(PKGS) ; do \
 		sed -e "s#@PKGLIB_DIR@#$(call PKGLIB_DIR,$$pkg)#g; \
@@ -128,7 +128,7 @@ clean-real:
 # Build architecture-independent files here.
 .PHONY: binary-indep
 binary-indep: binary-indep-stamp
-binary-indep-stamp: install-stamp pkgmeta
+binary-indep-stamp: install-stamp $(pkgmeta)
 	dh_testdir -i
 	dh_testroot -i
 	dh_clean -k --exclude=build-stamp --exclude=install-stamp --exclude=debian/tmp
@@ -148,7 +148,7 @@ binary-indep-stamp: install-stamp pkgmeta
 # Build architecture-dependent files here.
 .PHONY: binary-arch
 binary-arch: binary-arch-stamp
-binary-arch-stamp: install-stamp pkgmeta
+binary-arch-stamp: install-stamp $(pkgmeta)
 	dh_testdir -a
 	dh_testroot -a
 	dh_clean -k --exclude=build-stamp --exclude=install-stamp --exclude=debian/tmp
