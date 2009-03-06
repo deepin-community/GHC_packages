@@ -4,8 +4,8 @@
 #export DH_VERBOSE=1
 
 # Be specific about the version of autotools we use
-export AUTOMAKE := automake-1.10
-export ACLOCAL := aclocal-1.10
+export AUTOMAKE = automake-1.10
+export ACLOCAL = aclocal-1.10
 
 # These are used for cross-compiling and for saving the configure script
 # from having to guess our platform (since we know it already)
@@ -39,7 +39,7 @@ ifeq (,$(filter amd64 i386,$(shell dpkg-architecture -qDEB_HOST_ARCH)))
 endif
 
 # -g removed to build in IA64
-CFLAGS := -Wall
+CFLAGS = -Wall
 ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
 	CFLAGS += -O0
 else
@@ -50,7 +50,7 @@ ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
 endif
 
 PKGS \
-  := glib \
+  = glib \
   cairo \
   gconf \
   gio \
@@ -67,7 +67,7 @@ VERSION := $(shell sed -ne '/([0-9.]\+-.*)/ { s/^.*(\([0-9.]\+\)-.*).*$$/\1/p; q
 # configure --libdir: where the libs are temporarily installed (under
 # debian/tmp) before moving them to the correct package build hierarchy.
 # We need to set this explicitly for path mangling purposes.
-TMP_LIBDIR := /usr/lib
+TMP_LIBDIR = /usr/lib
 
 # Helper macros
 DEB = libghc6-$(1)-dev
