@@ -38,6 +38,12 @@ ifeq (,$(filter amd64 i386,$(shell dpkg-architecture -qDEB_HOST_ARCH)))
         configure_flags += --disable-split-objs
 endif
 
+# from hlibrary.mk
+GHC6_VERSION = $(shell ghc --numeric-version)
+DEB_HADDOCK_DIR ?= /usr/share/ghc6-doc/ghc-$(GHC6_VERSION)/haddock/
+
+MAKEFLAGS = "HADDOCK_FLAGS='--lib=${DEB_HADDOCK_DIR}'"
+
 # -g removed to build in IA64
 CFLAGS = -Wall
 ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
@@ -88,7 +94,7 @@ config.status: configure.ac
 build: build-stamp
 build-stamp: config.status
 	dh_testdir
-	$(MAKE)
+	$(MAKE) $(MAKEFLAGS)
 	touch $@
 
 .PHONY: install
@@ -97,10 +103,15 @@ install-stamp: build-stamp
 	dh_testdir
 	dh_testroot
 	dh_clean -k --exclude=build-stamp
-	$(MAKE) install DESTDIR=$(CURDIR)/debian/tmp
+	$(MAKE) $(MAKEFLAGS) install DESTDIR=$(CURDIR)/debian/tmp
+	rm debian/tmp/usr/share/doc/gtk2hs/html/gtk2hs.haddock
 	touch $@
 
-pkgmeta = pkgmeta-install-stamp pkgmeta-postinst-stamp pkgmeta-prerm-stamp
+pkgmeta \
+  = pkgmeta-install-stamp \
+  pkgmeta-postinst-stamp \
+  pkgmeta-prerm-stamp \
+  debian/gtk2hs-doc.install
 
 pkgmeta-%-stamp: debian/%.in
 	for pkg in $(PKGS) ; do \
@@ -113,12 +124,15 @@ pkgmeta-%-stamp: debian/%.in
 	test "$*" = "install" && echo "debian/tmp$(TMP_LIBDIR)/gtk2hs/include $(call PKGLIB_DIR,glib)" >> debian/$(call DEB,glib).install || true
 	touch $@
 
+debian/gtk2hs-doc.install: debian/gtk2hs-doc.install.in
+	sed -e "s#@DEB_HADDOCK_DIR@#$(DEB_HADDOCK_DIR)#g" < $^ > $@
+
 .PHONY: clean clean-real
 clean: clean-real
 clean-real:
 	dh_testdir
 	dh_testroot
-	[ ! -e Makefile ] || $(MAKE) clean distclean
+	[ ! -e Makefile ] || $(MAKE) $(MAKEFLAGS) clean distclean
 	dh_clean aclocal.m4 Makefile.in configure \
 		config.guess config.sub config.log \
 		build-stamp install-stamp pkgmeta-*-stamp \
