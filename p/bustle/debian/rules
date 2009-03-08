@@ -2,22 +2,21 @@
 
 configure: configure-stamp
 configure-stamp:
-	runhaskell Setup.lhs configure \
-		--prefix /usr \
-		--with-ghc-pkg=/usr/bin/ghc-pkg6 
+	ghc -package Cabal Setup.lhs -o setup
+	./setup configure --prefix /usr
 	touch $@
 
 build: build-stamp
 build-stamp: configure
 	$(MAKE)
-	runhaskell Setup.lhs build
+	./setup build
 	touch $@
 
 clean:
 	dh_testdir
 	dh_testroot
-	rm -rf bustle-dbus-monitor dist
-	runhaskell Setup.lhs clean
+	[ ! -f ./setup ] || ./setup clean
+	rm -rf bustle-dbus-monitor dist setup Setup.hi Setup.o
 	dh_clean
 
 install: build
@@ -26,7 +25,7 @@ install: build
 	dh_prep
 	dh_installdirs
 	dh_install
-	runhaskell Setup.lhs copy --destdir debian/bustle
+	./setup copy --destdir debian/bustle
 	rm -rf debian/bustle/usr/share/doc/bustle-*
 
 binary-arch: build install
