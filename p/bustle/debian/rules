@@ -2,50 +2,26 @@
 
 include /usr/share/quilt/quilt.make
 
-configure: configure-stamp
-configure-stamp: $(QUILT_STAMPFN)
-	ghc -package Cabal Setup.lhs -o setup
-	./setup configure --prefix /usr
-	touch $@
-
-build: build-stamp
-build-stamp: configure
-	$(MAKE)
-	./setup build
-	touch $@
+%:
+	dh $@
 
 clean: unpatch
-	dh_testdir
-	dh_testroot
+	dh $@
 	[ ! -f ./setup ] || ./setup clean
 	rm -rf bustle-dbus-monitor dist setup Setup.hi Setup.o
-	dh_clean
 
-install: build
-	dh_testdir
-	dh_testroot
-	dh_prep
-	dh_installdirs
-	dh_install
+override_dh_auto_configure:
+	ghc -package Cabal Setup.lhs -o setup
+	./setup configure --prefix /usr
+
+override_dh_auto_build:
+	$(MAKE)
+	./setup build
+
+override_dh_install:
 	./setup copy --destdir debian/bustle
 	rm -rf debian/bustle/usr/share/doc/bustle-*
+	dh_install
 
-binary-arch: build install
-	dh_testdir
-	dh_testroot
-	dh_installchangelogs
-	dh_installdocs README
-	dh_installman
-	dh_compress
-	dh_shlibdeps
-	dh_strip
-	dh_fixperms
-	dh_installdeb
-	dh_gencontrol
-	dh_md5sums
-	dh_builddeb
-
-binary-indep:
-
-binary: binary-arch
-.PHONY: build clean binary-indep binary-arch binary install build-indep install-indep
+build: $(QUILT_STAMPFN)
+	dh $@
