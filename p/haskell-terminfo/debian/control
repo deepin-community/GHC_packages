@@ -1,0 +1,48 @@
+Source: haskell-terminfo
+Section: libdevel
+Priority: optional
+Maintainer: Marco Túlio Gontijo e Silva <marcot@holoscopio.com>
+Standards-Version: 3.8.0
+Build-Depends: debhelper (>= 5), cdbs, dpatch, haskell-devscripts (>= 0.6.15+nmu1), ghc6, ghc6-prof
+Build-Depends-Indep: ghc6-doc, haddock, hscolour
+Homepage: http://hackage.haskell.org/cgi-bin/terminfo/package/terminfo
+Vcs-Darcs: http://code.haskell.org/debian/haskell-terminfo/
+
+Package: libghc6-terminfo-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Suggests: libghc6-terminfo-doc (= ${binary:Version}), libghc6-terminfo-prof (= ${binary:Version})
+Description: Haskell bindings to the terminfo library
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library provides an interface to the terminfo database (via bindings to
+ the curses library). Terminfo allows POSIX systems to interact with a variety
+ of terminals using a standard set of capabilities.
+
+Package: libghc6-terminfo-prof
+Architecture: any
+Depends: libghc6-terminfo-dev (= ${binary:Version}), ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Description: Haskell bindings to the terminfo library; profiling libraries
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library provides an interface to the terminfo database (via bindings to
+ the curses library). Terminfo allows POSIX systems to interact with a variety
+ of terminals using a standard set of capabilities.
+
+Package: libghc6-terminfo-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}
+Recommends: ghc6-doc (>= 6.8.2)
+Suggests: libghc6-terminfo-dev (= ${binary:Version})
+Description: Haskell bindings to the terminfo library; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library provides an interface to the terminfo database (via bindings to
+ the curses library). Terminfo allows POSIX systems to interact with a variety
+ of terminals using a standard set of capabilities.
