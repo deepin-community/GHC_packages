@@ -1,0 +1,57 @@
+Source: haskell-haskeline
+Section: libdevel
+Priority: optional
+Maintainer: Marco Túlio Gontijo e Silva <marcot@holoscopio.com>
+Standards-Version: 3.8.0
+Build-Depends: debhelper (>= 5), cdbs, dpatch, haskell-devscripts (>= 0.6.15+nmu1), ghc6, ghc6-prof, libghc6-mtl-dev, libghc6-mtl-prof, libghc6-utf8-string-dev, libghc6-utf8-string-prof, libghc6-terminfo-dev, libghc6-terminfo-prof
+Build-Depends-Indep: ghc6-doc, haddock, hscolour, libghc6-mtl-doc, libghc6-utf8-string-doc, libghc6-terminfo-doc
+Homepage: http://hackage.haskell.org/cgi-bin/haskeline/package/haskeline
+Vcs-Darcs: http://code.haskell.org/debian/haskell-haskeline/
+
+Package: libghc6-haskeline-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Suggests: libghc6-haskeline-doc (= ${binary:Version}), libghc6-haskeline-prof (= ${binary:Version})
+Description: A command-line interface for user input, written in Haskell
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ Haskeline provides a user interface for line input in command-line
+ programs. This library is similar in purpose to readline, but since it is
+ written in Haskell it is (hopefully) more easily used in other Haskell
+ programs.
+ .
+ Haskeline runs both on POSIX-compatible systems and on Windows.
+
+Package: libghc6-haskeline-prof
+Architecture: any
+Depends: libghc6-haskeline-dev (= ${binary:Version}), ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Description: A command-line interface for user input; profiling libraries
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ Haskeline provides a user interface for line input in command-line
+ programs. This library is similar in purpose to readline, but since it is
+ written in Haskell it is (hopefully) more easily used in other Haskell
+ programs.
+ .
+ Haskeline runs both on POSIX-compatible systems and on Windows.
+
+Package: libghc6-haskeline-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}
+Recommends: ghc6-doc (>= 6.8.2), libghc6-mtl-doc, libghc6-utf8-string-doc, libghc6-terminfo-doc
+Suggests: libghc6-haskeline-dev (= ${binary:Version})
+Description: A command-line interface for user input, written in Haskell; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ Haskeline provides a user interface for line input in command-line
+ programs. This library is similar in purpose to readline, but since it is
+ written in Haskell it is (hopefully) more easily used in other Haskell
+ programs.
+ .
+ Haskeline runs both on POSIX-compatible systems and on Windows.

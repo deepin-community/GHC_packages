@@ -1,0 +1,97 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 01_extensible-exceptions by Marco Túlio Gontijo e Silva <marcot@holoscopio.com>
+##
+## DP: Remove dependency in extensible-exceptions.
+diff -Nudar haskeline-0.6.1.3.orig/haskeline.cabal haskeline-0.6.1.3/haskeline.cabal
+--- haskeline-0.6.1.3.orig/haskeline.cabal	2009-02-19 15:11:46.000000000 -0300
++++ haskeline-0.6.1.3/haskeline.cabal	2009-03-12 10:25:36.000000000 -0300
+@@ -41,8 +41,7 @@
+         Build-depends: base>=3 && <5 , containers>=0.1, directory>=1.0,
+                         bytestring==0.9.*
+     Build-depends:  filepath==1.1.*, mtl==1.1.*,
+-                    utf8-string==0.3.* && >=0.3.1.1,
+-                    extensible-exceptions==0.1.* && >=0.1.1.0
++                    utf8-string==0.3.* && >=0.3.1.1
+     Extensions:     ForeignFunctionInterface, RankNTypes, FlexibleInstances,
+                 TypeSynonymInstances
+                 FlexibleContexts, ExistentialQuantification
+diff -Nudar haskeline-0.6.1.3.orig/Setup.hs haskeline-0.6.1.3/Setup.hs
+--- haskeline-0.6.1.3.orig/Setup.hs	2009-02-19 15:11:46.000000000 -0300
++++ haskeline-0.6.1.3/Setup.hs	2009-03-12 10:25:22.000000000 -0300
+@@ -10,7 +10,7 @@
+ import System.IO
+ import System.Exit
+ import System.Directory
+-import Control.Exception.Extensible
++import Control.Exception
+
+ -- TODO: it's a hack that we use the autoconfUserHooks when we're not actually
+ -- using autoconf...
+diff -Nudar haskeline-0.6.1.3.orig/System/Console/Haskeline/Backend/Terminfo.hs haskeline-0.6.1.3/System/Console/Haskeline/Backend/Terminfo.hs
+--- haskeline-0.6.1.3.orig/System/Console/Haskeline/Backend/Terminfo.hs	2009-02-19 15:11:46.000000000 -0300
++++ haskeline-0.6.1.3/System/Console/Haskeline/Backend/Terminfo.hs	2009-03-12 10:25:22.000000000 -0300
+@@ -8,7 +8,7 @@
+ import Control.Monad
+ import Data.List(intersperse)
+ import System.IO
+-import qualified Control.Exception.Extensible as Exception
++import qualified Control.Exception as Exception
+ import qualified Data.ByteString.Char8 as B
+ import Data.Maybe (fromMaybe, catMaybes)
+
+diff -Nudar haskeline-0.6.1.3.orig/System/Console/Haskeline/Directory.hsc haskeline-0.6.1.3/System/Console/Haskeline/Directory.hsc
+--- haskeline-0.6.1.3.orig/System/Console/Haskeline/Directory.hsc	2009-02-19 15:11:46.000000000 -0300
++++ haskeline-0.6.1.3/System/Console/Haskeline/Directory.hsc	2009-03-12 10:25:22.000000000 -0300
+@@ -68,7 +68,7 @@
+
+ import Data.ByteString.Char8 (pack, unpack)
+ import qualified System.Directory as D
+-import Control.Exception.Extensible
++import Control.Exception
+ import System.Console.Haskeline.Backend.IConv
+
+ getDirectoryContents :: FilePath -> IO [FilePath]
+diff -Nudar haskeline-0.6.1.3.orig/System/Console/Haskeline/History.hs haskeline-0.6.1.3/System/Console/Haskeline/History.hs
+--- haskeline-0.6.1.3.orig/System/Console/Haskeline/History.hs	2009-02-19 15:11:46.000000000 -0300
++++ haskeline-0.6.1.3/System/Console/Haskeline/History.hs	2009-03-12 10:25:22.000000000 -0300
+@@ -27,7 +27,7 @@
+
+ import qualified Data.ByteString as B
+ import qualified Data.ByteString.UTF8 as UTF8
+-import Control.Exception.Extensible
++import Control.Exception
+
+ import System.Directory(doesFileExist)
+
+diff -Nudar haskeline-0.6.1.3.orig/System/Console/Haskeline/MonadException.hs haskeline-0.6.1.3/System/Console/Haskeline/MonadException.hs
+--- haskeline-0.6.1.3.orig/System/Console/Haskeline/MonadException.hs	2009-02-19 15:11:46.000000000 -0300
++++ haskeline-0.6.1.3/System/Console/Haskeline/MonadException.hs	2009-03-12 10:25:22.000000000 -0300
+@@ -1,4 +1,4 @@
+-{- | This module redefines some of the functions in "Control.Exception.Extensible" to
++{- | This module redefines some of the functions in "Control.Exception" to
+ work for more general monads than only 'IO'.
+ -}
+
+@@ -16,8 +16,8 @@
+     E.IOException())
+      where
+
+-import qualified Control.Exception.Extensible as E
+-import Control.Exception.Extensible(Exception,SomeException)
++import qualified Control.Exception as E
++import Control.Exception(Exception,SomeException)
+ import Prelude hiding (catch)
+ import Control.Monad.Reader
+ import Control.Monad.State
+diff -Nudar haskeline-0.6.1.3.orig/System/Console/Haskeline/Term.hs haskeline-0.6.1.3/System/Console/Haskeline/Term.hs
+--- haskeline-0.6.1.3.orig/System/Console/Haskeline/Term.hs	2009-02-19 15:11:46.000000000 -0300
++++ haskeline-0.6.1.3/System/Console/Haskeline/Term.hs	2009-03-12 10:25:22.000000000 -0300
+@@ -9,7 +9,7 @@
+ import Control.Concurrent.Chan
+ import Data.Typeable
+ import Data.ByteString (ByteString)
+-import Control.Exception.Extensible (fromException, AsyncException(..),bracket_)
++import Control.Exception (fromException, AsyncException(..),bracket_)
+
+ class (MonadReader Layout m, MonadException m) => Term m where
+     reposition :: Layout -> LineChars -> m ()
