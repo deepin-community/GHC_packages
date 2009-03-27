@@ -15,7 +15,7 @@ configure_flags := --build $(DEB_BUILD_GNU_TYPE)
 ifneq ($(DEB_BUILD_GNU_TYPE), $(DEB_HOST_GNU_TYPE))
 	configure_flags += --host $(DEB_HOST_GNU_TYPE)
 endif
-configure_flags += --enable-packager-mode --with-c2hs=no --prefix=/usr
+configure_flags += --enable-packager-mode --prefix=/usr
 
 # Which bits of Gtk2Hs do we want?
 configure_flags += --enable-cairo
