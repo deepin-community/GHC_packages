@@ -1,3 +1,34 @@
+gtk2hs (0.10.0-3) unstable; urgency=low
+
+  * Use maintainer scripts similar to the scripts from
+    haskell-devscripts.
+  * Use set -e instead of #!/bin/sh -e in maintainer scripts.
+  * Use correct DEB_HADDOCK_DIR.
+  * debian/rules:
+    - Include correct dependencies for libghc6-gio-dev and
+      libghc6-gtksourceview2-dev.
+    - Use stamp for .PHONY targets.
+    - Use variable instead of target for pkgmeta.
+    - Use := only when it makes sense.
+    - Support for parallel in DEB_BUILD_OPTIONS, conforming to Debian
+      Policy 4.9.1.
+    - Check DEB_BUILD_ARCH instead of DEB_HOST_ARCH to enable split-objs.
+    - Configure ghc flags in DEB_BUILD_OPTIONS noopt.
+  * debian/control:
+    - Correct wrong Suggests: field from libghc6-gio-dev and
+      libghc6-gtksourceview2-dev, from libghc6-gtk2hs-doc to gtk2hs-doc.
+    - Recommend ghc6-doc, and libghc6-mtl-doc, and suggest -dev packages.
+  * debian/copyright: Change packaging license.
+
+ -- Marco Túlio Gontijo e Silva <marcot@holoscopio.com>  Thu, 05 Mar 2009 15:32:22 -0300
+
+gtk2hs (0.10.0-2) unstable; urgency=low
+
+  * Rebuilt with ghc6 with arch-independent .haddock and .hi files
+  * Bumped ghc6, haddock, mtl dependencies accordingly
+
+ -- Joachim Breitner <nomeata@debian.org>  Sun, 01 Mar 2009 14:30:38 +0100
+
 gtk2hs (0.10.0-1) unstable; urgency=low
 
   * New upstream version.
