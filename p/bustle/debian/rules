@@ -1,11 +1,9 @@
 #!/usr/bin/make -f
 
-include /usr/share/quilt/quilt.make
-
 %:
 	dh $@
 
-clean: unpatch
+clean:
 	dh $@
 	[ ! -f ./setup ] || ./setup clean
 	rm -rf bustle-dbus-monitor dist setup Setup.hi Setup.o
@@ -22,6 +20,3 @@ override_dh_install:
 	./setup copy --destdir debian/bustle
 	rm -rf debian/bustle/usr/share/doc/bustle-*
 	dh_install
-
-build: $(QUILT_STAMPFN)
-	dh $@
