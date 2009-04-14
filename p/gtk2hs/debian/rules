@@ -182,20 +182,7 @@ binary-arch-stamp: install-stamp $(pkgmeta)
 	sed --in-place -e \
 		"s#$(call PKGLIB_DIR,gio)/include#$(call PKGLIB_DIR,glib)#g;" \
 		$(call PKGLIB_BUILD,gio)/gio.package.conf
-	sh -e debian/mk-haskell-deps $(call DEB,glib) $(call HDEP,glib)
-	for pkg in cairo gconf gio gnomevfs gstreamer ; do \
-		sh -e debian/mk-haskell-deps $(call DEB,$$pkg) \
-			$(call HDEP,glib) $(call HDEP,$$pkg) ; \
-	done
-	for pkg in gtk svgcairo ; do \
-		sh -e debian/mk-haskell-deps $(call DEB,$$pkg) \
-			$(call HDEP,glib) $(call HDEP,cairo) $(call HDEP,$$pkg) ;\
-	done
-	for pkg in glade gtkglext gtksourceview2 soegtk ; do \
-		sh -e debian/mk-haskell-deps $(call DEB,$$pkg) \
-			$(call HDEP,glib) $(call HDEP,cairo) \
-			$(call HDEP,gtk) $(call HDEP,$$pkg) ; \
-	done
+	dh_haskell_shlibdeps $(foreach pkg,$(PKGS),$(call SHORT_HDEP,$(pkg)))
 	for pkg in $(PKGS) ; do \
 		dh_haskell_depends \
 			-p$(call DEB,$$pkg) \
