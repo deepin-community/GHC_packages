@@ -2,20 +2,25 @@
 
 set -e
 
-GHC_PKG=/usr/bin/ghc-pkg6
+GHC_PKG=/usr/bin/ghc-pkg
 
 case "$1" in
-remove|upgrade|deconfigure)
-	${GHC_PKG} unregister @PKG@-@VERSION@ || true
+    deconfigure|remove)
+	$GHC_PKG unregister --force-files @PKG@-@VERSION@ || true
+	OLDPACKAGE=`$GHC_PKG --global latest @PKG@ 2> /dev/null` || true
+	if [ -n "$OLDPACKAGE" ] ; then
+	    $GHC_PKG expose $OLDPACKAGE || true
+	fi
+
+        ;;
+    upgrade)
 	;;
-failed-upgrade)
-	# determine upstream version from old version number.
-	UPSTREAM=$(echo $2 | cut -d'-' -f1)
-	${GHC_PKG} unregister @PKG@-${UPSTREAM} || true
+    failed-upgrade)
+        ;;
+    *)
+        echo "prerm called with unknown argument \`$1'" >&2
+        exit 1
 	;;
-*)
-	echo "prerm called with unknown argument \`$1'" >&2
-	exit 1 ;;
 esac
 
 #DEBHELPER#

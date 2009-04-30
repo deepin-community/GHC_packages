@@ -2,14 +2,20 @@
 
 set -e
 
-GHC_PKG=/usr/bin/ghc-pkg6
+GHC_PKG=/usr/bin/ghc-pkg
 
 case "$1" in
-configure|abort-upgrade|abort-remove|abort-deconfigure)
-	${GHC_PKG} update /@PKGLIB_DIR@/@PKG@.package.conf ;;
-*)
-	echo "postinst called with unknown argument \`$1'" >&2
-	exit 1 ;;
+    configure|abort-upgrade|abort-remove|abort-deconfigure)
+	OLDVERSIONS=`$GHC_PKG --global field @PKG@ version 2> /dev/null | sed "s/version: //"`
+	for VERSION in $OLDVERSIONS ; do
+	    $GHC_PKG --global hide @PKG@-$VERSION || true
+	done
+	$GHC_PKG --global update /@PKGLIB_DIR@/@PKG@.package.conf
+        ;;
+    *)
+        echo "postinst called with unknown argument \`$1'" >&2
+        exit 1
+	;;
 esac
 
 #DEBHELPER#
