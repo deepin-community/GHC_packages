@@ -42,6 +42,12 @@ DEB_HADDOCK_DIR ?= /usr/share/ghc6-doc/ghc-$(GHC6_VERSION)/haddock/
 
 MAKEFLAGS = "HADDOCK_FLAGS='--lib=${DEB_HADDOCK_DIR}'"
 
+ifneq (,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
+	NUMJOBS \
+          = $(patsubst parallel=%,%,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
+	MAKEFLAGS += -j$(NUMJOBS)
+endif
+
 # -g removed to build in IA64
 CFLAGS = -Wall
 ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
