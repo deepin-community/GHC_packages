@@ -1,3 +1,39 @@
+ghc6 (6.10.3-1) unstable; urgency=low
+
+  * New upstream release
+    * GHCi uses stdio in blocking mode now. (Closes: #512762)
+    * GHC can cope with missing setitimer(ITIMER_VIRTUAL) support.
+      (Closes: #509252)
+    * Uses haskeline instead of editline.
+  * Only provide ghci and runghc on archs that support it.
+    (Closes: #320335)
+  * Patched compiler/utils/Binary.hs to store Ints as Int64s on 32 bit
+    architectures and warn if it needed to truncate when unserialising.
+  * Moved package.conf to /var/lib/ghc-$VERSION/.
+  * Added a /var/lib/ghc-$VERSION/package.conf.d/ dir.
+  * Set symlinks from /usr/lib/ghc-$VERSION/package.conf* to /var.
+  * Don't ship generated index files in /usr/share/doc/ghc6-doc/libraries/
+    and remove them in postrm. (Closes: #501188)
+  * Remove any leftover index.html files in
+    /usr/share/doc/ghc6-doc/html/libraries/. (Closes: #461323)
+  * Bumped to debhelper compat 7 and Standards-Version 3.8.1 (no changes
+    needed).
+  * Section: haskell for ghc6 and ghc6-prof.
+  * Fix up generated Provides for ghc6 and ghc6-doc.
+    (Closes: #514085, #518400)
+  * Added man pages for runghc and ghc-pkg. (Closes: #460425, #315763)
+  * Removed alternative for /usr/bin/ghcprof. (Closes: #527382)
+  * Build a registerised build on powerpc. (Closes: #514946)
+  * Build-depend on a newer binutils on [arm armel].  Add -mlong-calls to
+    gcc's flags.
+  * gen_contents_index reintroduced, this time as a perl script.
+  * Added /usr/share/ghc6-doc/ghc-$VERSION/desc/ for copies of package
+    conf info in -doc packages.
+  * Added a preinst for ghc6, to remove a package.conf file from a removed
+    but not purged old version.
+
+ -- Kari Pahula <kaol@debian.org>  Mon, 18 May 2009 22:18:18 +0300
+
 ghc6 (6.10.1+dfsg1-13) unstable; urgency=low
 
   * Haddock again just a B-D-I, now with (>= 2.4.1-4).
