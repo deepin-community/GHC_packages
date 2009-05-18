@@ -3,8 +3,6 @@
 #
 set -e
 
-libdir=/usr/lib/ghc6-doc
-
 # summary of how this script can be called:
 #        * <postinst> `configure' <most-recently-configured-version>
 #        * <old-postinst> `abort-upgrade' <new version>
@@ -22,36 +20,9 @@ libdir=/usr/lib/ghc6-doc
 #     installation fails and the `postinst' is called with `abort-upgrade',
 #     `abort-remove' or `abort-deconfigure'.
 
-gen_contents_index () {
-    NAMES=
-    HADDOCK_ARGS=`cat /usr/lib/ghc-@VERSION@/package.conf | perl -ne '
-$pkg = $1 if /PackageName "(.*?)"/;
-next if $pkg eq "ghc";
-$pkg =~ y/A-Z/a-z/;
-$skip = 0; foreach my $name (@names) {if ($name eq $pkg) {$skip=1; last;}}
-push @names, $pkg;
-next if $skip;
-next unless /haddockInterfaces = \["(.*?)"/;
-$iface = $1;
-next unless -r $iface;
-next unless /haddockHTMLs = \["(.*?)"/;
-$html = $1;
-undef $hpath;
-if ($html =~ m,^/usr/share/doc/([^/]*-doc/html/.*),) {$hpath = "../../$1";}
-elsif ($html =~ m,^/usr/share/doc/ghc6-doc/libraries/(.*),) {$hpath = $1;}
-else {next;}
-print "--read-interface=$hpath,$iface\n";
-'`
-    haddock --gen-index --gen-contents \
-	-o /usr/share/doc/ghc6-doc/libraries/ \
-	-t "Haskell Hierarchical Libraries" \
-	-p /usr/share/doc/ghc6-doc/libraries/prologue.txt \
-	$HADDOCK_ARGS
-}
-
 case "$1" in
     triggered|configure)
-        gen_contents_index
+        /usr/lib/ghc6-doc/gen_contents_index
 	;;
     abort-upgrade|abort-remove|abort-deconfigure)
 	;;
