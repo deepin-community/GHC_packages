@@ -1,3 +1,12 @@
+ghc6 (6.10.3-2) unstable; urgency=low
+
+  * Only call ghc-pkg6 in ghc6-doc's trigger if ghc6 is installed.
+    (Closes: #530732)
+  * Fix the test for seeing if ghci would work.
+  * Build a registerised build on powerpc, but disable ghci.
+
+ -- Kari Pahula <kaol@debian.org>  Thu, 28 May 2009 12:40:17 +0300
+
 ghc6 (6.10.3-1) unstable; urgency=low
 
   * New upstream release
@@ -23,7 +32,7 @@ ghc6 (6.10.3-1) unstable; urgency=low
     (Closes: #514085, #518400)
   * Added man pages for runghc and ghc-pkg. (Closes: #460425, #315763)
   * Removed alternative for /usr/bin/ghcprof. (Closes: #527382)
-  * Build a registerised build on powerpc. (Closes: #514946)
+  * Build an unregisterised build on powerpc. (Closes: #514946)
   * Build-depend on a newer binutils on [arm armel].  Add -mlong-calls to
     gcc's flags.
   * gen_contents_index reintroduced, this time as a perl script.

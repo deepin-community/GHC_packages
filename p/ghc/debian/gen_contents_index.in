@@ -8,9 +8,11 @@ my @ifaces;
 my %pkgs;
 
 # First, add everything from the global Cabal registry to index.
-open CABAL, 'ghc-pkg6 dump --global |' or die "ghc-pkg dump failed: $!";
-addInfo (\*CABAL, \%pkgs, \@ifaces);
-close CABAL;
+if (-e '/usr/bin/ghc-pkg6') {
+    open CABAL, 'ghc-pkg6 dump --global |' or warn "ghc-pkg dump failed: $!";
+    addInfo (\*CABAL, \%pkgs, \@ifaces);
+    close CABAL;
+}
 
 # Then, add -doc packages that aren't registered but have the
 # corresponding data installed otherwise.

@@ -48,10 +48,13 @@ configure-stamp: debian/stamp-patched
 	echo "XMLDocWays := html" >> mk/build.mk
 	echo "HADDOCK_DOCS := $(BUILD_HADDOCK_DOCS)" >> mk/build.mk
 	echo "XSLTPROC_OPTS += --nonet" >> mk/build.mk
-ifeq (,$(findstring $(DEB_HOST_ARCH), i386 amd64 kfreebsd-i386 kfreebsd-amd64))
+ifeq (,$(findstring $(DEB_HOST_ARCH), i386 amd64 kfreebsd-i386 kfreebsd-amd64 powerpc))
 	echo "GhcUnregisterised=YES" >> mk/build.mk
 else
 	echo "GhcUnregisterised=NO" >> mk/build.mk
+endif
+ifeq (powerpc,$(DEB_HOST_ARCH))
+	echo "GhcWithInterpreter=NO" >> mk/build.mk
 endif
 ifneq (,$(findstring $(DEB_HOST_ARCH), hppa ia64)) # Doesn't fix the problem :-(
 	echo "GhcWithInterpreter=NO" >> mk/build.mk
@@ -152,9 +155,9 @@ install-stamp: build-stamp
 
 	# Sort out the binaries
 	mkdir -p debian/tmp/usr/bin
-	cd debian/tmp/usr/lib/ghc-$(ProjectVersion)/bin && \
-	    if ./ghc-$(ProjectVersion) --info | grep -q '"Have interpreter","NO"'; \
-		then rm -f ghci* runghc* runhaskell*; \
+	cd debian/tmp/usr/lib/ghc-$(ProjectVersion) && \
+	    if ./ghc --info | grep '"Have interpreter","NO"'; \
+		then rm -f bin/ghci* bin/runghc* bin/runhaskell*; \
 	    fi
 	cd debian/tmp/usr/lib/ghc-$(ProjectVersion)/bin && \
 	    for f in *-$(ProjectVersion); \
