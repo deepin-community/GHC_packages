@@ -1,26 +1,36 @@
-gtk2hs (0.10.0-3) unstable; urgency=low
+gtk2hs (0.10.1-1) unstable; urgency=low
 
+  * Removes restriction of reponse values.  Closes: #522481.
+  * New upstream version.
   * Use maintainer scripts similar to the scripts from
     haskell-devscripts.
   * Use set -e instead of #!/bin/sh -e in maintainer scripts.
   * Use correct DEB_HADDOCK_DIR.
+  * Use dh_haskell_shlibdeps.
   * debian/rules:
-    - Include correct dependencies for libghc6-gio-dev and
-      libghc6-gtksourceview2-dev.
     - Use stamp for .PHONY targets.
     - Use variable instead of target for pkgmeta.
     - Use := only when it makes sense.
     - Support for parallel in DEB_BUILD_OPTIONS, conforming to Debian
       Policy 4.9.1.
-    - Check DEB_BUILD_ARCH instead of DEB_HOST_ARCH to enable split-objs.
     - Configure ghc flags in DEB_BUILD_OPTIONS noopt.
+    - Don't use unexisting parameter to configure --with-c2hs=no.
   * debian/control:
+    - Include correct dependencies for libghc6-gio-dev and
+      libghc6-gtksourceview2-dev.
     - Correct wrong Suggests: field from libghc6-gio-dev and
       libghc6-gtksourceview2-dev, from libghc6-gtk2hs-doc to gtk2hs-doc.
     - Recommend ghc6-doc, and libghc6-mtl-doc, and suggest -dev packages.
-  * debian/copyright: Change packaging license.
+    - Update very outdated description for gtk2hs-doc.
+    - Use new Standards-Version: 3.8.1.
+    - Use Section: haskell.
+    - Include DM-Upload-Allowed: yes.
+    - Update versioned dependencies.
+  * debian/copyright:
+    - Change packaging license.
+    - Refer to (L)GPL-2 instead of (L)GPL.
 
- -- Marco Túlio Gontijo e Silva <marcot@holoscopio.com>  Thu, 05 Mar 2009 15:32:22 -0300
+ -- Marco Túlio Gontijo e Silva <marcot@holoscopio.com>  Mon, 04 May 2009 10:53:23 -0300
 
 gtk2hs (0.10.0-2) unstable; urgency=low
 
