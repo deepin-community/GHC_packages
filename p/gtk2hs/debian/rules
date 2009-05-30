@@ -116,7 +116,7 @@ install-stamp: build-stamp
 	touch $@
 
 pkgmeta \
-  = pkgmeta-install-stamp \
+  = pkgmeta-glib-stamp \
   pkgmeta-postinst-stamp \
   pkgmeta-prerm-stamp \
   debian/gtk2hs-doc.install
@@ -129,7 +129,11 @@ pkgmeta-%-stamp: debian/%.in
 			s#@TMP_LIBDIR@#$(TMP_LIBDIR)#g" \
 			< $^ > debian/$(call DEB,$$pkg).$* ; \
 	done
-	test "$*" = "install" && echo "debian/tmp$(TMP_LIBDIR)/gtk2hs/include $(call PKGLIB_DIR,glib)" >> debian/$(call DEB,glib).install || true
+	touch $@
+
+pkgmeta-glib-stamp: pkgmeta-install-stamp
+	echo "debian/tmp$(TMP_LIBDIR)/gtk2hs/include $(call PKGLIB_DIR,glib)" \
+	  >> debian/$(call DEB,glib).install
 	touch $@
 
 debian/gtk2hs-doc.install: debian/gtk2hs-doc.install.in
