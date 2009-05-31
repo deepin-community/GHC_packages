@@ -1,3 +1,19 @@
+haskell-terminfo (0.3.0.2-1) unstable; urgency=low
+
+  * New upstream version.
+  * Remove extensible-exceptions patch, since ghc6 now ships it.
+  * debian/control:
+    - Use versioned Build-Depends.
+    - Use unversioned Recommends for ghc6-doc in libghc6-terminfo-doc.
+    - Build-Depends on libncurses5-dev and requires haskell-devscripts >=
+      0.6.15+nmu8, which contains dh_haskell_shlibdeps.  Closes: #530624.
+    - Use haskell Section.
+    - Use new Standards-Version: 3.8.1.
+    - Use DM-Upload-Allowed: yes.
+  * debian/watch: Better regexp for version.
+
+ -- Marco Túlio Gontijo e Silva <marcot@holoscopio.com>  Sat, 30 May 2009 12:12:52 -0300
+
 haskell-terminfo (0.3.0.1-1) unstable; urgency=low
 
   * New upstream version.
