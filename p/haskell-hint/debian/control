@@ -1,0 +1,59 @@
+Source: haskell-hint
+Section: haskell
+Priority: optional
+Maintainer: Marco Túlio Gontijo e Silva <marcot@holoscopio.com>
+Build-Depends: debhelper (>= 5), cdbs, haskell-devscripts (>= 0.6.15+nmu1), ghc6 (>= 6.10.3-2), ghc6-prof (>= 6.10.3-2), libghc6-mtl-dev, libghc6-mtl-prof, libghc6-haskell-src-dev, libghc6-haskell-src-prof, libghc6-ghc-paths-dev, libghc6-ghc-paths-prof, libghc6-utf8-string-dev, libghc6-utf8-string-prof, libghc6-monadcatchio-mtl-dev, libghc6-monadcatchio-mtl-prof, libghc6-ghc-mtl-dev, libghc6-ghc-mtl-prof
+Build-Depends-Indep: ghc6-doc (>= 6.10.3-2), haddock (>= 2.4.2), hscolour (>= 1.8), libghc6-mtl-doc, libghc6-haskell-src-doc, libghc6-ghc-paths-doc, libghc6-utf8-string-doc, libghc6-monadcatchio-mtl-doc, libghc6-ghc-mtl-doc
+Standards-Version: 3.8.1
+Homepage: http://hackage.haskell.org/cgi-bin/hackage-scripts/package/hint
+Vcs-Darcs: http://code.haskell.org/debian/haskell-hint
+DM-Upload-Allowed: yes
+
+Package: libghc6-hint-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Suggests: libghc6-hint-doc (= ${binary:Version}), libghc6-hint-prof (= ${binary:Version})
+Description: runtime Haskell interpreter (GHC API wrapper)
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library defines an Interpreter monad. It allows to load Haskell modules,
+ browse them, type-check and evaluate strings with Haskell expressions and even
+ coerce them into values. The library is thread-safe and type-safe (even the
+ coercion of expressions to values). It is, esentially, a huge subset of the
+ GHC API wrapped in a simpler API. Works with GHC 6.10.x and 6.8.x (this
+ version was not tested with GHC 6.6).
+
+
+Package: libghc6-hint-prof
+Architecture: any
+Depends: libghc6-hint-dev (= ${binary:Version}), ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Description: runtime Haskell interpreter (GHC API wrapper); profiling libraries
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library defines an Interpreter monad. It allows to load Haskell modules,
+ browse them, type-check and evaluate strings with Haskell expressions and even
+ coerce them into values. The library is thread-safe and type-safe (even the
+ coercion of expressions to values). It is, esentially, a huge subset of the
+ GHC API wrapped in a simpler API. Works with GHC 6.10.x and 6.8.x (this
+ version was not tested with GHC 6.6).
+
+Package: libghc6-hint-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}
+Recommends: ghc6-doc
+Suggests: libghc6-hint-dev (= ${binary:Version})
+Description: runtime Haskell interpreter (GHC API wrapper); documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library defines an Interpreter monad. It allows to load Haskell modules,
+ browse them, type-check and evaluate strings with Haskell expressions and even
+ coerce them into values. The library is thread-safe and type-safe (even the
+ coercion of expressions to values). It is, esentially, a huge subset of the
+ GHC API wrapped in a simpler API. Works with GHC 6.10.x and 6.8.x (this
+ version was not tested with GHC 6.6).
