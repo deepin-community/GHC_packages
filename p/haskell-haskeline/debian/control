@@ -3,15 +3,41 @@ Section: haskell
 Priority: optional
 Maintainer: Marco Túlio Gontijo e Silva <marcot@holoscopio.com>
 Standards-Version: 3.8.1
-Build-Depends: debhelper (>= 5), cdbs, haskell-devscripts (>= 0.6.15+nmu11), ghc6 (>= 6.10.3-2), ghc6-prof (>= 6.10.3-2), libghc6-mtl-dev (>= 1.1), libghc6-mtl-dev (<< 1.2), libghc6-mtl-prof (>= 1.1), libghc6-mtl-prof (<< 1.2), libghc6-utf8-string-dev (>= 0.3.1.1), libghc6-utf8-string-dev (<< 0.4), libghc6-utf8-string-prof (>= 0.3.1.1), libghc6-utf8-string-prof (<< 0.4), libghc6-terminfo-dev (>= 0.3), libghc6-terminfo-dev (<< 0.4), libghc6-terminfo-prof (>= 0.3), libghc6-terminfo-prof (<< 0.4)
-Build-Depends-Indep: ghc6-doc (>= 6.10.3-2), haddock (>= 2.4.2), hscolour, libghc6-mtl-doc (>= 1.1), libghc6-mtl-doc (<< 1.2), libghc6-utf8-string-doc (>= 0.3.1.1), libghc6-utf8-string-doc (<< 0.4), libghc6-terminfo-doc (>= 0.3), libghc6-terminfo-doc (<< 0.4)
+Build-Depends: debhelper (>= 5)
+  , cdbs
+  , haskell-devscripts (>= 0.6.15+nmu11)
+  , ghc6 (>= 6.10.3-2)
+  , ghc6-prof (>= 6.10.3-2)
+  , libghc6-mtl-dev (>= 1.1)
+  , libghc6-mtl-dev (<< 1.2)
+  , libghc6-mtl-prof (>= 1.1)
+  , libghc6-mtl-prof (<< 1.2)
+  , libghc6-utf8-string-dev (>= 0.3.1.1)
+  , libghc6-utf8-string-dev (<< 0.4)
+  , libghc6-utf8-string-prof (>= 0.3.1.1)
+  , libghc6-utf8-string-prof (<< 0.4)
+  , libghc6-terminfo-dev (>= 0.3)
+  , libghc6-terminfo-dev (<< 0.4)
+  , libghc6-terminfo-prof (>= 0.3)
+  , libghc6-terminfo-prof (<< 0.4)
+Build-Depends-Indep: ghc6-doc (>= 6.10.3-2)
+  , haddock (>= 2.4.2)
+  , hscolour
+  , libghc6-mtl-doc (>= 1.1)
+  , libghc6-mtl-doc (<< 1.2)
+  , libghc6-utf8-string-doc (>= 0.3.1.1)
+  , libghc6-utf8-string-doc (<< 0.4)
+  , libghc6-terminfo-doc (>= 0.3)
+  , libghc6-terminfo-doc (<< 0.4)
 Homepage: http://hackage.haskell.org/cgi-bin/haskeline/package/haskeline
 Vcs-Darcs: http://code.haskell.org/debian/haskell-haskeline/
 DM-Upload-Allowed: yes
 
 Package: libghc6-haskeline-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Description: A command-line interface for user input, written in Haskell
  This package provides a library for the Haskell programming language.
@@ -26,7 +52,8 @@ Description: A command-line interface for user input, written in Haskell
 
 Package: libghc6-haskeline-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
 Description: A command-line interface for user input; profiling libraries
  This package provides a library for the Haskell programming language,
  compiled for profiling.
