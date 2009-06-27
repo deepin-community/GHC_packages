@@ -1,3 +1,13 @@
+ghc6 (6.10.3-3) unstable; urgency=low
+
+  * Patch mkWeakForeignEnv# in rts/PrimOps.cmm to avoid random
+    segfaults. (re:
+    https://bugs.launchpad.net/ubuntu/+source/ghc6/+bug/382803)
+  * Exclude internal boot libraries from generated Provides: libghc6-*
+    substvars. (Closes: #531318)
+
+ -- Kari Pahula <kaol@debian.org>  Sat, 27 Jun 2009 17:58:49 +0300
+
 ghc6 (6.10.3-2) unstable; urgency=low
 
   * Only call ghc-pkg6 in ghc6-doc's trigger if ghc6 is installed.
