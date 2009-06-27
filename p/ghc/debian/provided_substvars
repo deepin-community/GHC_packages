@@ -6,13 +6,13 @@ open PKG, 'utils/ghc-pkg/dist-inplace/build/ghc-pkg/ghc-pkg \
 list --global-conf inplace-datadir/package.conf --simple-output |'
     or die "ghc-pkg list failed: $!";
 my @pkgs;
+my @ignored = ('ghc', 'ghc-mtl', 'utf8-string', 'terminfo', 'haskeline');
 while (<PKG>) {
     y/A-Z/a-z/;
     my $pkgstring = $_;
     LOOP: while ($pkgstring =~ m,([^ ]*?)-\d.*? ?,g) {
 	my $pkg = $1;
-	next LOOP if $pkg eq 'ghc';
-	foreach (@pkgs) {
+	foreach (@ignored, @pkgs) {
 	    next LOOP if $_ eq $pkg;
 	}
 	push @pkgs, $1;
