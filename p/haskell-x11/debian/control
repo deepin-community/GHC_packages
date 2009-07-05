@@ -1,0 +1,51 @@
+Source: haskell-x11
+Section: libdevel
+Priority: optional
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Standards-Version: 3.8.0
+Build-Depends: debhelper (>= 7), haskell-devscripts (>= 0.6.15+nmu1), cdbs, haddock (>= 2.4.1-4), hscolour, ghc6 (>= 6.10.3), ghc6-prof, ghc6-doc, libx11-dev, libxt-dev, libxinerama-dev
+Vcs-Git: git://git.debian.org/git/pkg-haskell/haskell-x11.git
+Vcs-Browser: http://git.debian.org/?p=pkg-fso/haskell-x11.git;a=summary
+
+
+Package: libghc6-x11-dev
+Section: libdevel
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}, libx11-dev, libxt-dev, libxinerama-dev
+Description: Haskell X11 binding for GHC
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library is a binding to the X11 graphics library.
+ The binding is a direct translation of the C binding; for
+ documentation of these calls, refer to "The Xlib Programming
+ Manual", available online at <http://tronche.com/gui/x/xlib/>.
+
+Package: libghc6-x11-prof
+Section: libdevel
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}, libghc6-x11-dev (= ${binary:Version})
+Description: Haskell X11 binding for GHC; profiling libraries
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library is a binding to the X11 graphics library.
+ The binding is a direct translation of the C binding; for
+ documentation of these calls, refer to "The Xlib Programming
+ Manual", available online at <http://tronche.com/gui/x/xlib/>.
+
+Package: libghc6-x11-doc
+Section: doc
+Architecture: all
+Depends: ${haskell:Depends}, ${misc:Depends}, ghc6-doc (>= 6.10.3), ghc6-doc (<< 6.10.3+)
+Description: Haskell X11 binding for GHC; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library is a binding to the X11 graphics library.
+ The binding is a direct translation of the C binding; for
+ documentation of these calls, refer to "The Xlib Programming
+ Manual", available online at <http://tronche.com/gui/x/xlib/>.
