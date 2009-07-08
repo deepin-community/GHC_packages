@@ -1,0 +1,115 @@
+hs-plugins (1.2-2) unstable; urgency=high
+
+  * debian/rules: 
+    - Don't build architecture independent packages on the buildd.
+  * debian/control:
+    - Add libghc6-haskell-src-doc to the Build-Depends-Indep so 
+      ./setup haddock can generate references to that package.
+  * debian/copyright:
+    - Fix lintian warning "debian-copyright-line-too-long"
+  * debian/mk-haskell-depends: Removed. Use dh_haskell_depends from
+    haskell-devscripts
+  * Set urgency to high as this upload fixes a FTBFS on the buildd 
+    which is holding hs-plugins out of testing/lenny.
+
+ -- Arjan Oosting <arjan@debian.org>  Sun, 25 May 2008 11:52:36 +0200
+
+hs-plugins (1.2-1) unstable; urgency=low
+
+  * New upstream release.
+    - Builds and works with GHC 6.8.2 (Closes: #460374, #402245) 
+  * debian/control:
+    - Add a libghc6-plugins-doc package (Closes: #407441)
+    - Add myself as an Uploader.
+    - Add ghc6-doc and haddock to Build-Depends-Indep. Also add mzscheme
+      as it provides the tex2page binary.
+    - Add cpphs to the Build-Conflicts as ./setup haddock fails when we
+      use cpphs instead of cpp. 
+    - Switch from tetex to texlive.
+  * debian/rules:
+    - Use my 'standard' debian/rules for Haskell libraries as base.
+    - Let build-indep-stamp depend on build-arch-stamp as ./setup haddock
+      needs some .h files which are generated during the build-indep-stamp
+      target.
+  * debian/watch: uscan watch file added.
+
+ -- Arjan Oosting <arjan@debian.org>  Sun, 27 Apr 2008 23:44:42 +0200
+
+hs-plugins (0.9.10-3.4) unstable; urgency=high
+
+  * Non-maintainer upload.
+  * Set urgency to high to get the fixed version in etch.
+  * Fix failure to install due tue missing dependencies (Closes: #398384):
+    - debian/mk-haskell-depends: update script to take installed package
+      configuration files as arguments.
+    - debian/rules: call debian/mk-haskell-depends script with the
+      installed package configuration files as arguments.
+    - debian/control: add dctrl-tools to Build-Depends.
+  * debian/rules: properly cleanup leftover
+    docs/hs-plugins.{aux,dvi,log,ps} on clean.
+  
+ -- Arjan Oosting <arjan@debian.org>  Mon, 13 Nov 2006 21:49:53 +0100
+
+hs-plugins (0.9.10-3.3) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * debian/control: also use ${haskell:Depends} for the dependency on
+    ghc6.
+  * debian/patches/30fix-for-ghc-6.6.dpatch: add -$(VERSION) to
+    -package-name $(PKG) to fix FTBFS. (Closes: 394305)
+  * debian/mk-haskell-depends: added to generate the dependencies on the
+    other libghc6-*-dev packages and the dependency on ghc6.
+
+ -- Arjan Oosting <arjan@debian.org>  Sat, 28 Oct 2006 01:58:40 +0200
+
+hs-plugins (0.9.10-3.2) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Register package with ghc-pkg update instead of ghc-pkg --add-package
+    to make sure conflicting packages are hidden on install. Also gerate a
+    dependency on libghc6-cabal-dev if the package is build against
+    it. (Closes: #372840) 
+  * debian/rules: generate Depend on other ghc6 libraries during build.
+  * Remove directory accidentally introduced in the previous NMU.
+  * Convert debian/changelog and debian/README.Debian to UTF-8.
+
+ -- Arjan Oosting <arjanoosting@home.nl>  Wed,  4 Oct 2006 15:55:10 +0200
+
+hs-plugins (0.9.10-3.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Do not build the documentation in HTML form:             (Closes: #384356)
+     - Remove Build-Depends on mzscheme.
+     - Build hs-plugins.ps explicitly in debian/rules.
+     - Add a README.Debian pointing the user to hs-plugins website for HTML
+       documentation.
+
+ -- Jérémy Bobbio <jeremy.bobbio@etu.upmc.fr>  Sat, 30 Sep 2006 13:53:20 +0200
+
+hs-plugins (0.9.10-3) unstable; urgency=low
+
+  * Rebuild against ghc6 6.4.2.
+    + Remove build-dep to libghc6-cabal-dev (>= 1.1.1) as ghc6 6.4.2 comes with
+      Cabal-1.1.4.
+    + Update versioned ghc6 (build-)dependency.
+  * Use DH_COMPAT 5.
+  * Changed Section of libghc6-plugins-dev to libdevel (Closes: #360244).
+
+ -- Florian Ragwitz <rafl@debian.org>  Wed,  5 Jul 2006 02:47:38 +0200
+
+hs-plugins (0.9.10-2) unstable; urgency=low
+
+  * hs-plugins will only work on architectures where ghci is available.
+    + Changed the Architecture field from any to 'i386 amd64', where ghci
+      currently works (Closes: #337868).
+  * Bump up Standards-Version to 3.7.2 (no changes).
+  * Use my @debian.org Maintainer address.
+
+ -- Florian Ragwitz <rafl@debian.org>  Wed,  7 Jun 2006 17:49:45 +0200
+
+hs-plugins (0.9.10-1) unstable; urgency=low
+
+  * Initial release (Closes: #317081).
+
+ -- Florian Ragwitz <rafl@debianforum.de>  Thu, 14 Jul 2005 18:27:49 +0200
+

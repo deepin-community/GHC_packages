@@ -1,0 +1,43 @@
+Source: hs-plugins
+Section: libs
+Priority: optional
+Maintainer: Florian Ragwitz <rafl@debian.org>
+Uploaders: Arjan Oosting <arjan@debian.org>
+Build-Conflicts: cpphs
+Build-Depends: autotools-dev,debhelper (>= 5.0.0), dpatch,
+ haskell-devscripts, ghc6 (>= 6.4.2), libghc6-haskell-src-dev,
+ libghc6-src-exts-dev (>= 0.2-2)
+Build-Depends-Indep: ghc6-doc, haddock, libghc6-haskell-src-doc,
+ mzscheme, texlive-base-bin, texlive-latex-base
+Standards-Version: 3.7.3
+Homepage: http://www.cse.unsw.edu.au/~dons/hs-plugins
+Vcs-Svn: svn://svn.debian.org/svn/pkg-haskell/packages/hs-plugins/trunk
+Vcs-Browser: http://svn.debian.org/wsvn/pkg-haskell/packages/hs-plugins/trunk
+
+Package: libghc6-plugins-dev
+Section: libdevel
+Architecture: i386 amd64
+Depends: ${haskell:Depends}, ${shlibs:Depends}
+Suggests: hs-plugins-doc (= ${source:Version})
+Description: Dynamically Loaded Haskell Modules
+ hs-plugins is a library for loading plugins written in Haskell into an
+ application at runtime. It also provides a mechanism for (re)compiling
+ Haskell source at runtime. Thirdly, a combination of runtime compilation
+ and dynamic loading provides a suite of eval functions. Values exported
+ by plugins are transparently available to Haskell host applications, and
+ bindings exist to use Haskell plugins from at least C and Objective C
+ programs.
+
+Package: hs-plugins-doc
+Section: doc
+Architecture: all
+Recommends: ghc6-doc, libghc-haskell-src-doc
+Suggests: doc-base
+Description: API documentation of the Haskell plugins library
+ hs-plugins is a library for loading plugins written in Haskell into an
+ application at runtime. It also provides a mechanism for (re)compiling
+ Haskell source at runtime. Thirdly, a combination of runtime compilation
+ and dynamic loading provides a suite of eval functions. Values exported
+ by plugins are transparently available to Haskell host applications, and
+ bindings exist to use Haskell plugins from at least C and Objective C
+ programs.
