@@ -1,0 +1,12 @@
+diff -Nur -x '*.orig' -x '*~' plugins-1.4.1/src/System/Plugins/Env.hs plugins-1.4.1.new/src/System/Plugins/Env.hs
+--- plugins-1.4.1/src/System/Plugins/Env.hs	2009-03-15 21:14:39.000000000 +0100
++++ plugins-1.4.1.new/src/System/Plugins/Env.hs	2009-07-08 22:30:32.000000000 +0200
+@@ -524,7 +524,7 @@
+                      let configs = map (reverse.strip_trash.reverse) $
+                                    filter (isInfixOf sysPkgConf) $ lines ghc_out
+                      return configs
+-                         -- | strip ":\r?" from string head
++                         -- strip ":\r?" from string head
+                          where strip_trash [] = []
+                                strip_trash xs@(x:xs') | x `elem` ":\r" = strip_trash xs'
+                                                       | otherwise      = xs

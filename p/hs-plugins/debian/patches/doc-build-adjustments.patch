@@ -1,0 +1,33 @@
+diff -Nur -x '*.orig' -x '*~' plugins-1.4.1/docs/Makefile plugins-1.4.1.new/docs/Makefile
+--- plugins-1.4.1/docs/Makefile	2009-03-15 21:14:39.000000000 +0100
++++ plugins-1.4.1.new/docs/Makefile	2009-07-08 23:04:17.000000000 +0200
+@@ -5,24 +5,19 @@
+ 
+ SRC = hs-plugins
+ 
+-build: $(SRC).ps html
++build: $(SRC).pdf html
+ 
+-$(SRC).ps: $(SRC).dvi
+-	dvips -f $(SRC).dvi > $@
++$(SRC).pdf:
++	pdflatex $(SRC).tex && pdflatex $(SRC).tex
+ 
+ html: $(SRC).tex
+ 	tex2page $(SRC)
+ 	tex2page $(SRC)
+ 	sed -f munge.sed < $(SRC)/$(SRC).html > tmp.out
+ 	mv tmp.out $(SRC)/$(SRC).html
+-	cp $(SRC)/$(SRC).html $(SRC)/index.html
+-	tar czf $(SRC).html.tar.gz $(SRC)
+-	mv $(SRC).html.tar.gz $(SRC)/
++	ln -sf $(SRC).html $(SRC)/index.html
+ 
+-$(SRC).dvi: $(SRC).tex
+-	latex $(SRC).tex && latex $(SRC).tex
+-
+-CLEANS= *.{ps,dvi,aux,log} *~ hs-plugins *-Z-* *.toc
++CLEANS= *.{pdf,aux,log} *~ hs-plugins *-Z-* *.toc
+ 
+ clean: 
+ 	rm -rf $(CLEANS)

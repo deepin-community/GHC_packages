@@ -1,104 +1,36 @@
 #!/usr/bin/make -f
-# -*- makefile -*-
-#
-# Based on dh-make template containing work of Joey Hess, Craig Small
-# and Bill Allombert. 
-#
 
-# Include dpatch
-include /usr/share/dpatch/dpatch.make
+DEB_CABAL_PACKAGE=plugins
+DEB_HADDOCK_HTML_DIR ?= /usr/share/doc/hs-$(CABAL_PACKAGE)-doc/html/
 
-# Uncomment this to turn on verbose mode.
-#export DH_VERBOSE=1
+clean::
+	make -C docs clean
 
-# This has to be exported to make some magic below work.
-#export DH_OPTIONS
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+include /usr/share/cdbs/1/class/hlibrary.mk
 
-INCLUDE_DIRS=""
-HADDOCK_INTERFACES="/usr/share/doc/hs-plugins-doc/html/plugins/plugins.haddock"
-HADDOCK_HTML="/usr/share/doc/hs-plugins-doc/html/plugins/"
+# This is to cater for the slightly non-standard -doc package name:
+# Also, this builds the pdf and html documentation
+build/hs-$(CABAL_PACKAGE)-doc:: dist-ghc6
+	mv dist-ghc6 dist
+	[ ! -x /usr/bin/haddock ] || $(DEB_SETUP_BIN_NAME) haddock $(DEB_HADDOCK_OPTS)
+	make -C docs
+	mv dist dist-ghc6
 
+install/hs-$(CABAL_PACKAGE)-doc:: debian/tmp-inst-ghc6
+	mv dist-ghc6 dist
+	mkdir -p debian/$(notdir $@)/$(DEB_HADDOCK_HTML_DIR)
+	cd debian/tmp-inst-ghc6/ ; find ./$(DEB_HADDOCK_HTML_DIR)/ \
+		! -name "*.haddock" -exec install -Dm 644 '{}' \
+		../$(notdir $@)/'{}' ';'
+	mkdir -p debian/$(notdir $@)/$(DEB_HADDOCK_DIR)
+	cp -r debian/tmp-inst-ghc6/$(DEB_HADDOCK_DIR)/*.haddock \
+		debian/$(notdir $@)/$(DEB_HADDOCK_DIR)
+	
+	mkdir -p debian/$(notdir $ @)/usr/share/doc/hs-$(CABAL_PACKAGE)-doc/plugins
+	cp -r docs/hs-plugins debian/$(notdir $@)/usr/share/doc/hs-$(CABAL_PACKAGE)-doc/plugins
+	cp docs/hs-plugins.pdf debian/$(notdir $@)/usr/share/doc/hs-$(CABAL_PACKAGE)-doc/plugins.pdf
+	dh_haskell_depends -p$(notdir $@)
+	mv dist dist-ghc6
 
-setup: patch-stamp
-	dh_testdir
-	ghc --make Setup -o setup -package Cabal 
-
-configure: config.status
-config.status: setup
-	cp -f /usr/share/misc/config.guess .
-	cp -f /usr/share/misc/config.sub .
-	chmod +x configure
-	dh_haskell_configure
-	./setup configure --prefix=/usr --libdir=\$$prefix/lib/haskell-packages/ghc6/lib 
-
-build: build-arch-stamp 
-build-arch: build-arch-stamp
-build-arch-stamp: config.status
-	dh_haskell_build -s
-	touch $@
-
-build-indep: build-indep-stamp
-build-indep-stamp: build-arch-stamp
-	./setup haddock -v
-	touch $@
-
-clean: clean-patched unpatch
-clean-patched:
-	dh_testdir
-	dh_testroot
-	rm -f build-arch-stamp build-indep-stamp
-	if [ -x setup ] && [ -e .setup-config ]; then ./setup clean ; fi
-	rm -rf setup Setup.hi Setup.ho Setup.o .*config* config.guess \
-	  config.h config.log config.mk config.status config.sub dist \
-	  html \
-	  testsuite/makewith/io/TestIO.conf testsuite/makewith/unsafeio/Unsafe.conf
-	dh_clean 
-
-install: install-arch install-indep
-install-arch: build-arch-stamp
-	dh_testdir 
-	dh_testroot
-	dh_clean -k -s -X debian/tmp
-	dh_installdirs -s
-	dh_haskell_install -s
-	sed -i -e "s%haddock-interfaces:.*%haddock-interfaces: $(HADDOCK_INTERFACES)%" \
-	    -e "s%haddock-html: .*%haddock-html: $(HADDOCK_HTML)%" \
-	    -e "s%include-dirs: .*%include-dirs: $(INCLUDE_DIRS)%" \
-	    debian/libghc6-*-dev/usr/lib/haskell-packages/ghc6/lib/*/installed-pkg-config
-	dh_install -s
-
-install-indep: build-indep-stamp
-	dh_testdir 
-	dh_testroot
-	dh_clean -k -i -X debian/tmp
-	dh_installdirs -i
-	dh_install -i
-
-# Must not depend on anything. This is to be called by
-# binary-arch/binary-indep
-# in another 'make' thread.
-binary-common:
-	dh_testdir
-	dh_testroot
-	dh_installchangelogs 
-	dh_installdocs
-	dh_compress -X.haddock 
-	dh_fixperms
-	dh_haskell_prep
-	dh_installdeb
-	dh_shlibdeps
-	dh_haskell_depends
-	dh_gencontrol
-	dh_md5sums
-	dh_builddeb
-
-# Build architecture independant packages using the common target.
-binary-indep: install-indep
-	$(MAKE) -f debian/rules DH_OPTIONS=-i binary-common
-
-# Build architecture dependant packages using the common target.
-binary-arch: install-arch
-	$(MAKE) -f debian/rules DH_OPTIONS=-s binary-common
-
-binary: binary-arch binary-indep
-.PHONY: binary binary-arch binary-indep build build-arch build-indep clean clean-patched configure install install-arch install-indep 
