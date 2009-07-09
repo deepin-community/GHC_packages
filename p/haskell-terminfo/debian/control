@@ -4,16 +4,27 @@ Priority: optional
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Marco Túlio Gontijo e Silva <marcot@riseup.net>
 Standards-Version: 3.8.1
-Build-Depends: debhelper (>= 5), cdbs, haskell-devscripts (>= 0.6.15+nmu8), ghc6 (>= 6.10.3-2), ghc6-prof (>= 6.10.3-2), libncurses5-dev
-Build-Depends-Indep: ghc6-doc (>= 6.10.3-2), haddock (>= 2.4.2), hscolour
+Build-Depends: debhelper (>= 5)
+  , cdbs
+  , haskell-devscripts (>= 0.6.15+nmu8)
+  , ghc6 (>= 6.10.3-2)
+  , ghc6-prof (>= 6.10.3-2)
+  , libncurses5-dev
+Build-Depends-Indep: ghc6-doc (>= 6.10.3-2)
+  , haddock (>= 2.4.2)
+  , hscolour
 Homepage: http://hackage.haskell.org/cgi-bin/terminfo/package/terminfo
 Vcs-Darcs: http://darcs.debian.org/darcs/pkg-haskell/haskell-terminfo
 DM-Upload-Allowed: yes
 
 Package: libghc6-terminfo-dev
 Architecture: any
-Depends: libncurses5-dev, ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Suggests: libghc6-terminfo-doc (= ${binary:Version}), libghc6-terminfo-prof (= ${binary:Version})
+Depends: libncurses5-dev
+  , ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Suggests: libghc6-terminfo-doc (= ${binary:Version})
+  , libghc6-terminfo-prof (= ${binary:Version})
 Description: Haskell bindings to the terminfo library
  This package provides a library for the Haskell programming language.
  See http://www.haskell.org/ for more information on Haskell.
@@ -24,7 +35,10 @@ Description: Haskell bindings to the terminfo library
 
 Package: libghc6-terminfo-prof
 Architecture: any
-Depends: libghc6-terminfo-dev (= ${binary:Version}), ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Depends: libghc6-terminfo-dev (= ${binary:Version})
+  , ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
 Description: Haskell bindings to the terminfo library; profiling libraries
  This package provides a library for the Haskell programming language,
  compiled for profiling.
