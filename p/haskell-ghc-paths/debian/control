@@ -2,17 +2,27 @@ Source: haskell-ghc-paths
 Section: libdevel
 Priority: optional
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Marco Túlio Gontijo e Silva <marcot@riseup.net>
-Build-Depends: debhelper (>= 5), cdbs, dpatch, haskell-devscripts (>= 0.6.15+nmu1), ghc6, ghc6-prof
-Build-Depends-Indep: ghc6-doc, haddock, hscolour (>= 1.8)
+Uploaders: Marco Túlio Gontijo e Silva <marcot@holoscopio.com>
+Build-Depends: debhelper (>= 5)
+  , cdbs
+  , dpatch
+  , haskell-devscripts (>= 0.6.15+nmu1)
+  , ghc6
+  , ghc6-prof
+Build-Depends-Indep: ghc6-doc
+  , haddock
+  , hscolour (>= 1.8)
 Standards-Version: 3.8.0
 Homepage: http://hackage.haskell.org/cgi-bin/hackage-scripts/package/ghc-paths
 Vcs-Darcs: http://darcs.debian.org/darcs/pkg-haskell/haskell-ghc-paths
 
 Package: libghc6-ghc-paths-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Suggests: libghc6-ghc-paths-doc (= ${binary:Version}), libghc6-ghc-paths-prof (= ${binary:Version})
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Suggests: libghc6-ghc-paths-doc (= ${binary:Version})
+  , libghc6-ghc-paths-prof (= ${binary:Version})
 Description: Knowledge of GHC's installation directories
  This package provides a library for the Haskell programming language.
  See http://www.haskell.org/ for more information on Haskell.
@@ -22,7 +32,10 @@ Description: Knowledge of GHC's installation directories
 
 Package: libghc6-ghc-paths-prof
 Architecture: any
-Depends: libghc6-ghc-paths-dev (= ${binary:Version}), ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Depends: libghc6-ghc-paths-dev (= ${binary:Version})
+  , ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
 Description: Knowledge of GHC's installation directories; profiling libraries
  This package provides a library for the Haskell programming language,
  compiled for profiling.
