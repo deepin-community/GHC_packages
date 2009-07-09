@@ -3,8 +3,17 @@ Section: haskell
 Priority: optional
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Marco Túlio Gontijo e Silva <marcot@riseup.net>
-Build-Depends: debhelper (>= 5), cdbs, haskell-devscripts (>= 0.6.15+nmu1), ghc6 (>= 6.10.3-2), ghc6-prof (>= 6.10.3-2), libghc6-mtl-dev, libghc6-mtl-prof
-Build-Depends-Indep: ghc6-doc (>= 6.10.3-2), haddock (>= 2.4.2), hscolour (>= 1.8), libghc6-mtl-doc
+Build-Depends: debhelper (>= 5)
+  , cdbs
+  , haskell-devscripts (>= 0.6.15+nmu1)
+  , ghc6 (>= 6.10.3-2)
+  , ghc6-prof (>= 6.10.3-2)
+  , libghc6-mtl-dev
+  , libghc6-mtl-prof
+Build-Depends-Indep: ghc6-doc (>= 6.10.3-2)
+  , haddock (>= 2.4.2)
+  , hscolour (>= 1.8)
+  , libghc6-mtl-doc
 Standards-Version: 3.8.1
 Homepage: http://hackage.haskell.org/cgi-bin/hackage-scripts/package/MonadCatchIO-mtl
 Vcs-Darcs: http://darcs.debian.org/darcs/pkg-haskell/haskell-monadcatchio-mtl
@@ -12,8 +21,11 @@ DM-Upload-Allowed: yes
 
 Package: libghc6-monadcatchio-mtl-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Suggests: libghc6-monadcatchio-mtl-doc (= ${binary:Version}), libghc6-monadcatchio-mtl-prof (= ${binary:Version})
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Suggests: libghc6-monadcatchio-mtl-doc (= ${binary:Version})
+  , libghc6-monadcatchio-mtl-prof (= ${binary:Version})
 Description: monad-transformer version of the Control.Exception module
  This package provides a library for the Haskell programming language.
  See http://www.haskell.org/ for more information on Haskell.
@@ -24,7 +36,10 @@ Description: monad-transformer version of the Control.Exception module
 
 Package: libghc6-monadcatchio-mtl-prof
 Architecture: any
-Depends: libghc6-monadcatchio-mtl-dev (= ${binary:Version}), ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Depends: libghc6-monadcatchio-mtl-dev (= ${binary:Version})
+  , ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
 Description: monad-transformer version of the Control.Exception module; profiling libraries
  This package provides a library for the Haskell programming language,
  compiled for profiling.
