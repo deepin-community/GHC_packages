@@ -4,15 +4,26 @@ Priority: optional
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Marco Túlio Gontijo e Silva <marcot@riseup.net>
 Standards-Version: 3.8.0
-Build-Depends: debhelper (>= 5), cdbs, haskell-devscripts (>= 0.6.15+nmu1), ghc6, ghc6-prof, zlib1g-dev
-Build-Depends-Indep: ghc6-doc, haddock, hscolour
+Build-Depends: debhelper (>= 5)
+  , cdbs
+  , haskell-devscripts (>= 0.6.15+nmu1)
+  , ghc6
+  , ghc6-prof
+  , zlib1g-dev
+Build-Depends-Indep: ghc6-doc
+  , haddock
+  , hscolour
 Homepage: http://hackage.haskell.org/cgi-bin/hackage-scripts/package/zlib
 Vcs-Darcs: http://darcs.debian.org/darcs/pkg-haskell/haskell-zlib
 
 Package: libghc6-zlib-dev
 Architecture: any
-Depends: zlib1g-dev, ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Suggests: haskell-zlib-doc (= ${binary:Version}), libghc6-zlib-prof (= ${binary:Version})
+Depends: zlib1g-dev
+  , ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Suggests: haskell-zlib-doc (= ${binary:Version})
+  , libghc6-zlib-prof (= ${binary:Version})
 Description: Compression and decompression in the gzip and zlib formats
  This package provides a library for the Haskell programming language.
  See http://www.haskell.org/ for more information on Haskell.
@@ -28,7 +39,10 @@ Description: Compression and decompression in the gzip and zlib formats
 
 Package: libghc6-zlib-prof
 Architecture: any
-Depends: libghc6-zlib-dev (= ${binary:Version}), ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Depends: libghc6-zlib-dev (= ${binary:Version})
+  , ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
 Description: Compression and decompression in the gzip and zlib formats; profiling libraries
  This package provides a library for the Haskell programming language,
  compiled for profiling.
