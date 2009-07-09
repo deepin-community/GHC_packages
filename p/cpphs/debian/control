@@ -17,7 +17,8 @@ Vcs-Darcs: http://darcs.debian.org/darcs/pkg-haskell/cpphs
 
 Package: cpphs
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}
+  , ${misc:Depends}
 Suggests: ghc6 | hugs
 Description: Simplified cpp-a-like preprocessor for Haskell
  The C pre-processor has been widely used in Haskell source code. It
@@ -34,14 +35,18 @@ Description: Simplified cpp-a-like preprocessor for Haskell
 
 Package: libghc6-cpphs-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Description: cpphs-library for haskell
  This packages provides some of the features of cpphs as a haskell library.
 
 Package: libghc6-cpphs-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Description: cpphs-library for haskell; profiling libraries
  This packages provides some of the features of cpphs as a haskell library.
