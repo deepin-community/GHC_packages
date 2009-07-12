@@ -1,0 +1,58 @@
+Source: hscolour
+Priority: optional
+Section: haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>
+Build-Depends: debhelper (>= 5.0.0),ghc6 (>= 6.10.3-3), ghc6-prof, cdbs,
+ haskell-devscripts (>= 0.6.0)
+Build-Depends-Indep: haddock, ghc6-doc
+Standards-Version: 3.8.2
+Homepage: http://hackage.haskell.org/cgi-bin/hackage-scripts/package/hscolour
+
+Package: hscolour
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Haskell program to colourise Haskell code
+ .
+ HsColour currently has five output formats: ANSI terminal codes, HTML 3.2
+ with <font> tags, HTML 4.01 with CSS, LaTeX, and mIRC chat client
+ codes.
+
+Package: libghc6-hscolour-dev
+Architecture: any
+Depends: ${misc:Depends}, ${haskell:Depends}
+Suggests: hscolour-doc (= ${source:Version}), hscolour (= ${binary:Version}),
+ drift (>= 2.2.0)
+Description: GHC6 libraries for colourising Haskell code
+ .
+ HsColour currently has five output formats: ANSI terminal codes, HTML 3.2
+ with <font> tags, HTML 4.01 with CSS, LaTeX, and mIRC chat client
+ codes.
+ .
+ This package contains the libraries compiled for GHC 6.
+
+Package: libghc6-hscolour-prof
+Architecture: any
+Depends: libghc6-hscolour-dev (= ${binary:Version}), ${haskell:Depends},
+ ${misc:Depends}
+Suggests: hscolour-doc (= ${source:Version})
+Description: Profiling libraries for colourising Haskell code
+ .
+ HsColour currently has five output formats: ANSI terminal codes, HTML 3.2
+ with <font> tags, HTML 4.01 with CSS, LaTeX, and mIRC chat client
+ codes.
+ .
+ This package contains the profiling libraries compiled for GHC 6.
+
+Package: libghc6-hscolour-doc
+Architecture: all
+Section: doc
+Depends: ${misc:Depends}
+Recommends: doc-base, libghc6-base-doc
+Description: Documentation for libghc6-hscolour-dev
+ .
+ HsColour currently has five output formats: ANSI terminal codes, HTML 3.2
+ with <font> tags, HTML 4.01 with CSS, LaTeX, and mIRC chat client
+ codes.
+ .
+ This package contains the library documentation.
