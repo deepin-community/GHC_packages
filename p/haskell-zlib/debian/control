@@ -6,7 +6,7 @@ Uploaders: Marco Túlio Gontijo e Silva <marcot@riseup.net>
 Standards-Version: 3.8.0
 Build-Depends: debhelper (>= 5)
   , cdbs
-  , haskell-devscripts (>= 0.6.15+nmu1)
+  , haskell-devscripts (>= 0.6.15+nmu11)
   , ghc6
   , ghc6-prof
   , zlib1g-dev
@@ -22,8 +22,7 @@ Depends: zlib1g-dev
   , ${haskell:Depends}
   , ${shlibs:Depends}
   , ${misc:Depends}
-Suggests: haskell-zlib-doc (= ${binary:Version})
-  , libghc6-zlib-prof (= ${binary:Version})
+Suggests: ${haskell:Suggests}
 Description: Compression and decompression in the gzip and zlib formats
  This package provides a library for the Haskell programming language.
  See http://www.haskell.org/ for more information on Haskell.
@@ -39,8 +38,7 @@ Description: Compression and decompression in the gzip and zlib formats
 
 Package: libghc6-zlib-prof
 Architecture: any
-Depends: libghc6-zlib-dev (= ${binary:Version})
-  , ${haskell:Depends}
+Depends: ${haskell:Depends}
   , ${shlibs:Depends}
   , ${misc:Depends}
 Description: Compression and decompression in the gzip and zlib formats; profiling libraries
@@ -61,8 +59,8 @@ Package: haskell-zlib-doc
 Section: doc
 Architecture: all
 Depends: ${misc:Depends}
-Recommends: ghc6-doc (>= 6.8.2)
-Suggests: libghc6-zlib-dev (= ${binary:Version})
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: Compression and decompression in the gzip and zlib formats; documentation
  This package provides the documentation for a library for the Haskell
  programming language.
