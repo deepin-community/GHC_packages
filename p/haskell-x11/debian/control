@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Joachim Breitner <nomeata@debian.org>
 Standards-Version: 3.8.0
 Build-Depends: debhelper (>= 7)
-  , haskell-devscripts (>= 0.6.15+nmu1)
+  , haskell-devscripts (>= 0.6.15+nmu11)
   , cdbs
   , haddock (>= 2.4.1-4)
   , hscolour
@@ -28,6 +28,7 @@ Depends: ${haskell:Depends}
   , libx11-dev
   , libxt-dev
   , libxinerama-dev
+Suggests: ${haskell:Suggests}
 Description: Haskell X11 binding for GHC
  This package provides a library for the Haskell programming language.
  See http://www.haskell.org/ for more information on Haskell.
@@ -42,7 +43,6 @@ Section: libdevel
 Architecture: any
 Depends: ${haskell:Depends}
   , ${misc:Depends}
-  , libghc6-x11-dev (= ${binary:Version})
 Description: Haskell X11 binding for GHC; profiling libraries
  This package provides a library for the Haskell programming language,
  compiled for profiling.
@@ -58,8 +58,8 @@ Section: doc
 Architecture: all
 Depends: ${haskell:Depends}
   , ${misc:Depends}
-  , ghc6-doc (>= 6.10.3)
-  , ghc6-doc (<< 6.10.3+)
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: Haskell X11 binding for GHC; documentation
  This package provides the documentation for a library for the Haskell
  programming language.
