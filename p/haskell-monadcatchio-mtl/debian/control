@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Marco Túlio Gontijo e Silva <marcot@riseup.net>
 Build-Depends: debhelper (>= 5)
   , cdbs
-  , haskell-devscripts (>= 0.6.15+nmu1)
+  , haskell-devscripts (>= 0.6.15+nmu11)
   , ghc6 (>= 6.10.3-2)
   , ghc6-prof (>= 6.10.3-2)
   , libghc6-mtl-dev
@@ -24,8 +24,7 @@ Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
   , ${misc:Depends}
-Suggests: libghc6-monadcatchio-mtl-doc (= ${binary:Version})
-  , libghc6-monadcatchio-mtl-prof (= ${binary:Version})
+Suggests: ${haskell:Suggests}
 Description: monad-transformer version of the Control.Exception module
  This package provides a library for the Haskell programming language.
  See http://www.haskell.org/ for more information on Haskell.
@@ -36,8 +35,7 @@ Description: monad-transformer version of the Control.Exception module
 
 Package: libghc6-monadcatchio-mtl-prof
 Architecture: any
-Depends: libghc6-monadcatchio-mtl-dev (= ${binary:Version})
-  , ${haskell:Depends}
+Depends: ${haskell:Depends}
   , ${shlibs:Depends}
   , ${misc:Depends}
 Description: monad-transformer version of the Control.Exception module; profiling libraries
@@ -53,8 +51,8 @@ Package: libghc6-monadcatchio-mtl-doc
 Section: doc
 Architecture: all
 Depends: ${misc:Depends}
-Recommends: ghc6-doc
-Suggests: libghc6-monadcatchio-mtl-dev (= ${binary:Version})
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: monad-transformer version of the Control.Exception module; documentation
  This package provides the documentation for a library for the Haskell
  programming language.
