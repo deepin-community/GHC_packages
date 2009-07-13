@@ -6,7 +6,7 @@ Uploaders: Marco Túlio Gontijo e Silva <marcot@holoscopio.com>
 Build-Depends: debhelper (>= 5)
   , cdbs
   , dpatch
-  , haskell-devscripts (>= 0.6.15+nmu1)
+  , haskell-devscripts (>= 0.6.15+nmu11)
   , ghc6
   , ghc6-prof
 Build-Depends-Indep: ghc6-doc
@@ -21,8 +21,7 @@ Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
   , ${misc:Depends}
-Suggests: libghc6-ghc-paths-doc (= ${binary:Version})
-  , libghc6-ghc-paths-prof (= ${binary:Version})
+Suggests: ${haskell:Suggests}
 Description: Knowledge of GHC's installation directories
  This package provides a library for the Haskell programming language.
  See http://www.haskell.org/ for more information on Haskell.
@@ -32,8 +31,7 @@ Description: Knowledge of GHC's installation directories
 
 Package: libghc6-ghc-paths-prof
 Architecture: any
-Depends: libghc6-ghc-paths-dev (= ${binary:Version})
-  , ${haskell:Depends}
+Depends: ${haskell:Depends}
   , ${shlibs:Depends}
   , ${misc:Depends}
 Description: Knowledge of GHC's installation directories; profiling libraries
@@ -48,8 +46,8 @@ Package: libghc6-ghc-paths-doc
 Section: doc
 Architecture: all
 Depends: ${misc:Depends}
-Recommends: ghc6-doc
-Suggests: libghc6-ghc-paths-dev (= ${binary:Version})
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: Knowledge of GHC's installation directories; documentation
  This package provides the documentation for a library for the Haskell
  programming language.
