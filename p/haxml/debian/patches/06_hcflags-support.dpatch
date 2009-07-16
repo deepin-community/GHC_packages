@@ -1,0 +1,52 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 06_hcflags-support.dpatch by Arjan Oosting <arjanoosting@home.nl>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad haxml~/src/Makefile haxml/src/Makefile
+--- haxml~/src/Makefile	2006-10-20 20:35:01.000000000 +0200
++++ haxml/src/Makefile	2006-10-20 20:35:02.000000000 +0200
+@@ -50,14 +50,14 @@
+ # The caller *must* set the HC variable.
+ COMPILER := $(findstring ghc, $(HC))
+ ifeq "$(COMPILER)" "ghc"
+-COMPILE  = $(HC) --make -cpp -i. $(shell cat ghcpkgs) -package-name HaXml \
+-		-DVERSION=$(VERSION)
++COMPILE  = $(HC) --make -cpp -i. $(shell cat ghcpkgs) \
++		-DVERSION=$(VERSION) $(HCFLAGS)
+ RENAME   = mv $(OUT)
+ endif
+ COMPILER := $(findstring nhc98, $(HC))
+ ifeq "$(COMPILER)" "nhc98"
+ COMPILE  = hmake -hc=$(HC) -I. -K6M +CTS -H8M -CTS -package base \
+-		-DVERSION=$(VERSION)
++		-DVERSION=$(VERSION) $(HCFLAGS)
+ RENAME   = echo Built
+ endif
+
+@@ -115,10 +115,10 @@
+ # packaged library
+ libHSHaXml.a: $(LIBSRCS)
+ ifneq (, $(findstring ghc, $(HC)))
+-	$(COMPILE) $(LIBSRCS)
++	$(COMPILE) -package-name HaXml-$(VERSION) $(LIBSRCS)
+	ar cr libHSHaXml.a $(LIBOBJS)
+	ld -r --whole-archive -o HSHaXml.o libHSHaXml.a
+-	$(COMPILE) -prof -auto -hisuf p_hi -osuf p_o $(LIBSRCS)
++	$(COMPILE) -package-name HaXml-$(VERSION) -prof -auto -hisuf p_hi -osuf p_o $(LIBSRCS)
+	ar cr libHSHaXml_p.a  $(patsubst %.o, %.p_o, $(LIBOBJS))
+	tar cf interfaces.tar `find Text \( -name *.hi -o -name *.p_hi \) -print`
+ endif
+@@ -134,8 +134,8 @@
+
+ # standalone tools
+ $(TOOLSET): $(LIBSRCS) $(TOOLSRCS)
+-	cd tools; $(COMPILE) -i.. $(patsubst ../../%${EXE}, %, $@)
+-	cd tools; $(RENAME) $(patsubst ../../%, %, $@)
++	cd tools; $(COMPILE) -i.. -o $(patsubst ../../%, %, $@) $(patsubst ../../%${EXE}, %, $@)
++#	cd tools; $(RENAME) $(patsubst ../../%, %, $@)
+	mv $(patsubst ../../%, tools/%, $@) ../..
+
+ toolset-hugs:

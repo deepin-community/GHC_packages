@@ -1,0 +1,32 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 09_fix-lexical-error.dpatch by Arjan Oosting <arjanoosting@home.nl>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad haxml~/src/Text/XML/HaXml/Parse.hs haxml/src/Text/XML/HaXml/Parse.hs
+--- haxml~/src/Text/XML/HaXml/Parse.hs	2006-07-03 12:38:26.000000000 +0200
++++ haxml/src/Text/XML/HaXml/Parse.hs	2006-07-11 01:18:48.000000000 +0200
+@@ -613,8 +613,8 @@
+                ++" (ID, IDREF, IDREFS, ENTITY, ENTITIES, NMTOKEN, NMTOKENS)"
+                ++"\nbut got "++show t)
+        }
+--- `adjustErr` (++"\nLooking for a tokenized type:\n\
+--- \    (ID, IDREF, IDREFS, ENTITY, ENTITIES, NMTOKEN, NMTOKENS)")
++-- `adjustErr` (++"\nLooking for a tokenized type:\n"
++--                " ID, IDREF, IDREFS, ENTITY, ENTITIES, NMTOKEN, NMTOKENS)")
+
+ enumeratedtype :: XParser EnumeratedType
+ enumeratedtype =
+@@ -644,8 +644,8 @@
+                               return (DefaultTo a f) )
+            ]
+         `adjustErr` ("looking for an attribute default decl,\n"++)
+---      `adjustErr` (++"\nLooking for an attribute default decl:\n\
+--- \    (REQUIRED, IMPLIED, FIXED)")
++--      `adjustErr` (++"\nLooking for an attribute default decl:\n"++
++--                     " (REQUIRED, IMPLIED, FIXED)")
+
+ conditionalsect :: XParser ConditionalSect
+ conditionalsect = oneOf'

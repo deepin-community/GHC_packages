@@ -1,0 +1,39 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 02_change-references.dpatch by Arjan Oosting <arjanoosting@home.nl>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad haxml~/docs/index.html haxml/docs/index.html
+--- haxml~/docs/index.html	2006-07-11 00:47:19.000000000 +0200
++++ haxml/docs/index.html	2006-07-11 01:01:03.000000000 +0200
+@@ -85,7 +85,7 @@
+ the typed representation (DtdToHaskell/XmlContent) is available here:
+ (12 pages of double-column A4)
+ <ul>
+-<li> <a href="icfp99.dvi">icfp99.dvi</a>     (LaTeX dvi format)
++<li> <a href="icfp99.dvi.gz">icfp99.dvi.gz</a>  (LaTeX dvi format - gzipped)
+ <li> <a href="icfp99.ps.gz">icfp99.ps.gz</a> (PostScript format - gzipped)
+ <li> <a href="icfp99.html">icfp99.html</a>   (HTML format)
+ </ul>
+@@ -241,7 +241,7 @@
+ </ul>
+
+ <br>
+-<a href="changelog.html">Complete Changelog</a><br>
++<a href="changelog.html.gz">Complete Changelog (gzipped)</a><br>
+
+ <hr>
+ <center><h3><a name="who">Contacts</a></h3></center>
+@@ -263,8 +263,8 @@
+ for your use, modification, and re-distribution, provided you don't
+ restrict anyone else's use of it.  The HaXml library is distributed
+ under the GNU Lesser General Public Licence (LGPL) - see file
+-<a href="LICENCE-LGPL">LICENCE-LGPL</a> for more details.  We allow one
+-special exception to the LGPL - see <a href="COPYRIGHT">COPYRIGHT</a>.
++<a href="LICENCE-LGPL">LICENCE-LGPL</a> for more details.
++We allow one special exception to the LGPL - see <a href="copyright">COPYRIGHT</a>.
+ The HaXml tools are distributed under the GNU General Public Licence
+ (GPL) - see <a href="LICENCE-GPL">LICENCE-GPL</a>.  (If you don't
+ like any of these licensing conditions, please contact us to discuss

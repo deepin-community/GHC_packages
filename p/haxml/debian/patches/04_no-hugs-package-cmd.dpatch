@@ -1,0 +1,26 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 04_no-hugs-package-cmd.dpatch by Arjan Oosting <arjanoosting@home.nl>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad haxml~/Makefile haxml/Makefile
+--- haxml~/Makefile	2006-07-11 00:47:19.000000000 +0200
++++ haxml/Makefile	2006-07-11 01:37:55.000000000 +0200
+@@ -78,7 +78,14 @@
+ install-nhc98:
+	cd obj/nhc98; $(MAKE) HC=nhc98 install-nhc98
+ install-hugs:
+-	hugs-package src
++	mkdir -p $(DESTDIR)/usr/lib/hugs/packages/HaXml/Text/XML/HaXml/Html
++	mkdir -p $(DESTDIR)/usr/lib/hugs/packages/HaXml/Text/XML/HaXml/Xtract
++	mkdir -p $(DESTDIR)/usr/lib/hugs/packages/HaXml/Text/XML/HaXml/DtdToHaskell
++	mkdir -p $(DESTDIR)/usr/lib/hugs/packages/HaXml/Text/ParserCombinators
++	for file in $(patsubst src/%, %, $(SRCS)); \
++		do $(CPP) -D__HUGS__ src/$$file > \
++			$(DESTDIR)/usr/lib/hugs/packages/HaXml/$$file; \
++		done
+	cd obj/hugs; $(MAKE) install-tools-hugs
+ install-filesonly-ghc:
+	cd obj/ghc; $(MAKE) HC=$(shell cat obj/ghccmd) install-filesonly-ghc

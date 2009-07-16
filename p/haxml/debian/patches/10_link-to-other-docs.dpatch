@@ -1,0 +1,18 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 10_link-to-other-docs.dpatch by Arjan Oosting <arjan@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Add the appropriate --use-package options so haddock will link to
+## DP: names in other packages.
+
+@DPATCH@
+diff -urNad haxml~/Makefile haxml/Makefile
+--- haxml~/Makefile	2007-05-28 16:51:57.000000000 +0200
++++ haxml/Makefile	2007-05-28 16:52:36.000000000 +0200
+@@ -104,6 +104,7 @@
+	haddock --html --title=HaXml --odir=docs/HaXml --package=HaXml \
+		--source-module="src/%{MODULE/.//}.html" \
+		--source-entity="src/%{MODULE/.//}.html#%{NAME}" \
++		--use-package=base --use-package=haskell98 \
+		$(patsubst %, %.uncpp, $(SRCS))
+	rm -f $(patsubst %, %.uncpp, $(SRCS))

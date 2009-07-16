@@ -1,0 +1,68 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 03_build-haxml-prof.dpatch by Arjan Oosting <arjanoosting@home.nl>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad haxml~/src/Makefile haxml/src/Makefile
+--- haxml~/src/Makefile	2006-10-20 20:34:21.000000000 +0200
++++ haxml/src/Makefile	2006-10-20 20:34:40.000000000 +0200
+@@ -56,7 +56,7 @@
+ endif
+ COMPILER := $(findstring nhc98, $(HC))
+ ifeq "$(COMPILER)" "nhc98"
+-COMPILE  = hmake -hc=$(HC) -I. -K4M +CTS -H8M -CTS -package base \
++COMPILE  = hmake -hc=$(HC) -I. -K6M +CTS -H8M -CTS -package base \
+		-DVERSION=$(VERSION)
+ RENAME   = echo Built
+ endif
+@@ -69,7 +69,9 @@
+ install-filesonly-ghc: libs $(INSTALLDIR)
+	mkdir -p $(DESTDIR)/`cat ghclibdir`
+	cp libHSHaXml.a $(DESTDIR)/`cat ghclibdir`
++	cp libHSHaXml_p.a $(DESTDIR)/`cat ghclibdir`
+	-ranlib $(DESTDIR)/`cat ghclibdir`/libHSHaXml.a	# ignore if fails on Linux
++	-ranlib $(DESTDIR)/`cat ghclibdir`/libHSHaXml_p.a	# ignore if fails on Linux
+	-cp HSHaXml.o $(DESTDIR)/`cat ghclibdir`		# file may not exist on MacOS X
+	rm -rf $(DESTDIR)/`cat ghcincdir`/HaXml
+	mkdir -p $(DESTDIR)/`cat ghcincdir`/HaXml
+@@ -79,7 +81,11 @@
+ install-filesonly-nhc98: libs $(INSTALLDIR)
+	mkdir -p $(DESTDIR)/`cat nhc98libdir`/`harch`
+	cp libHSHaXml.a $(DESTDIR)/`cat nhc98libdir`/`harch`
++	cp libHSHaXml.p.a $(DESTDIR)/`cat nhc98libdir`/`harch`
++	cp libHSHaXml.z.a $(DESTDIR)/`cat nhc98libdir`/`harch`
+	-ranlib $(DESTDIR)/`cat nhc98libdir`/`harch`/libHSHaXml.a
++	-ranlib $(DESTDIR)/`cat nhc98libdir`/`harch`/libHSHaXml.p.a
++	-ranlib $(DESTDIR)/`cat nhc98libdir`/`harch`/libHSHaXml.z.a
+	rm -rf $(DESTDIR)/`cat nhc98incdir`/HaXml
+	mkdir -p $(DESTDIR)/`cat nhc98incdir`/HaXml
+	cp interfaces.tar $(DESTDIR)/`cat nhc98incdir`/packages/HaXml
+@@ -108,11 +114,23 @@
+
+ # packaged library
+ libHSHaXml.a: $(LIBSRCS)
++ifneq (, $(findstring ghc, $(HC)))
+	$(COMPILE) $(LIBSRCS)
+-	ar r libHSHaXml.a $(LIBOBJS)
+-	-ld -r $(WHOLEARCHIVE) -o HSHaXml.o libHSHaXml.a	# for GHCi only
++	ar cr libHSHaXml.a $(LIBOBJS)
++	ld -r --whole-archive -o HSHaXml.o libHSHaXml.a
++	$(COMPILE) -prof -auto -hisuf p_hi -osuf p_o $(LIBSRCS)
++	ar cr libHSHaXml_p.a  $(patsubst %.o, %.p_o, $(LIBOBJS))
++	tar cf interfaces.tar `find Text \( -name *.hi -o -name *.p_hi \) -print`
++endif
++ifneq (, $(findstring nhc98, $(HC)))
++	$(COMPILE) $(LIBSRCS)
++	ar cr libHSHaXml.a $(LIBOBJS)
+	tar cf interfaces.tar `find Text -name *.hi -print`
+-
++	$(COMPILE) -p $(LIBSRCS)
++	ar cr libHSHaXml.p.a $(patsubst %.o, %.p.o, $(LIBOBJS))
++	$(COMPILE) -z $(LIBSRCS)
++	ar cr libHSHaXml.z.a $(patsubst %.o, %.z.o, $(LIBOBJS))
++endif
+
+ # standalone tools
+ $(TOOLSET): $(LIBSRCS) $(TOOLSRCS)
