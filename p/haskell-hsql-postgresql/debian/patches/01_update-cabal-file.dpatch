@@ -1,0 +1,20 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 01_update-cabal-file.dpatch by Arjan Oosting <arjan@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad haskell-hsql-postgresql-1.7~/hsql-postgresql.cabal haskell-hsql-postgresql-1.7/hsql-postgresql.cabal
+--- haskell-hsql-postgresql-1.7~/hsql-postgresql.cabal	2007-04-09 20:49:47.000000000 +0200
++++ haskell-hsql-postgresql-1.7/hsql-postgresql.cabal	2008-02-04 00:55:48.000000000 +0100
+@@ -5,6 +5,6 @@
+ category:	 Database
+ description: 	 PostgreSQL driver for HSQL.
+ exposed-modules: Database.HSQL.PostgreSQL
+-build-depends: 	 base, hsql
++build-depends: 	 base, hsql, old-time
+ extensions:      ForeignFunctionInterface, CPP
+-extra-libraries: pq
+\ No newline at end of file
++extra-libraries: pq

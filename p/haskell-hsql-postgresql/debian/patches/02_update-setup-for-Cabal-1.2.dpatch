@@ -1,0 +1,81 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 02_update-setup-for-Cabal-1.2.dpatch by Arjan Oosting <arjan@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad haskell-hsql-postgresql-1.7~/Setup.lhs haskell-hsql-postgresql-1.7/Setup.lhs
+--- haskell-hsql-postgresql-1.7~/Setup.lhs	2007-04-09 20:49:47.000000000 +0200
++++ haskell-hsql-postgresql-1.7/Setup.lhs	2008-02-04 01:06:12.000000000 +0100
+@@ -3,10 +3,11 @@
+ \begin{code}
+ import Data.Maybe(fromMaybe)
+ import Distribution.PackageDescription
+-import Distribution.Setup
+ import Distribution.Simple
++import Distribution.Simple.Setup
+ import Distribution.Simple.LocalBuildInfo
+-import Distribution.Simple.Utils(rawSystemVerbose)
++import Distribution.Simple.Utils(rawSystemStdout)
++import Distribution.Verbosity
+ import System.Info
+ import System.Exit
+ import System.Directory
+@@ -21,11 +22,10 @@
+     preConf args flags = do
+       try (removeFile "PostgreSQL.buildinfo")
+       return emptyHookedBuildInfo
+-    postConf :: [String] -> ConfigFlags -> PackageDescription -> LocalBuildInfo -> IO ExitCode
++    postConf :: [String] -> ConfigFlags -> PackageDescription -> LocalBuildInfo -> IO ()
+     postConf args flags _ localbuildinfo = do
+       mb_bi <- pqConfigBuildInfo (configVerbose flags)
+-      writeHookedBuildInfo "PostgreSQL.buildinfo" (Just (fromMaybe emptyBuildInfo mb_bi),[])
+-      return ExitSuccess
++      writeHookedBuildInfo "PostgreSQL.buildinfo" (Just (fromMaybe emptyBuildInfo mb_bi),[])
+ \end{code}
+
+ The following code is derived from Distribution.Simple.Configure
+@@ -44,38 +44,23 @@
+   message ("Using " ++ name ++ ": " ++ path)
+   return (Just path)
+
+-rawSystemGrabOutput :: Int -> FilePath -> [String] -> IO String
+-rawSystemGrabOutput verbose path args = do
+-  when (verbose > 0) $
+-        putStrLn (path ++ concatMap (' ':) args)
+-  (inp,out,err,pid) <- runInteractiveProcess path args Nothing Nothing
+-  exitCode <- waitForProcess pid
+-  if exitCode /= ExitSuccess
+-    then do errMsg <- hGetContents err
+-            hPutStr stderr errMsg
+-            exitWith exitCode
+-    else return ()
+-  hClose inp
+-  hClose err
+-  hGetContents out
+-
+ message :: String -> IO ()
+ message s = putStrLn $ "configure: " ++ s
+ \end{code}
+
+ Populate BuildInfo using pkg-config tool.
+ \begin{code}
+-pqConfigBuildInfo :: Int -> IO (Maybe BuildInfo)
++pqConfigBuildInfo :: Verbosity -> IO (Maybe BuildInfo)
+ pqConfigBuildInfo verbose = do
+   mb_pq_config_path <- findProgram "pg_config" Nothing
+   case mb_pq_config_path of
+     Just pq_config_path -> do
+        message ("configuring pq library")
+-       res <- rawSystemGrabOutput verbose pq_config_path ["--libdir"]
++       res <- rawSystemStdout verbose pq_config_path ["--libdir"]
+        let lib_dirs = words res
+-       res <- rawSystemGrabOutput verbose pq_config_path ["--includedir"]
++       res <- rawSystemStdout verbose pq_config_path ["--includedir"]
+        let inc_dirs = words res
+-       res <- rawSystemGrabOutput verbose pq_config_path ["--includedir-server"]
++       res <- rawSystemStdout verbose pq_config_path ["--includedir-server"]
+        let inc_dirs_server = words res
+        let bi = emptyBuildInfo{extraLibDirs=lib_dirs, includeDirs=inc_dirs++inc_dirs_server}
+        return (Just bi)
