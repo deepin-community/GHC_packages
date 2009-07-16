@@ -1,0 +1,76 @@
+Source: haxml
+Section: devel
+Priority: optional
+Maintainer: Arjan Oosting <arjan@debian.org>
+Build-Depends: dctrl-tools, debhelper (>= 4.2.0), dpatch, dpkg-dev (>= 1.13.19), ghc6, ghc6-prof, html2text
+Build-Depends-Indep: haddock (>= 0.8-1), hugs, libghc6-base-doc, libghc6-haskell98-doc
+Standards-Version: 3.7.2
+XS-Vcs-Svn: svn://svn.debian.org/svn/pkg-haskell/packages/haxml
+XS-Vcs-Browser: http://svn.debian.org/wsvn/pkg-haskell/packages/haxml
+Homepage: http://www.cs.york.ac.uk/fp/HaXml/
+
+Package: haxml
+Architecture: any
+Depends: ${shlibs:Depends}
+Recommends: libghc6-haxml-dev (= ${binary:Version}) | libhugs-haxml (= ${source:Version})
+Suggests: haxml-doc (= ${source:Version})
+Description: utilities for using XML documents with Haskell
+ HaXml is a collection of utilities for parsing, filtering,
+ transforming, and generating XML documents using Haskell. Its basic
+ facilities include:
+  - a parser for XML,
+  - a separate error-correcting parser for HTML,
+  - an XML validator,
+  - pretty-printers for XML and HTML.
+ .
+ This package contains the HaXml command-line tools.
+
+Package: libghc6-haxml-dev
+Architecture: any
+Depends: ${haskell:Depends}
+Suggests: haxml-doc (= ${source:Version}), haxml (= ${binary:Version}), drift (>= 2.2.0)
+Description: GHC6 libraries for using XML documents with Haskell
+ HaXml is a collection of utilities for parsing, filtering,
+ transforming, and generating XML documents using Haskell. Its basic
+ facilities include:
+  - a parser for XML,
+  - a separate error-correcting parser for HTML,
+  - an XML validator,
+  - pretty-printers for XML and HTML.
+ .
+ This package contains the HaXml combinator library for generic XML
+ document processing, including transformation, editing, and
+ generation for use with GHC6.
+
+Package: libhugs-haxml
+Architecture: all
+Depends: hugs (>= 98.200609.21-1)
+Suggests: haxml-doc (= ${source:Version}), haxml (>= ${source:Version}), drift (>= 2.2.0)
+Conflicts: libhugs-haxml
+Description: GHC6 libraries for using XML documents with Haskell
+ HaXml is a collection of utilities for parsing, filtering,
+ transforming, and generating XML documents using Haskell. Its basic
+ facilities include:
+  - a parser for XML,
+  - a separate error-correcting parser for HTML,
+  - an XML validator,
+  - pretty-printers for XML and HTML.
+ .
+ This package contains the HaXml combinator library for generic XML
+ document processing, including transformation, editing, and
+ generation for use with GHC6.
+
+Package: haxml-doc
+Section: doc
+Architecture: all
+Recommends: doc-base, libghc6-base-doc, libghc6-haskell98-doc
+Description: documentation of HaXml
+ HaXml is a collection of utilities for parsing, filtering,
+ transforming, and generating XML documents using Haskell. Its basic
+ facilities include:
+  - a parser for XML,
+  - a separate error-correcting parser for HTML,
+  - an XML validator,
+  - pretty-printers for XML and HTML.
+ .
+ This package contains the HaXml documentation.
