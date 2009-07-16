@@ -1,0 +1,49 @@
+#!/usr/bin/make -f
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+build:
+
+clean:
+	dh_testdir
+	dh_testroot
+	if [ -x setup ] && [ -e .setup-config ]; then ./setup clean ; fi
+	rm -rf setup Setup.hi Setup.ho Setup.o .*config* dist html
+	dh_clean
+
+install: install-arch install-indep
+install-arch:
+
+install-indep:
+	dh_testdir
+	dh_testroot
+	dh_clean -k -i
+	dh_installdirs -i
+	dh_haskell -i --no-package=haskell-filepath-doc
+	dh_install -i
+
+# Must not depend on anything. This is to be called by
+# binary-arch/binary-indep
+# in another 'make' thread.
+binary-common:
+	dh_installchangelogs
+	dh_installdocs
+	dh_installexamples
+	dh_compress -X.haddock
+	dh_fixperms
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+# Build architecture independant packages using the common target.
+binary-indep: install-indep
+	$(MAKE) -f debian/rules DH_OPTIONS=-i binary-common
+
+# Build architecture dependant packages using the common target.
+binary-arch: install-arch
+
+binary: binary-arch  binary-indep
+.PHONY: build clean clean-patched binary-arch binary-indep binary install-indep install-arch install

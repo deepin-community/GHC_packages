@@ -1,0 +1,31 @@
+Source: haskell-filepath
+Section: devel
+Priority: extra
+Maintainer: Arjan Oosting <arjan@debian.org>
+Build-Depends: cpphs, dpkg-dev (>= 1.13.19), debhelper (>= 5.0.0), ghc6 (>= 6.6), haskell-devscripts (>= 0.5.14)
+Build-Depends-Indep: hugs
+Standards-Version: 3.8.0
+Vcs-Svn: svn://svn.debian.org/svn/pkg-haskell/packages/haskell-filepath
+Vcs-Browser: http://svn.debian.org/wsvn/pkg-haskell/packages/haskell-filepath
+Homepage: http://www-users.cs.york.ac.uk/~ndm/projects/libraries.php#filepath
+
+Package: libhugs-filepath
+Architecture: all
+Depends: ${haskell:Depends}
+Suggests: haskell-filepath-doc (= ${source:Version})
+Description: Hugs library for manipulating FilePath's
+ A library for FilePath manipulations, designed to be cross
+ platform. This library will select the correct type of FilePath's for
+ the platform the code is running on at runtime
+ .
+ This package contains the libraries for use with Hugs98.
+
+Package: haskell-filepath-doc
+Architecture: all
+Section: doc
+Depends: libghc6-filepath-doc
+Recommends: doc-base
+Description: Transitional package
+ Package to ease upgrade from haskell-filepath-doc to libghc6-filepath-doc.
+ .
+ This package can savely be removed.

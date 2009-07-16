@@ -1,0 +1,107 @@
+haskell-filepath (1.1.0.1-1) experimental; urgency=low
+
+  * New upstream release
+  * Remove linda override file. Linda is removed from the archive.
+  * debian/control:
+    - Bump Standards-Version: no changes needed.
+    - Drop build dependency on dpatch because there are no patches.
+
+ -- Arjan Oosting <arjan@debian.org>  Sat, 17 Jan 2009 19:09:14 +0100
+
+haskell-filepath (1.1.0.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/watch: Updated as latest releases are release on HackageDB.
+
+ -- Arjan Oosting <arjan@debian.org>  Sun, 13 Jan 2008 02:25:44 +0100
+
+haskell-filepath (1.0-4) unstable; urgency=low
+
+  * debian/control:
+    - Add new Homepage field.
+    - Replace XS-Vcs-* with new official Vcs-* fields.
+    - Bump the Standards-Version to 3.7.3. No Changes needed.
+  * debian/rules:
+    - Add --no-package=haskell-filepath-doc to the dh_haskell call to stop
+      the new haskell-devscripts from generating haddock documentation.
+
+ -- Arjan Oosting <arjan@debian.org>  Sun, 30 Dec 2007 20:37:05 +0100
+
+haskell-filepath (1.0-3) unstable; urgency=low
+
+  * debian/control:
+    - Update XS-Vcs-* fields as the packages has moved to the pkg-haskell
+      subversion archive.
+  * Stop building packages for GHC 6 as it ships filepath now:
+    - debian/control:
+      + Drop libghc6-filepath-dev, libghc6-filepath-prof as ghc6 and
+        ghc6-prof provide these packages now.
+      + Make haskell-filepath-doc an dummy package which depends on
+        libghc6-filepath-doc.
+      + Drop dctrl-tools, ghc6-prof and haddock from the build
+        dependencies.
+    - debian/haskell-filepath-doc.{dirs,doc-base,docs}: removed.
+    - debian/mk-haskell-depends: removed.
+    - debian/rules:
+      + Remove install-arch stuff.
+
+ -- Arjan Oosting <arjan@debian.org>  Mon, 04 Jun 2007 23:40:59 +0200
+
+haskell-filepath (1.0-2) unstable; urgency=low
+
+  * Rebuild against new haskell-devscripts to get the hugs library
+    into /usr/lib/hugs/packages.
+
+ -- Arjan Oosting <arjan@debian.org>  Tue, 17 Apr 2007 10:51:49 +0200
+
+haskell-filepath (1.0-1) unstable; urgency=low
+
+  * New upstream release:
+    - There are no longer Version_0_10 interfaces - the interface is now
+      stable, please use System.FilePath.
+    - The library is now "filepath", not "FilePath"
+  * Upstream did not release a tarball so this tarball is created from
+    the darcs archive with darcs dist. The latest patch is included in the
+    archive was from "Wed Apr 11 02:49:58 CEST 2007"
+  * Add XS-Vcs-Browser field.
+
+ -- Arjan Oosting <arjan@debian.org>  Fri, 13 Apr 2007 00:15:58 +0200
+
+haskell-filepath (0.11-3) unstable; urgency=low
+
+  * debian/rules: enclose paths in double quotes because directories can
+    contain spaces.
+  * Only include the existing modules in the API documentation. Not sure
+    what caused the errors in the previous upload though. (Closes: 410937)
+
+ -- Arjan Oosting <arjan@debian.org>  Fri, 16 Feb 2007 00:14:29 +0100
+
+haskell-filepath (0.11-2) unstable; urgency=high
+
+  * Add hugs to Build-Depends-Indep. (Closes: #403197)
+
+ -- Arjan Oosting <arjan@debian.org>  Fri, 15 Dec 2006 13:40:17 +0100
+
+haskell-filepath (0.11-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/mk-haskell-depends: update script to take installed package
+    configuration files as arguments.
+  * debian/watch: added uscan watch file.
+
+ -- Arjan Oosting <arjan@debian.org>  Wed, 22 Nov 2006 21:46:33 +0100
+
+haskell-filepath (0.10-2) unstable; urgency=low
+
+  * debian/control: Add doc-base to Recommends of haskell-filepath-doc.
+  * debian/haskell-filepath.doc-base renamed to
+    debian/haskell-filepath-doc.doc-base which should fix doc-base
+    registration.
+
+ -- Arjan Oosting <arjan@debian.org>  Sun, 12 Nov 2006 19:53:19 +0100
+
+haskell-filepath (0.10-1) unstable; urgency=low
+
+  * Initial release (Closes: #398003)
+
+ -- Arjan Oosting <arjan@debian.org>  Sun, 12 Nov 2006 18:50:24 +0100
