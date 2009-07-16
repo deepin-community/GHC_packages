@@ -1,0 +1,180 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+# Sample debian/rules that uses debhelper.
+#
+# This file was originally written by Joey Hess and Craig Small.
+# As a special exception, when this file is copied by dh-make into a
+# dh-make output file, you may use that output file without restriction.
+# This special exception was added by Craig Small in version 0.37 of dh-make.
+#
+# Modified to make a template file for a multi-binary package with separated
+# build-arch and build-indep targets  by Bill Allombert 2001
+
+# Include dpatch
+include /usr/share/dpatch/dpatch.make
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+# This has to be exported to make some magic below work.
+export DH_OPTIONS
+
+DEB_HOST_ARCH ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
+
+GHC6_LIBDIR  := $(shell ghc6 --print-libdir)
+GHC6_VERSION := $(shell ghc6 --numeric-version)
+GHC6_CONFIGURE_FLAGS := --prefix=/usr/lib/haskell-packages/ghc6 \
+	--enable-library-profiling
+GHC6_OPTIONS :=
+
+CC_VERSION := $(shell gcc --version | head -n 1 | sed -e "s|\\([^1-9]\\)*\\([^ ]*\\).*|\\2|")
+CC_WORKAROUND := $(shell if dpkg --compare-versions $(CC_VERSION) ge 4.2.0 ; then echo true ; fi)
+
+# ghc -split-objs only works on i386 and amd64
+ifneq (,$(findstring $(DEB_HOST_ARCH),"i386 amd64"))
+ifeq (,$(findstring $(CC_WORKAROUND),"true"))
+GHC6_CONFIGURE_FLAGS += --enable-split-objs
+endif
+endif
+EDISON_DIRS  := edison-api edison-core
+
+# Handle DEB_BUILD_OPTIONS containing noopt
+ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+GHC6_OPTIONS+=-O0
+endif
+
+configure: configure-stamp
+configure-stamp: patch-stamp
+	dh_testdir
+# Make a private copy of the the ghc6 package.conf and install wrappers
+# for ghc6 and ghc-pkg6 which use the local copy instead.
+	cp $(GHC6_LIBDIR)/package.conf debian/package.conf
+	sed -e "s|@PACKAGE_CONF@|$(CURDIR)/debian/package.conf|" \
+	    debian/ghc6.in > debian/ghc6
+	sed -e "s|@PACKAGE_CONF@|$(CURDIR)/debian/package.conf|" \
+	    debian/ghc-pkg6.in > debian/ghc-pkg6
+	chmod 755 debian/ghc6 debian/ghc-pkg6
+	for d in $(EDISON_DIRS) ; do \
+	    cd "$(CURDIR)/$$d" && \
+	    ln -s ../COPYRIGHT && \
+	    "$(CURDIR)/debian/ghc6" --make Setup.hs -o setup -package Cabal && \
+	    name=`grep "Name:" *.cabal | sed "s|Name:[ \t]*\(.*\)|\1|"` && \
+	    vers=`grep "Version:" *.cabal | sed "s|Version:[ \t]*\(.*\)|\1|"` && \
+	    sed -e "s|@LIBRARY@|$$name|g" -e "s|@VERSION@|$$vers|g" \
+		"$(CURDIR)/debian/postinst.in" > \
+		"$(CURDIR)/debian/libghc6-$$d-dev.postinst" && \
+	    sed -e "s|@LIBRARY@|$$name|g" -e "s|@VERSION@|$$vers|g" \
+		"$(CURDIR)/debian/prerm.in" > \
+		"$(CURDIR)/debian/libghc6-$$d-dev.prerm" ; \
+	done
+	touch configure-stamp
+
+clean: clean-patched unpatch
+clean-patched:
+	dh_testdir
+	dh_testroot
+	rm -f configure-stamp build-arch-stamp build-indep-stamp
+	for d in $(EDISON_DIRS) ; do \
+	    cd "$(CURDIR)/$$d" && \
+	    rm -f COPYRIGHT && \
+	    if [ -x setup ] && [ -e .setup-config ]; then ./setup clean ; fi && \
+	    rm -rf setup Setup.hi Setup.ho Setup.o .*config* dist html register.sh && \
+            rm -f "$(CURDIR)/debian/libghc6-$$d-dev.postinst" && \
+            rm -f "$(CURDIR)/debian/libghc6-$$d-dev.prerm" ;\
+	done
+	rm -rf dist
+	rm -f debian/package.conf debian/package.conf.old debian/ghc6 debian/ghc-pkg6
+	dh_clean
+
+build: build-arch
+build-arch: build-arch-stamp
+build-arch-stamp: configure-stamp
+	for d in $(EDISON_DIRS) ; do \
+	    cd "$(CURDIR)/$$d" && \
+	    ./setup configure $(GHC6_CONFIGURE_FLAGS) \
+		--with-compiler="$(CURDIR)/debian/ghc6" \
+		--with-hc-pkg="$(CURDIR)/debian/ghc-pkg6" && \
+	    GHC6_OPTIONS="$(GHC6_OPTIONS)" ./setup build && \
+	    ./setup register --gen-script && \
+	    sed -i -e "s|import-dirs:.*|import-dirs: `pwd`/dist/build|" \
+		-e "s|library-dirs:.*|library-dirs: `pwd`/dist/build|" \
+		-e "s|include-dirs:.*|include-dirs: `pwd`/dist/build|" \
+		register.sh &&\
+	    ./register.sh ;\
+	done
+	touch build-arch-stamp
+
+build-indep: build-indep-stamp
+build-indep-stamp: configure-stamp
+	$(MAKE) docs
+	touch build-indep-stamp
+
+install: install-arch install-indep
+install-arch: build-arch-stamp
+	dh_testdir
+	dh_testroot
+	dh_clean -k -s
+	dh_installdirs -s
+	for d in $(EDISON_DIRS) ; do \
+	    cd "$(CURDIR)/$$d" && \
+	    ./setup copy --destdir="$(CURDIR)/debian/libghc6-$$d-dev" && \
+	    for libdir in `find "$(CURDIR)/debian/libghc6-$$d-dev/usr/lib/haskell-packages/ghc6/lib/" -mindepth 1 -maxdepth 1 -type d` ; do \
+		sed -e "s%haddock-interfaces:.*%haddock-interfaces: /usr/share/doc/haskell-edison-doc/html/Edison.haddock%" \
+		    -e "s%haddock-html: .*%haddock-html: /usr/share/doc/haskell-edison-doc/html%" \
+		    -e "s%include-dirs: .*%include-dirs:%" \
+		"$(CURDIR)/$$d/dist/installed-pkg-config" > "$$libdir/installed-pkg-config" ; \
+	    done && \
+	    rm -rf $(CURDIR)/debian/libghc6-$$d-dev/usr/lib/haskell-packages/ghc6/share/doc/ && \
+	    find "$(CURDIR)/debian/libghc6-$$d-dev/usr/lib/haskell-packages/" -empty -type d -delete ; \
+	done
+	dh_install -s
+
+install-indep: build-indep-stamp
+	dh_testdir
+	dh_testroot
+	dh_clean -k -i
+	dh_installdirs -i
+# The hugs libraries are build in the same directories as where the ghc libraries are build,
+# so if we build the hugs libraries and we need the ghc libraries afterwards those have to be rebuild.
+# Thus we remove the build-arch-stamp to make sure the will be rebuild if needed.
+	rm -f build-arch-stamp
+	for d in $(EDISON_DIRS) ; do \
+	    cd "$(CURDIR)/$$d" && \
+	    ./setup configure --hugs --prefix=/usr && \
+	    ./setup build && \
+	    ./setup copy --destdir="$(CURDIR)/debian/libhugs-$$d" && \
+	    install --mode=644 -D "$(CURDIR)/debian/libhugs.linda-overrides" \
+		"$(CURDIR)/debian/libhugs-$$d/usr/share/linda/overrides/libhugs-$$d" && \
+	    rm -rf $(CURDIR)/debian/libhugs-$$d/usr/share/doc/ ; \
+	done
+	dh_install -i
+
+# Must not depend on anything. This is to be called by
+# binary-arch/binary-indep
+# in another 'make' thread.
+binary-common:
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs CHANGES
+	dh_installdocs
+	dh_installexamples
+	dh_link
+	dh_strip
+	dh_compress -X.haddock
+	dh_fixperms
+	dh_installdeb
+	dh_haskell_depends -XEdisonAPI-1.2.1
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+# Build architecture independant packages using the common target.
+binary-indep: build-indep install-indep
+	$(MAKE) -f debian/rules DH_OPTIONS=-i binary-common
+
+# Build architecture dependant packages using the common target.
+binary-arch: build-arch install-arch
+	$(MAKE) -f debian/rules DH_OPTIONS=-s binary-common
+
+binary: binary-arch binary-indep
+.PHONY: build build-arch build-indep clean binary-indep binary-arch binary install install-indep install-arch configure

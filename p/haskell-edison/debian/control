@@ -1,0 +1,114 @@
+Source: haskell-edison
+Section: devel
+Priority: optional
+Maintainer: Arjan Oosting <arjan@debian.org>
+Build-Depends: debhelper (>= 5), dpatch, dpkg-dev (>= 1.13.19),
+ ghc6 (>= 6.8), ghc6-prof (>= 6.8), haskell-devscripts (>= 0.6.0),
+ libghc6-mtl-dev, libghc6-mtl-prof, libghc6-quickcheck-dev,
+ libghc6-quickcheck-prof
+Build-Depends-Indep: cpphs, haddock, hugs (>= 98.200503.08),
+ libhugs-mtl | hugs (<< 98.200609.21), libhugs-quickcheck | hugs (<< 98.200609.21),
+ libghc6-base-doc, libghc6-haskell98-doc, libghc6-mtl-doc, libghc6-quickcheck-doc
+Standards-Version: 3.7.3
+Homepage: http://www.eecs.tufts.edu/~rdocki01/edison.html
+Vcs-Svn: svn://svn.debian.org/svn/pkg-haskell/packages/haskell-edison
+Vcs-Browser: http://svn.debian.org/wsvn/pkg-haskell/packages/haskell-edison
+
+Package: libghc6-edison-api-dev
+Architecture: any
+Section: libdevel
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: libghc6-edison-core-dev (= ${binary:Version})
+Suggests: haskell-edison-doc (= ${source:Version})
+Provides: libghc6-edison-api-prof
+Description: Haskell library of efficent, purely-functional data structures
+ The abstract interface (API) of the Edison library for Haskell for
+ use with ghc 6.
+ .
+ Edison is a library of purely function data structures for Haskell
+ originally written by Chris Okasaki. Conceptually, it consists of two
+ things:
+   - A set of type classes defining data the following data structure
+     abstractions: 'sequences', 'collections' and 'associative
+     collections'
+   - Multiple concrete implementations of each of the abstractions
+ .
+ This package contains the set of type classes.
+
+Package: libghc6-edison-core-dev
+Architecture: any
+Section: libdevel
+Depends: libghc6-edison-api-dev (= ${binary:Version}),
+  ${haskell:Depends}, ${misc:Depends}
+Suggests: haskell-edison-doc (= ${source:Version})
+Provides: libghc6-edison-core-prof
+Description: Haskell library of efficent, purely-functional data structures
+ Some concrete mplementations of the abstract interface of the Edison
+ library for Haskell for use with ghc 6.
+ .
+ Edison is a library of purely function data structures for Haskell
+ originally written by Chris Okasaki. Conceptually, it consists of two
+ things:
+   - A set of type classes defining data the following data structure
+     abstractions: 'sequences', 'collections' and 'associative
+     collections'
+   - Multiple concrete implementations of each of the abstractions
+ .
+ This package contains the concrete implementations.
+
+Package: libhugs-edison-api
+Architecture: all
+Depends: hugs,  libhugs-mtl | hugs (<< 98.200609.21), ${misc:Depends}
+Recommends: libhugs-edison-core (= ${source:Version})
+Suggests: haskell-edison-doc (= ${source:Version})
+Description: Haskell library of efficent, purely-functional data structures
+ The abstract interface (API) of the Edison library for Haskell for
+ use with hugs.
+ .
+ Edison is a library of purely function data structures for Haskell
+ originally written by Chris Okasaki. Conceptually, it consists of two
+ things:
+   - A set of type classes defining data the following data structure
+     abstractions: 'sequences', 'collections' and 'associative
+     collections'
+   - Multiple concrete implementations of each of the abstractions
+ .
+ This package contains the set of type classes.
+
+Package: libhugs-edison-core
+Architecture: all
+Depends: hugs, libhugs-edison-api (= ${source:Version}),
+ libhugs-mtl | hugs (<< 98.200609.21),
+ libhugs-quickcheck | hugs (<< 98.200609.21), ${misc:Depends}
+Suggests: haskell-edison-doc (= ${source:Version})
+Description: Haskell library of efficent, purely-functional data structures
+ Some concrete mplementations of the abstract interface of the Edison
+ library for Haskell for use with ghc 6.
+ .
+ Edison is a library of purely function data structures for Haskell
+ originally written by Chris Okasaki. Conceptually, it consists of two
+ things:
+   - A set of type classes defining data the following data structure
+     abstractions: 'sequences', 'collections' and 'associative
+     collections'
+   - Multiple concrete implementations of each of the abstractions
+ .
+ This package contains the concrete implementations.
+
+Package: haskell-edison-doc
+Architecture: all
+Section: doc
+Recommends: libghc6-base-doc, libghc6-haskell98-doc,
+ libghc6-mtl-doc, libghc6-quickcheck-doc
+Suggests: doc-base
+Description: documentation of the Edison Haskell library
+ Documentation of the Edison library containing efficent,
+ purely-functional data structures for Haskell.
+ .
+ Edison is a library of purely function data structures for Haskell
+ originally written by Chris Okasaki. Conceptually, it consists of two
+ things:
+   - A set of type classes defining data the following data structure
+     abstractions: 'sequences', 'collections' and 'associative
+     collections'
+   - Multiple concrete implementations of each of the abstractions
