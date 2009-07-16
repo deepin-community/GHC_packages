@@ -1,0 +1,37 @@
+Source: haskelldb-hsql
+Section: devel
+Priority: optional
+Maintainer: Arjan Oosting <arjan@debian.org>
+Build-Depends: debhelper (>= 5), dpatch, dpkg-dev (>= 0.13.19),
+ ghc6 (>= 6.8.2), haskell-devscripts (>= 0.6.0),
+ libghc6-haskelldb-dev, libghc6-hsql-dev (>= 1.7), libghc6-mtl-dev
+Build-Depends-Indep: haddock, ghc6-doc, haskell-haskelldb-doc,
+ haskell-hsql-doc, libghc6-mtl-doc
+Standards-Version: 3.7.3
+Homepage: http://haskelldb.sourceforge.net/
+Vcs-Svn: svn://svn.debian.org/svn/pkg-haskell/packages/haskelldb-hsql/trunk
+Vcs-Browser: http://svn.debian.org/wsvn/pkg-haskell/packages/haskelldb-hsql/trunk
+
+Package: libghc6-haskelldb-hsql-dev
+Section: libdevel
+Architecture: any
+Suggests: haskell-haskelldb-hsql-doc (= ${source:Version})
+Depends: ${haskell:Depends}, ${shlibs:Depends}
+Description: GHC6 library which gives HaskellDB support for HSQL backends
+ HaskellDB is library for expressing database queries and operations
+ in a type safe and declarative way. This package contains the library
+ to use HDBC backends in HaskellDB5B.
+ .
+ HaskellDB compiles a relational algebra-like syntax into SQL, submits
+ the operations to the database for processing, and returns the results
+ as ordinary Haskell values.
+
+Package: haskell-haskelldb-hsql-doc
+Architecture: all
+Section: doc
+Recommends: ghc6-doc, haskell-haskelldb-doc, haskell-hsql-doc, libghc6-mtl-doc
+Suggests: doc-base
+Description: API documentation of haskelldb-hsql library
+ The API documentation of HSQL backend of HaskellDB, a Haskell library
+ for expressing database queries and operations in a type safe and
+ declarative way.
