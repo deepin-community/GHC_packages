@@ -1,0 +1,30 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 01_update-cabal-file.dpatch by Arjan Oosting <arjan@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad haskell-edison~/edison-core/EdisonCore.cabal haskell-edison/edison-core/EdisonCore.cabal
+--- haskell-edison~/edison-core/EdisonCore.cabal	2008-01-13 00:04:08.000000000 +0100
++++ haskell-edison/edison-core/EdisonCore.cabal	2008-01-13 00:04:51.000000000 +0100
+@@ -36,7 +36,9 @@
+      Data.Edison.Seq.SimpleQueue
+      Data.Edison.Seq.SizedSeq
+ Build-Depends:
++     array,
+      base >= 1.0,
++     containers,
+      haskell98 >= 1.0,
+      mtl >= 1.0,
+      QuickCheck >= 1.0,
+@@ -46,4 +48,8 @@
+      FunctionalDependencies
+      UndecidableInstances
+      CPP
+-Ghc-Options: -funbox-strict-fields -fwarn-incomplete-patterns -O2
++     FlexibleInstances
++     TypeSynonymInstances
++     PatternSignatures
++     FlexibleContexts
++Ghc-Options: -fglasgow-exts -funbox-strict-fields -fwarn-incomplete-patterns -O2

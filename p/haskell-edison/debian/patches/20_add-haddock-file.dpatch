@@ -1,0 +1,19 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 20_add-haddock-file.dpatch by Arjan Oosting <arjan@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Generate haddock interface file when generating API documentation.
+
+@DPATCH@
+diff -urNad haskell-edison~/Makefile haskell-edison/Makefile
+--- haskell-edison~/Makefile	2008-01-13 00:56:09.000000000 +0100
++++ haskell-edison/Makefile	2008-01-13 00:58:28.000000000 +0100
+@@ -101,7 +101,7 @@
+	mkdir -p dist/doc/html
+	mkdir -p dist/doc/tmp
+	find edison-api/src edison-core/src -name '*.hs' -or -name '*.lhs' | sed 's/[^\/]*\/\(.*\)\/\(.*\)$$/mkdir -p dist\/doc\/tmp\/\1; cpphs -D__HADDOCK__ --noline -Odist\/doc\/tmp\/\1\/\2 &/ ' | sh
+-	find dist/doc/tmp -type f | xargs haddock -o dist/doc/html -h -t Edison-$(VERSION)
++	find dist/doc/tmp -type f | xargs haddock -o dist/doc/html -h -t Edison-$(VERSION) --use-package=array --use-package=base --use-package=containers --use-package=haskell98 --use-package=mtl --use-package=QuickCheck -D dist/doc/html/Edison.haddock
+
+ tarball : docs
+	darcs dist -d edison-$(VERSION)-source
