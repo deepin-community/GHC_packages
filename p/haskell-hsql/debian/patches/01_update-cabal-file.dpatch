@@ -1,0 +1,18 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 01_update-cabal-file.dpatch by Arjan Oosting <arjan@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad haskell-hsql-1.7~/hsql.cabal haskell-hsql-1.7/hsql.cabal
+--- haskell-hsql-1.7~/hsql.cabal	2007-04-09 20:49:35.000000000 +0200
++++ haskell-hsql-1.7/hsql.cabal	2008-01-21 01:03:10.000000000 +0100
+@@ -7,5 +7,5 @@
+ exposed-modules:
+	Database.HSQL,
+	Database.HSQL.Types
+-build-depends:	base
+-extensions:     ForeignFunctionInterface, TypeSynonymInstances, CPP
++build-depends:	base, old-time
++extensions:     ForeignFunctionInterface, TypeSynonymInstances, CPP, TypeOperators, ScopedTypeVariables, RankNTypes, DeriveDataTypeable
