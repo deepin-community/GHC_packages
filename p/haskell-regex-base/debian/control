@@ -1,0 +1,61 @@
+Source: haskell-regex-base
+Section: devel
+Priority: extra
+Maintainer: Arjan Oosting <arjan@debian.org>
+Build-Depends: cpphs, dpkg-dev (>= 1.13.19), 
+ debhelper (>= 5.0.0), dpatch, ghc6 (>= 6.10), 
+ haskell-devscripts (>= 0.6.6), 
+ libghc6-mtl-dev, libghc6-mtl-prof
+Build-Depends-Indep: ghc6-doc, haddock, hugs, libghc6-mtl-doc, libhugs-mtl
+Standards-Version: 3.7.3
+Vcs-Svn: svn://svn.debian.org/svn/pkg-haskell/packages/haskell-regex-base
+Vcs-Browser: http://svn.debian.org/wsvn/pkg-haskell/packages/haskell-regex-base
+Homepage: http://sourceforge.net/projects/lazy-regex
+
+Package: libghc6-regex-base-dev
+Architecture: any
+Section: libdevel
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: haskell-regex-base-doc (= ${source:Version})
+Description: GHC 6 library providing an API for regular expressions
+ A library containing the interface API for the Haskell regular
+ expressions library packages regex-posix, regex-pcre, regex-parsec,
+ regex-tdfs, regex-dfa.
+ .
+ This package contains the libraries for use with GHC 6.
+
+Package: libghc6-regex-base-prof
+Architecture: any
+Section: libdevel
+Depends: libghc6-regex-base-dev (= ${binary:Version}), ${haskell:Depends}, ${misc:Depends}
+Suggests: haskell-regex-base-doc (= ${source:Version})
+Description: GHC 6 profiling library providing an API for regular expressions
+ A library containing the interface API for the Haskell regular
+ expressions library packages regex-posix, regex-pcre, regex-parsec,
+ regex-tdfs, regex-dfa.
+ .
+ This package contains additional profiling libraries which can be
+ used with ghc6-prof.
+
+Package: libhugs-regex-base
+Architecture: all
+Depends: ${haskell:Depends}, libhugs-mtl
+Suggests: haskell-regex-base-doc (= ${source:Version})
+Description: Hugs library providing an API for regular expressions
+ A library containing the interface API for the Haskell regular
+ expressions library packages regex-posix, regex-pcre, regex-parsec,
+ regex-tdfs, regex-dfa.
+ .
+ This package contains the libraries for use with Hugs98.
+
+Package: haskell-regex-base-doc
+Architecture: all
+Section: doc
+Depends: ${misc:Depends}
+Recommends: doc-base, ghc6-doc, libghc6-mtl-doc
+Description: API documentation for regex-base Haskell library
+ A library containing the interface API for the Haskell regular
+ expressions library packages regex-posix, regex-pcre, regex-parsec,
+ regex-tdfs, regex-dfa.
+ .
+ This package contains the API documentation of the library.
