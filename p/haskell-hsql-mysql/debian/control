@@ -1,0 +1,51 @@
+Source: haskell-hsql-mysql
+Section: devel
+Priority: optional
+Maintainer: Arjan Oosting <arjan@debian.org>
+Uploaders: Víctor Pérez Pereira <vperez@debianvenezuela.org>
+Build-Depends: cpphs, debhelper (>= 4.0.0), dpatch,
+ haskell-devscripts (>= 0.6.0), ghc6 (>= 6.8.2), ghc6-prof,
+ libghc6-hsql-dev (>= 1.7), libghc6-hsql-prof (>= 1.7),
+ libmysqlclient15-dev
+Build-Depends-Indep: ghc6-doc, haddock, haskell-hsql-doc
+Standards-Version: 3.7.3
+Vcs-Svn: svn://svn.debian.org/svn/pkg-haskell/packages/haskell-hsql-mysql/trunk
+Vcs-Browser: http://svn.debian.org/wsvn/pkg-haskell/packages/haskell-hsql-mysql/trunk
+
+Package: libghc6-hsql-mysql-dev
+Architecture: any
+Section: libdevel
+Suggests: haskell-hsql-mysql-doc
+Depends: ${haskell:Depends}, libmysqlclient15-dev, ${shlibs:Depends}, ${misc:Depends}
+Description: MySQL driver of the HSQL library for GHC6
+ HSQL provides interfaces for Haskell programmers to the PostgreSQL,
+ MySQL, SQLite, and UnixODBC database systems.  There is a generic
+ abstract interface so that code can be used interchangeably with these
+ database systems.  In this sense, it is similar to Java's JDBC,
+ Python's DB-API, or Perl's DBI.
+
+Package: libghc6-hsql-mysql-prof
+Architecture: any
+Section: libdevel
+Suggests: haskell-hsql-mysql-doc
+Depends: libghc6-hsql-mysql-dev (= ${binary:Version}), ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Description: MySQL driver of the HSQL profiling library for GHC6
+ HSQL provides interfaces for Haskell programmers to the PostgreSQL,
+ MySQL, SQLite, and UnixODBC database systems.  There is a generic
+ abstract interface so that code can be used interchangeably with these
+ database systems.  In this sense, it is similar to Java's JDBC,
+ Python's DB-API, or Perl's DBI.
+
+Package: haskell-hsql-mysql-doc
+Section: doc
+Architecture: all
+Suggests: libghc6-hsql-mysql-dev
+Recommends: ghc6-doc, haskell-hsql-doc
+Description: API documentation of the hsql-mysql library for Haskell
+ HSQL provides interfaces for Haskell programmers to the PostgreSQL,
+ MySQL, SQLite, and UnixODBC database systems.  There is a generic
+ abstract interface so that code can be used interchangeably with these
+ database systems.  In this sense, it is similar to Java's JDBC,
+ Python's DB-API, or Perl's DBI.
+ .
+ This package provides documentation for MySQL driver of HSQL.
