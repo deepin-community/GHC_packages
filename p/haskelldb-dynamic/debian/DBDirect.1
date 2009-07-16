@@ -1,0 +1,59 @@
+.TH DBDirect "1" "April 2008" "DBDirect" "User Commands"
+.SH NAME
+DBDirect \- Database interface generator for use with HaskellDB
+.SH SYNOPSIS
+.B DtdToHaskell
+[
+.B -b
+]
+.I driver
+.I options
+.I name
+.
+.SH DESCRIPTION
+DBDirect is a tool which connect to a SQL database and generates a set of Haskell modules which describe the SQL database.
+The generated Haskell modules can be used by the HaskellDB library to manipulate the database.
+.PP
+\fBDBDirect\fP expects a full set of arguments when called, which should consist out of specific \fIdriver\fP, a set of driver specific \fIoptions\fP and a \fImodule\fP name used as base for the Haskell modules.
+The arguments should be given in the order specified below to make sure DBDirect uses the arguments correctly and does not, for example, uses a \fIpassword\fP as an \fIusername\fP.
+.TP
+\fB-b\fP
+enable BoundedString
+.TP
+\fIdriver\fP
+a database type which should be one of \fBHSQL.ODBC\fP, \fBHSQL.MySQL\fP, \fBHSQL.PostgreSQL\fP or \fBHSQL.SQLite3\fP.
+.TP
+\fIoptions\fP
+a set of options for the specific \fIdriver\fP.
+.RS
+.TP
+for \fBHSQL.OBDC\fP the \fIoptions\fP are \fIdsn\fP, \fIuid\fP and \fIpwd\fP
+.TP
+for \fBHSQL.MySQL\fP the \fIoptions\fP are \fIserver\fP, \fIdb\fP, \fIuid\fP and \fIpwd\fP
+.TP
+for \fBHSQL.PostgresSQL\fP the \fIoptions\fP are \fIserver\fP, \fIdb\fP, \fIuid\fP and \fIpwd\fP
+.TP
+for \fBHSQL.SQLite3\fP the \fIoptions\fP are \fIfilepath\fP and \fImode\fP
+.RE
+.TP
+\fImodule\fP
+base name of the database description modules. If this is \fBTest\fP and there are tables \fBtest_tb1\fP and \fBtest_tb2\fP in the database that you run DBDirect against, the following files will be created in the current directory:
+.RS
+.TP
+\(bu Test.hs (just imports and re-exports all the other modules)
+.TP
+\(bu Test/Test_tb1.hs
+.TP
+\(bu Test/Test_tb2.hs
+.RE
+.SH EXAMPLES
+As an example we generate a database description from a test table \fBtest_tb1\fP in the \fBtest_db\fP PostgreSQL database on the local machine.
+The username is \fBbob\fP and the password is \fBsecret\fP.
+To generate the Haskell modules with base \fImodule\fP name \fBDp037\fP we can run:
+.PP
+.RS
+.B DBDirect PostgreSQL localhost test_db bob secret Dp037
+.RE
+.PP
+.SH AUTHOR
+This manual page was party copied and partly written by Arjan Oosting <arjanoosting@home.nl> for the Debian system (but may be used by others).
