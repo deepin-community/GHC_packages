@@ -1,0 +1,19 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 02_update-cabal-file.dpatch by Arjan Oosting <arjan@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad haskelldb-hsql~/haskelldb-hsql.cabal haskelldb-hsql/haskelldb-hsql.cabal
+--- haskelldb-hsql~/haskelldb-hsql.cabal	2007-11-11 22:11:56.000000000 +0100
++++ haskelldb-hsql/haskelldb-hsql.cabal	2008-01-21 01:46:44.000000000 +0100
+@@ -4,7 +4,7 @@
+ Maintainer: haskelldb-users@lists.sourceforge.net
+ Author: Daan Leijen, Conny Andersson, Martin Andersson, Mary Bergman, Victor Blomqvist, Bjorn Bringert, Anders Hockersten, Torbjorn Martin, Jeremy Shaw
+ License: BSD3
+-build-depends: haskell98, base, mtl, haskelldb, hsql
++build-depends: haskell98, base, mtl, haskelldb, hsql, old-time
+ Extensions: ExistentialQuantification,
+             OverlappingInstances,
+             UndecidableInstances,
