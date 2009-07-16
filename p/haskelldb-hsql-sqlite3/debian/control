@@ -1,0 +1,39 @@
+Source: haskelldb-hsql-sqlite3
+Section: devel
+Priority: optional
+Maintainer: Arjan Oosting <arjan@debian.org>
+Build-Depends: debhelper (>= 5), dpkg-dev (>= 0.13.19),
+ ghc6 (>= 6.4.2), haskell-devscripts (>= 0.5.6),
+ libghc6-haskelldb-dev, libghc6-haskelldb-hsql-dev,
+ libghc6-hsql-sqlite3-dev, libghc6-mtl-dev
+Build-Depends-Indep: haddock, ghc6-doc, haskell-haskelldb-doc,
+ haskell-haskelldb-hsql-doc, haskell-hsql-doc, libghc6-mtl-doc
+Standards-Version: 3.7.3
+Homepage: http://haskelldb.sourceforge.net/
+Vcs-Svn: svn://svn.debian.org/svn/pkg-haskell/packages/haskelldb-hsql-sqlite3/trunk
+Vcs-Browser: http://svn.debian.org/wsvn/pkg-haskell/packages/haskelldb-hsql-sqlite3/trunk
+
+Package: libghc6-haskelldb-hsql-sqlite3-dev
+Section: libdevel
+Architecture: any
+Suggests: haskelldb-bin (= ${binary:Version}), libghc6-haskelldb-hsql-sqlite3-doc (= ${source:Version})
+Depends: ${haskell:Depends}, ${shlibs:Depends}
+Description: GHC6 library for HaskellDB support for the HSQL SQLite3 driver
+ HaskellDB is library for expressing database queries and operations
+ in a type safe and declarative way. This package contains the library
+ to use the HSQL SQLite3 driver with HaskellDB for use with GHC 6.
+ .
+ HaskellDB compiles a relational algebra-like
+ syntax into SQL, submits the operations to the database for
+ processing, and returns the results as ordinary Haskell values.
+
+Package: haskell-haskelldb-hsql-sqlite3-doc
+Architecture: all
+Section: doc
+Recommends: ghc6-doc, haskell-haskelldb-doc,
+ haskell-haskelldb-hsql-doc, libghc6-mtl-doc
+Suggests: doc-base
+Description: API documentation of haskelldb-hsql-sqlite3
+ The API documentation of haskelldb-hsql-sqlite3 which is part of
+ HaskellDB, a Haskell library for expressing database queries and
+ operations in a type safe and declarative way.
