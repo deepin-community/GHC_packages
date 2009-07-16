@@ -2,11 +2,13 @@ Source: haxml
 Section: devel
 Priority: optional
 Maintainer: Arjan Oosting <arjan@debian.org>
-Build-Depends: dctrl-tools, debhelper (>= 4.2.0), dpatch, dpkg-dev (>= 1.13.19), ghc6, ghc6-prof, html2text
-Build-Depends-Indep: haddock (>= 0.8-1), hugs, libghc6-base-doc, libghc6-haskell98-doc
+Build-Depends: dctrl-tools, debhelper (>= 4.2.0), dpatch,
+ dpkg-dev (>= 1.13.19), ghc6, ghc6-prof, html2text, libghc6-polyparse-dev
+Build-Depends-Indep: haddock (>= 0.8-1), haskell-polyparse-doc, hugs,
+ libghc6-base-doc, libghc6-haskell98-doc, libhugs-polyparse
 Standards-Version: 3.7.2
-XS-Vcs-Svn: svn://svn.debian.org/svn/pkg-haskell/packages/haxml
-XS-Vcs-Browser: http://svn.debian.org/wsvn/pkg-haskell/packages/haxml
+Vcs-Svn: svn://svn.debian.org/svn/pkg-haskell/packages/haxml
+Vcs-Browser: http://svn.debian.org/wsvn/pkg-haskell/packages/haxml
 Homepage: http://www.cs.york.ac.uk/fp/HaXml/
 
 Package: haxml
@@ -44,7 +46,7 @@ Description: GHC6 libraries for using XML documents with Haskell
 
 Package: libhugs-haxml
 Architecture: all
-Depends: hugs (>= 98.200609.21-1)
+Depends: hugs (>= 98.200609.21-1), libhugs-polyparse
 Suggests: haxml-doc (= ${source:Version}), haxml (>= ${source:Version}), drift (>= 2.2.0)
 Conflicts: libhugs-haxml
 Description: GHC6 libraries for using XML documents with Haskell
@@ -63,7 +65,7 @@ Description: GHC6 libraries for using XML documents with Haskell
 Package: haxml-doc
 Section: doc
 Architecture: all
-Recommends: doc-base, libghc6-base-doc, libghc6-haskell98-doc
+Recommends: doc-base, haskell-polyparse-doc, libghc6-base-doc, libghc6-haskell98-doc
 Description: documentation of HaXml
  HaXml is a collection of utilities for parsing, filtering,
  transforming, and generating XML documents using Haskell. Its basic
