@@ -1,0 +1,30 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 01_update-cabal-file.dpatch by Arjan Oosting <arjan@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad haskelldb~/haskelldb.cabal haskelldb/haskelldb.cabal
+--- haskelldb~/haskelldb.cabal	2008-01-13 18:57:06.000000000 +0100
++++ haskelldb/haskelldb.cabal	2008-01-13 18:58:05.000000000 +0100
+@@ -4,11 +4,18 @@
+ Maintainer: haskelldb-users@lists.sourceforge.net
+ Author: Daan Leijen, Conny Andersson, Martin Andersson, Mary Bergman, Victor Blomqvist, Bjorn Bringert, Anders Hockersten, Torbjorn Martin, Jeremy Shaw
+ License: BSD3
+-build-depends: haskell98, base, mtl
++build-depends: haskell98, base, directory, mtl, old-locale, old-time, pretty
+ Extensions: ExistentialQuantification,
+             OverlappingInstances,
+             UndecidableInstances,
+             MultiParamTypeClasses
++            PatternSignatures
++	    ScopedTypeVariables
++            FunctionalDependencies
++            TypeSynonymInstances
++            FlexibleInstances
++            RankNTypes
++            FlexibleContexts
+ Synopsis: SQL unwrapper for Haskell.
+ Exposed-Modules:
+         Database.HaskellDB,
