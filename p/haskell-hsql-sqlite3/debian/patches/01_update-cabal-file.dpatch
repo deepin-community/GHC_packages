@@ -1,0 +1,17 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 01_update-cabal-file.dpatch by Arjan Oosting <arjan@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad haskell-hsql-sqlite3-1.7~/hsql-sqlite3.cabal haskell-hsql-sqlite3-1.7/hsql-sqlite3.cabal
+--- haskell-hsql-sqlite3-1.7~/hsql-sqlite3.cabal	2007-04-09 20:53:41.000000000 +0200
++++ haskell-hsql-sqlite3-1.7/hsql-sqlite3.cabal	2008-02-04 07:12:37.000000000 +0100
+@@ -5,5 +5,5 @@
+ category:	 Database
+ description: 	 SQLite3 driver for HSQL.
+ exposed-modules: Database.HSQL.SQLite3
+-build-depends: 	 base, hsql
++build-depends: 	 base, hsql, old-time
+ extensions:      ForeignFunctionInterface, CPP
