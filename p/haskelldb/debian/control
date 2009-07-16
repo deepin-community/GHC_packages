@@ -1,0 +1,45 @@
+Source: haskelldb
+Section: devel
+Priority: optional
+Maintainer: Arjan Oosting <arjan@debian.org>
+Build-Depends: debhelper (>= 5), dpatch, dpkg-dev (>= 0.13.19),
+ ghc6 (>= 6.8.2), haskell-devscripts (>= 0.6.0), libghc6-mtl-dev
+Build-Depends-Indep: haddock, ghc6-doc, libghc6-mtl-doc
+Standards-Version: 3.7.3
+Homepage: http://haskelldb.sourceforge.net/
+Vcs-Svn: svn://svn.debian.org/svn/pkg-haskell/packages/haskelldb/trunk
+Vcs-Browser: http://svn.debian.org/wsvn/pkg-haskell/packages/haskelldb/trunk
+
+Package: libghc6-haskelldb-dev
+Section: libdevel
+Architecture: any
+Suggests: haskelldb-bin, haskell-haskelldb-doc (= ${source:Version})
+Depends: ${haskell:Depends}, ${shlibs:Depends}
+Description: Haskell library for expressing database queries
+ HaskellDB is library for expressing database queries and operations
+ in a type safe and declarative way. This package contains the library
+ for use with GHC 6.
+ .
+ HaskellDB compiles a relational algebra-like syntax into SQL, submits
+ the operations to the database for processing, and returns the
+ results as ordinary Haskell values.
+
+Package: haskelldb-doc
+Depends: haskell-haskelldb-doc
+Architecture: all
+Section: doc
+Description: transitional dummy package
+ This package is a dummy package and is used to easy the upgrade from
+ previous versions of haskelldb-doc to haskell-haskelldb-doc.
+ .
+ This package can safely be removed.
+
+Package: haskell-haskelldb-doc
+Replaces: haskelldb-doc (<< 0.10-1)
+Architecture: all
+Section: doc
+Recommends: ghc6-doc, libghc6-mtl-doc
+Suggests: doc-base
+Description: API documentation of haskelldb
+ The API documentation of HaskellDB, a Haskell library for expressing
+ database queries and operations in a type safe and declarative way.
