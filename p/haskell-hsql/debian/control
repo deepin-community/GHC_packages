@@ -1,0 +1,48 @@
+Source: haskell-hsql
+Section: devel
+Priority: optional
+Maintainer: Arjan Oosting <arjan@debian.org>
+Uploaders: Víctor Pérez Pereira <vperez@debianvenezuela.org>
+Build-Depends: debhelper (>= 4.0.0), dpatch, haskell-devscripts (>= 0.6.0), ghc6 (>= 6.8.2), ghc6-prof, cpphs
+Build-Depends-Indep: ghc6-doc, haddock
+Standards-Version: 3.7.3
+Vcs-Svn: svn://svn.debian.org/svn/pkg-haskell/packages/haskell-hsql
+Vcs-Browser: http://svn.debian.org/wsvn/pkg-haskell/packages/haskell-hsql
+
+Package: libghc6-hsql-dev
+Architecture: any
+Section: libdevel
+Suggests: libghc6-hsql-sqlite3-dev, libghc6-hsql-sqlite-dev, libghc6-hsql-odbc-dev, libghc6-hsql-mysql-dev, libghc6-hsql-postgresql-dev, haskell-hsql-doc
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Description: Multi-Database Interface System library for GHC6
+ HSQL provides interfaces for Haskell programmers to the PostgreSQL,
+ MySQL, SQLite, and UnixODBC database systems.  There is a generic
+ abstract interface so that code can be used interchangeably with these
+ database systems.  In this sense, it is similar to Java's JDBC,
+ Python's DB-API, or Perl's DBI.
+
+Package: libghc6-hsql-prof
+Architecture: any
+Section: libdevel
+Suggests: libghc6-hsql-sqlite3-dev, libghc6-hsql-sqlite-dev, libghc6-hsql-odbc-dev, libghc6-hsql-mysql-dev, libghc6-hsql-postgresql-dev, haskell-hsql-doc
+Depends: libghc6-hsql-dev (= ${binary:Version}), ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Description: Multi-Database Interface System profiling library for GHC6
+ HSQL provides interfaces for Haskell programmers to the PostgreSQL,
+ MySQL, SQLite, and UnixODBC database systems.  There is a generic
+ abstract interface so that code can be used interchangeably with these
+ database systems.  In this sense, it is similar to Java's JDBC,
+ Python's DB-API, or Perl's DBI.
+
+Package: haskell-hsql-doc
+Section: doc
+Architecture: all
+Suggests: libghc6-hsql-dev
+Recommends: ghc6-doc
+Description: API documentation of the HSQL library for Haskell
+ HSQL provides interfaces for Haskell programmers to the PostgreSQL,
+ MySQL, SQLite, and UnixODBC database systems.  There is a generic
+ abstract interface so that code can be used interchangeably with these
+ database systems.  In this sense, it is similar to Java's JDBC,
+ Python's DB-API, or Perl's DBI.
+ .
+ This package provides documentation for HSQL.
