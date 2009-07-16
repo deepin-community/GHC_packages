@@ -1,0 +1,73 @@
+Source: haskell-uulib
+Section: devel
+Priority: optional
+Maintainer: Arjan Oosting <arjan@debian.org>
+Build-Depends: debhelper (>= 5), cdbs, ghc6 (>= 6.8.2), ghc6-prof (>= 6.4.2), haskell-devscripts (>= 0.6.15+nmu1), cpphs, haddock, hugs, ghc6-doc, hscolour (>= 1.8)
+Standards-Version: 3.8.1
+Vcs-Svn: svn://svn.debian.org/svn/pkg-haskell/packages/haskell-uulib/trunk
+Vcs-Browser: http://svn.debian.org/wsvn/pkg-haskell/packages/haskell-uulib/trunk
+Homepage: http://www.cs.uu.nl/wiki/HUT/WebHome
+
+Package: libghc6-uulib-dev
+Architecture: any
+Section: libdevel
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: haskell-uulib-doc (= ${source:Version})
+Description: parser and pretty print combinator library for GHC 6
+ The uulib Haskell library contains fast, error repairing parser
+ combinators (UU.Parsing), pretty print combinators (UU.Pretty) and a
+ set of data structures and algorithms for working with sets and
+ sequences (UU.DData) for Haskell.
+ .
+ The library is developed at Utrecht University and is part of the
+ Haskell Utrecht Tools.
+
+
+Package: libghc6-uulib-prof
+Architecture: any
+Section: libdevel
+Depends: libghc6-uulib-dev (= ${binary:Version}), ${haskell:Depends}, ${misc:Depends}
+Suggests: haskell-uulib-doc (= ${source:Version})
+Description: profiling parser and pretty print combinator library for GHC 6
+ The uulib Haskell library contains fast, error repairing parser
+ combinators (UU.Parsing), pretty print combinators (UU.Pretty) and a
+ set of data structures and algorithms for working with sets and
+ sequences (UU.DData) for Haskell.
+ .
+ The library is developed at Utrecht University and is part of the
+ Haskell Utrecht Tools.
+ .
+ This package contains additional profiling libraries which can be
+ used with ghcprof.
+
+
+Package: libhugs-uulib
+Architecture: all
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: haskell-uulib-doc (= ${source:Version})
+Description: parser and pretty print combinator library for hugs98
+ The uulib Haskell library contains fast, error repairing parser
+ combinators (UU.Parsing), pretty print combinators (UU.Pretty) and a
+ set of data structures and algorithms for working with sets and
+ sequences (UU.DData) for Haskell.
+ .
+ The library is developed at Utrecht University and is part of the
+ Haskell Utrecht Tools.
+
+
+Package: haskell-uulib-doc
+Architecture: all
+Section: doc
+Depends: ${misc:Depends}
+Recommends: doc-base, libghc6-base-doc, libghc6-haskell98-doc
+Description: API documentation for uulib Haskell library
+ The API documentation of the uulib parser and pretty print combinator
+ library.
+ .
+ The uulib Haskell library contains fast, error repairing parser
+ combinators (UU.Parsing), pretty print combinators (UU.Pretty) and a
+ set of data structures and algorithms for working with sets and
+ sequences (UU.DData) for Haskell.
+ .
+ The library is developed at Utrecht University and is part of the
+ Haskell Utrecht Tools.
