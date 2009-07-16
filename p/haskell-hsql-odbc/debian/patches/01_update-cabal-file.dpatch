@@ -1,0 +1,19 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 01_update-cabal-file.dpatch by Arjan Oosting <arjan@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad haskell-hsql-odbc-1.7~/hsql-odbc.cabal haskell-hsql-odbc-1.7/hsql-odbc.cabal
+--- haskell-hsql-odbc-1.7~/hsql-odbc.cabal	2007-04-09 21:50:44.000000000 +0200
++++ haskell-hsql-odbc-1.7/hsql-odbc.cabal	2008-02-04 00:34:07.000000000 +0100
+@@ -5,7 +5,7 @@
+ category:	Database
+ description:	ODBC driver for HSQL.
+ exposed-modules:Database.HSQL.ODBC
+-build-depends:	base, hsql
++build-depends:	base, hsql, old-time
+ extensions:     ForeignFunctionInterface, CPP
+ cc-options:     -IDatabase/HSQL
+ c-sources:      Database/HSQL/HsODBC.c
