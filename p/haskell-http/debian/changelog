@@ -1,10 +1,19 @@
-haskell-http (40000003-1) UNRELEASED; urgency=low
+haskell-http (40000006-1) UNRELEASED; urgency=low
 
-  * New upstream release.
+  * New upstream release (Closes: #524348)
     - Exports MkCookie data contructor. (Closes: #471139)
-  
- -- Arjan Oosting <arjan@debian.org>  Sat, 17 Jan 2009 23:30:07 +0100
- 
+  * debian/rules, debian/control: Update to use hlibrary.mk
+  * Remove old obsolete linda overrides 
+  * Installable again (Closes: #531245)
+  * debian/control: Switch to parsec2 - cannot build otherwise as network
+    built against parsec2. 
+  * debian/control: Clean up unnecessary build-deps
+  * debian/control: Add hscolour to b-d-i; needed to build docs now 
+  * debian/control: Bump standards-version to 3.8.2, no changes
+  * debian/copyright: Update with new holders and info for myself 
+
+ -- Iain Lane <laney@ubuntu.com>  Sat, 18 Jul 2009 21:24:02 +0100
+
 haskell-http (30010105-0.1) unstable; urgency=low
 
   * New upstream release that is compatible with GHC 6.10.
