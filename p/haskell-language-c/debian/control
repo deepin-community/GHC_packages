@@ -1,0 +1,49 @@
+Source: haskell-language-c
+Priority: optional
+Section: haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>
+Build-Depends: dctrl-tools, dpkg-dev (>= 1.13.19), debhelper (>= 5.0.0), quilt,
+ cdbs, haskell-devscripts (>= 0.6.0), ghc6 (>= 6.10.3), ghc6-prof, alex, happy,
+ hscolour (>= 1.8)
+Build-Depends-Indep: haddock (>= 2.4.2), ghc6-doc
+Standards-Version: 3.8.2
+Homepage: http://hackage.haskell.org/package/language-c
+
+Package: libghc6-language-c-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: libghc6-language-c-doc (= ${source:Version})
+Description: Haskell library for the analysis and generation of C code
+ .
+ Language C is a haskell library for the analysis and generation of C code. It
+ features a complete, well tested parser and pretty printer for all of C99 and
+ a large set of GNU extensions.
+ .
+ This package contains the libraries compiled for GHC 6.
+
+Package: libghc6-language-c-prof
+Architecture: any
+Depends: libghc6-language-c-dev (= ${binary:Version}), ${haskell:Depends},
+  ${misc:Depends}
+Suggests: haskell-language-c-doc (= ${source:Version})
+Description: Profiling libraries for Haskell Library.C module
+ .
+ Language C is a haskell library for the analysis and generation of C code. It
+ features a complete, well tested parser and pretty printer for all of C99 and
+ a large set of GNU extensions.
+ .
+ This package contains the profiling libraries compiled for GHC 6.
+
+Package: libghc6-language-c-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}
+Recommends: doc-base, libghc6-network-doc
+Description: Documentation for Haskell Library.C module
+ .
+ Language C is a haskell library for the analysis and generation of C code. It
+ features a complete, well tested parser and pretty printer for all of C99 and
+ a large set of GNU extensions.
+ .
+ This package contains the library documentation.
