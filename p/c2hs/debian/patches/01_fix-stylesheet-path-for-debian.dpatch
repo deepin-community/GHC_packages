@@ -1,0 +1,19 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 01_fix-stylesheet-path-for-debian.dpatch by Arjan Oosting <arjan@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad c2hs~/doc/Makefile c2hs/doc/Makefile
+--- c2hs~/doc/Makefile	2008-01-06 23:57:02.000000000 +0100
++++ c2hs/doc/Makefile	2008-01-07 00:16:03.000000000 +0100
+@@ -32,7 +32,7 @@
+ 	--stringparam use.id.as.filename 1 \
+ 	--stringparam base.dir $(XSLTPROC_HTML_OUTDIR) \
+ 	--stringparam html.stylesheet $(XSLTPROC_HTML_CSS)
+-XSLTPROC_HTML_STYLESHEET=/usr/share/sgml/docbook/xsl-stylesheets-1.70.1/xhtml/chunk.xsl
++XSLTPROC_HTML_STYLESHEET=/usr/share/xml/docbook/stylesheet/nwalsh/xhtml/chunk.xsl
+ 
+ # build targets
+ #

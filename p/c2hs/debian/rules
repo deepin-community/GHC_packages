@@ -1,0 +1,128 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+# Sample debian/rules that uses debhelper.
+#
+# This file was originally written by Joey Hess and Craig Small.
+# As a special exception, when this file is copied by dh-make into a
+# dh-make output file, you may use that output file without restriction.
+# This special exception was added by Craig Small in version 0.37 of dh-make.
+#
+# Modified to make a template file for a multi-binary package with separated
+# build-arch and build-indep targets  by Bill Allombert 2001
+
+# include dpatch
+include /usr/share/dpatch/dpatch.make
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+# This has to be exported to make some magic below work.
+export DH_OPTIONS
+
+# These are used for cross-compiling and for saving the configure
+# script
+# from having to guess our platform (since we know it already)
+DEB_HOST_ARCH ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
+export DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+export DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+
+# Autoconf 2.52 and higher goes into crosscompiling mode when --host
+# is specified, so only pass --host when it is necessary.
+#ifeq ($(DEB_BUILD_GNU_TYPE), $(DEB_HOST_GNU_TYPE))
+#  CONFIGURE_FLAGS := --build=$(DEB_HOST_GNU_TYPE)
+#else
+#  CONFIGURE_FLAGS := --build=$(DEB_BUILD_GNU_TYPE) --host=$(DEB_HOST_GNU_TYPE)
+#endif
+
+# ghc -split-objs only works on i386 and amd64
+ifneq (,$(findstring $(DEB_HOST_ARCH),"i386 amd64"))
+CONFIGURE_FLAGS += --enable-split-objs
+endif
+
+CFLAGS = -Wall -g
+
+ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+	CFLAGS += -O0
+else
+	CFLAGS += -O2
+endif
+
+configure: configure-stamp
+configure-stamp: patch-stamp
+	dh_testdir
+	ghc6 -package Cabal Setup.hs -o setup
+	./setup	configure --prefix=/usr --with-compiler=/usr/bin/ghc6 $(CONFIGURE_FLAGS)
+	touch configure-stamp
+
+build: build-arch 
+build-arch: build-arch-stamp
+build-arch-stamp: configure-stamp
+	./setup build
+	touch build-arch-stamp
+
+build-indep: build-indep-stamp
+build-indep-stamp: configure-stamp
+	cp doc/users_guide/fptools.css doc/
+	make -C doc
+	touch build-indep-stamp
+
+clean: clean-patched unpatch
+clean-patched: 
+	dh_testdir
+	dh_testroot
+	rm -f build-arch-stamp build-indep-stamp configure-stamp
+	if [ -e setup ] && [ -e .setup-config ] ; then ./setup clean ; fi
+	rm -rf dist
+	# remove Cabal setup files
+	rm -f setup Setup.hi Setup.o
+	rm -f doc/fptools.css doc/users_guide/*.html
+	dh_clean
+
+install: install-arch install-indep
+install-arch: build-arch-stamp
+	dh_testdir
+	dh_testroot
+	dh_clean -k -s
+	dh_installdirs -s
+	./setup copy --copy-prefix="$(CURDIR)/debian/tmp/usr"
+	rm -f $(CURDIR)/debian/tmp/usr/share/doc/c2hs-0.15.1/COPYING
+	rmdir $(CURDIR)/debian/tmp/usr/share/doc/c2hs-0.15.1/
+	dh_install -s
+
+install-indep: build-indep-stamp
+	dh_testdir
+	dh_testroot
+	dh_clean -k -i
+	dh_installdirs -i
+
+# Must not depend on anything. This is to be called by
+# binary-arch/binary-indep
+# in another 'make' thread.
+binary-common:
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs
+	dh_installdocs
+	dh_installexamples
+	dh_installman
+	dh_link
+	dh_strip
+	dh_compress 
+	dh_fixperms
+	dh_makeshlibs
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary: binary-arch binary-indep
+# Build architecture dependant packages using the common target.
+binary-arch: install-arch
+	$(MAKE) -f debian/rules DH_OPTIONS=-a binary-common
+
+# Build architecture independant packages using the common target.
+binary-indep: install-indep
+	$(MAKE) -f debian/rules DH_OPTIONS=-i binary-common
+
+.PHONY: configure build build-arch build-indep clean clean-patched install install-arch install-indep binary-arch binary-indep binary
