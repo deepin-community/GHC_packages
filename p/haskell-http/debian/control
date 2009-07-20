@@ -31,17 +31,15 @@ Vcs-Svn: svn://svn.debian.org/svn/pkg-haskell/packages/haskell-http/trunk
 Vcs-Browser: http://svn.debian.org/wsvn/pkg-haskell/packages/haskell-http/trunk
 
 Package: libghc6-http-dev
-Section: libdevel
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
-Suggests: haskell-http-doc (= ${source:Version})
+Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Suggests: ${haskell:Suggests}
 Description: GHC 6 libraries for the Haskell HTTP client library
  HTTP is a set of Haskell client libraries for HTTP/1.0 and HTTP/1.1.
  .
  This package contains the libraries compiled for GHC 6.
 
 Package: libghc6-http-prof
-Section: libdevel
 Architecture: any
 Depends: libghc6-http-dev (= ${binary:Version}), ${haskell:Depends}, ${misc:Depends}
 Suggests: haskell-http-doc (= ${source:Version})
@@ -64,7 +62,8 @@ Package: haskell-http-doc
 Section: doc
 Architecture: all
 Depends: ${misc:Depends}
-Recommends: doc-base, libghc6-base-doc, libghc6-network-doc, libghc6-parsec-doc
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
 Description: Haskell HTTP client library documentation
  HTTP is a set of Haskell client libraries for HTTP/1.0 and HTTP/1.1.
  .
