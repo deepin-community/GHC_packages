@@ -13,14 +13,14 @@ include /usr/share/cdbs/1/class/hlibrary.mk
 
 # This is to cater for the slightly non-standard -doc package name:
 # Also, this builds the pdf and html documentation
-haddock:
+build/hs-$(CABAL_PACKAGE)-doc:: dist-ghc6
 	mv dist-ghc6 dist
 	[ ! -x /usr/bin/haddock ] || $(DEB_SETUP_BIN_NAME) haddock $(DEB_HADDOCK_OPTS)
+	make -C docs
 	mv dist dist-ghc6
 
-install/hs-$(CABAL_PACKAGE)-doc:: haddock debian/tmp-inst-ghc6
+install/hs-$(CABAL_PACKAGE)-doc:: debian/tmp-inst-ghc6
 	mv dist-ghc6 dist
-	make -C docs
 	mkdir -p debian/$(notdir $@)/$(DEB_HADDOCK_HTML_DIR)
 	cd debian/tmp-inst-ghc6/ ; find ./$(DEB_HADDOCK_HTML_DIR)/ \
 		! -name "*.haddock" -exec install -Dm 644 '{}' \
