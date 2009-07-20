@@ -1,24 +1,28 @@
 Source: haskell-regex-compat
-Section: devel
+Section: haskell
 Priority: extra
-Maintainer: Arjan Oosting <arjan@debian.org>
-Build-Depends: cpphs, dpkg-dev (>= 1.13.19), debhelper (>= 5.0.0),
- dpatch, ghc6 (>= 6.10), ghc6-prof, haskell-devscripts (>= 0.6.6),
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Build-Depends: cpphs,
+ dpkg-dev (>= 1.13.19),
+ debhelper (>= 5.0.0),
+ dpatch,
+ ghc6 (>= 6.10),
+ ghc6-prof,
+ haskell-devscripts (>= 0.6.6),
  libghc6-regex-base-dev (>= 0.93), libghc6-regex-base-prof (>= 0.93),
  libghc6-regex-posix-dev (>= 0.93), libghc6-regex-posix-prof (>= 0.93)
-Build-Depends-Indep: haddock, ghc6-doc, haskell-regex-base-doc,
+Build-Depends-Indep: haddock,
+ ghc6-doc,
+ haskell-regex-base-doc,
  haskell-regex-posix-doc
-Standards-Version: 3.8.0
-Vcs-Svn: svn://svn.debian.org/svn/pkg-haskell/packages/haskell-regex-compat
-Vcs-Browser: http://svn.debian.org/wsvn/pkg-haskell/packages/haskell-regex-compat
+Standards-Version: 3.8.2
+Vcs-Darcs: http://darcs.debian.org/darcs/pkg-haskell/haskell-regex-compat
 Homepage: http://sourceforge.net/projects/lazy-regex
-Uploaders: Ian Lynagh (wibble) <igloo@debian.org>
 
 Package: libghc6-regex-compat-dev
 Architecture: any
-Section: libdevel
-Depends: ${haskell:Depends}, ${misc:Depends}
-Suggests: haskell-regex-compat-doc (= ${source:Version})
+Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Suggests: ${haskell:Suggests}
 Description: GHC 6 library provinding old Text.Regex inferface
  A library providing the old Text.Regex interface to the POSIX regular
  expression backend.
@@ -27,9 +31,7 @@ Description: GHC 6 library provinding old Text.Regex inferface
 
 Package: libghc6-regex-compat-prof
 Architecture: any
-Section: libdevel
-Depends: libghc6-regex-compat-dev (= ${binary:Version}), ${haskell:Depends}, ${misc:Depends}
-Suggests: haskell-regex-compat-doc (= ${source:Version})
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Description: GHC 6 profiling library provinding old Text.Regex inferface
  A library providing the old Text.Regex interface to the POSIX regular
  expression backend.
@@ -41,7 +43,8 @@ Package: haskell-regex-compat-doc
 Architecture: all
 Section: doc
 Depends: ${misc:Depends}
-Recommends: doc-base, ghc6-doc, haskell-regex-base-doc, haskell-regex-posix-doc
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: API documentation for regex-compat Haskell library
  A library containing a POSIX regular expression backend conforming to
  the interface API of regex-base.
