@@ -1,0 +1,14 @@
+#!/usr/bin/make -f
+
+# Standard way of building Haskell libraries .
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/hlibrary.mk
+
+build/$(CABAL_PACKAGE) :: build-ghc6-stamp
+
+install/$(CABAL_PACKAGE) :: build/$(CABAL_PACKAGE)
+	mv dist-ghc6 dist
+	$(DEB_SETUP_BIN_NAME) copy --destdir=debian/$(CABAL_PACKAGE)
+	rm -rf debian/$(CABAL_PACKAGE)/usr/share/doc
+	install -Dm 644 hlint.htm debian/$(CABAL_PACKAGE)/usr/share/doc/$(CABAL_PACKAGE)/hlint.html
+	mv dist dist-ghc6
