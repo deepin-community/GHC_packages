@@ -1,13 +1,14 @@
 #! /bin/sh
 # postinst script for ghc6
 #
-# SOURCE: postinst.in
+# SOURCE: ghc6.postinst.in
 set -e
 
 execdir=/usr/bin
 libdir=/usr/lib/ghc-@VERSION@
 bindir=$libdir/bin
 mandir=/usr/share/man
+vardir=/var/lib/ghc-@VERSION@
 
 # summary of how this script can be called:
 #        * <postinst> `configure' <most-recently-configured-version>
@@ -26,30 +27,38 @@ mandir=/usr/share/man
 #     installation fails and the `postinst' is called with `abort-upgrade',
 #     `abort-remove' or `abort-deconfigure'.
 
+if $libdir/bin/ghc --info | grep -q '"Have interpreter","YES"' ; then
+    NEED_INTERPRETER="\
+            --slave $execdir/runghc runghc $bindir/runghc \
+            --slave $execdir/ghci ghci $bindir/ghci \
+            --slave $mandir/man1/ghci.1.gz ghci.1.gz $mandir/man1/ghc6.1.gz \
+            --slave $mandir/man1/runghc.1.gz runghc.1.gz $mandir/man1/runghc6.1.gz"
+fi
+
 case "$1" in
     configure|abort-upgrade|abort-remove|abort-deconfigure)
+	if [ -n "$NEED_INTERPRETER" ] ; then
+            update-alternatives \
+		--install $execdir/runhaskell runhaskell $execdir/runghc6 8600000600 \
+		--slave $mandir/man1/runhaskell.1.gz runhaskell.1.gz $mandir/man1/runghc6.1.gz
+	fi
         update-alternatives \
             --install $execdir/haskell-compiler haskell-compiler $execdir/ghc6 600 \
             --slave $mandir/man1/haskell-compiler.1.gz haskell-compiler.1.gz $mandir/man1/ghc6.1.gz
         update-alternatives \
-            --install $execdir/ghc ghc $bindir/ghc-@VERSION@ 600 \
-            --slave $execdir/ghc-pkg ghc-pkg $bindir/ghc-pkg-@VERSION@ \
-            --slave $execdir/runghc runghc $bindir/runghc \
-            --slave $execdir/ghcprof ghcprof $bindir/ghcprof \
-            --slave $execdir/ghci ghci $bindir/ghci-@VERSION@         \
-            --slave $execdir/hsc2hs hsc2hs $bindir/hsc2hs     \
-            --slave $execdir/hp2ps hp2ps $bindir/hp2ps    \
+            --install $execdir/ghc ghc $bindir/ghc 600 \
+            --slave $execdir/ghc-pkg ghc-pkg $bindir/ghc-pkg \
+            --slave $execdir/hsc2hs hsc2hs $bindir/hsc2hs \
+            --slave $execdir/hp2ps hp2ps $bindir/hp2ps \
+            --slave $execdir/hpc hpc $bindir/hpc \
             --slave $mandir/man1/hp2ps.1.gz hp2ps.1.gz $mandir/man1/hp2ps-ghc6.1.gz \
             --slave $mandir/man1/ghc.1.gz ghc.1.gz $mandir/man1/ghc6.1.gz \
-            --slave $mandir/man1/ghci.1.gz ghci.1.gz $mandir/man1/ghc6.1.gz \
-            --slave $execdir/stat2resid stat2resid $bindir/stat2resid \
-            --slave $execdir/hasktags hasktags $bindir/hasktags
-        if [ ! -e $libdir/package.conf ]
+	    --slave $mandir/man1/ghc-pkg.1.gz ghc-pkg.1.gz $mandir/man1/ghc-pkg6.1.gz \
+            --slave $execdir/hasktags hasktags $bindir/hasktags $NEED_INTERPRETER
+        if [ ! -e $vardir/package.conf ]
         then
-            cp $libdir/package.conf.shipped $libdir/package.conf
+            cp $libdir/package.conf.shipped $vardir/package.conf
         fi
-        haskell-utils --add-compiler /usr/bin/ghc6 GHC @VERSION@
-        haskell-utils --add-compiler ghc6 GHC @VERSION@
     ;;
     *)
         echo "postinst called with unknown argument \`$1'" >&2
