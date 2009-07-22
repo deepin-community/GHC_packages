@@ -1,13 +1,8 @@
 #! /bin/sh
-# prerm script for ghc6
+# prerm script for ghc6-doc
 #
-# SOURCE: ghc6.prerm.in
 
 set -e
-
-execdir=/usr/bin
-libdir=/usr/lib/ghc-@VERSION@
-bindir=$libdir/bin
 
 # summary of how this script can be called:
 #        * <prerm> `remove'
@@ -21,9 +16,14 @@ bindir=$libdir/bin
 
 case "$1" in
     remove|upgrade|deconfigure|failed-upgrade)
-        update-alternatives --remove runhaskell $execdir/runghc
-        update-alternatives --remove haskell-compiler $execdir/ghc
-        update-alternatives --remove ghc $bindir/ghc
+        rm -f /usr/share/doc/ghc6-doc/libraries/doc-index*.html
+        rm -f /usr/share/doc/ghc6-doc/libraries/haddock.css
+        rm -f /usr/share/doc/ghc6-doc/libraries/haddock.js
+        rm -f /usr/share/doc/ghc6-doc/libraries/index.html
+        rm -f /usr/share/doc/ghc6-doc/libraries/libraries.txt
+        rm -f /usr/share/doc/ghc6-doc/libraries/haskell_icon.gif
+        rm -f /usr/share/doc/ghc6-doc/libraries/minus.gif
+        rm -f /usr/share/doc/ghc6-doc/libraries/plus.gif
     ;;
     *)
         echo "prerm called with unknown argument \`$1'" >&2

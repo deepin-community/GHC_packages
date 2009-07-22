@@ -1,25 +1,24 @@
 #! /bin/sh
 # postrm script for ghc6
 #
-# SOURCE: postrm.in
+# SOURCE: ghc6.postrm.in
 
 set -e
 
 execdir=/usr/bin
 libdir=/usr/lib/ghc-@VERSION@
 bindir=$libdir/bin
+vardir=/var/lib/ghc-@VERSION@
 
 case "$1" in
     purge)
-        rm -f $libdir/package.conf
-        rm -f $libdir/package.conf.old
+        rm -f $vardir/package.conf
     ;;
     upgrade)
-        if dpkg --compare-versions "$2" ge "@VERSION@+" ||
-           dpkg --compare-versions "$2" lt "@VERSION@"
+        if dpkg --compare-versions "$2" ge "@VERSION@++" ||
+           dpkg --compare-versions "$2" le "@VERSION@"
         then
-            rm -f $libdir/package.conf
-            rm -f $libdir/package.conf.old
+            rm -f $vardir/package.conf
         fi
     ;;
 esac
