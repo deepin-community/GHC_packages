@@ -1,50 +1,47 @@
 Source: haskell-hsql-postgresql
-Section: devel
+Section: haskell
 Priority: optional
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Víctor Pérez Pereira <vperez@debianvenezuela.org>
-Build-Depends: cpphs, debhelper (>= 4.0.0), dpatch,
- haskell-devscripts (>= 0.6.0), ghc6 (>= 6.8.2), ghc6-prof,
- libghc6-hsql-dev (>= 1.7), libghc6-hsql-prof (>= 1.7),
- libpq-dev (>= 8.0), postgresql-server-dev-8.3
-Build-Depends-Indep: ghc6-doc, haddock, haskell-hsql-doc
-Standards-Version: 3.7.3
+Build-Depends:
+ cdbs,
+ cpphs,
+ debhelper (>= 7),
+ haskell-devscripts (>= 0.6.15+nmu13),
+ ghc6 (>= 6.10.4),
+ ghc6-prof,
+ libghc6-hsql-dev (>= 1.7.1),
+ libghc6-hsql-prof (>= 1.7.1),
+ ghc6-doc,
+ haddock (>= 2.4.2-3),
+ hscolour,
+ haskell-hsql-doc
+ libpq-dev (>= 8.0),
+ postgresql-server-dev-8.3
+Standards-Version: 3.8.2
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hsql-postgresql/
 
 Package: libghc6-hsql-postgresql-dev
 Architecture: any
-Section: libdevel
-Suggests: haskell-hsql-postgresql-doc
+Suggests: ${haskell:Suggests}
 Depends: ${haskell:Depends}, libpq-dev (>= 8.0), postgresql-server-dev-8.3, ${shlibs:Depends}, ${misc:Depends}
 Description: PostgreSQL driver of the HSQL library for GHC6
- HSQL provides interfaces for Haskell programmers to the PostgreSQL,
- MySQL, SQLite, and UnixODBC database systems.  There is a generic
- abstract interface so that code can be used interchangeably with these
- database systems.  In this sense, it is similar to Java's JDBC,
- Python's DB-API, or Perl's DBI.
+ HSQL provides database interfaces for Haskell programmers. This package
+ provides the PostgreSQL driver of HSQL.
 
 Package: libghc6-hsql-postgresql-prof
 Architecture: any
-Section: libdevel
-Suggests: haskell-hsql-postgresql-doc
-Depends: libghc6-hsql-postgresql-dev (= ${binary:Version}), ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Description: PostgreSQL driver of the HSQL profiling library for GHC6
- HSQL provides interfaces for Haskell programmers to the PostgreSQL,
- MySQL, SQLite, and UnixODBC database systems.  There is a generic
- abstract interface so that code can be used interchangeably with these
- database systems.  In this sense, it is similar to Java's JDBC,
- Python's DB-API, or Perl's DBI.
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Description: PostgreSQL driver of the HSQL library for GHC6; profiling libraries
+ HSQL provides database interfaces for Haskell programmers. This package
+ provides the profiling libraries for the PostgreSQL driver of HSQL.
 
 Package: haskell-hsql-postgresql-doc
 Section: doc
 Architecture: all
-Suggests: libghc6-hsql-postgresql-dev
-Recommends: ghc6-doc, haskell-hsql-doc
+Depends: ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: API documentation of the hsql-postgresql library for Haskell
- HSQL provides interfaces for Haskell programmers to the PostgreSQL,
- MySQL, SQLite, and UnixODBC database systems.  There is a generic
- abstract interface so that code can be used interchangeably with these
- database systems.  In this sense, it is similar to Java's JDBC,
- Python's DB-API, or Perl's DBI.
- .
- This package provides documentation for PostgreSQL driver of HSQL.
+ HSQL provides database interfaces for Haskell programmers. This package
+ provides documentation for PostgreSQL driver of HSQL.
