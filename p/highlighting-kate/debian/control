@@ -1,19 +1,30 @@
 Source: highlighting-kate
-Section: devel
+Section: haskell
 Priority: optional
-Maintainer: Recai Oktaş <roktas@debian.org>
-Build-Depends: debhelper (>= 4.0.0), haskell-devscripts (>=0.5.12), ghc6 (>= 6.8.2-1), ghc6-prof, libghc6-parsec-dev, libghc6-parsec-prof, libghc6-xhtml-dev, libghc6-xhtml-prof, libghc6-pcre-light-dev, libghc6-pcre-light-prof
-Build-Depends-Indep: haddock
-Standards-Version: 3.7.3
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Build-Depends:
+ cdbs,
+ debhelper (>= 7),
+ haskell-devscripts (>= 0.6.15+nmu13),
+ ghc6 (>= 6.10.4),
+ ghc6-prof,
+ libghc6-parsec2-dev (>= 2.1.0.1-1.1),
+ libghc6-parsec2-prof,
+ libghc6-xhtml-dev (>= 3000.2.0.1-5),
+ libghc6-xhtml-prof,
+ libghc6-pcre-light-dev (>= 0.3.1-5),
+ libghc6-pcre-light-prof,
+ haddock,
+ hscolour
+Standards-Version: 3.8.2
 Homepage: http://johnmacfarlane.net/highlighting-kate
 XS-Vcs-Darcs: http://johnmacfarlane.net/repos/highlighting-kate
 XS-Vcs-Browser: http://johnmacfarlane.net/repos/highlighting-kate
 
 Package: libghc6-highlighting-kate-dev
-Section: libdevel
 Architecture: any
-Depends: ${haskell:Depends}, libghc6-xhtml-dev, libghc6-pcre-light-dev
-Suggests: highlighting-kate-doc (= ${source:Version})
+Depends: ${misc:Depends}, ${shlibs:Depends}, ${haskell:Depends}
+Suggests: ${haskell:Suggests}
 Description: syntax highlighting library based on Kate syntax descriptions
  Highlighting-kate is a syntax highlighting library with support for over
  50 languages. The syntax parsers are automatically generated from Kate syntax
@@ -32,10 +43,8 @@ Description: syntax highlighting library based on Kate syntax descriptions
  http://www.haskell.org/ for more information on Haskell.
 
 Package: libghc6-highlighting-kate-prof
-Section: libdevel
 Architecture: any
-Depends: ${haskell:Depends}, libghc6-highlighting-kate-dev (= ${binary:Version})
-Suggests: highlighting-kate-doc (= ${source:Version})
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Description: highlighting-kate library with profiling enabled
  Highlighting-kate is a syntax highlighting library with support for over
  50 languages. The syntax parsers are automatically generated from Kate syntax
