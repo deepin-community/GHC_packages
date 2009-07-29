@@ -3,3 +3,20 @@ DEB_HADDOCK_HTML_DIR = /usr/share/doc/$(CABAL_PACKAGE)-doc/html/
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
 
+# This rule is copied from /usr/share/cdbs/1/class/hlibrary.mk to cater for the
+# non-standard documentation package name
+
+build/$(CABAL_PACKAGE)-doc:: dist-ghc6 build-haddock-stamp
+
+
+install/$(CABAL_PACKAGE)-doc:: debian/tmp-inst-ghc6
+	mv dist-ghc6 dist
+	mkdir -p debian/$(notdir $@)/$(DEB_HADDOCK_HTML_DIR)
+	cd debian/tmp-inst-ghc6/ ; find ./$(DEB_HADDOCK_HTML_DIR)/ \
+		! -name "*.haddock" -exec install -Dm 644 '{}' \
+		../$(notdir $@)/'{}' ';'
+	mkdir -p debian/$(notdir $@)/$(DEB_HADDOCK_DIR)/../desc/
+	grep -E '^(haddock-|name|version)' dist/installed-pkg-config > \
+		debian/$(notdir $@)/$(DEB_HADDOCK_DIR)/../desc/$(notdir $@)
+	dh_haskell_depends -p$(notdir $@)
+	mv dist dist-ghc6
