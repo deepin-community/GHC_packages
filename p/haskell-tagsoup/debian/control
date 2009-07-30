@@ -1,0 +1,37 @@
+Source: haskell-tagsoup
+Section: libdevel
+Priority: extra
+Maintainer: Kari Pahula <kaol@debian.org>
+Build-Depends: cdbs, debhelper (>= 6), ghc6, ghc6-prof, haskell-devscripts, libghc6-network-dev (>= 2.2.0.1-4), libghc6-network-prof, haddock, hscolour, libghc6-network-doc, libghc6-mtl-doc, libghc6-parsec-doc, ghc6-doc
+Standards-Version: 3.8.0
+Homepage: http://www-users.cs.york.ac.uk/~ndm/tagsoup/
+
+Package: libghc6-tagsoup-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Suggests: libghc6-hspread-doc, libghc6-hspread-prof
+Description: Haskell library to robustly parse unstructured HTML
+ TagSoup extracts information out of unstructured HTML code, sometimes
+ known as tag soup. TagSoup does not require well-formed or
+ standards-compliant HTML, or HTML that renders correctly in any
+ particular rendering engine.  TagSoup transforms HTML into a list of
+ open tags with attributes, close tags, and text, but makes no attempt
+ to group these together into any kind of structure.
+ .
+ This package it not related to the Java TagSoup library.
+
+Package: libghc6-tagsoup-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}, libghc6-tagsoup-dev (= ${binary:Version})
+Description: Profiling support for TagSoup Haskell library
+ Install this package if you want profiling support for the TagSoup
+ library.
+
+Package: libghc6-tagsoup-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}
+Recommends: libghc6-network-doc, libghc6-mtl-doc, libghc6-parsec-doc, ghc6-doc
+Suggests: libghc6-hspread-dev
+Description: Documentation for Haskell TagSoup library
+ Haddock documentation and examples for TagSoup Haskell library.
