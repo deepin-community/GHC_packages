@@ -1,0 +1,46 @@
+Source: haskell-arrows
+Section: libdevel
+Priority: optional
+Maintainer: Kari Pahula <kaol@debian.org>
+Standards-Version: 3.8.0
+Build-Depends: debhelper (>= 5), haddock (>= 2.4.1-4), hscolour, haskell-devscripts, ghc6 (>= 6.10.1+dfsg1-13), ghc6-prof, ghc6-doc, libghc6-stream-dev (>= 0.2.2-3), libghc6-stream-prof, libghc6-stream-doc, cdbs
+Homepage: http://www.haskell.org/arrows/
+
+Package: libghc6-arrows-dev
+Section: libdevel
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Suggests: libghc6-arrows-prof, libghc6-arrows-doc
+Description: Haskell arrow classes and transformers for GHC
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library provides several classes that extend the Arrow class, and
+ some transformers that implement or lift these classes.
+
+Package: libghc6-arrows-prof
+Section: libdevel
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}, libghc6-arrows-dev (= ${binary:Version})
+Suggests: libghc6-arrows-doc
+Description: Haskell arrow classes and transformers for GHC; profiling libraries
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library provides several classes that extend the Arrow class, and
+ some transformers that implement or lift these classes.
+
+Package: libghc6-arrows-doc
+Section: doc
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Recommends: ghc6-doc, libghc6-stream-doc
+Suggests: libghc6-arrows-dev, libghc6-arrows-prof
+Description: Haskell arrow classes and transformers for GHC; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library provides several classes that extend the Arrow class, and
+ some transformers that implement or lift these classes.
