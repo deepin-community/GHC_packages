@@ -1,0 +1,60 @@
+Source: haskell-zip-archive
+Section: haskell
+Priority: optional
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.6.15+nmu13)
+  , ghc6 (>= 6.10.4)
+  , ghc6-prof
+  , ghc6-doc
+  , haddock (>= 2.4.2-3)
+  , hscolour
+  , libghc6-mtl-dev
+  , libghc6-mtl-prof
+  , libghc6-mtl-doc
+  , libghc6-utf8-string-dev (>= 0.3.1)
+  , libghc6-utf8-string-prof
+  , libghc6-utf8-string-doc
+  , libghc6-digest-dev
+  , libghc6-digest-prof
+  , libghc6-digest-doc
+Standards-Version: 3.8.2
+Homepage: http://hackage.haskell.org/cgi-bin/hackage-scripts/package/zip-archive
+Vcs-Darcs: http://darcs.debian.org/darcs/pkg-haskell/haskell-zip-archive
+
+Package: libghc6-zip-archive-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Description: library to create, modify and extract files from zip archives
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ The zip-archive library provides functions for creating, modifying, and
+ extracting files from zip archives.
+
+Package: libghc6-zip-archive-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Description: library to create, modify and extract files from zip archives; profiling library
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ The zip-archive library provides functions for creating, modifying, and
+ extracting files from zip archives.
+
+Package: libghc6-zip-archive-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: library to create, modify and extract files from zip archives; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ The zip-archive library provides functions for creating, modifying, and
+ extracting files from zip archives.
