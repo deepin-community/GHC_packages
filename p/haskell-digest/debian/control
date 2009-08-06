@@ -1,0 +1,55 @@
+Source: haskell-digest
+Section: haskell
+Priority: optional
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.6.15+nmu13)
+  , ghc6 (>= 6.10.4)
+  , ghc6-prof
+  , ghc6-doc
+  , haddock (>= 2.4.2-3)
+  , hscolour
+  , zlib1g-dev
+Standards-Version: 3.8.2
+Homepage: http://hackage.haskell.org/cgi-bin/hackage-scripts/package/digest
+Vcs-Darcs: http://darcs.debian.org/darcs/pkg-haskell/haskell-digest
+
+Package: libghc6-digest-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}, zlib1g-dev
+Suggests: ${haskell:Suggests}
+Description: efficient cryptographic hash implementations for bytestrings
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This package provides efficient cryptographic hash implementations for strict
+ and lazy bytestrings. For now, CRC32 and Adler32 are supported; they are
+ implemented as FFI bindings to efficient code from zlib.
+
+Package: libghc6-digest-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Description: efficient cryptographic hash implementations bytestrings; profiling library
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This package provides efficient cryptographic hash implementations for strict
+ and lazy bytestrings. For now, CRC32 and Adler32 are supported; they are
+ implemented as FFI bindings to efficient code from zlib.
+
+Package: libghc6-digest-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: efficient cryptographic hash implementations bytestrings; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This package provides efficient cryptographic hash implementations for strict
+ and lazy bytestrings. For now, CRC32 and Adler32 are supported; they are
+ implemented as FFI bindings to efficient code from zlib.
