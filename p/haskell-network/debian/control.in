@@ -1,0 +1,36 @@
+Source: ${this:source}
+Section: libdevel
+Priority: optional
+Maintainer: ${maintainer}
+Standards-Version: 3.7.3
+Build-Depends: &{canonicalise-comma-list:debhelper (>= 5), haddock (>= 0.8-2), hscolour, haskell-utils (>= 1.10), ${impl:ghc6:lib:build_deps}, ${cabal:deps:ghc6:dev}, ${cabal:deps:ghc6:prof}, ${cabal:deps:ghc6:doc}, ${c_dev_libs}, ${extra_build_deps}}
+
+Package: ${this:ghc6:dev}
+Section: libdevel
+Architecture: any
+Depends: &{canonicalise-comma-list:${impl:ghc6:lib:dev_deps}, \${shlibs:Depends}, \${misc:Depends}, ${cabal:deps:ghc6:dev}, ${c_dev_libs}}
+Suggests: &{canonicalise-comma-list:${this:ghc6:prof}, ${this:ghc6:doc}}
+Description: ${short_description}
+${dev_library_description_header}
+ .
+${long_description}
+
+Package: ${this:ghc6:prof}
+Section: libdevel
+Architecture: any
+Depends: &{canonicalise-comma-list:\${shlibs:Depends}, \${misc:Depends}, ${this:ghc6:dev}, ${impl:ghc6:lib:prof_deps}, ${cabal:deps:ghc6:prof}, ${c_dev_libs}}
+Suggests: &{canonicalise-comma-list:${this:ghc6:doc}}
+Description: ${short_description}; profiling libraries
+${prof_library_description_header}
+ .
+${long_description}
+
+Package: ${this:ghc6:doc}
+Section: doc
+Architecture: all
+Depends: &{canonicalise-comma-list:\${shlibs:Depends}, \${misc:Depends}, ${impl:ghc6:lib:doc_deps}, ${cabal:deps:ghc6:doc}}
+Suggests: &{canonicalise-comma-list:${this:ghc6:dev}, ${this:ghc6:prof}}
+Description: ${short_description}; documentation
+${doc_library_description_header}
+ .
+${long_description}
