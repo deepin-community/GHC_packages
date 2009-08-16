@@ -16,7 +16,7 @@ Build-Depends:
 Package: libghc6-parallel-dev
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Suggests: libghc6-parallel-prof, libghc6-parallel-doc
+Suggests: ${haskell:Suggests}
 Description: Haskell parallel programming library for GHC
  This package provides a library for the Haskell programming language.
  See http://www.haskell.org/ for more information on Haskell.
@@ -25,8 +25,7 @@ Description: Haskell parallel programming library for GHC
 
 Package: libghc6-parallel-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}, libghc6-parallel-dev (= ${binary:Version})
-Suggests: libghc6-parallel-doc
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Description: Haskell parallel programming library for GHC; profiling libraries
  This package provides a library for the Haskell programming language,
  compiled for profiling.
@@ -37,9 +36,9 @@ Description: Haskell parallel programming library for GHC; profiling libraries
 Package: libghc6-parallel-doc
 Section: doc
 Architecture: all
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Recommends: ghc6-doc
-Suggests: libghc6-parallel-dev, libghc6-parallel-prof
+Depends: ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: Haskell parallel programming library for GHC; documentation
  This package provides the documentation for a library for the Haskell
  programming language.
