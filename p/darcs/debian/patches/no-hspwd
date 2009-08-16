@@ -1,0 +1,17 @@
+Darcs 2.3b1 shipped without hspwd.hs, which is used by "./Setup test".
+It replaces pwd(1) on systems with a broken implementation of same.
+Since Debian doesn't have a broken pwd(1), just remove the use of
+hspwd so "./Setup test" still works.
+Index: darcs-2.3.0~beta1/tests/lib
+===================================================================
+--- darcs-2.3.0~beta1.orig/tests/lib	2009-06-25 13:32:06.996566001 +1000
++++ darcs-2.3.0~beta1/tests/lib	2009-06-25 13:32:20.036565523 +1000
+@@ -11,8 +11,3 @@
+   exit 0
+ fi
+ }
+-
+-pwd() {
+-    ghc --make "$TESTS_WD/hspwd.hs"
+-    "$TESTS_WD/hspwd"
+-}

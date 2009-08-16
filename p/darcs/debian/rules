@@ -2,18 +2,19 @@
 # Work around #481592 (Closes: #485631).  Remove when #481592 closes!
 CFLAGS := $(filter-out -g,$(CFLAGS))
 
-# There might not be an MTA installed at build time, so we need to
-# explicitly tell ./configure that there *WILL* be one.
-DEB_CONFIGURE_EXTRA_FLAGS += --with-sendmail=/usr/sbin/sendmail
-
-# LaTeX might be installed at compile time, be we don't want to waste
-# time recompiling the HTML and PDF versions -- upstream provides
-# perfectly good copies in the source tarball.
-DEB_CONFIGURE_EXTRA_FLAGS += --without-manual
-
 %:
-	dh $@
-build:
-	dh build --before configure
-	dh_auto_configure -- $(DEB_CONFIGURE_EXTRA_FLAGS)
-	dh build --remaining
+	+dh $(if $(wildcard debian/source/format),,--with quilt) $@
+override_dh_auto_build: Setup
+	./Setup build
+override_dh_auto_clean: Setup
+	./Setup clean
+override_dh_auto_configure: Setup
+	./Setup configure --prefix=/usr -fcurl-pipelining --constraint=parsec\<3
+override_dh_auto_install: Setup
+	./Setup copy --destdir=$(CURDIR)/debian/darcs
+override_dh_auto_test: Setup
+ifneq (nocheck,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
+	./Setup test
+endif
+Setup:
+	ghc --make Setup

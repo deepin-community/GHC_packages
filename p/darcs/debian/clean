@@ -15,3 +15,9 @@ tests/*.hi
 doc/manual/WARNINGS
 doc/manual/*.tex
 doc/manual/*.pl
+
+# We compile Setup in order to run ./Setup clean (since runghc/ghci
+# doesn't work on some architectures).  Therefore we remove Setup's
+# build code here.  Sigh.
+Setup Setup.hi Setup.o
+Distribution/ShellHarness.hi Distribution/ShellHarness.o

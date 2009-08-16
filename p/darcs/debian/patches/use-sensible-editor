@@ -1,0 +1,41 @@
+The required package "debianutils" provides sensible-editor and
+sensible-pager, which contain logic to pick the "right" fallback
+values for $EDITOR and $PAGER respectively.
+
+This patch makes Darcs use these binaries instead of its own
+app-specific fallback logic.
+Index: darcs-2.3.0~beta1/src/Darcs/Utils.hs
+===================================================================
+--- darcs-2.3.0~beta1.orig/src/Darcs/Utils.hs	2009-06-24 17:13:28.000000000 +1000
++++ darcs-2.3.0~beta1/src/Darcs/Utils.hs	2009-06-25 13:01:58.149068271 +1000
+@@ -187,12 +187,6 @@
+   ed <- get_editor
+   old_content <- file_content
+   ec <- exec_interactive ed f
+-             `ortryrunning` exec_interactive "emacs" f
+-             `ortryrunning` exec_interactive "emacs -nw" f
+-             `ortryrunning` exec_interactive "nano" f
+-#ifdef WIN32
+-             `ortryrunning` exec_interactive "edit" f
+-#endif
+   new_content <- file_content
+   when (new_content == old_content) $ do
+     yorn <- promptYorn "File content did not change. Continue anyway?"
+@@ -210,7 +204,7 @@
+ get_editor = getEnv "DARCS_EDITOR" `catchall`
+              getEnv "DARCSEDITOR" `catchall`
+              getEnv "VISUAL" `catchall`
+-             getEnv "EDITOR" `catchall` return "vi"
++             getEnv "EDITOR" `catchall` return "sensible-editor"
+
+ environmentHelpEditor :: ([String], [String])
+ environmentHelpEditor = (["DARCS_EDITOR", "DARCSEDITOR", "VISUAL", "EDITOR"],[
+@@ -223,7 +217,7 @@
+
+ get_viewer :: IO String
+ get_viewer = getEnv "DARCS_PAGER" `catchall`
+-             getEnv "PAGER" `catchall` return "less"
++             getEnv "PAGER" `catchall` return "sensible-pager"
+
+ environmentHelpPager :: ([String], [String])
+ environmentHelpPager = (["DARCS_PAGER", "PAGER"],[
