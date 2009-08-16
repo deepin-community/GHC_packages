@@ -20,7 +20,7 @@ Build-Depends:
 Package: libghc6-network-dev
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Suggests: libghc6-network-prof, libghc6-network-doc
+Suggests: ${haskell:Suggests}
 Description: Haskell network library for GHC
  This package provides a library for the Haskell programming language.
  .
@@ -29,7 +29,6 @@ Description: Haskell network library for GHC
 Package: libghc6-network-prof
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Suggests: libghc6-network-doc
 Description: Haskell network library for GHC; profiling libraries
  This package provides a library for the Haskell programming language,
  compiled for profiling.
@@ -39,9 +38,9 @@ Description: Haskell network library for GHC; profiling libraries
 Package: libghc6-network-doc
 Section: doc
 Architecture: all
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Recommends: ghc6-doc, libghc6-parsec2-doc
-Suggests: libghc6-network-dev, libghc6-network-prof
+Depends: ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: Haskell network library for GHC; documentation
  This package provides the documentation for a library for the Haskell
  programming language.
