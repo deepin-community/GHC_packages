@@ -1,0 +1,47 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 10_haddock-build.dpatch by Iain Lane <laney@ubuntu.com>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad haxml-1.13.3~/Makefile haxml-1.13.3/Makefile
+--- haxml-1.13.3~/Makefile	2007-11-23 13:48:01.000000000 +0000
++++ haxml-1.13.3/Makefile	2009-08-04 22:03:22.000000000 +0100
+@@ -1,6 +1,10 @@
+ SOFTWARE = HaXml
+ VERSION  = 1.13.3
+
++DIRS = Text Text/XML Text/XML/HaXml Text/XML/HaXml/Html \
++	Text/XML/HaXml/Xtract Text/XML/HaXml/DtdToHaskell \
++	Text/XML/HaXml/XmlContent Text/ParserCombinators
++
+ SRCS = \
+	src/Text/XML/HaXml.hs src/Text/XML/HaXml/Combinators.hs \
+	src/Text/XML/HaXml/Lex.hs \
+@@ -67,13 +78,21 @@
+	cd obj/nhc98; $(MAKE) HC=nhc98 install-filesonly-nhc98
+ install-filesonly-hugs: install-hugs
+ haddock:
+-	#do cpp -P -traditional -D__NHC__ $$file >$$file.uncpp;
++	mkdir -p docs/HaXml
++	for dir in $(DIRS); \
++		do mkdir -p docs/HaXml/src/$$dir; \
++		   mkdir -p staging/src/$$dir; \
++		done
+	for file in $(SRCS); \
+-		do cpphs --noline -D__NHC__ $$file >$$file.uncpp; \
++		do  \
++		   cpphs --text --noline -D__GLASGOW_HASKELL__=610 $$file >staging/$$file; \
++		   HsColour -anchor -html $$file >docs/HaXml/`dirname $$file`/`basename $$file .hs`.html; \
+		done
+-	-mkdir docs/HaXml
+-	haddock -h -t HaXml -o docs/HaXml $(patsubst %, %.uncpp, $(SRCS))
+-	rm $(patsubst %, %.uncpp, $(SRCS))
++	haddock --html --title=HaXml --odir=docs/HaXml \
++		--source-module="src/%{MODULE/.//}.html" \
++		--source-entity="src/%{MODULE/.//}.html#%{NAME}" \
++		$(patsubst %, staging/%, $(SRCS))
++	rm -rf staging
+
+ # packaging a distribution
