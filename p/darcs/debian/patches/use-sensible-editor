@@ -1,9 +1,9 @@
-The required package "debianutils" provides sensible-editor and
-sensible-pager, which contain logic to pick the "right" fallback
-values for $EDITOR and $PAGER respectively.
+Follow Debian Policy §11.4 - honour VISUAL, EDITOR and PAGER, but fall
+back on editor and pager respectively.  This allows the sysadmin to
+define site-local editor/pager defaults.  It also means things work
+when less and vi/emacs/nano aren't installed -- which is the case on a
+new Debian installation if you uncheck the "standard" tasksel task.
 
-This patch makes Darcs use these binaries instead of its own
-app-specific fallback logic.
 Index: darcs-2.3.0~beta1/src/Darcs/Utils.hs
 ===================================================================
 --- darcs-2.3.0~beta1.orig/src/Darcs/Utils.hs	2009-06-24 17:13:28.000000000 +1000
@@ -26,7 +26,7 @@ Index: darcs-2.3.0~beta1/src/Darcs/Utils.hs
               getEnv "DARCSEDITOR" `catchall`
               getEnv "VISUAL" `catchall`
 -             getEnv "EDITOR" `catchall` return "vi"
-+             getEnv "EDITOR" `catchall` return "sensible-editor"
++             getEnv "EDITOR" `catchall` return "editor"
 
  environmentHelpEditor :: ([String], [String])
  environmentHelpEditor = (["DARCS_EDITOR", "DARCSEDITOR", "VISUAL", "EDITOR"],[
@@ -35,7 +35,7 @@ Index: darcs-2.3.0~beta1/src/Darcs/Utils.hs
  get_viewer :: IO String
  get_viewer = getEnv "DARCS_PAGER" `catchall`
 -             getEnv "PAGER" `catchall` return "less"
-+             getEnv "PAGER" `catchall` return "sensible-pager"
++             getEnv "PAGER" `catchall` return "pager"
 
  environmentHelpPager :: ([String], [String])
  environmentHelpPager = (["DARCS_PAGER", "PAGER"],[
