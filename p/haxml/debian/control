@@ -1,29 +1,36 @@
 Source: haxml
-Section: devel
 Priority: optional
+Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>
 Build-Depends:
  dctrl-tools,
- debhelper (>= 4.2.0),
- dpatch,
+ debhelper (>= 7.2.3),
+ cdbs,
+ quilt,
  dpkg-dev (>= 1.13.19),
  ghc6, ghc6-prof,
  html2text,
+ hscolour,
  libghc6-polyparse-dev,
- haddock (>= 0.8-1),
- libghc6-polyparse-doc,
- hugs,
- hscolour
-Standards-Version: 3.7.2
+ libghc6-polyparse-prof
+Build-Depends-Indep:
+ ghc6-doc,
+ haddock (>= 2.4.2),
+ libghc6-base-doc,
+ libghc6-haskell98-doc,
+ libghc6-polyparse-doc
+Standards-Version: 3.8.3
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haxml/
-Homepage: http://www.cs.york.ac.uk/fp/HaXml/
+Homepage: http://hackage.haskell.org/package/HaXml
 
 Package: haxml
 Architecture: any
-Depends: ${shlibs:Depends}
-Recommends: libghc6-haxml-dev (= ${binary:Version}) | libhugs-haxml (= ${source:Version})
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Recommends: libghc6-haxml-dev (= ${binary:Version})
 Suggests: haxml-doc (= ${source:Version})
 Description: utilities for using XML documents with Haskell
+ .
  HaXml is a collection of utilities for parsing, filtering,
  transforming, and generating XML documents using Haskell. Its basic
  facilities include:
@@ -36,9 +43,10 @@ Description: utilities for using XML documents with Haskell
 
 Package: libghc6-haxml-dev
 Architecture: any
-Depends: ${haskell:Depends}
+Depends: ${misc:Depends}, ${haskell:Depends}
 Suggests: haxml-doc (= ${source:Version}), haxml (= ${binary:Version}), drift (>= 2.2.0)
 Description: GHC6 libraries for using XML documents with Haskell
+ .
  HaXml is a collection of utilities for parsing, filtering,
  transforming, and generating XML documents using Haskell. Its basic
  facilities include:
@@ -51,12 +59,13 @@ Description: GHC6 libraries for using XML documents with Haskell
  document processing, including transformation, editing, and
  generation for use with GHC6.
 
-Package: libhugs-haxml
-Architecture: all
-Depends: hugs (>= 98.200609.21-1), libhugs-polyparse
-Suggests: haxml-doc (= ${source:Version}), haxml (>= ${source:Version}), drift (>= 2.2.0)
-Conflicts: libhugs-haxml
-Description: GHC6 libraries for using XML documents with Haskell
+Package: libghc6-haxml-prof
+Architecture: any
+Depends: libghc6-haxml-dev (= ${binary:Version}), ${haskell:Depends},
+ ${misc:Depends}
+Suggests: haxml-doc (= ${source:Version})
+Description: Profiling libraries for the haskell haxml library
+ .
  HaXml is a collection of utilities for parsing, filtering,
  transforming, and generating XML documents using Haskell. Its basic
  facilities include:
@@ -65,15 +74,16 @@ Description: GHC6 libraries for using XML documents with Haskell
   - an XML validator,
   - pretty-printers for XML and HTML.
  .
- This package contains the HaXml combinator library for generic XML
- document processing, including transformation, editing, and
- generation for use with GHC6.
+ .
+ This package contains the profiling libraries compiled for GHC 6.
 
 Package: haxml-doc
-Section: doc
 Architecture: all
-Recommends: doc-base, haskell-polyparse-doc, libghc6-base-doc, libghc6-haskell98-doc
-Description: documentation of HaXml
+Section: doc
+Depends: ${misc:Depends}
+Recommends: doc-base, libghc6-base-doc, libghc6-haskell98-doc
+Description: Documentation of HaXml
+ .
  HaXml is a collection of utilities for parsing, filtering,
  transforming, and generating XML documents using Haskell. Its basic
  facilities include:
