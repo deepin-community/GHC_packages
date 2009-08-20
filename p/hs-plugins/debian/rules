@@ -25,9 +25,10 @@ install/hs-$(CABAL_PACKAGE)-doc:: debian/tmp-inst-ghc6
 	cd debian/tmp-inst-ghc6/ ; find ./$(DEB_HADDOCK_HTML_DIR)/ \
 		! -name "*.haddock" -exec install -Dm 644 '{}' \
 		../$(notdir $@)/'{}' ';'
-	mkdir -p debian/$(notdir $@)/$(DEB_HADDOCK_DIR)
-	cp -r debian/tmp-inst-ghc6/$(DEB_HADDOCK_DIR)/*.haddock \
-		debian/$(notdir $@)/$(DEB_HADDOCK_DIR)
+#	These files are now installed by haskell-devscripts into the -doc package
+#	mkdir -p debian/$(notdir $@)/$(DEB_HADDOCK_DIR)
+#	cp -r debian/tmp-inst-ghc6/$(DEB_HADDOCK_DIR)/*.haddock \
+#		debian/$(notdir $@)/$(DEB_HADDOCK_DIR)
 	
 	mkdir -p debian/$(notdir $@)/usr/share/doc/hs-$(CABAL_PACKAGE)-doc/plugins
 	cp -r docs/hs-plugins/* debian/$(notdir $@)/usr/share/doc/hs-$(CABAL_PACKAGE)-doc/plugins
