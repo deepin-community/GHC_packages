@@ -145,11 +145,9 @@ clean-real:
 	dh_testdir
 	dh_testroot
 	[ ! -e Makefile ] || $(MAKE) $(MAKEFLAGS) clean distclean
-	dh_clean aclocal.m4 Makefile.in configure \
-		config.guess config.sub config.log \
-		build-stamp install-stamp pkgmeta-*-stamp \
-		debian/*-dev.install \
-		debian/*.postinst debian/*.prerm
+	dh_clean aclocal.m4 Makefile.in configure config.guess config.sub \
+	  config.log *-stamp debian/*-dev.install debian/*.postinst \
+	  debian/*.prerm debian/dh_haskell_shlibdeps
 
 # Build architecture-independent files here.
 .PHONY: binary-indep
