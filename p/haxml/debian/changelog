@@ -1,9 +1,9 @@
 haxml (1.19.7-1) UNRELEASED; urgency=low
 
-  * New upstream. Closes: #464362.
-  * Fix dependencies. Closes: #527987.
-  * debian/compat version 5.
+  * New upstream release (Closes: 539951)
+  * debian/compat version 7.
   * debian/control:
+    - Make Debian Haskell Group the Maintainer.
     - Standards version 3.8.3.
     - Update ghc, haddock version dependencies.
     - Update debhelper version to prevent lintian warnings.
@@ -16,38 +16,7 @@ haxml (1.19.7-1) UNRELEASED; urgency=low
   * Point debian/watch at hackage.haskell.org.
   * Convert dpatch patches to quilt and remove unneeded patches.
 
- -- Erik de Castro Lopo <erikd@mega-nerd.com>  Wed, 19 Aug 2009 20:17:17 +1000
-
-haxml (1.19.1-1) UNRELEASED; urgency=low
-
-  [ Arjan Oosting ]
-  * New upstream release (Closes: 539951)
-    - Updates the Cabal file to enable HaXml to build with both ghc-6.6.x
-      and ghc-6.8.x.
-    - Improved the lazy XML parsing, and fixed some space leaks in the
-      XtractLazy tool.
-    - Pulled out the parser combinator libraries as a separate package
-      (called polyparse), which must now be downloaded and installed before
-      installing HaXml.
-  * debian/control:
-    - Add haskell-polyparse-doc, libghc6-polyparse-dev and
-      libhugs-polyparse to the build dependencies.
-    - Add libhugs-polyparse to the dependencies of libhugs-haxml
-    - Add haskell-polyparse to the recommends of haxml-doc.
-    - Replace the Xs-Vcs-* fields with Vcs-* fields.
-
-  [ Marco Túlio Gontijo e Silva ]
-  * debian/control: Use Debian Haskell Group as Maintainer.
-
-  [ Joachim Breitner ]
-  * debian/patches/10_link-to-other-docs.dpatch: Remove; this option has
-    been deleted by upstream and having it present causes a build
-    failure.
-  * Remove non-existing Build-Dependencies (Closes: #527987)
-  * Depend on hscolour
-  * Build-dependency libghc6-polyparse-doc has a new name
-
- -- Arjan Oosting <arjan@debian.org>  Sun, 27 Jan 2008 14:41:25 +0100
+ -- Erik de Castro Lopo <erikd@mega-nerd.com>  Sun, 30 Aug 2009 14:37:50 +1000
 
 haxml (1.17-6) experimental; urgency=low
 
