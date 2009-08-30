@@ -8,8 +8,9 @@ Build-Depends:
  haddock (>= 2.4.2),
  libghc6-base-doc,
  dctrl-tools,
- debhelper (>= 7.2.3),
+ debhelper (>= 7),
  cdbs,
+ haskell-devscripts,
  quilt,
  dpkg-dev (>= 1.13.19),
  ghc6, ghc6-prof,
@@ -17,7 +18,7 @@ Build-Depends:
  hscolour,
  libghc6-haskell98-doc,
  libghc6-polyparse-dev,
- libghc6-polyparse-prof
+ libghc6-polyparse-prof,
  libghc6-polyparse-doc
 Standards-Version: 3.8.3
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haxml/
@@ -25,9 +26,9 @@ Homepage: http://hackage.haskell.org/package/HaXml
 
 Package: haxml
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
 Recommends: libghc6-haxml-dev (= ${binary:Version})
-Suggests: haxml-doc (= ${source:Version})
 Description: utilities for using XML documents with Haskell
  .
  HaXml is a collection of utilities for parsing, filtering,
@@ -42,8 +43,8 @@ Description: utilities for using XML documents with Haskell
 
 Package: libghc6-haxml-dev
 Architecture: any
-Depends: ${misc:Depends}, ${haskell:Depends}
-Suggests: haxml-doc (= ${source:Version}), haxml (= ${binary:Version}), drift (>= 2.2.0)
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
 Description: GHC6 libraries for using XML documents with Haskell
  .
  HaXml is a collection of utilities for parsing, filtering,
@@ -60,9 +61,7 @@ Description: GHC6 libraries for using XML documents with Haskell
 
 Package: libghc6-haxml-prof
 Architecture: any
-Depends: libghc6-haxml-dev (= ${binary:Version}), ${haskell:Depends},
- ${misc:Depends}
-Suggests: haxml-doc (= ${source:Version})
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Description: Profiling libraries for the haskell haxml library
  .
  HaXml is a collection of utilities for parsing, filtering,
@@ -80,7 +79,8 @@ Package: haxml-doc
 Architecture: all
 Section: doc
 Depends: ${misc:Depends}
-Recommends: doc-base, libghc6-base-doc, libghc6-haskell98-doc
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: Documentation of HaXml
  .
  HaXml is a collection of utilities for parsing, filtering,
