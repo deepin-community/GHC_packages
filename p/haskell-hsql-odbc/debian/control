@@ -1,21 +1,29 @@
 Source: haskell-hsql-odbc
-Section: devel
+Section: haskell
 Priority: optional
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Víctor Pérez Pereira <vperez@debianvenezuela.org>
-Build-Depends: cpphs, debhelper (>= 4.0.0), dpatch,
- haskell-devscripts (>= 0.6.0), ghc6 (>= 6.8.2), ghc6-prof,
- libghc6-hsql-dev (>= 1.7), libghc6-hsql-prof (>= 1.7),
- unixodbc-dev
-Build-Depends-Indep: ghc6-doc, haddock, haskell-hsql-doc
-Standards-Version: 3.7.3
+Build-Depends:
+ cpphs,
+ debhelper (>= 7),
+ haskell-devscripts,
+ cdbs,
+ ghc6 (>= 6.10),
+ ghc6-prof,
+ libghc6-hsql-dev (>= 1.7),
+ libghc6-hsql-prof (>= 1.7),
+ unixodbc-dev,
+ ghc6-doc,
+ haddock,
+ hscolour,
+ haskell-hsql-doc
+Standards-Version: 3.8.3
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hsql-odbc/
 
 Package: libghc6-hsql-odbc-dev
 Architecture: any
-Section: libdevel
-Suggests: haskell-hsql-odbc-doc
 Depends: ${haskell:Depends}, unixodbc-dev, ${shlibs:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
 Description: UnixODBC driver of the HSQL library for GHC6
  HSQL provides interfaces for Haskell programmers to the PostgreSQL,
  MySQL, SQLite, and UnixODBC database systems.  There is a generic
@@ -25,9 +33,7 @@ Description: UnixODBC driver of the HSQL library for GHC6
 
 Package: libghc6-hsql-odbc-prof
 Architecture: any
-Section: libdevel
-Suggests: haskell-hsql-odbc-doc
-Depends: libghc6-hsql-odbc-dev (= ${binary:Version}), ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Depends: ${haskell:Depends}, ${misc:Depends}
 Description: UnixODBC driver of the HSQL profiling library for GHC6
  HSQL provides interfaces for Haskell programmers to the PostgreSQL,
  MySQL, SQLite, and UnixODBC database systems.  There is a generic
@@ -38,8 +44,9 @@ Description: UnixODBC driver of the HSQL profiling library for GHC6
 Package: haskell-hsql-odbc-doc
 Section: doc
 Architecture: all
-Suggests: libghc6-hsql-odbc-dev
-Recommends: ghc6-doc, haskell-hsql-doc
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: API documentation of the hsql-odbc library for Haskell
  HSQL provides interfaces for Haskell programmers to the PostgreSQL,
  MySQL, SQLite, and UnixODBC database systems.  There is a generic
