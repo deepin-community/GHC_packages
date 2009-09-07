@@ -3,15 +3,19 @@ Priority: optional
 Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>
-Build-Depends: debhelper (>= 5.0.0),ghc6 (>= 6.10.3-3), ghc6-prof, cdbs,
- haskell-devscripts (>= 0.6.15+nmu12)
-Build-Depends-Indep: haddock, ghc6-doc
+Build-Depends: debhelper (>= 5.0.0),
+ ghc6 (>= 6.10.4),
+ ghc6-prof,
+ cdbs,
+ haskell-devscripts (>= 0.6.15+nmu13),
+ haddock,
+ ghc6-doc
 Standards-Version: 3.8.3
 Homepage: http://hackage.haskell.org/cgi-bin/hackage-scripts/package/hscolour
 
 Package: hscolour
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Description: Haskell program to colourise Haskell code
  .
  HsColour currently has five output formats: ANSI terminal codes, HTML 3.2
@@ -20,9 +24,8 @@ Description: Haskell program to colourise Haskell code
 
 Package: libghc6-hscolour-dev
 Architecture: any
-Depends: ${misc:Depends}, ${haskell:Depends}
-Suggests: libghc6-hscolour-doc (= ${source:Version}), hscolour (= ${binary:Version}),
- drift (>= 2.2.0)
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}, drift (>= 2.2.0)
 Description: GHC6 libraries for colourising Haskell code
  .
  HsColour currently has five output formats: ANSI terminal codes, HTML 3.2
@@ -33,9 +36,8 @@ Description: GHC6 libraries for colourising Haskell code
 
 Package: libghc6-hscolour-prof
 Architecture: any
-Depends: libghc6-hscolour-dev (= ${binary:Version}), ${haskell:Depends},
- ${misc:Depends}
-Suggests: hscolour-doc (= ${source:Version})
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
 Description: Profiling libraries for colourising Haskell code
  .
  HsColour currently has five output formats: ANSI terminal codes, HTML 3.2
@@ -47,8 +49,8 @@ Description: Profiling libraries for colourising Haskell code
 Package: libghc6-hscolour-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends}
-Recommends: doc-base, libghc6-base-doc
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
 Description: Documentation for libghc6-hscolour-dev
  .
  HsColour currently has five output formats: ANSI terminal codes, HTML 3.2
