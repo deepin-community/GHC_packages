@@ -1,5 +1,6 @@
 Source: haskell-hsql-sqlite3
 Section: haskell
+Priority: optional
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Víctor Pérez Pereira <vperez@debianvenezuela.org>
 Build-Depends:
@@ -33,7 +34,7 @@ Description: SQLite driver of the HSQL library for GHC6
 
 Package: libghc6-hsql-sqlite3-prof
 Architecture: any
-Depends: ${haskell:Depends}
+Depends: ${haskell:Depends}, ${misc:Depends}
 Description: SQLite driver of the HSQL profiling library for GHC6
  HSQL provides interfaces for Haskell programmers to the PostgreSQL,
  MySQL, SQLite, and UnixODBC database systems.  There is a generic
@@ -44,6 +45,7 @@ Description: SQLite driver of the HSQL profiling library for GHC6
 Package: haskell-hsql-sqlite3-doc
 Section: doc
 Architecture: all
+Depends: ${haskell:Depends}, ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Depends}
 Description: API documentation of the hsql-sqlite3 library for Haskell
