@@ -1,27 +1,26 @@
 Source: haskelldb
-Section: devel
+Section: haskell
 Priority: optional
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Build-Depends: debhelper (>= 5)
- , dpatch
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Build-Depends: debhelper (>= 8)
+ , cdbs
+ , haskell-devscripts
  , dpkg-dev (>= 0.13.19)
- , ghc6 (>= 6.8.2)
- , haskell-devscripts (>= 0.6.0)
+ , ghc6 (>= 6.10)
  , libghc6-mtl-dev
-Build-Depends-Indep: haddock
+ , haddock
+ , hscolour
  , ghc6-doc
  , libghc6-mtl-doc
-Standards-Version: 3.7.3
+Standards-Version: 3.8.3
 Homepage: http://haskelldb.sourceforge.net/
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskelldb/
 
 Package: libghc6-haskelldb-dev
-Section: libdevel
 Architecture: any
-Suggests: haskelldb-bin
- , haskell-haskelldb-doc (= ${source:Version})
-Depends: ${haskell:Depends}
- , ${shlibs:Depends}
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
 Description: Haskell library for expressing database queries
  HaskellDB is library for expressing database queries and operations
  in a type safe and declarative way. This package contains the library
@@ -45,9 +44,9 @@ Package: haskell-haskelldb-doc
 Replaces: haskelldb-doc (<< 0.10-1)
 Architecture: all
 Section: doc
-Recommends: ghc6-doc
- , libghc6-mtl-doc
-Suggests: doc-base
+Depends: ${haskell:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
 Description: API documentation of haskelldb
  The API documentation of HaskellDB, a Haskell library for expressing
  database queries and operations in a type safe and declarative way.
