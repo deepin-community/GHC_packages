@@ -1,0 +1,66 @@
+Source: haskelldb-hdbc
+Section: haskell
+Priority: optional
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.6.15+nmu11)
+  , ghc6 (>= 6.10.3-2)
+  , ghc6-prof (>= 6.10.3-2)
+  , ghc6-doc (>= 6.10.3-2)
+  , haddock (>= 2.4.2)
+  , hscolour (>= 1.8)
+  , libghc6-haskelldb-dev (>= 0.12)
+#  , libghc6-haskelldb-prof
+  , libghc6-haskelldb-doc
+  , libghc6-hdbc-dev (>= 2.0.0)
+  , libghc6-hdbc-dev (<< 2.2.0)
+  , libghc6-hdbc-prof
+  , libghc6-hdbc-doc
+  , libghc6-convertible-dev (>= 1.0.1)
+  , libghc6-convertible-prof
+  , libghc6-convertible-doc
+Standards-Version: 3.8.3
+Homepage: http://hackage.haskell.org/package/haskelldb-hdbc
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskelldb-hdbc
+
+Package: libghc6-haskelldb-hdbc-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: libghc6-haskelldb-hdbc-odbc-dev | libghc6-haskelldb-hdbc-sqlite3-dev | libghc6-haskelldb-hdbc-postgresql-dev
+Suggests: ${haskell:Suggests}
+Description: HaskellDB support for HDBC
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library allows you to use the HaskellDB database abstraction library with
+ the HDBC database driver interface. You will also need one or more back-end
+ specific packages.
+
+# Package: libghc6-haskelldb-hdbc-prof
+# Architecture: any
+# Depends: ${haskell:Depends}
+#   , ${shlibs:Depends}
+#   , ${misc:Depends}
+# Description: HaskellDB support for HDBC; profiling libraries
+#  This package provides a library for the Haskell programming language.
+#  See http://www.haskell.org/ for more information on Haskell.
+#  .
+#  This library allows you to use the HaskellDB database abstraction library with
+#  the HDBC database driver interface. You will also need one or more back-end
+#  specific packages.
+
+Package: libghc6-haskelldb-hdbc-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: HaskellDB support for HDBC; documentation
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library allows you to use the HaskellDB database abstraction library with
+ the HDBC database driver interface. You will also need one or more back-end
+ specific packages.
