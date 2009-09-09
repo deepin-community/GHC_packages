@@ -12,7 +12,7 @@ Build-Depends: debhelper (>= 7)
   , haddock (>= 2.4.2)
   , hscolour (>= 1.8)
   , libghc6-haskelldb-dev (>= 0.12)
-#  , libghc6-haskelldb-prof
+  , libghc6-haskelldb-prof
   , haskell-haskelldb-doc
   , libghc6-hdbc-dev (>= 2.0.0)
   , libghc6-hdbc-dev (<< 2.2.0)
@@ -38,18 +38,16 @@ Description: HaskellDB support for HDBC
  the HDBC database driver interface. You will also need one or more back-end
  specific packages.
 
-# Package: libghc6-haskelldb-hdbc-prof
-# Architecture: any
-# Depends: ${haskell:Depends}
-#   , ${shlibs:Depends}
-#   , ${misc:Depends}
-# Description: HaskellDB support for HDBC; profiling libraries
-#  This package provides a library for the Haskell programming language.
-#  See http://www.haskell.org/ for more information on Haskell.
-#  .
-#  This library allows you to use the HaskellDB database abstraction library with
-#  the HDBC database driver interface. You will also need one or more back-end
-#  specific packages.
+Package: libghc6-haskelldb-hdbc-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Description: HaskellDB support for HDBC; profiling libraries
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library allows you to use the HaskellDB database abstraction library with
+ the HDBC database driver interface. You will also need one or more back-end
+ specific packages.
 
 Package: libghc6-haskelldb-hdbc-doc
 Section: doc
