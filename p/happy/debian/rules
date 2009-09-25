@@ -1,0 +1,89 @@
+#! /usr/bin/make -f
+# Made with the aid of dh_make, by Craig Small
+# debian/rules that uses debhelper. GNU copyright 1997 by Joey Hess.
+# Some lines taken from debmake, by Cristoph Lameter.
+# Largely rewritten for the Cabalised happy by Ian Lynagh in 2006.
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+configure: configure-stamp
+configure-stamp:
+	dh_testdir
+
+	ghc6 --make Setup.lhs -o setup
+	./setup configure --prefix=/usr --with-compiler=/usr/bin/ghc6
+	touch doc/configure
+	chmod +x doc/configure
+	cd doc && ./configure --prefix=/usr
+	ghc6 --make debian/get_version.hs -o debian/get_version
+	touch configure-stamp
+
+build: build-stamp
+build-stamp: configure-stamp
+	dh_testdir
+
+	./setup build
+	$(MAKE) -C doc html
+	sed -e "s#@LIBDIR@#/usr/share/happy-`debian/get_version`#g" \
+	    -e "s#@DOCDIR@#/usr/share/doc/happy#g" \
+	    -e "s#@VERSION@#`debian/get_version`#g" \
+	  doc/happy.1.in > doc/happy.1
+
+	touch build-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f configure-stamp build-stamp install-stamp
+
+	[ ! -f doc/config.mk ] || $(MAKE) -C doc clean
+	# Remove these so setup clean doesn't remove the generated files
+	# rm -f src/Parser.ly src/AttrGrammarParser.ly
+	ghc6 --make Setup.lhs -o setup
+	-./setup clean
+	rm -f Setup.o Setup.hi setup
+	rm -f debian/get_version.o debian/get_version.hi debian/get_version
+	rm -f doc/happy.1
+	# Hacks:
+	rm -f doc/config.log doc/config.status doc/config.mk
+
+	dh_clean
+
+install: install-stamp
+install-stamp: build-stamp
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs usr/share/doc/happy/html
+
+	./setup copy --destdir=`pwd`/debian/`dh_listpackages`
+	rm -r `pwd`/debian/`dh_listpackages`/usr/share/doc/happy-*/
+
+	cp -a doc/happy/* `pwd`/debian/`dh_listpackages`/usr/share/doc/happy/html/
+	cp -a examples    `pwd`/debian/`dh_listpackages`/usr/share/doc/happy/
+
+	touch install-stamp
+
+# Build architecture-independent files here.
+binary-indep: build install
+	@:
+
+# Build architecture-dependent files here.
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_installdocs
+	dh_installman doc/happy.1
+	dh_installchangelogs
+	dh_strip
+	dh_compress
+	dh_fixperms
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install
