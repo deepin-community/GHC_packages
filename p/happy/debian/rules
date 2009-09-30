@@ -12,6 +12,7 @@ include /usr/share/cdbs/1/class/hlibrary.mk
 include /usr/share/cdbs/1/rules/utils.mk
 include /usr/share/cdbs/1/rules/patchsys-quilt.mk
 
+
 clean::
 	[ ! -f doc/config.mk ] || $(MAKE) -C doc clean
 
@@ -39,6 +40,8 @@ build/happy:: build-ghc6-stamp
 	    -e "s#@VERSION@#`debian/get_version`#g" \
 	  doc/happy.1.in > doc/happy.1
 
-# templates build a load of bak files which we don't want
+# install templates to appropriate directory
 binary-post-install/happy::
-	rm -f $(CURDIR)/debian/happy/usr/share/happy/*bak
+	rm -f $(CURDIR)/out/*bak
+	mkdir -p           $(CURDIR)/debian/happy/usr/share/happy-`debian/get_version`/
+	cp $(CURDIR)/out/* $(CURDIR)/debian/happy/usr/share/happy-`debian/get_version`/

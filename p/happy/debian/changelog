@@ -19,9 +19,7 @@ happy (1.18.4-1) UNRELEASED; urgency=low
   * debian/control, debian/patches/templates_path.patch, debian/rules: Add
     quilt patchsys and patch Setup.lhs to install templates in out/ directory.
     They are usually installed in the build root which means there is no easy
-    way to use dh_install .install files to install them. These files are now
-    installed into /usr/share/happy instead of /usr/share/happy-<version> as
-    this can be done without further rules hacks.
+    way to install them all at once.
   * debian/rules, debian/control: Upstream doesn't ship doc/configure required
     for the doc build - use autoconf to generate it at build-time. Requires a
     build-dep on autoconf.
