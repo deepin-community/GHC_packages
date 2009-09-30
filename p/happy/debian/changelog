@@ -1,3 +1,31 @@
+happy (1.18.4-1) UNRELEASED; urgency=low
+
+  * New upstream release 1.18.4
+    - New feature: EBNF-style paramterized macros, thanks to
+      Iavor Diatchki.
+    - Works with Cabal 1.2, 1.4 and 1.6
+    - A few minor bugfixes
+  * debian/control, debian/copyright, debian/rules: Adopt for Debian Haskell
+    Group, add myself to Uploaders and remove Ian Lynagh (Igloo). Thanks for
+    your previous maintainership. Add VCS information.
+  * debian/control: Update long description
+  * debian/control: Standards-version 3.8.3
+    - Section: haskell
+    - Add debian/README.source for new patchsys
+  * debian/rules, debian/control, debian/happy.*, debian/compat: Fairly major
+    rewrite to use cdbs and hlibrary.mk
+  * debian/control, debian/patches/templates_path.patch, debian/rules: Add
+    quilt patchsys and patch Setup.lhs to install templates in out/ directory.
+    They are usually installed in the build root which means there is no easy
+    way to use dh_install .install files to install them. These files are now
+    installed into /usr/share/happy instead of /usr/share/happy-<version> as
+    this can be done without further rules hacks.
+  * debian/rules, debian/control: Upstream doesn't ship doc/configure required
+    for the doc build - use autoconf to generate it at build-time. Requires a
+    build-dep on autoconf.
+
+ -- Iain Lane <laney@ubuntu.com>  Wed, 30 Sep 2009 14:18:51 +0100
+
 happy (1.17-0.2) unstable; urgency=low
 
   * Non-maintainer upload.
