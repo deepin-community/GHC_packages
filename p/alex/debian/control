@@ -1,14 +1,24 @@
 Source: alex
-Section: devel
+Section: haskell
 Priority: optional
-Maintainer: Ian Lynagh (wibble) <igloo@debian.org>
-Standards-Version: 3.7.3
-Build-Depends: debhelper (>= 4), ghc6 (>= 6.8.2), jade, docbook-utils, docbook-xml, docbook-xsl, xsltproc
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Standards-Version: 3.8.3
+Build-Depends: cdbs (>= 0.4.59),
+               haskell-devscripts (>= 0.6.16),
+               debhelper (>= 7),
+               ghc6 (>= 6.10.4),
+	       jade,
+               docbook-utils,
+               docbook-xsl,
+               docbook-xml,
+               xsltproc,
 Homepage: http://www.haskell.org/alex/
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/alex
 
 Package: alex
 Architecture: any
-Depends: ${shlibs:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: lexical analyser generator for Haskell
  Alex is a tool for generating lexical analysers in Haskell, given a
  description of the tokens to be recognised in the form of regular
