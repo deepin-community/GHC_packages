@@ -1,0 +1,86 @@
+Source: haskell-platform
+Section: haskell
+Priority: optional
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Standards-Version: 3.8.3
+Build-Depends: cdbs, debhelper (>= 7)
+Homepage: http://hackage.haskell.org/platform/
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-platform
+
+Package: haskell-platform
+Architecture: all
+Depends:
+  ghc6,
+  libghc6-cgi-dev,
+  libghc6-fgl-dev,
+  libghc6-editline-dev,
+  libghc6-glut-dev,
+  libghc6-haskell-src-dev,
+  libghc6-html-dev,
+  libghc6-hunit-dev,
+  libghc6-mtl-dev,
+  libghc6-network-dev,
+  libghc6-opengl-dev,
+  libghc6-parallel-dev,
+  libghc6-parsec-dev,
+  libghc6-quickcheck1-dev,
+  libghc6-regex-base-dev,
+  libghc6-regex-compat-dev,
+  libghc6-regex-posix-dev,
+  libghc6-stm-dev,
+  libghc6-time-dev,
+  libghc6-xhtml-dev,
+  libghc6-zlib-dev,
+  libghc6-http-dev,
+  cabal-install,
+  alex,
+  happy,
+  haddock,
+  ${misc:Depends}
+Description: standard haskell libraries and tools
+ The Haskell Platform is a suite of tools and libraries that contain the most
+ important and best supported components. It is meant to be a starting point
+ for Haskell developers who are looking for libraries to use.
+ .
+ Installing this package will also install the Debian packages containing the
+ libraries and tools as specified in the official Haskell Platform, in the
+ version available in Debian. This may not be the version specified in the
+ platform. If this is of relevance to you, please check them on the official
+ Haskell Platform homepage.
+
+
+Package: haskell-platform-doc
+Section: doc
+Architecture: all
+Description: standard haskell libraries and tools; documentaion
+ The Haskell Platform is a suite of tools and libraries that contain the most
+ important and best supported components. It is meant to be a starting point
+ for Haskell developers who are looking for libraries to use.
+ .
+ Installing this package will install the documentation for the
+ libraries as specified in the official Haskell Platform.
+Depends:
+  ghc6-doc,
+  libghc6-cgi-doc,
+  libghc6-fgl-doc,
+  libghc6-editline-doc,
+  libghc6-glut-doc,
+  libghc6-haskell-src-doc,
+  libghc6-html-doc,
+  libghc6-hunit-doc,
+  libghc6-mtl-doc,
+  libghc6-network-doc,
+  libghc6-opengl-doc,
+  libghc6-parallel-doc,
+  libghc6-parsec-doc,
+  libghc6-quickcheck1-doc,
+  haskell-regex-base-doc,
+  haskell-regex-compat-doc,
+  haskell-regex-posix-doc,
+  libghc6-stm-doc,
+  libghc6-time-doc,
+  libghc6-xhtml-doc,
+  libghc6-zlib-doc,
+  haskell-http-doc,
+  ${misc:Depends}
