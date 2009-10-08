@@ -1,0 +1,54 @@
+Source: haskell-network-bytestring
+Priority: optional
+Section: haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>
+Build-Depends: dctrl-tools,
+ dpkg-dev (>= 1.13.19),
+ debhelper (>= 5.0.0),
+ haskell-devscripts (>= 0.6.0),
+ cdbs,
+ ghc6 (>= 6.10.3),
+ haddock (>= 2.4.2),
+ hscolour (>=1.8),
+ ghc6-prof,
+ libghc6-network-dev,
+ libghc6-network-prof,
+ libghc6-network-doc
+Standards-Version: 3.8.3
+Homepage: http://hackage.haskell.org/cgi-bin/hackage-scripts/package/network-bytestring
+Vcs-Darcs: http://darcs.debian.org/darcs/pkg-haskell/haskell-network-bytestring
+
+Package: libghc6-network-bytestring-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Description: Fast, memory-efficient, low-level networking for Haskell
+ .
+ Fast, memory-efficient, low-level socket functions that use Data.ByteStrings
+ instead of Strings.
+ .
+ This package contains the libraries compiled for GHC 6.
+
+Package: libghc6-network-bytestring-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: libghc6-network-bytestring-doc (= ${source:Version})
+Description: Profiling libraries for fast, memory-efficient, low-level networking in Haskell
+ .
+ Fast, memory-efficient, low-level socket functions that use Data.ByteStrings
+ instead of Strings.
+ .
+ This package contains the profiling libraries compiled for GHC 6.
+
+Package: libghc6-network-bytestring-doc
+Section: doc
+Architecture: all
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommendss}
+Description: Documentation for fast, memory-efficient, low-level networking in Haskell
+ .
+ Fast, memory-efficient, low-level socket functions that use Data.ByteStrings
+ instead of Strings.
+ .
+ This package contains the library documentation.
