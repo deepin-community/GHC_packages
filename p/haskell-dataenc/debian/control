@@ -3,18 +3,24 @@ Priority: optional
 Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>
-Build-Depends: dctrl-tools, dpkg-dev (>= 1.13.19), debhelper (>= 5.0.0),
- haskell-devscripts (>= 0.6.0), cdbs, ghc6 (>= 6.10.3), hscolour (>=1.8),
- ghc6-prof
-Build-Depends-Indep: haddock (>= 2.4.2), ghc6-doc
-Standards-Version: 3.8.2
+Build-Depends: dctrl-tools,
+ dpkg-dev (>= 1.13.19),
+ debhelper (>= 5.0.0),
+ haskell-devscripts (>= 0.6.0),
+ cdbs,
+ ghc6 (>= 6.10.3),
+ hscolour (>=1.8),
+ haddock (>= 2.4.2),
+ ghc6-prof,
+ ghc6-doc
+Standards-Version: 3.8.3
 Homepage: http://hackage.haskell.org/cgi-bin/hackage-scripts/package/dataenc
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-dataenc
 
 Package: libghc6-dataenc-dev
 Architecture: any
 Depends: ${haskell:Depends}, ${misc:Depends}
-Suggests: libghc6-dataenc-doc (= ${source:Version})
+Suggests: ${haskell:Suggests}
 Description: A Haskell library of data encoders and decoders
  .
  Data encoding library currently providing Base16, Base32, Base32Hex, Base64,
@@ -25,9 +31,8 @@ Description: A Haskell library of data encoders and decoders
 
 Package: libghc6-dataenc-prof
 Architecture: any
-Depends: libghc6-dataenc-dev (= ${binary:Version}), ${haskell:Depends},
- ${misc:Depends}
-Suggests: libghc6-dataenc-doc (= ${source:Version})
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
 Description: Profiling libraries for dataenc encoders and decoders
  .
  Data encoding library currently providing Base16, Base32, Base32Hex, Base64,
@@ -39,7 +44,7 @@ Description: Profiling libraries for dataenc encoders and decoders
 Package: libghc6-dataenc-doc
 Section: doc
 Architecture: all
-Depends: ${misc:Depends}
+Depends: ${haskell:Depends}, ${misc:Depends}
 Recommends: doc-base
 Description: Documentation for dataenc encoders and decoders
  .
