@@ -1,19 +1,25 @@
 Source: haskell-bzlib
 Priority: optional
 Section: haskell
-Maintainer: Erik de Castro Lopo <erikd@mega-nerd.com>
-DM-Upload-Allowed: yes
-Build-Depends: dctrl-tools, dpkg-dev (>= 1.13.19), debhelper (>= 5.0.0),
- cdbs, haskell-devscripts (>= 0.6.0), ghc6 (>= 6.10.3), ghc6-prof,
- hscolour (>= 1.8), libbz2-dev
-Build-Depends-Indep: haddock (>= 2.4.2)
-Standards-Version: 3.8.2
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>
+Build-Depends: dctrl-tools,
+ dpkg-dev (>= 1.13.19),
+ debhelper (>= 5.0.0),
+ cdbs,
+ haskell-devscripts (>= 0.6.0),
+ ghc6 (>= 6.10.3),
+ ghc6-prof,
+ hscolour (>= 1.8),
+ libbz2-dev,
+ haddock (>= 2.4.2)
+Standards-Version: 3.8.3
 Homepage: http://hackage.haskell.org/cgi-bin/hackage-scripts/package/bzlib
 
 Package: libghc6-bzlib-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}, libbz2-1.0
-Suggests: libghc6-bzlib-doc (= ${source:Version})
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
 Description: Haskell bindings to the bzip2 library
  .
  This package provides a pure interface for compressing and decompressing
@@ -28,9 +34,8 @@ Description: Haskell bindings to the bzip2 library
 
 Package: libghc6-bzlib-prof
 Architecture: any
-Depends: libghc6-bzlib-dev (= ${binary:Version}), ${haskell:Depends},
-  ${misc:Depends}
-Suggests: haskell-bzlib-doc (= ${source:Version})
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
 Description: Profiling libraries for the Haskell bindings to the bzip2 library
  .
  This package provides a pure interface for compressing and decompressing
@@ -47,7 +52,7 @@ Package: libghc6-bzlib-doc
 Section: doc
 Architecture: all
 Depends: ${misc:Depends}
-Recommends: doc-base, libghc6-network-doc
+Recommends: doc-base
 Description: Documentation for the Haskell bindings to the bzip2 library
  .
  This package provides a pure interface for compressing and decompressing
