@@ -1,0 +1,72 @@
+Source: haskell-hgl
+Section: haskell
+Priority: optional
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Standards-Version: 3.8.3
+Build-Depends:
+ debhelper (>= 7),
+ haddock (>= 2.4.2),
+ hscolour,
+ haskell-devscripts (=> 0.6.16),
+ ghc6 (>= 6.10.4),
+ ghc6-prof,
+ ghc6-doc,
+ libghc6-x11-dev (>= 1.4.6.1),
+ libghc6-x11-prof,
+ libghc6-x11-doc
+
+Package: libghc6-hgl-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Haskell graphics library for GHC
+ This package provides a library for the Haskell programming language.
+ .
+ This is a simple graphics library, designed to give the programmer access
+ to most interesting parts of the Win32 Graphics Device Interface
+ and X11 library without exposing the programmer to the pain and
+ anguish usually associated with using these interfaces.
+ .
+ The library also includes a module Graphics.SOE providing the
+ interface used in "The Haskell School of Expression", by Paul
+ Hudak, cf <http://www.haskell.org/soe/>.
+
+Package: libghc6-hgl-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Haskell graphics library for GHC; profiling libraries
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ .
+ This is a simple graphics library, designed to give the programmer access
+ to most interesting parts of the Win32 Graphics Device Interface
+ and X11 library without exposing the programmer to the pain and
+ anguish usually associated with using these interfaces.
+ .
+ The library also includes a module Graphics.SOE providing the
+ interface used in "The Haskell School of Expression", by Paul
+ Hudak, cf <http://www.haskell.org/soe/>.
+
+Package: libghc6-hgl-doc
+Section: doc
+Architecture: all
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Haskell graphics library for GHC; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ .
+ This is a simple graphics library, designed to give the programmer access
+ to most interesting parts of the Win32 Graphics Device Interface
+ and X11 library without exposing the programmer to the pain and
+ anguish usually associated with using these interfaces.
+ .
+ The library also includes a module Graphics.SOE providing the
+ interface used in "The Haskell School of Expression", by Paul
+ Hudak, cf <http://www.haskell.org/soe/>.
