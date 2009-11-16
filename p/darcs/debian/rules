@@ -3,7 +3,7 @@
 CFLAGS := $(filter-out -g,$(CFLAGS))
 
 %:
-	+dh $(if $(wildcard debian/source/format),,--with quilt) --with bash-completion $@
+	+dh --with bash-completion $@
 override_dh_auto_build: Setup
 	./Setup build
 override_dh_auto_clean: Setup
