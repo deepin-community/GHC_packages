@@ -1,21 +1,29 @@
 Source: haskell-regex-posix
-Section: devel
+Section: haskell
 Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Build-Depends: cpphs, dpkg-dev (>= 1.13.19), debhelper (>= 5.0.0),
- dpatch, ghc6 (>= 6.8.2), ghc6-prof, haskell-devscripts (>= 0.6.6),
- libghc6-regex-base-dev (>= 0.93), libghc6-regex-base-prof (>= 0.93)
-Build-Depends-Indep: haddock, ghc6-doc, haskell-regex-base-doc
-Standards-Version: 3.8.0
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Build-Depends:
+ cdbs,
+ cpphs,
+ dpkg-dev (>= 1.13.19),
+ debhelper (>= 7),
+ ghc6 (>= 6.10.4),
+ ghc6-prof,
+ haskell-devscripts (>= 0.6.18),
+ libghc6-regex-base-dev (>= 0.93.1),
+ ghc6-doc
+Build-Depends-Indep:
+ haddock,
+ haskell-regex-base-doc
+Standards-Version: 3.8.3
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-regex-posix/
 Homepage: http://sourceforge.net/projects/lazy-regex
-Uploaders: Ian Lynagh (wibble) <igloo@debian.org>
 
 Package: libghc6-regex-posix-dev
 Architecture: any
-Section: libdevel
-Depends: ${haskell:Depends}, ${misc:Depends}
-Suggests: haskell-posix-doc (= ${source:Version})
+Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Suggests: ${haskell:Suggests}
 Description: GHC 6 library of the POSIX regex backend for regex-base
  A library containing a POSIX regular expression backend conforming to
  the interface API of regex-base.
@@ -24,9 +32,8 @@ Description: GHC 6 library of the POSIX regex backend for regex-base
 
 Package: libghc6-regex-posix-prof
 Architecture: any
-Section: libdevel
-Depends: libghc6-regex-posix-dev (= ${binary:Version}), ${haskell:Depends}, ${misc:Depends}
-Suggests: haskell-regex-posix-doc (= ${source:Version})
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
 Description: GHC 6 profiling library of the POSIX regex backend for regex-base
  A library containing a POSIX regular expression backend conforming to
  the interface API of regex-base.
@@ -37,8 +44,9 @@ Description: GHC 6 profiling library of the POSIX regex backend for regex-base
 Package: haskell-regex-posix-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends}
-Recommends: doc-base, ghc6-doc, haskell-regex-base-doc
+Depends: ${misc:Depends}, ${haskell:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
 Description: API documentation for regex-posix Haskell library
  A library containing a POSIX regular expression backend conforming to
  the interface API of regex-base.
