@@ -2,18 +2,24 @@ Source: magic-haskell
 Priority: optional
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: John Goerzen <jgoerzen@complete.org>
-Build-Depends: debhelper (>= 4.0.0), ghc6 (>= 6.8.2dfsg1), hugs (>= 98.200503.08), haskell-devscripts (>= 0.6.15), libmagic-dev
-Build-Depends-Indep: debhelper (>= 4.0.0), haddock, ghc6 (>= 6.8.2dfsg1), haskell-devscripts (>= 0.6.15), libmagic-dev
-Standards-Version: 3.6.2
-Section: devel
+Build-Depends: debhelper (>= 6.0.0),
+ cdbs,
+ haddock,
+ hscolour,
+ haskell-devscripts (>= 0.6.18),
+ ghc6 (>= 6.10),
+ hugs (>= 98.200503.08),
+ libmagic-dev
+Standards-Version: 3.8.3
+Section: haskell
 Vcs-Git: git://git.debian.org/git/pkg-haskell/magic-haskell.git
 Vcs-Browser: http://git.debian.org/?p=pkg-haskell/magic-haskell.git;a=summary
 
 Package: libghc6-magic-dev
-Section: devel
+Section: haskell
 Architecture: any
-Suggests: magic-haskell-doc
-Depends: ${haskell:Depends}, libmagic-dev, ${shlibs:Depends}
+Suggests: ${haskell:Suggests}
+Depends: ${misc:Depends}, ${haskell:Depends}, libmagic-dev, ${shlibs:Depends}
 Description: File type determination library for Haskell
  This package provides a Haskell interface to the C libmagic library.
  With it, you can determine the type of a file by examining its contents
@@ -24,10 +30,10 @@ Description: File type determination library for Haskell
  in libhugs-magic.
 
 Package: libhugs-magic
-Section: devel
+Section: haskell
 Architecture: any
-Suggests: magic-haskell-doc
-Depends: ${haskell:Depends}, ${shlibs:Depends}
+Depends: ${misc:Depends}, ${haskell:Depends}, ${shlibs:Depends}
+Suggests: ${haskell:Suggests}
 Description: File type determination library for Haskell
  This package provides a Haskell interface to the C libmagic library.
  With it, you can determine the type of a file by examining its contents
@@ -38,8 +44,9 @@ Description: File type determination library for Haskell
  in libghc6-magic-dev.
 
 Package: magic-haskell-doc
-Section: devel
+Section: doc
 Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
 Description: File type determination library for Haskell
  This package provides a Haskell interface to the C libmagic library.
  With it, you can determine the type of a file by examining its contents
