@@ -1,9 +1,14 @@
-Follow Debian Policy §11.4 - honour VISUAL, EDITOR and PAGER, but fall
-back on editor and pager respectively.  This allows the sysadmin to
-define site-local editor/pager defaults.  It also means things work
-when less and vi/emacs/nano aren't installed -- which is the case on a
-new Debian installation if you uncheck the "standard" tasksel task.
-
+Author:         Trent W. Buck <trentbuck@gmail.com>
+Forwarded:      not-needed
+Bug-Debian:     http://www.debian.org/doc/debian-policy/ch-customized-programs.html#s11.4
+Description:    use editor(1) and pager(1) instead of specific editors/pagers.
+ Follow Debian Policy §11.4 - honour VISUAL, EDITOR and PAGER, but fall back on
+ editor and pager respectively.  This allows the sysadmin to define site-local
+ editor/pager defaults.  It also means things work when less and vi/emacs/nano
+ aren't installed -- which is the case on a new Debian installation if you
+ uncheck the "standard" tasksel task.
+ .
+ Not forwarded because editor(1) and pager(1) are Debian-specific.
 Index: darcs-2.3.0~beta1/src/Darcs/Utils.hs
 ===================================================================
 --- darcs-2.3.0~beta1.orig/src/Darcs/Utils.hs	2009-06-24 17:13:28.000000000 +1000

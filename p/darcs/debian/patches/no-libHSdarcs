@@ -1,17 +1,18 @@
-I have unilaterally decided to disable compilation and installation of
-libHSdarcs.  My reasons are as follows:
-
- - no API exists yet; it's just exposing Darcs' internals;
-
- - no Debian packages need it yet; and
-
- - at this point, I don't want to spend time learning how to package
-   Haskell libraries properly.  Particularly, I don't want to regress
-   from dh(1) to CDBS :-(
-
-If you want libHSdarcs, file a wishlist bug explaining why you need
-it.  Until then, please get the library via cabal-install.  Sorry for
-the inconvenience!
+Author:         Trent W. Buck <trentbuck@gmail.com>
+Forwarded:      not-needed
+Bug:            http://bugs.darcs.net/issue1508
+Description:    Disable libHSdarcs.
+ I have unilaterally decided to disable compilation and installation of
+ libHSdarcs.  My reasons are as follows:
+ .
+  * no Debian package needs it;
+  * the API is not stable; and
+  * I do not with to switch back to CDBS (for hlibrary.mk).
+ .
+ If you need libHSdarcs, file a wishlist bug against Darcs explaining why, and
+ in the meantime use "cabal install".
+ .
+ Not forwarded because upstream prefer to wait for a proper fix in Cabal 1.8.
 Index: darcs-2.3.0/darcs.cabal
 ===================================================================
 --- darcs-2.3.0.orig/darcs.cabal	2009-08-03 15:11:11.556565825 +1000

@@ -1,6 +1,14 @@
-Escape hyphens and backslashes when creating the manpage.
-This avoids numerous groff/man warnings from lintian.
-This patch has since been submitted and accepted upstream.
+Author:         Trent W. Buck <trentbuck@gmail.com>
+Bug-Debian:     http://lintian.debian.org/tags/manpage-has-errors-from-man.html
+Bug-Debian:     http://lintian.debian.org/tags/hyphen-used-as-minus-sign.html
+Forwarded:      yes
+Description:    Avoid unescaped hyphens and backslashes in manpage.
+ Fixes these bugs:
+
+   W: darcs: manpage-has-errors-from-man darcs.1.gz:
+        297: a tab character is not allowed in an escape name
+   I: darcs: hyphen-used-as-minus-sign darcs.1.gz (87 times)
+
 Index: darcs-2.3.0/src/Darcs/Commands/Help.lhs
 ===================================================================
 --- darcs-2.3.0.orig/src/Darcs/Commands/Help.lhs	2009-08-03 16:10:27.186565722 +1000
