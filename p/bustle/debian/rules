@@ -19,4 +19,5 @@ override_dh_auto_build:
 override_dh_install:
 	./setup copy --destdir debian/bustle
 	rm -rf debian/bustle/usr/share/doc/bustle-*
+	rm -rf debian/bustle/usr/share/bustle-*/LICENSE
 	dh_install
