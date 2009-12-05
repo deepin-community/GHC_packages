@@ -16,15 +16,17 @@ Build-Depends:
  haddock (>= 2.4.2-3),
  hscolour,
  haskell-hsql-doc,
- libpq-dev (>= 8.0),
- postgresql-server-dev-8.3
+ libpq-dev (>= 8.0)
+Build-Conflicts:
+ postgresql-server-dev-8.3,
+ postgresql-server-dev-8.4
 Standards-Version: 3.8.2
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hsql-postgresql/
 
 Package: libghc6-hsql-postgresql-dev
 Architecture: any
 Suggests: ${haskell:Suggests}
-Depends: ${haskell:Depends}, libpq-dev (>= 8.0), postgresql-server-dev-8.3, ${shlibs:Depends}, ${misc:Depends}
+Depends: ${haskell:Depends}, libpq-dev (>= 8.0), ${shlibs:Depends}, ${misc:Depends}
 Description: PostgreSQL driver of the HSQL library for GHC6
  HSQL provides database interfaces for Haskell programmers. This package
  provides the PostgreSQL driver of HSQL.
