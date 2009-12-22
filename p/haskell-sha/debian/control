@@ -1,0 +1,62 @@
+Source: haskell-sha
+Priority: optional
+Section: haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Giovanni Mascellani <mascellani@poisson.phc.unipi.it>
+Build-Depends: debhelper (>= 7), haskell-devscripts, cdbs, ghc6 (>= 6.10),
+ ghc6-prof, libghc6-binary-dev, libghc6-binary-prof
+Build-Depends-Indep: ghc6-doc, haddock, hscolour, libghc6-binary-doc
+Standards-Version: 3.8.3
+Homepage: http://hackage.haskell.org/package/SHA
+
+Package: libghc6-sha-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Description: Haskell SHA suite of message digest functions - GHC 6 libraries
+ This library implements the SHA suite of message digest functions,
+ according to NIST FIPS 180-2 (with the SHA-224 addendum), as well
+ as the SHA-based HMAC routines.
+ .
+ The functions have been tested  against most of the NIST and RFC test
+ vectors for the various functions. While some attention has been paid
+ to performance, these do not presently reach the speed of well-tune
+ libraries, like OpenSSL.
+ .
+ This package contains the libraries compiled for GHC 6.
+
+Package: libghc6-sha-prof
+Architecture: any
+Depends: libghc6-sha-dev (= ${binary:Version}), ${haskell:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Description: Haskell SHA suite of message digest functions - GHC 6 profiling libraries
+ This library implements the SHA suite of message digest functions,
+ according to NIST FIPS 180-2 (with the SHA-224 addendum), as well
+ as the SHA-based HMAC routines.
+ .
+ The functions have been tested  against most of the NIST and RFC test
+ vectors for the various functions. While some attention has been paid
+ to performance, these do not presently reach the speed of well-tune
+ libraries, like OpenSSL.
+ .
+ This package contains the profiling libraries compiled for GHC 6.
+
+Package: haskell-sha-doc
+Section: doc
+Architecture: all
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Description: Haskell SHA suite of message digest functions - documentation
+ This library implements the SHA suite of message digest functions,
+ according to NIST FIPS 180-2 (with the SHA-224 addendum), as well
+ as the SHA-based HMAC routines.
+ .
+ The functions have been tested  against most of the NIST and RFC test
+ vectors for the various functions. While some attention has been paid
+ to performance, these do not presently reach the speed of well-tune
+ libraries, like OpenSSL.
+ .
+ This package contains the library documentation.
