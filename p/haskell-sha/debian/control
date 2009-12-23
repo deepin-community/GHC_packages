@@ -25,7 +25,10 @@ Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-
 
 Package: libghc6-sha-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Description: Haskell SHA suite of message digest functions - GHC 6 libraries
@@ -42,7 +45,9 @@ Description: Haskell SHA suite of message digest functions - GHC 6 libraries
 
 Package: libghc6-sha-prof
 Architecture: any
-Depends: libghc6-sha-dev (= ${binary:Version}), ${haskell:Depends}, ${misc:Depends}
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Description: Haskell SHA suite of message digest functions - GHC 6 profiling libraries
@@ -60,7 +65,9 @@ Description: Haskell SHA suite of message digest functions - GHC 6 profiling lib
 Package: haskell-sha-doc
 Section: doc
 Architecture: all
-Depends: ${haskell:Depends}, ${misc:Depends}
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Description: Haskell SHA suite of message digest functions - documentation
