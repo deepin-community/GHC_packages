@@ -1,0 +1,73 @@
+Source: haskell-deepseq
+Priority: extra
+Section: haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Giovanni Mascellani <mascellani@poisson.phc.unipi.it>
+Build-Depends:
+ debhelper (>= 7),
+ haskell-devscripts,
+ cdbs,
+ ghc6 (>= 6.10),
+ ghc6-prof,
+ ghc6-doc,
+ hugs,
+ haddock,
+ hscolour
+Standards-Version: 3.8.3
+Homepage: http://hackage.haskell.org/package/deepseq
+Vcs-Darcs: http://darcs.debian.org/darcs/pkg-haskell/haskell-deepseq
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-deepseq
+
+Package: libghc6-deepseq-dev
+Architecture: any
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Description: "Deep" version for Haskell seq - GHC 6 libraries
+ Evaluates a full Haskell data structure, where the lazy Haskell interpreter
+ normally would skip it.
+ .
+ This package contains the libraries compiled for GHC 6.
+
+Package: libghc6-deepseq-prof
+Architecture: any
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Description: "Deep" version for Haskell seq - GHC 6 profiling libraries
+ Evaluates a full Haskell data structure, where the lazy Haskell interpreter
+ normally would skip it.
+ .
+ This package contains the profiling libraries compiled for GHC 6.
+
+Package: libhugs-deepseq
+Architecture: all
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Description: "Deep" version for Haskell seq - Hugs libraries
+ Evaluates a full Haskell data structure, where the lazy Haskell interpreter
+ normally would skip it.
+ .
+ This package contains the libraries for use by the Hugs interpreter.
+
+Package: libghc6-deepseq-doc
+Section: doc
+Architecture: all
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Description: "Deep" version for Haskell seq - documentation
+ Evaluates a full Haskell data structure, where the lazy Haskell interpreter
+ normally would skip it.
+ .
+ This package contains the library documentation.
