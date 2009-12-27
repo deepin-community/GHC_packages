@@ -1,13 +1,25 @@
 Source: haskell-quickcheck
 Section: haskell
 Priority: optional
-Maintainer: Kari Pahula <kaol@debian.org>
-Standards-Version: 3.8.1
-Build-Depends: debhelper (>= 5), haddock (>= 2.4.2), hscolour, ghc6, ghc6-prof, ghc6-doc, haskell-devscripts, cdbs, libghc6-mtl-dev (>= 1.1.0.2-7), libghc6-mtl-prof, libghc6-mtl-doc
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Iain Lane <laney@ubuntu.com>
+Standards-Version: 3.8.3
+Build-Depends: debhelper (>= 7),
+               haddock (>= 2.4.2),
+               hscolour,
+               ghc6,
+               ghc6-prof,
+               ghc6-doc,
+               haskell-devscripts,
+               cdbs,
+               libghc6-mtl-dev (>= 1.1.0.2-7),
+               libghc6-mtl-prof,
+               libghc6-mtl-doc
 
 Package: libghc6-quickcheck2-dev
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
 Suggests: libghc6-quickcheck2-prof, libghc6-quickcheck2-doc
 Replaces: libghc6-quickcheck-dev (<< 2.1.0.1-6)
 Conflicts: libghc6-quickcheck-dev (<< 2.1.0.1-6)
@@ -26,6 +38,7 @@ Description: Haskell automatic testing library for GHC
 Package: libghc6-quickcheck2-prof
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}, libghc6-quickcheck2-dev (= ${binary:Version})
+Recommends: ${haskell:Recommends}
 Suggests: libghc6-quickcheck2-doc
 Replaces: libghc6-quickcheck-prof (<< 2.1.0.1-6)
 Conflicts: libghc6-quickcheck-prof (<< 2.1.0.1-6)
@@ -47,7 +60,7 @@ Section: doc
 Architecture: all
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Suggests: libghc6-quickcheck2-dev
-Recommends: libghc6-mtl-doc, ghc6-doc
+Recommends: ${haskell:Recommends}, libghc6-mtl-doc, ghc6-doc
 Replaces: libghc6-quickcheck-doc (<< 2.1.0.1-6)
 Conflicts: libghc6-quickcheck-doc (<< 2.1.0.1-6)
 Description: Haskell automatic testing library for GHC; documentation
