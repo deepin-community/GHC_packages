@@ -1,2 +1,5 @@
 version=3
-http://hackage.haskell.org/cgi-bin/hackage-scripts/package/X11 /packages/archive/X11/[^/]*/X11-(.*).tar.gz
+opts=downloadurlmangle=s|archive/([\w\d_-]+)/([\d\.]+)/|archive/$1/$2/$1-$2.tar.gz| \
+    http://hackage.haskell.org/packages/archive/X11 \
+    ([\d\.]*\d)/
+
