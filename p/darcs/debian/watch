@@ -1,2 +1,4 @@
 version=3
-http://hackage.haskell.org/cgi-bin/hackage-scripts/package/darcs /packages/archive/darcs/[^/]*/darcs-(.*).tar.gz
+opts=downloadurlmangle=s|archive/([\w\d_-]+)/([\d\.]+)/|archive/$1/$2/$1-$2.tar.gz| \
+    http://hackage.haskell.org/packages/archive/darcs \
+    ([\d\.]*\d)/
