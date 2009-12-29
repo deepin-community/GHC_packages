@@ -1,4 +1,6 @@
 # See uscan(1) for format
 
 version=3
-http://hackage.haskell.org/packages/archive/ghc-mtl/([\d.]+)/ghc-mtl-([\d.]+).tar.gz
+opts=downloadurlmangle=s|archive/([\w\d_-]+)/([\d\.]+)/|archive/$1/$2/$1-$2.tar.gz| \
+    http://hackage.haskell.org/packages/archive/ghc-mtl \
+    ([\d\.]*\d)/
