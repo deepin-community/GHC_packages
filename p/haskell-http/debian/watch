@@ -1,3 +1,5 @@
 version=3
 opts="uversionmangle=s/\.(\d)(?=\.|$)/0$1/g;s/\.(\d\d)(?=\.|$)/$1/g" \
-http://hackage.haskell.org/cgi-bin/hackage-scripts/package/HTTP /packages/archive/HTTP/.*/HTTP-([\d\.]*)\.tar\.gz
+opts=downloadurlmangle=s|archive/([\w\d_-]+)/([\d\.]+)/|archive/$1/$2/$1-$2.tar.gz| \
+    http://hackage.haskell.org/packages/archive/HTTP \
+    ([\d\.]*\d)/
