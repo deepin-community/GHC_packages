@@ -1,0 +1,69 @@
+Source: haskell-texmath
+Priority: extra
+Section: haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Giovanni Mascellani <mascellani@poisson.phc.unipi.it>
+Build-Depends:
+ debhelper (>= 7),
+ haskell-devscripts,
+ cdbs,
+ ghc6 (>= 6.10),
+ ghc6-prof,
+ ghc6-doc,
+ haddock,
+ hscolour,
+ quilt,
+ libghc6-xml-dev,
+ libghc6-xml-prof,
+ libghc6-xml-doc,
+ libghc6-parsec2-dev,
+ libghc6-parsec2-prof,
+ libghc6-parsec2-doc
+Standards-Version: 3.8.3
+Homepage: http://hackage.haskell.org/package/texmath
+Vcs-Darcs: http://darcs.debian.org/darcs/pkg-haskell/haskell-texmath
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-texmath
+
+Package: libghc6-texmath-dev
+Architecture: any
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Description: Haskell library to convert LaTeX to MathML - GHC 6 libraries
+ The texmath Haskell library provides functions to convert LaTeX math
+ formulas to presentation MathML. It supports basic LaTeX and AMS
+ extensions, but not macros.
+ .
+ This package contains the libraries compiled for GHC 6.
+
+Package: libghc6-texmath-prof
+Architecture: any
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Description: Haskell library to convert LaTeX to MathML - GHC 6 profiling libraries
+ The texmath Haskell library provides functions to convert LaTeX math
+ formulas to presentation MathML. It supports basic LaTeX and AMS
+ extensions, but not macros.
+ .
+ This package contains the profiling libraries compiled for GHC 6.
+
+Package: libghc6-texmath-doc
+Section: doc
+Architecture: all
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Description: Haskell library to convert LaTeX to MathML - documentation
+ The texmath Haskell library provides functions to convert LaTeX math
+ formulas to presentation MathML. It supports basic LaTeX and AMS
+ extensions, but not macros.
+ .
+ This package contains the library documentation.
