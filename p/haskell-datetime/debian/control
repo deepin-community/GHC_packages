@@ -1,0 +1,68 @@
+Source: haskell-datetime
+Priority: extra
+Section: haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Giovanni Mascellani <mascellani@poisson.phc.unipi.it>
+Build-Depends:
+ debhelper (>= 7),
+ haskell-devscripts,
+ cdbs,
+ ghc6 (>= 6.10),
+ ghc6-prof,
+ ghc6-doc,
+ haddock,
+ hscolour,
+ libghc6-quickcheck-dev,
+ libghc6-quickcheck-prof,
+ libghc6-quickcheck-doc,
+ libghc6-time-dev,
+ libghc6-time-prof,
+ libghc6-time-doc
+Standards-Version: 3.8.3
+Homepage: http://hackage.haskell.org/package/datetime
+Vcs-Darcs: http://darcs.debian.org/darcs/pkg-haskell/haskell-datetime
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-datetime
+
+Package: libghc6-datetime-dev
+Architecture: any
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Description: Haskell library to convert date and time formats - GHC 6 libraries
+ This Haskell library provides several utilities for easily converting among the
+ various standard library Date and Time types, and for converting
+ between these and standard external representations.
+ .
+ This package contains the libraries compiled for GHC 6.
+
+Package: libghc6-datetime-prof
+Architecture: any
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Description: Haskell library to convert date and time formats - GHC 6 profiling libraries
+ This Haskell library provides several utilities for easily converting among the
+ various standard library Date and Time types, and for converting
+ between these and standard external representations.
+ .
+ This package contains the profiling libraries compiled for GHC 6.
+
+Package: libghc6-datetime-doc
+Section: doc
+Architecture: all
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Description: Haskell library to convert date and time formats - documentation
+ This Haskell library provides several utilities for easily converting among the
+ various standard library Date and Time types, and for converting
+ between these and standard external representations.
+ .
+ This package contains the library documentation.
