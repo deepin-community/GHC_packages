@@ -1,0 +1,9 @@
+#!/usr/bin/make -f
+
+DEB_BUILD_DEPENDENCIES = build-arch
+
+# Does not build with base>4 :(
+DEB_SETUP_GHC6_CONFIGURE_ARGS := --constraint 'base<4'
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/hlibrary.mk
