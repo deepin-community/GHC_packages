@@ -3,8 +3,6 @@
 #
 set -e
 
-libdir=/usr/lib/ghc6-doc
-
 # summary of how this script can be called:
 #        * <postinst> `configure' <most-recently-configured-version>
 #        * <old-postinst> `abort-upgrade' <new version>
@@ -23,14 +21,15 @@ libdir=/usr/lib/ghc6-doc
 #     `abort-remove' or `abort-deconfigure'.
 
 case "$1" in
-    configure|abort-upgrade|abort-remove|abort-deconfigure)
-        cd /usr/share/doc/ghc6-doc/libraries
-        "$libdir"/gen_contents_index
-    ;;
+    triggered|configure)
+        /usr/lib/ghc6-doc/gen_contents_index
+	;;
+    abort-upgrade|abort-remove|abort-deconfigure)
+	;;
     *)
         echo "postinst called with unknown argument \`$1'" >&2
         exit 0
-    ;;
+	;;
 esac
 
 # dh_installdeb will replace this with shell code automatically
