@@ -1,0 +1,15 @@
+Index: ghc6-6.12.1/compiler/utils/Panic.lhs
+===================================================================
+--- ghc6-6.12.1.orig/compiler/utils/Panic.lhs	2010-01-09 17:43:16.000000000 +0200
++++ ghc6-6.12.1/compiler/utils/Panic.lhs	2010-01-09 17:45:48.000000000 +0200
+@@ -111,7 +111,9 @@
+    = showString ("panic! (the 'impossible' happened)\n"
+		 ++ "  (GHC version " ++ cProjectVersion ++ " for " ++ TargetPlatform_NAME ++ "):\n\t"
+	         ++ s ++ "\n\n"
+-	         ++ "Please report this as a GHC bug:  http://www.haskell.org/ghc/reportabug\n")
++	         ++ "Please report this as a GHC bug:  http://www.haskell.org/ghc/reportabug\n"
++                 ++ "Debian-specific note: please remove old .hi files and try again.\n"
++                 ++ "For details, see /usr/share/doc/ghc6/README.Debian")
+
+ throwGhcException :: GhcException -> a
+ throwGhcException = Exception.throw
