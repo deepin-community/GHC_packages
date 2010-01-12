@@ -1,11 +1,229 @@
-ghc6 (6.8.2dfsg1-1.1) stable; urgency=low
+ghc6 (6.12.1-1) experimental; urgency=low
 
-  * Non-maintainer upload.
-  * Fix "Jumps up to 100% processor load" Backport patch from GHC 6.10.2
-    which fix an extremely subtle deadlock bug on x86_64.
-    (Closes: #554069)
+  * New upstream release (Closes: #539789)
+    * System.Posix.Semaphore fixed. (Closes: #544127)
+  * Switch to dpkg-source 3.0 (quilt) format
+  * Standards-Version 3.8.3 (no changes necessary).
+  * Added a dependency on libbsd-dev (Closes: #549403)
+  * Patched compiler/utils/Panic.lhs to add a message to internal GHC
+    error messages, suggesting removing .hi files and pointing to
+    README.Debian. (Closes: #532443)
+  * Don't alter Binary.hs and just let Ints to be stored in architecture
+    native format.
+  * Don't set XMLDocWays in build.mk since it's not used anymore.
+  * Remove lpia arch from debian/rules.
+  * Split debian/rules binary to binary-arch and binary-indep. (Closes: #543972)
+  * Set SRC_HC_OPTS += -lffi in build.mk and update the patch
+    system-libffi to use Debian's packaged libffi.
+  * Update the patch to make the build system use /usr/bin/haddock and not
+    build its own.
 
- -- Marco Túlio Gontijo e Silva <marcot@riseup.net>  Sat, 19 Dec 2009 10:58:43 -0200
+ -- Kari Pahula <kaol@debian.org>  Tue, 12 Jan 2010 16:29:03 +0200
+
+ghc6 (6.10.4-2) unstable; urgency=low
+
+  * Patch libraries/unix/System/Posix/Semaphore.hsc
+
+ -- Kari Pahula <kaol@debian.org>  Sat, 29 Aug 2009 10:08:42 +0300
+
+ghc6 (6.10.4-1) unstable; urgency=low
+
+  * New upstream release
+  * Pass UseLibFFIForAdjustors=YES to build options on armel.
+  * Standards-Version 3.8.2 (no changes necessary).
+  * Pass GhcUnregisterised=NO to build options on lpia (for Ubuntu's
+    benefit).
+
+ -- Kari Pahula <kaol@debian.org>  Wed, 22 Jul 2009 15:22:36 +0300
+
+ghc6 (6.10.3-3) unstable; urgency=low
+
+  * Patch mkWeakForeignEnv# in rts/PrimOps.cmm to avoid random
+    segfaults. (re:
+    https://bugs.launchpad.net/ubuntu/+source/ghc6/+bug/382803)
+  * Exclude internal boot libraries from generated Provides: libghc6-*
+    substvars. (Closes: #531318)
+
+ -- Kari Pahula <kaol@debian.org>  Sat, 27 Jun 2009 17:58:49 +0300
+
+ghc6 (6.10.3-2) unstable; urgency=low
+
+  * Only call ghc-pkg6 in ghc6-doc's trigger if ghc6 is installed.
+    (Closes: #530732)
+  * Fix the test for seeing if ghci would work.
+  * Build a registerised build on powerpc, but disable ghci.
+
+ -- Kari Pahula <kaol@debian.org>  Thu, 28 May 2009 12:40:17 +0300
+
+ghc6 (6.10.3-1) unstable; urgency=low
+
+  * New upstream release
+    * GHCi uses stdio in blocking mode now. (Closes: #512762)
+    * GHC can cope with missing setitimer(ITIMER_VIRTUAL) support.
+      (Closes: #509252)
+    * Uses haskeline instead of editline.
+  * Only provide ghci and runghc on archs that support it.
+    (Closes: #320335)
+  * Patched compiler/utils/Binary.hs to store Ints as Int64s on 32 bit
+    architectures and warn if it needed to truncate when unserialising.
+  * Moved package.conf to /var/lib/ghc-$VERSION/.
+  * Added a /var/lib/ghc-$VERSION/package.conf.d/ dir.
+  * Set symlinks from /usr/lib/ghc-$VERSION/package.conf* to /var.
+  * Don't ship generated index files in /usr/share/doc/ghc6-doc/libraries/
+    and remove them in postrm. (Closes: #501188)
+  * Remove any leftover index.html files in
+    /usr/share/doc/ghc6-doc/html/libraries/. (Closes: #461323)
+  * Bumped to debhelper compat 7 and Standards-Version 3.8.1 (no changes
+    needed).
+  * Section: haskell for ghc6 and ghc6-prof.
+  * Fix up generated Provides for ghc6 and ghc6-doc.
+    (Closes: #514085, #518400)
+  * Added man pages for runghc and ghc-pkg. (Closes: #460425, #315763)
+  * Removed alternative for /usr/bin/ghcprof. (Closes: #527382)
+  * Build an unregisterised build on powerpc. (Closes: #514946)
+  * Build-depend on a newer binutils on [arm armel].  Add -mlong-calls to
+    gcc's flags.
+  * gen_contents_index reintroduced, this time as a perl script.
+  * Added /usr/share/ghc6-doc/ghc-$VERSION/desc/ for copies of package
+    conf info in -doc packages.
+  * Added a preinst for ghc6, to remove a package.conf file from a removed
+    but not purged old version.
+
+ -- Kari Pahula <kaol@debian.org>  Mon, 18 May 2009 22:18:18 +0300
+
+ghc6 (6.10.1+dfsg1-13) unstable; urgency=low
+
+  * Haddock again just a B-D-I, now with (>= 2.4.1-4).
+  * Patched compiler/utils/Binary.hs to store Ints as Int32s on 64 bit
+    arches, too.
+  * Put .haddock files back to ghc6-doc.
+
+ -- Kari Pahula <kaol@debian.org>  Wed, 25 Feb 2009 05:53:48 +0200
+
+ghc6 (6.10.1+dfsg1-12) unstable; urgency=low
+
+  * Put haddock in Build-Depends on [i386 amd64 sparc powerpc mips mipsel
+    s390 kfreebsd-i386].
+
+ -- Kari Pahula <kaol@debian.org>  Sat, 21 Feb 2009 14:08:08 +0200
+
+ghc6 (6.10.1+dfsg1-11) unstable; urgency=low
+
+  * Put .haddock files in ghc6, not ghc6-doc.
+  * Don't call ghc-pkg in a loop in ghc6-doc's trigger, use perl instead.
+  * Don't remove packages.conf on upgrade from one 6.10.1+dfsg1 version to
+    another.
+  * Generate haddock index in ghc6-doc's postinst configure, too.
+
+ -- Kari Pahula <kaol@debian.org>  Sat, 21 Feb 2009 10:00:19 +0200
+
+ghc6 (6.10.1+dfsg1-10) unstable; urgency=low
+
+  * chmod +x debian/mk_provided_substvars before calling it.
+
+ -- Kari Pahula <kaol@debian.org>  Tue, 17 Feb 2009 19:03:49 +0200
+
+ghc6 (6.10.1+dfsg1-9) unstable; urgency=low
+
+  * Made ghc6-doc's postinst only call haddock on haddock files that are
+    actually installed.
+
+ -- Kari Pahula <kaol@debian.org>  Tue, 17 Feb 2009 12:52:37 +0200
+
+ghc6 (6.10.1+dfsg1-8) unstable; urgency=low
+
+  * Moved xsltproc, docbook-xsl, docbook-xml back as Build-Depends.
+
+ -- Kari Pahula <kaol@debian.org>  Tue, 17 Feb 2009 09:52:55 +0200
+
+ghc6 (6.10.1+dfsg1-7) unstable; urgency=low
+
+  * Set build deps related to doc building as Build-Depends-Indep.
+  * Set BUILD_HADDOCK_DOCS at build time, depending on haddock's
+    presence.  See debian/rules for rationale.
+  * Replaced /usr/lib/ghc6-doc/gen_contents_index with a symlink to
+    /bin/true.
+  * Amended ghc6-doc's "postinst triggered" to perform what g_c_i did.
+  * Added GhcDebugged=YES and some other flags to build.mk on ia64 and hppa.
+  * Moved provided-{dev,prof,doc} generation to its own script and catch
+    errors in it. (Closes: #514085, #514086)
+  * Further cleanups to debian/rules.
+
+ -- Kari Pahula <kaol@debian.org>  Mon, 16 Feb 2009 12:28:56 +0200
+
+ghc6 (6.10.1+dfsg1-6) experimental; urgency=low
+
+  * This time actually change the build on ia64 to be unregisterised.
+  * Dropped ghc6's dependency on haskell-utils.
+  * Removed calls to haskell-utils from prerm and postinst.
+  * Build haddock docs on i386 and amd64. (Closes: #514088)
+
+ -- Kari Pahula <kaol@debian.org>  Thu, 05 Feb 2009 14:14:01 +0200
+
+ghc6 (6.10.1+dfsg1-5) experimental; urgency=low
+
+  * Add libffi-dev as a dependency for ghc6. (Closes: #513289)
+  * Replaced libreadline5-dev with libedit-dev from ghc6's deps.
+  * Don't add any extra flags to GhcRTSWays build variable.
+  * Build a registerised build on kfreebsd-i386. (Closes: #513198)
+  * Build an unregisterised build on ia64.
+
+ -- Kari Pahula <kaol@debian.org>  Wed, 28 Jan 2009 09:23:11 +0200
+
+ghc6 (6.10.1+dfsg1-4) experimental; urgency=low
+
+  * Add pkg-config as a build dep.
+  * Explicitly build an unregisterised version of the compiler on other
+    arches but i386, amd64, powerpc, ia64. (Closes: #512827)
+  * Remove --relax altogether from ia64's ld flags.
+
+ -- Kari Pahula <kaol@debian.org>  Mon, 26 Jan 2009 15:10:54 +0200
+
+ghc6 (6.10.1+dfsg1-3) experimental; urgency=low
+
+  * Again, use the same build options for all arches and just use what
+    arch-specific exceptions upstream provided.
+
+ -- Kari Pahula <kaol@debian.org>  Fri, 23 Jan 2009 08:24:45 +0200
+
+ghc6 (6.10.1+dfsg1-2) experimental; urgency=low
+
+  * Patched the build system to use haddock from /usr/bin/, not build its
+    own.
+  * Disabled building haddock docs for this version.
+  * Re-enabled some of 6.8.2's build options for non-i386, non-amd64.
+  * Patch compiler/Makefile's ia64 build options;
+    s/--ld-option=-Wl,--relax/--ld-option=--relax/.
+
+ -- Kari Pahula <kaol@debian.org>  Wed, 21 Jan 2009 23:33:11 +0200
+
+ghc6 (6.10.1+dfsg1-1) experimental; urgency=low
+
+  * New upstream release (Closes: #495126)
+    * Change the calling conventions for unboxed tuples slightly.
+      (Closes: #365497)
+    * Better documentation for swapMVar. (Closes: #405717)
+    * Don't change code in error messages. (Closes: #499137)
+    * Improve error reporting for 'deriving' (Closes: #499216)
+    * Better error message when -XRankNTypes is missing. (Closes: #499217)
+    * ghc-pkg respects --global with 'field' option. (Closes: #510499)
+  * Repackaged to remove a copy of GNU MP library.
+  * Enable building the stage2 compiler on all architectures.
+  * Added information about libffi (which is included with GHC) to
+    debian/copyright.
+  * Manage changes to the source with quilt.
+  * Link against the system's libffi and add libffi-dev as a build
+    dependency.
+  * Build-dep on haddock >= 2.4.1-1.
+  * Build-dep on libedit-dev, removed build-dep on libreadline-dev.
+  * Patched gen_contents_index: fixed the case when not run inplace; trac
+    #2764
+  * Patched libraries/base/Data/Data.hs: use Prelude.(,,) for
+    tuple3DataType; trac #2750
+  * Added a trigger to ghc6-doc for /usr/share/doc/ghc6-doc/libraries to
+    run gen_contents_index. (Closes: #506568)
+
+ -- Kari Pahula <kaol@debian.org>  Mon, 19 Jan 2009 12:03:16 +0200
 
 ghc6 (6.8.2dfsg1-1) unstable; urgency=medium
 
