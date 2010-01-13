@@ -1,4 +1,7 @@
 #!/usr/bin/make -f
 
+# Need quickcheck < 2
+DEB_SETUP_GHC6_CONFIGURE_ARGS := --constraint 'QuickCheck<2'
+
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
