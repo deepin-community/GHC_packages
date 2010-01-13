@@ -24,19 +24,7 @@ ProjectVersion=$(shell awk -F\' "/^PACKAGE_VERSION='[0-9.]+'\$$/ { print \$$2 }"
 
 GHC=$(firstword $(shell bash -c "type -p ghc6 ghc"))
 EXTRA_CONFIGURE_FLAGS=--with-ghc="$(GHC)"
-
-# This thing violates the principle that builds should work the same
-# way or fail uniformly and not be otherwise affected by what packages
-# are installed.  Optimally, the rules file should have a
-# configure-indep target that would add HADDOCK_DOCS=YES to
-# mk/build.mk.  But as long as we can't use build-arch on buildds,
-# this is IMHO the best option.  I don't want to build GHC as root,
-# via binary-arch, nor make a build target that doesn't actually build
-# docs when B-D-I are present.  A plain Build-Depends on haddock is an
-# option, but as haddock Build-Depends on ghc6, I'd rather break the
-# loop.
-BUILD_HADDOCK_DOCS=$(shell test "$(ProjectVersion)" = "`haddock --ghc-version`" && echo YES || echo NO)
-$(warning BUILD_HADDOCK_DOCS set at build time to $(BUILD_HADDOCK_DOCS))
+BUILD_HADDOCK_DOCS=YES
 
 configure: configure-stamp
 configure-stamp:
@@ -46,7 +34,7 @@ configure-stamp:
 
 	rm -f mk/build.mk
 	echo "SRC_HC_OPTS += -lffi" >> mk/build.mk
-	echo "HADDOCK_DOCS := $(BUILD_HADDOCK_DOCS)" >> mk/build.mk
+	echo "HADDOCK_DOCS := YES" >> mk/build.mk
 	echo "XSLTPROC_OPTS += --nonet" >> mk/build.mk
 ifeq (,$(findstring $(DEB_HOST_ARCH), i386 amd64 kfreebsd-i386 kfreebsd-amd64 powerpc))
 	echo "GhcUnregisterised=YES" >> mk/build.mk
@@ -149,10 +137,10 @@ install-stamp: build-stamp
 
 	# Sort out the binaries
 	mkdir -p debian/tmp/usr/bin
-	cd debian/tmp/usr/lib/ghc-$(ProjectVersion) && \
-	    if ./ghc --info | grep '"Have interpreter","NO"'; \
-		then rm -f bin/ghci* bin/runghc* bin/runhaskell*; \
-	    fi
+	if inplace/bin/ghc-stage2 --info | grep '"Have interpreter","NO"'; then \
+	    cd debian/tmp/usr/lib/ghc-$(ProjectVersion) ;rm -f bin/ghci* bin/runghc* bin/runhaskell*; \
+	fi
+	rm -f debian/tmp/usr/lib/ghc-$(ProjectVersion)/bin/haddock debian/tmp/usr/lib/ghc-$(ProjectVersion)/haddock
 	cd debian/tmp/usr/lib/ghc-$(ProjectVersion)/bin && \
 	    for f in *-$(ProjectVersion); \
 	    do ln -s /usr/lib/ghc-$(ProjectVersion)/bin/$$f \
