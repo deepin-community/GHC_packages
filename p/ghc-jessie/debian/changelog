@@ -1,3 +1,17 @@
+ghc6 (6.12.1-3) experimental; urgency=low
+
+  * Updated ghc-pkg's man page.
+  * Added a trigger to run ghc-pkg recache when files are added to
+    /var/lib/ghc-6.12.1/package.conf.d/.
+  * Patch rts/posix/OSThreads.c to define _GNU_SOURCE on kfreebsd
+    too. (Closes: #565818)
+  * Patch utils/haddock/src/Haddock/Interface/AttachInstances.hs to use
+    Nothing as mb_info in attachInstances when GHCI is
+    unavailable. (Closes: #566331)
+  * Breaks cabal-install (<< 0.8.0).
+
+ -- Kari Pahula <kaol@debian.org>  Wed, 27 Jan 2010 23:37:32 +0200
+
 ghc6 (6.12.1-2) experimental; urgency=low
 
   * Added missing build dependency: libncurses5-dev.

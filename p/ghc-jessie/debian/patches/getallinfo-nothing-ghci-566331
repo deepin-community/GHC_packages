@@ -1,0 +1,39 @@
+Index: ghc6-6.12.1/utils/haddock/src/Haddock/Interface/AttachInstances.hs
+===================================================================
+--- ghc6-6.12.1.orig/utils/haddock/src/Haddock/Interface/AttachInstances.hs	2010-01-27 22:13:25.000000000 +0200
++++ ghc6-6.12.1/utils/haddock/src/Haddock/Interface/AttachInstances.hs	2010-01-27 22:19:17.000000000 +0200
+@@ -25,7 +25,9 @@
+ import InstEnv
+ import Class
+ import HscTypes (withSession, ioMsg)
++#ifdef GHCI
+ import TcRnDriver (tcRnGetInfo)
++#endif
+
+ #if __GLASGOW_HASKELL__ > 610 || (__GLASGOW_HASKELL__ == 610 && __GHC_PATCHLEVEL__ >= 2)
+ import TypeRep hiding (funTyConName)
+@@ -48,7 +50,11 @@
+       return $ iface { ifaceExportItems = newItems }
+
+     attachExport export@ExportDecl{expItemDecl = L _ (TyClD d)} = do
++#ifdef GHCI
+        mb_info <- getAllInfo (unLoc (tcdLName d))
++#else
++       let mb_info = Nothing
++#endif
+        return $ export { expItemInstances = case mb_info of
+          Just (_, _, instances) ->
+            map synifyInstHead . sortImage instHead . map instanceHead $ instances
+@@ -58,10 +64,12 @@
+     attachExport export = return export
+
+
++#ifdef GHCI
+ -- | Like GHC's getInfo but doesn't cut things out depending on the
+ -- interative context, which we don't set sufficiently anyway.
+ getAllInfo :: GhcMonad m => Name -> m (Maybe (TyThing,Fixity,[Instance]))
+ getAllInfo name = withSession $ \hsc_env -> ioMsg $ tcRnGetInfo hsc_env name
++#endif
+
+ --------------------------------------------------------------------------------
+ -- Collecting and sorting instances
