@@ -1,4 +1,4 @@
-.TH ghc-pkg 1 "2009-05-11"
+.TH ghc-pkg 1 "2010-01-27"
 .SH NAME
 ghc-pkg \- GHC Haskell Cabal package manager
 .SH SYNOPSIS
@@ -61,6 +61,13 @@ be listed in ascending order.  Accepts the
 .B --simple-output
 flag.
 .TP
+.B dot
+Generate a graph of the package dependencies in a form suitable for
+input for the graphviz tools.  For example, to generate a PDF of the
+dependency graph:
+.br
+\fB    dot \| tred \| dot -Tpdf >pkgs.pdf\fP
+.TP
 \fBfind-module\fP \fImodule\fP
 List registered packages exposing module
 .I module
@@ -94,6 +101,16 @@ Dump the registered description for every package. This is like
 .BR ghc-pkg\ describe\ '*' ,
 expect that it is intended to be used by tools that parse the results,
 rather than humans.
+.TP
+.B recache
+Regenerate the package database cache.  This command should only be
+necessary if you added a package to the database by dropping a file
+into the database directory manyally.  By default, the global DB is
+recached; to recache a different DB use
+.B --user
+or
+.B --package-conf
+as appropriate.
 .SH OPTIONS
 When asked to modify a database
 .RB ( register ,\  unregister ,\  update ,\  hide ,\  expose ,\ and\ also\  check ),
