@@ -1,0 +1,49 @@
+Source: haskell-mtl
+Section: haskell
+Priority: optional
+Maintainer: Kari Pahula <kaol@debian.org>
+Standards-Version: 3.8.1
+Build-Depends: debhelper (>= 5), haddock (>= 2.4.2), hscolour, haskell-devscripts, ghc6, ghc6-doc, ghc6-prof, cdbs
+
+Package: libghc6-mtl-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Suggests: libghc6-mtl-prof, libghc6-mtl-doc
+Description: Haskell monad transformer library for GHC
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ MTL is a monad transformer library, inspired by the paper "Functional
+ Programming with Overloading and Higher-Order Polymorphism",
+ by Mark P Jones (<http://www.cse.ogi.edu/~mpj/>), Advanced School
+ of Functional Programming, 1995.
+
+Package: libghc6-mtl-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}, libghc6-mtl-dev (= ${binary:Version})
+Suggests: libghc6-mtl-doc
+Description: Haskell monad transformer library for GHC; profiling libraries
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ MTL is a monad transformer library, inspired by the paper "Functional
+ Programming with Overloading and Higher-Order Polymorphism",
+ by Mark P Jones (<http://www.cse.ogi.edu/~mpj/>), Advanced School
+ of Functional Programming, 1995.
+
+Package: libghc6-mtl-doc
+Section: doc
+Architecture: all
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ghc6-doc
+Suggests: libghc6-mtl-dev
+Description: Haskell monad transformer library for GHC; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ MTL is a monad transformer library, inspired by the paper "Functional
+ Programming with Overloading and Higher-Order Polymorphism",
+ by Mark P Jones (<http://www.cse.ogi.edu/~mpj/>), Advanced School
+ of Functional Programming, 1995.
