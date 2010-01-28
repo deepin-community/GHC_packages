@@ -37,3 +37,19 @@ Index: ghc6-6.12.1/utils/haddock/src/Haddock/Interface/AttachInstances.hs
 
  --------------------------------------------------------------------------------
  -- Collecting and sorting instances
+Index: ghc6-6.12.1/utils/haddock/src/Haddock/Interface/Create.hs
+===================================================================
+--- ghc6-6.12.1.orig/utils/haddock/src/Haddock/Interface/Create.hs	2010-01-28 10:28:29.000000000 +0200
++++ ghc6-6.12.1/utils/haddock/src/Haddock/Interface/Create.hs	2010-01-28 10:29:26.000000000 +0200
+@@ -495,7 +495,11 @@
+         Nothing -> do
+           -- If we can't find the declaration, it must belong to
+           -- another package
++#ifdef GHCI
+           mbTyThing <- liftGhcToErrMsgGhc $ lookupName t
++#else
++          mbTyThing <- liftGhcToErrMsgGhc $ lookupGlobalName t
++#endif
+           -- show the name as exported as well as the name's
+           -- defining module (because the latter is where we
+           -- looked for the .hi/.haddock).  It's to help people
