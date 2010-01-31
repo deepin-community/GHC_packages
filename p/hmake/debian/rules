@@ -1,4 +1,37 @@
 #!/usr/bin/make -f
 
-# Standard way of building Haskell binary.
-include /usr/share/cdbs/1/rules/debhelper.mk
+%:
+	dh $@
+
+override_dh_auto_configure:
+	./configure --prefix=/usr \
+	            --mandir=/usr/share/man/man1 \
+	            --confdir=/var/lib/hmake
+
+override_dh_auto_build:
+	$(MAKE) all
+	$(MAKE) -f debian/in-rules debian/hi.1
+
+override_dh_auto_install:
+	$(MAKE) DESTDIR=$(CURDIR)/debian/hmake install
+	rm -f debian/hmake/usr/bin/harch
+	for i in debian/hmake/usr/bin/*; \
+	    do  mv "$$i" "$$i.old"; \
+	        sed "s/^MACHINE=.*/MACHINE=debian/" < "$$i.old" > "$$i"; \
+	        chmod --reference="$$i.old" "$$i"; \
+	        rm "$$i.old"; \
+	    done
+
+	mkdir -p $(CURDIR)/debian/hmake/usr/share/doc/hmake/html
+	cp docs/hmake/*.* $(CURDIR)/debian/hmake/usr/share/doc/hmake/html
+
+override_dh_clean:
+	-$(MAKE) realclean
+	rm -rf lib targets
+	rm -f debian/hi.1
+	# Hacks:
+	rm -f src/cpphs/Language/Preprocessor/Cpphs/*.hi
+	rm -f src/cpphs/Text/ParserCombinators/*.hi
+	rm -f ghcsym.o ghcsym.hi
+
+	dh_clean
