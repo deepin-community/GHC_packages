@@ -1,0 +1,100 @@
+Description: Upstream changes introduced in version 3.13-0.1
+ This patch has been created by dpkg-source during the package build.
+ Here's the last changelog entry, hopefully it gives details on why
+ those changes were made:
+ .
+ hmake (3.13-0.1) unstable; urgency=high
+ .
+   * Non-maintainer upload.
+   * Set urgency to high as this upload fixes an RC bug.
+   * New upstream release:
+     * Dropped patch to script/fixghc (applied upstream).
+     * Dropped patch to src/interpreter/Makefile (applied upstream).
+     * src/interpreter/SimpleLineEditor.hs (applied upstream).
+   * scripts/confhc:
+     * Filter out LINE pragma when determining the version number of
+       GHC. (Closes: #427311)
+   * src/hmake/{Config.hs,PackageConfig.hs}:
+     * Update the program to search for the imports in another directory
+       if the GHC version >= 6.8 as of that version they are shipped in
+       $ghclibdir/lib/$package instead of $ghclibdir/imports
+       (Closes: #459737)
+ .
+ The person named in the Author field signed this changelog entry.
+Author: Arjan Oosting <arjan@debian.org>
+Bug-Debian: http://bugs.debian.org/427311
+Bug-Debian: http://bugs.debian.org/459737
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: http://bugs.debian.org/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: <YYYY-MM-DD>
+
+--- hmake-3.13.orig/configure
++++ hmake-3.13/configure
+@@ -389,9 +389,10 @@ then
+     sed -e "s|ScriptDir|$BUILDBINDIR|"   >$BUILDBINDIR/hi
+     chmod +x $BUILDBINDIR/hmake $BUILDBINDIR/hmake-config $BUILDBINDIR/hi
+
+-    echo "Updating targets/$MACHINE/hmake3.config..."
+-    echo "$BUILDBINDIR/hmake-config $BUILDLIBDIR/$MACHINE/hmakerc \
+-		default $BUILDWITH"	>>targets/$MACHINE/hmake3.config
++# For Debian we do this at install time
++#    echo "Updating targets/$MACHINE/hmake3.config..."
++#    echo "$BUILDBINDIR/hmake-config $BUILDLIBDIR/$MACHINE/hmakerc \
++#		default $BUILDWITH"	>>targets/$MACHINE/hmake3.config
+   fi
+
+ else	# [ "$INSTALL" = "yes" ]
+--- hmake-3.13.orig/script/harch
++++ hmake-3.13/script/harch
+@@ -4,6 +4,9 @@
+ #		May 1999: ensure that small differences (e.g. kernel version)
+ #			  don't matter.
+
++echo debian
++exit 0
++
+ PROCESSOR=
+ OS=
+ REL=
+--- hmake-3.13.orig/script/confhc
++++ hmake-3.13/script/confhc
+@@ -78,7 +78,7 @@ fi
+ ghcsym () {
+   echo __GLASGOW_HASKELL__ >ghcsym.hs;
+   $1 -E -cpp -optP-P ghcsym.hs -o ghcsym.out;
+-  grep -v '^#' ghcsym.out | grep -v '^$' > $2;
++  grep -v '^#' ghcsym.out | grep -v '^$' | grep -v '^{-#' > $2;
+   rm -f ghcsym.hs ghcsym.out;
+ }
+ echo -n "  Looking for ghc...   "
+--- hmake-3.13.orig/src/hmake/Config.hs
++++ hmake-3.13/src/hmake/Config.hs
+@@ -267,7 +267,7 @@ configure' Ghc ghcpath = do
+     else do -- 5.00 and above
+       pkgcfg <- runAndReadStdout (escape ghcpath++" --print-libdir")
+       let libdir  = escape pkgcfg
+-          incdir1 = libdir++"/imports"
++          incdir1 = if ghcsym < 608 then libdir++"/imports" else libdir++"/lib"
+       ok <- doesDirectoryExist incdir1
+       if ok
+         then do
+--- hmake-3.13.orig/src/hmake/PackageConfig.hs
++++ hmake-3.13/src/hmake/PackageConfig.hs
+@@ -51,7 +51,7 @@ packageDirs config@(CompilerConfig{ comp
+     else unsafePerformIO $ do
+       pkgcfg <- runAndReadStdout (ghc++" --print-libdir")
+       let libdir  = escape pkgcfg
+-          incdir1 = libdir++"/imports"
++          incdir1 = if ghcsym < 608 then libdir++"/imports" else libdir++"/lib"
+       ok <- doesDirectoryExist incdir1
+       if ok
+         then do

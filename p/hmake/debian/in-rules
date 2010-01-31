@@ -1,0 +1,7 @@
+
+include Makefile.inc
+
+%: %.in
+	sed -e 's%@DOCDIR@%/usr/share/doc/hmake%g' \
+	    -e 's%@VERSION@%$(HMAKEVERSION)%g' \
+	  $< > $@

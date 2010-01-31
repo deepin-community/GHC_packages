@@ -1,0 +1,201 @@
+hmake (3.13-0.1) unstable; urgency=high
+
+  * Non-maintainer upload.
+  * Set urgency to high as this upload fixes an RC bug.
+  * New upstream release:
+    * Dropped patch to script/fixghc (applied upstream).
+    * Dropped patch to src/interpreter/Makefile (applied upstream).
+    * src/interpreter/SimpleLineEditor.hs (applied upstream).
+  * scripts/confhc:
+    * Filter out LINE pragma when determining the version number of
+      GHC. (Closes: #427311)
+  * src/hmake/{Config.hs,PackageConfig.hs}:
+    * Update the program to search for the imports in another directory
+      if the GHC version >= 6.8 as of that version they are shipped in
+      $ghclibdir/lib/$package instead of $ghclibdir/imports
+      (Closes: #459737)
+
+ -- Arjan Oosting <arjan@debian.org>  Sat, 16 Feb 2008 23:02:48 +0100
+
+hmake (3.12-1) unstable; urgency=low
+
+  * New upstream version:
+    * Builds with GHC 6.6. Closes: #393582.
+    * Dropped patch to src/interpreter/HInteractive.hs (unnecessary
+      now cpp is not used on that file).
+    * Dropped patch to script/confhc (upstream applied an alternate fix).
+    * Dropped patch to src/hmake/PackageConfig.hs (upstream applied an
+      alternate fix).
+    * Dropped patch to src/interpreter/Makefile (applied upstream).
+    * Dropped patch to man/hmake.1 (applied upstream).
+    * Dropped patch to Makefile (applied upstream).
+  * make realclean rather than merely clean.
+  * Added hacks to clean .hi files that get left behind.
+  * Drop README that just pointed at the upstream website.
+  * Updated debian/control so the new GHC arches get included.
+  * Apply:
+      Malcolm.Wallace@cs.york.ac.uk**20061030104744
+      module Readline is now called System.Console.Readline,
+      and it lives in -package readline instead of -package util (or wherever
+      it used to be).
+    (affects script/fixghc, src/interpreter/Makefile and
+     src/interpreter/SimpleLineEditor.hs).
+
+ -- Ian Lynagh (wibble) <igloo@debian.org>  Sat, 28 Oct 2006 21:22:32 +0000
+
+hmake (3.10-1.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Applied patches from Stefan Potyra to fix bug reported by Daniel
+    Schepler to adapt to output changes in new ghc6 version that make
+    "__GLASGOW_HASKELL__" be expanded into many lines instead of one.
+    scripts/confhc uses the output to create lib/debian/config, and
+    makes assumptions about the format. Similarly for
+    src/interpreter/HInteractive.hs. Closes: #335842.
+
+ -- Lars Wirzenius <liw@iki.fi>  Fri,  6 Jan 2006 19:30:00 +0200
+
+hmake (3.10-1) unstable; urgency=low
+
+  * New upstream version. Closes: #309837.
+  * Remove $nhc98_app_bdeps option from build-deps as nhc98 is being
+    removed from Debian.
+  * Escape ${shlibs:Depends} in debian/control.in for
+    update-haskell-control.
+  * Bump standards version to 3.6.2.
+  * Run update-haskell-control.
+  * Set DEBIAN env var when configuring so the dynamic compilers are
+    added to the config rather than the installed static ones.
+  * Built against new libgmp3-dev. Closes: #329912.
+  * Use \[:o] in the hmake manpage rather than the actual character from
+    some charset.
+
+ -- Ian Lynagh (wibble) <igloo@debian.org>  Wed, 05 Oct 2005 21:57:56 +0000
+
+hmake (3.09-3) unstable; urgency=low
+
+  * Have in-tree harch just "echo debian".
+  * Set MACHINE to debian rather than calling harch in /usr/bin/*.
+    Closes: #300620.
+  * Remove /usr/bin/harch (and it's manpage) as it is no longer needed.
+  * Update build-deps to reflect nhc98 not being available for m68k or sparc.
+
+ -- Ian Lynagh (wibble) <igloo@debian.org>  Sat, 26 Mar 2005 11:06:59 +0000
+
+hmake (3.09-2) unstable; urgency=low
+
+  * Look in the base package when compiling with nhc98 1.16.
+
+ -- Ian Lynagh (wibble) <igloo@debian.org>  Fri, 28 Jan 2005 20:47:32 +0000
+
+hmake (3.09-1) unstable; urgency=low
+
+  * Updated debian/copyright.
+  * Use `dpkg-architecture -qDEB_HOST_ARCH`-`uname` to create harch.
+    Fixes problems where the existing implementation doesn't know some
+    names need to be unified.
+  * Use update-haskell-control to generate debian/control from a control.in.
+    Use vars for the compiler info. Closes: #253218.
+  * Call update-haskell-control --check in debian/rules.
+  * Policy version bumped to 3.6.1 (no other changes necessary).
+  * Removed debian/hmake.undocumented as we don't even call dh_undocumented
+    any more.
+  * Remove debian/hi.1 when making clean.
+  * Fix type (srcipt -> script) in debian/in-rules.
+  * Made watch file
+
+ -- Ian Lynagh (wibble) <igloo@debian.org>  Thu, 18 Nov 2004 17:04:56 +0000
+
+hmake (3.08-7) unstable; urgency=low
+
+  * Add m68k to the list of arches that can use ghc6 as a build-dep.
+  * Require ghc6 >= 6.2.1-1 to avoid the static linking in earlier
+    versions on some arches.
+
+ -- Ian Lynagh (wibble) <igloo@debian.org>  Sun, 25 Apr 2004 21:07:31 +0000
+
+hmake (3.08-6) unstable; urgency=low
+
+  * Use runAndReadStdout to find out what a compiler is rather than
+    playing games with return statuses. Works around an nhc98 bug
+    in reporting process exit statuses.
+
+ -- Ian Lynagh (wibble) <igloo@debian.org>  Tue, 10 Feb 2004 23:55:44 +0000
+
+hmake (3.08-5) unstable; urgency=low
+
+  * Don't call dh_undocumented
+  * Install hmakerc into /var/lib/... rather than /usr/lib/... for FHS
+    reasons. Closes: 222987.
+  * Don't generate an md5sum for hmakerc as it will never match.
+
+ -- Ian Lynagh (wibble) <igloo@debian.org>  Thu, 16 Oct 2003 17:32:19 +0000
+
+hmake (3.08-4) unstable; urgency=low
+
+  * Add an nhc98 build-dep alternative to ghc for those arches that have it.
+  * Tweak hi so it copes with dynamic compilers.
+  * Use dh_installman instead of dh_installmanpages
+  * Write hi manpage.
+
+ -- Ian Lynagh (wibble) <igloo@debian.org>  Thu, 16 Oct 2003 17:32:19 +0000
+
+hmake (3.08-3) unstable; urgency=low
+
+  * Remove erroneous commas in arch list in build-dep.
+  * Change maintainer field to me.
+
+ -- Ian Lynagh (wibble) <igloo@debian.org>  Wed, 15 Oct 2003 12:02:29 +0000
+
+hmake (3.08-2) unstable; urgency=low
+
+  * Get arch list and version options the right way round in build-dep.
+
+ -- Ian Lynagh (wibble) <igloo@debian.org>  Wed, 15 Oct 2003 01:00:44 +0000
+
+hmake (3.08-1) unstable; urgency=low
+
+  * New upstream release.
+  * Tidy up debian/rules
+  * Patch so it can guess compiler types based on their output, not just
+    their name.
+  * Patch so it is possible to have the compiler type determined at use
+    time rather than configure time.
+  * Pass configure --buildwith=/usr/bin/haskell-compiler
+  * Build-dep on (suitably recent) ghc6 on arches where it is available.
+  * Depend on a ghc6, ghc5 or nhc98 recent enough to provide
+    /usr/bin/haskell-compiler and suggest all 3.
+  * Remove the hat and nhc98-doc suggestions.
+  * Put 4 in debian/compat, build-depend on debhelper accordingly and update
+    things to install into debian/hmake rather than debian/tmp.
+  * Register with and depend on haskell-utils
+  * Remove self-conflict.
+  * Don't copy the CVS directory into /usr/share/doc/hmake/html
+
+ -- Ian Lynagh (wibble) <igloo@debian.org>  Wed, 24 Sep 2003 16:20:44 +0000
+
+hmake (3.07-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Brent A. Fulgham <bfulgham@debian.org>  Wed,  2 Apr 2003 17:45:24 -0800
+
+hmake (3.06-3) unstable; urgency=low
+
+  * Correct lintian errors.
+
+ -- Brent A. Fulgham <bfulgham@debian.org>  Tue, 25 Feb 2003 22:39:34 -0800
+
+hmake (3.06-2) unstable; urgency=low
+
+  * Reverse build-depend order for nhc98 and ghc5 to avoid nhc98 cyclical
+    bootstrap deadlock on build machines.  (Closes: #173116)
+
+ -- Brent A. Fulgham <bfulgham@debian.org>  Sat, 14 Dec 2002 23:32:46 -0800
+
+hmake (3.06-1) unstable; urgency=low
+
+  * Initial package.  (Closes:Bug#156696)
+  * Include versioned dependency on nhc98 and ghc5.  (Closes:Bug#154838)
+
+ -- Brent A. Fulgham <bfulgham@debian.org>  Sun, 27 Oct 2002 09:58:40 -0800

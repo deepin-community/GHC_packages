@@ -1,0 +1,101 @@
+#!/usr/bin/make -f
+# Sample debian/rules that uses debhelper. GNU copyright 1997 by Joey Hess.
+# Adapted for hmake.
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+PACKAGE=hmake
+
+build: config build-stamp
+build-stamp:
+	dh_testdir
+
+	update-haskell-control --check
+
+	$(MAKE) all
+	$(MAKE) -f debian/in-rules debian/hi.1
+
+	touch build-stamp
+
+
+config: config-stamp
+config-stamp:
+	dpkg-architecture -qDEB_HOST_ARCH
+	DEBIAN=yes ./configure --prefix=/usr --mandir=/usr/share/man/man1 \
+				--confdir=/var/lib/hmake \
+	            --buildwith=/usr/bin/haskell-compiler
+
+	touch config-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp install-stamp config-stamp
+
+	# Add here commands to clean up after the build process.
+	-$(MAKE) realclean
+	-rm -rf lib
+	-rm -rf targets
+	-rm -f debian/hi.1
+	# Hacks:
+	rm -f src/cpphs/Language/Preprocessor/Cpphs/*.hi
+	rm -f src/cpphs/Text/ParserCombinators/*.hi
+
+	dh_clean
+
+install: install-stamp
+install-stamp: build-stamp
+	dh_testdir
+	#dh_testroot
+	dh_clean -k
+	dh_installdirs
+	dh_installdocs README
+
+	# Add here commands to install the package into debian/tmp.
+	$(MAKE) DESTDIR=`pwd`/debian/`dh_listpackages` install
+	rm -f debian/hmake/usr/bin/harch
+	for i in debian/hmake/usr/bin/*; \
+	    do  mv "$$i" "$$i.old"; \
+	        sed "s/^MACHINE=.*/MACHINE=debian/" < "$$i.old" > "$$i"; \
+	        chmod --reference="$$i.old" "$$i"; \
+	        rm "$$i.old"; \
+	    done
+
+	mkdir `pwd`/debian/`dh_listpackages`/usr/share/doc/hmake/html
+	cp docs/hmake/*.* `pwd`/debian/`dh_listpackages`/usr/share/doc/hmake/html
+
+	touch install-stamp
+
+# Build architecture-independent files here.
+binary-indep: build install
+# Documentation!
+
+# Build architecture-dependent files here.
+binary-arch: build install
+#	dh_testversion
+	dh_testdir
+	dh_testroot
+	dh_installdocs
+	dh_installexamples
+	dh_installmenu
+#	dh_installemacsen
+#	dh_installinit
+#	dh_installcron
+	dh_installman man/hmake.1 debian/hi.1
+	dh_installchangelogs
+	dh_strip
+	dh_compress
+	dh_fixperms
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_makeshlibs
+	dh_md5sums -X/var/lib/hmake/debian/hmakerc
+	dh_builddeb
+
+source diff:
+	@echo >&2 'source and diff are obsolete - use dpkg-source -b'; false
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install
