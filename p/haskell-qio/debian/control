@@ -1,0 +1,65 @@
+Source: haskell-qio
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Iain Lane <laney@ubuntu.com>
+Build-Depends: debhelper (>= 7),
+               cdbs (>= 0.4.59),
+               haskell-devscripts (>= 0.6.18),
+               ghc6 (>= 6.10.4),
+               ghc6-prof,
+               libghc6-mtl-dev,
+               libghc6-mtl-prof,
+               ghc6-doc,
+               haddock (>= 2.4.2),
+               hscolour (>= 1.8),
+               libghc6-mtl-doc
+Standards-Version: 3.8.4
+Homepage: http://www.cs.nott.ac.uk/~asg/QIO/
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-qio
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-qio
+
+Package: libghc6-qio-dev
+Architecture: any
+Depends: ${haskell:Depends},
+         ${shlibs:Depends},
+         ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: a language for defining quantum computations
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ The Quantum IO Monad is a library for defining quantum computations in Haskell
+ .
+ This package contains the development files.
+
+Package: libghc6-qio-prof
+Architecture: any
+Depends: ${haskell:Depends},
+         ${shlibs:Depends},
+         ${misc:Depends}
+Provides: ${haskell:Provides}
+Description: a language for defining quantum computations; profiling libraries
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ The Quantum IO Monad is a library for defining quantum computations in Haskell
+ .
+ This package contains the profiling libraries.
+
+Package: libghc6-qio-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: a language for defining quantum computations; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ The Quantum IO Monad is a library for defining quantum computations in Haskell
+ .
+ This package contains the hyperlinked html documentation.
