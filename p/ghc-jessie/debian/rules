@@ -36,17 +36,22 @@ configure-stamp:
 	echo "SRC_HC_OPTS += -lffi" >> mk/build.mk
 	echo "HADDOCK_DOCS := YES" >> mk/build.mk
 	echo "XSLTPROC_OPTS += --nonet" >> mk/build.mk
-ifeq (,$(findstring $(DEB_HOST_ARCH), i386 amd64 kfreebsd-i386 kfreebsd-amd64 powerpc))
-	echo "GhcUnregisterised=YES" >> mk/build.mk
-else
+ifneq (,$(findstring $(DEB_HOST_ARCH), i386 amd64 kfreebsd-i386 kfreebsd-amd64 powerpc))
 	echo "GhcUnregisterised=NO" >> mk/build.mk
+else
+	echo "GhcUnregisterised=YES" >> mk/build.mk
 endif
-ifeq (powerpc,$(DEB_HOST_ARCH))		# See #365497
+ifeq (powerpc,$(DEB_HOST_ARCH)) # See #365497
 	echo "GhcWithInterpreter=NO" >> mk/build.mk
+endif
+ifneq (,$(findstring $(DEB_HOST_ARCH), kfreebsd-i386 kfreebsd-amd64))
+	echo "GhcWithInterpreter=YES"
+endif
+ifneq (,$(findstring $(DEB_HOST_ARCH), arm armel alpha))
+	echo "UseLibFFIForAdjustors=YES" >> mk/build.mk
 endif
 ifneq (,$(findstring $(DEB_HOST_ARCH), arm armel))
 	echo "SRC_HC_OPTS     += -optc-mlong-calls" >> mk/build.mk
-	echo "UseLibFFIForAdjustors=YES" >> mk/build.mk
 endif
 ifneq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
 	echo "SRC_HC_OPTS   += -H32m -O0" >> mk/build.mk
@@ -65,6 +70,7 @@ endif
 	# We can't do this with a configure flag in 6.8.1 as libdir is not
 	# defined at the point at which we := it
 	echo 'bindir  := $${ghclibdir}/bin' >> mk/build.mk
+	echo 'ghclibexecdir := $${ghclibdir}/lib' >> mk/build.mk
 	# docdir doesn't have a configure flag, and unfortunately
 	# we also need to explicitly define all of its dependents as they
 	# are set with :=
@@ -98,6 +104,12 @@ build-stamp: configure-stamp
 	inplace/bin/ghc-stage2 debian/testghc/foo.hs -o debian/testghc/foo -O2
 	[ "$$(debian/testghc/foo)" = "Foo" ]
 	rm debian/testghc/*
+
+# build haddock separately and hard code paths according to install paths
+	cp -r utils/haddock debian
+	cd debian/haddock; cat ../patches.haddock/series | xargs -IX cat ../patches.haddock/X | patch -p1
+	sed -i s/@PROJECTVERSION@/$(ProjectVersion)/ debian/haddock/src/Main.hs
+	cd debian/haddock; ../../inplace/bin/ghc-stage2 --make Setup.lhs; ./Setup configure --prefix=/usr --with-compiler=../../inplace/bin/ghc-stage2 --package-db=../../inplace/lib/package.conf.d/; ./Setup build
 
 	touch $@
 
@@ -140,7 +152,7 @@ install-stamp: build-stamp
 	if inplace/bin/ghc-stage2 --info | grep '"Have interpreter","NO"'; then \
 	    cd debian/tmp/usr/lib/ghc-$(ProjectVersion) ;rm -f bin/ghci* bin/runghc* bin/runhaskell*; \
 	fi
-	rm -f debian/tmp/usr/lib/ghc-$(ProjectVersion)/bin/haddock debian/tmp/usr/lib/ghc-$(ProjectVersion)/haddock
+	rm -f debian/tmp/usr/lib/ghc-$(ProjectVersion)/bin/haddock
 	cd debian/tmp/usr/lib/ghc-$(ProjectVersion)/bin && \
 	    for f in *-$(ProjectVersion); \
 	    do ln -s /usr/lib/ghc-$(ProjectVersion)/bin/$$f \
@@ -154,6 +166,7 @@ install-stamp: build-stamp
 	rm -f debian/tmp/usr/bin/*-$(ProjectVersion)6
 	rm -f debian/tmp/usr/bin/runhaskell6
 	sed -i 's,topdir="/usr/lib,topdir="/var/lib,' debian/tmp/usr/lib/ghc-$(ProjectVersion)/bin/ghc-pkg-$(ProjectVersion)
+	cd debian/haddock; ./Setup copy --dest=../tmp
 
 	ProjectVersion=$(ProjectVersion) $(MAKE) -f debian/scripts.mk all
 
@@ -177,6 +190,7 @@ endif
 	mv debian/tmp/usr/share/man/man1/ghc.1 debian/ghc6.1
 	cp utils/hp2ps/hp2ps.1 debian/hp2ps-ghc6.1
 	cp debian/ghc-pkg6.man debian/ghc-pkg6.1
+	cp debian/haddock.man debian/tmp/usr/share/man/man1/haddock.1
 
 	echo debian/*.1 > debian/ghc6.manpages
 
@@ -195,8 +209,9 @@ endif
 	echo debian/tmp/usr/share/lintian/overrides/ghc6-prof >> debian/ghc6-prof.install
 	# ghc6-doc
 ifeq (YES,$(BUILD_HADDOCK_DOCS))
-	find debian/tmp/usr/share/doc    $(FILES)  > debian/ghc6-doc.install
-	find debian/tmp/usr/lib/ghc6-doc $(FILES) >> debian/ghc6-doc.install
+	find debian/tmp/usr/share/doc/ghc6-doc $(FILES) > debian/ghc6-doc.install
+	find debian/tmp/usr/share/haddock* $(FILES)    >> debian/ghc6-doc.install
+	find debian/tmp/usr/lib/ghc6-doc $(FILES)      >> debian/ghc6-doc.install
 endif
 	sed -i s,^debian/tmp,, debian/*.install
 	rm -f debian/ghc6.links
@@ -219,6 +234,7 @@ clean:
 	$(MAKE) -f debian/scripts.mk clean
 	rm -rf debian/testghc
 	rm -f ch01.html ch02.html index.html
+	rm -rf debian/haddock
 
 	# Hacks:
 	rm -f config.log
