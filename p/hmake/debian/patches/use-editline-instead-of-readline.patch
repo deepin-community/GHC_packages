@@ -1,0 +1,47 @@
+Description: Upstream changes introduced in version 3.14-2
+ This patch has been created by dpkg-source during the package build.
+ Here's the last changelog entry, hopefully it gives details on why
+ those changes were made:
+ .
+ hmake (3.14-2) UNRELEASED; urgency=low
+ .
+   * Added libghc6-editline-dev dependency
+   * Bump standards version
+ .
+ The person named in the Author field signed this changelog entry.
+Author: Joachim Breitner <nomeata@debian.org>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: http://bugs.debian.org/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: <YYYY-MM-DD>
+
+--- hmake-3.14.orig/src/interpreter/Makefile
++++ hmake-3.14/src/interpreter/Makefile
+@@ -11,7 +11,7 @@ CHFILES = $(patsubst %.hs, ../hmake/%.$C
+
+ ifeq "${BUILDCOMP}" "ghc"
+ HFLAGS = $(shell $(LOCAL)fixghc $(GHCSYM) \
+-      -package lang -package util -package base -package readline $(READLINE) )
++      -package lang -package util -package base -package editline $(READLINE) )
+ export HFLAGS
+ endif
+ ifeq "${BUILDCOMP}" "hbc"
+--- hmake-3.14.orig/src/interpreter/SimpleLineEditor.hs
++++ hmake-3.14/src/interpreter/SimpleLineEditor.hs
+@@ -26,7 +26,7 @@ import IO
+ import Monad (when)
+ import Char (isSpace)
+ #if USE_READLINE
+-import System.Console.Readline
++import System.Console.Editline.Readline
+ #else
+ #if defined(__HBC__)
+ import IOExts (IORef, newIORef, readIORef, writeIORef, unsafePerformIO)
