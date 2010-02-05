@@ -15,3 +15,64 @@ Index: ghc6-6.12.1/rts/posix/OSThreads.c
  #endif
 
  #include "PosixSource.h"
+Index: ghc6-6.12.1/driver/mangler/ghc-asm.lprl
+===================================================================
+--- ghc6-6.12.1.orig/driver/mangler/ghc-asm.lprl	2010-02-05 11:53:12.000000000 +0200
++++ ghc6-6.12.1/driver/mangler/ghc-asm.lprl	2010-02-05 11:53:48.000000000 +0200
+@@ -216,7 +216,7 @@
+     $T_HDR_vector   = "\.text\n\t\.align 8\n";
+
+     #--------------------------------------------------------#
+-    } elsif ( $TargetPlatform =~ /^x86_64-.*-(linux|openbsd|freebsd|dragonfly|netbsd)$/m ) {
++    } elsif ( $TargetPlatform =~ /^x86_64-.*-(linux|openbsd|freebsd|dragonfly|netbsd|kfreebsd)$/m ) {
+
+     $T_STABBY       = 0; # 1 iff .stab things (usually if a.out format)
+     $T_US           = ''; # _ if symbols have an underscore on the front
+Index: ghc6-6.12.1/rts/Linker.c
+===================================================================
+--- ghc6-6.12.1.orig/rts/Linker.c	2010-02-05 11:54:20.000000000 +0200
++++ ghc6-6.12.1/rts/Linker.c	2010-02-05 11:56:52.000000000 +0200
+@@ -13,8 +13,8 @@
+ /* Linux needs _GNU_SOURCE to get RTLD_DEFAULT from <dlfcn.h> and
+    MREMAP_MAYMOVE from <sys/mman.h>.
+  */
+-#ifdef __linux__
+-#define _GNU_SOURCE
++#ifdef defined(__linux__)  || defined(__GLIBC__)
++#define _GNU_SOURCE 1
+ #endif
+
+ #include "Rts.h"
+@@ -63,12 +63,12 @@
+ #include <sys/wait.h>
+ #endif
+
+-#if defined(ia64_HOST_ARCH) || defined(linux_HOST_OS) || defined(freebsd_HOST_OS) || defined(dragonfly_HOST_OS) || defined(netbsd_HOST_OS) || defined(openbsd_HOST_OS)
++#if defined(ia64_HOST_ARCH) || defined(linux_HOST_OS) || defined(freebsd_HOST_OS) || defined(kfreebsdgnu_HOST_OS) || defined(dragonfly_HOST_OS) || defined(netbsd_HOST_OS) || defined(openbsd_HOST_OS)
+ #define USE_MMAP
+ #include <fcntl.h>
+ #include <sys/mman.h>
+
+-#if defined(linux_HOST_OS) || defined(freebsd_HOST_OS) || defined(dragonfly_HOST_OS) || defined(netbsd_HOST_OS) || defined(openbsd_HOST_OS)
++#if defined(linux_HOST_OS) || defined(freebsd_HOST_OS) || defined(kfreebsdgnu_HOST_OS) || defined(dragonfly_HOST_OS) || defined(netbsd_HOST_OS) || defined(openbsd_HOST_OS)
+ #ifdef HAVE_UNISTD_H
+ #include <unistd.h>
+ #endif
+@@ -76,7 +76,7 @@
+
+ #endif
+
+-#if defined(linux_HOST_OS) || defined(solaris2_HOST_OS) || defined(freebsd_HOST_OS) || defined(dragonfly_HOST_OS) || defined(netbsd_HOST_OS) || defined(openbsd_HOST_OS)
++#if defined(linux_HOST_OS) || defined(solaris2_HOST_OS) || defined(freebsd_HOST_OS) || defined(kfreebsdgnu_HOST_OS) || defined(dragonfly_HOST_OS) || defined(netbsd_HOST_OS) || defined(openbsd_HOST_OS)
+ #  define OBJFORMAT_ELF
+ #elif defined(cygwin32_HOST_OS) || defined (mingw32_HOST_OS)
+ #  define OBJFORMAT_PEi386
+@@ -1410,7 +1410,7 @@
+        } else {
+            if ((W_)result > 0x80000000) {
+                // oops, we were given memory over 2Gb
+-#if defined(freebsd_HOST_OS) || defined(dragonfly_HOST_OS)
++#if defined(freebsd_HOST_OS) || defined(kfreebsdgnu_HOST_OS) || defined(dragonfly_HOST_OS)
+                // Some platforms require MAP_FIXED.  This is normally
+                // a bad idea, because MAP_FIXED will overwrite
+                // existing mappings.
