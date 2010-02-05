@@ -1,0 +1,11 @@
+Index: hmake-3.14/src/interpreter/HiConfig.hs
+===================================================================
+--- hmake-3.14.orig/src/interpreter/HiConfig.hs	2010-02-05 17:05:24.000000000 +0100
++++ hmake-3.14/src/interpreter/HiConfig.hs	2010-02-05 17:05:30.000000000 +0100
+@@ -64,6 +64,6 @@
+ extraHiOptions c = case compilerStyle c of
+     Nhc98 -> extraCompilerFlags c
+     Hbc   -> extraCompilerFlags c
+-    Ghc   -> "-fglasgow-exts": "-package lang": extraCompilerFlags c
++    Ghc   -> "-fglasgow-exts": extraCompilerFlags c
+     _     -> []
