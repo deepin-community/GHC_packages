@@ -1,19 +1,33 @@
 Source: haskell-sdl
 Section: haskell
-Priority: optional
+Priority: extra
 Maintainer: Miriam Ruiz <little_miry@yahoo.es>
 Standards-Version: 3.8.3
 Build-Depends: debhelper (>= 5),
- haddock (>= 2.4.2), hscolour, haskell-devscripts,
- cdbs, ghc6, ghc6-prof, ghc6-doc, libgl1-mesa-dev | libgl-dev,
- libglu1-mesa-dev | libglu-dev, libx11-dev, alex, c2hs,
- cpphs, pkg-config, libsdl1.2-dev
+ haddock (>= 2.4.2),
+ hscolour,
+ haskell-devscripts,
+ cdbs,
+ ghc6,
+ ghc6-prof,
+ ghc6-doc,
+ libgl1-mesa-dev | libgl-dev,
+ libglu1-mesa-dev | libglu-dev,
+ libx11-dev,
+ alex,
+ c2hs,
+ cpphs,
+ pkg-config,
+ libsdl1.2-dev
 Homepage: http://hackage.haskell.org/package/SDL
+Vcs-Darcs: http://darcs.debian.org/darcs/pkg-haskell/haskell-sdl
 
 Package: libghc6-sdl-dev
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends},
- libgl1-mesa-dev | libgl-dev, libglu1-mesa-dev | libglu-dev, libx11-dev,
+ libgl1-mesa-dev | libgl-dev,
+ libglu1-mesa-dev | libglu-dev,
+ libx11-dev,
  libsdl1.2-dev
 Suggests: libghc6-sdl-prof, libghc6-sdl-doc
 Description: Haskell SDL binding for GHC
@@ -34,7 +48,7 @@ Description: Haskell SDL binding for GHC - profiling libraries
 
 Package: libghc6-sdl-doc
 Architecture: all
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Depends: ${haskell:Depends}, ${misc:Depends}
 Recommends: ghc6-doc
 Suggests: libghc6-sdl-dev, libghc6-sdl-prof
 Description: Haskell SDL binding for GHC - documentation
