@@ -1,0 +1,69 @@
+Index: ghc6-6.12.1/compiler/typecheck/TcForeign.lhs
+===================================================================
+--- ghc6-6.12.1.orig/compiler/typecheck/TcForeign.lhs	2010-02-06 12:41:37.000000000 +0200
++++ ghc6-6.12.1/compiler/typecheck/TcForeign.lhs	2010-02-06 13:26:02.000000000 +0200
+@@ -33,6 +33,7 @@
+ #if alpha_TARGET_ARCH
+ import Type
+ import SMRep
++import CmmExpr
+ #endif
+ import Name
+ import TcType
+@@ -192,7 +193,7 @@
+   where
+     integral_args = sum [ (widthInBytes . argMachRep . primRepToCgRep) prim_rep
+			| prim_rep <- map typePrimRep arg_tys,
+-			  primRepHint prim_rep /= FloatHint ]
++			  not $ prim_rep == FloatRep || prim_rep == DoubleRep ]
+     err = ptext (sLit "On Alpha, I can only handle 32 bytes of non-floating-point arguments to foreign export dynamic")
+ #else
+ checkFEDArgs _ = return ()
+Index: ghc6-6.12.1/rts/eventlog/EventLog.c
+===================================================================
+--- ghc6-6.12.1.orig/rts/eventlog/EventLog.c	2010-02-08 13:55:22.000000000 +0200
++++ ghc6-6.12.1/rts/eventlog/EventLog.c	2010-02-08 14:25:27.000000000 +0200
+@@ -83,7 +83,7 @@
+
+ static void postEventType(EventsBuf *eb, EventType *et);
+
+-static void postLogMsg(EventsBuf *eb, EventTypeNum type, char *msg, va_list ap);
++static void postLogMsg(EventsBuf *eb, EventTypeNum type, char *msg, va_list *ap);
+
+ static void postBlockMarker(EventsBuf *eb);
+ static void closeBlockMarker(EventsBuf *ebuf);
+@@ -395,12 +395,16 @@
+
+ #define BUF 512
+
+-void postLogMsg(EventsBuf *eb, EventTypeNum type, char *msg, va_list ap)
++void postLogMsg(EventsBuf *eb, EventTypeNum type, char *msg, va_list *ap)
+ {
+     char buf[BUF];
+     nat size;
+
+-    size = vsnprintf(buf,BUF,msg,ap);
++    if (ap != NULL)
++        size = vsnprintf(buf,BUF,msg,ap);
++    else
++        size = snprintf(buf,BUF,msg);
++
+     if (size > BUF) {
+         buf[BUF-1] = '\0';
+         size = BUF;
+@@ -419,13 +423,13 @@
+ void postMsg(char *msg, va_list ap)
+ {
+     ACQUIRE_LOCK(&eventBufMutex);
+-    postLogMsg(&eventBuf, EVENT_LOG_MSG, msg, ap);
++    postLogMsg(&eventBuf, EVENT_LOG_MSG, msg, &ap);
+     RELEASE_LOCK(&eventBufMutex);
+ }
+
+ void postCapMsg(Capability *cap, char *msg, va_list ap)
+ {
+-    postLogMsg(&capEventBuf[cap->no], EVENT_LOG_MSG, msg, ap);
++    postLogMsg(&capEventBuf[cap->no], EVENT_LOG_MSG, msg, &ap);
+ }
+
+ void postUserMsg(Capability *cap, char *msg)
