@@ -45,9 +45,9 @@ ifeq (powerpc,$(DEB_HOST_ARCH)) # See #365497
 	echo "GhcWithInterpreter=NO" >> mk/build.mk
 endif
 ifeq (ia64,$(DEB_HOST_ARCH)) # Tested and seen to be necessary with 6.12.1
-	echo "SRC_CC_OPTS += -Wl,--relax" >> mk/build.mk
-	echo "SRC_HC_OPTS += -optl-Wl,--relax -optl-Wl,-G0" >> mk/build.mk
-	echo "SRC_HC_OPTS += -optc-G0" >> mk/build.mk
+        echo "SRC_CC_OPTS += -Wl,--relax" >> mk/build.mk
+        echo "SRC_HC_OPTS += -optl-Wl,--relax -optl-Wl,-G0" >> mk/build.mk
+        echo "SRC_HC_OPTS += -optc-G0" >> mk/build.mk
 endif
 ifneq (,$(findstring $(DEB_HOST_ARCH), kfreebsd-i386 kfreebsd-amd64))
 	echo "GhcWithInterpreter=YES"
