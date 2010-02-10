@@ -3,16 +3,15 @@ Priority: extra
 Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Giovanni Mascellani <mascellani@poisson.phc.unipi.it>
-Build-Depends:
- debhelper (>= 7),
- haskell-devscripts,
- cdbs,
- ghc6 (>= 6.10),
- ghc6-prof,
- ghc6-doc,
- hugs,
- haddock,
- hscolour
+Build-Depends: debhelper (>= 7)
+ , haskell-devscripts
+ , cdbs
+ , ghc6 (>= 6.10)
+ , ghc6-prof
+ , ghc6-doc
+ , hugs
+ , haddock
+ , hscolour
 Standards-Version: 3.8.3
 Homepage: http://hackage.haskell.org/package/deepseq
 Vcs-Darcs: http://darcs.debian.org/darcs/pkg-haskell/haskell-deepseq
@@ -20,10 +19,9 @@ Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-
 
 Package: libghc6-deepseq-dev
 Architecture: any
-Depends:
- ${haskell:Depends},
- ${misc:Depends},
- ${shlibs:Depends}
+Depends: ${haskell:Depends}
+ , ${misc:Depends}
+ , ${shlibs:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
@@ -35,9 +33,8 @@ Description: "Deep" version for Haskell seq - GHC 6 libraries
 
 Package: libghc6-deepseq-prof
 Architecture: any
-Depends:
- ${haskell:Depends},
- ${misc:Depends}
+Depends: ${haskell:Depends}
+ , ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
@@ -49,9 +46,8 @@ Description: "Deep" version for Haskell seq - GHC 6 profiling libraries
 
 Package: libhugs-deepseq
 Architecture: all
-Depends:
- ${haskell:Depends},
- ${misc:Depends}
+Depends: ${haskell:Depends}
+ , ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Description: "Deep" version for Haskell seq - Hugs libraries
@@ -63,9 +59,8 @@ Description: "Deep" version for Haskell seq - Hugs libraries
 Package: libghc6-deepseq-doc
 Section: doc
 Architecture: all
-Depends:
- ${haskell:Depends},
- ${misc:Depends}
+Depends: ${haskell:Depends}
+ , ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Description: "Deep" version for Haskell seq - documentation
