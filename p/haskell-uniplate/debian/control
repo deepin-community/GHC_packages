@@ -3,10 +3,18 @@ Priority: extra
 Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>
-Build-Depends: dctrl-tools, dpkg-dev (>= 1.13.19), debhelper (>= 5.0.0),
- haskell-devscripts (>= 0.6.0), cdbs, ghc6 (>= 6.10.3), hscolour (>=1.8),
- ghc6-prof, libghc6-mtl-dev, libghc6-mtl-prof
-Build-Depends-Indep: haddock (>= 2.4.2), libghc6-mtl-doc
+Build-Depends: dctrl-tools
+ , dpkg-dev (>= 1.13.19)
+ , debhelper (>= 5.0.0)
+ , haskell-devscripts (>= 0.6.0)
+ , cdbs
+ , ghc6 (>= 6.10.3)
+ , hscolour (>=1.8)
+ , ghc6-prof
+ , libghc6-mtl-dev
+ , libghc6-mtl-prof
+Build-Depends-Indep: haddock (>= 2.4.2)
+ , libghc6-mtl-doc
 Standards-Version: 3.8.2
 Homepage: http://hackage.haskell.org/cgi-bin/hackage-scripts/package/uniplate
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-uniplate
@@ -14,7 +22,8 @@ Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-
 
 Package: libghc6-uniplate-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
+Depends: ${haskell:Depends}
+ , ${misc:Depends}
 Suggests: libghc6-uniplate-doc (= ${source:Version})
 Provides: ${haskell:Provides}
 Description: A Haskell library for uniform type generic traversals
@@ -30,8 +39,9 @@ Description: A Haskell library for uniform type generic traversals
 
 Package: libghc6-uniplate-prof
 Architecture: any
-Depends: libghc6-uniplate-dev (= ${binary:Version}), ${haskell:Depends},
- ${misc:Depends}
+Depends: libghc6-uniplate-dev (= ${binary:Version})
+ , ${haskell:Depends}
+ , ${misc:Depends}
 Suggests: libghc6-uniplate-doc (= ${source:Version})
 Provides: ${haskell:Provides}
 Description: Profiling libraries for uniform type generic traversals
