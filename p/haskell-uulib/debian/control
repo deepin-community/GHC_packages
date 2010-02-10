@@ -2,7 +2,16 @@ Source: haskell-uulib
 Section: haskell
 Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Build-Depends: debhelper (>= 5), cdbs, ghc6 (>= 6.8.2), ghc6-prof (>= 6.4.2), haskell-devscripts (>= 0.6.15+nmu1), cpphs, haddock, hugs, ghc6-doc, hscolour (>= 1.8)
+Build-Depends: debhelper (>= 5)
+ , cdbs
+ , ghc6 (>= 6.8.2)
+ , ghc6-prof (>= 6.4.2)
+ , haskell-devscripts (>= 0.6.15+nmu1)
+ , cpphs
+ , haddock
+ , hugs
+ , ghc6-doc
+ , hscolour (>= 1.8)
 Standards-Version: 3.8.1
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-uulib/
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-uulib
@@ -11,7 +20,8 @@ Homepage: http://www.cs.uu.nl/wiki/HUT/WebHome
 Package: libghc6-uulib-dev
 Architecture: any
 Section: haskell
-Depends: ${haskell:Depends}, ${misc:Depends}
+Depends: ${haskell:Depends}
+ , ${misc:Depends}
 Suggests: haskell-uulib-doc (= ${source:Version})
 Provides: ${haskell:Provides}
 Description: parser and pretty print combinator library for GHC 6
@@ -27,7 +37,9 @@ Description: parser and pretty print combinator library for GHC 6
 Package: libghc6-uulib-prof
 Architecture: any
 Section: haskell
-Depends: libghc6-uulib-dev (= ${binary:Version}), ${haskell:Depends}, ${misc:Depends}
+Depends: libghc6-uulib-dev (= ${binary:Version})
+ , ${haskell:Depends}
+ , ${misc:Depends}
 Suggests: haskell-uulib-doc (= ${source:Version})
 Provides: ${haskell:Provides}
 Description: profiling parser and pretty print combinator library for GHC 6
@@ -45,7 +57,8 @@ Description: profiling parser and pretty print combinator library for GHC 6
 
 Package: libhugs-uulib
 Architecture: all
-Depends: ${haskell:Depends}, ${misc:Depends}
+Depends: ${haskell:Depends}
+ , ${misc:Depends}
 Suggests: haskell-uulib-doc (= ${source:Version})
 Description: parser and pretty print combinator library for hugs98
  The uulib Haskell library contains fast, error repairing parser
@@ -61,7 +74,9 @@ Package: haskell-uulib-doc
 Architecture: all
 Section: doc
 Depends: ${misc:Depends}
-Recommends: doc-base, libghc6-base-doc, libghc6-haskell98-doc
+Recommends: doc-base
+ , libghc6-base-doc
+ , libghc6-haskell98-doc
 Description: API documentation for uulib Haskell library
  The API documentation of the uulib parser and pretty print combinator
  library.
