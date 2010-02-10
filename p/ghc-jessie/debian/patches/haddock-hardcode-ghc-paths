@@ -1,0 +1,33 @@
+Index: ghc6-6.12.1/utils/haddock/haddock.cabal
+===================================================================
+--- ghc6-6.12.1.orig/utils/haddock/haddock.cabal	2010-02-09 12:30:41.000000000 +0200
++++ ghc6-6.12.1/utils/haddock/haddock.cabal	2010-02-09 12:31:40.000000000 +0200
+@@ -77,8 +77,6 @@
+   if flag(in-ghc-tree)
+     cpp-options: -DIN_GHC_TREE
+     extensions: ForeignFunctionInterface
+-  else
+-    build-depends: ghc-paths
+
+   main-is:              Main.hs
+   hs-source-dirs:       src
+Index: ghc6-6.12.1/utils/haddock/src/Main.hs
+===================================================================
+--- ghc6-6.12.1.orig/utils/haddock/src/Main.hs	2010-02-09 12:30:51.000000000 +0200
++++ ghc6-6.12.1/utils/haddock/src/Main.hs	2010-02-09 12:32:35.000000000 +0200
+@@ -50,7 +50,6 @@
+ #ifdef IN_GHC_TREE
+ import System.FilePath
+ #else
+-import GHC.Paths
+ import Paths_haddock
+ #endif
+
+@@ -348,7 +347,7 @@
+ #ifdef IN_GHC_TREE
+       getInTreeLibDir
+ #else
+-      return libdir -- from GHC.Paths
++      return "/usr/lib/ghc-@PROJECTVERSION@/"
+ #endif
+     xs -> return $ last xs

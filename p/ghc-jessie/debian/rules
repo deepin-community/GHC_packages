@@ -45,9 +45,9 @@ ifeq (powerpc,$(DEB_HOST_ARCH)) # See #365497
 	echo "GhcWithInterpreter=NO" >> mk/build.mk
 endif
 ifeq (ia64,$(DEB_HOST_ARCH)) # Tested and seen to be necessary with 6.12.1
-        echo "SRC_CC_OPTS += -Wl,--relax" >> mk/build.mk
-        echo "SRC_HC_OPTS += -optl-Wl,--relax -optl-Wl,-G0" >> mk/build.mk
-        echo "SRC_HC_OPTS += -optc-G0" >> mk/build.mk
+	echo "SRC_CC_OPTS += -Wl,--relax" >> mk/build.mk
+	echo "SRC_HC_OPTS += -optl-Wl,--relax -optl-Wl,-G0" >> mk/build.mk
+	echo "SRC_HC_OPTS += -optc-G0" >> mk/build.mk
 endif
 ifneq (,$(findstring $(DEB_HOST_ARCH), kfreebsd-i386 kfreebsd-amd64))
 	echo "GhcWithInterpreter=YES"
@@ -112,7 +112,6 @@ build-stamp: configure-stamp
 
 # build haddock separately and hard code paths according to install paths
 	cp -r utils/haddock debian
-	cd debian/haddock; cat ../patches.haddock/series | xargs -IX cat ../patches.haddock/X | patch -p1
 	sed -i s/@PROJECTVERSION@/$(ProjectVersion)/ debian/haddock/src/Main.hs
 	cd debian/haddock; ../../inplace/bin/ghc-stage2 --make Setup.lhs; ./Setup configure --prefix=/usr --with-compiler=../../inplace/bin/ghc-stage2 --package-db=../../inplace/lib/package.conf.d/; ./Setup build
 
