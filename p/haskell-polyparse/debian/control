@@ -3,14 +3,14 @@ Priority: optional
 Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>
-Build-Depends: dctrl-tools,
- dpkg-dev (>= 1.13.19),
- debhelper (>= 5.0.0),
- haskell-devscripts (>= 0.6.0),
- cdbs,
- ghc6 (>= 6.10.3),
- ghc6-prof,
- haddock (>= 2.4.2)
+Build-Depends: dctrl-tools
+ , dpkg-dev (>= 1.13.19)
+ , debhelper (>= 5.0.0)
+ , haskell-devscripts (>= 0.6.0)
+ , cdbs
+ , ghc6 (>= 6.10.3)
+ , ghc6-prof
+ , haddock (>= 2.4.2)
 Standards-Version: 3.8.3
 Homepage: http://hackage.haskell.org/cgi-bin/hackage-scripts/package/polyparse
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-polyparse
@@ -18,7 +18,8 @@ Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-
 
 Package: libghc6-polyparse-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
+Depends: ${haskell:Depends}
+ , ${misc:Depends}
 Suggests: libghc6-polyparse-doc (= ${source:Version})
 Provides: ${haskell:Provides}
 Description: A variety of alternative parser combinator libraries for Haskell
@@ -33,8 +34,9 @@ Description: A variety of alternative parser combinator libraries for Haskell
 
 Package: libghc6-polyparse-prof
 Architecture: any
-Depends: libghc6-polyparse-dev (= ${binary:Version}), ${haskell:Depends},
- ${misc:Depends}
+Depends: libghc6-polyparse-dev (= ${binary:Version})
+ , ${haskell:Depends}
+ , ${misc:Depends}
 Suggests: libghc6-polyparse-doc (= ${source:Version})
 Provides: ${haskell:Provides}
 Description: Profiling libraries for haskell-polyparse
