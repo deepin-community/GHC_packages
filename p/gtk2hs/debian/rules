@@ -1,7 +1,5 @@
 #!/usr/bin/make -f
 
-include /usr/share/dpatch/dpatch.make
-
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
@@ -99,7 +97,7 @@ config.status: configure.ac
 	./configure $(configure_flags) --libdir=$(TMP_LIBDIR)
 
 .PHONY: build
-build: build-stamp patch
+build: build-stamp
 build-stamp: config.status
 	dh_testdir
 	$(MAKE) $(MAKEFLAGS)
@@ -140,7 +138,7 @@ debian/gtk2hs-doc.install: debian/gtk2hs-doc.install.in
 	sed -e "s#@DEB_HADDOCK_DIR@#$(DEB_HADDOCK_DIR)#g" < $^ > $@
 
 .PHONY: clean clean-real
-clean: clean-real unpatch
+clean: clean-real
 clean-real:
 	dh_testdir
 	dh_testroot

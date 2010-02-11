@@ -1,13 +1,11 @@
-#! /bin/sh /usr/share/dpatch/dpatch-run
-## 01_response by Marco Túlio Gontijo e Silva <marcot@holoscopio.com>
-##
-## DP: This patch is already in upstream darcs.  It removes the restriction
-## DP: that user defined responses should not be zero or lesser than -11.
-## DP: According to Axel Simon,  "Gtk+ docs say that anything below 0 is
-## DP: reserved for Gtk+.  But then, a negative number in ResponseUser is
-## DP: probably better than an pattern match error."
-## DP: http://sourceforge.net/mailarchive/message.php?msg_name=1241698296.10549.13.camel%40aconit
-## DP: Thanks to Daniel Burrows <dburrows@debian.org>. Closes: #522481.
+# Description: Use any value for user defined responses
+#  This patch removes the restriction that user defined responses should not be
+#  zero or lesser than -11.  According to Axel Simon, "Gtk+ docs say that
+#  anything below 0 is reserved for Gtk+.  But then, a negative number in
+#  ResponseUser is probably better than an pattern match error."
+# Bug-Debian: 522481
+# Author: Marco Túlio Gontijo e Silva <marcot@debian.org>
+# Last-Update: 2009-05-07
 diff -Nudar gtk2hs-0.10.1.orig/gtk/Graphics/UI/Gtk/General/Structs.hsc gtk2hs-0.10.1/gtk/Graphics/UI/Gtk/General/Structs.hsc
 --- gtk2hs-0.10.1.orig/gtk/Graphics/UI/Gtk/General/Structs.hsc  2009-04-24 12:21:33.000000000 -0300
 +++ gtk2hs-0.10.1/gtk/Graphics/UI/Gtk/General/Structs.hsc       2009-05-17 08:53:07.000000000 -0300
