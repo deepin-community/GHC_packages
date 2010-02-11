@@ -1,0 +1,68 @@
+Source: haskell-binary
+Section: haskell
+Priority: optional
+Maintainer: Kari Pahula <kaol@debian.org>
+Build-Depends: debhelper (>= 6), cdbs, ghc6, haskell-devscripts, hugs, cpphs, haddock (>= 2.4.2), ghc6-prof, hscolour, ghc6-doc
+Standards-Version: 3.8.1
+Homepage: http://code.haskell.org/binary/
+
+Package: libghc6-binary-dev
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${haskell:Depends}
+Suggests: libghc6-binary-doc, libghc6-binary-prof
+Description: Haskell library for binary serialisation using lazy ByteStrings
+ Binary serialisation of Haskell values to and from lazy ByteStrings.
+ The Binary library provides methods for encoding Haskell values as
+ streams of bytes directly in memory. The resulting ByteString can
+ then be written to disk, sent over the network, or futher processed
+ (for example, compressed with gzip).
+ .
+ The 'Binary' package is notable in that it provides both pure, and
+ high performance serialisation.
+ .
+ Values are always encoded in network order (big endian) form, and
+ encoded data should be portable across machine endianess, word size,
+ or compiler version. For example, data encoded using the Binary class
+ could be written from GHC, and read back in Hugs.
+
+Package: libghc6-binary-prof
+Architecture: any
+Depends: ${misc:Depends}, ${haskell:Depends}, libghc6-binary-dev (= ${binary:Version})
+Description: Haskell library for binary serialisation; profiling library
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ .
+ Binary serialisation of Haskell values to and from lazy ByteStrings.
+ The Binary library provides methods for encoding Haskell values as
+ streams of bytes directly in memory. The resulting ByteString can
+ then be written to disk, sent over the network, or futher processed
+ (for example, compressed with gzip).
+
+Package: libhugs-binary
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Suggests: libghc6-binary-doc
+Description: Haskell library for binary serialisation; hugs library
+ This package provides a library for Hugs, an interpreter for the
+ Haskell programming language.
+ .
+ Binary serialisation of Haskell values to and from lazy ByteStrings.
+ The Binary library provides methods for encoding Haskell values as
+ streams of bytes directly in memory. The resulting ByteString can
+ then be written to disk, sent over the network, or futher processed
+ (for example, compressed with gzip).
+
+Package: libghc6-binary-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ghc6-doc
+Suggests: libghc6-binary-dev
+Description: Haskell library for binary serialisation; documentation
+ This package provides documentation for Data.Binary Haskell module.
+ .
+ Binary serialisation of Haskell values to and from lazy ByteStrings.
+ The Binary library provides methods for encoding Haskell values as
+ streams of bytes directly in memory. The resulting ByteString can
+ then be written to disk, sent over the network, or futher processed
+ (for example, compressed with gzip).
