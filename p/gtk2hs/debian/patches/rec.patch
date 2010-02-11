@@ -1,0 +1,22 @@
+# Description: Avoid using rec because of -XDoRec notation
+#  This problem is described in
+#  http://www.mail-archive.com/gtk2hs-devel@lists.sourceforge.net/msg00505.html
+#  .
+#  The patch was submitted to upstream, but was not reviewed yet.
+# Author: Marco Túlio Gontijo e Silva <marcot@debian.org>
+# Forwarded: http://sourceforge.net/mailarchive/forum.php?thread_name=20100211234057.F138C14C09D%40tern.riseup.net&forum_name=gtk2hs-devel
+# Last-Update: 2010-02-11
+Index: gtk2hs-0.10.1/gtk/Graphics/UI/Gtk/Display/StatusIcon.chs.pp
+===================================================================
+--- gtk2hs-0.10.1.orig/gtk/Graphics/UI/Gtk/Display/StatusIcon.chs.pp	2010-02-11 21:17:14.000000000 -0200
++++ gtk2hs-0.10.1/gtk/Graphics/UI/Gtk/Display/StatusIcon.chs.pp	2010-02-11 21:17:21.000000000 -0200
+@@ -448,9 +448,9 @@
+          (toStatusIcon self) nullPtr (castPtr recPtr) orPtr) >>= \b ->
+         if b
+           then do
+-            rec <- peek recPtr
++            rec_ <- peek recPtr
+             or <- peek orPtr
+-            return $ Just (rec,toEnum $ fromIntegral or)
++            return $ Just (rec_,toEnum $ fromIntegral or)
+         else return Nothing
