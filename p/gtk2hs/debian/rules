@@ -31,10 +31,12 @@ configure_flags += --enable-gtksourceview2
 #configure_flags += --enable-mozilla   # not compatible with new xulrunner-dev yet
 configure_flags += --enable-docs
 
-# it's only working in these arches
-ifeq (,$(filter amd64 i386,$(shell dpkg-architecture -qDEB_HOST_ARCH)))
-        configure_flags += --disable-split-objs
-endif
+# To build with ghc 6.12, --disable-split-objs is needed in all arches.
+# http://haskell.org/gtk2hs/archives/2010/01/18/compiling-with-ghc-612/
+# This can be fixed by changing the place where gtk2hs searches for the split
+# objs, as described in
+# http://www.mail-archive.com/gtk2hs-devel@lists.sourceforge.net/msg00511.html
+configure_flags += --disable-split-objs
 
 # from hlibrary.mk
 GHC6_VERSION = $(shell ghc --numeric-version)
