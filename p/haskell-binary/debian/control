@@ -1,15 +1,32 @@
 Source: haskell-binary
 Section: haskell
-Priority: optional
-Maintainer: Kari Pahula <kaol@debian.org>
-Build-Depends: debhelper (>= 6), cdbs, ghc6, haskell-devscripts, hugs, cpphs, haddock (>= 2.4.2), ghc6-prof, hscolour, ghc6-doc
-Standards-Version: 3.8.1
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Build-Depends:
+ haskell-devscripts (>= 0.7),
+ debhelper (>= 6),
+ cdbs,
+ ghc6,
+ ghc6-prof,
+ ghc6-doc
+ hugs,
+ cpphs,
+Standards-Version: 3.8.4
 Homepage: http://code.haskell.org/binary/
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-binary/
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-binary
 
 Package: libghc6-binary-dev
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, ${haskell:Depends}
-Suggests: libghc6-binary-doc, libghc6-binary-prof
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+  , libx11-dev
+  , libxt-dev
+  , libxinerama-dev
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: Haskell library for binary serialisation using lazy ByteStrings
  Binary serialisation of Haskell values to and from lazy ByteStrings.
  The Binary library provides methods for encoding Haskell values as
@@ -27,7 +44,14 @@ Description: Haskell library for binary serialisation using lazy ByteStrings
 
 Package: libghc6-binary-prof
 Architecture: any
-Depends: ${misc:Depends}, ${haskell:Depends}, libghc6-binary-dev (= ${binary:Version})
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+  , libx11-dev
+  , libxt-dev
+  , libxinerama-dev
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: Haskell library for binary serialisation; profiling library
  This package provides a library for the Haskell programming language,
  compiled for profiling.
@@ -55,9 +79,10 @@ Description: Haskell library for binary serialisation; hugs library
 Package: libghc6-binary-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends}, ${misc:Depends}
-Recommends: ghc6-doc
-Suggests: libghc6-binary-dev
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: Haskell library for binary serialisation; documentation
  This package provides documentation for Data.Binary Haskell module.
  .
