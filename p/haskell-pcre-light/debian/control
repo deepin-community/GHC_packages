@@ -1,0 +1,46 @@
+Source: haskell-pcre-light
+Section: devel
+Priority: optional
+Maintainer: Recai Oktaş <roktas@debian.org>
+Build-Depends: debhelper (>= 4.0.0), haskell-devscripts (>=0.5.12), ghc6 (>= 6.8.2), ghc6-prof, libpcre3-dev
+Build-Depends-Indep: haddock
+Standards-Version: 3.8.0
+Homepage: http://code.haskell.org/~dons/code/pcre-light
+
+Package: libghc6-pcre-light-dev
+Section: libdevel
+Architecture: any
+Depends: ${haskell:Depends}, libpcre3-dev
+Suggests: haskell-pcre-light-doc (= ${source:Version})
+Description: Haskell library for Perl 5-compatible regular expressions
+ The PCRE library is a set of functions that implement regular expression
+ pattern matching using the same syntax and semantics as Perl 5.  The library
+ aims to be light, efficient and portable.
+ .
+ This package provides a library for the Haskell programming language.  See
+ http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc6-pcre-light-prof
+Section: libdevel
+Architecture: any
+Depends: ${haskell:Depends}, libghc6-pcre-light-dev (= ${binary:Version})
+Suggests: haskell-pcre-light-doc (= ${source:Version})
+Description: pcre-light library with profiling enabled
+ The PCRE library is a set of functions that implement regular expression
+ pattern matching using the same syntax and semantics as Perl 5.  The library
+ aims to be light, efficient and portable.
+ .
+ This package provides a library for the Haskell programming language, compiled
+ for profiling.  See http://www.haskell.org/ for more information on Haskell.
+
+Package: haskell-pcre-light-doc
+Section: doc
+Architecture: all
+Description: library documentation for pcre-light
+ The PCRE library is a set of functions that implement regular expression
+ pattern matching using the same syntax and semantics as Perl 5.  The library
+ aims to be light, efficient and portable.
+ .
+ This package provides the documentation for a library for the Haskell
+ programming language.  See http://www.haskell.org/ for more information on
+ Haskell.
