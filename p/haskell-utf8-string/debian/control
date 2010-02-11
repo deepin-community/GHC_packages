@@ -1,16 +1,33 @@
 Source: haskell-utf8-string
 Section: haskell
-Priority: optional
-Maintainer: Chris Lamb <lamby@debian.org>
-Build-Depends: debhelper (>= 7), haskell-devscripts (>= 0.6.15+nmu5), cdbs, ghc6 (>= 6.10.1+dfsg1-13), hugs, haddock (>= 2.4.1-4), ghc6-doc, ghc6-prof, cpphs, hscolour
-Standards-Version: 3.8.3
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Chris Lamb <lamby@debian.org>, Joachim Breitner <nomeata@debian.org>
+Build-Depends:
+ debhelper (>= 7),
+ haskell-devscripts (>= 0.7),
+ cdbs,
+ ghc6,
+ hugs,
+ ghc6-doc,
+ ghc6-prof,
+ cpphs,
+Standards-Version: 3.8.4
 Homepage: http://github.com/glguy/utf8-string/
-Vcs-Git: git://git.chris-lamb.co.uk/debian/pkg-haskell-utf8-string.git
-Vcs-Browser: http://git.chris-lamb.co.uk/?p=debian/pkg-haskell-utf8-string.git
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-utf8-string/
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-utf8-string
+
 
 Package: libghc6-utf8-string-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+  , libx11-dev
+  , libxt-dev
+  , libxinerama-dev
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: GHC 6 libraries for the Haskell UTF-8 library
  UTF8 layer for IO and Strings. The utf8-string package provides operations
  for encoding UTF8 strings to Word8 lists and back, and for reading and
@@ -20,7 +37,9 @@ Description: GHC 6 libraries for the Haskell UTF-8 library
 
 Package: libghc6-utf8-string-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}, libghc6-utf8-string-dev (= ${binary:Version})
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Provides: ${haskell:Provides}
 Description: Profiling support for the GHC 6 Haskell UTF-8 library
  UTF8 layer for IO and Strings. The utf8-string package provides operations
  for encoding UTF8 strings to Word8 lists and back, and for reading and
@@ -32,7 +51,10 @@ Description: Profiling support for the GHC 6 Haskell UTF-8 library
 Package: libghc6-utf8-string-doc
 Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: GHC 6 libraries for the Haskell UTF-8 library (documentation)
  UTF8 layer for IO and Strings. The utf8-string package provides operations
  for encoding UTF8 strings to Word8 lists and back, and for reading and
