@@ -1,0 +1,41 @@
+Source: haskell-cgi
+Section: haskell
+Priority: optional
+Maintainer: Kari Pahula <kaol@debian.org>
+Standards-Version: 3.8.2
+Build-Depends: debhelper (>= 5), cdbs, haddock (>= 2.4.1-4), hscolour, haskell-devscripts, ghc6 (>= 6.10.1+dfsg1-13), ghc6-prof, ghc6-doc, libghc6-network-dev (>= 2.2.0.1-4), libghc6-xhtml-dev (>= 3000.2.0.1-5), libghc6-mtl-dev (>= 1.1.0.2-7), libghc6-mtl-prof, libghc6-network-prof, libghc6-xhtml-prof, libghc6-network-doc, libghc6-parsec-doc, libghc6-mtl-doc, libghc6-xhtml-doc
+Homepage: http://hackage.haskell.org/package/cgi
+
+Package: libghc6-cgi-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Suggests: libghc6-cgi-prof, libghc6-cgi-doc
+Description: Haskell CGI library for GHC
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library is for writing CGI programs.
+
+Package: libghc6-cgi-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}, libghc6-cgi-dev (= ${binary:Version})
+Suggests: libghc6-cgi-doc
+Description: Haskell CGI library for GHC; profiling libraries
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library is for writing CGI programs.
+
+Package: libghc6-cgi-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}
+Recommends: ghc6-doc, libghc6-network-doc, libghc6-parsec-doc, libghc6-mtl-doc, libghc6-xhtml-doc
+Suggests: libghc6-cgi-dev, libghc6-cgi-prof
+Description: Haskell CGI library for GHC; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library is for writing CGI programs.
