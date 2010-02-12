@@ -2,14 +2,14 @@ Source: haskell-uulib
 Section: haskell
 Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Build-Depends: debhelper (>= 5)
+Build-Depends: debhelper (>= 7)
  , cdbs
- , ghc6 (>= 6.8.2)
- , ghc6-prof (>= 6.4.2)
- , haskell-devscripts (>= 0.6.15+nmu1)
+ , haskell-devscripts (>= 0.7)
+ , ghc6
+ , ghc6-prof
+ , ghc6-doc
  , cpphs
  , hugs
- , ghc6-doc
 Standards-Version: 3.8.4
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-uulib/
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-uulib
@@ -20,7 +20,7 @@ Architecture: any
 Section: haskell
 Depends: ${haskell:Depends}
  , ${misc:Depends}
-Suggests: haskell-uulib-doc (= ${source:Version})
+Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
 Description: parser and pretty print combinator library for GHC 6
  The uulib Haskell library contains fast, error repairing parser
@@ -35,10 +35,9 @@ Description: parser and pretty print combinator library for GHC 6
 Package: libghc6-uulib-prof
 Architecture: any
 Section: haskell
-Depends: libghc6-uulib-dev (= ${binary:Version})
- , ${haskell:Depends}
+Depends: ${haskell:Depends}
  , ${misc:Depends}
-Suggests: haskell-uulib-doc (= ${source:Version})
+Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
 Description: profiling parser and pretty print combinator library for GHC 6
  The uulib Haskell library contains fast, error repairing parser
@@ -71,10 +70,10 @@ Description: parser and pretty print combinator library for hugs98
 Package: haskell-uulib-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends}
-Recommends: doc-base
- , libghc6-base-doc
- , libghc6-haskell98-doc
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: API documentation for uulib Haskell library
  The API documentation of the uulib parser and pretty print combinator
  library.
