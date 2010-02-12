@@ -1,0 +1,48 @@
+Source: haskell-openal
+Section: haskell
+Priority: optional
+Maintainer: Kari Pahula <kaol@debian.org>
+Standards-Version: 3.8.1
+Build-Depends: debhelper (>= 5), haddock (>= 2.4.2), hscolour, haskell-devscripts, cdbs, ghc6, ghc6-prof, ghc6-doc, libghc6-opengl-dev (>= 2.2.3.0), libghc6-opengl-prof, libghc6-opengl-doc, libopenal-dev
+
+Package: libghc6-openal-dev
+Section: haskell
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}, libopenal-dev
+Suggests: libghc6-openal-prof, libghc6-openal-doc
+Description: Haskell OpenAL binding for GHC
+ This package provides a library for the Haskell programming language.
+ .
+ This library provides a Haskell binding for the OpenAL cross-platform
+ 3D audio API, appropriate for use with gaming applications and many other
+ types of audio applications.  For more information about OpenAL
+ please see: <http://www.openal.org/>.
+
+Package: libghc6-openal-prof
+Section: haskell
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}, libghc6-openal-dev (= ${binary:Version})
+Suggests: libghc6-openal-doc
+Description: Haskell OpenAL binding for GHC; profiling libraries
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ .
+ This library provides a Haskell binding for the OpenAL cross-platform
+ 3D audio API, appropriate for use with gaming applications and many other
+ types of audio applications.  For more information about OpenAL
+ please see: <http://www.openal.org/>.
+
+Package: libghc6-openal-doc
+Section: doc
+Architecture: all
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ghc6-doc, libghc6-opengl-doc
+Suggests: libghc6-openal-dev, libghc6-openal-prof
+Description: Haskell OpenAL binding for GHC; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ .
+ This library provides a Haskell binding for the OpenAL cross-platform
+ 3D audio API, appropriate for use with gaming applications and many other
+ types of audio applications.  For more information about OpenAL
+ please see: <http://www.openal.org/>.
