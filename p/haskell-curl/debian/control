@@ -5,24 +5,25 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>
 Build-Depends: dctrl-tools,
  dpkg-dev (>= 1.13.19),
- debhelper (>= 5.0.0),
+ debhelper (>= 7),
  cdbs,
- haskell-devscripts (>= 0.6.0),
- ghc6 (>= 6.10.3),
+ haskell-devscripts (>= 0.7),
+ ghc6,
  ghc6-prof,
+ ghc6-doc,
  libghc6-network-dev,
  libghc6-network-prof,
  libghc6-network-doc,
  libcurl4-gnutls-dev
 Standards-Version: 3.8.4
-Homepage: http://hackage.haskell.org/cgi-bin/hackage-scripts/package/curl
+Homepage: http://hackage.haskell.org/package/curl
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-curl
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-curl
 
 Package: libghc6-curl-dev
 Architecture: any
-Depends: libcurl3-gnutls, ${haskell:Depends}, ${misc:Depends}
-Suggests: libghc6-curl-doc (= ${source:Version})
+Depends: libcurl3-gnutls, ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
 Description: GHC 6 libraries for the libcurl Haskell bindings
  .
@@ -54,6 +55,7 @@ Section: doc
 Architecture: all
 Depends: ${haskell:Depends}, ${misc:Depends}
 Recommends: doc-base, ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: Documentation for the libcurl Haskell bindings
  .
  libcurl is a client-side URL transfer library, supporting FTP, FTPS, HTTP,
