@@ -1,15 +1,26 @@
 Source: haskell-lazysmallcheck
 Section: haskell
-Priority: optional
-Maintainer: Kari Pahula <kaol@debian.org>
-Standards-Version: 3.8.2
-Build-Depends: debhelper (>= 5), haddock (>= 2.4.2-3), hscolour, haskell-devscripts, ghc6, ghc6-doc, ghc6-prof, cdbs
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Standards-Version: 3.8.4
+Build-Depends: debhelper (>= 7)
+  , haskell-devscripts (>= 0.7)
+  , cdbs
+  , ghc6
+  , ghc6-prof
+  , ghc6-doc
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-lazysmallcheck
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-lazysmallcheck
 Homepage: http://www.cs.york.ac.uk/fp/smallcheck/
 
 Package: libghc6-lazysmallcheck-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Suggests: libghc6-lazysmallcheck-prof
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: A library for demand-driven testing of Haskell programs
  This package provides a library for the Haskell programming language.
  .
@@ -23,7 +34,9 @@ Description: A library for demand-driven testing of Haskell programs
 
 Package: libghc6-lazysmallcheck-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Provides: ${haskell:Provides}
 Description: A library for demand-driven testing of Haskell programs; profiling libraries
  This package provides a library for the Haskell programming language,
  compiled for profiling.
