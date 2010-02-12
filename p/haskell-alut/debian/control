@@ -1,0 +1,52 @@
+Source: haskell-alut
+Section: haskell
+Priority: optional
+Maintainer: Kari Pahula <kaol@debian.org>
+Standards-Version: 3.8.1
+Build-Depends: debhelper (>= 5), haddock (>= 2.4.2), hscolour, haskell-devscripts, cdbs, ghc6, ghc6-prof, ghc6-doc, libghc6-opengl-dev (>= 2.2.3.0), libghc6-openal-dev (>= 1.3.1.3), libghc6-opengl-prof, libghc6-openal-prof, libghc6-opengl-doc, libghc6-openal-doc, libalut-dev
+Homepage: http://connect.creativelabs.com/openal/default.aspx
+
+Package: libghc6-alut-dev
+Section: haskell
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}, libalut-dev
+Suggests: libghc6-alut-prof, libghc6-alut-doc
+Description: Haskell ALUT binding for GHC
+ This package provides a library for the Haskell programming language.
+ .
+ This library provides a Haskell binding for the OpenAL Utility Toolkit,
+ which makes managing of OpenAL contexts, loading sounds in various formats
+ and creating waveforms very easy. For more information about the
+ C library on which this binding is based, please see:
+ <http://www.openal.org/openal_webstf/specs/alut.html>.
+
+Package: libghc6-alut-prof
+Section: haskell
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}, libghc6-alut-dev (= ${binary:Version})
+Suggests: libghc6-alut-doc
+Description: Haskell ALUT binding for GHC; profiling libraries
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ .
+ This library provides a Haskell binding for the OpenAL Utility Toolkit,
+ which makes managing of OpenAL contexts, loading sounds in various formats
+ and creating waveforms very easy. For more information about the
+ C library on which this binding is based, please see:
+ <http://www.openal.org/openal_webstf/specs/alut.html>.
+
+Package: libghc6-alut-doc
+Section: doc
+Architecture: all
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ghc6-doc, libghc6-opengl-doc, libghc6-openal-doc
+Suggests: libghc6-alut-dev, libghc6-alut-prof
+Description: Haskell ALUT binding for GHC; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ .
+ This library provides a Haskell binding for the OpenAL Utility Toolkit,
+ which makes managing of OpenAL contexts, loading sounds in various formats
+ and creating waveforms very easy. For more information about the
+ C library on which this binding is based, please see:
+ <http://www.openal.org/openal_webstf/specs/alut.html>.
