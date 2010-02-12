@@ -1,0 +1,45 @@
+haskell-stm (2.1.1.2-4) unstable; urgency=low
+
+  * Use hlibrary.mk from haskell-devscripts and remove the local copy.
+
+ -- Kari Pahula <kaol@debian.org>  Wed, 25 Feb 2009 15:12:08 +0200
+
+haskell-stm (2.1.1.2-3) unstable; urgency=low
+
+  * Updated hlibrary.mk to put .haddock to -dev package.
+
+ -- Kari Pahula <kaol@debian.org>  Fri, 20 Feb 2009 09:50:45 +0200
+
+haskell-stm (2.1.1.2-2) unstable; urgency=low
+
+  * Fixed hlibrary.mk to scan the local doc dir, not from under /usr.
+  * Made -prof depend on the ${binary:Version} of -dev.
+
+ -- Kari Pahula <kaol@debian.org>  Thu, 19 Feb 2009 19:44:49 +0200
+
+haskell-stm (2.1.1.2-1) unstable; urgency=low
+
+  * New upstream release
+  * New maintainer.
+  * Switched over to use hlibrary.mk and haskell-devscripts.
+
+ -- Kari Pahula <kaol@debian.org>  Thu, 19 Feb 2009 14:49:29 +0200
+
+haskell-stm (2.1.1.0-2) unstable; urgency=low
+
+  * Upgrade to "Generic Haskell cabal library packaging files v10":
+    * Versioned dependencies are now generated for the Cabal packages we
+      depend on.
+    * Use the new ${impl:ghc6:*_deps} variables in debian/control.in.
+    * Call canonicalise-comma-list on the depends and suggests fields in
+      control.in. This works around bugs in lintian, where it gets
+      confused and starts giving spurious warnings.
+
+ -- Ian Lynagh (wibble) <igloo@debian.org>  Thu, 28 Feb 2008 01:01:46 +0000
+
+haskell-stm (2.1.1.0-1) unstable; urgency=low
+
+  * Initial release (used to be part of GHC).
+  * Using "Generic Haskell cabal library packaging files v9".
+
+ -- Ian Lynagh (wibble) <igloo@debian.org>  Wed, 21 Nov 2007 01:17:55 +0000
