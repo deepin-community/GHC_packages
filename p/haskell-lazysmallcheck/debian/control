@@ -1,0 +1,37 @@
+Source: haskell-lazysmallcheck
+Section: haskell
+Priority: optional
+Maintainer: Kari Pahula <kaol@debian.org>
+Standards-Version: 3.8.2
+Build-Depends: debhelper (>= 5), haddock (>= 2.4.2-3), hscolour, haskell-devscripts, ghc6, ghc6-doc, ghc6-prof, cdbs
+Homepage: http://www.cs.york.ac.uk/fp/smallcheck/
+
+Package: libghc6-lazysmallcheck-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Suggests: libghc6-lazysmallcheck-prof
+Description: A library for demand-driven testing of Haskell programs
+ This package provides a library for the Haskell programming language.
+ .
+ Lazy SmallCheck is a library for exhaustive, demand-driven testing of
+ Haskell programs.  It is based on the idea that if a property holds
+ for a partially-defined input then it must also hold for all
+ fully-defined refinements of the that input.  Compared to ``eager''
+ input generation as in SmallCheck, Lazy SmallCheck may require
+ significantly fewer test-cases to verify a property for all inputs up
+ to a given depth.
+
+Package: libghc6-lazysmallcheck-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}
+Description: A library for demand-driven testing of Haskell programs; profiling libraries
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ .
+ Lazy SmallCheck is a library for exhaustive, demand-driven testing of
+ Haskell programs.  It is based on the idea that if a property holds
+ for a partially-defined input then it must also hold for all
+ fully-defined refinements of the that input.  Compared to ``eager''
+ input generation as in SmallCheck, Lazy SmallCheck may require
+ significantly fewer test-cases to verify a property for all inputs up
+ to a given depth.
