@@ -1,16 +1,30 @@
 Source: haskell-fgl
-Section: libdevel
-Priority: optional
-Maintainer: Kari Pahula <kaol@debian.org>
-Standards-Version: 3.8.0
-Build-Depends: debhelper (>= 5), haddock (>= 2.4.1-4), hscolour, cdbs, haskell-devscripts, ghc6 (>= 6.10.1+dfsg1-13), ghc6-prof, ghc6-doc, libghc6-mtl-dev (>= 1.1.0.2-6), libghc6-mtl-prof, libghc6-mtl-doc
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Standards-Version: 3.8.4
+Build-Depends: debhelper (>= 7)
+  , haskell-devscripts (>= 0.7)
+  , cdbs
+  , ghc6
+  , ghc6-prof
+  , ghc6-doc
+  , libghc6-mtl-dev
+  , libghc6-mtl-prof
+  , libghc6-mtl-doc
 Homepage: http://web.engr.oregonstate.edu/~erwig/fgl/haskell
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-fgl
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-fgl
+
 
 Package: libghc6-fgl-dev
-Section: libdevel
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Suggests: libghc6-fgl-prof, libghc6-fgl-doc
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: Haskell graph library for GHC
  This package provides a library for the Haskell programming language.
  See http://www.haskell.org/ for more information on Haskell.
@@ -18,10 +32,10 @@ Description: Haskell graph library for GHC
  This is Martin Erwig's Functional Graph Library.
 
 Package: libghc6-fgl-prof
-Section: libdevel
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}, libghc6-fgl-dev (= ${binary:Version})
-Suggests: libghc6-fgl-doc
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Provides: ${haskell:Provides}
 Description: Haskell graph library for GHC; profiling libraries
  This package provides a library for the Haskell programming language,
  compiled for profiling.
@@ -32,9 +46,10 @@ Description: Haskell graph library for GHC; profiling libraries
 Package: libghc6-fgl-doc
 Section: doc
 Architecture: all
-Depends: ${misc:Depends}
-Recommends: ghc6-doc, libghc6-mtl-doc
-Suggests: libghc6-fgl-dev, libghc6-fgl-prof
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: Haskell graph library for GHC; documentation
  This package provides the documentation for a library for the Haskell
  programming language.
