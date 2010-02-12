@@ -1,0 +1,48 @@
+Source: haskell-glut
+Section: libdevel
+Priority: optional
+Maintainer: Kari Pahula <kaol@debian.org>
+Standards-Version: 3.8.0
+Build-Depends: debhelper (>= 5), haddock (>= 2.4.1-4), hscolour, haskell-devscripts, cdbs, ghc6, ghc6-prof, ghc6-doc, libghc6-opengl-dev (>= 2.2.1.1-3), libghc6-opengl-prof, libghc6-opengl-doc, freeglut3-dev, libice-dev, libsm-dev, libxi-dev, libxmu-dev
+
+Package: libghc6-glut-dev
+Section: libdevel
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}, freeglut3-dev, libice-dev, libsm-dev, libxi-dev, libxmu-dev
+Suggests: libghc6-glut-prof, libghc6-glut-doc
+Description: Haskell GLUT binding for GHC
+ This package provides a library for the Haskell programming language.
+ .
+ This library provides a binding for the OpenGL Utility Toolkit, a window
+ system independent toolkit for writing OpenGL programs. For more
+ information about the C library on which this binding is based,
+ please see: <http://www.opengl.org/resources/libraries/glut/>.
+
+Package: libghc6-glut-prof
+Section: libdevel
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}, libghc6-glut-dev (= ${binary:Version})
+Suggests: libghc6-glut-doc
+Description: Haskell GLUT binding for GHC; profiling libraries
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ .
+ This library provides a binding for the OpenGL Utility Toolkit, a window
+ system independent toolkit for writing OpenGL programs. For more
+ information about the C library on which this binding is based,
+ please see: <http://www.opengl.org/resources/libraries/glut/>.
+
+Package: libghc6-glut-doc
+Section: doc
+Architecture: all
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ghc6-doc, libghc6-opengl-doc
+Suggests: libghc6-glut-dev, libghc6-glut-prof
+Description: Haskell GLUT binding for GHC; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ .
+ This library provides a binding for the OpenGL Utility Toolkit, a window
+ system independent toolkit for writing OpenGL programs. For more
+ information about the C library on which this binding is based,
+ please see: <http://www.opengl.org/resources/libraries/glut/>.
