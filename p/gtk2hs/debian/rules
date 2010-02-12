@@ -88,7 +88,6 @@ DEB = libghc6-$(1)-dev
 PKGLIB_DIR = usr/lib/haskell-packages/ghc6/lib/$(1)-$(VERSION)
 PKGLIB_BUILD = debian/$(call DEB,$(1))/$(call PKGLIB_DIR,$(1))
 SHORT_HDEP = $(call PKGLIB_BUILD,$(1))/$(1).package.conf
-# shortcut for mk-haskell-deps
 HDEP = $(1):$(call SHORT_HDEP,$(1))
 
 config.status: configure.ac
