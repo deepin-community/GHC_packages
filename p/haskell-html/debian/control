@@ -1,0 +1,38 @@
+Source: haskell-html
+Section: haskell
+Priority: optional
+Maintainer: Kari Pahula <kaol@debian.org>
+Standards-Version: 3.8.1
+Build-Depends: debhelper (>= 5), haddock (>= 2.4.2), hscolour, haskell-devscripts, ghc6, ghc6-prof, ghc6-doc, cdbs
+Homepage: http://web.archive.org/web/20070406145557/http://www.cse.ogi.edu/~andy/html/intro.htm
+
+Package: libghc6-html-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Suggests: libghc6-html-prof, libghc6-html-doc
+Description: Haskell html library for GHC
+ This package provides a library for the Haskell programming language.
+ .
+ This library provides combinators for constructing HTML documents.
+
+Package: libghc6-html-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}, libghc6-html-dev (= ${binary:Version})
+Suggests: libghc6-html-doc
+Description: Haskell html library for GHC; profiling libraries
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ .
+ This library provides combinators for constructing HTML documents.
+
+Package: libghc6-html-doc
+Section: doc
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Recommends: ghc6-doc
+Suggests: libghc6-html-dev, libghc6-html-prof
+Description: Haskell html library for GHC; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ .
+ This library provides combinators for constructing HTML documents.
