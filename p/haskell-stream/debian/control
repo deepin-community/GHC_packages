@@ -1,0 +1,45 @@
+Source: haskell-stream
+Section: libdevel
+Priority: optional
+Maintainer: Kari Pahula <kaol@debian.org>
+Standards-Version: 3.8.0
+Build-Depends: debhelper (>= 5), haddock (>= 2.4.1-4), hscolour, haskell-devscripts, ghc6 (>= 6.10.1+dfsg1-13), ghc6-prof, ghc6-doc, cdbs
+
+Package: libghc6-stream-dev
+Section: libdevel
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Suggests: libghc6-stream-prof, libghc6-stream-doc
+Description: Haskell stream (infinite list) library for GHC
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ Provides functions, analogous to those from Data.List, to create and
+ manipulate infinite lists.
+
+Package: libghc6-stream-prof
+Section: libdevel
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}, libghc6-stream-dev (= ${binary:Version})
+Suggests: libghc6-stream-doc
+Description: Haskell stream (infinite list) library for GHC; profiling libraries
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ Provides functions, analogous to those from Data.List, to create and
+ manipulate infinite lists.
+
+Package: libghc6-stream-doc
+Section: doc
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Recommends: ghc6-doc
+Suggests: libghc6-stream-dev, libghc6-stream-prof
+Description: Haskell stream (infinite list) library for GHC; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ Provides functions, analogous to those from Data.List, to create and
+ manipulate infinite lists.
