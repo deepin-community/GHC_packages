@@ -1,0 +1,41 @@
+Source: haskell-haskell-src
+Section: libdevel
+Priority: optional
+Maintainer: Kari Pahula <kaol@debian.org>
+Standards-Version: 3.8.0
+Build-Depends: debhelper (>= 5), haddock (>= 2.4.1-4), hscolour, haskell-devscripts, cdbs, ghc6, ghc6-prof, ghc6-doc, happy
+
+Package: libghc6-haskell-src-dev
+Section: libdevel
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Suggests: libghc6-haskell-src-prof, libghc6-haskell-src-doc
+Description: Haskell module to manipulate Haskell source
+ This package provides a library for the Haskell programming language.
+ .
+ This library provides facilities for manipulating Haskell source code:
+ an abstract syntax, lexer, parser and pretty-printer.
+
+Package: libghc6-haskell-src-prof
+Section: libdevel
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}, libghc6-haskell-src-dev (= ${binary:Version})
+Suggests: libghc6-haskell-src-doc
+Description: Haskell module to manipulate Haskell source; profiling libraries
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ .
+ This library provides facilities for manipulating Haskell source code:
+ an abstract syntax, lexer, parser and pretty-printer.
+
+Package: libghc6-haskell-src-doc
+Section: doc
+Architecture: all
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: libghc6-haskell-src-dev, libghc6-haskell-src-prof
+Description: Haskell module to manipulate Haskell source; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ .
+ This library provides facilities for manipulating Haskell source code:
+ an abstract syntax, lexer, parser and pretty-printer.
