@@ -13,7 +13,8 @@ Package: libghc6-hunit-dev
 Section: libdevel
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Suggests: libghc6-hunit-prof, libghc6-hunit-doc
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
 Description: Haskell unit testing framework for GHC
  This package provides a library for the Haskell programming language.
@@ -26,7 +27,8 @@ Package: libghc6-hunit-prof
 Section: libdevel
 Architecture: any
 Depends: ${haskell:Depends}, ${misc:Depends}
-Suggests: libghc6-hunit-doc
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
 Description: Haskell unit testing framework for GHC; profiling libraries
  This package provides a library for the Haskell programming language,
@@ -40,8 +42,8 @@ Package: libghc6-hunit-doc
 Section: doc
 Architecture: all
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Recommends: ghc6-doc
-Suggests: libghc6-hunit-dev, libghc6-hunit-prof
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: Haskell unit testing framework for GHC; documentation
  This package provides the documentation for a library for the Haskell
  programming language.
