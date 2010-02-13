@@ -3,12 +3,11 @@ Priority: extra
 Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>
-Build-Depends: dctrl-tools,
- dpkg-dev (>= 1.13.19),
- debhelper (>= 5.0.0),
- haskell-devscripts (>= 0.6.0),
+Build-Depends:
+ debhelper (>= 7),
+ haskell-devscripts (>= 0.7),
  cdbs,
- ghc6 (>= 6.10.3),
+ ghc6,
  ghc6-prof,
  ghc6-doc
 Standards-Version: 3.8.4
@@ -46,7 +45,8 @@ Package: libghc6-dataenc-doc
 Section: doc
 Architecture: all
 Depends: ${haskell:Depends}, ${misc:Depends}
-Recommends: doc-base
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: Documentation for dataenc encoders and decoders
  .
  Data encoding library currently providing Base16, Base32, Base32Hex, Base64,
