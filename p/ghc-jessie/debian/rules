@@ -45,9 +45,9 @@ ifeq (powerpc,$(DEB_HOST_ARCH)) # See #365497
 	echo "GhcWithInterpreter=NO" >> mk/build.mk
 endif
 ifeq (ia64,$(DEB_HOST_ARCH)) # Tested and seen to be necessary with 6.12.1
-        echo "SRC_CC_OPTS += -Wl,--relax" >> mk/build.mk
-        echo "SRC_HC_OPTS += -optl-Wl,--relax -optl-Wl,-G0" >> mk/build.mk
-        echo "SRC_HC_OPTS += -optc-G0" >> mk/build.mk
+	echo "SRC_CC_OPTS += -Wl,--relax" >> mk/build.mk
+	echo "SRC_HC_OPTS += -optl-Wl,--relax -optl-Wl,-G0" >> mk/build.mk
+	echo "SRC_HC_OPTS += -optc-G0" >> mk/build.mk
 endif
 ifneq (,$(findstring $(DEB_HOST_ARCH), kfreebsd-i386 kfreebsd-amd64))
 	echo "GhcWithInterpreter=YES"
@@ -59,9 +59,11 @@ ifneq (,$(findstring $(DEB_HOST_ARCH), arm armel))
 	echo "SRC_HC_OPTS     += -optc-mlong-calls" >> mk/build.mk
 endif
 ifneq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
+#	echo "GhcStage1HcOpts += -DDEBUG" >> mk/build.mk
+#	echo "GhcStage2HcOpts += -DDEBUG" >> mk/build.mk
 	echo "SRC_HC_OPTS   += -H32m -O0" >> mk/build.mk
 	echo "GhcHcOpts     += -Rghc-timing -DDEBUG" >> mk/build.mk
-	echo "GhcLibHcOpts  += -O -dcore-lint -keep-hc-files " >> mk/build.mk
+#	echo "GhcLibHcOpts  += -O -dcore-lint -keep-hc-files " >> mk/build.mk
 	echo "SplitObjs     = NO" >> mk/build.mk
 	echo "STRIP         = :" >> mk/build.mk
 endif
@@ -156,7 +158,7 @@ install-stamp: build-stamp
 	if inplace/bin/ghc-stage2 --info | grep '"Have interpreter","NO"'; then \
 	    cd debian/tmp/usr/lib/ghc-$(ProjectVersion) ;rm -f bin/ghci* bin/runghc* bin/runhaskell*; \
 	fi
-	rm -f debian/tmp/usr/lib/ghc-$(ProjectVersion)/bin/haddock
+	rm -f debian/tmp/usr/lib/ghc-$(ProjectVersion)/bin/haddock debian/tmp/usr/lib/ghc-$(ProjectVersion)/lib/haddock
 	cd debian/tmp/usr/lib/ghc-$(ProjectVersion)/bin && \
 	    for f in *-$(ProjectVersion); \
 	    do ln -s /usr/lib/ghc-$(ProjectVersion)/bin/$$f \
@@ -204,6 +206,7 @@ endif
 	# ghc6
 	find debian/tmp/usr/bin $(FILES)                  > debian/ghc6.install
 #	find debian/tmp/usr/share/ghc* $(FILES)          >> debian/ghc6.install
+	find debian/tmp/usr/share/haddock-* $(FILES)	 >> debian/ghc6.install
 	find debian/tmp/usr/share/man $(FILES)           >> debian/ghc6.install
 	find debian/tmp/usr/lib/ghc-$(ProjectVersion) $(FILES) ! $(PROF_FILE)  >> debian/ghc6.install
 	find debian/tmp/var				 >> debian/ghc6.install
@@ -214,7 +217,6 @@ endif
 	# ghc6-doc
 ifeq (YES,$(BUILD_HADDOCK_DOCS))
 	find debian/tmp/usr/share/doc/ghc6-doc $(FILES) > debian/ghc6-doc.install
-	find debian/tmp/usr/share/haddock* $(FILES)    >> debian/ghc6-doc.install
 	find debian/tmp/usr/lib/ghc6-doc $(FILES)      >> debian/ghc6-doc.install
 endif
 	sed -i s,^debian/tmp,, debian/*.install

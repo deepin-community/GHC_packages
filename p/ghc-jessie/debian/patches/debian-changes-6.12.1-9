@@ -1,0 +1,930 @@
+Description: Upstream changes introduced in version 6.12.1-9
+ This patch has been created by dpkg-source during the package build.
+ Here's the last changelog entry, hopefully it gives details on why
+ those changes were made:
+ .
+ ghc6 (6.12.1-9) unstable; urgency=low
+ .
+   * Remove /usr/lib/ghc-$(ProjectVersion)/lib/haddock (ie. the internal
+     haddock binary that ghc6 used at build time) from the ghc6 package.
+   * Install haddock's files from /usr/share/haddock-$VERSION in ghc6
+     package, not ghc6-doc.
+ .
+ The person named in the Author field signed this changelog entry.
+Author: Kari Pahula <kaol@debian.org>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: http://bugs.debian.org/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: <YYYY-MM-DD>
+
+--- /dev/null
++++ ghc6-6.12.1/libraries/ghc-prim/GHC/Generics.hc
+@@ -0,0 +1,304 @@
++/* GHC_PACKAGES base integer-gmp ghc-prim rts
++*/
++#include "Stg.h"
++EI_(ghczmprim_GHCziGenerics_zdgtoZCztZC_info);
++StgWord ghczmprim_GHCziGenerics_zdgtoZCztZC_closure[] = {
++(W_)&ghczmprim_GHCziGenerics_zdgtoZCztZC_info
++};
++
++StgWord ghczmprim_GHCziGenerics_zdgtoZCztZC_info[] = {
++0x10005U, 0x0, 0xfU
++};
++
++FN_(ghczmprim_GHCziGenerics_zdgtoZCztZC_entry) {
++FB_
++R1.w = *Sp;
++Sp=Sp+1;
++R1.w = R1.w & (-0x4U);
++JMP_(*R1.p);
++FE_
++}
++EI_(ghczmprim_GHCziGenerics_zdgfromZCzpZC_info);
++StgWord ghczmprim_GHCziGenerics_zdgfromZCzpZC_closure[] = {
++(W_)&ghczmprim_GHCziGenerics_zdgfromZCzpZC_info
++};
++
++StgWord ghczmprim_GHCziGenerics_zdgfromZCzpZC_info[] = {
++0x10005U, 0x0, 0xfU
++};
++
++FN_(ghczmprim_GHCziGenerics_zdgfromZCzpZC_entry) {
++FB_
++R1.w = *Sp;
++Sp=Sp+1;
++R1.w = R1.w & (-0x4U);
++JMP_(*R1.p);
++FE_
++}
++EI_(ghczmprim_GHCziGenerics_zdgtoZCzpZC_info);
++StgWord ghczmprim_GHCziGenerics_zdgtoZCzpZC_closure[] = {
++(W_)&ghczmprim_GHCziGenerics_zdgtoZCzpZC_info
++};
++
++StgWord ghczmprim_GHCziGenerics_zdgtoZCzpZC_info[] = {
++0x10005U, 0x0, 0xfU
++};
++
++FN_(ghczmprim_GHCziGenerics_zdgtoZCzpZC_entry) {
++FB_
++R1.w = *Sp;
++Sp=Sp+1;
++R1.w = R1.w & (-0x4U);
++JMP_(*R1.p);
++FE_
++}
++EI_(ghczmprim_GHCziGenerics_zdgfromUnit_info);
++StgWord ghczmprim_GHCziGenerics_zdgfromUnit_closure[] = {
++(W_)&ghczmprim_GHCziGenerics_zdgfromUnit_info
++};
++
++StgWord ghczmprim_GHCziGenerics_zdgfromUnit_info[] = {
++0x10005U, 0x0, 0xfU
++};
++
++FN_(ghczmprim_GHCziGenerics_zdgfromUnit_entry) {
++FB_
++R1.w = *Sp;
++Sp=Sp+1;
++R1.w = R1.w & (-0x4U);
++JMP_(*R1.p);
++FE_
++}
++EI_(ghczmprim_GHCziGenerics_zdgtoUnit_info);
++StgWord ghczmprim_GHCziGenerics_zdgtoUnit_closure[] = {
++(W_)&ghczmprim_GHCziGenerics_zdgtoUnit_info
++};
++
++StgWord ghczmprim_GHCziGenerics_zdgtoUnit_info[] = {
++0x10005U, 0x0, 0xfU
++};
++
++EI_(ghczmprim_GHCziGenerics_Unit_closure);
++FN_(ghczmprim_GHCziGenerics_zdgtoUnit_entry) {
++FB_
++R1.w = (W_)&ghczmprim_GHCziGenerics_Unit_closure+1;
++Sp=Sp+1;
++JMP_(*Sp);
++FE_
++}
++EI_(ghczmprim_GHCziGenerics_zdgfromZCztZC_info);
++StgWord ghczmprim_GHCziGenerics_zdgfromZCztZC_closure[] = {
++(W_)&ghczmprim_GHCziGenerics_zdgfromZCztZC_info
++};
++
++StgWord ghczmprim_GHCziGenerics_zdgfromZCztZC_info[] = {
++0x10005U, 0x0, 0xfU
++};
++
++FN_(ghczmprim_GHCziGenerics_zdgfromZCztZC_entry) {
++FB_
++R1.w = *Sp;
++Sp=Sp+1;
++R1.w = R1.w & (-0x4U);
++JMP_(*R1.p);
++FE_
++}
++EI_(ghczmprim_GHCziGenerics_ZCztZC_info);
++StgWord ghczmprim_GHCziGenerics_ZCztZC_closure[] = {
++(W_)&ghczmprim_GHCziGenerics_ZCztZC_info
++};
++
++StgWord ghczmprim_GHCziGenerics_ZCztZC_info[] = {
++0x2000cU, 0x0, 0xfU
++};
++
++EI_(ghczmprim_GHCziGenerics_ZCztZC_con_info);
++EI_(ghczmprim_GHCziGenerics_ZCztZC_closure);
++FN_(ghczmprim_GHCziGenerics_ZCztZC_entry) {
++FB_
++Hp=Hp+3;
++if ((W_)((W_)Hp > (W_)HpLim)) goto _c2Q;
++Hp[-2] = (W_)&ghczmprim_GHCziGenerics_ZCztZC_con_info;
++Hp[-1] = *Sp;
++*Hp = Sp[1];
++R1.w = (W_)Hp-7;
++Sp=Sp+2;
++JMP_(*Sp);
++_c2Q:
++HpAlloc = 0xcU;
++R1.w = (W_)&ghczmprim_GHCziGenerics_ZCztZC_closure;
++JMP_(stg_gc_fun);
++FE_
++}
++EI_(ghczmprim_GHCziGenerics_Inl_info);
++StgWord ghczmprim_GHCziGenerics_Inl_closure[] = {
++(W_)&ghczmprim_GHCziGenerics_Inl_info
++};
++
++StgWord ghczmprim_GHCziGenerics_Inl_info[] = {
++0x10005U, 0x0, 0xfU
++};
++
++EI_(ghczmprim_GHCziGenerics_Inl_con_info);
++EI_(ghczmprim_GHCziGenerics_Inl_closure);
++FN_(ghczmprim_GHCziGenerics_Inl_entry) {
++FB_
++Hp=Hp+2;
++if ((W_)((W_)Hp > (W_)HpLim)) goto _c30;
++Hp[-1] = (W_)&ghczmprim_GHCziGenerics_Inl_con_info;
++*Hp = *Sp;
++R1.w = (W_)Hp-3;
++Sp=Sp+1;
++JMP_(*Sp);
++_c30:
++HpAlloc = 0x8U;
++R1.w = (W_)&ghczmprim_GHCziGenerics_Inl_closure;
++JMP_(stg_gc_fun);
++FE_
++}
++EI_(ghczmprim_GHCziGenerics_Inr_info);
++StgWord ghczmprim_GHCziGenerics_Inr_closure[] = {
++(W_)&ghczmprim_GHCziGenerics_Inr_info
++};
++
++StgWord ghczmprim_GHCziGenerics_Inr_info[] = {
++0x10005U, 0x0, 0xfU
++};
++
++EI_(ghczmprim_GHCziGenerics_Inr_con_info);
++EI_(ghczmprim_GHCziGenerics_Inr_closure);
++FN_(ghczmprim_GHCziGenerics_Inr_entry) {
++FB_
++Hp=Hp+2;
++if ((W_)((W_)Hp > (W_)HpLim)) goto _c3a;
++Hp[-1] = (W_)&ghczmprim_GHCziGenerics_Inr_con_info;
++*Hp = *Sp;
++R1.w = (W_)Hp-2;
++Sp=Sp+1;
++JMP_(*Sp);
++_c3a:
++HpAlloc = 0x8U;
++R1.w = (W_)&ghczmprim_GHCziGenerics_Inr_closure;
++JMP_(stg_gc_fun);
++FE_
++}
++EI_(ghczmprim_GHCziGenerics_Unit_static_info);
++StgWord ghczmprim_GHCziGenerics_Unit_closure[] = {
++(W_)&ghczmprim_GHCziGenerics_Unit_static_info
++};
++static char c3k_str[] = "ghc-prim:GHC.Generics.:*:";
++
++StgWord ghczmprim_GHCziGenerics_ZCztZC_con_info[] = {
++((W_)&c3k_str+0), 0x2U, 0x4U
++};
++
++FN_(ghczmprim_GHCziGenerics_ZCztZC_con_entry) {
++FB_
++R1.w = R1.w+1;
++JMP_(*Sp);
++FE_
++}
++
++static char c3p_str[] = "ghc-prim:GHC.Generics.:*:";
++
++StgWord ghczmprim_GHCziGenerics_ZCztZC_static_info[] = {
++((W_)&c3p_str+0), 0x2U, 0x7U
++};
++
++FN_(ghczmprim_GHCziGenerics_ZCztZC_static_entry) {
++FB_
++R1.w = R1.w+1;
++JMP_(*Sp);
++FE_
++}
++static char c3w_str[] = "ghc-prim:GHC.Generics.Inl";
++
++StgWord ghczmprim_GHCziGenerics_Inl_con_info[] = {
++((W_)&c3w_str+0), 0x1U, 0x2U
++};
++
++FN_(ghczmprim_GHCziGenerics_Inl_con_entry) {
++FB_
++R1.w = R1.w+1;
++JMP_(*Sp);
++FE_
++}
++
++static char c3B_str[] = "ghc-prim:GHC.Generics.Inl";
++
++StgWord ghczmprim_GHCziGenerics_Inl_static_info[] = {
++((W_)&c3B_str+0), 0x1U, 0x7U
++};
++
++FN_(ghczmprim_GHCziGenerics_Inl_static_entry) {
++FB_
++R1.w = R1.w+1;
++JMP_(*Sp);
++FE_
++}
++static char c3I_str[] = "ghc-prim:GHC.Generics.Inr";
++
++StgWord ghczmprim_GHCziGenerics_Inr_con_info[] = {
++((W_)&c3I_str+0), 0x1U, 0x10002U
++};
++
++FN_(ghczmprim_GHCziGenerics_Inr_con_entry) {
++FB_
++R1.w = R1.w+2;
++JMP_(*Sp);
++FE_
++}
++
++static char c3N_str[] = "ghc-prim:GHC.Generics.Inr";
++
++StgWord ghczmprim_GHCziGenerics_Inr_static_info[] = {
++((W_)&c3N_str+0), 0x1U, 0x10007U
++};
++
++FN_(ghczmprim_GHCziGenerics_Inr_static_entry) {
++FB_
++R1.w = R1.w+2;
++JMP_(*Sp);
++FE_
++}
++EI_(ghczmprim_GHCziGenerics_Unit_closure);
++StgWord ghczmprim_GHCziGenerics_Unit_closure_tbl[] = {
++((W_)&ghczmprim_GHCziGenerics_Unit_closure+1)
++};
++static char c3X_str[] = "ghc-prim:GHC.Generics.Unit";
++
++StgWord ghczmprim_GHCziGenerics_Unit_static_info[] = {
++((W_)&c3X_str+0), 0x0, 0x8U
++};
++
++FN_(ghczmprim_GHCziGenerics_Unit_static_entry) {
++FB_
++R1.w = R1.w+1;
++JMP_(*Sp);
++FE_
++}
++static StgWord _module_registered[] = {
++0x0
++};
++
++
++FN_(__stginit_ghczmprim_GHCziGenerics_) {
++FB_
++if ((W_)(0x0 != (*((P_)(W_)&_module_registered)))) goto _c44;
++goto _c46;
++_c44:
++Sp=Sp+1;
++JMP_(Sp[-1]);
++_c46:
++*((P_)(W_)&_module_registered) = 0x1U;
++goto _c44;
++FE_
++}
++
++
++EF_(__stginit_ghczmprim_GHCziGenerics_);
++FN_(__stginit_ghczmprim_GHCziGenerics) {
++FB_
++JMP_((W_)&__stginit_ghczmprim_GHCziGenerics_);
++FE_
++}
+--- /dev/null
++++ ghc6-6.12.1/libraries/ghc-prim/GHC/Generics.dyn_hc
+@@ -0,0 +1,304 @@
++/* GHC_PACKAGES base integer-gmp ghc-prim rts
++*/
++#include "Stg.h"
++EI_(ghczmprim_GHCziGenerics_zdgtoZCztZC_info);
++StgWord ghczmprim_GHCziGenerics_zdgtoZCztZC_closure[] = {
++(W_)&ghczmprim_GHCziGenerics_zdgtoZCztZC_info
++};
++
++StgWord ghczmprim_GHCziGenerics_zdgtoZCztZC_info[] = {
++0x10005U, 0x0, 0xfU
++};
++
++FN_(ghczmprim_GHCziGenerics_zdgtoZCztZC_entry) {
++FB_
++R1.w = *Sp;
++Sp=Sp+1;
++R1.w = R1.w & (-0x4U);
++JMP_(*R1.p);
++FE_
++}
++EI_(ghczmprim_GHCziGenerics_zdgfromZCzpZC_info);
++StgWord ghczmprim_GHCziGenerics_zdgfromZCzpZC_closure[] = {
++(W_)&ghczmprim_GHCziGenerics_zdgfromZCzpZC_info
++};
++
++StgWord ghczmprim_GHCziGenerics_zdgfromZCzpZC_info[] = {
++0x10005U, 0x0, 0xfU
++};
++
++FN_(ghczmprim_GHCziGenerics_zdgfromZCzpZC_entry) {
++FB_
++R1.w = *Sp;
++Sp=Sp+1;
++R1.w = R1.w & (-0x4U);
++JMP_(*R1.p);
++FE_
++}
++EI_(ghczmprim_GHCziGenerics_zdgtoZCzpZC_info);
++StgWord ghczmprim_GHCziGenerics_zdgtoZCzpZC_closure[] = {
++(W_)&ghczmprim_GHCziGenerics_zdgtoZCzpZC_info
++};
++
++StgWord ghczmprim_GHCziGenerics_zdgtoZCzpZC_info[] = {
++0x10005U, 0x0, 0xfU
++};
++
++FN_(ghczmprim_GHCziGenerics_zdgtoZCzpZC_entry) {
++FB_
++R1.w = *Sp;
++Sp=Sp+1;
++R1.w = R1.w & (-0x4U);
++JMP_(*R1.p);
++FE_
++}
++EI_(ghczmprim_GHCziGenerics_zdgfromUnit_info);
++StgWord ghczmprim_GHCziGenerics_zdgfromUnit_closure[] = {
++(W_)&ghczmprim_GHCziGenerics_zdgfromUnit_info
++};
++
++StgWord ghczmprim_GHCziGenerics_zdgfromUnit_info[] = {
++0x10005U, 0x0, 0xfU
++};
++
++FN_(ghczmprim_GHCziGenerics_zdgfromUnit_entry) {
++FB_
++R1.w = *Sp;
++Sp=Sp+1;
++R1.w = R1.w & (-0x4U);
++JMP_(*R1.p);
++FE_
++}
++EI_(ghczmprim_GHCziGenerics_zdgtoUnit_info);
++StgWord ghczmprim_GHCziGenerics_zdgtoUnit_closure[] = {
++(W_)&ghczmprim_GHCziGenerics_zdgtoUnit_info
++};
++
++StgWord ghczmprim_GHCziGenerics_zdgtoUnit_info[] = {
++0x10005U, 0x0, 0xfU
++};
++
++EI_(ghczmprim_GHCziGenerics_Unit_closure);
++FN_(ghczmprim_GHCziGenerics_zdgtoUnit_entry) {
++FB_
++R1.w = (W_)&ghczmprim_GHCziGenerics_Unit_closure+1;
++Sp=Sp+1;
++JMP_(*Sp);
++FE_
++}
++EI_(ghczmprim_GHCziGenerics_zdgfromZCztZC_info);
++StgWord ghczmprim_GHCziGenerics_zdgfromZCztZC_closure[] = {
++(W_)&ghczmprim_GHCziGenerics_zdgfromZCztZC_info
++};
++
++StgWord ghczmprim_GHCziGenerics_zdgfromZCztZC_info[] = {
++0x10005U, 0x0, 0xfU
++};
++
++FN_(ghczmprim_GHCziGenerics_zdgfromZCztZC_entry) {
++FB_
++R1.w = *Sp;
++Sp=Sp+1;
++R1.w = R1.w & (-0x4U);
++JMP_(*R1.p);
++FE_
++}
++EI_(ghczmprim_GHCziGenerics_ZCztZC_info);
++StgWord ghczmprim_GHCziGenerics_ZCztZC_closure[] = {
++(W_)&ghczmprim_GHCziGenerics_ZCztZC_info
++};
++
++StgWord ghczmprim_GHCziGenerics_ZCztZC_info[] = {
++0x2000cU, 0x0, 0xfU
++};
++
++EI_(ghczmprim_GHCziGenerics_ZCztZC_con_info);
++EI_(ghczmprim_GHCziGenerics_ZCztZC_closure);
++FN_(ghczmprim_GHCziGenerics_ZCztZC_entry) {
++FB_
++Hp=Hp+3;
++if ((W_)((W_)Hp > (W_)HpLim)) goto _c2Q;
++Hp[-2] = (W_)&ghczmprim_GHCziGenerics_ZCztZC_con_info;
++Hp[-1] = *Sp;
++*Hp = Sp[1];
++R1.w = (W_)Hp-7;
++Sp=Sp+2;
++JMP_(*Sp);
++_c2Q:
++HpAlloc = 0xcU;
++R1.w = (W_)&ghczmprim_GHCziGenerics_ZCztZC_closure;
++JMP_(stg_gc_fun);
++FE_
++}
++EI_(ghczmprim_GHCziGenerics_Inl_info);
++StgWord ghczmprim_GHCziGenerics_Inl_closure[] = {
++(W_)&ghczmprim_GHCziGenerics_Inl_info
++};
++
++StgWord ghczmprim_GHCziGenerics_Inl_info[] = {
++0x10005U, 0x0, 0xfU
++};
++
++EI_(ghczmprim_GHCziGenerics_Inl_con_info);
++EI_(ghczmprim_GHCziGenerics_Inl_closure);
++FN_(ghczmprim_GHCziGenerics_Inl_entry) {
++FB_
++Hp=Hp+2;
++if ((W_)((W_)Hp > (W_)HpLim)) goto _c30;
++Hp[-1] = (W_)&ghczmprim_GHCziGenerics_Inl_con_info;
++*Hp = *Sp;
++R1.w = (W_)Hp-3;
++Sp=Sp+1;
++JMP_(*Sp);
++_c30:
++HpAlloc = 0x8U;
++R1.w = (W_)&ghczmprim_GHCziGenerics_Inl_closure;
++JMP_(stg_gc_fun);
++FE_
++}
++EI_(ghczmprim_GHCziGenerics_Inr_info);
++StgWord ghczmprim_GHCziGenerics_Inr_closure[] = {
++(W_)&ghczmprim_GHCziGenerics_Inr_info
++};
++
++StgWord ghczmprim_GHCziGenerics_Inr_info[] = {
++0x10005U, 0x0, 0xfU
++};
++
++EI_(ghczmprim_GHCziGenerics_Inr_con_info);
++EI_(ghczmprim_GHCziGenerics_Inr_closure);
++FN_(ghczmprim_GHCziGenerics_Inr_entry) {
++FB_
++Hp=Hp+2;
++if ((W_)((W_)Hp > (W_)HpLim)) goto _c3a;
++Hp[-1] = (W_)&ghczmprim_GHCziGenerics_Inr_con_info;
++*Hp = *Sp;
++R1.w = (W_)Hp-2;
++Sp=Sp+1;
++JMP_(*Sp);
++_c3a:
++HpAlloc = 0x8U;
++R1.w = (W_)&ghczmprim_GHCziGenerics_Inr_closure;
++JMP_(stg_gc_fun);
++FE_
++}
++EI_(ghczmprim_GHCziGenerics_Unit_static_info);
++StgWord ghczmprim_GHCziGenerics_Unit_closure[] = {
++(W_)&ghczmprim_GHCziGenerics_Unit_static_info
++};
++static char c3k_str[] = "ghc-prim:GHC.Generics.:*:";
++
++StgWord ghczmprim_GHCziGenerics_ZCztZC_con_info[] = {
++((W_)&c3k_str+0), 0x2U, 0x4U
++};
++
++FN_(ghczmprim_GHCziGenerics_ZCztZC_con_entry) {
++FB_
++R1.w = R1.w+1;
++JMP_(*Sp);
++FE_
++}
++
++static char c3p_str[] = "ghc-prim:GHC.Generics.:*:";
++
++StgWord ghczmprim_GHCziGenerics_ZCztZC_static_info[] = {
++((W_)&c3p_str+0), 0x2U, 0x7U
++};
++
++FN_(ghczmprim_GHCziGenerics_ZCztZC_static_entry) {
++FB_
++R1.w = R1.w+1;
++JMP_(*Sp);
++FE_
++}
++static char c3w_str[] = "ghc-prim:GHC.Generics.Inl";
++
++StgWord ghczmprim_GHCziGenerics_Inl_con_info[] = {
++((W_)&c3w_str+0), 0x1U, 0x2U
++};
++
++FN_(ghczmprim_GHCziGenerics_Inl_con_entry) {
++FB_
++R1.w = R1.w+1;
++JMP_(*Sp);
++FE_
++}
++
++static char c3B_str[] = "ghc-prim:GHC.Generics.Inl";
++
++StgWord ghczmprim_GHCziGenerics_Inl_static_info[] = {
++((W_)&c3B_str+0), 0x1U, 0x7U
++};
++
++FN_(ghczmprim_GHCziGenerics_Inl_static_entry) {
++FB_
++R1.w = R1.w+1;
++JMP_(*Sp);
++FE_
++}
++static char c3I_str[] = "ghc-prim:GHC.Generics.Inr";
++
++StgWord ghczmprim_GHCziGenerics_Inr_con_info[] = {
++((W_)&c3I_str+0), 0x1U, 0x10002U
++};
++
++FN_(ghczmprim_GHCziGenerics_Inr_con_entry) {
++FB_
++R1.w = R1.w+2;
++JMP_(*Sp);
++FE_
++}
++
++static char c3N_str[] = "ghc-prim:GHC.Generics.Inr";
++
++StgWord ghczmprim_GHCziGenerics_Inr_static_info[] = {
++((W_)&c3N_str+0), 0x1U, 0x10007U
++};
++
++FN_(ghczmprim_GHCziGenerics_Inr_static_entry) {
++FB_
++R1.w = R1.w+2;
++JMP_(*Sp);
++FE_
++}
++EI_(ghczmprim_GHCziGenerics_Unit_closure);
++StgWord ghczmprim_GHCziGenerics_Unit_closure_tbl[] = {
++((W_)&ghczmprim_GHCziGenerics_Unit_closure+1)
++};
++static char c3X_str[] = "ghc-prim:GHC.Generics.Unit";
++
++StgWord ghczmprim_GHCziGenerics_Unit_static_info[] = {
++((W_)&c3X_str+0), 0x0, 0x8U
++};
++
++FN_(ghczmprim_GHCziGenerics_Unit_static_entry) {
++FB_
++R1.w = R1.w+1;
++JMP_(*Sp);
++FE_
++}
++static StgWord _module_registered[] = {
++0x0
++};
++
++
++FN_(__stginit_ghczmprim_GHCziGenerics_dyn) {
++FB_
++if ((W_)(0x0 != (*((P_)(W_)&_module_registered)))) goto _c44;
++goto _c46;
++_c44:
++Sp=Sp+1;
++JMP_(Sp[-1]);
++_c46:
++*((P_)(W_)&_module_registered) = 0x1U;
++goto _c44;
++FE_
++}
++
++
++EF_(__stginit_ghczmprim_GHCziGenerics_dyn);
++FN_(__stginit_ghczmprim_GHCziGenerics) {
++FB_
++JMP_((W_)&__stginit_ghczmprim_GHCziGenerics_dyn);
++FE_
++}
+--- /dev/null
++++ ghc6-6.12.1/libraries/ghc-prim/GHC/IntWord32.hc
+@@ -0,0 +1,28 @@
++/* GHC_PACKAGES base integer-gmp ghc-prim rts
++*/
++#include "Stg.h"
++static StgWord _module_registered[] = {
++0x0
++};
++
++
++FN_(__stginit_ghczmprim_GHCziIntWord32_) {
++FB_
++if ((W_)(0x0 != (*((P_)(W_)&_module_registered)))) goto _cc;
++goto _ce;
++_cc:
++Sp=Sp+1;
++JMP_(Sp[-1]);
++_ce:
++*((P_)(W_)&_module_registered) = 0x1U;
++goto _cc;
++FE_
++}
++
++
++EF_(__stginit_ghczmprim_GHCziIntWord32_);
++FN_(__stginit_ghczmprim_GHCziIntWord32) {
++FB_
++JMP_((W_)&__stginit_ghczmprim_GHCziIntWord32_);
++FE_
++}
+--- /dev/null
++++ ghc6-6.12.1/libraries/integer-gmp/GHC/Integer/Type.hc
+@@ -0,0 +1,131 @@
++/* GHC_PACKAGES base integer-gmp ghc-prim rts
++*/
++#include "Stg.h"
++EI_(integerzmgmp_GHCziIntegerziType_Szh_info);
++StgWord integerzmgmp_GHCziIntegerziType_Szh_closure[] = {
++(W_)&integerzmgmp_GHCziIntegerziType_Szh_info
++};
++
++StgWord integerzmgmp_GHCziIntegerziType_Szh_info[] = {
++0x10004U, 0x0, 0xfU
++};
++
++EI_(integerzmgmp_GHCziIntegerziType_Szh_con_info);
++EI_(integerzmgmp_GHCziIntegerziType_Szh_closure);
++FN_(integerzmgmp_GHCziIntegerziType_Szh_entry) {
++FB_
++Hp=Hp+2;
++if ((W_)((W_)Hp > (W_)HpLim)) goto _cq;
++Hp[-1] = (W_)&integerzmgmp_GHCziIntegerziType_Szh_con_info;
++*Hp = *Sp;
++R1.w = (W_)Hp-3;
++Sp=Sp+1;
++JMP_(*Sp);
++_cq:
++HpAlloc = 0x8U;
++R1.w = (W_)&integerzmgmp_GHCziIntegerziType_Szh_closure;
++JMP_(stg_gc_fun);
++FE_
++}
++EI_(integerzmgmp_GHCziIntegerziType_Jzh_info);
++StgWord integerzmgmp_GHCziIntegerziType_Jzh_closure[] = {
++(W_)&integerzmgmp_GHCziIntegerziType_Jzh_info
++};
++
++StgWord integerzmgmp_GHCziIntegerziType_Jzh_info[] = {
++0x2000aU, 0x0, 0xfU
++};
++
++EI_(integerzmgmp_GHCziIntegerziType_Jzh_con_info);
++EI_(integerzmgmp_GHCziIntegerziType_Jzh_closure);
++FN_(integerzmgmp_GHCziIntegerziType_Jzh_entry) {
++FB_
++Hp=Hp+3;
++if ((W_)((W_)Hp > (W_)HpLim)) goto _cA;
++Hp[-2] = (W_)&integerzmgmp_GHCziIntegerziType_Jzh_con_info;
++Hp[-1] = Sp[1];
++*Hp = *Sp;
++R1.w = (W_)Hp-6;
++Sp=Sp+2;
++JMP_(*Sp);
++_cA:
++HpAlloc = 0xcU;
++R1.w = (W_)&integerzmgmp_GHCziIntegerziType_Jzh_closure;
++JMP_(stg_gc_fun);
++FE_
++}
++static char cG_str[] = "integer-gmp:GHC.Integer.Type.S#";
++
++StgWord integerzmgmp_GHCziIntegerziType_Szh_con_info[] = {
++((W_)&cG_str+0), 0x10000U, 0x3U
++};
++
++FN_(integerzmgmp_GHCziIntegerziType_Szh_con_entry) {
++FB_
++R1.w = R1.w+1;
++JMP_(*Sp);
++FE_
++}
++
++static char cL_str[] = "integer-gmp:GHC.Integer.Type.S#";
++
++StgWord integerzmgmp_GHCziIntegerziType_Szh_static_info[] = {
++((W_)&cL_str+0), 0x10000U, 0x8U
++};
++
++FN_(integerzmgmp_GHCziIntegerziType_Szh_static_entry) {
++FB_
++R1.w = R1.w+1;
++JMP_(*Sp);
++FE_
++}
++static char cS_str[] = "integer-gmp:GHC.Integer.Type.J#";
++
++StgWord integerzmgmp_GHCziIntegerziType_Jzh_con_info[] = {
++((W_)&cS_str+0), 0x10001U, 0x10005U
++};
++
++FN_(integerzmgmp_GHCziIntegerziType_Jzh_con_entry) {
++FB_
++R1.w = R1.w+2;
++JMP_(*Sp);
++FE_
++}
++
++static char cX_str[] = "integer-gmp:GHC.Integer.Type.J#";
++
++StgWord integerzmgmp_GHCziIntegerziType_Jzh_static_info[] = {
++((W_)&cX_str+0), 0x10001U, 0x10007U
++};
++
++FN_(integerzmgmp_GHCziIntegerziType_Jzh_static_entry) {
++FB_
++R1.w = R1.w+2;
++JMP_(*Sp);
++FE_
++}
++static StgWord _module_registered[] = {
++0x0
++};
++
++
++FN_(__stginit_integerzmgmp_GHCziIntegerziType_) {
++FB_
++if ((W_)(0x0 != (*((P_)(W_)&_module_registered)))) goto _c14;
++goto _c16;
++_c14:
++Sp=Sp+1;
++JMP_(Sp[-1]);
++_c16:
++*((P_)(W_)&_module_registered) = 0x1U;
++goto _c14;
++FE_
++}
++
++
++EF_(__stginit_integerzmgmp_GHCziIntegerziType_);
++FN_(__stginit_integerzmgmp_GHCziIntegerziType) {
++FB_
++JMP_((W_)&__stginit_integerzmgmp_GHCziIntegerziType_);
++FE_
++}
+--- /dev/null
++++ ghc6-6.12.1/libraries/base/GHC/ConsoleHandler.hc
+@@ -0,0 +1,28 @@
++/* GHC_PACKAGES integer-gmp ghc-prim rts
++*/
++#include "Stg.h"
++static StgWord _module_registered[] = {
++0x0
++};
++
++
++FN_(__stginit_base_GHCziConsoleHandler_) {
++FB_
++if ((W_)(0x0 != (*((P_)(W_)&_module_registered)))) goto _cc;
++goto _ce;
++_cc:
++Sp=Sp+1;
++JMP_(Sp[-1]);
++_ce:
++*((P_)(W_)&_module_registered) = 0x1U;
++goto _cc;
++FE_
++}
++
++
++EF_(__stginit_base_GHCziConsoleHandler_);
++FN_(__stginit_base_GHCziConsoleHandler) {
++FB_
++JMP_((W_)&__stginit_base_GHCziConsoleHandler_);
++FE_
++}
+--- /dev/null
++++ ghc6-6.12.1/libraries/base/GHC/IO/Encoding/CodePage.hc
+@@ -0,0 +1,28 @@
++/* GHC_PACKAGES integer-gmp ghc-prim rts
++*/
++#include "Stg.h"
++static StgWord _module_registered[] = {
++0x0
++};
++
++
++FN_(__stginit_base_GHCziIOziEncodingziCodePage_) {
++FB_
++if ((W_)(0x0 != (*((P_)(W_)&_module_registered)))) goto _cc;
++goto _ce;
++_cc:
++Sp=Sp+1;
++JMP_(Sp[-1]);
++_ce:
++*((P_)(W_)&_module_registered) = 0x1U;
++goto _cc;
++FE_
++}
++
++
++EF_(__stginit_base_GHCziIOziEncodingziCodePage_);
++FN_(__stginit_base_GHCziIOziEncodingziCodePage) {
++FB_
++JMP_((W_)&__stginit_base_GHCziIOziEncodingziCodePage_);
++FE_
++}
+--- /dev/null
++++ ghc6-6.12.1/libraries/base/Unsafe/Coerce.hc
+@@ -0,0 +1,59 @@
++/* GHC_PACKAGES integer-gmp ghc-prim rts
++*/
++#include "Stg.h"
++EI_(base_UnsafeziCoerce_unsafeCoerce1_info);
++StgWord base_UnsafeziCoerce_unsafeCoerce1_closure[] = {
++(W_)&base_UnsafeziCoerce_unsafeCoerce1_info
++};
++
++StgWord base_UnsafeziCoerce_unsafeCoerce1_info[] = {
++0x10005U, 0x0, 0xfU
++};
++
++FN_(base_UnsafeziCoerce_unsafeCoerce1_entry) {
++FB_
++R1.w = *Sp;
++Sp=Sp+1;
++JMP_((W_)&stg_ap_0_fast);
++FE_
++}
++EI_(base_UnsafeziCoerce_unsafeCoerce_info);
++StgWord base_UnsafeziCoerce_unsafeCoerce_closure[] = {
++(W_)&base_UnsafeziCoerce_unsafeCoerce_info
++};
++
++StgWord base_UnsafeziCoerce_unsafeCoerce_info[] = {
++0x10005U, 0x0, 0xfU
++};
++
++EI_(base_UnsafeziCoerce_unsafeCoerce1_info);
++FN_(base_UnsafeziCoerce_unsafeCoerce_entry) {
++FB_
++JMP_((W_)&base_UnsafeziCoerce_unsafeCoerce1_info);
++FE_
++}
++static StgWord _module_registered[] = {
++0x0
++};
++
++
++FN_(__stginit_base_UnsafeziCoerce_) {
++FB_
++if ((W_)(0x0 != (*((P_)(W_)&_module_registered)))) goto _cH;
++goto _cJ;
++_cH:
++Sp=Sp+1;
++JMP_(Sp[-1]);
++_cJ:
++*((P_)(W_)&_module_registered) = 0x1U;
++goto _cH;
++FE_
++}
++
++
++EF_(__stginit_base_UnsafeziCoerce_);
++FN_(__stginit_base_UnsafeziCoerce) {
++FB_
++JMP_((W_)&__stginit_base_UnsafeziCoerce_);
++FE_
++}
