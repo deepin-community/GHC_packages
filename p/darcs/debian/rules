@@ -18,3 +18,11 @@ ifneq (nocheck,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
 endif
 Setup:
 	ghc --make Setup
+
+# After checking out the debian/ repo, untar the associated upstream
+# tarball over the top of it.
+P = $(shell dpkg-parsechangelog | sed -rn 's/^Source: //p')
+V = $(shell dpkg-parsechangelog | sed -rn 's/^Version: (\d+:)?(.*)-.*/\2/p')
+get-orig-source:
+	uscan --download-current-version
+	tar -C .. --xform 's|^[^/]*|$(notdir $(CURDIR))|' -xf ../$P_$V.orig.tar.gz
