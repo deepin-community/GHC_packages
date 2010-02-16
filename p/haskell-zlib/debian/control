@@ -21,6 +21,7 @@ Depends: zlib1g-dev
   , ${haskell:Depends}
   , ${shlibs:Depends}
   , ${misc:Depends}
+Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
 Description: Compression and decompression in the gzip and zlib formats
@@ -41,6 +42,8 @@ Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
   , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
 Description: Compression and decompression in the gzip and zlib formats; profiling libraries
  This package provides a library for the Haskell programming language,
@@ -61,7 +64,7 @@ Provides: libghc6-zlib-doc
 Replaces: libghc6-zlib-doc
 Section: doc
 Architecture: all
-Depends: ${misc:Depends}
+Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Description: Compression and decompression in the gzip and zlib formats; documentation
