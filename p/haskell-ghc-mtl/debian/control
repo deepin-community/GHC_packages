@@ -26,6 +26,7 @@ Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
   , ${misc:Depends}
+Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
 Description: an mtl compatible version of the Ghc-Api monads
@@ -40,6 +41,8 @@ Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
   , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
 Description: an mtl compatible version of the Ghc-Api monads; profiling libraries
  This package provides a library for the Haskell programming language,
@@ -52,7 +55,7 @@ Description: an mtl compatible version of the Ghc-Api monads; profiling librarie
 Package: libghc6-ghc-mtl-doc
 Section: doc
 Architecture: all
-Depends: ${misc:Depends}
+Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Description: an mtl compatible version of the Ghc-Api monads; documentation
