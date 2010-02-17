@@ -1,0 +1,15 @@
+Description: Remove unwanted Setup.hs output
+Author: Joachim Breitner <nomeata@debian.org>
+--- haskell-regex-posix-0.93.2.orig/Setup.hs
++++ haskell-regex-posix-0.93.2/Setup.hs
+@@ -4,10 +4,4 @@
+ 
+ import Distribution.Simple(defaultMainWithHooks, defaultUserHooks)
+ main = do
+-  putStrLn msg
+   defaultMainWithHooks defaultUserHooks
+-
+-msg = "This links to the standard c library version of regular expressions.\n\
+-      \The corresponding c header file is regex.h and there is a chance you\n\
+-      \will need to edit the end of the regex-posix.cabal file to find the\n\
+-      \include directory and/or library.\n"
