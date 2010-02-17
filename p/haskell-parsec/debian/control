@@ -22,8 +22,9 @@ Architecture: any
 Depends: ${haskell:Depends}
  , ${shlibs:Depends}
  , ${misc:Depends}
-Suggests: libghc6-parsec-prof
- , libghc6-parsec-doc
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Conflicts: libghc6-parsec-dev (<< 3.0.0-5)
 Replaces: libghc6-parsec-dev (<< 3.0.0-5)
 Description: Haskell monadic parser combinator library for GHC
@@ -39,6 +40,9 @@ Package: libghc6-parsec3-prof
 Architecture: any
 Depends: ${haskell:Depends}
  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Conflicts: libghc6-parsec-prof (<< 3.0.0-5)
 Replaces: libghc6-parsec-prof (<< 3.0.0-5)
 Description: Haskell monadic parser combinator library for GHC; profiling libraries
@@ -57,9 +61,8 @@ Architecture: all
 Depends: ${haskell:Depends}
  , ${shlibs:Depends}
  , ${misc:Depends}
-Recommends: ghc6-doc
- , libghc6-mtl-doc
-Suggests: libghc6-parsec3-dev
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Conflicts: libghc6-parsec-doc (<< 3.0.0-5)
 Replaces: libghc6-parsec-doc (<< 3.0.0-5)
 Description: Haskell monadic parser combinator library for GHC; documentation
