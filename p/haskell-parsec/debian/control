@@ -1,0 +1,55 @@
+Source: haskell-parsec
+Section: haskell
+Priority: optional
+Maintainer: Kari Pahula <kaol@debian.org>
+Standards-Version: 3.8.1
+Build-Depends: debhelper (>= 5), haddock (>= 2.4.2), hscolour, haskell-devscripts, ghc6, ghc6-prof, ghc6-doc, cdbs, libghc6-mtl-dev (>= 1.1.0.2-7), libghc6-mtl-prof, libghc6-mtl-doc
+Homepage: http://legacy.cs.uu.nl/daan/parsec.html
+
+Package: libghc6-parsec3-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Suggests: libghc6-parsec-prof, libghc6-parsec-doc
+Conflicts: libghc6-parsec-dev (<< 3.0.0-5)
+Replaces: libghc6-parsec-dev (<< 3.0.0-5)
+Description: Haskell monadic parser combinator library for GHC
+ This package provides a library for the Haskell programming language.
+ .
+ Parsec is designed from scratch as an industrial-strength parser
+ library.  It is simple, safe, well documented, has extensive
+ libraries and good error messages, and is also fast.  It is defined
+ as a monad transformer that can be stacked on arbitrary monads, and
+ it is also parametric in the input stream type.
+
+Package: libghc6-parsec3-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}
+Conflicts: libghc6-parsec-prof (<< 3.0.0-5)
+Replaces: libghc6-parsec-prof (<< 3.0.0-5)
+Description: Haskell monadic parser combinator library for GHC; profiling libraries
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ .
+ Parsec is designed from scratch as an industrial-strength parser
+ library.  It is simple, safe, well documented, has extensive libraries
+ and good error messages, and is also fast.  It is defined
+ as a monad transformer that can be stacked on arbitrary monads, and
+ it is also parametric in the input stream type.
+
+Package: libghc6-parsec3-doc
+Section: doc
+Architecture: all
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ghc6-doc, libghc6-mtl-doc
+Suggests: libghc6-parsec3-dev
+Conflicts: libghc6-parsec-doc (<< 3.0.0-5)
+Replaces: libghc6-parsec-doc (<< 3.0.0-5)
+Description: Haskell monadic parser combinator library for GHC; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ .
+ Parsec is designed from scratch as an industrial-strength parser
+ library.  It is simple, safe, well documented, has extensive libraries
+ and good error messages, and is also fast.  It is defined
+ as a monad transformer that can be stacked on arbitrary monads, and
+ it is also parametric in the input stream type.
