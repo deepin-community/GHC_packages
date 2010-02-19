@@ -185,6 +185,7 @@ ifeq (YES,$(BUILD_HADDOCK_DOCS))
 	    mkdir debian/tmp/usr/lib/ghc-$(ProjectVersion)/haddock/`basename $$f` ; \
 	    mv $$f/*.haddock debian/tmp/usr/lib/ghc-$(ProjectVersion)/haddock/`basename $$f` ; done
 	cd debian/tmp/usr/share/doc/ghc6-doc/html/libraries/; ln -s ghc-$(ProjectVersion) ghc
+	install -Dm 644 debian/index.html debian/tmp/usr/share/doc/ghc6-doc/index.html
 endif
 
 	# manpages
@@ -266,6 +267,7 @@ binary-arch-stamp: install-stamp
 	dh_link -a
 	dh_compress -X.haddock -a
 	dh_fixperms -a
+	sh debian/dh_haskell_provides
 	dh_installdeb -a
 	dh_shlibdeps -XlibHS
 	dh_gencontrol -a
