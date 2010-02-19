@@ -9,7 +9,7 @@ Homepage: http://haskell.org/ghc/
 Package: ghc6
 Architecture: any
 Depends: perl | perl5, gcc (>= 4:4.2), libgmp3-dev, libffi-dev, libbsd-dev, libc6-dev, ${shlibs:Depends}, ${misc:Depends}
-Provides: haskell-compiler, ghc, haddock, ${provided-devs}
+Provides: haskell-compiler, ghc, haddock, ${provided-devs}, ${haskell:Provides}
 Conflicts: ghc4 (<= 4.08.1-4), haddock
 Replaces: haddock, ghc6-doc (= 6.12.1-8)
 Breaks: cabal-install (<< 0.8.0), haskell-devscripts (<< 0.6.19), ghc6-doc (<= 6.12.1-8)
@@ -26,7 +26,7 @@ Description: GHC - the Glasgow Haskell Compilation system
 
 Package: ghc6-prof
 Architecture: any
-Provides: ghc-prof, ${provided-profs}
+Provides: ghc-prof, ${provided-profs}, ${haskell:Provides}
 Depends: ghc6 (= ${binary:Version}), ${misc:Depends}
 Description: Profiling libraries for the Glasgow Haskell Compilation system
  Version 6 of the Glorious Glasgow Haskell Compilation system (GHC).  GHC is
