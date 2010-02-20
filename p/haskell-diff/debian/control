@@ -1,0 +1,55 @@
+Source: haskell-diff
+Section: devel
+Priority: optional
+Maintainer: Chris Lamb <lamby@debian.org>
+Build-Depends: debhelper (>= 7), cdbs, haskell-devscripts (>= 0.6.15+nmu5), ghc6 (>= 6.10.1+dfsg1-13), haddock (>= 2.4.1-4), ghc6-doc, ghc6-prof, hscolour
+Standards-Version: 3.8.0
+Homepage: http://hackage.haskell.org/cgi-bin/hackage-scripts/package/Diff
+Vcs-Git: git://git.chris-lamb.co.uk/debian/pkg-haskell-diff.git
+Vcs-Browser: http://git.chris-lamb.co.uk/?p=debian/pkg-haskell-diff.git
+
+Package: libghc6-diff-dev
+Section: libdevel
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}
+Description: GHC 6 libraries for the Haskell O(ND) diff algorithm library
+ This is a Haskell library providing an implementation of the O(ND) diff
+ algorithm described in "An O(ND) Difference Algorithm and Its Variations"
+ (1986) by Eugene W. Myers. It is O(mn) in space.
+ .
+ Whilst the algorithm is the same one used by standared Unix diff, the
+ assumption is that users of this library will want to diff over interesting
+ things or perform interesting tasks with the results.
+ .
+ This package contains the libraries compiled for GHC 6.
+
+Package: libghc6-diff-prof
+Section: libdevel
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}, libghc6-diff-dev (= ${binary:Version})
+Description: GHC 6 profiling libraries for the Haskell O(ND) diff algorithm library
+ This is a Haskell library providing an implementation of the O(ND) diff
+ algorithm described in "An O(ND) Difference Algorithm and Its Variations"
+ (1986) by Eugene W. Myers. It is O(mn) in space.
+ .
+ Whilst the algorithm is the same one used by standared Unix diff, the
+ assumption is that users of this library will want to diff over interesting
+ things or perform interesting tasks with the results.
+ .
+ This package contains additional GHC profiling libraries which can be used with
+ libghc6-diff-dev
+
+Package: libghc6-diff-doc
+Section: doc
+Architecture: all
+Depends: ${haskell:Depends}, ${misc:Depends}
+Description: GHC 6 libraries for the Haskell O(ND) diff algorithm library (documentation)
+ This is a Haskell library providing an implementation of the O(ND) diff
+ algorithm described in "An O(ND) Difference Algorithm and Its Variations"
+ (1986) by Eugene W. Myers. It is O(mn) in space.
+ .
+ Whilst the algorithm is the same one used by standared Unix diff, the
+ assumption is that users of this library will want to diff over interesting
+ things or perform interesting tasks with the results.
+ .
+ This package contains library documentation.
