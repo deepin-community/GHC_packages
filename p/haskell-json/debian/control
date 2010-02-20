@@ -3,13 +3,13 @@ Priority: extra
 Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>
-Build-Depends: dctrl-tools,
- dpkg-dev (>= 1.13.19),
+Build-Depends:
  debhelper (>= 7),
- haskell-devscripts (>= 0.6.0),
+ haskell-devscripts (>= 0.7),
  cdbs,
- ghc6 (>= 6.10.3),
+ ghc6,
  ghc6-prof,
+ ghc6-doc,
  libghc6-mtl-dev,
  libghc6-mtl-prof,
  libghc6-mtl-doc
@@ -21,7 +21,8 @@ Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-
 Package: libghc6-json-dev
 Architecture: any
 Depends: ${haskell:Depends}, ${misc:Depends}
-Suggests: libghc6-json-doc (= ${source:Version})
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
 Description: Haskell library for serialising data to and from JSON
  .
@@ -37,9 +38,10 @@ Description: Haskell library for serialising data to and from JSON
 
 Package: libghc6-json-prof
 Architecture: any
-Depends: libghc6-json-dev (= ${binary:Version}), ${haskell:Depends},
+Depends: ${haskell:Depends},
  ${misc:Depends}
-Suggests: libghc6-json-doc (= ${source:Version})
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
 Description: Profiling version of the Haskell JSON library
  .
@@ -56,8 +58,9 @@ Description: Profiling version of the Haskell JSON library
 Package: libghc6-json-doc
 Section: doc
 Architecture: all
-Depends: ${misc:Depends}
-Recommends: doc-base
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: Documentation for the Haskell JSON library
  .
  JSON (JavaScript Object Notation) is a lightweight data-interchange format. It
