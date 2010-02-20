@@ -4,14 +4,13 @@ Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>
 Build-Depends:
- ghc6-doc,
- dctrl-tools,
  debhelper (>= 7),
  cdbs,
- haskell-devscripts,
+ haskell-devscripts (>= 0.7),
  quilt,
- dpkg-dev (>= 1.13.19),
- ghc6, ghc6-prof,
+ ghc6,
+ ghc6-prof,
+ ghc6-doc,
  html2text
 Standards-Version: 3.8.4
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haxml/
@@ -38,6 +37,7 @@ Description: utilities for using XML documents with Haskell
 Package: libghc6-haxml-dev
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
 Description: GHC6 libraries for using XML documents with Haskell
@@ -57,6 +57,8 @@ Description: GHC6 libraries for using XML documents with Haskell
 Package: libghc6-haxml-prof
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
 Description: Profiling libraries for the haskell haxml library
  .
