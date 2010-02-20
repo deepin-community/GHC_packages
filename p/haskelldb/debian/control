@@ -5,13 +5,12 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Joachim Breitner <nomeata@debian.org>
 Build-Depends: debhelper (>= 7)
  , cdbs
- , haskell-devscripts
- , dpkg-dev (>= 0.13.19)
- , ghc6 (>= 6.10)
+ , haskell-devscripts (>= 0.7)
+ , ghc6
  , ghc6-prof
+ , ghc6-doc
  , libghc6-mtl-dev
  , libghc6-mtl-prof
- , ghc6-doc
  , libghc6-mtl-doc
 Standards-Version: 3.8.4
 Homepage: http://haskelldb.sourceforge.net/
@@ -22,6 +21,7 @@ Package: libghc6-haskelldb-dev
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
 Description: Haskell library for expressing database queries
  HaskellDB is library for expressing database queries and operations
@@ -35,6 +35,8 @@ Description: Haskell library for expressing database queries
 Package: libghc6-haskelldb-prof
 Architecture: any
 Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
 Description: Haskell library for expressing database queries; profiling libraries
  HaskellDB is library for expressing database queries and operations
