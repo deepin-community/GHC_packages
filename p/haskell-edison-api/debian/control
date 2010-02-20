@@ -4,16 +4,16 @@ Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Build-Depends: cdbs
  , debhelper (>= 7)
- , ghc6 (>= 6.10.3-3)
- , ghc6-prof (>= 6.10.3-3)
- , haskell-devscripts (>= 0.6.15+nmu12)
- , libghc6-mtl-dev (>= 1.1.0.2-7)
- , libghc6-mtl-prof
+ , haskell-devscripts (>= 0.7)
  , cpphs
+ , ghc6
+ , ghc6-prof
+ , ghc6-doc
+ , libghc6-mtl-dev
+ , libghc6-mtl-prof
+ , libghc6-mtl-doc
  , hugs (>= 98.200609.21)
  , libhugs-mtl
- , ghc6-doc
- , libghc6-mtl-doc
 Standards-Version: 3.8.4
 Homepage: http://www.cs.princeton.edu/~rdockins/edison/home/
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-edison-api
@@ -22,7 +22,7 @@ Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-
 Package: libghc6-edison-api-dev
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Recommends: libghc6-edison-core-dev
+Recommends: libghc6-edison-core-dev, ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
 Description: Haskell library of efficent, purely-functional data structures
@@ -42,7 +42,7 @@ Description: Haskell library of efficent, purely-functional data structures
 Package: libghc6-edison-api-prof
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Recommends: libghc6-edison-core-prof
+Recommends: libghc6-edison-core-prof, ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
 Description: Haskell library of data structures; profiling libraries
