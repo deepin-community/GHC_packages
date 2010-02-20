@@ -1,0 +1,75 @@
+Source: haskell-quickcheck1
+Section: haskell
+Priority: optional
+Maintainer: Kari Pahula <kaol@debian.org>
+Standards-Version: 3.8.1
+Build-Depends: debhelper (>= 5), haddock (>= 2.4.2), hscolour, ghc6, ghc6-prof, ghc6-doc, haskell-devscripts, cdbs
+
+Package: libghc6-quickcheck1-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Suggests: libghc6-quickcheck1-prof, libghc6-quickcheck1-doc
+Provides: libghc6-quickcheck-dev
+Conflicts: libghc6-quickcheck-dev (<< 2.1.0.1-6)
+Replaces: libghc6-quickcheck-dev (<< 2.1.0.1-6)
+Description: Haskell automatic testing library for GHC
+ This package provides a library for the Haskell programming language.
+ .
+ QuickCheck is a library for testing Haskell programs automatically.
+ The programmer provides a specification of the program, in
+ the form of properties which functions should satisfy, and
+ QuickCheck then tests that the properties hold in a large number
+ of randomly generated cases.  Specifications are expressed in
+ Haskell, using combinators defined in the QuickCheck library.
+ QuickCheck provides combinators to define properties, observe
+ the distribution of test data, and define test data generators.
+ .
+ This package contains version 1 of the library, whose API differs
+ from version 2's.
+
+Package: libghc6-quickcheck1-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}, libghc6-quickcheck1-dev (= ${binary:Version})
+Provides: libghc6-quickcheck-prof
+Conflicts: libghc6-quickcheck-prof (<< 2.1.0.1-6)
+Replaces: libghc6-quickcheck-prof (<< 2.1.0.1-6)
+Description: Haskell automatic testing library for GHC; profiling libraries
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ .
+ QuickCheck is a library for testing Haskell programs automatically.
+ The programmer provides a specification of the program, in
+ the form of properties which functions should satisfy, and
+ QuickCheck then tests that the properties hold in a large number
+ of randomly generated cases.  Specifications are expressed in
+ Haskell, using combinators defined in the QuickCheck library.
+ QuickCheck provides combinators to define properties, observe
+ the distribution of test data, and define test data generators.
+ .
+ This package contains version 1 of the library, whose API differs
+ from version 2's.
+
+Package: libghc6-quickcheck1-doc
+Section: doc
+Architecture: all
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Suggests: libghc6-quickcheck1-dev, libghc6-quickcheck1-prof
+Recommends: ghc6-doc
+Provides: libghc6-quickcheck-doc
+Conflicts: libghc6-quickcheck-doc (<< 2.1.0.1-6)
+Replaces: libghc6-quickcheck-doc (<< 2.1.0.1-6)
+Description: Haskell automatic testing library for GHC; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ .
+ QuickCheck is a library for testing Haskell programs automatically.
+ The programmer provides a specification of the program, in
+ the form of properties which functions should satisfy, and
+ QuickCheck then tests that the properties hold in a large number
+ of randomly generated cases.  Specifications are expressed in
+ Haskell, using combinators defined in the QuickCheck library.
+ QuickCheck provides combinators to define properties, observe
+ the distribution of test data, and define test data generators.
+ .
+ This package contains version 1 of the library, whose API differs
+ from version 2's.
