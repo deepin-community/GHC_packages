@@ -5,10 +5,10 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Víctor Pérez Pereira <vperez@debianvenezuela.org>
 Build-Depends: cdbs
  , debhelper (>= 7)
- , haskell-devscripts (>= 0.6.15+nmu13)
- , ghc6 (>= 6.10.4)
- , ghc6-prof
+ , haskell-devscripts (>= 0.7)
  , cpphs
+ , ghc6
+ , ghc6-prof
  , ghc6-doc
 Standards-Version: 3.8.4
 Homepage: http://hackage.haskell.org/package/hsql
@@ -17,8 +17,9 @@ Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-
 
 Package: libghc6-hsql-dev
 Architecture: any
-Suggests: ${haskell:Suggests}, libghc6-hsql-sqlite3-dev, libghc6-hsql-sqlite-dev, libghc6-hsql-odbc-dev, libghc6-hsql-mysql-dev, libghc6-hsql-postgresql-dev, haskell-hsql-doc
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}, libghc6-hsql-sqlite3-dev, libghc6-hsql-sqlite-dev, libghc6-hsql-odbc-dev, libghc6-hsql-mysql-dev, libghc6-hsql-postgresql-dev, haskell-hsql-doc
+Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
 Description: Multi-Database Interface System library for GHC6
  HSQL provides interfaces for Haskell programmers to the PostgreSQL,
@@ -32,6 +33,8 @@ Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
   , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
 Description: Multi-Database Interface System profiling library for GHC6
  HSQL provides interfaces for Haskell programmers to the PostgreSQL,
