@@ -3,12 +3,11 @@ Priority: extra
 Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>
-Build-Depends: dctrl-tools
- , dpkg-dev (>= 1.13.19)
+Build-Depends:
  , debhelper (>= 7)
- , haskell-devscripts (>= 0.6.0)
+ , haskell-devscripts (>= 0.7)
  , cdbs
- , ghc6 (>= 6.10.3)
+ , ghc6
  , ghc6-prof
  , libghc6-mtl-dev
  , libghc6-mtl-prof
@@ -21,8 +20,10 @@ Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-
 Package: libghc6-uniplate-dev
 Architecture: any
 Depends: ${haskell:Depends}
- , ${misc:Depends}
-Suggests: libghc6-uniplate-doc (= ${source:Version})
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
 Description: A Haskell library for uniform type generic traversals
  .
@@ -37,10 +38,11 @@ Description: A Haskell library for uniform type generic traversals
 
 Package: libghc6-uniplate-prof
 Architecture: any
-Depends: libghc6-uniplate-dev (= ${binary:Version})
- , ${haskell:Depends}
- , ${misc:Depends}
-Suggests: libghc6-uniplate-doc (= ${source:Version})
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
 Description: Profiling libraries for uniform type generic traversals
  .
@@ -56,8 +58,9 @@ Description: Profiling libraries for uniform type generic traversals
 Package: libghc6-uniplate-doc
 Section: doc
 Architecture: all
-Depends: ${misc:Depends}
-Recommends: doc-base
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: Documentation for uniform type generic traversals
  .
  The Haskell Uniplate library abstracts over common traversals and queries in a
