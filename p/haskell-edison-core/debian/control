@@ -19,9 +19,6 @@ Build-Depends: cdbs
  , libghc6-quickcheck1-prof
  , libghc6-quickcheck1-doc
  , cpphs
- , hugs (>= 98.200609.21)
- , libhugs-mtl
- , libhugs-quickcheck
 Standards-Version: 3.8.4
 Homepage: http://www.cs.princeton.edu/~rdockins/edison/home/
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-edison-core
@@ -54,24 +51,6 @@ Provides: ${haskell:Provides}
 Description: Haskell library of data structures; profiling libraries
  Some concrete implementations of the abstract interface of the Edison
  library for Haskell for use with ghc6.
- .
- Edison is a library of purely function data structures for Haskell
- originally written by Chris Okasaki. Conceptually, it consists of two
- things:
-   - A set of type classes defining data the following data structure
-     abstractions: 'sequences', 'collections' and 'associative
-     collections'
-   - Multiple concrete implementations of each of the abstractions
- .
- This package contains the concrete implementations.
-
-Package: libhugs-edison-core
-Architecture: all
-Depends: hugs,  libhugs-mtl, ${misc:Depends}
-Suggests: haskell-edison-core-doc
-Description: Haskell library of efficent, purely-functional data structures
- Some concrete implementations of the abstract interface of the Edison
- library for Haskell for use with hugs.
  .
  Edison is a library of purely function data structures for Haskell
  originally written by Chris Okasaki. Conceptually, it consists of two
