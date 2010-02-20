@@ -1,15 +1,26 @@
 Source: haskell-syb-with-class
-Section: libdevel
-Priority: optional
-Maintainer: Kari Pahula <kaol@debian.org>
-Build-Depends: cdbs, debhelper (>= 6), ghc6 (>= 6.10.1+dfsg1-13), haskell-devscripts, ghc6-prof
-Standards-Version: 3.8.0
-Homepage: http://www.cs.vu.nl/boilerplate/
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.7)
+  , ghc6
+  , ghc6-prof
+Standards-Version: 3.8.4
+Homepage: http://hackage.haskell.org/package/syb-with-class
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-syb-with-class
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-syb-with-class
 
 Package: libghc6-syb-with-class-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Suggests: libghc6-syb-with-class-prof
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: Haskell library for generic programming
  The "Scrap your boilerplate" approach is a lightweight generic
  programming approach for Haskell.  Using this approach, you can write
@@ -21,7 +32,12 @@ Description: Haskell library for generic programming
 
 Package: libghc6-syb-with-class-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}, libghc6-syb-with-class-dev (= ${binary:Version})
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: Haskell library for generic programming; profiling libraries
  This package provides a library for the Haskell programming language,
  compiled for profiling.
