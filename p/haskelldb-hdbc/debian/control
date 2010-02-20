@@ -5,10 +5,10 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Joachim Breitner <nomeata@debian.org>
 Build-Depends: debhelper (>= 7)
   , cdbs
-  , haskell-devscripts (>= 0.6.15+nmu11)
-  , ghc6 (>= 6.10.3-2)
-  , ghc6-prof (>= 6.10.3-2)
-  , ghc6-doc (>= 6.10.3-2)
+  , haskell-devscripts (>= 0.7)
+  , ghc6
+  , ghc6-prof
+  , ghc6-doc
   , libghc6-haskelldb-dev (>= 0.12)
   , libghc6-haskelldb-prof
   , haskell-haskelldb-doc
@@ -27,7 +27,7 @@ Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskelld
 Package: libghc6-haskelldb-hdbc-dev
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Recommends: libghc6-haskelldb-hdbc-odbc-dev | libghc6-haskelldb-hdbc-sqlite3-dev | libghc6-haskelldb-hdbc-postgresql-dev
+Recommends: libghc6-haskelldb-hdbc-odbc-dev | libghc6-haskelldb-hdbc-sqlite3-dev | libghc6-haskelldb-hdbc-postgresql-dev, ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
 Description: HaskellDB support for HDBC
@@ -41,6 +41,8 @@ Description: HaskellDB support for HDBC
 Package: libghc6-haskelldb-hdbc-prof
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
 Description: HaskellDB support for HDBC; profiling libraries
  This package provides a library for the Haskell programming language.
