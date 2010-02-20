@@ -3,17 +3,19 @@ Priority: extra
 Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>
-Build-Depends: dctrl-tools
- , dpkg-dev (>= 1.13.19)
+Build-Depends:
  , debhelper (>= 7)
- , haskell-devscripts (>= 0.6.0)
+ , haskell-devscripts (>= 0.7)
  , cdbs
- , ghc6 (>= 6.10.3)
+ , ghc6
  , ghc6-prof
+ , ghc6-doc
  , libghc6-parallel-dev
  , libghc6-parallel-prof
+ , libghc6-parallel-doc
  , libghc6-regex-compat-dev
  , libghc6-regex-compat-prof
+ , haskell-regex-compat-doc
 Standards-Version: 3.8.4
 Homepage: http://hackage.haskell.org/package/Unixutils
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-unixutils
@@ -22,8 +24,10 @@ Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-
 Package: libghc6-unixutils-dev
 Architecture: any
 Depends: ${haskell:Depends}
- , ${misc:Depends}
-Suggests: libghc6-unixutils-doc (= ${source:Version})
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
 Description: An interface between Haskell and Unix-like operating systems
  .
@@ -34,10 +38,11 @@ Description: An interface between Haskell and Unix-like operating systems
 
 Package: libghc6-unixutils-prof
 Architecture: any
-Depends: libghc6-unixutils-dev (= ${binary:Version})
- , ${haskell:Depends}
- , ${misc:Depends}
-Suggests: libghc6-unixutils-doc (= ${source:Version})
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
 Description: Profiling libraries for the haskell-unixutils package
  .
@@ -49,8 +54,9 @@ Description: Profiling libraries for the haskell-unixutils package
 Package: libghc6-unixutils-doc
 Section: doc
 Architecture: all
-Depends: ${misc:Depends}
-Recommends: doc-base
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: Documentation for the haskell-unixutils package
  .
  A collection of useful and mildly useful functions that you might expect to
