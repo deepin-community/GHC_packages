@@ -4,10 +4,10 @@ Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>
 Build-Depends: debhelper (>= 7),
- ghc6 (>= 6.10.4),
- ghc6-prof,
  cdbs,
- haskell-devscripts (>= 0.6.15+nmu13),
+ haskell-devscripts (>= 0.7),
+ ghc6,
+ ghc6-prof,
  ghc6-doc
 Standards-Version: 3.8.4
 Homepage: http://hackage.haskell.org/package/hscolour
@@ -25,8 +25,9 @@ Description: Haskell program to colourise Haskell code
 
 Package: libghc6-hscolour-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Suggests: ${haskell:Suggests}, drift (>= 2.2.0)
+Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
 Description: GHC6 libraries for colourising Haskell code
  .
@@ -40,6 +41,7 @@ Package: libghc6-hscolour-prof
 Architecture: any
 Depends: ${haskell:Depends}, ${misc:Depends}
 Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
 Description: Profiling libraries for colourising Haskell code
  .
@@ -54,6 +56,7 @@ Architecture: all
 Section: doc
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: Documentation for libghc6-hscolour-dev
  .
  HsColour currently has five output formats: ANSI terminal codes, HTML 3.2
