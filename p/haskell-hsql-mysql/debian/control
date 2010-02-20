@@ -5,16 +5,16 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Víctor Pérez Pereira <vperez@debianvenezuela.org>
 Build-Depends:
  cdbs,
- cpphs,
  debhelper (>= 7),
- haskell-devscripts (>= 0.6.15+nmu13),
- ghc6 (>= 6.10.4),
+ haskell-devscripts (>= 0.7),
+ cpphs,
+ ghc6,
  ghc6-prof,
- libghc6-hsql-dev (>= 1.7.1),
- libghc6-hsql-prof (>= 1.7.1),
- libmysqlclient15-dev,
  ghc6-doc,
- haskell-hsql-doc
+ libghc6-hsql-dev (>= 1.7.1),
+ libghc6-hsql-prof,
+ haskell-hsql-doc,
+ libmysqlclient15-dev,
 Standards-Version: 3.8.4
 Homepage: http://hackage.haskell.org/package/hsql-mysql
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hsql-mysql/
@@ -22,8 +22,9 @@ Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-
 
 Package: libghc6-hsql-mysql-dev
 Architecture: any
-Suggests: haskell-hsql-mysql-doc
 Depends: ${haskell:Depends}, libmysqlclient15-dev, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
 Description: MySQL driver of the HSQL library for GHC6
  HSQL provides database interfaces for Haskell programmers. This
@@ -32,6 +33,8 @@ Description: MySQL driver of the HSQL library for GHC6
 Package: libghc6-hsql-mysql-prof
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
 Description: MySQL driver of the HSQL library for GHC6; profiling libraries
  HSQL provides database interfaces for Haskell programmers. This
