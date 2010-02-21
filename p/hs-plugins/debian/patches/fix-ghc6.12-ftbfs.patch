@@ -1,0 +1,50 @@
+diff -Nur -x '*.orig' -x '*~' hs-plugins-1.4.1//src/System/MkTemp.hs hs-plugins-1.4.1.new//src/System/MkTemp.hs
+--- hs-plugins-1.4.1//src/System/MkTemp.hs	2009-03-15 21:14:39.000000000 +0100
++++ hs-plugins-1.4.1.new//src/System/MkTemp.hs	2010-02-21 02:11:20.000000000 +0100
+@@ -214,7 +214,7 @@
+         if b then ioError err   -- race
+              else openFile f ReadWriteMode
+     where
+-        err = IOError Nothing AlreadyExists "open0600" "already exists" Nothing
++        err = IOError Nothing AlreadyExists "open0600" "already exists" Nothing (Just f)
+ 
+ {-
+ -- open(path, O_CREAT|O_EXCL|O_RDWR, 0600)
+diff -Nur -x '*.orig' -x '*~' hs-plugins-1.4.1//src/System/Plugins/Env.hs hs-plugins-1.4.1.new//src/System/Plugins/Env.hs
+--- hs-plugins-1.4.1//src/System/Plugins/Env.hs	2009-03-15 21:14:39.000000000 +0100
++++ hs-plugins-1.4.1.new//src/System/Plugins/Env.hs	2010-02-21 02:11:08.000000000 +0100
+@@ -287,9 +287,9 @@
+ union :: PkgEnvs -> [PackageConfig] -> PkgEnvs
+ union ls ps' = 
+         let fm = emptyFM -- new FM for this package.conf
+-        in foldr (\p fm' -> if (display $ package p) == "base" -- ghc doesn't supply a version with 'base'
++        in foldr (\p fm' -> if (display $ sourcePackageId p) == "base" -- ghc doesn't supply a version with 'base'
+                                                        -- for some reason.
+-                            then addToFM (addToFM fm' (display $ package p) p) (packageName p) p
++                            then addToFM (addToFM fm' (display $ sourcePackageId p) p) (packageName p) p
+                             else addToFM fm' (packageName p) p) fm ps' : ls
+ 
+ -- 
+@@ -312,7 +312,7 @@
+ readPackageConf :: FilePath -> IO [PackageConfig]
+ readPackageConf f = do
+     pc <- configureAllKnownPrograms silent defaultProgramConfiguration
+-    pkgIndex <- getInstalledPackages silent (SpecificPackageDB f) pc
++    pkgIndex <- getInstalledPackages silent [(SpecificPackageDB f)] pc
+     return $ allPackages pkgIndex
+ 
+ -- -----------------------------------------------------------
+diff -Nur -x '*.orig' -x '*~' hs-plugins-1.4.1//src/System/Plugins/PackageAPI.hs hs-plugins-1.4.1.new//src/System/Plugins/PackageAPI.hs
+--- hs-plugins-1.4.1//src/System/Plugins/PackageAPI.hs	2009-03-15 21:14:39.000000000 +0100
++++ hs-plugins-1.4.1.new//src/System/Plugins/PackageAPI.hs	2010-02-21 02:12:20.000000000 +0100
+@@ -58,8 +58,8 @@
+ 
+ type PackageConfig = InstalledPackageInfo
+ 
+-packageName = display . package
+-packageName_ = pkgName . package
++packageName = display . sourcePackageId
++packageName_ = pkgName . sourcePackageId
+ packageDeps = (map display) . depends
+ 
+ updImportDirs f pk@(InstalledPackageInfo { importDirs = idirs }) =
