@@ -50,7 +50,7 @@ ifeq (ia64,$(DEB_HOST_ARCH)) # Tested and seen to be necessary with 6.12.1
 	echo "SRC_HC_OPTS += -optc-G0" >> mk/build.mk
 endif
 ifneq (,$(findstring $(DEB_HOST_ARCH), kfreebsd-i386 kfreebsd-amd64))
-	echo "GhcWithInterpreter=YES"
+	echo "GhcWithInterpreter=YES" >> mk/build.mk
 endif
 ifneq (,$(findstring $(DEB_HOST_ARCH), arm armel alpha))
 	echo "UseLibFFIForAdjustors=YES" >> mk/build.mk
@@ -186,6 +186,10 @@ ifeq (YES,$(BUILD_HADDOCK_DOCS))
 	    mv $$f/*.haddock debian/tmp/usr/lib/ghc-$(ProjectVersion)/haddock/`basename $$f` ; done
 	cd debian/tmp/usr/share/doc/ghc6-doc/html/libraries/; ln -s ghc-$(ProjectVersion) ghc
 	install -Dm 644 debian/index.html debian/tmp/usr/share/doc/ghc6-doc/index.html
+endif
+
+ifeq (ia64,$(DEB_HOST_ARCH)) # Tested and seen to be necessary with 6.12.1
+	sed -i "s/exec /unset LC_ALL\nexport LC_CTYPE=en_US\nexec /" debian/tmp/usr/lib/ghc-$(ProjectVersion)/bin/ghc-$(ProjectVersion)
 endif
 
 	# manpages
