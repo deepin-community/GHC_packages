@@ -1,6 +1,14 @@
+ghc6 (6.12.1-12) unstable; urgency=low
+
+  * Fix the kfreebsd-* patch.
+  * Don't die in ghc6's trigger if ghc-pkg check fails.  (Closes: #570921)
+  * Recognise DEB_BUILD_OPTIONS=parallel.
+
+ -- Kari Pahula <kaol@debian.org>  Mon, 22 Feb 2010 15:08:48 +0200
+
 ghc6 (6.12.1-11) unstable; urgency=low
 
-  * Add "unset LC_ALL\export LC_CTYPE=en_US" to bin/ghc wrapper on ia64.
+  * Add "unset LC_ALL\nexport LC_CTYPE=en_US" to bin/ghc wrapper on ia64.
   * Actually append GhcWithInterpreter=YES to mk/build.mk on kfreebsd-*,
     don't just echo it to stdout.
 

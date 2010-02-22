@@ -18,13 +18,13 @@ Index: ghc6-6.12.1/rts/posix/OSThreads.c
 Index: ghc6-6.12.1/driver/mangler/ghc-asm.lprl
 ===================================================================
 --- ghc6-6.12.1.orig/driver/mangler/ghc-asm.lprl	2010-02-05 11:53:12.000000000 +0200
-+++ ghc6-6.12.1/driver/mangler/ghc-asm.lprl	2010-02-05 11:53:48.000000000 +0200
++++ ghc6-6.12.1/driver/mangler/ghc-asm.lprl	2010-02-22 14:45:07.000000000 +0200
 @@ -216,7 +216,7 @@
      $T_HDR_vector   = "\.text\n\t\.align 8\n";
  
      #--------------------------------------------------------#
 -    } elsif ( $TargetPlatform =~ /^x86_64-.*-(linux|openbsd|freebsd|dragonfly|netbsd)$/m ) {
-+    } elsif ( $TargetPlatform =~ /^x86_64-.*-(linux|openbsd|freebsd|dragonfly|netbsd|kfreebsd)$/m ) {
++    } elsif ( $TargetPlatform =~ /^x86_64-.*-(linux|openbsd|freebsd|dragonfly|netbsd|kfreebsdgnu)$/m ) {
  
      $T_STABBY       = 0; # 1 iff .stab things (usually if a.out format)
      $T_US           = ''; # _ if symbols have an underscore on the front

@@ -26,6 +26,11 @@ GHC=$(firstword $(shell bash -c "type -p ghc6 ghc"))
 EXTRA_CONFIGURE_FLAGS=--with-ghc="$(GHC)"
 BUILD_HADDOCK_DOCS=YES
 
+ifneq (,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
+    NUMJOBS = $(patsubst parallel=%,%,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
+    MAKEFLAGS += -j$(NUMJOBS)
+endif
+
 configure: configure-stamp
 configure-stamp:
 	dh_testdir
@@ -98,7 +103,7 @@ build: build-stamp
 build-stamp: configure-stamp
 	dh_testdir
 	sh debian/watcher.sh "$$PPID" "`pwd`" "`pwd`/build-stamp" 'ghc\|gcc' &
-	$(MAKE)
+	$(MAKE) $(MAKEFLAGS)
 
 	# Do some very simple tests that the compiler actually works
 	rm -rf debian/testghc
