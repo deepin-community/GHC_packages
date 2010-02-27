@@ -1,0 +1,33 @@
+Source: haskell-editline
+Section: haskell
+Priority: optional
+Maintainer: Chris Lamb <lamby@debian.org>
+Build-Depends: debhelper (>= 7), haskell-devscripts (>= 0.6.15+nmu11), cdbs, ghc6 (>= 6.10.3), haddock (>= 2.4.2), ghc6-doc, hscolour, libedit-dev
+Standards-Version: 3.8.2
+Vcs-Git: git://git.chris-lamb.co.uk/debian/pkg-haskell-editline.git
+Vcs-Browser: http://git.chris-lamb.co.uk/?p=debian/pkg-haskell-editline.git
+
+Package: libghc6-editline-dev
+Architecture: any
+Depends: ${misc:Depends}, ${haskell:Depends}, libedit-dev
+Description: Haskell bindings to the BSD editline library (libedit)
+ This package contains bindings to the BSD editline library. It provides a
+ basic interface to the editline API for reading lines of input from the
+ user.
+ .
+ Additionally, a readline compatibility module is included which provides a
+ subset of the functions from the readline package.
+
+Package: libghc6-editline-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Description: Haskell bindings to the BSD editline library (libedit) (documentation)
+ This package contains bindings to the BSD editline library. It provides a
+ basic interface to the editline API for reading lines of input from the
+ user.
+ .
+ Additionally, a readline compatibility module is included which provides a
+ subset of the functions from the readline package.
+ .
+ This package contains library documentation.
