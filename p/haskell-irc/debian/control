@@ -1,0 +1,27 @@
+Source: haskell-irc
+Section: haskell
+Priority: optional
+Maintainer: Chris Lamb <lamby@debian.org>
+Build-Depends: debhelper (>= 7), haskell-devscripts (>= 0.6.15+nmu1), cdbs, ghc6 (>= 6.10.1+dfsg1-13), libghc6-parsec-dev, haddock (>= 2.4.1-4), ghc6-doc, libghc6-parsec-doc, hscolour
+Standards-Version: 3.8.3
+Vcs-Git: git://git.chris-lamb.co.uk/debian/pkg-haskell-irc.git
+Vcs-Browser: http://git.chris-lamb.co.uk/?p=debian/pkg-haskell-irc.git
+
+Package: libghc6-irc-dev
+Architecture: any
+Depends: ${misc:Depends}, ${haskell:Depends}
+Description: GHC 6 libraries for the Haskell IRC library
+ A set of combinators and types for parsing IRC (Internet Relay Chat)
+ messages.
+ .
+ This package contains the libraries compiled for GHC 6.
+
+Package: libghc6-irc-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Description: GHC 6 libraries for the Haskell IRC library (documentation)
+ A set of combinators and types for parsing IRC (Internet Relay Chat)
+ messages.
+ .
+ This package contains library documentation.
