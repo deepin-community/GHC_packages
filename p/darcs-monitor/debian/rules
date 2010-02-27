@@ -1,0 +1,60 @@
+#!/usr/bin/make -f
+# Copyright © 2007 Antti-Juhani Kaijanaho.
+#
+# Permission is hereby granted, free of charge, to any person
+# obtaining a copy of this file, to deal in this file without
+# restriction, including without limitation the rights to use, copy,
+# modify, merge, publish, distribute, sublicense, and/or sell copies
+# of this file, and to permit persons to whom this file is furnished
+# to do so, subject to the following condition: The above copyright
+# notice and this permission notice shall be included in all copies or
+# substantial portions of this file.
+#
+# THIS FILE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+# OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FIT- NESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT.  IN NO EVENT SHALL SOFTWARE IN THE PUBLIC INTEREST,
+# INC.  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+# IN CONNECTION WITH THIS FILE OR THE USE OR OTHER DEALINGS IN THIS
+# FILE.
+#
+# Except as contained in this notice, the name of the author(s) of
+# this file shall not be used in advertising or otherwise to promote
+# the sale, use or other dealings in this file without prior written
+# authorization from the author(s).
+
+librules_interface = 2
+include debian/librules.mk
+
+package=darcs-monitor
+
+debian/stamp/build:
+	ghc -o Setup --make Setup.hs
+	./Setup configure --ghc --prefix=/usr --datasubdir=$(package)
+	./Setup build
+	touch $@
+
+debian/stamp/binary/arch: debian/stamp/binary/darcs-monitor
+
+debian/stamp/binary/darcs-monitor: debian/stamp/build
+	$(prebinary)
+	./Setup copy --destdir=$(rootdir)
+	chmod 644 $(sharedir)/default-template
+	$(install_nonex) README $(docdir)
+	$(install_dir)  $(man1dir)
+	$(install_nonex) darcs-monitor.1 $(man1dir)/darcs-monitor.1
+	$(gzip) $(man1dir)/darcs-monitor.1
+ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
+	strip -R .comment $(bindir)/darcs-monitor
+endif
+	dpkg-shlibdeps $(bindir)/darcs-monitor
+	$(postbinary)
+	touch $@
+
+clean-build:
+	if test -x Setup ; then ./Setup clean ; fi
+	$(RM) Setup Setup.hi Setup.o
+
+clean:
+	$(RM) debian/*~ *~

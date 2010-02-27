@@ -1,0 +1,28 @@
+Source: darcs-monitor
+Maintainer: Antti-Juhani Kaijanaho <ajk@debian.org>
+Section: devel
+Priority: optional
+Build-Depends: ghc6 (>= 6.8.1), libghc6-mtl-dev, libghc6-haxml-dev (<< 1.14) | libghc6-haxml-dev (>> 1:1), libghc6-haxml-dev (<< 1:1.14)
+Standards-Version: 3.8.1
+Homepage: http://wiki.darcs.net/DarcsWiki/DarcsMonitor
+
+Package: darcs-monitor
+Architecture: any
+Depends: ${shlibs:Depends}, darcs (>= 1.0.0rc2-1)
+Recommends: exim4 | mail-transport-agent
+Enhances: darcs
+Description: Darcs add-on that sends mail about newly pushed changes
+ It is often desirable to send mail about new changes to software to
+ a mailing list as soon as they are committed to a version control
+ repository.  Darcs-monitor adds this functionality to Darcs, an
+ advanced revision control system.
+ .
+ Darcs-monitor is most commonly used as a Darcs apply post-hook, so that
+ email is sent as soon as changes are pushed to the repository under
+ monitoring.
+ .
+ Mails sent by darcs-monitor are configurable, and they can contain
+ the diff of the changes, as well as change metadata.
+ .
+ You will need a mail transport agent (MTA) such as Exim in all but
+ the most unusual situations.

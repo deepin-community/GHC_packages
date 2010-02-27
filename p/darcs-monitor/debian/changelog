@@ -1,0 +1,57 @@
+darcs-monitor (0.3.6-2) unstable; urgency=low
+
+  * Update the HaXml versioned build-dependency to the new
+     epoch.
+     Closes: #552719 (FTBFS)
+     Reported by Lucas Nussbaum <lucas@lucas-nussbaum.net>
+
+ -- Antti-Juhani Kaijanaho <ajk@debian.org>  Thu, 29 Oct 2009 21:30:33 +0200
+
+darcs-monitor (0.3.6-1) unstable; urgency=low
+
+  * New upstream release
+    Closes: #527824 (FTBFS: Couldn't match expected type `[Char]')
+    Reported by Lucas Nussbaum <lucas@lucas-nussbaum.net>.
+  * debian-control (Build-Depends): add version limit to HaXml to match
+    the Cabal one
+  * debian-control (Standards-Version): Now 3.8.1.
+
+ -- Antti-Juhani Kaijanaho <ajk@debian.org>  Sat, 09 May 2009 13:30:43 +0300
+
+darcs-monitor (0.3.4-2) unstable; urgency=low
+
+  * debian/rules (clean-build): run Setup only if it is executable
+  * darcs-monitor.cabal (License-File): Remove
+    Closes: #480766 (contains extra copy of GPL)
+    Reported by Jelmer Vernooij <jelmer@samba.org>.
+  * debian/control (Standards-Version): Now 3.8.0.
+
+ -- Antti-Juhani Kaijanaho <ajk@debian.org>  Fri, 04 Jul 2008 20:05:15 +0300
+
+darcs-monitor (0.3.4-1) unstable; urgency=low
+
+  * New upstream release
+    - fixes FTBFS with ghc 6.8
+    Closes: #470375 (FTBFS: Couldn't match expected type against inferred type)
+    Reported by Lucas Nussbaum <lucas@lucas-nussbaum.net>.
+  * debian/copyright: Update copyright years
+  * debian/control: Rename XSB-Homepage as Homepage
+  * debian/control: Build-Depend on ghc >= 6.8
+  * debian/control: Update Standards-Version to 3.7.3 (no changes required)
+  * darcs-monitor.1.in: Add \& in front of each ellipsis in synposis
+
+ -- Antti-Juhani Kaijanaho <ajk@debian.org>  Sun, 04 May 2008 15:24:36 +0300
+
+darcs-monitor (0.3.2-2) unstable; urgency=low
+
+  * Compile Setup.hs instead of using runghc, as runghc is not
+    supported on all Debian architectures
+    (Fixes an unreported FTBFS bug.)
+
+ -- Antti-Juhani Kaijanaho <ajk@debian.org>  Sat, 08 Sep 2007 18:52:26 +0300
+
+darcs-monitor (0.3.2-1) unstable; urgency=low
+
+  * Initial release, closes: #439940 (ITP).
+
+ -- Antti-Juhani Kaijanaho <ajk@debian.org>  Sat, 01 Sep 2007 15:25:38 +0300
