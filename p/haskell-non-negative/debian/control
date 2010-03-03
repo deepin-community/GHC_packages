@@ -1,0 +1,59 @@
+Source: haskell-non-negative
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.debian.org>
+Uploaders: Ernesto Hernández-Novich (USB) <emhn@usb.ve>
+Build-Depends: debhelper (>= 7), cdbs, haskell-devscripts (>= 0.7),
+ ghc6, ghc6-prof, libghc6-quickcheck2-dev, libghc6-quickcheck2-prof
+Build-Depends-Indep: ghc6-doc
+Standards-Version: 3.8.4
+Homepage: http://hackage.haskell.org/package/non-negative
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-non-negative
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=haskell/haskell-non-negative
+
+Package: libghc6-non-negative-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Non-negative numbers for Haskell
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library provides a class for non-negative numbers, a wrapper which
+ can turn any ordered numeric type into a member of that class, and a
+ lazy number type for non-negative numbers (a generalization of Peano
+ numbers).
+
+Package: libghc6-non-negative-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Non-negative numbers for Haskell; profiling libraries
+ This package provides a library for the Haskell programming language
+ compiled for profiling.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library provides a class for non-negative numbers, a wrapper which
+ can turn any ordered numeric type into a member of that class, and a
+ lazy number type for non-negative numbers (a generalization of Peano
+ numbers).
+
+Package: libghc6-non-negative-doc
+Section: doc
+Architecture: all
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Non-negative numbers for Haskell; profiling librarie; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library provides a class for non-negative numbers, a wrapper which
+ can turn any ordered numeric type into a member of that class, and a
+ lazy number type for non-negative numbers (a generalization of Peano
+ numbers).
