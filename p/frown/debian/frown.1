@@ -1,0 +1,82 @@
+.TH frown "1" "November 2005" "Frown :-( version 0.6" "User Commands"
+.SH NAME
+frown \- an LALR(k) parser generator for Haskell 98
+.SH SYNOPSIS
+.B frown
+[
+.IR options " ..."
+]
+.IR file ".[i]g ..."
+.SH DESCRIPTION
+.TP
+.BR \-b ", " \-\-backtrack
+generate a backtracking parser
+.TP
+.BR \-c [ compact | gvstack | stackless | standard "], " \-\-code [ =compact | gvstack | stackless | standard ]
+select output format
+.TP
+.B \-\-copying
+display details of copying
+.TP
+.BR \-d ", " \-\-debug
+emit debugging information
+.TP
+.BR \-e ", " \-\-expected
+pass a list of expected terminals to \(oqfrown\(cq
+.TP
+.BR \-g ", " \-\-ghc
+use GHC extensions
+.TP
+.BR \-h ", " \-? ", " \-\-help
+print this information
+.TP
+.BR \-i ", " \-\-info
+put additional information into generated file
+.TP
+\fB\-k\fP\fIn\fP, \fB\-\-lookahead=\fP\fIn\fP
+use \fIn\fP tokens of lookahead
+.TP
+.BR \-l ", " \-\-lexer
+use a monadic lexer (\(oqget :: M Terminal\(cq)
+.TP
+.BR \-n ", " \-\-noinline
+generate NOINLINE pragmas
+.TP
+.BR \-O ", " \-\-optimize
+optimize parser
+.TP
+\fB\-p\fP\fIn\fP, \fB\-\-pagewidth=\fP\fIn\fP
+use the specified pagewidth \fIn\fP for pretty printing
+.TP
+\fB\-\-prefix=\fP\fIstring\fP
+use the given \fIstring\fP as prefix for frown generated variables
+.TP
+.BR \-s [ mono | poly "], " \-\-signature [ =mono | poly ]
+add type signatures
+.TP
+\fB\-\-suffix=\fP\fIstring\fP
+use the given \fIstring\fP as suffix for frown generated variables
+.TP
+.BR \-t ", " \-\-trace
+insert calls to tracing routines (\(oqshift\(cq, \(oqreduce\(cq and \(oqaccept\(cq)
+.TP
+.BR \-v ", " \-\-verbose
+be verbose
+.TP
+.B \-\-version
+print version information
+.TP
+.B \-\-warranty
+display details of warranty
+.PP
+.SH COPYRIGHT
+\(co 2002 \(en 2005 Ralf Hinze
+.PP
+This package is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License (version 2) as published by the Free Software Foundation.
+.PP
+This package is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU General Public License for more details.
+.PP
+You should have received a copy of the GNU General Public License along with this package; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
+.SH AUTHOR
+This manual page was written by Arjan Oosting <arjanoosting@home.nl> for the Debian system (but may be used by others).

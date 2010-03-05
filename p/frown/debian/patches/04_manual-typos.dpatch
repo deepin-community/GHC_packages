@@ -1,0 +1,55 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 04_manual-typos.dpatch by Arjan Oosting <arjanoosting@home.nl>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: add missing backslashes before LaTeX ldots command.
+
+@DPATCH@
+diff -urNad frown~/Manual/Manual.lhs frown/Manual/Manual.lhs
+--- frown~/Manual/Manual.lhs	2005-12-30 00:44:36.000000000 +0100
++++ frown/Manual/Manual.lhs	2006-09-28 02:06:55.000000000 +0200
+@@ -524,7 +524,7 @@
+ source file (@Paren1.lg@\footnote{The source files of the examples are
+ located in the directory @Manual/Examples@.}) defines the language of
+ well-balanced parentheses. The specification of the grammar is
+-enclosed in special curly braces `|%{ ldots }%|'. The remainder
++enclosed in special curly braces `|%{ \ldots }%|'. The remainder
+ contains Haskell source code, that is, a module header and a function
+ declaration.
+ %
+@@ -543,7 +543,7 @@
+ By convention, the first nonterminal is also the start symbol of
+ the grammar (this default can be overwritten, see~Sec.~\ref{sec:multiple}).
+
+-Productions have the general form |n : v_1, ldots, v_k;| where |n| is
++Productions have the general form |n : v_1, \ldots, v_k;| where |n| is
+ a nonterminal and |v_1|, \ldots, |v_k| are symbols. Note that the
+ symbols are separated by commas and terminated by a semicolon. The
+ mandatory trailing semicolon helps to identify so-called
+@@ -817,7 +817,7 @@
+ pure one. It is, however, also possible to provide a monadic action
+ that \emph{computes} the value of the attribute. The computation lives
+ in the underlying parsing monad. Monadic actions are enclosed in `|{%
+-ldots }|' braces and have type |m t| where |m| is the type of the
++\ldots }|' braces and have type |m t| where |m| is the type of the
+ underlying monad and |t| is the type of attributes.
+
+ As an example, the following variant of the desktop calculator
+@@ -1381,7 +1381,7 @@
+ <                               |  Ident "then"  as "then"
+ <                               |  Ident "else"  as "else"
+ <                               |  Ident {String};
+-<                               |  ldots
++<                               |  \ldots
+
+ Note that keywords are declared just by listing them before the
+ general pattern for identifiers.
+@@ -1392,7 +1392,7 @@
+ following example.
+
+ < Terminal                      =  guard { isAlpha } as "alpha"
+-<                               |  ldots
++<                               |  \ldots
+
+ A guard is introduced by the keyword |guard|, followed by its Haskell
+ definition, followed by the mandatory shortcut. The shortcut can then

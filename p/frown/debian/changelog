@@ -1,0 +1,115 @@
+frown (0.6.1-9) unstable; urgency=low
+
+  * debian/control:
+    - Drop all build dependencies on tetex packages as tetex is removed.
+    - Bump Standards-Version to 3.8.0
+  * debian/frown-doc.doc-base:
+    - Change the section from Programming to Programming/Haskell as
+      suggested by the doc-base manual.
+  * debian/README.source: Added.
+
+ -- Arjan Oosting <arjan@debian.org>  Mon, 07 Jul 2008 09:36:42 +0200
+
+frown (0.6.1-8) unstable; urgency=low
+
+  * Fix lintian warnings:
+    - Replace apps/devel section with Programming section to fix lintian
+      warning "doc-base-unknown-section frown-guide:6 apps/devel."
+    - Split of the documentation into a separate frown-doc package to fix
+      lintian warning "arch-dep-package-has-big-usr-share 1648kB 52%"
+  * debian/control:
+    - Let the Vcs-* fields point to the trunk branch.
+    - Add doc-base to the Suggests of frown-doc.
+
+ -- Arjan Oosting <arjan@debian.org>  Sun, 16 Mar 2008 22:11:28 +0100
+
+frown (0.6.1-7) unstable; urgency=low
+
+  * debian/control:
+    - Replace XS-Vcs-* fields with the new official Vcs-* fields.
+    - Add Homepage field.
+    - Bump Standards-Version to 3.7.3. No changes needed.
+
+ -- Arjan Oosting <arjan@debian.org>  Tue, 08 Jan 2008 07:12:51 +0100
+
+frown (0.6.1-6) unstable; urgency=low
+
+  * debian/control:
+    - Add XS-Vcs-Browser field.
+    - Change build dependencies to prefer to build against texlive instead
+      of tetex.
+  * debian/rules: enclose paths in double quotes because directories can
+    contain spaces.
+
+ -- Arjan Oosting <arjan@debian.org>  Fri, 13 Apr 2007 09:37:14 +0200
+
+frown (0.6.1-5) unstable; urgency=low
+
+  * Make frown Architecture: any as ghc6 is available on all architectures
+    now.
+  * Stop using update-haskell-control and $ghc6_* variables, as it is not
+    necessary and not using it simplifies the work for porters and for me.
+
+ -- Arjan Oosting <arjan@debian.org>  Sat, 13 Jan 2007 10:25:59 +0100
+
+frown (0.6.1-4) unstable; urgency=low
+
+  * First upload to Debian archive. (Closes:  #336978).
+  * debian/control.in.in:
+    - change maintainer email address.
+    - rename XS-X-Vcs-Svn field to XS-Vcs-Svn
+
+ -- Arjan Oosting <arjan@debian.org>  Tue, 17 Oct 2006 04:01:36 +0200
+
+frown (0.6.1-3) unstable; urgency=low
+
+  * debian/control.in.in:
+    - ident Homepage field with two spaces. (Thanks James Westby).
+    - add ppc64 to the list of supported arches as ghc6 is available on
+      ppc64 as well.
+    - add XS-X-Vcs-Svn field pointing to subversion archive which contains
+      this package.
+    - document some of the differences with happy in the long description.
+  * debian/compat: switch to debhelper 5.
+  * debian/rules: switch from simple-patchsys to dpatch.
+
+ -- Arjan Oosting <arjanoosting@home.nl>  Thu, 28 Sep 2006 01:53:20 +0200
+
+frown (0.6.1-2) unstable; urgency=low
+
+  * debian/control.in.in: bump Standards-Version to 3.7.2. No changes
+    needed.
+  * debian/copyright: add Debian packaging copyright.
+  * debian/frown.doc-base: added entry for PDF format.
+  * debian/frown.install: include the examples from the QuickStart,
+    Manual/Examples and Examples directories.
+  * debian/patches/04_manual-typos.patch: add missing backslashes before
+    LaTeX ldots command.
+  * debian/patches/05_only-build-pdf.patch: don't build and install the
+    manual in PS format.
+  * debian/rules: don't compress the pdf documentation.
+
+ -- Arjan Oosting <arjanoosting@home.nl>  Wed, 17 May 2006 14:46:09 +0200
+
+frown (0.6.1-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/rules:
+    - rebuild manual during build.
+    - don't run tests during build yet.
+  * added patches:
+    - 01imagen-creates-png-files.patch: imagen generates png files
+      instead of gif files on a Debian system.
+    - 02ignore-hugs-version-in-test-frown.patch: ignore the version
+      header of Hugs in the output of the test cases.
+    - 03update-empty.out.patch: update the Empty example to match
+      the output given by the version of Hugs in unstable.
+  * debian/frown.doc-base: added doc-base support.
+
+ -- Arjan Oosting <arjanoosting@home.nl>  Tue, 17 Jan 2006 22:29:35 +0100
+
+frown (0.6-1) unstable; urgency=low
+
+  * Initial release (Closes: #336978).
+
+ -- Arjan Oosting <arjanoosting@home.nl>  Wed,  2 Nov 2005 00:24:43 +0100

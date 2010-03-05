@@ -1,0 +1,26 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 03_update-empty.out.dpatch by Arjan Oosting <arjanoosting@home.nl>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: update the Empty example to match the output given by the
+## DP: version of Hugs in unstable
+
+@DPATCH@
+diff -urNad frown~/Examples/Empty.out frown/Examples/Empty.out
+--- frown~/Examples/Empty.out	2005-12-30 00:45:09.000000000 +0100
++++ frown/Examples/Empty.out	2006-09-28 02:06:39.000000000 +0200
+@@ -3,10 +3,10 @@
+ ||___|| ||__|| ||__||  __||     Copyright (c) 1994-2005
+ ||---||         ___||           World Wide Web: http://haskell.org/hugs
+ ||   ||                         Report bugs to: hugs-bugs@haskell.org
+-||   || Version: March 2005     _________________________________________
++||   || Version: 20050308       _________________________________________
+
+ Hugs mode: Restart with command line option +98 for Haskell 98 mode
+
+-ERROR "Empty.hs":33 - Undefined variable "parse_1__"
+-Hugs.Base> ERROR - Undefined variable "s"
+-Hugs.Base> [Leaving Hugs]
++Type :? for help
++Main> ERROR - Undefined variable "s"
++Main> [Leaving Hugs]

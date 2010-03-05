@@ -1,0 +1,22 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 05_only-build-pdf.patch.dpatch by Arjan Oosting <arjanoosting@home.nl>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: don't build and install the manual in PS format.
+
+@DPATCH@
+diff -urNad frown~/Manual/Makefile frown/Manual/Makefile
+--- frown~/Manual/Makefile	2006-09-28 02:07:12.000000000 +0200
++++ frown/Manual/Makefile	2006-09-28 02:07:12.000000000 +0200
+@@ -69,11 +69,10 @@
+
+ .PHONY 	: man examples edit xdvi gv acro print spell spellupdate links clean distclean
+
+-man: $(file).ps $(file).pdf html
++man: $(file).pdf html
+
+ install: man
+	mkdir -p $(doc)
+-	cp $(file).ps $(doc)
+	cp $(file).pdf $(doc)
+	cp -r html $(doc)
