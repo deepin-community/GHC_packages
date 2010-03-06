@@ -1,0 +1,16 @@
+#! /bin/sh
+#
+#
+TMPDIR=${TMPDIR:-$TMP}
+TMPDIR=${TMPDIR:-$TEMP}
+export TMPDIR
+TEMP=`mktemp -d -t helium.XXXXXXXX` || exit 1
+
+LVMPATH=${LVMPATH:-".:/usr/lib/helium/lib"}
+export TEMP LVMPATH
+
+/usr/lib/helium/bin/helium $@
+ERR=$?
+
+rm -rf $TEMP
+exit $ERR

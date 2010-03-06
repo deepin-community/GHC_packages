@@ -1,0 +1,68 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 04_fixes-for-ghc6.dpatch by Arjan Oosting <arjan@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad helium~/Top/src/Top/Ordering/Tree.hs helium/Top/src/Top/Ordering/Tree.hs
+--- helium~/Top/src/Top/Ordering/Tree.hs	2008-01-28 00:02:11.000000000 +0100
++++ helium/Top/src/Top/Ordering/Tree.hs	2008-01-28 00:02:29.000000000 +0100
+@@ -36,13 +36,15 @@
+ infixr 8 .>. , .>>. , .<. , .<<.
+
+ (.>.), (.>>.), (.<.), (.<<.) :: [a] -> Tree a -> Tree a
+-((.>.), (.>>.), (.<.), (.<<.)) =
+-   let -- prevents adding an empty list
+-       f constructor direction as tree
+-          | null as   = tree
+-          | otherwise = constructor direction as tree
+-   in (f AddList Down, f Spread Down, f AddList Up, f Spread Up)
++(.>.)  = addIfNotEmpty AddList Down
++(.>>.) = addIfNotEmpty Spread Down
++(.<.)  = addIfNotEmpty AddList Up
++(.<<.) = addIfNotEmpty Spread Up
+
++addIfNotEmpty :: (forall a . Direction -> [a] -> Tree a -> Tree a) -> Direction -> [b] -> Tree b -> Tree b
++addIfNotEmpty constructor direction as tree
++          | null as   = tree
++          | otherwise = constructor direction as tree
+
+ ------------------------------------------------------------------------
+
+diff -urNad helium~/Top/src/makefile helium/Top/src/makefile
+--- helium~/Top/src/makefile	2008-01-28 00:02:11.000000000 +0100
++++ helium/Top/src/makefile	2008-01-28 00:02:29.000000000 +0100
+@@ -51,7 +51,7 @@
+
+ topsolver-prof:
+	# build the Top constraint solver with profiling
+-	$(HC) $(HC_OPTS) --make -package text -prof -auto-all -o $(BIN_DIR)/topsolver TopSolver.hs
++	$(HC) $(HC_OPTS) --make -prof -auto-all -o $(BIN_DIR)/topsolver TopSolver.hs
+
+ #-----------------------------------------------------------------------
+ # Cobalt
+diff -urNad helium~/helium/src/Makefile.in helium/helium/src/Makefile.in
+--- helium~/helium/src/Makefile.in	2008-01-28 00:02:29.000000000 +0100
++++ helium/helium/src/Makefile.in	2008-01-28 00:03:59.000000000 +0100
+@@ -48,7 +48,7 @@
+ PACKAGENET =
+ endif
+ HC_OPTS = -static -fglasgow-exts -fallow-undecidable-instances -fallow-overlapping-instances \
+-		$(PACKAGENET) -package lang -package text -package editline -i$(IFACES) $(EXTRA_HC_OPTS)
++		$(PACKAGENET) -package containers -package mtl -package parsec -package editline -i$(IFACES) $(EXTRA_HC_OPTS)
+
+ AG      = @WithAG@
+ AG_OPTS = -mscfr
+diff -urNad helium~/lvm/src/lib/makefile helium/lvm/src/lib/makefile
+--- helium~/lvm/src/lib/makefile	2008-01-28 00:02:11.000000000 +0100
++++ helium/lvm/src/lib/makefile	2008-01-28 00:02:29.000000000 +0100
+@@ -20,7 +20,7 @@
+
+ #the haskell compiler
+ HC	= ghc
+-HC_OPTS = -cpp -static -package lang -package text -i$(IFACES) $(EXTRA_HC_OPTS)
++HC_OPTS = -cpp -static -package parsec -i$(IFACES) $(EXTRA_HC_OPTS)
+
+ #Haskell sources
+ COMMON	= common/Id.hs common/IdMap.hs common/IdSet.hs \

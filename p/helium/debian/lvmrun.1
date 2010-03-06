@@ -1,0 +1,130 @@
+.TH LVMRUN "1" "December 2006" "Lazy Virtual Machine interpreter" "User Commands"
+.SH NAME
+lvmrun \- Lazy Virtual Machine interpreter
+.SH SYNOPSIS
+.B lvmrun
+[
+.I lvm options
+]
+.I file
+[
+.I program options
+]
+.SH DESCRIPTION
+\fBlvmrun\fP is an interpreter which simulates a Lazy Virtual Machine.
+The interpreter executes instructions which are found in the instruction file \fIfile\fP given on the command line.
+.PP
+On of the programs generating instruction files is the \fBhelium\fP compiler which compiles Haskell files to instructions files for the Lazy Virtual Machine.
+.SH OPTIONS
+.TP
+.BR \-h <size>
+the initial heap size.  (256k)
+.TP
+.BR \-H <size>
+the maximal heap size.  ( 64m)
+.TP
+.BR \-s <size>
+the initial stack size. ( 16k)
+.TP
+.BR \-S <size>
+the maximal stack size. ( 64m)
+.TP
+.BR \-P <path>
+the search path.
+.TP
+.BR \-m <name>
+the initial start function.
+.TP
+.B \-p
+print final value on stdout after execution.   (off)
+.TP
+.B \-t
+print timing report on stderr after execution. (off)
+.TP
+.B \-?
+show the help screen.
+.TP
+.BR \-he <size>
+the heap expansion size.   (256k)
+.TP
+.BR \-hm <size>
+the minor generation size. (128k)
+.HP
+.BR \-hf <percent>
+the percentage of free heap before a major collection. ( 42%)
+.TP
+.BR \-hF <percent>
+the percentage of free heap before a compaction. (100%)
+.TP
+.B \-hr
+print heap report on stderr after execution. (off)
+.TP
+.BR \-hv <level>
+the heap verbose level. (0)
+level is off (0), only major gc (1), every gc (2) or detailed (3)
+.PP
+Some of the options take an additional value.
+The format of the values is described below:
+.TP
+<size>
+A number with an optional scale and optional unit.
+The available scales are kilo (k), mega (m) or giga (g).
+The available units are machine words (w) or, by default, bytes (b).
+Example: \fBlvmrun \-H64m \-s4kw \-S512kb\fP \fIfile\fP
+.TP
+<percent>
+A number between 0 and 100 followed by an optional '%' character.
+Example: \fBlvmrun \-hF88%\fP <file>
+.TP
+<path>
+A list of directories separated by ';' (or ':' on unix systems).
+You can use \fB$name\fP or \fB%name\fP to insert an environment variable.
+The current path value is available as \fB$current\fP and the lvm installation path is available as \fB$lvmdir\fP.
+Example: \fBlvmrun \-P%current:/usr/lib/lvm\fP \fIfile\fP
+.TP
+<name>
+A function name
+Example: \fBlvmrun \-mmymain\fP \fIfile\fP
+.SH ENVIRONMENT
+.TP
+.B LVMPATH
+The search path for lvm files (same as \fB\-P\fP option).
+The default is: ".:/usr/lib/helium/lib"
+.TP
+.B LVMOPTIONS
+The default options for the lvm.
+The default is: ""
+.TP
+.B LVMDLLPATH
+Extra search path for shared (dynamic link) libraries (.so).
+The default is: ""
+.SH NOTES
+The options are read from \fBLVMPATH\fP, \fBLVMOPTIONS\fP and finally the command line.
+.SH COPYRIGHT
+.PP
+\(co 1999,2001 Daan Leijen <daan@cs.uu.nl>
+.PP
+The source files of the Lazy Virtual Machine, which are the files in the directory lvm, except the files in lvm/src/lib/core, are licensed under the GNU Library General Public License, currently known as the GNU Lesser General Public License:
+.PP
+.RS
+This package is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License version 2 as published by the Free Software Foundation.
+.PP
+This package is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU Lesser General Public License for more details.
+.PP
+You should have received a copy of the GNU Lesser General Public License along with this package; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
+.RE
+.PP
+The source files in the directory lvm/src/lib/core which are part of the Core Assembler of the Lazy Virtual Machine are licensed under the BSD license:
+.PP
+.RS
+Redistribution and use in source and binary forms, with or without modification, are permitted under the terms of the BSD License.
+.PP
+THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+.RE
+.SH "SEE ALSO"
+.BR helium (1)
+.PP
+.SH AUTHOR
+This manual page was written by Arjan Oosting <arjanoosting@home> for the Debian system and is licensed under the terms of the GNU General Public License version 2.

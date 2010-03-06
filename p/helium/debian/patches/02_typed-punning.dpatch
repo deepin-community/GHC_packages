@@ -1,0 +1,26 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 02_typed-punning.dpatch by Arjan Oosting <arjanoosting@home.nl>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad helium-1.6~/lvm/src/configure helium-1.6/lvm/src/configure
+--- helium-1.6~/lvm/src/configure	2006-02-05 17:35:50.000000000 +0100
++++ helium-1.6/lvm/src/configure	2006-09-15 06:25:03.000000000 +0200
+@@ -662,7 +662,7 @@
+      echo "CONFIGPATH=../config" >> makefile;;
+ esac
+
+-echo "CCOPTS=$cccompopts -I\$(CONFIGPATH)" >> makefile
++echo "CCOPTS=$cccompopts -fno-strict-aliasing -I\$(CONFIGPATH)" >> makefile
+
+ rm -f tst$exe hasgot.c *.obj
+
+@@ -694,4 +694,4 @@
+ echo "        linker used............... $link"
+ echo "        options for linking....... $cclinkopts"
+ echo
+-echo
+\ No newline at end of file
++echo

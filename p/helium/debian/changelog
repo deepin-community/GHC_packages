@@ -1,0 +1,57 @@
+helium (1.6-4.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Switch to System.Console.Editline.Readline for readline capabilities,
+    fixes FTBFS. Patch by Chris Lamb. (Closes: #536959)
+
+ -- Stefano Zacchiroli <zack@debian.org>  Fri, 09 Oct 2009 10:51:27 +0200
+
+helium (1.6-4) unstable; urgency=low
+
+  * Make helium compile with GHC 6.8.2:
+    - debian/patches/04_fixes-for-ghc6.dpatch: Add '-package containers'
+      to the GHC options as helium uses Data.Map which is in a separate
+      package now.
+    - debian/control:
+      + Add libghc6-parsec-dev to the build dependencies as the parsec
+        module is in separate Debian package now.
+      + Bump the build dependency on GHC to >= 6.8.2
+  * debian/control:
+    - Replace Xs-Vcs-* fields with Vcs-* fields.
+    - Add Homepage field.
+    - Bump Standards-Version to 3.7.3. No changes needed.
+  * debian/lvmrun.1:
+    - Fix some spelling errors. Thanks A. Costa. (Closes: #442167)
+  * debian/rules:
+    - Export DEB_HOST_GNU_TYPE and DEB_BUILD_GNU_TYPE as
+      /usr/share/doc/autotools-dev/README.Debian.gz suggests.
+
+ -- Arjan Oosting <arjan@debian.org>  Mon, 28 Jan 2008 00:42:17 +0100
+
+helium (1.6-3) unstable; urgency=low
+
+  * debian/control:
+    - Add Xs-Vcs-Svn and Xs-Vcs-Browser fields.
+  * debian/patches/06_no-strip.dpatch: Added. Do not strip binaries
+    unconditionally. (Closes: #437172)
+  * debian/rules:
+    - Remove helium/src/codegeneration/CodeGeneration.hs on clean to keep
+      the diff.gz small and tidy. The file will be created during the
+      build.
+    - Call 'make ag' before 'make depend' as it generates some Haskell
+      source files needed in the depend target.
+
+ -- Arjan Oosting <arjan@debian.org>  Sun, 12 Aug 2007 23:48:13 +0200
+
+helium (1.6-2) unstable; urgency=low
+
+  * debian/patches/05_fixes-for-64bit.dpatch: Added to fix FTBFS on 64 bit
+    architectures. (Closes: #404712)
+
+ -- Arjan Oosting <arjan@debian.org>  Tue,  6 Feb 2007 00:41:53 +0100
+
+helium (1.6-1) unstable; urgency=low
+
+  * Initial release (Closes: #365728)
+
+ -- Arjan Oosting <arjan@debian.org>  Sun, 10 Dec 2006 04:14:05 +0100

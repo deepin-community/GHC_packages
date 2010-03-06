@@ -1,0 +1,242 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 05_fix_for_64bit.dpatch by Arjan Oosting <arjan@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad helium~/lvm/src/lib/common/Byte.hs helium/lvm/src/lib/common/Byte.hs
+--- helium~/lvm/src/lib/common/Byte.hs	2007-02-05 23:44:40.000000000 +0100
++++ helium/lvm/src/lib/common/Byte.hs	2007-02-05 23:46:19.000000000 +0100
+@@ -27,6 +27,8 @@
+            , stringFromByteList, bytesFromByteList
+            ) where
+
++import Data.Word
++
+ import IO       ( IOMode(..) )
+ import Special  ( openBinary, writeBinaryChar, readBinary, closeBinary )
+ import Standard ( strict, foldlStrict )
+@@ -35,7 +37,7 @@
+ {----------------------------------------------------------------
+   types
+ ----------------------------------------------------------------}
+-type Byte   = Char
++type Byte   = Word8
+
+ data Bytes  = Nil
+             | Cons Byte   !Bytes    -- Byte is not strict since LvmWrite uses it lazily right now.
+@@ -52,19 +54,19 @@
+ ----------------------------------------------------------------}
+ byteFromInt8 :: Int -> Byte
+ byteFromInt8 i
+-  = toEnum (mod i 256)
++  = toEnum i
+
+ intFromByte :: Byte -> Int
+ intFromByte b
+   = fromEnum b
+
+ bytesFromString :: String -> Bytes
+-bytesFromString s
+-  = bytesFromList s
++bytesFromString
++  = bytesFromList . map (toEnum . fromEnum)
+
+ stringFromBytes :: Bytes -> String
+-stringFromBytes bs
+-  = listFromBytes bs
++stringFromBytes
++  = map (toEnum . fromEnum) . listFromBytes
+
+ bytesFromInt32 :: Int -> Bytes    -- 4 byte big-endian encoding
+ bytesFromInt32 i
+@@ -72,7 +74,7 @@
+         n1 = div n0 256
+         n2 = div n1 256
+         n3 = div n2 256
+-        xs = map byteFromInt8 [n3,n2,n1,n0]
++        xs = map (byteFromInt8 . (flip mod) 256) [n3,n2,n1,n0]
+     in bytesFromList xs
+
+ max32 :: Int
+@@ -131,7 +133,7 @@
+     write h bs
+       = case bs of
+           Nil       -> return ()
+-          Cons b bs -> do{ writeBinaryChar h b; write h bs }
++          Cons b bs -> do{ writeBinaryChar h (toEnum (fromEnum b)); write h bs }
+           Cat bs cs -> do{ write h bs; write h cs }
+
+
+@@ -150,7 +152,7 @@
+
+ stringFromByteList :: [Byte] -> String
+ stringFromByteList bs
+-  = bs
++  = map (toEnum . fromEnum) bs
+
+ bytesFromByteList :: [Byte] -> Bytes
+ bytesFromByteList bs
+@@ -161,7 +163,7 @@
+   = do{ h <- openBinary path ReadMode
+       ; xs <- readBinary h
+       ; closeBinary h
+-      ; return xs
++      ; return (map (toEnum . fromEnum) xs)
+       } `catch` (\exception ->
+             let message =  show exception ++ "\n\nUnable to read from file " ++ show path
+             in do { putStrLn message; exitWith (ExitFailure 1) })
+diff -urNad helium~/lvm/src/lib/common/Id.hs helium/lvm/src/lib/common/Id.hs
+--- helium~/lvm/src/lib/common/Id.hs	2007-02-05 23:44:40.000000000 +0100
++++ helium/lvm/src/lib/common/Id.hs	2007-02-05 23:46:19.000000000 +0100
+@@ -29,16 +29,19 @@
+ import Standard  (foldlStrict)
+ import qualified IntMap
+
++import Data.Int (Int32)
+ import Data.IORef( IORef, newIORef, readIORef, writeIORef )
+ import Special ( unsafePerformIO )
+
+ ----------------------------------------------------------------
+ -- Types
+ ----------------------------------------------------------------
+-newtype Id        = Id Int
++newtype Id        = Id Int32
+
+-intFromId (Id i)  = i
+-idFromInt i       = Id i
++intFromId :: Id -> Int
++intFromId (Id i)  = fromIntegral i
++idFromInt :: Int -> Id
++idFromInt i       = Id (fromIntegral i)
+
+
+ ----------------------------------------------------------------
+@@ -83,7 +86,7 @@
+ -- fresh identifiers without a nice name
+ -- but the advantage of a pure interface
+ ----------------------------------------------------------------
+-newtype NameSupply   = NameSupply (IORef Int)
++newtype NameSupply   = NameSupply (IORef Int32)
+
+ newNameSupply :: IO NameSupply
+ newNameSupply
+@@ -133,24 +136,24 @@
+ dummyId :: Id
+ dummyId           = Id (0x7FFFFFF1)
+
+-shiftSort, maxSort :: Int
++shiftSort, maxSort :: Int32
+ shiftSort         = 0x00000002
+ maxSort           = 0x7F
+
+-maxHash, shiftHash :: Int
++maxHash, shiftHash :: Int32
+ maxHash           = 0xFFF
+ shiftHash         = 0x00000100
+
+-shiftIdx, maxIdx :: Int
++shiftIdx, maxIdx :: Int32
+ shiftIdx          = 0x00100000
+ maxIdx            = 0x7FF
+
+-shiftUniq,maxUniq,flagUniq :: Int
++shiftUniq,maxUniq,flagUniq :: Int32
+ shiftUniq         = 0x00000100
+ maxUniq           = 0x007FFFFF
+ flagUniq          = 0x00000001
+
+-extractBits, clearBits, initBits :: Int -> Int -> Int -> Int
++extractBits, clearBits, initBits :: Int32 -> Int32 -> Int32 -> Int32
+ extractBits shift max i
+   = (i `div` shift) `mod` (max+1)
+
+@@ -192,21 +195,21 @@
+
+ getNameSpace :: Enum a => Id -> a
+ getNameSpace (Id i)
+-  = toEnum (extractSort i)
++  = toEnum (fromIntegral (extractSort i))
+
+ setNameSpace :: Enum a => a -> Id -> Id
+ setNameSpace sort (Id i)
+   | s > maxSort   = error "Id.setIdSort: sort index out of range"
+   | otherwise     = Id (initSort s (clearSort i))
+   where
+-    s    = fromEnum sort
++    s    = fromIntegral (fromEnum sort)
+
+
+ lookupId :: Id -> Names -> Maybe String
+ lookupId (Id i) (Names fresh map)
+   = let idx = extractIdx i
+         h   = extractHash i
+-    in  case IntMap.lookupM map h of
++    in  case IntMap.lookupM map (fromIntegral h) of
+           Nothing -> Nothing
+           Just xs -> Just (index idx xs)
+   where
+@@ -223,7 +226,7 @@
+ insertName' name (Names fresh map)
+   = let hname       = hash name
+         h           = initHash hname
+-        (i,map1)    = IntMap.insertWithX insert h hname [name] map
++        (i,map1)    = IntMap.insertWithX insert h (fromIntegral hname) [name] map
+         insert _ xs = let (idx,xs') = insertIdx name xs
+                       in if (idx > maxIdx)
+                           then error ("Id.insertName: too many names with the same hash value (" ++ show name ++ ")")
+@@ -233,7 +236,7 @@
+
+ -- [insertIdx] returns the index of an element if it exists already, or
+ -- appends the element and returns its index.
+-insertIdx :: Eq a => a -> [a] -> (Int,[a])
++insertIdx :: Eq a => a -> [a] -> (Int32,[a])
+ insertIdx y xs
+   = walk 0 xs
+   where
+@@ -246,7 +249,7 @@
+ ----------------------------------------------------------------
+ -- Hashing
+ ----------------------------------------------------------------
+-hash :: String -> Int
++hash :: String -> Int32
+ hash name
+   = (hashx name `mod` prime) `mod` maxHash
+   where
+@@ -254,11 +257,11 @@
+
+
+ -- simple hash function that performs quite good in practice
+-hashx :: String -> Int
++hashx :: String -> Int32
+ hashx name
+   = foldlStrict gobble 0 name
+   where
+-    gobble n c    = n*65599 + fromEnum c
++    gobble n c    = n*65599 + (fromIntegral . fromEnum) c
+
+
+
+diff -urNad helium~/lvm/src/runtime/common/mlvalues.h helium/lvm/src/runtime/common/mlvalues.h
+--- helium~/lvm/src/runtime/common/mlvalues.h	2007-02-05 23:42:52.000000000 +0100
++++ helium/lvm/src/runtime/common/mlvalues.h	2007-02-05 23:45:30.000000000 +0100
+@@ -25,6 +25,7 @@
+ #ifndef _mlvalues_
+ #define _mlvalues_
+
++#include <limits.h>
+ #include "config.h"
+ #include "misc.h"
+
+@@ -95,8 +96,8 @@
+ #define Val_int         Val_long
+ #define Int_val(x)      ((int) Long_val(x))
+
+-#define Min_word_t      (1L << (8*sizeof(word_t) - 1))
+-#define Max_word_t      (~0 ^ Min_word_t)
++#define Min_word_t      INT_MIN
++#define Max_word_t      INT_MAX
+
+ /* Foreign (C) pointers */
+ #define Val_ptr(p)  ((value)(p))

@@ -1,0 +1,42 @@
+.TH texthint "1" "December 2006" "Lazy Virtual Machine interpreter" "User Commands"
+.SH NAME
+texthint \- Interactive Helium Haskell interpreter
+.SH SYNOPSIS
+.B texthint
+[
+.I file
+]
+.SH DESCRIPTION
+\fBtexthint\fP is a simple Haskell interpreter which uses \fBhelium\fP compiler to compile Haskell code to Lazy Virtual Machine instructions which are executed by \fBlvmrun\fP.
+It takes a file name as optional argument which then is compiled using \fBhelium\fP and the functions defined in the file can be used in the interpreter.
+.SH ENVIRONMENT
+\fBtexthint\fP uses the same environment variables as \fBlvm\fP which is used to execute the Haskell code.
+.TP
+.B LVMPATH
+The search path for lvm files (same as \fB\-P\fP option).
+The default is: ".:/usr/lib/helium/lib"
+.TP
+.B LVMOPTIONS
+The default options for the lvm.
+The default is: ""
+.TP
+.B LVMDLLPATH
+Extra search path for shared (dynamic link) libraries (.so).
+The default is: ""
+.SH COPYRIGHT
+.PP
+\(co 1999,2001 Daan Leijen <daan@cs.uu.nl>
+.PP
+\(co           Bastiaan Heerden <bastiaan@cs.uu.nl>
+.PP
+This package is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License version 2 as published by the Free Software Foundation.
+This package is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU General Public License for more details.
+.PP
+You should have received a copy of the GNU General Public License along with this package; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
+.SH "SEE ALSO"
+.BR helium (1),
+.BR lvmrun (1)
+.PP
+.SH AUTHOR
+This manual page was written by Arjan Oosting <arjanoosting@home> for the Debian system and is also licensed under the terms of the GNU General Public License version 2.

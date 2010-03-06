@@ -1,0 +1,59 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 06_no-strip.dpatch by Arjan Oosting <arjan@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad helium~/helium/src/Makefile.in helium/helium/src/Makefile.in
+--- helium~/helium/src/Makefile.in	2007-08-12 21:28:06.000000000 +0200
++++ helium/helium/src/Makefile.in	2007-08-12 21:30:06.000000000 +0200
+@@ -201,7 +201,7 @@
+	@echo "****************************************************"
+	$(HC)	-o $(HELIUMBINDIR)/$(MAIN)$(EXE) $(HC_OPTS) $(OBJS)
+ ifdef STRIP
+-	$(STRIP) $(HELIUMBINDIR)/$(MAIN)$(EXE)
++#	$(STRIP) $(HELIUMBINDIR)/$(MAIN)$(EXE)
+ endif
+
+ all: ag compiler coreasm lvmrun libraries texthint status
+@@ -240,7 +240,7 @@
+	@echo "****************************************************"
+	$(HC) $(HC_OPTS) -o $(HELIUMBINDIR)/texthint$(EXE) texthint/Main.o \
+                       utils/OSSpecific.o
+-	$(STRIP) $(HELIUMBINDIR)/texthint$(EXE)
++#	$(STRIP) $(HELIUMBINDIR)/texthint$(EXE)
+
+ texthint/Main.o: utils/OSSpecific.hi texthint/Main.hs
+
+diff -urNad helium~/lvm/src/lib/makefile helium/lvm/src/lib/makefile
+--- helium~/lvm/src/lib/makefile	2007-08-12 21:28:06.000000000 +0200
++++ helium/lvm/src/lib/makefile	2007-08-12 21:31:17.000000000 +0200
+@@ -55,7 +55,7 @@
+ # The main target
+ $(MAIN)$(EXE): $(OBJS)
+	  $(HC)	-o $@ $(HC_OPTS) $(OBJS)
+-	  $(STRIP) $@
++#	  $(STRIP) $@
+
+ common/ghc/Special.hi: common/ghc/Special.hs
+	$(HC) -c $< -cpp -fglasgow-exts $(HC_OPTS)
+diff -urNad helium~/lvm/src/runtime/makefile helium/lvm/src/runtime/makefile
+--- helium~/lvm/src/runtime/makefile	2007-05-11 07:32:11.000000000 +0200
++++ helium/lvm/src/runtime/makefile	2007-08-12 21:32:04.000000000 +0200
+@@ -51,7 +51,7 @@
+
+ lvmrun$(EXE): $(OBJS)
+	$(LINK) -o $@ $(LINKOPT) $(OBJS)
+-	$(STRIP) $@
++#	$(STRIP) $@
+
+ core/evaluator.o: core/evaluator.c
+	$(CC) -o $@ -c $< $(CCOPT_FAST)
+@@ -82,4 +82,4 @@
+	sed -e 's/\(.*\.o\)/prim\/\1/' .depend.temp >> .depend
+	$(RM) .depend.temp
+
+-include .depend
+\ No newline at end of file
++include .depend
