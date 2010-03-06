@@ -46,17 +46,5 @@ binary-arch: build
 
 binary: binary-indep binary-arch
 
-#PACKVER := $(shell basename $(shell pwd))
-#TARBALL := $(shell echo $(PACKVER) | sed "s/-/_/-1").orig.tar.gz
-#
-#get-orig-source:
-#	@echo 'Enter "cvs" if asked for a password'
-#	cvs -d :pserver:anoncvs@glass.cse.ogi.edu:/cvs login
-#	cvs -d :pserver:anoncvs@glass.cse.ogi.edu:/cvs co haskell-report/
-#	find haskell-report/ -path "*/CVS" -prune -type d -name CVS -exec rm -r {} \;
-#	mv haskell-report/* .
-#	rmdir haskell-report/
-#	cd .. && tar --exclude $(PACKVER)/debian -zcvf $(TARBALL) $(PACKVER)
-#	mv ../$(TARBALL) .
-
 .PHONY: build clean binary-indep binary-arch binary
+
