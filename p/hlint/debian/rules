@@ -11,8 +11,7 @@ DEB_SETUP_GHC6_CONFIGURE_ARGS := $(shell test -e /usr/lib/ghc-$(GHC6_VERSION)/li
 build/$(CABAL_PACKAGE) :: build-ghc6-stamp
 
 install/$(CABAL_PACKAGE) :: build/$(CABAL_PACKAGE)
-	mv dist-ghc6 dist
-	$(DEB_SETUP_BIN_NAME) copy --destdir=debian/$(CABAL_PACKAGE)
+	$(DEB_SETUP_BIN_NAME) copy --builddir=dist-ghc6 --destdir=debian/$(CABAL_PACKAGE)
 	rm -rf debian/$(CABAL_PACKAGE)/usr/share/doc
 	install -Dm 644 hlint.htm debian/$(CABAL_PACKAGE)/usr/share/doc/$(CABAL_PACKAGE)/hlint.html
-	mv dist dist-ghc6
+
