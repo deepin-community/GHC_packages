@@ -1,0 +1,259 @@
+Mon Mar  8 12:04:02 BRT 2010  Marco Túlio Gontijo e Silva <marcot@debian.org>
+  * Correct build.
+diff -rN -u old-haskell98-report/ffi/Makefile new-haskell98-report/ffi/Makefile
+--- old-haskell98-report/ffi/Makefile	2010-03-08 13:18:19.000000000 -0300
++++ new-haskell98-report/ffi/Makefile	2010-03-08 13:18:19.000000000 -0300
+@@ -1,9 +1,18 @@
++
++all: ffi.ps ffi.pdf
++
+ threads.ps: threads.tex
+	TEXINPUTS=../styles: latex threads.tex
+	dvips -f < threads.dvi > threads.ps
+
++ffi.pdf: ffi.ps
++	ps2pdf ffi.ps ffi.pdf
++
+ ffi.ps: ffi.tex
+	TEXINPUTS=../styles: latex ffi.tex
++	bibtex ffi
++	TEXINPUTS=../styles: latex ffi.tex
++	TEXINPUTS=../styles: latex ffi.tex
+	dvips -f < ffi.dvi > ffi.ps
+
+ # Requires TeX4ht
+@@ -39,4 +48,4 @@
+
+ .PHONY: clean
+ clean:
+-	-rm -f *.aux *.log *.blg *.dvi *.bbl *.toc *.ps *.html *.css *.png *.4ct *.4tc *.idv *.xref tex4ht.fls
++	-rm -f *.aux *.log *.blg *.dvi *.bbl *.toc *.ps *.html *.css *.png *.4ct *.4tc *.idv *.xref tex4ht.fls *.pdf
+diff -rN -u old-haskell98-report/hierarchical-modules/Makefile new-haskell98-report/hierarchical-modules/Makefile
+--- old-haskell98-report/hierarchical-modules/Makefile	2010-03-08 13:18:19.000000000 -0300
++++ new-haskell98-report/hierarchical-modules/Makefile	2010-03-08 13:18:19.000000000 -0300
+@@ -7,5 +7,6 @@
+ hier.pdf: hier.tex
+	TEXINPUTS=../styles: pdflatex $<
+
+-clean :
+-	rm hier.ps hier.pdf
++.PHONY: clean
++clean:
++	-rm -f *.aux *.log *.blg *.dvi *.bbl *.toc *.ps *.html *.css *.png *.4ct *.4tc *.idv *.xref tex4ht.fls *.pdf
+diff -rN -u old-haskell98-report/Makefile new-haskell98-report/Makefile
+--- old-haskell98-report/Makefile	2010-03-08 13:18:19.000000000 -0300
++++ new-haskell98-report/Makefile	2010-03-08 13:18:19.000000000 -0300
+@@ -1,14 +1,21 @@
+-RELEASE_DIR = haskell98-revised
++PREFIX = haskell98-revised
++RELEASE_DIR = $(PREFIX)
+ JFP_DIR = jfp-release
+
++install:
++	$(MAKE) -C tools
++	$(MAKE) -C report install
++
++clean:
++	$(MAKE) -C tools clean
++	$(MAKE) -C report clean
++
+ release:
++	(cd tools; make)
+	(cd report; make release)
++	touch libraries/library.idx
+	(cd libraries; make release)
+-	(cd jfp-release; make)
+-	cp h98-revised.html $(RELEASE_DIR)/index.html
+-	cp haskell98-bugs.html h98.gif $(RELEASE_DIR)
+-	gzip < jfp-release/h98-book.ps > $(RELEASE_DIR)/h98-book.ps.gz
+-	gzip < jfp-release/h98-book.pdf > $(RELEASE_DIR)/h98-book.pdf.gz
++	cp report/h98-revised.html $(RELEASE_DIR)/index.html
+
+ jfp:
+	-mkdir $(JFP_DIR)
+diff -rN -u old-haskell98-report/report/classes.eps new-haskell98-report/report/classes.eps
+--- old-haskell98-report/report/classes.eps	2010-03-08 13:18:19.000000000 -0300
++++ new-haskell98-report/report/classes.eps	2010-03-08 13:18:19.000000000 -0300
+@@ -826,7 +826,8 @@
+ %%Trailer
+ %%DocumentNeededResources:
+ %%+ font Courier-Bold
+-%%+ font TimesNewRomanPSMT
++% Don't include TrueType fonts, this make dvips(from texlive) happy
++%%%+ font TimesNewRomanPSMT
+ %%DocumentSuppliedResources:
+ %%+ procset Pscript_WinNT_ErrorHandler 5.0 0
+ %%+ procset Pscript_FatalError 5.0 0
+diff -rN -u old-haskell98-report/report/h98-revised.html new-haskell98-report/report/h98-revised.html
+--- old-haskell98-report/report/h98-revised.html	2010-03-08 13:18:19.000000000 -0300
++++ new-haskell98-report/report/h98-revised.html	2010-03-08 13:18:19.000000000 -0300
+@@ -28,13 +28,11 @@
+ <p><li> The Haskell 98 Report (revised)
+ <ul>
+ <li> <a href="haskell98-report-html/index.html">HTML</a>
+-<li> <a href="haskell.ps.gz">Gzipped Postscript</a>
+-<li> <a href="haskell.pdf">PDF</a>
++<li> <a href="../haskell98-report.ps.gz">Gzipped Postscript</a>
++<li> <a href="../haskell98-report.pdf.gz">Gzipped PDF</a>
+ <li> <a href="haskell98-revised-bugs.html">A complete list of all bugs</a> (found so far)
+
+ </ul>
+-<p>
+-<li> <a href="haskell98-report-html.tar.gz">Gzipped tar bundle of the HTML sources</a> for local browsing.
+
+ <p><li>
+ <a href="haskell98-bugs.html">A complete list of all changes</a> made to both reports between the Jan 1999 publication
+diff -rN -u old-haskell98-report/report/haskell.idx new-haskell98-report/report/haskell.idx
+--- old-haskell98-report/report/haskell.idx	2010-03-08 13:18:19.000000000 -0300
++++ new-haskell98-report/report/haskell.idx	2010-03-08 13:18:19.000000000 -0300
+@@ -1388,7 +1388,7 @@
+ \indexentry{Show@{\tt  Show} (class)!instance for {\tt Array}}{178}
+ \indexentry{Read@{\tt  Read} (class)!instance for {\tt Array}}{178}
+ \indexentry{List@{\tt  List} (module)}{180}
+-\indexentry{\\@{\tt  {\char'134}{\char'134}}}{180}
++\indexentry{\\\\@{\tt  {\char'134}{\char'134}}}{180}
+ \indexentry{elemIndex@{\tt  elemIndex}}{180}
+ \indexentry{elemIndices@{\tt  elemIndices}}{180}
+ \indexentry{find@{\tt  find}}{180}
+@@ -1398,7 +1398,7 @@
+ \indexentry{nubBy@{\tt  nubBy}}{180}
+ \indexentry{delete@{\tt  delete}}{180}
+ \indexentry{deleteBy@{\tt  deleteBy}}{180}
+-\indexentry{\\@{\tt  {\char'134}{\char'134}}}{180}
++\indexentry{\\\\@{\tt  {\char'134}{\char'134}}}{180}
+ \indexentry{deleteFirstsBy@{\tt  deleteFirstsBy}}{180}
+ \indexentry{union@{\tt  union}}{180}
+ \indexentry{unionBy@{\tt  unionBy}}{180}
+@@ -1473,7 +1473,7 @@
+ \indexentry{zipWith4@{\tt  zipWith4}}{185}
+ \indexentry{List@{\tt  List} (module)}{186}
+ \indexentry{Maybe@{\tt  Maybe} (module)}{186}
+-\indexentry{\\@{\tt  {\char'134}{\char'134}}}{186}
++\indexentry{\\\\@{\tt  {\char'134}{\char'134}}}{186}
+ \indexentry{elemIndex@{\tt  elemIndex}}{186}
+ \indexentry{elemIndices@{\tt  elemIndices}}{186}
+ \indexentry{find@{\tt  find}}{186}
+@@ -1483,7 +1483,7 @@
+ \indexentry{nubBy@{\tt  nubBy}}{187}
+ \indexentry{delete@{\tt  delete}}{187}
+ \indexentry{deleteBy@{\tt  deleteBy}}{187}
+-\indexentry{\\@{\tt  {\char'134}{\char'134}}}{187}
++\indexentry{\\\\@{\tt  {\char'134}{\char'134}}}{187}
+ \indexentry{deleteFirstsBy@{\tt  deleteFirstsBy}}{187}
+ \indexentry{union@{\tt  union}}{187}
+ \indexentry{unionBy@{\tt  unionBy}}{187}
+diff -rN -u old-haskell98-report/report/Makefile new-haskell98-report/report/Makefile
+--- old-haskell98-report/report/Makefile	2010-03-08 13:18:19.000000000 -0300
++++ new-haskell98-report/report/Makefile	2010-03-08 13:18:19.000000000 -0300
+@@ -40,7 +40,11 @@
+ #	Files
+ #########################################
+
+-RELEASE_DIR = ../haskell98-revised
++PREFIX = ../haskell98-revised
++RELEASE_DIR = $(PREFIX)
++PS_DIR = $(RELEASE_DIR)
++PDF_DIR = $(RELEASE_DIR)
++HTML_DIR = $(RELEASE_DIR)/html
+ JFP_DIR = ../jfp-release
+
+ PARTS =		preface-jfp.tex $(PARTS_NO_PREFACE)
+@@ -99,7 +103,7 @@
+ haskell.dvi:  haskell.tex ${PARTS} $(SYNTAX) ${PRELUDE}
+
+ # I have no idea why run_tex is run twice.  SLPJ
+-html: index.html ${PARTS} ${SYNTAX} ${PRELUDE}
++html: index.html haskell.dvi ${PARTS} ${SYNTAX} ${PRELUDE}
+	-mkdir haskell98-report-html
+	$(RUN_TEX)
+	$(RUN_TEX)
+@@ -117,8 +121,20 @@
+	dvips haskell.dvi -o haskell.ps
+
+ # Can't use pdflatex because of eps inclusion
++haskell.pdf : haskell.ps
++	ps2pdf haskell.ps haskell.pdf
+
+-release: haskell.ps html
++install: haskell.ps haskell.pdf html
++	mkdir -p $(PS_DIR) $(PDF_DIR) $(HTML_DIR)
++	cp haskell.ps $(PS_DIR)/haskell98-report.ps
++	cp haskell.pdf $(PDF_DIR)/haskell98-report.pdf
++	cp -r haskell98-report-html $(HTML_DIR)
++	cp h98-revised.html $(HTML_DIR)/index.html
++	cp haskell98-bugs.html h98.gif $(HTML_DIR)
++	cp haskell98-revised-bugs.html $(HTML_DIR)
++
++
++release: haskell.ps html $(RELEASE_DIR)
+	ps2pdf haskell.ps
+	gzip < haskell.ps > $(RELEASE_DIR)/haskell.ps.gz
+	cp haskell.pdf $(RELEASE_DIR)/haskell.pdf
+@@ -128,6 +144,9 @@
+	cp haskell98-bugs.html h98.gif $(RELEASE_DIR)
+	cp haskell98-revised-bugs.html h98.gif $(RELEASE_DIR)
+
++$(RELEASE_DIR):
++	mkdir $@
++
+ publish-pdf: report.pdf
+	gzip < report.pdf > y:Haskell/haskell98-report/report.pdf.gz
+
+@@ -140,11 +159,11 @@
+	$(RM) *~
+
+ clean:
++	$(RM) $(PRELUDE) reportrefs
+	$(RM) *.dvi *.log *.aux *.ilg *.blg *.toc ${PARTS} $(SYNTAX) \
+-		haskell.tex haskell.ps haskell.pdf *.o lex.yy.c haskell98-report-html/*
+-	cp haskell.ind haskell.ind.two-sided
+-	echo "Don't delete the Prelude*.tex files"
+-	echo "Not everyone has \"perl\" to re-make them"
++		haskell.tex haskell.ps haskell.pdf *.o lex.yy.c haskell.ind
++	$(RM) -r haskell98-report-html/
++	$(RM) lib-code/*.tex lib-hdrs/*.tex
+
+
+ #########################################
+@@ -168,6 +187,8 @@
+
+ .tex.dvi:
+	$(LATEX) $<
++	$(LATEX) $<
++	$(LATEX) $<
+
+
+ # -----------------------------------------------------------
+diff -rN -u old-haskell98-report/tools/Makefile new-haskell98-report/tools/Makefile
+--- old-haskell98-report/tools/Makefile	2010-03-08 13:18:19.000000000 -0300
++++ new-haskell98-report/tools/Makefile	2010-03-08 13:18:19.000000000 -0300
+@@ -14,13 +14,16 @@
+
+ all : verbatim run_tex run_index
+
++clean:
++	rm -f *.hi *.o verbatim verbatim.c run_tex run_index
++
+ verbatim: verbatim.lex
+	$(LEX) $(LEX_OPTS) verbatim.lex > verbatim.c || ( rm -f verbatim.c && exit 1 )
+	$(CC) -c verbatim.c -o verbatim.o
+	$(CC) -o verbatim verbatim.o
+
+ run_tex: tex.hs
+-	$(GHC) -o run_tex tex.hs -fglasgow-exts -H20m -package lang
++	$(GHC) -o run_tex tex.hs -fglasgow-exts -H20m
+
+ run_index: index.hs
+	$(GHC) -o run_index index.hs -fglasgow-exts -H20m
+diff -rN -u old-haskell98-report/tools/tex.hs new-haskell98-report/tools/tex.hs
+--- old-haskell98-report/tools/tex.hs	2010-03-08 13:18:19.000000000 -0300
++++ new-haskell98-report/tools/tex.hs	2010-03-08 13:18:19.000000000 -0300
+@@ -82,7 +82,7 @@
+ import IO hiding (bracket)
+ import Char(isSpace, isAlpha, isDigit)
+
+-import IOExts(unsafePerformIO)  -- debugging only
++-- import IOExts(unsafePerformIO)  -- debugging only
+
+ data FontStyle = RM | IT | TT | Bold | Sym | UL
+     deriving (Eq,Show)
