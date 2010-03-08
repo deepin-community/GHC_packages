@@ -1,49 +1,13 @@
 #!/usr/bin/make -f
-# This file is public domain software.
-# Originally written by Joey Hess as sample debian/rules that uses debhelper.
-# Modified for haskell98-report by Ian Lynagh.
+%:
+	dh $@
 
-# Uncomment this to turn on verbose mode.
-#export DH_VERBOSE=1
-
-build: build-stamp
-build-stamp:
-	dh_testdir
-	dh_installdirs
-	$(MAKE) PREFIX=`pwd`/debian/`dh_listpackages`/usr/share/doc/haskell98-report
+override_dh_auto_build:
+	$(MAKE)
 	$(MAKE) -C ffi
-	cp ffi/ffi.ps ffi/ffi.pdf debian/`dh_listpackages`/usr/share/doc/haskell98-report
 	$(MAKE) -C hierarchical-modules
-	cp hierarchical-modules/hier.ps hierarchical-modules/hier.pdf debian/`dh_listpackages`/usr/share/doc/haskell98-report
-	touch build-stamp
 
-clean:
-	dh_testdir
-	dh_testroot
-	rm -f build-stamp
+override_dh_auto_clean:
 	$(MAKE) clean
 	$(MAKE) -C ffi clean
 	$(MAKE) -C hierarchical-modules clean
-	dh_clean
-
-binary-indep: build
-	dh_testdir
-	dh_testroot
-	dh_installchangelogs
-	dh_installdocs
-	dh_installexamples
-	dh_installman
-	dh_link
-	dh_compress
-	dh_fixperms
-	dh_installdeb
-	dh_gencontrol
-	dh_md5sums
-	dh_builddeb
-
-binary-arch:
-
-binary: binary-indep binary-arch
-
-.PHONY: build clean binary-indep binary-arch binary
-
