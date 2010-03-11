@@ -4,13 +4,10 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: John Goerzen <jgoerzen@complete.org>
 Build-Depends: debhelper (>= 6.0.0),
  cdbs,
- haddock,
- hscolour,
- haskell-devscripts (>= 0.6.18),
- ghc6 (>= 6.10),
- hugs (>= 98.200503.08),
+ haskell-devscripts (>= 0.7),
+ ghc6,
  libmagic-dev
-Standards-Version: 3.8.3
+Standards-Version: 3.8.4
 Section: haskell
 Vcs-Git: git://git.debian.org/git/pkg-haskell/magic-haskell.git
 Vcs-Browser: http://git.debian.org/?p=pkg-haskell/magic-haskell.git;a=summary
@@ -18,8 +15,10 @@ Vcs-Browser: http://git.debian.org/?p=pkg-haskell/magic-haskell.git;a=summary
 Package: libghc6-magic-dev
 Section: haskell
 Architecture: any
+Depends: ${misc:Depends}, ${haskell:Depends}, ${shlibs:Depends}
+Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Depends: ${misc:Depends}, ${haskell:Depends}, libmagic-dev, ${shlibs:Depends}
+Provides: ${haskell:Provides}
 Description: File type determination library for Haskell
  This package provides a Haskell interface to the C libmagic library.
  With it, you can determine the type of a file by examining its contents
