@@ -9,9 +9,6 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
-# Include dpatch
-include /usr/share/dpatch/dpatch.make
-
 # These are used for cross-compiling and for saving the configure
 # script
 # from having to guess our platform (since we know it already)
@@ -33,7 +30,7 @@ else
 endif
 
 configure: configure-stamp
-configure-stamp: patch-stamp
+configure-stamp:
 	dh_testdir
 	cp /usr/share/misc/config.sub   lvm/src/config/tests/
 	cp /usr/share/misc/config.guess lvm/src/config/tests/
@@ -54,7 +51,7 @@ build-stamp: configure-stamp
 	$(MAKE_ENVVARS) $(MAKE) -C helium/src
 	touch $@
 
-clean: clean-patched unpatch
+clean: clean-patched
 clean-patched:
 	dh_testdir
 	dh_testroot
