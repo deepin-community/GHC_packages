@@ -1,0 +1,21 @@
+# Description: Remove ISO-8859-1 character
+#  GHC 6.12.1 can't read malformed UTF-8 chars (like ISO-8859-1) in text mode,
+#  so this patch just remove this character of Makefile.in, which seems to be
+#  left there as an error anyway.
+# Bug-Debian: 573654
+# Forwarded: http://lists.debian.org/debian-haskell/2010/03/msg00114.html
+# Author: Marco TÃºlio Gontijo e Silva <marcot@debian.org>
+# Last-Update: 2010-03-14
+Index: helium-1.6/helium/src/Makefile.in
+===================================================================
+--- helium-1.6.orig/helium/src/Makefile.in	2010-03-13 19:32:58.000000000 -0300
++++ helium-1.6/helium/src/Makefile.in	2010-03-13 19:33:09.000000000 -0300
+@@ -381,7 +381,7 @@
+	$(AG) -a $<
+
+
+-# Documentation target (with Haddock) Ê
++# Documentation target (with Haddock)
+ doc:
+	haddock +RTS -K8M -RTS \
+	    --title="The Helium Compiler" \
