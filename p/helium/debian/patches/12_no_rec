@@ -1,0 +1,1126 @@
+# Description: Remove rec from code
+#  rec is a reserved word in GHC 6.12.1, so it should not be used as a
+#  identifier.
+# Forwarded: http://lists.debian.org/debian-haskell/2010/03/msg00114.html
+# Author: Marco Túlio Gontijo e Silva <marcot@debian.org>
+# Last-Update: 2010-03-14
+Index: helium-1.6/Top/src/Top/Implementation/TypeGraph/ApplyHeuristics.hs
+===================================================================
+--- helium-1.6.orig/Top/src/Top/Implementation/TypeGraph/ApplyHeuristics.hs	2010-03-14 12:32:39.000000000 -0300
++++ helium-1.6/Top/src/Top/Implementation/TypeGraph/ApplyHeuristics.hs	2010-03-14 12:32:56.000000000 -0300
+@@ -29,41 +29,41 @@
+
+ applyHeuristics :: HasTypeGraph m info => (Path (EdgeId, info) -> [Heuristic info]) -> m [ErrorInfo info]
+ applyHeuristics heuristics =
+-   let rec thePath =
++   let rec_ thePath =
+           case simplifyPath thePath of
+              Empty -> internalError "Top.TypeGraph.ApplyHeuristics" "applyHeuristics" "unexpected empty path"
+              Fail  -> return []
+              path  ->
+                 do err <- evalHeuristics path (heuristics path)
+                    let restPath = changeStep (\t@(a,_) -> if a `elem` fst err then Fail else Step t) path
+-                   errs <- rec restPath
++                   errs <- rec_ restPath
+                    return (err : errs)
+    in
+       do errorPath <- allErrorPaths
+-         rec (removeSomeDuplicates info2ToEdgeNr errorPath)
++         rec_ (removeSomeDuplicates info2ToEdgeNr errorPath)
+
+ evalHeuristics :: HasTypeGraph m info => Path (EdgeId, info) -> [Heuristic info] -> m (ErrorInfo info)
+ evalHeuristics path heuristics =
+-   rec edgesBegin heuristics
++   rec_ edgesBegin heuristics
+
+  where
+    edgesBegin = nubBy eqInfo2 (steps path)
+
+-   rec edges [] =
++   rec_ edges [] =
+       case edges of
+          (edgeId@(EdgeId _ _ cnr), info) : _ ->
+             do logMsg ("\n*** The selected constraint: " ++ show cnr ++ " ***\n")
+                return ([edgeId], info)
+          _ -> internalError "Top.TypeGraph.ApplyHeuristics" "evalHeuristics" "empty list"
+
+-   rec edges (Heuristic heuristic:rest) =
++   rec_ edges (Heuristic heuristic:rest) =
+       case heuristic of
+
+          Filter name f ->
+             do edges' <- f edges
+                logMsg (name ++ " (filter)")
+                logMsg ("   " ++ showSet [ i | (EdgeId _ _ i, _) <- edges' ])
+-               rec edges' rest
++               rec_ edges' rest
+
+          Voting selectors ->
+             do logMsg ("Voting with "++show (length selectors) ++ " heuristics")
+@@ -76,9 +76,9 @@
+                          GT -> (prio, [(head es, info)])
+                case listWithBest of
+                   [] -> do logMsg "Unfortunately, none of the heuristics could be applied"
+-                           rec edges rest
++                           rec_ edges rest
+                   _  -> do logMsg ("\n*** Selected with priority "++show thePrio++": "++showSet (map fst listWithBest)++"\n")
+-                           rec listWithBest rest
++                           rec_ listWithBest rest
+
+ evalSelector :: (MonadWriter LogEntries m, HasTypeGraph m info) => [(EdgeId, info)] -> Selector m info -> m [(Int, [EdgeId], info)]
+ evalSelector edges selector =
+@@ -184,14 +184,14 @@
+ type ChildGraph = [((VertexId, VertexId), [(VertexId, VertexId)])]
+
+ childrenGraph :: HasTypeGraph m info => [VertexId] -> m ChildGraph
+-childrenGraph = rec []
++childrenGraph = rec_ []
+    where
+-      rec as []     = return as
+-      rec as (i:is) =
++      rec_ as []     = return as
++      rec_ as (i:is) =
+          do vertices <- verticesInGroupOf i
+             ri       <- representativeInGroupOf i
+             if ri `elem` (map (fst . fst) as)
+-              then rec as is
++              then rec_ as is
+               else do let cs = concat [ [(n, l), (n, r)] | (n, (VApp l r, _)) <- vertices ]
+                       cs' <- let f t = do r <- representativeInGroupOf (snd t)
+                                           return (r, t)
+@@ -200,7 +200,7 @@
+                                    . groupBy (\x y -> fst x     ==    fst y)
+                                    . sortBy  (\x y -> fst x `compare` fst y)
+                                    $ cs'
+-                      rec ([ ((ri, rc), xs) | (rc, xs) <- children ] ++ as) (map fst children ++ is)
++                      rec_ ([ ((ri, rc), xs) | (rc, xs) <- children ] ++ as) (map fst children ++ is)
+
+ infiniteGroups :: [(VertexId, VertexId)] -> [[VertexId]]
+ infiniteGroups xs =
+@@ -219,10 +219,10 @@
+    in recursive
+
+ allSubPathsList :: HasTypeGraph m info => [(VertexId, VertexId)] -> VertexId -> [VertexId] -> m (TypeGraphPath info)
+-allSubPathsList childList vertex targets = rec S.empty vertex
++allSubPathsList childList vertex targets = rec_ S.empty vertex
+  where
+-   rec :: HasTypeGraph m info => S.Set VertexId -> VertexId -> m (TypeGraphPath info)
+-   rec without start =
++   rec_ :: HasTypeGraph m info => S.Set VertexId -> VertexId -> m (TypeGraphPath info)
++   rec_ without start =
+       do vs <- verticesInGroupOf start
+          case any (`elem` map fst vs) targets of
+
+@@ -234,7 +234,7 @@
+                let recDown (newStart, childTargets) =
+                       do let newWithout = without `S.union` S.fromList (map fst vs){- don't return to this equivalence group -}
+                              f ct = let set = S.fromList [ t | t <- childTargets, t /= ct ]
+-                                    in rec (set `S.union` newWithout) ct
++                                    in rec_ (set `S.union` newWithout) ct
+                          path     <- allPathsListWithout without start [newStart]
+                          newPaths <- mapM f childTargets
+                          return (path :+: altList newPaths)
+Index: helium-1.6/Top/src/Top/Implementation/TypeGraph/Basics.hs
+===================================================================
+--- helium-1.6.orig/Top/src/Top/Implementation/TypeGraph/Basics.hs	2010-03-14 12:32:39.000000000 -0300
++++ helium-1.6/Top/src/Top/Implementation/TypeGraph/Basics.hs	2010-03-14 12:32:56.000000000 -0300
+@@ -92,24 +92,24 @@
+    compare (CliqueX xs) (CliqueX ys) = compare xs ys
+
+ isSubsetClique :: Clique -> Clique -> Bool
+-isSubsetClique (CliqueX as) (CliqueX bs) = rec as bs
++isSubsetClique (CliqueX as) (CliqueX bs) = rec_ as bs
+  where
+-   rec [] _ = True
+-   rec _ [] = False
+-   rec a@(x:xs) (y:ys)
+-      | x == y    = rec xs ys
+-      | x > y     = rec a ys
++   rec_ [] _ = True
++   rec_ _ [] = False
++   rec_ a@(x:xs) (y:ys)
++      | x == y    = rec_ xs ys
++      | x > y     = rec_ a ys
+       | otherwise = False
+
+ isDisjointClique :: Clique -> Clique -> Bool
+-isDisjointClique (CliqueX as) (CliqueX bs) = rec as bs
++isDisjointClique (CliqueX as) (CliqueX bs) = rec_ as bs
+  where
+-   rec [] _ = True
+-   rec _ [] = True
+-   rec a@(x:xs) b@(y:ys)
++   rec_ [] _ = True
++   rec_ _ [] = True
++   rec_ a@(x:xs) b@(y:ys)
+       | x == y    = False
+-      | x > y     = rec a ys
+-      | otherwise = rec xs b
++      | x > y     = rec_ a ys
++      | otherwise = rec_ xs b
+
+ cliqueRepresentative :: Clique -> VertexId
+ cliqueRepresentative (CliqueX xs) =
+Index: helium-1.6/Top/src/Top/Implementation/TypeGraph/EquivalenceGroup.hs
+===================================================================
+--- helium-1.6.orig/Top/src/Top/Implementation/TypeGraph/EquivalenceGroup.hs	2010-03-14 12:32:39.000000000 -0300
++++ helium-1.6/Top/src/Top/Implementation/TypeGraph/EquivalenceGroup.hs	2010-03-14 12:32:56.000000000 -0300
+@@ -129,7 +129,7 @@
+ equalPaths without start targets eqgroup =
+    reduceNumberOfPaths $
+       tailSharingBy (\(e1, _) (e2, _) -> e1 `compare` e2) $
+-      rec start (edgeList, cliqueList)
++      rec_ start (edgeList, cliqueList)
+  where
+       -- msg        = "Path from "++show start++" to "++show targets++" without "++show (S.elems without)
+       edgeList   = let p (EdgeId v1 v2 _, _) =
+@@ -142,8 +142,8 @@
+       -- Allow a second visit of a clique in a path?
+       secondCliqueVisit = False
+
+-      rec :: VertexId -> ([(EdgeId, info)], [[ParentChild]]) -> TypeGraphPath info
+-      rec v1 (es, cs)
++      rec_ :: VertexId -> ([(EdgeId, info)], [[ParentChild]]) -> TypeGraphPath info
++      rec_ v1 (es, cs)
+         | v1 `S.member` targetSet  = Empty
+         | otherwise =
+              let (edges1,es' ) = partition (\(EdgeId a _ _, _) -> v1 == a) es
+@@ -157,10 +157,10 @@
+                 altList $
+                 map (\(EdgeId _ neighbour edgeNr, info) ->
+                       Step (EdgeId v1 neighbour edgeNr, Initial info)
+-                      :+: rec neighbour rest) edges1
++                      :+: rec_ neighbour rest) edges1
+              ++ map (\(EdgeId neighbour _ edgeNr, info) ->
+                       Step (EdgeId v1 neighbour edgeNr, Initial info)
+-                      :+: rec neighbour rest) edges2
++                      :+: rec_ neighbour rest) edges2
+              ++ concatMap (\list ->
+                            let (sources, others) = partition ((v1==) . child) list
+                                sourceParents     = map parent sources
+@@ -171,8 +171,8 @@
+                                   , child pc == neighbour
+                                   , let beginPath = altList1 (map g sourceParents)
+                                         restPath
+-                                           | secondCliqueVisit = rec neighbour (es'', map (filter (/= pc)) restCliques)
+-                                           | otherwise         = rec neighbour rest
++                                           | secondCliqueVisit = rec_ neighbour (es'', map (filter (/= pc)) restCliques)
++                                           | otherwise         = rec_ neighbour rest
+                                         g sp = Step ( EdgeId v1 neighbour impliedEdgeNr
+                                                     , Implied (childSide pc) sp (parent pc)
+                                                     )
+Index: helium-1.6/Top/src/Top/Implementation/TypeGraph/Path.hs
+===================================================================
+--- helium-1.6.orig/Top/src/Top/Implementation/TypeGraph/Path.hs	2010-03-14 12:32:39.000000000 -0300
++++ helium-1.6/Top/src/Top/Implementation/TypeGraph/Path.hs	2010-03-14 12:46:22.000000000 -0300
+@@ -60,11 +60,11 @@
+ (<++>) = mCombine (++)
+
+ steps :: Path a -> [a]
+-steps = ($ []) . rec where
+-   rec path =
++steps = ($ []) . rec_ where
++   rec_ path =
+       case path of
+-         x :|: y -> rec x . rec y
+-         x :+: y -> rec x . rec y
++         x :|: y -> rec_ x . rec_ y
++         x :+: y -> rec_ x . rec_ y
+          Step a  -> (a:)
+          Fail  -> id
+          Empty -> id
+@@ -73,13 +73,13 @@
+ mapPath f = changeStep (Step . f)
+
+ changeStep :: (a -> Path b) -> Path a -> Path b
+-changeStep f = rec
++changeStep f = rec_
+  where
+-   rec path =
++   rec_ path =
+       case path of
+          Step a  -> f a
+-         x :|: y -> rec x :|: rec y
+-         x :+: y -> rec x :+: rec y
++         x :|: y -> rec_ x :|: rec_ y
++         x :+: y -> rec_ x :+: rec_ y
+          Fail    -> Fail
+          Empty   -> Empty
+
+@@ -93,12 +93,12 @@
+       Empty   -> return Empty
+
+ minCompleteInPath :: (a -> a -> Ordering) -> Path a -> Maybe a
+-minCompleteInPath f = rec . simplifyPath
++minCompleteInPath f = rec_ . simplifyPath
+    where
+-      rec path =
++      rec_ path =
+          case path of
+-            x :|: y -> do v1 <- rec x; v2 <- rec y; return (minimumBy f [v1, v2])
+-            x :+: y -> do v1 <- rec x; v2 <- rec y; return (maximumBy f [v1, v2])
++            x :|: y -> do v1 <- rec_ x; v2 <- rec_ y; return (minimumBy f [v1, v2])
++            x :+: y -> do v1 <- rec_ x; v2 <- rec_ y; return (maximumBy f [v1, v2])
+             Step a  -> Just a
+             Fail    -> Nothing
+             Empty   -> Nothing
+@@ -127,7 +127,7 @@
+    case simplifyPath thePath of
+       Empty -> Empty
+       Fail  -> Fail
+-      p     -> rec p
++      p     -> rec_ p
+
+  where
+   eqf x y  = compf  x y == EQ
+@@ -136,10 +136,10 @@
+   compfM (Just x) (Just y) = compf x y
+   compfM m1       _        = if isJust m1 then GT else LT
+
+-  -- invariant: rec does not have Empty's or Fail's
+-  rec (Step a)    = Step a
+-  rec (p1 :+: p2) = p1 :+: rec p2
+-  rec path =
++  -- invariant: rec_ does not have Empty's or Fail's
++  rec_ (Step a)    = Step a
++  rec_ (p1 :+: p2) = p1 :+: rec_ p2
++  rec_ path =
+      let sharedTail = map (\((p, tl):rest) -> combine (p:map fst rest) tl)
+                     . groupBy (\x y -> snd x  `eqfM`  snd y)
+                     . sortBy  (\x y -> snd x `compfM` snd y)
+@@ -184,18 +184,18 @@
+
+ -- returns a list with 'smallest minimal sets'
+ minimalSets :: (a -> a -> Bool) -> Path a -> [[a]]
+-minimalSets eqF = rec where
++minimalSets eqF = rec_ where
+
+-   -- invariant: rec returns lists with the same length
+-   rec path =
++   -- invariant: rec_ returns lists with the same length
++   rec_ path =
+       case simplifyPath path of
+          Empty -> []
+          Fail  -> [[]]
+          p     ->
+             let a    = head (steps p)
+-                sol1 = rec (changeStep (\b -> if a `eqF` b then Empty else Step b) p)
++                sol1 = rec_ (changeStep (\b -> if a `eqF` b then Empty else Step b) p)
+                 sol2 = [ a : set
+-                       | set <- rec (changeStep (\b -> if a `eqF` b then Fail else Step b) p)
++                       | set <- rec_ (changeStep (\b -> if a `eqF` b then Fail else Step b) p)
+                        ]
+             in case (sol1, sol2) of
+                   (x:_, y:_) ->
+@@ -206,8 +206,8 @@
+                   _ -> sol1 ++ sol2
+
+ removeSomeDuplicates :: Ord b => (a -> b) -> Path a -> Path a
+-removeSomeDuplicates toOrd = simplifyPath . rec M.empty where
+-   rec fm path =
++removeSomeDuplicates toOrd = simplifyPath . rec_ M.empty where
++   rec_ fm path =
+       case path of
+
+          left :+: right ->
+@@ -215,20 +215,20 @@
+                Step a    -> let int = toOrd a
+                                 fm' = M.insert int Empty fm
+                             in case M.lookup int fm of
+-                                 Just left' -> left' :+: rec fm  right
+-                                 Nothing    -> left  :+: rec fm' right
+-               p1 :+: p2 -> rec fm (p1 :+: (p2 :+: right))
+-               _         -> rec fm left :+: rec fm right
++                                 Just left' -> left' :+: rec_ fm  right
++                                 Nothing    -> left  :+: rec_ fm' right
++               p1 :+: p2 -> rec_ fm (p1 :+: (p2 :+: right))
++               _         -> rec_ fm left :+: rec_ fm right
+
+          left :|: right ->
+             case left of
+                Step a    -> let int = toOrd a
+                                 fm' = M.insert int Fail fm
+                             in case M.lookup int fm of
+-                                  Just left' -> left' :|: rec fm  right
+-                                  Nothing    -> left  :|: rec fm' right
+-               p1 :|: p2 -> rec fm (p1 :|: (p2 :|: right))
+-               _         -> rec fm left :|: rec fm right
++                                  Just left' -> left' :|: rec_ fm  right
++                                  Nothing    -> left  :|: rec_ fm' right
++               p1 :|: p2 -> rec_ fm (p1 :|: (p2 :|: right))
++               _         -> rec_ fm left :|: rec_ fm right
+
+          Step a ->
+             M.findWithDefault path (toOrd a) fm
+@@ -266,24 +266,24 @@
+ reduceNumberOfPaths = maybe id limitNumberOfPaths maxNumberOfEqualPaths
+
+ limitNumberOfPaths :: Int -> Path a -> Path a
+-limitNumberOfPaths size = fst . rec size
++limitNumberOfPaths size = fst . rec_ size
+  where
+    fromInt :: Num a => Int -> a
+    fromInt = fromInteger . toInteger
+
+-   rec sz path =
++   rec_ sz path =
+       case path of
+          Empty     -> (path, 1)
+          Fail      -> (path, 0)
+          Step _    -> (path, 1)
+-         p1 :+: p2 -> let (p1', n1) = rec sz p1
++         p1 :+: p2 -> let (p1', n1) = rec_ sz p1
+                           newSize
+                              | n1 == 0   = sz
+                              | otherwise = ceiling ((fromInt sz / fromInt n1) :: Double)
+-                          (p2', n2) = rec newSize p2
++                          (p2', n2) = rec_ newSize p2
+                       in (p1' :+: p2', n1*n2)
+-         p1 :|: p2 -> let both@(p1' , n1) = rec sz p1
+-                          (p2', n2) = rec (sz - n1) p2
++         p1 :|: p2 -> let both@(p1' , n1) = rec_ sz p1
++                          (p2', n2) = rec_ (sz - n1) p2
+                       in if n1 >= sz
+                            then both
+                            else (p1' :|: p2', n1 + n2)
+\ No newline at end of file
+Index: helium-1.6/Top/src/Top/Implementation/TypeGraph/Standard.hs
+===================================================================
+--- helium-1.6.orig/Top/src/Top/Implementation/TypeGraph/Standard.hs	2010-03-14 12:32:39.000000000 -0300
++++ helium-1.6/Top/src/Top/Implementation/TypeGraph/Standard.hs	2010-03-14 12:32:56.000000000 -0300
+@@ -42,9 +42,9 @@
+
+ instance TypeGraph (StandardTypeGraph info) info where
+
+-   addTermGraph synonyms = rec
++   addTermGraph synonyms = rec_
+     where
+-      rec unique tp stg =
++      rec_ unique tp stg =
+          let (newtp, original) =
+                 case expandToplevelTC synonyms tp of
+                    Nothing -> (tp, Nothing)
+@@ -57,8 +57,8 @@
+                   let vid = VertexId unique
+                   in (unique+1, vid, addVertex vid (VCon s, original) stg)
+                TApp t1 t2 ->
+-                  let (u1, v1, g1) = rec unique t1 stg
+-                      (u2, v2, g2) = rec u1     t2 g1
++                  let (u1, v1, g1) = rec_ unique t1 stg
++                      (u2, v2, g2) = rec_ u1     t2 g1
+                       vid = VertexId u2
+                   in (u2+1, vid, addVertex vid (VApp v1 v2, original) g2)
+
+@@ -79,7 +79,7 @@
+       vertices . getGroupOf i
+
+    substituteTypeSafe synonyms =
+-      let rec history (TVar i) stg
++      let rec_ history (TVar i) stg
+             |  i `elem` history  = Nothing
+             |  otherwise         =
+                   case maybeGetGroupOf (VertexId i) stg of
+@@ -89,15 +89,15 @@
+                         do newtp <- typeOfGroup synonyms (getGroupOf (VertexId i) stg)
+                            case newtp of
+                               TVar j -> Just (TVar j)
+-                              _      -> rec (i:history) newtp stg
++                              _      -> rec_ (i:history) newtp stg
+
+-          rec _ tp@(TCon _) _ = Just tp
++          rec_ _ tp@(TCon _) _ = Just tp
+
+-          rec history (TApp l r) stg =
+-             do l' <- rec history l stg
+-                r' <- rec history r stg
++          rec_ history (TApp l r) stg =
++             do l' <- rec_ history l stg
++                r' <- rec_ history r stg
+                 Just (TApp l' r')
+-       in rec []
++       in rec_ []
+
+    edgesFrom i =
+       let p (EdgeId v1 v2 _, _) = v1 == i || v2 == i
+Index: helium-1.6/Top/src/Top/Ordering/Tree.hs
+===================================================================
+--- helium-1.6.orig/Top/src/Top/Ordering/Tree.hs	2010-03-14 12:32:39.000000000 -0300
++++ helium-1.6/Top/src/Top/Ordering/Tree.hs	2010-03-14 12:41:40.000000000 -0300
+@@ -57,27 +57,27 @@
+    strictRec theTree []
+
+     where
+-     rec :: List a ->             -- downward constraints
++     rec_ :: List a ->             -- downward constraints
+             Tree a ->             -- the tree to flatten
+             ( List a              -- the result
+             , List a              -- upward constraints
+             )
+-     rec down tree =
++     rec_ down tree =
+         case tree of
+
+            Node trees ->
+-              let tuples = map (rec id) trees
++              let tuples = map (rec_ id) trees
+               in (treewalk down tuples, id)
+
+            Chunk _ t ->
+-              rec down t
++              rec_ down t
+
+            AddList Up as t ->
+-              let (result, up) = rec down t
++              let (result, up) = rec_ down t
+               in (result, (as++) . up)
+
+            AddList Down as t ->
+-              rec ((as++) . down) t
++              rec_ ((as++) . down) t
+
+            StrictOrder left right ->
+               let left_result  = strictRec left
+@@ -85,45 +85,45 @@
+               in (treewalk down [(left_result . right_result, id)], id)
+
+            Spread direction as t ->
+-              rec down (AddList direction as t)
++              rec_ down (AddList direction as t)
+
+            Receive _ ->
+-              rec down emptyTree
++              rec_ down emptyTree
+
+            Phase _ as ->
+-              rec down (listTree as)
++              rec_ down (listTree as)
+
+      strictRec :: Tree a ->             -- the tree to flatten
+                   List a                -- the result
+      strictRec tree =
+-        let (result, up) = rec id tree
++        let (result, up) = rec_ id tree
+         in treewalk id [(result, up)]
+
+ spreadTree :: (a -> Maybe Int) -> Tree a -> Tree a
+-spreadTree spreadFunction = fst . rec M.empty
++spreadTree spreadFunction = fst . rec_ M.empty
+    where
+-    rec fm tree =
++    rec_ fm tree =
+        case tree of
+
+           Node trees ->
+-             let (trees', sets) = unzip (map (rec fm) trees)
++             let (trees', sets) = unzip (map (rec_ fm) trees)
+              in (Node trees', S.unions sets)
+
+           Chunk cnr t ->
+-             let (tree', set) = rec fm t
++             let (tree', set) = rec_ fm t
+              in (Chunk cnr tree', set)
+
+           AddList direction as t ->
+-             let (tree', set) = rec fm t
++             let (tree', set) = rec_ fm t
+              in (AddList direction as tree', set)
+
+           StrictOrder left right ->
+-             let (left' , set1) = rec fm left
+-                 (right', set2) = rec fm right
++             let (left' , set1) = rec_ fm left
++                 (right', set2) = rec_ fm right
+              in (StrictOrder left' right', S.union set1 set2)
+
+           Spread direction as t ->
+-             let (tree', set) = rec fmNew t
++             let (tree', set) = rec_ fmNew t
+                  fmNew = M.unionWith (++) fm (M.fromList [ (i, [x]) | x <- doSpread, let Just i = spreadFunction x ])
+                  (doSpread, noSpread) =
+                     partition (maybe False (`S.member` set) . spreadFunction) as
+@@ -140,20 +140,20 @@
+ phaseTree a = strictRec
+
+    where
+-    rec tree =
++    rec_ tree =
+        case tree of
+
+           Node trees ->
+-             let (trees', phasesList) = unzip (map rec trees)
++             let (trees', phasesList) = unzip (map rec_ trees)
+                  phases = foldr (M.unionWith (.)) M.empty phasesList
+              in (Node trees', phases)
+
+           Chunk cnr t ->
+-             let (tree', phases) = rec t
++             let (tree', phases) = rec_ t
+              in (Chunk cnr tree', phases)
+
+           AddList dir as t ->
+-             let (tree', phases) = rec t
++             let (tree', phases) = rec_ t
+              in (AddList dir as tree', phases)
+
+           StrictOrder left right ->
+@@ -162,7 +162,7 @@
+              in (StrictOrder left' right', M.empty)
+
+           Spread dir as t ->
+-             let (tree', phases) = rec t
++             let (tree', phases) = rec_ t
+              in (Spread dir as tree', phases)
+
+           Receive _  ->
+@@ -172,40 +172,40 @@
+              (emptyTree, M.singleton i (as++))
+
+     strictRec tree =
+-       let (tree', phases) = rec tree
++       let (tree', phases) = rec_ tree
+            f list = listTree (list [])
+        in foldr1 StrictOrder (intersperse (unitTree a) (M.elems (M.insertWith binTree 5 tree' (M.map f phases))))
+
+ chunkTree :: Tree a -> [(Int, Tree a)]
+ chunkTree theTree =
+-   let (ts, chunks) = rec theTree
++   let (ts, chunks) = rec_ theTree
+    in ((-1), ts) : chunks
+
+   where
+-   rec tree =
++   rec_ tree =
+      case tree of
+
+         Node trees ->
+-           let (ts, chunks) = unzip (map rec trees)
++           let (ts, chunks) = unzip (map rec_ trees)
+            in (Node ts, concat chunks)
+
+         -- This chunk should be solved later then the inner chunks.
+         -- Therefore, the new chunk is appended
+         Chunk cnr t ->
+-           let (ts, chunks) = rec t
++           let (ts, chunks) = rec_ t
+            in (emptyTree, chunks ++ [(cnr, ts)])
+
+         AddList direction as t ->
+-           let (ts, chunks) = rec t
++           let (ts, chunks) = rec_ t
+            in (AddList direction as ts, chunks)
+
+         StrictOrder left right ->
+-           let (ts1, chunks1) = rec left
+-               (ts2, chunks2) = rec right
++           let (ts1, chunks1) = rec_ left
++               (ts2, chunks2) = rec_ right
+            in (StrictOrder ts1 ts2, chunks1 ++ chunks2)
+
+         Spread direction as t ->
+-           let (ts, chunks) = rec t
++           let (ts, chunks) = rec_ t
+            in (Spread direction as ts, chunks)
+
+         _ -> (tree, [])
+Index: helium-1.6/Top/src/Top/Repair/Repair.hs
+===================================================================
+--- helium-1.6.orig/Top/src/Top/Repair/Repair.hs	2010-03-14 12:32:39.000000000 -0300
++++ helium-1.6/Top/src/Top/Repair/Repair.hs	2010-03-14 12:46:22.000000000 -0300
+@@ -103,23 +103,23 @@
+
+ -- | apply a transformation at every possible node
+ everywhere :: Transform info -> Transform info
+-everywhere transformation = rec
++everywhere transformation = rec_
+     where
+         recList [] = []
+         recList (aexpr:rest) =
+-            [ aexpr':rest | aexpr' <- rec aexpr ] ++
++            [ aexpr':rest | aexpr' <- rec_ aexpr ] ++
+             [ aexpr:rest' | rest' <- recList rest ]
+
+-        rec aexpr =
++        rec_ aexpr =
+             transformation aexpr ++
+                 case aexpr of
+                 App info fun args ->
+-                    [ App info fun' args | fun'  <- rec fun ] ++
++                    [ App info fun' args | fun'  <- rec_ fun ] ++
+                     [ App info fun args' | args' <- recList args ]
+                 If info grd lb rb ->
+-                    [If info grd' lb rb | grd' <- rec grd] ++
+-                    [If info grd lb' rb | lb' <- rec lb] ++
+-                    [If info grd lb rb' | rb' <- rec rb]
++                    [If info grd' lb rb | grd' <- rec_ grd] ++
++                    [If info grd lb' rb | lb' <- rec_ lb] ++
++                    [If info grd lb rb' | rb' <- rec_ rb]
+                 Lst info elems ->
+                     [Lst info elems' | elems' <- recList elems]
+                 Tup info elems ->
+Index: helium-1.6/Top/src/Top/Solver/PartitionCombinator.hs
+===================================================================
+--- helium-1.6.orig/Top/src/Top/Solver/PartitionCombinator.hs	2010-03-14 12:32:39.000000000 -0300
++++ helium-1.6/Top/src/Top/Solver/PartitionCombinator.hs	2010-03-14 12:32:56.000000000 -0300
+@@ -25,8 +25,8 @@
+
+ solveChunkConstraints update (ConstraintSolver f) flattening chunks =
+    ConstraintSolver (\os _ ->
+-      let rec options [] = (emptyResult (uniqueCounter options), noLogEntries)
+-          rec options ((_, tree) : rest) =
++      let rec_ options [] = (emptyResult (uniqueCounter options), noLogEntries)
++          rec_ options ((_, tree) : rest) =
+              let constraintList = flattening tree
+                  (result, entries)
+                     | null constraintList =
+@@ -36,6 +36,6 @@
+                  newOption = options { uniqueCounter = uniqueFromResult result }
+                  schemeMap = typeschemesFromResult result
+                  newRest   = [ (chunkID, fmap (update schemeMap) t) | (chunkID, t) <- rest ]
+-                 (resultRec, entriesRec) = rec newOption newRest
++                 (resultRec, entriesRec) = rec_ newOption newRest
+              in (result `combineResults` resultRec, entries `mappend` entriesRec)
+-      in rec os chunks)
+\ No newline at end of file
++      in rec_ os chunks)
+\ No newline at end of file
+Index: helium-1.6/Top/src/Top/Types/Primitive.hs
+===================================================================
+--- helium-1.6.orig/Top/src/Top/Types/Primitive.hs	2010-03-14 12:32:39.000000000 -0300
++++ helium-1.6/Top/src/Top/Types/Primitive.hs	2010-03-14 12:41:40.000000000 -0300
+@@ -83,17 +83,17 @@
+ -- |Returns the left spine of a type. For instance, if type @t@
+ -- is @Either Bool [Int]@, then @leftSpine t@ is @(Either,[Bool,[Int]])@.
+ leftSpine :: Tp -> (Tp,Tps)
+-leftSpine = rec [] where
+-   rec tps (TApp t1 t2) = rec (t2:tps) t1
+-   rec tps tp           = (tp,tps)
++leftSpine = rec_ [] where
++   rec_ tps (TApp t1 t2) = rec_ (t2:tps) t1
++   rec_ tps tp           = (tp,tps)
+
+ -- |Returns the right spine of a function type. For instance,
+ -- if type @t@ is @Int -> (Bool -> String)@, then @functionSpine t@
+ -- is @([Int,Bool],String)@.
+ functionSpine :: Tp -> (Tps,Tp)
+-functionSpine = rec [] where
+-   rec tps (TApp (TApp (TCon "->") t1) t2) = rec (t1:tps) t2
+-   rec tps tp                              = (reverse tps,tp)
++functionSpine = rec_ [] where
++   rec_ tps (TApp (TApp (TCon "->") t1) t2) = rec_ (t1:tps) t2
++   rec_ tps tp                              = (reverse tps,tp)
+
+ -- |Returns the right spine of a function type of a maximal length.
+ functionSpineOfLength :: Int -> Tp -> (Tps, Tp)
+@@ -168,17 +168,17 @@
+
+ instance Show Tp where
+    show tp = case leftSpine tp of
+-       (TCon "->",[t1,t2]) -> rec (<1) t1 ++ " -> " ++ rec (const False) t2
++       (TCon "->",[t1,t2]) -> rec_ (<1) t1 ++ " -> " ++ rec_ (const False) t2
+        (TVar i   ,[]     ) -> 'v' : show i
+        (TCon s   ,[]     ) -> s
+-       (TCon "[]",[t1]   ) -> "[" ++ rec (const False) t1 ++ "]"
+-       (TCon s   ,ts     ) | isTupleConstructor s -> let ts'  = map (rec (const False)) ts
++       (TCon "[]",[t1]   ) -> "[" ++ rec_ (const False) t1 ++ "]"
++       (TCon s   ,ts     ) | isTupleConstructor s -> let ts'  = map (rec_ (const False)) ts
+                                                          f [] = ""
+                                                          f xs = foldr1 (\x y -> x++", "++y) xs
+                                                      in "(" ++ f ts' ++ ")"
+-       (t,ts) -> unwords (map (rec (<2)) (t:ts))
++       (t,ts) -> unwords (map (rec_ (<2)) (t:ts))
+
+-       where rec p t       = parIf (p (priorityOfType t)) (show t)
++       where rec_ p t       = parIf (p (priorityOfType t)) (show t)
+              parIf True  s = "("++s++")"
+              parIf False s = s
+
+Index: helium-1.6/Top/src/Top/Types/Quantification.hs
+===================================================================
+--- helium-1.6.orig/Top/src/Top/Types/Quantification.hs	2010-03-14 12:32:39.000000000 -0300
++++ helium-1.6/Top/src/Top/Types/Quantification.hs	2010-03-14 12:41:40.000000000 -0300
+@@ -148,12 +148,12 @@
+                               Nothing -> []
+    allSkolems (TApp l r) = allSkolems l `union` allSkolems r
+
+-   changeSkolems skMap = rec where
+-      rec tp@(TVar _) = tp
+-      rec tp@(TCon s) = case fromSkolemString s of
++   changeSkolems skMap = rec_ where
++      rec_ tp@(TVar _) = tp
++      rec_ tp@(TCon s) = case fromSkolemString s of
+                               Just i  -> maybe tp id (lookup i skMap)
+                               Nothing -> tp
+-      rec (TApp l r)  = TApp (rec l) (rec r)
++      rec_ (TApp l r)  = TApp (rec_ l) (rec_ r)
+
+ instance HasSkolems a => HasSkolems [a] where
+    allSkolems = foldr union [] . map allSkolems
+Index: helium-1.6/Top/src/Top/Types/Unification.hs
+===================================================================
+--- helium-1.6.orig/Top/src/Top/Types/Unification.hs	2010-03-14 12:32:39.000000000 -0300
++++ helium-1.6/Top/src/Top/Types/Unification.hs	2010-03-14 12:32:56.000000000 -0300
+@@ -42,10 +42,10 @@
+ --
+ -- Note: the boolean indicates whether exansions were necessary
+ mguWithTypeSynonyms :: OrderedTypeSynonyms -> Tp -> Tp -> Either UnificationError (Bool, MapSubstitution)
+-mguWithTypeSynonyms typesynonyms = rec emptySubst
++mguWithTypeSynonyms typesynonyms = rec_ emptySubst
+
+  where
+-   rec sub t1 t2 =
++   rec_ sub t1 t2 =
+      case (leftSpine t1, leftSpine t2) of
+         ((TVar i,[]), _) -> recVar sub i t2
+         (_, (TVar i,[])) -> recVar sub i t1
+@@ -54,7 +54,7 @@
+            | otherwise ->
+                 case expandOneStepOrdered typesynonyms (t1, t2) of
+                    Just (t1', t2') ->
+-                      case rec sub t1' t2' of
++                      case rec_ sub t1' t2' of
+                          Left  uError    -> Left uError
+                          Right (_, sub') -> Right (True, sub')
+                    Nothing -> Left (ConstantClash s t)
+@@ -66,7 +66,7 @@
+    recVar sub i tp =
+       case M.lookup i sub of
+          Just t2 ->
+-            case rec sub tp t2 of
++            case rec_ sub tp t2 of
+                Right (True,sub') ->
+                   let mtp = equalUnderTypeSynonyms typesynonyms (sub' |-> tp) (sub' |-> t2)
+                   in case mtp of
+@@ -81,7 +81,7 @@
+
+    recList sub [] [] = Right (False,sub)
+    recList sub (s:ss) (t:tt) =
+-      case rec sub s t of
++      case rec_ sub s t of
+          Left uError -> Left uError
+          Right (b,sub') ->
+             case recList sub' ss tt of
+Index: helium-1.6/helium/src/staticanalysis/directives/TS_PatternMatching.ag
+===================================================================
+--- helium-1.6.orig/helium/src/staticanalysis/directives/TS_PatternMatching.ag	2010-03-14 12:32:38.000000000 -0300
++++ helium-1.6/helium/src/staticanalysis/directives/TS_PatternMatching.ag	2010-03-14 12:32:55.000000000 -0300
+@@ -274,10 +274,10 @@
+                   in foldr insert ([],[],[])
+
+ allMatch :: [Maybe [a]] -> Maybe [a]
+-allMatch = rec []
+-  where rec xs []             = Just xs
+-        rec xs (Nothing:_)    = Nothing
+-        rec xs (Just ys:rest) = rec (ys ++ xs) rest
++allMatch = rec_ []
++  where rec_ xs []             = Just xs
++        rec_ xs (Nothing:_)    = Nothing
++        rec_ xs (Just ys:rest) = rec_ (ys ++ xs) rest
+
+ data Match a = NoMatch | NonTerminalMatch a | MetaVariableMatch String
+
+Index: helium-1.6/helium/src/staticanalysis/heuristics/ListOfHeuristics.hs
+===================================================================
+--- helium-1.6.orig/helium/src/staticanalysis/heuristics/ListOfHeuristics.hs	2010-03-14 12:32:38.000000000 -0300
++++ helium-1.6/helium/src/staticanalysis/heuristics/ListOfHeuristics.hs	2010-03-14 12:41:40.000000000 -0300
+@@ -85,13 +85,13 @@
+  where
+    helper path edges =
+       let
+-          bestEdge = rec path
++          bestEdge = rec_ path
+           edgeNrs  = [ i | (EdgeId _ _ i, _) <- edges ]
+
+-          rec path =
++          rec_ path =
+              case path of
+-                x :|: y -> f min (rec x) (rec y)
+-                x :+: y -> f max (rec x) (rec y)
++                x :|: y -> f min (rec_ x) (rec_ y)
++                x :+: y -> f max (rec_ x) (rec_ y)
+                 Step (EdgeId _ _ cNR, info) |  isJust (maybeUserConstraint info) && cNR `elem` edgeNrs
+                         -> Just cNR
+                 _       -> Nothing
+Index: helium-1.6/helium/src/staticanalysis/heuristics/RepairHeuristics.hs
+===================================================================
+--- helium-1.6.orig/helium/src/staticanalysis/heuristics/RepairHeuristics.hs	2010-03-14 12:32:38.000000000 -0300
++++ helium-1.6/helium/src/staticanalysis/heuristics/RepairHeuristics.hs	2010-03-14 12:32:55.000000000 -0300
+@@ -508,16 +508,16 @@
+ heuristics_MAX = 120 :: Int
+
+ zipWithHoles :: [a] -> [b] -> [ ( [Int] , [(a,b)] ) ]
+-zipWithHoles = rec 0 where
++zipWithHoles = rec_ 0 where
+
+-   rec i [] bs = [ (take (length bs) [i..] , []) ]
+-   rec i as [] = [ (take (length as) [i..] , []) ]
+-   rec i (a:as) (b:bs) = case compare (length as) (length bs) of
+-         LT -> [ (  is,(a,b):zl) | (is,zl) <- rec (i+1) as     bs ]
+-            ++ [ (i:is,      zl) | (is,zl) <- rec (i+1) (a:as) bs ]
++   rec_ i [] bs = [ (take (length bs) [i..] , []) ]
++   rec_ i as [] = [ (take (length as) [i..] , []) ]
++   rec_ i (a:as) (b:bs) = case compare (length as) (length bs) of
++         LT -> [ (  is,(a,b):zl) | (is,zl) <- rec_ (i+1) as     bs ]
++            ++ [ (i:is,      zl) | (is,zl) <- rec_ (i+1) (a:as) bs ]
+          EQ -> [ ([],zip (a:as) (b:bs)) ]
+-         GT -> [ (  is,(a,b):zl) | (is,zl) <- rec (i+1) as bs     ]
+-            ++ [ (i:is,      zl) | (is,zl) <- rec (i+1) as (b:bs) ]
++         GT -> [ (  is,(a,b):zl) | (is,zl) <- rec_ (i+1) as bs     ]
++            ++ [ (i:is,      zl) | (is,zl) <- rec_ (i+1) as (b:bs) ]
+
+ type Permutation = [Int]
+
+Index: helium-1.6/helium/src/staticanalysis/heuristics/RepairSystem.hs
+===================================================================
+--- helium-1.6.orig/helium/src/staticanalysis/heuristics/RepairSystem.hs	2010-03-14 12:32:38.000000000 -0300
++++ helium-1.6/helium/src/staticanalysis/heuristics/RepairSystem.hs	2010-03-14 12:32:55.000000000 -0300
+@@ -78,12 +78,12 @@
+ rootOfInfoTree :: InfoTree -> InfoTree
+ rootOfInfoTree infoTree
+    | isBlock (makeAExpr infoTree) = infoTree
+-   | otherwise = rec infoTree
++   | otherwise = rec_ infoTree
+  where
+-   rec thisTree =
++   rec_ thisTree =
+       case parent thisTree of
+          Just it | not . isBlock . makeAExpr $ it
+-            -> rec it
++            -> rec_ it
+          _  -> thisTree
+
+ makeAExpr :: InfoTree -> AExpr LocalInfo
+Index: helium-1.6/helium/src/staticanalysis/inferencers/TypeInferencing.hs
+===================================================================
+--- helium-1.6.orig/helium/src/staticanalysis/inferencers/TypeInferencing.hs	2010-03-14 12:32:39.000000000 -0300
++++ helium-1.6/helium/src/staticanalysis/inferencers/TypeInferencing.hs	2010-03-14 12:32:56.000000000 -0300
+@@ -172,10 +172,10 @@
+                   in foldr insert ([],[],[])
+
+ allMatch :: [Maybe [a]] -> Maybe [a]
+-allMatch = rec []
+-  where rec xs []             = Just xs
+-        rec xs (Nothing:_)    = Nothing
+-        rec xs (Just ys:rest) = rec (ys ++ xs) rest
++allMatch = rec_ []
++  where rec_ xs []             = Just xs
++        rec_ xs (Nothing:_)    = Nothing
++        rec_ xs (Just ys:rest) = rec_ (ys ++ xs) rest
+
+ data Match a = NoMatch | NonTerminalMatch a | MetaVariableMatch String
+
+Index: helium-1.6/helium/src/staticanalysis/miscellaneous/TypeConversion.hs
+===================================================================
+--- helium-1.6.orig/helium/src/staticanalysis/miscellaneous/TypeConversion.hs	2010-03-14 12:32:39.000000000 -0300
++++ helium-1.6/helium/src/staticanalysis/miscellaneous/TypeConversion.hs	2010-03-14 12:41:40.000000000 -0300
+@@ -64,15 +64,15 @@
+ predicatesFromContext nameMap _ = []
+
+ makeTpFromType :: [(Name,Tp)] -> Type -> Tp
+-makeTpFromType nameMap = rec
++makeTpFromType nameMap = rec_
+   where
+-        rec :: Type -> Tp
+-        rec uhaType = case uhaType of
+-             Type_Application _ _ fun args -> foldl TApp (rec fun) (map rec args)
++        rec_ :: Type -> Tp
++        rec_ uhaType = case uhaType of
++             Type_Application _ _ fun args -> foldl TApp (rec_ fun) (map rec_ args)
+              Type_Variable _ name          -> maybe (TCon "???") id (lookup name nameMap)
+              Type_Constructor _ name       -> TCon (getNameName name)
+-             Type_Parenthesized _ t        -> rec t
+-             Type_Qualified _ cs t         -> rec t
++             Type_Parenthesized _ t        -> rec_ t
++             Type_Qualified _ cs t         -> rec_ t
+              Type_Forall _ _ _             -> internalError "TypeConversion.hs" "makeTpFromType" "universal types are currently not supported"
+              Type_Exists _ _ _             -> internalError "TypeConversion.hs" "makeTpFromType" "existential types are currently not supported"
+
+Index: helium-1.6/helium/src/staticanalysis/miscellaneous/TypesToAlignedDocs.hs
+===================================================================
+--- helium-1.6.orig/helium/src/staticanalysis/miscellaneous/TypesToAlignedDocs.hs	2010-03-14 12:32:39.000000000 -0300
++++ helium-1.6/helium/src/staticanalysis/miscellaneous/TypesToAlignedDocs.hs	2010-03-14 12:43:40.000000000 -0300
+@@ -35,7 +35,7 @@
+                                  in (xs, foldr (.->.) t ys)
+            (left, right)  = unzip tupleSpines
+            docsLeft       = recs (<1) left
+-           docsRight      = rec  (const False) right
++           docsRight      = rec_  (const False) right
+        in map funDocs (zipWith (\xs x -> xs++[x]) docsLeft docsRight)
+
+    | allVariable
+@@ -45,7 +45,7 @@
+      = map PPrint.text (sameLength [ s | (TCon s, _) <- spines])
+
+    | allListType
+-     = map PPrint.squares (rec (const False) (map (head . snd) spines))
++     = map PPrint.squares (rec_ (const False) (map (head . snd) spines))
+
+    | allSameTuple
+      = map tupleDocs (recs (const False) (map snd spines))
+@@ -76,10 +76,10 @@
+                            && all (2==) [length xs | (_, xs) <- spines ]
+
+ recs :: (Int -> Bool) -> [Tps] -> [[PPrint.Doc]]
+-recs predicate = transpose . map (rec predicate) . transpose
++recs predicate = transpose . map (rec_ predicate) . transpose
+
+-rec :: (Int -> Bool) -> Tps -> [PPrint.Doc]
+-rec predicate tps =
++rec_ :: (Int -> Bool) -> Tps -> [PPrint.Doc]
++rec_ predicate tps =
+    let docs  = typesToAlignedDocs tps
+        bools = map (predicate . priorityOfType) tps
+        maybeParenthesize (b, doc)
+Index: helium-1.6/helium/src/utils/LoggerEnabled.hs
+===================================================================
+--- helium-1.6.orig/helium/src/utils/LoggerEnabled.hs	2010-03-14 12:32:39.000000000 -0300
++++ helium-1.6/helium/src/utils/LoggerEnabled.hs	2010-03-14 12:41:40.000000000 -0300
+@@ -128,9 +128,9 @@
+ isInterpreterModule (Just (_, hsFile)) = fileNameWithoutPath hsFile == "Interpreter.hs"
+
+ sendLogString :: String -> Bool -> IO ()
+-sendLogString message loggerDEBUGMODE = withSocketsDo (rec 0)
++sendLogString message loggerDEBUGMODE = withSocketsDo (rec_ 0)
+  where
+-    rec i = do --installHandler sigPIPE Ignore Nothing
++    rec_ i = do --installHandler sigPIPE Ignore Nothing
+              handle <- connectTo loggerHOSTNAME (PortNumber (fromIntegral loggerPORTNUMBER))
+              hSetBuffering handle (BlockBuffering (Just 1024))
+              sendToAndFlush handle message loggerDEBUGMODE
+@@ -140,7 +140,7 @@
+                    then debug ( "Could not make a connection: no send (" ++ show exception ++ ")" ) loggerDEBUGMODE
+                    else do debug ( "Could not make a connection: sleeping (" ++ show exception ++ ")" ) loggerDEBUGMODE
+                            threadDelay loggerDELAY
+-                           rec (i+1)
++                           rec_ (i+1)
+
+ {- from Utils.hs.....because of the import-dependencies, it is not possible to import
+    this function directly -}
+Index: helium-1.6/lvm/src/lib/core/CoreNoShadow.hs
+===================================================================
+--- helium-1.6.orig/lvm/src/lib/core/CoreNoShadow.hs	2010-03-14 12:32:39.000000000 -0300
++++ helium-1.6/lvm/src/lib/core/CoreNoShadow.hs	2010-03-14 12:32:56.000000000 -0300
+@@ -98,13 +98,13 @@
+   = case binds of
+       Strict (Bind id rhs)  -> nonrec Strict id rhs
+       NonRec (Bind id rhs)  -> nonrec NonRec id rhs
+-      Rec recs              -> rec
++      Rec recs              -> rec_
+   where
+     nonrec make id rhs
+       = renameLetBinder env id $ \env' id' ->
+         cont env' (make (Bind id' (nsExpr env rhs)))
+
+-    rec
++    rec_
+       = let (binds',env') = mapAccumBinds (\env id rhs -> renameLetBinder env id $ \env' id' -> (Bind id' rhs,env'))
+                                            env binds
+         in cont env' (zipBindsWith (\env id rhs -> Bind id (nsExpr env rhs)) (splitEnvs env') binds')
+Index: helium-1.6/lvm/src/lib/lvm/LvmRead.hs
+===================================================================
+--- helium-1.6.orig/lvm/src/lib/lvm/LvmRead.hs	2010-03-14 12:32:39.000000000 -0300
++++ helium-1.6/lvm/src/lib/lvm/LvmRead.hs	2010-03-14 12:58:01.000000000 -0300
+@@ -98,7 +98,7 @@
+                 }
+         else if (isInt x)
+          then do{ let tag = decodeInt x
+-                ; rec <- case tag of
++                ; rec_ <- case tag of
+                           0     -> readName len
+                           1     -> readKind len
+                           2     -> readBytes len
+@@ -110,11 +110,11 @@
+                           8     -> readExtern len
+                           9     -> readExternType len
+                           other -> readError "readRecords" ("unknown standard record kind (" ++ show tag ++ ")")
+-                ; readRecords total (rec:acc)
++                ; readRecords total (rec_:acc)
+                 }
+          else do{ let idx = decodeIdx x
+-                ; rec <- readDeclCustom idx len
+-                ; readRecords total (rec:acc)
++                ; rec_ <- readDeclCustom idx len
++                ; readRecords total (rec_:acc)
+                 }
+       }
+
+@@ -272,8 +272,8 @@
+          else resolve (decodeIdx x) recToCustom
+       }
+   where
+-    recToCustom rec
+-      = case rec of
++    recToCustom rec_
++      = case rec_ of
+           RecName id        -> CustomName id
+           RecBytes bs       -> CustomBytes bs
+           RecDecl d         -> CustomLink (declName d) (declKindFromDecl d)
+@@ -289,7 +289,7 @@
+   = do{ idx <- readIdx (parent ++ ".name")
+       ; if (idx == 0)
+          then readFreshId
+-         else resolve idx (\rec -> case rec of
++         else resolve idx (\rec_ -> case rec_ of
+                               RecName id  -> id
+                               other       -> error "LvmRead.readName: invalid name index")
+       }
+@@ -299,7 +299,7 @@
+   = do{ idx <- readIdx "custom name"
+       ; if (idx==0)
+          then return Nothing
+-         else do{ id <- resolve idx (\rec -> case rec of
++         else do{ id <- resolve idx (\rec_ -> case rec_ of
+                                                RecName id  -> id
+                                                other       -> error "LvmRead.readCustomNameIdx: invalid name index")
+                 ; return (Just id)
+@@ -308,21 +308,21 @@
+
+ resolveKindIdx :: Index -> Read v Id
+ resolveKindIdx idx
+-  = do{ resolve idx (\rec -> case rec of
++  = do{ resolve idx (\rec_ -> case rec_ of
+                               RecKind id  -> id
+                               other       -> error "LvmRead.resolveKindIdx: invalid kind index")
+       }
+
+ readModuleIdx
+   = do{ idx <- readIdx "module descriptor"
+-      ; resolve idx (\rec -> case rec of
++      ; resolve idx (\rec_ -> case rec_ of
+                                RecModule modid major minor cs -> (modid,major,minor)
+                                other -> error "LvmRead.readModule: invalid module index")
+       }
+
+ readExternTypeIdx
+   = do{ idx <- readIdx "extern type"
+-      ; resolve idx (\rec -> case rec of
++      ; resolve idx (\rec_ -> case rec_ of
+                                RecExternType tp -> tp
+                                other  -> error "LvmRead.readExternType: invalid extern type index")
+       }
+@@ -333,7 +333,7 @@
+       }
+
+ readNameString idx
+-  = resolve idx (\rec -> case rec of
++  = resolve idx (\rec_ -> case rec_ of
+                            RecName id   -> stringFromId id
+                            RecBytes bs  -> stringFromBytes bs
+                            other  -> error "LvmRead.readNameString: invalid name index")
+@@ -341,7 +341,7 @@
+
+ readCodeIdx
+   = do{ idx <- readIdx "code"
+-      ; resolve idx (\rec -> case rec of
++      ; resolve idx (\rec_ -> case rec_ of
+                                RecCode code -> code
+                                other        -> error "readCode" "invalid code index")
+       }
+@@ -350,7 +350,7 @@
+   = do{ idx  <- readIdx "enclosing"
+       ; if (idx == 0)
+           then return Nothing
+-          else resolve idx (\rec -> case rec of
++          else resolve idx (\rec_ -> case rec_ of
+                                      RecDecl d  | isDeclValue d || isDeclAbstract d -> Just (declName d)
+                                      other            -> error "readEnclosing" "invalid enclosing index"
+                           )
