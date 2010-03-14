@@ -71,7 +71,7 @@ clean-patched:
 install: build
 	dh_testdir
 	dh_testroot
-	dh_clean -k
+	dh_prep
 	dh_installdirs
 	$(MAKE) -C helium/src install DESTDIR=$(CURDIR)/debian/helium
 	install debian/scripts/helium   $(CURDIR)/debian/helium/usr/bin
