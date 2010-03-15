@@ -1,8 +1,9 @@
 # Description: Fix for 64 bit
 # Author: Arjan Oosting <arjan@debian.org>
-diff -urNad helium~/lvm/src/lib/common/Byte.hs helium/lvm/src/lib/common/Byte.hs
---- helium~/lvm/src/lib/common/Byte.hs	2007-02-05 23:44:40.000000000 +0100
-+++ helium/lvm/src/lib/common/Byte.hs	2007-02-05 23:46:19.000000000 +0100
+Index: helium-1.6/lvm/src/lib/common/Byte.hs
+===================================================================
+--- helium-1.6.orig/lvm/src/lib/common/Byte.hs	2006-02-05 14:35:48.000000000 -0200
++++ helium-1.6/lvm/src/lib/common/Byte.hs	2010-03-15 10:27:18.000000000 -0300
 @@ -27,6 +27,8 @@
             , stringFromByteList, bytesFromByteList
             ) where
@@ -82,9 +83,10 @@ diff -urNad helium~/lvm/src/lib/common/Byte.hs helium/lvm/src/lib/common/Byte.hs
        } `catch` (\exception ->
              let message =  show exception ++ "\n\nUnable to read from file " ++ show path
              in do { putStrLn message; exitWith (ExitFailure 1) })
-diff -urNad helium~/lvm/src/lib/common/Id.hs helium/lvm/src/lib/common/Id.hs
---- helium~/lvm/src/lib/common/Id.hs	2007-02-05 23:44:40.000000000 +0100
-+++ helium/lvm/src/lib/common/Id.hs	2007-02-05 23:46:19.000000000 +0100
+Index: helium-1.6/lvm/src/lib/common/Id.hs
+===================================================================
+--- helium-1.6.orig/lvm/src/lib/common/Id.hs	2006-02-05 14:35:48.000000000 -0200
++++ helium-1.6/lvm/src/lib/common/Id.hs	2010-03-15 10:27:18.000000000 -0300
 @@ -29,16 +29,19 @@
  import Standard  (foldlStrict)
  import qualified IntMap
@@ -213,9 +215,10 @@ diff -urNad helium~/lvm/src/lib/common/Id.hs helium/lvm/src/lib/common/Id.hs
 
 
 
-diff -urNad helium~/lvm/src/runtime/common/mlvalues.h helium/lvm/src/runtime/common/mlvalues.h
---- helium~/lvm/src/runtime/common/mlvalues.h	2007-02-05 23:42:52.000000000 +0100
-+++ helium/lvm/src/runtime/common/mlvalues.h	2007-02-05 23:45:30.000000000 +0100
+Index: helium-1.6/lvm/src/runtime/common/mlvalues.h
+===================================================================
+--- helium-1.6.orig/lvm/src/runtime/common/mlvalues.h	2006-02-05 14:35:31.000000000 -0200
++++ helium-1.6/lvm/src/runtime/common/mlvalues.h	2010-03-15 10:27:18.000000000 -0300
 @@ -25,6 +25,7 @@
  #ifndef _mlvalues_
  #define _mlvalues_

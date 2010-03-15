@@ -1,8 +1,9 @@
 # Description: Add readline support
 # Author: Arjan Oosting <arjanoosting@home.nl>
-diff -urNad helium-1.6~/helium/src/Makefile.in helium-1.6/helium/src/Makefile.in
---- helium-1.6~/helium/src/Makefile.in	2006-09-15 15:06:31.000000000 +0200
-+++ helium-1.6/helium/src/Makefile.in	2006-09-15 15:06:32.000000000 +0200
+Index: helium-1.6/helium/src/Makefile.in
+===================================================================
+--- helium-1.6.orig/helium/src/Makefile.in	2010-03-15 10:27:08.000000000 -0300
++++ helium-1.6/helium/src/Makefile.in	2010-03-15 10:27:14.000000000 -0300
 @@ -48,7 +48,7 @@
  PACKAGENET =
  endif
@@ -12,9 +13,10 @@ diff -urNad helium-1.6~/helium/src/Makefile.in helium-1.6/helium/src/Makefile.in
 
  AG      = @WithAG@
  AG_OPTS = -mscfr
-diff -urNad helium-1.6~/helium/src/texthint/Main.hs helium-1.6/helium/src/texthint/Main.hs
---- helium-1.6~/helium/src/texthint/Main.hs	2006-09-15 15:06:18.000000000 +0200
-+++ helium-1.6/helium/src/texthint/Main.hs	2006-09-15 15:07:44.000000000 +0200
+Index: helium-1.6/helium/src/texthint/Main.hs
+===================================================================
+--- helium-1.6.orig/helium/src/texthint/Main.hs	2006-02-05 14:34:36.000000000 -0200
++++ helium-1.6/helium/src/texthint/Main.hs	2010-03-15 10:27:14.000000000 -0300
 @@ -15,6 +15,7 @@
  import Monad(when)
  import IO(stdout, hFlush)
@@ -23,7 +25,7 @@ diff -urNad helium-1.6~/helium/src/texthint/Main.hs helium-1.6/helium/src/texthi
  import OSSpecific(slash)
  import Directory
 
-@@ -75,8 +76,11 @@
+@@ -75,7 +76,10 @@
          else
              return initialState
 
@@ -35,8 +37,7 @@ diff -urNad helium-1.6~/helium/src/texthint/Main.hs helium-1.6/helium/src/texthi
      loop stateAfterLoad
 
      return ()
-
-@@ -89,21 +89,24 @@
+@@ -89,21 +93,24 @@
 
  loop :: State -> IO State
  loop state = do

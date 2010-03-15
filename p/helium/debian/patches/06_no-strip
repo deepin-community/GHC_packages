@@ -1,8 +1,9 @@
 # Description: No strip
 # Author: Arjan Oosting <arjan@debian.org>
-diff -urNad helium~/helium/src/Makefile.in helium/helium/src/Makefile.in
---- helium~/helium/src/Makefile.in	2007-08-12 21:28:06.000000000 +0200
-+++ helium/helium/src/Makefile.in	2007-08-12 21:30:06.000000000 +0200
+Index: helium-1.6/helium/src/Makefile.in
+===================================================================
+--- helium-1.6.orig/helium/src/Makefile.in	2010-03-15 10:27:16.000000000 -0300
++++ helium-1.6/helium/src/Makefile.in	2010-03-15 10:27:28.000000000 -0300
 @@ -201,7 +201,7 @@
 	@echo "****************************************************"
 	$(HC)	-o $(HELIUMBINDIR)/$(MAIN)$(EXE) $(HC_OPTS) $(OBJS)
@@ -21,9 +22,10 @@ diff -urNad helium~/helium/src/Makefile.in helium/helium/src/Makefile.in
 
  texthint/Main.o: utils/OSSpecific.hi texthint/Main.hs
 
-diff -urNad helium~/lvm/src/lib/makefile helium/lvm/src/lib/makefile
---- helium~/lvm/src/lib/makefile	2007-08-12 21:28:06.000000000 +0200
-+++ helium/lvm/src/lib/makefile	2007-08-12 21:31:17.000000000 +0200
+Index: helium-1.6/lvm/src/lib/makefile
+===================================================================
+--- helium-1.6.orig/lvm/src/lib/makefile	2010-03-15 10:27:16.000000000 -0300
++++ helium-1.6/lvm/src/lib/makefile	2010-03-15 10:27:28.000000000 -0300
 @@ -55,7 +55,7 @@
  # The main target
  $(MAIN)$(EXE): $(OBJS)
@@ -33,9 +35,10 @@ diff -urNad helium~/lvm/src/lib/makefile helium/lvm/src/lib/makefile
 
  common/ghc/Special.hi: common/ghc/Special.hs
 	$(HC) -c $< -cpp -fglasgow-exts $(HC_OPTS)
-diff -urNad helium~/lvm/src/runtime/makefile helium/lvm/src/runtime/makefile
---- helium~/lvm/src/runtime/makefile	2007-05-11 07:32:11.000000000 +0200
-+++ helium/lvm/src/runtime/makefile	2007-08-12 21:32:04.000000000 +0200
+Index: helium-1.6/lvm/src/runtime/makefile
+===================================================================
+--- helium-1.6.orig/lvm/src/runtime/makefile	2006-02-05 14:35:35.000000000 -0200
++++ helium-1.6/lvm/src/runtime/makefile	2010-03-15 10:27:28.000000000 -0300
 @@ -51,7 +51,7 @@
 
  lvmrun$(EXE): $(OBJS)

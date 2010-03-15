@@ -6,8 +6,8 @@
 # Last-Update: 2010-03-14
 Index: helium-1.6/Top/src/Top/Implementation/TypeGraph/ApplyHeuristics.hs
 ===================================================================
---- helium-1.6.orig/Top/src/Top/Implementation/TypeGraph/ApplyHeuristics.hs	2010-03-14 12:32:39.000000000 -0300
-+++ helium-1.6/Top/src/Top/Implementation/TypeGraph/ApplyHeuristics.hs	2010-03-14 12:32:56.000000000 -0300
+--- helium-1.6.orig/Top/src/Top/Implementation/TypeGraph/ApplyHeuristics.hs	2006-02-05 14:35:54.000000000 -0200
++++ helium-1.6/Top/src/Top/Implementation/TypeGraph/ApplyHeuristics.hs	2010-03-15 10:27:33.000000000 -0300
 @@ -29,41 +29,41 @@
 
  applyHeuristics :: HasTypeGraph m info => (Path (EdgeId, info) -> [Heuristic info]) -> m [ErrorInfo info]
@@ -122,8 +122,8 @@ Index: helium-1.6/Top/src/Top/Implementation/TypeGraph/ApplyHeuristics.hs
                           return (path :+: altList newPaths)
 Index: helium-1.6/Top/src/Top/Implementation/TypeGraph/Basics.hs
 ===================================================================
---- helium-1.6.orig/Top/src/Top/Implementation/TypeGraph/Basics.hs	2010-03-14 12:32:39.000000000 -0300
-+++ helium-1.6/Top/src/Top/Implementation/TypeGraph/Basics.hs	2010-03-14 12:32:56.000000000 -0300
+--- helium-1.6.orig/Top/src/Top/Implementation/TypeGraph/Basics.hs	2006-02-05 14:35:54.000000000 -0200
++++ helium-1.6/Top/src/Top/Implementation/TypeGraph/Basics.hs	2010-03-15 10:27:33.000000000 -0300
 @@ -92,24 +92,24 @@
     compare (CliqueX xs) (CliqueX ys) = compare xs ys
 
@@ -163,8 +163,8 @@ Index: helium-1.6/Top/src/Top/Implementation/TypeGraph/Basics.hs
  cliqueRepresentative (CliqueX xs) =
 Index: helium-1.6/Top/src/Top/Implementation/TypeGraph/EquivalenceGroup.hs
 ===================================================================
---- helium-1.6.orig/Top/src/Top/Implementation/TypeGraph/EquivalenceGroup.hs	2010-03-14 12:32:39.000000000 -0300
-+++ helium-1.6/Top/src/Top/Implementation/TypeGraph/EquivalenceGroup.hs	2010-03-14 12:32:56.000000000 -0300
+--- helium-1.6.orig/Top/src/Top/Implementation/TypeGraph/EquivalenceGroup.hs	2006-02-05 14:35:54.000000000 -0200
++++ helium-1.6/Top/src/Top/Implementation/TypeGraph/EquivalenceGroup.hs	2010-03-15 10:27:33.000000000 -0300
 @@ -129,7 +129,7 @@
  equalPaths without start targets eqgroup =
     reduceNumberOfPaths $
@@ -211,8 +211,8 @@ Index: helium-1.6/Top/src/Top/Implementation/TypeGraph/EquivalenceGroup.hs
                                                      )
 Index: helium-1.6/Top/src/Top/Implementation/TypeGraph/Path.hs
 ===================================================================
---- helium-1.6.orig/Top/src/Top/Implementation/TypeGraph/Path.hs	2010-03-14 12:32:39.000000000 -0300
-+++ helium-1.6/Top/src/Top/Implementation/TypeGraph/Path.hs	2010-03-14 12:46:22.000000000 -0300
+--- helium-1.6.orig/Top/src/Top/Implementation/TypeGraph/Path.hs	2006-02-05 14:35:54.000000000 -0200
++++ helium-1.6/Top/src/Top/Implementation/TypeGraph/Path.hs	2010-03-15 10:27:33.000000000 -0300
 @@ -60,11 +60,11 @@
  (<++>) = mCombine (++)
 
@@ -386,8 +386,8 @@ Index: helium-1.6/Top/src/Top/Implementation/TypeGraph/Path.hs
 \ No newline at end of file
 Index: helium-1.6/Top/src/Top/Implementation/TypeGraph/Standard.hs
 ===================================================================
---- helium-1.6.orig/Top/src/Top/Implementation/TypeGraph/Standard.hs	2010-03-14 12:32:39.000000000 -0300
-+++ helium-1.6/Top/src/Top/Implementation/TypeGraph/Standard.hs	2010-03-14 12:32:56.000000000 -0300
+--- helium-1.6.orig/Top/src/Top/Implementation/TypeGraph/Standard.hs	2006-02-05 14:35:54.000000000 -0200
++++ helium-1.6/Top/src/Top/Implementation/TypeGraph/Standard.hs	2010-03-15 10:27:33.000000000 -0300
 @@ -42,9 +42,9 @@
 
  instance TypeGraph (StandardTypeGraph info) info where
@@ -444,8 +444,8 @@ Index: helium-1.6/Top/src/Top/Implementation/TypeGraph/Standard.hs
        let p (EdgeId v1 v2 _, _) = v1 == i || v2 == i
 Index: helium-1.6/Top/src/Top/Ordering/Tree.hs
 ===================================================================
---- helium-1.6.orig/Top/src/Top/Ordering/Tree.hs	2010-03-14 12:32:39.000000000 -0300
-+++ helium-1.6/Top/src/Top/Ordering/Tree.hs	2010-03-14 12:41:40.000000000 -0300
+--- helium-1.6.orig/Top/src/Top/Ordering/Tree.hs	2010-03-15 10:27:16.000000000 -0300
++++ helium-1.6/Top/src/Top/Ordering/Tree.hs	2010-03-15 10:27:33.000000000 -0300
 @@ -57,27 +57,27 @@
     strictRec theTree []
 
@@ -624,8 +624,8 @@ Index: helium-1.6/Top/src/Top/Ordering/Tree.hs
          _ -> (tree, [])
 Index: helium-1.6/Top/src/Top/Repair/Repair.hs
 ===================================================================
---- helium-1.6.orig/Top/src/Top/Repair/Repair.hs	2010-03-14 12:32:39.000000000 -0300
-+++ helium-1.6/Top/src/Top/Repair/Repair.hs	2010-03-14 12:46:22.000000000 -0300
+--- helium-1.6.orig/Top/src/Top/Repair/Repair.hs	2006-02-05 14:35:53.000000000 -0200
++++ helium-1.6/Top/src/Top/Repair/Repair.hs	2010-03-15 10:27:33.000000000 -0300
 @@ -103,23 +103,23 @@
 
  -- | apply a transformation at every possible node
@@ -659,8 +659,8 @@ Index: helium-1.6/Top/src/Top/Repair/Repair.hs
                  Tup info elems ->
 Index: helium-1.6/Top/src/Top/Solver/PartitionCombinator.hs
 ===================================================================
---- helium-1.6.orig/Top/src/Top/Solver/PartitionCombinator.hs	2010-03-14 12:32:39.000000000 -0300
-+++ helium-1.6/Top/src/Top/Solver/PartitionCombinator.hs	2010-03-14 12:32:56.000000000 -0300
+--- helium-1.6.orig/Top/src/Top/Solver/PartitionCombinator.hs	2006-02-05 14:35:54.000000000 -0200
++++ helium-1.6/Top/src/Top/Solver/PartitionCombinator.hs	2010-03-15 10:27:33.000000000 -0300
 @@ -25,8 +25,8 @@
 
  solveChunkConstraints update (ConstraintSolver f) flattening chunks =
@@ -685,8 +685,8 @@ Index: helium-1.6/Top/src/Top/Solver/PartitionCombinator.hs
 \ No newline at end of file
 Index: helium-1.6/Top/src/Top/Types/Primitive.hs
 ===================================================================
---- helium-1.6.orig/Top/src/Top/Types/Primitive.hs	2010-03-14 12:32:39.000000000 -0300
-+++ helium-1.6/Top/src/Top/Types/Primitive.hs	2010-03-14 12:41:40.000000000 -0300
+--- helium-1.6.orig/Top/src/Top/Types/Primitive.hs	2006-02-05 14:35:53.000000000 -0200
++++ helium-1.6/Top/src/Top/Types/Primitive.hs	2010-03-15 10:27:33.000000000 -0300
 @@ -83,17 +83,17 @@
  -- |Returns the left spine of a type. For instance, if type @t@
  -- is @Either Bool [Int]@, then @leftSpine t@ is @(Either,[Bool,[Int]])@.
@@ -736,8 +736,8 @@ Index: helium-1.6/Top/src/Top/Types/Primitive.hs
 
 Index: helium-1.6/Top/src/Top/Types/Quantification.hs
 ===================================================================
---- helium-1.6.orig/Top/src/Top/Types/Quantification.hs	2010-03-14 12:32:39.000000000 -0300
-+++ helium-1.6/Top/src/Top/Types/Quantification.hs	2010-03-14 12:41:40.000000000 -0300
+--- helium-1.6.orig/Top/src/Top/Types/Quantification.hs	2006-02-05 14:35:54.000000000 -0200
++++ helium-1.6/Top/src/Top/Types/Quantification.hs	2010-03-15 10:27:33.000000000 -0300
 @@ -148,12 +148,12 @@
                                Nothing -> []
     allSkolems (TApp l r) = allSkolems l `union` allSkolems r
@@ -757,8 +757,8 @@ Index: helium-1.6/Top/src/Top/Types/Quantification.hs
     allSkolems = foldr union [] . map allSkolems
 Index: helium-1.6/Top/src/Top/Types/Unification.hs
 ===================================================================
---- helium-1.6.orig/Top/src/Top/Types/Unification.hs	2010-03-14 12:32:39.000000000 -0300
-+++ helium-1.6/Top/src/Top/Types/Unification.hs	2010-03-14 12:32:56.000000000 -0300
+--- helium-1.6.orig/Top/src/Top/Types/Unification.hs	2006-02-05 14:35:53.000000000 -0200
++++ helium-1.6/Top/src/Top/Types/Unification.hs	2010-03-15 10:27:33.000000000 -0300
 @@ -42,10 +42,10 @@
  --
  -- Note: the boolean indicates whether exansions were necessary
@@ -801,8 +801,8 @@ Index: helium-1.6/Top/src/Top/Types/Unification.hs
              case recList sub' ss tt of
 Index: helium-1.6/helium/src/staticanalysis/directives/TS_PatternMatching.ag
 ===================================================================
---- helium-1.6.orig/helium/src/staticanalysis/directives/TS_PatternMatching.ag	2010-03-14 12:32:38.000000000 -0300
-+++ helium-1.6/helium/src/staticanalysis/directives/TS_PatternMatching.ag	2010-03-14 12:32:55.000000000 -0300
+--- helium-1.6.orig/helium/src/staticanalysis/directives/TS_PatternMatching.ag	2006-02-05 14:34:39.000000000 -0200
++++ helium-1.6/helium/src/staticanalysis/directives/TS_PatternMatching.ag	2010-03-15 10:27:33.000000000 -0300
 @@ -274,10 +274,10 @@
                    in foldr insert ([],[],[])
 
@@ -820,8 +820,8 @@ Index: helium-1.6/helium/src/staticanalysis/directives/TS_PatternMatching.ag
 
 Index: helium-1.6/helium/src/staticanalysis/heuristics/ListOfHeuristics.hs
 ===================================================================
---- helium-1.6.orig/helium/src/staticanalysis/heuristics/ListOfHeuristics.hs	2010-03-14 12:32:38.000000000 -0300
-+++ helium-1.6/helium/src/staticanalysis/heuristics/ListOfHeuristics.hs	2010-03-14 12:41:40.000000000 -0300
+--- helium-1.6.orig/helium/src/staticanalysis/heuristics/ListOfHeuristics.hs	2006-02-05 14:34:39.000000000 -0200
++++ helium-1.6/helium/src/staticanalysis/heuristics/ListOfHeuristics.hs	2010-03-15 10:27:33.000000000 -0300
 @@ -85,13 +85,13 @@
   where
     helper path edges =
@@ -842,8 +842,8 @@ Index: helium-1.6/helium/src/staticanalysis/heuristics/ListOfHeuristics.hs
                  _       -> Nothing
 Index: helium-1.6/helium/src/staticanalysis/heuristics/RepairHeuristics.hs
 ===================================================================
---- helium-1.6.orig/helium/src/staticanalysis/heuristics/RepairHeuristics.hs	2010-03-14 12:32:38.000000000 -0300
-+++ helium-1.6/helium/src/staticanalysis/heuristics/RepairHeuristics.hs	2010-03-14 12:32:55.000000000 -0300
+--- helium-1.6.orig/helium/src/staticanalysis/heuristics/RepairHeuristics.hs	2006-02-05 14:34:39.000000000 -0200
++++ helium-1.6/helium/src/staticanalysis/heuristics/RepairHeuristics.hs	2010-03-15 10:27:33.000000000 -0300
 @@ -508,16 +508,16 @@
  heuristics_MAX = 120 :: Int
 
@@ -871,8 +871,8 @@ Index: helium-1.6/helium/src/staticanalysis/heuristics/RepairHeuristics.hs
 
 Index: helium-1.6/helium/src/staticanalysis/heuristics/RepairSystem.hs
 ===================================================================
---- helium-1.6.orig/helium/src/staticanalysis/heuristics/RepairSystem.hs	2010-03-14 12:32:38.000000000 -0300
-+++ helium-1.6/helium/src/staticanalysis/heuristics/RepairSystem.hs	2010-03-14 12:32:55.000000000 -0300
+--- helium-1.6.orig/helium/src/staticanalysis/heuristics/RepairSystem.hs	2006-02-05 14:34:39.000000000 -0200
++++ helium-1.6/helium/src/staticanalysis/heuristics/RepairSystem.hs	2010-03-15 10:27:33.000000000 -0300
 @@ -78,12 +78,12 @@
  rootOfInfoTree :: InfoTree -> InfoTree
  rootOfInfoTree infoTree
@@ -891,8 +891,8 @@ Index: helium-1.6/helium/src/staticanalysis/heuristics/RepairSystem.hs
  makeAExpr :: InfoTree -> AExpr LocalInfo
 Index: helium-1.6/helium/src/staticanalysis/inferencers/TypeInferencing.hs
 ===================================================================
---- helium-1.6.orig/helium/src/staticanalysis/inferencers/TypeInferencing.hs	2010-03-14 12:32:39.000000000 -0300
-+++ helium-1.6/helium/src/staticanalysis/inferencers/TypeInferencing.hs	2010-03-14 12:32:56.000000000 -0300
+--- helium-1.6.orig/helium/src/staticanalysis/inferencers/TypeInferencing.hs	2006-02-05 14:34:41.000000000 -0200
++++ helium-1.6/helium/src/staticanalysis/inferencers/TypeInferencing.hs	2010-03-15 10:27:33.000000000 -0300
 @@ -172,10 +172,10 @@
                    in foldr insert ([],[],[])
 
@@ -910,8 +910,8 @@ Index: helium-1.6/helium/src/staticanalysis/inferencers/TypeInferencing.hs
 
 Index: helium-1.6/helium/src/staticanalysis/miscellaneous/TypeConversion.hs
 ===================================================================
---- helium-1.6.orig/helium/src/staticanalysis/miscellaneous/TypeConversion.hs	2010-03-14 12:32:39.000000000 -0300
-+++ helium-1.6/helium/src/staticanalysis/miscellaneous/TypeConversion.hs	2010-03-14 12:41:40.000000000 -0300
+--- helium-1.6.orig/helium/src/staticanalysis/miscellaneous/TypeConversion.hs	2006-02-05 14:34:42.000000000 -0200
++++ helium-1.6/helium/src/staticanalysis/miscellaneous/TypeConversion.hs	2010-03-15 10:27:33.000000000 -0300
 @@ -64,15 +64,15 @@
  predicatesFromContext nameMap _ = []
 
@@ -936,8 +936,8 @@ Index: helium-1.6/helium/src/staticanalysis/miscellaneous/TypeConversion.hs
 
 Index: helium-1.6/helium/src/staticanalysis/miscellaneous/TypesToAlignedDocs.hs
 ===================================================================
---- helium-1.6.orig/helium/src/staticanalysis/miscellaneous/TypesToAlignedDocs.hs	2010-03-14 12:32:39.000000000 -0300
-+++ helium-1.6/helium/src/staticanalysis/miscellaneous/TypesToAlignedDocs.hs	2010-03-14 12:43:40.000000000 -0300
+--- helium-1.6.orig/helium/src/staticanalysis/miscellaneous/TypesToAlignedDocs.hs	2006-02-05 14:34:42.000000000 -0200
++++ helium-1.6/helium/src/staticanalysis/miscellaneous/TypesToAlignedDocs.hs	2010-03-15 10:27:33.000000000 -0300
 @@ -35,7 +35,7 @@
                                   in (xs, foldr (.->.) t ys)
             (left, right)  = unzip tupleSpines
@@ -972,8 +972,8 @@ Index: helium-1.6/helium/src/staticanalysis/miscellaneous/TypesToAlignedDocs.hs
         maybeParenthesize (b, doc)
 Index: helium-1.6/helium/src/utils/LoggerEnabled.hs
 ===================================================================
---- helium-1.6.orig/helium/src/utils/LoggerEnabled.hs	2010-03-14 12:32:39.000000000 -0300
-+++ helium-1.6/helium/src/utils/LoggerEnabled.hs	2010-03-14 12:41:40.000000000 -0300
+--- helium-1.6.orig/helium/src/utils/LoggerEnabled.hs	2006-02-05 14:34:30.000000000 -0200
++++ helium-1.6/helium/src/utils/LoggerEnabled.hs	2010-03-15 10:27:33.000000000 -0300
 @@ -128,9 +128,9 @@
  isInterpreterModule (Just (_, hsFile)) = fileNameWithoutPath hsFile == "Interpreter.hs"
 
@@ -997,8 +997,8 @@ Index: helium-1.6/helium/src/utils/LoggerEnabled.hs
     this function directly -}
 Index: helium-1.6/lvm/src/lib/core/CoreNoShadow.hs
 ===================================================================
---- helium-1.6.orig/lvm/src/lib/core/CoreNoShadow.hs	2010-03-14 12:32:39.000000000 -0300
-+++ helium-1.6/lvm/src/lib/core/CoreNoShadow.hs	2010-03-14 12:32:56.000000000 -0300
+--- helium-1.6.orig/lvm/src/lib/core/CoreNoShadow.hs	2006-02-05 14:35:49.000000000 -0200
++++ helium-1.6/lvm/src/lib/core/CoreNoShadow.hs	2010-03-15 10:27:33.000000000 -0300
 @@ -98,13 +98,13 @@
    = case binds of
        Strict (Bind id rhs)  -> nonrec Strict id rhs
@@ -1017,8 +1017,8 @@ Index: helium-1.6/lvm/src/lib/core/CoreNoShadow.hs
          in cont env' (zipBindsWith (\env id rhs -> Bind id (nsExpr env rhs)) (splitEnvs env') binds')
 Index: helium-1.6/lvm/src/lib/lvm/LvmRead.hs
 ===================================================================
---- helium-1.6.orig/lvm/src/lib/lvm/LvmRead.hs	2010-03-14 12:32:39.000000000 -0300
-+++ helium-1.6/lvm/src/lib/lvm/LvmRead.hs	2010-03-14 12:58:01.000000000 -0300
+--- helium-1.6.orig/lvm/src/lib/lvm/LvmRead.hs	2006-02-05 14:35:50.000000000 -0200
++++ helium-1.6/lvm/src/lib/lvm/LvmRead.hs	2010-03-15 10:27:33.000000000 -0300
 @@ -98,7 +98,7 @@
                  }
          else if (isInt x)
