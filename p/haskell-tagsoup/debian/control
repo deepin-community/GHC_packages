@@ -33,6 +33,7 @@ Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-
 Package: libghc6-tagsoup-dev
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
 Description: Haskell library to robustly parse unstructured HTML
@@ -48,6 +49,8 @@ Description: Haskell library to robustly parse unstructured HTML
 Package: libghc6-tagsoup-prof
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
 Description: Profiling support for TagSoup Haskell library
  TagSoup extracts information out of unstructured HTML code, sometimes
@@ -62,7 +65,7 @@ Description: Profiling support for TagSoup Haskell library
 Package: libghc6-tagsoup-doc
 Section: doc
 Architecture: all
-Depends: ${misc:Depends}
+Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Description: Documentation for Haskell TagSoup library
