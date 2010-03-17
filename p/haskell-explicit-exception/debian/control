@@ -1,0 +1,59 @@
+Source: haskell-explicit-exception
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Ernesto Hernández-Novich (USB) <emhn@usb.ve>
+Build-Depends: debhelper (>= 7), cdbs, haskell-devscripts (>= 0.7),
+ ghc6, ghc6-prof, libghc6-transformers-dev, libghc6-transformers-prof
+Build-Depends-Indep: ghc6-doc, libghc6-transformers-doc
+Standards-Version: 3.8.4
+Homepage: http://hackage.haskell.org/package/explicit-exception
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-explicit-exception
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=haskell/haskell-explicit-exception
+
+Package: libghc6-explicit-exception-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Haskell exceptions which are explicit in the type signature
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library provides synchronous and asynchronous exceptions which are
+ explicit in the type signature. The first ones are very similar to Either
+ and Control.Monad.Error.ErrorT. The second ones are used for
+ System.IO.readFile and System.IO.hGetContents.
+
+Package: libghc6-explicit-exception-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Haskell exceptions which are explicit in the type signature; profiling libraries
+ This package provides a library for the Haskell programming language
+ compiled for profiling.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library provides synchronous and asynchronous exceptions which are
+ explicit in the type signature. The first ones are very similar to Either
+ and Control.Monad.Error.ErrorT. The second ones are used for
+ System.IO.readFile and System.IO.hGetContents.
+
+Package: libghc6-explicit-exception-doc
+Section: doc
+Architecture: all
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Haskell exceptions which are explicit in the type signature; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library provides synchronous and asynchronous exceptions which are
+ explicit in the type signature. The first ones are very similar to Either
+ and Control.Monad.Error.ErrorT. The second ones are used for
+ System.IO.readFile and System.IO.hGetContents.
