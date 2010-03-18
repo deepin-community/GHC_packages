@@ -2,7 +2,7 @@ Source: ldap-haskell
 Priority: optional
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: John Goerzen <jgoerzen@complete.org>
-Build-Depends: debhelper (>= 7), ghc6, haskell-devscripts (>= 0.7.3), libldap2-dev (>= 2.4.7), cdbs
+Build-Depends: debhelper (>= 7), ghc6, ghc6-prof, haskell-devscripts (>= 0.7.3), libldap2-dev (>= 2.4.7), cdbs
 Build-Depends-Indep: ghc6-doc
 Standards-Version: 3.8.4
 Section: haskell
@@ -25,6 +25,21 @@ Description: LDAP Interface for Haskell
  C data structures for you automatically.
  .
  This package is built for GHC.
+
+Package: libghc6-ldap-prof
+Section: haskell
+Architecture: any
+Suggests: ${haskell:Suggests}
+Depends: ${haskell:Depends}, ${shlibs:Depends}
+Recommends: ${haskell:Recommends}
+Description: LDAP Interface for Haskell; profiling libraries
+ This package provides an interface to the C LDAP API for Haskell programmers.
+ With it, you can search, modify, and interrogate LDAP directories.
+ The Haskell binding features automatic memory management and proper
+ handling for binary data, and handles all marhsalling into and out of
+ C data structures for you automatically.
+ .
+ This package is built for GHC, compiled for profiling.
 
 Package: libghc6-ldap-doc
 Replaces: ldap-haskell-doc
