@@ -1,0 +1,17 @@
+#!/usr/bin/make -f
+
+DEB_BUILD_DEPENDENCIES = build-arch
+
+DEB_SETUP_GHC6_CONFIGURE_ARGS = --datasubdir=$(CABAL_PACKAGE)
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/hlibrary.mk
+
+build/leksah:: build-ghc6-stamp
+
+install/leksah:: debian/tmp-inst-ghc6
+	$(DEB_SETUP_BIN_NAME) copy --builddir=dist-ghc6 --destdir=debian/$(CABAL_PACKAGE)
+	rm -rf debian/$(CABAL_PACKAGE)/usr/share/doc
+	rm -rf debian/$(CABAL_PACKAGE)/usr/share/$(CABAL_PACKAGE)/data/LICENSE
+	rm -rf debian/$(CABAL_PACKAGE)/usr/share/$(CABAL_PACKAGE)/LICENSE
+	rm -rf debian/$(CABAL_PACKAGE)/usr/share/$(CABAL_PACKAGE)/Readme
