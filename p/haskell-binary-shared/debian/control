@@ -1,0 +1,66 @@
+Source: haskell-binary-shared
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.7)
+  , ghc6
+  , ghc6-prof
+  , libghc6-mtl-dev (>= 1.1.0.2)
+  , libghc6-mtl-prof
+  , libghc6-binary-dev (>= 0.5)
+  , libghc6-binary-prof
+Build-Depends-Indep: ghc6-doc
+  , libghc6-mtl-doc
+  , libghc6-binary-doc
+Standards-Version: 3.8.4
+Homepage: http://hackage.haskell.org/package/binary-shared
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-binary-shared
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-binary-shared
+
+Package: libghc6-binary-shared-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: sharing-enhanced binary encoding
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library is similar to the haskell binary library, but add support to
+ sharing identical element occuring in the data to be (de-)serialized.
+
+Package: libghc6-binary-shared-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: sharing-enhanced binary encoding; profiling libraries
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library is similar to the haskell binary library, but add support to
+ sharing identical element occuring in the data to be (de-)serialized.
+
+Package: libghc6-binary-shared-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: sharing-enhanced binary encoding; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library is similar to the haskell binary library, but add support to
+ sharing identical element occuring in the data to be (de-)serialized.
