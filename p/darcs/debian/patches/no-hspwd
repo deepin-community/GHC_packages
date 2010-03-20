@@ -4,16 +4,19 @@ Description:    Don't use (missing) hspwd.hs for tests.
  Darcs 2.3b1 shipped without hspwd.hs, which broke ./Setup test.
  Since Debian's pwd builtin isn't buggy, simply use it.
  Not forwarded because a working pwd builtin is Debian-specific.
-Index: darcs-2.3.0~beta1/tests/lib
+Index: darcs-2.4/tests/lib
 ===================================================================
---- darcs-2.3.0~beta1.orig/tests/lib	2009-06-25 13:32:06.996566001 +1000
-+++ darcs-2.3.0~beta1/tests/lib	2009-06-25 13:32:20.036565523 +1000
-@@ -11,8 +11,3 @@
-   exit 0
+--- darcs-2.4.orig/tests/lib	2010-03-18 18:59:12.066124123 +1100
++++ darcs-2.4/tests/lib	2010-03-18 18:59:15.182117792 +1100
+@@ -12,11 +12,6 @@
  fi
  }
--
+
 -pwd() {
 -    ghc --make "$TESTS_WD/hspwd.hs"
 -    "$TESTS_WD/hspwd"
 -}
+-
+ # switch locale to latin9 if supported if there's a locale command, skip test
+ # otherwise
+ switch_to_latin9_locale () {

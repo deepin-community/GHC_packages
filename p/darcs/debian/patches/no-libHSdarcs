@@ -13,15 +13,14 @@ Description:    Disable libHSdarcs.
  in the meantime use "cabal install".
  .
  Not forwarded because upstream prefer to wait for a proper fix in Cabal 1.8.
-Index: darcs-2.3.0/darcs.cabal
+Index: darcs-2.4/darcs.cabal
 ===================================================================
---- darcs-2.3.0.orig/darcs.cabal	2009-08-03 15:11:11.556565825 +1000
-+++ darcs-2.3.0/darcs.cabal	2009-08-03 15:11:13.069071056 +1000
-@@ -142,269 +142,6 @@
-     cpp-options:    -DWIN32
+--- darcs-2.4.orig/darcs.cabal	2010-03-18 18:58:34.351120535 +1100
++++ darcs-2.4/darcs.cabal	2010-03-18 18:58:42.883123161 +1100
+@@ -148,262 +148,6 @@
      c-sources:      src/win32/send_email.c
 
---- ----------------------------------------------------------------------
+ -- ----------------------------------------------------------------------
 --- darcs library
 --- ----------------------------------------------------------------------
 -
@@ -86,16 +85,14 @@ Index: darcs-2.3.0/darcs.cabal
 -                    Darcs.FilePathMonad
 -                    Darcs.Flags
 -                    Darcs.Global
--                    Darcs.Gorsvet
 -                    Darcs.Hopefully
 -                    Darcs.IO
 -                    Darcs.Lock
 -                    Darcs.Match
--                    Darcs.Ordered
+-                    Darcs.Witnesses.Ordered
 -                    Darcs.Patch
 -                    Darcs.Patch.Apply
 -                    Darcs.Patch.Bundle
--                    Darcs.Patch.Check
 -                    Darcs.Patch.Choices
 -                    Darcs.Patch.Commute
 -                    Darcs.Patch.Core
@@ -105,6 +102,7 @@ Index: darcs-2.3.0/darcs.cabal
 -                    Darcs.Patch.Match
 -                    Darcs.Patch.MatchData
 -                    Darcs.Patch.Non
+-                    Darcs.Patch.OldDate
 -                    Darcs.Patch.Patchy
 -                    Darcs.Patch.Permutations
 -                    Darcs.Patch.Prim
@@ -112,8 +110,10 @@ Index: darcs-2.3.0/darcs.cabal
 -                    Darcs.Patch.Read
 -                    Darcs.Patch.ReadMonads
 -                    Darcs.Patch.Real
+-                    Darcs.Patch.RegChars
 -                    Darcs.Patch.Set
 -                    Darcs.Patch.Show
+-                    Darcs.Patch.Split
 -                    Darcs.Patch.TouchesFiles
 -                    Darcs.Patch.Viewing
 -                    Darcs.Population
@@ -131,20 +131,24 @@ Index: darcs-2.3.0/darcs.cabal
 -                    Darcs.Repository.HashedIO
 -                    Darcs.Repository.HashedRepo
 -                    Darcs.Repository.Internal
+-                    Darcs.Repository.LowLevel
+-                    Darcs.Repository.Merge
 -                    Darcs.Repository.InternalTypes
 -                    Darcs.Repository.Motd
 -                    Darcs.Repository.Prefs
 -                    Darcs.Repository.Pristine
 -                    Darcs.Repository.Repair
+-                    Darcs.Repository.State
 -                    Darcs.Resolution
 -                    Darcs.RunCommand
--                    Darcs.Sealed
+-                    Darcs.Witnesses.Sealed
 -                    Darcs.SelectChanges
--                    Darcs.Show
+-                    Darcs.Witnesses.Show
 -                    Darcs.SignalHandler
 -                    Darcs.SlurpDirectory
 -                    Darcs.SlurpDirectory.Internal
 -                    Darcs.Test
+-                    Darcs.Test.Patch.Check
 -                    Darcs.TheCommands
 -                    Darcs.URL
 -                    Darcs.Utils
@@ -155,21 +159,18 @@ Index: darcs-2.3.0/darcs.cabal
 -                    HTTP
 -                    IsoDate
 -                    Lcs
--                    OldDate
 -                    Printer
 -                    Progress
--                    RegChars
+-                    Ratified
 -                    SHA1
 -                    Ssh
 -                    URL
--                    UTF8
 -                    Workaround
 -
--  other-modules:    ThisVersion
+-  other-modules:    Version
 -
 -  c-sources:        src/atomic_create.c
 -                    src/fpstring.c
--                    src/c_compat.c
 -                    src/maybe_relink.c
 -                    src/umask.c
 -                    src/Crypt/sha2.c
@@ -194,22 +195,28 @@ Index: darcs-2.3.0/darcs.cabal
 -                   html         == 1.0.*,
 -                   filepath     == 1.1.*,
 -                   haskeline    >= 0.6.1 && < 0.7,
--                   hashed-storage >= 0.3.6 && < 0.4
+-                   hashed-storage >= 0.4.7 && < 0.5
 -
 -  if !os(windows)
--    build-depends: unix >= 1.0 && < 2.4
+-    build-depends: unix >= 1.0 && < 2.5
 -
 -  build-depends: base >= 3,
+-                 bytestring >= 0.9.0 && < 0.10,
+-                 utf8-string == 0.3.*,
 -                   old-time   == 1.0.*,
 -                   directory  == 1.0.*,
 -                   process    == 1.0.*,
--                   containers >= 0.1 && < 0.3,
--                   array      >= 0.1 && < 0.3,
+-                   containers >= 0.1 && < 0.4,
+-                   array      >= 0.1 && < 0.4,
 -                   random     == 1.0.*
 -
+-
 -  -- We need optimizations, regardless of what Hackage says
--  ghc-options:      -Wall -O2 -funbox-strict-fields
+-  ghc-options:      -Wall -O2 -funbox-strict-fields -fwarn-tabs
 -  ghc-prof-options: -prof -auto-all
+-
+-  if flag(hpc)
+-    ghc-prof-options: -fhpc
 -
 -  if flag(curl)
 -    extra-libraries:   curl
@@ -230,26 +237,14 @@ Index: darcs-2.3.0/darcs.cabal
 -      cpp-options:      -DHAVE_HTTP
 -      x-have-http:
 -
--  if !flag(curl) && !flag(http)
+-  if (!flag(curl) && !flag(http)) || flag(deps-only)
 -      buildable: False
 -
 -  if flag(mmap) && !os(windows)
 -    build-depends:    mmap >= 0.2
 -    cpp-options:      -DHAVE_MMAP
 -
--  if flag(bytestring)
--    build-depends:    bytestring >= 0.9.0 && < 0.10
--    cpp-options:      -DHAVE_BYTESTRING
--
--  if flag(zlib)
--    build-depends:    zlib >= 0.5.1.0 && < 0.6.0.0
--    cpp-options:      -DHAVE_HASKELL_ZLIB
--  else
--    extra-libraries:  z
--
--  if flag(utf8-string)
--    build-depends:    utf8-string == 0.3.*
--    cpp-options:      -DHAVE_UTF8STRING
+-  build-depends:    zlib >= 0.5.1.0 && < 0.6.0.0
 -
 -  -- The terminfo package cannot be built on Windows.
 -  if flag(terminfo) && !os(windows)
@@ -268,6 +263,7 @@ Index: darcs-2.3.0/darcs.cabal
 -    UndecidableInstances,
 -    DeriveDataTypeable,
 -    GADTs,
+-    ImpredicativeTypes,
 -    TypeOperators,
 -    ExistentialQuantification,
 -    FlexibleContexts,
@@ -281,13 +277,10 @@ Index: darcs-2.3.0/darcs.cabal
 -    MultiParamTypeClasses
 -
 --- ----------------------------------------------------------------------
---- darcs itself
---- ----------------------------------------------------------------------
--
- Executable          darcs
-   main-is:          darcs.hs
-   hs-source-dirs:   src
-@@ -526,112 +263,3 @@
+ -- darcs itself
+ -- ----------------------------------------------------------------------
+
+@@ -524,103 +268,3 @@
      RankNTypes,
      GeneralizedNewtypeDeriving,
      MultiParamTypeClasses
@@ -302,14 +295,15 @@ Index: darcs-2.3.0/darcs.cabal
 -  include-dirs:     src
 -  c-sources:        src/atomic_create.c
 -                    src/fpstring.c
--                    src/c_compat.c
 -                    src/maybe_relink.c
 -                    src/umask.c
 -                    src/Crypt/sha2.c
 -
 -  -- We need optimizations, regardless of what Hackage says
--  ghc-options:      -Wall -O2 -funbox-strict-fields -threaded
+-  ghc-options:      -Wall -O2 -funbox-strict-fields
 -  ghc-prof-options: -prof -auto-all
+-  if flag(threaded)
+-    ghc-options:    -threaded
 -
 -  if !flag(test)
 -    buildable: False
@@ -328,9 +322,6 @@ Index: darcs-2.3.0/darcs.cabal
 -                     test-framework-quickcheck2 >= 0.2.2
 -
 -
--  if !flag(zlib)
--    extra-libraries:  z
--
 -  cc-options:       -D_REENTRANT
 -
 -  if os(windows)
@@ -347,29 +338,22 @@ Index: darcs-2.3.0/darcs.cabal
 -    cc-options:     -DHAVE_SIGINFO_H
 -
 -  if !os(windows)
--    build-depends: unix >= 1.0 && < 2.4
+-    build-depends: unix >= 1.0 && < 2.5
 -
 -  build-depends: base >= 3,
+-                 bytestring >= 0.9.0 && < 0.10,
 -                   old-time   == 1.0.*,
 -                   directory  == 1.0.*,
 -                   process    == 1.0.*,
--                   containers >= 0.1 && < 0.3,
--                   array      >= 0.1 && < 0.3,
+-                   containers >= 0.1 && < 0.4,
+-                   array      >= 0.1 && < 0.4,
 -                   random     == 1.0.*
 -
 -  if flag(mmap) && !os(windows)
 -    build-depends:    mmap >= 0.2
 -    cpp-options:      -DHAVE_MMAP
 -
--  if flag(bytestring)
--    build-depends:    bytestring >= 0.9.0 && < 0.10
--    cpp-options:      -DHAVE_BYTESTRING
--
--  if flag(zlib)
--    build-depends:    zlib >= 0.5.1.0 && < 0.6.0.0
--    cpp-options:      -DHAVE_HASKELL_ZLIB
--  else
--    extra-libraries:  z
+-  build-depends:    zlib >= 0.5.1.0 && < 0.6.0.0
 -
 -  -- The terminfo package cannot be built on Windows.
 -  if flag(terminfo) && !os(windows)
