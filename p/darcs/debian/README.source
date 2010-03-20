@@ -1,51 +1,6 @@
-THE INFORMATION BELOW IS OUT OF DATE.
+Please refer to the following documents:
 
-I intend to follow the Debian-Haskell approach of making debian/ a
-completely separate repository from the upstream repository.  And then
-I'll stick it on collab-maint.  And then I'll get a pony.
+  http://wiki.debian.org/Haskell/CollabMaint/DarcsBasic
+  http://wiki.debian.org/UsingQuilt
 
-
-Building from repository
-========================
-
-This package uses darcs for managing debian patches. There are, for now, some
-quirks involved in preparing Debian diff, since the repository content does not
-match that of the orig tarball (which contains generated files).
-
-You will first need the current orig tarball from upstream (http://darcs.net)
-to create the diff against (in the parent directory of the repository):
-
-    uscan --force-download
-
-The procedure is (in a clean repository, after a get or make maintainer-clean):
-
-    make config; ./configure && make src/Context.hs
-    debuild -S -i"(_darcs|release)" -I_darcs -Irelease
-
-You will have a fresh debian source package in parent directory, ready for
-building (if you use sbuild):
-
-    sbuild -a -S darcs_2.0.2-2.dsc
-
-or maybe
-
-    pbuilder --build darcs_2.0.2-2.dsc
-
-Note that in the future, the difficulty in building the package shall be
-addressed by automating most these steps and possibly by changing the way
-upstream builds their tarballs, so we can reproduce them exactly from our
-repository.
-
-Changing source
-===============
-
-When you get a copy of the repository, the source tree is in an editable
-state. To record changes, you can use
-
-    darcs rec
-
-You can then use
-
-    darcs send
-
-to mail the changes you have recorded to maintainers.
+ -- Trent W. Buck <trentbuck@gmail.com>, Sat, 20 Mar 2010 23:22:28 +1100
