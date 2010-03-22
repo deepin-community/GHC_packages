@@ -1,0 +1,63 @@
+Source: haskell-markov-chain
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Ernesto Hernández-Novich (USB) <emhn@usb.ve>
+Build-Depends: debhelper (>= 7), cdbs, haskell-devscripts (>= 0.7),
+ ghc6, ghc6-prof,
+ libghc6-transformers-dev, libghc6-transformers-prof
+Build-Depends-Indep: ghc6-doc, libghc6-transformers-doc
+Standards-Version: 3.8.4
+Homepage: http://hackage.haskell.org/package/markov-chain
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-markov-chain
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=haskell/haskell-markov-chain
+
+Package: libghc6-markov-chain-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Markov Chains for random sequence generation
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library can be used to generate random sequences with a behaviour
+ adapted to some training data. The algorithm analyses your input/training
+ data with respect to how likely a given letter follows another one, then
+ on recomposition it chooses subsequent letters randomly according to the
+ frequencies found in the training data.
+
+Package: libghc6-markov-chain-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Markov Chains for random sequence generation; profiling libraries
+ This package provides a library for the Haskell programming language
+ compiled for profiling.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library can be used to generate random sequences with a behaviour
+ adapted to some training data. The algorithm analyses your input/training
+ data with respect to how likely a given letter follows another one, then
+ on recomposition it chooses subsequent letters randomly according to the
+ frequencies found in the training data.
+
+Package: libghc6-markov-chain-doc
+Section: doc
+Architecture: all
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Markov Chains for random sequence generation; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library can be used to generate random sequences with a behaviour
+ adapted to some training data. The algorithm analyses your input/training
+ data with respect to how likely a given letter follows another one, then
+ on recomposition it chooses subsequent letters randomly according to the
+ frequencies found in the training data.
