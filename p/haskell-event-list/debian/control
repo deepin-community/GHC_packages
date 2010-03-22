@@ -1,0 +1,69 @@
+Source: haskell-event-list
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Ernesto Hernández-Novich (USB) <emhn@usb.ve>
+Build-Depends: debhelper (>= 7), cdbs, haskell-devscripts (>= 0.7),
+ ghc6, ghc6-prof,
+ libghc6-quickcheck2-dev, libghc6-quickcheck2-prof,
+ libghc6-transformers-dev, libghc6-transformers-prof,
+ libghc6-non-negative-dev, libghc6-non-negative-prof,
+ libghc6-utility-ht-dev, libghc6-utility-ht-prof
+Build-Depends-Indep: ghc6-doc,
+ libghc6-transformers-doc,
+ libghc6-non-negative-doc,
+ libghc6-utility-ht-doc
+Standards-Version: 3.8.4
+Homepage: http://hackage.haskell.org/package/event-list
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-event-list
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=haskell/haskell-event-list
+
+Package: libghc6-event-list-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Event lists with relative or absolute timestamps
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library provides lists to manage events that are associated with
+ times. Times may be given as difference between successive events or as
+ absolute time values. Pauses before the first and after the last event
+ are supported. The data structures can be used to represent MIDI files,
+ OpenSoundControl message streams, music performances etc.
+
+Package: libghc6-event-list-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Event lists with relative or absolute timestamps; profiling libraries
+ This package provides a library for the Haskell programming language
+ compiled for profiling.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library provides lists to manage events that are associated with
+ times. Times may be given as difference between successive events or as
+ absolute time values. Pauses before the first and after the last event
+ are supported. The data structures can be used to represent MIDI files,
+ OpenSoundControl message streams, music performances etc.
+
+Package: libghc6-event-list-doc
+Section: doc
+Architecture: all
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Event lists with relative or absolute timestamps; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library provides lists to manage events that are associated with
+ times. Times may be given as difference between successive events or as
+ absolute time values. Pauses before the first and after the last event
+ are supported. The data structures can be used to represent MIDI files,
+ OpenSoundControl message streams, music performances etc.
