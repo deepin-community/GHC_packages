@@ -1,16 +1,29 @@
 Source: lhs2tex
 Section: text
 Priority: optional
-Maintainer: Arjan Oosting <arjan@debian.org>
-Build-Depends: autotools-dev, debhelper (>= 5.0.0), dpatch, ghc6 (>= 6.8.2), libghc6-regex-compat-dev, libghc6-utf8-string-dev, tex-common
-Standards-Version: 3.8.0
-Vcs-Svn: https://moonshine.dnsalias.org/svn/arjan-public/debian/lhs2tex/trunk
-Vcs-Browser: https://moonshine.dnsalias.org/wsvn/arjan-public/debian/lhs2tex/trunk/
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Arjan Oosting <arjan@debian.org>
+Build-Depends:
+ autotools-dev,
+ debhelper (>= 7),
+ ghc6,
+ libghc6-regex-compat-dev,
+ libghc6-utf8-string-dev,
+ tex-common
+Standards-Version: 3.8.4
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/lhs2tex
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/lhs2tex
 Homepage: http://www.informatik.uni-bonn.de/~loeh/lhs2tex/
 
 Package: lhs2tex
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, texlive-latex-base, texlive-latex-base, texlive-latex-base, texlive-math-extra
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+ texlive-latex-base,
+ texlive-latex-base,
+ texlive-latex-base,
+ texlive-math-extra
 Description: Generates LaTeX code from literate Haskell sources
  lhs2TeX includes the following features:
  .
