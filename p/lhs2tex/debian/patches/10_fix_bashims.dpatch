@@ -1,0 +1,31 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 10_fix_bashims.dpatch by Arjan Oosting <arjan@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Fix a bashism in the examples of lhs2TeX
+
+@DPATCH@
+diff -urNad lhs2tex~/Examples/lhs2TeXpre lhs2tex/Examples/lhs2TeXpre
+--- lhs2tex~/Examples/lhs2TeXpre	2008-03-22 21:29:39.000000000 +0100
++++ lhs2tex/Examples/lhs2TeXpre	2008-07-20 10:52:16.000000000 +0200
+@@ -5,7 +5,7 @@
+
+ LHSHOME=..
+
+-if [ "$1" == "$2" ]; then
++if [ "$1" = "$2" ]; then
+   cp "$2" "$3"
+ else
+   if grep -q "^%include" "$1"; then
+diff -urNad lhs2tex~/doc/lhs2TeXpre lhs2tex/doc/lhs2TeXpre
+--- lhs2tex~/doc/lhs2TeXpre	2008-03-22 21:29:39.000000000 +0100
++++ lhs2tex/doc/lhs2TeXpre	2008-07-20 10:53:47.000000000 +0200
+@@ -5,7 +5,7 @@
+
+ LHSHOME=..
+
+-if [ "$1" == "$2" ]; then
++if [ "$1" = "$2" ]; then
+   cp "$2" "$3"
+ else
+   if grep -q "^%include" "$1"; then

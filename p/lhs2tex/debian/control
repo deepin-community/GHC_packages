@@ -1,0 +1,39 @@
+Source: lhs2tex
+Section: text
+Priority: optional
+Maintainer: Arjan Oosting <arjan@debian.org>
+Build-Depends: autotools-dev, debhelper (>= 5.0.0), dpatch, ghc6 (>= 6.8.2), libghc6-regex-compat-dev, libghc6-utf8-string-dev, tex-common
+Standards-Version: 3.8.0
+Vcs-Svn: https://moonshine.dnsalias.org/svn/arjan-public/debian/lhs2tex/trunk
+Vcs-Browser: https://moonshine.dnsalias.org/wsvn/arjan-public/debian/lhs2tex/trunk/
+Homepage: http://www.informatik.uni-bonn.de/~loeh/lhs2tex/
+
+Package: lhs2tex
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, texlive-latex-base, texlive-latex-base, texlive-latex-base, texlive-math-extra
+Description: Generates LaTeX code from literate Haskell sources
+ lhs2TeX includes the following features:
+ .
+ Different styles to process your source file: for instance,
+ "tt" style uses a monospaced font for the code while still
+ allowing you to highlight keywords etc, whereas
+ "poly" style uses proportional fonts for identifiers, handles
+ indentation nicely, is able to replace binary operators by
+ mathematical symbols and take care of complex horizontal
+ alignments.
+ .
+ Formatting directives, which let you customize the way certain
+ tokens in the source code should appear in the processed
+ output.
+ .
+ A liberal parser that can handle most of the language
+ extensions; you don't have to restrict yourself to Haskell 98.
+ .
+ Preprocessor-style conditionals that allow you to generate
+ different versions of a document from a single source file
+ (for instance, a paper and a presentation).
+ .
+ Active documents: you can use Haskell to generate parts of the
+ document (useful for papers on Haskell).
+ .
+ A manual explaining all the important aspects of lhs2TeX.

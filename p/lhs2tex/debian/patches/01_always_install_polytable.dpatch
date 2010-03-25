@@ -1,0 +1,17 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 01_always_install_polytable.dpatch by Arjan Oosting <arjan@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: make sure we alway include polytable in the Debian package.
+
+@DPATCH@
+diff -urNad lhs2tex~/config.mk.in lhs2tex/config.mk.in
+--- lhs2tex~/config.mk.in	2008-07-20 11:08:24.000000000 +0200
++++ lhs2tex/config.mk.in	2008-07-20 11:09:32.000000000 +0200
+@@ -41,6 +41,6 @@
+
+ polydir         = @texmf@/tex/latex/polytable
+ texdir          = @texmf@/tex/latex/lhs2tex
+-INSTALL_POLYTABLE = @POLYTABLE_INSTALL@
++INSTALL_POLYTABLE = yes
+ MKTEXLSR        = @MKTEXLSR@

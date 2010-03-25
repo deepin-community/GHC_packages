@@ -1,0 +1,167 @@
+lhs2tex (1.14-1) experimental; urgency=low
+
+  * New upstream release:
+    - Unicode support.
+    - Support for Agda's lexing rules (via --agda flag).
+  * debian/control:
+    - Add libghc6-utf8-string-dev to the build dependencies.
+
+ -- Arjan Oosting <arjan@debian.org>  Sat, 17 Jan 2009 18:06:34 +0100
+
+lhs2tex (1.13-4) unstable; urgency=low
+
+  * Add dependency on texlive-math-extra as polycode.fmt depends on
+    the theoretical computer science fonts located in stmaryrd.sty
+    Thanks Tomasz Maciejewski  (Closes: #511818)
+  * debian/rules: Use dh_installtex to generate maintainer scripts
+    which call mktexlsr.
+  * debian/control: Add tex-common to build dependencies as it provides
+    dh_installtex.
+
+ -- Arjan Oosting <arjan@debian.org>  Sat, 17 Jan 2009 18:02:16 +0100
+
+lhs2tex (1.13-3) unstable; urgency=medium
+
+  * debian/control:
+    - Add dpatch to the build dependencies.
+    - Bump Standards-Version to 3.8.0
+  * debian/patches/01_always_install_polytable.dpatch:
+    - Patch config.mk.in to make sure we install the polytable (La)Tex
+      style.
+  * debian/patches/10_fix_bashims.dpatch:
+    - Fix a bashism in the examples of lhs2TeX (Closes: #489624)
+  * debian/README.source: Added.
+  * debian/rules:
+    - Include dpatch snippet
+    - Remove the sed expressions which is replaced with a regular patch
+  * Set urgency to medium to get the bashism fix into Lenny.
+
+ -- Arjan Oosting <arjan@debian.org>  Sun, 20 Jul 2008 11:16:15 +0200
+
+lhs2tex (1.13-2) unstable; urgency=low
+
+  * Fix bashism in debian/rules. (Closes: #484397)
+  * debian/control:
+    - Drop dependencies on obsolete packages tetex-bin, tetex-base and
+      tetex-extra. Fixes lintian error depends-on-obsolete-package
+  * debian/doc-base:
+    - Change Section to Programming/Haskell
+
+ -- Arjan Oosting <arjan@debian.org>  Mon, 09 Jun 2008 06:57:19 +0200
+
+lhs2tex (1.13-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/watch:
+    - Also look for gzipped tarballs.
+  * debian/control:
+    - Point the Vcs-* fields to the trunk directories which contains the
+      latest version of the debian package.
+
+ -- Arjan Oosting <arjan@debian.org>  Tue, 26 Feb 2008 08:00:03 +0100
+
+lhs2tex (1.13~pre3-2) unstable; urgency=low
+
+  * debian/control:
+    - Bump build dependency on ghc6 to 6.8.2 which is now needed to build
+      the package.
+
+ -- Arjan Oosting <arjan@debian.org>  Mon, 21 Jan 2008 01:30:45 +0100
+
+lhs2tex (1.13~pre3-1) unstable; urgency=low
+
+  * New upstream release, which should work with the GHC 6.8 series and be
+    compatible with Cabal 1.2.
+  * Fix some lintian warnings
+    - package-contains-empty-directory usr/sbin/
+    - doc-base-file-separator-extra-whitespaces lhs2tex-guide:13
+  * debian/control:
+    - Add libghc6-regex-compat-dev to the build dependencies.
+    - Replace the Xs-Vcs-* fields with the official Vcs-* fields.
+    - Add Homepage field.
+    - Bump Standards-Version to 3.7.3. No changes needed.
+  * debian/rules:
+    - Export DEB_HOST_GNU_TYPE and DEB_BUILD_GNU_TYPE as
+      /usr/share/doc/autotools-dev/README.Debian.gz suggests.
+    - Remove some generated files during clean.
+
+ -- Arjan Oosting <arjan@debian.org>  Sat, 19 Jan 2008 17:17:13 +0100
+
+lhs2tex (1.12-3) unstable; urgency=low
+
+  * debian/compat: Change to debhelper compatibility level 5.
+  * debian/control:
+    - Add XS-Vcs-Browser field.
+    - Bump dependency on debhelper to debhelper 5 or higher.
+
+ -- Arjan Oosting <arjan@debian.org>  Thu, 12 Apr 2007 01:22:02 +0200
+
+lhs2tex (1.12-2) experimental; urgency=low
+
+  * Add the necessary Depends for texlive in addition to tetex:
+    - Depend on texlive-latex-base | tetex-bin for the mktexslr program.
+    - Depend on texlive-latex-base | tetex-base for the styles array and
+      calc.
+    - Depend on texlive-latex-base | tetex-extra for the style colortbl.
+
+ -- Arjan Oosting <arjan@debian.org>  Mon, 12 Feb 2007 00:23:22 +0100
+
+lhs2tex (1.12-1) experimental; urgency=low
+
+  * New upstream release.
+
+ -- Arjan Oosting <arjan@debian.org>  Thu, 11 Jan 2007 16:45:17 +0100
+
+lhs2tex (1.11-2) unstable; urgency=low
+
+  * debian/rules: do not rebuild the user guide as it needs ghci which
+    does not work on all arctectures.
+  * debian/control: Drop the Build-Depends on tetex-bin, tetex-base and
+    tetex-extra as we don't rebuild the guide anyway.
+
+ -- Arjan Oosting <arjan@debian.org>  Fri, 20 Oct 2006 17:08:52 +0200
+
+lhs2tex (1.11-1) unstable; urgency=medium
+
+  * Take over maintaince from John Goerzen. Thanks for your work on this
+    package!
+  * New upstream release. (Closes: #366969)
+  * config.mk.in: remove -package lang (Closes: 393822)
+  * debian/control:
+    - add Build-Depends on autotools-dev to make sure the latest
+      config.guess and config.sub are used.
+    - add missing Build-Depends on tetex-extra.
+    - added Homepage entry.
+    - bump Standards-Version. No changes needed.
+    - add XS-Vcs-Svn field.
+  * debian/copyright:
+    - Include the license of lazylist.sty and update the license of the
+      rest of the package. (Closes: #389924)
+  * debian/dirs: dropped as it is not necessary.
+  * debian/doc-base: added doc-base entry for guide.
+  * debian/postrm: added. Also call mktexlsr when lhs2tex is removed.
+  * debian/rules:
+    - copy config.sub and config.guess in the config.status target and
+      remove them on clean to keep the diff.gz small.
+    - do not ignore all errors on clean.
+    - ensure polytable.sty gets included and the guide will be rebuild.
+    - remove commented out debhelper calls.
+    - add -O0 to GHCFLAGS when DEB_BUILD_OPTIONS contains noopt and remove
+      CFLAGS manipulation as this is no C program.
+    - don't gzip pdf files as most pdf readers can not handle compresses
+      pdf files and pdf files use internal compression anyway.
+  * debian/watch: added uscan watch file.
+
+ -- Arjan Oosting <arjan@debian.org>  Thu, 19 Oct 2006 18:12:48 +0200
+
+lhs2tex (1.9-2) unstable; urgency=low
+
+  * Rebuilt to get dep on correct new libgmp3 in sid.  Closes: #329276.
+
+ -- John Goerzen <jgoerzen@complete.org>  Wed, 21 Sep 2005 05:32:01 -0500
+
+lhs2tex (1.9-1) unstable; urgency=low
+
+  * Initial Release.  Closes: #292653.
+
+ -- John Goerzen <jgoerzen@complete.org>  Fri, 28 Jan 2005 09:50:20 -0600
