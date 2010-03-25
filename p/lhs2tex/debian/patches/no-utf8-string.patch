@@ -1,0 +1,37 @@
+Description: Do not use ut8f-string
+--- lhs2tex-1.15.orig/FileNameUtils.lhs
++++ lhs2tex-1.15/FileNameUtils.lhs
+@@ -11,8 +11,7 @@
+ >                               ) where
+ >
+ > import Prelude hiding         (  catch, readFile )
+-> import System.IO              (  openFile, IOMode(..) )
+-> import System.IO.UTF8
++> import System.IO              (  openFile, IOMode(..), hGetContents )
+ > import System.Directory
+ > import System.Environment
+ > import Data.List
+--- lhs2tex-1.15.orig/lhs2tex.cabal
++++ lhs2tex-1.15/lhs2tex.cabal
+@@ -18,7 +18,7 @@ flag splitBase
+ executable lhs2TeX
+   main-is:	Main.lhs
+   if flag(splitBase)
+-    build-depends:	base >= 3 && < 5, regex-compat, mtl, filepath, directory, process, utf8-string, extensible-exceptions
++    build-depends:	base >= 3 && < 5, regex-compat, mtl, filepath, directory, process, extensible-exceptions
+   else
+-    build-depends:	base < 3, regex-compat, mtl, filepath, utf8-string
++    build-depends:	base < 3, regex-compat, mtl, filepath
+
+--- lhs2tex-1.15.orig/Main.lhs
++++ lhs2tex-1.15/Main.lhs
+@@ -9,8 +9,7 @@
+ >
+ > import Data.Char ( isSpace )
+ > import Data.List ( isPrefixOf )
+-> import System.IO ( hClose, hFlush, stderr, stdout, openFile, IOMode(..), Handle(..) )
+-> import System.IO.UTF8 ( hPutStr, hPutStrLn, hGetLine, getContents )
++> import System.IO
+ > import System.Directory ( copyFile )
+ > import System.Console.GetOpt
+ > import Text.Regex ( matchRegex, mkRegexWithOpts )
