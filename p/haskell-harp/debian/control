@@ -1,0 +1,70 @@
+Source: haskell-harp
+Priority: extra
+Section: haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Giovanni Mascellani <mascellani@poisson.phc.unipi.it>
+Build-Depends:
+ debhelper (>= 7),
+ haskell-devscripts,
+ cdbs,
+ ghc6,
+ ghc6-prof
+Build-Depends-Indep:
+ ghc6-doc
+Standards-Version: 3.8.4
+Homepage: http://hackage.haskell.org/package/harp
+Vcs-Darcs: http://darcs.debian.org/darcs/pkg-haskell/haskell-harp
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-harp
+
+Package: libghc6-harp-dev
+Architecture: any
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Description: Haskell support for regexp based pattern matching - GHC 6 libraries
+ HaRP, or Haskell Regular Patterns, is a Haskell extension that extends
+ the normal pattern matching facility, allowing the user to match against
+ regular expressions. This expressive power is highly useful in a wide
+ range of areas, including text parsing and XML processing. Regular
+ expression patterns in HaRP work over ordinary Haskell lists ([]) of
+ arbitrary type. HaRP is implemented as a pre-processor to ordinary Haskell.
+ .
+ This package contains the libraries compiled for GHC 6.
+
+Package: libghc6-harp-prof
+Architecture: any
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Description: Haskell support for regexp based pattern matching - GHC 6 profiling libraries
+ HaRP, or Haskell Regular Patterns, is a Haskell extension that extends
+ the normal pattern matching facility, allowing the user to match against
+ regular expressions. This expressive power is highly useful in a wide
+ range of areas, including text parsing and XML processing. Regular
+ expression patterns in HaRP work over ordinary Haskell lists ([]) of
+ arbitrary type. HaRP is implemented as a pre-processor to ordinary Haskell.
+ .
+ This package contains the profiling libraries compiled for GHC 6.
+
+Package: libghc6-harp-doc
+Section: doc
+Architecture: all
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Description: Haskell support for regexp based pattern matching - documentation
+ HaRP, or Haskell Regular Patterns, is a Haskell extension that extends
+ the normal pattern matching facility, allowing the user to match against
+ regular expressions. This expressive power is highly useful in a wide
+ range of areas, including text parsing and XML processing. Regular
+ expression patterns in HaRP work over ordinary Haskell lists ([]) of
+ arbitrary type. HaRP is implemented as a pre-processor to ordinary Haskell.
+ .
+ This package contains the library documentation.
