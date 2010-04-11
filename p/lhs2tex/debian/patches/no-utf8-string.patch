@@ -1,19 +1,34 @@
 Description: Do not use ut8f-string
---- lhs2tex-1.15.orig/FileNameUtils.lhs
-+++ lhs2tex-1.15/FileNameUtils.lhs
+Index: lhs2tex-1.15/FileNameUtils.lhs
+===================================================================
+--- lhs2tex-1.15.orig/FileNameUtils.lhs	2010-03-25 18:52:25.000000000 +0100
++++ lhs2tex-1.15/FileNameUtils.lhs	2010-04-11 19:18:17.000000000 +0200
 @@ -11,8 +11,7 @@
  >                               ) where
  >
  > import Prelude hiding         (  catch, readFile )
 -> import System.IO              (  openFile, IOMode(..) )
 -> import System.IO.UTF8
-+> import System.IO              (  openFile, IOMode(..), hGetContents )
++> import System.IO              (  openFile, IOMode(..), hGetContents, hSetEncoding, utf8 )
  > import System.Directory
  > import System.Environment
  > import Data.List
---- lhs2tex-1.15.orig/lhs2tex.cabal
-+++ lhs2tex-1.15/lhs2tex.cabal
-@@ -18,7 +18,7 @@ flag splitBase
+@@ -116,7 +115,9 @@
+ own.
+
+ > readTextFile                  :: FilePath -> IO String
+-> readTextFile f                =  openFile f ReadMode >>= hGetContents
++> readTextFile f                =  do h <- openFile f ReadMode
++>                                     hSetEncoding h utf8
++>                                     hGetContents h
+
+ > chaseFile                     :: [String]    {- search path -}
+ >                               -> FilePath -> IO (String,FilePath)
+Index: lhs2tex-1.15/lhs2tex.cabal
+===================================================================
+--- lhs2tex-1.15.orig/lhs2tex.cabal	2010-03-25 18:52:25.000000000 +0100
++++ lhs2tex-1.15/lhs2tex.cabal	2010-03-25 18:52:25.000000000 +0100
+@@ -18,7 +18,7 @@
  executable lhs2TeX
    main-is:	Main.lhs
    if flag(splitBase)
@@ -23,8 +38,10 @@ Description: Do not use ut8f-string
 -    build-depends:	base < 3, regex-compat, mtl, filepath, utf8-string
 +    build-depends:	base < 3, regex-compat, mtl, filepath
 
---- lhs2tex-1.15.orig/Main.lhs
-+++ lhs2tex-1.15/Main.lhs
+Index: lhs2tex-1.15/Main.lhs
+===================================================================
+--- lhs2tex-1.15.orig/Main.lhs	2010-03-25 18:52:25.000000000 +0100
++++ lhs2tex-1.15/Main.lhs	2010-04-11 19:20:10.000000000 +0200
 @@ -9,8 +9,7 @@
  >
  > import Data.Char ( isSpace )
@@ -35,3 +52,34 @@ Description: Do not use ut8f-string
  > import System.Directory ( copyFile )
  > import System.Console.GetOpt
  > import Text.Regex ( matchRegex, mkRegexWithOpts )
+@@ -168,17 +167,21 @@
+ >                                          case matchRegex (mkRegexWithOpts "^%include" True False) c of
+ >                                            Nothing -> if lit then
+ >                                                          do h <- openFile f3 WriteMode
++>                                                             hSetEncoding h utf8
+ >                                                             lhs2TeX NewCode (flags { output = h }) (Directive Include "lhs2TeX.fmt" : dirs) [f1]
+ >                                                             hClose h
+ >                                                       else copyFile f2 f3
+ >                                            Just _  -> -- supposed to be an lhs2TeX file
+ >                                                       do h <- openFile f3 WriteMode
++>                                                          hSetEncoding h utf8
+ >                                                          lhs2TeX NewCode (flags { output = h }) dirs [f1]
+ >                                                          hClose h
+ > preprocess _ _ _ _            =  error "preprocess: too few arguments"
+
+ > lhs2TeX                       :: Style -> State -> [Class] -> [String] -> IO ()
+-> lhs2TeX s flags dirs files    =  do (str, file) <- input files
++> lhs2TeX s flags dirs files    =  do hSetEncoding stdin utf8
++>                                     hSetEncoding stdout utf8
++>                                     (str, file) <- input files
+ >                                     expandedpath <- expandPath (searchpath flags)
+ >                                     toIO (do store (initState s file expandedpath flags)
+ >                                              formats (map (No 0) dirs) `handle` abort
+@@ -220,6 +223,7 @@
+ >   , Option []    ["agda"]    (NoArg (\s -> return $ s { lang = Agda}, id, []))            "Agda lexer"
+ >   , Option []    ["pre"]     (NoArg (return, id, [Pre]))                                  "act as ghc preprocessor"
+ >   , Option ['o'] ["output"]  (ReqArg (\f -> (\s -> do h <- openFile f WriteMode
++>                                                       hSetEncoding h utf8
+ >                                                       return $ s { output = h }, id, [])) "file") "specify output file"
+ >   , Option []    ["file-directives"]
+ >                              (NoArg (\s -> return $ s { fldir = True }, id, []))          "generate %file directives"
