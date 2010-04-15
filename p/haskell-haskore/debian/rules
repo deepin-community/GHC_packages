@@ -8,32 +8,10 @@ include /usr/share/cdbs/1/rules/patchsys-quilt.mk
 
 DEB_COMPRESS_EXCLUDE  = .pdf
 
-PICS = equiv haskore poly
-
-PDF_PICS = $(patsubst %, src/Doc/Pics/%.pdf, $(PICS))
-
-TEX_FILES = $(patsubst %, src/Doc/%, \
-			Tutorial.tex             \
-			Discussion.tex           \
-			Introduction.tex         \
-			Macros.tex               \
-			Related.tex)
-
-%.pdf:	%.eps
-	epstopdf $<
-
-GHC_MODULES = $(patsubst %, src/%,               \
-			$(MEDIA)                             \
-			Test/Equivalence.lhs Test/Suite.lhs) \
-			$(patsubst %, src/Haskore/%, $(MODULES) )
-
-build/libghc6-haskore-doc::	$(TEX_FILES) $(GHC_MODULES) $(PDF_PICS)
-	TEXINPUTS=src:src/Doc:$(TEXINPUTS) pdflatex $<
-	bibtex Tutorial
-	mkindex Tutorial
-	TEXINPUTS=src:src/Doc:$(TEXINPUTS) pdflatex $<
-	TEXINPUTS=src:src/Doc:$(TEXINPUTS) pdflatex $<
+build/libghc6-haskore-doc::
+	make -f Makefile pdf
 
 clean::
-	rm -f Tutorial.*
+	make -f Makefile clean
 	dh_testdir
+
