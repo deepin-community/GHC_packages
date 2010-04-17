@@ -1,0 +1,17 @@
+Index: ghc6-6.12.1/compiler/rename/RnSource.lhs
+===================================================================
+--- ghc6-6.12.1.orig/compiler/rename/RnSource.lhs	2010-04-07 06:24:49.000000000 +0300
++++ ghc6-6.12.1/compiler/rename/RnSource.lhs	2010-04-07 06:39:11.000000000 +0300
+@@ -690,9 +690,9 @@
+ 		   else emptyFVs))
+         }
+   where
+-    h98_style = case condecls of
+-		     L _ (ConDecl { con_res = ResTyH98 }) : _  -> True
+-		     _    		                       -> False
++    h98_style = case condecls of        -- Note [Stupid theta]
++		     L _ (ConDecl { con_res = ResTyGADT {} }) : _  -> False
++                     _						   -> True
+     data_doc = text "In the data type declaration for" <+> quotes (ppr tycon)
+ 
+     rn_derivs Nothing   = return (Nothing, emptyFVs)
