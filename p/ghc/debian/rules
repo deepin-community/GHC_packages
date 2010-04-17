@@ -102,7 +102,6 @@ endif
 build: build-stamp
 build-stamp: configure-stamp
 	dh_testdir
-	sh debian/watcher.sh "$$PPID" "`pwd`" "`pwd`/build-stamp" 'ghc\|gcc' &
 	$(MAKE) $(MAKEFLAGS)
 
 	# Do some very simple tests that the compiler actually works
@@ -152,8 +151,7 @@ install-stamp: build-stamp
 	mkdir -p debian/tmp/var/lib/ghc-$(ProjectVersion)
 	mv debian/tmp/usr/lib/ghc-$(ProjectVersion)/package.conf.d \
 	   debian/tmp/var/lib/ghc-$(ProjectVersion)/
-	ln -s debian/tmp/var/lib/ghc-$(ProjectVersion)/package.conf.d \
-	      debian/tmp/usr/lib/ghc-$(ProjectVersion)/package.conf.d
+	rm debian/tmp/var/lib/ghc-$(ProjectVersion)/package.conf.d/package.cache
 	chmod +x debian/provided_substvars
 	debian/provided_substvars
 	sed -ri 's,^haddock-interfaces: /.*?/libraries/,haddock-interfaces: /usr/lib/ghc-$(ProjectVersion)/haddock/,' debian/tmp/var/lib/ghc-$(ProjectVersion)/package.conf.d/*.conf
@@ -256,6 +254,13 @@ clean:
 	rm -f config.log
 	rm -f libraries/ghc-prim/GHC/PrimopWrappers.hs
 	rm -f libraries/ghc-prim/GHC/Prim.hs
+	rm -f libraries/ghc-prim/GHC/Generics.hc
+	rm -f libraries/ghc-prim/GHC/Generics.dyn_hc
+	rm -f libraries/ghc-prim/GHC/IntWord32.hc
+	rm -f libraries/integer-gmp/GHC/Integer/Type.hc
+	rm -f libraries/base/GHC/ConsoleHandler.hc
+	rm -f libraries/base/GHC/IO/Encoding/CodePage.hc
+	rm -f libraries/base/Unsafe/Coerce.hc
 	rm -f rts/libs.depend mk/install.mk
 
 	rm -f libraries/haskeline/a.out

@@ -8,6 +8,7 @@ set -e
 execdir=/usr/bin
 libdir=/usr/lib/ghc-@VERSION@
 bindir=$libdir/bin
+vardir=/var/lib/ghc-@VERSION@
 
 # summary of how this script can be called:
 #        * <prerm> `remove'
@@ -20,7 +21,13 @@ bindir=$libdir/bin
 # for details, see /usr/doc/packaging-manual/
 
 case "$1" in
-    remove|upgrade|deconfigure|failed-upgrade)
+    remove)
+        update-alternatives --remove runhaskell $execdir/runghc
+        update-alternatives --remove haskell-compiler $execdir/ghc
+        update-alternatives --remove ghc $bindir/ghc
+	rm -f $vardir/package.conf.d/package.cache
+    ;;
+    upgrade|deconfigure|failed-upgrade)
         update-alternatives --remove runhaskell $execdir/runghc
         update-alternatives --remove haskell-compiler $execdir/ghc
         update-alternatives --remove ghc $bindir/ghc

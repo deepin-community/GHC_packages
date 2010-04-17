@@ -1,3 +1,14 @@
+ghc6 (6.12.1-13) unstable; urgency=low
+
+  * Remove debian/watcher.sh.  (Closes: #571824)
+  * Don't ship /var/lib/ghc-6.12.1/package.conf.d/package.cache with ghc6.
+    (Closes: #574417)
+  * Patch compiler/rename/RnSource.lhs to make hlist happy.
+  * Remove some more generated .hc files in debian/rules clean.
+  * Don't ship broken symlink /usr/lib/ghc-6.12.1/package.conf
+
+ -- Kari Pahula <kaol@debian.org>  Sat, 17 Apr 2010 10:35:25 +0300
+
 ghc6 (6.12.1-12) unstable; urgency=low
 
   * Fix the kfreebsd-* patch.
