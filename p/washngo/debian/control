@@ -1,0 +1,30 @@
+Source: washngo
+Priority: optional
+Maintainer: Debian QA Group <packages@qa.debian.org>
+Build-Depends: debhelper (>= 4.0.0), ghc6 (>= 6.8.2dfsg1-1), haskell-devscripts (>= 0.6.15), haddock, libghc6-regex-compat-dev, libghc6-parsec-dev
+Standards-Version: 3.6.1
+Section: libs
+Vcs-Git: git://git.debian.org/git/users/jgoerzen/washngo
+Vcs-browser: http://git.debian.org/?p=users/jgoerzen/washngo
+Homepage: http://www.informatik.uni-freiburg.de/~thiemann/haskell/WASH/
+
+Package: libghc6-wash-dev
+Section: libdevel
+Architecture: any
+Depends: ${haskell:Depends}, ghc6 (>= 6.8.2dfsg1), ${shlibs:Depends}
+Description: Web Authoring System for Haskell
+ WASH is a family of embedded domain specific languages (EDSL) for
+ programming Web applications. Each language is embedded in the
+ functional language Haskell, which means that it is implemented as a
+ combinator library.
+ .
+ Currently, WASH has the following components:
+ .
+ wash2hs, a preprocessor for including literal XHTML fragments in the
+ style of Haskell Server Pages (HSP)
+ .
+ WASH/CGI for server-side web scripting
+ .
+ WASH/HTML for dynamic generation of HTML and XHTML
+ .
+ WASH/Mail for email processing
