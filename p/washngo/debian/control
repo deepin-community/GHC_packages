@@ -1,17 +1,30 @@
 Source: washngo
-Priority: optional
-Maintainer: Debian QA Group <packages@qa.debian.org>
-Build-Depends: debhelper (>= 4.0.0), ghc6 (>= 6.8.2dfsg1-1), haskell-devscripts (>= 0.6.15), haddock, libghc6-regex-compat-dev, libghc6-parsec-dev
-Standards-Version: 3.6.1
-Section: libs
-Vcs-Git: git://git.debian.org/git/users/jgoerzen/washngo
-Vcs-browser: http://git.debian.org/?p=users/jgoerzen/washngo
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.7)
+  , ghc6
+  , ghc6-prof
+  , libghc6-regex-compat-dev
+  , libghc6-regex-compat-prof
+  , libghc6-parsec2-dev
+  , libghc6-parsec2-prof
+Standards-Version: 3.8.4
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/washngo
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/washngo
 Homepage: http://www.informatik.uni-freiburg.de/~thiemann/haskell/WASH/
 
 Package: libghc6-wash-dev
-Section: libdevel
 Architecture: any
-Depends: ${haskell:Depends}, ghc6 (>= 6.8.2dfsg1), ${shlibs:Depends}
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: Web Authoring System for Haskell
  WASH is a family of embedded domain specific languages (EDSL) for
  programming Web applications. Each language is embedded in the
@@ -28,3 +41,33 @@ Description: Web Authoring System for Haskell
  WASH/HTML for dynamic generation of HTML and XHTML
  .
  WASH/Mail for email processing
+
+Package: libghc6-wash-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Web Authoring System for Haskell; profiling libraries
+ WASH is a family of embedded domain specific languages (EDSL) for
+ programming Web applications. Each language is embedded in the
+ functional language Haskell, which means that it is implemented as a
+ combinator library.
+ .
+ This package provides the library compiled with profiling enabled.
+
+Package: libghc6-wash-doc
+Section: doc
+Architecture: all
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Web Authoring System for Haskell; documentation
+ WASH is a family of embedded domain specific languages (EDSL) for
+ programming Web applications. Each language is embedded in the
+ functional language Haskell, which means that it is implemented as a
+ combinator library.
+ .
+ This package provides the documentation for the library.
