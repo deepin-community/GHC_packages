@@ -1,0 +1,30 @@
+Description: Haskore's Makefile provides a way to build its Tutorial
+ in PDF format. However, there are minor issues on the actual PDF
+ building process that need manual tweaking of the Makefile.
+Forwarded: yes
+Author: Ernesto Hernández-Novich (USB) <emhn@usb.ve>
+
+--- a/Makefile
++++ b/Makefile
+@@ -115,8 +115,9 @@
+ all:	compile
+
+ clean:
+-	-(cd build && rm `find . -name "*.hi"` `find . -name "*.o"`)
+-	-rm $(UNLIT_MODULES)
++	-(cd build && rm -f `find . -name "*.hi"` `find . -name "*.o"`)
++	-rm -f $(UNLIT_MODULES)
++	-rm -f Tutorial.* src/Doc/Tutorial.pdf src/Doc/Pics/*.pdf
+
+ test:   test-compile testcases pdf autotrack-ps cabal-haddock
+
+@@ -185,7 +186,8 @@
+	TEXINPUTS=src:src/Doc:$(TEXINPUTS) pdflatex $<
+	mkindex Tutorial
+	thumbpdf Tutorial
+-	-ln -s ../Tutorial.pdf docs/Tutorial.pdf
++	TEXINPUTS=src:src/Doc:$(TEXINPUTS) pdflatex $<
++	-ln -s Tutorial.pdf src/Doc/Tutorial.pdf
+
+ %.pdf:	%.eps
+	epstopdf $<
