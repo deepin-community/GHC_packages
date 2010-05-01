@@ -1,0 +1,98 @@
+Source: haskell-debian
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.7)
+  , ghc6
+  , ghc6-prof
+  , libghc6-bar-dev
+  , libghc6-bar-prof
+Build-Depends-Indep: ghc6-doc
+  , libghc6-bar-doc
+Standards-Version: 3.8.4
+Homepage: http://hackage.haskell.org/package/debian
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-debian
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-debian
+
+Package: libghc6-debian-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Modules for working with the Debian package system
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library includes modules covering almost every aspect of the Debian
+ packaging system, including low level data types such as version numbers
+ and dependency relations, on up to the types necessary for computing and
+ installing build dependencies, building source and binary packages,
+ and inserting them into a repository.
+
+Package: libghc6-debian-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Modules for working with the Debian package system
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library includes modules covering almost every aspect of the Debian
+ packaging system, including low level data types such as version numbers
+ and dependency relations, on up to the types necessary for computing and
+ installing build dependencies, building source and binary packages,
+ and inserting them into a repository.
+
+Package: libghc6-debian-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Modules for working with the Debian package system
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library includes modules covering almost every aspect of the Debian
+ packaging system, including low level data types such as version numbers
+ and dependency relations, on up to the types necessary for computing and
+ installing build dependencies, building source and binary packages,
+ and inserting them into a repository.
+
+Package: haskell-debian-utils
+Section: devel
+Priority: extra
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Various helpers to work with Debian packages
+ This package contains tools shipped with the Haskell library “debian”:
+ .
+   * fakechanges:
+     Sometimes you have the .debs, .dsc, .tar.gz, .diff.gz, etc from a package
+     build, but not the .changes file. This package lets you create a fake
+     .changes file in case you need one.
+ .
+   * debian-report:
+     Analyze Debian repositories and generate reports about their contents and
+     relations. For example, a list of all packages in a distribution that are
+     trumped by another distribution.
+ .
+   * cabal-debian:
+     Tool for creating debianizations of Haskell packages based on the .cabal
+     file.
+ .
+   * apt-get-build-depends:
+     Tool which will parse the Build-Depends{-Indep} lines from debian/control
+     and apt-get install the required packages
