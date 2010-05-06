@@ -42,10 +42,13 @@ Description: File type determination library for Haskell
 # This package is built for Hugs.  A GHC package is also available
 # in libghc6-magic-dev.
 
-Package: magic-haskell-doc
+Package: libghc6-magic-doc
 Section: doc
 Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
+Provides: magic-haskell-doc
+Replaces: magic-haskell-doc (<< 1.0.8-4)
+Conflicts: magic-haskell-doc (<< 1.0.8-4)
 Description: File type determination library for Haskell
  This package provides a Haskell interface to the C libmagic library.
  With it, you can determine the type of a file by examining its contents
