@@ -6,10 +6,4 @@ DEB_SETUP_GHC6_CONFIGURE_ARGS := --constraint='parsec < 3'
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
 
-build/haskell-debian-utils :: build-ghc6-stamp
 
-install/haskell-debian-utils :: build/haskell-debian-utils
-	mkdir -p debian/haskell-debian-utils/usr/bin
-	for x in apt-get-build-depends cabal-debian debian-report fakechanges; do \
-	  install -m 755 dist-ghc6/build/$$x/$$x debian/haskell-debian-utils/usr/bin/$$x; \
-	done
