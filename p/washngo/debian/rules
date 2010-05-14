@@ -5,8 +5,3 @@ DEB_BUILD_DEPENDENCIES = build-arch
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
-
-install/libghc6-$(CABAL_PACKAGE)-dev ::
-	$(DEB_SETUP_BIN_NAME) copy --builddir=dist-ghc6 --destdir=debian/libghc6-$(CABAL_PACKAGE)-dev
-	rm -rf debian/libghc6-$(CABAL_PACKAGE)-dev/usr/share/doc
-	rm -rf debian/libghc6-$(CABAL_PACKAGE)-dev/usr/bin/washc
