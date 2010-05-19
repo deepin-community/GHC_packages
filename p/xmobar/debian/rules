@@ -1,0 +1,78 @@
+#!/usr/bin/make -f
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+# Find ghc. The ghc in the path might point to some other version of
+# GHC, so use ghc6 if it exists (which it ought to when building for
+# Debian)
+GHC := $(firstword $(shell bash -c "type -p ghc6 ghc"))
+
+CONFIGURE_OPTS += --flags="with_xft"
+
+build: build-stamp
+build-stamp:
+	dh_testdir
+
+	$(GHC) --make Setup.*hs -o setup-ghc
+	./setup-ghc configure --ghc --with-compiler=$(GHC) --prefix=/usr  $(CONFIGURE_OPTS)
+	./setup-ghc build
+
+	touch $@
+
+install: install-stamp
+install-stamp: build-stamp
+	dh_testdir
+	dh_testroot
+	dh_prep
+	dh_installdirs
+
+	./setup-ghc copy --destdir=debian/tmp/
+	rm -rf debian/tmp/usr/share/xmobar-* debian/tmp/usr/share/doc/xmobar-*
+	find debian/tmp/usr/bin -type f > debian/xmobar.install
+	find debian/tmp -type d -empty >> debian/xmobar.install
+
+	touch $@
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp install-stamp binary-common-stamp
+
+	-./setup-ghc clean
+	-rm -f Setup.o Setup.hi setup-ghc
+	-rm -f debian/*.install
+
+	dh_clean
+
+# Build architecture-dependent files here.
+binary-common: binary-common-stamp
+binary-common-stamp: install-stamp
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs
+	dh_installdocs
+	dh_installexamples
+	dh_install --fail-missing
+
+	dh_installman debian/xmobar.1
+	dh_strip
+	dh_fixperms
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_compress
+	dh_md5sums
+	dh_builddeb
+
+# binary-indep and binary-arch both build everything, as otherwise
+# # "dh_install --fail-missing" falls over
+
+# Build architecture-independent files here.
+binary-indep: binary-common-stamp
+# We have nothing to do by default.
+
+# Build architecture-dependent files here.
+binary-arch: binary-common-stamp
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary-common binary install

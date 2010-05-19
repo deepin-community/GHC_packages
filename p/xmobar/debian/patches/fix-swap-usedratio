@@ -1,0 +1,11 @@
+--- xmobar-0.11.orig/Plugins/Monitors/Swap.hs
++++ xmobar-0.11/Plugins/Monitors/Swap.hs
+@@ -46,7 +46,7 @@ formatSwap x =
+     do let f1 n = showDigits 2 n
+            (hd, tl) = splitAt 3 x
+        firsts <- mapM (showWithColors f1) hd
+-       lasts <- showPercentsWithColors (map (/100) tl)
++       lasts <- showPercentsWithColors $ tl
+        return $ firsts ++ lasts
+ 
+ runSwap :: [String] -> Monitor String

@@ -1,0 +1,221 @@
+.\"                                      Hey, EMACS: -*- nroff -*-
+.\" First parameter, NAME, should be all caps
+.\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
+.\" other parameters are allowed: see man(7), man(1)
+.TH xmobar 1 "October  6, 2008"
+.\" Please adjust this date whenever revising the manpage.
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp <n>    insert n+1 empty lines
+.\" for manpage-specific macros, see man(7)
+.SH NAME
+xmobar \- A configurable and extensible status bar for X11 desktops
+.SH SYNOPSIS
+.B xmobar
+.RI [ options ] " config_file" ...
+.SH DESCRIPTION
+.PP
+\fBxmobar\fP is a minimalistic, text based, status bar. It was designed to
+work with the \fBxmonad\fP Window Manager.
+
+It was inspired by the \fBIon3\fP status bar, and supports similar features,
+like dynamic color management, output templates, and extensibility
+through plugins.
+
+\fBxmobar\fP supports XFT and UTF-8 locales.
+.\" TeX users may be more comfortable with the \fB<whatever>\fP and
+.\" \fI<whatever>\fP escape sequences to invode bold face and italics,
+.\" respectively.
+.SH OPTIONS
+\fBxmobar\fP accepts the following options.
+.TP
+.B \-h, \-\-help
+Show summary of options.
+.TP
+.B \-V, \-\-version
+Show version of program.
+.TP
+.B \-f, \-\-font=font name
+Set the font used. XFT fonts may be specified with the following notation: \-f "xft:Sans-8:bold".
+.TP
+.B \-B, \-\-bgcolor=bg color
+Sets the background color. Default is "black".
+.TP
+.B \-F, \-\-fgcolor=fg color
+Sets the foreground color. Default is "grey".
+.TP
+.B \-o, \-\-top
+Place xmobar at the top of the screen
+.TP
+.B \-b, \-\-bottom
+Place xmobar at the bottom of the screen
+.TP
+.B \-a, \-\-alignsep=sep
+Separators for left, center and right alignment. Default is "}{". See \fIOUTPUT TEMPLATES\fP for more details.
+.TP
+.B \-s, \-\-sepchar=char
+The character used to separate commands in the output template. Default is "%". See \fIOUTPUT TEMPLATES\fP for more details.
+.TP
+.B \-t, \-\-template=template
+The output template. See \fIOUTPUT TEMPLATES\fP for details on the syntax.
+.TP
+.B \-c, \-\-commands=commands
+The list of commands (or widgets) to be included. See \fICOMMANDS\fP for more details.
+
+.SH CONFIGURATION
+All options can be specified in a configuration file (~/.xmobarrc by default). See \fI/usr/share/doc/xmobar/xmobarrc-example\fP for an example. One difference between using a configuration file and the command-line options, is that the configuration file allows arbitrary placement of xmobar, using the \fBposition\fP option:
+.TP
+\fBposition\fP [Top | TopW | Bottom | BottomW | Static]
+\fBTop\fP and \fBBottom\fP are the same as \fB-o\fP and \fB-b\fP command-line options.
+
+\fBTopW\fP and \fBBottomW\fP take 2 arguments: and alignment parameter (\fBL\fP for left, \fBC\fP for centered and \fBR\fP for right) and an integer for the percentage of the screen width xmobar will occupy.
+
+\fBStatic\fP { xpos = \fIXPOS\fP, ypos = \fIYPOS\fP, width = \fIWIDTH\fP, height = \fIHEIGHT\fP } allows complete tuning of \fBxmoba\fPr's geometry.
+
+.SH OUTPUT TEMPLATES
+The output template is a format string that contains the following:
+.IP 1.
+Plain text that will appear as\-is on the status bar.
+.IP 2.
+Command identifiers, enclosed in separator characters defined by \fIsepchar\fP. See below.
+.IP 3.
+The alignment separator defined by \fIalignsep\fP, used to change the alignment.
+.IP 4.
+Special markup of the form `<fc=\fIcolor\fP>...</fc>' for color-coding the output. \fIcolor\fP is given in the standard HTML notation \fI#RRGGBB\fP.
+
+.PP 
+\fBCommand identifiers\fP
+.br
+\fBxmobar\fP will parse the template and will search for the command to be
+executed in the `commands' configuration option (see \fICOMMANDS\fP). First
+an alias will be searched for and if none is found, the command name will be
+tried. If a command is found, the arguments specified in the `commands` list
+will be used.
+
+If no matching command or alias is found in the `commands' list,
+\fBxmobar\fP will ask the operating system to execute a program with the
+name found in the template.  If the execution is not successful an error
+will be reported.
+.SH COMMANDS
+The \fIcommands\fP configuration option is a list of commands information
+and arguments to be used by \fBxmobar\fP when parsing the output template.
+Each member of the list consists in a command prefixed by the \fBRun\fP
+keyword. Each command has arguments to control the way \fBxmobar\fP is going
+to execute it.
+
+The option consists in a list of commands separated by a comma and
+enclosed by square brackets.
+
+Example:
+
+    [Run Memory ["\-t","Mem: <usedratio>%"] 10, Run Swap [] 10]
+
+to run the Memory monitor plugin with the specified template, and the
+swap monitor plugin, with default options, every second.
+
+The only internal available command is `Com' (see below Executing
+External Commands). All other commands are provided by plugins.
+\fBxmobar\fP comes with some plugins, providing a set of system monitors,
+a standard input reader, an Unix named pipe reader, and a configurable
+date plugin. These plugins install the following internal commands:
+`Weather', `Network', `Memory', `Swap', `Cpu', `Battery', `Thermal',
+`CpuFreq', `CoreTemp', `Date', `StdinReader' and `PipeReader'.
+
+.SH DEFAULT PLUGINS
+Below follows a list of the default plugins distributed with \fBxmobar\fP. \fIRefreshRate\fP is always given in 1/10 seconds.
+.TP 
+\fBWeather\fP \fIStationID Args RefreshRate\fP
+Aliases to the StationID. \fIArgs\fP is either a blank list ([]) or a template specified as ["\-t",\fItemplate\fP]. \fItemplate\fP may include the following variables: <station>, <stationState>, <year>, <month>, <day>, <hour>, <wind>, <visibility>, <skyCondition>, <tempC>, <tempF>, <dewPoint>, <rh>, <pressure>. The default \fItemplate\fP is "<station>: <tempC>C, rh <rh>% (<hour>)".
+
+\fBWeather\fP requires
+.BR curl(1)
+to retrieve weather information from \fIhttp://weather.noaaa.gov\fP.
+
+.TP
+\fBNetwork\fP \fIInterface Args RefreshRate\fP
+Aliases to \fIInterface\fP. \fIArgs\fP is either a blank list ([]) or a template specified as ["\-t","\fItemplate\fP]. \fItemplate\fP may include the variables <dev>, <rx> and <tx> and by default is "<dev>: <rx>|<tx>". 
+
+.TP
+\fBMemory\fP \fIArgs RefreshRate\fP
+Aliases to `memory'. \fIArgs\fP is either a blank list ([]) or a template specified as ["\-t","\fItemplate\fP]. \fItemplate\fP may include the variables <total>, <free>, <buffer>, <cache>, <rest>, <used>, <usedratio>. The default \fItemplate\fP is "Mem: <usedratio>% (<cache>M)". 
+
+.TP
+\fBSwap\fP \fIArgs RefreshRate\fP
+Aliases to `swap'. \fIArgs\fP is either a blank list ([]) or a template specified as ["\-t","\fItemplate\fP]. \fItemplate\fP may include the variables <total>, <used>, <free> and <usedratio>. The default \fItemplate\fP is "Swap: <usedratio>%". 
+
+.TP
+\fBCpu\fP \fIArgs RefreshRate\fP
+Aliases to `cpu'. \fIArgs\fP is either a blank list ([]) or a template specified as ["\-t","\fItemplate\fP]. \fItemplate\fP may include the variables <total>, <user>, <nice>, <system> and <idle>. The default \fItemplate\fP is "Cpu: <total>%". 
+
+.TP
+\fBBattery\fP \fIArgs RefreshRate\fP
+Aliases to `battery'. \fIArgs\fP is either a blank list ([]) or a template specified as ["\-t","\fItemplate\fP]. \fItemplate\fP may include the variable <left>. The default \fItemplate\fP is "Batt: <left>". 
+
+\fBBattery\fP calculates the cumulative energy left for up to three batteries automatically.
+
+.TP
+\fBBatteryP\fP \fIArgs Dirs RefreshRate\fP
+Same as \fBBattery\fI with the addition of \fIDirs\fP, which is a list of subdirectories of \fI/sys/class/power_supply\fP to look in for battery information. Example: ["BAT0","BAT1"]. Up to three directories may be specified.
+
+.TP
+\fBThermal\fP \fIZone Args RefreshRate\fP
+Aliases to \fIZone\fP'. \fIArgs\fP is either a blank list ([]) or a template specified as ["\-t","\fItemplate\fP]. \fItemplate\fP may include the variable <temp>. The default \fItemplate\fP is "Thm: <Temp>C". 
+
+\fBThermal\fP only works on systems with devices having thermal zones. Check /proc/acpi/thermal_zone for possible values. 
+
+
+.TP
+\fBCpuFreq\fP \fIArgs RefreshRate\fP
+Aliases to `cpufreq'. \fIArgs\fP is either a blank list ([]) or a template specified as ["\-t","\fItemplate\fP]. \fItemplate\fP may include the variables <cpu0>, <cpu1>, ..., <cpuN>. The default \fItemplate\fP is "Freq: <cpu0>GHz". Additionally, \fIArgs\fP may include the options "\-L", "\-H", "\-n", "\-l" and "\-h" and their respective arguments. "\-L" and "\-H" set the low and high CPU frequencies used to color-code the output. "\-l", "\-n" and "\-h" set the colors for low, normal and high frequency output. Example:
+   
+.nf
+   Run CpuFreq ["\-t","Freq:<cpu0>|<cpu1>GHz", "\-L","0", "\-H","2", "\-l","lightblue", "\-n","white", "\-h","red"] 50
+.fi
+
+\fBCpuFreq\fP requires the \fBacpi_cpufreq\fP kernel module to be loaded.
+
+.TP
+\fBCoreTemp\fP \fIArgs RefreshRate\fP
+Aliases to `coretemp'. \fIArgs\fP is either a blank list ([]) or a template specified as ["\-t","\fItemplate\fP]. \fItemplate\fP may include the variables <core0>, <core1>, ..., <coreN>. The default \fItemplate\fP is "Temp: <core0>C". Additionally, \fIArgs\fP may include the options "\-L", "\-H", "\-n", "\-l" and "\-h" and their respective arguments. "\-L" and "\-H" set the low and high CPU temperatures used to color-code the output. "\-l", "\-n" and "\-h" set the colors for low, normal and high temperature output. Example:
+
+.nf
+   Run CoreTemp ["\-t","Temp:<core0>|<core1>C",
+   		 "\-L","40","\-H","60",
+		 "\-l","lightblue",
+		 "\-n","gray90","\-h","red"] 50
+.fi
+
+\fBCoreTemp\fP requires the \fBcoretemp\fP kernel module to be loaded.
+
+.TP
+\fBDate\fP \fIFormat Alias RefreshRate\fP
+\fBDate\fP returns the date in the form specified by \fIFormat\fP. \fIFormat\fP is a format string similar to that of \fBstrftime\fP(3). \fIAlias\fP is the name that will hold the date output at the output template. 
+
+.TP
+\fBCom\fP \fIProgramName Args Alias RefreshRate\fP
+\fBCom\fP runs external commands and displays their output. \fIProgramName\fP is the name of the command to run, \fIArgs\fP is an array containing the arguments passed to \fIProgramName\fP and \fIAlias\fP is the alias that will hold the command output at the output profile. If \fIAlias\fP is left blank, \fIProgramName\fP can be used at the output template.
+
+.TP
+\fBStdinReader\fP
+Reads text from \fBxmobar\fP's standard input and is aliased to "StdinReader".
+
+.TP
+\fBPipeReader\fP \fIPath Alias\fP
+Reads text from a \fBfifo\fP(7). \fIPath\fP contains the path to the named pipe and \fIAlias\fP is the alias that will be used at the output template. Unlike other commands, \fBPipeReader\fP does not have a \fIRefreshRate\fP paremeter; input is read as soon as it is available in the named pipe.
+
+.SH FILES
+.I ~/.xmobarrc
+.SH SEE ALSO
+.BR xmonad (1)
+.SH AUTHOR
+xmobar was written by Andrea Rossato <andrea.rossato at ing.unitn.it>
+.PP
+This manual page was written by Apollon Oikonomopoulos <apoikos@gmail.com>,
+for the Debian project (but may be used by others), largely based on the original xmobar documentation by Andrea Rossato.
