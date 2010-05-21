@@ -1,0 +1,99 @@
+Source: haskell-criterion
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Marco Túlio Gontijo e Silva <marcot@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.7)
+  , ghc6
+  , ghc6-prof
+  , libghc6-deepseq-dev (>= 1.1.0.0)
+  , libghc6-deepseq-prof
+  , libghc6-mtl-dev
+  , libghc6-mtl-prof
+  , libghc6-mwc-random-dev (>= 0.5.0.0)
+  , libghc6-mwc-random-prof
+  , libghc6-parallel-dev
+  , libghc6-parallel-prof
+  , libghc6-parsec3-dev (>= 3.1.0)
+  , libghc6-parsec3-prof
+  , libghc6-statistics-dev (>= 0.5.0.0)
+  , libghc6-statistics-prof
+  , libghc6-vector-dev (>= 0.5)
+  , libghc6-vector-prof
+  , libghc6-vector-algorithms-dev (>= 0.3)
+  , libghc6-vector-algorithms-prof
+Build-Depends-Indep: ghc6-doc
+  , libghc6-deepseq-doc
+  , libghc6-mtl-doc
+  , libghc6-mwc-random-doc
+  , libghc6-parallel-doc
+  , libghc6-parsec3-doc
+  , libghc6-statistics-doc
+  , libghc6-vector-doc
+  , libghc6-vector-algorithms-doc
+Standards-Version: 3.8.4
+Homepage: http://hackage.haskell.org/package/criterion
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-criterion
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-criterion
+
+Package: libghc6-criterion-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Robust, reliable performance measurement and analysis
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library provides a powerful but simple way to measure the performance of
+ Haskell code.  It provides both a framework for executing and analysing
+ benchmarks and a set of driver functions that makes it easy to build and run
+ benchmarks, and to analyse their results.
+ .
+ The fastest way to get started is to read the documentation and examples in
+ the Criterion.Main module.
+
+Package: libghc6-criterion-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Robust, reliable performance measurement and analysis; profiling libraries
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library provides a powerful but simple way to measure the performance of
+ Haskell code.  It provides both a framework for executing and analysing
+ benchmarks and a set of driver functions that makes it easy to build and run
+ benchmarks, and to analyse their results.
+ .
+ The fastest way to get started is to read the documentation and examples in
+ the Criterion.Main module.
+
+Package: libghc6-criterion-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Robust, reliable performance measurement and analysis; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library provides a powerful but simple way to measure the performance of
+ Haskell code.  It provides both a framework for executing and analysing
+ benchmarks and a set of driver functions that makes it easy to build and run
+ benchmarks, and to analyse their results.
+ .
+ The fastest way to get started is to read the documentation and examples in
+ the Criterion.Main module.
