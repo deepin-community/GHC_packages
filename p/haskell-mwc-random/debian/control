@@ -1,0 +1,93 @@
+Source: haskell-mwc-random
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: John Maintainer <maintainer@example.com>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.7)
+  , ghc6
+  , ghc6-prof
+  , libghc6-primitive-dev
+  , libghc6-primitive-prof
+  , libghc6-vector-dev (>= 0.5)
+  , libghc6-vector-prof
+Build-Depends-Indep: ghc6-doc
+  , libghc6-primitive-doc
+  , libghc6-vector-doc
+Standards-Version: 3.8.4
+Homepage: http://hackage.haskell.org/package/mwc-random
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-mwc-random
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-mwc-random
+
+Package: libghc6-mwc-random-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Fast, high quality pseudo random number generation
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This package contains code for generating high quality random numbers that
+ follow either a uniform or normal distribution. The generated numbers are
+ suitable for use in statistical applications.
+ .
+ The uniform PRNG uses Marsaglia's MWC256 (also known as MWC8222)
+ multiply-with-carry generator, which has a period of 2^8222 and fares well in
+ tests of randomness. It is also extremely fast, between 2 and 3 times faster
+ than the Mersenne Twister.
+ .
+ Compared to the mersenne-random package, this package has a more convenient
+ API, is faster, and supports more statistical distributions.
+
+Package: libghc6-mwc-random-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Fast, high quality pseudo random number generation; profiling libraries
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This package contains code for generating high quality random numbers that
+ follow either a uniform or normal distribution. The generated numbers are
+ suitable for use in statistical applications.
+ .
+ The uniform PRNG uses Marsaglia's MWC256 (also known as MWC8222)
+ multiply-with-carry generator, which has a period of 2^8222 and fares well in
+ tests of randomness. It is also extremely fast, between 2 and 3 times faster
+ than the Mersenne Twister.
+ .
+ Compared to the mersenne-random package, this package has a more convenient
+ API, is faster, and supports more statistical distributions.
+
+Package: libghc6-mwc-random-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Fast, high quality pseudo random number generation; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This package contains code for generating high quality random numbers that
+ follow either a uniform or normal distribution. The generated numbers are
+ suitable for use in statistical applications.
+ .
+ The uniform PRNG uses Marsaglia's MWC256 (also known as MWC8222)
+ multiply-with-carry generator, which has a period of 2^8222 and fares well in
+ tests of randomness. It is also extremely fast, between 2 and 3 times faster
+ than the Mersenne Twister.
+ .
+ Compared to the mersenne-random package, this package has a more convenient
+ API, is faster, and supports more statistical distributions.
