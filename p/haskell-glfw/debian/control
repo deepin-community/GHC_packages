@@ -1,0 +1,55 @@
+Source: haskell-glfw
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Ernesto Hernández-Novich (USB) <emhn@usb.ve>
+Build-Depends: debhelper (>= 7), cdbs, haskell-devscripts (>= 0.7),
+ ghc6, ghc6-prof,
+ libghc6-opengl-dev, libghc6-opengl-prof,
+ libglfw-dev, libxrandr-dev
+Build-Depends-Indep: ghc6-doc
+Standards-Version: 3.8.4
+Homepage: http://hackage.haskell.org/package/GLFW
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-glfw
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=haskell/haskell-glfw
+
+Package: libghc6-glfw-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Haskell GLFW binding for GHC
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library provides bindings for GLFW, a window system independent
+ toolkit for writing OpenGL programs.
+
+Package: libghc6-glfw-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Haskell GLFW binding for GHC; profiling libraries
+ This package provides a library for the Haskell programming language
+ compiled for profiling.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library provides bindings for GLFW, a window system independent
+ toolkit for writing OpenGL programs.
+
+Package: libghc6-glfw-doc
+Section: doc
+Architecture: all
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Haskell GLFW binding for GHC; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library provides bindings for GLFW, a window system independent
+ toolkit for writing OpenGL programs.
