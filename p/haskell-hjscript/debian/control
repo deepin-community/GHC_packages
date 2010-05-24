@@ -1,0 +1,93 @@
+Source: haskell-hjscript
+Priority: extra
+Section: haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Giovanni Mascellani <mascellani@poisson.phc.unipi.it>
+Build-Depends:
+ debhelper (>= 7),
+ haskell-devscripts,
+ cdbs,
+ ghc6,
+ ghc6-prof,
+ libghc6-mtl-dev,
+ libghc6-mtl-prof,
+ libghc6-hjavascript-dev (>= 0.4.6),
+ libghc6-hjavascript-prof (>= 0.4.6),
+ libghc6-hsx-dev (>= 0.7.0),
+ libghc6-hsx-prof (>= 0.7.0)
+Build-Depends-Indep:
+ ghc6-doc,
+ libghc6-mtl-doc,
+ libghc6-hjavascript-doc (>= 0.4.6),
+ libghc6-hsx-doc (>= 0.7.0)
+Standards-Version: 3.8.4
+Homepage: http://hackage.haskell.org/package/hjscript
+Vcs-Darcs: http://darcs.debian.org/darcs/pkg-haskell/haskell-hjscript
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-hjscript
+
+Package: libghc6-hjscript-dev
+Architecture: any
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Provides: ${haskell:Provides}
+Description: Haskell DSL for writing JavaScript programs - GHC 6 libraries
+ HJScript is a DSL (domain-specific language) built on top of
+ HJavaScript, for writing client-side dynamic web pages. The programming
+ model is fairly low-level, resembling the actual JavaScript code quite a
+ lot, but should be easy to extend with higher-level functionality.
+ Notable is that HJScript supports the use of literal XML syntax, as
+ defined by the hsx package, for creating DOM ElementNodes. Also notable
+ is that HJScript supports Ajax functionality.
+ .
+ If you don't know what Haskell and all these concepts are, you can just
+ ignore this package.
+ .
+ This package contains the libraries compiled for GHC 6.
+
+Package: libghc6-hjscript-prof
+Architecture: any
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Provides: ${haskell:Provides}
+Description: Haskell DSL for writing JavaScript programs - GHC 6 profiling libraries
+ HJScript is a DSL (domain-specific language) built on top of
+ HJavaScript, for writing client-side dynamic web pages. The programming
+ model is fairly low-level, resembling the actual JavaScript code quite a
+ lot, but should be easy to extend with higher-level functionality.
+ Notable is that HJScript supports the use of literal XML syntax, as
+ defined by the hsx package, for creating DOM ElementNodes. Also notable
+ is that HJScript supports Ajax functionality.
+ .
+ If you don't know what Haskell and all these concepts are, you can just
+ ignore this package.
+ .
+ This package contains the profiling libraries compiled for GHC 6.
+
+Package: libghc6-hjscript-doc
+Section: doc
+Architecture: all
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Description: Haskell DSL for writing JavaScript programs - documentation
+ HJScript is a DSL (domain-specific language) built on top of
+ HJavaScript, for writing client-side dynamic web pages. The programming
+ model is fairly low-level, resembling the actual JavaScript code quite a
+ lot, but should be easy to extend with higher-level functionality.
+ Notable is that HJScript supports the use of literal XML syntax, as
+ defined by the hsx package, for creating DOM ElementNodes. Also notable
+ is that HJScript supports Ajax functionality.
+ .
+ If you don't know what Haskell and all these concepts are, you can just
+ ignore this package.
+ .
+ This package contains the library documentation.
