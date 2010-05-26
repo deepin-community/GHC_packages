@@ -1,0 +1,26 @@
+Source: gtk2hs-buildtools
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Marco Túlio Gontijo e Silva <marcot@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.7)
+  , ghc6
+  , alex
+  , happy
+Standards-Version: 3.8.4
+Homepage: http://www.haskell.org/gtk2hs/
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/gtk2hs-buildtools
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/gtk2hs-buildtools
+
+Package: gtk2hs-buildtools
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Tools to build the Gtk2Hs suite of User Interface libraries
+ This package provides a set of helper programs necessary to build the Gtk2Hs
+ suite of libraries. These tools include a modified c2hs binding tool that is
+ used to generate FFI declarations, a tool to build a type hierarchy that
+ mirrors the C type hierarchy of GObjects found in glib, and a generator for
+ signal declarations that are used to call back from C to Haskell. These tools
+ are not needed to actually run Gtk2Hs programs.

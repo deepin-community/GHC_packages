@@ -1,0 +1,380 @@
+Description: Manpages for the binaries
+ This package ships 3 binaries without manpages.  This patch includes the
+ manpages and changes the build system to install them
+Forwarded:
+ http://sourceforge.net/mailarchive/message.php?msg_name=1274804868-sup-9859%40zezinho
+ http://sourceforge.net/mailarchive/message.php?msg_name=1274874328-sup-8367%40zezinho
+Author: Marco Túlio Gontijo e Silva <marcot@debian.org>
+Last-Update: 2010-05-26
+Index: gtk2hs-buildtools-0.9/Setup.hs
+===================================================================
+--- gtk2hs-buildtools-0.9.orig/Setup.hs	2010-05-26 10:11:38.000000000 -0300
++++ gtk2hs-buildtools-0.9/Setup.hs	2010-05-26 10:13:46.000000000 -0300
+@@ -1,6 +1,42 @@
+ module Main (main) where
+
+-import Distribution.Simple
++-- Cabal
++import Distribution.PackageDescription (PackageDescription)
++import Distribution.Simple (defaultMainWithHooks, simpleUserHooks)
++import Distribution.Simple.InstallDirs (CopyDest (..), mandir)
++import Distribution.Simple.LocalBuildInfo (LocalBuildInfo, absoluteInstallDirs)
++import
++  Distribution.Simple.Setup
++  (copyDest, copyVerbosity, fromFlag, installVerbosity)
++import Distribution.Verbosity (Verbosity)
++import Distribution.Simple.UserHooks (UserHooks (..))
++import Distribution.Simple.Utils (copyFiles)
++import System.FilePath ((</>))
+
+ main :: IO ()
+-main = defaultMain
++main
++  = defaultMainWithHooks
++    $ simpleUserHooks
++      {postCopy
++          = \ _ flags pkg lbi
++            -> installManpages pkg lbi (fromFlag $ copyVerbosity flags)
++              $ fromFlag $ copyDest flags
++        , postInst
++          = \ _ flags pkg lbi ->
++             installManpages
++               pkg
++               lbi
++               (fromFlag $ installVerbosity flags)
++               NoCopyDest}
++
++manpages :: [FilePath]
++manpages = ["gtk2hsC2hs.1", "gtk2hsHookGenerator.1", "gtk2hsTypeGen.1"]
++
++manDir :: FilePath
++manDir = "man"
++
++installManpages
++  :: PackageDescription -> LocalBuildInfo -> Verbosity -> CopyDest -> IO ()
++installManpages pkg lbi verbosity copy
++  = copyFiles verbosity (mandir (absoluteInstallDirs pkg lbi copy) </> "man1")
++    $ zip (repeat manDir) manpages
+Index: gtk2hs-buildtools-0.9/man/gtk2hsC2hs.1
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ gtk2hs-buildtools-0.9/man/gtk2hsC2hs.1	2010-05-26 09:04:20.000000000 -0300
+@@ -0,0 +1,158 @@
++.\" Hey Emacs! This file is -*- nroff -*- source.
++.\"
++.\" Version $Revision: 0.1 $ from $Date: 2010/05/25 14:07:21 $
++.\"
++.TH GTK2HSC2HS 1 "November 2004" "Version 0.13.4 (gtk2hs branch)" C\->Haskell
++.SH NAME
++gtk2hsC2hs \- C->Haskell Interface Generator
++
++.SH SYNOPSIS
++.B gtk2hsC2hs
++.RB [ OPTIONS ]...
++[
++.I header-file
++]
++.I binding-file
++
++.SH DESCRIPTION
++This manual page briefly describes the
++.B gtk2hsC2hs
++command.  It's a modified version of the \fBc2hs\fR(1) command, which is a
++helper program necessary to build the Gtk2Hs suite of libraries.
++.PP
++
++.SH OPTIONS
++The programs follow the usual GNU command line syntax, with long options
++starting with two dashes (`-'). A summary of options are included below. For
++a complete description, see the other documentation.
++
++.B gtk2hsC2hs
++accepts the following options:
++.TP
++.B  \-h, \-?, \-\-help
++brief help
++.TP
++.B  \-v, \-\-version
++show version information
++.TP
++.BI \-c \ CPP\fR, \ \-\-cpp= CPP
++use executable \fICPP\fR to invoke C preprocessor
++.TP
++.BR \-C \ CPPOPTS\fR, \ \-\-cppopts= CPPOPTS
++pass CPPOPTS to the C preprocessor
++.TP
++.BI \-o \ FILE\fR, \ \-\-output= FILE
++output result to \fIFILE\fR (should end in \fI.hs\fR)
++.TP
++.BI \-t \ PATH\fR, \ \-\-output\-dir= PATH
++place generated files in PATH
++.TP
++.B  \-p \ PLATFORM, \-\-platform=PLATFORM
++platform to use for cross compilation
++.TP
++.B  \-k, \-\-keep
++keep pre-processed C header
++.TP
++.B  \-l \ NAME, \-\-lock=NAME
++wrap each foreign call with the function NAME
++.TP
++.BR \-d \ TYPE\fR, \ \-\-dump= TYPE
++dump internal information (for debugging), where TYPE is one of:
++.RS
++.IP "\(bu \fBtrace\fR" 10
++trace compiler phases
++.IP "\(bu \fBgenbind\fR"   10
++trace binding generation
++.IP "\(bu \fBctrav\fR"   10
++trace C declaration traversal
++.IP "\(bu \fBchs\fR"   10
++dump the binding file (adds \fI.dump\fR to the name)
++.RE
++.PP
++
++.I header-file
++is the header file belonging to the marshalled library. It must end with
++suffix
++.IR .h .
++
++.I binding-file
++is the corresponding Haskell binding file, which must end with suffix
++.IR .chs .
++
++.I PLATFORM
++The platform name can be one of:
++.IR x86_64-linux .
++.IR i686-linux .
++.IR m68k-palmos .
++This allows for cross-compilation, assuming the rest of your toolchain supports
++that. The default is the current host platform.
++
++The most useful of these options is probably
++.B  \-\-cppopts
++(or
++.BR \-C ).
++If the C header file needs any special options (like \-D or \-I) to go
++through the C pre-processor, here is the place to pass them.
++
++.SH EXAMPLES
++
++When used directly,
++.B gtk2hsC2hs
++is usually called as:
++
++.B gtk2hsC2hs
++.I lib.h Lib.chs
++
++where
++.I  lib.h
++is the header file and
++.I  Lib.chs
++the Haskell binding module, which define the C- and Haskell-side interface,
++respectively.  If no errors occur, the result is a pure Haskell module
++.IR Lib.hs ,
++which implements the Haskell API of the library.
++
++A more advanced call may look like this:
++
++.BR "gtk2hsC2hs" \ \-\-cppopts=\-I\fI/some/obscure/dir\fR
++\-\-cppopts=\-DEXTRA
++.I lib.h Lib.chs
++
++Often,
++.I  lib.h
++will not be in the current directory, but in one of the header file
++directories.  Apart from the current directory, C->Haskell looks in two
++places for the header: first, in the standard include directory of the used
++system, this is usually
++.IR /usr/include " and " /usr/local/include ;
++and second, it will look in every directory that is mentioned in a
++.RI \-I DIR
++option passed to the pre-processor via
++.BR \-\-cppopts .
++
++.SH CAVEATS
++If you have more than one option that you want to
++give to the pre-processor, use multiple
++.BR \-\-cppopts= \ flags.
++
++.SH "BUGS"
++
++Please report bugs and feature requests in the Gtk2Hs trac
++
++.I http://hackage.haskell.org/trac/gtk2hs/
++
++or to the Gtk2Hs mailing list
++.I gtk2hs-devel@lists.sourceforge.net
++
++.SH COPYRIGHT
++C->Haskell Compiler, version 0.13.4 (gtk2hs branch) Copyright (c) [1999..2004]
++Manuel M T Chakravarty <chak@cse.unsw.edu.au>
++
++.SH AUTHOR
++This page was addapted from the \fBc2hs\fR(1) manpage, by Marco Túlio Gontijo e
++Silva <marcot@debian.org> for the Debian GNU/Linux system (but may be used by
++others), which was mainly assembled from the original documentation of c2hs.
++
++The \fBc2hs\fR(1) was written by Michael Weber
++<michael.weber@post.rwth-aachen.de> for the Debian GNU/Linux system (but may be
++used by others).
+Index: gtk2hs-buildtools-0.9/man/gtk2hsHookGenerator.1
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ gtk2hs-buildtools-0.9/man/gtk2hsHookGenerator.1	2010-05-26 09:04:20.000000000 -0300
+@@ -0,0 +1,62 @@
++.\" Hey Emacs! This file is -*- nroff -*- source.
++.\"
++.\" Version $Revision: 0.1 $ from $Date: 2010/05/25 14:07:21 $
++.\"
++.TH GTK2HSHOOKGENERATOR 1
++.SH NAME
++gtk2hsHookGenerator \- Program to generate callback hook for Gtk signals
++
++.SH SYNOPSIS
++.B gtk2hsHookGenerator
++.RB [\| \-\-template\|\c
++.RI \|= template\-file \|]
++.RB \-\-types\|\c
++.RI \|= types\-file
++.RB [\| \-\-import\|\c
++.RI \|= import \|]
++.RB \-\-modname\|\c
++.RI \|= moduleName
++>
++.RI outFile
++
++.SH DESCRIPTION
++This manual page briefly describes the
++.B gtk2hsHookGenerator
++command.  It's a helper program necessary to build the Gtk2Hs suite of
++libraries.
++.PP
++
++.SH OPTIONS
++The programs follow the usual GNU command line syntax, with long options
++starting with two dashes (`-'). A summary of options are included below. For
++a complete description, see the other documentation.
++
++.B gtk2hsHookGenerator
++accepts the following options:
++.TP
++.BI \-\-template= template-file
++specify a path to the Signal.chs.template file
++.TP
++.BI \-\-types= types-file
++specify a path a gtkmarshal.list file
++.TP
++.BI \-\-import= import
++specify a module to be imported into the template file
++.TP
++.BI \-\-modname= moduleName
++the module name for
++. I outFile
++
++.SH "BUGS"
++
++Please report bugs and feature requests in the Gtk2Hs trac
++
++.I http://hackage.haskell.org/trac/gtk2hs/
++
++or to the Gtk2Hs mailing list
++.I gtk2hs-devel@lists.sourceforge.net
++
++.SH AUTHOR
++This page was addapted from the \fBgtk2hsC2hs\fR(1) manpage, by Marco Túlio
++Gontijo e Silva <marcot@debian.org> for the Debian GNU/Linux system (but may be
++used by others).
+Index: gtk2hs-buildtools-0.9/man/gtk2hsTypeGen.1
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ gtk2hs-buildtools-0.9/man/gtk2hsTypeGen.1	2010-05-26 09:04:20.000000000 -0300
+@@ -0,0 +1,88 @@
++.\" Hey Emacs! This file is -*- nroff -*- source.
++.\"
++.\" Version $Revision: 0.1 $ from $Date: 2010/05/25 14:07:21 $
++.\"
++.TH GTK2HSTYPEGEN 1
++.SH NAME
++gtk2hsTypeGen \- Program to generate Gtk's object hierarchy in Haskell
++
++.SH SYNOPSIS
++.B gtk2hsTypeGen
++.RB [\| \-\-tag\|\c
++.RI \|= tag \ ...]
++.RB [\| \-\-lib\|\c
++.RI \|= lib \|]
++.RB [\| \-\-prefix\|\c
++.RI \|= prefix \|]
++.RB [\| \-\-modname\|\c
++.RI \|= modName \|]
++.RB [\| \-\-import\|\c
++.RI \|=[*] importName \ ...]
++.RB [\| \-\-forward\|\c
++.RI \|=[*] fwdName \ ...]
++.RB [\| \-\-destructor\|\c
++.RI \|= destrName \|]
++.RB [\| \-\-hierarchy\|\c
++.RI \|= hierName \|]
++
++.SH DESCRIPTION
++This manual page briefly describes the
++.B gtk2hsTypeGen
++command.  It's a helper program necessary to build the Gtk2Hs suite of
++libraries.
++.PP
++
++.SH OPTIONS
++The programs follow the usual GNU command line syntax, with long options
++starting with two dashes (`-'). A summary of options are included below. For
++a complete description, see the other documentation.
++
++.B gtk2hsTypeGen
++accepts the following options:
++.TP
++.BI \-\-tag= tag
++generate entries that have the tag
++.I tag.
++Specify `default' for types without tags
++.TP
++.BI \-\-lib= lib
++set the lib to use in the c2hs {#context #} declaration (the default is `gtk')
++.TP
++.BI \-\-prefix= prefix
++set the prefix to use in the c2hs {#context #} declaration (the default is
++`gtk')
++.TP
++.BI \-\-modname= modName
++specify module name if it does not match the file name, eg a hierarchical
++module name
++.TP
++.BI \-\-import="[*]" importName
++additionally import this module without re-exporting it.  Use an asterix as
++prefix if the import should be a .chs import statement, as well as exported
++from the generated module.
++.TP
++.BI \-\-forward="[*]" fwdName
++specify a number of modules that are imported.    Use an asterix as
++prefix if the import should be a .chs import statement, as well as exported
++from the generated module.
++.TP
++.BI \-\-destructor= destrName
++specify a non-standard C function pointer that is called to destroy the objects
++.TP
++.BI \-\-hierarchy= hierName
++the name of the file containing the hierarchy list, defaults to the built-in
++list
++
++.SH "BUGS"
++
++Please report bugs and feature requests in the Gtk2Hs trac
++
++.I http://hackage.haskell.org/trac/gtk2hs/
++
++or to the Gtk2Hs mailing list
++.I gtk2hs-devel@lists.sourceforge.net
++
++.SH AUTHOR
++This page was addapted from the \fBgtk2hsHookGenerator\fR(1) manpage, by Marco
++Túlio Gontijo e Silva <marcot@debian.org> for the Debian GNU/Linux system (but
++may be used by others).
