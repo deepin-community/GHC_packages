@@ -1,0 +1,75 @@
+Source: haskell-hsp
+Priority: extra
+Section: haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Giovanni Mascellani <mascellani@poisson.phc.unipi.it>
+Build-Depends:
+ debhelper (>= 7),
+ haskell-devscripts,
+ cdbs,
+ ghc6,
+ ghc6-prof,
+ libghc6-mtl-dev,
+ libghc6-mtl-prof,
+ libghc6-hsx-dev (>= 0.7.0),
+ libghc6-hsx-prof (>= 0.7.0),
+ libghc6-hjscript-dev (>= 0.5.0),
+ libghc6-hjscript-prof (>= 0.5.0)
+Build-Depends-Indep:
+ ghc6-doc,
+ libghc6-mtl-doc,
+ libghc6-hsx-doc (>= 0.7.0),
+ libghc6-hjscript-doc (>= 0.5.0)
+Standards-Version: 3.8.4
+Homepage: http://hackage.haskell.org/package/hsp
+Vcs-Darcs: http://darcs.debian.org/darcs/pkg-haskell/haskell-hsp
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-hsp
+
+Package: libghc6-hsp-dev
+Architecture: any
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Provides: ${haskell:Provides}
+Description: Haskell library for writing dynamic server-side web pages - GHC 6 libraries
+ Haskell Server Pages (HSP) is an extension of vanilla Haskell, targetted
+ at the task of writing dynamic server-side web pages. Features include
+ an embedded XML syntax and a (low-to-mid-level) programming model for
+ writing dynamic web pages.
+ .
+ This package contains the libraries compiled for GHC 6.
+
+Package: libghc6-hsp-prof
+Architecture: any
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Provides: ${haskell:Provides}
+Description: Haskell library for writing dynamic server-side web pages - GHC 6 profiling libraries
+ Haskell Server Pages (HSP) is an extension of vanilla Haskell, targetted
+ at the task of writing dynamic server-side web pages. Features include
+ an embedded XML syntax and a (low-to-mid-level) programming model for
+ writing dynamic web pages.
+ .
+ This package contains the profiling libraries compiled for GHC 6.
+
+Package: libghc6-hsp-doc
+Section: doc
+Architecture: all
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Description: Haskell library for writing dynamic server-side web pages - documentation
+ Haskell Server Pages (HSP) is an extension of vanilla Haskell, targetted
+ at the task of writing dynamic server-side web pages. Features include
+ an embedded XML syntax and a (low-to-mid-level) programming model for
+ writing dynamic web pages.
+ .
+ This package contains the library documentation.
