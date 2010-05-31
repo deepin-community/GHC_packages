@@ -1,0 +1,63 @@
+Source: haskell-smtpclient
+Priority: extra
+Section: haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Giovanni Mascellani <mascellani@poisson.phc.unipi.it>
+Build-Depends:
+ debhelper (>= 7),
+ haskell-devscripts,
+ cdbs,
+ ghc6,
+ ghc6-prof,
+ libghc6-hsemail-dev,
+ libghc6-hsemail-prof
+Build-Depends-Indep:
+ ghc6-doc,
+ libghc6-hsemail-doc
+Standards-Version: 3.8.4
+Homepage: http://hackage.haskell.org/package/smtpclient
+Vcs-Darcs: http://darcs.debian.org/darcs/pkg-haskell/haskell-smtpclient
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-smtpclient
+
+Package: libghc6-smtpclient-dev
+Architecture: any
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Provides: ${haskell:Provides}
+Description: Simple Haskell SMTP client library - GHC 6 libraries
+ This Haskell library is a simple SMTP client, making the task of
+ sending an email as easy as calling a function.
+ .
+ This package contains the libraries compiled for GHC 6.
+
+Package: libghc6-smtpclient-prof
+Architecture: any
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Provides: ${haskell:Provides}
+Description: Simple Haskell SMTP client library - GHC 6 profiling libraries
+ This Haskell library is a simple SMTP client, making the task of
+ sending an email as easy as calling a function.
+ .
+ This package contains the profiling libraries compiled for GHC 6.
+
+Package: libghc6-smtpclient-doc
+Section: doc
+Architecture: all
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Description: Simple Haskell SMTP client library - documentation
+ This Haskell library is a simple SMTP client, making the task of
+ sending an email as easy as calling a function.
+ .
+ This package contains the library documentation.
