@@ -1,0 +1,78 @@
+Source: haskell-svgcairo
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Marco Túlio Gontijo e Silva <marcot@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.7)
+  , ghc6
+  , ghc6-prof
+  , libghc6-mtl-dev
+  , libghc6-mtl-prof
+  , libghc6-glib-dev (>= 0.11)
+  , libghc6-glib-dev (<< 0.12)
+  , libghc6-glib-prof
+  , libghc6-cairo-dev (>= 0.11)
+  , libghc6-cairo-dev (<< 0.12)
+  , libghc6-cairo-prof
+  , libghc6-pango-dev (>= 0.11)
+  , libghc6-pango-dev (<< 0.12)
+  , libghc6-pango-prof
+  , libghc6-gtk-dev (>= 0.11)
+  , libghc6-gtk-dev (<< 0.12)
+  , libghc6-gtk-prof
+  , gtk2hs-buildtools
+  , librsvg2-dev
+Build-Depends-Indep: ghc6-doc
+  , libghc6-mtl-doc
+  , libghc6-glib-doc
+  , libghc6-cairo-doc
+  , libghc6-pango-doc
+  , libghc6-gtk-doc
+Standards-Version: 3.8.4
+Homepage: http://hackage.haskell.org/package/svgcairo
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-svgcairo
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-svgcairo
+
+Package: libghc6-svgcairo-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+  , librsvg2-dev
+Recommends: ${haskell:Recommends}
+Suggests: svgcairo, ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Binding to the libsvg-cairo library
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ Svgcairo is used to render SVG with cairo.
+
+Package: libghc6-svgcairo-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Binding to the libsvg-cairo library; profiling libraries
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ Svgcairo is used to render SVG with cairo.
+
+Package: libghc6-svgcairo-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Binding to the libsvg-cairo library; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ Svgcairo is used to render SVG with cairo.
