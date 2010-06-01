@@ -9,11 +9,18 @@ Build-Depends:
  cdbs,
  ghc6,
  ghc6-prof,
- libghc6-hsemail-dev,
- libghc6-hsemail-prof
+ libghc6-hsemail-dev (>= 1.6),
+ libghc6-hsemail-prof (>= 1.6),
+ libghc6-network-dev,
+ libghc6-network-prof
 Build-Depends-Indep:
  ghc6-doc,
- libghc6-hsemail-doc
+ libghc6-hsemail-doc (>= 1.6),
+ libghc6-network-doc
+Build-Conflicts:
+ libghc6-hsemail-dev (>= 1.7),
+ libghc6-hsemail-prof (>= 1.7),
+ libghc6-hsemail-doc (>= 1.7)
 Standards-Version: 3.8.4
 Homepage: http://hackage.haskell.org/package/smtpclient
 Vcs-Darcs: http://darcs.debian.org/darcs/pkg-haskell/haskell-smtpclient
