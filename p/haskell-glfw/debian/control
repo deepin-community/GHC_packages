@@ -5,9 +5,10 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Ernesto Hernández-Novich (USB) <emhn@usb.ve>
 Build-Depends: debhelper (>= 7), cdbs, haskell-devscripts (>= 0.7),
  ghc6, ghc6-prof,
- libghc6-opengl-dev, libghc6-opengl-prof,
+ libghc6-opengl-dev (>= 2.1), libghc6-opengl-dev (<< 3),
+ libghc6-opengl-prof,
  libglfw-dev, libxrandr-dev
-Build-Depends-Indep: ghc6-doc
+Build-Depends-Indep: ghc6-doc, libghc6-opengl-doc
 Standards-Version: 3.8.4
 Homepage: http://hackage.haskell.org/package/GLFW
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-glfw
@@ -15,7 +16,8 @@ Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=haskell/haskell-glfw
 
 Package: libghc6-glfw-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends},
+ libglfw-dev, libxrandr-dev
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
