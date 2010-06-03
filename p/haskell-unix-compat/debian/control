@@ -1,0 +1,66 @@
+Source: haskell-unix-compat
+Priority: extra
+Section: haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Giovanni Mascellani <gio@debian.org>
+Build-Depends:
+ debhelper (>= 7),
+ haskell-devscripts,
+ cdbs,
+ ghc6,
+ ghc6-prof
+Build-Depends-Indep:
+ ghc6-doc
+Standards-Version: 3.8.4
+Homepage: http://hackage.haskell.org/package/unix-compat
+Vcs-Darcs: http://darcs.debian.org/darcs/pkg-haskell/haskell-unix-compat
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-unix-compat
+
+Package: libghc6-unix-compat-dev
+Architecture: any
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Provides: ${haskell:Provides}
+Description: Haskell portable POSIX-compatible layer - GHC 6 libraries
+ This package provides portable Haskell implementations of some POSIX
+ system calls contained in the unix package. This package re-exports the
+ unix package when available. When it isn't available, portable
+ implementations are used.
+ .
+ This package contains the libraries compiled for GHC 6.
+
+Package: libghc6-unix-compat-prof
+Architecture: any
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Provides: ${haskell:Provides}
+Description: Haskell portable POSIX-compatible layer - GHC 6 profiling libraries
+ This package provides portable Haskell implementations of some POSIX
+ system calls contained in the unix package. This package re-exports the
+ unix package when available. When it isn't available, portable
+ implementations are used.
+ .
+ This package contains the profiling libraries compiled for GHC 6.
+
+Package: libghc6-unix-compat-doc
+Section: doc
+Architecture: all
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Description: Haskell portable POSIX-compatible layer - documentation
+ This package provides portable Haskell implementations of some POSIX
+ system calls contained in the unix package. This package re-exports the
+ unix package when available. When it isn't available, portable
+ implementations are used.
+ .
+ This package contains the library documentation.
