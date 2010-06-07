@@ -1,0 +1,35 @@
+Source: bluetile
+Section: x11
+Priority: optional
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.7)
+  , ghc6
+  , ghc6-prof
+  , libghc6-xmonad-dev (>= 0.9.1)
+  , libghc6-xmonad-contrib-dev (>= 0.9.1)
+  , libghc6-x11-dev (>= 1.4)
+  , libghc6-gtk-dev
+  , libghc6-glade-dev
+Standards-Version: 3.8.4
+Homepage: http://hackage.haskell.org/package/bluetile
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/bluetile
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/bluetile
+
+Package: bluetile
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: modern tiling window manager with a gentle learning curve
+ Bluetile is a tiling window manager for X based on xmonad. Windows are
+ arranged to use the entire screen without overlapping. Bluetile's focus lies
+ on making the tiling paradigm easily accessible to users coming from
+ traditional window managers by drawing on known conventions and providing both
+ mouse and keyboard access for all features. It also tries to be usable 'out of
+ the box', requiring minimal to no configuration in most cases.
