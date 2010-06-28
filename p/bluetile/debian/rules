@@ -9,12 +9,7 @@ build/$(CABAL_PACKAGE) :: build-ghc6-stamp
 
 install/$(CABAL_PACKAGE) :: build/$(CABAL_PACKAGE)
 	dh_installwm
-	mkdir -p debian/$(CABAL_PACKAGE)/usr/lib/bluetile
 	$(DEB_SETUP_BIN_NAME) copy --builddir=dist-ghc6 --destdir=debian/$(CABAL_PACKAGE)
-	mv debian/$(CABAL_PACKAGE)/usr/bin/bluetiledock \
-	   debian/$(CABAL_PACKAGE)/usr/bin/bluetilemockwin \
-	   debian/$(CABAL_PACKAGE)/usr/bin/bluetilegreet \
-	   debian/$(CABAL_PACKAGE)/usr/lib/bluetile/
 	rm -rf debian/$(CABAL_PACKAGE)/usr/share/doc
 	install -D -m 0644 misc/gnome-bluetile-session.desktop debian/bluetile/usr/share/xsessions/gnome-bluetile.desktop
 	install -D -m 0644 misc/bluetile.desktop debian/bluetile/usr/share/applications/bluetile.desktop
