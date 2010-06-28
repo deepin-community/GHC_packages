@@ -16,7 +16,8 @@ install/$(CABAL_PACKAGE) :: build/$(CABAL_PACKAGE)
 	   debian/$(CABAL_PACKAGE)/usr/bin/bluetilegreet \
 	   debian/$(CABAL_PACKAGE)/usr/lib/bluetile/
 	rm -rf debian/$(CABAL_PACKAGE)/usr/share/doc
-	install -D -m 0644 debian/bluetile-session.desktop debian/bluetile/usr/share/xsessions/bluetile.desktop
-	install -D -m 0644 debian/bluetile.desktop debian/bluetile/usr/share/applications/bluetile.desktop
+	install -D -m 0644 misc/gnome-bluetile-session.desktop debian/bluetile/usr/share/xsessions/gnome-bluetile.desktop
+	install -D -m 0644 misc/bluetile.desktop debian/bluetile/usr/share/applications/bluetile.desktop
 	mkdir -p debian/bluetile/usr/share/icons
 	ln -s ../bluetile/logo/bluetile-icon-48x48.png debian/bluetile/usr/share/icons/bluetile.png
+
