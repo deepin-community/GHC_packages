@@ -1,0 +1,81 @@
+.TH THREADSCOPE 1 "June 28, 2010"
+.SH NAME
+threadscope \- a graphical thread profiler for Haskell GHC programs
+.SH SYNOPSIS
+.BR threadscope
+.RI [ program.eventlog ]
+.br
+.SH DESCRIPTION
+.B Threadscope
+is a graphical thread profiler for Haskell programs.
+.br
+.sp 1
+It parses and displays the content of .eventlog files emitted
+by the GHC 6.12.1 and later runtimes, showing a timeline of
+spark creation, spark-to-thread promotions and garbage collections.
+.br
+.sp 1
+This helps debugging the parallel performance of Haskell programs,
+making easier to check that work is well balanced across the available
+processors and spot performance issues relating to garbage collection
+or poor load balancing.
+.PP
+.SH ARGUMENTS
+.BR threadscope
+takes the name of the GHC RTS event-log file to process as its
+single argument. If no filename is given,
+.BR threadscope
+starts with an empty workspace, where any event-log file can be
+loaded by means of the GUI file browser facilities.
+.SH USAGE
+In order for
+.BR threadscope
+to be useful, you have to compile your Haskell program to use GHC's
+threaded run-time and also to create runtime profile logs. This can
+be accomplished with the following command line options to
+.BR ghc (1)
+.sp 2
+.RS 4
+$ ghc -threaded -eventlog --make Foo.hs -o foo
+.RE
+.sp 2
+Once the program is built, execute it using the multithreaded
+run-time, specifying the number of HECs (Haskell Execution Contexts)
+to use in the usual manner, but also requesting the creation of an
+event log. For example, to use two HECs and create an event log
+you would use
+.sp 2
+.RS 4
+$ foo +RTS -N2 -ls -RTS ...
+.RE
+.sp 2
+Once the program runs to completion, a file named foo.eventlog
+is produced. You can start
+.BR threadscope
+from the shell prompt passing the event-log filename as the single
+argument, or you can start
+.BR threadscope
+from the desktop menus and use its file browsing capabilities to
+find and open it.
+.SH SEE ALSO
+.BR ghc (1)
+.br
+.SH AUTHOR
+.BR threadscope
+was written by
+.sp 1
+.RS 4
+Simon Marlow <marlowsd@gmail.com>
+.br
+Donnie Jones <donnie@darthik.com>
+.br
+Satnam Singh <s.singh@ieee.org>
+.RE
+.PP
+This manual page was written by
+.sp 1
+.RS 4
+Ernesto Hernández-Novich (USB) <emhn@usb.ve>
+.RE
+.PP
+for the Debian project (and may be used by others).
