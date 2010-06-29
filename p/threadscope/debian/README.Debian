@@ -1,0 +1,56 @@
+Using Threadscope
+-----------------
+
+In order for threadscope to be useful, you have to compile your
+Haskell program to use the threaded run-time and also to create
+runtime profile logs, e.g.
+
+$ ghc -threaded -eventlog --make Foo.hs -o foo
+
+Once the program is built, execute it using the multithreaded
+run-time, specifying the number of cores to use in the usual
+manner, but also requesting the creation of an event log, e.g.
+for two cores (actually Haskell Execution Contexts, or HEC)
+and event log creation you'd use
+
+$ foo +RTS -N2 -ls -RTS ...
+
+Once the program runs to completion, a file named foo.eventlog
+is produced.
+
+You can start threadscope from the command line, using the
+aforementioned .eventlog file as the sole argument, e.g.
+
+$ threadscope foo.eventlog
+
+or you can start threadscope from the desktop menus and use its
+file browsing capabilites to find and open foo.eventlog.
+
+Once opened, you'll see that threadscope:
+
+* Displays the activity on each Haskell Execution Context (HEC)
+  which roughly corresponds to an operating system thread. For
+  each thread you can see whether it is running a Haskell thread
+  or performing garbage collection.
+
+* You can find out information about when Haskell threads are
+  ready to run and information about why a Haskell thread was
+  suspended.
+
+* You can observe how threads migrate between HECs and you can
+  observe sparks being picked up for speculative execution.
+
+* An activity profile indicates the rough utilization of the HECs
+  and when the number of HECs are greater than the number of
+  processing cores this gives a rough guide to the overall
+  utilization.
+
+* You can place bookmarks at various points in the time profile
+  to help with navigation.
+
+* You can save the graphical reports to PNG or PDF files.
+
+Have fun!
+--
+Ernesto Hernández-Novich (USB) <emhn@usb.ve>
+Mon, 28 Jun 2010 19:26:47 -0430
