@@ -63,3 +63,19 @@ Index: haskell-haddock-2.7.2/haddock.cabal
    hs-source-dirs:       src
    extensions:           CPP, PatternGuards, DeriveDataTypeable,
                          ScopedTypeVariables, MagicHash
+Index: haskell-haddock-2.7.2/src/Haddock/Interface/Create.hs
+===================================================================
+--- haskell-haddock-2.7.2.orig/src/Haddock/Interface/Create.hs	2010-03-20 15:47:22.000000000 +0100
++++ haskell-haddock-2.7.2/src/Haddock/Interface/Create.hs	2010-07-02 09:57:33.000000000 +0200
+@@ -501,7 +501,11 @@
+         Nothing -> do
+           -- If we can't find the declaration, it must belong to
+           -- another package
++#ifdef GHCI
+           mbTyThing <- liftGhcToErrMsgGhc $ lookupName t
++#else
++          mbTyThing <- liftGhcToErrMsgGhc $ lookupGlobalName t
++#endif
+           -- show the name as exported as well as the name's
+           -- defining module (because the latter is where we
+           -- looked for the .hi/.haddock).  It's to help people
