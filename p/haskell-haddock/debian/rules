@@ -2,5 +2,9 @@
 
 DEB_BUILD_DEPENDENCIES = build-arch
 
+# Test if ghci is available
+DEB_SETUP_GHC6_CONFIGURE_ARGS := $(shell test -e /usr/bin/ghci && echo --flags=ghci || echo --flags=-ghci)
+
+
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
