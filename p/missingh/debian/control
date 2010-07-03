@@ -14,7 +14,13 @@ Build-Depends: debhelper (>= 5.0.0),
  libghc6-hunit-dev,
  libghc6-hslogger-dev (>= 1.0.7.2),
  libghc6-regex-compat-dev (>= 0.91),
- libghc6-parsec-dev
+ libghc6-parsec-dev,
+ libghc6-network-prof,
+ libghc6-mtl-prof,
+ libghc6-hunit-prof,
+ libghc6-hslogger-prof (>= 1.0.7.2),
+ libghc6-regex-compat-prof (>= 0.91),
+ libghc6-parsec-prof
 Standards-Version: 3.8.4
 Section: haskell
 Homepage: http://software.complete.org/software/projects/show/missingh
@@ -37,6 +43,25 @@ Description: Library of utility functions for Haskell, GHC6 package
  they are already in Haskell or not needed here -- and others are added
  due to things Haskell is missing, or things that Haskell makes
  possible.
+
+Package: libghc6-missingh-prof
+Section: haskell
+Architecture: any
+Depends: ${misc:Depends}, ${haskell:Depends}, ${shlibs:Depends}
+Suggests: missingh-doc
+Description: Library of utility functions for Haskell, profiling libraries
+ MissingH is a library of all sorts of utility functions for
+ Haskell programmers.  It is written in pure Haskell and thus should
+ be extremely portable and easy to use.  It also has no prerequisites
+ save those that are commonly included with Haskell compilers.
+ .
+ MissingH is based on my MissingLib library for OCaml and contains some
+ of the same features.  However, some features are left behind because
+ they are already in Haskell or not needed here -- and others are added
+ due to things Haskell is missing, or things that Haskell makes
+ possible.
+ .
+ This package provides the MissingH libraries compiled for profiling.
 
 Package: libghc6-missingh-doc
 Section: doc
