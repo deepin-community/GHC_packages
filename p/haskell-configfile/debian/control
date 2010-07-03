@@ -9,7 +9,11 @@ Build-Depends: debhelper (>= 7),
                cpphs,
                libghc6-missingh-dev (>= 1.0.3.2),
                libghc6-regex-compat-dev,
-               libghc6-mtl-dev
+               libghc6-mtl-dev,
+               ghc6-prof (>= 6.12),
+               libghc6-missingh-prof (>= 1.0.3.2),
+               libghc6-regex-compat-prof,
+               libghc6-mtl-prof
 Build-Depends-Indep: ghc6-doc (>= 6.12),
                      libghc6-missingh-doc (>= 1.0.3.2),
                      libghc6-regex-compat-doc,
@@ -39,6 +43,28 @@ Description: Parser and writer for sectioned config files in Haskell
  ConfigFile provides simple calls to both read and write config files.
  It's possible to make a config file parsable by this module,
  the Unix shell, and make.
+
+Package: libghc6-configfile-prof
+Section: haskell
+Architecture: any
+Depends: ${misc:Depends}, ${haskell:Depends}, ${shlibs:Depends}
+Suggests: libghc6-configfile-doc
+Description: Parser and writer for sectioned config files in Haskell; profiling libraries
+ This package provides a library for the Haskell programming language. See
+ http://www.haskell.org/ for more information on Haskell.
+ .
+ The ConfigFile module works with configuration files in a standard
+ format that is easy for the user to edit, easy for the programmer
+ to work with, yet remains powerful and flexible.  It is inspired by,
+ and compatible with, Python's ConfigParser module.  It uses files
+ that resemble Windows .INI-style files, but with numerous
+ improvements.
+ .
+ ConfigFile provides simple calls to both read and write config files.
+ It's possible to make a config file parsable by this module,
+ the Unix shell, and make.
+ .
+ This package contains configfile compiled for profiling.
 
 Package: libghc6-configfile-doc
 Section: doc
