@@ -14,7 +14,7 @@ Build-Depends-Indep: ghc6-doc (>= 6.12),
                      libghc6-missingh-doc (>= 1.0.3.2),
                      libghc6-regex-compat-doc,
                      libghc6-mtl-doc
-Standards-Version: 3.8.3
+Standards-Version: 3.9.0
 Section: haskell
 Homepage: http://software.complete.org/configfile
 Vcs-Git: git://git.debian.org/git/pkg-haskell/haskell-configfile.git
@@ -44,6 +44,8 @@ Package: libghc6-configfile-doc
 Section: doc
 Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
+Breaks: configfile-doc (<< 1.0.6-2)
+Replaces: configfile-doc (<< 1.0.6-2)
 Description: Parser and writer for sectioned config files in Haskell; documentation
  This package provides the documentation for a library for the Haskell
  programming language. See http://www.haskell.org/ for more information on
