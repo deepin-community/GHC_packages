@@ -25,10 +25,11 @@ Vcs-Git: git://git.debian.org/git/pkg-haskell/haskell-configfile.git
 Vcs-Browser: http://git.debian.org/?p=pkg-haskell/haskell-configfile.git;a=summary
 
 Package: libghc6-configfile-dev
-Section: haskell
 Architecture: any
 Depends: ${misc:Depends}, ${haskell:Depends}, ${shlibs:Depends}
-Suggests: libghc6-configfile-doc
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: Parser and writer for sectioned config files in Haskell
  This package provides a library for the Haskell programming language. See
  http://www.haskell.org/ for more information on Haskell.
@@ -45,10 +46,11 @@ Description: Parser and writer for sectioned config files in Haskell
  the Unix shell, and make.
 
 Package: libghc6-configfile-prof
-Section: haskell
 Architecture: any
 Depends: ${misc:Depends}, ${haskell:Depends}, ${shlibs:Depends}
-Suggests: libghc6-configfile-doc
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: Parser and writer for sectioned config files in Haskell; profiling libraries
  This package provides a library for the Haskell programming language. See
  http://www.haskell.org/ for more information on Haskell.
@@ -70,6 +72,8 @@ Package: libghc6-configfile-doc
 Section: doc
 Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
 Breaks: configfile-doc (<< 1.0.6-2)
 Replaces: configfile-doc (<< 1.0.6-2)
 Description: Parser and writer for sectioned config files in Haskell; documentation
