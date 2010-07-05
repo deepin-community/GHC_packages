@@ -1,0 +1,108 @@
+Source: haskell-happstack-data
+Priority: extra
+Section: haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Giovanni Mascellani <gio@debian.org>
+Build-Depends:
+ debhelper (>= 7),
+ haskell-devscripts (>= 0.7),
+ cdbs,
+ ghc6,
+ ghc6-prof,
+ libghc6-happstack-util-dev,
+ libghc6-happstack-util-prof,
+ libghc6-haxml-dev,
+ libghc6-haxml-prof,
+ libghc6-mtl-dev,
+ libghc6-mtl-prof,
+ libghc6-syb-with-class-dev,
+ libghc6-syb-with-class-prof,
+ libghc6-syb-with-class-instances-text-dev,
+ libghc6-syb-with-class-instances-text-prof,
+ libghc6-text-dev,
+ libghc6-text-prof
+Build-Depends-Indep:
+ ghc6-doc,
+ libghc6-happstack-util-doc,
+ libghc6-haxml-doc,
+ libghc6-mtl-doc,
+ libghc6-syb-with-class-doc,
+ libghc6-syb-with-class-instances-text-doc,
+ libghc6-text-doc
+Standards-Version: 3.9.0
+Homepage: http://hackage.haskell.org/package/happstack-data
+Vcs-Darcs: http://darcs.debian.org/darcs/pkg-haskell/haskell-happstack-data
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-happstack-data
+
+Package: libghc6-happstack-data-dev
+Architecture: any
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Provides: ${haskell:Provides}
+Description: Happstack web framework, data utilities package - GHC 6 libraries
+ Happstack is a Haskell web framework, designed so that developers can
+ prototype quickly, deploy painlessly, scale massively, operate reliably,
+ and change easily. It supports GNU/Linux, OS X, FreeBSD, and Windows
+ environments.
+ .
+ Happstack provides you with all the components you need to build and
+ deploy your application, which is completely self-contained.
+ Particularly, Happstack provides the application with a distributed and
+ persistent data storage layer, capable to interact with the application
+ itself directly in terms of Haskell data structures.
+ .
+ Happstack-data contains some miscellaneous data-handling-related routines.
+ .
+ This package contains the libraries compiled for GHC 6.
+
+Package: libghc6-happstack-data-prof
+Architecture: any
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Provides: ${haskell:Provides}
+Description: Happstack web framework, data utilities package - GHC 6 profiling libraries
+ Happstack is a Haskell web framework, designed so that developers can
+ prototype quickly, deploy painlessly, scale massively, operate reliably,
+ and change easily. It supports GNU/Linux, OS X, FreeBSD, and Windows
+ environments.
+ .
+ Happstack provides you with all the components you need to build and
+ deploy your application, which is completely self-contained.
+ Particularly, Happstack provides the application with a distributed and
+ persistent data storage layer, capable to interact with the application
+ itself directly in terms of Haskell data structures.
+ .
+ Happstack-data contains some miscellaneous data-handling-related routines.
+ .
+ This package contains the profiling libraries compiled for GHC 6.
+
+Package: libghc6-happstack-data-doc
+Section: doc
+Architecture: all
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Description: Happstack web framework, data utilities package - documentation
+ Happstack is a Haskell web framework, designed so that developers can
+ prototype quickly, deploy painlessly, scale massively, operate reliably,
+ and change easily. It supports GNU/Linux, OS X, FreeBSD, and Windows
+ environments.
+ .
+ Happstack provides you with all the components you need to build and
+ deploy your application, which is completely self-contained.
+ Particularly, Happstack provides the application with a distributed and
+ persistent data storage layer, capable to interact with the application
+ itself directly in terms of Haskell data structures.
+ .
+ Happstack-data contains some miscellaneous data-handling-related routines.
+ .
+ This package contains the library documentation.
