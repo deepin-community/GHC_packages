@@ -9,7 +9,7 @@ override_dh_auto_build: Setup
 override_dh_auto_clean: Setup
 	./Setup clean
 override_dh_auto_configure: Setup
-	./Setup configure --prefix=/usr -fcurl-pipelining --constraint=parsec\<3 $(if $(wildcard /usr/lib/*/libHSrts_thr.a),,-f-threaded) -f-library
+	./Setup configure --prefix=/usr -fcurl-pipelining --constraint=parsec\<3 $(if $(wildcard /usr/lib/*/libHSrts_thr.a),,-f-threaded) -f-library --ghc-options="+RTS -V0 -RTS"
 override_dh_auto_install: Setup
 	./Setup copy --destdir=$(CURDIR)/debian/darcs
 override_dh_auto_test: Setup
