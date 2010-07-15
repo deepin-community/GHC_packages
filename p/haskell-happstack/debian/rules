@@ -2,3 +2,7 @@
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
+
+install/happstack::
+	mv debian/tmp-inst-ghc6/usr/bin/happstack debian/happstack/usr/bin
+	mv debian/tmp-inst-ghc6/usr/share/happstack-$(CABAL_VERSION)/templates debian/happstack/usr/share/happstack
