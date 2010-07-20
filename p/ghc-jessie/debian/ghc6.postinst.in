@@ -37,7 +37,7 @@ fi
 
 case "$1" in
     configure|abort-upgrade|abort-remove|abort-deconfigure)
-	$bindir/ghc-pkg recache
+	$bindir/ghc-pkg recache --global
 	if [ -n "$NEED_INTERPRETER" ] ; then
             update-alternatives \
 		--install $execdir/runhaskell runhaskell $execdir/runghc6 8600000600 \
@@ -56,12 +56,12 @@ case "$1" in
             --slave $mandir/man1/ghc.1.gz ghc.1.gz $mandir/man1/ghc6.1.gz \
 	    --slave $mandir/man1/ghc-pkg.1.gz ghc-pkg.1.gz $mandir/man1/ghc-pkg6.1.gz \
             --slave $execdir/hasktags hasktags $bindir/hasktags $NEED_INTERPRETER
-	$bindir/ghc-pkg recache
-	$bindir/ghc-pkg check || true
+	$bindir/ghc-pkg recache --global
+	$bindir/ghc-pkg check --global || true
     ;;
     triggered)
-	$bindir/ghc-pkg recache
-	$bindir/ghc-pkg check || true
+	$bindir/ghc-pkg recache --global
+	$bindir/ghc-pkg check --global || true
 	;;
     *)
         echo "postinst called with unknown argument \`$1'" >&2

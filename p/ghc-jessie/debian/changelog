@@ -1,3 +1,24 @@
+ghc6 (6.12.3-1) experimental; urgency=low
+
+  * New upstream release
+    * ghci :m now works with module names containing ' (Closes: #580568)
+  * Put haddock and the shared libraries into their own packages.
+    (Closes: #571537)
+  * Only insert packages in gen_contents_index which are both registered
+    and for which the html directory exists.
+  * Use ghc-pkg --global in ghc6's trigger to avoid accessing HOME.
+    (Closes: #578679)
+  * Fix directories in haddock manpage.  (Closes: #578321)
+  * Apply some patches from Gentoo (thanks, Sergei Trofimovich) hopefully
+    fixing ia64 build.
+  * Downgrade ghc6's dependency on perl to Suggests and have ghc6-doc
+    depend on perl.  (Closes: #553332)
+  * Standards-Version 3.9.0 (no changes necessary)
+  * ghc6 package now provides ghc6-ghci on architectures where it's
+    supported (i386 and amd64 only currently).
+
+ -- Kari Pahula <kaol@debian.org>  Tue, 20 Jul 2010 19:19:20 +0300
+
 ghc6 (6.12.1-13) unstable; urgency=low
 
   * Remove debian/watcher.sh.  (Closes: #571824)
