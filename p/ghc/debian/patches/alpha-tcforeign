@@ -1,7 +1,7 @@
-Index: ghc6-6.12.1/compiler/typecheck/TcForeign.lhs
+Index: ghc6-6.12.3/compiler/typecheck/TcForeign.lhs
 ===================================================================
---- ghc6-6.12.1.orig/compiler/typecheck/TcForeign.lhs	2010-02-06 12:41:37.000000000 +0200
-+++ ghc6-6.12.1/compiler/typecheck/TcForeign.lhs	2010-02-09 16:01:06.000000000 +0200
+--- ghc6-6.12.3.orig/compiler/typecheck/TcForeign.lhs	2010-07-17 16:13:18.000000000 +0300
++++ ghc6-6.12.3/compiler/typecheck/TcForeign.lhs	2010-07-17 16:14:17.000000000 +0300
 @@ -30,10 +30,6 @@
  import ForeignCall
  import ErrUtils
@@ -52,10 +52,10 @@ Index: ghc6-6.12.1/compiler/typecheck/TcForeign.lhs
  \end{code}
  
  
-Index: ghc6-6.12.1/rts/eventlog/EventLog.c
+Index: ghc6-6.12.3/rts/eventlog/EventLog.c
 ===================================================================
---- ghc6-6.12.1.orig/rts/eventlog/EventLog.c	2010-02-08 13:55:22.000000000 +0200
-+++ ghc6-6.12.1/rts/eventlog/EventLog.c	2010-02-09 16:01:35.000000000 +0200
+--- ghc6-6.12.3.orig/rts/eventlog/EventLog.c	2010-07-17 16:13:58.000000000 +0300
++++ ghc6-6.12.3/rts/eventlog/EventLog.c	2010-07-17 16:14:17.000000000 +0300
 @@ -83,7 +83,7 @@
  
  static void postEventType(EventsBuf *eb, EventType *et);
@@ -65,7 +65,7 @@ Index: ghc6-6.12.1/rts/eventlog/EventLog.c
  
  static void postBlockMarker(EventsBuf *eb);
  static void closeBlockMarker(EventsBuf *ebuf);
-@@ -395,12 +395,16 @@
+@@ -399,12 +399,16 @@
  
  #define BUF 512
  
@@ -84,7 +84,7 @@ Index: ghc6-6.12.1/rts/eventlog/EventLog.c
      if (size > BUF) {
          buf[BUF-1] = '\0';
          size = BUF;
-@@ -419,13 +423,13 @@
+@@ -423,13 +427,13 @@
  void postMsg(char *msg, va_list ap)
  {
      ACQUIRE_LOCK(&eventBufMutex);
@@ -99,11 +99,11 @@ Index: ghc6-6.12.1/rts/eventlog/EventLog.c
 +    postLogMsg(&capEventBuf[cap->no], EVENT_LOG_MSG, msg, &ap);
  }
  
- void postUserMsg(Capability *cap, char *msg)
-Index: ghc6-6.12.1/rts/Trace.c
+ void postUserMsg(Capability *cap, char *msg, va_list ap)
+Index: ghc6-6.12.3/rts/Trace.c
 ===================================================================
---- ghc6-6.12.1.orig/rts/Trace.c	2010-02-09 16:02:07.000000000 +0200
-+++ ghc6-6.12.1/rts/Trace.c	2010-02-09 16:03:03.000000000 +0200
+--- ghc6-6.12.3.orig/rts/Trace.c	2010-07-17 16:14:15.000000000 +0300
++++ ghc6-6.12.3/rts/Trace.c	2010-07-17 16:14:17.000000000 +0300
 @@ -218,13 +218,16 @@
  }
  

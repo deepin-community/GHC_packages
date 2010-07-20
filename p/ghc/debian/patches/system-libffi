@@ -1,8 +1,8 @@
-Index: ghc6-6.12.1/ghc.mk
+Index: ghc6-6.12.3/ghc.mk
 ===================================================================
---- ghc6-6.12.1.orig/ghc.mk	2010-01-09 20:17:29.000000000 +0200
-+++ ghc6-6.12.1/ghc.mk	2010-01-09 20:18:15.000000000 +0200
-@@ -367,11 +367,6 @@
+--- ghc6-6.12.3.orig/ghc.mk	2010-06-09 21:10:12.000000000 +0300
++++ ghc6-6.12.3/ghc.mk	2010-07-17 11:52:25.000000000 +0300
+@@ -369,11 +369,6 @@
  endif
  BOOT_LIBS = $(foreach lib,$(BOOT_PKGS),$(libraries/$(lib)_dist-boot_v_LIB))
  
@@ -14,7 +14,7 @@ Index: ghc6-6.12.1/ghc.mk
  # We cannot run ghc-cabal to configure a package until we have
  # configured and registered all of its dependencies.  So the following
  # hack forces all the configure steps to happen in exactly the order
-@@ -404,7 +399,6 @@
+@@ -406,7 +401,6 @@
  # add the final two package.conf dependencies: ghc-prim depends on RTS,
  # and RTS depends on libffi.
  libraries/ghc-prim/dist-install/package-data.mk : rts/package.conf.inplace
@@ -22,7 +22,7 @@ Index: ghc6-6.12.1/ghc.mk
  endif
  
  # -----------------------------------------------------------------------------
-@@ -515,7 +509,6 @@
+@@ -518,7 +512,6 @@
     driver \
     driver/ghci \
     driver/ghc \
@@ -30,7 +30,7 @@ Index: ghc6-6.12.1/ghc.mk
     includes \
     rts
  
-@@ -865,11 +858,10 @@
+@@ -863,11 +856,10 @@
                           $(addprefix libraries/,$(PACKAGES_STAGE2))
  
  install_packages: install_libexecs
@@ -43,7 +43,7 @@ Index: ghc6-6.12.1/ghc.mk
  	"$(INSTALLED_GHC_PKG_REAL)" --force --global-conf "$(INSTALLED_PACKAGE_CONF)" update rts/package.conf.install
  	$(foreach p, $(ALL_INSTALLED_PACKAGES),\
  	    "$(GHC_CABAL_INPLACE)" install \
-@@ -943,7 +935,7 @@
+@@ -942,7 +934,7 @@
  unix-binary-dist-prep:
  	"$(RM)" $(RM_OPTS) -r bindistprep/
  	"$(MKDIRHIER)" $(BIN_DIST_PREP_DIR)
@@ -52,7 +52,7 @@ Index: ghc6-6.12.1/ghc.mk
  	echo "HADDOCK_DOCS       = $(HADDOCK_DOCS)"       >> $(BIN_DIST_MK)
  	echo "LATEX_DOCS         = $(LATEX_DOCS)"         >> $(BIN_DIST_MK)
  	echo "BUILD_DOCBOOK_HTML = $(BUILD_DOCBOOK_HTML)" >> $(BIN_DIST_MK)
-@@ -1009,7 +1001,7 @@
+@@ -1020,7 +1012,7 @@
  #
  # Files to include in source distributions
  #
@@ -61,13 +61,13 @@ Index: ghc6-6.12.1/ghc.mk
  SRC_DIST_FILES += \
  	configure.ac config.guess config.sub configure \
  	aclocal.m4 README ANNOUNCE HACKING LICENSE Makefile install-sh \
-Index: ghc6-6.12.1/rts/ghc.mk
+Index: ghc6-6.12.3/rts/ghc.mk
 ===================================================================
---- ghc6-6.12.1.orig/rts/ghc.mk	2010-01-09 20:17:29.000000000 +0200
-+++ ghc6-6.12.1/rts/ghc.mk	2010-01-09 20:18:15.000000000 +0200
-@@ -322,15 +322,13 @@
+--- ghc6-6.12.3.orig/rts/ghc.mk	2010-06-09 21:10:14.000000000 +0300
++++ ghc6-6.12.3/rts/ghc.mk	2010-07-17 11:52:25.000000000 +0300
+@@ -333,15 +333,13 @@
  
- $(eval $(call build-dependencies,rts,dist))
+ $(eval $(call build-dependencies,rts,dist,1))
  
 -$(rts_dist_depfile) : libffi/dist-install/build/ffi.h
 -
@@ -85,19 +85,22 @@ Index: ghc6-6.12.1/rts/ghc.mk
  
  # -----------------------------------------------------------------------------
  # compile generic patchable dyn-wrapper
-Index: ghc6-6.12.1/rts/package.conf.in
+Index: ghc6-6.12.3/rts/package.conf.in
 ===================================================================
---- ghc6-6.12.1.orig/rts/package.conf.in	2010-01-09 20:17:29.000000000 +0200
-+++ ghc6-6.12.1/rts/package.conf.in	2010-01-09 20:19:26.000000000 +0200
-@@ -28,6 +28,7 @@
+--- ghc6-6.12.3.orig/rts/package.conf.in	2010-06-09 21:10:14.000000000 +0300
++++ ghc6-6.12.3/rts/package.conf.in	2010-07-17 11:53:57.000000000 +0300
+@@ -28,8 +28,9 @@
  hs-libraries:   "HSrts"
  
- extra-libraries:		"m"		/* for ldexp() */
-+			      , "ffi"
+ extra-libraries:
++				"ffi"
+ #ifdef HAVE_LIBM
+-                		"m"		/* for ldexp() */
++			      , "m"		/* for ldexp() */
+ #endif
  #ifdef HAVE_LIBRT
  			      , "rt"
- #endif
-@@ -56,7 +57,6 @@
+@@ -59,7 +60,6 @@
  #endif
  
  includes:		Stg.h

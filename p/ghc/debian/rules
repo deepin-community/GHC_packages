@@ -49,15 +49,10 @@ endif
 ifeq (powerpc,$(DEB_HOST_ARCH)) # See #365497
 	echo "GhcWithInterpreter=NO" >> mk/build.mk
 endif
-ifeq (ia64,$(DEB_HOST_ARCH)) # Tested and seen to be necessary with 6.12.1
-	echo "SRC_CC_OPTS += -Wl,--relax" >> mk/build.mk
-	echo "SRC_HC_OPTS += -optl-Wl,--relax -optl-Wl,-G0" >> mk/build.mk
-	echo "SRC_HC_OPTS += -optc-G0" >> mk/build.mk
-endif
 ifneq (,$(findstring $(DEB_HOST_ARCH), kfreebsd-i386 kfreebsd-amd64))
 	echo "GhcWithInterpreter=YES" >> mk/build.mk
 endif
-ifneq (,$(findstring $(DEB_HOST_ARCH), arm armel alpha))
+ifneq (,$(findstring $(DEB_HOST_ARCH), arm armel alpha ia64))
 	echo "UseLibFFIForAdjustors=YES" >> mk/build.mk
 endif
 ifneq (,$(findstring $(DEB_HOST_ARCH), arm armel))
@@ -117,14 +112,20 @@ build-stamp: configure-stamp
 	rm debian/testghc/*
 
 # build haddock separately and hard code paths according to install paths
-	cp -r utils/haddock debian
-	sed -i s/@PROJECTVERSION@/$(ProjectVersion)/ debian/haddock/src/Main.hs
-	cd debian/haddock; ../../inplace/bin/ghc-stage2 --make Setup.lhs; ./Setup configure --prefix=/usr --with-compiler=../../inplace/bin/ghc-stage2 --package-db=../../inplace/lib/package.conf.d/; ./Setup build
+	mkdir -p debian/haddock-build
+	cp -r utils/haddock debian/haddock-build
+	sed -i s/@PROJECTVERSION@/$(ProjectVersion)/ debian/haddock-build/haddock/src/Main.hs
+	cd debian/haddock-build/haddock; \
+		../../../inplace/bin/ghc-stage2 --make Setup.lhs; \
+		./Setup configure --prefix=/usr --with-compiler=../../../inplace/bin/ghc-stage2 \
+			--package-db=../../../inplace/lib/package.conf.d/; \
+		./Setup build
 
 	touch $@
 
 FILES = \( -type f -o -type l \)
 PROF_FILE = \( -name "*.p_*" -o -name "lib*_p.a" \)
+DYNAMIC_FILE = \( -name "*.dyn_hi" -o -name lib*.so \)
 
 install: install-stamp
 install-stamp: build-stamp
@@ -146,14 +147,15 @@ install-stamp: build-stamp
 	echo "ghc6-prof binary: extra-license-file `cd debian/tmp && echo usr/lib/ghc-*/Cabal-*/Distribution/License.p_hi`" >> debian/tmp/usr/share/lintian/overrides/ghc6-prof
 
 	# Sort out the package.conf files
-	ln -s debian/tmp/var/lib/ghc-$(ProjectVersion)/package.conf \
-	      debian/tmp/usr/lib/ghc-$(ProjectVersion)/package.conf
 	mkdir -p debian/tmp/var/lib/ghc-$(ProjectVersion)
 	mv debian/tmp/usr/lib/ghc-$(ProjectVersion)/package.conf.d \
 	   debian/tmp/var/lib/ghc-$(ProjectVersion)/
 	rm debian/tmp/var/lib/ghc-$(ProjectVersion)/package.conf.d/package.cache
 	chmod +x debian/provided_substvars
 	debian/provided_substvars
+ifneq (,$(findstring $(DEB_HOST_ARCH), i386 amd64 kfreebsd-i386 kfreebsd-amd64))
+	echo 'ghci=ghc6-ghci' >> debian/ghc6.substvars
+endif
 	sed -ri 's,^haddock-interfaces: /.*?/libraries/,haddock-interfaces: /usr/lib/ghc-$(ProjectVersion)/haddock/,' debian/tmp/var/lib/ghc-$(ProjectVersion)/package.conf.d/*.conf
 
 	# Sort out the binaries
@@ -175,7 +177,7 @@ install-stamp: build-stamp
 	rm -f debian/tmp/usr/bin/*-$(ProjectVersion)6
 	rm -f debian/tmp/usr/bin/runhaskell6
 	sed -i 's,topdir="/usr/lib,topdir="/var/lib,' debian/tmp/usr/lib/ghc-$(ProjectVersion)/bin/ghc-pkg-$(ProjectVersion)
-	cd debian/haddock; ./Setup copy --dest=../tmp
+	cd debian/haddock-build/haddock; ./Setup copy --dest=../../tmp
 
 	ProjectVersion=$(ProjectVersion) $(MAKE) -f debian/scripts.mk all
 
@@ -204,24 +206,30 @@ endif
 	mv debian/tmp/usr/share/man/man1/ghc.1 debian/ghc6.1
 	cp utils/hp2ps/hp2ps.1 debian/hp2ps-ghc6.1
 	cp debian/ghc-pkg6.man debian/ghc-pkg6.1
-	cp debian/haddock.man debian/tmp/usr/share/man/man1/haddock.1
 
 	echo debian/*.1 > debian/ghc6.manpages
+	cp debian/haddock.man debian/haddock.1
+	echo debian/haddock.1 >debian/ghc6-haddock.manpages
 
 	# ####################
 	# Now all the files are sorted, create the package filelists
 
 	# ghc6
-	find debian/tmp/usr/bin $(FILES)                  > debian/ghc6.install
+	find debian/tmp/usr/bin $(FILES) ! -name haddock  > debian/ghc6.install
 #	find debian/tmp/usr/share/ghc* $(FILES)          >> debian/ghc6.install
 	find debian/tmp/usr/share/haddock-* $(FILES)	 >> debian/ghc6.install
 	find debian/tmp/usr/share/man $(FILES)           >> debian/ghc6.install
-	find debian/tmp/usr/lib/ghc-$(ProjectVersion) $(FILES) ! $(PROF_FILE)  >> debian/ghc6.install
+	find debian/tmp/usr/lib/ghc-$(ProjectVersion) $(FILES) ! $(PROF_FILE) ! $(DYNAMIC_FILE) >> debian/ghc6.install
 	find debian/tmp/var				 >> debian/ghc6.install
 	echo debian/tmp/usr/share/lintian/overrides/ghc6 >> debian/ghc6.install
 	# ghc6-prof
 	find debian/tmp/usr/lib $(FILES) $(PROF_FILE) > debian/ghc6-prof.install
 	echo debian/tmp/usr/share/lintian/overrides/ghc6-prof >> debian/ghc6-prof.install
+	# ghc6-dynamic
+	find debian/tmp/usr/lib $(FILES) $(DYNAMIC_FILE) > debian/ghc6-dynamic.install
+	echo debian/lintian-overrides/ghc6-dynamic /usr/share/lintian/overrides >> debian/ghc6-dynamic.install
+	# haddock
+	echo usr/bin/haddock				 > debian/ghc6-haddock.install
 	# ghc6-doc
 ifeq (YES,$(BUILD_HADDOCK_DOCS))
 	find debian/tmp/usr/share/doc/ghc6-doc $(FILES) > debian/ghc6-doc.install
@@ -248,7 +256,7 @@ clean:
 	$(MAKE) -f debian/scripts.mk clean
 	rm -rf debian/testghc
 	rm -f ch01.html ch02.html index.html
-	rm -rf debian/haddock
+	rm -rf debian/haddock-build
 
 	# Hacks:
 	rm -f config.log
