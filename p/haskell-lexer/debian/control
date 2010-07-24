@@ -1,0 +1,58 @@
+Source: haskell-lexer
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.7)
+  , ghc6
+  , ghc6-prof
+Build-Depends-Indep: ghc6-doc
+Standards-Version: 3.9.0
+Homepage: http://hackage.haskell.org/package/haskell-lexer
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-lexer
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-lexer
+
+Package: libghc6-haskell-lexer-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: A fully compliant Haskell 98 lexer
+ A fully compliant Haskell 98 lexer written in Haskell. The lexer produces
+ a list tuples containing a token type identifier, its position and the tokem
+ string.
+ .
+ This package contains the libraries compiled for GHC 6.
+
+Package: libghc6-haskell-lexer-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Profiling libraries for a fully compliant Haskell 98 lexer
+ A fully compliant Haskell 98 lexer written in Haskell. The lexer produces
+ a list tuples containing a token type identifier, its position and the tokem
+ string.
+ .
+ This package contains the profiling libraries compiled for GHC 6.
+
+Package: libghc6-haskell-lexer-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Documentation for a fully compliant Haskell 98 lexer
+ A fully compliant Haskell 98 lexer written in Haskell. The lexer produces
+ a list tuples containing a token type identifier, its position and the tokem
+ string.
+ .
+ This package contains the library documentation.
