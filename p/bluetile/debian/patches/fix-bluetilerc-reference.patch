@@ -1,0 +1,37 @@
+Index: bluetile-0.5/Setup.lhs
+===================================================================
+--- bluetile-0.5.orig/Setup.lhs	2010-07-26 19:47:58.000000000 +0200
++++ bluetile-0.5/Setup.lhs	2010-07-26 19:47:58.000000000 +0200
+@@ -15,13 +15,14 @@
+ > myPostCopy _ copyflags pkgdesc lbi = do
+ >   let dirs = absoluteInstallDirs pkgdesc lbi (fromFlag $ copyDest copyflags)
+ >   libExecHook dirs
+->   insertPath dirs
++>   let dirs' = absoluteInstallDirs pkgdesc lbi NoCopyDest
++>   insertPath dirs dirs'
+ >
+ > myPostInst :: Args -> InstallFlags -> PackageDescription -> LocalBuildInfo -> IO ()
+ > myPostInst _ _ pkgdesc lbi = do
+ >   let dirs = absoluteInstallDirs pkgdesc lbi NoCopyDest
+ >   libExecHook dirs
+->   insertPath dirs
++>   insertPath dirs dirs
+ >
+ > -- hook to move helper binaries to the libexec directory
+ > libExecHook :: InstallDirs String -> IO ()
+@@ -33,11 +34,10 @@
+ >     renameFile (bdir </> binary) (lexecdir </> binary)
+ >
+ > -- hook to insert path to system wide configuration
+-> insertPath :: InstallDirs String -> IO ()
+-> insertPath dirs = do
+->   let ddir = datadir dirs
+->   let userConfigTemplate = ddir </> "etc" </> "bluetilerc_user_template"
+->   let pathToSystemConfig = ddir </> "etc" </> "bluetilerc"
++> insertPath :: InstallDirs String -> InstallDirs String -> IO ()
++> insertPath dirs dirs' = do
++>   let userConfigTemplate = datadir dirs </> "etc" </> "bluetilerc_user_template"
++>   let pathToSystemConfig = datadir dirs' </> "etc" </> "bluetilerc"
+ >   contents <- readFileStrict userConfigTemplate
+ >   let contentsPatched = subRegex (mkRegex "__PATH_TO_BLUETILERC__") contents pathToSystemConfig
+ >   writeFile userConfigTemplate contentsPatched
