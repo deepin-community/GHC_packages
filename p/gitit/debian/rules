@@ -2,3 +2,7 @@
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
+
+install/gitit:: debian/tmp-inst-ghc6
+	mv debian/tmp-inst-ghc6/usr/bin/* debian/gitit/usr/bin
+	mv debian/tmp-inst-ghc6/usr/share/gitit-$(CABAL_VERSION) debian/gitit/usr/share
