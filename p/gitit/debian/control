@@ -8,9 +8,57 @@ Build-Depends:
  haskell-devscripts (>= 0.7),
  cdbs,
  ghc6,
- ghc6-prof
+ ghc6-prof,
+ libghc6-cautious-file-dev,
+ libghc6-cgi-dev,
+ libghc6-configfile-dev,
+ libghc6-feed-dev,
+ libghc6-filestore-dev,
+ libghc6-happstack-server-dev,
+ libghc6-happstack-util-dev,
+ libghc6-highlighting-kate-dev,
+ libghc6-hslogger-dev,
+ libghc6-hstringtemplate-dev,
+ libghc6-http-dev,
+ libghc6-mtl-dev,
+ libghc6-network-dev,
+ libghc6-pandoc-dev,
+ libghc6-parsec3-dev,
+ libghc6-recaptcha-dev,
+ libghc6-safe-dev,
+ libghc6-sha-dev,
+ libghc6-texmath-dev,
+ libghc6-text-dev,
+ libghc6-unix-compat-dev,
+ libghc6-url-dev,
+ libghc6-xhtml-dev,
+ libghc6-xml-dev
 Build-Depends-Indep:
- ghc6-doc
+ ghc6-doc,
+ libghc6-cautious-file-doc,
+ libghc6-cgi-doc,
+ libghc6-configfile-doc,
+ libghc6-feed-doc,
+ libghc6-filestore-doc,
+ libghc6-happstack-server-doc,
+ libghc6-happstack-util-doc,
+ libghc6-highlighting-kate-doc,
+ libghc6-hslogger-doc,
+ libghc6-hstringtemplate-doc,
+ libghc6-http-doc,
+ libghc6-mtl-doc,
+ libghc6-network-doc,
+ libghc6-pandoc-doc,
+ libghc6-parsec3-doc,
+ libghc6-recaptcha-doc,
+ libghc6-safe-doc,
+ libghc6-sha-doc,
+ libghc6-texmath-doc,
+ libghc6-text-doc,
+ libghc6-unix-compat-doc,
+ libghc6-url-doc,
+ libghc6-xhtml-doc,
+ libghc6-xml-doc
 Standards-Version: 3.9.1
 Homepage: http://hackage.haskell.org/package/gitit
 Vcs-Darcs: http://darcs.debian.org/darcs/pkg-haskell/gitit
@@ -20,7 +68,9 @@ Package: gitit
 Architecture: any
 Depends:
  ${misc:Depends},
- ${shlibs:Depends}
+ ${shlibs:Depends},
+ pandoc,
+ libghc6-filestore-data
 Description: Wiki engine backed by a git or darcs filestore
  Gitit is a wiki backed by a git or darcs filestore. Pages and uploaded files
  can be modified either directly via the VCS’s command-line tools or through
