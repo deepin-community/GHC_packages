@@ -3,6 +3,12 @@
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
 
+PANDOC_DEP := $(shell dpkg -p pandoc | grep ^Version: | cut -d' ' -f2)
+FILESTORE_DEP := $(shell dpkg -p libghc6-filestore-data | grep ^Version: | cut -d' ' -f2)
+
 install/gitit:: debian/tmp-inst-ghc6
 	mv debian/tmp-inst-ghc6/usr/bin/* debian/gitit/usr/bin
 	mv debian/tmp-inst-ghc6/usr/share/gitit-$(CABAL_VERSION) debian/gitit/usr/share
+
+	# Generate dependencies against data packages
+	echo "gitit:Depends=pandoc (= ${PANDOC_DEP}), libghc6-filestore-data (= ${FILESTORE_DEP})" >> debian/gitit.substvars
