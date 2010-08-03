@@ -38,7 +38,8 @@ Architecture: any
 Depends:
  ${haskell:Depends},
  ${misc:Depends},
- ${shlibs:Depends}
+ ${shlibs:Depends},
+ libghc6-filestore-data (= ${source:Version})
 Suggests: ${haskell:Suggests}
 Recommends:
  ${haskell:Recommends},
@@ -80,3 +81,18 @@ Description: Haskell interface for versioning file stores - documentation
  Darcs, and Mercurial modules are provided.
  .
  This package contains the library documentation.
+
+Package: libghc6-filestore-data
+Section: doc
+Architecture: all
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Description: Haskell interface for versioning file stores - common files
+ The filestore library provides an abstract interface for a versioning
+ file store, and modules that instantiate this interface. Currently Git,
+ Darcs, and Mercurial modules are provided.
+ .
+ This package data files used by filestore and its dependencies.
