@@ -12,3 +12,7 @@ install/gitit:: debian/tmp-inst-ghc6
 
 	# Generate dependencies against data packages
 	echo "gitit:Depends=pandoc (= ${PANDOC_DEP}), libghc6-filestore-data (= ${FILESTORE_DEP})" >> debian/gitit.substvars
+
+install/libghc6-gitit-dev:: debian/tmp-inst-ghc6
+	# Generate dependencies against data packages
+	echo "gitit:Depends=pandoc (= ${PANDOC_DEP}), libghc6-filestore-data (= ${FILESTORE_DEP})" >> debian/gitit.substvars
