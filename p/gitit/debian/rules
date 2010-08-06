@@ -3,8 +3,8 @@
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
 
-PANDOC_DEP := $(shell dpkg -p pandoc | grep ^Version: | cut -d' ' -f2)
-FILESTORE_DEP := $(shell dpkg -p libghc6-filestore-data | grep ^Version: | cut -d' ' -f2)
+PANDOC_DEP := $(shell dpkg -p libghc6-pandoc-dev | grep ^Version: | cut -d' ' -f2)
+FILESTORE_DEP := $(shell dpkg -p libghc6-filestore-dev | grep ^Version: | cut -d' ' -f2)
 
 install/gitit:: debian/tmp-inst-ghc6
 	cp -av debian/tmp-inst-ghc6/usr/bin/* debian/gitit/usr/bin
