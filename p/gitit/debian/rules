@@ -19,6 +19,11 @@ install/gitit:: debian/tmp-inst-ghc6
 	# Generate dependencies against data packages
 	echo "gitit:Depends=pandoc (= ${PANDOC_DEP}), libghc6-filestore-data (= ${FILESTORE_DEP})" >> debian/gitit.substvars
 
+	# Removes a few files, that are not necessary and make lintian cry
+	rm -f debian/gitit/usr/share/gitit-0.7.3.6/data/post-update
+	rm -f debian/gitit/usr/share/gitit-0.7.3.6/BLUETRIP-LICENSE
+	rm -f debian/gitit/usr/share/gitit-0.7.3.6/YUI-LICENSE
+
 # Not used at the moment
 #install/libghc6-gitit-dev:: debian/tmp-inst-ghc6
 #	# Generate dependencies against data packages
