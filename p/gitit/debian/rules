@@ -7,11 +7,14 @@ PANDOC_DEP := $(shell dpkg -p pandoc | grep ^Version: | cut -d' ' -f2)
 FILESTORE_DEP := $(shell dpkg -p libghc6-filestore-data | grep ^Version: | cut -d' ' -f2)
 
 install/gitit:: debian/tmp-inst-ghc6
-	mv debian/tmp-inst-ghc6/usr/bin/* debian/gitit/usr/bin
-	mv debian/tmp-inst-ghc6/usr/share/gitit-$(CABAL_VERSION) debian/gitit/usr/share
+	cp -av debian/tmp-inst-ghc6/usr/bin/* debian/gitit/usr/bin
+	cp -av debian/tmp-inst-ghc6/usr/share/gitit-$(CABAL_VERSION) debian/gitit/usr/share
 
-	# Generate dependencies against data packages
-	echo "gitit:Depends=pandoc (= ${PANDOC_DEP}), libghc6-filestore-data (= ${FILESTORE_DEP})" >> debian/gitit.substvars
+	# Don't use embedded copies of jQuery and jQuery UI; instead, make symlinks
+	rm -f debian/gitit/usr/share/gitit-$(CABAL_VERSION)/data/static/js/jquery.min.js \
+		debian/gitit/usr/share/gitit-$(CABAL_VERSION)/data/static/js/jquery-ui.packed.js
+	dh_link -pgitit /usr/share/javascript/jquery/jquery.min.js usr/share/gitit-$(CABAL_VERSION)/data/static/js/jquery.min.js
+	dh_link -pgitit /usr/share/javascript/jquery-ui/jquery-ui.min.js usr/share/gitit-$(CABAL_VERSION)/data/static/js/jquery-ui.packed.js
 
 install/libghc6-gitit-dev:: debian/tmp-inst-ghc6
 	# Generate dependencies against data packages
