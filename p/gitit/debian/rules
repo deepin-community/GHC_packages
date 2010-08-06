@@ -11,8 +11,8 @@ install/gitit:: debian/tmp-inst-ghc6
 	cp -av debian/tmp-inst-ghc6/usr/share/gitit-$(CABAL_VERSION) debian/gitit/usr/share
 
 	# Don't use embedded copies of jQuery and jQuery UI; instead, make symlinks
-	rm -f debian/gitit/usr/share/gitit-$(CABAL_VERSION)/data/static/js/jquery.min.js \
-		debian/gitit/usr/share/gitit-$(CABAL_VERSION)/data/static/js/jquery-ui.packed.js
+	rm -f debian/gitit/usr/share/gitit-$(CABAL_VERSION)/data/static/js/jquery.min.js
+	rm -f debian/gitit/usr/share/gitit-$(CABAL_VERSION)/data/static/js/jquery-ui.packed.js
 	dh_link -pgitit /usr/share/javascript/jquery/jquery.min.js usr/share/gitit-$(CABAL_VERSION)/data/static/js/jquery.min.js
 	dh_link -pgitit /usr/share/javascript/jquery-ui/jquery-ui.min.js usr/share/gitit-$(CABAL_VERSION)/data/static/js/jquery-ui.packed.js
 
