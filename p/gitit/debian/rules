@@ -16,6 +16,10 @@ install/gitit:: debian/tmp-inst-ghc6
 	dh_link -pgitit /usr/share/javascript/jquery/jquery.min.js usr/share/gitit-$(CABAL_VERSION)/data/static/js/jquery.min.js
 	dh_link -pgitit /usr/share/javascript/jquery-ui/jquery-ui.min.js usr/share/gitit-$(CABAL_VERSION)/data/static/js/jquery-ui.packed.js
 
-install/libghc6-gitit-dev:: debian/tmp-inst-ghc6
 	# Generate dependencies against data packages
 	echo "gitit:Depends=pandoc (= ${PANDOC_DEP}), libghc6-filestore-data (= ${FILESTORE_DEP})" >> debian/gitit.substvars
+
+# Not used at the moment
+#install/libghc6-gitit-dev:: debian/tmp-inst-ghc6
+#	# Generate dependencies against data packages
+#	echo "gitit:Depends=pandoc (= ${PANDOC_DEP}), libghc6-filestore-data (= ${FILESTORE_DEP})" >> debian/gitit.substvars
