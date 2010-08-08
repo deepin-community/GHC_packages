@@ -1,3 +1,9 @@
+magic-haskell (1.0.8-6) UNRELEASED; urgency=low
+
+  * Reincorporate 1.0.8-4.
+
+ -- Marco Túlio Gontijo e Silva <marcot@debian.org>  Sat, 07 Aug 2010 17:28:33 -0300
+
 magic-haskell (1.0.8-5) unstable; urgency=low
 
   * debian/control: Make libghc6-magic-doc conflict with magic-haskell-
@@ -8,12 +14,16 @@ magic-haskell (1.0.8-5) unstable; urgency=low
 
 magic-haskell (1.0.8-4) unstable; urgency=low
 
-  * Rename -doc package.
+  * debian/control: libghc6-magic-doc: Add ${haskell:Recommends} and
+    Suggests variables.
+  * debian/control: libghc6-magic-doc: Replaces, Provides and Conflicts
+    with magic-haskell-doc.
 
- -- Marco Túlio Gontijo e Silva <marcot@debian.org>  Thu, 06 May 2010 20:40:12 -0300
+ -- Marco Túlio Gontijo e Silva <marcot@debian.org>  Sun, 14 Mar 2010 17:30:59 -0300
 
 magic-haskell (1.0.8-3) unstable; urgency=low
 
+  [ Iain Lane ]
   * debian/control:
     + Disable hugs library as the DHG no longer supports Hugs, and it does not
       work with the new Cabal. (Closes: #571360)
@@ -22,7 +32,14 @@ magic-haskell (1.0.8-3) unstable; urgency=low
     + Clean up build-deps
     + Standards-Version bump to 3.8.4, no changes required
 
- -- Iain Lane <laney@ubuntu.com>  Thu, 11 Mar 2010 18:59:38 +0000
+  [ Marco Túlio Gontijo e Silva ]
+  * debian/control: Include Haskell preface in Description:.
+  * debian/control: Remove mention to libhugs-magic.
+  * debian/control: Include -prof package.
+  * Rename -doc package.
+  * debian/control: Include Build-Depends-Indep: in ghc6-doc.
+
+ -- Marco Túlio Gontijo e Silva <marcot@debian.org>  Thu, 11 Mar 2010 17:57:34 -0300
 
 magic-haskell (1.0.8-2) unstable; urgency=low
 
