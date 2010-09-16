@@ -1,0 +1,17 @@
+Description: Disable external.sh test. It requires network access (even though
+ it appears to try hard to avoid this).
+Author: Stefano Rivera <stefano@rivera.za.net>
+Bug-Ubuntu: http://launchpad.net/bugs/636603
+Bug-Debian: http://bugs.debian.org/596606
+Last-Update: 2010-09-12
+--- a/tests/external.sh
++++ b/tests/external.sh
+@@ -1,5 +1,8 @@
+ #!/usr/bin/env bash
+
++# Skip: Requires network connectivity
++exit 200
++
+ # Some tests for launching external commands
+
+ . lib
