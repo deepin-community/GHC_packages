@@ -1,0 +1,20 @@
+Do not run tests (otherwise, HUnit becomes a dependency of the library, which
+should not happen. TODO: Investigate how to avoid this, and whether this is a
+Cabal bug/limitation).
+--- haskell-augeas-0.3.4.orig/augeas.cabal
++++ haskell-augeas-0.3.4/augeas.cabal
+@@ -22,14 +22,3 @@ library
+         GHC-options: -Wall -fwarn-dodgy-imports
+         Extensions: CPP
+         Pkgconfig-Depends: augeas
+-
+-executable "test-haskell-augeas"
+-        Main-is: HUnitAug.hs
+-        Build-Depends: HUnit
+-        Other-Modules: System.Augeas, System.AugeasHsc
+-        extra-libraries: augeas
+-        GHC-options: -Wall -fwarn-dodgy-imports
+-        Extensions: CPP
+-        Pkgconfig-Depends: augeas
+-
+-
