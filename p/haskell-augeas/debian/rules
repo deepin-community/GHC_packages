@@ -1,0 +1,19 @@
+#!/usr/bin/make -f
+
+DEB_INSTALL_DOCS_ALL =
+DEB_INSTALL_DOCS_libghc6-augeas-doc = THANKS
+
+clean::
+	make clean
+	rm -f build-test-stamp
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/hlibrary.mk
+
+ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
+common-build-arch:: build-test-stamp
+
+build-test-stamp: build-ghc6-stamp
+	debian/hlibrary.setup test --builddir=dist-ghc6
+	touch debian/test.stamp
+endif

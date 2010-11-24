@@ -1,0 +1,21 @@
+--- haskell-augeas-0.3.4.orig/Setup.hs
++++ haskell-augeas-0.3.4/Setup.hs
+@@ -24,6 +24,7 @@
+ import Data.List (isInfixOf)
+ import Distribution.PackageDescription
+ import Distribution.Simple
++import Distribution.Simple.LocalBuildInfo (buildDir)
+ import System.Process
+
+ -- main = defaultMain
+@@ -32,8 +33,8 @@ import System.Process
+ main = defaultMainWithHooks autoconfUserHooks { runTests = _runTests, instHook = _instHook }
+     where
+         -- Run all executables with names that end in -tests
+-        _runTests _ _ pd _ = do
+-            let exeNames = ["dist/build/" ++ fp ++ "/" ++ fp | fp <- map exeName (executables pd)]
++        _runTests _ _ pd lbi = do
++            let exeNames = [buildDir lbi ++ "/" ++ fp ++ "/" ++ fp | fp <- map exeName (executables pd)]
+             sequence [_runTest e | e <- exeNames, isInfixOf "test-" e]
+             return ()
+         _runTest fp = do
