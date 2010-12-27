@@ -1,0 +1,45 @@
+Source: tokyocabinet-haskell
+Section: haskell
+Priority: optional
+Maintainer: TANIGUCHI Takaki <takaki@debian.org>
+Build-Depends: cdbs, debhelper (>= 7), haskell-devscripts(>= 0.7),
+		ghc6, ghc6-prof, ghc6-doc,
+		libghc6-mtl-prof, libtokyocabinet-dev,
+		libghc6-mtl-doc
+Standards-Version: 3.8.4
+Homepage: http://hackage.haskell.org/package/tokyocabinet-haskell
+
+Package: libghc6-tokyocabinet-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}, libtokyocabinet-dev
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Haskell binding of Tokyo Cabinet
+ Bindings to Tokyo Cabinet library. Tokyo Cabinet is a modern implementation
+ of DBM.
+ .
+ This package contains the profiling libraries compiled for GHC 6.
+
+Package: libghc6-tokyocabinet-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Haskell binding of Tokyo Cabinet; profiling library
+ Bindings to Tokyo Cabinet library. Tokyo Cabinet is a modern implementation
+ of DBM.
+ .
+ This package contains the profiling libraries compiled for GHC 6.
+
+Package: libghc6-tokyocabinet-doc
+Section: doc
+Architecture: all
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Haskell binding of Tokyo Cabinet; documentation
+ Bindings to Tokyo Cabinet library. Tokyo Cabinet is a modern implementation
+ of DBM.
+ .
+ This package contains the library documentation.
