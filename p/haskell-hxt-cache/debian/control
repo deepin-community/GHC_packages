@@ -1,0 +1,68 @@
+Source: haskell-hxt-cache
+Section: haskell
+Priority: extra
+Maintainer: TANIGUCHI Takaki <takaki@debian.org>
+Uploaders: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Build-Depends: debhelper (>= 7.0.50~),
+	haskell-devscripts(>=0.7),
+	cdbs,
+	ghc6,
+	ghc6-prof,
+	ghc6-doc,
+	libghc6-sha-dev,
+	libghc6-sha-prof,
+	libghc6-sha-doc,
+	libghc6-binary-dev,
+	libghc6-binary-prof,
+	libghc6-binary-doc,
+	libghc6-deepseq-dev,
+	libghc6-deepseq-prof,
+	libghc6-deepseq-doc,
+	libghc6-hxt-dev (>= 9), libghc6-hxt-dev (<< 10),
+	libghc6-hxt-prof (>= 9), libghc6-hxt-prof (<< 10),
+	libghc6-hxt-doc (>= 9), libghc6-hxt-doc (<< 10),
+Standards-Version: 3.9.1
+Homepage: http://www.fh-wedel.de/~si/HXmlToolbox/
+
+Package: libghc6-hxt-cache-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Cache for HXT XML Documents and other binary data
+ This is a part of Haskell XML Toolbox.
+ .
+ Extension for caching XML documents and other binary data in cache directory
+ of the local filesystem.
+ .
+ This package contains the libraries compiled for GHC 6.
+
+Package: libghc6-hxt-cache-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Cache for HXT XML Documents and other binary data; profiling library
+ This is a part of Haskell XML Toolbox.
+ .
+ Extension for caching XML documents and other binary data in cache directory
+ of the local filesystem.
+ .
+ This package contains the profiling libraries compiled for GHC 6.
+
+Package: libghc6-hxt-cache-doc
+Section: doc
+Architecture: all
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Cache for HXT XML Documents and other binary data; documentation
+ This is a part of Haskell XML Toolbox.
+ .
+ Extension for caching XML documents and other binary data in cache directory
+ of the local filesystem.
+ .
+ This package contains the library documentation.
