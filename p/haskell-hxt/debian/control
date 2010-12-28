@@ -1,0 +1,102 @@
+Source: haskell-hxt
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: TANIGUCHI Takaki <takaki@debian.org>
+Build-Depends:
+	cdbs,
+	debhelper (>= 7),
+	haskell-devscripts(>= 0.7),
+	libcurl4-gnutls-dev | libcurl-dev,
+	ghc6,
+	ghc6-prof,
+	ghc6-doc,
+	libghc6-curl-dev,
+	libghc6-curl-prof,
+	libghc6-curl-doc,
+	libghc6-tagsoup-dev(>=0.8),
+	libghc6-tagsoup-prof,
+	libghc6-tagsoup-doc,
+	libghc6-parallel-dev,
+	libghc6-parallel-prof,
+	libghc6-parallel-doc,
+	libghc6-hunit-dev,
+	libghc6-hunit-prof,
+	libghc6-hunit-doc,
+	libghc6-deepseq-dev,
+	libghc6-deepseq-prof,
+	libghc6-deepseq-doc,
+	libghc6-binary-dev,
+	libghc6-binary-prof,
+	libghc6-binary-doc,
+	libghc6-hxt-charproperties-dev,
+	libghc6-hxt-charproperties-prof,
+	libghc6-hxt-charproperties-doc,
+	libghc6-hxt-regex-xmlschema-dev,
+	libghc6-hxt-regex-xmlschema-prof,
+	libghc6-hxt-regex-xmlschema-doc,
+	libghc6-hxt-unicode-dev,
+	libghc6-hxt-unicode-prof,
+	libghc6-hxt-unicode-doc,
+Standards-Version: 3.9.1
+Homepage: http://www.fh-wedel.de/~si/HXmlToolbox/
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hxt
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-hxt
+
+Package: libghc6-hxt-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: an xml toolkit for Haskell (library)
+ The Haskell XML Toolbox bases on the ideas of HaXml and HXML, but
+ introduces a more general and flexible approach for processing XML
+ with Haskell. The Haskell XML Toolbox uses a generic data model for
+ representing XML documents, including the DTD subset and the document
+ subset, in Haskell. This data model makes it possible to use filter
+ functions as a uniform design of XML processing applications. The
+ processing filters are implemented as arrows. This is more flexible
+ than the filter approach from HXML and HaXml, but all filter
+ applications can easily be transformed into arrows.
+ .
+ This package contains the libraries compiled for GHC 6.
+
+Package: libghc6-hxt-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: an xml toolkit for Haskel (profiling library)
+ The Haskell XML Toolbox bases on the ideas of HaXml and HXML, but
+ introduces a more general and flexible approach for processing XML
+ with Haskell. The Haskell XML Toolbox uses a generic data model for
+ representing XML documents, including the DTD subset and the document
+ subset, in Haskell. This data model makes it possible to use filter
+ functions as a uniform design of XML processing applications. The
+ processing filters are implemented as arrows. This is more flexible
+ than the filter approach from HXML and HaXml, but all filter
+ applications can easily be transformed into arrows.
+ .
+ This package contains the profiling libraries compiled for GHC 6.
+
+Package: libghc6-hxt-doc
+Section: doc
+Architecture: all
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: an xml toolkit for Haskell (documentation)
+ The Haskell XML Toolbox bases on the ideas of HaXml and HXML, but
+ introduces a more general and flexible approach for processing XML
+ with Haskell. The Haskell XML Toolbox uses a generic data model for
+ representing XML documents, including the DTD subset and the document
+ subset, in Haskell. This data model makes it possible to use filter
+ functions as a uniform design of XML processing applications. The
+ processing filters are implemented as arrows. This is more flexible
+ than the filter approach from HXML and HaXml, but all filter
+ applications can easily be transformed into arrows.
+ .
+ This package contains the library documentation.
