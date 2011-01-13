@@ -1,0 +1,61 @@
+Source: haskell-hfuse
+Section: haskell
+Priority: extra
+Maintainer: TANIGUCHI Takaki <takaki@debian.org>
+Build-Depends: debhelper (>= 7.0.50~),
+	cdbs,
+	haskell-devscripts,
+	libfuse-dev,
+        libcurl4-gnutls-dev | libcurl-dev,
+        ghc6,
+        ghc6-prof,
+        ghc6-doc,
+Standards-Version: 3.9.1
+Homepage: http://hackage.haskell.org/package/HFuse
+#Vcs-Git: git://git.debian.org/collab-maint/haskell-hfuse.git
+#Vcs-Browser: http://git.debian.org/?p=collab-maint/haskell-hfuse.git;a=summary
+
+Package: libghc6-hfuse-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Provides: ${haskell:Provides}
+Suggests: ${haskell:Suggests}
+Description: Haskell binding for the Linux FUSE library
+ HFuse is a Haskell binding to the Linux C library, FUSE ('Filesystems in
+ Userspace'); FUSE allows you to construct interesting filesystems which
+ can be used in many ways, such as a filesystem in which the files are
+ Wikipedia files, or SSHFS where one mounts remote directories over SSH,
+ or FlickrFS which represents your Flickr account as directories and files.
+ .
+ This package contains the libraries compiled for GHC 6.
+
+Package: libghc6-hfuse-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Haskell binding for the Linux FUSE library; profiling library
+ HFuse is a Haskell binding to the Linux C library, FUSE ('Filesystems in
+ Userspace'); FUSE allows you to construct interesting filesystems which
+ can be used in many ways, such as a filesystem in which the files are
+ Wikipedia files, or SSHFS where one mounts remote directories over SSH,
+ or FlickrFS which represents your Flickr account as directories and files.
+ .
+ This package contains the profiling libraries compiled for GHC 6.
+
+Package: libghc6-hfuse-doc
+Section: doc
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Haskell binding for the Linux FUSE library; documentation
+ HFuse is a Haskell binding to the Linux C library, FUSE ('Filesystems in
+ Userspace'); FUSE allows you to construct interesting filesystems which
+ can be used in many ways, such as a filesystem in which the files are
+ Wikipedia files, or SSHFS where one mounts remote directories over SSH,
+ or FlickrFS which represents your Flickr account as directories and files.
+ .
+ This package contains the library documentation.
