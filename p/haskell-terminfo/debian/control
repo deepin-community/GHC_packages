@@ -7,15 +7,15 @@ Standards-Version: 3.8.4
 Build-Depends: debhelper (>= 7)
   , haskell-devscripts (>= 0.7)
   , cdbs
-  , ghc6
-  , ghc6-prof
+  , ghc
+  , ghc-prof
   , libncurses5-dev
-Build-Depends-Indep: ghc6-doc
+Build-Depends-Indep: ghc-doc
 Homepage: http://hackage.haskell.org/cgi-bin/terminfo/package/terminfo
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-terminfo
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-terminfo
 
-Package: libghc6-terminfo-dev
+Package: libghc-terminfo-dev
 Architecture: any
 Depends: libncurses5-dev
   , ${haskell:Depends}
@@ -31,7 +31,7 @@ Description: Haskell bindings to the terminfo library
  the curses library). Terminfo allows POSIX systems to interact with a variety
  of terminals using a standard set of capabilities.
 
-Package: libghc6-terminfo-prof
+Package: libghc-terminfo-prof
 Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
@@ -46,7 +46,7 @@ Description: Haskell bindings to the terminfo library; profiling libraries
  the curses library). Terminfo allows POSIX systems to interact with a variety
  of terminals using a standard set of capabilities.
 
-Package: libghc6-terminfo-doc
+Package: libghc-terminfo-doc
 Section: doc
 Architecture: all
 Depends: ${misc:Depends}
