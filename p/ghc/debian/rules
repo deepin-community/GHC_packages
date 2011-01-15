@@ -118,7 +118,9 @@ build-stamp: configure-stamp
 	cd debian/haddock-build/haddock; \
 		../../../inplace/bin/ghc-stage2 --make Setup.lhs; \
 		./Setup configure --prefix=/usr --with-compiler=../../../inplace/bin/ghc-stage2 \
-			--package-db=../../../inplace/lib/package.conf.d/; \
+			--package-db=../../../inplace/lib/package.conf.d/ \
+			--htmldir=/usr/share/doc/ghc-haddock/html/ \
+		; \
 		./Setup build
 
 	touch $@
@@ -158,14 +160,17 @@ ifneq (,$(findstring $(DEB_HOST_ARCH), i386 amd64 kfreebsd-i386 kfreebsd-amd64))
 endif
 	sed -ri 's,^haddock-interfaces: /.*?/libraries/,haddock-interfaces: /usr/lib/ghc-$(ProjectVersion)/haddock/,' debian/tmp/var/lib/ghc-$(ProjectVersion)/package.conf.d/*.conf
 
+	# Remove haddock as built within the ghc tree
+	rm -f debian/tmp/usr/lib/ghc-$(ProjectVersion)/bin/haddock \
+	      debian/tmp/usr/lib/ghc-$(ProjectVersion)/bin/haddock-$(ProjectVersion) \
+	      debian/tmp/usr/lib/ghc-$(ProjectVersion)/lib/haddock
+	rm -rf debian/tmp/usr/lib/ghc-$(ProjectVersion)/html
+
 	# Sort out the binaries
 	mkdir -p debian/tmp/usr/bin
 	if inplace/bin/ghc-stage2 --info | grep '"Have interpreter","NO"'; then \
 	    cd debian/tmp/usr/lib/ghc-$(ProjectVersion) ;rm -f bin/ghci* bin/runghc* bin/runhaskell*; \
 	fi
-	rm -f debian/tmp/usr/lib/ghc-$(ProjectVersion)/bin/haddock \
-	      debian/tmp/usr/lib/ghc-$(ProjectVersion)/bin/haddock-$(ProjectVersion) \
-	      debian/tmp/usr/lib/ghc-$(ProjectVersion)/lib/haddock
 	cd debian/tmp/usr/lib/ghc-$(ProjectVersion)/bin && \
 	    for f in *-$(ProjectVersion); \
 	    do ln -s /usr/lib/ghc-$(ProjectVersion)/bin/$$f \
