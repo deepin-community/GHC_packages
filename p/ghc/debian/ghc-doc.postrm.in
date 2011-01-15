@@ -1,0 +1,17 @@
+#! /bin/sh
+
+set -e
+
+case "$1" in
+    remove)
+	rm -f /usr/share/doc/ghc-doc/libraries/index.html \
+	    /usr/share/doc/ghc-doc/index-frames.html \
+	    /usr/share/doc/ghc-doc/doc-index.html
+	;;
+    *)
+	;;
+esac
+
+#DEBHELPER#
+
+exit 0

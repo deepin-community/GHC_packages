@@ -1,14 +1,8 @@
 #! /bin/sh
-# prerm script for ghc6
+# prerm script for ghc-doc
 #
-# SOURCE: ghc6.prerm.in
 
 set -e
-
-execdir=/usr/bin
-libdir=/usr/lib/ghc-@VERSION@
-bindir=$libdir/bin
-vardir=/var/lib/ghc-@VERSION@
 
 # summary of how this script can be called:
 #        * <prerm> `remove'
@@ -21,16 +15,15 @@ vardir=/var/lib/ghc-@VERSION@
 # for details, see /usr/doc/packaging-manual/
 
 case "$1" in
-    remove)
-        update-alternatives --remove runhaskell $execdir/runghc
-        update-alternatives --remove haskell-compiler $execdir/ghc
-        update-alternatives --remove ghc $bindir/ghc
-	rm -f $vardir/package.conf.d/package.cache
-    ;;
-    upgrade|deconfigure|failed-upgrade)
-        update-alternatives --remove runhaskell $execdir/runghc
-        update-alternatives --remove haskell-compiler $execdir/ghc
-        update-alternatives --remove ghc $bindir/ghc
+    remove|upgrade|deconfigure|failed-upgrade)
+        rm -f /usr/share/doc/ghc-doc/libraries/doc-index*.html
+        rm -f /usr/share/doc/ghc-doc/libraries/haddock.css
+        rm -f /usr/share/doc/ghc-doc/libraries/haddock.js
+        rm -f /usr/share/doc/ghc-doc/libraries/index.html
+        rm -f /usr/share/doc/ghc-doc/libraries/libraries.txt
+        rm -f /usr/share/doc/ghc-doc/libraries/haskell_icon.gif
+        rm -f /usr/share/doc/ghc-doc/libraries/minus.gif
+        rm -f /usr/share/doc/ghc-doc/libraries/plus.gif
     ;;
     *)
         echo "prerm called with unknown argument \`$1'" >&2

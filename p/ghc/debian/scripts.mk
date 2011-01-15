@@ -1,8 +1,8 @@
 #!/usr/bin/make -f
 
-FILES  = debian/ghc6.postinst debian/ghc6.prerm
-FILES += debian/ghc6-doc.postinst debian/gen_contents_index debian/ghc6-doc.triggers
-FILES += debian/ghc6-doc.preinst debian/ghc-pkg6.man
+FILES  = debian/ghc.postinst debian/ghc.prerm
+FILES += debian/ghc-doc.postinst debian/gen_contents_index debian/ghc-doc.triggers
+FILES += debian/ghc-doc.preinst debian/ghc-pkg6.man
 
 .PHONY: all clean
 

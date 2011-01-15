@@ -1,7 +1,7 @@
 #! /bin/sh
-# postinst script for ghc6
+# postinst script for ghc
 #
-# SOURCE: ghc6.postinst.in
+# SOURCE: ghc.postinst.in
 set -e
 
 execdir=/usr/bin
@@ -31,8 +31,8 @@ if $libdir/bin/ghc --info | grep -q '"Have interpreter","YES"' ; then
     NEED_INTERPRETER="\
             --slave $execdir/runghc runghc $bindir/runghc \
             --slave $execdir/ghci ghci $bindir/ghci \
-            --slave $mandir/man1/ghci.1.gz ghci.1.gz $mandir/man1/ghc6.1.gz \
-            --slave $mandir/man1/runghc.1.gz runghc.1.gz $mandir/man1/runghc6.1.gz"
+            --slave $mandir/man1/ghci.1.gz ghci.1.gz $mandir/man1/ghc.1.gz \
+            --slave $mandir/man1/runghc.1.gz runghc.1.gz $mandir/man1/runghc.1.gz"
 fi
 
 case "$1" in
@@ -40,20 +40,20 @@ case "$1" in
 	$bindir/ghc-pkg recache --global
 	if [ -n "$NEED_INTERPRETER" ] ; then
             update-alternatives \
-		--install $execdir/runhaskell runhaskell $execdir/runghc6 8600000600 \
-		--slave $mandir/man1/runhaskell.1.gz runhaskell.1.gz $mandir/man1/runghc6.1.gz
+		--install $execdir/runhaskell runhaskell $execdir/runghc 8600000600 \
+		--slave $mandir/man1/runhaskell.1.gz runhaskell.1.gz $mandir/man1/runghc.1.gz
 	fi
         update-alternatives \
-            --install $execdir/haskell-compiler haskell-compiler $execdir/ghc6 600 \
-            --slave $mandir/man1/haskell-compiler.1.gz haskell-compiler.1.gz $mandir/man1/ghc6.1.gz
+            --install $execdir/haskell-compiler haskell-compiler $execdir/ghc 600 \
+            --slave $mandir/man1/haskell-compiler.1.gz haskell-compiler.1.gz $mandir/man1/ghc.1.gz
         update-alternatives \
             --install $execdir/ghc ghc $bindir/ghc 600 \
             --slave $execdir/ghc-pkg ghc-pkg $bindir/ghc-pkg \
             --slave $execdir/hsc2hs hsc2hs $bindir/hsc2hs \
             --slave $execdir/hp2ps hp2ps $bindir/hp2ps \
             --slave $execdir/hpc hpc $bindir/hpc \
-            --slave $mandir/man1/hp2ps.1.gz hp2ps.1.gz $mandir/man1/hp2ps-ghc6.1.gz \
-            --slave $mandir/man1/ghc.1.gz ghc.1.gz $mandir/man1/ghc6.1.gz \
+            --slave $mandir/man1/hp2ps.1.gz hp2ps.1.gz $mandir/man1/hp2ps-ghc.1.gz \
+            --slave $mandir/man1/ghc.1.gz ghc.1.gz $mandir/man1/ghc.1.gz \
 	    --slave $mandir/man1/ghc-pkg.1.gz ghc-pkg.1.gz $mandir/man1/ghc-pkg6.1.gz \
             --slave $execdir/hasktags hasktags $bindir/hasktags $NEED_INTERPRETER
 	$bindir/ghc-pkg recache --global
