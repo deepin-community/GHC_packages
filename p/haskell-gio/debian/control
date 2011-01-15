@@ -6,24 +6,24 @@ Uploaders: Marco Túlio Gontijo e Silva <marcot@debian.org>
 Build-Depends: debhelper (>= 7)
   , cdbs
   , haskell-devscripts (>= 0.7)
-  , ghc6
-  , ghc6-prof
-  , libghc6-mtl-dev
-  , libghc6-mtl-prof
-  , libghc6-glib-dev (>= 0.11)
-  , libghc6-glib-dev (<< 0.12)
-  , libghc6-glib-prof
+  , ghc
+  , ghc-prof
+  , libghc-mtl-dev
+  , libghc-mtl-prof
+  , libghc-glib-dev (>= 0.11)
+  , libghc-glib-dev (<< 0.12)
+  , libghc-glib-prof
   , libglib2.0-dev
   , gtk2hs-buildtools
-Build-Depends-Indep: ghc6-doc
-  , libghc6-mtl-doc
-  , libghc6-glib-doc
+Build-Depends-Indep: ghc-doc
+  , libghc-mtl-doc
+  , libghc-glib-doc
 Standards-Version: 3.8.4
 Homepage: http://hackage.haskell.org/package/gio
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-gio
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-gio
 
-Package: libghc6-gio-dev
+Package: libghc-gio-dev
 Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
@@ -42,7 +42,7 @@ Description: Binding to the GIO
  cloning the POSIX API, but providing higher-level, document-centric
  interfaces.
 
-Package: libghc6-gio-prof
+Package: libghc-gio-prof
 Architecture: any
 Depends: ${haskell:Depends}
   , ${misc:Depends}
@@ -61,7 +61,7 @@ Description: Binding to the GIO; profiling libraries
  cloning the POSIX API, but providing higher-level, document-centric
  interfaces.
 
-Package: libghc6-gio-doc
+Package: libghc-gio-doc
 Section: doc
 Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
