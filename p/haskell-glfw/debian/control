@@ -4,17 +4,17 @@ Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Ernesto Hernández-Novich (USB) <emhn@usb.ve>
 Build-Depends: debhelper (>= 7), cdbs, haskell-devscripts (>= 0.7),
- ghc6, ghc6-prof,
- libghc6-opengl-dev (>= 2.1), libghc6-opengl-dev (<< 3),
- libghc6-opengl-prof,
+ ghc, ghc-prof,
+ libghc-opengl-dev (>= 2.1), libghc-opengl-dev (<< 3),
+ libghc-opengl-prof,
  libglfw-dev, libxrandr-dev
-Build-Depends-Indep: ghc6-doc, libghc6-opengl-doc
+Build-Depends-Indep: ghc-doc, libghc-opengl-doc
 Standards-Version: 3.8.4
 Homepage: http://hackage.haskell.org/package/GLFW
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-glfw
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=haskell/haskell-glfw
 
-Package: libghc6-glfw-dev
+Package: libghc-glfw-dev
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends},
  libglfw-dev, libxrandr-dev
@@ -28,7 +28,7 @@ Description: Haskell GLFW binding for GHC
  This library provides bindings for GLFW, a window system independent
  toolkit for writing OpenGL programs.
 
-Package: libghc6-glfw-prof
+Package: libghc-glfw-prof
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
@@ -42,7 +42,7 @@ Description: Haskell GLFW binding for GHC; profiling libraries
  This library provides bindings for GLFW, a window system independent
  toolkit for writing OpenGL programs.
 
-Package: libghc6-glfw-doc
+Package: libghc-glfw-doc
 Section: doc
 Architecture: all
 Depends: ${haskell:Depends}, ${misc:Depends}
