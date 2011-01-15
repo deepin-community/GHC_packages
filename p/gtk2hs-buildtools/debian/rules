@@ -5,9 +5,9 @@ include /usr/share/cdbs/1/class/hlibrary.mk
 
 DEB_SETUP_GHC6_CONFIGURE_ARGS = --datasubdir=gtk2hs-buildtools
 
-build/gtk2hs-buildtools:: build-ghc6-stamp
+build/gtk2hs-buildtools:: build-ghc-stamp
 
 install/gtk2hs-buildtools::
-	$(DEB_SETUP_BIN_NAME) copy --builddir=dist-ghc6 \
+	$(DEB_SETUP_BIN_NAME) copy --builddir=dist-ghc \
 		--destdir=debian/gtk2hs-buildtools/
 	rm -r debian/gtk2hs-buildtools/usr/share/doc/gtk2hs-buildtools-0.9
