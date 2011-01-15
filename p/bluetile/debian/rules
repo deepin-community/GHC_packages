@@ -5,11 +5,11 @@ DEB_SETUP_GHC6_CONFIGURE_ARGS := --datasubdir=bluetile --libexecdir=/usr/lib/blu
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
 
-build/$(CABAL_PACKAGE) :: build-ghc6-stamp
+build/$(CABAL_PACKAGE) :: build-ghc-stamp
 
 install/$(CABAL_PACKAGE) :: build/$(CABAL_PACKAGE)
 	dh_installwm
-	$(DEB_SETUP_BIN_NAME) copy --builddir=dist-ghc6 --destdir=debian/$(CABAL_PACKAGE)
+	$(DEB_SETUP_BIN_NAME) copy --builddir=dist-ghc --destdir=debian/$(CABAL_PACKAGE)
 	rm -rf debian/$(CABAL_PACKAGE)/usr/share/doc
 	install -D -m 0644 misc/gnome-bluetile-session.desktop debian/bluetile/usr/share/xsessions/gnome-bluetile.desktop
 	install -D -m 0644 misc/bluetile.desktop debian/bluetile/usr/share/applications/bluetile.desktop
