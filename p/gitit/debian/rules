@@ -3,12 +3,12 @@
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
 
-PANDOC_DEP := $(shell dpkg -p libghc6-pandoc-dev | grep ^Version: | cut -d' ' -f2)
-FILESTORE_DEP := $(shell dpkg -p libghc6-filestore-dev | grep ^Version: | cut -d' ' -f2)
+PANDOC_DEP := $(shell dpkg -p libghc-pandoc-dev | grep ^Version: | cut -d' ' -f2)
+FILESTORE_DEP := $(shell dpkg -p libghc-filestore-dev | grep ^Version: | cut -d' ' -f2)
 
-install/gitit:: debian/tmp-inst-ghc6
-	cp -av debian/tmp-inst-ghc6/usr/bin/* debian/gitit/usr/bin
-	cp -av debian/tmp-inst-ghc6/usr/share/gitit-$(CABAL_VERSION) debian/gitit/usr/share
+install/gitit:: debian/tmp-inst-ghc
+	cp -av debian/tmp-inst-ghc/usr/bin/* debian/gitit/usr/bin
+	cp -av debian/tmp-inst-ghc/usr/share/gitit-$(CABAL_VERSION) debian/gitit/usr/share
 
 	# Don't use embedded copies of jQuery and jQuery UI; instead, make symlinks
 	rm -f debian/gitit/usr/share/gitit-$(CABAL_VERSION)/data/static/js/jquery.min.js
@@ -17,7 +17,7 @@ install/gitit:: debian/tmp-inst-ghc6
 	dh_link -pgitit /usr/share/javascript/jquery-ui/jquery-ui.min.js usr/share/gitit-$(CABAL_VERSION)/data/static/js/jquery-ui.packed.js
 
 	# Generate dependencies against data packages
-	echo "gitit:Depends=pandoc (= ${PANDOC_DEP}), libghc6-filestore-data (= ${FILESTORE_DEP})" >> debian/gitit.substvars
+	echo "gitit:Depends=pandoc (= ${PANDOC_DEP}), libghc-filestore-data (= ${FILESTORE_DEP})" >> debian/gitit.substvars
 
 	# Removes a few files, that are not necessary and make lintian cry
 	rm -f debian/gitit/usr/share/gitit-0.7.3.6/data/post-update
@@ -25,6 +25,7 @@ install/gitit:: debian/tmp-inst-ghc6
 	rm -f debian/gitit/usr/share/gitit-0.7.3.6/YUI-LICENSE
 
 # Not used at the moment
-#install/libghc6-gitit-dev:: debian/tmp-inst-ghc6
+#install/libghc-gitit-dev:: debian/tmp-inst-ghc
 #	# Generate dependencies against data packages
-#	echo "gitit:Depends=pandoc (= ${PANDOC_DEP}), libghc6-filestore-data (= ${FILESTORE_DEP})" >> debian/gitit.substvars
+#	echo "gitit:Depends=pandoc (= ${PANDOC_DEP}), libghc-filestore-data (= ${FILESTORE_DEP})" >> debian/gitit.substvars
+
