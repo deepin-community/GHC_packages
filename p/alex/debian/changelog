@@ -1,7 +1,11 @@
 alex (2.3.4-1) UNRELEASED; urgency=low
 
+  [ Erik de Castro Lopo ]
   * New upstream.
   * Remove patches/00-fix-warnings-on-big-endian.diff (fixed upstream).
+
+  [ Marco Silva ]
+  * Use ghc instead of ghc
 
  -- Erik de Castro Lopo <erikd@mega-nerd.com>  Wed, 24 Nov 2010 20:23:08 +1100
 
@@ -38,7 +42,7 @@ alex (2.3.1-3) unstable; urgency=low
   * debian/control: Use Vcs-Browser: field.
   * debian/control: Bump Standards-Version: to 3.8.4, no changes needed.
   * debian/control: Bump version of Build-Depends: on haskell-devscripts
-    to 0.7 and remove versioned Build-Depends: on ghc6.
+    to 0.7 and remove versioned Build-Depends: on ghc.
 
  -- Marco Túlio Gontijo e Silva <marcot@debian.org>  Sun, 21 Feb 2010 09:30:03 -0300
 
@@ -74,7 +78,7 @@ alex (2.2-0.1) unstable; urgency=low
     - Fixes a spelling mistake. (Closes: #419671)
   * debian/control:
     - Added Homepage field.
-    - Bump the build dependency on ghc6 to 6.8.2 as the packages needs
+    - Bump the build dependency on ghc to 6.8.2 as the packages needs
       Cabal 1.2 to build.
     - Bump the Standards-Version to 3.7.3. No changes needed.
   * debian/copyright:
@@ -98,7 +102,7 @@ alex (2.1.0~rc1-1) unstable; urgency=low
     * Various debian/rules changes.
     * Create debian/get_version.hs for extracting the version from the cabal
       file.
-    * Requires ghc6 >= 6.4.2.
+    * Requires ghc >= 6.4.2.
     * No longer tries to detect platform. Closes: #332980, #340326.
   * Add 'XSLTPROC_OPTS = --nonet' to doc/config.mk.in.
   * Remove src/Parser.y and src/Scan.x before cleaning so the generated
