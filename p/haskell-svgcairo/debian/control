@@ -6,28 +6,28 @@ Uploaders: Marco Túlio Gontijo e Silva <marcot@debian.org>
 Build-Depends: debhelper (>= 7)
   , cdbs
   , haskell-devscripts (>= 0.7)
-  , ghc6
-#  , ghc6-prof
-  , libghc6-mtl-dev
-#  , libghc6-mtl-prof
-  , libghc6-glib-dev (>= 0.11)
-  , libghc6-glib-dev (<< 0.12)
-#  , libghc6-glib-prof
-  , libghc6-cairo-dev (>= 0.11)
-  , libghc6-cairo-dev (<< 0.12)
-#  , libghc6-cairo-prof
+  , ghc
+#  , ghc-prof
+  , libghc-mtl-dev
+#  , libghc-mtl-prof
+  , libghc-glib-dev (>= 0.11)
+  , libghc-glib-dev (<< 0.12)
+#  , libghc-glib-prof
+  , libghc-cairo-dev (>= 0.11)
+  , libghc-cairo-dev (<< 0.12)
+#  , libghc-cairo-prof
   , gtk2hs-buildtools
   , librsvg2-dev
-Build-Depends-Indep: ghc6-doc
-  , libghc6-mtl-doc
-  , libghc6-glib-doc
-  , libghc6-cairo-doc
+Build-Depends-Indep: ghc-doc
+  , libghc-mtl-doc
+  , libghc-glib-doc
+  , libghc-cairo-doc
 Standards-Version: 3.9.1
 Homepage: http://hackage.haskell.org/package/svgcairo
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-svgcairo
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-svgcairo
 
-Package: libghc6-svgcairo-dev
+Package: libghc-svgcairo-dev
 Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
@@ -42,7 +42,7 @@ Description: Binding to the libsvg-cairo library
  .
  Svgcairo is used to render SVG with cairo.
 
-# Package: libghc6-svgcairo-prof
+# Package: libghc-svgcairo-prof
 # Architecture: any
 # Depends: ${haskell:Depends}
 #   , ${misc:Depends}
@@ -56,7 +56,7 @@ Description: Binding to the libsvg-cairo library
 #  .
 #  Svgcairo is used to render SVG with cairo.
 
-Package: libghc6-svgcairo-doc
+Package: libghc-svgcairo-doc
 Section: doc
 Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
