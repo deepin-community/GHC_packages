@@ -163,7 +163,9 @@ endif
 	if inplace/bin/ghc-stage2 --info | grep '"Have interpreter","NO"'; then \
 	    cd debian/tmp/usr/lib/ghc-$(ProjectVersion) ;rm -f bin/ghci* bin/runghc* bin/runhaskell*; \
 	fi
-	rm -f debian/tmp/usr/lib/ghc-$(ProjectVersion)/bin/haddock debian/tmp/usr/lib/ghc-$(ProjectVersion)/lib/haddock
+	rm -f debian/tmp/usr/lib/ghc-$(ProjectVersion)/bin/haddock \
+	      debian/tmp/usr/lib/ghc-$(ProjectVersion)/bin/haddock-$(ProjectVersion) \
+	      debian/tmp/usr/lib/ghc-$(ProjectVersion)/lib/haddock
 	cd debian/tmp/usr/lib/ghc-$(ProjectVersion)/bin && \
 	    for f in *-$(ProjectVersion); \
 	    do ln -s /usr/lib/ghc-$(ProjectVersion)/bin/$$f \
@@ -217,7 +219,6 @@ endif
 	# ghc6
 	find debian/tmp/usr/bin $(FILES) ! -name haddock  > debian/ghc6.install
 #	find debian/tmp/usr/share/ghc* $(FILES)          >> debian/ghc6.install
-	find debian/tmp/usr/share/haddock-* $(FILES)	 >> debian/ghc6.install
 	find debian/tmp/usr/share/man $(FILES)           >> debian/ghc6.install
 	find debian/tmp/usr/lib/ghc-$(ProjectVersion) $(FILES) ! $(PROF_FILE) ! $(DYNAMIC_FILE) >> debian/ghc6.install
 	find debian/tmp/var				 >> debian/ghc6.install
@@ -230,6 +231,7 @@ endif
 	echo debian/lintian-overrides/ghc6-dynamic /usr/share/lintian/overrides >> debian/ghc6-dynamic.install
 	# haddock
 	echo usr/bin/haddock				 > debian/ghc6-haddock.install
+	find debian/tmp/usr/share/haddock-* $(FILES)	 >> debian/ghc6-haddock.install
 	# ghc6-doc
 ifeq (YES,$(BUILD_HADDOCK_DOCS))
 	find debian/tmp/usr/share/doc/ghc6-doc $(FILES) > debian/ghc6-doc.install
