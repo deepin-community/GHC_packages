@@ -8,8 +8,8 @@ Build-Depends:
  debhelper (>= 7),
  haskell-devscripts (>= 0.7),
  cdbs,
- ghc6,
- ghc6-prof,
+ ghc,
+ ghc-prof,
  libgl1-mesa-dev | libgl-dev,
  libglu1-mesa-dev | libglu-dev,
  libx11-dev,
@@ -19,40 +19,40 @@ Build-Depends:
  pkg-config,
  libsdl1.2-dev,
  libsdl-mixer1.2-dev,
- libghc6-sdl-dev,
- libghc6-sdl-prof
-Build-Depends-Indep: ghc6-doc
+ libghc-sdl-dev,
+ libghc-sdl-prof
+Build-Depends-Indep: ghc-doc
 Homepage: http://hackage.haskell.org/package/SDL-mixer
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-sdl-mixer
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-sdl-mixer
 
 
-Package: libghc6-sdl-mixer-dev
+Package: libghc-sdl-mixer-dev
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends},
  libgl1-mesa-dev | libgl-dev, libglu1-mesa-dev | libglu-dev, libx11-dev,
- libsdl1.2-dev, libsdl-mixer1.2-dev, libghc6-sdl-dev
-Suggests: libghc6-sdl-mixer-prof, libghc6-sdl-mixer-doc
+ libsdl1.2-dev, libsdl-mixer1.2-dev, libghc-sdl-dev
+Suggests: libghc-sdl-mixer-prof, libghc-sdl-mixer-doc
 Description: Haskell SDL Mixer binding for GHC
  This package provides the SDL Mixer library bindings for the Haskell
  programming language. SDL Mixer is sample multi-channel audio mixer library.
 
-Package: libghc6-sdl-mixer-prof
+Package: libghc-sdl-mixer-prof
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends},
- libghc6-sdl-mixer-dev (= ${binary:Version}), libghc6-sdl-prof
-Suggests: libghc6-sdl-mixer-doc
+ libghc-sdl-mixer-dev (= ${binary:Version}), libghc-sdl-prof
+Suggests: libghc-sdl-mixer-doc
 Description: Haskell SDL Mixer binding for GHC - profiling libraries
  This package provides the SDL Mixer library bindings for the Haskell
  programming language, compiled for profiling. SDL Mixer is a sample
  multi-channel audio mixer library.
 
-Package: libghc6-sdl-mixer-doc
+Package: libghc-sdl-mixer-doc
 Section: doc
 Architecture: all
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Recommends: ghc6-doc
-Suggests: libghc6-sdl-mixer-dev, libghc6-sdl-mixer-prof
+Recommends: ghc-doc
+Suggests: libghc-sdl-mixer-dev, libghc-sdl-mixer-prof
 Description: Haskell SDL Mixer binding for GHC - documentation
  This package provides the documentation for the SDL Mixer library bindings
  for the Haskell programming language. SDL Mixer is a sample multi-channel
