@@ -1,6 +1,10 @@
 haskell-fgl (5.4.2.2-3) UNRELEASED; urgency=low
 
+  [ Marco Túlio Gontijo e Silva ]
   * debian/source/format: Use 3.0 (quilt).
+
+  [ Marco Silva ]
+  * Use ghc instead of ghc
 
  -- Marco Túlio Gontijo e Silva <marcot@debian.org>  Sun, 21 Feb 2010 07:45:51 -0300
 
@@ -23,7 +27,7 @@ haskell-fgl (5.4.1.1-2) unstable; urgency=low
   * Upgrade to "Generic Haskell cabal library packaging files v10":
     * Versioned dependencies are now generated for the Cabal packages we
       depend on.
-    * Use the new ${impl:ghc6:*_deps} variables in debian/control.in.
+    * Use the new ${impl:ghc:*_deps} variables in debian/control.in.
     * Call canonicalise-comma-list on the depends and suggests fields in
       control.in. This works around bugs in lintian, where it gets
       confused and starts giving spurious warnings.
@@ -81,9 +85,9 @@ haskell-fgl (5.4.1-1) unstable; urgency=low
 haskell-fgl (5.3-3) unstable; urgency=low
 
   * Upgrade to "Generic Haskell cabal library debian/rules v0.6".
-    Tell setup to use ghc6 rather than ghc, so that the postinst/prerm
+    Tell setup to use ghc rather than ghc, so that the postinst/prerm
     scripts work when the ghc-pkg symlink doesn't exist or doesn't
-    point to ghc6's ghc-pkg.
+    point to ghc's ghc-pkg.
 
  -- Ian Lynagh (wibble) <igloo@debian.org>  Mon, 20 Nov 2006 20:50:42 +0000
 
@@ -99,6 +103,7 @@ haskell-fgl (5.3-2) unstable; urgency=low
 
 haskell-fgl (5.3-1) unstable; urgency=low
 
-  * Initial release (was part of ghc6 until version 6.6-1).
+  * Initial release (was part of ghc until version 6.6-1).
 
  -- Ian Lynagh (wibble) <igloo@debian.org>  Fri, 13 Oct 2006 16:43:11 +0000
+
