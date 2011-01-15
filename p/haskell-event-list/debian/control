@@ -4,23 +4,23 @@ Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Ernesto Hernández-Novich (USB) <emhn@usb.ve>
 Build-Depends: debhelper (>= 7), cdbs, haskell-devscripts (>= 0.7),
- ghc6, ghc6-prof,
- libghc6-quickcheck2-dev, libghc6-quickcheck2-prof,
- libghc6-transformers-dev (>= 0.1),
- libghc6-transformers-dev (<< 0.3),
- libghc6-transformers-prof,
- libghc6-non-negative-dev, libghc6-non-negative-prof,
- libghc6-utility-ht-dev, libghc6-utility-ht-prof
-Build-Depends-Indep: ghc6-doc,
- libghc6-transformers-doc,
- libghc6-non-negative-doc,
- libghc6-utility-ht-doc
+ ghc, ghc-prof,
+ libghc-quickcheck2-dev, libghc-quickcheck2-prof,
+ libghc-transformers-dev (>= 0.1),
+ libghc-transformers-dev (<< 0.3),
+ libghc-transformers-prof,
+ libghc-non-negative-dev, libghc-non-negative-prof,
+ libghc-utility-ht-dev, libghc-utility-ht-prof
+Build-Depends-Indep: ghc-doc,
+ libghc-transformers-doc,
+ libghc-non-negative-doc,
+ libghc-utility-ht-doc
 Standards-Version: 3.8.4
 Homepage: http://hackage.haskell.org/package/event-list
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-event-list
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=haskell/haskell-event-list
 
-Package: libghc6-event-list-dev
+Package: libghc-event-list-dev
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
@@ -36,7 +36,7 @@ Description: Event lists with relative or absolute timestamps
  are supported. The data structures can be used to represent MIDI files,
  OpenSoundControl message streams, music performances etc.
 
-Package: libghc6-event-list-prof
+Package: libghc-event-list-prof
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
@@ -53,7 +53,7 @@ Description: Event lists with relative or absolute timestamps; profiling librari
  are supported. The data structures can be used to represent MIDI files,
  OpenSoundControl message streams, music performances etc.
 
-Package: libghc6-event-list-doc
+Package: libghc-event-list-doc
 Section: doc
 Architecture: all
 Depends: ${haskell:Depends}, ${misc:Depends}
