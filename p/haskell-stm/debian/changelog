@@ -1,6 +1,10 @@
 haskell-stm (2.1.1.2-6) UNRELEASED; urgency=low
 
+  [ Marco Túlio Gontijo e Silva ]
   * debian/source/format: Use 3.0 (quilt).
+
+  [ Marco Silva ]
+  * Use ghc instead of ghc
 
  -- Marco Túlio Gontijo e Silva <marcot@debian.org>  Sun, 21 Feb 2010 07:46:14 -0300
 
@@ -42,7 +46,7 @@ haskell-stm (2.1.1.0-2) unstable; urgency=low
   * Upgrade to "Generic Haskell cabal library packaging files v10":
     * Versioned dependencies are now generated for the Cabal packages we
       depend on.
-    * Use the new ${impl:ghc6:*_deps} variables in debian/control.in.
+    * Use the new ${impl:ghc:*_deps} variables in debian/control.in.
     * Call canonicalise-comma-list on the depends and suggests fields in
       control.in. This works around bugs in lintian, where it gets
       confused and starts giving spurious warnings.
