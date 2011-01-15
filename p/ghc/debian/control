@@ -9,8 +9,9 @@ Homepage: http://haskell.org/ghc/
 Package: ghc
 Architecture: any
 Depends: gcc (>= 4:4.2), libgmp3-dev, libffi-dev, libbsd-dev, libc6-dev, ${shlibs:Depends}, ${misc:Depends}
-Provides: haskell-compiler, ghc, ${provided-devs}, ${haskell:Provides}, ${ghci}
-Replaces: ghc-doc (= 6.12.1-8)
+Provides: haskell-compiler, ghc6, ${provided-devs}, ${haskell:Provides}, ${ghci}
+Replaces: ghc-doc (= 6.12.1-8), ghc6 (<< 7)
+Conflicts: ghc6 (<< 7)
 Breaks: cabal-install (<< 0.8.0), haskell-devscripts (<< 0.6.19), ghc-doc (<= 6.12.1-8)
 Suggests: perl, ghc-prof, ghc-doc, haskell-doc
 Description: GHC - the Glasgow Haskell Compilation system
@@ -24,8 +25,10 @@ Description: GHC - the Glasgow Haskell Compilation system
 
 Package: ghc-prof
 Architecture: any
-Provides: ghc-prof, ${provided-profs}, ${haskell:Provides}
+Provides: ghc-prof, ghc6-prof ${provided-profs}, ${haskell:Provides}
 Depends: ghc (= ${binary:Version}), ${misc:Depends}
+Replaces: ghc6-prof (<< 7)
+Conflicts: ghc6-prof (<< 7)
 Description: Profiling libraries for the Glasgow Haskell Compilation system
  The Glorious Glasgow Haskell Compilation system (GHC) is a compiler for
  Haskell.
@@ -43,7 +46,9 @@ Package: ghc-doc
 Section: doc
 Architecture: all
 Suggests: haskell-doc
-Provides: ${provided-docs}
+Provides: ghc6-doc, ${provided-docs}
+Replaces: ghc6-doc (<< 7)
+Conflicts: ghc6-doc (<< 7)
 Depends: ghc-haddock (= ${binary:Version}), ${misc:Depends}, perl
 Description: Documentation for the Glasgow Haskell Compilation system
  The Glorious Glasgow Haskell Compilation system (GHC) is a compiler for
@@ -96,3 +101,24 @@ Description: Documentation tool for annotated Haskell source code
  is implemented, and there is partial support for generating DocBook.
  .
  This package contains Haddock version 2.8.0.
+
+Package: ghc6
+Architecture: all
+Depends: ghc
+Description: transitional dummy package
+ This package ensures a smooth transition from the package name ghc6 to the
+ package name ghc, and can safely be removed.
+
+Package: ghc6-doc
+Architecture: all
+Depends: ghc-doc
+Description: transitional dummy package
+ This package ensures a smooth transition from the package name ghc6-doc to the
+ package name ghc-doc, and can safely be removed.
+
+Package: ghc6-prof
+Architecture: all
+Depends: ghc-prof
+Description: transitional dummy package
+ This package ensures a smooth transition from the package name ghc6-prof to the
+ package name ghc-prof, and can safely be removed.
