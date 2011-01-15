@@ -1,6 +1,12 @@
+haskell-src-exts (1.9.0-3) UNRELEASED; urgency=low
+
+  * Use ghc instead of ghc
+
+ -- Marco Silva <marcot@debian.org>  Sat, 15 Jan 2011 12:41:29 -0200
+
 haskell-src-exts (1.9.0-2) unstable; urgency=low
 
-  * Run ghc6 without active timer (+RTS -V0 -RTS). Should work around
+  * Run ghc without active timer (+RTS -V0 -RTS). Should work around
     http://hackage.haskell.org/trac/ghc/ticket/4074 on slow arches. Negative
     side effects not known (yet).
 
@@ -14,7 +20,7 @@ haskell-src-exts (1.9.0-1) unstable; urgency=low
   [ Erik de Castro Lopo ]
   * New upstream.
   * control :
-    - Build depend on libghc6-cpphs-doc rather than haskell-cpphs-doc.
+    - Build depend on libghc-cpphs-doc rather than haskell-cpphs-doc.
     - FIx lintian warnings.
 
  -- Erik de Castro Lopo <erikd@mega-nerd.com>  Wed, 23 Jun 2010 18:18:15 +1000
@@ -139,7 +145,7 @@ haskell-src-exts (0.2.1~darcs20071212-1) unstable; urgency=low
     - Bump Standard-Version to 3.7.3. No changes needed.
     - Add some commented out binary stanzas for API documentation packages
       we might want to build in the future.
-    - Bump the build dependency on ghc6 to 6.8.2 so we are sure we get the
+    - Bump the build dependency on ghc to 6.8.2 so we are sure we get the
       Cabal version 1.2 which is needed to build this package.
   * debian/{haskell-harp-doc,haskell-src-exts-doc}.docs: Added.
   * debian/rules:
@@ -182,7 +188,7 @@ haskell-src-exts (0.2.1~darcs20070622-1) unstable; urgency=low
     - Add myself to the Uploaders field.
     - Add X-Vcs-Svn and X-Vcs-Browser fields.
   * debian/{runcompiler,buildmod.sh}: Removed. No longer necessary.
-  * debian/{postinst.in,prerm.in,ghc6.in,ghc6-pkg6.in,mk-haskell-depends}:
+  * debian/{postinst.in,prerm.in,ghc.in,ghc-pkg6.in,mk-haskell-depends}:
     Added. Needed for the new debian/rules file
 
  -- Arjan Oosting <arjan@debian.org>  Sun, 01 Jul 2007 00:03:08 +0200
@@ -190,7 +196,7 @@ haskell-src-exts (0.2.1~darcs20070622-1) unstable; urgency=low
 haskell-src-exts (0.2-5.1) unstable; urgency=low
 
   * Non-maintainer upload.
-  * Fix FTBFS with ghc6 6.6 (Closes: #393642)
+  * Fix FTBFS with ghc 6.6 (Closes: #393642)
     - src/haskell-src-exts/Language/Haskell/Hsx/Lexer.hs: hide isSymbol
       when compiling with GHC 6.6.
     - src/haskell-src-exts/haskell-src-exts.cabal: add CPP extension which
@@ -211,8 +217,8 @@ haskell-src-exts (0.2-5) unstable; urgency=low
 
 haskell-src-exts (0.2-4) unstable; urgency=low
 
-  * Rebuild against ghc6 6.4.2.
-  * Remove build-dep to libghc6-cabal-dev (>= 1.1.1) as ghc6 6.4.2 comes with
+  * Rebuild against ghc 6.4.2.
+  * Remove build-dep to libghc-cabal-dev (>= 1.1.1) as ghc 6.4.2 comes with
     Cabal-1.1.4.
 
  -- Florian Ragwitz <rafl@debian.org>  Mon,  3 Jul 2006 18:35:37 +0200
@@ -229,7 +235,7 @@ haskell-src-exts (0.2-3) unstable; urgency=low
 haskell-src-exts (0.2-2.1) unstable; urgency=low
 
   * Non-maintainer upload.
-  * debian/control: add versioned libghc6-cabal-dev and ghc6 to the
+  * debian/control: add versioned libghc-cabal-dev and ghc to the
     Build-Depends to use Cabal version 1.1.1 or later which introduces a
     new installation prefix for libraries. (Closes: #352690)
   * src/trhsx/trhsx.cabal: added base and haskell98 to the Build-
