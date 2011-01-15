@@ -3,7 +3,7 @@
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
 
-build/$(CABAL_PACKAGE) :: build-ghc6-stamp
+build/$(CABAL_PACKAGE) :: build-ghc-stamp
 
 debian/install: debian/install.in
 	sed -e "s#@CABAL_VERSION@#$(CABAL_VERSION)#g" < $^ > $@
