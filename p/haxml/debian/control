@@ -7,9 +7,9 @@ Build-Depends:
  debhelper (>= 7),
  cdbs,
  haskell-devscripts (>= 0.7),
- ghc6,
- ghc6-prof,
- ghc6-doc,
+ ghc,
+ ghc-prof,
+ ghc-doc,
  html2text
 Standards-Version: 3.8.4
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haxml/
@@ -20,7 +20,7 @@ Package: haxml
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Suggests: ${haskell:Suggests}
-Recommends: libghc6-haxml-dev (= ${binary:Version})
+Recommends: libghc-haxml-dev (= ${binary:Version})
 Description: utilities for using XML documents with Haskell
  .
  HaXml is a collection of utilities for parsing, filtering,
@@ -33,7 +33,7 @@ Description: utilities for using XML documents with Haskell
  .
  This package contains the HaXml command-line tools.
 
-Package: libghc6-haxml-dev
+Package: libghc-haxml-dev
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
@@ -53,7 +53,7 @@ Description: GHC6 libraries for using XML documents with Haskell
  document processing, including transformation, editing, and
  generation for use with GHC6.
 
-Package: libghc6-haxml-prof
+Package: libghc-haxml-prof
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
@@ -78,7 +78,7 @@ Section: doc
 Depends: ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Provides: libghc6-haxml-doc
+Provides: libghc-haxml-doc
 Description: Documentation of HaXml
  .
  HaXml is a collection of utilities for parsing, filtering,

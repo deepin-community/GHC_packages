@@ -1,6 +1,12 @@
+haxml (1:1.13.3-5) UNRELEASED; urgency=low
+
+  * Use ghc instead of ghc
+
+ -- Marco Silva <marcot@debian.org>  Sat, 15 Jan 2011 12:41:38 -0200
+
 haxml (1:1.13.3-4) unstable; urgency=low
 
-  * control: haxml-doc: Provides: libghc6-haxml-doc.
+  * control: haxml-doc: Provides: libghc-haxml-doc.
 
  -- Marco Túlio Gontijo e Silva <marcot@debian.org>  Thu, 06 May 2010 09:01:23 -0300
 
@@ -20,8 +26,8 @@ haxml (1:1.13.3-3) unstable; urgency=low
   * debian/control: Remove haddock from Build-Depends:, since it's now a
     Depends: of haskell-devscripts.
   * debian/control: Bump Standards-Version: to 3.8.4, no changes needed.
-  * debian/control: Remove uneeded Build-Depends: in libghc6-base-doc
-    and libghc6-haskell98-doc.
+  * debian/control: Remove uneeded Build-Depends: in libghc-base-doc
+    and libghc-haskell98-doc.
 
   [ Joachim Breitner ]
   * Bump haskell-devscripts dependency to 0.7
@@ -51,10 +57,10 @@ haxml (1.19.7-1) unstable; urgency=low
     - Standards version 3.8.3.
     - Update ghc, haddock version dependencies.
     - Update debhelper version to prevent lintian warnings.
-    - Add binary package libghc6-haxml-prof.
+    - Add binary package libghc-haxml-prof.
     - Remove hugs binary packages.
     - Section haskell.
-    - Build depend on libghc6-polyparse-dev.
+    - Build depend on libghc-polyparse-dev.
   * New CDBS/haskell-devscipts based build to replace old debian/rules.
   * Specify LGPL-2.1 and GPL-2 in debian/copyright.
   * Point debian/watch at hackage.haskell.org.
@@ -82,10 +88,10 @@ haxml (1.17-5) experimental; urgency=low
     - Small cleanups.
   * Generate links to other API documentation packages:
     - debian/control:
-      + Add libghc6-base-doc and libghc6-haskell98-doc to the
+      + Add libghc-base-doc and libghc-haskell98-doc to the
         Build-Depends-Indep so haddock can link to names in other
         packages.
-      + Add libghc6-base-doc and libghc6-haskell98-doc to the Recommends
+      + Add libghc-base-doc and libghc-haskell98-doc to the Recommends
         of haskell-http-doc.
    - debian/patches/10_link-to-other-docs.dpatch
       + Add the appropriate --use-package options so haddock will link to
@@ -119,7 +125,7 @@ haxml (1.17-3) experimental; urgency=low
   * debian/patches/07_no-hscolour-cmd.dpatch: don't remove the
     --source-entity and --source-module options as haddock 0.8 is in
     unstable.
-  * Stop using update-haskell-control and $ghc6_* variables, as it is not
+  * Stop using update-haskell-control and $ghc_* variables, as it is not
     necessary and not using it simplifies the work for porters and for me.
 
  -- Arjan Oosting <arjan@debian.org>  Fri, 20 Oct 2006 22:34:59 +0200
@@ -129,14 +135,14 @@ haxml (1.17-2) experimental; urgency=low
   * debian/control.in:
     - add XS-Vcs-Svn field pointing to subversion archive which contains
       this package.
-    - replace ${ghc6:Depends} with ${haskell:Depends} which is used by the
+    - replace ${ghc:Depends} with ${haskell:Depends} which is used by the
       new debian/mk-haskell-depends script.
     - change maintainer email address.
   * debian/rules:
-    - replace debian/mk-ghc6-vars with debian/mk-haskell-depends script
+    - replace debian/mk-ghc-vars with debian/mk-haskell-depends script
       which determines all dependencies by using the installed package
       description file used by ghc-pkg.
-    - redo the way we detect if libghc6-haxml-dev gets build.
+    - redo the way we detect if libghc-haxml-dev gets build.
   * debian/patches/03_build-haxml-prof.dpatch: rearranged to make other
     patches easier.
   * debian/patches/06_hcflags-support.dpatch: only use -package-name HaXml
@@ -151,15 +157,15 @@ haxml (1.17-1) experimental; urgency=low
     -  New: lazier pretty-printer Text.XML.HaXml.ShowXmlLazy
     -  Works with ghc-6.6 (changed uses of Data.FiniteMap to Data.Map).
   * debian/control.in:
-    - add ppc64 to the list of architectures which ghc6 supports.
+    - add ppc64 to the list of architectures which ghc supports.
     - drop cpphs from the Build-Depends as it is not used.
     - add dctrl-tools to Build-Depends as we use grep-dctrl in the
       debian/rules file.
-  * debian/libghc6-haxml-dev.prerm: don't fail it HaXml is not
+  * debian/libghc-haxml-dev.prerm: don't fail it HaXml is not
     registered.
   * debian/rules:
     - only install HaXml.package.conf if we are building
-      libghc6-haxml-dev.
+      libghc-haxml-dev.
     - make configure script executable.
     - remove info about executables and empty lines from
       HaXml.package.conf.
@@ -243,8 +249,8 @@ haxml (1.13-16) unstable; urgency=low
     - Use the new substitution variables binary:Version and source:Version
       and build depend on dpkg-dev (>= 1.13.19) which introduces these new
       variables.
-    - Drop build dependency on ghc6 which is already pulled in by the
-      build dependency on ghc6-prof.
+    - Drop build dependency on ghc which is already pulled in by the
+      build dependency on ghc-prof.
     - Upgrade to policy version 3.7.2. No changes needed
 
  -- Arjan Oosting <arjanoosting@home.nl>  Mon,  8 May 2006 17:59:29 +0200
@@ -255,12 +261,12 @@ haxml (1.13-15) unstable; urgency=low
   * Remove support for building nhc98 libraries, because it is removed
     from the archive.
   * debian/rules:
-    - generate dependencies on ghc6 during build to make a (bin-)NMU
+    - generate dependencies on ghc during build to make a (bin-)NMU
     easier.
     - cleanup mess from earlier packaging.
     - make sure targets only run once during build.
   * debian/control.in.in: loosen dependencies to make a bin-NMU easier.
-  * debian/mk-ghc6-vars: added to generate ghc6:Depends substitution
+  * debian/mk-ghc-vars: added to generate ghc:Depends substitution
     variable.
   * debian/changelog: fix some spelling mistakes.
 
@@ -323,7 +329,7 @@ haxml (1.13-10) unstable; urgency=low
       DEB_BUILD_OPTIONS=noopt.
     - libnhc98-haxml-dev now supports heap and time profiling.
     - The HaXml API documentation in haxml-doc links to the Haskell base
-      API documentation from ghc6-doc.
+      API documentation from ghc-doc.
   * debian/patches/00_destdir.patch: updated.
   * debian/patches/01_configure_typo.patch: fix a typo in the configure
     script.
@@ -412,7 +418,7 @@ haxml (1.13-3) testing; urgency=low
 
 haxml (1.13-2) testing; urgency=low
 
-  * debian/libghc6-haxml-dev.postinst, debian/libghc6-haxml-dev.prerm,
+  * debian/libghc-haxml-dev.postinst, debian/libghc-haxml-dev.prerm,
     debian/rules: added support for ghc 6.4.
 
  -- Arjan Oosting <arjanoosting@home.nl>  Sun, 15 May 2005 02:49:01 +0200
@@ -439,7 +445,7 @@ haxml (1.12-5) unstable; urgency=low
     library.
   * debian/patches/04_no-hugs-package-cmd.patch: hugs-package does
     not exits, use cp -a instead.
-  * debian/control.in: added ghc6-prof to build-depends.
+  * debian/control.in: added ghc-prof to build-depends.
   * debian/patches/05-no-harch-cmd.patch: harch is not available in
     Debian.
   * debian/control.in: only build libnhc98-haxml-dev for i386.
@@ -451,7 +457,7 @@ haxml (1.12-4) unstable; urgency=low
   * debian/control.in:
     - move package haxml-doc to section doc.
     - correct Suggest of haxml.
-    - correct Depends of libghc6-haxml-dev
+    - correct Depends of libghc-haxml-dev
   * debian/TODO: added.
 
  -- Arjan Oosting <arjanoosting@home.nl>  Thu, 10 Feb 2005 09:06:38 +0100
