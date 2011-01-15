@@ -6,29 +6,29 @@ Uploaders: Joachim Breitner <nomeata@debian.org>
 Build-Depends: debhelper (>= 7)
   , cdbs
   , haskell-devscripts (>= 0.7)
-  , ghc6
-  , ghc6-prof
-  , libghc6-haskelldb-dev (>= 0.12)
-  , libghc6-haskelldb-dev (<< 1)
-  , libghc6-haskelldb-prof
-  , libghc6-hdbc-dev (>= 2.0.0)
-  , libghc6-hdbc-dev (<< 3)
-  , libghc6-hdbc-prof
-  , libghc6-convertible-dev (>= 1.0.1)
-  , libghc6-convertible-prof
-Build-Depends-Indep: ghc6-doc
-  , libghc6-haskelldb-doc
-  , libghc6-hdbc-doc
-  , libghc6-convertible-doc
+  , ghc
+  , ghc-prof
+  , libghc-haskelldb-dev (>= 0.12)
+  , libghc-haskelldb-dev (<< 1)
+  , libghc-haskelldb-prof
+  , libghc-hdbc-dev (>= 2.0.0)
+  , libghc-hdbc-dev (<< 3)
+  , libghc-hdbc-prof
+  , libghc-convertible-dev (>= 1.0.1)
+  , libghc-convertible-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-haskelldb-doc
+  , libghc-hdbc-doc
+  , libghc-convertible-doc
 Standards-Version: 3.8.4
 Homepage: http://hackage.haskell.org/package/haskelldb-hdbc
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskelldb-hdbc
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskelldb-hdbc
 
-Package: libghc6-haskelldb-hdbc-dev
+Package: libghc-haskelldb-hdbc-dev
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Recommends: libghc6-haskelldb-hdbc-odbc-dev | libghc6-haskelldb-hdbc-sqlite3-dev | libghc6-haskelldb-hdbc-postgresql-dev, ${haskell:Recommends}
+Recommends: libghc-haskelldb-hdbc-odbc-dev | libghc-haskelldb-hdbc-sqlite3-dev | libghc-haskelldb-hdbc-postgresql-dev, ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
 Description: HaskellDB support for HDBC
@@ -39,7 +39,7 @@ Description: HaskellDB support for HDBC
  the HDBC database driver interface. You will also need one or more back-end
  specific packages.
 
-Package: libghc6-haskelldb-hdbc-prof
+Package: libghc-haskelldb-hdbc-prof
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
@@ -53,7 +53,7 @@ Description: HaskellDB support for HDBC; profiling libraries
  the HDBC database driver interface. You will also need one or more back-end
  specific packages.
 
-Package: libghc6-haskelldb-hdbc-doc
+Package: libghc-haskelldb-hdbc-doc
 Section: doc
 Architecture: all
 Depends: ${misc:Depends}
