@@ -1,12 +1,16 @@
 hmake (3.14-3) UNRELEASED; urgency=low
 
+  [ Joachim Breitner ]
   * Section: haskell
+
+  [ Marco Silva ]
+  * Use ghc instead of ghc
 
  -- Joachim Breitner <nomeata@debian.org>  Sat, 01 May 2010 22:15:44 +0200
 
 hmake (3.14-2) unstable; urgency=low
 
-  * Added libghc6-editline-dev dependency
+  * Added libghc-editline-dev dependency
   * Bump standards version
 
  -- Joachim Breitner <nomeata@debian.org>  Fri, 05 Feb 2010 19:47:53 +0100
@@ -20,7 +24,7 @@ hmake (3.14-1) unstable; urgency=low
   * Steal patches from
     http://www.freebsd.org/cgi/cvsweb.cgi/ports/devel/hs-hmake/
   * Resurrect Ian’s "machine type debian" patch
-  * patches/no-package-lang.patch: Do not pass -package lang to ghc6
+  * patches/no-package-lang.patch: Do not pass -package lang to ghc
 
  -- Joachim Breitner <nomeata@debian.org>  Fri, 05 Feb 2010 17:07:46 +0100
 
@@ -73,7 +77,7 @@ hmake (3.10-1.1) unstable; urgency=low
 
   * Non-maintainer upload.
   * Applied patches from Stefan Potyra to fix bug reported by Daniel
-    Schepler to adapt to output changes in new ghc6 version that make
+    Schepler to adapt to output changes in new ghc version that make
     "__GLASGOW_HASKELL__" be expanded into many lines instead of one.
     scripts/confhc uses the output to create lib/debian/config, and
     makes assumptions about the format. Similarly for
@@ -134,8 +138,8 @@ hmake (3.09-1) unstable; urgency=low
 
 hmake (3.08-7) unstable; urgency=low
 
-  * Add m68k to the list of arches that can use ghc6 as a build-dep.
-  * Require ghc6 >= 6.2.1-1 to avoid the static linking in earlier
+  * Add m68k to the list of arches that can use ghc as a build-dep.
+  * Require ghc >= 6.2.1-1 to avoid the static linking in earlier
     versions on some arches.
 
  -- Ian Lynagh (wibble) <igloo@debian.org>  Sun, 25 Apr 2004 21:07:31 +0000
@@ -188,8 +192,8 @@ hmake (3.08-1) unstable; urgency=low
   * Patch so it is possible to have the compiler type determined at use
     time rather than configure time.
   * Pass configure --buildwith=/usr/bin/haskell-compiler
-  * Build-dep on (suitably recent) ghc6 on arches where it is available.
-  * Depend on a ghc6, ghc5 or nhc98 recent enough to provide
+  * Build-dep on (suitably recent) ghc on arches where it is available.
+  * Depend on a ghc, ghc5 or nhc98 recent enough to provide
     /usr/bin/haskell-compiler and suggest all 3.
   * Remove the hat and nhc98-doc suggestions.
   * Put 4 in debian/compat, build-depend on debhelper accordingly and update
