@@ -1,6 +1,10 @@
 haskelldb (0.12-8) UNRELEASED; urgency=low
 
+  [ Marco Túlio Gontijo e Silva ]
   * Remove doc-base.
+
+  [ Marco Silva ]
+  * Use ghc instead of ghc
 
  -- Marco Túlio Gontijo e Silva <marcot@debian.org>  Thu, 06 May 2010 19:09:22 -0300
 
@@ -86,7 +90,7 @@ haskelldb (0.10-4) unstable; urgency=low
 
   * debian/control:
     - Drop un-needed build dependencies on autotools-dev, dctrl-tools and
-      libghc6-mtl-prof.
+      libghc-mtl-prof.
     - Drop the ${binary:Version} in the dependency on haskelldb-bin which
       is build from another source package.
     - Let the VCS-* fields point to the trunk.
@@ -134,7 +138,7 @@ haskelldb (0.10-1) unstable; urgency=low
       dh_haskell_depends.
     - Bump Standards-Version to 3.7.3. No changes needed.
     - Make doc-base a Suggest instead of a Recommends.
-    - Add ghc6-doc and libghc6-mtl-doc to the Recommends.
+    - Add ghc-doc and libghc-mtl-doc to the Recommends.
     - Rename haskelldb-doc to haskell-haskelldb-doc so dh_haskell will
       detect it as an handled package and automatically generate the
       Haddock documentation.
@@ -155,7 +159,7 @@ haskelldb (0.9.cvs.601-18) unstable; urgency=low
 
   * Rebuild for GHC 6.6.1.
   * debian/control:
-    - Add ghc6-doc to the BuildDepends-Indep so haddock can generate
+    - Add ghc-doc to the BuildDepends-Indep so haddock can generate
       references to other documentation packages.
 
  -- Arjan Oosting <arjan@debian.org>  Tue, 19 Jun 2007 18:56:07 +0100
@@ -179,7 +183,7 @@ haskelldb (0.9.cvs.601-15) unstable; urgency=low
 
   * debian/DBDirect.1: added man page for DBDirect.
   * debian/rules:
-    - Do not ship DBDirect in libghc6-haskelldb-dev. (Closes: #402335)
+    - Do not ship DBDirect in libghc-haskelldb-dev. (Closes: #402335)
 
  -- Arjan Oosting <arjan@debian.org>  Sat,  9 Dec 2006 19:22:29 +0100
 
@@ -240,21 +244,21 @@ haskelldb (0.9.cvs.601-10) unstable; urgency=low
   * QA upload.
   * debian/control:
     - Add a Section for the source package.
-    - Update build dependency on ghc6. (Closes: #381815)
-    - Add missing Depends on libghc6-hsql-mysql-dev,
-      libghc6-hsql-odbc-dev, libghc6-hsql-postgresql-dev and
-      libghc6-hsql-sqlite-dev needed to configure and use
-      libghc6-haskelldb-dev.
-    - Make sure libghc6-haskell-dev depends on the version of
+    - Update build dependency on ghc. (Closes: #381815)
+    - Add missing Depends on libghc-hsql-mysql-dev,
+      libghc-hsql-odbc-dev, libghc-hsql-postgresql-dev and
+      libghc-hsql-sqlite-dev needed to configure and use
+      libghc-haskelldb-dev.
+    - Make sure libghc-haskell-dev depends on the version of
       libghc-hsql-dev it was build against by using the ${HSQL:Version}
       substitution variable.
     - Add dctrl-tools to Build-Depends because grep-dctrl is used to
-      determine the version of libghc6-hsql-dev.
+      determine the version of libghc-hsql-dev.
     - Bump Standards-Version. No changes needed.
    * debian/haskelldb.cabal:
     - Add hsql-odbc, hsql-mysql, hsql-sqlite and hsql-postgresql to the
       Build-Depends as these modules are needed to build haskelldb and
-      ghc6 (>= 6.4.2) will not make them available by default anymore.
+      ghc (>= 6.4.2) will not make them available by default anymore.
     - Remove Allow prefix from the needed extensions declarations.
   * debian/rules:
     - Remove commented out dh_make template cruft.
@@ -267,15 +271,15 @@ haskelldb (0.9.cvs.601-10) unstable; urgency=low
 haskelldb (0.9.cvs.601-9) unstable; urgency=medium
 
   * QA upload.
-  * Update dependencies for ghc6 6.4.1.  Closes: #337275.
+  * Update dependencies for ghc 6.4.1.  Closes: #337275.
 
  -- Matej Vela <vela@debian.org>  Mon, 13 Mar 2006 10:51:01 +0100
 
 haskelldb (0.9.cvs.601-8) unstable; urgency=low
 
   * QA upload.
-  * Add build dependencies on libghc6-hsql-mysql-dev, libghc6-hsql-odbc-dev,
-    libghc6-hsql-postgresql-dev, libghc6-hsql-sqlite-dev.  Closes: #329835.
+  * Add build dependencies on libghc-hsql-mysql-dev, libghc-hsql-odbc-dev,
+    libghc-hsql-postgresql-dev, libghc-hsql-sqlite-dev.  Closes: #329835.
   * Remove dh_make examples.
   * debian/watch: Add.
   * Conforms to Standards version 3.6.2.
