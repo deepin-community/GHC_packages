@@ -6,19 +6,19 @@ Uploaders: Joachim Breitner <nomeata@debian.org>
 Build-Depends: debhelper (>= 7)
   , cdbs
   , haskell-devscripts (>= 0.7)
-  , ghc6
-  , ghc6-prof
-  , libghc6-ghc-paths-dev
-  , libghc6-ghc-paths-prof
+  , ghc
+  , ghc-prof
+  , libghc-ghc-paths-dev
+  , libghc-ghc-paths-prof
   , alex
   , happy
-Build-Depends-Indep: ghc6-doc
+Build-Depends-Indep: ghc-doc
 Standards-Version: 3.9.0
 Homepage: http://hackage.haskell.org/package/haddock
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-haddock
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-haddock
 
-Package: libghc6-haddock-dev
+Package: libghc-haddock-dev
 Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
@@ -33,7 +33,7 @@ Description: documentation-generation library for haskell
  This package exposes the features of haddock as a library, to be used inside
  other haskell programs.
 
-Package: libghc6-haddock-prof
+Package: libghc-haddock-prof
 Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
@@ -49,7 +49,7 @@ Description: documentation-generation library for haskell; profiling libraries
  This package exposes the features of haddock as a library, to be used inside
  other haskell programs.
 
-Package: libghc6-haddock-doc
+Package: libghc-haddock-doc
 Section: doc
 Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
