@@ -7,9 +7,9 @@ Standards-Version: 3.8.4
 Build-Depends: debhelper (>= 7)
   , cdbs
   , haskell-devscripts (>= 0.7)
-  , ghc6
-  , ghc6-prof
-  , ghc6-doc
+  , ghc
+  , ghc-prof
+  , ghc-doc
 Homepage: http://hackage.haskell.org/package/cpphs
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/cpphs
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/cpphs
@@ -18,7 +18,7 @@ Package: cpphs
 Architecture: any
 Depends: ${shlibs:Depends}
   , ${misc:Depends}
-Suggests: ghc6 | hugs
+Suggests: ghc | hugs
 Description: Simplified cpp-a-like preprocessor for Haskell
  The C pre-processor has been widely used in Haskell source code. It
  enables conditional compilation for different compilers, different
@@ -32,7 +32,7 @@ Description: Simplified cpp-a-like preprocessor for Haskell
  incompatible with Haskell's syntax. This is a cpp-a-like designed with
  Haskell's syntax in mind.
 
-Package: libghc6-cpphs-dev
+Package: libghc-cpphs-dev
 Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
@@ -42,7 +42,7 @@ Provides: ${haskell:Provides}
 Description: cpphs-library for haskell
  This package provides some of the features of cpphs as a haskell library.
 
-Package: libghc6-cpphs-prof
+Package: libghc-cpphs-prof
 Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
@@ -52,7 +52,7 @@ Provides: ${haskell:Provides}
 Description: cpphs-library for haskell; profiling libraries
  This package provides some of the features of cpphs as a haskell library.
 
-Package: libghc6-cpphs-doc
+Package: libghc-cpphs-doc
 Architecture: all
 Section: doc
 Depends: ${misc:Depends}
