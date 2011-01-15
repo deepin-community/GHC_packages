@@ -4,18 +4,18 @@ Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Ernesto Hernández-Novich (USB) <emhn@usb.ve>
 Build-Depends: debhelper (>= 7), cdbs, haskell-devscripts (>= 0.7),
- ghc6, ghc6-prof,
- libghc6-transformers-dev (>= 0.2),
- libghc6-transformers-dev (<< 0.3),
- libghc6-transformers-prof
-Build-Depends-Indep: ghc6-doc,
- libghc6-transformers-doc
+ ghc, ghc-prof,
+ libghc-transformers-dev (>= 0.2),
+ libghc-transformers-dev (<< 0.3),
+ libghc-transformers-prof
+Build-Depends-Indep: ghc-doc,
+ libghc-transformers-doc
 Standards-Version: 3.8.4
 Homepage: http://hackage.haskell.org/package/data-accessor
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-data-accessor
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=haskell/haskell-data-accessor
 
-Package: libghc6-data-accessor-dev
+Package: libghc-data-accessor-dev
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
@@ -30,7 +30,7 @@ Description: Utilities for accessing and manipulating fields of records
  of a record and sub-records to make the access look like the fields
  of the sub-record belong to the main record.
 
-Package: libghc6-data-accessor-prof
+Package: libghc-data-accessor-prof
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
@@ -46,7 +46,7 @@ Description: Utilities for accessing and manipulating fields of records; profili
  of a record and sub-records to make the access look like the fields
  of the sub-record belong to the main record.
 
-Package: libghc6-data-accessor-doc
+Package: libghc-data-accessor-doc
 Section: doc
 Architecture: all
 Depends: ${haskell:Depends}, ${misc:Depends}
