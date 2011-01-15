@@ -1,0 +1,75 @@
+Index: ghc-7.0.1/utils/haddock/haddock.cabal
+===================================================================
+--- ghc-7.0.1.orig/utils/haddock/haddock.cabal	2011-01-15 14:07:35.000000000 +0530
++++ ghc-7.0.1/utils/haddock/haddock.cabal	2011-01-15 14:07:42.000000000 +0530
+@@ -129,70 +129,3 @@
+     Haddock.Options
+     Haddock.GhcUtils
+     Haddock.Convert
+-   
+-library
+-  build-depends:
+-    base >= 4.0.0.0 && < 4.4.0.0,
+-    filepath,
+-    directory,
+-    pretty,
+-    containers,
+-    array,
+-    xhtml >= 3000.2 && < 3000.3,
+-    Cabal >= 1.5,
+-    ghc >= 6.12 && < 7.1
+-
+-  if flag(in-ghc-tree)
+-    cpp-options: -DIN_GHC_TREE
+-    extensions: ForeignFunctionInterface
+-  else
+-    build-depends: ghc-paths
+-
+-  if flag(test)
+-    cpp-options: -DTEST
+-    build-depends: QuickCheck >= 2.1 && < 3
+-
+-  hs-source-dirs:       src
+-  extensions:           CPP, PatternGuards, DeriveDataTypeable,
+-                        ScopedTypeVariables, MagicHash
+-  ghc-options:          -funbox-strict-fields -O2 -Wall -fwarn-tabs
+-
+-  exposed-modules:
+-    Documentation.Haddock
+-
+-  other-modules:
+-    Main
+-    Haddock.Interface
+-    Haddock.Interface.Rename
+-    Haddock.Interface.Create
+-    Haddock.Interface.ExtractFnArgDocs
+-    Haddock.Interface.AttachInstances
+-    Haddock.Interface.Rn
+-    Haddock.Interface.LexParseRn
+-    Haddock.Interface.ParseModuleHeader
+-    Haddock.Lex
+-    Haddock.Parse
+-    Haddock.Utils
+-    Haddock.Backends.Xhtml
+-    Haddock.Backends.Xhtml.Decl
+-    Haddock.Backends.Xhtml.DocMarkup
+-    Haddock.Backends.Xhtml.Layout
+-    Haddock.Backends.Xhtml.Names
+-    Haddock.Backends.Xhtml.Themes
+-    Haddock.Backends.Xhtml.Types
+-    Haddock.Backends.Xhtml.Utils
+-    Haddock.Backends.LaTeX
+-    Haddock.Backends.HaddockDB
+-    Haddock.Backends.Hoogle
+-    Haddock.ModuleTree
+-    Haddock.Types
+-    Haddock.Doc
+-    Haddock.Version
+-    Haddock.InterfaceFile
+-    Haddock.Options
+-    Haddock.GhcUtils
+-    Haddock.Convert
+-    Paths_haddock
+-  
+-  if flag(in-ghc-tree)
+-    buildable: False
