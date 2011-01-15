@@ -37,7 +37,6 @@ fi
 
 case "$1" in
     configure|abort-upgrade|abort-remove|abort-deconfigure)
-	$bindir/ghc-pkg recache --global
 	if [ -n "$NEED_INTERPRETER" ] ; then
             update-alternatives \
 		--install $execdir/runhaskell runhaskell $execdir/runghc 8600000600 \
