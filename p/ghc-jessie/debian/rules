@@ -212,7 +212,7 @@ endif
 	    cp debian/runghc.man debian/runghc.1 ; fi
 	mv debian/tmp/usr/share/man/man1/ghc.1 debian/ghc.1
 	cp utils/hp2ps/hp2ps.1 debian/hp2ps-ghc.1
-	cp debian/ghc-pkg6.man debian/ghc-pkg6.1
+	cp debian/ghc-pkg.man debian/ghc-pkg.1
 
 	echo debian/*.1 > debian/ghc.manpages
 	cp debian/haddock.man debian/haddock.1
@@ -257,7 +257,7 @@ clean:
 	$(MAKE) distclean
 	rm -f config.sub config.guess
 	rm -f debian/*.install
-	rm -f debian/*.1 debian/ghc-pkg6.man
+	rm -f debian/*.1 debian/ghc-pkg.man
 	rm -f debian/ghc.manpages
 	rm -f debian/ghc.links
 	rm -f mk/build.mk
