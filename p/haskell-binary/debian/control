@@ -7,16 +7,16 @@ Build-Depends:
  haskell-devscripts (>= 0.7),
  debhelper (>= 7),
  cdbs,
- ghc6,
- ghc6-prof,
- ghc6-doc,
+ ghc,
+ ghc-prof,
+ ghc-doc,
  cpphs,
 Standards-Version: 3.8.4
 Homepage: http://code.haskell.org/binary/
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-binary/
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-binary
 
-Package: libghc6-binary-dev
+Package: libghc-binary-dev
 Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
@@ -38,7 +38,7 @@ Description: Haskell library for binary serialisation using lazy ByteStrings
  or compiler version. For example, data encoded using the Binary class
  could be written from GHC, and read back in Hugs.
 
-Package: libghc6-binary-prof
+Package: libghc-binary-prof
 Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
@@ -55,7 +55,7 @@ Description: Haskell library for binary serialisation; profiling library
  then be written to disk, sent over the network, or futher processed
  (for example, compressed with gzip).
 
-Package: libghc6-binary-doc
+Package: libghc-binary-doc
 Architecture: all
 Section: doc
 Depends: ${haskell:Depends}
