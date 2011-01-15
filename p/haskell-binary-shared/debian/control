@@ -6,21 +6,21 @@ Uploaders: Joachim Breitner <nomeata@debian.org>
 Build-Depends: debhelper (>= 7)
   , cdbs
   , haskell-devscripts (>= 0.7)
-  , ghc6
-  , ghc6-prof
-  , libghc6-mtl-dev (>= 1.1.0.2)
-  , libghc6-mtl-prof
-  , libghc6-binary-dev (>= 0.5)
-  , libghc6-binary-prof
-Build-Depends-Indep: ghc6-doc
-  , libghc6-mtl-doc
-  , libghc6-binary-doc
+  , ghc
+  , ghc-prof
+  , libghc-mtl-dev (>= 1.1.0.2)
+  , libghc-mtl-prof
+  , libghc-binary-dev (>= 0.5)
+  , libghc-binary-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-mtl-doc
+  , libghc-binary-doc
 Standards-Version: 3.8.4
 Homepage: http://hackage.haskell.org/package/binary-shared
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-binary-shared
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-binary-shared
 
-Package: libghc6-binary-shared-dev
+Package: libghc-binary-shared-dev
 Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
@@ -35,7 +35,7 @@ Description: sharing-enhanced binary encoding
  This library is similar to the haskell binary library, but add support to
  sharing identical element occuring in the data to be (de-)serialized.
 
-Package: libghc6-binary-shared-prof
+Package: libghc-binary-shared-prof
 Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
@@ -51,7 +51,7 @@ Description: sharing-enhanced binary encoding; profiling libraries
  This library is similar to the haskell binary library, but add support to
  sharing identical element occuring in the data to be (de-)serialized.
 
-Package: libghc6-binary-shared-doc
+Package: libghc-binary-shared-doc
 Section: doc
 Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
