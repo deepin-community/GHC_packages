@@ -1,7 +1,7 @@
-Index: ghc6-6.12.3/rts/posix/OSThreads.c
+Index: ghc-7.0.1/rts/posix/OSThreads.c
 ===================================================================
---- ghc6-6.12.3.orig/rts/posix/OSThreads.c	2010-06-09 21:10:14.000000000 +0300
-+++ ghc6-6.12.3/rts/posix/OSThreads.c	2010-07-17 12:17:25.000000000 +0300
+--- ghc-7.0.1.orig/rts/posix/OSThreads.c	2010-11-12 23:40:06.000000000 +0530
++++ ghc-7.0.1/rts/posix/OSThreads.c	2011-01-15 12:31:06.000000000 +0530
 @@ -7,10 +7,10 @@
   *
   * --------------------------------------------------------------------------*/
@@ -15,10 +15,10 @@ Index: ghc6-6.12.3/rts/posix/OSThreads.c
  #endif
  
  #include "PosixSource.h"
-Index: ghc6-6.12.3/driver/mangler/ghc-asm.lprl
+Index: ghc-7.0.1/driver/mangler/ghc-asm.lprl
 ===================================================================
---- ghc6-6.12.3.orig/driver/mangler/ghc-asm.lprl	2010-06-09 21:10:12.000000000 +0300
-+++ ghc6-6.12.3/driver/mangler/ghc-asm.lprl	2010-07-17 12:17:25.000000000 +0300
+--- ghc-7.0.1.orig/driver/mangler/ghc-asm.lprl	2010-11-12 23:40:05.000000000 +0530
++++ ghc-7.0.1/driver/mangler/ghc-asm.lprl	2011-01-15 12:31:06.000000000 +0530
 @@ -216,7 +216,7 @@
      $T_HDR_vector   = "\.text\n\t\.align 8\n";
  
@@ -28,10 +28,10 @@ Index: ghc6-6.12.3/driver/mangler/ghc-asm.lprl
  
      $T_STABBY       = 0; # 1 iff .stab things (usually if a.out format)
      $T_US           = ''; # _ if symbols have an underscore on the front
-Index: ghc6-6.12.3/rts/Linker.c
+Index: ghc-7.0.1/rts/Linker.c
 ===================================================================
---- ghc6-6.12.3.orig/rts/Linker.c	2010-06-09 21:10:13.000000000 +0300
-+++ ghc6-6.12.3/rts/Linker.c	2010-07-17 12:20:22.000000000 +0300
+--- ghc-7.0.1.orig/rts/Linker.c	2010-11-12 23:40:05.000000000 +0530
++++ ghc-7.0.1/rts/Linker.c	2011-01-15 12:31:06.000000000 +0530
 @@ -13,8 +13,8 @@
  /* Linux needs _GNU_SOURCE to get RTLD_DEFAULT from <dlfcn.h> and
     MREMAP_MAYMOVE from <sys/mman.h>.
@@ -43,7 +43,7 @@ Index: ghc6-6.12.3/rts/Linker.c
  #endif
  
  #include "Rts.h"
-@@ -63,7 +63,7 @@
+@@ -69,7 +69,7 @@
  #include <sys/wait.h>
  #endif
  
@@ -52,16 +52,16 @@ Index: ghc6-6.12.3/rts/Linker.c
  #define USE_MMAP
  #include <fcntl.h>
  #include <sys/mman.h>
-@@ -74,7 +74,7 @@
+@@ -80,7 +80,7 @@
  
  #endif
  
 -#if defined(linux_HOST_OS) || defined(solaris2_HOST_OS) || defined(freebsd_HOST_OS) || defined(dragonfly_HOST_OS) || defined(netbsd_HOST_OS) || defined(openbsd_HOST_OS)
 +#if defined(linux_HOST_OS) || defined(solaris2_HOST_OS) || defined(freebsd_HOST_OS) || defined(kfreebsdgnu_HOST_OS) || defined(dragonfly_HOST_OS) || defined(netbsd_HOST_OS) || defined(openbsd_HOST_OS)
  #  define OBJFORMAT_ELF
- #elif defined(cygwin32_HOST_OS) || defined (mingw32_HOST_OS)
- #  define OBJFORMAT_PEi386
-@@ -1410,7 +1410,7 @@
+ #  include <regex.h>	// regex is already used by dlopen() so this is OK
+ 			// to use here without requiring an additional lib
+@@ -1580,7 +1580,7 @@
         } else {
             if ((W_)result > 0x80000000) {
                 // oops, we were given memory over 2Gb
