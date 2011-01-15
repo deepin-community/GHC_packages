@@ -1,3 +1,9 @@
+haskell-hsql (1.7.1-5) UNRELEASED; urgency=low
+
+  * Use ghc instead of ghc
+
+ -- Marco Silva <marcot@debian.org>  Sat, 15 Jan 2011 12:41:09 -0200
+
 haskell-hsql (1.7.1-4) unstable; urgency=low
 
   * Fix "Updating the haskell-hsql Uploaders list" changing Uploader
@@ -64,7 +70,7 @@ haskell-hsql (1.7.1-1) unstable; urgency=low
 haskell-hsql (1.7-2) unstable; urgency=low
 
   * debian/control:
-    - Add a libghc6-hsql-prof binary package containing the profiling
+    - Add a libghc-hsql-prof binary package containing the profiling
       library of hsql for use with GHC 6.
     - Add Vcs-* fields.
 
@@ -79,13 +85,13 @@ haskell-hsql (1.7-1) unstable; urgency=medium
   * New upstream release. The source tarball has been split up and every
     Haskell library has its own source source tarball now.
     - debian/control:
-      + Remove the binary stanzas for libghc6-hsql-sqlite3-dev,
-        libghc6-hsql-sqlite-dev, libghc6-hsql-odbc-dev,
-        libghc6-hsql-mysql-dev and libghc6-hsql-postgresql-dev which all
+      + Remove the binary stanzas for libghc-hsql-sqlite3-dev,
+        libghc-hsql-sqlite-dev, libghc-hsql-odbc-dev,
+        libghc-hsql-mysql-dev and libghc-hsql-postgresql-dev which all
         will get their own source package.
       + Update Build-Depends on haskell-devscripts to 0.6.0 needed to
         build the package.
-      + Add dpatch and ghc6-prof to the build dependencies.
+      + Add dpatch and ghc-prof to the build dependencies.
     - debian/rules:
       + Replaced with a much simpler version as we only need to build one
         Haskell library. This version works with (and needs)
@@ -104,7 +110,7 @@ haskell-hsql (1.7-1) unstable; urgency=medium
   * Convert debian/copyright file to UTF-8 to fix lintian warning
     debian-copyright-file-uses-obsolete-national-encoding
   * debian/control:
-    - Change section of libghc6-hsql-dev and libghc6-hsql-prof to libdevel
+    - Change section of libghc-hsql-dev and libghc-hsql-prof to libdevel
       to fix lintian warning dev-package-should-be-section-libdevel
     - Bump Standards-Version 3.7.3. No furthur changes needed.
 
@@ -122,14 +128,14 @@ haskell-hsql (1.6-8.1) unstable; urgency=low
 
   * Non-maintainer upload, to fix Failure To Build From Source, applying patch
     by Arjan Oosting.
-  * Fixes FTBFS: needs to update for new ghc6 (Closes: #379264)
+  * Fixes FTBFS: needs to update for new ghc (Closes: #379264)
     - update MySQL/Setup.lhs, PostgresSQL/Setup.lhs, SQLite/Setup.lhs and
       SQLite3/Setup.lhs for the new Cabal version shipped with ghc 6.4.2.
-    - debian/control: Build-Depends on the ghc6 (>= 6.4.2) which ships the
-      new Cabal version. Drop the build dependency on ghc6 (6.4.1-999) to
+    - debian/control: Build-Depends on the ghc (>= 6.4.2) which ships the
+      new Cabal version. Drop the build dependency on ghc (6.4.1-999) to
       make (binary) non-maintainer uploads easier.
     - debian/ghc-pkg: replace the call to /usr/lib/ghc-6.4.1/bin/ghc-pkg
-      with a call to /usr/bin/ghc-pkg6 to make independant of the ghc6
+      with a call to /usr/bin/ghc-pkg6 to make independant of the ghc
       version.
 
  -- Margarita Manterola <marga@debian.org>  Thu, 10 Aug 2006 15:27:19 -0300
@@ -205,8 +211,8 @@ haskell-hsql (1.4-5) unstable; urgency=low
 
 haskell-hsql (1.4-4) unstable; urgency=low
 
-  * Rebuilt for ghc6 6.4.
-  * Minor code hacks for ghc6 6.4 compatibility.
+  * Rebuilt for ghc 6.4.
+  * Minor code hacks for ghc 6.4 compatibility.
 
  -- John Goerzen <jgoerzen@complete.org>  Thu, 12 May 2005 06:34:33 -0500
 

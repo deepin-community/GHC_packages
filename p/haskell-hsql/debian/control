@@ -7,18 +7,18 @@ Build-Depends: cdbs
  , debhelper (>= 7)
  , haskell-devscripts (>= 0.7)
  , cpphs
- , ghc6
- , ghc6-prof
- , ghc6-doc
+ , ghc
+ , ghc-prof
+ , ghc-doc
 Standards-Version: 3.8.4
 Homepage: http://hackage.haskell.org/package/hsql
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hsql/
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-hsql
 
-Package: libghc6-hsql-dev
+Package: libghc-hsql-dev
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Suggests: ${haskell:Suggests}, libghc6-hsql-sqlite3-dev, libghc6-hsql-sqlite-dev, libghc6-hsql-odbc-dev, libghc6-hsql-mysql-dev, libghc6-hsql-postgresql-dev, haskell-hsql-doc
+Suggests: ${haskell:Suggests}, libghc-hsql-sqlite3-dev, libghc-hsql-sqlite-dev, libghc-hsql-odbc-dev, libghc-hsql-mysql-dev, libghc-hsql-postgresql-dev, haskell-hsql-doc
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
 Description: Multi-Database Interface System library for GHC6
@@ -28,7 +28,7 @@ Description: Multi-Database Interface System library for GHC6
  database systems.  In this sense, it is similar to Java's JDBC,
  Python's DB-API, or Perl's DBI.
 
-Package: libghc6-hsql-prof
+Package: libghc-hsql-prof
 Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
@@ -43,7 +43,7 @@ Description: Multi-Database Interface System profiling library for GHC6
  database systems.  In this sense, it is similar to Java's JDBC,
  Python's DB-API, or Perl's DBI.
 
-Package: libghc6-hsql-doc
+Package: libghc-hsql-doc
 Replaces: haskell-hsql-doc (<< 1.7.1-3)
 Conflicts: haskell-hsql-doc (<< 1.7.1-3)
 Provides: haskell-hsql-doc
