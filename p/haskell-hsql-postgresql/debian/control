@@ -8,11 +8,11 @@ Build-Depends:
  debhelper (>= 7),
  haskell-devscripts (>= 0.7),
  cdbs,
- ghc6,
- ghc6-prof,
- ghc6-doc,
- libghc6-hsql-dev (>= 1.7.1),
- libghc6-hsql-prof,
+ ghc,
+ ghc-prof,
+ ghc-doc,
+ libghc-hsql-dev (>= 1.7.1),
+ libghc-hsql-prof,
  haskell-hsql-doc,
  libpq-dev (>= 8.0)
 Build-Conflicts:
@@ -23,7 +23,7 @@ Homepage: http://hackage.haskell.org/package/hsql-postgresql
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hsql-postgresql/
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-hsql-postgresql
 
-Package: libghc6-hsql-postgresql-dev
+Package: libghc-hsql-postgresql-dev
 Architecture: any
 Depends: ${haskell:Depends}, libpq-dev (>= 8.0), ${shlibs:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
@@ -33,7 +33,7 @@ Description: PostgreSQL driver of the HSQL library for GHC6
  HSQL provides database interfaces for Haskell programmers. This package
  provides the PostgreSQL driver of HSQL.
 
-Package: libghc6-hsql-postgresql-prof
+Package: libghc-hsql-postgresql-prof
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
@@ -43,7 +43,7 @@ Description: PostgreSQL driver of the HSQL library for GHC6; profiling libraries
  HSQL provides database interfaces for Haskell programmers. This package
  provides the profiling libraries for the PostgreSQL driver of HSQL.
 
-Package: libghc6-hsql-postgresql-doc
+Package: libghc-hsql-postgresql-doc
 Replaces: haskell-hsql-postgresql-doc (<< 1.7.3-4)
 Conflicts: haskell-hsql-postgresql-doc (<< 1.7.3-4)
 Provides: haskell-hsql-postgresql-doc
