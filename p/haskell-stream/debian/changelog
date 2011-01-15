@@ -1,7 +1,11 @@
 haskell-stream (0.4.1-2) UNRELEASED; urgency=low
 
+  [ Marco Túlio Gontijo e Silva ]
   * debian/control: Use more sintetic link in Homepage:.
   * debian/source/format: Use 3.0 (quilt).
+
+  [ Marco Silva ]
+  * Use ghc instead of ghc
 
  -- Marco Túlio Gontijo e Silva <marcot@debian.org>  Fri, 19 Feb 2010 14:05:06 -0200
 
@@ -24,7 +28,7 @@ haskell-stream (0.2.2-2) unstable; urgency=low
   * Upgrade to "Generic Haskell cabal library packaging files v10":
     * Versioned dependencies are now generated for the Cabal packages we
       depend on.
-    * Use the new ${impl:ghc6:*_deps} variables in debian/control.in.
+    * Use the new ${impl:ghc:*_deps} variables in debian/control.in.
     * Call canonicalise-comma-list on the depends and suggests fields in
       control.in. This works around bugs in lintian, where it gets
       confused and starts giving spurious warnings.
