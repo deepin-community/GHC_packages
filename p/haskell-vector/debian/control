@@ -6,19 +6,19 @@ Uploaders: Marco Túlio Gontijo e Silva <marcot@debian.org>
 Build-Depends: debhelper (>= 7)
   , cdbs
   , haskell-devscripts (>= 0.7)
-  , ghc6
-  , ghc6-prof
-  , libghc6-primitive-dev (>= 0.3)
-  , libghc6-primitive-dev (<< 0.4)
-  , libghc6-primitive-prof
-Build-Depends-Indep: ghc6-doc
-  , libghc6-primitive-doc
+  , ghc
+  , ghc-prof
+  , libghc-primitive-dev (>= 0.3)
+  , libghc-primitive-dev (<< 0.4)
+  , libghc-primitive-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-primitive-doc
 Standards-Version: 3.8.4
 Homepage: http://hackage.haskell.org/package/vector
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-vector
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-vector
 
-Package: libghc6-vector-dev
+Package: libghc-vector-dev
 Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
@@ -33,7 +33,7 @@ Description: Efficient Arrays for Haskell
  An efficient implementation of Int-indexed arrays (both mutable and
  immutable), with a powerful loop fusion optimization framework.
 
-Package: libghc6-vector-prof
+Package: libghc-vector-prof
 Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
@@ -49,7 +49,7 @@ Description: Efficient Arrays for Haskell; profiling libraries
  An efficient implementation of Int-indexed arrays (both mutable and
  immutable), with a powerful loop fusion optimization framework.
 
-Package: libghc6-vector-doc
+Package: libghc-vector-doc
 Section: doc
 Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
