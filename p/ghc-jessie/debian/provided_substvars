@@ -19,26 +19,26 @@ while (<PKG>) {
 }
 close PKG;
 
-open DEV, '>debian/ghc6.substvars';
+open DEV, '>debian/ghc.substvars';
 print DEV 'provided-devs=';
 my $buf = "";
-foreach (@pkgs) {$buf .= "libghc6-$_-dev, ";}
+foreach (@pkgs) {$buf .= "libghc-$_-dev, ";}
 $buf =~ s#(.*), #$1#;
 print DEV $buf."\n";
 close DEV;
 
-open PROF, '>debian/ghc6-prof.substvars';
+open PROF, '>debian/ghc-prof.substvars';
 print PROF 'provided-profs=';
 my $buf = "";
-foreach (@pkgs) {$buf .= "libghc6-$_-prof, ";}
+foreach (@pkgs) {$buf .= "libghc-$_-prof, ";}
 $buf =~ s#(.*), #$1#;
 print PROF $buf."\n";
 close PROF;
 
-open DOC, '>debian/ghc6-doc.substvars';
+open DOC, '>debian/ghc-doc.substvars';
 print DOC 'provided-docs=';
 my $buf = "";
-foreach (@pkgs) {$buf .= "libghc6-$_-doc, ";}
+foreach (@pkgs) {$buf .= "libghc-$_-doc, ";}
 $buf =~ s#(.*), #$1#;
 print DOC $buf."\n";
 close DOC;
