@@ -6,13 +6,13 @@ Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>
 Build-Depends: debhelper (>= 7)
   , cdbs
   , haskell-devscripts (>= 0.7)
-  , ghc6
-  , ghc6-prof
+  , ghc
+  , ghc-prof
   , happy
-  , libghc6-haskell-lexer-dev
-  , libghc6-haskell-lexer-prof
-  , libghc6-haskell-lexer-doc
-Build-Depends-Indep: ghc6-doc
+  , libghc-haskell-lexer-dev
+  , libghc-haskell-lexer-prof
+  , libghc-haskell-lexer-doc
+Build-Depends-Indep: ghc-doc
 Standards-Version: 3.9.0
 Homepage: http://hackage.haskell.org/package/pretty-show
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-pretty-show
@@ -25,10 +25,10 @@ Depends: ${shlibs:Depends}
 Description: Program to parse and pretty print arbitrary Haskell Show output
  The ppsh program takes the output of an arbitrary Haskell Show output on
  stdin and pretty prints it to stdout. It uses the library provided in the
- libghc6-pretty-show-dev package to parse the input and pretty print the
+ libghc-pretty-show-dev package to parse the input and pretty print the
  output.
 
-Package: libghc6-pretty-show-dev
+Package: libghc-pretty-show-dev
 Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
@@ -43,7 +43,7 @@ Description: A Haskell library for pretty printing data structures
  .
  This package contains the libraries compiled for GHC 6.
 
-Package: libghc6-pretty-show-prof
+Package: libghc-pretty-show-prof
 Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
@@ -58,7 +58,7 @@ Description: Profiling libraries for pretty printing Haskell data structures
  .
  This package contains the profiling libraries compiled for GHC 6.
 
-Package: libghc6-pretty-show-doc
+Package: libghc-pretty-show-doc
 Section: doc
 Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
