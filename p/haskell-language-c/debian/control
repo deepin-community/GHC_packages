@@ -6,21 +6,21 @@ Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>
 Build-Depends: debhelper (>= 7)
  , cdbs
  , haskell-devscripts (>= 0.7)
- , ghc6
- , ghc6-prof
+ , ghc
+ , ghc-prof
  , alex
  , happy
- , ghc6-doc
+ , ghc-doc
 Standards-Version: 3.8.4
 Homepage: http://hackage.haskell.org/package/language-c
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-language-c
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-language-c
 
-Package: libghc6-language-c-dev
+Package: libghc-language-c-dev
 Architecture: any
 Depends: ${haskell:Depends}
  , ${misc:Depends}
-Suggests: libghc6-language-c-doc (= ${source:Version})
+Suggests: libghc-language-c-doc (= ${source:Version})
 Provides: ${haskell:Provides}
 Description: Haskell library for the analysis and generation of C code
  .
@@ -30,9 +30,9 @@ Description: Haskell library for the analysis and generation of C code
  .
  This package contains the libraries compiled for GHC 6.
 
-Package: libghc6-language-c-prof
+Package: libghc-language-c-prof
 Architecture: any
-Depends: libghc6-language-c-dev (= ${binary:Version})
+Depends: libghc-language-c-dev (= ${binary:Version})
  , ${haskell:Depends}
  , ${misc:Depends}
 Suggests: haskell-language-c-doc (= ${source:Version})
@@ -45,12 +45,12 @@ Description: Profiling libraries for Haskell Library.C module
  .
  This package contains the profiling libraries compiled for GHC 6.
 
-Package: libghc6-language-c-doc
+Package: libghc-language-c-doc
 Section: doc
 Architecture: all
 Depends: ${misc:Depends}
 Recommends: doc-base
- , libghc6-network-doc
+ , libghc-network-doc
 Description: Documentation for Haskell Library.C module
  .
  Language C is a haskell library for the analysis and generation of C code. It
