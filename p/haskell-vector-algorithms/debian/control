@@ -6,23 +6,23 @@ Uploaders: Marco Túlio Gontijo e Silva <marcot@debian.org>
 Build-Depends: debhelper (>= 7)
   , cdbs
   , haskell-devscripts (>= 0.7)
-  , ghc6
-  , ghc6-prof
-  , libghc6-vector-dev (>= 0.5)
-  , libghc6-vector-dev (<< 0.7)
-  , libghc6-vector-prof
-  , libghc6-primitive-dev (>= 0.2)
-  , libghc6-primitive-dev (<< 0.4)
-  , libghc6-primitive-prof
-Build-Depends-Indep: ghc6-doc
-  , libghc6-vector-doc
-  , libghc6-primitive-doc
+  , ghc
+  , ghc-prof
+  , libghc-vector-dev (>= 0.5)
+  , libghc-vector-dev (<< 0.7)
+  , libghc-vector-prof
+  , libghc-primitive-dev (>= 0.2)
+  , libghc-primitive-dev (<< 0.4)
+  , libghc-primitive-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-vector-doc
+  , libghc-primitive-doc
 Standards-Version: 3.8.4
 Homepage: http://hackage.haskell.org/package/vector-algorithms
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-vector-algorithms
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-vector-algorithms
 
-Package: libghc6-vector-algorithms-dev
+Package: libghc-vector-algorithms-dev
 Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
@@ -36,7 +36,7 @@ Description: Short description of vector-algorithms
  .
  Efficient algorithms for vector arrays
 
-Package: libghc6-vector-algorithms-prof
+Package: libghc-vector-algorithms-prof
 Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
@@ -51,7 +51,7 @@ Description: Efficient algorithms for vector arrays; profiling libraries
  .
  Efficient algorithms for vector arrays
 
-Package: libghc6-vector-algorithms-doc
+Package: libghc-vector-algorithms-doc
 Section: doc
 Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
