@@ -1,3 +1,9 @@
+haskell-glut (2.1.2.1-2) UNRELEASED; urgency=low
+
+  * Use ghc instead of ghc
+
+ -- Marco Silva <marcot@debian.org>  Sat, 15 Jan 2011 12:41:01 -0200
+
 haskell-glut (2.1.2.1-1) unstable; urgency=low
 
   [ Marco Túlio Gontijo e Silva ]
@@ -28,7 +34,7 @@ haskell-glut (2.1.1.1-2) unstable; urgency=low
   * Upgrade to "Generic Haskell cabal library packaging files v10":
     * Versioned dependencies are now generated for the Cabal packages we
       depend on.
-    * Use the new ${impl:ghc6:*_deps} variables in debian/control.in.
+    * Use the new ${impl:ghc:*_deps} variables in debian/control.in.
     * Call canonicalise-comma-list on the depends and suggests fields in
       control.in. This works around bugs in lintian, where it gets
       confused and starts giving spurious warnings.
@@ -96,14 +102,15 @@ haskell-glut (2.0-2.1) unstable; urgency=high
 haskell-glut (2.0-2) unstable; urgency=low
 
   * Upgrade to "Generic Haskell cabal library debian/rules v0.6".
-    Tell setup to use ghc6 rather than ghc, so that the postinst/prerm
+    Tell setup to use ghc rather than ghc, so that the postinst/prerm
     scripts work when the ghc-pkg symlink doesn't exist or doesn't
-    point to ghc6's ghc-pkg.
+    point to ghc's ghc-pkg.
 
  -- Ian Lynagh (wibble) <igloo@debian.org>  Mon, 20 Nov 2006 20:50:42 +0000
 
 haskell-glut (2.0-1) unstable; urgency=low
 
-  * Initial release (was part of ghc6 until version 6.6-1).
+  * Initial release (was part of ghc until version 6.6-1).
 
  -- Ian Lynagh (wibble) <igloo@debian.org>  Fri, 13 Oct 2006 16:43:11 +0000
+
