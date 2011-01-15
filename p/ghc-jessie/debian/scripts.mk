@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 
-FILES  = debian/ghc.postinst debian/ghc.prerm
+FILES  = debian/ghc.postinst debian/ghc.prerm debian/ghc.triggers
 FILES += debian/ghc-doc.postinst debian/gen_contents_index debian/ghc-doc.triggers
 FILES += debian/ghc-doc.preinst debian/ghc-pkg.man
 
