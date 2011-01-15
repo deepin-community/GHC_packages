@@ -172,17 +172,10 @@ endif
 	    cd debian/tmp/usr/lib/ghc-$(ProjectVersion) ;rm -f bin/ghci* bin/runghc* bin/runhaskell*; \
 	fi
 	cd debian/tmp/usr/lib/ghc-$(ProjectVersion)/bin && \
-	    for f in *-$(ProjectVersion); \
-	    do ln -s /usr/lib/ghc-$(ProjectVersion)/bin/$$f \
-	             ../../../bin/; \
-	    done
-	cd debian/tmp/usr/lib/ghc-$(ProjectVersion)/bin && \
 	    for f in *; \
 	    do ln -s /usr/lib/ghc-$(ProjectVersion)/bin/$$f \
-	             ../../../bin/$${f}6; \
+	             ../../../bin/$${f}; \
 	    done
-	rm -f debian/tmp/usr/bin/*-$(ProjectVersion)6
-	rm -f debian/tmp/usr/bin/runhaskell6
 	sed -i 's,topdir="/usr/lib,topdir="/var/lib,' debian/tmp/usr/lib/ghc-$(ProjectVersion)/bin/ghc-pkg-$(ProjectVersion)
 	cd debian/haddock-build/haddock; ./Setup copy --dest=../../tmp
 
@@ -205,6 +198,7 @@ ifeq (ia64,$(DEB_HOST_ARCH)) # Tested and seen to be necessary with 6.12.1
 endif
 
 	# manpages
+	rm -f debian/*.1
 	echo ".so man1/ghc.1" > debian/ghc-$(ProjectVersion).1
 	if test -e debian/tmp/usr/bin/ghci-$(ProjectVersion); then \
 	    echo ".so man1/ghc.1" > debian/ghci.1 ;\
