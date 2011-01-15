@@ -7,13 +7,13 @@ Build-Depends: debhelper (>= 7.0),
                haskell-devscripts (>= 0.7),
                cdbs,
                bash-completion (>= 1.0),
-               ghc6 (>= 6.8),
-               libghc6-http-dev (>= 40000002),
-               libghc6-http-dev (<< 40000100),
-               libghc6-network-dev (>= 1),
-               libghc6-network-dev (<< 3),
-               libghc6-zlib-dev (>= 0.4),
-               libghc6-zlib-dev (<< 0.6)
+               ghc (>= 6.8),
+               libghc-http-dev (>= 40000002),
+               libghc-http-dev (<< 40000100),
+               libghc-network-dev (>= 1),
+               libghc-network-dev (<< 3),
+               libghc-zlib-dev (>= 0.4),
+               libghc-zlib-dev (<< 0.6)
 Standards-Version: 3.8.4
 Homepage: http://www.haskell.org/cabal/
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-cabal-install
@@ -24,7 +24,7 @@ Architecture: any
 Depends: ${shlibs:Depends},
          ${haskell:Depends},
          ${misc:Depends}
-Recommends: ${haskell:Recommends}, ghc6
+Recommends: ${haskell:Recommends}, ghc
 Suggests: ${haskell:Suggests}
 Description: command-line interface for Cabal and Hackage
  The 'cabal' command-line program simplifies the process of managing
