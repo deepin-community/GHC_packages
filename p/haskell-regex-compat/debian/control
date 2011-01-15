@@ -7,21 +7,21 @@ Build-Depends: cdbs
  , debhelper (>= 7)
  , haskell-devscripts (>= 0.7)
  , cpphs
- , ghc6 (>= 6.10.3)
- , ghc6-prof
- , ghc6-doc
- , libghc6-regex-base-dev (>= 0.93)
- , libghc6-regex-base-prof
+ , ghc (>= 6.10.3)
+ , ghc-prof
+ , ghc-doc
+ , libghc-regex-base-dev (>= 0.93)
+ , libghc-regex-base-prof
  , haskell-regex-base-doc
- , libghc6-regex-posix-dev (>= 0.93)
- , libghc6-regex-posix-prof 
+ , libghc-regex-posix-dev (>= 0.93)
+ , libghc-regex-posix-prof 
  , haskell-regex-posix-doc
 Standards-Version: 3.8.4
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-regex-compat
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-regex-compat
 Homepage: http://sourceforge.net/projects/lazy-regex
 
-Package: libghc6-regex-compat-dev
+Package: libghc-regex-compat-dev
 Architecture: any
 Depends: ${haskell:Depends}
  , ${misc:Depends}
@@ -34,7 +34,7 @@ Description: GHC 6 library provinding old Text.Regex inferface
  .
  This package contains the libraries for use with GHC 6.
 
-Package: libghc6-regex-compat-prof
+Package: libghc-regex-compat-prof
 Architecture: any
 Depends: ${haskell:Depends}
  , ${shlibs:Depends}
@@ -45,9 +45,9 @@ Description: GHC 6 profiling library provinding old Text.Regex inferface
  expression backend.
  .
  This package contains additional profiling libraries which can be
- used with ghc6-prof.
+ used with ghc-prof.
 
-Package: libghc6-regex-compat-doc
+Package: libghc-regex-compat-doc
 Replaces: haskell-regex-compat-doc (<< 0.92-5)
 Conflicts: haskell-regex-compat-doc (<< 0.92-5)
 Provides: haskell-regex-compat-doc
