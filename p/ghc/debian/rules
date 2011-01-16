@@ -5,7 +5,7 @@
 # This version is for a multibinary package. It also allows you to build any
 # of the binary packages independantly, via binary-<package> targets.
 
-# Uncomment this to turn on verbose mode. 
+# Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
 # From /usr/share/doc/autotools-dev/examples/rules.gz:
@@ -45,9 +45,6 @@ ifneq (,$(findstring $(DEB_HOST_ARCH), i386 amd64 kfreebsd-i386 kfreebsd-amd64 p
 	echo "GhcUnregisterised=NO" >> mk/build.mk
 else
 	echo "GhcUnregisterised=YES" >> mk/build.mk
-endif
-ifeq (powerpc,$(DEB_HOST_ARCH)) # See #365497
-	echo "GhcWithInterpreter=NO" >> mk/build.mk
 endif
 ifneq (,$(findstring $(DEB_HOST_ARCH), kfreebsd-i386 kfreebsd-amd64))
 	echo "GhcWithInterpreter=YES" >> mk/build.mk
