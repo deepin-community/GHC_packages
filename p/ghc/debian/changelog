@@ -1,5 +1,6 @@
 ghc (7.0.1-1) UNRELEASED; urgency=low
 
+  [ Joachim Breitner ]
   * New upstream release, some patches included.
   * Package adopted by the Debian Haskell Maintianer. Thanks to kaol for his
     work!
@@ -7,7 +8,10 @@ ghc (7.0.1-1) UNRELEASED; urgency=low
     package
   * Standards-Version 3.9.1 (no changes necessary)
 
- -- Joachim Breitner <nomeata@debian.org>  Sat, 15 Jan 2011 11:58:08 +0530
+  [ Erik de Castro Lopo ]
+  * Re-enable building of ghci on powerpc. (Closes: 557185)
+
+ -- Erik de Castro Lopo <erikd@mega-nerd.com>  Sun, 16 Jan 2011 20:31:07 +1100
 
 ghc6 (6.12.3-1) experimental; urgency=low
 
@@ -541,15 +545,15 @@ ghc6 (6.6-3) unstable; urgency=low
     * Add FLOAT_WORDS_BIGENDIAN cases to rts/StgPrimFloat.c.
   * Apply the following upstream patch, to fix potential problems
     compiling ghc6 on amd64 (and possibly others):
-    
+
     Fri Oct 20 16:39:25 BST 2006  Simon Marlow <simonmar@microsoft.com>
       * In hashExpr, use Word32 rather than relying on wrapping behaviour of Int
       Fixes #952, as it turns out.
-      
+
       When compiling via C, we are at the mercy of C's undefined behaviour
       with respect to overflow of signed integer operations, and this was
       biting us here.
-      
+
       Perhaps we should always add the -fwrapv flag to gcc, but since
       Haskell doesn't define overflow on Int either, it seemed the right
       thing to do to fix this code anyway.
@@ -1153,7 +1157,7 @@ ghc5 (5.02.2-1) unstable; urgency=low
     (ghc5_getSocketOption.dpatch)
   * added index.html symlinks for html docs
   * adjusted  *.doc-base.*
-  * removed ghc5-doc.doc-base.hslibs (accessible via 
+  * removed ghc5-doc.doc-base.hslibs (accessible via
     the user's guide)
   * bumped Standards-Version to 3.5.6.0
 
@@ -1462,7 +1466,7 @@ ghc4 (4.04-5) unstable; urgency=low
 
   * local version, GHC doesn't work
   * removed hstags from alternatives because it's non-functional
-  * removed mkdependHS from alternatives because directly running it 
+  * removed mkdependHS from alternatives because directly running it
     is deprecated now (now 'ghc -M')
   * re-added info file
   * removed obsolete HAVE_READLINE variable in mk/build.mk
