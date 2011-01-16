@@ -1,6 +1,6 @@
 happy (1.18.4-3) UNRELEASED; urgency=low
 
-  * Use ghc instead of ghc
+  * Use ghc instead of ghc6
 
  -- Marco Silva <marcot@debian.org>  Sat, 15 Jan 2011 12:40:47 -0200
 
@@ -18,7 +18,7 @@ happy (1.18.4-2) unstable; urgency=low
   * debian/watch: Remove spaces, since they're not allowed by uscan.
   * debian/control: Bump Standards-Version: to 3.8.4, no changes needed.
   * debian/control: Bump version of Build-Depends: on haskell-devscripts
-    to 0.7 and remove versioned Build-Depends: on ghc.
+    to 0.7 and remove versioned Build-Depends: on ghc6.
   * Use 3.0 (quilt) format.
 
  -- Marco Túlio Gontijo e Silva <marcot@debian.org>  Sun, 21 Feb 2010 07:31:12 -0300
@@ -69,10 +69,10 @@ happy (1.17-0.1) unstable; urgency=low
     - Some performance improvements to Happy itsel
   * debian/control:
     - Added Homepage field.
-    - Bump the build dependency on ghc to 6.8.2 as the packages needs
+    - Bump the build dependency on ghc6 to 6.8.2 as the packages needs
       Cabal 1.2 to build.
     - Bump the Standards-Version to 3.7.3. No changes needed.
-    - Add happy and libghc-mtl-dev to the build dependencies.
+    - Add happy and libghc6-mtl-dev to the build dependencies.
   * debian/copyright:
     - Fix debian-copyright-file-uses-obsolete-national-encoding lintian
       warning.
@@ -96,7 +96,7 @@ happy (1.16~rc2-1) unstable; urgency=low
     * Various debian/rules changes.
     * Create debian/get_version.hs for extracting the version from the cabal
       file.
-    * Requires ghc >= 6.4.2.
+    * Requires ghc6 >= 6.4.2.
     * No longer tries to detect platform. Closes: #340325, #332979.
     * Removed autotool-dev build-dep.
   * Add 'XSLTPROC_OPTS = --nonet' to doc/config.mk.in.
@@ -111,7 +111,7 @@ happy (1.16~rc2-1) unstable; urgency=low
 
 happy (1.15-2) unstable; urgency=low
 
-  * Revert unnecessary strictification of ghc build-dep to make
+  * Revert unnecessary strictification of ghc6 build-dep to make
     backports simpler.
   * Build-dep on docbook-xml so we don't need to get things from the
     'net when building.
@@ -123,8 +123,8 @@ happy (1.15-1.1) unstable; urgency=low
   * NMU to make installable in unstable.
   * Rebuild against newer GHC6 to link to appropriate libgmp.
   * Remove ghc5 from build-depends in debian/control.
-  * Updated build-depends on ghc to 6.4-4.1 to make sure that
-    the package gets built with the appropriate ghc that includes the
+  * Updated build-depends on ghc6 to 6.4-4.1 to make sure that
+    the package gets built with the appropriate ghc6 that includes the
     libgmp fix.
 
  -- John Goerzen <jgoerzen@complete.org>  Fri,  9 Sep 2005 06:33:04 -0500
@@ -188,7 +188,7 @@ happy (1.13-0tarball-1) unstable; urgency=low
   * Prefer simple changes in .diff.gz rather than a patch system, especially
     as the number needed has dropped (and will hopefully drop further in the
     future).
-  * Allow ghc as an alternative to ghc5 as a build-dep.
+  * Allow ghc6 as an alternative to ghc5 as a build-dep.
 
  -- Ian Lynagh (wibble) <igloo@debian.org>  Sat, 30 Aug 2003 13:21:53 +0000
 
