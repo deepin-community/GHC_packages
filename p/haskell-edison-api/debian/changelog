@@ -1,6 +1,6 @@
 haskell-edison-api (1.2.1-15) UNRELEASED; urgency=low
 
-  * Use ghc instead of ghc
+  * Use ghc instead of ghc6
 
  -- Marco Silva <marcot@debian.org>  Sat, 15 Jan 2011 12:40:55 -0200
 
@@ -139,20 +139,20 @@ haskell-edison (1.2.1-4) unstable; urgency=low
   * debian/control:
     - Update XS-Vcs-* fields as the packages has moved to the pkg-haskell
       subversion archive.
-    - Add libghc-mtl-prof and libghc-quickcheck-prof to Build-Depends as
-      libghc-mtl-dev and libghc-quickcheck-dev have split of their
+    - Add libghc6-mtl-prof and libghc6-quickcheck-prof to Build-Depends as
+      libghc6-mtl-dev and libghc6-quickcheck-dev have split of their
       profiling libraries into seperate packages.
-  * debian/{ghc.in,rules}:
+  * debian/{ghc6.in,rules}:
     - Add handling of noopt in DEB_BUILD_OPTIONS enviroment variable.
   * debian/{mk-haskell-depends,rules}:
     - Small cleanups.
   * Generate links to other API documentation packages:
     - debian/control:
-      + Add libghc-base-doc, libghc-haskell98-doc, libghc-mtl-doc and
-        libghc-quickcheck-doc to the Build-Depends-Indep so haddock can
+      + Add libghc6-base-doc, libghc6-haskell98-doc, libghc6-mtl-doc and
+        libghc6-quickcheck-doc to the Build-Depends-Indep so haddock can
         link to the names in other packages.
-      + Add libghc-base-doc, libghc-haskell98-doc, libghc-mtl-doc and
-        libghc-quickcheck-doc to the Recommends of haskell-edison-doc.
+      + Add libghc6-base-doc, libghc6-haskell98-doc, libghc6-mtl-doc and
+        libghc6-quickcheck-doc to the Recommends of haskell-edison-doc.
     - debian/patches/20_add-haddock-file.dpatch:
       + Add the appropriate --read-interface and --use-package options so
         haddock will link to names in other packages.
@@ -203,11 +203,11 @@ haskell-edison (1.2.0.1-5) unstable; urgency=low
 haskell-edison (1.2.0.1-4) unstable; urgency=low
 
   * debian/control:
-    - Bump Build-Depends on ghc as Edison needs a new Cabal version.
-    - Add ghc-prof to the Build-Depends.
-    - Let libghc-edison-api-dev and libghc-edison-core-dev provide
-      libghc-edison-api-prof and libghc-edison-core-prof.
-  * debian/{ghc.in,ghc-pkg6.in}:
+    - Bump Build-Depends on ghc6 as Edison needs a new Cabal version.
+    - Add ghc6-prof to the Build-Depends.
+    - Let libghc6-edison-api-dev and libghc6-edison-core-dev provide
+      libghc6-edison-api-prof and libghc6-edison-core-prof.
+  * debian/{ghc6.in,ghc-pkg6.in}:
     - Exit on errors and show the commands executed.
   * debian/patches/20_add-haddock-file: generate haddock interface file
     when generating API documentation.
@@ -224,20 +224,20 @@ haskell-edison (1.2.0.1-4) unstable; urgency=low
 
 haskell-edison (1.2.0.1-3) unstable; urgency=low
 
-  * Stop using update-haskell-control and $ghc_* variables, as it is not
+  * Stop using update-haskell-control and $ghc6_* variables, as it is not
     necessary and not using it simplifies the work for porters and for me.
   * debian/copyright:
     - include email from upstream with more information about the exact
       licensing.
   * debian/control.in:
-    - add libghc-mtl-dev and libghc-quickcheck-dev to Build-Depends.
+    - add libghc6-mtl-dev and libghc6-quickcheck-dev to Build-Depends.
     - replace ${ghc:Depends} with ${haskell:Depends}
     - update maintainer email address.
   * debian/rules:
     - copy the actual package.conf file in which all installed packages
       are registered.
-    - remove debian/ghc and debian/ghc-pkg6 on clean.
-    - replace debian/mk-ghc-vars script with debian/mk-haskell-depends
+    - remove debian/ghc6 and debian/ghc-pkg6 on clean.
+    - replace debian/mk-ghc6-vars script with debian/mk-haskell-depends
       script which determines all dependencies by using the installed
       package description file used by ghc-pkg.
 
