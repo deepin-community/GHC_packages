@@ -1,6 +1,6 @@
 haskell-http (40000009-3) UNRELEASED; urgency=low
 
-  * Use ghc instead of ghc
+  * Use ghc instead of ghc6
 
  -- Marco Silva <marcot@debian.org>  Sat, 15 Jan 2011 12:41:11 -0200
 
@@ -95,11 +95,11 @@ haskell-http (30010004-2) unstable; urgency=low
 
   * Update for GHC 6.8.2:
     - debian/patches/00list: disable 01-work-with-old-cabal patch.
-    - debian/control: Bump build dependency on ghc to 6.8.2 which ships
+    - debian/control: Bump build dependency on ghc6 to 6.8.2 which ships
       the new Cabal version needed to build this package.
   * debian/control:
     - Adjust Vcs-* fields to point to trunk.
-    - Change the section of libghc-haxml-dev to libdevel as suggested by
+    - Change the section of libghc6-haxml-dev to libdevel as suggested by
       lintian (dev-package-should-be-section-libdevel)
   * debian/haskell-http-doc.doc-base:
     - Cabal version 1.2 installs the generated documentation into a
@@ -159,10 +159,10 @@ haskell-http (30000000-1) unstable; urgency=low
     - Updated for the new location of upstream tarballs.
   * Generate links to other API documentation packages:
     - debian/control:
-      + Add libghc-base-doc, libghc-network-doc and libghc-parsec-doc
+      + Add libghc6-base-doc, libghc6-network-doc and libghc6-parsec-doc
         to the Build-Depends-Indep so haddock can link to names in other
         packages.
-      + Add libghc-base-doc, libghc-network-doc and libghc5-parsec-doc
+      + Add libghc6-base-doc, libghc6-network-doc and libghc5-parsec-doc
         to the Recommends of haskell-http-doc.
   
  -- Arjan Oosting <arjan@debian.org>  Mon, 28 May 2007 06:01:50 +0200
@@ -191,12 +191,12 @@ haskell-http (20060707-3) unstable; urgency=low
 haskell-http (20060707-2) unstable; urgency=medium
 
   * Rebuild against latest GHC (Closes: #394656)
-  * Stop using update-haskell-control and $ghc_* variables, as it is not
+  * Stop using update-haskell-control and $ghc6_* variables, as it is not
     necessary and not using it simplifies the work for porters and for me.
   * debian/control: 
     - added XS-Vcs-Svn field pointing to Subversion archive which contains
       this package.
-    - added libghc-network-dev to Build-Depends.
+    - added libghc6-network-dev to Build-Depends.
     - added dctrl-tools to Build-Depends as it is needed by
       debian/mk-haskell-depends.
     - change maintainer email address.
@@ -227,11 +227,11 @@ haskell-http (0.4.20050430-4) unstable; urgency=low
     only touches the files in the debian directory.
   * Drop patch to README which is not installed anyway.
   * Remove the support for the old Network.URI module from the diff.gz as
-    ghc and hugs both have the new Network.URI module.
+    ghc6 and hugs both have the new Network.URI module.
   * debian/control.in:
     - remove duplicate build dependencies
-    - add versioned Build-Depends on ghc to get the latest version of Cabal.
-    - drop the Build-Depends on libghc-cabal-dev.
+    - add versioned Build-Depends on ghc6 to get the latest version of Cabal.
+    - drop the Build-Depends on libghc6-cabal-dev.
     - added ppc64 to Architectures line. (Closes: #375609)
     - add dpatch to Build-Depends.
   * debian/haskell-http-doc.docs: added. Install the API documentation.
@@ -254,7 +254,7 @@ haskell-http (0.4.20050430-3) unstable; urgency=low
     - remove configure and install targets, almost everything is done in
       the binary-arch and binary-indep targets.
   * debian/control.in:
-    - remove the versioned dependency on ghc version 6.4.2 as it is not
+    - remove the versioned dependency on ghc6 version 6.4.2 as it is not
       yet in the archive anyway.
     - Upgrade to Standards-Version 3.7.2. No changes needed.	
     - Use the new substitution variables source:Version and build depend
@@ -274,10 +274,10 @@ haskell-http (0.4.20050430-2) unstable; urgency=low
     - Cleanup the Build-Depends and Build-Depends-Indep
     - Add Homepage: http://www.haskell.org/http/ to the descriptions.
     - Properly escape ${haskell:Depends}.  
-    - Add versioned libghc-cabal-dev and ghc to the Build-Depends to use
+    - Add versioned libghc6-cabal-dev and ghc6 to the Build-Depends to use
       Cabal version 1.1.1 or later which introduces a new installation
       prefix for libraries.
-    libghc-http-dev determinable.
+    libghc6-http-dev determinable.
   * debian/compat: added and set debhelper compatability level to 5.
   * debian/copyright: updated.
   * debian/haskell-http-doc.dirs: added.
@@ -288,7 +288,7 @@ haskell-http (0.4.20050430-2) unstable; urgency=low
     - split the dh_haskell -a -i call two calls. Move all the architecture
       independent stuff to binary-indep and all the architecture dependent
       stuff to binary-arch. (Closes: #315333)
-    - remove the empty directory usr/lib/haskell-packages/ghc/bin 
+    - remove the empty directory usr/lib/haskell-packages/ghc6/bin 
       (Closes: #324718)
     - do not ignore errors on clean and remove redundant make clean call.
     - general cleanup.
