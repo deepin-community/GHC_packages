@@ -1,6 +1,6 @@
 haskell-uulib (0.9.10-4) UNRELEASED; urgency=low
 
-  * Use ghc instead of ghc
+  * Use ghc instead of ghc6
 
  -- Marco Silva <marcot@debian.org>  Sat, 15 Jan 2011 12:41:35 -0200
 
@@ -67,7 +67,7 @@ haskell-uulib (0.9.10-0.1) unstable; urgency=high
     - cpphs is not Indep.
   * debian/patches: Remove directory.
   * debian/haskell-uulib-doc.doc-base: haddock's file are stored now in
-    /usr/share/libghc-uulib-doc/html/.
+    /usr/share/libghc6-uulib-doc/html/.
   * debian/haskell-uulib-doc.examples: Create file.
 
  -- Marco Túlio Gontijo e Silva <marcot@holoscopio.com>  Wed, 08 Apr 2009 20:01:10 -0300
@@ -133,7 +133,7 @@ haskell-uulib (0.9.3~snapshot20071230-3) unstable; urgency=low
   * debian/control:
     - Bump build dependency on GHC to >= 6.8.2  because the package now
       needs a Cabal version >= 1.2.
-    - Change the section of libghc-uulib-dev and libghc-uulib-prof to
+    - Change the section of libghc6-uulib-dev and libghc6-uulib-prof to
       fix lintian warning "dev-package-should-be-section-libdevel"
   * debian/haskell-uulib-doc.doc-base:
     - Update paths which were changed due to the new Cabal version
@@ -195,10 +195,10 @@ haskell-uulib (0.9.3~snapshot20070528-1) unstable; urgency=low
     - Small cleanups.
   * Generate links to other API documentation packages:
     - debian/control:
-      + Add libghc-base-doc and libghc-haskell98-doc to the
+      + Add libghc6-base-doc and libghc6-haskell98-doc to the
         Build-Depends-Indep so haddock can link to names in other
         packages.
-      + Add libghc-base-doc and libghc-haskell98-doc to the Recommends
+      + Add libghc6-base-doc and libghc6-haskell98-doc to the Recommends
         of haskell-uulib-doc.
 
  -- Arjan Oosting <arjan@debian.org>  Mon, 28 May 2007 17:41:26 +0200
@@ -236,7 +236,7 @@ haskell-uulib (0.9.2-6) unstable; urgency=high
 
 haskell-uulib (0.9.2-5) unstable; urgency=low
 
-  * debian/control: make libghc-uulib-dev and libghc-uulib-prof
+  * debian/control: make libghc6-uulib-dev and libghc6-uulib-prof
     Architecture: any.
   * debian/mk-haskell-depends: update script to take installed package
     configuration files as arguments.
@@ -245,7 +245,7 @@ haskell-uulib (0.9.2-5) unstable; urgency=low
     - Correct paths to haddock generated files in the installed package
       configuration files.
     - Don't compress .haddock files so they can be used by haddock.
-  * Stop using update-haskell-control and $ghc_* variables, as it is not
+  * Stop using update-haskell-control and $ghc6_* variables, as it is not
     necessary and not using it simplifies the work for porters and for me.
 
  -- Arjan Oosting <arjan@debian.org>  Sat, 18 Nov 2006 16:24:30 +0100
@@ -262,7 +262,7 @@ haskell-uulib (0.9.2-3) unstable; urgency=low
 
   * debian/control.in:
     - update maintainer email address.
-    - add profiling version of the ghc libary.
+    - add profiling version of the ghc6 libary.
   * debian/patches/01_fix-for-ghc-6.6.dpatch: add UndecidableInstances
     to .cabal file to fix build with GHC 6.6.
   * debian/rules: use debian/mk-haskell-depends to determine the
