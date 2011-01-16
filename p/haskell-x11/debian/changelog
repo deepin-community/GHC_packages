@@ -6,7 +6,7 @@ haskell-x11 (1.5.0.0-3) UNRELEASED; urgency=low
   * debian/source/format: Use 3.0 (quilt).
 
   [ Marco Silva ]
-  * Use ghc instead of ghc
+  * Use ghc instead of ghc6
 
  -- Marco Túlio Gontijo e Silva <marcot@debian.org>  Thu, 18 Feb 2010 22:41:07 -0200
 
@@ -59,7 +59,7 @@ haskell-x11 (1.4.5-6) unstable; urgency=low
   * debian/control: Use haskell:Recommends and haskell:Suggests.
 
   [ Joachim Breitner ]
-  * Rebuild get rid of libghc-x11-doc dependency on ghc-doc
+  * Rebuild get rid of libghc6-x11-doc dependency on ghc6-doc
   * Bump build-dependencies
   * Bump standards version, changed section
 
@@ -67,21 +67,21 @@ haskell-x11 (1.4.5-6) unstable; urgency=low
 
 haskell-x11 (1.4.5-4) unstable; urgency=low
 
-  * Manually bump ghc-doc dependency until this is handled by
+  * Manually bump ghc6-doc dependency until this is handled by
     haskell-devscripts (Closes: #530238)
 
  -- Joachim Breitner <nomeata@debian.org>  Mon, 25 May 2009 09:16:51 +0200
 
 haskell-x11 (1.4.5-3) unstable; urgency=low
 
-  * Purge and reinstall ghc before building to get correct links to base
+  * Purge and reinstall ghc6 before building to get correct links to base
     packages in the documentation, due to #517514
 
  -- Joachim Breitner <nomeata@debian.org>  Sat, 28 Feb 2009 11:55:29 +0100
 
 haskell-x11 (1.4.5-2) unstable; urgency=low
 
-  * Rebuilt with ghc with arch-independent .haddock files
+  * Rebuilt with ghc6 with arch-independent .haddock files
 
  -- Joachim Breitner <nomeata@debian.org>  Sat, 28 Feb 2009 11:23:23 +0100
 
@@ -109,7 +109,7 @@ haskell-x11 (1.4.1-1) unstable; urgency=low
   * Upgrade to "Generic Haskell cabal library packaging files v10":
     * Versioned dependencies are now generated for the Cabal packages we
       depend on.
-    * Use the new ${impl:ghc:*_deps} variables in debian/control.in.
+    * Use the new ${impl:ghc6:*_deps} variables in debian/control.in.
     * Call canonicalise-comma-list on the depends and suggests fields in
       control.in. This works around bugs in lintian, where it gets
       confused and starts giving spurious warnings.
@@ -167,9 +167,9 @@ haskell-x11 (1.2.1-1) unstable; urgency=low
 haskell-x11 (1.2-3) unstable; urgency=low
 
   * Upgrade to "Generic Haskell cabal library debian/rules v0.6".
-    Tell setup to use ghc rather than ghc, so that the postinst/prerm
+    Tell setup to use ghc6 rather than ghc, so that the postinst/prerm
     scripts work when the ghc-pkg symlink doesn't exist or doesn't
-    point to ghc's ghc-pkg.
+    point to ghc6's ghc-pkg.
 
  -- Ian Lynagh (wibble) <igloo@debian.org>  Mon, 20 Nov 2006 20:50:42 +0000
 
@@ -185,7 +185,7 @@ haskell-x11 (1.2-2) unstable; urgency=low
 
 haskell-x11 (1.2-1) unstable; urgency=low
 
-  * Initial release (was part of ghc until version 6.6-1).
+  * Initial release (was part of ghc6 until version 6.6-1).
 
  -- Ian Lynagh (wibble) <igloo@debian.org>  Fri, 13 Oct 2006 16:43:11 +0000
 
