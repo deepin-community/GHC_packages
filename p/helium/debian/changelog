@@ -1,6 +1,6 @@
 helium (1.6-7) UNRELEASED; urgency=low
 
-  * Use ghc instead of ghc
+  * Use ghc instead of ghc6
 
  -- Marco Silva <marcot@debian.org>  Sat, 15 Jan 2011 12:41:38 -0200
 
@@ -36,11 +36,11 @@ helium (1.6-4.1) unstable; urgency=low
 helium (1.6-4) unstable; urgency=low
 
   * Make helium compile with GHC 6.8.2:
-    - debian/patches/04_fixes-for-ghc.dpatch: Add '-package containers'
+    - debian/patches/04_fixes-for-ghc6.dpatch: Add '-package containers'
       to the GHC options as helium uses Data.Map which is in a separate
       package now.
     - debian/control:
-      + Add libghc-parsec-dev to the build dependencies as the parsec
+      + Add libghc6-parsec-dev to the build dependencies as the parsec
         module is in separate Debian package now.
       + Bump the build dependency on GHC to >= 6.8.2
   * debian/control:
