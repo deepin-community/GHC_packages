@@ -5,7 +5,7 @@ haskell-opengl (2.2.3.0-3) UNRELEASED; urgency=low
   * debian/source/format: Use 3.0 (quilt).
 
   [ Marco Silva ]
-  * Use ghc instead of ghc
+  * Use ghc instead of ghc6
 
  -- Marco Túlio Gontijo e Silva <marcot@debian.org>  Thu, 18 Feb 2010 22:40:59 -0200
 
@@ -35,7 +35,7 @@ haskell-opengl (2.2.1.1-2) unstable; urgency=low
   * Upgrade to "Generic Haskell cabal library packaging files v10":
     * Versioned dependencies are now generated for the Cabal packages we
       depend on.
-    * Use the new ${impl:ghc:*_deps} variables in debian/control.in.
+    * Use the new ${impl:ghc6:*_deps} variables in debian/control.in.
     * Call canonicalise-comma-list on the depends and suggests fields in
       control.in. This works around bugs in lintian, where it gets
       confused and starts giving spurious warnings.
@@ -93,15 +93,15 @@ haskell-opengl (2.2.1-1) unstable; urgency=low
 haskell-opengl (2.1-2) unstable; urgency=low
 
   * Upgrade to "Generic Haskell cabal library debian/rules v0.6".
-    Tell setup to use ghc rather than ghc, so that the postinst/prerm
+    Tell setup to use ghc6 rather than ghc, so that the postinst/prerm
     scripts work when the ghc-pkg symlink doesn't exist or doesn't
-    point to ghc's ghc-pkg.
+    point to ghc6's ghc-pkg.
 
  -- Ian Lynagh (wibble) <igloo@debian.org>  Mon, 20 Nov 2006 20:50:42 +0000
 
 haskell-opengl (2.1-1) unstable; urgency=low
 
-  * Initial release (was part of ghc until version 6.6-1).
+  * Initial release (was part of ghc6 until version 6.6-1).
   * Remove the word "industry's" from the .cabal file as the ' was
     not being handled correctly when generating the script.
 
