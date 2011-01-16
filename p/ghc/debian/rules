@@ -46,9 +46,6 @@ ifneq (,$(findstring $(DEB_HOST_ARCH), i386 amd64 kfreebsd-i386 kfreebsd-amd64 p
 else
 	echo "GhcUnregisterised=YES" >> mk/build.mk
 endif
-ifeq (powerpc,$(DEB_HOST_ARCH)) # See #365497
-	echo "GhcWithInterpreter=NO" >> mk/build.mk
-endif
 ifneq (,$(findstring $(DEB_HOST_ARCH), kfreebsd-i386 kfreebsd-amd64))
 	echo "GhcWithInterpreter=YES" >> mk/build.mk
 endif
