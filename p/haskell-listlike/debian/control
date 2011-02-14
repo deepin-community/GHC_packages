@@ -1,0 +1,73 @@
+Source: haskell-listlike
+Section: haskell
+Priority: optional
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: TANIGUCHI Takaki <takaki@debian.org>
+Build-Depends: cdbs, debhelper (>= 7.0.50~), haskell-devscripts,
+	ghc6,
+	ghc6-prof,
+	ghc6-doc
+Standards-Version: 3.9.1
+Homepage: http://software.complete.org/listlike
+#Vcs-Git: git://git.debian.org/collab-maint/haskell-listlike.git
+#Vcs-Browser: http://git.debian.org/?p=collab-maint/haskell-listlike.git;a=summary
+
+Package: libghc6-listlike-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Provides: ${haskell:Provides}
+Suggests: ${haskell:Suggests}
+Description: Generic support for list-like structures
+ Generic support for list-like structures in Haskell.
+ .
+ The ListLike module provides a common interface to the various Haskell
+ types that are list-like.  Predefined interfaces include standard
+ Haskell lists, Arrays, ByteStrings, and lazy ByteStrings.  Custom
+ types can easily be made ListLike instances as well.
+ .
+ ListLike also provides for String-like types, such as String and
+ ByteString, for types that support input and output, and for types that can
+ handle infinite lists.
+ .
+ This package contains the libraries compiled for GHC 6.
+
+Package: libghc6-listlike-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Provides: ${haskell:Provides}
+Suggests: ${haskell:Suggests}
+Description: Generic support for list-like structures; profiling library
+ Generic support for list-like structures in Haskell.
+ .
+ The ListLike module provides a common interface to the various Haskell
+ types that are list-like.  Predefined interfaces include standard
+ Haskell lists, Arrays, ByteStrings, and lazy ByteStrings.  Custom
+ types can easily be made ListLike instances as well.
+ .
+ ListLike also provides for String-like types, such as String and
+ ByteString, for types that support input and output, and for types that can
+ handle infinite lists.
+ .
+ This package contains the profiling libraries compiled for GHC 6.
+
+Package: libghc6-listlike-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Generic support for list-like structures; documentation
+ Generic support for list-like structures in Haskell.
+ .
+ The ListLike module provides a common interface to the various Haskell
+ types that are list-like.  Predefined interfaces include standard
+ Haskell lists, Arrays, ByteStrings, and lazy ByteStrings.  Custom
+ types can easily be made ListLike instances as well.
+ .
+ ListLike also provides for String-like types, such as String and
+ ByteString, for types that support input and output, and for types that can
+ handle infinite lists.
+ .
+ This package contains the library documentation.
