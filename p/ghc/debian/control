@@ -15,7 +15,7 @@ Replaces: ghc6 (<< 7)
 Conflicts: ghc6 (<< 7)
 Breaks: cabal-install (<< 0.8.0), haskell-devscripts (<< 0.6.19), ghc-doc (<= 6.12.1-8)
 Suggests: perl, ghc-prof, ghc-doc, haskell-doc
-Description: GHC - the Glasgow Haskell Compilation system
+Description: The Glasgow Haskell Compilation system
  The Glorious Glasgow Haskell Compilation system (GHC) is a compiler for
  Haskell.
  .
@@ -26,7 +26,7 @@ Description: GHC - the Glasgow Haskell Compilation system
 
 Package: ghc-prof
 Architecture: any
-Provides: ghc-prof, ghc6-prof, ${provided-profs}, ${haskell:Provides}
+Provides: ghc6-prof, ${provided-profs}, ${haskell:Provides}
 Depends: ghc (= ${binary:Version}), ${misc:Depends}
 Replaces: ghc6-prof (<< 7)
 Conflicts: ghc6-prof (<< 7)
@@ -65,7 +65,6 @@ Description: Documentation for the Glasgow Haskell Compilation system
 
 Package: ghc-dynamic
 Architecture: i386 amd64
-Provides: ghc-dynamic
 Depends: ghc (= ${binary:Version}), ${misc:Depends}
 Description: Dynamic libraries for the Glasgow Haskell Compilation system
  The Glorious Glasgow Haskell Compilation system (GHC) is a compiler for
@@ -105,21 +104,22 @@ Description: Documentation tool for annotated Haskell source code
 
 Package: ghc6
 Architecture: all
-Depends: ghc
+Depends: ghc, ${misc:Depends}
 Description: transitional dummy package
  This package ensures a smooth transition from the package name ghc6 to the
  package name ghc, and can safely be removed.
 
 Package: ghc6-doc
 Architecture: all
-Depends: ghc-doc
+Depends: ghc-doc, ${misc:Depends}
+Section: doc
 Description: transitional dummy package
  This package ensures a smooth transition from the package name ghc6-doc to the
  package name ghc-doc, and can safely be removed.
 
 Package: ghc6-prof
 Architecture: all
-Depends: ghc-prof
+Depends: ghc-prof, ${misc:Depends}
 Description: transitional dummy package
  This package ensures a smooth transition from the package name ghc6-prof to the
  package name ghc-prof, and can safely be removed.
