@@ -1,22 +1,22 @@
-Index: ghc-7.0.1/utils/haddock/src/Haddock/Interface/AttachInstances.hs
+Index: ghc-7.0.2/utils/haddock/src/Haddock/Interface/AttachInstances.hs
 ===================================================================
---- ghc-7.0.1.orig/utils/haddock/src/Haddock/Interface/AttachInstances.hs	2010-11-12 23:40:08.000000000 +0530
-+++ ghc-7.0.1/utils/haddock/src/Haddock/Interface/AttachInstances.hs	2011-01-15 12:32:21.000000000 +0530
-@@ -26,7 +26,9 @@
- import InstEnv
- import Class
- import HscTypes (withSession, ioMsg)
+--- ghc-7.0.2.orig/utils/haddock/src/Haddock/Interface/AttachInstances.hs	2011-02-28 23:40:13.000000000 +0530
++++ ghc-7.0.2/utils/haddock/src/Haddock/Interface/AttachInstances.hs	2011-03-05 19:05:51.000000000 +0530
+@@ -31,7 +31,9 @@
+ import HscTypes (withSession)
+ #endif
+ import MonadUtils (liftIO)
 +#ifdef GHCI
  import TcRnDriver (tcRnGetInfo)
 +#endif
  import TypeRep hiding (funTyConName)
  import Var hiding (varName)
  import TyCon
-@@ -51,7 +53,11 @@
+@@ -56,7 +58,11 @@
  attachToExportItem iface ifaceMap instIfaceMap export =
    case export of
      ExportDecl { expItemDecl = L _ (TyClD d) } -> do
-+#ifdef GHCI    
++#ifdef GHCI
        mb_info <- getAllInfo (unLoc (tcdLName d))
 +#else
 +      let mb_info = Nothing
@@ -24,7 +24,7 @@ Index: ghc-7.0.1/utils/haddock/src/Haddock/Interface/AttachInstances.hs
        let export' =
              export {
                expItemInstances =
-@@ -90,10 +96,12 @@
+@@ -95,12 +101,14 @@
      modName = nameModule name
  
  
@@ -32,16 +32,18 @@ Index: ghc-7.0.1/utils/haddock/src/Haddock/Interface/AttachInstances.hs
  -- | Like GHC's getInfo but doesn't cut things out depending on the
  -- interative context, which we don't set sufficiently anyway.
  getAllInfo :: GhcMonad m => Name -> m (Maybe (TyThing,Fixity,[Instance]))
- getAllInfo name = withSession $ \hsc_env -> ioMsg $ tcRnGetInfo hsc_env name
+ getAllInfo name = withSession $ \hsc_env -> do 
+    (_msgs, r) <- liftIO $ tcRnGetInfo hsc_env name
+    return r
 +#endif
  
  
  --------------------------------------------------------------------------------
-Index: ghc-7.0.1/utils/haddock/src/Haddock/Interface/Create.hs
+Index: ghc-7.0.2/utils/haddock/src/Haddock/Interface/Create.hs
 ===================================================================
---- ghc-7.0.1.orig/utils/haddock/src/Haddock/Interface/Create.hs	2010-11-12 23:40:08.000000000 +0530
-+++ ghc-7.0.1/utils/haddock/src/Haddock/Interface/Create.hs	2011-01-15 12:31:28.000000000 +0530
-@@ -506,7 +506,11 @@
+--- ghc-7.0.2.orig/utils/haddock/src/Haddock/Interface/Create.hs	2011-02-28 23:40:13.000000000 +0530
++++ ghc-7.0.2/utils/haddock/src/Haddock/Interface/Create.hs	2011-03-05 19:04:57.000000000 +0530
+@@ -514,7 +514,11 @@
          Nothing -> do
            -- If we can't find the declaration, it must belong to
            -- another package
