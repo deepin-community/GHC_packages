@@ -1,20 +1,29 @@
-Index: ghc-7.0.1/utils/haddock/haddock.cabal
+Index: ghc-7.0.2/utils/haddock/haddock.cabal
 ===================================================================
---- ghc-7.0.1.orig/utils/haddock/haddock.cabal	2010-11-12 23:40:08.000000000 +0530
-+++ ghc-7.0.1/utils/haddock/haddock.cabal	2011-01-15 12:38:27.000000000 +0530
+--- ghc-7.0.2.orig/utils/haddock/haddock.cabal	2011-02-28 23:40:13.000000000 +0530
++++ ghc-7.0.2/utils/haddock/haddock.cabal	2011-03-05 19:06:52.000000000 +0530
 @@ -87,8 +87,6 @@
+ 
    if flag(in-ghc-tree)
      cpp-options: -DIN_GHC_TREE
-     extensions: ForeignFunctionInterface
 -  else
 -    build-depends: ghc-paths
  
    if flag(test)
      cpp-options: -DTEST
-Index: ghc-7.0.1/utils/haddock/src/Main.hs
+@@ -147,8 +145,6 @@
+ 
+   if flag(in-ghc-tree)
+     cpp-options: -DIN_GHC_TREE
+-  else
+-    build-depends: ghc-paths
+ 
+   if flag(test)
+     cpp-options: -DTEST
+Index: ghc-7.0.2/utils/haddock/src/Main.hs
 ===================================================================
---- ghc-7.0.1.orig/utils/haddock/src/Main.hs	2010-11-12 23:40:08.000000000 +0530
-+++ ghc-7.0.1/utils/haddock/src/Main.hs	2011-01-15 12:38:27.000000000 +0530
+--- ghc-7.0.2.orig/utils/haddock/src/Main.hs	2011-02-28 23:40:13.000000000 +0530
++++ ghc-7.0.2/utils/haddock/src/Main.hs	2011-03-05 19:06:26.000000000 +0530
 @@ -50,7 +50,6 @@
  #ifdef IN_GHC_TREE
  import System.FilePath
@@ -23,7 +32,7 @@ Index: ghc-7.0.1/utils/haddock/src/Main.hs
  import Paths_haddock
  #endif
  
-@@ -334,7 +333,7 @@
+@@ -341,7 +340,7 @@
  #ifdef IN_GHC_TREE
        getInTreeLibDir
  #else
