@@ -202,8 +202,9 @@ endif
 	    echo ".so man1/ghc.1" > debian/ghci-$(ProjectVersion).1 ;\
 	    cp debian/runghc.man debian/runghc.1 ; fi
 	mv debian/tmp/usr/share/man/man1/ghc.1 debian/ghc.1
-	cp utils/hp2ps/hp2ps.1 debian/hp2ps-ghc.1
+	cp utils/hp2ps/hp2ps.1 debian/hp2ps.1
 	cp debian/ghc-pkg.man debian/ghc-pkg.1
+	echo ".so man1/ghc-pkg.1" > debian/ghc-pkg-$(ProjectVersion).1
 
 	echo debian/*.1 > debian/ghc.manpages
 	cp debian/haddock.man debian/haddock.1
