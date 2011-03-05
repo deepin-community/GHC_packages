@@ -1,7 +1,7 @@
-Index: ghc-7.0.1/rts/posix/OSThreads.c
+Index: ghc-7.0.2/rts/posix/OSThreads.c
 ===================================================================
---- ghc-7.0.1.orig/rts/posix/OSThreads.c	2010-11-12 23:40:06.000000000 +0530
-+++ ghc-7.0.1/rts/posix/OSThreads.c	2011-01-15 12:31:06.000000000 +0530
+--- ghc-7.0.2.orig/rts/posix/OSThreads.c	2011-02-28 23:40:09.000000000 +0530
++++ ghc-7.0.2/rts/posix/OSThreads.c	2011-03-05 19:02:06.000000000 +0530
 @@ -7,10 +7,10 @@
   *
   * --------------------------------------------------------------------------*/
@@ -15,10 +15,10 @@ Index: ghc-7.0.1/rts/posix/OSThreads.c
  #endif
  
  #include "PosixSource.h"
-Index: ghc-7.0.1/driver/mangler/ghc-asm.lprl
+Index: ghc-7.0.2/driver/mangler/ghc-asm.lprl
 ===================================================================
---- ghc-7.0.1.orig/driver/mangler/ghc-asm.lprl	2010-11-12 23:40:05.000000000 +0530
-+++ ghc-7.0.1/driver/mangler/ghc-asm.lprl	2011-01-15 12:31:06.000000000 +0530
+--- ghc-7.0.2.orig/driver/mangler/ghc-asm.lprl	2011-02-28 23:40:08.000000000 +0530
++++ ghc-7.0.2/driver/mangler/ghc-asm.lprl	2011-03-05 19:02:06.000000000 +0530
 @@ -216,7 +216,7 @@
      $T_HDR_vector   = "\.text\n\t\.align 8\n";
  
@@ -28,10 +28,10 @@ Index: ghc-7.0.1/driver/mangler/ghc-asm.lprl
  
      $T_STABBY       = 0; # 1 iff .stab things (usually if a.out format)
      $T_US           = ''; # _ if symbols have an underscore on the front
-Index: ghc-7.0.1/rts/Linker.c
+Index: ghc-7.0.2/rts/Linker.c
 ===================================================================
---- ghc-7.0.1.orig/rts/Linker.c	2010-11-12 23:40:05.000000000 +0530
-+++ ghc-7.0.1/rts/Linker.c	2011-01-15 12:31:06.000000000 +0530
+--- ghc-7.0.2.orig/rts/Linker.c	2011-02-28 23:40:08.000000000 +0530
++++ ghc-7.0.2/rts/Linker.c	2011-03-05 19:04:00.000000000 +0530
 @@ -13,8 +13,8 @@
  /* Linux needs _GNU_SOURCE to get RTLD_DEFAULT from <dlfcn.h> and
     MREMAP_MAYMOVE from <sys/mman.h>.
@@ -43,25 +43,26 @@ Index: ghc-7.0.1/rts/Linker.c
  #endif
  
  #include "Rts.h"
-@@ -69,7 +69,7 @@
- #include <sys/wait.h>
- #endif
- 
--#if defined(linux_HOST_OS) || defined(freebsd_HOST_OS) || defined(dragonfly_HOST_OS) || defined(netbsd_HOST_OS) || defined(openbsd_HOST_OS) || defined(darwin_HOST_OS)
-+#if defined(linux_HOST_OS) || defined(freebsd_HOST_OS) || defined(dragonfly_HOST_OS) || defined(netbsd_HOST_OS) || defined(openbsd_HOST_OS) || defined(darwin_HOST_OS) || defined(kfreebsdgnu_HOST_OS)
- #define USE_MMAP
- #include <fcntl.h>
- #include <sys/mman.h>
-@@ -80,7 +80,7 @@
+@@ -73,7 +73,8 @@
+ #if defined(linux_HOST_OS    ) || defined(freebsd_HOST_OS) || \
+     defined(dragonfly_HOST_OS) || defined(netbsd_HOST_OS ) || \
+     defined(openbsd_HOST_OS  ) || \
+-    ( defined(darwin_HOST_OS ) && !defined(powerpc_HOST_ARCH) )
++    ( defined(darwin_HOST_OS ) && !defined(powerpc_HOST_ARCH) ) || \
++    defined(kfreebsdgnu_HOST_OS) \
+ /* Don't use mmap on powerpc-apple-darwin as mmap doesn't support
+  * reallocating but we need to allocate jump islands just after each
+  * object images. Otherwise relative branches to jump islands can fail
+@@ -89,7 +90,7 @@
  
  #endif
  
 -#if defined(linux_HOST_OS) || defined(solaris2_HOST_OS) || defined(freebsd_HOST_OS) || defined(dragonfly_HOST_OS) || defined(netbsd_HOST_OS) || defined(openbsd_HOST_OS)
 +#if defined(linux_HOST_OS) || defined(solaris2_HOST_OS) || defined(freebsd_HOST_OS) || defined(kfreebsdgnu_HOST_OS) || defined(dragonfly_HOST_OS) || defined(netbsd_HOST_OS) || defined(openbsd_HOST_OS)
  #  define OBJFORMAT_ELF
- #  include <regex.h>	// regex is already used by dlopen() so this is OK
- 			// to use here without requiring an additional lib
-@@ -1580,7 +1580,7 @@
+ #  include <regex.h>    // regex is already used by dlopen() so this is OK
+                         // to use here without requiring an additional lib
+@@ -1590,7 +1591,7 @@
         } else {
             if ((W_)result > 0x80000000) {
                 // oops, we were given memory over 2Gb
