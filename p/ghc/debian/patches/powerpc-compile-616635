@@ -1,0 +1,126 @@
+Index: ghc-7.0.2/rts/Linker.c
+===================================================================
+--- ghc-7.0.2.orig/rts/Linker.c	2011-03-06 22:22:27.000000000 +1100
++++ ghc-7.0.2/rts/Linker.c	2011-03-06 22:29:56.000000000 +1100
+@@ -70,12 +70,12 @@
+ #include <sys/wait.h>
+ #endif
+ 
+-#if defined(linux_HOST_OS    ) || defined(freebsd_HOST_OS) || \
+-    defined(dragonfly_HOST_OS) || defined(netbsd_HOST_OS ) || \
+-    defined(openbsd_HOST_OS  ) || \
+-    ( defined(darwin_HOST_OS ) && !defined(powerpc_HOST_ARCH) ) || \
+-    defined(kfreebsdgnu_HOST_OS) \
+-/* Don't use mmap on powerpc-apple-darwin as mmap doesn't support
++#if !defined(powerpc_HOST_ARCH) && \
++    (   defined(linux_HOST_OS    ) || defined(freebsd_HOST_OS) || \
++        defined(dragonfly_HOST_OS) || defined(netbsd_HOST_OS ) || \
++        defined(openbsd_HOST_OS  ) || defined(darwin_HOST_OS ) || \
++        defined(kfreebsdgnu_HOST_OS) )
++/* Don't use mmap on powerpc_HOST_ARCH as mmap doesn't support
+  * reallocating but we need to allocate jump islands just after each
+  * object images. Otherwise relative branches to jump islands can fail
+  * due to 24-bits displacement overflow.
+@@ -132,7 +132,7 @@
+ static ObjectCode* mkOc( char *path, char *image, int imageSize,
+                          char *archiveMemberName
+ #ifndef USE_MMAP
+-#ifdef darwin_HOST_OS
++#ifdef powerpc_HOST_ARCH
+                        , int misalignment
+ #endif
+ #endif
+@@ -156,7 +156,7 @@
+ static int ocGetNames_MachO       ( ObjectCode* oc );
+ static int ocResolve_MachO        ( ObjectCode* oc );
+ 
+-#ifndef USE_MMAP
++#if !defined USE_MMAP && defined(darwin_HOST_OS)
+ static int machoGetMisalignment( FILE * );
+ #endif
+ #if defined(powerpc_HOST_ARCH) || defined(x86_64_HOST_ARCH)
+@@ -1630,7 +1630,7 @@
+ mkOc( char *path, char *image, int imageSize,
+       char *archiveMemberName
+ #ifndef USE_MMAP
+-#ifdef darwin_HOST_OS
++#ifdef powerpc_HOST_ARCH
+     , int misalignment
+ #endif
+ #endif
+@@ -1669,7 +1669,7 @@
+    oc->proddables        = NULL;
+ 
+ #ifndef USE_MMAP
+-#ifdef darwin_HOST_OS
++#ifdef powerpc_HOST_ARCH
+    oc->misalignment = misalignment;
+ #endif
+ #endif
+@@ -1696,7 +1696,7 @@
+     char tmp[12];
+     char *gnuFileIndex;
+     int gnuFileIndexSize;
+-#if !defined(USE_MMAP) && defined(darwin_HOST_OS)
++#if !defined(USE_MMAP) && defined(powerpc_HOST_ARCH)
+     int misalignment;
+ #endif
+ 
+@@ -1890,7 +1890,7 @@
+ 
+             oc = mkOc(path, image, memberSize, archiveMemberName
+ #ifndef USE_MMAP
+-#ifdef darwin_HOST_OS
++#ifdef powerpc_HOST_ARCH
+                      , misalignment
+ #endif
+ #endif
+@@ -1971,7 +1971,7 @@
+    int fd;
+ #else
+    FILE *f;
+-#  if defined(darwin_HOST_OS)
++#  if defined(powerpc_HOST_ARCH)
+    int misalignment;
+ #  endif
+ #endif
+@@ -2065,7 +2065,7 @@
+ 
+    oc = mkOc(path, image, fileSize, NULL
+ #ifndef USE_MMAP
+-#ifdef darwin_HOST_OS
++#ifdef powerpc_HOST_ARCH
+             , misalignment
+ #endif
+ #endif
+@@ -2315,7 +2315,7 @@
+   int aligned;
+ #ifndef USE_MMAP
+   int misalignment = 0;
+-#ifdef darwin_HOST_OS
++#ifdef powerpc_HOST_ARCH
+   misalignment = oc->misalignment;
+ #endif
+ #endif
+@@ -5344,7 +5344,7 @@
+ }
+ #endif
+ 
+-#ifndef USE_MMAP
++#if !defined USE_MMAP && defined(darwin_HOST_OS)
+ /*
+  * Figure out by how much to shift the entire Mach-O file in memory
+  * when loading so that its single segment ends up 16-byte-aligned
+Index: ghc-7.0.2/rts/LinkerInternals.h
+===================================================================
+--- ghc-7.0.2.orig/rts/LinkerInternals.h	2011-03-06 22:22:19.000000000 +1100
++++ ghc-7.0.2/rts/LinkerInternals.h	2011-03-06 22:22:27.000000000 +1100
+@@ -80,7 +80,7 @@
+     /* ptr to malloc'd lump of memory holding the obj file */
+     char*      image;
+ 
+-#ifdef darwin_HOST_OS
++#ifdef powerpc_HOST_ARCH
+     /* record by how much image has been deliberately misaligned
+        after allocation, so that we can use realloc */
+     int        misalignment;
