@@ -55,6 +55,10 @@ endif
 ifneq (,$(findstring $(DEB_HOST_ARCH), arm armel))
 	echo "SRC_HC_OPTS     += -optc-mlong-calls" >> mk/build.mk
 endif
+# proper fix for #360177
+ifeq (ppc64,$(DEB_HOST_ARCH))
+	echo "SRC_HC_OPTS += -optc-mminimal-toc" >> mk/build.mk
+endif
 ifneq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
 #	echo "GhcStage1HcOpts += -DDEBUG" >> mk/build.mk
 #	echo "GhcStage2HcOpts += -DDEBUG" >> mk/build.mk
