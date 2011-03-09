@@ -1,7 +1,13 @@
 ghc (7.0.2-3) UNRELEASED; urgency=low
 
+  [ Iain Lane ]
   * debian/rules: Build with -mminimal-toc on ppc64 — thanks to Colin
     Watson for investigation and patch.
+
+  [ Joachim Breitner ]
+  * Disable the use of epoll_create1 and use epoll_create, as the former is
+    not available on Linux kernels earlier than 2.6.27.
+    http://hackage.haskell.org/trac/ghc/ticket/5005
 
  -- Iain Lane <laney@ubuntu.com>  Tue, 08 Mar 2011 11:11:37 +0000
 
