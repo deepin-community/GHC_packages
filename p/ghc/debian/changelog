@@ -2,6 +2,8 @@ ghc (7.0.2-4) UNRELEASED; urgency=low
 
   * ghc6-preinst: Remove package.cache file of any ghc6 installation to avoid
     dpkg warning at upgrade time. TO BE TESTED BEFORE UPLOADING
+  * Build-conflict with ccache. pbuilder installs ccache by default, which
+    causes ghc to pick up a wrong path for "gcc". 
 
  -- Joachim Breitner <nomeata@debian.org>  Wed, 09 Mar 2011 22:54:32 +0530
 
