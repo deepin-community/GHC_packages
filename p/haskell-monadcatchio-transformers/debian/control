@@ -1,0 +1,59 @@
+Source: haskell-monadcatchio-transformers
+Section: haskell
+Priority: optional
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: TANIGUCHI Takaki <takaki@debian.org>
+Build-Depends: cdbs, debhelper (>= 7.0.50~), haskell-devscripts,
+	ghc6,
+	ghc6-prof,
+	ghc6-doc,
+	libghc6-transformers-dev,
+	libghc6-transformers-prof,
+	libghc6-transformers-doc,
+Standards-Version: 3.9.1
+#Homepage: None
+
+Package: libghc6-monadcatchio-transformers-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Provides: ${haskell:Provides}
+Suggests: ${haskell:Suggests}
+Description: Monad-transformer compatible with Control.Exception
+ Provides functions to throw and catch exceptions. Unlike the functions from
+ Control.Exception, which work in IO, these work in any stack of monad
+ transformers (from the 'transformers' package) with IO as the base monad.
+ You can extend this functionality to other monads, by creating an instance
+ of the MonadCatchIO class.
+ .
+ This package contains the libraries compiled for GHC 6.
+
+Package: libghc6-monadcatchio-transformers-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Provides: ${haskell:Provides}
+Suggests: ${haskell:Suggests}
+Description: Monad-transformer compatible with Control.Exception; profiling library
+ Provides functions to throw and catch exceptions. Unlike the functions from
+ Control.Exception, which work in IO, these work in any stack of monad
+ transformers (from the 'transformers' package) with IO as the base monad.
+ You can extend this functionality to other monads, by creating an instance
+ of the MonadCatchIO class.
+ .
+ This package contains the profiling libraries compiled for GHC 6.
+
+Package: libghc6-monadcatchio-transformers-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Monad-transformer compatible with Control.Exception; documentation
+ Provides functions to throw and catch exceptions. Unlike the functions from
+ Control.Exception, which work in IO, these work in any stack of monad
+ transformers (from the 'transformers' package) with IO as the base monad.
+ You can extend this functionality to other monads, by creating an instance
+ of the MonadCatchIO class.
+ .
+ This package contains the library documentation.
