@@ -1,0 +1,44 @@
+Source: haskell-bytestring-show
+Section: haskell
+Priority: optional
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: TANIGUCHI Takaki <takaki@debian.org>
+Build-Depends: cdbs, debhelper (>= 7.0.50~), haskell-devscripts,
+	ghc6,
+	ghc6-prof,
+	ghc6-doc,
+Standards-Version: 3.9.1
+Homepage: http://code.haskell.org/~dolio/
+
+Package: libghc6-bytestring-show-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Provides: ${haskell:Provides}
+Suggests: ${haskell:Suggests}
+Description: Haskell library for value converter to byte strings
+ Efficient conversion of values into readable byte strings.
+ .
+ This package contains the libraries compiled for GHC 6.
+
+Package: libghc6-bytestring-show-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Provides: ${haskell:Provides}
+Suggests: ${haskell:Suggests}
+Description: Haskell library for value converter to byte strings; profiling library
+ Efficient conversion of values into readable byte strings.
+ .
+ This package contains the profiling libraries compiled for GHC 6.
+
+Package: libghc6-bytestring-show-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Haskell library for value converter to byte strings; documentation
+ Efficient conversion of values into readable byte strings.
+ .
+ This package contains the library documentation.
