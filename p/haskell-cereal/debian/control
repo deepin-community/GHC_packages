@@ -1,0 +1,56 @@
+Source: haskell-cereal
+Section: haskell
+Priority: optional
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: TANIGUCHI Takaki <takaki@debian.org>
+Build-Depends: cdbs, debhelper (>= 7.0.50~), haskell-devscripts,
+	ghc6,
+	ghc6-prof,
+	ghc6-doc,
+Standards-Version: 3.9.1
+#Homepage: None
+
+Package: libghc6-cereal-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Provides: ${haskell:Provides}
+Suggests: ${haskell:Suggests}
+Description: A binary serialization library
+ A binary serialization library, similar to binary, that introduces an isolate
+ primitive for parser isolation, and replaces the asynchronous errors with a
+ user-handleable Either type.  Similar to binary in performance, but uses a
+ strict ByteString instead of a lazy ByteString, thus restricting it to
+ operating on finite inputs.
+ .
+ This package contains the libraries compiled for GHC 6.
+
+Package: libghc6-cereal-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Provides: ${haskell:Provides}
+Suggests: ${haskell:Suggests}
+Description: A binary serialization library; profiling library
+ A binary serialization library, similar to binary, that introduces an isolate
+ primitive for parser isolation, and replaces the asynchronous errors with a
+ user-handleable Either type.  Similar to binary in performance, but uses a
+ strict ByteString instead of a lazy ByteString, thus restricting it to
+ operating on finite inputs.
+ .
+ This package contains the profiling libraries compiled for GHC 6.
+
+Package: libghc6-cereal-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: A binary serialization library; documentation
+ A binary serialization library, similar to binary, that introduces an isolate
+ primitive for parser isolation, and replaces the asynchronous errors with a
+ user-handleable Either type.  Similar to binary in performance, but uses a
+ strict ByteString instead of a lazy ByteString, thus restricting it to
+ operating on finite inputs.
+ .
+ This package contains the library documentation.
