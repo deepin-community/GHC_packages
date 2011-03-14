@@ -1,0 +1,59 @@
+Source: haskell-directory-tree
+Section: haskell
+Priority: optional
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: TANIGUCHI Takaki <takaki@debian.org>
+Build-Depends: cdbs, debhelper (>= 7.0.50~), haskell-devscripts,
+	ghc6,
+	ghc6-prof,
+	ghc6-doc,
+Standards-Version: 3.9.1
+Homepage: http://coder.bsimmons.name/blog/2009/05/directory-tree-module-released/
+
+Package: libghc6-directory-tree-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Provides: ${haskell:Provides}
+Suggests: ${haskell:Suggests}
+Description: simple directory-like tree datatype, with IO functions
+ A simple directory-like tree datatype, with useful IO functions and Foldable
+ and Traversable instance
+ .
+ Provides a simple data structure mirroring a directory tree on the
+ filesystem, as well as useful functions for reading and writing
+ file and directory structures in the IO monad.
+ .
+ This package contains the libraries compiled for GHC 6.
+
+Package: libghc6-directory-tree-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Provides: ${haskell:Provides}
+Suggests: ${haskell:Suggests}
+Description: simple directory-like tree datatype, with IO functions; profiling library
+ A simple directory-like tree datatype, with useful IO functions and Foldable
+ and Traversable instance
+ .
+ Provides a simple data structure mirroring a directory tree on the
+ filesystem, as well as useful functions for reading and writing
+ file and directory structures in the IO monad.
+ .
+ This package contains the profiling libraries compiled for GHC 6.
+
+Package: libghc6-directory-tree-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: simple directory-like tree datatype, with IO functions; documentation
+ A simple directory-like tree datatype, with useful IO functions and Foldable
+ and Traversable instance
+ .
+ Provides a simple data structure mirroring a directory tree on the
+ filesystem, as well as useful functions for reading and writing
+ file and directory structures in the IO monad.
+ .
+ This package contains the library documentation.
