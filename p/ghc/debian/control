@@ -68,7 +68,7 @@ Suggests: haskell-doc
 Provides: ghc6-doc, ${provided-docs}
 Replaces: ghc6-doc (<< 7)
 Conflicts: ghc6-doc (<< 7)
-Depends: ghc-haddock (= ${binary:Version}), ${misc:Depends}, perl
+Depends: ${haddock:Depends}, ${misc:Depends}, perl
 Description: Documentation for the Glasgow Haskell Compilation system
  The Glorious Glasgow Haskell Compilation system (GHC) is a compiler for
  Haskell.
@@ -99,7 +99,7 @@ Description: Dynamic libraries for the Glasgow Haskell Compilation system
 
 Package: ghc-haddock
 Architecture: any
-Provides: haddock
+Provides: haddock, ${haddock:Provides}
 Conflicts: haddock
 Depends: ghc, ${misc:Depends}, ${shlibs:Depends}
 Homepage: http://www.haskell.org/haddock/
