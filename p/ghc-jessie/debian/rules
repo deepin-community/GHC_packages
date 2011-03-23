@@ -182,6 +182,10 @@ endif
 
 	ProjectVersion=$(ProjectVersion) $(MAKE) -f debian/scripts.mk all
 
+	# Add haddock substvars
+	echo "haddock:Depends=$$(debian/tmp/usr/bin/haddock --interface-version)" >> debian/ghc-doc.substvars
+	echo "haddock:Provides=$$(debian/tmp/usr/bin/haddock --interface-version)" >> debian/ghc-haddock.substvars
+
 ifeq (YES,$(BUILD_HADDOCK_DOCS))
 	mkdir -p debian/tmp/usr/lib/ghc-doc
 	cp debian/gen_contents_index debian/tmp/usr/lib/ghc-doc/
