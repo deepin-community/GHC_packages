@@ -8,6 +8,11 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
+
+# Set a dummy HOME variable upon build. Some build daemons do not set HOME, but
+# ghc-cabal expects it to be available.
+export HOME = /homedoesnotexistatbuildtime
+
 # From /usr/share/doc/autotools-dev/examples/rules.gz:
 export DEB_HOST_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 export DEB_BUILD_GNU_TYPE ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
