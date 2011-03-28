@@ -3,14 +3,14 @@ Section: haskell
 Priority: optional
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: TANIGUCHI Takaki <takaki@debian.org>
-Build-Depends: cdbs, debhelper (>= 7.0.50~), haskell-devscripts,
-	ghc6,
-	ghc6-prof,
-	ghc6-doc,
+Build-Depends: cdbs, debhelper (>= 7.0.50~), haskell-devscripts (>= 0.8),
+	ghc,
+	ghc-prof,
+	ghc-doc,
 Standards-Version: 3.9.1
 Homepage: http://code.haskell.org/~dolio/
 
-Package: libghc6-bytestring-show-dev
+Package: libghc-bytestring-show-dev
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
@@ -21,7 +21,7 @@ Description: Haskell library for value converter to byte strings
  .
  This package contains the libraries compiled for GHC 6.
 
-Package: libghc6-bytestring-show-prof
+Package: libghc-bytestring-show-prof
 Architecture: any
 Depends: ${haskell:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
@@ -32,7 +32,7 @@ Description: Haskell library for value converter to byte strings; profiling libr
  .
  This package contains the profiling libraries compiled for GHC 6.
 
-Package: libghc6-bytestring-show-doc
+Package: libghc-bytestring-show-doc
 Architecture: all
 Section: doc
 Depends: ${haskell:Depends}, ${misc:Depends}
