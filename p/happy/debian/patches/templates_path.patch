@@ -1,18 +1,19 @@
 Build these templates in out/ to make it easier to install them. Otherwise they are installed in the buildroot which would make for a messy install file.
 
-Index: happy-1.18.4/Setup.lhs
+Index: happy-1.18.6/Setup.lhs
 ===================================================================
---- happy-1.18.4.orig/Setup.lhs	2009-09-30 13:24:58.367762731 +0100
-+++ happy-1.18.4/Setup.lhs	2009-09-30 13:25:28.111762814 +0100
+--- happy-1.18.6.orig/Setup.lhs	2010-11-17 17:00:24.000000000 +0530
++++ happy-1.18.6/Setup.lhs	2011-03-29 13:58:16.000000000 +0530
 @@ -33,9 +33,9 @@
          runProgram ghcProgram (["-o", dst, "-E", "-cpp", "templates" </> src] ++ opts)
 	runProgram perlProgram ["-i.bak", "-pe", crazy_perl_regexp, dst]
 
 -  sequence_ ([ cpp_template "GenericTemplate.hs" dst opts | (dst,opts) <- templates ] ++
--             [ cpp_template "GLR_Base.lhs"       dst opts | (dst,opts) <- glr_base_templates ] ++
--             [ cpp_template "GLR_Lib.lhs"        dst opts | (dst,opts) <- glr_templates ])
+-             [ cpp_template "GLR_Base.hs"       dst opts | (dst,opts) <- glr_base_templates ] ++
+-             [ cpp_template "GLR_Lib.hs"        dst opts | (dst,opts) <- glr_templates ])
 +  sequence_ ([ cpp_template "GenericTemplate.hs" ("out/" ++ dst) opts | (dst,opts) <- templates ] ++
-+             [ cpp_template "GLR_Base.lhs"       ("out/" ++ dst) opts | (dst,opts) <- glr_base_templates ] ++
-+             [ cpp_template "GLR_Lib.lhs"        ("out/" ++ dst) opts | (dst,opts) <- glr_templates ])
++             [ cpp_template "GLR_Base.hs"       ("out/" ++ dst) opts | (dst,opts) <- glr_base_templates ] ++
++             [ cpp_template "GLR_Lib.hs"        ("out/" ++ dst) opts | (dst,opts) <- glr_templates ])
 
  myPostClean _ _ _ _ = mapM_ (try . removeFile) all_template_files
+
