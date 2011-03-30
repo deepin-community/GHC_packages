@@ -68,7 +68,8 @@ Depends:
   ghc-haddock,
   ${misc:Depends}
 Suggests:
-  haskell-platform-doc
+  haskell-platform-doc,
+  haskell-platform-prof
 Description: Standard Haskell libraries and tools
  The Haskell Platform is a suite of tools and libraries that contain the most
  important and best supported components. It is meant to be a starting point
@@ -80,6 +81,42 @@ Description: Standard Haskell libraries and tools
  platform. If this is of relevance to you, please check them on the official
  Haskell Platform homepage.
 
+Package: haskell-platform-prof
+Section: doc
+Architecture: all
+Description: Standard Haskell libraries and tools; profiling libraries
+ The Haskell Platform is a suite of tools and libraries that contain the most
+ important and best supported components. It is meant to be a starting point
+ for Haskell developers who are looking for libraries to use.
+ .
+ Installing this meta package will install the profiling data for the
+ libraries as specified in the official Haskell Platform.
+Depends: haskell-platform,
+  ghc-prof,
+  libghc-cgi-prof,
+  libghc-fgl-prof,
+  libghc-glut-prof,
+  libghc-haskell-src-prof,
+  libghc-html-prof,
+  libghc-hunit-prof,
+  libghc-mtl-prof,
+  libghc-network-prof,
+  libghc-opengl-prof,
+  libghc-parallel-prof,
+  libghc-parsec3-prof,
+  libghc-quickcheck2-prof,
+  libghc-regex-base-prof,
+  libghc-regex-compat-prof,
+  libghc-regex-posix-prof,
+  libghc-stm-prof,
+  libghc-syb-prof,
+  libghc-text-prof,
+  libghc-transformers-prof,
+  libghc-xhtml-prof,
+  libghc-zlib-prof,
+  libghc-http-prof,
+  libghc-deepseq-prof,
+  ${misc:Depends}
 
 Package: haskell-platform-doc
 Section: doc
