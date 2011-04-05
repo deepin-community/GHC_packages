@@ -8,7 +8,7 @@ Build-Depends:
   debhelper (>= 7),
   libgmp-dev,
   devscripts,
-  ghc | ghc6,
+  ghc,
   grep-dctrl,
   autotools-dev,
   gcc (>= 4:4.2),
@@ -26,7 +26,7 @@ Homepage: http://haskell.org/ghc/
 Package: ghc
 Architecture: any
 Depends: gcc (>= 4:4.2), libgmp-dev, libffi-dev, libbsd-dev, libc6-dev, ${shlibs:Depends}, ${misc:Depends}
-Provides: haskell-compiler, ghc6, ${provided-devs}, ${haskell:Provides}, ${ghci}
+Provides: haskell-compiler, ${provided-devs}, ${haskell:Provides}, ${ghci}
 Replaces: ghc6 (<< 7)
 Conflicts: ghc6 (<< 7)
 Breaks: cabal-install (<< 0.8.0), haskell-devscripts (<< 0.6.19), ghc-doc (<= 6.12.1-8)
@@ -42,7 +42,7 @@ Description: The Glasgow Haskell Compilation system
 
 Package: ghc-prof
 Architecture: any
-Provides: ghc6-prof, ${provided-profs}, ${haskell:Provides}
+Provides: ${provided-profs}, ${haskell:Provides}
 Depends: ghc (= ${binary:Version}), ${misc:Depends}
 Replaces: ghc6-prof (<< 7)
 Conflicts: ghc6-prof (<< 7)
@@ -63,7 +63,7 @@ Package: ghc-doc
 Section: doc
 Architecture: all
 Suggests: haskell-doc
-Provides: ghc6-doc, ${provided-docs}
+Provides: ${provided-docs}
 Replaces: ghc6-doc (<< 7)
 Conflicts: ghc6-doc (<< 7)
 Depends: ${haddock:Depends}, ${misc:Depends}, perl
