@@ -1,0 +1,13 @@
+Index: xmonad-contrib-0.9.1/XMonad/Prompt/Shell.hs
+===================================================================
+--- xmonad-contrib-0.9.1.orig/XMonad/Prompt/Shell.hs	2010-02-17 21:20:19.000000000 +0100
++++ xmonad-contrib-0.9.1/XMonad/Prompt/Shell.hs	2010-02-17 21:20:21.000000000 +0100
+@@ -137,7 +137,7 @@
+    or pass it to a shell; so in that case, define $BROWSER as something like \"xterm -e elinks\"
+    or as the name of a shell script doing much the same thing. -}
+ getBrowser :: IO String
+-getBrowser = env "BROWSER" "firefox"
++getBrowser = env "BROWSER" "x-www-browser"
+
+ -- | Like 'getBrowser', but should be of a text editor. This gets the $EDITOR variable, defaulting to \"emacs\".
+ getEditor :: IO String
