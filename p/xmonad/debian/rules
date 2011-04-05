@@ -1,0 +1,10 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/hlibrary.mk
+
+install/xmonad::
+	dh_installwm
+	cp dist-ghc6/build/xmonad/xmonad debian/xmonad/usr/bin/xmonad
+	install -D -m 0644 debian/xmonad-session.desktop debian/xmonad/usr/share/xsessions/xmonad.desktop
+	install -D -m 0644 debian/xmonad.desktop debian/xmonad/usr/share/applications/xmonad.desktop
