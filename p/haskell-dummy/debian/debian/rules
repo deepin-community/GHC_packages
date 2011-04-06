@@ -2,3 +2,15 @@
 
 %:
 	dh $@
+
+
+debian/control: debian/renames debian/control.source
+	cat debian/control.source > $@
+	while read from to; do  \
+	  echo "Package: $$from" >> $@; \
+	  echo "Architecture: all" >> $@; \
+	  echo "Depends: \$${misc:Depends}, $$to" >> $@; \
+	  echo "Description: transitional dummy package" >> $@; \
+	  echo " This is a transitional dummy package." >> $@; \
+	  echo "" >> $@; \
+	done < debian/renames
