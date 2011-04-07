@@ -4,13 +4,13 @@ Priority: optional
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: TANIGUCHI Takaki <takaki@debian.org>
 Build-Depends: cdbs, debhelper (>= 7.0.50~), haskell-devscripts,
-	ghc6,
-	ghc6-prof,
-	ghc6-doc,
+	ghc,
+	ghc-prof,
+	ghc-doc,
 Standards-Version: 3.9.1
 #Homepage: None
 
-Package: libghc6-cereal-dev
+Package: libghc-cereal-dev
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
@@ -23,9 +23,9 @@ Description: A binary serialization library
  strict ByteString instead of a lazy ByteString, thus restricting it to
  operating on finite inputs.
  .
- This package contains the libraries compiled for GHC 6.
+ This package contains the libraries compiled for GHC.
 
-Package: libghc6-cereal-prof
+Package: libghc-cereal-prof
 Architecture: any
 Depends: ${haskell:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
@@ -38,9 +38,9 @@ Description: A binary serialization library; profiling library
  strict ByteString instead of a lazy ByteString, thus restricting it to
  operating on finite inputs.
  .
- This package contains the profiling libraries compiled for GHC 6.
+ This package contains the profiling libraries compiled for GHC.
 
-Package: libghc6-cereal-doc
+Package: libghc-cereal-doc
 Architecture: all
 Section: doc
 Depends: ${haskell:Depends}, ${misc:Depends}
