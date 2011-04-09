@@ -29,8 +29,8 @@ Last-Update: <YYYY-MM-DD>
 
 Index: ghc-7.0.3/configure
 ===================================================================
---- ghc-7.0.3.orig/configure	2011-04-09 17:08:34.000000000 +0530
-+++ ghc-7.0.3/configure	2011-04-09 17:11:11.000000000 +0530
+--- ghc-7.0.3.orig/configure	2011-04-09 17:13:39.000000000 +0530
++++ ghc-7.0.3/configure	2011-04-09 20:25:14.000000000 +0530
 @@ -1,13 +1,13 @@
  #! /bin/sh
  # Guess values for system-dependent variables and create Makefiles.
@@ -48,7 +48,192 @@ Index: ghc-7.0.3/configure
  #
  #
  # This configure script is free software; the Free Software Foundation
-@@ -1519,9 +1519,9 @@
+@@ -319,7 +319,7 @@
+       test -d "$as_dir" && break
+     done
+     test -z "$as_dirs" || eval "mkdir $as_dirs"
+-  } || test -d "$as_dir" || as_fn_error $? "cannot create directory $as_dir"
++  } || test -d "$as_dir" || as_fn_error "cannot create directory $as_dir"
+ 
+ 
+ } # as_fn_mkdir_p
+@@ -359,19 +359,19 @@
+ fi # as_fn_arith
+ 
+ 
+-# as_fn_error STATUS ERROR [LINENO LOG_FD]
+-# ----------------------------------------
++# as_fn_error ERROR [LINENO LOG_FD]
++# ---------------------------------
+ # Output "`basename $0`: error: ERROR" to stderr. If LINENO and LOG_FD are
+ # provided, also output the error to LOG_FD, referencing LINENO. Then exit the
+-# script with STATUS, using 1 if that was 0.
++# script with status $?, using 1 if that was 0.
+ as_fn_error ()
+ {
+-  as_status=$1; test $as_status -eq 0 && as_status=1
+-  if test "$4"; then
+-    as_lineno=${as_lineno-"$3"} as_lineno_stack=as_lineno_stack=$as_lineno_stack
+-    $as_echo "$as_me:${as_lineno-$LINENO}: error: $2" >&$4
++  as_status=$?; test $as_status -eq 0 && as_status=1
++  if test "$3"; then
++    as_lineno=${as_lineno-"$2"} as_lineno_stack=as_lineno_stack=$as_lineno_stack
++    $as_echo "$as_me:${as_lineno-$LINENO}: error: $1" >&$3
+   fi
+-  $as_echo "$as_me: error: $2" >&2
++  $as_echo "$as_me: error: $1" >&2
+   as_fn_exit $as_status
+ } # as_fn_error
+ 
+@@ -533,7 +533,7 @@
+ exec 6>&1
+ 
+ # Name of the host.
+-# hostname on some systems (SVR3.2, old GNU/Linux) returns a bogus exit status,
++# hostname on some systems (SVR3.2, Linux) returns a bogus exit status,
+ # so uname gets run too.
+ ac_hostname=`(hostname || uname -n) 2>/dev/null | sed 1q`
+ 
+@@ -863,9 +863,8 @@
+   fi
+ 
+   case $ac_option in
+-  *=?*) ac_optarg=`expr "X$ac_option" : '[^=]*=\(.*\)'` ;;
+-  *=)   ac_optarg= ;;
+-  *)    ac_optarg=yes ;;
++  *=*)	ac_optarg=`expr "X$ac_option" : '[^=]*=\(.*\)'` ;;
++  *)	ac_optarg=yes ;;
+   esac
+ 
+   # Accept the important Cygnus configure options, so we can diagnose typos.
+@@ -910,7 +909,7 @@
+     ac_useropt=`expr "x$ac_option" : 'x-*disable-\(.*\)'`
+     # Reject names that are not valid shell variable names.
+     expr "x$ac_useropt" : ".*[^-+._$as_cr_alnum]" >/dev/null &&
+-      as_fn_error $? "invalid feature name: $ac_useropt"
++      as_fn_error "invalid feature name: $ac_useropt"
+     ac_useropt_orig=$ac_useropt
+     ac_useropt=`$as_echo "$ac_useropt" | sed 's/[-+.]/_/g'`
+     case $ac_user_opts in
+@@ -936,7 +935,7 @@
+     ac_useropt=`expr "x$ac_option" : 'x-*enable-\([^=]*\)'`
+     # Reject names that are not valid shell variable names.
+     expr "x$ac_useropt" : ".*[^-+._$as_cr_alnum]" >/dev/null &&
+-      as_fn_error $? "invalid feature name: $ac_useropt"
++      as_fn_error "invalid feature name: $ac_useropt"
+     ac_useropt_orig=$ac_useropt
+     ac_useropt=`$as_echo "$ac_useropt" | sed 's/[-+.]/_/g'`
+     case $ac_user_opts in
+@@ -1140,7 +1139,7 @@
+     ac_useropt=`expr "x$ac_option" : 'x-*with-\([^=]*\)'`
+     # Reject names that are not valid shell variable names.
+     expr "x$ac_useropt" : ".*[^-+._$as_cr_alnum]" >/dev/null &&
+-      as_fn_error $? "invalid package name: $ac_useropt"
++      as_fn_error "invalid package name: $ac_useropt"
+     ac_useropt_orig=$ac_useropt
+     ac_useropt=`$as_echo "$ac_useropt" | sed 's/[-+.]/_/g'`
+     case $ac_user_opts in
+@@ -1156,7 +1155,7 @@
+     ac_useropt=`expr "x$ac_option" : 'x-*without-\(.*\)'`
+     # Reject names that are not valid shell variable names.
+     expr "x$ac_useropt" : ".*[^-+._$as_cr_alnum]" >/dev/null &&
+-      as_fn_error $? "invalid package name: $ac_useropt"
++      as_fn_error "invalid package name: $ac_useropt"
+     ac_useropt_orig=$ac_useropt
+     ac_useropt=`$as_echo "$ac_useropt" | sed 's/[-+.]/_/g'`
+     case $ac_user_opts in
+@@ -1186,8 +1185,8 @@
+   | --x-librar=* | --x-libra=* | --x-libr=* | --x-lib=* | --x-li=* | --x-l=*)
+     x_libraries=$ac_optarg ;;
+ 
+-  -*) as_fn_error $? "unrecognized option: \`$ac_option'
+-Try \`$0 --help' for more information"
++  -*) as_fn_error "unrecognized option: \`$ac_option'
++Try \`$0 --help' for more information."
+     ;;
+ 
+   *=*)
+@@ -1195,7 +1194,7 @@
+     # Reject names that are not valid shell variable names.
+     case $ac_envvar in #(
+       '' | [0-9]* | *[!_$as_cr_alnum]* )
+-      as_fn_error $? "invalid variable name: \`$ac_envvar'" ;;
++      as_fn_error "invalid variable name: \`$ac_envvar'" ;;
+     esac
+     eval $ac_envvar=\$ac_optarg
+     export $ac_envvar ;;
+@@ -1213,13 +1212,13 @@
+ 
+ if test -n "$ac_prev"; then
+   ac_option=--`echo $ac_prev | sed 's/_/-/g'`
+-  as_fn_error $? "missing argument to $ac_option"
++  as_fn_error "missing argument to $ac_option"
+ fi
+ 
+ if test -n "$ac_unrecognized_opts"; then
+   case $enable_option_checking in
+     no) ;;
+-    fatal) as_fn_error $? "unrecognized options: $ac_unrecognized_opts" ;;
++    fatal) as_fn_error "unrecognized options: $ac_unrecognized_opts" ;;
+     *)     $as_echo "$as_me: WARNING: unrecognized options: $ac_unrecognized_opts" >&2 ;;
+   esac
+ fi
+@@ -1242,7 +1241,7 @@
+     [\\/$]* | ?:[\\/]* )  continue;;
+     NONE | '' ) case $ac_var in *prefix ) continue;; esac;;
+   esac
+-  as_fn_error $? "expected an absolute directory name for --$ac_var: $ac_val"
++  as_fn_error "expected an absolute directory name for --$ac_var: $ac_val"
+ done
+ 
+ # There might be people who depend on the old broken behavior: `$host'
+@@ -1256,8 +1255,8 @@
+ if test "x$host_alias" != x; then
+   if test "x$build_alias" = x; then
+     cross_compiling=maybe
+-    $as_echo "$as_me: WARNING: if you wanted to set the --build type, don't use --host.
+-    If a cross compiler is detected then cross compile mode will be used" >&2
++    $as_echo "$as_me: WARNING: If you wanted to set the --build type, don't use --host.
++    If a cross compiler is detected then cross compile mode will be used." >&2
+   elif test "x$build_alias" != "x$host_alias"; then
+     cross_compiling=yes
+   fi
+@@ -1272,9 +1271,9 @@
+ ac_pwd=`pwd` && test -n "$ac_pwd" &&
+ ac_ls_di=`ls -di .` &&
+ ac_pwd_ls_di=`cd "$ac_pwd" && ls -di .` ||
+-  as_fn_error $? "working directory cannot be determined"
++  as_fn_error "working directory cannot be determined"
+ test "X$ac_ls_di" = "X$ac_pwd_ls_di" ||
+-  as_fn_error $? "pwd does not report name of working directory"
++  as_fn_error "pwd does not report name of working directory"
+ 
+ 
+ # Find the source files, if location was not specified.
+@@ -1313,11 +1312,11 @@
+ fi
+ if test ! -r "$srcdir/$ac_unique_file"; then
+   test "$ac_srcdir_defaulted" = yes && srcdir="$ac_confdir or .."
+-  as_fn_error $? "cannot find sources ($ac_unique_file) in $srcdir"
++  as_fn_error "cannot find sources ($ac_unique_file) in $srcdir"
+ fi
+ ac_msg="sources are in $srcdir, but \`cd $srcdir' does not work"
+ ac_abs_confdir=`(
+-	cd "$srcdir" && test -r "./$ac_unique_file" || as_fn_error $? "$ac_msg"
++	cd "$srcdir" && test -r "./$ac_unique_file" || as_fn_error "$ac_msg"
+ 	pwd)`
+ # When building in place, set srcdir=.
+ if test "$ac_abs_confdir" = "$ac_pwd"; then
+@@ -1357,7 +1356,7 @@
+       --help=short        display options specific to this package
+       --help=recursive    display the short help of all the included packages
+   -V, --version           display version information and exit
+-  -q, --quiet, --silent   do not print \`checking ...' messages
++  -q, --quiet, --silent   do not print \`checking...' messages
+       --cache-file=FILE   cache test results in FILE [disabled]
+   -C, --config-cache      alias for \`--cache-file=config.cache'
+   -n, --no-create         do not create output files
+@@ -1519,9 +1518,9 @@
  if $ac_init_version; then
    cat <<\_ACEOF
  The Glorious Glasgow Haskell Compilation System configure 7.0.3
@@ -60,7 +245,126 @@ Index: ghc-7.0.3/configure
  This configure script is free software; the Free Software Foundation
  gives unlimited permission to copy, distribute and modify it.
  _ACEOF
-@@ -2166,7 +2166,7 @@
+@@ -1591,7 +1590,7 @@
+     mv -f conftest.er1 conftest.err
+   fi
+   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+-  test $ac_status = 0; } > conftest.i && {
++  test $ac_status = 0; } >/dev/null && {
+ 	 test -z "$ac_c_preproc_warn_flag$ac_c_werror_flag" ||
+ 	 test ! -s conftest.err
+        }; then :
+@@ -1657,10 +1656,10 @@
+ ac_fn_c_check_header_mongrel ()
+ {
+   as_lineno=${as_lineno-"$1"} as_lineno_stack=as_lineno_stack=$as_lineno_stack
+-  if eval "test \"\${$3+set}\"" = set; then :
++  if { as_var=$3; eval "test \"\${$as_var+set}\" = set"; }; then :
+   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $2" >&5
+ $as_echo_n "checking for $2... " >&6; }
+-if eval "test \"\${$3+set}\"" = set; then :
++if { as_var=$3; eval "test \"\${$as_var+set}\" = set"; }; then :
+   $as_echo_n "(cached) " >&6
+ fi
+ eval ac_res=\$$3
+@@ -1696,7 +1695,7 @@
+ else
+   ac_header_preproc=no
+ fi
+-rm -f conftest.err conftest.i conftest.$ac_ext
++rm -f conftest.err conftest.$ac_ext
+ { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_header_preproc" >&5
+ $as_echo "$ac_header_preproc" >&6; }
+ 
+@@ -1719,15 +1718,17 @@
+ $as_echo "$as_me: WARNING: $2:     section \"Present But Cannot Be Compiled\"" >&2;}
+     { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: $2: proceeding with the compiler's result" >&5
+ $as_echo "$as_me: WARNING: $2: proceeding with the compiler's result" >&2;}
+-( $as_echo "## ----------------------------------------------- ##
++( cat <<\_ASBOX
++## ----------------------------------------------- ##
+ ## Report this to glasgow-haskell-bugs@haskell.org ##
+-## ----------------------------------------------- ##"
++## ----------------------------------------------- ##
++_ASBOX
+      ) | sed "s/^/$as_me: WARNING:     /" >&2
+     ;;
+ esac
+   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $2" >&5
+ $as_echo_n "checking for $2... " >&6; }
+-if eval "test \"\${$3+set}\"" = set; then :
++if { as_var=$3; eval "test \"\${$as_var+set}\" = set"; }; then :
+   $as_echo_n "(cached) " >&6
+ else
+   eval "$3=\$ac_header_compiler"
+@@ -1749,7 +1750,7 @@
+   as_lineno=${as_lineno-"$1"} as_lineno_stack=as_lineno_stack=$as_lineno_stack
+   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $2" >&5
+ $as_echo_n "checking for $2... " >&6; }
+-if eval "test \"\${$3+set}\"" = set; then :
++if { as_var=$3; eval "test \"\${$as_var+set}\" = set"; }; then :
+   $as_echo_n "(cached) " >&6
+ else
+   cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+@@ -1780,7 +1781,7 @@
+   as_lineno=${as_lineno-"$1"} as_lineno_stack=as_lineno_stack=$as_lineno_stack
+   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $2" >&5
+ $as_echo_n "checking for $2... " >&6; }
+-if eval "test \"\${$3+set}\"" = set; then :
++if { as_var=$3; eval "test \"\${$as_var+set}\" = set"; }; then :
+   $as_echo_n "(cached) " >&6
+ else
+   eval "$3=no"
+@@ -2057,7 +2058,7 @@
+   as_lineno=${as_lineno-"$1"} as_lineno_stack=as_lineno_stack=$as_lineno_stack
+   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $2" >&5
+ $as_echo_n "checking for $2... " >&6; }
+-if eval "test \"\${$3+set}\"" = set; then :
++if { as_var=$3; eval "test \"\${$as_var+set}\" = set"; }; then :
+   $as_echo_n "(cached) " >&6
+ else
+   cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+@@ -2116,18 +2117,15 @@
+ 
+ } # ac_fn_c_check_func
+ 
+-# ac_fn_c_check_decl LINENO SYMBOL VAR INCLUDES
+-# ---------------------------------------------
+-# Tests whether SYMBOL is declared in INCLUDES, setting cache variable VAR
+-# accordingly.
++# ac_fn_c_check_decl LINENO SYMBOL VAR
++# ------------------------------------
++# Tests whether SYMBOL is declared, setting cache variable VAR accordingly.
+ ac_fn_c_check_decl ()
+ {
+   as_lineno=${as_lineno-"$1"} as_lineno_stack=as_lineno_stack=$as_lineno_stack
+-  as_decl_name=`echo $2|sed 's/ *(.*//'`
+-  as_decl_use=`echo $2|sed -e 's/(/((/' -e 's/)/) 0&/' -e 's/,/) 0& (/g'`
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether $as_decl_name is declared" >&5
+-$as_echo_n "checking whether $as_decl_name is declared... " >&6; }
+-if eval "test \"\${$3+set}\"" = set; then :
++  { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether $2 is declared" >&5
++$as_echo_n "checking whether $2 is declared... " >&6; }
++if { as_var=$3; eval "test \"\${$as_var+set}\" = set"; }; then :
+   $as_echo_n "(cached) " >&6
+ else
+   cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+@@ -2136,12 +2134,8 @@
+ int
+ main ()
+ {
+-#ifndef $as_decl_name
+-#ifdef __cplusplus
+-  (void) $as_decl_use;
+-#else
+-  (void) $as_decl_name;
+-#endif
++#ifndef $2
++  (void) $2;
+ #endif
+ 
+   ;
+@@ -2166,7 +2160,7 @@
  running configure, to aid debugging if configure makes a mistake.
  
  It was created by The Glorious Glasgow Haskell Compilation System $as_me 7.0.3, which was
@@ -69,7 +373,410 @@ Index: ghc-7.0.3/configure
  
    $ $0 $@
  
-@@ -5510,7 +5510,7 @@
+@@ -2276,9 +2270,11 @@
+   {
+     echo
+ 
+-    $as_echo "## ---------------- ##
++    cat <<\_ASBOX
++## ---------------- ##
+ ## Cache variables. ##
+-## ---------------- ##"
++## ---------------- ##
++_ASBOX
+     echo
+     # The following way of writing the cache mishandles newlines in values,
+ (
+@@ -2312,9 +2308,11 @@
+ )
+     echo
+ 
+-    $as_echo "## ----------------- ##
++    cat <<\_ASBOX
++## ----------------- ##
+ ## Output variables. ##
+-## ----------------- ##"
++## ----------------- ##
++_ASBOX
+     echo
+     for ac_var in $ac_subst_vars
+     do
+@@ -2327,9 +2325,11 @@
+     echo
+ 
+     if test -n "$ac_subst_files"; then
+-      $as_echo "## ------------------- ##
++      cat <<\_ASBOX
++## ------------------- ##
+ ## File substitutions. ##
+-## ------------------- ##"
++## ------------------- ##
++_ASBOX
+       echo
+       for ac_var in $ac_subst_files
+       do
+@@ -2343,9 +2343,11 @@
+     fi
+ 
+     if test -s confdefs.h; then
+-      $as_echo "## ----------- ##
++      cat <<\_ASBOX
++## ----------- ##
+ ## confdefs.h. ##
+-## ----------- ##"
++## ----------- ##
++_ASBOX
+       echo
+       cat confdefs.h
+       echo
+@@ -2400,12 +2402,7 @@
+ ac_site_file1=NONE
+ ac_site_file2=NONE
+ if test -n "$CONFIG_SITE"; then
+-  # We do not want a PATH search for config.site.
+-  case $CONFIG_SITE in #((
+-    -*)  ac_site_file1=./$CONFIG_SITE;;
+-    */*) ac_site_file1=$CONFIG_SITE;;
+-    *)   ac_site_file1=./$CONFIG_SITE;;
+-  esac
++  ac_site_file1=$CONFIG_SITE
+ elif test "x$prefix" != xNONE; then
+   ac_site_file1=$prefix/share/config.site
+   ac_site_file2=$prefix/etc/config.site
+@@ -2420,11 +2417,7 @@
+     { $as_echo "$as_me:${as_lineno-$LINENO}: loading site script $ac_site_file" >&5
+ $as_echo "$as_me: loading site script $ac_site_file" >&6;}
+     sed 's/^/| /' "$ac_site_file" >&5
+-    . "$ac_site_file" \
+-      || { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+-$as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+-as_fn_error $? "failed to load site script $ac_site_file
+-See \`config.log' for more details" "$LINENO" 5 ; }
++    . "$ac_site_file"
+   fi
+ done
+ 
+@@ -2500,7 +2493,7 @@
+ $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+   { $as_echo "$as_me:${as_lineno-$LINENO}: error: changes in the environment can compromise the build" >&5
+ $as_echo "$as_me: error: changes in the environment can compromise the build" >&2;}
+-  as_fn_error $? "run \`make distclean' and/or \`rm $cache_file' and start over" "$LINENO" 5
++  as_fn_error "run \`make distclean' and/or \`rm $cache_file' and start over" "$LINENO" 5
+ fi
+ ## -------------------- ##
+ ## Main body of script. ##
+@@ -2775,7 +2768,7 @@
+     elif test -d .git; then
+                 ver_date=`git log -n 1 --date=short --pretty=format:%ci | sed "s/^.*\([0-9][0-9][0-9][0-9]\)-\([0-9][0-9]\)-\([0-9][0-9]\).*$/\1\2\3/"`
+         if echo $ver_date | grep '^[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$' 2>&1 >/dev/null; then true; else
+-                        as_fn_error $? "failed to detect version date: check that git is in your path" "$LINENO" 5
++                        as_fn_error "failed to detect version date: check that git is in your path" "$LINENO" 5
+         fi
+         PACKAGE_VERSION=${PACKAGE_VERSION}.$ver_date
+         { $as_echo "$as_me:${as_lineno-$LINENO}: result: inferred $PACKAGE_VERSION" >&5
+@@ -2784,7 +2777,7 @@
+         # TODO: Remove this branch after conversion to Git
+                 ver_date=`darcs changes --quiet --no-summary --xml | head -500 | grep 'date=' | sed "s/^.*date='\([0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]\).*$/\1/g" | ${SortCmd} -n | tail -1`
+         if echo $ver_date | grep '^[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$' 2>&1 >/dev/null; then true; else
+-                        as_fn_error $? "failed to detect version date: check that darcs is in your path" "$LINENO" 5
++                        as_fn_error "failed to detect version date: check that darcs is in your path" "$LINENO" 5
+         fi
+         PACKAGE_VERSION=${PACKAGE_VERSION}.$ver_date
+         { $as_echo "$as_me:${as_lineno-$LINENO}: result: inferred $PACKAGE_VERSION" >&5
+@@ -2815,7 +2808,7 @@
+ case $VERSION_MINOR in
+   ?) ProjectVersionInt=${VERSION_MAJOR}0${VERSION_MINOR} ;;
+   ??) ProjectVersionInt=${VERSION_MAJOR}${VERSION_MINOR} ;;
+-  *) as_fn_error $? "bad minor version in $PACKAGE_VERSION" "$LINENO" 5  ;;
++  *) as_fn_error "bad minor version in $PACKAGE_VERSION" "$LINENO" 5 ;;
+ esac
+ 
+ 
+@@ -2965,7 +2958,7 @@
+ 
+ 
+   if test "$GhcMajVersion" = "unknown" -o "$GhcMinVersion" = "unknown"; then
+-     as_fn_error $? "Cannot determine the version of $WithGhc.  Is it really GHC?" "$LINENO" 5
++     as_fn_error "Cannot determine the version of $WithGhc.  Is it really GHC?" "$LINENO" 5
+   fi
+ 
+           GhcMinVersion2=`echo "$GhcMinVersion" | sed 's/^\\(.\\)$/0\\1/'`
+@@ -3001,7 +2994,7 @@
+ 
+ if test "$BootingFromHc" = "NO" -a -d "$srcdir/compiler"; then
+   if test "$WithGhc" = ""; then
+-     as_fn_error $? "GHC is required unless bootstrapping from .hc files." "$LINENO" 5
++     as_fn_error "GHC is required unless bootstrapping from .hc files." "$LINENO" 5
+   fi
+   fp_version1=$GhcVersion; fp_version2=6.10
+ fp_save_IFS=$IFS; IFS='.'
+@@ -3024,11 +3017,11 @@
+ done
+ IFS=$fp_save_IFS
+ if test "$fp_num1" -lt "$fp_num2"; then :
+-  as_fn_error $? "GHC version 6.10 or later is required to compile GHC." "$LINENO" 5
++  as_fn_error "GHC version 6.10 or later is required to compile GHC." "$LINENO" 5
+ fi
+   if test `expr $GhcMinVersion % 2` = "1"; then
+      if test "$EnableBootstrapWithDevelSnaphost" = "NO"; then
+-        as_fn_error $? "
++        as_fn_error "
+      $WithGhc is a development snapshot of GHC, version $GhcVersion.
+      Bootstrapping using this version of GHC is not supported, and may not
+      work.  Use --enable-bootstrap-with-devel-snapshot to try it anyway,
+@@ -3113,22 +3106,16 @@
+ # results in the following code
+ ac_aux_dir=
+ for ac_dir in "$srcdir" "$srcdir/.." "$srcdir/../.."; do
+-  if test -f "$ac_dir/install-sh"; then
+-    ac_aux_dir=$ac_dir
+-    ac_install_sh="$ac_aux_dir/install-sh -c"
+-    break
+-  elif test -f "$ac_dir/install.sh"; then
+-    ac_aux_dir=$ac_dir
+-    ac_install_sh="$ac_aux_dir/install.sh -c"
+-    break
+-  elif test -f "$ac_dir/shtool"; then
+-    ac_aux_dir=$ac_dir
+-    ac_install_sh="$ac_aux_dir/shtool install -c"
+-    break
+-  fi
++  for ac_t in install-sh install.sh shtool; do
++    if test -f "$ac_dir/$ac_t"; then
++      ac_aux_dir=$ac_dir
++      ac_install_sh="$ac_aux_dir/$ac_t -c"
++      break 2
++    fi
++  done
+ done
+ if test -z "$ac_aux_dir"; then
+-  as_fn_error $? "cannot find install-sh, install.sh, or shtool in \"$srcdir\" \"$srcdir/..\" \"$srcdir/../..\"" "$LINENO" 5
++  as_fn_error "cannot find install-sh, install.sh, or shtool in \"$srcdir\" \"$srcdir/..\" \"$srcdir/../..\"" "$LINENO" 5
+ fi
+ 
+ # These three variables are undocumented and unsupported,
+@@ -3142,7 +3129,7 @@
+ 
+ # Make sure we can run config.sub.
+ $SHELL "$ac_aux_dir/config.sub" sun4 >/dev/null 2>&1 ||
+-  as_fn_error $? "cannot run $SHELL $ac_aux_dir/config.sub" "$LINENO" 5
++  as_fn_error "cannot run $SHELL $ac_aux_dir/config.sub" "$LINENO" 5
+ 
+ { $as_echo "$as_me:${as_lineno-$LINENO}: checking build system type" >&5
+ $as_echo_n "checking build system type... " >&6; }
+@@ -3153,16 +3140,16 @@
+ test "x$ac_build_alias" = x &&
+   ac_build_alias=`$SHELL "$ac_aux_dir/config.guess"`
+ test "x$ac_build_alias" = x &&
+-  as_fn_error $? "cannot guess build type; you must specify one" "$LINENO" 5
++  as_fn_error "cannot guess build type; you must specify one" "$LINENO" 5
+ ac_cv_build=`$SHELL "$ac_aux_dir/config.sub" $ac_build_alias` ||
+-  as_fn_error $? "$SHELL $ac_aux_dir/config.sub $ac_build_alias failed" "$LINENO" 5
++  as_fn_error "$SHELL $ac_aux_dir/config.sub $ac_build_alias failed" "$LINENO" 5
+ 
+ fi
+ { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_build" >&5
+ $as_echo "$ac_cv_build" >&6; }
+ case $ac_cv_build in
+ *-*-*) ;;
+-*) as_fn_error $? "invalid value of canonical build" "$LINENO" 5 ;;
++*) as_fn_error "invalid value of canonical build" "$LINENO" 5;;
+ esac
+ build=$ac_cv_build
+ ac_save_IFS=$IFS; IFS='-'
+@@ -3187,7 +3174,7 @@
+   ac_cv_host=$ac_cv_build
+ else
+   ac_cv_host=`$SHELL "$ac_aux_dir/config.sub" $host_alias` ||
+-    as_fn_error $? "$SHELL $ac_aux_dir/config.sub $host_alias failed" "$LINENO" 5
++    as_fn_error "$SHELL $ac_aux_dir/config.sub $host_alias failed" "$LINENO" 5
+ fi
+ 
+ fi
+@@ -3195,7 +3182,7 @@
+ $as_echo "$ac_cv_host" >&6; }
+ case $ac_cv_host in
+ *-*-*) ;;
+-*) as_fn_error $? "invalid value of canonical host" "$LINENO" 5 ;;
++*) as_fn_error "invalid value of canonical host" "$LINENO" 5;;
+ esac
+ host=$ac_cv_host
+ ac_save_IFS=$IFS; IFS='-'
+@@ -3220,7 +3207,7 @@
+   ac_cv_target=$ac_cv_host
+ else
+   ac_cv_target=`$SHELL "$ac_aux_dir/config.sub" $target_alias` ||
+-    as_fn_error $? "$SHELL $ac_aux_dir/config.sub $target_alias failed" "$LINENO" 5
++    as_fn_error "$SHELL $ac_aux_dir/config.sub $target_alias failed" "$LINENO" 5
+ fi
+ 
+ fi
+@@ -3228,7 +3215,7 @@
+ $as_echo "$ac_cv_target" >&6; }
+ case $ac_cv_target in
+ *-*-*) ;;
+-*) as_fn_error $? "invalid value of canonical target" "$LINENO" 5 ;;
++*) as_fn_error "invalid value of canonical target" "$LINENO" 5;;
+ esac
+ target=$ac_cv_target
+ ac_save_IFS=$IFS; IFS='-'
+@@ -3774,9 +3761,9 @@
+ $as_echo "$as_me: Building in-tree ghc-pwd" >&6;}
+                 rm -rf utils/ghc-pwd/dist-boot
+     mkdir  utils/ghc-pwd/dist-boot
+-    if ! "$WithGhc" -optl-pthread -v0 -no-user-package-conf -hidir utils/ghc-pwd/dist-boot -odir utils/ghc-pwd/dist-boot -stubdir utils/ghc-pwd/dist-boot --make utils/ghc-pwd/Main.hs -o utils/ghc-pwd/dist-boot/ghc-pwd
++    if ! "$WithGhc" -v0 -no-user-package-conf -hidir utils/ghc-pwd/dist-boot -odir utils/ghc-pwd/dist-boot -stubdir utils/ghc-pwd/dist-boot --make utils/ghc-pwd/Main.hs -o utils/ghc-pwd/dist-boot/ghc-pwd
+     then
+-        as_fn_error $? "Building ghc-pwd failed" "$LINENO" 5
++        as_fn_error "Building ghc-pwd failed" "$LINENO" 5
+     fi
+ 
+     GHC_PWD=utils/ghc-pwd/dist-boot/ghc-pwd
+@@ -3789,12 +3776,12 @@
+         hardtop=`echo $hardtop | sed 's|^/tmp_mnt.*\(/local/.*\)$|\1|' | sed 's|^/tmp_mnt/|/|'`
+ 
+     if ! test -d "$hardtop"; then
+-        as_fn_error $? "cannot determine current directory" "$LINENO" 5
++        as_fn_error "cannot determine current directory" "$LINENO" 5
+     fi
+ 
+         case "$hardtop" in
+     *' '*)
+-        as_fn_error $? "
++        as_fn_error "
+         The build system does not support building in a directory
+         containing space characters.
+         Suggestion: move the build tree somewhere else." "$LINENO" 5
+@@ -3851,7 +3838,7 @@
+         PATH=`pwd`/inplace/mingw/bin:$PATH inplace/mingw/bin/realgcc.exe driver/gcc/gcc.c driver/utils/cwrapper.c driver/utils/getLocation.c -Idriver/utils -o inplace/mingw/bin/gcc.exe
+         if ! test -e inplace/mingw/bin/gcc.exe
+         then
+-            as_fn_error $? "GHC is required unless bootstrapping from .hc files." "$LINENO" 5
++            as_fn_error "GHC is required unless bootstrapping from .hc files." "$LINENO" 5
+         fi
+         { $as_echo "$as_me:${as_lineno-$LINENO}: In-tree mingw tree created" >&5
+ $as_echo "$as_me: In-tree mingw tree created" >&6;}
+@@ -3932,7 +3919,7 @@
+ 
+         if test -z "$CC"
+         then
+-            as_fn_error $? "cannot find gcc in your PATH, no idea how to link" "$LINENO" 5
++            as_fn_error "cannot find gcc in your PATH, no idea how to link" "$LINENO" 5
+         fi
+     fi
+ 
+@@ -4003,7 +3990,7 @@
+ 
+         if test -z "$LD"
+         then
+-            as_fn_error $? "cannot find ld in your PATH, no idea how to link" "$LINENO" 5
++            as_fn_error "cannot find ld in your PATH, no idea how to link" "$LINENO" 5
+         fi
+     fi
+ 
+@@ -4073,7 +4060,7 @@
+ 
+         if test -z "$NM"
+         then
+-            as_fn_error $? "cannot find nm in your PATH, no idea how to link" "$LINENO" 5
++            as_fn_error "cannot find nm in your PATH, no idea how to link" "$LINENO" 5
+         fi
+     fi
+ 
+@@ -4158,7 +4145,7 @@
+ $as_echo "none" >&6; }
+   else
+     if test ! -d $MACOSX_DEPLOYMENT_SDK; then
+-      as_fn_error $? "Unknown deployment target $FP_MACOSX_DEPLOYMENT_TARGET" "$LINENO" 5
++      as_fn_error "Unknown deployment target $FP_MACOSX_DEPLOYMENT_TARGET" "$LINENO" 5
+     fi
+     { $as_echo "$as_me:${as_lineno-$LINENO}: result: ${MACOSX_DEPLOYMENT_VERSION} (${MACOSX_DEPLOYMENT_SDK})" >&5
+ $as_echo "${MACOSX_DEPLOYMENT_VERSION} (${MACOSX_DEPLOYMENT_SDK})" >&6; }
+@@ -4256,7 +4243,7 @@
+    if grep "v5" conftest.out >/dev/null 2>&1; then
+       :
+    else
+-      as_fn_error $? "your version of perl probably won't work, try upgrading it." "$LINENO" 5
++      as_fn_error "your version of perl probably won't work, try upgrading it." "$LINENO" 5
+    fi
+ rm -fr conftest*
+ 
+@@ -4626,8 +4613,8 @@
+ 
+ test -z "$CC" && { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+ $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+-as_fn_error $? "no acceptable C compiler found in \$PATH
+-See \`config.log' for more details" "$LINENO" 5 ; }
++as_fn_error "no acceptable C compiler found in \$PATH
++See \`config.log' for more details." "$LINENO" 5; }
+ 
+ # Provide some information about the compiler.
+ $as_echo "$as_me:${as_lineno-$LINENO}: checking for C compiler version" >&5
+@@ -4741,8 +4728,9 @@
+ 
+ { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+ $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+-as_fn_error 77 "C compiler cannot create executables
+-See \`config.log' for more details" "$LINENO" 5 ; }
++{ as_fn_set_status 77
++as_fn_error "C compiler cannot create executables
++See \`config.log' for more details." "$LINENO" 5; }; }
+ else
+   { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+ $as_echo "yes" >&6; }
+@@ -4784,8 +4772,8 @@
+ else
+   { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+ $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+-as_fn_error $? "cannot compute suffix of executables: cannot compile and link
+-See \`config.log' for more details" "$LINENO" 5 ; }
++as_fn_error "cannot compute suffix of executables: cannot compile and link
++See \`config.log' for more details." "$LINENO" 5; }
+ fi
+ rm -f conftest conftest$ac_cv_exeext
+ { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_exeext" >&5
+@@ -4842,9 +4830,9 @@
+     else
+ 	{ { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+ $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+-as_fn_error $? "cannot run C compiled programs.
++as_fn_error "cannot run C compiled programs.
+ If you meant to cross compile, use \`--host'.
+-See \`config.log' for more details" "$LINENO" 5 ; }
++See \`config.log' for more details." "$LINENO" 5; }
+     fi
+   fi
+ fi
+@@ -4895,8 +4883,8 @@
+ 
+ { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+ $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+-as_fn_error $? "cannot compute suffix of object files: cannot compile
+-See \`config.log' for more details" "$LINENO" 5 ; }
++as_fn_error "cannot compute suffix of object files: cannot compile
++See \`config.log' for more details." "$LINENO" 5; }
+ fi
+ rm -f conftest.$ac_cv_objext conftest.$ac_ext
+ fi
+@@ -5123,7 +5111,7 @@
+    fp_have_gcc=YES
+ fi
+ if test "$fp_have_gcc" = "NO" -a -d $srcdir/ghc; then
+-  as_fn_error $? "gcc is required" "$LINENO" 5
++  as_fn_error "gcc is required" "$LINENO" 5
+ fi
+ GccLT34=
+ { $as_echo "$as_me:${as_lineno-$LINENO}: checking version of gcc" >&5
+@@ -5154,7 +5142,7 @@
+ done
+ IFS=$fp_save_IFS
+ if test "$fp_num1" -lt "$fp_num2"; then :
+-  as_fn_error $? "Need at least gcc version 3.0 (3.4+ recommended)" "$LINENO" 5
++  as_fn_error "Need at least gcc version 3.0 (3.4+ recommended)" "$LINENO" 5
+ fi
+    # See #2770: gcc 2.95 doesn't work any more, apparently.  There probably
+    # isn't a very good reason for that, but for now just make configure
+@@ -5510,7 +5498,7 @@
    # Broken: fails on valid input.
  continue
  fi
@@ -78,7 +785,7 @@ Index: ghc-7.0.3/configure
  
    # OK, works on sane cases.  Now check whether nonexistent headers
    # can be detected and how.
-@@ -5526,11 +5526,11 @@
+@@ -5526,11 +5514,11 @@
  ac_preproc_ok=:
  break
  fi
@@ -92,7 +799,582 @@ Index: ghc-7.0.3/configure
  if $ac_preproc_ok; then :
    break
  fi
-@@ -10462,7 +10462,7 @@
+@@ -5569,7 +5557,7 @@
+   # Broken: fails on valid input.
+ continue
+ fi
+-rm -f conftest.err conftest.i conftest.$ac_ext
++rm -f conftest.err conftest.$ac_ext
+ 
+   # OK, works on sane cases.  Now check whether nonexistent headers
+   # can be detected and how.
+@@ -5585,18 +5573,18 @@
+ ac_preproc_ok=:
+ break
+ fi
+-rm -f conftest.err conftest.i conftest.$ac_ext
++rm -f conftest.err conftest.$ac_ext
+ 
+ done
+ # Because of `break', _AC_PREPROC_IFELSE's cleaning code was skipped.
+-rm -f conftest.i conftest.err conftest.$ac_ext
++rm -f conftest.err conftest.$ac_ext
+ if $ac_preproc_ok; then :
+ 
+ else
+   { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+ $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+-as_fn_error $? "C preprocessor \"$CPP\" fails sanity check
+-See \`config.log' for more details" "$LINENO" 5 ; }
++as_fn_error "C preprocessor \"$CPP\" fails sanity check
++See \`config.log' for more details." "$LINENO" 5; }
+ fi
+ 
+ ac_ext=c
+@@ -5638,7 +5626,7 @@
+ { $as_echo "$as_me:${as_lineno-$LINENO}: result: $fp_cv_context_diff" >&5
+ $as_echo "$fp_cv_context_diff" >&6; }
+ if test x"$fp_cv_context_diff" = xno; then
+-   as_fn_error $? "cannot figure out how to do context diffs" "$LINENO" 5
++   as_fn_error "cannot figure out how to do context diffs" "$LINENO" 5
+ fi
+ ContextDiffCmd=$fp_cv_context_diff
+ 
+@@ -5784,7 +5772,7 @@
+ 
+ 
+ if test -z "$fp_prog_ar_raw"; then
+-  as_fn_error $? "cannot find ar in your PATH, no idea how to make a library" "$LINENO" 5
++  as_fn_error "cannot find ar in your PATH, no idea how to make a library" "$LINENO" 5
+ fi
+ fp_prog_ar="$fp_prog_ar_raw"
+ case $HostPlatform in
+@@ -5837,7 +5825,7 @@
+   done
+   rm -f conftest*
+   if test -z "$fp_cv_prog_ar_args"; then
+-    as_fn_error $? "cannot figure out how to use your $fp_prog_ar_raw" "$LINENO" 5
++    as_fn_error "cannot figure out how to use your $fp_prog_ar_raw" "$LINENO" 5
+   fi
+ fi
+ fi
+@@ -6608,7 +6596,7 @@
+ if "$fp_ghc_pkg_guess" list > /dev/null 2>&1; then
+   fp_cv_matching_ghc_pkg=$fp_ghc_pkg_guess
+ else
+-  as_fn_error $? "Cannot find matching ghc-pkg" "$LINENO" 5
++  as_fn_error "Cannot find matching ghc-pkg" "$LINENO" 5
+ fi
+ fi
+ { $as_echo "$as_me:${as_lineno-$LINENO}: result: $fp_cv_matching_ghc_pkg" >&5
+@@ -6707,7 +6695,7 @@
+ done
+ IFS=$fp_save_IFS
+ if test "$fp_num1" -lt "$fp_num2"; then :
+-  as_fn_error $? "Happy version 1.16 or later is required to compile GHC." "$LINENO" 5
++  as_fn_error "Happy version 1.16 or later is required to compile GHC." "$LINENO" 5
+ fi
+ fi
+ HappyVersion=$fptools_cv_happy_version;
+@@ -6804,7 +6792,7 @@
+ done
+ IFS=$fp_save_IFS
+ if test "$fp_num1" -lt "$fp_num2"; then :
+-  as_fn_error $? "Alex version 2.1.0 or later is required to compile GHC." "$LINENO" 5
++  as_fn_error "Alex version 2.1.0 or later is required to compile GHC." "$LINENO" 5
+ fi
+ fi
+ AlexVersion=$fptools_cv_alex_version;
+@@ -6867,7 +6855,7 @@
+   done
+ IFS=$as_save_IFS
+   if test -z "$ac_cv_path_GREP"; then
+-    as_fn_error $? "no acceptable grep could be found in $PATH$PATH_SEPARATOR/usr/xpg4/bin" "$LINENO" 5
++    as_fn_error "no acceptable grep could be found in $PATH$PATH_SEPARATOR/usr/xpg4/bin" "$LINENO" 5
+   fi
+ else
+   ac_cv_path_GREP=$GREP
+@@ -6933,7 +6921,7 @@
+   done
+ IFS=$as_save_IFS
+   if test -z "$ac_cv_path_EGREP"; then
+-    as_fn_error $? "no acceptable egrep could be found in $PATH$PATH_SEPARATOR/usr/xpg4/bin" "$LINENO" 5
++    as_fn_error "no acceptable egrep could be found in $PATH$PATH_SEPARATOR/usr/xpg4/bin" "$LINENO" 5
+   fi
+ else
+   ac_cv_path_EGREP=$EGREP
+@@ -7265,7 +7253,8 @@
+   as_ac_Header=`$as_echo "ac_cv_header_$ac_header" | $as_tr_sh`
+ ac_fn_c_check_header_compile "$LINENO" "$ac_header" "$as_ac_Header" "$ac_includes_default
+ "
+-if eval test \"x\$"$as_ac_Header"\" = x"yes"; then :
++eval as_val=\$$as_ac_Header
++   if test "x$as_val" = x""yes; then :
+   cat >>confdefs.h <<_ACEOF
+ #define `$as_echo "HAVE_$ac_header" | $as_tr_cpp` 1
+ _ACEOF
+@@ -7279,7 +7268,8 @@
+ do :
+   as_ac_Header=`$as_echo "ac_cv_header_$ac_header" | $as_tr_sh`
+ ac_fn_c_check_header_mongrel "$LINENO" "$ac_header" "$as_ac_Header" "$ac_includes_default"
+-if eval test \"x\$"$as_ac_Header"\" = x"yes"; then :
++eval as_val=\$$as_ac_Header
++   if test "x$as_val" = x""yes; then :
+   cat >>confdefs.h <<_ACEOF
+ #define `$as_echo "HAVE_$ac_header" | $as_tr_cpp` 1
+ _ACEOF
+@@ -7351,8 +7341,9 @@
+   if test "$ac_cv_type_char" = yes; then
+      { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+ $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+-as_fn_error 77 "cannot compute sizeof (char)
+-See \`config.log' for more details" "$LINENO" 5 ; }
++{ as_fn_set_status 77
++as_fn_error "cannot compute sizeof (char)
++See \`config.log' for more details." "$LINENO" 5; }; }
+    else
+      ac_cv_sizeof_char=0
+    fi
+@@ -7384,8 +7375,9 @@
+   if test "$ac_cv_type_double" = yes; then
+      { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+ $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+-as_fn_error 77 "cannot compute sizeof (double)
+-See \`config.log' for more details" "$LINENO" 5 ; }
++{ as_fn_set_status 77
++as_fn_error "cannot compute sizeof (double)
++See \`config.log' for more details." "$LINENO" 5; }; }
+    else
+      ac_cv_sizeof_double=0
+    fi
+@@ -7417,8 +7409,9 @@
+   if test "$ac_cv_type_float" = yes; then
+      { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+ $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+-as_fn_error 77 "cannot compute sizeof (float)
+-See \`config.log' for more details" "$LINENO" 5 ; }
++{ as_fn_set_status 77
++as_fn_error "cannot compute sizeof (float)
++See \`config.log' for more details." "$LINENO" 5; }; }
+    else
+      ac_cv_sizeof_float=0
+    fi
+@@ -7450,8 +7443,9 @@
+   if test "$ac_cv_type_int" = yes; then
+      { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+ $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+-as_fn_error 77 "cannot compute sizeof (int)
+-See \`config.log' for more details" "$LINENO" 5 ; }
++{ as_fn_set_status 77
++as_fn_error "cannot compute sizeof (int)
++See \`config.log' for more details." "$LINENO" 5; }; }
+    else
+      ac_cv_sizeof_int=0
+    fi
+@@ -7483,8 +7477,9 @@
+   if test "$ac_cv_type_long" = yes; then
+      { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+ $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+-as_fn_error 77 "cannot compute sizeof (long)
+-See \`config.log' for more details" "$LINENO" 5 ; }
++{ as_fn_set_status 77
++as_fn_error "cannot compute sizeof (long)
++See \`config.log' for more details." "$LINENO" 5; }; }
+    else
+      ac_cv_sizeof_long=0
+    fi
+@@ -7517,8 +7512,9 @@
+   if test "$ac_cv_type_long_long" = yes; then
+      { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+ $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+-as_fn_error 77 "cannot compute sizeof (long long)
+-See \`config.log' for more details" "$LINENO" 5 ; }
++{ as_fn_set_status 77
++as_fn_error "cannot compute sizeof (long long)
++See \`config.log' for more details." "$LINENO" 5; }; }
+    else
+      ac_cv_sizeof_long_long=0
+    fi
+@@ -7551,8 +7547,9 @@
+   if test "$ac_cv_type_short" = yes; then
+      { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+ $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+-as_fn_error 77 "cannot compute sizeof (short)
+-See \`config.log' for more details" "$LINENO" 5 ; }
++{ as_fn_set_status 77
++as_fn_error "cannot compute sizeof (short)
++See \`config.log' for more details." "$LINENO" 5; }; }
+    else
+      ac_cv_sizeof_short=0
+    fi
+@@ -7584,8 +7581,9 @@
+   if test "$ac_cv_type_unsigned_char" = yes; then
+      { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+ $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+-as_fn_error 77 "cannot compute sizeof (unsigned char)
+-See \`config.log' for more details" "$LINENO" 5 ; }
++{ as_fn_set_status 77
++as_fn_error "cannot compute sizeof (unsigned char)
++See \`config.log' for more details." "$LINENO" 5; }; }
+    else
+      ac_cv_sizeof_unsigned_char=0
+    fi
+@@ -7617,8 +7615,9 @@
+   if test "$ac_cv_type_unsigned_int" = yes; then
+      { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+ $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+-as_fn_error 77 "cannot compute sizeof (unsigned int)
+-See \`config.log' for more details" "$LINENO" 5 ; }
++{ as_fn_set_status 77
++as_fn_error "cannot compute sizeof (unsigned int)
++See \`config.log' for more details." "$LINENO" 5; }; }
+    else
+      ac_cv_sizeof_unsigned_int=0
+    fi
+@@ -7650,8 +7649,9 @@
+   if test "$ac_cv_type_unsigned_long" = yes; then
+      { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+ $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+-as_fn_error 77 "cannot compute sizeof (unsigned long)
+-See \`config.log' for more details" "$LINENO" 5 ; }
++{ as_fn_set_status 77
++as_fn_error "cannot compute sizeof (unsigned long)
++See \`config.log' for more details." "$LINENO" 5; }; }
+    else
+      ac_cv_sizeof_unsigned_long=0
+    fi
+@@ -7684,8 +7684,9 @@
+   if test "$ac_cv_type_unsigned_long_long" = yes; then
+      { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+ $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+-as_fn_error 77 "cannot compute sizeof (unsigned long long)
+-See \`config.log' for more details" "$LINENO" 5 ; }
++{ as_fn_set_status 77
++as_fn_error "cannot compute sizeof (unsigned long long)
++See \`config.log' for more details." "$LINENO" 5; }; }
+    else
+      ac_cv_sizeof_unsigned_long_long=0
+    fi
+@@ -7718,8 +7719,9 @@
+   if test "$ac_cv_type_unsigned_short" = yes; then
+      { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+ $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+-as_fn_error 77 "cannot compute sizeof (unsigned short)
+-See \`config.log' for more details" "$LINENO" 5 ; }
++{ as_fn_set_status 77
++as_fn_error "cannot compute sizeof (unsigned short)
++See \`config.log' for more details." "$LINENO" 5; }; }
+    else
+      ac_cv_sizeof_unsigned_short=0
+    fi
+@@ -7751,8 +7753,9 @@
+   if test "$ac_cv_type_void_p" = yes; then
+      { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+ $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+-as_fn_error 77 "cannot compute sizeof (void *)
+-See \`config.log' for more details" "$LINENO" 5 ; }
++{ as_fn_set_status 77
++as_fn_error "cannot compute sizeof (void *)
++See \`config.log' for more details." "$LINENO" 5; }; }
+    else
+      ac_cv_sizeof_void_p=0
+    fi
+@@ -7783,8 +7786,9 @@
+   if ac_fn_c_compute_int "$LINENO" "(long) (&((struct { char c; char ty; } *)0)->ty)" "fp_cv_alignment_char"        "$ac_includes_default"; then :
+ 
+ else
+-  as_fn_error 77 "cannot compute alignment (char)
+-See \`config.log' for more details." "$LINENO" 5
++  { as_fn_set_status 77
++as_fn_error "cannot compute alignment (char)
++See \`config.log' for more details." "$LINENO" 5; }
+ fi
+ 
+ 
+@@ -7811,8 +7815,9 @@
+   if ac_fn_c_compute_int "$LINENO" "(long) (&((struct { char c; double ty; } *)0)->ty)" "fp_cv_alignment_double"        "$ac_includes_default"; then :
+ 
+ else
+-  as_fn_error 77 "cannot compute alignment (double)
+-See \`config.log' for more details." "$LINENO" 5
++  { as_fn_set_status 77
++as_fn_error "cannot compute alignment (double)
++See \`config.log' for more details." "$LINENO" 5; }
+ fi
+ 
+ 
+@@ -7839,8 +7844,9 @@
+   if ac_fn_c_compute_int "$LINENO" "(long) (&((struct { char c; float ty; } *)0)->ty)" "fp_cv_alignment_float"        "$ac_includes_default"; then :
+ 
+ else
+-  as_fn_error 77 "cannot compute alignment (float)
+-See \`config.log' for more details." "$LINENO" 5
++  { as_fn_set_status 77
++as_fn_error "cannot compute alignment (float)
++See \`config.log' for more details." "$LINENO" 5; }
+ fi
+ 
+ 
+@@ -7867,8 +7873,9 @@
+   if ac_fn_c_compute_int "$LINENO" "(long) (&((struct { char c; int ty; } *)0)->ty)" "fp_cv_alignment_int"        "$ac_includes_default"; then :
+ 
+ else
+-  as_fn_error 77 "cannot compute alignment (int)
+-See \`config.log' for more details." "$LINENO" 5
++  { as_fn_set_status 77
++as_fn_error "cannot compute alignment (int)
++See \`config.log' for more details." "$LINENO" 5; }
+ fi
+ 
+ 
+@@ -7895,8 +7902,9 @@
+   if ac_fn_c_compute_int "$LINENO" "(long) (&((struct { char c; long ty; } *)0)->ty)" "fp_cv_alignment_long"        "$ac_includes_default"; then :
+ 
+ else
+-  as_fn_error 77 "cannot compute alignment (long)
+-See \`config.log' for more details." "$LINENO" 5
++  { as_fn_set_status 77
++as_fn_error "cannot compute alignment (long)
++See \`config.log' for more details." "$LINENO" 5; }
+ fi
+ 
+ 
+@@ -7924,8 +7932,9 @@
+   if ac_fn_c_compute_int "$LINENO" "(long) (&((struct { char c; long long ty; } *)0)->ty)" "fp_cv_alignment_long_long"        "$ac_includes_default"; then :
+ 
+ else
+-  as_fn_error 77 "cannot compute alignment (long long)
+-See \`config.log' for more details." "$LINENO" 5
++  { as_fn_set_status 77
++as_fn_error "cannot compute alignment (long long)
++See \`config.log' for more details." "$LINENO" 5; }
+ fi
+ 
+ 
+@@ -7953,8 +7962,9 @@
+   if ac_fn_c_compute_int "$LINENO" "(long) (&((struct { char c; short ty; } *)0)->ty)" "fp_cv_alignment_short"        "$ac_includes_default"; then :
+ 
+ else
+-  as_fn_error 77 "cannot compute alignment (short)
+-See \`config.log' for more details." "$LINENO" 5
++  { as_fn_set_status 77
++as_fn_error "cannot compute alignment (short)
++See \`config.log' for more details." "$LINENO" 5; }
+ fi
+ 
+ 
+@@ -7981,8 +7991,9 @@
+   if ac_fn_c_compute_int "$LINENO" "(long) (&((struct { char c; unsigned char ty; } *)0)->ty)" "fp_cv_alignment_unsigned_char"        "$ac_includes_default"; then :
+ 
+ else
+-  as_fn_error 77 "cannot compute alignment (unsigned char)
+-See \`config.log' for more details." "$LINENO" 5
++  { as_fn_set_status 77
++as_fn_error "cannot compute alignment (unsigned char)
++See \`config.log' for more details." "$LINENO" 5; }
+ fi
+ 
+ 
+@@ -8009,8 +8020,9 @@
+   if ac_fn_c_compute_int "$LINENO" "(long) (&((struct { char c; unsigned int ty; } *)0)->ty)" "fp_cv_alignment_unsigned_int"        "$ac_includes_default"; then :
+ 
+ else
+-  as_fn_error 77 "cannot compute alignment (unsigned int)
+-See \`config.log' for more details." "$LINENO" 5
++  { as_fn_set_status 77
++as_fn_error "cannot compute alignment (unsigned int)
++See \`config.log' for more details." "$LINENO" 5; }
+ fi
+ 
+ 
+@@ -8037,8 +8049,9 @@
+   if ac_fn_c_compute_int "$LINENO" "(long) (&((struct { char c; unsigned long ty; } *)0)->ty)" "fp_cv_alignment_unsigned_long"        "$ac_includes_default"; then :
+ 
+ else
+-  as_fn_error 77 "cannot compute alignment (unsigned long)
+-See \`config.log' for more details." "$LINENO" 5
++  { as_fn_set_status 77
++as_fn_error "cannot compute alignment (unsigned long)
++See \`config.log' for more details." "$LINENO" 5; }
+ fi
+ 
+ 
+@@ -8066,8 +8079,9 @@
+   if ac_fn_c_compute_int "$LINENO" "(long) (&((struct { char c; unsigned long long ty; } *)0)->ty)" "fp_cv_alignment_unsigned_long_long"        "$ac_includes_default"; then :
+ 
+ else
+-  as_fn_error 77 "cannot compute alignment (unsigned long long)
+-See \`config.log' for more details." "$LINENO" 5
++  { as_fn_set_status 77
++as_fn_error "cannot compute alignment (unsigned long long)
++See \`config.log' for more details." "$LINENO" 5; }
+ fi
+ 
+ 
+@@ -8095,8 +8109,9 @@
+   if ac_fn_c_compute_int "$LINENO" "(long) (&((struct { char c; unsigned short ty; } *)0)->ty)" "fp_cv_alignment_unsigned_short"        "$ac_includes_default"; then :
+ 
+ else
+-  as_fn_error 77 "cannot compute alignment (unsigned short)
+-See \`config.log' for more details." "$LINENO" 5
++  { as_fn_set_status 77
++as_fn_error "cannot compute alignment (unsigned short)
++See \`config.log' for more details." "$LINENO" 5; }
+ fi
+ 
+ 
+@@ -8110,9 +8125,8 @@
+ #define ALIGNMENT_UNSIGNED_SHORT $fp_cv_alignment_unsigned_short
+ _ACEOF
+ 
+-as_ac_Type=`$as_echo "ac_cv_type_void *" | $as_tr_sh`
+-ac_fn_c_check_type "$LINENO" "void *" "$as_ac_Type" "$ac_includes_default"
+-if eval test \"x\$"$as_ac_Type"\" = x"yes"; then :
++ac_fn_c_check_type "$LINENO" "void *" "ac_cv_type_void_p" "$ac_includes_default"
++if test "x$ac_cv_type_void_p" = x""yes; then :
+ 
+ fi
+ { $as_echo "$as_me:${as_lineno-$LINENO}: checking alignment of void *" >&5
+@@ -8124,8 +8138,9 @@
+   if ac_fn_c_compute_int "$LINENO" "(long) (&((struct { char c; void * ty; } *)0)->ty)" "fp_cv_alignment_void_p"        "$ac_includes_default"; then :
+ 
+ else
+-  as_fn_error 77 "cannot compute alignment (void *)
+-See \`config.log' for more details." "$LINENO" 5
++  { as_fn_set_status 77
++as_fn_error "cannot compute alignment (void *)
++See \`config.log' for more details." "$LINENO" 5; }
+ fi
+ 
+ 
+@@ -8248,7 +8263,8 @@
+ do :
+   as_ac_var=`$as_echo "ac_cv_func_$ac_func" | $as_tr_sh`
+ ac_fn_c_check_func "$LINENO" "$ac_func" "$as_ac_var"
+-if eval test \"x\$"$as_ac_var"\" = x"yes"; then :
++eval as_val=\$$as_ac_var
++   if test "x$as_val" = x""yes; then :
+   cat >>confdefs.h <<_ACEOF
+ #define `$as_echo "HAVE_$ac_func" | $as_tr_cpp` 1
+ _ACEOF
+@@ -8260,8 +8276,8 @@
+ if test "$cross_compiling" = yes; then :
+   { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+ $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+-as_fn_error $? "cannot run test program while cross compiling
+-See \`config.log' for more details" "$LINENO" 5 ; }
++as_fn_error "cannot run test program while cross compiling
++See \`config.log' for more details." "$LINENO" 5; }
+ else
+   cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+@@ -8670,7 +8686,8 @@
+   for ac_func in _getb67 GETB67 getb67; do
+     as_ac_var=`$as_echo "ac_cv_func_$ac_func" | $as_tr_sh`
+ ac_fn_c_check_func "$LINENO" "$ac_func" "$as_ac_var"
+-if eval test \"x\$"$as_ac_var"\" = x"yes"; then :
++eval as_val=\$$as_ac_var
++   if test "x$as_val" = x""yes; then :
+ 
+ cat >>confdefs.h <<_ACEOF
+ #define CRAY_STACKSEG_END $ac_func
+@@ -8760,7 +8777,8 @@
+ do :
+   as_ac_var=`$as_echo "ac_cv_func_$ac_func" | $as_tr_sh`
+ ac_fn_c_check_func "$LINENO" "$ac_func" "$as_ac_var"
+-if eval test \"x\$"$as_ac_var"\" = x"yes"; then :
++eval as_val=\$$as_ac_var
++   if test "x$as_val" = x""yes; then :
+   cat >>confdefs.h <<_ACEOF
+ #define `$as_echo "HAVE_$ac_func" | $as_tr_cpp` 1
+ _ACEOF
+@@ -9259,8 +9277,8 @@
+ 
+      ;; #(
+    *)
+-     as_fn_error $? "unknown endianness
+- presetting ac_cv_c_bigendian=no (or yes) will help" "$LINENO" 5  ;;
++     as_fn_error "unknown endianness
++ presetting ac_cv_c_bigendian=no (or yes) will help" "$LINENO" 5 ;;
+  esac
+ 
+ { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether float word order is big endian" >&5
+@@ -9561,7 +9579,8 @@
+ do :
+   as_ac_var=`$as_echo "ac_cv_func_$ac_func" | $as_tr_sh`
+ ac_fn_c_check_func "$LINENO" "$ac_func" "$as_ac_var"
+-if eval test \"x\$"$as_ac_var"\" = x"yes"; then :
++eval as_val=\$$as_ac_var
++   if test "x$as_val" = x""yes; then :
+   cat >>confdefs.h <<_ACEOF
+ #define `$as_echo "HAVE_$ac_func" | $as_tr_cpp` 1
+ _ACEOF
+@@ -9577,8 +9596,8 @@
+   if test "$cross_compiling" = yes; then :
+   { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+ $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+-as_fn_error $? "cannot run test program while cross compiling
+-See \`config.log' for more details" "$LINENO" 5 ; }
++as_fn_error "cannot run test program while cross compiling
++See \`config.log' for more details." "$LINENO" 5; }
+ else
+   cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+@@ -9947,7 +9966,7 @@
+ 
+ 
+ if grep '	' compiler/ghc.cabal.in 2>&1 >/dev/null; then
+-   as_fn_error $? "compiler/ghc.cabal.in contains tab characters; please remove them" "$LINENO" 5
++   as_fn_error "compiler/ghc.cabal.in contains tab characters; please remove them" "$LINENO" 5
+ fi
+ 
+ ac_config_files="$ac_config_files mk/config.mk mk/install.mk mk/project.mk compiler/ghc.cabal ghc/ghc-bin.cabal utils/runghc/runghc.cabal ghc.spec extra-gcc-opts docs/users_guide/ug-book.xml docs/users_guide/ug-ent.xml docs/index.html libraries/prologue.txt distrib/ghc.iss distrib/configure.ac"
+@@ -10037,7 +10056,6 @@
+ 
+ ac_libobjs=
+ ac_ltlibobjs=
+-U=
+ for ac_i in : $LIBOBJS; do test "x$ac_i" = x: && continue
+   # 1. Remove the extension, and $U if already installed.
+   ac_script='s/\$U\././;s/\.o$//;s/\.obj$//'
+@@ -10200,19 +10218,19 @@
+ (unset CDPATH) >/dev/null 2>&1 && unset CDPATH
+ 
+ 
+-# as_fn_error STATUS ERROR [LINENO LOG_FD]
+-# ----------------------------------------
++# as_fn_error ERROR [LINENO LOG_FD]
++# ---------------------------------
+ # Output "`basename $0`: error: ERROR" to stderr. If LINENO and LOG_FD are
+ # provided, also output the error to LOG_FD, referencing LINENO. Then exit the
+-# script with STATUS, using 1 if that was 0.
++# script with status $?, using 1 if that was 0.
+ as_fn_error ()
+ {
+-  as_status=$1; test $as_status -eq 0 && as_status=1
+-  if test "$4"; then
+-    as_lineno=${as_lineno-"$3"} as_lineno_stack=as_lineno_stack=$as_lineno_stack
+-    $as_echo "$as_me:${as_lineno-$LINENO}: error: $2" >&$4
++  as_status=$?; test $as_status -eq 0 && as_status=1
++  if test "$3"; then
++    as_lineno=${as_lineno-"$2"} as_lineno_stack=as_lineno_stack=$as_lineno_stack
++    $as_echo "$as_me:${as_lineno-$LINENO}: error: $1" >&$3
+   fi
+-  $as_echo "$as_me: error: $2" >&2
++  $as_echo "$as_me: error: $1" >&2
+   as_fn_exit $as_status
+ } # as_fn_error
+ 
+@@ -10408,7 +10426,7 @@
+       test -d "$as_dir" && break
+     done
+     test -z "$as_dirs" || eval "mkdir $as_dirs"
+-  } || test -d "$as_dir" || as_fn_error $? "cannot create directory $as_dir"
++  } || test -d "$as_dir" || as_fn_error "cannot create directory $as_dir"
+ 
+ 
+ } # as_fn_mkdir_p
+@@ -10462,7 +10480,7 @@
  # values after options handling.
  ac_log="
  This file was extended by The Glorious Glasgow Haskell Compilation System $as_me 7.0.3, which was
@@ -101,7 +1383,7 @@ Index: ghc-7.0.3/configure
  
    CONFIG_FILES    = $CONFIG_FILES
    CONFIG_HEADERS  = $CONFIG_HEADERS
-@@ -10528,10 +10528,10 @@
+@@ -10528,10 +10546,10 @@
  ac_cs_config="`$as_echo "$ac_configure_args" | sed 's/^ //; s/[\\""\`\$]/\\\\&/g'`"
  ac_cs_version="\\
  The Glorious Glasgow Haskell Compilation System config.status 7.0.3
@@ -114,3 +1396,247 @@ Index: ghc-7.0.3/configure
  This config.status script is free software; the Free Software Foundation
  gives unlimited permission to copy, distribute and modify it."
  
+@@ -10547,16 +10565,11 @@
+ while test $# != 0
+ do
+   case $1 in
+-  --*=?*)
++  --*=*)
+     ac_option=`expr "X$1" : 'X\([^=]*\)='`
+     ac_optarg=`expr "X$1" : 'X[^=]*=\(.*\)'`
+     ac_shift=:
+     ;;
+-  --*=)
+-    ac_option=`expr "X$1" : 'X\([^=]*\)='`
+-    ac_optarg=
+-    ac_shift=:
+-    ;;
+   *)
+     ac_option=$1
+     ac_optarg=$2
+@@ -10578,7 +10591,6 @@
+     $ac_shift
+     case $ac_optarg in
+     *\'*) ac_optarg=`$as_echo "$ac_optarg" | sed "s/'/'\\\\\\\\''/g"` ;;
+-    '') as_fn_error $? "missing file argument" ;;
+     esac
+     as_fn_append CONFIG_FILES " '$ac_optarg'"
+     ac_need_defaults=false;;
+@@ -10591,7 +10603,7 @@
+     ac_need_defaults=false;;
+   --he | --h)
+     # Conflict between --help and --header
+-    as_fn_error $? "ambiguous option: \`$1'
++    as_fn_error "ambiguous option: \`$1'
+ Try \`$0 --help' for more information.";;
+   --help | --hel | -h )
+     $as_echo "$ac_cs_usage"; exit ;;
+@@ -10600,7 +10612,7 @@
+     ac_cs_silent=: ;;
+ 
+   # This is an error.
+-  -*) as_fn_error $? "unrecognized option: \`$1'
++  -*) as_fn_error "unrecognized option: \`$1'
+ Try \`$0 --help' for more information." ;;
+ 
+   *) as_fn_append ac_config_targets " $1"
+@@ -10666,7 +10678,7 @@
+     "distrib/configure.ac") CONFIG_FILES="$CONFIG_FILES distrib/configure.ac" ;;
+     "mk/stamp-h") CONFIG_COMMANDS="$CONFIG_COMMANDS mk/stamp-h" ;;
+ 
+-  *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5 ;;
++  *) as_fn_error "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
+   esac
+ done
+ 
+@@ -10704,7 +10716,7 @@
+ {
+   tmp=./conf$$-$RANDOM
+   (umask 077 && mkdir "$tmp")
+-} || as_fn_error $? "cannot create a temporary directory in ." "$LINENO" 5
++} || as_fn_error "cannot create a temporary directory in ." "$LINENO" 5
+ 
+ # Set up the scripts for CONFIG_FILES section.
+ # No need to generate them if there are no CONFIG_FILES.
+@@ -10721,7 +10733,7 @@
+ fi
+ ac_cs_awk_cr=`$AWK 'BEGIN { print "a\rb" }' </dev/null 2>/dev/null`
+ if test "$ac_cs_awk_cr" = "a${ac_cr}b"; then
+-  ac_cs_awk_cr='\\r'
++  ac_cs_awk_cr='\r'
+ else
+   ac_cs_awk_cr=$ac_cr
+ fi
+@@ -10735,18 +10747,18 @@
+   echo "$ac_subst_vars" | sed 's/.*/&!$&$ac_delim/' &&
+   echo "_ACEOF"
+ } >conf$$subs.sh ||
+-  as_fn_error $? "could not make $CONFIG_STATUS" "$LINENO" 5
+-ac_delim_num=`echo "$ac_subst_vars" | grep -c '^'`
++  as_fn_error "could not make $CONFIG_STATUS" "$LINENO" 5
++ac_delim_num=`echo "$ac_subst_vars" | grep -c '$'`
+ ac_delim='%!_!# '
+ for ac_last_try in false false false false false :; do
+   . ./conf$$subs.sh ||
+-    as_fn_error $? "could not make $CONFIG_STATUS" "$LINENO" 5
++    as_fn_error "could not make $CONFIG_STATUS" "$LINENO" 5
+ 
+   ac_delim_n=`sed -n "s/.*$ac_delim\$/X/p" conf$$subs.awk | grep -c X`
+   if test $ac_delim_n = $ac_delim_num; then
+     break
+   elif $ac_last_try; then
+-    as_fn_error $? "could not make $CONFIG_STATUS" "$LINENO" 5
++    as_fn_error "could not make $CONFIG_STATUS" "$LINENO" 5
+   else
+     ac_delim="$ac_delim!$ac_delim _$ac_delim!! "
+   fi
+@@ -10835,28 +10847,20 @@
+ else
+   cat
+ fi < "$tmp/subs1.awk" > "$tmp/subs.awk" \
+-  || as_fn_error $? "could not setup config files machinery" "$LINENO" 5
++  || as_fn_error "could not setup config files machinery" "$LINENO" 5
+ _ACEOF
+ 
+-# VPATH may cause trouble with some makes, so we remove sole $(srcdir),
+-# ${srcdir} and @srcdir@ entries from VPATH if srcdir is ".", strip leading and
++# VPATH may cause trouble with some makes, so we remove $(srcdir),
++# ${srcdir} and @srcdir@ from VPATH if srcdir is ".", strip leading and
+ # trailing colons and then remove the whole line if VPATH becomes empty
+ # (actually we leave an empty line to preserve line numbers).
+ if test "x$srcdir" = x.; then
+-  ac_vpsub='/^[	 ]*VPATH[	 ]*=[	 ]*/{
+-h
+-s///
+-s/^/:/
+-s/[	 ]*$/:/
+-s/:\$(srcdir):/:/g
+-s/:\${srcdir}:/:/g
+-s/:@srcdir@:/:/g
+-s/^:*//
++  ac_vpsub='/^[	 ]*VPATH[	 ]*=/{
++s/:*\$(srcdir):*/:/
++s/:*\${srcdir}:*/:/
++s/:*@srcdir@:*/:/
++s/^\([^=]*=[	 ]*\):*/\1/
+ s/:*$//
+-x
+-s/\(=[	 ]*\).*/\1/
+-G
+-s/\n//
+ s/^[^=]*=[	 ]*$//
+ }'
+ fi
+@@ -10884,7 +10888,7 @@
+   if test -z "$ac_t"; then
+     break
+   elif $ac_last_try; then
+-    as_fn_error $? "could not make $CONFIG_HEADERS" "$LINENO" 5
++    as_fn_error "could not make $CONFIG_HEADERS" "$LINENO" 5
+   else
+     ac_delim="$ac_delim!$ac_delim _$ac_delim!! "
+   fi
+@@ -10969,7 +10973,7 @@
+ _ACAWK
+ _ACEOF
+ cat >>$CONFIG_STATUS <<\_ACEOF || ac_write_fail=1
+-  as_fn_error $? "could not setup config headers machinery" "$LINENO" 5
++  as_fn_error "could not setup config headers machinery" "$LINENO" 5
+ fi # test -n "$CONFIG_HEADERS"
+ 
+ 
+@@ -10982,7 +10986,7 @@
+   esac
+   case $ac_mode$ac_tag in
+   :[FHL]*:*);;
+-  :L* | :C*:*) as_fn_error $? "invalid tag \`$ac_tag'" "$LINENO" 5 ;;
++  :L* | :C*:*) as_fn_error "invalid tag \`$ac_tag'" "$LINENO" 5;;
+   :[FH]-) ac_tag=-:-;;
+   :[FH]*) ac_tag=$ac_tag:$ac_tag.in;;
+   esac
+@@ -11010,7 +11014,7 @@
+ 	   [\\/$]*) false;;
+ 	   *) test -f "$srcdir/$ac_f" && ac_f="$srcdir/$ac_f";;
+ 	   esac ||
+-	   as_fn_error 1 "cannot find input file: \`$ac_f'" "$LINENO" 5 ;;
++	   as_fn_error "cannot find input file: \`$ac_f'" "$LINENO" 5;;
+       esac
+       case $ac_f in *\'*) ac_f=`$as_echo "$ac_f" | sed "s/'/'\\\\\\\\''/g"`;; esac
+       as_fn_append ac_file_inputs " '$ac_f'"
+@@ -11037,7 +11041,7 @@
+ 
+     case $ac_tag in
+     *:-:* | *:-) cat >"$tmp/stdin" \
+-      || as_fn_error $? "could not create $ac_file" "$LINENO" 5  ;;
++      || as_fn_error "could not create $ac_file" "$LINENO" 5 ;;
+     esac
+     ;;
+   esac
+@@ -11168,22 +11172,22 @@
+ $ac_datarootdir_hack
+ "
+ eval sed \"\$ac_sed_extra\" "$ac_file_inputs" | $AWK -f "$tmp/subs.awk" >$tmp/out \
+-  || as_fn_error $? "could not create $ac_file" "$LINENO" 5
++  || as_fn_error "could not create $ac_file" "$LINENO" 5
+ 
+ test -z "$ac_datarootdir_hack$ac_datarootdir_seen" &&
+   { ac_out=`sed -n '/\${datarootdir}/p' "$tmp/out"`; test -n "$ac_out"; } &&
+   { ac_out=`sed -n '/^[	 ]*datarootdir[	 ]*:*=/p' "$tmp/out"`; test -z "$ac_out"; } &&
+   { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: $ac_file contains a reference to the variable \`datarootdir'
+-which seems to be undefined.  Please make sure it is defined" >&5
++which seems to be undefined.  Please make sure it is defined." >&5
+ $as_echo "$as_me: WARNING: $ac_file contains a reference to the variable \`datarootdir'
+-which seems to be undefined.  Please make sure it is defined" >&2;}
++which seems to be undefined.  Please make sure it is defined." >&2;}
+ 
+   rm -f "$tmp/stdin"
+   case $ac_file in
+   -) cat "$tmp/out" && rm -f "$tmp/out";;
+   *) rm -f "$ac_file" && mv "$tmp/out" "$ac_file";;
+   esac \
+-  || as_fn_error $? "could not create $ac_file" "$LINENO" 5
++  || as_fn_error "could not create $ac_file" "$LINENO" 5
+  ;;
+   :H)
+   #
+@@ -11194,19 +11198,19 @@
+       $as_echo "/* $configure_input  */" \
+       && eval '$AWK -f "$tmp/defines.awk"' "$ac_file_inputs"
+     } >"$tmp/config.h" \
+-      || as_fn_error $? "could not create $ac_file" "$LINENO" 5
++      || as_fn_error "could not create $ac_file" "$LINENO" 5
+     if diff "$ac_file" "$tmp/config.h" >/dev/null 2>&1; then
+       { $as_echo "$as_me:${as_lineno-$LINENO}: $ac_file is unchanged" >&5
+ $as_echo "$as_me: $ac_file is unchanged" >&6;}
+     else
+       rm -f "$ac_file"
+       mv "$tmp/config.h" "$ac_file" \
+-	|| as_fn_error $? "could not create $ac_file" "$LINENO" 5
++	|| as_fn_error "could not create $ac_file" "$LINENO" 5
+     fi
+   else
+     $as_echo "/* $configure_input  */" \
+       && eval '$AWK -f "$tmp/defines.awk"' "$ac_file_inputs" \
+-      || as_fn_error $? "could not create -" "$LINENO" 5
++      || as_fn_error "could not create -" "$LINENO" 5
+   fi
+  ;;
+ 
+@@ -11228,7 +11232,7 @@
+ ac_clean_files=$ac_clean_files_save
+ 
+ test $ac_write_fail = 0 ||
+-  as_fn_error $? "write failure creating $CONFIG_STATUS" "$LINENO" 5
++  as_fn_error "write failure creating $CONFIG_STATUS" "$LINENO" 5
+ 
+ 
+ # configure is writing to config.log, and then calls config.status.
+@@ -11249,7 +11253,7 @@
+   exec 5>>config.log
+   # Use ||, not &&, to avoid exiting from the if with $? = 1, which
+   # would make configure fail if this is the last instruction.
+-  $ac_cs_success || as_fn_exit 1
++  $ac_cs_success || as_fn_exit $?
+ fi
+ if test -n "$ac_unrecognized_opts" && test "$enable_option_checking" != no; then
+   { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: unrecognized options: $ac_unrecognized_opts" >&5
