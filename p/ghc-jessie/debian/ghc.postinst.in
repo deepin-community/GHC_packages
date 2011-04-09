@@ -27,17 +27,9 @@ vardir=/var/lib/ghc-@VERSION@
 #     installation fails and the `postinst' is called with `abort-upgrade',
 #     `abort-remove' or `abort-deconfigure'.
 
-if $libdir/bin/ghc --info | grep -q '"Have interpreter","YES"' ; then
-    NEED_INTERPRETER="\
-            --slave $execdir/runghc runghc $bindir/runghc \
-            --slave $execdir/ghci ghci $bindir/ghci \
-            --slave $mandir/man1/ghci.1.gz ghci.1.gz $mandir/man1/ghc.1.gz \
-            --slave $mandir/man1/runghc.1.gz runghc.1.gz $mandir/man1/runghc.1.gz"
-fi
-
 case "$1" in
     configure|abort-upgrade|abort-remove|abort-deconfigure)
-	if [ -n "$NEED_INTERPRETER" ] ; then
+	if $libdir/bin/ghc --info | grep '"Have interpreter","YES"' >/dev/null ; then
             update-alternatives \
 		--install $execdir/runhaskell runhaskell $execdir/runghc 8600000600 \
 		--slave $mandir/man1/runhaskell.1.gz runhaskell.1.gz $mandir/man1/runghc.1.gz
