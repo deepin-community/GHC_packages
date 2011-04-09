@@ -7,6 +7,9 @@ ghc (7.0.3-1) UNRELEASED; urgency=low
   * New upstream release
   * Avoid "hPutChar: resource vanished" message and simplify postinst script
     (Closes: #619403)
+  * Remove package cache in prerm, even on upgrade. This is the right thing to
+    do if upgrading to a new upstream release, and does not hurt in the other
+    cases.
 
  -- Joachim Breitner <nomeata@debian.org>  Sat, 09 Apr 2011 17:06:18 +0530
 
