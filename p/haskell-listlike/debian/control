@@ -4,15 +4,15 @@ Priority: optional
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: TANIGUCHI Takaki <takaki@debian.org>
 Build-Depends: cdbs, debhelper (>= 7.0.50~), haskell-devscripts,
-	ghc6,
-	ghc6-prof,
-	ghc6-doc
+	ghc,
+	ghc-prof,
+	ghc-doc
 Standards-Version: 3.9.1
 Homepage: http://software.complete.org/listlike
 #Vcs-Git: git://git.debian.org/collab-maint/haskell-listlike.git
 #Vcs-Browser: http://git.debian.org/?p=collab-maint/haskell-listlike.git;a=summary
 
-Package: libghc6-listlike-dev
+Package: libghc-listlike-dev
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
@@ -30,9 +30,9 @@ Description: Generic support for list-like structures
  ByteString, for types that support input and output, and for types that can
  handle infinite lists.
  .
- This package contains the libraries compiled for GHC 6.
+ This package contains the libraries compiled for GHC.
 
-Package: libghc6-listlike-prof
+Package: libghc-listlike-prof
 Architecture: any
 Depends: ${haskell:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
@@ -50,9 +50,9 @@ Description: Generic support for list-like structures; profiling library
  ByteString, for types that support input and output, and for types that can
  handle infinite lists.
  .
- This package contains the profiling libraries compiled for GHC 6.
+ This package contains the profiling libraries compiled for GHC.
 
-Package: libghc6-listlike-doc
+Package: libghc-listlike-doc
 Architecture: all
 Section: doc
 Depends: ${haskell:Depends}, ${misc:Depends}
