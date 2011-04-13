@@ -5,10 +5,10 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>
 Build-Depends: debhelper (>= 7),
  cdbs,
- haskell-devscripts (>= 0.7),
- ghc6,
- ghc6-prof
-Build-Depends-Indep: ghc6-doc
+ haskell-devscripts (>= 0.8),
+ ghc,
+ ghc-prof
+Build-Depends-Indep: ghc-doc
 Standards-Version: 3.9.0
 Homepage: http://hackage.haskell.org/package/hscolour
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/hscolour
@@ -23,7 +23,7 @@ Description: Haskell program to colourise Haskell code
  with <font> tags, HTML 4.01 with CSS, LaTeX, and mIRC chat client
  codes.
 
-Package: libghc6-hscolour-dev
+Package: libghc-hscolour-dev
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Suggests: ${haskell:Suggests}, drift (>= 2.2.0)
@@ -35,9 +35,9 @@ Description: GHC6 libraries for colourising Haskell code
  with <font> tags, HTML 4.01 with CSS, LaTeX, and mIRC chat client
  codes.
  .
- This package contains the libraries compiled for GHC 6.
+ This package contains the libraries compiled for GHC.
 
-Package: libghc6-hscolour-prof
+Package: libghc-hscolour-prof
 Architecture: any
 Depends: ${haskell:Depends}, ${misc:Depends}
 Suggests: ${haskell:Suggests}
@@ -49,15 +49,15 @@ Description: Profiling libraries for colourising Haskell code
  with <font> tags, HTML 4.01 with CSS, LaTeX, and mIRC chat client
  codes.
  .
- This package contains the profiling libraries compiled for GHC 6.
+ This package contains the profiling libraries compiled for GHC.
 
-Package: libghc6-hscolour-doc
+Package: libghc-hscolour-doc
 Architecture: all
 Section: doc
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: Documentation for libghc6-hscolour-dev
+Description: Documentation for libghc-hscolour-dev
  .
  HsColour currently has five output formats: ANSI terminal codes, HTML 3.2
  with <font> tags, HTML 4.01 with CSS, LaTeX, and mIRC chat client
