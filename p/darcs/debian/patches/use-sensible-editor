@@ -9,23 +9,23 @@ Description:    use editor(1) and pager(1) instead of specific editors/pagers.
  uncheck the "standard" tasksel task.
  .
  Not forwarded because editor(1) and pager(1) are Debian-specific.
-Index: darcs-2.4.3/src/Darcs/Utils.hs
+Index: darcs-2.5.2/src/Darcs/Utils.hs
 ===================================================================
---- darcs-2.4.3.orig/src/Darcs/Utils.hs	2010-05-09 23:23:32.000000000 +1000
-+++ darcs-2.4.3/src/Darcs/Utils.hs	2010-05-10 16:48:18.722449241 +1000
-@@ -209,18 +209,12 @@
- run_editor f = do
-   ed <- get_editor
-   exec_interactive ed f
--       `ortryrunning` exec_interactive "emacs" f
--       `ortryrunning` exec_interactive "emacs -nw" f
--       `ortryrunning` exec_interactive "nano" f
+--- darcs-2.5.2.orig/src/Darcs/Utils.hs	2011-03-13 22:40:46.000000000 +0000
++++ darcs-2.5.2/src/Darcs/Utils.hs	2011-04-26 03:32:43.895798358 +0000
+@@ -203,37 +203,29 @@
+ runEditor f = do
+   ed <- getEditor
+   execInteractive ed f
+-       `ortryrunning` execInteractive "emacs" f
+-       `ortryrunning` execInteractive "emacs -nw" f
+-       `ortryrunning` execInteractive "nano" f
 -#ifdef WIN32
--       `ortryrunning` exec_interactive "edit" f
+-       `ortryrunning` execInteractive "edit" f
 -#endif
 
- get_editor :: IO String
- get_editor = getEnv "DARCS_EDITOR" `catchall`
+ getEditor :: IO String
+ getEditor = getEnv "DARCS_EDITOR" `catchall`
               getEnv "DARCSEDITOR" `catchall`
               getEnv "VISUAL" `catchall`
 -             getEnv "EDITOR" `catchall` return "vi"
@@ -33,12 +33,25 @@ Index: darcs-2.4.3/src/Darcs/Utils.hs
 
  environmentHelpEditor :: ([String], [String])
  environmentHelpEditor = (["DARCS_EDITOR", "DARCSEDITOR", "VISUAL", "EDITOR"],[
-@@ -233,7 +227,7 @@
+  "To edit a patch description of email comment, Darcs will invoke an",
+  "external editor.  Your preferred editor can be set as any of the",
+  "environment variables $DARCS_EDITOR, $DARCSEDITOR, $VISUAL or $EDITOR.",
+- "If none of these are set, vi(1) is used.  If vi crashes or is not",
+- "found in your PATH, emacs, emacs -nw, nano and (on Windows) edit are",
+- "each tried in turn."])
++ "If none of these are set, editor(1) is used."])
 
- get_viewer :: IO String
- get_viewer = getEnv "DARCS_PAGER" `catchall`
+ getViewer :: IO String
+ getViewer = getEnv "DARCS_PAGER" `catchall`
 -             getEnv "PAGER" `catchall` return "less"
 +             getEnv "PAGER" `catchall` return "pager"
 
  environmentHelpPager :: ([String], [String])
  environmentHelpPager = (["DARCS_PAGER", "PAGER"],[
+  "Darcs will sometimes invoke a pager if it deems output to be too long",
+  "to fit onscreen.  Darcs will use the pager specified by $DARCS_PAGER",
+- "or $PAGER.  If neither are set, `less' will be used."])
++ "or $PAGER.  If neither are set, pager(1) will be used."])
+
+ data PromptConfig = PromptConfig { pPrompt :: String
+                                  , pBasicCharacters :: [Char]
