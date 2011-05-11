@@ -1,0 +1,53 @@
+Source: haskell-attoparsec
+Section: haskell
+Priority: optional
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: TANIGUCHI Takaki <takaki@debian.org>
+Build-Depends: cdbs, debhelper (>= 7.0.50~), haskell-devscripts,
+	ghc,
+	ghc-prof,
+	ghc-doc,
+	libghc-deepseq-dev,
+	libghc-deepseq-prof,
+	libghc-deepseq-doc
+Standards-Version: 3.9.1
+Homepage: http://bitbucket.org/bos/attoparsec
+
+Package: libghc-attoparsec-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Provides: ${haskell:Provides}
+Suggests: ${haskell:Suggests}
+Description: Fast combinator parsing for bytestrings
+ A fast parser combinator library, aimed particularly at dealing
+ efficiently with network protocols and complicated text/binary
+ file formats.
+ .
+ This package contains the libraries compiled for GHC.
+
+Package: libghc-attoparsec-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Provides: ${haskell:Provides}
+Suggests: ${haskell:Suggests}
+Description: Fast combinator parsing for bytestrings; profiling library
+ A fast parser combinator library, aimed particularly at dealing
+ efficiently with network protocols and complicated text/binary
+ file formats.
+ .
+ This package contains the profiling libraries compiled for GHC.
+
+Package: libghc-attoparsec-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Fast combinator parsing for bytestrings; documentation
+ A fast parser combinator library, aimed particularly at dealing
+ efficiently with network protocols and complicated text/binary
+ file formats.
+ .
+ This package contains the library documentation.
