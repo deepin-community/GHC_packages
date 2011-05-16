@@ -9,21 +9,24 @@ Build-Depends:
  cdbs,
  ghc,
  ghc-prof,
- libghc-happstack-util-dev,
- libghc-happstack-util-prof,
- libghc-happstack-data-dev,
- libghc-happstack-data-prof,
+ libghc-happstack-util-dev (>= 6.0),
+ libghc-happstack-util-prof (>= 6.0),
+ libghc-happstack-data-dev (>= 6.0),
+ libghc-happstack-data-prof (>= 6.0),
+ libghc-syb-dev,
+ libghc-syb-prof,
  libghc-syb-with-class-dev,
  libghc-syb-with-class-prof,
- libghc-mtl-dev,
- libghc-mtl-prof
+ libghc-mtl-dev (>= 1.1),
+ libghc-mtl-prof (>= 1.1)
 Build-Depends-Indep:
  ghc-doc,
- libghc-happstack-util-doc,
- libghc-happstack-data-doc,
+ libghc-happstack-util-doc (>= 6.0),
+ libghc-happstack-data-doc (>= 6.0),
+ libghc-syb-doc,
  libghc-syb-with-class-doc,
- libghc-mtl-doc
-Standards-Version: 3.9.0
+ libghc-mtl-doc (>= 1.1)
+Standards-Version: 3.9.2
 Homepage: http://hackage.haskell.org/package/happstack-ixset
 Vcs-Darcs: http://darcs.debian.org/darcs/pkg-haskell/haskell-happstack-ixset
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-happstack-ixset
@@ -37,7 +40,7 @@ Depends:
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
-Description: Happstack web framework, indexing engine - GHC 6 libraries
+Description: Happstack web framework, indexing engine - GHC libraries
  Happstack is a Haskell web framework, designed so that developers can
  prototype quickly, deploy painlessly, scale massively, operate reliably,
  and change easily. It supports GNU/Linux, OS X, FreeBSD, and Windows
@@ -52,7 +55,7 @@ Description: Happstack web framework, indexing engine - GHC 6 libraries
  Happstack-ixset is an indexing engine Happstack applications can use
  to quickly retrieve the data they're interested into.
  .
- This package contains the libraries compiled for GHC 6.
+ This package contains the libraries compiled for GHC.
 
 Package: libghc-happstack-ixset-prof
 Architecture: any
@@ -62,7 +65,7 @@ Depends:
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
-Description: Happstack web framework, indexing engine - GHC 6 profiling libraries
+Description: Happstack web framework, indexing engine - GHC profiling libraries
  Happstack is a Haskell web framework, designed so that developers can
  prototype quickly, deploy painlessly, scale massively, operate reliably,
  and change easily. It supports GNU/Linux, OS X, FreeBSD, and Windows
@@ -77,7 +80,7 @@ Description: Happstack web framework, indexing engine - GHC 6 profiling librarie
  Happstack-ixset is an indexing engine Happstack applications can use
  to quickly retrieve the data they're interested into.
  .
- This package contains the profiling libraries compiled for GHC 6.
+ This package contains the profiling libraries compiled for GHC.
 
 Package: libghc-happstack-ixset-doc
 Section: doc
