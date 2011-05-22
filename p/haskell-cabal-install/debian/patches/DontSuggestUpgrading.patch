@@ -1,0 +1,46 @@
+# Description: Don't suggest upgrading cabal-install using cabal install
+#  In debian, this is not the recommended way of upgrading cabal-install.
+# Author: Marco Túlio Gontijo e Silva <marcot@debian.org>
+# Bug-Debian: http://bugs.debian.org/617467
+# Forwarded: not-needed
+# Last-Update: 2011-05-22
+# Applied-Upstream: no
+Index: cabal-install-0.10.2/Distribution/Client/Update.hs
+===================================================================
+--- cabal-install-0.10.2.orig/Distribution/Client/Update.hs	2011-05-22 09:32:15.000000000 -0300
++++ cabal-install-0.10.2/Distribution/Client/Update.hs	2011-05-22 09:32:27.000000000 -0300
+@@ -46,9 +46,7 @@
+ update verbosity [] = do
+   warn verbosity $ "No remote package servers have been specified. Usually "
+                 ++ "you would have one specified in the config file."
+-update verbosity repos = do
+-  mapM_ (updateRepo verbosity) repos
+-  checkForSelfUpgrade verbosity repos
++update verbosity repos = mapM_ (updateRepo verbosity) repos
+
+ updateRepo :: Verbosity -> Repo -> IO ()
+ updateRepo verbosity repo = case repoKind repo of
+@@ -60,23 +58,3 @@
+     writeFileAtomic (dropExtension indexPath) . BS.Char8.unpack
+                                               . maybeDecompress
+                                             =<< BS.readFile indexPath
+-
+-checkForSelfUpgrade :: Verbosity -> [Repo] -> IO ()
+-checkForSelfUpgrade verbosity repos = do
+-  AvailablePackageDb available prefs <- getAvailablePackages verbosity repos
+-
+-  let self = PackageName "cabal-install"
+-      preferredVersionRange  = fromMaybe anyVersion (Map.lookup self prefs)
+-      currentVersion         = Paths_cabal_install.version
+-      laterPreferredVersions =
+-        [ packageVersion pkg
+-        | pkg <- PackageIndex.lookupPackageName available self
+-        , let version = packageVersion pkg
+-        , version > currentVersion
+-        , version `withinRange` preferredVersionRange ]
+-
+-  when (not (null laterPreferredVersions)) $
+-    notice verbosity $
+-         "Note: there is a new version of cabal-install available.\n"
+-      ++ "To upgrade, run: cabal install cabal-install"
+-
