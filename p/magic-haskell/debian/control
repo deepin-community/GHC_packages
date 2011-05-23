@@ -5,16 +5,16 @@ Uploaders: John Goerzen <jgoerzen@complete.org>
 Build-Depends: debhelper (>= 6.0.0),
  cdbs,
  haskell-devscripts (>= 0.7),
- ghc6,
- ghc6-prof,
+ ghc,
+ ghc-prof,
  libmagic-dev
-Build-Depends-Indep: ghc6-doc
+Build-Depends-Indep: ghc-doc
 Standards-Version: 3.9.0
 Section: haskell
 Vcs-Git: git://git.debian.org/git/pkg-haskell/magic-haskell.git
 Vcs-Browser: http://git.debian.org/?p=pkg-haskell/magic-haskell.git;a=summary
 
-Package: libghc6-magic-dev
+Package: libghc-magic-dev
 Section: haskell
 Architecture: any
 Depends: ${misc:Depends}, ${haskell:Depends}, ${shlibs:Depends}
@@ -30,7 +30,7 @@ Description: File type determination library for Haskell
  rather than its name.  The Haskell interface provides a full-featured
  binding.
 
-Package: libghc6-magic-prof
+Package: libghc-magic-prof
 Section: haskell
 Architecture: any
 Depends: ${misc:Depends}, ${haskell:Depends}, ${shlibs:Depends}
@@ -59,9 +59,9 @@ Description: File type determination library for Haskell; profiling libraries
 # binding.
 # .
 # This package is built for Hugs.  A GHC package is also available
-# in libghc6-magic-dev.
+# in libghc-magic-dev.
 
-Package: libghc6-magic-doc
+Package: libghc-magic-doc
 Section: doc
 Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
