@@ -6,4 +6,8 @@ include /usr/share/cdbs/1/class/hlibrary.mk
 install/happstack:: debian/tmp-inst-ghc
 	mv debian/tmp-inst-ghc/usr/bin/happstack debian/happstack/usr/bin
 	mv debian/tmp-inst-ghc/usr/share/happstack-$(CABAL_VERSION) debian/happstack/usr/share
+	chmod a+x debian/happstack/usr/share/happstack-$(CABAL_VERSION)/templates/project/Setup.hs \
+	          debian/happstack/usr/share/happstack-$(CABAL_VERSION)/templates/project/bin/build.sh \
+	          debian/happstack/usr/share/happstack-$(CABAL_VERSION)/templates/project/bin/run.sh \
+	          debian/happstack/usr/share/happstack-$(CABAL_VERSION)/templates/project/bin/run-interactive.sh
 
