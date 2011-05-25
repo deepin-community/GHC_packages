@@ -48,7 +48,8 @@ Architecture: any
 Depends:
  ${haskell:Depends},
  ${misc:Depends},
- ${shlibs:Depends}
+ ${shlibs:Depends},
+ libghc-citeproc-hs-data (== ${source:Version})
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
@@ -109,3 +110,24 @@ Description: Haskell support for Citation Style Language - documentation
  style files in commercial products like Endnote or Reference Manager.
  .
  This package contains the library documentation.
+
+Package: libghc-citeproc-hs-data
+Architecture: all
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Description: Haskell support for Citation Style Language - data files
+ citeproc-hs is a Haskell implementation of the Citation Style Language
+ (CSL).
+ .
+ citeproc-hs adds to pandoc, the famous Haskell text processing tool, a
+ Bibtex like citation and bibliographic formatting and generation
+ facility.
+ .
+ CSL is an XML language for specifying citation and bibliographic
+ formatting, similar in principle to BibTeX .bst files or the binary
+ style files in commercial products like Endnote or Reference Manager.
+ .
+ This package contains the data files needed to use the library.
