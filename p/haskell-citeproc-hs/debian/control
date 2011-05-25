@@ -1,0 +1,111 @@
+Source: haskell-citeproc-hs
+Priority: extra
+Section: haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Giovanni Mascellani <gio@debian.org>
+Build-Depends:
+ debhelper (>= 7),
+ haskell-devscripts (>= 0.7),
+ cdbs,
+ ghc,
+ ghc-prof,
+ ghc-doc,
+ libghc-mtl-dev,
+ libghc-mtl-prof,
+ libghc-xml-dev,
+ libghc-xml-prof,
+ libghc-json-dev,
+ libghc-json-prof,
+ libghc-utf8-string-dev,
+ libghc-utf8-string-prof,
+ libghc-utf8-pandoc-types-dev (>= 1.8),
+ libghc-utf8-pandoc-types-prof (>= 1.8),
+ libghc-network-dev,
+ libghc-network-prof,
+ libghc-http-dev (>= 4000.0.9),
+ libghc-http-prof (>= 4000.0.9),
+ libghc-syb-dev,
+ libghc-syb-prof,
+ libghc-parsec3-dev,
+ libghc-parsec3-prof
+Build-Depends-Indep:
+ libghc-mtl-doc,
+ libghc-xml-doc,
+ libghc-json-doc,
+ libghc-utf8-string-doc,
+ libghc-utf8-pandoc-types-doc (>= 1.8),
+ libghc-network-doc,
+ libghc-http-doc (>= 4000.0.9),
+ libghc-syb-doc,
+ libghc-parsec3-doc
+Standards-Version: 3.9.2
+Homepage: http://hackage.haskell.org/package/citeproc-hs
+Vcs-Darcs: http://darcs.debian.org/darcs/pkg-haskell/haskell-citeproc-hs
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-citeproc-hs
+
+Package: libghc-citeproc-hs-dev
+Architecture: any
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Provides: ${haskell:Provides}
+Description: Haskell support for Citation Style Language - GHC libraries
+ citeproc-hs is a Haskell implementation of the Citation Style Language
+ (CSL).
+ .
+ citeproc-hs adds to pandoc, the famous Haskell text processing tool, a
+ Bibtex like citation and bibliographic formatting and generation
+ facility.
+ .
+ CSL is an XML language for specifying citation and bibliographic
+ formatting, similar in principle to BibTeX .bst files or the binary
+ style files in commercial products like Endnote or Reference Manager.
+ .
+ This package contains the libraries compiled for GHC.
+
+Package: libghc-citeproc-hs-prof
+Architecture: any
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Provides: ${haskell:Provides}
+Description: Haskell support for Citation Style Language - GHC profiling libraries
+ citeproc-hs is a Haskell implementation of the Citation Style Language
+ (CSL).
+ .
+ citeproc-hs adds to pandoc, the famous Haskell text processing tool, a
+ Bibtex like citation and bibliographic formatting and generation
+ facility.
+ .
+ CSL is an XML language for specifying citation and bibliographic
+ formatting, similar in principle to BibTeX .bst files or the binary
+ style files in commercial products like Endnote or Reference Manager.
+ .
+ This package contains the profiling libraries compiled for GHC.
+
+Package: libghc-citeproc-hs-doc
+Section: doc
+Architecture: all
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Description: Haskell support for Citation Style Language - documentation
+ citeproc-hs is a Haskell implementation of the Citation Style Language
+ (CSL).
+ .
+ citeproc-hs adds to pandoc, the famous Haskell text processing tool, a
+ Bibtex like citation and bibliographic formatting and generation
+ facility.
+ .
+ CSL is an XML language for specifying citation and bibliographic
+ formatting, similar in principle to BibTeX .bst files or the binary
+ style files in commercial products like Endnote or Reference Manager.
+ .
+ This package contains the library documentation.
