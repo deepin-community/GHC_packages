@@ -1,9 +1,10 @@
 Source: ftphs
-Priority: optional
+Priority: extra
+Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: John Goerzen <jgoerzen@complete.org>
 Build-Depends:
-    debhelper (>= 4.0.0)
+    debhelper (>= 7)
   , haskell-devscripts (>= 0.8)
   , cpphs
   , libghc-network-dev
@@ -25,18 +26,15 @@ Build-Depends-Indep:
   , libghc-hslogger-doc
   , libghc-hunit-doc
 Standards-Version: 3.6.2
-Section: devel
 Homepage: http://software.complete.org/ftphs
 VCS-Git: git://git.debian.org/git/pkg-haskell/ftphs.git
 VCS-Browser: http://git.debian.org/?p=pkg-haskell/missingh.git;a=summary
 
 Package: libghc-ftphs-dev
-Section: devel
 Architecture: any
 Depends: ${haskell:Depends}, ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Suggests: ftphs-doc
 Description: FTP Client and Server Library for Haskell, GHC package
  ftphs provides a Haskell library to implement a FTP client
  and a FTP server.
@@ -50,7 +48,6 @@ Description: FTP Client and Server Library for Haskell, GHC package
   * Standards compliant
 
 Package: libghc-ftphs-prof
-Section: devel
 Architecture: any
 Depends: ${haskell:Depends}, ${misc:Depends}
 Suggests: ${haskell:Suggests}
