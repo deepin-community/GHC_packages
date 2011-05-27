@@ -1,0 +1,85 @@
+Source: haskell-xss-sanitize
+Priority: extra
+Section: haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Giovanni Mascellani <gio@debian.org>
+Build-Depends:
+ debhelper (>= 7),
+ haskell-devscripts (>= 0.7),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-tagsoup-dev (>= 0.11),
+ libghc-tagsoup-prof (>= 0.11),
+ libghc-utf8-string-dev (>= 0.3),
+ libghc-utf8-string-prof (>= 0.3),
+ libghc-network-dev (>= 2),
+ libghc-network-prof (>= 2)
+Build-Depends-Indep:
+ ghc-doc,
+ libghc-tagsoup-doc (>= 0.11),
+ libghc-utf8-string-doc (>= 0.3),
+ libghc-network-doc (>= 2)
+Standards-Version: 3.9.2
+Homepage: http://hackage.haskell.org/package/xss-sanitize
+Vcs-Darcs: http://darcs.debian.org/darcs/pkg-haskell/haskell-xss-sanitize
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-xss-sanitize
+
+Package: libghc-xss-sanitize-dev
+Architecture: any
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+ libghc-xss-sanitize-data (= ${source:Version})
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Provides: ${haskell:Provides}
+Description: Library to sanitize HTML and prevent XSS attacks - GHC libraries
+ This library is able to parse strings that contain HTML code and check
+ for the presence of potentially malicious tags that could trigger XSS
+ (Cross-Site Scripting). It can be used in a Web application when using
+ HTML code coming from an untrusted party.
+ .
+ Moreover, this library is also able to check for unbalanced tags and
+ tries to fix them (even though it could produce invalid HTML).
+ .
+ This package contains the libraries compiled for GHC.
+
+Package: libghc-xss-sanitize-prof
+Architecture: any
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Provides: ${haskell:Provides}
+Description: Library to sanitize HTML and prevent XSS attacks - GHC profiling libraries
+ This library is able to parse strings that contain HTML code and check
+ for the presence of potentially malicious tags that could trigger XSS
+ (Cross-Site Scripting). It can be used in a Web application when using
+ HTML code coming from an untrusted party.
+ .
+ Moreover, this library is also able to check for unbalanced tags and
+ tries to fix them (even though it could produce invalid HTML).
+ .
+ This package contains the profiling libraries compiled for GHC.
+
+Package: libghc-xss-sanitize-doc
+Section: doc
+Architecture: all
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Description: Library to sanitize HTML and prevent XSS attacks - documentation
+ This library is able to parse strings that contain HTML code and check
+ for the presence of potentially malicious tags that could trigger XSS
+ (Cross-Site Scripting). It can be used in a Web application when using
+ HTML code coming from an untrusted party.
+ .
+ Moreover, this library is also able to check for unbalanced tags and
+ tries to fix them (even though it could produce invalid HTML).
+ .
+ This package contains the library documentation.
