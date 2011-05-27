@@ -1,7 +1,7 @@
 Index: haskell-leksah-server-0.10.0.4/leksah-server.cabal
 ===================================================================
---- haskell-leksah-server-0.10.0.4.orig/leksah-server.cabal	2011-04-21 10:46:32.000000000 +0200
-+++ haskell-leksah-server-0.10.0.4/leksah-server.cabal	2011-05-27 17:32:16.000000000 +0200
+--- haskell-leksah-server-0.10.0.4.orig/leksah-server.cabal	2011-05-27 19:55:00.000000000 +0200
++++ haskell-leksah-server-0.10.0.4/leksah-server.cabal	2011-05-27 19:58:44.000000000 +0200
 @@ -36,7 +36,7 @@
                 containers >=0.2.0.0 && <0.5,
                 directory >=1.0.0.2 && <1.2, filepath >=1.1.0.1 && <1.3, ghc >=6.10.1 && <7.1,
@@ -64,14 +64,68 @@ Index: haskell-leksah-server-0.10.0.4/leksah-server.cabal
 
 
      if flag(threaded)
-@@ -139,4 +159,9 @@
+@@ -139,4 +159,10 @@
      else
         ghc-options: -Wall -ferror-spans -O2
 
 -
 +    -- Bundled leksah-process
++    build-depends: unix
 +    c-sources:
 +        process-leksah/cbits/runProcess.c
 +    include-dirs: process-leksah/include
 +    cpp-options: -Dbase4
 +    hs-source-dirs: process-leksah
+Index: haskell-leksah-server-0.10.0.4/src/IDE/Utils/Tool.hs
+===================================================================
+--- haskell-leksah-server-0.10.0.4.orig/src/IDE/Utils/Tool.hs	2011-05-27 19:55:43.000000000 +0200
++++ haskell-leksah-server-0.10.0.4/src/IDE/Utils/Tool.hs	2011-05-27 19:55:52.000000000 +0200
+@@ -41,15 +41,9 @@
+ import Control.Monad (unless, when)
+ import Data.List (stripPrefix)
+ import Data.Maybe (isJust, catMaybes)
+-#ifdef MIN_VERSION_process_leksah
+ import IDE.System.Process
+        (proc, waitForProcess, ProcessHandle, createProcess, CreateProcess(..))
+ import IDE.System.Process.Internals (StdStream(..))
+-#else
+-import System.Process
+-       (proc, waitForProcess, ProcessHandle, createProcess, CreateProcess(..))
+-import System.Process.Internals (StdStream(..))
+-#endif
+ import Control.DeepSeq
+ import System.Log.Logger (debugM, criticalM)
+ import System.Exit (ExitCode(..))
+Index: haskell-leksah-server-0.10.0.4/src/IDE/Utils/FileUtils.hs
+===================================================================
+--- haskell-leksah-server-0.10.0.4.orig/src/IDE/Utils/FileUtils.hs	2011-05-27 19:56:08.000000000 +0200
++++ haskell-leksah-server-0.10.0.4/src/IDE/Utils/FileUtils.hs	2011-05-27 19:56:19.000000000 +0200
+@@ -71,13 +71,8 @@
+ import qualified Data.Set as  Set (empty, fromList)
+ import Control.Monad.Trans (MonadIO(..))
+ import Distribution.Package (PackageIdentifier)
+-#ifdef MIN_VERSION_process_leksah
+ import IDE.System.Process
+     (waitForProcess, runCommand)
+-#else
+-import System.Process
+-    (waitForProcess, runCommand)
+-#endif
+ import Data.Char (ord)
+ import Distribution.Text (simpleParse)
+
+Index: haskell-leksah-server-0.10.0.4/src/IDE/Metainfo/PackageCollector.hs
+===================================================================
+--- haskell-leksah-server-0.10.0.4.orig/src/IDE/Metainfo/PackageCollector.hs	2011-05-27 19:56:35.000000000 +0200
++++ haskell-leksah-server-0.10.0.4/src/IDE/Metainfo/PackageCollector.hs	2011-05-27 19:56:48.000000000 +0200
+@@ -49,11 +49,7 @@
+ import Control.Monad (when)
+ import System.IO (withBinaryFile, IOMode(..), hPutStr)
+ #else
+-#ifdef MIN_VERSION_process_leksah
+ import IDE.System.Process (system)
+-#else
+-import System.Process (system)
+-#endif
+ #endif
+ import Prelude hiding(catch)
