@@ -7,13 +7,23 @@ Build-Depends:
   , haskell-devscripts (>= 0.8)
   , cpphs
   , libghc-network-dev
+  , libghc-network-prof
   , libghc-mtl-dev
+  , libghc-mtl-prof
   , libghc-missingh-dev (>= 1.0.3.2)
+  , libghc-missingh-prof
   , libghc-hslogger-dev (>= 1.0.7.2)
+  , libghc-hslogger-prof
   , libghc-hunit-dev
+  , libghc-hunit-prof
   , cdbs
 Build-Depends-Indep:
     ghc-doc
+  , libghc-network-doc
+  , libghc-mtl-doc
+  , libghc-missingh-doc
+  , libghc-hslogger-doc
+  , libghc-hunit-doc
 Standards-Version: 3.6.2
 Section: devel
 Homepage: http://software.complete.org/ftphs
@@ -23,7 +33,9 @@ VCS-Browser: http://git.debian.org/?p=pkg-haskell/missingh.git;a=summary
 Package: libghc-ftphs-dev
 Section: devel
 Architecture: any
-Depends: ${haskell:Depends}, libghc-network-dev, libghc-hslogger-dev (>= 1.0.5), libghc-missingh-dev (>= 1.0.1)
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Suggests: ftphs-doc
 Description: FTP Client and Server Library for Haskell, GHC package
  ftphs provides a Haskell library to implement a FTP client
@@ -37,27 +49,30 @@ Description: FTP Client and Server Library for Haskell, GHC package
   * Server can serve up a real or a virtual filesystem tree
   * Standards compliant
 
-#Package: libhugs-ftphs
-#Section: devel
-#Architecture: all
-#Depends: ${haskell:Depends}, libhugs-hslogger, libhugs-hunit, libhugs-network, libhugs-missingh (>= 1.0.0)
-#Suggests: ftphs-doc
-#Description: FTP Client and Server Library for Haskell, Hugs package
-# ftphs provides a Haskell library to implement a FTP client
-# and a FTP server.
-# .
-# ftphs has a number of features:
-# .
-#  * Easy to use operation
-#  * Full support of text and binary transfers
-#  * Optional lazy interaction
-#  * Server can serve up a real or a virtual filesystem tree
-#  * Standards compliant
+Package: libghc-ftphs-prof
+Section: devel
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: FTP Client and Server Library for Haskell, profiling data
+ ftphs provides a Haskell library to implement a FTP client
+ and a FTP server.
+ .
+ ftphs has a number of features:
+ .
+  * Easy to use operation
+  * Full support of text and binary transfers
+  * Optional lazy interaction
+  * Server can serve up a real or a virtual filesystem tree
+  * Standards compliant
 
 Package: libghc-ftphs-doc
 Section: doc
 Architecture: all
-Provides: ftphs-doc
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}, ftphs-doc
 Replaces: ftphs-doc (<< 1.0.7-2)
 Conflicts: ftphs-doc (<< 1.0.7-2)
 Description: FTP Client and Server Library for Haskell, documentation
