@@ -5,21 +5,21 @@ Uploaders: John Goerzen <jgoerzen@complete.org>
 Build-Depends:
  cdbs,
  debhelper (>= 7),
- ghc6 (>= 6.12),
+ ghc (>= 6.12),
  haskell-devscripts (>= 0.6.18),
  cpphs,
  haddock,
- libghc6-mtl-dev,
- libghc6-mtl-prof,
- libghc6-time-dev,
- libghc6-time-prof,
- libghc6-convertible-dev (>= 1.0.1-2),
- libghc6-convertible-prof,
- ghc6-doc,
+ libghc-mtl-dev,
+ libghc-mtl-prof,
+ libghc-time-dev,
+ libghc-time-prof,
+ libghc-convertible-dev (>= 1.0.1-2),
+ libghc-convertible-prof,
+ ghc-doc,
  haddock,
  hscolour,
- libghc6-mtl-doc,
- libghc6-time-doc,
+ libghc-mtl-doc,
+ libghc-time-doc,
  haskell-convertible-doc
 Standards-Version: 3.8.3
 Section: haskell
@@ -27,12 +27,12 @@ Homepage: http://software.complete.org/hdbc
 Vcs-Git: git://git.debian.org/git/pkg-haskell/hdbc.git
 Vcs-Browser: http://git.debian.org/?p=pkg-haskell/hdbc.git;a=summary
 
-Package: libghc6-hdbc-dev
+Package: libghc-hdbc-dev
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}, ${haskell:Depends}
-Suggests: libghc6-hdbc-postgresql-dev | libghc6-hdbc-sqlite3-dev, libghc6-hdbc-missingh-dev, ${haskell:Suggests}
+Suggests: libghc-hdbc-postgresql-dev | libghc-hdbc-sqlite3-dev, libghc-hdbc-missingh-dev, ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
-Description: Haskell Database Connectivity, GHC6 package
+Description: Haskell Database Connectivity, GHC package
  HDBC provides an abstraction layer between Haskell programs and SQL
  relational databases. This lets you write database code once, in
  Haskell, and have it work with any number of backend SQL databases
@@ -42,15 +42,15 @@ Description: Haskell Database Connectivity, GHC6 package
  influenced by Python's DB-API v2, JDBC in Java, and HSQL in Haskell.
  .
  To use HDBC, you'll need both this package, and a driver package such
- as libghc6-hdbc-postgresql-dev.
+ as libghc-hdbc-postgresql-dev.
 
-Package: libghc6-hdbc-prof
+Package: libghc-hdbc-prof
 Architecture: any
 Depends: ${haskell:Depends}, ${misc:Depends}
-Description: Haskell Database Connectivity, GHC6 profiling data
+Description: Haskell Database Connectivity, GHC profiling data
  HDBC provides an abstraction layer between Haskell programs and SQL
  relational databases. This package provides profiling information for using
- HDBC with GHC6.
+ HDBC with GHC.
 
 #Package: libhugs-hdbc
 #Section: libs
@@ -68,7 +68,7 @@ Description: Haskell Database Connectivity, GHC6 profiling data
 # To use HDBC, you'll need both this package, and a driver package such
 # as libhugs-hdbc-postgresql.
 
-Package: libghc6-hdbc-doc
+Package: libghc-hdbc-doc
 Replaces: haskell-hdbc-doc
 Conflicts: haskell-hdbc-doc
 Provides: haskell-hdbc-doc
