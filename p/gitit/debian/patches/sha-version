@@ -1,3 +1,12 @@
+Subject: Fix dependency version on SHA
+From: Giovanni Mascellani <gio@debian.org>
+Forwarded: yes
+
+The cabal description file declares a dependency against SHA < 1.5,
+which is not needed because Gitit is able to use version 1.5.0.0
+(present in Debian at the moment) too. This patch relaxes the
+versioned dependency.
+
 Index: gitit-0.8/gitit.cabal
 ===================================================================
 --- gitit-0.8.orig/gitit.cabal	2011-05-27 18:34:42.000000000 +0200
