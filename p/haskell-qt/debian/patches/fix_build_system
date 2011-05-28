@@ -1,0 +1,68 @@
+Index: haskell-qt-1.1.4.1/Makefile_612px
+===================================================================
+--- haskell-qt-1.1.4.1.orig/Makefile_612px	2011-05-28 19:01:50.156951967 +0200
++++ haskell-qt-1.1.4.1/Makefile_612px	2011-05-28 19:02:59.424951993 +0200
+@@ -15,13 +15,13 @@
+ GHC_VERSION = 6.12.1
+ VANILLA_WAY = YES
+ WAYS =
+-odir = dist/build
++odir = dist-ghc/build
+ package = qt-1.1.4
+-GHC_OPTS = -package-name qt-1.1.4 -hide-all-packages $(CFUSR) -i -idist/build -i. -idist/build/autogen -Idist/build/autogen -Idist/build -optP-include -optPdist/build/autogen/cabal_macros.h -odir dist/build -hidir dist/build -stubdir dist/build -package $(OpenGL_VERSION) -package $(base_VERSION) -package $(haskell98_VERSION) -O -XForeignFunctionInterface
++GHC_OPTS = -package-name qt-1.1.4 -hide-all-packages $(CFUSR) -i -idist-ghc/build -i. -idist-ghc/build/autogen -Idist-ghc/build/autogen -Idist-ghc/build -optP-include -optPdist-ghc/build/autogen/cabal_macros.h -odir dist-ghc/build -hidir dist-ghc/build -stubdir dist-ghc/build -package $(OpenGL_VERSION) -package $(base_VERSION) -package $(haskell98_VERSION) -O -XForeignFunctionInterface
+ MAKEFILE = Makefile_612px
+ C_SRCS =
+-GHC_CC_OPTS = -package $(OpenGL_VERSION) -package $(base_VERSION) -package $(haskell98_VERSION) -optc-O2 -odir dist/build
+-GHCI_LIB = dist/build/HSqt-1.1.4.o
++GHC_CC_OPTS = -package $(OpenGL_VERSION) -package $(base_VERSION) -package $(haskell98_VERSION) -optc-O2 -odir dist-ghc/build
++GHCI_LIB = dist-ghc/build/HSqt-1.1.4.o
+ soext = .so
+ LIB_LD_OPTS = -package-name qt-1.1.4 -package $(OpenGL_VERSION) -package $(base_VERSION) -package $(haskell98_VERSION) -lqtc_core -lqtc_gui -lqtc_network -lqtc_opengl -lqtc_tools -lqtc_script
+ AR = /usr/bin/ar
+Index: haskell-qt-1.1.4.1/Makefile_612pxd
+===================================================================
+--- haskell-qt-1.1.4.1.orig/Makefile_612pxd	2011-05-28 19:01:50.020951966 +0200
++++ haskell-qt-1.1.4.1/Makefile_612pxd	2011-05-28 19:03:34.452952004 +0200
+@@ -15,13 +15,13 @@
+ GHC_VERSION = 6.12.1
+ VANILLA_WAY = YES
+ WAYS =
+-odir = dist/build
++odir = dist-ghc/build
+ package = qt-1.1.4
+-GHC_OPTS = -package-name qt-1.1.4 -hide-all-packages $(CFUSR) -i -idist/build -i. -idist/build/autogen -Idist/build/autogen -Idist/build -optP-include -optPdist/build/autogen/cabal_macros.h -odir dist/build -hidir dist/build -stubdir dist/build -package $(OpenGL_VERSION) -package $(base_VERSION) -package $(haskell98_VERSION) -O -XForeignFunctionInterface
++GHC_OPTS = -package-name qt-1.1.4 -hide-all-packages $(CFUSR) -i -idist-ghc/build -i. -idist-ghc/build/autogen -Idist-ghc/build/autogen -Idist-ghc/build -optP-include -optPdist-ghc/build/autogen/cabal_macros.h -odir dist-ghc/build -hidir dist-ghc/build -stubdir dist-ghc/build -package $(OpenGL_VERSION) -package $(base_VERSION) -package $(haskell98_VERSION) -O -XForeignFunctionInterface
+ MAKEFILE = Makefile_612pxd
+ C_SRCS =
+-GHC_CC_OPTS = -package $(OpenGL_VERSION) -package $(base_VERSION) -package $(haskell98_VERSION) -optc-O2 -odir dist/build
+-GHCI_LIB = dist/build/HSqt-1.1.4.o
++GHC_CC_OPTS = -package $(OpenGL_VERSION) -package $(base_VERSION) -package $(haskell98_VERSION) -optc-O2 -odir dist-ghc/build
++GHCI_LIB = dist-ghc/build/HSqt-1.1.4.o
+ soext = .so
+ LIB_LD_OPTS = -package-name qt-1.1.4 -package $(OpenGL_VERSION) -package $(base_VERSION) -package $(haskell98_VERSION) -lqtc_core -lqtc_gui -lqtc_network -lqtc_opengl -lqtc_tools -lqtc_script
+ AR = /usr/bin/ar
+Index: haskell-qt-1.1.4.1/build.pl
+===================================================================
+--- haskell-qt-1.1.4.1.orig/build.pl	2011-05-28 19:01:50.160951967 +0200
++++ haskell-qt-1.1.4.1/build.pl	2011-05-28 19:02:08.468951974 +0200
+@@ -305,8 +305,8 @@
+	$ghcmv = $2;
+	$ghcsv = $3;
+	die "$ghc version $ghcv too old" if (($ghcmv < 6) || (($ghcmv == 6) && ($ghcsv < 8)));
+-	$ghcdv = (($ghcmv >= 6) && ($ghcsv >= 12)) ? 1 : 0;
+-	$ghcfv = (($ghcmv >= 6) && ($ghcsv < 12)) ? 1 : 0;
++	$ghcdv = ((($ghcmv == 6) && ($ghcsv >= 12)) || ($ghcmv > 6)) ? 1 : 0;
++	$ghcfv = (($ghcmv == 6) && ($ghcsv < 12)) ? 1 : 0;
+ }
+ else { die "$ghc not found" };
+ my $ghclib = `$ghc --print-libdir`;
+@@ -928,7 +928,7 @@
+				sys_ds_pmf $mk, $mk612d, $xld, $hp, $hpv, $vogl, $vbse, $vh98, "NO", "way=dyn", $mngar, $mngld;
+			}
+			if ($iswin && $weld) {
+-				sys_ds "$rgSu build";
++				sys_ds "$rgSu build --builddir=dist-ghc";
+			}
+		}
+		else {
