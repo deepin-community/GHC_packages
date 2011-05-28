@@ -20,9 +20,9 @@ install/gitit:: debian/tmp-inst-ghc
 	echo "gitit:Depends=pandoc (= ${PANDOC_DEP}), libghc-filestore-data (= ${FILESTORE_DEP})" >> debian/gitit.substvars
 
 	# Removes a few files, that are not necessary and make lintian cry
-	rm -f debian/gitit/usr/share/gitit-0.7.3.6/data/post-update
-	rm -f debian/gitit/usr/share/gitit-0.7.3.6/BLUETRIP-LICENSE
-	rm -f debian/gitit/usr/share/gitit-0.7.3.6/YUI-LICENSE
+	rm -f debian/gitit/usr/share/gitit-$(CABAL_VERSION)/data/post-update
+	rm -f debian/gitit/usr/share/gitit-$(CABAL_VERSION)/BLUETRIP-LICENSE
+	rm -f debian/gitit/usr/share/gitit-$(CABAL_VERSION)/YUI-LICENSE
 
 # Not used at the moment
 #install/libghc-gitit-dev:: debian/tmp-inst-ghc
