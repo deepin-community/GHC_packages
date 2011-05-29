@@ -10,8 +10,15 @@ clean::
 	[ ! -f qws/Makefile ] || $(MAKE) -C qws distclean
 
 build/libhaskell-qt::
-	(cd qws;qmake -recursive)
+	#(cd qws;qmake -recursive)
+	./build -qm
 	$(MAKE) -C qws release
 
 install/libhaskell-qt::
 	$(MAKE) -C qws INSTALL_ROOT=$(CURDIR)/debian/libhaskell-qt install
+	dh_makeshlibs -plibhaskell-qt
+
+build-ghc-stamp: dist-ghc
+	./build -b
+	$(BUILD_GHC6) --builddir=dist-ghc
+	touch build-ghc-stamp
