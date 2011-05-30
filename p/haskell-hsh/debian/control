@@ -2,23 +2,23 @@ Source: haskell-hsh
 Priority: optional
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: John Goerzen <jgoerzen@complete.org>
-Build-Depends: debhelper (>= 5.0.0),
- cdbs,
- haddock,
- hscolour,
- haskell-devscripts (>= 0.7.3),
- ghc (>= 6.12),
- libghc-mtl-dev,
- libghc-missingh-dev (>= 1.1.0.1-1),
- libghc-hslogger-dev (>= 1.0.8-2),
- ghc-prof (>= 6.12),
- libghc-mtl-prof,
- libghc-missingh-prof (>= 1.1.0.1-1),
- libghc-hslogger-prof (>= 1.0.8-2),
- ghc-doc (>= 6.12),
- libghc-mtl-doc,
- libghc-missingh-doc (>= 1.1.0.1-1),
- libghc-hslogger-doc (>= 1.0.8-2)
+Build-Depends: cdbs,
+               debhelper (>= 5.0.0),
+               ghc (>= 6.12),
+               ghc-doc (>= 6.12),
+               ghc-prof (>= 6.12),
+               haddock,
+               haskell-devscripts (>= 0.7.3),
+               hscolour,
+               libghc-hslogger-dev (>= 1.0.8-2),
+               libghc-hslogger-doc (>= 1.0.8-2),
+               libghc-hslogger-prof (>= 1.0.8-2),
+               libghc-missingh-dev (>= 1.1.0.1-1),
+               libghc-missingh-doc (>= 1.1.0.1-1),
+               libghc-missingh-prof (>= 1.1.0.1-1),
+               libghc-mtl-dev,
+               libghc-mtl-doc,
+               libghc-mtl-prof
 Standards-Version: 3.9.2
 Section: haskell
 Homepage: http://software.complete.org/hsh
@@ -28,7 +28,7 @@ Vcs-Browser: http://git.debian.org/?p=pkg-haskell/haskell-hsh.git;a=summary
 Package: libghc-hsh-dev
 Section: haskell
 Architecture: any
-Depends: ${misc:Depends}, ${haskell:Depends}, ${shlibs:Depends}
+Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
@@ -41,7 +41,7 @@ Description: Library to mix shell scripting with Haskell programs
 Package: libghc-hsh-prof
 Section: haskell
 Architecture: any
-Depends: ${misc:Depends}, ${haskell:Depends}, ${shlibs:Depends}
+Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
@@ -56,7 +56,7 @@ Description: Library to mix shell scripting with Haskell programs; profiling
 Package: libghc-hsh-doc
 Section: haskell
 Architecture: any
-Depends: ${misc:Depends}, ${haskell:Depends}, ${shlibs:Depends}
+Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
