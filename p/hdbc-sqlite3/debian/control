@@ -24,7 +24,9 @@ Vcs-Browser: http://git.debian.org/?p=pkg-haskell/hdbc-sqlite3.git;a=summary
 Package: libghc-hdbc-sqlite3-dev
 Architecture: any
 Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}, libsqlite3-dev (>= 3.3)
+Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: Sqlite v3 HDBC (Haskell Database Connectivity) Driver for GHC
  HDBC provides an abstraction layer between Haskell programs and SQL
  relational databases. This lets you write database code once, in
@@ -48,7 +50,7 @@ Description: Sqlite v3 HDBC (Haskell Database Connectivity) Driver for GHC
 Package: libghc-hdbc-sqlite3-doc
 Replaces: haskell-hdbc-sqlite3-doc (<< 2.3.0.0-2)
 Conflicts: haskell-hdbc-sqlite3-doc (<< 2.3.0.0-2)
-Provides: haskell-hdbc-sqlite3-doc
+Provides: haskell-hdbc-sqlite3-doc, ${haskell:Provides}
 Section: doc
 Architecture: all
 Depends: ${haskell:Depends}, ${misc:Depends}
