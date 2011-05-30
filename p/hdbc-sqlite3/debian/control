@@ -6,6 +6,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Build-Depends:
  debhelper (>= 7),
  ghc (>= 6.12),
+ ghc-prof (>= 6.12),
  haskell-devscripts (>= 0.7.3),
  cdbs,
  cpphs,
@@ -14,6 +15,8 @@ Build-Depends:
  libsqlite3-dev (>= 3.3),
  libghc-hdbc-dev (>= 2.2.0),
  libghc-mtl-dev,
+ libghc-hdbc-prof (>= 2.2.0),
+ libghc-mtl-prof,
 Build-Depends-Indep:
  ghc6-doc,
  libghc-hdbc-doc
@@ -23,11 +26,25 @@ Vcs-Browser: http://git.debian.org/?p=pkg-haskell/hdbc-sqlite3.git;a=summary
 
 Package: libghc-hdbc-sqlite3-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}, libsqlite3-dev (>= 3.3)
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
 Description: Sqlite v3 HDBC (Haskell Database Connectivity) Driver for GHC
+ HDBC provides an abstraction layer between Haskell programs and SQL
+ relational databases. This lets you write database code once, in
+ Haskell, and have it work with any number of backend SQL databases
+ (MySQL, Oracle, PostgreSQL, ODBC-compliant databases, etc.)
+ .
+ This package provides the Sqlite v3 database driver for HDBC under GHC.
+
+Package: libghc-hdbc-sqlite3-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}, libsqlite3-dev (>= 3.3)
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Sqlite v3 HDBC Driver for GHC; profiling libraries
  HDBC provides an abstraction layer between Haskell programs and SQL
  relational databases. This lets you write database code once, in
  Haskell, and have it work with any number of backend SQL databases
