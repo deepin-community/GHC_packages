@@ -5,25 +5,25 @@ Uploaders: John Goerzen <jgoerzen@complete.org>
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Build-Depends:
  debhelper (>= 7),
- ghc6 (>= 6.10),
+ ghc (>= 6.10),
  haskell-devscripts (>= 0.6.18),
  cdbs,
  cpphs,
  haddock,
  hscolour,
- libghc6-hdbc-dev (>= 2.2.0-2),
+ libghc-hdbc-dev (>= 2.2.0-2),
  unixodbc-dev (>= 2.2.11),
- libghc6-mtl-dev,
- libghc6-hunit-dev,
- libghc6-time-dev,
- libghc6-convertible-dev
+ libghc-mtl-dev,
+ libghc-hunit-dev,
+ libghc-time-dev,
+ libghc-convertible-dev
 Standards-Version: 3.9.2
 Vcs-Git: git://git.debian.org/git/pkg-haskell/hdbc-odbc.git
 Vcs-Browser: http://git.debian.org/?p=pkg-haskell/hdbc-odbc.git;a=summary
 
-Package: libghc6-hdbc-odbc-dev
+Package: libghc-hdbc-odbc-dev
 Architecture: any
-Depends: libghc6-hdbc-dev (>= 2.1.0), ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}, unixodbc-dev (>= 2.2.11)
+Depends: libghc-hdbc-dev (>= 2.1.0), ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}, unixodbc-dev (>= 2.2.11)
 Description: unixODBC HDBC (Haskell Database Connectivity) Driver for GHC
  HDBC provides an abstraction layer between Haskell programs and SQL
  relational databases. This lets you write database code once, in
@@ -44,7 +44,7 @@ Description: unixODBC HDBC (Haskell Database Connectivity) Driver for GHC
 # .
 # This package provides the ODBC database driver for HDBC under Hugs.
 
-Package: libghc6-hdbc-odbc-doc
+Package: libghc-hdbc-odbc-doc
 Replaces: haskell-hdbc-odbc-doc
 Conflicts: haskell-hdbc-odbc-doc
 Provides: haskell-hdbc-odbc-doc
