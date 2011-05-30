@@ -34,6 +34,7 @@ Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}, ${haskell:Depends}
 Suggests: libghc-hdbc-postgresql-dev | libghc-hdbc-sqlite3-dev, libghc-hdbc-missingh-dev, ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
+Provides: ${haskell:Provides}
 Description: Haskell Database Connectivity, GHC package
  HDBC provides an abstraction layer between Haskell programs and SQL
  relational databases. This lets you write database code once, in
@@ -49,6 +50,9 @@ Description: Haskell Database Connectivity, GHC package
 Package: libghc-hdbc-prof
 Architecture: any
 Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: Haskell Database Connectivity, GHC profiling data
  HDBC provides an abstraction layer between Haskell programs and SQL
  relational databases. This package provides profiling information for using
@@ -73,7 +77,7 @@ Description: Haskell Database Connectivity, GHC profiling data
 Package: libghc-hdbc-doc
 Replaces: haskell-hdbc-doc (<< 2.2.3-2)
 Conflicts: haskell-hdbc-doc (<< 2.2.3-2)
-Provides: haskell-hdbc-doc
+Provides: haskell-hdbc-doc, ${haskell:Provides}
 Section: doc
 Architecture: all
 Depends: ${haskell:Depends}, ${misc:Depends}
