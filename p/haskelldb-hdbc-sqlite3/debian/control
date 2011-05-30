@@ -21,8 +21,8 @@ Build-Depends: debhelper (>= 7)
   , haskell-hdbc-doc
   , libghc-hdbc-sqlite3-dev (>= 2.0.0)
   , libghc-hdbc-sqlite3-dev (<< 3)
-#  , libghc-hdbc-sqlite3-prof
-#  , haskell-hdbc-sqlite3-doc
+  , libghc-hdbc-sqlite3-prof
+  , libghc-hdbc-sqlite3-doc
   , libghc-mtl-dev
   , libghc-mtl-prof
   , libghc-mtl-doc
@@ -46,15 +46,18 @@ Description: HaskellDB support for the HDBC SQLite driver
  This package also includes the DBDirect-hdbc-sqlite3 binary to generate Haskell
  source files by querying the database.
 
-# Package: libghc-haskelldb-hdbc-sqlite3-prof
-# Architecture: any
-# Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-# Description: HaskellDB support for the HDBC SQLite driver; profiling libraries
-#  This package provides a library for the Haskell programming language.
-#  See http://www.haskell.org/ for more information on Haskell.
-#  .
-#  This library allows you to use the HaskellDB database abstraction library with
-#  the SQLite driver provided by the HDBC database driver interface suite.
+Package: libghc-haskelldb-hdbc-sqlite3-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: HaskellDB support for the HDBC SQLite driver; profiling libraries
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library allows you to use the HaskellDB database abstraction library with
+ the SQLite driver provided by the HDBC database driver interface suite.
 
 Package: libghc-haskelldb-hdbc-sqlite3-doc
 Section: doc
