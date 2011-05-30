@@ -6,24 +6,30 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Build-Depends:
  debhelper (>= 7),
  ghc (>= 6.10),
+ ghc-prof (>= 6.10),
  haskell-devscripts (>= 0.6.18),
  cdbs,
  cpphs,
  haddock,
  hscolour,
  libghc-hdbc-dev (>= 2.2.0-2),
+ libghc-hdbc-prof (>= 2.2.0-2),
  unixodbc-dev (>= 2.2.11),
  libghc-mtl-dev,
  libghc-hunit-dev,
  libghc-time-dev,
- libghc-convertible-dev
+ libghc-convertible-dev,
+ libghc-mtl-prof,
+ libghc-hunit-prof,
+ libghc-time-prof,
+ libghc-convertible-prof
 Standards-Version: 3.9.2
 Vcs-Git: git://git.debian.org/git/pkg-haskell/hdbc-odbc.git
 Vcs-Browser: http://git.debian.org/?p=pkg-haskell/hdbc-odbc.git;a=summary
 
 Package: libghc-hdbc-odbc-dev
 Architecture: any
-Depends: libghc-hdbc-dev (>= 2.1.0), ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}, unixodbc-dev (>= 2.2.11)
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}, unixodbc-dev (>= 2.2.11)
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
@@ -34,6 +40,21 @@ Description: unixODBC HDBC (Haskell Database Connectivity) Driver for GHC
  (MySQL, Oracle, PostgreSQL, ODBC-compliant databases, etc.)
  .
  This package provides the ODBC database driver for HDBC under GHC.
+
+Package: libghc-hdbc-odbc-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: unixODBC Haskell Database Connectivity Driver; profiling libraries
+ HDBC provides an abstraction layer between Haskell programs and SQL
+ relational databases. This lets you write database code once, in
+ Haskell, and have it work with any number of backend SQL databases
+ (MySQL, Oracle, PostgreSQL, ODBC-compliant databases, etc.)
+ .
+ This package provides the ODBC database driver for HDBC under GHC compiled for
+ profiling.
 
 #Package: libhugs-hdbc-odbc
 #Section: libs
