@@ -14,7 +14,11 @@ Build-Depends: debhelper (>= 5.0.0),
  ghc-prof (>= 6.12),
  libghc-mtl-prof,
  libghc-missingh-prof (>= 1.1.0.1-1),
- libghc-hslogger-prof (>= 1.0.8-2)
+ libghc-hslogger-prof (>= 1.0.8-2),
+ ghc-doc (>= 6.12),
+ libghc-mtl-doc,
+ libghc-missingh-doc (>= 1.1.0.1-1),
+ libghc-hslogger-doc (>= 1.0.8-2)
 Standards-Version: 3.9.2
 Section: haskell
 Homepage: http://software.complete.org/hsh
@@ -48,3 +52,18 @@ Description: Library to mix shell scripting with Haskell programs; profiling
  to/from other shell commands and arbitrary Haskell functions at will.
  .
  This package contains the HSH library compiled for profiling support
+
+Package: libghc-hsh-doc
+Section: haskell
+Architecture: any
+Depends: ${misc:Depends}, ${haskell:Depends}, ${shlibs:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Library to mix shell scripting with Haskell programs; documentation
+ HSH is designed to let you mix and match shell expressions with
+ Haskell programs. With HSH, it is possible to easily run shell
+ commands, capture their output or provide their input, and pipe them
+ to/from other shell commands and arbitrary Haskell functions at will.
+ .
+ This package contains the hyperlinked documentation for the HSH library
