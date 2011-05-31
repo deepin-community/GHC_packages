@@ -6,6 +6,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Build-Depends:
  debhelper (>= 7),
  ghc (>= 6.12),
+ ghc-prof (>= 6.12),
  haskell-devscripts (>= 0.7.3),
  cdbs,
  cpphs,
@@ -14,10 +15,15 @@ Build-Depends:
  libghc-hdbc-dev (>= 2.2.0),
  libpq-dev (>= 8.1.1),
  libghc-mtl-dev,
- libghc-parsec-dev
+ libghc-parsec-dev,
+ libghc-hdbc-prof (>= 2.2.0),
+ libghc-mtl-prof,
+ libghc-parsec-prof
 Build-Depends-Indep:
  ghc-doc,
- libghc-hdbc-doc
+ libghc-hdbc-doc,
+ libghc-mtl-doc,
+ libghc-parsec-doc
 Standards-Version: 3.9.2
 Homepage: http://software.complete.org/hdbc-postgresql
 Vcs-Git: git://git.debian.org/git/pkg-haskell/hdbc-postgresql.git
@@ -35,6 +41,20 @@ Description: PostgreSQL HDBC (Haskell Database Connectivity) Driver for GHC
  Haskell, and have it work with any number of backend SQL databases.
  .
  This package provides the PostgreSQL database driver for HDBC under GHC.
+
+Package: libghc-hdbc-postgresql-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: PostgreSQL HDBC Driver for GHC; profiling libraries
+ HDBC provides an abstraction layer between Haskell programs and SQL
+ relational databases. This lets you write database code once, in
+ Haskell, and have it work with any number of backend SQL databases.
+ .
+ This package provides the PostgreSQL database driver for HDBC under GHC
+ compiled for profiling.
 
 Package: libghc-hdbc-postgresql-doc
 Replaces: haskell-hdbc-postgresql-doc (<< 2.2.3.1-3)
