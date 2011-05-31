@@ -18,14 +18,17 @@ Build-Depends:
 Build-Depends-Indep:
  ghc-doc,
  libghc-hdbc-doc
-Standards-Version: 3.8.3
+Standards-Version: 3.9.2
 Homepage: http://software.complete.org/hdbc-postgresql
 Vcs-Git: git://git.debian.org/git/pkg-haskell/hdbc-postgresql.git
 Vcs-Browser: http://git.debian.org/?p=pkg-haskell/hdbc-postgresql.git;a=summary
 
 Package: libghc-hdbc-postgresql-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}, libpq-dev (>= 8.1.1), libghc-mtl-dev
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}, libpq-dev (>= 8.1.1)
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: PostgreSQL HDBC (Haskell Database Connectivity) Driver for GHC
  HDBC provides an abstraction layer between Haskell programs and SQL
  relational databases. This lets you write database code once, in
@@ -36,7 +39,7 @@ Description: PostgreSQL HDBC (Haskell Database Connectivity) Driver for GHC
 Package: libghc-hdbc-postgresql-doc
 Replaces: haskell-hdbc-postgresql-doc (<< 2.2.3.1-3)
 Conflicts: haskell-hdbc-postgresql-doc (<< 2.2.3.1-3)
-Provides: haskell-hdbc-postgresql-doc
+Provides: haskell-hdbc-postgresql-doc, ${haskell:Provides}
 Section: doc
 Architecture: all
 Depends: ${haskell:Depends}, ${misc:Depends}
