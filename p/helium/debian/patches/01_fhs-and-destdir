@@ -1,18 +1,21 @@
 # Description: FHS and destdir
 # Author: Arjan Oosting <arjanoosting@home.nl>
-Index: helium-1.6/helium/src/Makefile.in
+Index: helium-1.7~pre20090428/helium/src/Makefile.in
 ===================================================================
---- helium-1.6.orig/helium/src/Makefile.in	2006-02-05 14:34:46.000000000 -0200
-+++ helium-1.6/helium/src/Makefile.in	2010-03-15 10:27:08.000000000 -0300
-@@ -28,9 +28,9 @@
+--- helium-1.7~pre20090428.orig/helium/src/Makefile.in	2011-06-02 19:13:59.000000000 +0200
++++ helium-1.7~pre20090428/helium/src/Makefile.in	2011-06-02 19:14:24.000000000 +0200
+@@ -29,12 +29,12 @@
 
+ # Installation paths
  prefix      = @prefix@
+-basedir     = @prefix@/helium-$(VERSION)
++basedir     = $(DESTDIR)@prefix@/lib/helium
  exec_prefix = @exec_prefix@
--bindir      = @bindir@
--libdir      = @prefix@/helium/lib
--demodir     = @prefix@/helium/demo
-+bindir      = $(DESTDIR)@bindir@
-+libdir      = $(DESTDIR)@prefix@/lib/helium/lib
+-bindir      = @bindir@          # Typically, this is in your path
++bindir      = $(DESTDIR)@bindir@          # Typically, this is in your path
+ hbindir     = $(basedir)/bin    # typically, this one is not. Used to support multiple versions.
+ libdir      = $(basedir)/lib
+-demodir     = $(basedir)/demo
 +demodir     = $(DESTDIR)@prefix@/share/doc/helium/demo
 
  status :
