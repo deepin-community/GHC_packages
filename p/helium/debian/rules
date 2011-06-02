@@ -46,8 +46,8 @@ configure-stamp:
 build: build-stamp
 build-stamp: configure-stamp
 	dh_testdir
+	$(MAKE_ENVVARS) $(MAKE) -C lvm/src/runtime depend
 	$(MAKE_ENVVARS) $(MAKE) -C helium/src ag
-	$(MAKE_ENVVARS) $(MAKE) -C helium/src depend
 	$(MAKE_ENVVARS) $(MAKE) -C helium/src
 	touch $@
 
