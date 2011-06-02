@@ -39,7 +39,7 @@ configure-stamp:
 	cd helium && ./configure --prefix=/usr \
 	    --bindir=/usr/lib/helium/bin \
 	    --with-ag=/usr/bin/uuagc --with-ghc=/usr/bin/ghc \
-	    --disable-logger $(CONFIGURE_FLAGS)
+	    $(CONFIGURE_FLAGS)
 	touch configure-stamp
 
 
@@ -62,7 +62,7 @@ clean-patched:
 	rm -f helium/config.cache helium/config.log \
 	    helium/config.status helium/lib/Makefile \
 	    helium/lib/simple/Makefile helium/src/Makefile \
-	    helium/src/Makefile.bak helium/src/utils/Logger.hs \
+	    helium/src/Makefile.bak \
 	    helium/src/utils/OSSpecific.hs lvm/src/config/makefile \
 	    lvm/src/config/m.h lvm/src/config/s.h
 	rm -f helium/src/codegeneration/CodeGeneration.hs
