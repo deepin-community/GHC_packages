@@ -1,0 +1,13 @@
+Index: helium-1.7~pre20090428/lvm/src/lib/makefile
+===================================================================
+--- helium-1.7~pre20090428.orig/lvm/src/lib/makefile	2011-06-02 18:38:38.000000000 +0200
++++ helium-1.7~pre20090428/lvm/src/lib/makefile	2011-06-02 18:38:45.000000000 +0200
+@@ -54,7 +54,7 @@
+
+ # The main target
+ $(MAIN)$(EXE): $(OBJS)
+-	  $(HC)	-package parsec -o $@ $(HC_OPTS) $(OBJS)
++	  $(HC)	-package parsec -package haskell98 -o $@ $(HC_OPTS) $(OBJS)
+ #	  $(STRIP) $@
+
+ common/ghc/Special.hi: common/ghc/Special.hs
