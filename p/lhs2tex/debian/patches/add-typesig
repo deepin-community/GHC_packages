@@ -1,0 +1,12 @@
+Index: lhs2tex-1.15/MathPoly.lhs
+===================================================================
+--- lhs2tex-1.15.orig/MathPoly.lhs	2011-06-02 20:35:19.000000000 +0200
++++ lhs2tex-1.15/MathPoly.lhs	2011-06-02 20:40:38.000000000 +0200
+@@ -368,6 +368,7 @@
+ >       Poly (((n,c),ts,ind):rs@(((nn,_),_,_):_))
+ >                               -> mkFromTo stack n nn  c ts rs ls
+ >
++>   mkFromTo :: Stack -> String -> String -> Col -> [Pos Token] -> [((String, Int), [Pos Token], Bool)]  -> [Line [Pos Token]] -> (Doc, Stack)
+ >   mkFromTo stack bn en c ts rs ls
+ >     | bn == en                =  -- dies kann am Beginn einer Zeile durch Einrueckung passieren
+ >                                  (rest,stack')
