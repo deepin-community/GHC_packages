@@ -1,0 +1,12 @@
+Index: helium-1.7~pre20090428/helium/src/texthint/ConfigFile.hs
+===================================================================
+--- helium-1.7~pre20090428.orig/helium/src/texthint/ConfigFile.hs	2011-06-02 18:52:29.000000000 +0200
++++ helium-1.7~pre20090428/helium/src/texthint/ConfigFile.hs	2011-06-02 18:52:30.000000000 +0200
+@@ -23,6 +23,7 @@
+              skipMany (noneOf "\r\n")
+         <?> "comment"
+
++eol :: Parser ()
+ eol = do oneOf "\n\r"
+          return ()
+       <?> "end of line"
