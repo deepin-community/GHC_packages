@@ -1,43 +1,28 @@
 # Description: Add readline support
 # Author: Arjan Oosting <arjanoosting@home.nl>
-Index: helium-1.6/helium/src/Makefile.in
+Index: helium-1.7~pre20090428/helium/src/texthint/Main.hs
 ===================================================================
---- helium-1.6.orig/helium/src/Makefile.in	2010-03-15 10:27:08.000000000 -0300
-+++ helium-1.6/helium/src/Makefile.in	2010-03-15 10:27:14.000000000 -0300
-@@ -48,7 +48,7 @@
- PACKAGENET =
- endif
- HC_OPTS = -static -fglasgow-exts -fallow-undecidable-instances -fallow-overlapping-instances \
--		$(PACKAGENET) -package lang -package text -i$(IFACES) $(EXTRA_HC_OPTS)
-+		$(PACKAGENET) -package lang -package text -package editline -i$(IFACES) $(EXTRA_HC_OPTS)
-
- AG      = @WithAG@
- AG_OPTS = -mscfr
-Index: helium-1.6/helium/src/texthint/Main.hs
-===================================================================
---- helium-1.6.orig/helium/src/texthint/Main.hs	2006-02-05 14:34:36.000000000 -0200
-+++ helium-1.6/helium/src/texthint/Main.hs	2010-03-15 10:27:14.000000000 -0300
-@@ -15,6 +15,7 @@
- import Monad(when)
- import IO(stdout, hFlush)
+--- helium-1.7~pre20090428.orig/helium/src/texthint/Main.hs	2011-06-02 18:34:20.000000000 +0200
++++ helium-1.7~pre20090428/helium/src/texthint/Main.hs	2011-06-02 18:43:48.000000000 +0200
+@@ -23,6 +23,7 @@
+ import Data.IORef       ( IORef, readIORef, newIORef, writeIORef )
+ import System.IO.Unsafe ( unsafePerformIO )
  import System(system, getEnv, getArgs, exitWith, ExitCode(..))
 +import qualified System.Console.Editline.Readline as RL
  import OSSpecific(slash)
  import Directory
-
-@@ -75,7 +76,10 @@
-         else
-             return initialState
-
--    -- Enter read-eval-print loop
+ import ConfigFile(Config, readConfig)
+@@ -155,6 +156,9 @@
+               (initialState{ compOptions = addStandardLVMPath basepath (configOptions ++ (map show options)) })
+           Nothing ->
+             return initialState{ compOptions = addStandardLVMPath basepath configOptions }
++
 +    -- Initialize editline
 +    RL.initialize
-+
-+    -- Enter read-eval-print loop
-     loop stateAfterLoad
 
-     return ()
-@@ -89,21 +93,24 @@
+     -- Enter read-eval-print loop
+     loop stateAfterLoad
+@@ -170,20 +174,22 @@
 
  loop :: State -> IO State
  loop state = do
@@ -49,24 +34,22 @@ Index: helium-1.6/helium/src/texthint/Main.hs
 +    let command = fmap trim command'
      newState <- case command of
 -        (':':cmd:rest) ->
-+        (Just (':':cmd:rest)) -> do
++        Just (':':cmd:rest) -> do
 +            RL.addHistory (':':cmd:rest)
              processCommand (toLower cmd) (trim rest) state
 -        (':':_) -> do
-+        (Just (':':_)) -> do
++        Just (':':_) -> do
              putStrLn "Expecting command after colon. Type :? for help"
              return state
 -        expression -> do
-+        (Just expression) -> do
++        Just expression -> do
              if null expression
-                 then return ()
--                else processExpression expression state
-+                else do
-+                    RL.addHistory expression
-+                    processExpression expression state
-             return state
-+        (Nothing) -> do
-+            do return state
+               then return state
+-              else processExpression expression state
++              else do
++                RL.addHistory expression
++                processExpression expression state
++        Nothing -> return state
      loop newState
    where
      prompt :: State -> String
