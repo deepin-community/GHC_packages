@@ -1,44 +1,44 @@
 # Description: No strip
 # Author: Arjan Oosting <arjan@debian.org>
-Index: helium-1.6/helium/src/Makefile.in
+Index: helium-1.7~pre20090428/helium/src/Makefile.in
 ===================================================================
---- helium-1.6.orig/helium/src/Makefile.in	2010-03-15 10:27:16.000000000 -0300
-+++ helium-1.6/helium/src/Makefile.in	2010-03-15 10:27:28.000000000 -0300
-@@ -201,7 +201,7 @@
+--- helium-1.7~pre20090428.orig/helium/src/Makefile.in	2011-06-02 18:09:41.000000000 +0200
++++ helium-1.7~pre20090428/helium/src/Makefile.in	2011-06-02 18:19:15.000000000 +0200
+@@ -76,7 +76,7 @@
 	@echo "****************************************************"
-	$(HC)	-o $(HELIUMBINDIR)/$(MAIN)$(EXE) $(HC_OPTS) $(OBJS)
+	$(HC)	-o $(HELIUMBINDIR)/$(MAIN)$(EXE) $(HC_OPTS) main/Main.hs
  ifdef STRIP
 -	$(STRIP) $(HELIUMBINDIR)/$(MAIN)$(EXE)
 +#	$(STRIP) $(HELIUMBINDIR)/$(MAIN)$(EXE)
  endif
 
  all: ag compiler coreasm lvmrun libraries texthint status
-@@ -240,7 +240,7 @@
+@@ -114,7 +114,7 @@
+	@echo "  TextHint: the textual Helium interpreter"
 	@echo "****************************************************"
-	$(HC) $(HC_OPTS) -o $(HELIUMBINDIR)/texthint$(EXE) texthint/Main.o \
-                       utils/OSSpecific.o
+	$(HC) -o $(HELIUMBINDIR)/texthint$(EXE) $(HC_OPTS) texthint/Main.hs
 -	$(STRIP) $(HELIUMBINDIR)/texthint$(EXE)
 +#	$(STRIP) $(HELIUMBINDIR)/texthint$(EXE)
 
- texthint/Main.o: utils/OSSpecific.hi texthint/Main.hs
+ # AG sources
 
-Index: helium-1.6/lvm/src/lib/makefile
+Index: helium-1.7~pre20090428/lvm/src/lib/makefile
 ===================================================================
---- helium-1.6.orig/lvm/src/lib/makefile	2010-03-15 10:27:16.000000000 -0300
-+++ helium-1.6/lvm/src/lib/makefile	2010-03-15 10:27:28.000000000 -0300
+--- helium-1.7~pre20090428.orig/lvm/src/lib/makefile	2007-02-20 13:32:04.000000000 +0100
++++ helium-1.7~pre20090428/lvm/src/lib/makefile	2011-06-02 18:19:28.000000000 +0200
 @@ -55,7 +55,7 @@
  # The main target
  $(MAIN)$(EXE): $(OBJS)
-	  $(HC)	-o $@ $(HC_OPTS) $(OBJS)
+	  $(HC)	-package parsec -o $@ $(HC_OPTS) $(OBJS)
 -	  $(STRIP) $@
 +#	  $(STRIP) $@
 
  common/ghc/Special.hi: common/ghc/Special.hs
 	$(HC) -c $< -cpp -fglasgow-exts $(HC_OPTS)
-Index: helium-1.6/lvm/src/runtime/makefile
+Index: helium-1.7~pre20090428/lvm/src/runtime/makefile
 ===================================================================
---- helium-1.6.orig/lvm/src/runtime/makefile	2006-02-05 14:35:35.000000000 -0200
-+++ helium-1.6/lvm/src/runtime/makefile	2010-03-15 10:27:28.000000000 -0300
+--- helium-1.7~pre20090428.orig/lvm/src/runtime/makefile	2002-12-04 15:54:19.000000000 +0100
++++ helium-1.7~pre20090428/lvm/src/runtime/makefile	2011-06-02 18:18:32.000000000 +0200
 @@ -51,7 +51,7 @@
 
  lvmrun$(EXE): $(OBJS)
