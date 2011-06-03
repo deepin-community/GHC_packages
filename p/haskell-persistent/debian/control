@@ -1,0 +1,80 @@
+Source: haskell-persistent
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.8)
+  , ghc
+  , ghc-prof
+  , libghc-enumerator-dev
+  , libghc-enumerator-prof
+  , libghc-hamlet-dev
+  , libghc-hamlet-prof
+  , libghc-neither-dev
+  , libghc-neither-prof
+  , libghc-parsec3-dev
+  , libghc-parsec3-prof
+  , libghc-stm-dev
+  , libghc-stm-prof
+  , libghc-text-dev
+  , libghc-text-prof
+  , libghc-web-routes-quasi-dev
+  , libghc-web-routes-quasi-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-enumerator-doc
+  , libghc-hamlet-doc
+  , libghc-neither-doc
+  , libghc-parsec3-doc
+  , libghc-stm-doc
+  , libghc-text-doc
+  , libghc-web-routes-quasi-doc
+Standards-Version: 3.9.2
+Homepage: http://hackage.haskell.org/package/persistent
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-persistent
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-persistent
+
+Package: libghc-persistent-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: type-safe, non-relational, multi-backend persistence
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library provides just the general interface and helper functions.
+ You must use a specific backend in order to make this useful.
+
+Package: libghc-persistent-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: type-safe, non-relational, multi-backend persistence; profiling libs
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library provides just the general interface and helper functions.
+ You must use a specific backend in order to make this useful.
+
+Package: libghc-persistent-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: type-safe, non-relational, multi-backend persistence; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library provides just the general interface and helper functions.
+ You must use a specific backend in order to make this useful.
