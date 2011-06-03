@@ -1,0 +1,72 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+# Sample debian/rules that uses debhelper.
+# This file was originally written by Joey Hess and Craig Small.
+# As a special exception, when this file is copied by dh-make into a
+# dh-make output file, you may use that output file without restriction.
+# This special exception was added by Craig Small in version 0.37 of dh-make.
+
+# Include dpatch
+include /usr/share/dpatch/dpatch.make
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+configure: .setup-config
+config.status: patch-stamp
+#	./configure --prefix=/usr
+	touch config.status
+
+.setup-config: config.status
+	ghc --make Setup.hs -o setup -package Cabal 
+	./setup configure --prefix=/usr
+
+build: build-stamp 
+build-stamp: .setup-config
+	./setup build
+	touch $@
+
+clean: clean-patched unpatch
+clean-patched:
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp
+	if [ -x setup ] && [ -e .setup-config ]; then ./setup clean ; fi
+	rm -rf Setup setup Setup.hi Setup.ho Setup.o .setup-config dist html
+	rm -f config.log config.status Makefile scripts/mkAGdepend.sh
+	dh_clean 
+
+install: build-stamp
+	dh_testdir 
+	dh_testroot
+	dh_clean -k 
+	dh_installdirs 
+	./setup copy --copy-prefix=debian/uuagc/usr
+	rm -r debian/uuagc/usr/share/doc/uuagc-*
+
+# Build architecture-independent files here.
+binary-indep: build install
+# We have nothing to do by default.
+
+# Build architecture-dependent files here.
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs
+	dh_installdocs
+	dh_installexamples
+	dh_install
+	dh_installman
+	dh_link
+	dh_strip
+	dh_compress
+	dh_fixperms
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary: binary-indep binary-arch
+.PHONY: build clean clean-patched binary-indep binary-arch binary install configure
+

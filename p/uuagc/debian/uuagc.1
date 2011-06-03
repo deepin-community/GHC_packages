@@ -1,0 +1,131 @@
+.TH uuagc "1" "April 2007" "uuagc 0.9.4" "User Commands"
+.SH NAME
+uuagc \- Attribute Grammar compiler
+.SH SYNOPSIS
+.B uuagc 
+[
+.IR options " ..."
+]
+.I file
+.SH DESCRIPTION
+This program \fBuuagc\fP is the compiler of the (Utrecht University) Attribute Grammar system. 
+It takes as input AG source files (.ag) and produces as output regular Haskell source files (.hs).
+.PP 
+Available options:
+.TP
+\fB\-m\fP
+generate default module header
+.TP
+\fB\-\-module\fP[=\fIname\fP]
+generate module header, specify module name
+.TP
+\fB\-d\fP, \fB\-\-data\fP
+generate data type definition
+.TP
+    \fB\-\-strictdata\fP
+generate strict data fields (when data is generated)
+.TP
+    \fB\-\-strictwrap\fP
+generate strict wrap fields for WRAPPER generated data
+.TP
+\fB\-c\fP, \fB\-\-catas\fP
+generate catamorphisms
+.TP
+\fB\-f\fP, \fB\-\-semfuns\fP
+generate semantic functions
+.TP
+\fB\-s\fP, \fB\-\-signatures\fP
+generate signatures for semantic functions
+.TP
+    \fB\-\-newtypes\fP
+use newtypes instead of type synonyms
+.TP
+\fB\-p\fP, \fB\-\-pretty\fP
+generate pretty printed list of attributes
+.TP
+\fB\-w\fP, \fB\-\-wrappers\fP
+generate wappers for semantic domains
+.TP
+\fB\-r\fP, \fB\-\-rename\fP
+rename data constructors
+.TP
+    \fB\-\-modcopy\fP
+use modified copy rule
+.TP
+    \fB\-\-nest\fP
+use nested tuples
+.TP
+    \fB\-\-syntaxmacro\fP
+experimental: generate syntax macro code (using knit catas)
+.TP
+\fB\-o\fP \fIfile\fP, \fB\-\-output\fP=\fIfile\fP
+specify output \fIfile\fP
+.TP
+\fB\-v\fP, \fB\-\-verbose\fP
+verbose error message format
+.TP
+\fB\-h\fP, \-?, \fB\-\-help\fP
+get usage information
+.TP
+\fB\-a\fP, \fB\-\-all\fP
+do everything (\fB\-dcfsprm\fP)
+.TP
+\fB\-P\fP \fIsearch path\fP, \fB\-\-\fP=\fIsearch path\fP
+specify \fIseach path\fP
+.TP
+\fB\-\-prefix\fP=\fIprefix\fP
+set prefix for semantic functions
+.TP
+    \fB\-\-self\fP
+generate self attribute
+.TP
+    \fB\-\-cycle\fP
+check for cyclic definitions
+.TP
+    \fB\-\-version\fP
+get version information
+.TP
+\fB\-O\fP,\fB\-\-optimize\fP
+optimize generated code (--visit --case)
+.TP
+    \fB\-\-visit\fP
+try generating visit functions
+.TP
+    \fB\-\-seq\fP
+force evaluation using function seq (visit functions only)
+.TP
+    \fB\-\-unbox\fP
+use unboxed tuples
+.TP
+    \fB\-\-case\fP
+use nested cases instead of let (visit functions only)
+.TP
+    \fB\-\-Werrors\fP
+turn warnings into fatal errors
+.TP
+    \fB\-\-dumpgrammar\fP
+dump internal grammar representation (in generated code)
+.
+.SH COPYRIGHT
+Copyright \(co 1998 \(em 2005  Doaitse Swierstra, Arthur Baars and Alexey Rodriguez
+
+Copyright \(co 2005 \(em 2007  Alexey Rodriguez
+
+Copyright \(co 2005 \(em 2007  Joost Verhoog
+
+Copyright \(co 2006 \(em 2007  Arie Middelkoop
+
+Copyright \(co 2006 \(em 2007  Jeroen Fokker
+
+Copyright \(co 2007         Atze Dijkstra
+
+.PP
+This package is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+.PP
+This package is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU General Public License for more details.
+.PP
+You should have received a copy of the GNU General Public License along with this package; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
+.
+.SH AUTHOR
+This manual page was written by Arjan Oosting <arjanoosting@home.nl> for the Debian system (but may be used by others).
