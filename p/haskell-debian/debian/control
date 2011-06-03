@@ -105,6 +105,7 @@ Package: haskell-debian-utils
 Section: devel
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}
+Recommends: apt-file
 Description: Various helpers to work with Debian packages
  This package contains tools shipped with the Haskell library “debian”:
  .
@@ -120,7 +121,8 @@ Description: Various helpers to work with Debian packages
  .
    * cabal-debian:
      Tool for creating debianizations of Haskell packages based on the .cabal
-     file.
+     file.  If apt-file is installed it will use it to discover what is the
+     debian package name of a C library.
  .
    * apt-get-build-depends:
      Tool which will parse the Build-Depends{-Indep} lines from debian/control
