@@ -1,0 +1,30 @@
+Description: link with the shared LLVM-2.8 library
+Author: Matthias Klose <doko@ubuntu.com>
+Forwarded: yes, https://github.com/bos/llvm/pull/1
+
+Index: haskell-llvm-0.8.0.2/configure
+===================================================================
+--- haskell-llvm-0.8.0.2.orig/configure	2011-01-30 13:05:53.000000000 +0100
++++ haskell-llvm-0.8.0.2/configure	2011-01-30 13:13:11.000000000 +0100
+@@ -2528,7 +2528,7 @@
+ llvm_includedir="`$llvm_config --includedir`"
+ llvm_ldflags="`$llvm_config --ldflags`"
+
+-llvm_all_libs="`$llvm_config --libs all`"
++llvm_all_libs="-lLLVM-2.8"
+ llvm_target="`$llvm_config --libs engine | sed 's/.*LLVM\(.[^ ]*\)CodeGen.*/\1/'`"
+
+ CPPFLAGS="$llvm_cppflags $CPPFLAGS $TARGET_CPPFLAGS"
+Index: haskell-llvm-0.8.0.2/configure.ac
+===================================================================
+--- haskell-llvm-0.8.0.2.orig/configure.ac	2011-01-30 13:13:39.000000000 +0100
++++ haskell-llvm-0.8.0.2/configure.ac	2011-01-30 13:13:59.000000000 +0100
+@@ -72,7 +72,7 @@
+ llvm_includedir="`$llvm_config --includedir`"
+ llvm_ldflags="`$llvm_config --ldflags`"
+
+-llvm_all_libs="`$llvm_config --libs all`"
++llvm_all_libs="-lLLVM-2.8"
+ llvm_target="`$llvm_config --libs engine | sed 's/.*LLVM\(.[[^ ]]*\)CodeGen.*/\1/'`"
+
+ CPPFLAGS="$llvm_cppflags $CPPFLAGS $TARGET_CPPFLAGS"
