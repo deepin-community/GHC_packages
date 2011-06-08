@@ -1,0 +1,83 @@
+Source: haskell-tls-extra
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.8)
+  , ghc
+  , ghc-prof
+  , libghc-bytestring-dev
+  , libghc-bytestring-prof
+  , libghc-certificate-dev
+  , libghc-certificate-prof
+  , libghc-crypto-api-dev
+  , libghc-crypto-api-prof
+  , libghc-cryptocipher-dev
+  , libghc-cryptocipher-prof
+  , libghc-cryptohash-dev
+  , libghc-cryptohash-prof
+  , libghc-mtl-dev
+  , libghc-mtl-prof
+  , libghc-network-dev
+  , libghc-network-prof
+  , libghc-tls-dev
+  , libghc-tls-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-bytestring-doc
+  , libghc-certificate-doc
+  , libghc-crypto-api-doc
+  , libghc-cryptocipher-doc
+  , libghc-cryptohash-doc
+  , libghc-mtl-doc
+  , libghc-network-doc
+  , libghc-tls-doc
+Standards-Version: 3.9.2
+Homepage: http://hackage.haskell.org/package/tls-extra
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-tls-extra
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-tls-extra
+
+Package: libghc-tls-extra-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: TLS extra default values and helpers
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ It provides a set of extra definitions, default values and helpers for
+ the Haskell tls package.
+
+Package: libghc-tls-extra-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: TLS extra default values and helpers; profiling libraries
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ It provides a set of extra definitions, default values and helpers for
+ the Haskell tls package.
+
+Package: libghc-tls-extra-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: TLS extra default values and helpers; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ It provides a set of extra definitions, default values and helpers for
+ the Haskell tls package.
