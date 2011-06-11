@@ -1,0 +1,77 @@
+Source: haskell-mime-mail
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.8)
+  , ghc
+  , ghc-prof
+  , libghc-blaze-builder-dev
+  , libghc-blaze-builder-prof
+  , libghc-bytestring-dev
+  , libghc-bytestring-prof
+  , libghc-dataenc-dev
+  , libghc-dataenc-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-blaze-builder-doc
+  , libghc-bytestring-doc
+  , libghc-dataenc-doc
+Standards-Version: 3.9.2
+Homepage: http://hackage.haskell.org/package/mime-mail
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-mime-mail
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-mime-mail
+
+Package: libghc-mime-mail-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Library to compose MIME email messages
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ It provides some high-level datatypes for declaring MIME email
+ messages, functions for automatically composing these into
+ bytestrings, and the ability to send bytestrings via the sendmail
+ executable. You can also use any other library you wish to send via
+ different methods, for example directly to SMTP.
+
+Package: libghc-mime-mail-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Library to compose MIME email messages; profiling libraries
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ It provides some high-level datatypes for declaring MIME email
+ messages, functions for automatically composing these into
+ bytestrings, and the ability to send bytestrings via the sendmail
+ executable. You can also use any other library you wish to send via
+ different methods, for example directly to SMTP.
+
+Package: libghc-mime-mail-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Library to compose MIME email messages; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ It provides some high-level datatypes for declaring MIME email
+ messages, functions for automatically composing these into
+ bytestrings, and the ability to send bytestrings via the sendmail
+ executable. You can also use any other library you wish to send via
+ different methods, for example directly to SMTP.
