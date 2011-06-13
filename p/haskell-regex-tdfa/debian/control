@@ -10,15 +10,17 @@ Build-Depends:
  ghc,
  ghc-prof,
  ghc-doc,
- libghc-parsec2-dev,
- libghc-parsec2-prof,
- libghc-parsec2-doc,
+ libghc-parsec3-dev,
+ libghc-parsec3-prof,
+ libghc-parsec3-doc,
  libghc-regex-base-dev (>= 0.93.1),
  libghc-regex-base-prof,
  libghc-regex-base-doc,
  libghc-mtl-dev,
  libghc-mtl-prof,
  libghc-mtl-doc,
+Build-Conflicts:
+ libghc-parsec2-dev
 Standards-Version: 3.9.2
 Homepage: http://hackage.haskell.org/package/regex-tdfa
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-regex-tdfa
@@ -31,7 +33,6 @@ Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
 Description: Haskell library for a tagged DFA regex engine
- .
  A pure Haskell alternative to GHC's Text.Regex module (with some
  enhancements). The Text.Regex module marshalls the data back and forth to
  c-arrays to call libc and this is far too slow (and strict).
@@ -51,7 +52,6 @@ Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
 Description: Profiling libraries for the tagged DFA regex engine
- .
  A pure Haskell alternative to GHC's Text.Regex module (with some
  enhancements). The Text.Regex module marshalls the data back and forth to
  c-arrays to call libc and this is far too slow (and strict).
@@ -71,7 +71,6 @@ Depends: ${haskell:Depends}, ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Description: Documentation for the tagged DFA regex engine
- .
  A pure Haskell alternative to GHC's Text.Regex module (with some
  enhancements). The Text.Regex module marshalls the data back and forth to
  c-arrays to call libc and this is far too slow (and strict).
