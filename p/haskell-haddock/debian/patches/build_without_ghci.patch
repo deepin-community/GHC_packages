@@ -1,48 +1,47 @@
-Index: haskell-haddock-2.7.2/src/Haddock/Interface/AttachInstances.hs
+Index: haskell-haddock-2.9.2/src/Haddock/Interface/AttachInstances.hs
 ===================================================================
---- haskell-haddock-2.7.2.orig/src/Haddock/Interface/AttachInstances.hs	2010-07-02 09:13:14.000000000 +0200
-+++ haskell-haddock-2.7.2/src/Haddock/Interface/AttachInstances.hs	2010-07-02 09:13:17.000000000 +0200
-@@ -27,7 +27,10 @@
- import InstEnv
- import Class
- import HscTypes (withSession, ioMsg)
+--- haskell-haddock-2.9.2.orig/src/Haddock/Interface/AttachInstances.hs	2011-05-27 17:17:47.022293394 +0100
++++ haskell-haddock-2.9.2/src/Haddock/Interface/AttachInstances.hs	2011-05-27 17:38:35.193733579 +0100
+@@ -31,7 +31,9 @@
+ import HscTypes (withSession)
+ #endif
+ import MonadUtils (liftIO)
 +#ifdef GHCI
  import TcRnDriver (tcRnGetInfo)
 +#endif
-+
  import TypeRep hiding (funTyConName)
  import Var hiding (varName)
  import TyCon
-@@ -44,7 +47,11 @@
-       return $ iface { ifaceExportItems = newItems }
-       where
-         attachExport export@ExportDecl{expItemDecl = L _ (TyClD d)} = do
+@@ -56,7 +58,11 @@
+ attachToExportItem iface ifaceMap instIfaceMap export =
+   case export of
+     ExportDecl { expItemDecl = L _ (TyClD d) } -> do
 +#ifdef GHCI
-            mb_info <- getAllInfo (unLoc (tcdLName d))
+       mb_info <- getAllInfo (unLoc (tcdLName d))
 +#else
-+           let mb_info = Nothing
++      let mb_info = Nothing
 +#endif
-            return $ export { expItemInstances = case mb_info of
-              Just (_, _, instances) ->
-                let insts = map (first synifyInstHead) $ sortImage (first instHead)
-@@ -70,10 +77,12 @@
-     modName = nameModule name
+       let export' =
+             export {
+               expItemInstances =
+@@ -97,10 +103,12 @@
 
-
-+#ifdef GHCI
  -- | Like GHC's getInfo but doesn't cut things out depending on the
  -- interative context, which we don't set sufficiently anyway.
++#ifdef GHCI
  getAllInfo :: GhcMonad m => Name -> m (Maybe (TyThing,Fixity,[Instance]))
- getAllInfo name = withSession $ \hsc_env -> ioMsg $ tcRnGetInfo hsc_env name
+ getAllInfo name = withSession $ \hsc_env -> do
+    (_msgs, r) <- liftIO $ tcRnGetInfo hsc_env name
+    return r
 +#endif
 
 
  --------------------------------------------------------------------------------
-Index: haskell-haddock-2.7.2/haddock.cabal
+Index: haskell-haddock-2.9.2/haddock.cabal
 ===================================================================
---- haskell-haddock-2.7.2.orig/haddock.cabal	2010-07-02 09:18:05.000000000 +0200
-+++ haskell-haddock-2.7.2/haddock.cabal	2010-07-02 09:18:12.000000000 +0200
-@@ -67,6 +67,10 @@
+--- haskell-haddock-2.9.2.orig/haddock.cabal	2011-05-27 17:17:47.052292123 +0100
++++ haskell-haddock-2.9.2/haddock.cabal	2011-05-27 17:24:23.000000000 +0100
+@@ -72,6 +72,10 @@
    default: False
    manual: True
 
@@ -51,9 +50,9 @@ Index: haskell-haddock-2.7.2/haddock.cabal
 +  manual: True
 +
  executable haddock
+   default-language:     Haskell2010
    build-depends:
-     base >= 4.0.0.0 && < 4.3.0.0,
-@@ -139,6 +143,9 @@
+@@ -154,6 +158,9 @@
      cpp-options: -DTEST
      build-depends: QuickCheck >= 2.1 && < 3
 
@@ -61,13 +60,13 @@ Index: haskell-haddock-2.7.2/haddock.cabal
 +    cpp-options: -DGHCI
 +
    hs-source-dirs:       src
-   extensions:           CPP, PatternGuards, DeriveDataTypeable,
+   default-extensions:   CPP, DeriveDataTypeable,
                          ScopedTypeVariables, MagicHash
-Index: haskell-haddock-2.7.2/src/Haddock/Interface/Create.hs
+Index: haskell-haddock-2.9.2/src/Haddock/Interface/Create.hs
 ===================================================================
---- haskell-haddock-2.7.2.orig/src/Haddock/Interface/Create.hs	2010-03-20 15:47:22.000000000 +0100
-+++ haskell-haddock-2.7.2/src/Haddock/Interface/Create.hs	2010-07-02 09:57:33.000000000 +0200
-@@ -501,7 +501,11 @@
+--- haskell-haddock-2.9.2.orig/src/Haddock/Interface/Create.hs	2011-05-27 17:17:47.012293842 +0100
++++ haskell-haddock-2.9.2/src/Haddock/Interface/Create.hs	2011-05-27 17:24:23.000000000 +0100
+@@ -518,7 +518,11 @@
          Nothing -> do
            -- If we can't find the declaration, it must belong to
            -- another package

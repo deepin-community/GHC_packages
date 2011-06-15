@@ -6,14 +6,22 @@ Uploaders: Joachim Breitner <nomeata@debian.org>
 Build-Depends: debhelper (>= 7)
   , cdbs
   , haskell-devscripts (>= 0.7)
-  , ghc
-  , ghc-prof
+  , ghc (>= 7.0)
+  , ghc (<< 7.2)
+  , ghc-prof (>= 7.0)
+  , ghc-prof (<< 7.2)
   , libghc-ghc-paths-dev
   , libghc-ghc-paths-prof
+  , libghc-xhtml-dev (>= 3000.2)
+  , libghc-xhtml-dev (<< 3000.3)
+  , libghc-xhtml-prof (>= 3000.2)
+  , libghc-xhtml-prof (<< 3000.3)
   , alex
   , happy
 Build-Depends-Indep: ghc-doc
-Standards-Version: 3.9.0
+  , libghc-ghc-paths-doc
+  , libghc-xhtml-doc
+Standards-Version: 3.9.2
 Homepage: http://hackage.haskell.org/package/haddock
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-haddock
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-haddock
