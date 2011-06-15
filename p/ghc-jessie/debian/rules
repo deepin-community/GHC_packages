@@ -164,7 +164,7 @@ install-stamp: build-stamp
 ifneq (,$(findstring $(DEB_HOST_ARCH), i386 amd64 kfreebsd-i386 kfreebsd-amd64))
 	echo 'ghci=ghc-ghci' >> debian/ghc.substvars
 endif
-	sed -ri 's,^haddock-interfaces: /.*?/libraries/,haddock-interfaces: /usr/lib/ghc-$(ProjectVersion)/haddock/,' debian/tmp/var/lib/ghc-$(ProjectVersion)/package.conf.d/*.conf
+	sed -ri 's,^haddock-interfaces: /.*?/libraries/,haddock-interfaces: /usr/lib/ghc-doc/haddock/,' debian/tmp/var/lib/ghc-$(ProjectVersion)/package.conf.d/*.conf
 
 	# Remove haddock as built within the ghc tree
 	rm -f debian/tmp/usr/lib/ghc-$(ProjectVersion)/bin/haddock \
@@ -195,10 +195,10 @@ ifeq (YES,$(BUILD_HADDOCK_DOCS))
 	mkdir -p debian/tmp/usr/lib/ghc-doc
 	cp debian/gen_contents_index debian/tmp/usr/lib/ghc-doc/
 	chmod +x debian/tmp/usr/lib/ghc-doc/gen_contents_index
-	mkdir debian/tmp/usr/lib/ghc-$(ProjectVersion)/haddock/
+	mkdir debian/tmp/usr/lib/ghc-doc/haddock/
 	for f in `find debian/tmp/usr/share/doc/ghc-doc/html/libraries/ -maxdepth 1 -mindepth 1 -type d`; do \
-	    mkdir debian/tmp/usr/lib/ghc-$(ProjectVersion)/haddock/`basename $$f` ; \
-	    mv $$f/*.haddock debian/tmp/usr/lib/ghc-$(ProjectVersion)/haddock/`basename $$f` ; done
+	    mkdir debian/tmp/usr/lib/ghc-doc/haddock/`basename $$f` ; \
+	    mv $$f/*.haddock debian/tmp/usr/lib/ghc-doc/haddock/`basename $$f` ; done
 	cd debian/tmp/usr/share/doc/ghc-doc/html/libraries/; ln -s ghc-$(ProjectVersion) ghc
 	install -Dm 644 debian/index.html debian/tmp/usr/share/doc/ghc-doc/index.html
 endif
@@ -326,6 +326,7 @@ binary-indep-stamp: install-stamp
 	dh_installchangelogs -i
 	dh_installdocs -i
 	dh_installexamples -i
+	dh_installdirs -i
 	dh_install -i
 	dh_installmenu -i
 	dh_installman -i
