@@ -9,9 +9,12 @@ Build-Depends: debhelper (>= 7)
  , ghc
  , ghc-prof
  , ghc-doc
- , libghc-mtl-dev
- , libghc-mtl-prof
- , libghc-mtl-doc
+ , libghc-mtl-dev (>= 1.1)
+ , libghc-mtl-dev (<< 2.1)
+ , libghc-mtl-prof (>= 1.1)
+ , libghc-mtl-prof (<< 2.1)
+ , libghc-mtl-doc (>= 1.1)
+ , libghc-mtl-doc (<< 2.1)
 Standards-Version: 3.9.2
 Homepage: http://haskelldb.sourceforge.net/
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskelldb/
@@ -26,7 +29,7 @@ Provides: ${haskell:Provides}
 Description: Haskell library for expressing database queries
  HaskellDB is library for expressing database queries and operations
  in a type safe and declarative way. This package contains the library
- for use with GHC 6.
+ for use with GHC.
  .
  HaskellDB compiles a relational algebra-like syntax into SQL, submits
  the operations to the database for processing, and returns the
@@ -41,7 +44,7 @@ Provides: ${haskell:Provides}
 Description: Haskell library for expressing database queries; profiling libraries
  HaskellDB is library for expressing database queries and operations
  in a type safe and declarative way. This package contains the library
- for use with GHC 6.
+ for use with GHC.
  .
  HaskellDB compiles a relational algebra-like syntax into SQL, submits
  the operations to the database for processing, and returns the
