@@ -35,7 +35,7 @@ case "$1" in
             then
                 echo "Turning $path into a symbolic link to /usr/lib/ghc-doc/haddock/"
 		# This line should successfully do nothing for an empty directory
-                find $path -maxdepth 1 -mindepth 1 -print0 | xargs -0 -r mv /usr/lib/ghc-doc/haddock/
+                find $path -maxdepth 1 -mindepth 1 -print0 | xargs -0 -r mv -t /usr/lib/ghc-doc/haddock/
                 rmdir $path
                 ln -s ../ghc-doc/haddock $path
             fi
