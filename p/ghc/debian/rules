@@ -161,9 +161,6 @@ install-stamp: build-stamp
 	rm debian/tmp/var/lib/ghc-$(ProjectVersion)/package.conf.d/package.cache
 	chmod +x debian/provided_substvars
 	debian/provided_substvars
-ifneq (,$(findstring $(DEB_HOST_ARCH), i386 amd64 kfreebsd-i386 kfreebsd-amd64))
-	echo 'ghci=ghc-ghci' >> debian/ghc.substvars
-endif
 	sed -ri 's,^haddock-interfaces: /.*?/libraries/,haddock-interfaces: /usr/lib/ghc-doc/haddock/,' debian/tmp/var/lib/ghc-$(ProjectVersion)/package.conf.d/*.conf
 
 	# Remove haddock as built within the ghc tree
@@ -186,6 +183,10 @@ endif
 	cd debian/haddock-build/haddock; ./Setup copy --dest=../../tmp
 
 	ProjectVersion=$(ProjectVersion) $(MAKE) -f debian/scripts.mk all
+
+	# Check if we have a ghci binary
+	if test -e debian/tmp/usr/bin/ghci-$(ProjectVersion); then \
+	    echo 'ghci=ghc-ghci' >> debian/ghc.substvars ; fi
 
 	# Add haddock substvars
 	echo "haddock:Depends=$$(debian/tmp/usr/bin/haddock --interface-version)" >> debian/ghc-doc.substvars
