@@ -1,0 +1,80 @@
+Source: haskell-aeson
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.8)
+  , ghc
+  , ghc-prof
+  , libghc-attoparsec-dev
+  , libghc-attoparsec-prof
+  , libghc-blaze-builder-dev
+  , libghc-blaze-builder-prof
+  , libghc-blaze-textual-dev
+  , libghc-blaze-textual-prof
+  , libghc-hashable-dev
+  , libghc-hashable-prof
+  , libghc-mtl-dev
+  , libghc-mtl-prof
+  , libghc-syb-dev
+  , libghc-syb-prof
+  , libghc-unordered-containers-dev
+  , libghc-unordered-containers-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-attoparsec-doc
+  , libghc-blaze-builder-doc
+  , libghc-blaze-textual-doc
+  , libghc-hashable-doc
+  , libghc-mtl-doc
+  , libghc-syb-doc
+  , libghc-unordered-containers-doc
+Standards-Version: 3.9.2
+Homepage: http://hackage.haskell.org/package/aeson
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-aeson
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-aeson
+
+Package: libghc-aeson-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Fast JSON parsing and encoding library
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ It is a JSON parsing and encoding library optimized for ease of use
+ and high performance.
+
+Package: libghc-aeson-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Fast JSON parsing and encoding library; profiling libraries
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ It is a JSON parsing and encoding library optimized for ease of use
+ and high performance.
+
+Package: libghc-aeson-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Fast JSON parsing and encoding library; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ It is a JSON parsing and encoding library optimized for ease of use
+ and high performance.
