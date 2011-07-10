@@ -185,7 +185,7 @@ install-stamp: build-stamp
 	ProjectVersion=$(ProjectVersion) $(MAKE) -f debian/scripts.mk all
 
 	# Check if we have a ghci binary
-	if test -e debian/tmp/usr/bin/ghci-$(ProjectVersion); then \
+	if test -e debian/tmp/usr/lib/ghc-$(ProjectVersion)/bin/ghci-$(ProjectVersion); then \
 	    echo 'ghci=ghc-ghci' >> debian/ghc.substvars ; fi
 
 	# Add haddock substvars
