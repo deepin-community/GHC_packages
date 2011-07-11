@@ -1,14 +1,13 @@
 #! /bin/sh
 # postinst script for ghc
 #
-# SOURCE: ghc.postinst.in
 set -e
 
 execdir=/usr/bin
-libdir=/usr/lib/ghc-@VERSION@
+libdir=/usr/lib/ghc
 bindir=$libdir/bin
 mandir=/usr/share/man
-vardir=/var/lib/ghc-@VERSION@
+vardir=/var/lib/ghc
 
 # summary of how this script can be called:
 #        * <postinst> `configure' <most-recently-configured-version>
@@ -37,6 +36,22 @@ case "$1" in
         update-alternatives \
             --install $execdir/haskell-compiler haskell-compiler $execdir/ghc 600 \
             --slave $mandir/man1/haskell-compiler.1.gz haskell-compiler.1.gz $mandir/man1/ghc.1.gz
+	# The package.conf.d path used to contain the ghc version number. This
+	# was dropped in 7.0.4-3, but to be able to use old libraries, we do
+	# this symlinking hack. This can be removed once all packages use the
+	# new path.
+	for path in /var/lib/ghc-7.0.3/package.conf.d /var/lib/ghc-7.0.4/package.conf.d
+        do
+            if [ -d $path -a ! -L $path ]
+            then
+                echo "Turning $path into a symbolic link to /var/lib/ghc/package.conf.d/"
+		# This line should successfully do nothing for an empty directory
+                find $path -maxdepth 1 -mindepth 1 -print0 | xargs -0 -r mv -t /var/lib/ghc/package.conf.d
+                rmdir $path
+                ln -s ../ghc/package.conf.d $path
+            fi
+        done
+
 	$bindir/ghc-pkg recache --global
 	$bindir/ghc-pkg check --global || true
     ;;
