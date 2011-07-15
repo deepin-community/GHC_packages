@@ -2,7 +2,7 @@
 .\" First parameter, NAME, should be all caps
 .\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
 .\" other parameters are allowed: see man(7), man(1)
-.TH xmobar 1 "October  6, 2008"
+.TH xmobar 1 "July  15, 2011"
 .\" Please adjust this date whenever revising the manpage.
 .\"
 .\" Some roff macros, for reference:
@@ -19,203 +19,1298 @@
 xmobar \- A configurable and extensible status bar for X11 desktops
 .SH SYNOPSIS
 .B xmobar
-.RI [ options ] " config_file" ...
+.RI [ OPTIONS ]\ [ CONFIG_FILE ]
 .SH DESCRIPTION
 .PP
-\fBxmobar\fP is a minimalistic, text based, status bar. It was designed to
-work with the \fBxmonad\fP Window Manager.
+xmobar is a minimalistic, text based, status bar.
+It was originally designed and implemented by Andrea Rossato to
+work with \fBxmonad\fP, but it's actually usable with any window-manager.
+.PP
+xmobar was inspired by the \fBIon3\fP (http://tuomov.iki.fi/software/)
+status bar, and supports similar features, like dynamic color
+management, output templates, and extensibility through plugins.
+.PP
+This page documents xmobar 0.13.
 
-It was inspired by the \fBIon3\fP status bar, and supports similar features,
-like dynamic color management, output templates, and extensibility
-through plugins.
+.SH COMMAND LINE OPTIONS
+.PP
+xmobar can be either configured with a configuration file or with
+command line options. In the second case, the command line options will
+overwrite the corresponding options set in the configuration file.
 
-\fBxmobar\fP supports XFT and UTF-8 locales.
-.\" TeX users may be more comfortable with the \fB<whatever>\fP and
-.\" \fI<whatever>\fP escape sequences to invode bold face and italics,
-.\" respectively.
-.SH OPTIONS
-\fBxmobar\fP accepts the following options.
-.TP
-.B \-h, \-\-help
-Show summary of options.
-.TP
-.B \-V, \-\-version
-Show version of program.
-.TP
-.B \-f, \-\-font=font name
-Set the font used. XFT fonts may be specified with the following notation: \-f "xft:Sans-8:bold".
-.TP
-.B \-B, \-\-bgcolor=bg color
-Sets the background color. Default is "black".
-.TP
-.B \-F, \-\-fgcolor=fg color
-Sets the foreground color. Default is "grey".
-.TP
-.B \-o, \-\-top
-Place xmobar at the top of the screen
-.TP
-.B \-b, \-\-bottom
-Place xmobar at the bottom of the screen
-.TP
-.B \-a, \-\-alignsep=sep
-Separators for left, center and right alignment. Default is "}{". See \fIOUTPUT TEMPLATES\fP for more details.
-.TP
-.B \-s, \-\-sepchar=char
-The character used to separate commands in the output template. Default is "%". See \fIOUTPUT TEMPLATES\fP for more details.
-.TP
-.B \-t, \-\-template=template
-The output template. See \fIOUTPUT TEMPLATES\fP for details on the syntax.
-.TP
-.B \-c, \-\-commands=commands
-The list of commands (or widgets) to be included. See \fICOMMANDS\fP for more details.
+The default configuration file is assumed to lie in ~/.xmobarrc. See
+/usr/share/doc/xmobar/examples for sample configuration files.
+
+.PP
+Usage:
+.PP
+\f[CR]
+      xmobar -B white -a right -F blue -t \[aq]%LIPB%\[aq]\ -c \[aq][Run Weather "LIPB" [] 36000]\[aq]
+\f[]
+.PP
+This is the list of command line options (the output of xmobar
+\[em]help):
+.PP
+\f[CR]
+      Usage:\ xmobar\ [OPTION...]\ [FILE]
+      Options:
+        -h, -?        --help               This help
+        -V            --version            Show version information
+        -f font name  --font=font name     The font name
+        -B bg color   --bgcolor=bg color   The background color. Default black
+        -F fg color   --fgcolor=fg color   The foreground color. Default grey
+        -o            --top                Place xmobar at the top of the screen
+        -b            --bottom             Place xmobar at the bottom of the screen
+        -a alignsep   --alignsep=alignsep  Separators for left, center and right text
+                                           alignment. Default: \[aq]}{\[aq]
+        -s char       --sepchar=char       The character used to separate commands in
+                                           the output template. Default \[aq]%\[aq]
+        -t template   --template=template  The output template
+        -c commands   --commands=commands  The list of commands to be executed
+        -x screen     --screen=screen      On which X screen number to start
+      Mail bug reports and suggestions to <xmobar\@projects.haskell.org>
+\f[]
 
 .SH CONFIGURATION
-All options can be specified in a configuration file (~/.xmobarrc by default). See \fI/usr/share/doc/xmobar/xmobarrc-example\fP for an example. One difference between using a configuration file and the command-line options, is that the configuration file allows arbitrary placement of xmobar, using the \fBposition\fP option:
-.TP
-\fBposition\fP [Top | TopW | Bottom | BottomW | Static]
-\fBTop\fP and \fBBottom\fP are the same as \fB-o\fP and \fB-b\fP command-line options.
-
-\fBTopW\fP and \fBBottomW\fP take 2 arguments: and alignment parameter (\fBL\fP for left, \fBC\fP for centered and \fBR\fP for right) and an integer for the percentage of the screen width xmobar will occupy.
-
-\fBStatic\fP { xpos = \fIXPOS\fP, ypos = \fIYPOS\fP, width = \fIWIDTH\fP, height = \fIHEIGHT\fP } allows complete tuning of \fBxmoba\fPr's geometry.
-
-.SH OUTPUT TEMPLATES
-The output template is a format string that contains the following:
-.IP 1.
-Plain text that will appear as\-is on the status bar.
-.IP 2.
-Command identifiers, enclosed in separator characters defined by \fIsepchar\fP. See below.
-.IP 3.
-The alignment separator defined by \fIalignsep\fP, used to change the alignment.
-.IP 4.
-Special markup of the form `<fc=\fIcolor\fP>...</fc>' for color-coding the output. \fIcolor\fP is given in the standard HTML notation \fI#RRGGBB\fP.
-
-.PP 
-\fBCommand identifiers\fP
-.br
-\fBxmobar\fP will parse the template and will search for the command to be
-executed in the `commands' configuration option (see \fICOMMANDS\fP). First
-an alias will be searched for and if none is found, the command name will be
-tried. If a command is found, the arguments specified in the `commands` list
-will be used.
-
-If no matching command or alias is found in the `commands' list,
-\fBxmobar\fP will ask the operating system to execute a program with the
-name found in the template.  If the execution is not successful an error
-will be reported.
-.SH COMMANDS
-The \fIcommands\fP configuration option is a list of commands information
-and arguments to be used by \fBxmobar\fP when parsing the output template.
-Each member of the list consists in a command prefixed by the \fBRun\fP
-keyword. Each command has arguments to control the way \fBxmobar\fP is going
-to execute it.
-
-The option consists in a list of commands separated by a comma and
-enclosed by square brackets.
-
-Example:
-
-    [Run Memory ["\-t","Mem: <usedratio>%"] 10, Run Swap [] 10]
-
-to run the Memory monitor plugin with the specified template, and the
-swap monitor plugin, with default options, every second.
-
-The only internal available command is `Com' (see below Executing
-External Commands). All other commands are provided by plugins.
-\fBxmobar\fP comes with some plugins, providing a set of system monitors,
-a standard input reader, an Unix named pipe reader, and a configurable
-date plugin. These plugins install the following internal commands:
-`Weather', `Network', `Memory', `Swap', `Cpu', `Battery', `Thermal',
-`CpuFreq', `CoreTemp', `Date', `StdinReader' and `PipeReader'.
-
-.SH DEFAULT PLUGINS
-Below follows a list of the default plugins distributed with \fBxmobar\fP. \fIRefreshRate\fP is always given in 1/10 seconds.
-.TP 
-\fBWeather\fP \fIStationID Args RefreshRate\fP
-Aliases to the StationID. \fIArgs\fP is either a blank list ([]) or a template specified as ["\-t",\fItemplate\fP]. \fItemplate\fP may include the following variables: <station>, <stationState>, <year>, <month>, <day>, <hour>, <wind>, <visibility>, <skyCondition>, <tempC>, <tempF>, <dewPoint>, <rh>, <pressure>. The default \fItemplate\fP is "<station>: <tempC>C, rh <rh>% (<hour>)".
-
-\fBWeather\fP requires
-.BR curl(1)
-to retrieve weather information from \fIhttp://weather.noaaa.gov\fP.
-
-.TP
-\fBNetwork\fP \fIInterface Args RefreshRate\fP
-Aliases to \fIInterface\fP. \fIArgs\fP is either a blank list ([]) or a template specified as ["\-t","\fItemplate\fP]. \fItemplate\fP may include the variables <dev>, <rx> and <tx> and by default is "<dev>: <rx>|<tx>". 
-
-.TP
-\fBMemory\fP \fIArgs RefreshRate\fP
-Aliases to `memory'. \fIArgs\fP is either a blank list ([]) or a template specified as ["\-t","\fItemplate\fP]. \fItemplate\fP may include the variables <total>, <free>, <buffer>, <cache>, <rest>, <used>, <usedratio>. The default \fItemplate\fP is "Mem: <usedratio>% (<cache>M)". 
-
-.TP
-\fBSwap\fP \fIArgs RefreshRate\fP
-Aliases to `swap'. \fIArgs\fP is either a blank list ([]) or a template specified as ["\-t","\fItemplate\fP]. \fItemplate\fP may include the variables <total>, <used>, <free> and <usedratio>. The default \fItemplate\fP is "Swap: <usedratio>%". 
-
-.TP
-\fBCpu\fP \fIArgs RefreshRate\fP
-Aliases to `cpu'. \fIArgs\fP is either a blank list ([]) or a template specified as ["\-t","\fItemplate\fP]. \fItemplate\fP may include the variables <total>, <user>, <nice>, <system> and <idle>. The default \fItemplate\fP is "Cpu: <total>%". 
-
-.TP
-\fBBattery\fP \fIArgs RefreshRate\fP
-Aliases to `battery'. \fIArgs\fP is either a blank list ([]) or a template specified as ["\-t","\fItemplate\fP]. \fItemplate\fP may include the variable <left>. The default \fItemplate\fP is "Batt: <left>". 
-
-\fBBattery\fP calculates the cumulative energy left for up to three batteries automatically.
-
-.TP
-\fBBatteryP\fP \fIArgs Dirs RefreshRate\fP
-Same as \fBBattery\fI with the addition of \fIDirs\fP, which is a list of subdirectories of \fI/sys/class/power_supply\fP to look in for battery information. Example: ["BAT0","BAT1"]. Up to three directories may be specified.
-
-.TP
-\fBThermal\fP \fIZone Args RefreshRate\fP
-Aliases to \fIZone\fP'. \fIArgs\fP is either a blank list ([]) or a template specified as ["\-t","\fItemplate\fP]. \fItemplate\fP may include the variable <temp>. The default \fItemplate\fP is "Thm: <Temp>C". 
-
-\fBThermal\fP only works on systems with devices having thermal zones. Check /proc/acpi/thermal_zone for possible values. 
-
-
-.TP
-\fBCpuFreq\fP \fIArgs RefreshRate\fP
-Aliases to `cpufreq'. \fIArgs\fP is either a blank list ([]) or a template specified as ["\-t","\fItemplate\fP]. \fItemplate\fP may include the variables <cpu0>, <cpu1>, ..., <cpuN>. The default \fItemplate\fP is "Freq: <cpu0>GHz". Additionally, \fIArgs\fP may include the options "\-L", "\-H", "\-n", "\-l" and "\-h" and their respective arguments. "\-L" and "\-H" set the low and high CPU frequencies used to color-code the output. "\-l", "\-n" and "\-h" set the colors for low, normal and high frequency output. Example:
-   
-.nf
-   Run CpuFreq ["\-t","Freq:<cpu0>|<cpu1>GHz", "\-L","0", "\-H","2", "\-l","lightblue", "\-n","white", "\-h","red"] 50
-.fi
-
-\fBCpuFreq\fP requires the \fBacpi_cpufreq\fP kernel module to be loaded.
-
-.TP
-\fBCoreTemp\fP \fIArgs RefreshRate\fP
-Aliases to `coretemp'. \fIArgs\fP is either a blank list ([]) or a template specified as ["\-t","\fItemplate\fP]. \fItemplate\fP may include the variables <core0>, <core1>, ..., <coreN>. The default \fItemplate\fP is "Temp: <core0>C". Additionally, \fIArgs\fP may include the options "\-L", "\-H", "\-n", "\-l" and "\-h" and their respective arguments. "\-L" and "\-H" set the low and high CPU temperatures used to color-code the output. "\-l", "\-n" and "\-h" set the colors for low, normal and high temperature output. Example:
-
-.nf
-   Run CoreTemp ["\-t","Temp:<core0>|<core1>C",
-   		 "\-L","40","\-H","60",
-		 "\-l","lightblue",
-		 "\-n","gray90","\-h","red"] 50
-.fi
-
-\fBCoreTemp\fP requires the \fBcoretemp\fP kernel module to be loaded.
-
-.TP
-\fBDate\fP \fIFormat Alias RefreshRate\fP
-\fBDate\fP returns the date in the form specified by \fIFormat\fP. \fIFormat\fP is a format string similar to that of \fBstrftime\fP(3). \fIAlias\fP is the name that will hold the date output at the output template. 
-
-.TP
-\fBCom\fP \fIProgramName Args Alias RefreshRate\fP
-\fBCom\fP runs external commands and displays their output. \fIProgramName\fP is the name of the command to run, \fIArgs\fP is an array containing the arguments passed to \fIProgramName\fP and \fIAlias\fP is the alias that will hold the command output at the output profile. If \fIAlias\fP is left blank, \fIProgramName\fP can be used at the output template.
-
-.TP
-\fBStdinReader\fP
-Reads text from \fBxmobar\fP's standard input and is aliased to "StdinReader".
-
-.TP
-\fBPipeReader\fP \fIPath Alias\fP
-Reads text from a \fBfifo\fP(7). \fIPath\fP contains the path to the named pipe and \fIAlias\fP is the alias that will be used at the output template. Unlike other commands, \fBPipeReader\fP does not have a \fIRefreshRate\fP paremeter; input is read as soon as it is available in the named pipe.
-
-.SH FILES
-.I ~/.xmobarrc
-.SH SEE ALSO
-.BR xmonad (1)
-.SH AUTHOR
-xmobar was written by Andrea Rossato <andrea.rossato at ing.unitn.it>
+.SS Quick Start
 .PP
-This manual page was written by Apollon Oikonomopoulos <apoikos@gmail.com>,
-for the Debian project (but may be used by others), largely based on the original xmobar documentation by Andrea Rossato.
+For the output template:
+.IP \[bu] 2
+\f[B]%command%\f[] will execute command and print the output.
+The output may contain markups to change the characters' color.
+.IP \[bu] 2
+\f[B]<fc=#FF0000>string</fc>\f[] will print \f[B]string\f[] with
+\f[B]#FF0000\f[] color (red).
+.PP
+Other configuration options:
+.TP
+.B \f[B]font\f[]
+Name of the font to be used.
+Use the \f[B]xft:\f[] prefix for XFT fonts.
+.RS
+.RE
+.TP
+.B \f[B]bgColor\f[]
+Background color.
+.RS
+.RE
+.TP
+.B \f[B]fgColor\f[]
+Default font color.
+.RS
+.RE
+.TP
+.B \f[B]position\f[]
+Top, TopW, TopSize, Bottom, BottomW, BottomSize or Static (with x,
+y, width and height).
+.RS
+.RE
+TopW and BottomW take 2 arguments: an alignment parameter (L for
+left, C for centered, R for Right) and an integer for the
+percentage width xmobar window will have in respect to the screen
+width.
+.RS
+.RE
+TopSize and BottomSize take 3 arguments: an alignment parameter, an
+integer for the percentage width, and an integer for the minimum
+pixel height that the xmobar window will have.
+.RS
+.RE
+For example:
+.RS
+.RE
+.PP
+\f[CR]
+         position = BottomW C 75
+\f[]
+.RS
+.RE
+to place xmobar at the bottom, centered with the 75% of the screen
+width.
+.RS
+.RE
+Or
+.RS
+.RE
+.PP
+\f[CR]
+        position = Static { xpos = 0 , ypos = 0, width = 1024, height = 15 }
+\f[]
+.RS
+.RE
+or
+.RS
+.RE
+.PP
+\f[CR]
+        position = Top
+\f[]
+.RS
+.RE
+.TP
+.B \f[B]border\f[]
+TopB, TopBM, BottomB, BottomBM, FullB, FullBM or NoBorder
+(default).
+.RS
+.RE
+TopB, BottomB, FullB take no arguments, and request drawing a
+border at the top, bottom or around xmobar's window, respectively.
+.RS
+.RE
+TopBM, BottomBM, FullBM take an integer argument, which is the
+margin, in pixels, between the border of the window and the drawn
+border.
+.RS
+.RE
+.TP
+.B \f[B]borderColor\f[]
+Border color.
+.RS
+.RE
+.TP
+.B \f[B]commands\f[]
+For setting the options of the programs to run (optional).
+.RS
+.RE
+.TP
+.B \f[B]sepChar\f[]
+The character to be used for indicating commands in the output
+template (default `%').
+.RS
+.RE
+.TP
+.B \f[B]alignSep\f[]
+a 2 character string for aligning text in the output template.
+The text before the first character will be align to left, the text
+in between the 2 characters will be centered, and the text after
+the second character will be align to the right.
+.RS
+.RE
+.TP
+.B \f[B]template\f[]
+The output template.
+.RS
+.RE
+.SS Running xmobar with i3status
+.PP
+xmobar can be used to display information gathered by
+\fBi3status\fP, a small program that gathers information and formats it
+suitable for being displayed by the dzen2 status bar, wmii's status bar or
+xmobar's StdinReader, as follows:
+.PP
+\f[CR]
+      ./i3status -c i3status.conf | xmobar -o -t "%StdinReader%" -c "[Run StdinReader]"
+\f[]
+
+.SS The Output Template
+.PP
+The output template must contain at least one command.
+xmobar will parse the template and will search for the command to
+be executed in the \f[B]commands\f[] configuration option.
+First an \f[B]alias\f[] will be searched (plugins such as Weather
+or Network have default aliases, see below).
+After that, the command name will be tried.
+If a command is found, the arguments specified in the
+\f[B]commands\f[] list will be used.
+.PP
+If no command is found in the \f[B]commands\f[] list, xmobar will
+ask the operating system to execute a program with the name found
+in the template.
+If the execution is not successful an error will be reported.
+.SS The \f[B]commands\f[] Configuration Option
+.PP
+The \f[B]commands\f[] configuration option is a list of commands
+information and arguments to be used by xmobar when parsing the
+output template.
+Each member of the list consists in a command prefixed by the
+\f[B]Run\f[] keyword.
+Each command has arguments to control the way xmobar is going to
+execute it.
+.PP
+The option consists in a list of commands separated by a comma and
+enclosed by square parenthesis.
+.PP
+Example:
+.PP
+\f[CR]
+      [Run Memory ["-t","Mem: <usedratio>%"] 10, Run Swap [] 10]
+\f[]
+.PP
+to run the Memory monitor plugin with the specified template, and
+the swap monitor plugin, with default options, every second.
+.PP
+The only internal available command is \f[B]Com\f[] (see below
+Executing External Commands).
+All other commands are provided by plugins.
+xmobar comes with some plugins, providing a set of system monitors,
+a standard input reader, an Unix named pipe reader, and a
+configurable date plugin.
+These plugins install the following internal commands:
+\f[B]Weather\f[], \f[B]Network\f[], \f[B]Wireless\f[] (optional),
+\f[B]Memory\f[], \f[B]Swap\f[], \f[B]Cpu\f[], \f[B]MultiCpu\f[],
+\f[B]Battery\f[], \f[B]TopProc\f[], \f[B]TopMem\f[],
+\f[B]DiskU\f[], \f[B]DiskIO\f[], \f[B]Thermal\f[],
+\f[B]ThermalZone\f[], \f[B]CpuFreq\f[], \f[B]CoreTemp\f[],
+\f[B]Volume\f[] (optional), \f[B]MPD\f[] (optional), \f[B]Mail\f[]
+(optional), \f[B]MBox\f[] (optional), \f[B]Date\f[],
+\f[B]Uptime\f[], \f[B]StdinReader\f[], \f[B]CommandReader\f[], and
+\f[B]PipeReader\f[].
+.PP
+To remove them see below Installing/Removing a Plugin
+.PP
+Other commands can be created as plugins with the Plugin
+infrastructure.
+See below Writing a Plugin
+.SS System Monitor Plugins
+.PP
+This is the description of the system monitor plugins that are
+installed by default.
+.PP
+Each monitor has an \f[B]alias\f[] to be used in the output
+template.
+Monitors have default aliases.
+.PP
+\f[B]Uptime Args RefreshRate\f[]
+.IP \[bu] 2
+Aliases to \f[B]uptime\f[]
+.IP \[bu] 2
+Args: default monitor arguments (see below).
+The low and high thresholds refer to the number of days.
+.IP \[bu] 2
+Variables that can be used with the \f[B]-t\f[]/\f[B]--template\f[]
+argument: \f[B]days\f[], \f[B]hours\f[], \f[B]minutes\f[],
+\f[B]seconds\f[].
+The total uptime is the sum of all those fields.
+You can set the \f[B]-S\f[] argument to \[lq]True\[rq] to add units
+to the display of those numeric fields.
+.IP \[bu] 2
+Default template: \f[B]Up:\ <days>d\ <hours>h\ <minutes>m\f[]
+.PP
+\f[B]Weather\ StationID\ Args\ RefreshRate\f[]
+.IP \[bu] 2
+Aliases to the Station ID: so \f[B]Weather\ "LIPB"\ []\f[] can be
+used in template as \f[B]%LIPB%\f[]
+.IP \[bu] 2
+Args: default monitor arguments (see below)
+.IP \[bu] 2
+Variables that can be used with the \f[B]-t\f[]/\f[B]--template\f[]
+argument: \f[B]station\f[], \f[B]stationState\f[], \f[B]year\f[],
+\f[B]month\f[], \f[B]day\f[], \f[B]hour\f[], \f[B]wind\f[],
+\f[B]visibility\f[], \f[B]skyCondition\f[], \f[B]tempC\f[],
+\f[B]tempF\f[], \f[B]dewPoint\f[], \f[B]rh\f[], \f[B]pressure\f[]
+.IP \[bu] 2
+Default template:
+\f[B]<station>:\ <tempC>C,\ rh\ <rh>%\ (<hour>)\f[]
+.IP \[bu] 2
+Requires \f[B]curl\f[] in the \f[B]$PATH\f[] to retrieve weather
+information from \f[B]http://weather.noaa.gov\f[]
+.PP
+\f[B]Network\ Interface\ Args\ RefreshRate\f[]
+.IP \[bu] 2
+Aliases to the interface name: so \f[B]Network\ "eth0"\ []\f[] can
+be used as \f[B]%eth0%\f[]
+.IP \[bu] 2
+Args: default monitor arguments (see below)
+.IP \[bu] 2
+Variables that can be used with the \f[B]-t\f[]/\f[B]--template\f[]
+argument: \f[B]dev\f[], \f[B]rx\f[], \f[B]tx\f[], \f[B]rxbar\f[],
+\f[B]txbar\f[].
+Reception and transmission rates (\f[B]rx\f[] and \f[B]tx\f[]) are
+displayed in Kbytes per second, and you can set the \f[B]-S\f[] to
+\[lq]True\[rq] to make them displayed with units (the string
+\[lq]Kb/s\[rq]).
+.IP \[bu] 2
+Default template: \f[B]<dev>:\ <rx>KB|<tx>KB\f[]
+.PP
+\f[B]Wireless\ Interface\ Args\ RefreshRate\f[]
+.IP \[bu] 2
+Aliases to the interface name with the suffix \[lq]wi\[rq]: thus,
+\f[B]Wirelss\ \ \ "wlan0"\ []\f[] can be used as \f[B]%wlan0wi%\f[]
+.IP \[bu] 2
+Args: default monitor arguments (see below)
+.IP \[bu] 2
+Variables that can be used with the \f[B]-t\f[]/\f[B]--template\f[]
+argument: \f[B]essid\f[], \f[B]quality\f[], \f[B]qualitybar\f[]
+.IP \[bu] 2
+Default template: \f[B]<essid>\ <quality>\f[]
+
+.PP
+\f[B]Memory\ Args\ RefreshRate\f[]
+.IP \[bu] 2
+Aliases to \f[B]memory\f[]
+.IP \[bu] 2
+Args: default monitor arguments (see below)
+.IP \[bu] 2
+Variables that can be used with the \f[B]-t\f[]/\f[B]--template\f[]
+argument: \f[B]total\f[], \f[B]free\f[], \f[B]buffer\f[],
+\f[B]cache\f[], \f[B]rest\f[], \f[B]used\f[], \f[B]usedratio\f[],
+\f[B]usedbar\f[], \f[B]freebar\f[]
+.IP \[bu] 2
+Default template: \f[B]Mem:\ <usedratio>%\ (<cache>M)\f[]
+.PP
+\f[B]Swap\ Args\ RefreshRate\f[]
+.IP \[bu] 2
+Aliases to \f[B]swap\f[]
+.IP \[bu] 2
+Args: default monitor arguments (see below)
+.IP \[bu] 2
+Variables that can be used with the \f[B]-t\f[]/\f[B]--template\f[]
+argument: \f[B]total\f[], \f[B]used\f[], \f[B]free\f[],
+\f[B]usedratio\f[]
+.IP \[bu] 2
+Default template: \f[B]Swap:\ <usedratio>%\f[]
+.PP
+\f[B]Cpu\ Args\ RefreshRate\f[]
+.IP \[bu] 2
+Aliases to \f[B]cpu\f[]
+.IP \[bu] 2
+Args: default monitor arguments (see below)
+.IP \[bu] 2
+Variables that can be used with the \f[B]-t\f[]/\f[B]--template\f[]
+argument: \f[B]total\f[], \f[B]bar\f[], \f[B]user\f[],
+\f[B]nice\f[], \f[B]system\f[], \f[B]idle\f[]
+.IP \[bu] 2
+Default template: \f[B]Cpu:\ <total>%\f[]
+.PP
+\f[B]MultiCpu\ Args\ RefreshRate\f[]
+.IP \[bu] 2
+Aliases to \f[B]multicpu\f[]
+.IP \[bu] 2
+Args: default monitor arguments (see below)
+.IP \[bu] 2
+Variables that can be used with the \f[B]-t\f[]/\f[B]--template\f[]
+argument: \f[B]autototal\f[], \f[B]autobar\f[], \f[B]autouser\f[],
+\f[B]autonice\f[], \f[B]autosystem\f[], \f[B]autoidle\f[],
+\f[B]total\f[], \f[B]bar\f[], \f[B]user\f[], \f[B]nice\f[],
+\f[B]system\f[], \f[B]idle\f[], \f[B]total0\f[], \f[B]bar0\f[],
+\f[B]user0\f[], \f[B]nice0\f[], \f[B]system0\f[], \f[B]idle0\f[],
+\&... The auto* variables automatically detect the number of CPUs
+on the system and display one entry for each.
+.IP \[bu] 2
+Default template: \f[B]Cpu:\ <total>%\f[]
+.PP
+\f[B]Battery\ Args\ RefreshRate\f[]
+.IP \[bu] 2
+Same as
+\f[B]BatteryP\ ["BAT0",\ "BAT1",\ "BAT2"]\ Args\ RefreshRate\f[].
+.PP
+\f[B]BatteryP\ Dirs\ Args\ RefreshRate\f[]
+.IP \[bu] 2
+Aliases to \f[B]battery\f[]
+.IP \[bu] 2
+Dirs: list of directories in /proc/acpi/battery/ directory where to
+look for the \f[B]state\f[] and \f[B]info\f[] files.
+Example: \f[B]["BAT0","BAT1","BAT2"]\f[].
+Only the first 3 directories will be searched.
+.IP \[bu] 2
+Args: default monitor arguments (see below), plus the following
+specific ones:
+.RS 2
+.br
+\f[B]-O\f[]: string for AC \[lq]on\[rq] status (default:
+\[lq]On\[rq])
+.br
+\f[B]-o\f[]: string for AC \[lq]off\[rq] status (default:
+\[lq]Off\[rq])
+.br
+\f[B]-L\f[]: low power (\f[B]watts\f[]) threshold (default:
+\[en]12)
+.br
+\f[B]-H\f[]: high power threshold (default: \[en]10)
+.br
+\f[B]-l\f[]: color to display power lower than the \f[B]-L\f[]
+threshold
+.br
+\f[B]-m\f[]: color to display power lower than the \f[B]-H\f[]
+threshold
+.br
+\f[B]-h\f[]: color to display power highter than the \f[B]-H\f[]
+threshold
+.br
+\f[B]-p\f[]: color to display positive power (battery charging)
+.br
+\f[B]-f\f[]: file in \f[B]/sys/class/power_supply\f[] with AC info
+(default: \[lq]AC/online\[rq])
+.RE
+.IP \[bu] 2
+Variables that can be used with the \f[B]-t\f[]/\f[B]--template\f[]
+argument: \f[B]left\f[], \f[B]leftbar\f[], \f[B]timeleft\f[],
+\f[B]watts\f[], \f[B]acstatus\f[]
+.IP \[bu] 2
+Default template: \f[B]Batt:\ <watts>,\ <left>%\ /\ <timeleft>\f[]
+.IP \[bu] 2
+Example (note that you need \[lq]\[em]\[rq] to separate regular
+monitor options from Battery's specific ones):
+.RS 2
+.PP
+\f[CR]
+      \ Run\ BatteryP\ ["BAT0"]
+      \ \ \ \ \ \ \ \ \ \ \ \ \ \ ["-t",\ "<acstatus><watts>\ (<left>%)",
+      \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "-L",\ "10",\ "-H",\ "80",\ "-p",\ "3",
+      \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "--",\ "-O",\ "<fc=green>On</fc>\ -\ ",\ "-o",\ "",
+      \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "-L",\ "-15",\ "-H",\ "-5",
+      \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "-l",\ "red",\ "-m",\ "blue",\ "-h",\ "green"]
+      \ \ \ \ \ \ \ \ \ \ \ \ \ \ 600
+\f[]
+.PP
+In the above example, the thresholds before the \[lq]\[em]\[rq]
+separator refer to the \f[B]<left>\f[] field, while those after the
+separator affect how \f[B]<watts>\f[] is displayed.
+.RE
+.PP
+\f[B]TopProc\ Args\ RefreshRate\f[]
+.IP \[bu] 2
+Aliases to \f[B]top\f[]
+.IP \[bu] 2
+Args: default monitor arguments (see below).
+The low and high thresholds (\f[B]-L\f[] and \f[B]-H\f[]) denote,
+for memory entries, the percent of the process memory over the
+total amount of memory currently in use and, for cpu entries, the
+activity percentage (i.e., the value of \f[B]cpuN\f[], which takes
+values between 0 and 100).
+.IP \[bu] 2
+Variables that can be used with the \f[B]-t\f[]/\f[B]--template\f[]
+argument: \f[B]no\f[], \f[B]name1\f[], \f[B]cpu1\f[],
+\f[B]both1\f[], \f[B]mname1\f[], \f[B]mem1\f[], \f[B]mboth1\f[],
+\f[B]name2\f[], \f[B]cpu2\f[], \f[B]both2\f[], \f[B]mname2\f[],
+\f[B]mem2\f[], \f[B]mboth2\f[], \&...
+.IP \[bu] 2
+Default template: \f[B]<both1>\f[]
+.IP \[bu] 2
+Displays the name and cpu/mem usage of running processes
+(\f[B]bothn\f[] and \f[B]mboth\f[] display both, and is useful to
+specify an overall maximum and/or minimum width, using the
+\f[B]-m\f[]/\f[B]-M\f[] arguments.
+\f[B]no\f[] gives the total number of processes.
+.PP
+\f[B]TopMem\ Args\ RefreshRate\f[]
+.IP \[bu] 2
+Aliases to \f[B]topmem\f[]
+.IP \[bu] 2
+Args: default monitor arguments (see below).
+The low and high thresholds (\f[B]-L\f[] and \f[B]-H\f[]) denote
+the percent of the process memory over the total amount of memory
+currently in use.
+.IP \[bu] 2
+Variables that can be used with the \f[B]-t\f[]/\f[B]--template\f[]
+argument: \f[B]name1\f[], \f[B]mem1\f[], \f[B]both1\f[],
+\f[B]name2\f[], \f[B]mem2\f[], \f[B]both2\f[], \&...
+.IP \[bu] 2
+Default template: \f[B]<both1>\f[]
+.IP \[bu] 2
+Displays the name and RSS (resident memory size) of running
+processes (\f[B]bothn\f[] displays both, and is useful to specify
+an overall maximum and/or minimum width, using the
+\f[B]-m\f[]/\f[B]-M\f[] arguments.
+.PP
+\f[B]DiskU\ Disks\ Args\ RefreshRate\f[]
+.IP \[bu] 2
+Aliases to \f[B]disku\f[]
+.IP \[bu] 2
+Disks: list of pairs of the form (device or mount point, template),
+where the template can contain , , , or , or for total, free, used,
+free percentage and used percentage of the given file system
+capacity.
+.IP \[bu] 2
+Args: default monitor arguments (see below).
+\f[B]-t\f[]/\f[B]--template\f[] is ignored.
+.IP \[bu] 2
+Default template: none (you must specify a template for each file
+system).
+.IP \[bu] 2
+Example:
+.RS 2
+.PP
+\f[CR]
+      \ DiskU\ [("/",\ "<used>/<size>"),\ ("sdb1",\ "<usedbar>")]
+      \ \ \ \ \ \ \ ["-L",\ "20",\ "-H",\ "50",\ "-m",\ "1",\ "-p",\ "3",]
+      \ \ \ \ \ \ \ 20
+\f[]
+.RE
+.PP
+\f[B]DiskIO\ Disks\ Args\ RefreshRate\f[]
+.IP \[bu] 2
+Aliases to \f[B]diskio\f[]
+.IP \[bu] 2
+Disks: list of pairs of the form (device or mount point, template),
+where the template can contain , , for total, read and write speed,
+respectively.
+.IP \[bu] 2
+Args: default monitor arguments (see below).
+\f[B]-t\f[]/\f[B]--template\f[] is ignored.
+.IP \[bu] 2
+Default template: none (you must specify a template for each file
+system).
+.IP \[bu] 2
+Example:
+.RS 2
+.PP
+\f[CR]
+      \ Disks\ [("/",\ "<read>\ <write>"),\ ("sdb1",\ "<total>")]\ []\ 10
+\f[]
+.RE
+.PP
+\f[B]ThermalZone\ Number\ Args\ RefreshRate\f[]
+.IP \[bu] 2
+Aliases to \[lq]thermaln\[rq]: so \f[B]ThermalZone\ 0\ []\f[] can
+be used in template as \f[B]%thermal0%\f[]
+.IP \[bu] 2
+Args: default monitor arguments (see below)
+.IP \[bu] 2
+Variables that can be used with the \f[B]-t\f[]/\f[B]--template\f[]
+argument: \f[B]temp\f[]
+.IP \[bu] 2
+Default template: \f[B]<temp>C\f[]
+.IP \[bu] 2
+This plugin works only on sytems with devices having thermal zone.
+Check directories in \f[B]/sys/class/thermal\f[] for possible
+values of the zone number (e.g., 0 corresponds to
+\f[B]thermal_zone0\f[] in that directory).
+.IP \[bu] 2
+Example:
+.RS 2
+.PP
+\f[CR]
+      \ Run\ ThermalZone\ 0\ ["-t","<id>:\ <temp>C"]\ 30
+\f[]
+.RE
+.PP
+\f[B]Thermal\ Zone\ Args\ RefreshRate\f[]
+.IP \[bu] 2
+\f[B]This plugin is deprecated. Use \f[B]ThermalZone\f[] instead.\f[]
+.IP \[bu] 2
+Aliases to the Zone: so \f[B]Thermal\ "THRM"\ []\f[] can be used in
+template as \f[B]%THRM%\f[]
+.IP \[bu] 2
+Args: default monitor arguments (see below)
+.IP \[bu] 2
+Variables that can be used with the \f[B]-t\f[]/\f[B]--template\f[]
+argument: \f[B]temp\f[]
+.IP \[bu] 2
+Default template: \f[B]Thm:\ <temp>C\f[]
+.IP \[bu] 2
+This plugin works only on sytems with devices having thermal zone.
+Check directories in /proc/acpi/thermal_zone for possible values.
+.IP \[bu] 2
+Example:
+.RS 2
+.PP
+\f[CR]
+      \ Run\ Thermal\ "THRM"\ ["-t","iwl4965-temp:\ <temp>C"]\ 50
+\f[]
+.RE
+.PP
+\f[B]CpuFreq\ Args\ RefreshRate\f[]
+.IP \[bu] 2
+Aliases to \f[B]cpufreq\f[]
+.IP \[bu] 2
+Args: default monitor arguments (see below)
+.IP \[bu] 2
+Variables that can be used with the \f[B]-t\f[]/\f[B]--template\f[]
+argument: \f[B]cpu0\f[], \f[B]cpu1\f[], \&.., \f[B]cpuN\f[]
+.IP \[bu] 2
+Default template: \f[B]Freq:\ <cpu0>GHz\f[]
+.IP \[bu] 2
+This monitor requires acpi_cpufreq module to be loaded in kernel
+.IP \[bu] 2
+Example:
+.RS 2
+.PP
+\f[CR]
+       Run CpuFreq ["-t", "Freq:<cpu0>|<cpu1>GHz", "-L", "0", "-H", "2",
+                    "-l", "lightblue", "-n","white", "-h", "red"] 50
+\f[]
+.RE
+.PP
+\f[B]CoreTemp\ Args\ RefreshRate\f[]
+.IP \[bu] 2
+Aliases to \f[B]coretemp\f[]
+.IP \[bu] 2
+Args: default monitor arguments (see below)
+.IP \[bu] 2
+Variables that can be used with the \f[B]-t\f[]/\f[B]--template\f[]
+argument: \f[B]core0\f[], \f[B]core1\f[], \&.., \f[B]coreN\f[]
+.IP \[bu] 2
+Default template: \f[B]Temp:\ <core0>C\f[]
+.IP \[bu] 2
+This monitor requires coretemp module to be loaded in kernel
+.IP \[bu] 2
+Example:
+.RS 2
+.PP
+\f[CR]
+       Run CoreTemp ["-t", "Temp:<core0>|<core1>C",
+                     "-L", "40", "-H", "60",
+                     "-l", "lightblue", "-n", "gray90", "-h", "red"] 50
+\f[]
+.RE
+.PP
+\f[B]Volume\ Mixer\ Element\ Args\ RefreshRate\f[]
+.IP \[bu] 2
+Aliases to the mixer name and element name separated by a colon.
+Thus, \f[B]Volume\ "default"\ "Master"\ []\ 10\f[] can be used as
+\f[B]%default:Master%\f[].
+.IP \[bu] 2
+Args: default monitor arguments (see below).
+Also accepts:
+.RS 2
+.IP \[bu] 2
+\f[B]-O\f[] \f[I]string\f[] On string
+.RS 2
+.IP \[bu] 2
+The string used in place of \f[B]<status>\f[] when the mixer
+element is on.
+Defaults to \[lq][on]\[rq].
+.IP \[bu] 2
+Long option: \f[B]--on\f[]
+.RE
+.IP \[bu] 2
+\f[B]-o\f[] \f[I]string\f[] Off string
+.RS 2
+.IP \[bu] 2
+The string used in place of \f[B]<status>\f[] when the mixer
+element is off.
+Defaults to \[lq][off]\[rq].
+.IP \[bu] 2
+Long option: \f[B]--off\f[]
+.RE
+.IP \[bu] 2
+\f[B]-C\f[] \f[I]color\f[] On color
+.RS 2
+.IP \[bu] 2
+The color to be used for \f[B]<status>\f[] when the mixer element
+is on.
+Defaults to \[lq]green\[rq].
+.IP \[bu] 2
+Long option: \f[B]--onc\f[]
+.RE
+.IP \[bu] 2
+\f[B]-c\f[] \f[I]color\f[] Off color
+.RS 2
+.IP \[bu] 2
+The color to be used for \f[B]<status>\f[] when the mixer element
+is off.
+Defaults to \[lq]red\[rq].
+.IP \[bu] 2
+Long option: \f[B]--offc\f[]
+.RE
+.IP \[bu] 2
+\f[B]--highd\f[] \f[I]number\f[] High threshold for dB.
+Defaults to \[en]5.0.
+.IP \[bu] 2
+\f[B]--lowd\f[] \f[I]number\f[] Low threshold for dB.
+Defaults to \[en]30.0.
+.RE
+.IP \[bu] 2
+Variables that can be used with the \f[B]-t\f[]/\f[B]--template\f[]
+argument: \f[B]volume\f[], \f[B]volumebar\f[], \f[B]dB\f[],
+\f[B]status\f[]
+.IP \[bu] 2
+Default template: \f[B]Vol:\ <volume>%\ <status>\f[]
+.IP \[bu] 2
+This plugin is disabled in the Debian version of the package.
+
+.PP
+\f[B]MPD\ Args\ RefreshRate\f[]
+.IP \[bu] 2
+Aliases to \f[B]mpd\f[]
+.IP \[bu] 2
+Args: default monitor arguments (see below).
+In addition you can provide \f[B]-P\f[], \f[B]-S\f[] and
+\f[B]-Z\f[], with an string argument, to represent the playing,
+stopped and paused states in the \f[B]statei\f[] template field.
+The environment variables \f[B]MPD_HOST\f[] and \f[B]MPD_PORT\f[]
+are used to configure the mpd server to communicate with.
+.IP \[bu] 2
+Variables that can be used with the \f[B]-t\f[]/\f[B]--template\f[]
+argument: \f[B]bar\f[], \f[B]state\f[], \f[B]statei\f[],
+\f[B]volume\f[], \f[B]length\f[] \f[B]lapsed\f[],
+\f[B]remaining\f[], \f[B]plength\f[] (playlist length),
+\f[B]ppos\f[] (playlist position) \f[B]name\f[], \f[B]artist\f[],
+\f[B]composer\f[], \f[B]performer\f[] \f[B]album\f[],
+\f[B]title\f[], \f[B]track\f[], \f[B]file\f[], \f[B]genre\f[]
+.IP \[bu] 2
+Default template: \f[B]MPD:\ <state>\f[]
+.IP \[bu] 2
+Example (note that you need \[lq]\[em]\[rq] to separate regular
+monitor options from MPD's specific ones):
+.RS 2
+.PP
+\f[CR]
+       Run MPD ["-t",
+                "<composer> <title> (<album>) <track>/<plength> <statei> ",
+                "--", "-P", ">>", "-Z", "|", "-S", "><"] 10
+\f[]
+.PP
+This plugin is disabled in the Debian version of the package.
+.RE
+.PP
+\f[B]Mail\ Args\ Alias\f[]
+.IP \[bu] 2
+Args: list of maildirs in form \f[B][("name1","path1"),...]\f[].
+Paths may start with a `~' to expand to the user's home directory.
+.IP \[bu] 2
+Example:
+.RS 2
+.PP
+\f[CR]
+       Run Mail [("inbox", "~/var/mail/inbox"),
+                 ("lists", "~/var/mail/lists")]
+                "mail"
+\f[]
+.RE
+.PP
+\f[B]MBox\ Mboxes\ Opts\ Alias\f[]
+.IP \[bu] 2
+Mboxes a list of mbox files of the form
+\f[B][("name",\ "path",\ "color")]\f[], where name is the displayed
+name, path the absolute or relative (to BaseDir) path of the mbox
+file, and color the color to use to display the mail count (use an
+empty string for the default).
+.IP \[bu] 2
+Opts is a possibly empty list of options, as flags.
+Possible values: -a \[em]all (no arg) Show all mailboxes, even if
+empty.
+-d dir \[em]dir dir a string giving the base directory where mbox
+files with a relative path live.
+-p prefix \[em]prefix prefix a string giving a prefix for the list
+of displayed mail coints -s suffix \[em]suffix suffix a string
+giving a suffix for the list of displayed mail coints
+.IP \[bu] 2
+Paths may start with a `~' to expand to the user's home directory.
+.IP \[bu] 2
+Example.
+The following command look for mails in \f[B]/var/mail/inbox\f[]
+and \f[B]~/foo/mbox\f[], and will put a space in front of the
+printed string (when it's not empty); it can be used in the
+template with the alias \f[B]mbox\f[]:
+.RS 2
+.PP
+\f[CR]
+       Run MBox [("I ", "inbox", "red"), ("O ", "~/foo/mbox", "")]
+                ["-d", "/var/mail/", "-p", " "] "mbox"
+\f[]
+.RE
+.PP
+\f[B]XPropertyLog\ PropName\f[]
+.IP \[bu] 2
+Aliases to \f[B]PropName\f[]
+.IP \[bu] 2
+Reads the X property named by \f[B]PropName\f[] (a string) and
+displays its value.
+The
+examples/xmonadpropwrite.hs script can be used to set the given property from
+the output of any other program or script.
+.SS Monitor Plugins Commands Arguments
+.PP
+These are the arguments that can be used for internal commands in
+the \f[B]commands\f[] configuration option:
+.IP \[bu] 2
+\f[B]-t\f[] \f[I]string\f[] Output template
+.RS 2
+.IP \[bu] 2
+Template for the monitor output.
+Field names must be enclosed between pointy brackets
+(\f[B]<foo>\f[]) and will be substituted by the computed values.
+You can also specify the foreground (and optionally, background)
+color for a region by bracketing it between \f[B]<fc=fgcolor>\f[]
+(or \f[B]<fc=fgcolor,bgcolor>\f[]) and \f[B]</fc>\f[].
+The rest of the template is output verbatim.
+.IP \[bu] 2
+Long option: \f[B]--template\f[]
+.IP \[bu] 2
+Default value: per monitor (see above).
+.RE
+.IP \[bu] 2
+\f[B]-H\f[] \f[I]number\f[] The high threshold.
+.RS 2
+.IP \[bu] 2
+Numerical values higher than \f[I]number\f[] will be displayed with
+the color specified by \f[B]-h\f[] (see below).
+.IP \[bu] 2
+Long option: \f[B]--High\f[]
+.IP \[bu] 2
+Default value: 66
+.RE
+.IP \[bu] 2
+\f[B]-L\f[] \f[I]number\f[] The low threshold.
+.RS 2
+.IP \[bu] 2
+Numerical values higher than \f[I]number\f[] and lower than the
+high threshold will be displayed with the color specified by
+\f[B]-m\f[] (see below).
+Values lower than \f[I]number\f[] will use the \f[B]-l\f[] color.
+.IP \[bu] 2
+Long option: \f[B]--Low\f[] - Default value: 80
+.IP \[bu] 2
+Default value: 33
+.RE
+.IP \[bu] 2
+\f[B]-h\f[] \f[I]color\f[] High threshold color.
+.RS 2
+.IP \[bu] 2
+Color for displaying values above the high threshold.
+\f[I]color\f[] can be either a name (e.g.
+\[lq]blue\[rq]) or an hexadecimal RGB (e.g.
+\[lq]#FF0000\[rq]).
+.IP \[bu] 2
+Long option: \f[B]--high\f[]
+.IP \[bu] 2
+Default: none (use the default foreground).
+.RE
+.IP \[bu] 2
+\f[B]-n\f[] \f[I]color\f[] Color for `normal' values
+.RS 2
+.IP \[bu] 2
+Color used for values greater than the low threshold but lower than
+the high one.
+.IP \[bu] 2
+Long option: \f[B]--normal\f[]
+.IP \[bu] 2
+Default: none (use the default foreground).
+.RE
+.IP \[bu] 2
+\f[B]-l\f[] \f[I]color\f[] The low threshold color
+.RS 2
+.IP \[bu] 2
+Color for displaying values below the low threshold.
+.IP \[bu] 2
+Long option: \f[B]--low\f[]
+.IP \[bu] 2
+Default: none (use the default foreground).
+.RE
+.IP \[bu] 2
+\f[B]-S\f[] \f[I]boolean\f[] Display optional suffixes
+.RS 2
+.IP \[bu] 2
+When set to a true designator (\[lq]True\[rq], \[lq]Yes\[rq] or
+\[lq]On\[rq]), optional value suffixes such as the `%' symbol or
+optional units will be displayed.
+.IP \[bu] 2
+Long option: \f[B]--suffix\f[]
+.IP \[bu] 2
+Default: False.
+.RE
+.IP \[bu] 2
+\f[B]-p\f[] \f[I]number\f[] Percentages padding
+.RS 2
+.IP \[bu] 2
+Width, in number of digits, for quantities representing
+percentages.
+For instance \f[B]-p\ 3\f[] means that all percentages in the
+monitor will be represented using 3 digits.
+.IP \[bu] 2
+Long option: \f[B]--ppad\f[]
+.IP \[bu] 2
+Default value: 0 (don't pad)
+.RE
+.IP \[bu] 2
+\f[B]-m\f[] \f[I]number\f[] Minimum field width
+.RS 2
+.IP \[bu] 2
+Minimum width, in number of characters, of the fields in the
+monitor template.
+Values whose printed representation is shorter than this value will
+be padded using the padding characters given by the \f[B]-c\f[]
+option with the alignment specified by \f[B]-a\f[] (see below).
+.IP \[bu] 2
+Long option: \f[B]--minwidth\f[]
+.IP \[bu] 2
+Default: 0
+.RE
+.IP \[bu] 2
+\f[B]-M\f[] \f[I]number\f[] Maximum field width
+.RS 2
+.IP \[bu] 2
+Maximum width, in number of characters, of the fields in the
+monitor template.
+Values whose printed representation is longer than this value will
+be truncated.
+.IP \[bu] 2
+Long option: \f[B]--maxwidth\f[]
+.IP \[bu] 2
+Default: 0 (no maximum width)
+.RE
+.IP \[bu] 2
+\f[B]-w\f[] \f[I]number\f[] Fixed field width
+.RS 2
+.IP \[bu] 2
+All fields will be set to this width, padding or truncating as
+needed.
+.IP \[bu] 2
+Long option: \f[B]--width\f[]
+.IP \[bu] 2
+Default: 0 (variable width)
+.RE
+.IP \[bu] 2
+\f[B]-c\f[] \f[I]string\f[]
+.RS 2
+.IP \[bu] 2
+Characters used for padding.
+The characters of \f[I]string\f[] are used cyclically.
+E.g., with \f[B]-P\ +-\ -w\ 6\f[], a field with value \[lq]foo\[rq]
+will be represented as \[lq]+-+foo\[rq].
+.IP \[bu] 2
+Long option: \f[B]--padchars\f[]
+.IP \[bu] 2
+Default value: " "
+.RE
+.IP \[bu] 2
+\f[B]-a\f[] r|l Field alignment
+.RS 2
+.IP \[bu] 2
+Whether to use right (r) or left (l) alignment of field values when
+padding.
+.IP \[bu] 2
+Long option: \f[B]--align\f[]
+.IP \[bu] 2
+Default value: r (padding to the left)
+.RE
+.IP \[bu] 2
+\f[B]-b\f[] \f[I]string\f[] Bar background
+.RS 2
+.IP \[bu] 2
+Characters used, cyclically, to draw the background of bars.
+For instance, if you set this option to \[lq]·.\[rq], an empty bar
+will look like this: \f[B]·.·.·.·.·.\f[]
+.IP \[bu] 2
+Long option: \f[B]--bback\f[]
+.IP \[bu] 2
+Default value: \[lq]:\[rq]
+.RE
+.IP \[bu] 2
+\f[B]-f\f[] \f[I]string\f[] Bar foreground
+.RS 2
+.IP \[bu] 2
+Characters used, cyclically, to draw the foreground of bars.
+.IP \[bu] 2
+Long option: \f[B]--bfore\f[]
+.IP \[bu] 2
+Default value: \[lq]#\[rq]
+.RE
+.IP \[bu] 2
+\f[B]-W\f[] \f[I]number\f[] Bar width
+.RS 2
+.IP \[bu] 2
+Total number of characters used to draw bars.
+.IP \[bu] 2
+Long option: \f[B]--bwidth\f[]
+.IP \[bu] 2
+Default value: 10
+.RE
+.PP
+Commands' arguments must be set as a list.
+E.g.:
+.PP
+\f[CR]
+      Run\ Weather\ "EGPF"\ ["-t",\ "<station>:\ <tempC>C"]\ 36000
+\f[]
+.PP
+In this case xmobar will run the weather monitor, getting
+information for the weather station ID EGPF (Glasgow Airport, as a
+homage to GHC) every hour (36000 tenth of seconds), with a template
+that will output something like:
+.PP
+\f[CR]
+      Glasgow\ Airport:\ 16.0C
+\f[]
+.SS Executing External Commands
+.PP
+In order to execute an external command you can either write the
+command name in the template, in this case it will be executed
+without arguments, or you can configure it in the
+\[lq]commands\[rq] configuration option list with the Com template
+command:
+.PP
+\f[B]Com\ ProgramName\ Args\ Alias\ RefreshRate\f[]
+.IP \[bu] 2
+ProgramName: the name of the program
+.IP \[bu] 2
+Args: the arguments to be passed to the program at execution time
+.IP \[bu] 2
+RefreshRate: number of tenths of second between re-runs of the
+command.
+A zero or negative rate means that the command will be executed
+only once.
+.IP \[bu] 2
+Alias: a name to be used in the template.
+If the alias is en empty string the program name can be used in the
+template.
+.PP
+E.g.:
+.PP
+\f[CR]
+      \ \ \ \ Run\ Com\ "uname"\ ["-s","-r"]\ ""\ 0
+\f[]
+.PP
+can be used in the output template as \f[B]%uname%\f[] (and xmobar
+will call \f[I]uname\f[] only once), while
+.PP
+\f[CR]
+      \ \ \ \ Run\ Com\ "date"\ ["+\\"%a\ %b\ %_d\ %H:%M\\""]\ "mydate"\ 600
+\f[]
+.PP
+can be used in the output template as \f[B]%mydate%\f[]
+.SS Other Plugins
+.PP
+\f[B]StdinReader\f[]
+.IP \[bu] 2
+Aliases to StdinReader
+.IP \[bu] 2
+Displays any text received by xmobar on its standard input.
+.PP
+\f[B]Date\ Format\ Alias\ RefreshRate\f[]
+.IP \[bu] 2
+Format is a time format string, as accepted by the standard ISO C
+\f[B]strftime\f[] function (or Haskell's
+\f[B]formatCalendarTime\f[]).
+.IP \[bu] 2
+Sample usage:
+\f[B]Run\ Date\ "%a\ %b\ %_d\ %Y\ <fc=#ee9a00>%H:%M:%S</fc>"\ "date"\ 10\f[]
+.PP
+\f[B]CommandReader\ "/path/to/program"\ Alias\f[]
+.IP \[bu] 2
+Runs the given program, and displays its standard output.
+.PP
+\f[B]PipeReader\ "/path/to/pipe"\ Alias\f[]
+.IP \[bu] 2
+Reads its displayed output from the given pipe.
+.PP
+\f[B]XMonadLog\f[]
+.IP \[bu] 2
+Aliases to XMonadLog
+.IP \[bu] 2
+Displays information from xmonad's \f[B]_XMONAD_LOG\f[].
+You can set this property by using \f[B]xmonadPropLog\f[] as your
+log hook in xmonad's configuration, as in the following example
+.RS 2
+.PP
+\f[CR]
+      main\ =\ do
+      \ \ spawn\ "xmobar"
+      \ \ xmonad\ $\ defaultConfig\ {
+      \ \ \ \ logHook\ =\ dynamicLogString\ defaultPP\ >>=\ xmonadPropLog
+      \ \ }
+\f[]
+.PP
+This plugin can be used as a sometimes more convenient alternative
+to \f[B]StdinReader\f[].
+For instance, it allows you to (re)start xmobar outside xmonad.
+.RE
+.SH PLUGINS
+.SS Writing a Plugin
+.PP
+Writing a plugin for xmobar should be very simple.
+You need to create a data type with at least one constructor.
+.PP
+Next you must declare this data type an instance of the
+\f[B]Exec\f[] class, by defining the 1 needed method (alternatively
+\f[B]start\f[] or \f[B]run\f[]) and 2 optional ones (alias and
+rate):
+.PP
+\f[CR]
+      \ \ \ \ start\ ::\ e\ ->\ (String\ ->\ IO\ ())\ ->\ IO\ ()
+      \ \ \ \ run\ \ \ ::\ e\ ->\ IO\ String
+      \ \ \ \ rate\ \ ::\ e\ ->\ Int
+      \ \ \ \ alias\ ::\ e\ ->\ String
+\f[]
+.PP
+\f[B]start\f[] must receive a callback to be used to display the
+\f[B]String\f[] produced by the plugin.
+This method can be used for plugins that need to perform
+asynchronous actions.
+See \f[B]Plugins/PipeReader.hs\f[] for an example.
+.PP
+\f[B]run\f[] can be used for simpler plugins.
+If you define only \f[B]run\f[] the plugin will be run every
+second.
+To overwrite this default you just need to implement \f[B]rate\f[],
+which must return the number of tenth of seconds between every
+successive runs.
+See \f[B]Plugins/HelloWorld.hs\f[] for an example of a plugin that
+runs just once, and \f[B]Plugins/Date.hs\f[] for one that
+implements \f[B]rate\f[].
+.PP
+Notice that Date could be implemented as:
+.PP
+\f[CR]
+          instance Exec Date where
+              alias (Date _ a _) = a
+              start (Date f _ r) = date f r
+      
+          date :: String -> Int -> (String -> IO ()) -> IO ()
+          date format r callback = do go
+              where go = do
+                      t <- toCalendarTime =<< getClockTime
+                      callback $ formatCalendarTime defaultTimeLocale format t
+                      tenthSeconds r >> go
+\f[]
+.PP
+This implementation is equivalent to the one you can read in
+\f[B]Plugins/Date.hs\f[].
+.PP
+\f[B]alias\f[] is the name to be used in the output template.
+Default alias will be the data type constructor.
+.PP
+Implementing a plugin requires importing the plugin API (the
+\f[B]Exec\f[] class definition), that is exported by
+\f[B]Plugins.hs\f[].
+So you just need to import it in your module with:
+.PP
+\f[CR]
+      \ \ \ \ import\ Plugins
+\f[]
+.PP
+After that your type constructor can be used as an argument for the
+Runnable type constructor \f[B]Run\f[] in the \f[B]commands\f[]
+list of the configuration options.
+.PP
+This requires importing your plugin into \f[B]Config.hs\f[] and
+adding your type to the type list in the type signature of
+\f[B]Config.runnableTypes\f[].
+.PP
+For a very basic example see \f[B]samples/Plugins/HelloWorld.hs\f[]
+or the other plugins that are distributed with xmobar.
+.SS Installing/Removing a Plugin
+.PP
+Installing a plugin should require 3 steps.
+Here we are going to install the HelloWorld plugin that comes with
+xmobar, assuming that you copied it to \f[B]src/Plugins\f[]:
+.IP "1." 3
+import the plugin module in \f[B]Config.hs\f[], by adding:
+.RS 4
+.PP
+\f[CR]
+      import\ Plugins.HelloWorld
+\f[]
+.RE
+.IP "2." 3
+add the plugin data type to the list of data types in the type
+signature of \f[B]runnableTypes\f[] in \f[B]Config.hs\f[].
+For instance, for the HelloWorld plugin, change
+\f[B]runnableTypes\f[] into:
+.RS 4
+.PP
+\f[CR]
+      runnableTypes\ ::\ Command\ :*:\ Monitors\ :*:\ HelloWorld\ :*:\ ()
+      runnableTypes\ =\ undefined
+\f[]
+.RE
+.IP "3." 3
+Rebuild and reinstall xmobar.
+Now test it with:
+.RS 4
+.PP
+\f[CR]
+      xmobar\ Plugins/helloworld.config
+\f[]
+.RE
+.PP
+As you may see in the example configuration file, the plugin can be
+used by adding, in the \f[B]commands\f[] list:
+.PP
+\f[CR]
+      \ \ \ \ Run\ HelloWorld
+\f[]
+.PP
+and, in the output template, the alias of the plugin:
+.PP
+\f[CR]
+      \ \ \ \ %helloWorld%
+\f[]
+.PP
+That's it.
+.PP
+To remove a plugin, just remove its type from the type signature of
+runnableTypes and remove the imported modules.
+.PP
+To remove the system monitor plugin:
+.IP "1." 3
+remove, from \f[B]Config.hs\f[], the line
+.RS 4
+.PP
+\f[CR]
+      import\ Plugins.Monitors
+\f[]
+.RE
+.IP "2." 3
+in \f[B]Config.hs\f[] change
+.RS 4
+.PP
+\f[CR]
+      \ runnableTypes\ ::\ Command\ :*:\ Monitors\ :*:\ ()
+      \ runnableTypes\ =\ undefined
+\f[]
+.PP
+to
+.PP
+\f[CR]
+      \ runnableTypes\ ::\ Command\ :*:\ ()
+      \ runnableTypes\ =\ undefined
+\f[]
+.RE
+.IP "3." 3
+rebuild xmobar.
+.SH CREDITS
+.PP
+xmobar
+incorporates patches (http://www.ohloh.net/p/xmobar/contributors)
+by Ben Boeckel, Roman Cheplyaka, John Goerzen, Juraj Hercek, Tomas
+Janousek, Spencer Janssen, Lennart Kolmodin, Krzysztof
+Kosciuszkiewicz, Dmitry Kurochkin, Svein Ove, Jens Petersen, Petr
+Rockai, Andrew Sackville-West, Alexander Solovyov, Sergei
+Trofimovich, Thomas Tuegel, Jan Vornberger, Daniel Wagner and
+Norbert Zeh.
+.PP
+\f[B]Andrea Rossato\f[]:
+.PP
+Thanks to Robert Manea and Spencer Janssen for their help in
+understanding how X works.
+They gave me suggestions on how to solve many problems with xmobar.
+.PP
+Thanks to Claus Reinke for make me understand existential types (or
+at least for letting me think I grasp existential types\&...;-).
+.PP
+\f[B]jao\f[]:
+.PP
+Thanks to Andrea for creating xmobar in the first place, and for
+giving me the chance to contribute.
+
+.SH USEFUL LINKS
+.PP
+Github page (http://github.com/jaor/xmobar).
+
+Mailing list (http://projects.haskell.org/cgi-bin/mailman/listinfo/xmobar).
+
+xmobar's Ohloh page (https://www.ohloh.net/p/xmobar).
+
+Andrea's original
+xmobar (http://code.haskell.org/~arossato/xmobar/) home page, and
+xmobar darcs repository (http://code.haskell.org/xmobar).
+
+To understand the internal mysteries of xmobar you may try reading
+this tutorial (http://www.haskell.org/haskellwiki/X_window_programming_in_Haskell)
+on X Window Programming in Haskell.
+
+My sawflibs (http://github.com/jaor/sawflibs) project includes a
+module to automate running xmobar in
+sawfish (http://sawfish.wikia.com/).
+
+.SH AUTHOR
+.PP
+Andrea Rossato originally designed and implemented xmobar up to
+version 0.11.1.
+Since then, it is maintained by
+Jose Antonio Ortega Ruiz (http://hacks-galore.org/jao/).
+
+This manual page was generated from the original documentation by Apollon Oikonomopoulos <apoikos@gmail.com> for the Debian project (but may be used by others).
+
+.SH LICENSE
+.PP
+This software is released under a BSD-style license.
+See /usr/share/doc/xmobar/copyright for more details.
+.PP
+Copyright © 2007\[en]2010 Andrea Rossato
+.br
+Copyright © 2010\[en]2011 Jose Antonio Ortega Ruiz
+
