@@ -2,6 +2,11 @@ ghc (7.0.4-4) UNRELEASED; urgency=low
 
   * Let ghc-doc depend on ghc. It already does via ghc-haddock, making this
     explicit ensures that the triggers run in the right order. 
+  * debian/patches/hash-version-number: Include the upstream version number in
+    the ABI hash. We do need to recompile everything, even after a minor ghc
+    upgrade. This allows to use the same mechanism to ensure correctness and
+    detect that we need to recompile something as for other kind of
+    recompilations. (Closes: #633828)
 
  -- Joachim Breitner <nomeata@debian.org>  Tue, 12 Jul 2011 11:40:09 +0200
 
