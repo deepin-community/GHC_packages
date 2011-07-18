@@ -45,7 +45,7 @@ The default configuration file is assumed to lie in ~/.xmobarrc. See
 Usage:
 .PP
 \f[CR]
-      xmobar -B white -a right -F blue -t \[aq]%LIPB%\[aq]\ -c \[aq][Run Weather "LIPB" [] 36000]\[aq]
+      xmobar \-B white \-a right \-F blue \-t \[aq]%LIPB%\[aq]\ \-c \[aq][Run Weather "LIPB" [] 36000]\[aq]
 \f[]
 .PP
 This is the list of command line options (the output of xmobar
@@ -54,20 +54,20 @@ This is the list of command line options (the output of xmobar
 \f[CR]
       Usage:\ xmobar\ [OPTION...]\ [FILE]
       Options:
-        -h, -?        --help               This help
-        -V            --version            Show version information
-        -f font name  --font=font name     The font name
-        -B bg color   --bgcolor=bg color   The background color. Default black
-        -F fg color   --fgcolor=fg color   The foreground color. Default grey
-        -o            --top                Place xmobar at the top of the screen
-        -b            --bottom             Place xmobar at the bottom of the screen
-        -a alignsep   --alignsep=alignsep  Separators for left, center and right text
+        \-h, \-?        \-\-help               This help
+        \-V            \-\-version            Show version information
+        \-f font name  \-\-font=font name     The font name
+        \-B bg color   \-\-bgcolor=bg color   The background color. Default black
+        \-F fg color   \-\-fgcolor=fg color   The foreground color. Default grey
+        \-o            \-\-top                Place xmobar at the top of the screen
+        \-b            \-\-bottom             Place xmobar at the bottom of the screen
+        \-a alignsep   \-\-alignsep=alignsep  Separators for left, center and right text
                                            alignment. Default: \[aq]}{\[aq]
-        -s char       --sepchar=char       The character used to separate commands in
+        \-s char       \-\-sepchar=char       The character used to separate commands in
                                            the output template. Default \[aq]%\[aq]
-        -t template   --template=template  The output template
-        -c commands   --commands=commands  The list of commands to be executed
-        -x screen     --screen=screen      On which X screen number to start
+        \-t template   \-\-template=template  The output template
+        \-c commands   \-\-commands=commands  The list of commands to be executed
+        \-x screen     \-\-screen=screen      On which X screen number to start
       Mail bug reports and suggestions to <xmobar\@projects.haskell.org>
 \f[]
 
@@ -199,7 +199,7 @@ suitable for being displayed by the dzen2 status bar, wmii's status bar or
 xmobar's StdinReader, as follows:
 .PP
 \f[CR]
-      ./i3status -c i3status.conf | xmobar -o -t "%StdinReader%" -c "[Run StdinReader]"
+      ./i3status \-c i3status.conf | xmobar \-o \-t "%StdinReader%" \-c "[Run StdinReader]"
 \f[]
 
 .SS The Output Template
@@ -233,7 +233,7 @@ enclosed by square parenthesis.
 Example:
 .PP
 \f[CR]
-      [Run Memory ["-t","Mem: <usedratio>%"] 10, Run Swap [] 10]
+      [Run Memory ["\-t","Mem: <usedratio>%"] 10, Run Swap [] 10]
 \f[]
 .PP
 to run the Memory monitor plugin with the specified template, and
@@ -277,11 +277,11 @@ Aliases to \f[B]uptime\f[]
 Args: default monitor arguments (see below).
 The low and high thresholds refer to the number of days.
 .IP \[bu] 2
-Variables that can be used with the \f[B]-t\f[]/\f[B]--template\f[]
+Variables that can be used with the \f[B]\-t\f[]/\f[B]\-\-template\f[]
 argument: \f[B]days\f[], \f[B]hours\f[], \f[B]minutes\f[],
 \f[B]seconds\f[].
 The total uptime is the sum of all those fields.
-You can set the \f[B]-S\f[] argument to \[lq]True\[rq] to add units
+You can set the \f[B]\-S\f[] argument to \[lq]True\[rq] to add units
 to the display of those numeric fields.
 .IP \[bu] 2
 Default template: \f[B]Up:\ <days>d\ <hours>h\ <minutes>m\f[]
@@ -293,7 +293,7 @@ used in template as \f[B]%LIPB%\f[]
 .IP \[bu] 2
 Args: default monitor arguments (see below)
 .IP \[bu] 2
-Variables that can be used with the \f[B]-t\f[]/\f[B]--template\f[]
+Variables that can be used with the \f[B]\-t\f[]/\f[B]\-\-template\f[]
 argument: \f[B]station\f[], \f[B]stationState\f[], \f[B]year\f[],
 \f[B]month\f[], \f[B]day\f[], \f[B]hour\f[], \f[B]wind\f[],
 \f[B]visibility\f[], \f[B]skyCondition\f[], \f[B]tempC\f[],
@@ -312,11 +312,11 @@ be used as \f[B]%eth0%\f[]
 .IP \[bu] 2
 Args: default monitor arguments (see below)
 .IP \[bu] 2
-Variables that can be used with the \f[B]-t\f[]/\f[B]--template\f[]
+Variables that can be used with the \f[B]\-t\f[]/\f[B]\-\-template\f[]
 argument: \f[B]dev\f[], \f[B]rx\f[], \f[B]tx\f[], \f[B]rxbar\f[],
 \f[B]txbar\f[].
 Reception and transmission rates (\f[B]rx\f[] and \f[B]tx\f[]) are
-displayed in Kbytes per second, and you can set the \f[B]-S\f[] to
+displayed in Kbytes per second, and you can set the \f[B]\-S\f[] to
 \[lq]True\[rq] to make them displayed with units (the string
 \[lq]Kb/s\[rq]).
 .IP \[bu] 2
@@ -329,7 +329,7 @@ Aliases to the interface name with the suffix \[lq]wi\[rq]: thus,
 .IP \[bu] 2
 Args: default monitor arguments (see below)
 .IP \[bu] 2
-Variables that can be used with the \f[B]-t\f[]/\f[B]--template\f[]
+Variables that can be used with the \f[B]\-t\f[]/\f[B]\-\-template\f[]
 argument: \f[B]essid\f[], \f[B]quality\f[], \f[B]qualitybar\f[]
 .IP \[bu] 2
 Default template: \f[B]<essid>\ <quality>\f[]
@@ -341,7 +341,7 @@ Aliases to \f[B]memory\f[]
 .IP \[bu] 2
 Args: default monitor arguments (see below)
 .IP \[bu] 2
-Variables that can be used with the \f[B]-t\f[]/\f[B]--template\f[]
+Variables that can be used with the \f[B]\-t\f[]/\f[B]\-\-template\f[]
 argument: \f[B]total\f[], \f[B]free\f[], \f[B]buffer\f[],
 \f[B]cache\f[], \f[B]rest\f[], \f[B]used\f[], \f[B]usedratio\f[],
 \f[B]usedbar\f[], \f[B]freebar\f[]
@@ -354,7 +354,7 @@ Aliases to \f[B]swap\f[]
 .IP \[bu] 2
 Args: default monitor arguments (see below)
 .IP \[bu] 2
-Variables that can be used with the \f[B]-t\f[]/\f[B]--template\f[]
+Variables that can be used with the \f[B]\-t\f[]/\f[B]\-\-template\f[]
 argument: \f[B]total\f[], \f[B]used\f[], \f[B]free\f[],
 \f[B]usedratio\f[]
 .IP \[bu] 2
@@ -366,7 +366,7 @@ Aliases to \f[B]cpu\f[]
 .IP \[bu] 2
 Args: default monitor arguments (see below)
 .IP \[bu] 2
-Variables that can be used with the \f[B]-t\f[]/\f[B]--template\f[]
+Variables that can be used with the \f[B]\-t\f[]/\f[B]\-\-template\f[]
 argument: \f[B]total\f[], \f[B]bar\f[], \f[B]user\f[],
 \f[B]nice\f[], \f[B]system\f[], \f[B]idle\f[]
 .IP \[bu] 2
@@ -378,7 +378,7 @@ Aliases to \f[B]multicpu\f[]
 .IP \[bu] 2
 Args: default monitor arguments (see below)
 .IP \[bu] 2
-Variables that can be used with the \f[B]-t\f[]/\f[B]--template\f[]
+Variables that can be used with the \f[B]\-t\f[]/\f[B]\-\-template\f[]
 argument: \f[B]autototal\f[], \f[B]autobar\f[], \f[B]autouser\f[],
 \f[B]autonice\f[], \f[B]autosystem\f[], \f[B]autoidle\f[],
 \f[B]total\f[], \f[B]bar\f[], \f[B]user\f[], \f[B]nice\f[],
@@ -407,33 +407,33 @@ Args: default monitor arguments (see below), plus the following
 specific ones:
 .RS 2
 .br
-\f[B]-O\f[]: string for AC \[lq]on\[rq] status (default:
+\f[B]\-O\f[]: string for AC \[lq]on\[rq] status (default:
 \[lq]On\[rq])
 .br
-\f[B]-o\f[]: string for AC \[lq]off\[rq] status (default:
+\f[B]\-o\f[]: string for AC \[lq]off\[rq] status (default:
 \[lq]Off\[rq])
 .br
-\f[B]-L\f[]: low power (\f[B]watts\f[]) threshold (default:
+\f[B]\-L\f[]: low power (\f[B]watts\f[]) threshold (default:
 \[en]12)
 .br
-\f[B]-H\f[]: high power threshold (default: \[en]10)
+\f[B]\-H\f[]: high power threshold (default: \[en]10)
 .br
-\f[B]-l\f[]: color to display power lower than the \f[B]-L\f[]
+\f[B]\-l\f[]: color to display power lower than the \f[B]\-L\f[]
 threshold
 .br
-\f[B]-m\f[]: color to display power lower than the \f[B]-H\f[]
+\f[B]\-m\f[]: color to display power lower than the \f[B]\-H\f[]
 threshold
 .br
-\f[B]-h\f[]: color to display power highter than the \f[B]-H\f[]
+\f[B]\-h\f[]: color to display power highter than the \f[B]\-H\f[]
 threshold
 .br
-\f[B]-p\f[]: color to display positive power (battery charging)
+\f[B]\-p\f[]: color to display positive power (battery charging)
 .br
-\f[B]-f\f[]: file in \f[B]/sys/class/power_supply\f[] with AC info
+\f[B]\-f\f[]: file in \f[B]/sys/class/power_supply\f[] with AC info
 (default: \[lq]AC/online\[rq])
 .RE
 .IP \[bu] 2
-Variables that can be used with the \f[B]-t\f[]/\f[B]--template\f[]
+Variables that can be used with the \f[B]\-t\f[]/\f[B]\-\-template\f[]
 argument: \f[B]left\f[], \f[B]leftbar\f[], \f[B]timeleft\f[],
 \f[B]watts\f[], \f[B]acstatus\f[]
 .IP \[bu] 2
@@ -444,13 +444,13 @@ monitor options from Battery's specific ones):
 .RS 2
 .PP
 \f[CR]
-      \ Run\ BatteryP\ ["BAT0"]
-      \ \ \ \ \ \ \ \ \ \ \ \ \ \ ["-t",\ "<acstatus><watts>\ (<left>%)",
-      \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "-L",\ "10",\ "-H",\ "80",\ "-p",\ "3",
-      \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "--",\ "-O",\ "<fc=green>On</fc>\ -\ ",\ "-o",\ "",
-      \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "-L",\ "-15",\ "-H",\ "-5",
-      \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "-l",\ "red",\ "-m",\ "blue",\ "-h",\ "green"]
-      \ \ \ \ \ \ \ \ \ \ \ \ \ \ 600
+       Run BatteryP ["BAT0"]
+                    ["\-t", "<acstatus><watts> (<left>%)",
+                     "\-L", "10", "\-H", "80", "\-p", "3",
+                     "\-\-", "\-O", "<fc=green>On</fc> \- ", "\-o", "",
+                     "\-L", "\-15", "\-H", "\-5",
+                     "\-l", "red", "\-m", "blue", "\-h", "green"]
+                    600
 \f[]
 .PP
 In the above example, the thresholds before the \[lq]\[em]\[rq]
@@ -463,13 +463,13 @@ separator affect how \f[B]<watts>\f[] is displayed.
 Aliases to \f[B]top\f[]
 .IP \[bu] 2
 Args: default monitor arguments (see below).
-The low and high thresholds (\f[B]-L\f[] and \f[B]-H\f[]) denote,
+The low and high thresholds (\f[B]\-L\f[] and \f[B]\-H\f[]) denote,
 for memory entries, the percent of the process memory over the
 total amount of memory currently in use and, for cpu entries, the
 activity percentage (i.e., the value of \f[B]cpuN\f[], which takes
 values between 0 and 100).
 .IP \[bu] 2
-Variables that can be used with the \f[B]-t\f[]/\f[B]--template\f[]
+Variables that can be used with the \f[B]\-t\f[]/\f[B]\-\-template\f[]
 argument: \f[B]no\f[], \f[B]name1\f[], \f[B]cpu1\f[],
 \f[B]both1\f[], \f[B]mname1\f[], \f[B]mem1\f[], \f[B]mboth1\f[],
 \f[B]name2\f[], \f[B]cpu2\f[], \f[B]both2\f[], \f[B]mname2\f[],
@@ -480,7 +480,7 @@ Default template: \f[B]<both1>\f[]
 Displays the name and cpu/mem usage of running processes
 (\f[B]bothn\f[] and \f[B]mboth\f[] display both, and is useful to
 specify an overall maximum and/or minimum width, using the
-\f[B]-m\f[]/\f[B]-M\f[] arguments.
+\f[B]\-m\f[]/\f[B]\-M\f[] arguments.
 \f[B]no\f[] gives the total number of processes.
 .PP
 \f[B]TopMem\ Args\ RefreshRate\f[]
@@ -488,11 +488,11 @@ specify an overall maximum and/or minimum width, using the
 Aliases to \f[B]topmem\f[]
 .IP \[bu] 2
 Args: default monitor arguments (see below).
-The low and high thresholds (\f[B]-L\f[] and \f[B]-H\f[]) denote
+The low and high thresholds (\f[B]\-L\f[] and \f[B]\-H\f[]) denote
 the percent of the process memory over the total amount of memory
 currently in use.
 .IP \[bu] 2
-Variables that can be used with the \f[B]-t\f[]/\f[B]--template\f[]
+Variables that can be used with the \f[B]\-t\f[]/\f[B]\-\-template\f[]
 argument: \f[B]name1\f[], \f[B]mem1\f[], \f[B]both1\f[],
 \f[B]name2\f[], \f[B]mem2\f[], \f[B]both2\f[], \&...
 .IP \[bu] 2
@@ -501,7 +501,7 @@ Default template: \f[B]<both1>\f[]
 Displays the name and RSS (resident memory size) of running
 processes (\f[B]bothn\f[] displays both, and is useful to specify
 an overall maximum and/or minimum width, using the
-\f[B]-m\f[]/\f[B]-M\f[] arguments.
+\f[B]\-m\f[]/\f[B]\-M\f[] arguments.
 .PP
 \f[B]DiskU\ Disks\ Args\ RefreshRate\f[]
 .IP \[bu] 2
@@ -513,7 +513,7 @@ free percentage and used percentage of the given file system
 capacity.
 .IP \[bu] 2
 Args: default monitor arguments (see below).
-\f[B]-t\f[]/\f[B]--template\f[] is ignored.
+\f[B]\-t\f[]/\f[B]\-\-template\f[] is ignored.
 .IP \[bu] 2
 Default template: none (you must specify a template for each file
 system).
@@ -522,9 +522,9 @@ Example:
 .RS 2
 .PP
 \f[CR]
-      \ DiskU\ [("/",\ "<used>/<size>"),\ ("sdb1",\ "<usedbar>")]
-      \ \ \ \ \ \ \ ["-L",\ "20",\ "-H",\ "50",\ "-m",\ "1",\ "-p",\ "3",]
-      \ \ \ \ \ \ \ 20
+       DiskU [("/", "<used>/<size>"), ("sdb1", "<usedbar>")]
+             ["\-L", "20", "\-H", "50", "\-m", "1", "\-p", "3",]
+             20
 \f[]
 .RE
 .PP
@@ -537,7 +537,7 @@ where the template can contain , , for total, read and write speed,
 respectively.
 .IP \[bu] 2
 Args: default monitor arguments (see below).
-\f[B]-t\f[]/\f[B]--template\f[] is ignored.
+\f[B]\-t\f[]/\f[B]\-\-template\f[] is ignored.
 .IP \[bu] 2
 Default template: none (you must specify a template for each file
 system).
@@ -557,7 +557,7 @@ be used in template as \f[B]%thermal0%\f[]
 .IP \[bu] 2
 Args: default monitor arguments (see below)
 .IP \[bu] 2
-Variables that can be used with the \f[B]-t\f[]/\f[B]--template\f[]
+Variables that can be used with the \f[B]\-t\f[]/\f[B]\-\-template\f[]
 argument: \f[B]temp\f[]
 .IP \[bu] 2
 Default template: \f[B]<temp>C\f[]
@@ -571,7 +571,7 @@ Example:
 .RS 2
 .PP
 \f[CR]
-      \ Run\ ThermalZone\ 0\ ["-t","<id>:\ <temp>C"]\ 30
+      \ Run\ ThermalZone\ 0\ ["\-t","<id>:\ <temp>C"]\ 30
 \f[]
 .RE
 .PP
@@ -584,7 +584,7 @@ template as \f[B]%THRM%\f[]
 .IP \[bu] 2
 Args: default monitor arguments (see below)
 .IP \[bu] 2
-Variables that can be used with the \f[B]-t\f[]/\f[B]--template\f[]
+Variables that can be used with the \f[B]\-t\f[]/\f[B]\-\-template\f[]
 argument: \f[B]temp\f[]
 .IP \[bu] 2
 Default template: \f[B]Thm:\ <temp>C\f[]
@@ -596,7 +596,7 @@ Example:
 .RS 2
 .PP
 \f[CR]
-      \ Run\ Thermal\ "THRM"\ ["-t","iwl4965-temp:\ <temp>C"]\ 50
+      \ Run\ Thermal\ "THRM"\ ["\-t","iwl4965\-temp:\ <temp>C"]\ 50
 \f[]
 .RE
 .PP
@@ -606,7 +606,7 @@ Aliases to \f[B]cpufreq\f[]
 .IP \[bu] 2
 Args: default monitor arguments (see below)
 .IP \[bu] 2
-Variables that can be used with the \f[B]-t\f[]/\f[B]--template\f[]
+Variables that can be used with the \f[B]\-t\f[]/\f[B]\-\-template\f[]
 argument: \f[B]cpu0\f[], \f[B]cpu1\f[], \&.., \f[B]cpuN\f[]
 .IP \[bu] 2
 Default template: \f[B]Freq:\ <cpu0>GHz\f[]
@@ -617,8 +617,8 @@ Example:
 .RS 2
 .PP
 \f[CR]
-       Run CpuFreq ["-t", "Freq:<cpu0>|<cpu1>GHz", "-L", "0", "-H", "2",
-                    "-l", "lightblue", "-n","white", "-h", "red"] 50
+       Run CpuFreq ["\-t", "Freq:<cpu0>|<cpu1>GHz", "\-L", "0", "\-H", "2",
+                    "\-l", "lightblue", "\-n","white", "\-h", "red"] 50
 \f[]
 .RE
 .PP
@@ -628,7 +628,7 @@ Aliases to \f[B]coretemp\f[]
 .IP \[bu] 2
 Args: default monitor arguments (see below)
 .IP \[bu] 2
-Variables that can be used with the \f[B]-t\f[]/\f[B]--template\f[]
+Variables that can be used with the \f[B]\-t\f[]/\f[B]\-\-template\f[]
 argument: \f[B]core0\f[], \f[B]core1\f[], \&.., \f[B]coreN\f[]
 .IP \[bu] 2
 Default template: \f[B]Temp:\ <core0>C\f[]
@@ -639,9 +639,9 @@ Example:
 .RS 2
 .PP
 \f[CR]
-       Run CoreTemp ["-t", "Temp:<core0>|<core1>C",
-                     "-L", "40", "-H", "60",
-                     "-l", "lightblue", "-n", "gray90", "-h", "red"] 50
+       Run CoreTemp ["\-t", "Temp:<core0>|<core1>C",
+                     "\-L", "40", "\-H", "60",
+                     "\-l", "lightblue", "\-n", "gray90", "\-h", "red"] 50
 \f[]
 .RE
 .PP
@@ -655,54 +655,54 @@ Args: default monitor arguments (see below).
 Also accepts:
 .RS 2
 .IP \[bu] 2
-\f[B]-O\f[] \f[I]string\f[] On string
+\f[B]\-O\f[] \f[I]string\f[] On string
 .RS 2
 .IP \[bu] 2
 The string used in place of \f[B]<status>\f[] when the mixer
 element is on.
 Defaults to \[lq][on]\[rq].
 .IP \[bu] 2
-Long option: \f[B]--on\f[]
+Long option: \f[B]\-\-on\f[]
 .RE
 .IP \[bu] 2
-\f[B]-o\f[] \f[I]string\f[] Off string
+\f[B]\-o\f[] \f[I]string\f[] Off string
 .RS 2
 .IP \[bu] 2
 The string used in place of \f[B]<status>\f[] when the mixer
 element is off.
 Defaults to \[lq][off]\[rq].
 .IP \[bu] 2
-Long option: \f[B]--off\f[]
+Long option: \f[B]\-\-off\f[]
 .RE
 .IP \[bu] 2
-\f[B]-C\f[] \f[I]color\f[] On color
+\f[B]\-C\f[] \f[I]color\f[] On color
 .RS 2
 .IP \[bu] 2
 The color to be used for \f[B]<status>\f[] when the mixer element
 is on.
 Defaults to \[lq]green\[rq].
 .IP \[bu] 2
-Long option: \f[B]--onc\f[]
+Long option: \f[B]\-\-onc\f[]
 .RE
 .IP \[bu] 2
-\f[B]-c\f[] \f[I]color\f[] Off color
+\f[B]\-c\f[] \f[I]color\f[] Off color
 .RS 2
 .IP \[bu] 2
 The color to be used for \f[B]<status>\f[] when the mixer element
 is off.
 Defaults to \[lq]red\[rq].
 .IP \[bu] 2
-Long option: \f[B]--offc\f[]
+Long option: \f[B]\-\-offc\f[]
 .RE
 .IP \[bu] 2
-\f[B]--highd\f[] \f[I]number\f[] High threshold for dB.
+\f[B]\-\-highd\f[] \f[I]number\f[] High threshold for dB.
 Defaults to \[en]5.0.
 .IP \[bu] 2
-\f[B]--lowd\f[] \f[I]number\f[] Low threshold for dB.
+\f[B]\-\-lowd\f[] \f[I]number\f[] Low threshold for dB.
 Defaults to \[en]30.0.
 .RE
 .IP \[bu] 2
-Variables that can be used with the \f[B]-t\f[]/\f[B]--template\f[]
+Variables that can be used with the \f[B]\-t\f[]/\f[B]\-\-template\f[]
 argument: \f[B]volume\f[], \f[B]volumebar\f[], \f[B]dB\f[],
 \f[B]status\f[]
 .IP \[bu] 2
@@ -716,13 +716,13 @@ This plugin is disabled in the Debian version of the package.
 Aliases to \f[B]mpd\f[]
 .IP \[bu] 2
 Args: default monitor arguments (see below).
-In addition you can provide \f[B]-P\f[], \f[B]-S\f[] and
-\f[B]-Z\f[], with an string argument, to represent the playing,
+In addition you can provide \f[B]\-P\f[], \f[B]\-S\f[] and
+\f[B]\-Z\f[], with an string argument, to represent the playing,
 stopped and paused states in the \f[B]statei\f[] template field.
 The environment variables \f[B]MPD_HOST\f[] and \f[B]MPD_PORT\f[]
 are used to configure the mpd server to communicate with.
 .IP \[bu] 2
-Variables that can be used with the \f[B]-t\f[]/\f[B]--template\f[]
+Variables that can be used with the \f[B]\-t\f[]/\f[B]\-\-template\f[]
 argument: \f[B]bar\f[], \f[B]state\f[], \f[B]statei\f[],
 \f[B]volume\f[], \f[B]length\f[] \f[B]lapsed\f[],
 \f[B]remaining\f[], \f[B]plength\f[] (playlist length),
@@ -737,9 +737,9 @@ monitor options from MPD's specific ones):
 .RS 2
 .PP
 \f[CR]
-       Run MPD ["-t",
+       Run MPD ["\-t",
                 "<composer> <title> (<album>) <track>/<plength> <statei> ",
-                "--", "-P", ">>", "-Z", "|", "-S", "><"] 10
+                "\-\-", "\-P", ">>", "\-Z", "|", "\-S", "><"] 10
 \f[]
 .PP
 This plugin is disabled in the Debian version of the package.
@@ -769,12 +769,12 @@ file, and color the color to use to display the mail count (use an
 empty string for the default).
 .IP \[bu] 2
 Opts is a possibly empty list of options, as flags.
-Possible values: -a \[em]all (no arg) Show all mailboxes, even if
+Possible values: \-a \[em]all (no arg) Show all mailboxes, even if
 empty.
--d dir \[em]dir dir a string giving the base directory where mbox
+\-d dir \[em]dir dir a string giving the base directory where mbox
 files with a relative path live.
--p prefix \[em]prefix prefix a string giving a prefix for the list
-of displayed mail coints -s suffix \[em]suffix suffix a string
+\-p prefix \[em]prefix prefix a string giving a prefix for the list
+of displayed mail coints \-s suffix \[em]suffix suffix a string
 giving a suffix for the list of displayed mail coints
 .IP \[bu] 2
 Paths may start with a `~' to expand to the user's home directory.
@@ -788,7 +788,7 @@ template with the alias \f[B]mbox\f[]:
 .PP
 \f[CR]
        Run MBox [("I ", "inbox", "red"), ("O ", "~/foo/mbox", "")]
-                ["-d", "/var/mail/", "-p", " "] "mbox"
+                ["\-d", "/var/mail/", "\-p", " "] "mbox"
 \f[]
 .RE
 .PP
@@ -806,7 +806,7 @@ the output of any other program or script.
 These are the arguments that can be used for internal commands in
 the \f[B]commands\f[] configuration option:
 .IP \[bu] 2
-\f[B]-t\f[] \f[I]string\f[] Output template
+\f[B]\-t\f[] \f[I]string\f[] Output template
 .RS 2
 .IP \[bu] 2
 Template for the monitor output.
@@ -817,36 +817,36 @@ color for a region by bracketing it between \f[B]<fc=fgcolor>\f[]
 (or \f[B]<fc=fgcolor,bgcolor>\f[]) and \f[B]</fc>\f[].
 The rest of the template is output verbatim.
 .IP \[bu] 2
-Long option: \f[B]--template\f[]
+Long option: \f[B]\-\-template\f[]
 .IP \[bu] 2
 Default value: per monitor (see above).
 .RE
 .IP \[bu] 2
-\f[B]-H\f[] \f[I]number\f[] The high threshold.
+\f[B]\-H\f[] \f[I]number\f[] The high threshold.
 .RS 2
 .IP \[bu] 2
 Numerical values higher than \f[I]number\f[] will be displayed with
-the color specified by \f[B]-h\f[] (see below).
+the color specified by \f[B]\-h\f[] (see below).
 .IP \[bu] 2
-Long option: \f[B]--High\f[]
+Long option: \f[B]\-\-High\f[]
 .IP \[bu] 2
 Default value: 66
 .RE
 .IP \[bu] 2
-\f[B]-L\f[] \f[I]number\f[] The low threshold.
+\f[B]\-L\f[] \f[I]number\f[] The low threshold.
 .RS 2
 .IP \[bu] 2
 Numerical values higher than \f[I]number\f[] and lower than the
 high threshold will be displayed with the color specified by
-\f[B]-m\f[] (see below).
-Values lower than \f[I]number\f[] will use the \f[B]-l\f[] color.
+\f[B]\-m\f[] (see below).
+Values lower than \f[I]number\f[] will use the \f[B]\-l\f[] color.
 .IP \[bu] 2
-Long option: \f[B]--Low\f[] - Default value: 80
+Long option: \f[B]\-\-Low\f[] \- Default value: 80
 .IP \[bu] 2
 Default value: 33
 .RE
 .IP \[bu] 2
-\f[B]-h\f[] \f[I]color\f[] High threshold color.
+\f[B]\-h\f[] \f[I]color\f[] High threshold color.
 .RS 2
 .IP \[bu] 2
 Color for displaying values above the high threshold.
@@ -854,72 +854,72 @@ Color for displaying values above the high threshold.
 \[lq]blue\[rq]) or an hexadecimal RGB (e.g.
 \[lq]#FF0000\[rq]).
 .IP \[bu] 2
-Long option: \f[B]--high\f[]
+Long option: \f[B]\-\-high\f[]
 .IP \[bu] 2
 Default: none (use the default foreground).
 .RE
 .IP \[bu] 2
-\f[B]-n\f[] \f[I]color\f[] Color for `normal' values
+\f[B]\-n\f[] \f[I]color\f[] Color for `normal' values
 .RS 2
 .IP \[bu] 2
 Color used for values greater than the low threshold but lower than
 the high one.
 .IP \[bu] 2
-Long option: \f[B]--normal\f[]
+Long option: \f[B]\-\-normal\f[]
 .IP \[bu] 2
 Default: none (use the default foreground).
 .RE
 .IP \[bu] 2
-\f[B]-l\f[] \f[I]color\f[] The low threshold color
+\f[B]\-l\f[] \f[I]color\f[] The low threshold color
 .RS 2
 .IP \[bu] 2
 Color for displaying values below the low threshold.
 .IP \[bu] 2
-Long option: \f[B]--low\f[]
+Long option: \f[B]\-\-low\f[]
 .IP \[bu] 2
 Default: none (use the default foreground).
 .RE
 .IP \[bu] 2
-\f[B]-S\f[] \f[I]boolean\f[] Display optional suffixes
+\f[B]\-S\f[] \f[I]boolean\f[] Display optional suffixes
 .RS 2
 .IP \[bu] 2
 When set to a true designator (\[lq]True\[rq], \[lq]Yes\[rq] or
 \[lq]On\[rq]), optional value suffixes such as the `%' symbol or
 optional units will be displayed.
 .IP \[bu] 2
-Long option: \f[B]--suffix\f[]
+Long option: \f[B]\-\-suffix\f[]
 .IP \[bu] 2
 Default: False.
 .RE
 .IP \[bu] 2
-\f[B]-p\f[] \f[I]number\f[] Percentages padding
+\f[B]\-p\f[] \f[I]number\f[] Percentages padding
 .RS 2
 .IP \[bu] 2
 Width, in number of digits, for quantities representing
 percentages.
-For instance \f[B]-p\ 3\f[] means that all percentages in the
+For instance \f[B]\-p\ 3\f[] means that all percentages in the
 monitor will be represented using 3 digits.
 .IP \[bu] 2
-Long option: \f[B]--ppad\f[]
+Long option: \f[B]\-\-ppad\f[]
 .IP \[bu] 2
 Default value: 0 (don't pad)
 .RE
 .IP \[bu] 2
-\f[B]-m\f[] \f[I]number\f[] Minimum field width
+\f[B]\-m\f[] \f[I]number\f[] Minimum field width
 .RS 2
 .IP \[bu] 2
 Minimum width, in number of characters, of the fields in the
 monitor template.
 Values whose printed representation is shorter than this value will
-be padded using the padding characters given by the \f[B]-c\f[]
-option with the alignment specified by \f[B]-a\f[] (see below).
+be padded using the padding characters given by the \f[B]\-c\f[]
+option with the alignment specified by \f[B]\-a\f[] (see below).
 .IP \[bu] 2
-Long option: \f[B]--minwidth\f[]
+Long option: \f[B]\-\-minwidth\f[]
 .IP \[bu] 2
 Default: 0
 .RE
 .IP \[bu] 2
-\f[B]-M\f[] \f[I]number\f[] Maximum field width
+\f[B]\-M\f[] \f[I]number\f[] Maximum field width
 .RS 2
 .IP \[bu] 2
 Maximum width, in number of characters, of the fields in the
@@ -927,74 +927,74 @@ monitor template.
 Values whose printed representation is longer than this value will
 be truncated.
 .IP \[bu] 2
-Long option: \f[B]--maxwidth\f[]
+Long option: \f[B]\-\-maxwidth\f[]
 .IP \[bu] 2
 Default: 0 (no maximum width)
 .RE
 .IP \[bu] 2
-\f[B]-w\f[] \f[I]number\f[] Fixed field width
+\f[B]\-w\f[] \f[I]number\f[] Fixed field width
 .RS 2
 .IP \[bu] 2
 All fields will be set to this width, padding or truncating as
 needed.
 .IP \[bu] 2
-Long option: \f[B]--width\f[]
+Long option: \f[B]\-\-width\f[]
 .IP \[bu] 2
 Default: 0 (variable width)
 .RE
 .IP \[bu] 2
-\f[B]-c\f[] \f[I]string\f[]
+\f[B]\-c\f[] \f[I]string\f[]
 .RS 2
 .IP \[bu] 2
 Characters used for padding.
 The characters of \f[I]string\f[] are used cyclically.
-E.g., with \f[B]-P\ +-\ -w\ 6\f[], a field with value \[lq]foo\[rq]
-will be represented as \[lq]+-+foo\[rq].
+E.g., with \f[B]\-P\ +\-\ \-w\ 6\f[], a field with value \[lq]foo\[rq]
+will be represented as \[lq]+\-+foo\[rq].
 .IP \[bu] 2
-Long option: \f[B]--padchars\f[]
+Long option: \f[B]\-\-padchars\f[]
 .IP \[bu] 2
 Default value: " "
 .RE
 .IP \[bu] 2
-\f[B]-a\f[] r|l Field alignment
+\f[B]\-a\f[] r|l Field alignment
 .RS 2
 .IP \[bu] 2
 Whether to use right (r) or left (l) alignment of field values when
 padding.
 .IP \[bu] 2
-Long option: \f[B]--align\f[]
+Long option: \f[B]\-\-align\f[]
 .IP \[bu] 2
 Default value: r (padding to the left)
 .RE
 .IP \[bu] 2
-\f[B]-b\f[] \f[I]string\f[] Bar background
+\f[B]\-b\f[] \f[I]string\f[] Bar background
 .RS 2
 .IP \[bu] 2
 Characters used, cyclically, to draw the background of bars.
 For instance, if you set this option to \[lq]·.\[rq], an empty bar
 will look like this: \f[B]·.·.·.·.·.\f[]
 .IP \[bu] 2
-Long option: \f[B]--bback\f[]
+Long option: \f[B]\-\-bback\f[]
 .IP \[bu] 2
 Default value: \[lq]:\[rq]
 .RE
 .IP \[bu] 2
-\f[B]-f\f[] \f[I]string\f[] Bar foreground
+\f[B]\-f\f[] \f[I]string\f[] Bar foreground
 .RS 2
 .IP \[bu] 2
 Characters used, cyclically, to draw the foreground of bars.
 .IP \[bu] 2
-Long option: \f[B]--bfore\f[]
+Long option: \f[B]\-\-bfore\f[]
 .IP \[bu] 2
 Default value: \[lq]#\[rq]
 .RE
 .IP \[bu] 2
-\f[B]-W\f[] \f[I]number\f[] Bar width
+\f[B]\-W\f[] \f[I]number\f[] Bar width
 .RS 2
 .IP \[bu] 2
 Total number of characters used to draw bars.
 .IP \[bu] 2
-Long option: \f[B]--bwidth\f[]
+Long option: \f[B]\-\-bwidth\f[]
 .IP \[bu] 2
 Default value: 10
 .RE
@@ -1003,7 +1003,7 @@ Commands' arguments must be set as a list.
 E.g.:
 .PP
 \f[CR]
-      Run\ Weather\ "EGPF"\ ["-t",\ "<station>:\ <tempC>C"]\ 36000
+      Run\ Weather\ "EGPF"\ ["\-t",\ "<station>:\ <tempC>C"]\ 36000
 \f[]
 .PP
 In this case xmobar will run the weather monitor, getting
@@ -1040,7 +1040,7 @@ template.
 E.g.:
 .PP
 \f[CR]
-      \ \ \ \ Run\ Com\ "uname"\ ["-s","-r"]\ ""\ 0
+      \ \ \ \ Run\ Com\ "uname"\ ["\-s","\-r"]\ ""\ 0
 \f[]
 .PP
 can be used in the output template as \f[B]%uname%\f[] (and xmobar
@@ -1086,11 +1086,11 @@ log hook in xmonad's configuration, as in the following example
 .RS 2
 .PP
 \f[CR]
-      main\ =\ do
-      \ \ spawn\ "xmobar"
-      \ \ xmonad\ $\ defaultConfig\ {
-      \ \ \ \ logHook\ =\ dynamicLogString\ defaultPP\ >>=\ xmonadPropLog
-      \ \ }
+      main = do
+        spawn "xmobar"
+        xmonad $ defaultConfig {
+          logHook = dynamicLogString defaultPP >>= xmonadPropLog
+        }
 \f[]
 .PP
 This plugin can be used as a sometimes more convenient alternative
@@ -1109,10 +1109,10 @@ Next you must declare this data type an instance of the
 rate):
 .PP
 \f[CR]
-      \ \ \ \ start\ ::\ e\ ->\ (String\ ->\ IO\ ())\ ->\ IO\ ()
-      \ \ \ \ run\ \ \ ::\ e\ ->\ IO\ String
-      \ \ \ \ rate\ \ ::\ e\ ->\ Int
-      \ \ \ \ alias\ ::\ e\ ->\ String
+          start :: e \-> (String \-> IO ()) \-> IO ()
+          run   :: e \-> IO String
+          rate  :: e \-> Int
+          alias :: e \-> String
 \f[]
 .PP
 \f[B]start\f[] must receive a callback to be used to display the
@@ -1138,10 +1138,10 @@ Notice that Date could be implemented as:
               alias (Date _ a _) = a
               start (Date f _ r) = date f r
       
-          date :: String -> Int -> (String -> IO ()) -> IO ()
+          date :: String \-> Int \-> (String \-> IO ()) \-> IO ()
           date format r callback = do go
               where go = do
-                      t <- toCalendarTime =<< getClockTime
+                      t <\- toCalendarTime =<< getClockTime
                       callback $ formatCalendarTime defaultTimeLocale format t
                       tenthSeconds r >> go
 \f[]
@@ -1158,7 +1158,7 @@ Implementing a plugin requires importing the plugin API (the
 So you just need to import it in your module with:
 .PP
 \f[CR]
-      \ \ \ \ import\ Plugins
+          import Plugins
 \f[]
 .PP
 After that your type constructor can be used as an argument for the
@@ -1269,7 +1269,7 @@ understanding how X works.
 They gave me suggestions on how to solve many problems with xmobar.
 .PP
 Thanks to Claus Reinke for make me understand existential types (or
-at least for letting me think I grasp existential types\&...;-).
+at least for letting me think I grasp existential types\&...;\-).
 .PP
 \f[B]jao\f[]:
 .PP
@@ -1291,10 +1291,6 @@ xmobar darcs repository (http://code.haskell.org/xmobar).
 To understand the internal mysteries of xmobar you may try reading
 this tutorial (http://www.haskell.org/haskellwiki/X_window_programming_in_Haskell)
 on X Window Programming in Haskell.
-
-My sawflibs (http://github.com/jaor/sawflibs) project includes a
-module to automate running xmobar in
-sawfish (http://sawfish.wikia.com/).
 
 .SH AUTHOR
 .PP
