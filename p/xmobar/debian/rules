@@ -7,7 +7,13 @@
 # Debian)
 GHC := $(firstword $(shell bash -c "type -p ghc6 ghc"))
 
-CONFIGURE_OPTS += --flags="with_xft with_inotify with_iwlib"
+DEB_HOST_ARCH_OS := $(shell dpkg-architecture -qDEB_HOST_ARCH_OS)
+
+ifeq ($(DEB_HOST_ARCH_OS),linux)
+    CONFIGURE_OPTS += --flags="with_xft with_inotify with_iwlib"
+else
+    CONFIGURE_OPTS += --flags="with_xft"
+endif
 
 build: build-arch build-indep
 build-arch: build-stamp
