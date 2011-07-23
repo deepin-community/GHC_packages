@@ -41,6 +41,7 @@ case "$1" in
             fi
         done
 
+	if test -x /usr/lib/ghc/bin/ghc-pkg; then /usr/lib/ghc/bin/ghc-pkg recache --global; fi
         /usr/lib/ghc-doc/gen_contents_index
 	;;
     abort-upgrade|abort-remove|abort-deconfigure)
