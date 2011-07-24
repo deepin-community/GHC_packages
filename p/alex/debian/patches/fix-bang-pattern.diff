@@ -64,3 +64,17 @@ Index: alex-2.3.5/src/Scan.x
 +{-# OPTIONS_GHC -w -XBangPatterns #-}
 
  module Scan(lexer, AlexPosn(..), Token(..), Tkn(..), tokPosn) where
+
+Index: alex-2.3.5/src/Main.hs
+===================================================================
+--- alex-2.3.5.orig/src/Main.hs
++++ alex-2.3.5/src/Main.hs
+@@ -184,7 +184,7 @@
+   hPutStrLn hdl code
+
+ optsToInject :: Target -> [CLIFlags] -> String
+-optsToInject GhcTarget _ = "{-# LANGUAGE CPP,MagicHash #-}\n"
++optsToInject GhcTarget _ = "{-# LANGUAGE CPP,MagicHash,BangPatterns #-}\n"
+ optsToInject _         _ = "{-# LANGUAGE CPP #-}\n"
+
+ importsToInject :: Target -> [CLIFlags] -> String
