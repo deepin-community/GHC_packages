@@ -6,15 +6,16 @@ include /usr/share/cdbs/1/class/hlibrary.mk
 PANDOC_DEP := $(shell dpkg -p pandoc | grep ^Version: | cut -d' ' -f2)
 FILESTORE_DEP := $(shell dpkg -p libghc-filestore-data | grep ^Version: | cut -d' ' -f2)
 
-DEB_INSTALL_MANPAGES_gitit := gitit.1
+MANPAGES := gitit.1 expireGititCache.1
+DEB_INSTALL_MANPAGES_gitit := $(MANPAGES)
 
 DB2MAN = /usr/share/sgml/docbook/stylesheet/xsl/docbook-xsl/manpages/docbook.xsl
 XP     = xsltproc -''-nonet -''-param man.charmap.use.subset "0"
 
-gitit.1: debian/gitit.xml
+%.1: debian/%.xml
 	$(XP) $(DB2MAN) $<
 
-build/gitit:: gitit.1
+build/gitit:: $(MANPAGES)
 
 install/gitit:: debian/tmp-inst-ghc
 	cp -av debian/tmp-inst-ghc/usr/bin/* debian/gitit/usr/bin
@@ -40,4 +41,5 @@ install/gitit:: debian/tmp-inst-ghc
 #	echo "gitit:Depends=pandoc (= ${PANDOC_DEP}), libghc-filestore-data (= ${FILESTORE_DEP})" >> debian/gitit.substvars
 
 clean::
-	rm -f gitit.1
+	rm -f $(MANPAGES)
+
