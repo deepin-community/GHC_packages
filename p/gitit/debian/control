@@ -5,13 +5,13 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Giovanni Mascellani <gio@debian.org>
 Build-Depends:
  debhelper (>= 7),
- haskell-devscripts (>= 0.7),
+ haskell-devscripts (>= 0.8.8),
  cdbs,
  ghc,
  pandoc (>= 1.8),
  xsltproc,
  docbook-xsl,
- libghc-pandoc-dev (>= 1.8),
+ libghc-pandoc-dev (>= 1.8.1.1-2),
  libghc-pandoc-types-dev (>= 1.8),
  libghc-safe-dev,
  libghc-parsec3-dev,
@@ -25,8 +25,8 @@ Build-Depends:
  libghc-http-dev (>= 4000.0),
  libghc-hstringtemplate-dev (>= 0.6),
  libghc-recaptcha-dev (>= 0.1),
- libghc-filestore-dev (>= 0.4.0.2),
- libghc-filestore-data (>= 0.4.0.2),
+ libghc-filestore-dev (>= 0.4.0.3-2),
+ libghc-filestore-data (>= 0.4.0.3-2),
  libghc-zlib-dev (>= 0.5),
  libghc-url-dev (>= 2.1),
  libghc-happstack-server-dev (>= 6.0),
@@ -39,7 +39,7 @@ Build-Depends:
  libghc-json-dev (>= 0.4)
 Build-Depends-Indep:
  ghc-doc,
- libghc-pandoc-doc (>= 1.8),
+ libghc-pandoc-doc (>= 1.8.1.1-2),
  libghc-pandoc-types-doc (>= 1.8),
  libghc-safe-doc,
  libghc-parsec3-doc,
@@ -53,7 +53,7 @@ Build-Depends-Indep:
  libghc-http-doc (>= 4000.0),
  libghc-hstringtemplate-doc (>= 0.6),
  libghc-recaptcha-doc (>= 0.1),
- libghc-filestore-doc (>= 0.4.0.2),
+ libghc-filestore-doc (>= 0.4.0.3-2),
  libghc-zlib-doc (>= 0.5),
  libghc-url-doc (>= 2.1),
  libghc-happstack-server-doc (>= 6.0),
@@ -72,9 +72,9 @@ Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/gitit
 Package: gitit
 Architecture: any
 Depends:
+ ${haskell:Data-Depends},
  ${misc:Depends},
  ${shlibs:Depends},
- ${gitit:Depends},
  libjs-jquery,
  libjs-jquery-ui
 Description: Wiki engine backed by a git or darcs filestore

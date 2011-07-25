@@ -3,9 +3,6 @@
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
 
-PANDOC_DEP := $(shell dpkg -p pandoc | grep ^Version: | cut -d' ' -f2)
-FILESTORE_DEP := $(shell dpkg -p libghc-filestore-data | grep ^Version: | cut -d' ' -f2)
-
 MANPAGES := gitit.1 expireGititCache.1
 DEB_INSTALL_MANPAGES_gitit := $(MANPAGES)
 
@@ -27,13 +24,13 @@ install/gitit:: debian/tmp-inst-ghc
 	dh_link -pgitit /usr/share/javascript/jquery/jquery.min.js usr/share/gitit-$(CABAL_VERSION)/data/static/js/jquery.min.js
 	dh_link -pgitit /usr/share/javascript/jquery-ui/jquery-ui.min.js usr/share/gitit-$(CABAL_VERSION)/data/static/js/jquery-ui.packed.js
 
-	# Generate dependencies against data packages
-	echo "gitit:Depends=pandoc (= ${PANDOC_DEP}), libghc-filestore-data (= ${FILESTORE_DEP})" >> debian/gitit.substvars
-
 	# Removes a few files, that are not necessary and make lintian cry
 	rm -f debian/gitit/usr/share/gitit-$(CABAL_VERSION)/data/post-update
 	rm -f debian/gitit/usr/share/gitit-$(CABAL_VERSION)/BLUETRIP-LICENSE
 	rm -f debian/gitit/usr/share/gitit-$(CABAL_VERSION)/YUI-LICENSE
+
+	# Build data packages depends
+	dh_haskell_depends -pgitit
 
 # Not used at the moment
 #install/libghc-gitit-dev:: debian/tmp-inst-ghc
