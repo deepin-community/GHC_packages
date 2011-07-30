@@ -1,8 +1,8 @@
-Index: ghc-7.0.2/utils/haddock/haddock.cabal
+Index: ghc-7.2.0.20110728/utils/haddock/haddock.cabal
 ===================================================================
---- ghc-7.0.2.orig/utils/haddock/haddock.cabal	2011-03-05 19:06:52.000000000 +0530
-+++ ghc-7.0.2/utils/haddock/haddock.cabal	2011-03-05 19:09:10.000000000 +0530
-@@ -129,68 +129,3 @@
+--- ghc-7.2.0.20110728.orig/utils/haddock/haddock.cabal	2011-07-30 16:26:46.000000000 +0200
++++ ghc-7.2.0.20110728/utils/haddock/haddock.cabal	2011-07-30 16:28:30.000000000 +0200
+@@ -129,71 +129,6 @@
      Haddock.Options
      Haddock.GhcUtils
      Haddock.Convert
@@ -10,7 +10,7 @@ Index: ghc-7.0.2/utils/haddock/haddock.cabal
 -library
 -  default-language:     Haskell2010
 -  build-depends:
--    base == 4.3.*,
+-    base >= 4.3 && < 4.5,
 -    filepath,
 -    directory,
 -    pretty,
@@ -18,7 +18,7 @@ Index: ghc-7.0.2/utils/haddock/haddock.cabal
 -    array,
 -    xhtml >= 3000.2 && < 3000.3,
 -    Cabal >= 1.10,
--    ghc >= 7.0 && < 7.2
+-    ghc >= 7.0 && < 7.4
 -
 -  if flag(in-ghc-tree)
 -    cpp-options: -DIN_GHC_TREE
@@ -71,3 +71,6 @@ Index: ghc-7.0.2/utils/haddock/haddock.cabal
 -  
 -  if flag(in-ghc-tree)
 -    buildable: False
+ 
+ test-suite html-tests
+   type:             exitcode-stdio-1.0
