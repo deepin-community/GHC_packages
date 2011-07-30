@@ -155,8 +155,6 @@ install-stamp: build-stamp
 	# Sort out the package.conf files
 	mkdir -p debian/tmp/var/lib/ghc
 	# Old directories for symlink-workaround. Remove once all libraries use new path
-	mkdir -p debian/tmp/var/lib/ghc-7.0.3/package.conf.d
-	mkdir -p debian/tmp/var/lib/ghc-7.0.4/package.conf.d
 	mv debian/tmp/usr/lib/ghc/package.conf.d \
 	   debian/tmp/var/lib/ghc/
 	rm debian/tmp/var/lib/ghc/package.conf.d/package.cache
