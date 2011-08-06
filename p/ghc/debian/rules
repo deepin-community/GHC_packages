@@ -25,7 +25,7 @@ export DEB_HOST_ARCH      ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
 #  confflags += --build $(DEB_BUILD_GNU_TYPE) --host $(DEB_HOST_GNU_TYPE)
 #endif
 
-ProjectVersion=$(shell awk -F\' "/^PACKAGE_VERSION='[0-9.]+'\$$/ { print \$$2 }" configure)
+ProjectVersion=$(shell cat VERSION)
 
 GHC=$(firstword $(shell bash -c "type -p ghc"))
 EXTRA_CONFIGURE_FLAGS=--with-ghc="$(GHC)"
