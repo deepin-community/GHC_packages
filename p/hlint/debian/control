@@ -28,3 +28,55 @@ Recommends: ghc
 Description: Haskell source code suggestions
  HLint gives suggestions on how to improve your source code. It can either
  print them directly, or generated a colored HTML output.
+
+Package: libghc-hlint-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Haskell source code suggestions; library
+ HLint gives suggestions on how to improve your source code. It can either
+ print them directly, or generated a colored HTML output.
+ .
+ This is the HLint library, used by programs that want to incorporate HLint's
+ functionality.
+ .
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-hlint-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Haskell source code suggestions; profiling libraries
+ HLint gives suggestions on how to improve your source code. It can either
+ print them directly, or generated a colored HTML output.
+ .
+ This is the HLint library, used by programs that want to incorporate HLint's
+ functionality.
+ .
+ This package provides a library for the Haskell programming language, compiled
+ for profiling.  See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-hlint-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Haskell source code suggestions; library documentation
+ HLint gives suggestions on how to improve your source code. It can either
+ print them directly, or generated a colored HTML output.
+ .
+ This is the HLint library, used by programs that want to incorporate HLint's
+ functionality.
+ .
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
