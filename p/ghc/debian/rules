@@ -125,12 +125,7 @@ build-stamp: configure-stamp
 		../../../inplace/bin/ghc-stage2 --make Setup.lhs; \
 		./Setup configure --prefix=/usr --with-compiler=../../../inplace/bin/ghc-stage2 \
 			--package-db=../../../inplace/lib/package.conf.d/ \
-			--htmldir=/usr/share/doc/ghc-haddock/html/ \
-			$$(if ../../../inplace/bin/ghc-stage2 --info | \
-			      grep -q '"Have interpreter","YES"';\
-			   then echo "--ghc-option=-DGHCI";\
-			   fi) \
-		; \
+			--htmldir=/usr/share/doc/ghc-haddock/html/ ; \
 		./Setup build
 
 	touch $@
