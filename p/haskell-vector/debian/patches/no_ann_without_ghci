@@ -1,0 +1,29 @@
+Description: Disable annotation without ghci
+ Can be removed if ghc ignores annotation without an interpreter:
+ http://hackage.haskell.org/trac/ghc/ticket/4268
+Author: Joachim Breitner <nomeata@debian.org>
+Bug-Debian: http://bugs.debian.org/640088
+Forwarded: no
+
+--- haskell-vector-0.9.orig/Data/Vector/Fusion/Stream/Monadic.hs
++++ haskell-vector-0.9/Data/Vector/Fusion/Stream/Monadic.hs
+@@ -94,15 +94,19 @@ import Data.Int  ( Int8, Int16, Int32, I
+ import Data.Word ( Word8, Word16, Word32, Word, Word64 )
+
+ #if __GLASGOW_HASKELL__ >= 700
++#ifndef DEBIAN_NO_GHCI
+ import GHC.Exts ( SpecConstrAnnotation(..) )
+ #endif
++#endif
+
+ #include "vector.h"
+
+ data SPEC = SPEC | SPEC2
+ #if __GLASGOW_HASKELL__ >= 700
++#ifndef DEBIAN_NO_GHCI
+ {-# ANN type SPEC ForceSpecConstr #-}
+ #endif
++#endif
+
+
+ -- | Result of taking a single step in a stream
