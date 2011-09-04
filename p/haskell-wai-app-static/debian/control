@@ -1,0 +1,98 @@
+Source: haskell-wai-app-static
+Section: haskell
+Priority: extra
+Maintainer: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.8)
+  , ghc
+  , ghc-prof
+  , libghc-base64-bytestring-dev (<< 0.2)
+  , libghc-base64-bytestring-prof
+  , libghc-blaze-builder-dev (<< 0.4)
+  , libghc-blaze-builder-prof
+  , libghc-blaze-html-dev (<< 0.5)
+  , libghc-blaze-html-prof
+  , libghc-cryptohash-dev (<< 0.8)
+  , libghc-cryptohash-prof
+  , libghc-file-embed-dev (<< 0.1)
+  , libghc-file-embed-prof
+  , libghc-http-date-dev
+  , libghc-http-date-prof
+  , libghc-http-types-dev (<< 0.7)
+  , libghc-http-types-prof
+  , libghc-text-dev (<< 1.0)
+  , libghc-text-prof
+  , libghc-transformers-dev (<< 0.3)
+  , libghc-transformers-prof
+  , libghc-unix-compat-dev (<< 0.3)
+  , libghc-unix-compat-prof
+  , libghc-wai-dev (>> 0.4)
+  , libghc-wai-dev (<< 0.5)
+  , libghc-wai-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-base64-bytestring-doc
+  , libghc-blaze-builder-doc
+  , libghc-blaze-html-doc
+  , libghc-cryptohash-doc
+  , libghc-file-embed-doc
+  , libghc-http-date-doc
+  , libghc-http-types-doc
+  , libghc-text-doc
+  , libghc-transformers-doc
+  , libghc-unix-compat-doc
+  , libghc-wai-doc
+Standards-Version: 3.9.2
+Homepage: http://hackage.haskell.org/package/wai-app-static
+Vcs-Git: git://git.debian.org/collab-maint/haskell-wai-app-static.git
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/haskell-wai-app-static.git;a=summary
+
+Package: libghc-wai-app-static-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: framework for type-safe, RESTful web applications
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ Yesod is a framework designed to foster creation of RESTful web
+ application that have strong compile-time guarantees of correctness.
+ It also affords space efficient code and portability to many
+ deployment backends, from CGI to stand-alone serving.
+
+Package: libghc-wai-app-static-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: framework for type-safe, RESTful web applications; profiling libraries
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ Yesod is a framework designed to foster creation of RESTful web
+ application that have strong compile-time guarantees of correctness.
+ It also affords space efficient code and portability to many
+ deployment backends, from CGI to stand-alone serving.
+
+Package: libghc-wai-app-static-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: framework for type-safe, RESTful web applications; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ Yesod is a framework designed to foster creation of RESTful web
+ application that have strong compile-time guarantees of correctness.
+ It also affords space efficient code and portability to many
+ deployment backends, from CGI to stand-alone serving.
