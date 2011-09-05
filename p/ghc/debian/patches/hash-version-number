@@ -1,0 +1,12 @@
+Index: ghc-7.0.4/ghc/Main.hs
+===================================================================
+--- ghc-7.0.4.orig/ghc/Main.hs	2011-07-16 11:20:11.000000000 +0200
++++ ghc-7.0.4/ghc/Main.hs	2011-07-16 11:21:16.000000000 +0200
+@@ -753,6 +753,7 @@
+   ifaces <- initIfaceCheck hsc_env $ mapM get_iface mods
+ 
+   bh <- openBinMem (3*1024) -- just less than a block
++  put_ bh opt_HiVersion
+   mapM_ (put_ bh . mi_mod_hash) ifaces
+   f <- fingerprintBinMem bh
+ 
