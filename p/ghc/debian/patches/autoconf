@@ -29,8 +29,8 @@ Last-Update: <YYYY-MM-DD>
 
 Index: ghc-7.0.4/configure
 ===================================================================
---- ghc-7.0.4.orig/configure	2011-06-13 19:11:04.000000000 +0200
-+++ ghc-7.0.4/configure	2011-07-09 10:53:45.000000000 +0200
+--- ghc-7.0.4.orig/configure	2011-09-05 14:09:21.000000000 +0200
++++ ghc-7.0.4/configure	2011-09-05 14:09:30.000000000 +0200
 @@ -1,13 +1,13 @@
  #! /bin/sh
  # Guess values for system-dependent variables and create Makefiles.
@@ -808,7 +808,46 @@ Index: ghc-7.0.4/configure
  esac
  target=$ac_cv_target
  ac_save_IFS=$IFS; IFS='-'
-@@ -3693,7 +3714,7 @@
+@@ -3306,6 +3327,9 @@
+   rs6000)
+     BuildArch="rs6000"
+     ;;
++  s390x*)
++    BuildArch="s390x"
++    ;;
+   s390*)
+     BuildArch="s390"
+     ;;
+@@ -3403,6 +3427,9 @@
+   rs6000)
+     HostArch="rs6000"
+     ;;
++  s390x*)
++    HostArch="s390x"
++    ;;
+   s390*)
+     HostArch="s390"
+     ;;
+@@ -3500,6 +3527,9 @@
+   rs6000)
+     TargetArch="rs6000"
+     ;;
++  s390x*)
++    TargetArch="s390x"
++    ;;
+   s390*)
+     TargetArch="s390"
+     ;;
+@@ -3581,7 +3611,7 @@
+ 
+ checkArch() {
+     case $1 in
+-    alpha|arm|hppa|hppa1_1|i386|ia64|m68k|mips|mipseb|mipsel|powerpc|powerpc64|rs6000|s390|sparc|sparc64|vax|x86_64)
++    alpha|arm|hppa|hppa1_1|i386|ia64|m68k|mips|mipseb|mipsel|powerpc|powerpc64|rs6000|s390|s390x|sparc|sparc64|vax|x86_64)
+         ;;
+     *)
+         echo "Unknown arch $1"
+@@ -3693,7 +3723,7 @@
  set dummy $ac_prog; ac_word=$2
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
  $as_echo_n "checking for $ac_word... " >&6; }
@@ -817,7 +856,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    case $NHC in
-@@ -3736,7 +3757,7 @@
+@@ -3736,7 +3766,7 @@
  set dummy hbc; ac_word=$2
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
  $as_echo_n "checking for $ac_word... " >&6; }
@@ -826,7 +865,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    case $HBC in
-@@ -3779,9 +3800,9 @@
+@@ -3779,9 +3809,9 @@
  $as_echo "$as_me: Building in-tree ghc-pwd" >&6;}
                  rm -rf utils/ghc-pwd/dist-boot
      mkdir  utils/ghc-pwd/dist-boot
@@ -838,7 +877,7 @@ Index: ghc-7.0.4/configure
      fi
  
      GHC_PWD=utils/ghc-pwd/dist-boot/ghc-pwd
-@@ -3794,12 +3815,12 @@
+@@ -3794,12 +3824,12 @@
          hardtop=`echo $hardtop | sed 's|^/tmp_mnt.*\(/local/.*\)$|\1|' | sed 's|^/tmp_mnt/|/|'`
  
      if ! test -d "$hardtop"; then
@@ -853,7 +892,7 @@ Index: ghc-7.0.4/configure
          The build system does not support building in a directory
          containing space characters.
          Suggestion: move the build tree somewhere else." "$LINENO" 5
-@@ -3856,7 +3877,7 @@
+@@ -3856,7 +3886,7 @@
          PATH=`pwd`/inplace/mingw/bin:$PATH inplace/mingw/bin/realgcc.exe driver/gcc/gcc.c driver/utils/cwrapper.c driver/utils/getLocation.c -Idriver/utils -o inplace/mingw/bin/gcc.exe
          if ! test -e inplace/mingw/bin/gcc.exe
          then
@@ -862,7 +901,7 @@ Index: ghc-7.0.4/configure
          fi
          { $as_echo "$as_me:${as_lineno-$LINENO}: In-tree mingw tree created" >&5
  $as_echo "$as_me: In-tree mingw tree created" >&6;}
-@@ -3899,7 +3920,7 @@
+@@ -3899,7 +3929,7 @@
  set dummy gcc; ac_word=$2
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
  $as_echo_n "checking for $ac_word... " >&6; }
@@ -871,7 +910,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    case $CC in
-@@ -3937,7 +3958,7 @@
+@@ -3937,7 +3967,7 @@
  
          if test -z "$CC"
          then
@@ -880,7 +919,7 @@ Index: ghc-7.0.4/configure
          fi
      fi
  
-@@ -3970,7 +3991,7 @@
+@@ -3970,7 +4000,7 @@
  set dummy ld; ac_word=$2
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
  $as_echo_n "checking for $ac_word... " >&6; }
@@ -889,7 +928,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    case $LD in
-@@ -4008,7 +4029,7 @@
+@@ -4008,7 +4038,7 @@
  
          if test -z "$LD"
          then
@@ -898,7 +937,7 @@ Index: ghc-7.0.4/configure
          fi
      fi
  
-@@ -4040,7 +4061,7 @@
+@@ -4040,7 +4070,7 @@
  set dummy nm; ac_word=$2
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
  $as_echo_n "checking for $ac_word... " >&6; }
@@ -907,7 +946,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    case $NM in
-@@ -4078,7 +4099,7 @@
+@@ -4078,7 +4108,7 @@
  
          if test -z "$NM"
          then
@@ -916,7 +955,7 @@ Index: ghc-7.0.4/configure
          fi
      fi
  
-@@ -4163,7 +4184,7 @@
+@@ -4163,7 +4193,7 @@
  $as_echo "none" >&6; }
    else
      if test ! -d $MACOSX_DEPLOYMENT_SDK; then
@@ -925,7 +964,7 @@ Index: ghc-7.0.4/configure
      fi
      { $as_echo "$as_me:${as_lineno-$LINENO}: result: ${MACOSX_DEPLOYMENT_VERSION} (${MACOSX_DEPLOYMENT_SDK})" >&5
  $as_echo "${MACOSX_DEPLOYMENT_VERSION} (${MACOSX_DEPLOYMENT_SDK})" >&6; }
-@@ -4186,7 +4207,7 @@
+@@ -4186,7 +4216,7 @@
  
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether #! works in shell scripts" >&5
  $as_echo_n "checking whether #! works in shell scripts... " >&6; }
@@ -934,7 +973,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    echo '#! /bin/cat
-@@ -4215,7 +4236,7 @@
+@@ -4215,7 +4245,7 @@
  set dummy perl; ac_word=$2
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
  $as_echo_n "checking for $ac_word... " >&6; }
@@ -943,7 +982,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    case $PerlCmd in
-@@ -4261,7 +4282,7 @@
+@@ -4261,7 +4291,7 @@
     if grep "v5" conftest.out >/dev/null 2>&1; then
        :
     else
@@ -952,7 +991,7 @@ Index: ghc-7.0.4/configure
     fi
  rm -fr conftest*
  
-@@ -4271,7 +4292,7 @@
+@@ -4271,7 +4301,7 @@
  
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking if your perl works in shell scripts" >&5
  $as_echo_n "checking if your perl works in shell scripts... " >&6; }
@@ -961,7 +1000,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    echo "#!$PerlCmd"'
-@@ -4294,7 +4315,7 @@
+@@ -4294,7 +4324,7 @@
  set dummy python; ac_word=$2
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
  $as_echo_n "checking for $ac_word... " >&6; }
@@ -970,7 +1009,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    case $PythonCmd in
-@@ -4341,7 +4362,7 @@
+@@ -4341,7 +4371,7 @@
  set dummy ${ac_tool_prefix}gcc; ac_word=$2
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
  $as_echo_n "checking for $ac_word... " >&6; }
@@ -979,7 +1018,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    if test -n "$CC"; then
-@@ -4381,7 +4402,7 @@
+@@ -4381,7 +4411,7 @@
  set dummy gcc; ac_word=$2
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
  $as_echo_n "checking for $ac_word... " >&6; }
@@ -988,7 +1027,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    if test -n "$ac_ct_CC"; then
-@@ -4434,7 +4455,7 @@
+@@ -4434,7 +4464,7 @@
  set dummy ${ac_tool_prefix}cc; ac_word=$2
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
  $as_echo_n "checking for $ac_word... " >&6; }
@@ -997,7 +1036,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    if test -n "$CC"; then
-@@ -4474,7 +4495,7 @@
+@@ -4474,7 +4504,7 @@
  set dummy cc; ac_word=$2
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
  $as_echo_n "checking for $ac_word... " >&6; }
@@ -1006,7 +1045,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    if test -n "$CC"; then
-@@ -4533,7 +4554,7 @@
+@@ -4533,7 +4563,7 @@
  set dummy $ac_tool_prefix$ac_prog; ac_word=$2
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
  $as_echo_n "checking for $ac_word... " >&6; }
@@ -1015,7 +1054,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    if test -n "$CC"; then
-@@ -4577,7 +4598,7 @@
+@@ -4577,7 +4607,7 @@
  set dummy $ac_prog; ac_word=$2
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
  $as_echo_n "checking for $ac_word... " >&6; }
@@ -1024,7 +1063,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    if test -n "$ac_ct_CC"; then
-@@ -4631,8 +4652,8 @@
+@@ -4631,8 +4661,8 @@
  
  test -z "$CC" && { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
  $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
@@ -1035,7 +1074,7 @@ Index: ghc-7.0.4/configure
  
  # Provide some information about the compiler.
  $as_echo "$as_me:${as_lineno-$LINENO}: checking for C compiler version" >&5
-@@ -4746,9 +4767,8 @@
+@@ -4746,9 +4776,8 @@
  
  { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
  $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
@@ -1047,7 +1086,7 @@ Index: ghc-7.0.4/configure
  else
    { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
  $as_echo "yes" >&6; }
-@@ -4790,8 +4810,8 @@
+@@ -4790,8 +4819,8 @@
  else
    { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
  $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
@@ -1058,7 +1097,7 @@ Index: ghc-7.0.4/configure
  fi
  rm -f conftest conftest$ac_cv_exeext
  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_exeext" >&5
-@@ -4848,9 +4868,9 @@
+@@ -4848,9 +4877,9 @@
      else
  	{ { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
  $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
@@ -1070,7 +1109,7 @@ Index: ghc-7.0.4/configure
      fi
    fi
  fi
-@@ -4861,7 +4881,7 @@
+@@ -4861,7 +4890,7 @@
  ac_clean_files=$ac_clean_files_save
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for suffix of object files" >&5
  $as_echo_n "checking for suffix of object files... " >&6; }
@@ -1079,7 +1118,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-@@ -4901,8 +4921,8 @@
+@@ -4901,8 +4930,8 @@
  
  { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
  $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
@@ -1090,7 +1129,7 @@ Index: ghc-7.0.4/configure
  fi
  rm -f conftest.$ac_cv_objext conftest.$ac_ext
  fi
-@@ -4912,7 +4932,7 @@
+@@ -4912,7 +4941,7 @@
  ac_objext=$OBJEXT
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether we are using the GNU C compiler" >&5
  $as_echo_n "checking whether we are using the GNU C compiler... " >&6; }
@@ -1099,7 +1138,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-@@ -4949,7 +4969,7 @@
+@@ -4949,7 +4978,7 @@
  ac_save_CFLAGS=$CFLAGS
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether $CC accepts -g" >&5
  $as_echo_n "checking whether $CC accepts -g... " >&6; }
@@ -1108,7 +1147,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    ac_save_c_werror_flag=$ac_c_werror_flag
-@@ -5027,7 +5047,7 @@
+@@ -5027,7 +5056,7 @@
  fi
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $CC option to accept ISO C89" >&5
  $as_echo_n "checking for $CC option to accept ISO C89... " >&6; }
@@ -1117,7 +1156,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    ac_cv_prog_cc_c89=no
-@@ -5129,12 +5149,12 @@
+@@ -5129,12 +5158,12 @@
     fp_have_gcc=YES
  fi
  if test "$fp_have_gcc" = "NO" -a -d $srcdir/ghc; then
@@ -1132,7 +1171,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    if test "$fp_have_gcc" = "YES"; then
-@@ -5160,7 +5180,7 @@
+@@ -5160,7 +5189,7 @@
  done
  IFS=$fp_save_IFS
  if test "$fp_num1" -lt "$fp_num2"; then :
@@ -1141,7 +1180,7 @@ Index: ghc-7.0.4/configure
  fi
     # See #2770: gcc 2.95 doesn't work any more, apparently.  There probably
     # isn't a very good reason for that, but for now just make configure
-@@ -5339,7 +5359,7 @@
+@@ -5339,7 +5368,7 @@
  
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for extra options to pass gcc when compiling via C" >&5
  $as_echo_n "checking for extra options to pass gcc when compiling via C... " >&6; }
@@ -1150,7 +1189,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    fp_cv_gcc_extra_opts=
-@@ -5486,7 +5506,7 @@
+@@ -5486,7 +5515,7 @@
    CPP=
  fi
  if test -z "$CPP"; then
@@ -1159,7 +1198,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
        # Double quotes because CPP needs to be expanded
-@@ -5516,7 +5536,7 @@
+@@ -5516,7 +5545,7 @@
    # Broken: fails on valid input.
  continue
  fi
@@ -1168,7 +1207,7 @@ Index: ghc-7.0.4/configure
  
    # OK, works on sane cases.  Now check whether nonexistent headers
    # can be detected and how.
-@@ -5532,11 +5552,11 @@
+@@ -5532,11 +5561,11 @@
  ac_preproc_ok=:
  break
  fi
@@ -1182,7 +1221,7 @@ Index: ghc-7.0.4/configure
  if $ac_preproc_ok; then :
    break
  fi
-@@ -5575,7 +5595,7 @@
+@@ -5575,7 +5604,7 @@
    # Broken: fails on valid input.
  continue
  fi
@@ -1191,7 +1230,7 @@ Index: ghc-7.0.4/configure
  
    # OK, works on sane cases.  Now check whether nonexistent headers
    # can be detected and how.
-@@ -5591,18 +5611,18 @@
+@@ -5591,18 +5620,18 @@
  ac_preproc_ok=:
  break
  fi
@@ -1214,7 +1253,7 @@ Index: ghc-7.0.4/configure
  fi
  
  ac_ext=c
-@@ -5627,7 +5647,7 @@
+@@ -5627,7 +5656,7 @@
  
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for a working context diff" >&5
  $as_echo_n "checking for a working context diff... " >&6; }
@@ -1223,7 +1262,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    echo foo > conftest1
-@@ -5644,7 +5664,7 @@
+@@ -5644,7 +5673,7 @@
  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $fp_cv_context_diff" >&5
  $as_echo "$fp_cv_context_diff" >&6; }
  if test x"$fp_cv_context_diff" = xno; then
@@ -1232,7 +1271,7 @@ Index: ghc-7.0.4/configure
  fi
  ContextDiffCmd=$fp_cv_context_diff
  
-@@ -5668,7 +5688,7 @@
+@@ -5668,7 +5697,7 @@
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for a BSD-compatible install" >&5
  $as_echo_n "checking for a BSD-compatible install... " >&6; }
  if test -z "$INSTALL"; then
@@ -1241,7 +1280,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-@@ -5753,7 +5773,7 @@
+@@ -5753,7 +5782,7 @@
  set dummy ar; ac_word=$2
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
  $as_echo_n "checking for $ac_word... " >&6; }
@@ -1250,7 +1289,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    case $fp_prog_ar_raw in
-@@ -5790,7 +5810,7 @@
+@@ -5790,7 +5819,7 @@
  
  
  if test -z "$fp_prog_ar_raw"; then
@@ -1259,7 +1298,7 @@ Index: ghc-7.0.4/configure
  fi
  fp_prog_ar="$fp_prog_ar_raw"
  case $HostPlatform in
-@@ -5805,7 +5825,7 @@
+@@ -5805,7 +5834,7 @@
  
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether $fp_prog_ar_raw is GNU ar" >&5
  $as_echo_n "checking whether $fp_prog_ar_raw is GNU ar... " >&6; }
@@ -1268,7 +1307,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    if "$fp_prog_ar_raw" --version 2> /dev/null | grep "GNU" > /dev/null 2>&1; then
-@@ -5823,7 +5843,7 @@
+@@ -5823,7 +5852,7 @@
  
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for ar arguments" >&5
  $as_echo_n "checking for ar arguments... " >&6; }
@@ -1277,7 +1316,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
  
-@@ -5843,7 +5863,7 @@
+@@ -5843,7 +5872,7 @@
    done
    rm -f conftest*
    if test -z "$fp_cv_prog_ar_args"; then
@@ -1286,7 +1325,7 @@ Index: ghc-7.0.4/configure
    fi
  fi
  fi
-@@ -5860,7 +5880,7 @@
+@@ -5860,7 +5889,7 @@
  
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether $fp_prog_ar_raw supports @file" >&5
  $as_echo_n "checking whether $fp_prog_ar_raw supports @file... " >&6; }
@@ -1295,7 +1334,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
  
-@@ -5889,7 +5909,7 @@
+@@ -5889,7 +5918,7 @@
  
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether ranlib is needed" >&5
  $as_echo_n "checking whether ranlib is needed... " >&6; }
@@ -1304,7 +1343,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    if test $fp_prog_ar_is_gnu = yes; then
-@@ -5912,7 +5932,7 @@
+@@ -5912,7 +5941,7 @@
  set dummy ${ac_tool_prefix}ranlib; ac_word=$2
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
  $as_echo_n "checking for $ac_word... " >&6; }
@@ -1313,7 +1352,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    if test -n "$RANLIB"; then
-@@ -5952,7 +5972,7 @@
+@@ -5952,7 +5981,7 @@
  set dummy ranlib; ac_word=$2
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
  $as_echo_n "checking for $ac_word... " >&6; }
@@ -1322,7 +1361,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    if test -n "$ac_ct_RANLIB"; then
-@@ -6008,7 +6028,7 @@
+@@ -6008,7 +6037,7 @@
  
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether $fp_prog_ar_raw supports -input" >&5
  $as_echo_n "checking whether $fp_prog_ar_raw supports -input... " >&6; }
@@ -1331,7 +1370,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    fp_cv_prog_ar_supports_input=no
-@@ -6054,7 +6074,7 @@
+@@ -6054,7 +6083,7 @@
  set dummy $ac_prog; ac_word=$2
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
  $as_echo_n "checking for $ac_word... " >&6; }
@@ -1340,7 +1379,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    case $SedCmd in
-@@ -6100,7 +6120,7 @@
+@@ -6100,7 +6129,7 @@
  set dummy time; ac_word=$2
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
  $as_echo_n "checking for $ac_word... " >&6; }
@@ -1349,7 +1388,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    case $TimeCmd in
-@@ -6143,7 +6163,7 @@
+@@ -6143,7 +6172,7 @@
  set dummy $ac_prog; ac_word=$2
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
  $as_echo_n "checking for $ac_word... " >&6; }
@@ -1358,7 +1397,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    case $TarCmd in
-@@ -6190,7 +6210,7 @@
+@@ -6190,7 +6219,7 @@
  set dummy $ac_prog; ac_word=$2
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
  $as_echo_n "checking for $ac_word... " >&6; }
@@ -1367,7 +1406,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    case $PatchCmd in
-@@ -6236,7 +6256,7 @@
+@@ -6236,7 +6265,7 @@
  set dummy dtrace; ac_word=$2
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
  $as_echo_n "checking for $ac_word... " >&6; }
@@ -1376,7 +1415,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    case $DtraceCmd in
-@@ -6283,7 +6303,7 @@
+@@ -6283,7 +6312,7 @@
  set dummy HsColour; ac_word=$2
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
  $as_echo_n "checking for $ac_word... " >&6; }
@@ -1385,7 +1424,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    case $HSCOLOUR in
-@@ -6332,7 +6352,7 @@
+@@ -6332,7 +6361,7 @@
  set dummy xmllint; ac_word=$2
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
  $as_echo_n "checking for $ac_word... " >&6; }
@@ -1394,7 +1433,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    case $XmllintCmd in
-@@ -6418,7 +6438,7 @@
+@@ -6418,7 +6447,7 @@
  set dummy xsltproc; ac_word=$2
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
  $as_echo_n "checking for $ac_word... " >&6; }
@@ -1403,7 +1442,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    case $XsltprocCmd in
-@@ -6462,7 +6482,7 @@
+@@ -6462,7 +6491,7 @@
  if test -n "$XsltprocCmd"; then
    { $as_echo "$as_me:${as_lineno-$LINENO}: checking for DocBook XSL stylesheet" >&5
  $as_echo_n "checking for DocBook XSL stylesheet... " >&6; }
@@ -1412,7 +1451,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    rm -f conftest.xml conftest-book.xml
-@@ -6511,7 +6531,7 @@
+@@ -6511,7 +6540,7 @@
  set dummy dblatex; ac_word=$2
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
  $as_echo_n "checking for $ac_word... " >&6; }
@@ -1421,7 +1460,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    case $DblatexCmd in
-@@ -6557,7 +6577,7 @@
+@@ -6557,7 +6586,7 @@
  set dummy hasktags; ac_word=$2
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
  $as_echo_n "checking for $ac_word... " >&6; }
@@ -1430,7 +1469,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    case $HstagsCmd in
-@@ -6601,7 +6621,7 @@
+@@ -6601,7 +6630,7 @@
  
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for ghc-pkg matching $WithGhc" >&5
  $as_echo_n "checking for ghc-pkg matching $WithGhc... " >&6; }
@@ -1439,7 +1478,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
  
-@@ -6614,7 +6634,7 @@
+@@ -6614,7 +6643,7 @@
  if "$fp_ghc_pkg_guess" list > /dev/null 2>&1; then
    fp_cv_matching_ghc_pkg=$fp_ghc_pkg_guess
  else
@@ -1448,7 +1487,7 @@ Index: ghc-7.0.4/configure
  fi
  fi
  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $fp_cv_matching_ghc_pkg" >&5
-@@ -6628,7 +6648,7 @@
+@@ -6628,7 +6657,7 @@
  set dummy happy; ac_word=$2
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
  $as_echo_n "checking for $ac_word... " >&6; }
@@ -1457,7 +1496,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    case $HappyCmd in
-@@ -6677,7 +6697,7 @@
+@@ -6677,7 +6706,7 @@
  
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for version of happy" >&5
  $as_echo_n "checking for version of happy... " >&6; }
@@ -1466,7 +1505,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    if test x"$HappyCmd" != x; then
-@@ -6713,7 +6733,7 @@
+@@ -6713,7 +6742,7 @@
  done
  IFS=$fp_save_IFS
  if test "$fp_num1" -lt "$fp_num2"; then :
@@ -1475,7 +1514,7 @@ Index: ghc-7.0.4/configure
  fi
  fi
  HappyVersion=$fptools_cv_happy_version;
-@@ -6727,7 +6747,7 @@
+@@ -6727,7 +6756,7 @@
  set dummy alex; ac_word=$2
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
  $as_echo_n "checking for $ac_word... " >&6; }
@@ -1484,7 +1523,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    case $AlexCmd in
-@@ -6774,7 +6794,7 @@
+@@ -6774,7 +6803,7 @@
  
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for version of alex" >&5
  $as_echo_n "checking for version of alex... " >&6; }
@@ -1493,7 +1532,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    if test x"$AlexCmd" != x; then
-@@ -6810,7 +6830,7 @@
+@@ -6810,7 +6839,7 @@
  done
  IFS=$fp_save_IFS
  if test "$fp_num1" -lt "$fp_num2"; then :
@@ -1502,7 +1541,7 @@ Index: ghc-7.0.4/configure
  fi
  fi
  AlexVersion=$fptools_cv_alex_version;
-@@ -6824,7 +6844,7 @@
+@@ -6824,7 +6853,7 @@
  
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for grep that handles long lines and -e" >&5
  $as_echo_n "checking for grep that handles long lines and -e... " >&6; }
@@ -1511,7 +1550,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    if test -z "$GREP"; then
-@@ -6873,7 +6893,7 @@
+@@ -6873,7 +6902,7 @@
    done
  IFS=$as_save_IFS
    if test -z "$ac_cv_path_GREP"; then
@@ -1520,7 +1559,7 @@ Index: ghc-7.0.4/configure
    fi
  else
    ac_cv_path_GREP=$GREP
-@@ -6887,7 +6907,7 @@
+@@ -6887,7 +6916,7 @@
  
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for egrep" >&5
  $as_echo_n "checking for egrep... " >&6; }
@@ -1529,7 +1568,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    if echo a | $GREP -E '(a|b)' >/dev/null 2>&1
-@@ -6939,7 +6959,7 @@
+@@ -6939,7 +6968,7 @@
    done
  IFS=$as_save_IFS
    if test -z "$ac_cv_path_EGREP"; then
@@ -1538,7 +1577,7 @@ Index: ghc-7.0.4/configure
    fi
  else
    ac_cv_path_EGREP=$EGREP
-@@ -6954,7 +6974,7 @@
+@@ -6954,7 +6983,7 @@
  
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for ANSI C header files" >&5
  $as_echo_n "checking for ANSI C header files... " >&6; }
@@ -1547,7 +1586,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-@@ -7074,7 +7094,7 @@
+@@ -7074,7 +7103,7 @@
  
    { $as_echo "$as_me:${as_lineno-$LINENO}: checking for special C compiler options needed for large files" >&5
  $as_echo_n "checking for special C compiler options needed for large files... " >&6; }
@@ -1556,7 +1595,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    ac_cv_sys_largefile_CC=no
-@@ -7125,7 +7145,7 @@
+@@ -7125,7 +7154,7 @@
  
    { $as_echo "$as_me:${as_lineno-$LINENO}: checking for _FILE_OFFSET_BITS value needed for large files" >&5
  $as_echo_n "checking for _FILE_OFFSET_BITS value needed for large files... " >&6; }
@@ -1565,7 +1604,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    while :; do
-@@ -7194,7 +7214,7 @@
+@@ -7194,7 +7223,7 @@
    if test $ac_cv_sys_file_offset_bits = unknown; then
      { $as_echo "$as_me:${as_lineno-$LINENO}: checking for _LARGE_FILES value needed for large files" >&5
  $as_echo_n "checking for _LARGE_FILES value needed for large files... " >&6; }
@@ -1574,7 +1613,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    while :; do
-@@ -7271,8 +7291,7 @@
+@@ -7271,8 +7300,7 @@
    as_ac_Header=`$as_echo "ac_cv_header_$ac_header" | $as_tr_sh`
  ac_fn_c_check_header_compile "$LINENO" "$ac_header" "$as_ac_Header" "$ac_includes_default
  "
@@ -1584,7 +1623,7 @@ Index: ghc-7.0.4/configure
    cat >>confdefs.h <<_ACEOF
  #define `$as_echo "HAVE_$ac_header" | $as_tr_cpp` 1
  _ACEOF
-@@ -7286,8 +7305,7 @@
+@@ -7286,8 +7314,7 @@
  do :
    as_ac_Header=`$as_echo "ac_cv_header_$ac_header" | $as_tr_sh`
  ac_fn_c_check_header_mongrel "$LINENO" "$ac_header" "$as_ac_Header" "$ac_includes_default"
@@ -1594,7 +1633,7 @@ Index: ghc-7.0.4/configure
    cat >>confdefs.h <<_ACEOF
  #define `$as_echo "HAVE_$ac_header" | $as_tr_cpp` 1
  _ACEOF
-@@ -7299,7 +7317,7 @@
+@@ -7299,7 +7326,7 @@
  
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether time.h and sys/time.h may both be included" >&5
  $as_echo_n "checking whether time.h and sys/time.h may both be included... " >&6; }
@@ -1603,7 +1642,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-@@ -7334,7 +7352,7 @@
+@@ -7334,7 +7361,7 @@
  
  
  ac_fn_c_check_type "$LINENO" "long long" "ac_cv_type_long_long" "$ac_includes_default"
@@ -1612,7 +1651,7 @@ Index: ghc-7.0.4/configure
  
  cat >>confdefs.h <<_ACEOF
  #define HAVE_LONG_LONG 1
-@@ -7350,7 +7368,7 @@
+@@ -7350,7 +7377,7 @@
  # This bug is HP SR number 8606223364.
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking size of char" >&5
  $as_echo_n "checking size of char... " >&6; }
@@ -1621,7 +1660,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    if ac_fn_c_compute_int "$LINENO" "(long int) (sizeof (char))" "ac_cv_sizeof_char"        "$ac_includes_default"; then :
-@@ -7359,9 +7377,8 @@
+@@ -7359,9 +7386,8 @@
    if test "$ac_cv_type_char" = yes; then
       { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
  $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
@@ -1633,7 +1672,7 @@ Index: ghc-7.0.4/configure
     else
       ac_cv_sizeof_char=0
     fi
-@@ -7384,7 +7401,7 @@
+@@ -7384,7 +7410,7 @@
  # This bug is HP SR number 8606223364.
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking size of double" >&5
  $as_echo_n "checking size of double... " >&6; }
@@ -1642,7 +1681,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    if ac_fn_c_compute_int "$LINENO" "(long int) (sizeof (double))" "ac_cv_sizeof_double"        "$ac_includes_default"; then :
-@@ -7393,9 +7410,8 @@
+@@ -7393,9 +7419,8 @@
    if test "$ac_cv_type_double" = yes; then
       { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
  $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
@@ -1654,7 +1693,7 @@ Index: ghc-7.0.4/configure
     else
       ac_cv_sizeof_double=0
     fi
-@@ -7418,7 +7434,7 @@
+@@ -7418,7 +7443,7 @@
  # This bug is HP SR number 8606223364.
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking size of float" >&5
  $as_echo_n "checking size of float... " >&6; }
@@ -1663,7 +1702,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    if ac_fn_c_compute_int "$LINENO" "(long int) (sizeof (float))" "ac_cv_sizeof_float"        "$ac_includes_default"; then :
-@@ -7427,9 +7443,8 @@
+@@ -7427,9 +7452,8 @@
    if test "$ac_cv_type_float" = yes; then
       { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
  $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
@@ -1675,7 +1714,7 @@ Index: ghc-7.0.4/configure
     else
       ac_cv_sizeof_float=0
     fi
-@@ -7452,7 +7467,7 @@
+@@ -7452,7 +7476,7 @@
  # This bug is HP SR number 8606223364.
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking size of int" >&5
  $as_echo_n "checking size of int... " >&6; }
@@ -1684,7 +1723,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    if ac_fn_c_compute_int "$LINENO" "(long int) (sizeof (int))" "ac_cv_sizeof_int"        "$ac_includes_default"; then :
-@@ -7461,9 +7476,8 @@
+@@ -7461,9 +7485,8 @@
    if test "$ac_cv_type_int" = yes; then
       { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
  $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
@@ -1696,7 +1735,7 @@ Index: ghc-7.0.4/configure
     else
       ac_cv_sizeof_int=0
     fi
-@@ -7486,7 +7500,7 @@
+@@ -7486,7 +7509,7 @@
  # This bug is HP SR number 8606223364.
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking size of long" >&5
  $as_echo_n "checking size of long... " >&6; }
@@ -1705,7 +1744,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    if ac_fn_c_compute_int "$LINENO" "(long int) (sizeof (long))" "ac_cv_sizeof_long"        "$ac_includes_default"; then :
-@@ -7495,9 +7509,8 @@
+@@ -7495,9 +7518,8 @@
    if test "$ac_cv_type_long" = yes; then
       { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
  $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
@@ -1717,7 +1756,7 @@ Index: ghc-7.0.4/configure
     else
       ac_cv_sizeof_long=0
     fi
-@@ -7521,7 +7534,7 @@
+@@ -7521,7 +7543,7 @@
  # This bug is HP SR number 8606223364.
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking size of long long" >&5
  $as_echo_n "checking size of long long... " >&6; }
@@ -1726,7 +1765,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    if ac_fn_c_compute_int "$LINENO" "(long int) (sizeof (long long))" "ac_cv_sizeof_long_long"        "$ac_includes_default"; then :
-@@ -7530,9 +7543,8 @@
+@@ -7530,9 +7552,8 @@
    if test "$ac_cv_type_long_long" = yes; then
       { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
  $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
@@ -1738,7 +1777,7 @@ Index: ghc-7.0.4/configure
     else
       ac_cv_sizeof_long_long=0
     fi
-@@ -7556,7 +7568,7 @@
+@@ -7556,7 +7577,7 @@
  # This bug is HP SR number 8606223364.
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking size of short" >&5
  $as_echo_n "checking size of short... " >&6; }
@@ -1747,7 +1786,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    if ac_fn_c_compute_int "$LINENO" "(long int) (sizeof (short))" "ac_cv_sizeof_short"        "$ac_includes_default"; then :
-@@ -7565,9 +7577,8 @@
+@@ -7565,9 +7586,8 @@
    if test "$ac_cv_type_short" = yes; then
       { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
  $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
@@ -1759,7 +1798,7 @@ Index: ghc-7.0.4/configure
     else
       ac_cv_sizeof_short=0
     fi
-@@ -7590,7 +7601,7 @@
+@@ -7590,7 +7610,7 @@
  # This bug is HP SR number 8606223364.
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking size of unsigned char" >&5
  $as_echo_n "checking size of unsigned char... " >&6; }
@@ -1768,7 +1807,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    if ac_fn_c_compute_int "$LINENO" "(long int) (sizeof (unsigned char))" "ac_cv_sizeof_unsigned_char"        "$ac_includes_default"; then :
-@@ -7599,9 +7610,8 @@
+@@ -7599,9 +7619,8 @@
    if test "$ac_cv_type_unsigned_char" = yes; then
       { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
  $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
@@ -1780,7 +1819,7 @@ Index: ghc-7.0.4/configure
     else
       ac_cv_sizeof_unsigned_char=0
     fi
-@@ -7624,7 +7634,7 @@
+@@ -7624,7 +7643,7 @@
  # This bug is HP SR number 8606223364.
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking size of unsigned int" >&5
  $as_echo_n "checking size of unsigned int... " >&6; }
@@ -1789,7 +1828,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    if ac_fn_c_compute_int "$LINENO" "(long int) (sizeof (unsigned int))" "ac_cv_sizeof_unsigned_int"        "$ac_includes_default"; then :
-@@ -7633,9 +7643,8 @@
+@@ -7633,9 +7652,8 @@
    if test "$ac_cv_type_unsigned_int" = yes; then
       { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
  $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
@@ -1801,7 +1840,7 @@ Index: ghc-7.0.4/configure
     else
       ac_cv_sizeof_unsigned_int=0
     fi
-@@ -7658,7 +7667,7 @@
+@@ -7658,7 +7676,7 @@
  # This bug is HP SR number 8606223364.
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking size of unsigned long" >&5
  $as_echo_n "checking size of unsigned long... " >&6; }
@@ -1810,7 +1849,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    if ac_fn_c_compute_int "$LINENO" "(long int) (sizeof (unsigned long))" "ac_cv_sizeof_unsigned_long"        "$ac_includes_default"; then :
-@@ -7667,9 +7676,8 @@
+@@ -7667,9 +7685,8 @@
    if test "$ac_cv_type_unsigned_long" = yes; then
       { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
  $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
@@ -1822,7 +1861,7 @@ Index: ghc-7.0.4/configure
     else
       ac_cv_sizeof_unsigned_long=0
     fi
-@@ -7693,7 +7701,7 @@
+@@ -7693,7 +7710,7 @@
  # This bug is HP SR number 8606223364.
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking size of unsigned long long" >&5
  $as_echo_n "checking size of unsigned long long... " >&6; }
@@ -1831,7 +1870,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    if ac_fn_c_compute_int "$LINENO" "(long int) (sizeof (unsigned long long))" "ac_cv_sizeof_unsigned_long_long"        "$ac_includes_default"; then :
-@@ -7702,9 +7710,8 @@
+@@ -7702,9 +7719,8 @@
    if test "$ac_cv_type_unsigned_long_long" = yes; then
       { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
  $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
@@ -1843,7 +1882,7 @@ Index: ghc-7.0.4/configure
     else
       ac_cv_sizeof_unsigned_long_long=0
     fi
-@@ -7728,7 +7735,7 @@
+@@ -7728,7 +7744,7 @@
  # This bug is HP SR number 8606223364.
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking size of unsigned short" >&5
  $as_echo_n "checking size of unsigned short... " >&6; }
@@ -1852,7 +1891,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    if ac_fn_c_compute_int "$LINENO" "(long int) (sizeof (unsigned short))" "ac_cv_sizeof_unsigned_short"        "$ac_includes_default"; then :
-@@ -7737,9 +7744,8 @@
+@@ -7737,9 +7753,8 @@
    if test "$ac_cv_type_unsigned_short" = yes; then
       { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
  $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
@@ -1864,7 +1903,7 @@ Index: ghc-7.0.4/configure
     else
       ac_cv_sizeof_unsigned_short=0
     fi
-@@ -7762,7 +7768,7 @@
+@@ -7762,7 +7777,7 @@
  # This bug is HP SR number 8606223364.
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking size of void *" >&5
  $as_echo_n "checking size of void *... " >&6; }
@@ -1873,7 +1912,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    if ac_fn_c_compute_int "$LINENO" "(long int) (sizeof (void *))" "ac_cv_sizeof_void_p"        "$ac_includes_default"; then :
-@@ -7771,9 +7777,8 @@
+@@ -7771,9 +7786,8 @@
    if test "$ac_cv_type_void_p" = yes; then
       { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
  $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
@@ -1885,7 +1924,7 @@ Index: ghc-7.0.4/configure
     else
       ac_cv_sizeof_void_p=0
     fi
-@@ -7792,21 +7797,20 @@
+@@ -7792,21 +7806,20 @@
  
  
  ac_fn_c_check_type "$LINENO" "char" "ac_cv_type_char" "$ac_includes_default"
@@ -1911,7 +1950,7 @@ Index: ghc-7.0.4/configure
  fi
  
  
-@@ -7821,21 +7825,20 @@
+@@ -7821,21 +7834,20 @@
  _ACEOF
  
  ac_fn_c_check_type "$LINENO" "double" "ac_cv_type_double" "$ac_includes_default"
@@ -1937,7 +1976,7 @@ Index: ghc-7.0.4/configure
  fi
  
  
-@@ -7850,21 +7853,20 @@
+@@ -7850,21 +7862,20 @@
  _ACEOF
  
  ac_fn_c_check_type "$LINENO" "float" "ac_cv_type_float" "$ac_includes_default"
@@ -1963,7 +2002,7 @@ Index: ghc-7.0.4/configure
  fi
  
  
-@@ -7879,21 +7881,20 @@
+@@ -7879,21 +7890,20 @@
  _ACEOF
  
  ac_fn_c_check_type "$LINENO" "int" "ac_cv_type_int" "$ac_includes_default"
@@ -1989,7 +2028,7 @@ Index: ghc-7.0.4/configure
  fi
  
  
-@@ -7908,21 +7909,20 @@
+@@ -7908,21 +7918,20 @@
  _ACEOF
  
  ac_fn_c_check_type "$LINENO" "long" "ac_cv_type_long" "$ac_includes_default"
@@ -2015,7 +2054,7 @@ Index: ghc-7.0.4/configure
  fi
  
  
-@@ -7938,21 +7938,20 @@
+@@ -7938,21 +7947,20 @@
  
  if test "$ac_cv_type_long_long" = yes; then
  ac_fn_c_check_type "$LINENO" "long long" "ac_cv_type_long_long" "$ac_includes_default"
@@ -2041,7 +2080,7 @@ Index: ghc-7.0.4/configure
  fi
  
  
-@@ -7968,21 +7967,20 @@
+@@ -7968,21 +7976,20 @@
  
  fi
  ac_fn_c_check_type "$LINENO" "short" "ac_cv_type_short" "$ac_includes_default"
@@ -2067,7 +2106,7 @@ Index: ghc-7.0.4/configure
  fi
  
  
-@@ -7997,21 +7995,20 @@
+@@ -7997,21 +8004,20 @@
  _ACEOF
  
  ac_fn_c_check_type "$LINENO" "unsigned char" "ac_cv_type_unsigned_char" "$ac_includes_default"
@@ -2093,7 +2132,7 @@ Index: ghc-7.0.4/configure
  fi
  
  
-@@ -8026,21 +8023,20 @@
+@@ -8026,21 +8032,20 @@
  _ACEOF
  
  ac_fn_c_check_type "$LINENO" "unsigned int" "ac_cv_type_unsigned_int" "$ac_includes_default"
@@ -2119,7 +2158,7 @@ Index: ghc-7.0.4/configure
  fi
  
  
-@@ -8055,21 +8051,20 @@
+@@ -8055,21 +8060,20 @@
  _ACEOF
  
  ac_fn_c_check_type "$LINENO" "unsigned long" "ac_cv_type_unsigned_long" "$ac_includes_default"
@@ -2145,7 +2184,7 @@ Index: ghc-7.0.4/configure
  fi
  
  
-@@ -8085,21 +8080,20 @@
+@@ -8085,21 +8089,20 @@
  
  if test "$ac_cv_type_long_long" = yes; then
  ac_fn_c_check_type "$LINENO" "unsigned long long" "ac_cv_type_unsigned_long_long" "$ac_includes_default"
@@ -2171,7 +2210,7 @@ Index: ghc-7.0.4/configure
  fi
  
  
-@@ -8115,21 +8109,20 @@
+@@ -8115,21 +8118,20 @@
  
  fi
  ac_fn_c_check_type "$LINENO" "unsigned short" "ac_cv_type_unsigned_short" "$ac_includes_default"
@@ -2197,7 +2236,7 @@ Index: ghc-7.0.4/configure
  fi
  
  
-@@ -8143,22 +8136,22 @@
+@@ -8143,22 +8145,22 @@
  #define ALIGNMENT_UNSIGNED_SHORT $fp_cv_alignment_unsigned_short
  _ACEOF
  
@@ -2226,7 +2265,7 @@ Index: ghc-7.0.4/configure
  fi
  
  
-@@ -8175,7 +8168,7 @@
+@@ -8175,7 +8177,7 @@
  
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for WinExec" >&5
  $as_echo_n "checking for WinExec... " >&6; }
@@ -2235,7 +2274,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-@@ -8207,7 +8200,7 @@
+@@ -8207,7 +8209,7 @@
  
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for GetModuleFileName" >&5
  $as_echo_n "checking for GetModuleFileName... " >&6; }
@@ -2244,7 +2283,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-@@ -8240,7 +8233,7 @@
+@@ -8240,7 +8242,7 @@
  
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking return type of signal handlers" >&5
  $as_echo_n "checking return type of signal handlers... " >&6; }
@@ -2253,7 +2292,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-@@ -8281,8 +8274,7 @@
+@@ -8281,8 +8283,7 @@
  do :
    as_ac_var=`$as_echo "ac_cv_func_$ac_func" | $as_tr_sh`
  ac_fn_c_check_func "$LINENO" "$ac_func" "$as_ac_var"
@@ -2263,7 +2302,7 @@ Index: ghc-7.0.4/configure
    cat >>confdefs.h <<_ACEOF
  #define `$as_echo "HAVE_$ac_func" | $as_tr_cpp` 1
  _ACEOF
-@@ -8294,8 +8286,8 @@
+@@ -8294,8 +8295,8 @@
  if test "$cross_compiling" = yes; then :
    { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
  $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
@@ -2274,7 +2313,7 @@ Index: ghc-7.0.4/configure
  else
    cat confdefs.h - <<_ACEOF >conftest.$ac_ext
  /* end confdefs.h.  */
-@@ -8325,7 +8317,7 @@
+@@ -8325,7 +8326,7 @@
  #define _POSIX_C_SOURCE 199506L
  #include <time.h>
  "
@@ -2283,7 +2322,7 @@ Index: ghc-7.0.4/configure
    ac_have_decl=1
  else
    ac_have_decl=0
-@@ -8338,7 +8330,7 @@
+@@ -8338,7 +8339,7 @@
  
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for closedir in -lmingwex" >&5
  $as_echo_n "checking for closedir in -lmingwex... " >&6; }
@@ -2292,7 +2331,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    ac_check_lib_save_LIBS=$LIBS
-@@ -8372,7 +8364,7 @@
+@@ -8372,7 +8373,7 @@
  fi
  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_mingwex_closedir" >&5
  $as_echo "$ac_cv_lib_mingwex_closedir" >&6; }
@@ -2301,7 +2340,7 @@ Index: ghc-7.0.4/configure
    HaveLibMingwEx=YES
  else
    HaveLibMingwEx=NO
-@@ -8388,7 +8380,7 @@
+@@ -8388,7 +8389,7 @@
  
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for atan in -lm" >&5
  $as_echo_n "checking for atan in -lm... " >&6; }
@@ -2310,7 +2349,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    ac_check_lib_save_LIBS=$LIBS
-@@ -8422,7 +8414,7 @@
+@@ -8422,7 +8423,7 @@
  fi
  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_m_atan" >&5
  $as_echo "$ac_cv_lib_m_atan" >&6; }
@@ -2319,7 +2358,7 @@ Index: ghc-7.0.4/configure
    HaveLibM=YES
  else
    HaveLibM=NO
-@@ -8437,7 +8429,7 @@
+@@ -8437,7 +8438,7 @@
  
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for xmalloc in -liberty" >&5
  $as_echo_n "checking for xmalloc in -liberty... " >&6; }
@@ -2328,7 +2367,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    ac_check_lib_save_LIBS=$LIBS
-@@ -8471,7 +8463,7 @@
+@@ -8471,7 +8472,7 @@
  fi
  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_iberty_xmalloc" >&5
  $as_echo "$ac_cv_lib_iberty_xmalloc" >&6; }
@@ -2337,7 +2376,7 @@ Index: ghc-7.0.4/configure
    cat >>confdefs.h <<_ACEOF
  #define HAVE_LIBIBERTY 1
  _ACEOF
-@@ -8482,7 +8474,7 @@
+@@ -8482,7 +8483,7 @@
  
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for bfd_init in -lbfd" >&5
  $as_echo_n "checking for bfd_init in -lbfd... " >&6; }
@@ -2346,7 +2385,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    ac_check_lib_save_LIBS=$LIBS
-@@ -8516,7 +8508,7 @@
+@@ -8516,7 +8517,7 @@
  fi
  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_bfd_bfd_init" >&5
  $as_echo "$ac_cv_lib_bfd_bfd_init" >&6; }
@@ -2355,7 +2394,7 @@ Index: ghc-7.0.4/configure
    cat >>confdefs.h <<_ACEOF
  #define HAVE_LIBBFD 1
  _ACEOF
-@@ -8530,7 +8522,7 @@
+@@ -8530,7 +8531,7 @@
  
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for dlopen in -ldl" >&5
  $as_echo_n "checking for dlopen in -ldl... " >&6; }
@@ -2364,7 +2403,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    ac_check_lib_save_LIBS=$LIBS
-@@ -8564,7 +8556,7 @@
+@@ -8564,7 +8565,7 @@
  fi
  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_dl_dlopen" >&5
  $as_echo "$ac_cv_lib_dl_dlopen" >&6; }
@@ -2373,7 +2412,7 @@ Index: ghc-7.0.4/configure
    HaveLibDL=YES
  
  $as_echo "#define HAVE_LIBDL 1" >>confdefs.h
-@@ -8577,11 +8569,22 @@
+@@ -8577,11 +8578,22 @@
  
  
  
@@ -2397,7 +2436,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-@@ -8614,7 +8617,7 @@
+@@ -8614,7 +8626,7 @@
  
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for alloca" >&5
  $as_echo_n "checking for alloca... " >&6; }
@@ -2406,7 +2445,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-@@ -8633,7 +8636,7 @@
+@@ -8633,7 +8645,7 @@
   #pragma alloca
  #   else
  #    ifndef alloca /* predefined by HP cc +Olibcalls */
@@ -2415,7 +2454,7 @@ Index: ghc-7.0.4/configure
  #    endif
  #   endif
  #  endif
-@@ -8677,7 +8680,7 @@
+@@ -8677,7 +8689,7 @@
  
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether \`alloca.c' needs Cray hooks" >&5
  $as_echo_n "checking whether \`alloca.c' needs Cray hooks... " >&6; }
@@ -2424,7 +2463,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-@@ -8704,8 +8707,7 @@
+@@ -8704,8 +8716,7 @@
    for ac_func in _getb67 GETB67 getb67; do
      as_ac_var=`$as_echo "ac_cv_func_$ac_func" | $as_tr_sh`
  ac_fn_c_check_func "$LINENO" "$ac_func" "$as_ac_var"
@@ -2434,7 +2473,7 @@ Index: ghc-7.0.4/configure
  
  cat >>confdefs.h <<_ACEOF
  #define CRAY_STACKSEG_END $ac_func
-@@ -8719,7 +8721,7 @@
+@@ -8719,7 +8730,7 @@
  
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking stack direction for C alloca" >&5
  $as_echo_n "checking stack direction for C alloca... " >&6; }
@@ -2443,7 +2482,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    if test "$cross_compiling" = yes; then :
-@@ -8769,7 +8771,7 @@
+@@ -8769,7 +8780,7 @@
  
  
  ac_fn_c_check_type "$LINENO" "pid_t" "ac_cv_type_pid_t" "$ac_includes_default"
@@ -2452,7 +2491,7 @@ Index: ghc-7.0.4/configure
  
  else
  
-@@ -8782,7 +8784,7 @@
+@@ -8782,7 +8793,7 @@
  for ac_header in vfork.h
  do :
    ac_fn_c_check_header_mongrel "$LINENO" "vfork.h" "ac_cv_header_vfork_h" "$ac_includes_default"
@@ -2461,7 +2500,7 @@ Index: ghc-7.0.4/configure
    cat >>confdefs.h <<_ACEOF
  #define HAVE_VFORK_H 1
  _ACEOF
-@@ -8795,8 +8797,7 @@
+@@ -8795,8 +8806,7 @@
  do :
    as_ac_var=`$as_echo "ac_cv_func_$ac_func" | $as_tr_sh`
  ac_fn_c_check_func "$LINENO" "$ac_func" "$as_ac_var"
@@ -2471,7 +2510,7 @@ Index: ghc-7.0.4/configure
    cat >>confdefs.h <<_ACEOF
  #define `$as_echo "HAVE_$ac_func" | $as_tr_cpp` 1
  _ACEOF
-@@ -8807,7 +8808,7 @@
+@@ -8807,7 +8817,7 @@
  if test "x$ac_cv_func_fork" = xyes; then
    { $as_echo "$as_me:${as_lineno-$LINENO}: checking for working fork" >&5
  $as_echo_n "checking for working fork... " >&6; }
@@ -2480,7 +2519,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    if test "$cross_compiling" = yes; then :
-@@ -8860,7 +8861,7 @@
+@@ -8860,7 +8870,7 @@
  if test "x$ac_cv_func_vfork" = xyes; then
    { $as_echo "$as_me:${as_lineno-$LINENO}: checking for working vfork" >&5
  $as_echo_n "checking for working vfork... " >&6; }
@@ -2489,7 +2528,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    if test "$cross_compiling" = yes; then :
-@@ -8996,7 +8997,7 @@
+@@ -8996,7 +9006,7 @@
  
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for an ANSI C-conforming const" >&5
  $as_echo_n "checking for an ANSI C-conforming const... " >&6; }
@@ -2498,7 +2537,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-@@ -9077,7 +9078,7 @@
+@@ -9077,7 +9087,7 @@
  
   { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether byte ordering is bigendian" >&5
  $as_echo_n "checking whether byte ordering is bigendian... " >&6; }
@@ -2507,7 +2546,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    ac_cv_c_bigendian=unknown
-@@ -9295,13 +9296,13 @@
+@@ -9295,13 +9305,13 @@
  
       ;; #(
     *)
@@ -2523,7 +2562,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-@@ -9340,7 +9341,7 @@
+@@ -9340,7 +9350,7 @@
  
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for nlist in -lelf" >&5
  $as_echo_n "checking for nlist in -lelf... " >&6; }
@@ -2532,7 +2571,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    ac_check_lib_save_LIBS=$LIBS
-@@ -9374,13 +9375,13 @@
+@@ -9374,13 +9384,13 @@
  fi
  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_elf_nlist" >&5
  $as_echo "$ac_cv_lib_elf_nlist" >&6; }
@@ -2548,7 +2587,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
  
-@@ -9451,7 +9452,7 @@
+@@ -9451,7 +9461,7 @@
  
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether ld understands -x" >&5
  $as_echo_n "checking whether ld understands -x... " >&6; }
@@ -2557,7 +2596,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    echo 'foo() {}' > conftest.c
-@@ -9475,7 +9476,7 @@
+@@ -9475,7 +9485,7 @@
  
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether ld is GNU ld" >&5
  $as_echo_n "checking whether ld is GNU ld... " >&6; }
@@ -2566,7 +2605,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    if ${LdCmd} --version 2> /dev/null | grep "GNU" > /dev/null 2>&1; then
-@@ -9550,7 +9551,7 @@
+@@ -9550,7 +9560,7 @@
  
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for clock_gettime in -lrt" >&5
  $as_echo_n "checking for clock_gettime in -lrt... " >&6; }
@@ -2575,7 +2614,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    ac_check_lib_save_LIBS=$LIBS
-@@ -9584,7 +9585,7 @@
+@@ -9584,7 +9594,7 @@
  fi
  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_rt_clock_gettime" >&5
  $as_echo "$ac_cv_lib_rt_clock_gettime" >&6; }
@@ -2584,7 +2623,7 @@ Index: ghc-7.0.4/configure
    cat >>confdefs.h <<_ACEOF
  #define HAVE_LIBRT 1
  _ACEOF
-@@ -9597,8 +9598,7 @@
+@@ -9597,8 +9607,7 @@
  do :
    as_ac_var=`$as_echo "ac_cv_func_$ac_func" | $as_tr_sh`
  ac_fn_c_check_func "$LINENO" "$ac_func" "$as_ac_var"
@@ -2594,7 +2633,7 @@ Index: ghc-7.0.4/configure
    cat >>confdefs.h <<_ACEOF
  #define `$as_echo "HAVE_$ac_func" | $as_tr_cpp` 1
  _ACEOF
-@@ -9608,14 +9608,14 @@
+@@ -9608,14 +9617,14 @@
  
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for a working timer_create(CLOCK_REALTIME)" >&5
  $as_echo_n "checking for a working timer_create(CLOCK_REALTIME)... " >&6; }
@@ -2612,7 +2651,7 @@ Index: ghc-7.0.4/configure
  else
    cat confdefs.h - <<_ACEOF >conftest.$ac_ext
  /* end confdefs.h.  */
-@@ -9797,7 +9797,7 @@
+@@ -9797,7 +9806,7 @@
  for ac_header in sys/eventfd.h
  do :
    ac_fn_c_check_header_mongrel "$LINENO" "sys/eventfd.h" "ac_cv_header_sys_eventfd_h" "$ac_includes_default"
@@ -2621,7 +2660,7 @@ Index: ghc-7.0.4/configure
    cat >>confdefs.h <<_ACEOF
  #define HAVE_SYS_EVENTFD_H 1
  _ACEOF
-@@ -9809,7 +9809,7 @@
+@@ -9809,7 +9818,7 @@
  for ac_func in eventfd
  do :
    ac_fn_c_check_func "$LINENO" "eventfd" "ac_cv_func_eventfd"
@@ -2630,7 +2669,7 @@ Index: ghc-7.0.4/configure
    cat >>confdefs.h <<_ACEOF
  #define HAVE_EVENTFD 1
  _ACEOF
-@@ -9825,7 +9825,7 @@
+@@ -9825,7 +9834,7 @@
  set dummy $ac_prog; ac_word=$2
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
  $as_echo_n "checking for $ac_word... " >&6; }
@@ -2639,7 +2678,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    case $GTK_CONFIG in
-@@ -9878,7 +9878,7 @@
+@@ -9878,7 +9887,7 @@
  #Checking for PAPI
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for PAPI_library_init in -lpapi" >&5
  $as_echo_n "checking for PAPI_library_init in -lpapi... " >&6; }
@@ -2648,7 +2687,7 @@ Index: ghc-7.0.4/configure
    $as_echo_n "(cached) " >&6
  else
    ac_check_lib_save_LIBS=$LIBS
-@@ -9912,14 +9912,14 @@
+@@ -9912,14 +9921,14 @@
  fi
  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_papi_PAPI_library_init" >&5
  $as_echo "$ac_cv_lib_papi_PAPI_library_init" >&6; }
@@ -2665,7 +2704,7 @@ Index: ghc-7.0.4/configure
    HavePapiHeader=YES
  else
    HavePapiHeader=NO
-@@ -9932,7 +9932,7 @@
+@@ -9932,7 +9941,7 @@
  for ac_func in __mingw_vfprintf
  do :
    ac_fn_c_check_func "$LINENO" "__mingw_vfprintf" "ac_cv_func___mingw_vfprintf"
@@ -2674,7 +2713,7 @@ Index: ghc-7.0.4/configure
    cat >>confdefs.h <<_ACEOF
  #define HAVE___MINGW_VFPRINTF 1
  _ACEOF
-@@ -9984,7 +9984,7 @@
+@@ -9984,7 +9993,7 @@
  
  
  if grep '	' compiler/ghc.cabal.in 2>&1 >/dev/null; then
@@ -2683,7 +2722,7 @@ Index: ghc-7.0.4/configure
  fi
  
  ac_config_files="$ac_config_files mk/config.mk mk/install.mk mk/project.mk compiler/ghc.cabal ghc/ghc-bin.cabal utils/runghc/runghc.cabal ghc.spec extra-gcc-opts docs/users_guide/ug-book.xml docs/users_guide/ug-ent.xml docs/index.html libraries/prologue.txt distrib/ghc.iss distrib/configure.ac"
-@@ -10055,10 +10055,21 @@
+@@ -10055,10 +10064,21 @@
       :end' >>confcache
  if diff "$cache_file" confcache >/dev/null 2>&1; then :; else
    if test -w "$cache_file"; then
@@ -2707,7 +2746,7 @@ Index: ghc-7.0.4/configure
    else
      { $as_echo "$as_me:${as_lineno-$LINENO}: not updating unwritable cache $cache_file" >&5
  $as_echo "$as_me: not updating unwritable cache $cache_file" >&6;}
-@@ -10074,6 +10085,7 @@
+@@ -10074,6 +10094,7 @@
  
  ac_libobjs=
  ac_ltlibobjs=
@@ -2715,7 +2754,7 @@ Index: ghc-7.0.4/configure
  for ac_i in : $LIBOBJS; do test "x$ac_i" = x: && continue
    # 1. Remove the extension, and $U if already installed.
    ac_script='s/\$U\././;s/\.o$//;s/\.obj$//'
-@@ -10090,7 +10102,7 @@
+@@ -10090,7 +10111,7 @@
  
  
  
@@ -2724,7 +2763,7 @@ Index: ghc-7.0.4/configure
  ac_write_fail=0
  ac_clean_files_save=$ac_clean_files
  ac_clean_files="$ac_clean_files $CONFIG_STATUS"
-@@ -10191,6 +10203,7 @@
+@@ -10191,6 +10212,7 @@
  IFS=" ""	$as_nl"
  
  # Find who we are.  Look in the path if we contain no directory separator.
@@ -2732,7 +2771,7 @@ Index: ghc-7.0.4/configure
  case $0 in #((
    *[\\/]* ) as_myself=$0 ;;
    *) as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-@@ -10236,19 +10249,19 @@
+@@ -10236,19 +10258,19 @@
  (unset CDPATH) >/dev/null 2>&1 && unset CDPATH
  
  
@@ -2760,7 +2799,7 @@ Index: ghc-7.0.4/configure
    as_fn_exit $as_status
  } # as_fn_error
  
-@@ -10444,7 +10457,7 @@
+@@ -10444,7 +10466,7 @@
        test -d "$as_dir" && break
      done
      test -z "$as_dirs" || eval "mkdir $as_dirs"
@@ -2769,7 +2808,7 @@ Index: ghc-7.0.4/configure
  
  
  } # as_fn_mkdir_p
-@@ -10498,7 +10511,7 @@
+@@ -10498,7 +10520,7 @@
  # values after options handling.
  ac_log="
  This file was extended by The Glorious Glasgow Haskell Compilation System $as_me 7.0.4, which was
@@ -2778,7 +2817,7 @@ Index: ghc-7.0.4/configure
  
    CONFIG_FILES    = $CONFIG_FILES
    CONFIG_HEADERS  = $CONFIG_HEADERS
-@@ -10564,10 +10577,10 @@
+@@ -10564,10 +10586,10 @@
  ac_cs_config="`$as_echo "$ac_configure_args" | sed 's/^ //; s/[\\""\`\$]/\\\\&/g'`"
  ac_cs_version="\\
  The Glorious Glasgow Haskell Compilation System config.status 7.0.4
@@ -2791,7 +2830,7 @@ Index: ghc-7.0.4/configure
  This config.status script is free software; the Free Software Foundation
  gives unlimited permission to copy, distribute and modify it."
  
-@@ -10583,11 +10596,16 @@
+@@ -10583,11 +10605,16 @@
  while test $# != 0
  do
    case $1 in
@@ -2809,7 +2848,7 @@ Index: ghc-7.0.4/configure
    *)
      ac_option=$1
      ac_optarg=$2
-@@ -10609,6 +10627,7 @@
+@@ -10609,6 +10636,7 @@
      $ac_shift
      case $ac_optarg in
      *\'*) ac_optarg=`$as_echo "$ac_optarg" | sed "s/'/'\\\\\\\\''/g"` ;;
@@ -2817,7 +2856,7 @@ Index: ghc-7.0.4/configure
      esac
      as_fn_append CONFIG_FILES " '$ac_optarg'"
      ac_need_defaults=false;;
-@@ -10621,7 +10640,7 @@
+@@ -10621,7 +10649,7 @@
      ac_need_defaults=false;;
    --he | --h)
      # Conflict between --help and --header
@@ -2826,7 +2865,7 @@ Index: ghc-7.0.4/configure
  Try \`$0 --help' for more information.";;
    --help | --hel | -h )
      $as_echo "$ac_cs_usage"; exit ;;
-@@ -10630,7 +10649,7 @@
+@@ -10630,7 +10658,7 @@
      ac_cs_silent=: ;;
  
    # This is an error.
@@ -2835,7 +2874,7 @@ Index: ghc-7.0.4/configure
  Try \`$0 --help' for more information." ;;
  
    *) as_fn_append ac_config_targets " $1"
-@@ -10696,7 +10715,7 @@
+@@ -10696,7 +10724,7 @@
      "distrib/configure.ac") CONFIG_FILES="$CONFIG_FILES distrib/configure.ac" ;;
      "mk/stamp-h") CONFIG_COMMANDS="$CONFIG_COMMANDS mk/stamp-h" ;;
  
@@ -2844,7 +2883,7 @@ Index: ghc-7.0.4/configure
    esac
  done
  
-@@ -10719,9 +10738,10 @@
+@@ -10719,9 +10747,10 @@
  # after its creation but before its name has been assigned to `$tmp'.
  $debug ||
  {
@@ -2857,7 +2896,7 @@ Index: ghc-7.0.4/configure
  ' 0
    trap 'as_fn_exit 1' 1 2 13 15
  }
-@@ -10729,12 +10749,13 @@
+@@ -10729,12 +10758,13 @@
  
  {
    tmp=`(umask 077 && mktemp -d "./confXXXXXX") 2>/dev/null` &&
@@ -2873,7 +2912,7 @@ Index: ghc-7.0.4/configure
  
  # Set up the scripts for CONFIG_FILES section.
  # No need to generate them if there are no CONFIG_FILES.
-@@ -10751,12 +10772,12 @@
+@@ -10751,12 +10781,12 @@
  fi
  ac_cs_awk_cr=`$AWK 'BEGIN { print "a\rb" }' </dev/null 2>/dev/null`
  if test "$ac_cs_awk_cr" = "a${ac_cr}b"; then
@@ -2888,7 +2927,7 @@ Index: ghc-7.0.4/configure
  _ACEOF
  
  
-@@ -10765,18 +10786,18 @@
+@@ -10765,18 +10795,18 @@
    echo "$ac_subst_vars" | sed 's/.*/&!$&$ac_delim/' &&
    echo "_ACEOF"
  } >conf$$subs.sh ||
@@ -2911,7 +2950,7 @@ Index: ghc-7.0.4/configure
    else
      ac_delim="$ac_delim!$ac_delim _$ac_delim!! "
    fi
-@@ -10784,7 +10805,7 @@
+@@ -10784,7 +10814,7 @@
  rm -f conf$$subs.sh
  
  cat >>$CONFIG_STATUS <<_ACEOF || ac_write_fail=1
@@ -2920,7 +2959,7 @@ Index: ghc-7.0.4/configure
  _ACEOF
  sed -n '
  h
-@@ -10832,7 +10853,7 @@
+@@ -10832,7 +10862,7 @@
  rm -f conf$$subs.awk
  cat >>$CONFIG_STATUS <<_ACEOF || ac_write_fail=1
  _ACAWK
@@ -2929,7 +2968,7 @@ Index: ghc-7.0.4/configure
    for (key in S) S_is_set[key] = 1
    FS = ""
  
-@@ -10864,21 +10885,29 @@
+@@ -10864,21 +10894,29 @@
    sed "s/$ac_cr\$//; s/$ac_cr/$ac_cs_awk_cr/g"
  else
    cat
@@ -2968,7 +3007,7 @@ Index: ghc-7.0.4/configure
  s/^[^=]*=[	 ]*$//
  }'
  fi
-@@ -10890,7 +10919,7 @@
+@@ -10890,7 +10928,7 @@
  # No need to generate them if there are no CONFIG_HEADERS.
  # This happens for instance with `./config.status Makefile'.
  if test -n "$CONFIG_HEADERS"; then
@@ -2977,7 +3016,7 @@ Index: ghc-7.0.4/configure
  BEGIN {
  _ACEOF
  
-@@ -10902,11 +10931,11 @@
+@@ -10902,11 +10940,11 @@
  # handling of long lines.
  ac_delim='%!_!# '
  for ac_last_try in false false :; do
@@ -2992,7 +3031,7 @@ Index: ghc-7.0.4/configure
    else
      ac_delim="$ac_delim!$ac_delim _$ac_delim!! "
    fi
-@@ -10991,7 +11020,7 @@
+@@ -10991,7 +11029,7 @@
  _ACAWK
  _ACEOF
  cat >>$CONFIG_STATUS <<\_ACEOF || ac_write_fail=1
@@ -3001,7 +3040,7 @@ Index: ghc-7.0.4/configure
  fi # test -n "$CONFIG_HEADERS"
  
  
-@@ -11004,7 +11033,7 @@
+@@ -11004,7 +11042,7 @@
    esac
    case $ac_mode$ac_tag in
    :[FHL]*:*);;
@@ -3010,7 +3049,7 @@ Index: ghc-7.0.4/configure
    :[FH]-) ac_tag=-:-;;
    :[FH]*) ac_tag=$ac_tag:$ac_tag.in;;
    esac
-@@ -11023,7 +11052,7 @@
+@@ -11023,7 +11061,7 @@
      for ac_f
      do
        case $ac_f in
@@ -3019,7 +3058,7 @@ Index: ghc-7.0.4/configure
        *) # Look for the file first in the build tree, then in the source tree
  	 # (if the path is not absolute).  The absolute path cannot be DOS-style,
  	 # because $ac_f cannot contain `:'.
-@@ -11032,7 +11061,7 @@
+@@ -11032,7 +11070,7 @@
  	   [\\/$]*) false;;
  	   *) test -f "$srcdir/$ac_f" && ac_f="$srcdir/$ac_f";;
  	   esac ||
@@ -3028,7 +3067,7 @@ Index: ghc-7.0.4/configure
        esac
        case $ac_f in *\'*) ac_f=`$as_echo "$ac_f" | sed "s/'/'\\\\\\\\''/g"`;; esac
        as_fn_append ac_file_inputs " '$ac_f'"
-@@ -11058,8 +11087,8 @@
+@@ -11058,8 +11096,8 @@
      esac
  
      case $ac_tag in
@@ -3039,7 +3078,7 @@ Index: ghc-7.0.4/configure
      esac
      ;;
    esac
-@@ -11189,23 +11218,24 @@
+@@ -11189,23 +11227,24 @@
  s&@INSTALL@&$ac_INSTALL&;t t
  $ac_datarootdir_hack
  "
@@ -3074,7 +3113,7 @@ Index: ghc-7.0.4/configure
   ;;
    :H)
    #
-@@ -11214,21 +11244,21 @@
+@@ -11214,21 +11253,21 @@
    if test x"$ac_file" != x-; then
      {
        $as_echo "/* $configure_input  */" \
@@ -3104,7 +3143,7 @@ Index: ghc-7.0.4/configure
    fi
   ;;
  
-@@ -11250,7 +11280,7 @@
+@@ -11250,7 +11289,7 @@
  ac_clean_files=$ac_clean_files_save
  
  test $ac_write_fail = 0 ||
@@ -3113,7 +3152,7 @@ Index: ghc-7.0.4/configure
  
  
  # configure is writing to config.log, and then calls config.status.
-@@ -11271,7 +11301,7 @@
+@@ -11271,7 +11310,7 @@
    exec 5>>config.log
    # Use ||, not &&, to avoid exiting from the if with $? = 1, which
    # would make configure fail if this is the last instruction.
