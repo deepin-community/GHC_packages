@@ -1,0 +1,106 @@
+Source: haskell-hakyll
+Section: haskell
+Priority: extra
+Maintainer: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.8)
+  , ghc
+  , ghc-prof
+  , libghc-binary-dev (>> 0.5)
+  , libghc-binary-dev (<< 1.0)
+  , libghc-binary-prof
+  , libghc-cryptohash-dev (>> 0.7)
+  , libghc-cryptohash-dev (<< 0.8)
+  , libghc-cryptohash-prof
+  , libghc-hamlet-dev (>> 0.7)
+  , libghc-hamlet-dev (<< 0.9)
+  , libghc-hamlet-prof
+  , libghc-mtl-dev (>> 1)
+  , libghc-mtl-dev (<< 3)
+  , libghc-mtl-prof
+  , libghc-pandoc-dev (>> 1.6)
+  , libghc-pandoc-dev (<< 2.0)
+  , libghc-pandoc-prof
+  , libghc-parsec3-dev (>> 2.1)
+  , libghc-parsec3-dev (<< 3.2)
+  , libghc-parsec3-prof
+  , libghc-regex-base-dev (>> 0.93)
+  , libghc-regex-base-dev (<< 1.0)
+  , libghc-regex-base-prof
+  , libghc-regex-pcre-dev (>> 0.93)
+  , libghc-regex-pcre-dev (<< 1.0)
+  , libghc-regex-pcre-prof
+  , libghc-tagsoup-dev (>> 0.12)
+  , libghc-tagsoup-dev (<< 0.13)
+  , libghc-tagsoup-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-binary-doc
+  , libghc-cryptohash-doc
+  , libghc-hamlet-doc
+  , libghc-mtl-doc
+  , libghc-pandoc-doc
+  , libghc-parsec3-doc
+  , libghc-regex-base-doc
+  , libghc-regex-pcre-doc
+  , libghc-tagsoup-doc
+Standards-Version: 3.9.2
+Homepage: http://hackage.haskell.org/package/hakyll
+Vcs-Git: git://git.debian.org/collab-maint/haskell-hakyll.git
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/haskell-hakyll.git;a=summary
+
+Package: libghc-hakyll-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: static website compiler library
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ Hakyll is a static website compiler library. It provides you with
+ the tools to create a simple or advanced static website using a
+ Haskell DSL and formats such as markdown or RST. You can find
+ more information, including a tutorial, on the website:
+ .
+ http://jaspervdj.be/hakyll
+
+Package: libghc-hakyll-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: static website compiler library; profiling libraries
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ Hakyll is a static website compiler library. It provides you with
+ the tools to create a simple or advanced static website using a
+ Haskell DSL and formats such as markdown or RST. You can find
+ more information, including a tutorial, on the website:
+ .
+ http://jaspervdj.be/hakyll
+
+Package: libghc-hakyll-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: static website compiler library; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ Hakyll is a static website compiler library. It provides you with
+ the tools to create a simple or advanced static website using a
+ Haskell DSL and formats such as markdown or RST. You can find
+ more information, including a tutorial, on the website:
+ .
+ http://jaspervdj.be/hakyll

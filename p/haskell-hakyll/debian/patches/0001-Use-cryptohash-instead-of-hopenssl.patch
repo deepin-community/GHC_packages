@@ -1,0 +1,60 @@
+From de01fdf9dd0144adbdcce8759e98c50e61e6055d Mon Sep 17 00:00:00 2001
+From: Jasper Van der Jeugt <m@jaspervdj.be>
+Date: Sat, 27 Aug 2011 12:16:03 +0200
+Subject: [PATCH 1/2] Use cryptohash instead of hopenssl
+
+---
+ hakyll.cabal                         |    2 +-
+ src/Hakyll/Core/Resource/Provider.hs |   10 ++++------
+ 2 files changed, 5 insertions(+), 7 deletions(-)
+
+diff --git a/hakyll.cabal b/hakyll.cabal
+index 9b0c245..52ef48f 100644
+--- a/hakyll.cabal
++++ b/hakyll.cabal
+@@ -64,10 +64,10 @@ Library
+     blaze-html  >= 0.4   && < 0.6,
+     bytestring  >= 0.9   && < 1.0,
+     containers  >= 0.3   && < 1.0,
++    cryptohash  >= 0.7   && < 0.8,
+     directory   >= 1.0   && < 1.3,
+     filepath    >= 1.0   && < 2.0,
+     hamlet      >= 0.7   && < 0.9,
+-    hopenssl    >= 1.4   && < 1.7,
+     mtl         >= 1     && < 3.0,
+     old-locale  >= 1.0   && < 2.0,
+     old-time    >= 1.0   && < 1.3,
+diff --git a/src/Hakyll/Core/Resource/Provider.hs b/src/Hakyll/Core/Resource/Provider.hs
+index 16b9220..808719a 100644
+--- a/src/Hakyll/Core/Resource/Provider.hs
++++ b/src/Hakyll/Core/Resource/Provider.hs
+@@ -20,14 +20,12 @@ module Hakyll.Core.Resource.Provider
+
+ import Control.Applicative ((<$>))
+ import Control.Concurrent (MVar, readMVar, modifyMVar_, newMVar)
+-import Control.Monad ((<=<))
+-import Data.Word (Word8)
+ import Data.Map (Map)
+ import qualified Data.Map as M
+
++import qualified Crypto.Hash.MD5 as MD5
++import qualified Data.ByteString as B
+ import qualified Data.ByteString.Lazy as LB
+-import OpenSSL.Digest.ByteString.Lazy (digest)
+-import OpenSSL.Digest (MessageDigest (MD5))
+
+ import Hakyll.Core.Store
+ import Hakyll.Core.Resource
+@@ -60,8 +58,8 @@ resourceExists provider = flip elem $ resourceList provider
+
+ -- | Retrieve a digest for a given resource
+ --
+-resourceDigest :: ResourceProvider -> Resource -> IO [Word8]
+-resourceDigest provider = digest MD5 <=< resourceLBS provider
++resourceDigest :: ResourceProvider -> Resource -> IO B.ByteString
++resourceDigest provider = fmap MD5.hashlazy . resourceLBS provider
+
+ -- | Check if a resource was modified
+ --
+--
+1.7.5.4
