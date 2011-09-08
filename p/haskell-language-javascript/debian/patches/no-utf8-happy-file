@@ -1,0 +1,16 @@
+Description: No utf8 characters in happy input
+Author: Joachim Breitner <nomeata@debian.org>
+Bug-Debian: http://bugs.debian.org/640742
+Forwarded: no
+
+--- haskell-language-javascript-0.4.5.orig/src/Language/JavaScript/Parser/Grammar5.y
++++ haskell-language-javascript-0.4.5/src/Language/JavaScript/Parser/Grammar5.y
+@@ -754,7 +754,7 @@ EmptyStatement :: { AST.JSNode }
+ EmptyStatement : ';' { (AST.NS (AST.JSLiteral ";") (ss $1)) }
+
+ -- ExpressionStatement :                                                                    See 12.4
+---         [lookahead ∉ {{, function}] Expression  ;
++--         [lookahead not in {{, function}] Expression  ;
+ -- TODO: Sort out lookahead issue. Maybe by just putting production lower to set reduce/reduce conflict
+ --       According to http://sideshowbarker.github.com/es5-spec/#x12.4, the ambiguity is with
+ --       Block or FunctionDeclaration
