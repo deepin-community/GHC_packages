@@ -3,10 +3,8 @@
 # Debian Version : 2.3.5
 # Date : Sun, 17 Apr 2011 15:45:41 +1000
 
-Index: alex-2.3.5/templates/GenericTemplate.hs
-===================================================================
---- alex-2.3.5.orig/templates/GenericTemplate.hs
-+++ alex-2.3.5/templates/GenericTemplate.hs
+--- a/templates/GenericTemplate.hs
++++ b/templates/GenericTemplate.hs
 @@ -9,7 +9,7 @@
 
  #ifdef ALEX_GHC
@@ -31,31 +29,8 @@ Index: alex-2.3.5/templates/GenericTemplate.hs
  ALEX_ELSE
    indexInt16OffAddr# arr off
  ALEX_ENDIF
-@@ -74,14 +74,14 @@
- ALEX_IF_BIGENDIAN
-   narrow32Int# i
-   where
--   i    = word2Int# ((b3 `uncheckedShiftL#` 24#) `or#`
-+   !i    = word2Int# ((b3 `uncheckedShiftL#` 24#) `or#`
-		     (b2 `uncheckedShiftL#` 16#) `or#`
-		     (b1 `uncheckedShiftL#` 8#) `or#` b0)
--   b3   = int2Word# (ord# (indexCharOffAddr# arr (off' +# 3#)))
--   b2   = int2Word# (ord# (indexCharOffAddr# arr (off' +# 2#)))
--   b1   = int2Word# (ord# (indexCharOffAddr# arr (off' +# 1#)))
--   b0   = int2Word# (ord# (indexCharOffAddr# arr off'))
--   off' = off *# 4#
-+   !b3   = int2Word# (ord# (indexCharOffAddr# arr (off' +# 3#)))
-+   !b2   = int2Word# (ord# (indexCharOffAddr# arr (off' +# 2#)))
-+   !b1   = int2Word# (ord# (indexCharOffAddr# arr (off' +# 1#)))
-+   !b0   = int2Word# (ord# (indexCharOffAddr# arr off'))
-+   !off' = off *# 4#
- ALEX_ELSE
-   indexInt32OffAddr# arr off
- ALEX_ENDIF
-Index: alex-2.3.5/src/Scan.x
-===================================================================
---- alex-2.3.5.orig/src/Scan.x
-+++ alex-2.3.5/src/Scan.x
+--- a/src/Scan.x
++++ b/src/Scan.x
 @@ -11,7 +11,7 @@
  -------------------------------------------------------------------------------
 
@@ -65,11 +40,9 @@ Index: alex-2.3.5/src/Scan.x
 
  module Scan(lexer, AlexPosn(..), Token(..), Tkn(..), tokPosn) where
 
-Index: alex-2.3.5/src/Main.hs
-===================================================================
---- alex-2.3.5.orig/src/Main.hs
-+++ alex-2.3.5/src/Main.hs
-@@ -184,7 +184,7 @@
+--- a/src/Main.hs
++++ b/src/Main.hs
+@@ -203,7 +203,7 @@
    hPutStrLn hdl code
 
  optsToInject :: Target -> [CLIFlags] -> String
