@@ -9,21 +9,19 @@ Build-Depends: debhelper (>= 7)
   , ghc
   , ghc-prof
   , ghc-ghci
+  , libghc-monad-control-dev (>> 0.2)
   , libghc-monad-control-dev (<< 0.3)
   , libghc-monad-control-prof
-  , libghc-persistent-dev (>> 0.5.1)
-  , libghc-persistent-dev (<< 0.6)
+  , libghc-persistent-dev (>> 0.6.0)
+  , libghc-persistent-dev (<< 0.7)
   , libghc-persistent-prof
+  , libghc-text-dev (>> 0.5)
   , libghc-text-dev (<< 1.0)
   , libghc-text-prof
-  , libghc-web-routes-quasi-dev (>> 0.7)
-  , libghc-web-routes-quasi-dev (<< 0.8)
-  , libghc-web-routes-quasi-prof
 Build-Depends-Indep: ghc-doc
   , libghc-monad-control-doc
   , libghc-persistent-doc
   , libghc-text-doc
-  , libghc-web-routes-quasi-doc
 Standards-Version: 3.9.2
 Homepage: http://hackage.haskell.org/package/persistent-template
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-persistent-template
@@ -37,12 +35,12 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: web-routes via a quasi-quoted DSL
+Description: type-safe, non-relational, multi-backend persistence
  This package provides a library for the Haskell programming language.
  See http://www.haskell.org/ for more information on Haskell.
  .
- Define data types and parse/build functions for web-routes via
- a quasi-quoted DSL.
+ This library provides just the general interface and helper functions.
+ You must use a specific backend in order to make this useful.
 
 Package: libghc-persistent-template-prof
 Architecture: any
@@ -51,13 +49,13 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: web-routes via a quasi-quoted DSL; profiling libraries
+Description: type-safe, non-relational, multi-backend persistence; profiling libraries
  This package provides a library for the Haskell programming language,
  compiled for profiling.
  See http://www.haskell.org/ for more information on Haskell.
  .
- Define data types and parse/build functions for web-routes via
- a quasi-quoted DSL.
+ This library provides just the general interface and helper functions.
+ You must use a specific backend in order to make this useful.
 
 Package: libghc-persistent-template-doc
 Section: doc
@@ -65,10 +63,10 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: web-routes via a quasi-quoted DSL; documentation
+Description: type-safe, non-relational, multi-backend persistence; documentation
  This package provides the documentation for a library for the Haskell
  programming language.
  See http://www.haskell.org/ for more information on Haskell.
  .
- Define data types and parse/build functions for web-routes via
- a quasi-quoted DSL.
+ This library provides just the general interface and helper functions.
+ You must use a specific backend in order to make this useful.
