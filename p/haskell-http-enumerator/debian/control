@@ -11,8 +11,11 @@ Build-Depends: debhelper (>= 7),
                ghc-prof,
                libghc-transformers-dev (>= 0.2),
                libghc-transformers-dev (<< 0.3),
-               libghc-transformers-prof,
-               libghc-failure-dev (>= 0.1),
+               libghc-transformers-prof
+  , libghc-data-default-dev (>> 0.3)
+  , libghc-data-default-dev (<< 0.4)
+  , libghc-data-default-prof
+  ,            libghc-failure-dev (>= 0.1),
                libghc-failure-dev (<< 0.2),
                libghc-failure-prof,
                libghc-enumerator-dev (>= 0.4.9),
@@ -70,8 +73,9 @@ Build-Depends-Indep: ghc-doc,
                      libghc-attoparsec-doc,
                      libghc-attoparsec-enumerator-doc,
                      libghc-utf8-string-doc,
-                     libghc-blaze-builder-doc,
-                     libghc-zlib-enum-doc,
+                     libghc-blaze-builder-doc
+  , libghc-data-default-doc
+  ,                  libghc-zlib-enum-doc,
                      libghc-http-types-doc,
                      libghc-blaze-builder-enumerator-doc,
                      libghc-cprng-aes-doc,
