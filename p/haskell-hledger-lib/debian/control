@@ -8,31 +8,34 @@ Build-Depends: debhelper (>= 7)
   , haskell-devscripts (>= 0.8)
   , ghc
   , ghc-prof
+  , libghc-cmdargs-dev (>> 0.8)
   , libghc-cmdargs-dev (<< 0.9)
   , libghc-cmdargs-prof
   , libghc-hunit-dev
   , libghc-hunit-prof
-  , libghc-utf8-string-dev
-  , libghc-utf8-string-prof
-  , libghc-split-dev
-  , libghc-split-prof
-  , libghc-safe-dev
-  , libghc-safe-prof
   , libghc-mtl-dev
   , libghc-mtl-prof
   , libghc-parsec3-dev
   , libghc-parsec3-prof
-  , libghc-regexpr-dev
+  , libghc-regexpr-dev (>> 0.5.1)
   , libghc-regexpr-prof
+  , libghc-safe-dev (>> 0.2)
+  , libghc-safe-prof
+  , libghc-split-dev (>> 0.1)
+  , libghc-split-dev (<< 0.2)
+  , libghc-split-prof
+  , libghc-utf8-string-dev (>> 0.3.5)
+  , libghc-utf8-string-dev (<< 0.4)
+  , libghc-utf8-string-prof
 Build-Depends-Indep: ghc-doc
   , libghc-cmdargs-doc
   , libghc-hunit-doc
-  , libghc-utf8-string-doc
-  , libghc-split-doc
-  , libghc-safe-doc
   , libghc-mtl-doc
   , libghc-parsec3-doc
   , libghc-regexpr-doc
+  , libghc-safe-doc
+  , libghc-split-doc
+  , libghc-utf8-string-doc
 Standards-Version: 3.9.2
 Homepage: http://hackage.haskell.org/package/hledger-lib
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hledger-lib
@@ -46,7 +49,7 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Short description of hledger-lib
+Description: core data types, parsers and utilities for the hledger accounting tool
  This package provides a library for the Haskell programming language.
  See http://www.haskell.org/ for more information on Haskell.
  .
@@ -63,7 +66,7 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Short description of hledger-lib; profiling libraries
+Description: core data types, parsers and utilities for hledger; profiling libraries
  This package provides a library for the Haskell programming language,
  compiled for profiling.
  See http://www.haskell.org/ for more information on Haskell.
@@ -80,7 +83,7 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: Short description of hledger-lib; documentation
+Description: core data types, parsers and utilities for hledger; documentation
  This package provides the documentation for a library for the Haskell
  programming language.
  See http://www.haskell.org/ for more information on Haskell.
