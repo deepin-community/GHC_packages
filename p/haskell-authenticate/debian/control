@@ -1,0 +1,126 @@
+Source: haskell-authenticate
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.8)
+  , ghc
+  , ghc-prof
+  , libghc-aeson-dev (>> 0.3.2.11)
+  , libghc-aeson-dev (<< 0.4)
+  , libghc-aeson-prof
+  , libghc-attoparsec-dev (>> 0.9)
+  , libghc-attoparsec-dev (<< 0.10)
+  , libghc-attoparsec-prof
+  , libghc-base64-bytestring-dev (>> 0.1)
+  , libghc-base64-bytestring-dev (<< 0.2)
+  , libghc-base64-bytestring-prof
+  , libghc-blaze-builder-dev (>> 0.2)
+  , libghc-blaze-builder-dev (<< 0.4)
+  , libghc-blaze-builder-prof
+  , libghc-case-insensitive-dev (>> 0.2)
+  , libghc-case-insensitive-dev (<< 0.4)
+  , libghc-case-insensitive-prof
+  , libghc-enumerator-dev (>> 0.4.7)
+  , libghc-enumerator-dev (<< 0.5)
+  , libghc-enumerator-prof
+  , libghc-failure-dev (>> 0.0.0)
+  , libghc-failure-dev (<< 0.2)
+  , libghc-failure-prof
+  , libghc-http-enumerator-dev (>> 0.6.5.4)
+  , libghc-http-enumerator-dev (<< 0.8)
+  , libghc-http-enumerator-prof
+  , libghc-http-types-dev (>> 0.6)
+  , libghc-http-types-dev (<< 0.7)
+  , libghc-http-types-prof
+  , libghc-network-dev (>> 2.2.1)
+  , libghc-network-dev (<< 2.4)
+  , libghc-network-prof
+  , libghc-rsa-dev (>> 1.0)
+  , libghc-rsa-dev (<< 1.1)
+  , libghc-rsa-prof
+  , libghc-sha-dev (>> 1.4)
+  , libghc-sha-dev (<< 1.6)
+  , libghc-sha-prof
+  , libghc-tagsoup-dev (>> 0.12)
+  , libghc-tagsoup-dev (<< 0.13)
+  , libghc-tagsoup-prof
+  , libghc-text-dev (>> 0.5)
+  , libghc-text-dev (<< 1.0)
+  , libghc-text-prof
+  , libghc-tls-dev (>> 0.7)
+  , libghc-tls-dev (<< 0.8)
+  , libghc-tls-prof
+  , libghc-transformers-dev (>> 0.1)
+  , libghc-transformers-dev (<< 0.3)
+  , libghc-transformers-prof
+  , libghc-xml-enumerator-dev (>> 0.4)
+  , libghc-xml-enumerator-dev (<< 0.5)
+  , libghc-xml-enumerator-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-aeson-doc
+  , libghc-attoparsec-doc
+  , libghc-base64-bytestring-doc
+  , libghc-blaze-builder-doc
+  , libghc-case-insensitive-doc
+  , libghc-enumerator-doc
+  , libghc-failure-doc
+  , libghc-http-enumerator-doc
+  , libghc-http-types-doc
+  , libghc-network-doc
+  , libghc-rsa-doc
+  , libghc-sha-doc
+  , libghc-tagsoup-doc
+  , libghc-text-doc
+  , libghc-tls-doc
+  , libghc-transformers-doc
+  , libghc-xml-enumerator-doc
+Standards-Version: 3.9.2
+Homepage: http://hackage.haskell.org/package/authenticate
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-authenticate
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-authenticate
+
+Package: libghc-authenticate-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: authentication methods for Haskell web applications
+ Focus is on third-party authentication methods, such as OpenID,
+ rpxnow and Facebook.
+ .
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-authenticate-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: authentication methods for Haskell web applications; profiling libraries
+ Focus is on third-party authentication methods, such as OpenID,
+ rpxnow and Facebook.
+ .
+ This package provides a library for the Haskell programming language, compiled
+ for profiling.  See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-authenticate-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: authentication methods for Haskell web applications; documentation
+ Focus is on third-party authentication methods, such as OpenID,
+ rpxnow and Facebook.
+ .
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
