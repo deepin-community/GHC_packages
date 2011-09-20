@@ -1,0 +1,118 @@
+Source: haskell-yesod-static
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.8)
+  , ghc
+  , ghc-prof
+  , libghc-yesod-core-dev (>= 0.9)
+  , libghc-yesod-core-dev (<< 0.10)
+  , libghc-yesod-core-prof
+  , libghc-base64-bytestring-dev (>= 0.1.0.1)
+  , libghc-base64-bytestring-dev (<< 0.2)
+  , libghc-base64-bytestring-prof
+  , libghc-puremd5-dev (>= 2.1.0.3)
+  , libghc-puremd5-dev (<< 2.2)
+  , libghc-puremd5-prof
+  , libghc-cereal-dev (>= 0.3)
+  , libghc-cereal-dev (<< 0.4)
+  , libghc-cereal-prof
+  , libghc-transformers-dev (>= 0.2)
+  , libghc-transformers-dev (<< 0.3)
+  , libghc-transformers-prof
+  , libghc-wai-app-static-dev (>= 0.3.2.1)
+  , libghc-wai-app-static-dev (<< 0.4)
+  , libghc-wai-app-static-prof
+  , libghc-wai-dev (>= 0.4)
+  , libghc-wai-dev (<< 0.5)
+  , libghc-wai-prof
+  , libghc-text-dev (>= 0.5)
+  , libghc-text-dev (<< 1.0)
+  , libghc-text-prof
+  , libghc-file-embed-dev (>= 0.0.4.1)
+  , libghc-file-embed-dev (<< 5)
+  , libghc-file-embed-prof
+  , libghc-http-types-dev (>= 0.6.5)
+  , libghc-http-types-dev (<< 7)
+  , libghc-http-types-prof
+  , libghc-unix-compat-dev (>= 0.2)
+  , libghc-unix-compat-dev (<< 0.3)
+  , libghc-unix-compat-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-yesod-core-doc
+  , libghc-base64-bytestring-doc
+  , libghc-puremd5-doc
+  , libghc-cereal-doc
+  , libghc-transformers-doc
+  , libghc-wai-app-static-doc
+  , libghc-wai-doc
+  , libghc-text-doc
+  , libghc-file-embed-doc
+  , libghc-http-types-doc
+  , libghc-unix-compat-doc
+Standards-Version: 3.9.2
+Homepage: http://hackage.haskell.org/package/yesod-static
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-yesod-static
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-yesod-static
+
+Package: libghc-yesod-static-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+  , libyesod-static-dev
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Static file serving subsite for Yesod Web Framework.
+ Yesod is a framework designed to foster creation of RESTful web
+ application that have strong compile-time guarantees of correctness.
+ It also affords space efficient code and portability to many
+ deployment backends, from CGI to stand-alone serving.
+ .
+ This package provides static file serving functionality for the Yesod
+ Web Framework.
+ .
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-yesod-static-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Static file serving subsite for Yesod Web Framework; profiling libraries
+ Yesod is a framework designed to foster creation of RESTful web
+ application that have strong compile-time guarantees of correctness.
+ It also affords space efficient code and portability to many
+ deployment backends, from CGI to stand-alone serving.
+ .
+ This package provides static file serving functionality for the Yesod
+ Web Framework.
+ .
+ This package provides a library for the Haskell programming language, compiled
+ for profiling.  See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-yesod-static-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Static file serving subsite for Yesod Web Framework; documentation
+ Yesod is a framework designed to foster creation of RESTful web
+ application that have strong compile-time guarantees of correctness.
+ It also affords space efficient code and portability to many
+ deployment backends, from CGI to stand-alone serving.
+ .
+ This package provides static file serving functionality for the Yesod
+ Web Framework.
+ .
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
