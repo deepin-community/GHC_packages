@@ -1,0 +1,76 @@
+Description: Backport upstream patch to bump regex-posix and regex-compat BDs
+Origin: vendor
+Bug-Debian: http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=642710
+Forwarded: not-needed
+Author: Iain Lane <laney@debian.org>
+
+Index: darcs/darcs.cabal
+===================================================================
+--- darcs.orig/darcs.cabal	2011-09-24 20:10:46.000000000 +0100
++++ darcs/darcs.cabal	2011-09-24 20:24:37.980444885 +0100
+@@ -165,11 +165,11 @@
+       cpp-options:    -DWIN32
+       c-sources:      src/win32/send_email.c
+       build-depends:  unix-compat >= 0.1.2,
+-                      regex-posix >= 0.94.4 && < 0.95
++                      regex-posix >= 0.95.1
+
+     build-depends:   base          < 5,
+                      extensible-exceptions >= 0.1 && < 0.2,
+-                     regex-compat >= 0.71 && < 0.94,
++                     regex-compat >= 0.95.1,
+                      mtl          >= 1.0 && < 2.1,
+                      parsec       >= 2.0 && < 3.2,
+                      html         == 1.0.*,
+@@ -367,14 +367,14 @@
+       cpp-options:    -DWIN32
+       c-sources:      src/win32/send_email.c
+       build-depends:  unix-compat >= 0.1.2,
+-                      regex-posix >= 0.94.4 && < 0.95
++                      regex-posix >= 0.95.1
+
+     if os(solaris)
+       cc-options:     -DHAVE_SIGINFO_H
+
+     build-depends:   base          < 5,
+                      extensible-exceptions >= 0.1 && < 0.2,
+-                     regex-compat >= 0.71 && < 0.94,
++                     regex-compat >= 0.95.1,
+                      mtl          >= 1.0 && < 2.1,
+                      parsec       >= 2.0 && < 3.2,
+                      html         == 1.0.*,
+@@ -515,14 +515,14 @@
+     cpp-options:    -DWIN32
+     c-sources:      src/win32/send_email.c
+     build-depends:  unix-compat >= 0.1.2,
+-                    regex-posix >= 0.94.4 && < 0.95
++                    regex-posix >= 0.95.1
+
+   if os(solaris)
+     cc-options:     -DHAVE_SIGINFO_H
+
+   build-depends:   base          < 5,
+                    extensible-exceptions >= 0.1 && < 0.2,
+-                   regex-compat >= 0.71 && < 0.94,
++                   regex-compat >= 0.95.1,
+                    mtl          >= 1.0 && < 2.1,
+                    parsec       >= 2.0 && < 3.2,
+                    html         == 1.0.*,
+@@ -618,7 +618,7 @@
+
+     build-depends:   base          < 5,
+                      extensible-exceptions >= 0.1 && < 0.2,
+-                     regex-compat >= 0.71 && < 0.94,
++                     regex-compat >= 0.95.1,
+                      mtl          >= 1.0 && < 2.1,
+                      parsec       >= 2.0 && < 3.2,
+                      html         == 1.0.*,
+@@ -671,7 +671,7 @@
+       cpp-options:    -DWIN32
+       c-sources:      src/win32/send_email.c
+       build-depends:  unix-compat >= 0.1.2,
+-                      regex-posix >= 0.94.4 && < 0.95
++                      regex-posix >= 0.95.1
+
+     if os(solaris)
+       cc-options:     -DHAVE_SIGINFO_H
