@@ -1,5 +1,5 @@
 Source: darcs
-Section: vcs
+Section: haskell
 Priority: optional
 Maintainer: Erik de Castro Lopo <merikd@mega-nerd.com>
 Uploaders: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>,
@@ -7,9 +7,12 @@ Uploaders: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org
 DM-Upload-Allowed: yes
 # I don't specify lower bounds that can't be violated in Debian.
 # Note that ghc (>= 6.10.4) excludes Lenny libs built against 6.8.
-Build-Depends: debhelper (>= 7.0.50~), ghc,
+Build-Depends: cdbs, debhelper (>= 7), haskell-devscripts (>= 0.8),
+ ghc,
+ ghc-prof,
  bash-completion (>= 1:1.1),
  libcurl4-gnutls-dev (>= 7.19.1),
+ libghc-filepath-dev,
  libghc-hashed-storage-dev,
  libghc-haskeline-dev,
  libghc-html-dev,
@@ -22,7 +25,40 @@ Build-Depends: debhelper (>= 7.0.50~), ghc,
  libghc-tar-dev,
  libghc-terminfo-dev,
  libghc-text-dev,
- libghc-zlib-dev
+ libghc-unix-dev,
+ libghc-zlib-dev,
+ libghc-filepath-prof,
+ libghc-hashed-storage-prof,
+ libghc-haskeline-prof,
+ libghc-html-prof,
+ libghc-http-prof,
+ libghc-mmap-prof,
+ libghc-mtl-prof,
+ libghc-network-prof,
+ libghc-parsec3-prof,
+ libghc-regex-compat-prof,
+ libghc-tar-prof,
+ libghc-terminfo-prof,
+ libghc-text-prof,
+ libghc-unix-prof,
+ libghc-zlib-prof
+Build-Depends-Indep:
+ ghc-doc,
+ libghc-filepath-doc,
+ libghc-hashed-storage-doc,
+ libghc-haskeline-doc,
+ libghc-html-doc,
+ libghc-http-doc,
+ libghc-mmap-doc,
+ libghc-mtl-doc,
+ libghc-network-doc,
+ libghc-parsec3-doc,
+ libghc-regex-compat-doc,
+ libghc-tar-doc,
+ libghc-terminfo-doc,
+ libghc-text-doc,
+ libghc-unix-doc,
+ libghc-zlib-doc
 Build-Conflicts:
  libghc-parsec2-dev,
 Homepage: http://darcs.net/
@@ -31,6 +67,7 @@ Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/darcs
 Standards-Version: 3.9.2
 
 Package: darcs
+Section: vcs
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Recommends: default-mta | mail-transport-agent
@@ -50,3 +87,44 @@ Description: distributed, interactive, smart revision control system
     based on a unique algebra of patches. This smartness lets you
     respond to changing demands in ways that would otherwise not be
     possible.
+
+Package: libghc-darcs-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: distributed, interactive, smart revision control system; library
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library provides an interface to the Darcs distributed revision control
+ system.
+
+Package: libghc-darcs-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: distributed, interactive, smart revision control system; profiling libraries
+ This package provides a library for the Haskell programming language
+ compiled for profiling.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ This library provides an interface to the Darcs distributed revision control
+ system.
+
+Package: libghc-darcs-doc
+Section: doc
+Architecture: all
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: distributed, interactive, smart revision control system; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.  See http://www.haskell.org/ for more information on
+ Haskell.
+ .
+ This library provides an interface to the Darcs distributed revision control
+ system.
