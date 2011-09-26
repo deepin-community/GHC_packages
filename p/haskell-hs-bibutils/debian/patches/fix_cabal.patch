@@ -8,8 +8,8 @@ library. This patch makes it use the Debian packaged one.
 
 Index: haskell-hs-bibutils-4.12/hs-bibutils.cabal
 ===================================================================
---- haskell-hs-bibutils-4.12.orig/hs-bibutils.cabal	2011-08-13 19:53:44.000000000 +0200
-+++ haskell-hs-bibutils-4.12/hs-bibutils.cabal	2011-08-13 20:00:08.000000000 +0200
+--- haskell-hs-bibutils-4.12.orig/hs-bibutils.cabal	2010-11-17 23:25:31.000000000 +0100
++++ haskell-hs-bibutils-4.12/hs-bibutils.cabal	2011-09-26 17:43:37.000000000 +0200
 @@ -29,29 +29,6 @@
  maintainer:         andrea.rossato@unitn.it
  cabal-version:      >= 1.4
@@ -40,13 +40,12 @@ Index: haskell-hs-bibutils-4.12/hs-bibutils.cabal
 
  library
      exposed-modules:  Text.Bibutils
-@@ -60,22 +37,9 @@
+@@ -60,22 +37,7 @@
      ghc-prof-options: -prof -auto-all
      hs-source-dirs:   src
      extensions:       ForeignFunctionInterface
 -    include-dirs:     bibutils
-+    include-dirs:     /usr/include/bibutils
-     includes:         bibutils.h
+-    includes:         bibutils.h
 -    c-sources:
 -        cbits/stub.c
 -        bibutils/adsout.c bibutils/bibcore.c bibutils/bibl.c bibutils/biblatexin.c bibutils/bibtexin.c
@@ -61,7 +60,7 @@ Index: haskell-hs-bibutils-4.12/hs-bibutils.cabal
 -        bibutils/risout.c bibutils/ristypes.c bibutils/serialno.c bibutils/strsearch.c
 -        bibutils/title.c bibutils/utf8.c bibutils/wordin.c bibutils/wordout.c
 -        bibutils/xml.c bibutils/xml_encoding.c
-+    extra-libraries:  bibutils
++    pkgconfig-depends: bibutils
 
      if impl(ghc >= 6.10)
         build-depends: base >= 4, syb
