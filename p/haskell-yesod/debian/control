@@ -1,0 +1,187 @@
+Source: haskell-yesod
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.8)
+  , ghc
+  , ghc-prof
+  , libghc-attoparsec-text-dev (>> 0.8.5)
+  , libghc-attoparsec-text-dev (<< 0.9)
+  , libghc-attoparsec-text-prof
+  , libghc-blaze-builder-dev (>> 0.2)
+  , libghc-blaze-builder-dev (<< 0.4)
+  , libghc-blaze-builder-prof
+  , libghc-hamlet-dev (>> 0.10)
+  , libghc-hamlet-dev (<< 0.11)
+  , libghc-hamlet-prof
+  , libghc-http-types-dev (>> 0.6.1)
+  , libghc-http-types-dev (<< 0.7)
+  , libghc-http-types-prof
+  , libghc-monad-control-dev (>> 0.2)
+  , libghc-monad-control-dev (<< 0.3)
+  , libghc-monad-control-prof
+  , libghc-parsec3-dev
+  , libghc-parsec3-prof
+  , libghc-shakespeare-css-dev (>> 0.10)
+  , libghc-shakespeare-css-dev (<< 0.11)
+  , libghc-shakespeare-css-prof
+  , libghc-shakespeare-js-dev (>> 0.10)
+  , libghc-shakespeare-js-dev (<< 0.11)
+  , libghc-shakespeare-js-prof
+  , libghc-shakespeare-text-dev (>> 0.10)
+  , libghc-shakespeare-text-dev (<< 0.11)
+  , libghc-shakespeare-text-prof
+  , libghc-text-dev (>> 0.11)
+  , libghc-text-dev (<< 0.12)
+  , libghc-text-prof
+  , libghc-transformers-dev (>> 0.2)
+  , libghc-transformers-dev (<< 0.3)
+  , libghc-transformers-prof
+  , libghc-unix-compat-dev (>> 0.2)
+  , libghc-unix-compat-dev (<< 0.4)
+  , libghc-unix-compat-prof
+  , libghc-wai-dev (>> 0.4)
+  , libghc-wai-dev (<< 0.5)
+  , libghc-wai-prof
+  , libghc-wai-extra-dev (>> 0.4.1)
+  , libghc-wai-extra-dev (<< 0.5)
+  , libghc-wai-extra-prof
+  , libghc-warp-dev (>> 0.4)
+  , libghc-warp-dev (<< 0.5)
+  , libghc-warp-prof
+  , libghc-yesod-auth-dev (>> 0.7)
+  , libghc-yesod-auth-dev (<< 0.8)
+  , libghc-yesod-auth-prof
+  , libghc-yesod-core-dev (>> 0.9.1.1)
+  , libghc-yesod-core-dev (<< 0.10)
+  , libghc-yesod-core-prof
+  , libghc-yesod-form-dev (>> 0.3)
+  , libghc-yesod-form-dev (<< 0.4)
+  , libghc-yesod-form-prof
+  , libghc-yesod-json-dev (>> 0.2)
+  , libghc-yesod-json-dev (<< 0.3)
+  , libghc-yesod-json-prof
+  , libghc-yesod-persistent-dev (>> 0.2)
+  , libghc-yesod-persistent-dev (<< 0.3)
+  , libghc-yesod-persistent-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-attoparsec-text-doc
+  , libghc-blaze-builder-doc
+  , libghc-hamlet-doc
+  , libghc-http-types-doc
+  , libghc-monad-control-doc
+  , libghc-parsec3-doc
+  , libghc-shakespeare-css-doc
+  , libghc-shakespeare-js-doc
+  , libghc-shakespeare-text-doc
+  , libghc-text-doc
+  , libghc-transformers-doc
+  , libghc-unix-compat-doc
+  , libghc-wai-doc
+  , libghc-wai-extra-doc
+  , libghc-warp-doc
+  , libghc-yesod-auth-doc
+  , libghc-yesod-core-doc
+  , libghc-yesod-form-doc
+  , libghc-yesod-json-doc
+  , libghc-yesod-persistent-doc
+Standards-Version: 3.9.2
+Homepage: http://hackage.haskell.org/package/yesod
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-yesod
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-yesod
+
+Package: yesod
+Architecture: any
+Depends: ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ghc
+  , libghc-yesod-dev
+  , libghc-yesod-core-dev
+  , libghc-yesod-auth-dev
+  , libghc-yesod-static-dev
+  , libghc-blaze-html-dev
+  , libghc-yesod-form-dev
+  , libghc-mime-mail-dev
+  , libghc-clientsession-dev
+  , libghc-wai-extra-dev
+  , libghc-text-dev
+  , libghc-persistent-dev
+  , libghc-persistent-template-dev
+  , ghc-ghci
+  , libghc-hamlet-dev
+  , libghc-shakespeare-css-dev
+  , libghc-shakespeare-js-dev
+  , libghc-shakespeare-text-dev
+  , libghc-hjsmin-dev
+  , libghc-transformers-dev
+  , libghc-data-object-dev
+  , libghc-data-object-yaml-dev
+  , libghc-warp-dev
+  , libghc-blaze-builder-dev
+  , libghc-cmdargs-dev
+Suggests: libghc-persistent-sqlite-dev
+  , libghc-persistent-postgresql-dev
+  , libghc-persistent-mongodb-dev
+  , libghc-mongodb-dev
+  , libghc-bson-dev
+Description: framework for type-safe, RESTful web applications
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ Yesod is a framework designed to foster creation of RESTful web
+ application that have strong compile-time guarantees of correctness.
+ It also affords space efficient code and portability to many
+ deployment backends, from CGI to stand-alone serving.
+
+Package: libghc-yesod-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: framework for type-safe, RESTful web applications
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ Yesod is a framework designed to foster creation of RESTful web
+ application that have strong compile-time guarantees of correctness.
+ It also affords space efficient code and portability to many
+ deployment backends, from CGI to stand-alone serving.
+
+Package: libghc-yesod-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: framework for type-safe, RESTful web applications; profiling libraries
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ Yesod is a framework designed to foster creation of RESTful web
+ application that have strong compile-time guarantees of correctness.
+ It also affords space efficient code and portability to many
+ deployment backends, from CGI to stand-alone serving.
+
+Package: libghc-yesod-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: framework for type-safe, RESTful web applications; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ Yesod is a framework designed to foster creation of RESTful web
+ application that have strong compile-time guarantees of correctness.
+ It also affords space efficient code and portability to many
+ deployment backends, from CGI to stand-alone serving.
