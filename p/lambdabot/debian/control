@@ -1,0 +1,52 @@
+Source: lambdabot
+Section: net
+Priority: optional
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 7)
+  , haskell-devscripts (>= 0.8)
+  , ghc
+  , libghc-http-dev
+  , libghc-iospec-dev
+  , libghc-monadrandom-dev
+  , libghc-arrows-dev
+  , libghc-binary-dev
+  , libghc-brainfuck-dev
+  , libghc-data-memocombinators-dev
+  , libghc-haskell-src-dev
+  , libghc-src-exts-dev
+  , libghc-lambdabot-utils-dev
+  , libghc-logict-dev
+  , libghc-mtl-dev
+  , libghc-network-dev
+  , libghc-numbers-dev
+  , libghc-oeis-dev
+  , libghc-parsec3-dev
+  , libghc-readline-dev
+  , libghc-regex-compat-dev
+  , libghc-show-dev
+  , libghc-tagsoup-dev
+  , libghc-unlambda-dev
+  , libghc-utf8-string-dev
+  , libghc-vector-space-dev
+  , libncurses-dev
+  , libreadline-dev
+Standards-Version: 3.9.2
+Homepage: http://hackage.haskell.org/package/lambdabot
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/lambdabot
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/lambdabot
+
+Package: lambdabot
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Development tool and advanced IRC bot
+ Lambdabot is an IRC bot written over several years by those on
+ the #haskell IRC channel.
+ .
+ It operates as a command-line tool, embedded in an editor, embedded
+ in GHCi, via Internet Relay Chat and on the Web.
