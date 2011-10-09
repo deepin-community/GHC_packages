@@ -3,26 +3,21 @@ Priority: extra
 Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Giovanni Mascellani <gio@debian.org>, Clint Adams <clint@debian.org>
-Build-Depends:
- debhelper (>= 7),
- haskell-devscripts,
- cdbs,
- ghc,
- ghc-prof,
- libghc-hsemail-dev (>= 1.6),
- libghc-hsemail-prof (>= 1.6),
- libghc-network-dev,
- libghc-network-prof
-Build-Depends-Indep:
- ghc-doc,
- libghc-hsemail-doc (>= 1.6),
- libghc-network-doc
-Build-Conflicts:
- libghc-hsemail-dev (>= 1.7),
- libghc-hsemail-prof (>= 1.7),
- libghc-hsemail-doc (>= 1.7)
+Build-Depends: debhelper (>= 7)
+ , haskell-devscripts
+ , cdbs
+ , ghc
+ , ghc-prof
+ , libghc-hsemail-dev (>> 1)
+ , libghc-hsemail-dev (<< 2)
+ , libghc-hsemail-prof
+ , libghc-network-dev
+ , libghc-network-prof
+Build-Depends-Indep: ghc-doc
+ , libghc-hsemail-doc
+ , libghc-network-doc
 Standards-Version: 3.9.2
-Homepage: http://hackage.haskell.org/package/smtpclient
+Homepage: http://hackage.haskell.org/package/SMTPClient
 Vcs-Darcs: http://darcs.debian.org/darcs/pkg-haskell/haskell-smtpclient
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-smtpclient
 
