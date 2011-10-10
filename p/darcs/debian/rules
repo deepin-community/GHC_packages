@@ -9,7 +9,8 @@ DEB_SETUP_GHC_CONFIGURE_ARGS=-fcurl-pipelining $(if $(wildcard /usr/lib/*/libHSr
 
 common-binary-post-install-arch::
 ifneq (nocheck,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
-	$(DEB_SETUP_BIN_NAME) --builddir=dist-ghc test
+#	$(DEB_SETUP_BIN_NAME) --builddir=dist-ghc test
+	runhaskell Setup.lhs --builddir=dist-ghc test
 endif
 
 binary-post-install/darcs::
