@@ -8,15 +8,15 @@ Build-Depends: debhelper (>= 7)
   , haskell-devscripts (>= 0.8)
   , ghc
   , ghc-prof
-# Make sure all dependencies listed in the cabal file are represented here,
-# including their version bounds. It is sufficient to add the bounds to the
-# -dev package only.
-  , libghc-bar-dev (>= 0.1)
-  , libghc-bar-dev (<< 0.2)
-  , libghc-bar-prof
-  , libdata-accessor-mtl-dev
+  , libghc-data-accessor-dev (>= 0.2)
+  , libghc-data-accessor-dev (<< 0.4)
+  , libghc-data-accessor-prof
+  , libghc-mtl-dev (>= 1.0)
+  , libghc-mtl-dev (<< 2.1)
+  , libghc-mtl-prof
 Build-Depends-Indep: ghc-doc
-  , libghc-bar-doc
+  , libghc-data-accessor-doc
+  , libghc-mtl-doc
 Standards-Version: 3.9.2
 Homepage: http://hackage.haskell.org/package/data-accessor-mtl
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-data-accessor-mtl
@@ -27,7 +27,6 @@ Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
   , ${misc:Depends}
-  , libdata-accessor-mtl-dev
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
