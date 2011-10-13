@@ -2,8 +2,8 @@ Thu Oct 13 20:51:01 CEST 2011  Joachim Breitner <mail@joachim-breitner.de>
   * Introduce a Cabal flag to build against a system installation of chipmunk
 Index: haskell-hipmunk-5.2.0.3/Hipmunk.cabal
 ===================================================================
---- haskell-hipmunk-5.2.0.3.orig/Hipmunk.cabal	2011-09-06 13:31:38.000000000 +0200
-+++ haskell-hipmunk-5.2.0.3/Hipmunk.cabal	2011-10-13 20:57:25.000000000 +0200
+--- haskell-hipmunk-5.2.0.3.orig/Hipmunk.cabal	2011-10-13 20:57:57.000000000 +0200
++++ haskell-hipmunk-5.2.0.3/Hipmunk.cabal	2011-10-13 20:59:25.000000000 +0200
 @@ -115,6 +115,9 @@
    Description: Enable debugging.
    Default: False
@@ -55,7 +55,7 @@ Index: haskell-hipmunk-5.2.0.3/Hipmunk.cabal
 +  if flag(system-chipmunk)
 +    Include-Dirs:
 +        /usr/include/chipmunk
-+     Extra-libraries:
++    Extra-libraries:
 +        chipmunk
 +  else
 +    Include-Dirs:
@@ -92,3 +92,10 @@ Index: haskell-hipmunk-5.2.0.3/Hipmunk.cabal
    if flag(small_base)
      Build-Depends: base >= 3 && < 5,
                     array >= 0.1 && < 0.4,
+@@ -179,4 +191,4 @@
+     CC-Options:  -g
+   else
+     CC-Options:  -DNDEBUG
+-  Extra-Libraries: m
+\ No newline at end of file
++  Extra-Libraries: m
