@@ -1,0 +1,67 @@
+Source: haskell-data-accessor-mtl
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.8)
+  , ghc
+  , ghc-prof
+# Make sure all dependencies listed in the cabal file are represented here,
+# including their version bounds. It is sufficient to add the bounds to the
+# -dev package only.
+  , libghc-bar-dev (>= 0.1)
+  , libghc-bar-dev (<< 0.2)
+  , libghc-bar-prof
+  , libdata-accessor-mtl-dev
+Build-Depends-Indep: ghc-doc
+  , libghc-bar-doc
+Standards-Version: 3.9.2
+Homepage: http://hackage.haskell.org/package/data-accessor-mtl
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-data-accessor-mtl
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-data-accessor-mtl
+
+Package: libghc-data-accessor-mtl-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+  , libdata-accessor-mtl-dev
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: use Data.Accessor inside the State monad.
+ This Haskell library provides methods to access the state in a State monad by
+ means of Data.Accessor getters, setters and modifiers.
+ .
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-data-accessor-mtl-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: use Data.Accessor inside the State monad; profiling libraries
+ This Haskell library provides methods to access the state in a State monad by
+ means of Data.Accessor getters, setters and modifiers.
+ .
+ This package provides a library for the Haskell programming language, compiled
+ for profiling.  See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-data-accessor-mtl-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: use Data.Accessor inside the State monad; documentation
+ This Haskell library provides methods to access the state in a State monad by
+ means of Data.Accessor getters, setters and modifiers.
+ .
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
