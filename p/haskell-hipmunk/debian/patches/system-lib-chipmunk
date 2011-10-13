@@ -1,0 +1,94 @@
+Thu Oct 13 20:51:01 CEST 2011  Joachim Breitner <mail@joachim-breitner.de>
+  * Introduce a Cabal flag to build against a system installation of chipmunk
+Index: haskell-hipmunk-5.2.0.3/Hipmunk.cabal
+===================================================================
+--- haskell-hipmunk-5.2.0.3.orig/Hipmunk.cabal	2011-09-06 13:31:38.000000000 +0200
++++ haskell-hipmunk-5.2.0.3/Hipmunk.cabal	2011-10-13 20:57:25.000000000 +0200
+@@ -115,6 +115,9 @@
+   Description: Enable debugging.
+   Default: False
+
++Flag system-chipmunk
++  Description: Use the system-wide installed chipmunk library
++  Default: False
+
+ Library
+   Exposed-Modules:
+@@ -129,38 +132,47 @@
+   Other-Modules:
+       Physics.Hipmunk.Internal
+   Include-Dirs:
+-      Physics/Hipmunk,
+-      Chipmunk-5.3.5/include/chipmunk
++      Physics/Hipmunk
+   Includes:
+       wrapper.h
+-  C-Sources:
+-      Chipmunk-5.3.5/src/chipmunk.c,
+-      Chipmunk-5.3.5/src/constraints/cpConstraint.c,
+-      Chipmunk-5.3.5/src/constraints/cpDampedRotarySpring.c,
+-      Chipmunk-5.3.5/src/constraints/cpDampedSpring.c,
+-      Chipmunk-5.3.5/src/constraints/cpGearJoint.c,
+-      Chipmunk-5.3.5/src/constraints/cpGrooveJoint.c,
+-      Chipmunk-5.3.5/src/constraints/cpPinJoint.c,
+-      Chipmunk-5.3.5/src/constraints/cpPivotJoint.c,
+-      Chipmunk-5.3.5/src/constraints/cpRatchetJoint.c,
+-      Chipmunk-5.3.5/src/constraints/cpRotaryLimitJoint.c,
+-      Chipmunk-5.3.5/src/constraints/cpSimpleMotor.c,
+-      Chipmunk-5.3.5/src/constraints/cpSlideJoint.c,
+-      Chipmunk-5.3.5/src/cpArbiter.c,
+-      Chipmunk-5.3.5/src/cpArray.c,
+-      Chipmunk-5.3.5/src/cpBB.c,
+-      Chipmunk-5.3.5/src/cpBody.c,
+-      Chipmunk-5.3.5/src/cpCollision.c,
+-      Chipmunk-5.3.5/src/cpHashSet.c,
+-      Chipmunk-5.3.5/src/cpPolyShape.c,
+-      Chipmunk-5.3.5/src/cpShape.c,
+-      Chipmunk-5.3.5/src/cpSpace.c,
+-      Chipmunk-5.3.5/src/cpSpaceComponent.c,
+-      Chipmunk-5.3.5/src/cpSpaceHash.c,
+-      Chipmunk-5.3.5/src/cpSpaceQuery.c,
+-      Chipmunk-5.3.5/src/cpSpaceStep.c,
+-      Chipmunk-5.3.5/src/cpVect.c,
+-      Physics/Hipmunk/wrapper.c
++
++  if flag(system-chipmunk)
++    Include-Dirs:
++        /usr/include/chipmunk
++     Extra-libraries:
++        chipmunk
++  else
++    Include-Dirs:
++        Chipmunk-5.3.5/include/chipmunk
++    C-Sources:
++        Chipmunk-5.3.5/src/chipmunk.c,
++        Chipmunk-5.3.5/src/constraints/cpConstraint.c,
++        Chipmunk-5.3.5/src/constraints/cpDampedRotarySpring.c,
++        Chipmunk-5.3.5/src/constraints/cpDampedSpring.c,
++        Chipmunk-5.3.5/src/constraints/cpGearJoint.c,
++        Chipmunk-5.3.5/src/constraints/cpGrooveJoint.c,
++        Chipmunk-5.3.5/src/constraints/cpPinJoint.c,
++        Chipmunk-5.3.5/src/constraints/cpPivotJoint.c,
++        Chipmunk-5.3.5/src/constraints/cpRatchetJoint.c,
++        Chipmunk-5.3.5/src/constraints/cpRotaryLimitJoint.c,
++        Chipmunk-5.3.5/src/constraints/cpSimpleMotor.c,
++        Chipmunk-5.3.5/src/constraints/cpSlideJoint.c,
++        Chipmunk-5.3.5/src/cpArbiter.c,
++        Chipmunk-5.3.5/src/cpArray.c,
++        Chipmunk-5.3.5/src/cpBB.c,
++        Chipmunk-5.3.5/src/cpBody.c,
++        Chipmunk-5.3.5/src/cpCollision.c,
++        Chipmunk-5.3.5/src/cpHashSet.c,
++        Chipmunk-5.3.5/src/cpPolyShape.c,
++        Chipmunk-5.3.5/src/cpShape.c,
++        Chipmunk-5.3.5/src/cpSpace.c,
++        Chipmunk-5.3.5/src/cpSpaceComponent.c,
++        Chipmunk-5.3.5/src/cpSpaceHash.c,
++        Chipmunk-5.3.5/src/cpSpaceQuery.c,
++        Chipmunk-5.3.5/src/cpSpaceStep.c,
++        Chipmunk-5.3.5/src/cpVect.c,
++        Physics/Hipmunk/wrapper.c
++
+   if flag(small_base)
+     Build-Depends: base >= 3 && < 5,
+                    array >= 0.1 && < 0.4,
