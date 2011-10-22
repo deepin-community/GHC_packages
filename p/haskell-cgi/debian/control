@@ -2,25 +2,28 @@ Source: haskell-cgi
 Section: haskell
 Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>
-Standards-Version: 3.8.4
+Uploaders: Joachim Breitner <nomeata@debian.org>, Clint Adams <clint@debian.org>
+Standards-Version: 3.9.2
 Build-Depends: debhelper (>= 7)
   , haskell-devscripts (>= 0.7)
   , cdbs
   , ghc
   , ghc-prof
-  , ghc-doc
+  , libghc-monadcatchio-mtl-dev
+  , libghc-monadcatchio-mtl-prof
   , libghc-mtl-dev (>= 1.0)
   , libghc-mtl-prof
-  , libghc-mtl-doc
   , libghc-network-dev (>= 2.0)
   , libghc-network-prof
-  , libghc-network-doc
   , libghc-parsec3-dev
   , libghc-parsec3-prof
-  , libghc-parsec3-doc
   , libghc-xhtml-dev (>= 3000.0.0)
   , libghc-xhtml-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-monadcatchio-mtl-doc
+  , libghc-mtl-doc
+  , libghc-network-doc
+  , libghc-parsec3-doc
   , libghc-xhtml-doc
 Homepage: http://hackage.haskell.org/package/cgi
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-cgi
