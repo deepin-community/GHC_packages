@@ -1,0 +1,32 @@
+Source: carettah
+Priority: extra
+Section: haskell
+Maintainer: Kiwamu Okabe <kiwamu@debian.or.jp>
+Build-Depends: debhelper (>= 7.0),
+               haskell-devscripts (>= 0.8),
+               cdbs,
+               ghc,
+               ghc-prof,
+               libghc-cairo-dev,
+               libghc-cairo-prof,
+               libghc-gtk-dev,
+               libghc-gtk-prof,
+               libghc-mtl-dev,
+               libghc-mtl-prof,
+               libghc-pandoc-dev,
+               libghc-pandoc-prof,
+               libghc-pango-dev,
+               libghc-pango-prof
+Standards-Version: 3.9.2
+Homepage: http://carettah.masterq.net/
+
+Package: carettah
+Architecture: any
+Section: misc
+Depends: ${shlibs:Depends}, ${haskell:Depends}, ${misc:Depends}, fonts-takao
+Description: Presentation tool writtten with Haskell.
+ A presentation tool writtten with Haskell.
+ Carettah make a new presentation with command 'carettah -n markdown.md'.
+ And it's controled by keyboard or Wii Remote.
+ .
+ It's a clone of Rabbit <http://rabbit-shockers.org/>.
