@@ -1,5 +1,6 @@
 Description: Include wrapper.c in build
 Author: Joachim Breitner <nomeata@debian.org>
+Forwarded: felipe.lessa@gmail.com
 
 Index: haskell-hipmunk-5.2.0.4/Hipmunk.cabal
 ===================================================================
