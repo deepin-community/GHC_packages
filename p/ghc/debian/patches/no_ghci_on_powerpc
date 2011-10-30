@@ -1,0 +1,20 @@
+Description: Disable ghci on powerpc
+ Despite upstreams make files indicating that it works, we have had too many
+ problems with ghci on power, e.g.:
+ http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=631073. Erik had tried to fix
+ it, but eventually gave up:
+ http://lists.debian.org/debian-haskell/2011/10/msg00059.html
+Author: Joachim Breitner <nomeata@debian.org>
+Bug-Debian: http://bugs.debian.org/631073
+
+--- ghc-7.0.4.orig/mk/config.mk.in
++++ ghc-7.0.4/mk/config.mk.in
+@@ -169,7 +169,7 @@ GhcWithSMP=$(strip $(if $(filter YESNO,
+ # has support for this OS/ARCH combination.
+ 
+ OsSupportsGHCi=$(strip $(patsubst $(HostOS_CPP), YES, $(findstring $(HostOS_CPP), mingw32 cygwin32 linux solaris2 freebsd dragonfly netbsd openbsd darwin)))
+-ArchSupportsGHCi=$(strip $(patsubst $(HostArch_CPP), YES, $(findstring $(HostArch_CPP), i386 x86_64 powerpc sparc sparc64)))
++ArchSupportsGHCi=$(strip $(patsubst $(HostArch_CPP), YES, $(findstring $(HostArch_CPP), i386 x86_64 sparc sparc64)))
+ 
+ ifeq "$(OsSupportsGHCi)$(ArchSupportsGHCi)" "YESYES"
+ GhcWithInterpreter=YES
