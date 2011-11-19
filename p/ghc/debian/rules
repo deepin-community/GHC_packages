@@ -40,7 +40,7 @@ configure: configure-stamp
 configure-stamp:
 	dh_testdir
 
-	touch configure
+	autoconf
 
 	rm -f mk/build.mk
 	echo "SRC_HC_OPTS += -lffi -optl-pthread" >> mk/build.mk
@@ -254,8 +254,7 @@ clean:
 	dh_testdir
 	dh_testroot
 	rm -f configure-stamp build-stamp install-stamp binary-arch-stamp binary-indep-stamp
-
-	touch configure
+	rm -f configure
 
 	$(MAKE) distclean
 	rm -f config.sub config.guess
