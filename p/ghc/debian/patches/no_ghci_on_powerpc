@@ -7,9 +7,11 @@ Description: Disable ghci on powerpc
 Author: Joachim Breitner <nomeata@debian.org>
 Bug-Debian: http://bugs.debian.org/631073
 
---- ghc-7.0.4.orig/mk/config.mk.in
-+++ ghc-7.0.4/mk/config.mk.in
-@@ -169,7 +169,7 @@ GhcWithSMP=$(strip $(if $(filter YESNO,
+Index: ghc-7.2.2/mk/config.mk.in
+===================================================================
+--- ghc-7.2.2.orig/mk/config.mk.in	2011-11-09 19:10:39.000000000 +0100
++++ ghc-7.2.2/mk/config.mk.in	2011-11-19 18:33:33.000000000 +0100
+@@ -174,7 +174,7 @@
  # has support for this OS/ARCH combination.
  
  OsSupportsGHCi=$(strip $(patsubst $(HostOS_CPP), YES, $(findstring $(HostOS_CPP), mingw32 cygwin32 linux solaris2 freebsd dragonfly netbsd openbsd darwin)))
