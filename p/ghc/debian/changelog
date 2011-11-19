@@ -1,9 +1,58 @@
-ghc (7.0.4-5) UNRELEASED; urgency=low
+ghc (7.2.0.20110728-1) UNRELEASED; urgency=low
+
+  * Install 7.2.1-rc1 to experimental. 
+  * Undo the symlink-workarounds introduced in 7.0.4-3. The -doc work-around
+    is still needed, as the haddock interface version did not change.
+
+ -- Joachim Breitner <nomeata@debian.org>  Sat, 30 Jul 2011 16:09:07 +0200
+
+ghc (7.0.4-9) UNRELEASED; urgency=low
+
+  * Suggest llvm package
+
+ -- Joachim Breitner <nomeata@debian.org>  Thu, 10 Nov 2011 19:19:41 +0100
+
+ghc (7.0.4-8) unstable; urgency=low
+
+  * Remove ghci support on powerpc (Closes: #631073)
+
+ -- Joachim Breitner <nomeata@debian.org>  Sun, 30 Oct 2011 17:56:23 +0100
+
+ghc (7.0.4-7) unstable; urgency=low
+
+  [ Joachim Breitner ]
+  * patches/configure-s390x: Add s390x to the list of known architectures.
+  * add armhf in debian/rules (Patch by Riku Voipio, Closes: #640811)
+
+  [ Iain Lane ]
+  * Handle linker scripts for which dlopen returns "file too short" and/or
+    which contain INPUT statements (for example libncurses.so) (Closes:
+    #644591)
+  * Standards-Version → 3.9.2, no changes required 
+
+ -- Iain Lane <laney@debian.org>  Tue, 18 Oct 2011 17:09:39 +0100
+
+ghc (7.0.4-6) unstable; urgency=low
+
+  * Fix #609445 by actually removing the patch for #566331, not needed any
+    more since this upstream commit:
+
+      Sat Jul 31 12:55:06 BST 2010  Ian Lynagh <igloo@earth.li>
+      * Expose the functions haddock needs even when haddock is disabled; #3558
+
+
+ -- Joachim Breitner <nomeata@debian.org>  Wed, 31 Aug 2011 08:44:33 +0200
+
+
+ghc (7.0.4-5) unstable; urgency=low
 
   * Remove ghc-doc dependency on ghc, it did not have the desired effect.
     Instead call ghc-pkg recache in ghc-doc’s trigger as well. 
+  * Fix missing instance documentation (Closes: #609445)
+    This was a Debian-specific regression, introduced in the fix for #566331
+    or later caused by it, and fixed by building haddock with -DGHCI.
 
- -- Joachim Breitner <nomeata@debian.org>  Sat, 23 Jul 2011 09:29:41 +0200
+ -- Joachim Breitner <nomeata@debian.org>  Tue, 30 Aug 2011 21:48:43 +0200
 
 ghc (7.0.4-4) unstable; urgency=low
 
