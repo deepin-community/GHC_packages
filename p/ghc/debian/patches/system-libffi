@@ -1,7 +1,7 @@
-Index: ghc-7.2.0.20110728/rts/ghc.mk
+Index: ghc-7.2.2/rts/ghc.mk
 ===================================================================
---- ghc-7.2.0.20110728.orig/rts/ghc.mk	2011-07-28 19:12:04.000000000 +0200
-+++ ghc-7.2.0.20110728/rts/ghc.mk	2011-07-30 16:22:27.000000000 +0200
+--- ghc-7.2.2.orig/rts/ghc.mk	2011-11-09 19:10:39.000000000 +0100
++++ ghc-7.2.2/rts/ghc.mk	2011-11-19 18:25:06.000000000 +0100
 @@ -455,15 +455,13 @@
  
  $(eval $(call dependencies,rts,dist,1))
@@ -22,10 +22,10 @@ Index: ghc-7.2.0.20110728/rts/ghc.mk
  
  # -----------------------------------------------------------------------------
  # compile dtrace probes if dtrace is supported
-Index: ghc-7.2.0.20110728/rts/package.conf.in
+Index: ghc-7.2.2/rts/package.conf.in
 ===================================================================
---- ghc-7.2.0.20110728.orig/rts/package.conf.in	2011-07-28 19:12:04.000000000 +0200
-+++ ghc-7.2.0.20110728/rts/package.conf.in	2011-07-30 16:22:27.000000000 +0200
+--- ghc-7.2.2.orig/rts/package.conf.in	2011-11-09 19:10:39.000000000 +0100
++++ ghc-7.2.2/rts/package.conf.in	2011-11-19 18:25:06.000000000 +0100
 @@ -24,8 +24,9 @@
  hs-libraries:   "HSrts"
  
@@ -45,10 +45,10 @@ Index: ghc-7.2.0.20110728/rts/package.conf.in
  hugs-options:
  cc-options:
  
-Index: ghc-7.2.0.20110728/ghc.mk
+Index: ghc-7.2.2/ghc.mk
 ===================================================================
---- ghc-7.2.0.20110728.orig/ghc.mk	2011-07-28 19:12:04.000000000 +0200
-+++ ghc-7.2.0.20110728/ghc.mk	2011-07-30 16:22:59.000000000 +0200
+--- ghc-7.2.2.orig/ghc.mk	2011-11-09 19:10:39.000000000 +0100
++++ ghc-7.2.2/ghc.mk	2011-11-19 18:25:06.000000000 +0100
 @@ -449,7 +449,6 @@
  # add the final two package.conf dependencies: ghc-prim depends on RTS,
  # and RTS depends on libffi.
@@ -90,7 +90,7 @@ Index: ghc-7.2.0.20110728/ghc.mk
  	"$(INSTALLED_GHC_PKG_REAL)" --force --global-conf "$(INSTALLED_PACKAGE_CONF)" update rts/package.conf.install
  	$(foreach p, $(INSTALLED_PKG_DIRS),                           \
  	    $(call make-command,                                      \
-@@ -957,7 +949,7 @@
+@@ -954,7 +946,7 @@
  unix-binary-dist-prep:
  	"$(RM)" $(RM_OPTS_REC) bindistprep/
  	"$(MKDIRHIER)" $(BIN_DIST_PREP_DIR)
@@ -99,7 +99,7 @@ Index: ghc-7.2.0.20110728/ghc.mk
  	echo "HADDOCK_DOCS       = $(HADDOCK_DOCS)"       >> $(BIN_DIST_MK)
  	echo "LATEX_DOCS         = $(LATEX_DOCS)"         >> $(BIN_DIST_MK)
  	echo "BUILD_DOCBOOK_HTML = $(BUILD_DOCBOOK_HTML)" >> $(BIN_DIST_MK)
-@@ -1042,7 +1034,7 @@
+@@ -1039,7 +1031,7 @@
  #
  # Files to include in source distributions
  #
