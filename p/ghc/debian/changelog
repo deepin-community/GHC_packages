@@ -16,11 +16,13 @@ ghc (7.2.1-1) experimental; urgency=low
 
 ghc (7.2.0.20110728-1) experimental; urgency=low
 
+  * Remove ghc-doc dependency on ghc, it did not have the desired effect.
+    Instead call ghc-pkg recache in ghc-doc’s trigger as well. 
   * Install 7.2.1-rc1 to experimental. 
   * Undo the symlink-workarounds introduced in 7.0.4-3. The -doc work-around
     is still needed, as the haddock interface version did not change.
 
- -- Joachim Breitner <nomeata@debian.org>  Sat, 30 Jul 2011 16:09:07 +0200
+ -- Joachim Breitner <nomeata@debian.org>  Sat, 06 Aug 2011 19:50:04 +0200
 
 ghc (7.0.4-9) UNRELEASED; urgency=low
 
