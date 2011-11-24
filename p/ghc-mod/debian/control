@@ -1,0 +1,31 @@
+Source: ghc-mod
+Priority: extra
+Section: haskell
+Maintainer: Kiwamu Okabe <kiwamu@debian.or.jp>
+Build-Depends: debhelper (>= 7.0),
+               haskell-devscripts (>= 0.8),
+               cdbs,
+               ghc,
+               libghc-attoparsec-dev,
+               libghc-attoparsec-enumerator-dev,
+               libghc-enumerator-dev,
+               libghc-ghc-paths-dev,
+               libghc-hlint-dev (>= 1.7.1),
+               libghc-transformers-dev,
+Standards-Version: 3.9.2
+Homepage: http://www.mew.org/~kazu/proj/ghc-mod/
+Vcs-Git: git://anonscm.debian.org/collab-maint/ghc-mod.git
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/ghc-mod.git
+DM-Upload-Allowed: yes
+
+Package: ghc-mod
+Architecture: any
+Depends: ${shlibs:Depends}, ${haskell:Depends}, ${misc:Depends}, haskell-mode
+Recommends: ghc
+Description: Happy Haskell programming on Emacs
+ This package includes Elisp files and a Haskell command, "ghc-mod".
+ "ghc*.el" enable completion of Haskell symbols on Emacs.
+ Flymake is also integrated. "ghc-mod" is a backend of "ghc*.el".
+ It lists up all installed modules or extracts names of functions, classes,
+ and data declarations.
+ Note: This package DO NOT support xemacs*. Only for emacs*.

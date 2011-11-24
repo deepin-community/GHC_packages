@@ -1,0 +1,7 @@
+;; -*-emacs-lisp-*-
+(setq load-path (cons (concat "/usr/share/"
+                              (symbol-name debian-emacs-flavor)
+			      "/site-lisp/ghc-mod") load-path))
+
+(autoload 'ghc-init "ghc" nil t)
+(add-hook 'haskell-mode-hook (lambda () (ghc-init) (flymake-mode)))
