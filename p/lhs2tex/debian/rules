@@ -37,7 +37,10 @@ config.status:
 	./configure $(CONFIGURE_FLAGS) --prefix=/usr --mandir=\$${prefix}/share/man --with-texmf=/usr/share/texmf --enable-polytable
 
 
-build: build-stamp
+build: build-arch build-indep
+
+
+build-arch: build-stamp
 build-stamp:  config.status
 	dh_testdir
 	$(MAKE) GHCFLAGS="$(GHCFLAGS)"
@@ -71,6 +74,7 @@ install: build
 
 # Build architecture-independent files here.
 binary-indep: build install
+build-indep:
 # We have nothing to do by default.
 
 # Build architecture-dependent files here.
