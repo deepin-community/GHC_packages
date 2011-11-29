@@ -1,7 +1,11 @@
-Index: lhs2tex-1.15/HsLexer.lhs
+Description: Fixes FTBFS: HsLexer.lhs:186:11: Parse error in pattern: n + 1
+From: Joachim Breitner <nomeata@debian.org>
+Bug-Debian: - #628319
+
+Index: lhs2tex-1.15/src/HsLexer.lhs
 ===================================================================
---- lhs2tex-1.15.orig/HsLexer.lhs	2011-06-02 20:34:39.000000000 +0200
-+++ lhs2tex-1.15/HsLexer.lhs	2011-06-02 20:34:49.000000000 +0200
+--- lhs2tex-1.15.orig/src/HsLexer.lhs	2011-06-02 20:34:39.000000000 +0200
++++ lhs2tex-1.15/src/HsLexer.lhs	2011-06-02 20:34:49.000000000 +0200
 @@ -183,7 +183,7 @@
  > nested 0     ('#' : '-' : '}' : s)
  >                               =  ([], '#':'-':'}':s)
