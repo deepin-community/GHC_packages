@@ -1,0 +1,100 @@
+Source: hbro
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.8)
+  , ghc
+  , ghc-prof
+  , libghc-cmdargs-dev
+  , libghc-cmdargs-prof
+  , libghc-dyre-dev
+  , libghc-dyre-prof
+  , libghc-glib-dev
+  , libghc-glib-prof
+  , libghc-gtk-dev
+  , libghc-gtk-prof
+  , libghc-mtl-dev
+  , libghc-mtl-prof
+  , libghc-pango-dev
+  , libghc-pango-prof
+  , libghc-text-dev
+  , libghc-text-prof
+  , libghc-url-dev
+  , libghc-url-prof
+  , libghc-webkit-dev
+  , libghc-webkit-prof
+  , libghc-zeromq-haskell-dev
+  , libghc-zeromq-haskell-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-cmdargs-doc
+  , libghc-dyre-doc
+  , libghc-glib-doc
+  , libghc-gtk-doc
+  , libghc-mtl-doc
+  , libghc-pango-doc
+  , libghc-text-doc
+  , libghc-url-doc
+  , libghc-webkit-doc
+  , libghc-zeromq-haskell-doc
+Standards-Version: 3.9.2
+Homepage: http://hackage.haskell.org/package/hbro
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/hbro
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/hbro
+
+Package: hbro
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: minimal KISS-compliant web browser
+ hbro is a minimal web browser using WebKitGTK+ and ZeroMQ.
+ It is written in and configured in Haskell.
+
+Package: libghc-hbro-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: minimal KISS-compliant web browser
+ hbro is a minimal web browser using WebKitGTK+ and ZeroMQ.
+ It is written in and configured in Haskell.
+ .
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-hbro-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: minimal KISS-compliant web browser; profiling libraries
+ hbro is a minimal web browser using WebKitGTK+ and ZeroMQ.
+ It is written in and configured in Haskell.
+ .
+ This package provides a library for the Haskell programming language, compiled
+ for profiling.  See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-hbro-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: minimal KISS-compliant web browser; documentation
+ hbro is a minimal web browser using WebKitGTK+ and ZeroMQ.
+ It is written in and configured in Haskell.
+ .
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.

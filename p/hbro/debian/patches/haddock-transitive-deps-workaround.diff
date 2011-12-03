@@ -1,0 +1,43 @@
+--- a/hbro.cabal
++++ b/hbro.cabal
+@@ -59,11 +59,37 @@
+
+ Executable hbro
+     Build-depends:
+-        hbro,
+         base == 4.*,
+         directory,
+         mtl
++      , bytestring,
++        cmdargs,
++        containers,
++        dyre,
++        glib,
++        gtk,
++        old-locale,
++        pango,
++        process,
++        text,
++        time,
++        url,
++        webkit,
++        unix,
++        zeromq-haskell
+     Main-is: Main.hs
+-    Hs-Source-Dirs: Hbro
++    Hs-Source-Dirs: Hbro, .
+     Ghc-options: -Wall -threaded
+-
++    other-modules:
++        Hbro.Core,
++        Hbro.Extra.Bookmarks,
++        Hbro.Extra.BookmarksQueue,
++        Hbro.Extra.Clipboard,
++        Hbro.Extra.History,
++        Hbro.Extra.Misc,
++        Hbro.Extra.Session,
++        Hbro.Extra.StatusBar,
++        Hbro.Gui,
++        Hbro.Socket,
++        Hbro.Types,
++        Hbro.Util
