@@ -9,7 +9,7 @@ Index: frown-0.6.1/SearchTree.lhs
 ->   build (n + 1) x             =  (Node l a v r, z)
 ->     where m                   =  n `div` 2
 +>   build n x                   =  (Node l a v r, z)
-+>     where m                   =  n-1 `div` 2
++>     where m                   =  (n-1) `div` 2
  >           (l, (a, v) : y)     =  build m       x
 ->           (r, z)              =  build (n - m) y
 +>           (r, z)              =  build (n - 1 - m) y
