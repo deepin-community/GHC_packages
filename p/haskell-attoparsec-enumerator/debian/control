@@ -8,11 +8,11 @@ Build-Depends: debhelper (>= 7)
   , haskell-devscripts (>= 0.8)
   , ghc
   , ghc-prof
-  , libghc-attoparsec-dev (>= 0.8)
+  , libghc-attoparsec-dev (>> 0.10)
   , libghc-attoparsec-dev (<< 0.11)
   , libghc-attoparsec-prof
-  , libghc-enumerator-dev (>= 0.4)
-  , libghc-enumerator-dev (<= 0.5)
+  , libghc-enumerator-dev (>> 0.4)
+  , libghc-enumerator-dev (<< 0.5)
   , libghc-enumerator-prof
 Build-Depends-Indep: ghc-doc
   , libghc-attoparsec-doc
@@ -34,7 +34,9 @@ Description: convert an Attoparsec parser into an iteratee
  This package provides a library for the Haskell programming language.
  See http://www.haskell.org/ for more information on Haskell.
  .
- Convert an Attoparsec parser into an iteratee.
+ It allows an Attoparsec parser to receive input incrementally from
+ an enumerator.  This could be used for parsing large files or
+ implementing binary network protocols.
 
 Package: libghc-attoparsec-enumerator-prof
 Architecture: any
@@ -48,7 +50,9 @@ Description: convert an Attoparsec parser into an iteratee; profiling libraries
  compiled for profiling.
  See http://www.haskell.org/ for more information on Haskell.
  .
- Convert an Attoparsec parser into an iteratee.
+ The library allows an Attoparsec parser to receive input incrementally from
+ an enumerator.  This could be used for parsing large files or
+ implementing binary network protocols.
 
 Package: libghc-attoparsec-enumerator-doc
 Section: doc
@@ -61,4 +65,6 @@ Description: convert an Attoparsec parser into an iteratee; documentation
  programming language.
  See http://www.haskell.org/ for more information on Haskell.
  .
- Convert an Attoparsec parser into an iteratee.
+ The library allows an Attoparsec parser to receive input incrementally from
+ an enumerator.  This could be used for parsing large files or
+ implementing binary network protocols.
