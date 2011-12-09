@@ -2,12 +2,16 @@ Source: haskell-yesod-static
 Section: haskell
 Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>, Clint Adams <clint@debian.org>
 Build-Depends: debhelper (>= 7)
   , cdbs
   , haskell-devscripts (>= 0.8)
   , ghc
   , ghc-prof
+  , ghc-ghci
+  , libghc-enumerator-dev (>> 0.4.8)
+  , libghc-enumerator-dev (<< 0.5)
+  , libghc-enumerator-prof
   , libghc-yesod-core-dev (>= 0.9)
   , libghc-yesod-core-dev (<< 0.10)
   , libghc-yesod-core-prof
@@ -20,7 +24,7 @@ Build-Depends: debhelper (>= 7)
   , libghc-cereal-dev (>= 0.3)
   , libghc-cereal-dev (<< 0.4)
   , libghc-cereal-prof
-  , libghc-transformers-dev (>= 0.2)
+  , libghc-transformers-dev (>> 0.2.2)
   , libghc-transformers-dev (<< 0.3)
   , libghc-transformers-prof
   , libghc-wai-app-static-dev (>= 0.3.2.1)
@@ -29,8 +33,8 @@ Build-Depends: debhelper (>= 7)
   , libghc-wai-dev (>= 0.4)
   , libghc-wai-dev (<< 0.5)
   , libghc-wai-prof
-  , libghc-text-dev (>= 0.5)
-  , libghc-text-dev (<< 1.0)
+  , libghc-text-dev (>> 0.9)
+  , libghc-text-dev (<< 1.2)
   , libghc-text-prof
   , libghc-file-embed-dev (>= 0.0.4.1)
   , libghc-file-embed-dev (<< 5)
@@ -39,9 +43,9 @@ Build-Depends: debhelper (>= 7)
   , libghc-http-types-dev (<< 7)
   , libghc-http-types-prof
   , libghc-unix-compat-dev (>= 0.2)
-  , libghc-unix-compat-dev (<< 0.3)
   , libghc-unix-compat-prof
 Build-Depends-Indep: ghc-doc
+  , libghc-enumerator-doc
   , libghc-yesod-core-doc
   , libghc-base64-bytestring-doc
   , libghc-puremd5-doc
