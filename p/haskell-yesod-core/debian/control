@@ -8,24 +8,24 @@ Build-Depends: debhelper (>= 7)
   , haskell-devscripts (>= 0.8)
   , ghc
   , ghc-prof
-  , libghc-aeson-dev
+  , libghc-aeson-dev (>> 0.3)
   , libghc-aeson-prof
-  , libghc-blaze-builder-dev
+  , libghc-blaze-builder-dev (>> 0.2.1.4)
+  , libghc-blaze-builder-dev (<< 0.4)
   , libghc-blaze-builder-prof
-  , libghc-blaze-html-dev
+  , libghc-blaze-html-dev (>> 0.4.1.3)
+  , libghc-blaze-html-dev (<< 0.5)
   , libghc-blaze-html-prof
-  , libghc-bytestring-dev
-  , libghc-bytestring-prof
-  , libghc-case-insensitive-dev
+  , libghc-case-insensitive-dev (>> 0.2)
   , libghc-case-insensitive-prof
-  , libghc-cereal-dev
+  , libghc-cereal-dev (>> 0.3)
+  , libghc-cereal-dev (<< 0.4)
   , libghc-cereal-prof
-  , libghc-clientsession-dev (>> 0.7.2)
+  , libghc-clientsession-dev (>> 0.7.3.1)
   , libghc-clientsession-dev (<< 0.8)
   , libghc-clientsession-prof
-  , libghc-containers-dev
-  , libghc-containers-prof
   , libghc-cookie-dev (>> 0.3)
+  , libghc-cookie-dev (<< 0.4)
   , libghc-cookie-prof
   , libghc-data-object-dev (>> 0.3)
   , libghc-data-object-dev (<< 0.4)
@@ -33,20 +33,25 @@ Build-Depends: debhelper (>= 7)
   , libghc-data-object-yaml-dev (>> 0.3)
   , libghc-data-object-yaml-dev (<< 0.4)
   , libghc-data-object-yaml-prof
-  , libghc-directory-dev
-  , libghc-directory-prof
-  , libghc-enumerator-dev
-  , libghc-enumerator-prof
-  , libghc-failure-dev
+  , libghc-enumerator-dev (>> 0.4.8)
+  , libghc-enumerator-prof (<< 0.5)
+  , libghc-failure-dev (>> 0.1)
+  , libghc-failure-dev (<< 0.2)
   , libghc-failure-prof
-  , libghc-hamlet-dev (>> 0.8)
+  , libghc-hamlet-dev (>> 0.10)
+  , libghc-hamlet-dev (<< 0.11)
   , libghc-hamlet-prof
-  , libghc-http-types-dev
+  , libghc-http-types-dev (>> 0.6.5)
+  , libghc-http-types-dev (<< 0.7)
   , libghc-http-types-prof
-  , libghc-monad-control-dev
+  , libghc-monad-control-dev (>> 0.2)
+  , libghc-monad-control-dev (<< 0.3)
   , libghc-monad-control-prof
-  , libghc-parsec3-dev
+  , libghc-parsec3-dev (<< 3.2)
   , libghc-parsec3-prof
+  , libghc-path-pieces-dev (>> 0.0.0)
+  , libghc-path-pieces-dev (<< 0.0.1)
+  , libghc-path-pieces-prof
   , libghc-shakespeare-css-dev (>> 0.10)
   , libghc-shakespeare-css-dev (<< 0.11)
   , libghc-shakespeare-css-prof
@@ -56,40 +61,44 @@ Build-Depends: debhelper (>= 7)
   , libghc-strict-concurrency-dev (>> 0.2.4)
   , libghc-strict-concurrency-dev (<< 0.2.5)
   , libghc-strict-concurrency-prof
-  , libghc-text-dev
+  , ghc-ghci
+  , libghc-text-dev (>> 0.7)
+  , libghc-text-dev (<< 0.12)
   , libghc-text-prof
-  , libghc-transformers-dev
+  , libghc-transformers-dev (>> 0.2.2)
+  , libghc-transformers-dev (<< 0.3)
   , libghc-transformers-prof
+  , libghc-vector-dev (>> 0.9)
+  , libghc-vector-dev (<< 0.10)
+  , libghc-vector-prof
   , libghc-wai-dev (>> 0.4)
+  , libghc-wai-dev (<< 0.5)
   , libghc-wai-prof
   , libghc-wai-extra-dev (>> 0.4)
+  , libghc-wai-extra-dev (<< 0.5)
   , libghc-wai-extra-prof
-  , libghc-web-routes-quasi-dev (>> 0.7.0.1)
-  , libghc-web-routes-quasi-prof
 Build-Depends-Indep: ghc-doc
   , libghc-blaze-builder-doc
   , libghc-blaze-html-doc
-  , libghc-bytestring-doc
   , libghc-case-insensitive-doc
   , libghc-cereal-doc
   , libghc-clientsession-doc
-  , libghc-containers-doc
   , libghc-cookie-doc
-  , libghc-directory-doc
   , libghc-enumerator-doc
   , libghc-failure-doc
   , libghc-hamlet-doc
   , libghc-http-types-doc
   , libghc-monad-control-doc
   , libghc-parsec3-doc
+  , libghc-path-pieces-doc
   , libghc-shakespeare-css-doc
   , libghc-shakespeare-js-doc
   , libghc-strict-concurrency-doc
   , libghc-text-doc
   , libghc-transformers-doc
+  , libghc-vector-doc
   , libghc-wai-doc
   , libghc-wai-extra-doc
-  , libghc-web-routes-quasi-doc
 Standards-Version: 3.9.2
 Homepage: http://hackage.haskell.org/package/yesod-core
 Vcs-Git: git://git.debian.org/collab-maint/haskell-yesod-core.git
