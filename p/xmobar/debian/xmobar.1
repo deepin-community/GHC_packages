@@ -370,7 +370,7 @@ Args: default monitor arguments (see below)
 .IP \[bu] 2
 Variables that can be used with the \f[B]\-t\f[]/\f[B]\-\-template\f[]
 argument: \f[B]total\f[], \f[B]bar\f[], \f[B]user\f[],
-\f[B]nice\f[], \f[B]system\f[], \f[B]idle\f[]
+\f[B]nice\f[], \f[B]system\f[], \f[B]idle\f[], \f[B]iowait\f[]
 .IP \[bu] 2
 Default template: \f[B]Cpu:\ <total>%\f[]
 .PP
@@ -433,6 +433,10 @@ threshold
 .br
 \f[B]\-f\f[]: file in \f[B]/sys/class/power_supply\f[] with AC info
 (default: \[lq]AC/online\[rq])
+.br
+\f[B]\-c\f[]: file in \f[B]/sys/class/power/<BAT>/\f[] with full charge
+information (default: "charge_full"; for instance, olpc systems use
+"charge_full_design")
 .RE
 .IP \[bu] 2
 Variables that can be used with the \f[B]\-t\f[]/\f[B]\-\-template\f[]
@@ -807,6 +811,53 @@ displays its value.
 The
 examples/xmonadpropwrite.hs script can be used to set the given property from
 the output of any other program or script.
+
+.PP
+\f[B]Brightness\ Args\ Refreshrate\f[]
+.IP \[bu] 2
+Aliases to \f[B]bright\f[]
+.br
+Args: default monitor arguments (see below), plus the following
+specific ones:
+.RS 2
+.br
+\f[B]\-D\f[]: directory in \f[B]/sys/class/backlight/\f[] with files in it (default: acpi_video0)
+.br
+\f[B]\-C\f[]: file in the above directory with brightness information (default:
+actual_brightness)
+.br
+\f[B]\-M\f[]: file in the above directory with maximum brightness information
+(default: max_brightness)
+.RE
+.IP \[bu] 2
+Variables that can be used with the \f[B]\-t\f[]/\f[B]\-\-template\f[]
+argument: \f[B]hbar\f[], \f[B]percent\f[], \f[B]bar\f[].
+.IP \[bu] 2
+Default template: \f[B]<percent>\f[]
+.IP \[bu] 2
+Example:
+.RS 2
+.PP
+\f[CR]
+	Run Brightness ["-t", "<bar>"] 60
+\f[]
+.RE
+
+.PP
+\f[B]Kbd Opts\f[]
+.IP \[bu] 2
+Aliases to \f[B]kbd\f[].
+.IP \[bu] 2
+Registers to XKB/X11-Events and output the currently active keyboard layout. Supports replacement of layoutnames.
+.IP \[bu] 2
+Opts is a list of tuples; the first element of the tuple is the search string, the second is the corresponding replacement. Example:
+.RS 2
+.PP
+\f[CR]
+        Run Kbd [("us(dvorak)", "DV"), ("us", "US")]
+\f[]
+.RE
+
 .SS Monitor Plugins Commands Arguments
 .PP
 These are the arguments that can be used for internal commands in
@@ -1073,6 +1124,7 @@ Format is a time format string, as accepted by the standard ISO C
 .IP \[bu] 2
 Sample usage:
 \f[B]Run\ Date\ "%a\ %b\ %_d\ %Y\ <fc=#ee9a00>%H:%M:%S</fc>"\ "date"\ 10\f[]
+
 .PP
 \f[B]CommandReader\ "/path/to/program"\ Alias\f[]
 .IP \[bu] 2
@@ -1103,6 +1155,10 @@ This plugin can be used as a sometimes more convenient alternative
 to \f[B]StdinReader\f[].
 For instance, it allows you to (re)start xmobar outside xmonad.
 .RE
+.SH SIGNAL HANDLING
+.PP
+Since 0.14 xmobar reacts to SIGUSR1 and SIGUSR2. After receiving SIGUSR1, xmobar moves to the next screen. After receiving SIGUSR2, xmobar moves to the current screen.
+
 .SH PLUGINS
 .SS Writing a Plugin
 .PP
