@@ -1,8 +1,8 @@
-Index: ghc-7.2.2/utils/haddock/haddock.cabal
+Index: ghc-7.4.0.20111219/utils/haddock/haddock.cabal
 ===================================================================
---- ghc-7.2.2.orig/utils/haddock/haddock.cabal	2011-11-09 19:11:26.000000000 +0100
-+++ ghc-7.2.2/utils/haddock/haddock.cabal	2011-11-19 18:25:55.000000000 +0100
-@@ -91,8 +91,6 @@
+--- ghc-7.4.0.20111219.orig/utils/haddock/haddock.cabal	2011-12-19 19:11:30.000000000 +0100
++++ ghc-7.4.0.20111219/utils/haddock/haddock.cabal	2011-12-21 19:46:02.000000000 +0100
+@@ -95,8 +95,6 @@
  
    if flag(in-ghc-tree)
      cpp-options: -DIN_GHC_TREE
@@ -11,7 +11,7 @@ Index: ghc-7.2.2/utils/haddock/haddock.cabal
  
    if flag(test)
      cpp-options: -DTEST
-@@ -151,8 +149,6 @@
+@@ -158,8 +156,6 @@
  
    if flag(in-ghc-tree)
      cpp-options: -DIN_GHC_TREE
@@ -20,24 +20,32 @@ Index: ghc-7.2.2/utils/haddock/haddock.cabal
  
    if flag(test)
      cpp-options: -DTEST
-Index: ghc-7.2.2/utils/haddock/src/Main.hs
+Index: ghc-7.4.0.20111219/utils/haddock/src/Main.hs
 ===================================================================
---- ghc-7.2.2.orig/utils/haddock/src/Main.hs	2011-11-09 19:11:26.000000000 +0100
-+++ ghc-7.2.2/utils/haddock/src/Main.hs	2011-11-19 18:25:55.000000000 +0100
+--- ghc-7.4.0.20111219.orig/utils/haddock/src/Main.hs	2011-12-19 19:11:30.000000000 +0100
++++ ghc-7.4.0.20111219/utils/haddock/src/Main.hs	2011-12-21 19:50:41.000000000 +0100
 @@ -50,7 +50,6 @@
  #ifdef IN_GHC_TREE
  import System.FilePath
  #else
--import GHC.Paths
+-import qualified GHC.Paths as GhcPaths
  import Paths_haddock
  #endif
  
-@@ -341,7 +340,7 @@
- #ifdef IN_GHC_TREE
-       getInTreeLibDir
+@@ -344,14 +343,14 @@
+       libDir <- getInTreeDir
+       return (ghcPath, libDir)
  #else
--      return libdir -- from GHC.Paths
-+      return "/usr/lib/ghc/"
+-      return (ghcPath, GhcPaths.libdir)
++      return (ghcPath, "/usr/lib/ghc")
  #endif
-     xs -> return $ last xs
+     xs -> return (ghcPath, last xs)
+   where
+ #ifdef IN_GHC_TREE
+     ghcPath = "not available"
+ #else
+-    ghcPath = GhcPaths.ghc
++    ghcPath = "/usr"
+ #endif
+ 
  
