@@ -1,8 +1,8 @@
-Index: ghc-7.2.2/ghc.mk
+Index: ghc-7.4.0.20111219/ghc.mk
 ===================================================================
---- ghc-7.2.2.orig/ghc.mk	2011-11-19 18:25:06.000000000 +0100
-+++ ghc-7.2.2/ghc.mk	2011-11-19 18:26:16.000000000 +0100
-@@ -645,7 +645,6 @@
+--- ghc-7.4.0.20111219.orig/ghc.mk	2011-12-21 19:45:08.000000000 +0100
++++ ghc-7.4.0.20111219/ghc.mk	2011-12-21 19:51:20.000000000 +0100
+@@ -666,7 +666,6 @@
  # Build the Haddock contents and index
  ifeq "$(HADDOCK_DOCS)" "YES"
  libraries/index.html: inplace/bin/haddock$(exeext) $(ALL_HADDOCK_FILES)
@@ -10,7 +10,7 @@ Index: ghc-7.2.2/ghc.mk
  ifeq "$(phase)" "final"
  $(eval $(call all-target,library_doc_index,libraries/index.html))
  endif
-@@ -815,12 +814,8 @@
+@@ -833,12 +832,8 @@
  	$(call INSTALL_DIR,"$(DESTDIR)$(docdir)/html")
  	$(call INSTALL_DOC,$(INSTALL_OPTS),docs/index.html,"$(DESTDIR)$(docdir)/html")
  ifneq "$(INSTALL_LIBRARY_DOCS)" ""
@@ -24,7 +24,7 @@ Index: ghc-7.2.2/ghc.mk
  endif
  ifneq "$(INSTALL_HTML_DOC_DIRS)" ""
  	for i in $(INSTALL_HTML_DOC_DIRS); do \
-@@ -930,7 +925,6 @@
+@@ -946,7 +941,6 @@
      mk/project.mk \
      mk/install.mk.in \
      bindist.mk \
