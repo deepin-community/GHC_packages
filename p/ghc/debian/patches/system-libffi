@@ -1,31 +1,7 @@
-Index: ghc-7.2.2/rts/ghc.mk
+Index: ghc-7.4.0.20111219/rts/package.conf.in
 ===================================================================
---- ghc-7.2.2.orig/rts/ghc.mk	2011-11-09 19:10:39.000000000 +0100
-+++ ghc-7.2.2/rts/ghc.mk	2011-11-19 18:25:06.000000000 +0100
-@@ -455,15 +455,13 @@
- 
- $(eval $(call dependencies,rts,dist,1))
- 
--$(rts_dist_depfile_c_asm) : libffi/dist-install/build/ffi.h $(DTRACEPROBES_H)
--
- #-----------------------------------------------------------------------------
- # libffi stuff
- 
--rts_CC_OPTS     += -Ilibffi/build/include
--rts_HC_OPTS     += -Ilibffi/build/include
--rts_HSC2HS_OPTS += -Ilibffi/build/include
--rts_LD_OPTS     += -Llibffi/build/include
-+rts_CC_OPTS     += $(shell pkg-config --cflags libffi)
-+rts_HC_OPTS     += $(shell pkg-config --cflags libffi)
-+rts_HSC2HS_OPTS += $(shell pkg-config --cflags libffi)
-+rts_LD_OPTS     += $(shell pkg-config --libs libffi)
- 
- # -----------------------------------------------------------------------------
- # compile dtrace probes if dtrace is supported
-Index: ghc-7.2.2/rts/package.conf.in
-===================================================================
---- ghc-7.2.2.orig/rts/package.conf.in	2011-11-09 19:10:39.000000000 +0100
-+++ ghc-7.2.2/rts/package.conf.in	2011-11-19 18:25:06.000000000 +0100
+--- ghc-7.4.0.20111219.orig/rts/package.conf.in	2011-12-21 23:21:03.000000000 +0100
++++ ghc-7.4.0.20111219/rts/package.conf.in	2011-12-21 23:21:04.000000000 +0100
 @@ -24,8 +24,9 @@
  hs-libraries:   "HSrts"
  
@@ -37,39 +13,11 @@ Index: ghc-7.2.2/rts/package.conf.in
  #endif
  #ifdef HAVE_LIBRT
  			      , "rt"
-@@ -55,7 +56,6 @@
- #endif
- 
- includes:		Stg.h
--depends:	 	builtin_ffi
- hugs-options:
- cc-options:
- 
-Index: ghc-7.2.2/ghc.mk
+Index: ghc-7.4.0.20111219/ghc.mk
 ===================================================================
---- ghc-7.2.2.orig/ghc.mk	2011-11-09 19:10:39.000000000 +0100
-+++ ghc-7.2.2/ghc.mk	2011-11-19 18:25:06.000000000 +0100
-@@ -449,7 +449,6 @@
- # add the final two package.conf dependencies: ghc-prim depends on RTS,
- # and RTS depends on libffi.
- libraries/ghc-prim/dist-install/package-data.mk : rts/package.conf.inplace
--rts/package.conf.inplace : libffi/package.conf.inplace
- endif
- 
- # --------------------------------
-@@ -467,11 +466,6 @@
- endif
- BOOT_LIBS = $(foreach lib,$(PACKAGES_STAGE0),$(libraries/$(lib)_dist-boot_v_LIB))
- 
--OTHER_LIBS = libffi/dist-install/build/libHSffi$(v_libsuf) libffi/dist-install/build/HSffi.o
--ifeq "$(BuildSharedLibs)" "YES"
--OTHER_LIBS  += libffi/dist-install/build/libHSffi$(dyn_libsuf)
--endif
--
- # ----------------------------------------
- # Special magic for the ghc-prim package
- 
-@@ -560,7 +554,6 @@
+--- ghc-7.4.0.20111219.orig/ghc.mk	2011-12-21 23:21:03.000000000 +0100
++++ ghc-7.4.0.20111219/ghc.mk	2011-12-21 23:21:04.000000000 +0100
+@@ -579,7 +579,6 @@
     driver/ghci \
     driver/ghc \
     driver/haddock \
@@ -77,34 +25,56 @@ Index: ghc-7.2.2/ghc.mk
     includes \
     rts
  
-@@ -865,11 +858,10 @@
+Index: ghc-7.4.0.20111219/rts/ghc.mk
+===================================================================
+--- ghc-7.4.0.20111219.orig/rts/ghc.mk	2011-12-21 19:56:29.000000000 +0100
++++ ghc-7.4.0.20111219/rts/ghc.mk	2011-12-21 23:23:52.000000000 +0100
+@@ -86,8 +86,7 @@
+ ALL_RTS_DEF_LIBNAMES 	= base ghc-prim
+ ALL_RTS_DEF_LIBS	= \
+ 	rts/dist/build/win32/libHSbase.dll.a \
+-	rts/dist/build/win32/libHSghc-prim.dll.a \
+-	libffi/build/inst/lib/libffi.dll.a
++	rts/dist/build/win32/libHSghc-prim.dll.a 
  
- # Now we can do the installation
- install_packages: install_libexecs
--install_packages: libffi/package.conf.install rts/package.conf.install
-+install_packages: rts/package.conf.install
- 	$(call INSTALL_DIR,"$(DESTDIR)$(topdir)")
- 	"$(RM)" $(RM_OPTS_REC) "$(INSTALLED_PACKAGE_CONF)"
- 	$(call INSTALL_DIR,"$(INSTALLED_PACKAGE_CONF)")
--	"$(INSTALLED_GHC_PKG_REAL)" --force --global-conf "$(INSTALLED_PACKAGE_CONF)" update libffi/package.conf.install
- 	"$(INSTALLED_GHC_PKG_REAL)" --force --global-conf "$(INSTALLED_PACKAGE_CONF)" update rts/package.conf.install
- 	$(foreach p, $(INSTALLED_PKG_DIRS),                           \
- 	    $(call make-command,                                      \
-@@ -954,7 +946,7 @@
- unix-binary-dist-prep:
- 	"$(RM)" $(RM_OPTS_REC) bindistprep/
- 	"$(MKDIRHIER)" $(BIN_DIST_PREP_DIR)
--	set -e; for i in packages LICENSE compiler ghc rts libraries utils docs libffi includes driver mk rules Makefile aclocal.m4 config.sub config.guess install-sh settings.in ghc.mk inplace distrib/configure.ac distrib/README distrib/INSTALL; do ln -s ../../$$i $(BIN_DIST_PREP_DIR)/; done
-+	set -e; for i in packages LICENSE compiler ghc rts libraries utils docs includes driver mk rules Makefile aclocal.m4 config.sub config.guess install-sh settings.in ghc.mk inplace distrib/configure.ac distrib/README distrib/INSTALL; do ln -s ../../$$i $(BIN_DIST_PREP_DIR)/; done
- 	echo "HADDOCK_DOCS       = $(HADDOCK_DOCS)"       >> $(BIN_DIST_MK)
- 	echo "LATEX_DOCS         = $(LATEX_DOCS)"         >> $(BIN_DIST_MK)
- 	echo "BUILD_DOCBOOK_HTML = $(BUILD_DOCBOOK_HTML)" >> $(BIN_DIST_MK)
-@@ -1039,7 +1031,7 @@
- #
- # Files to include in source distributions
- #
--SRC_DIST_DIRS = mk rules docs distrib bindisttest libffi includes utils docs rts compiler ghc driver libraries ghc-tarballs
-+SRC_DIST_DIRS = mk rules docs distrib bindisttest includes utils docs rts compiler ghc driver libraries ghc-tarballs
- SRC_DIST_FILES += \
- 	configure.ac config.guess config.sub configure \
- 	aclocal.m4 README ANNOUNCE HACKING LICENSE Makefile install-sh \
+ # -- import libs for the regular Haskell libraries
+ define make-importlib-def # args $1 = lib name
+@@ -172,12 +171,12 @@
+ # Making a shared library for the RTS.
+ ifneq "$$(findstring dyn, $1)" ""
+ ifeq "$$(HOSTPLATFORM)" "i386-unknown-mingw32"
+-$$(rts_$1_LIB) : $$(rts_$1_OBJS) $$(ALL_RTS_DEF_LIBS) rts/libs.depend rts/dist/build/libffi-5.dll
++$$(rts_$1_LIB) : $$(rts_$1_OBJS) $$(ALL_RTS_DEF_LIBS) rts/libs.depend
+ 	"$$(RM)" $$(RM_OPTS) $$@
+ 	"$$(rts_dist_HC)" -package-name rts -shared -dynamic -dynload deploy \
+ 	  -no-auto-link-packages -Lrts/dist/build -lffi-5 `cat rts/libs.depend` $$(rts_$1_OBJS) $$(ALL_RTS_DEF_LIBS) -o $$@
+ else
+-$$(rts_$1_LIB) : $$(rts_$1_OBJS) $$(rts_$1_DTRACE_OBJS) rts/libs.depend rts/dist/build/libffi$$(soext)
++$$(rts_$1_LIB) : $$(rts_$1_OBJS) $$(rts_$1_DTRACE_OBJS) rts/libs.depend
+ 	"$$(RM)" $$(RM_OPTS) $$@
+ 	"$$(rts_dist_HC)" -package-name rts -shared -dynamic -dynload deploy \
+ 	  -no-auto-link-packages -Lrts/dist/build -lffi `cat rts/libs.depend` $$(rts_$1_OBJS) \
+@@ -188,9 +187,9 @@
+ endif
+ endif
+ else
+-$$(rts_$1_LIB) : $$(rts_$1_OBJS) $$(rts_$1_DTRACE_OBJS) $$(rts_ffi_objs_stamp)
++$$(rts_$1_LIB) : $$(rts_$1_OBJS) $$(rts_$1_DTRACE_OBJS)
+ 	"$$(RM)" $$(RM_OPTS) $$@
+-	echo $$(rts_ffi_objs) $$(rts_$1_OBJS) $$(rts_$1_DTRACE_OBJS) | "$$(XARGS)" $$(XARGS_OPTS) "$$(AR_STAGE1)" \
++	echo $$(rts_$1_OBJS) $$(rts_$1_DTRACE_OBJS) | "$$(XARGS)" $$(XARGS_OPTS) "$$(AR_STAGE1)" \
+ 		$$(AR_OPTS_STAGE1) $$(EXTRA_AR_ARGS_STAGE1) $$@
+ endif
+ 
+@@ -504,10 +503,8 @@
+ # installing
+ 
+ INSTALL_LIBS += $(ALL_RTS_LIBS)
+-INSTALL_LIBS += $(wildcard rts/dist/build/libffi$(soext)*)
+-INSTALL_LIBS += $(wildcard rts/dist/build/libffi-5.dll)
+ 
+-install: install_libffi_headers
++install:
+ 
+ .PHONY: install_libffi_headers
+ install_libffi_headers :
