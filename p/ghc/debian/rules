@@ -122,6 +122,7 @@ build-stamp: configure-stamp
 	mkdir -p debian/haddock-build
 	cp -r utils/haddock debian/haddock-build
 	cd debian/haddock-build/haddock; \
+	        rm -rf dist; \
 		../../../inplace/bin/ghc-stage2 --make Setup.lhs; \
 		./Setup configure --prefix=/usr --with-compiler=../../../inplace/bin/ghc-stage2 \
 			--package-db=../../../inplace/lib/package.conf.d/ \
