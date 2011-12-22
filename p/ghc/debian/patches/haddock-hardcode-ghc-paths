@@ -1,8 +1,19 @@
 Index: ghc-7.4.0.20111219/utils/haddock/haddock.cabal
 ===================================================================
---- ghc-7.4.0.20111219.orig/utils/haddock/haddock.cabal	2011-12-19 19:11:30.000000000 +0100
-+++ ghc-7.4.0.20111219/utils/haddock/haddock.cabal	2011-12-21 19:46:02.000000000 +0100
-@@ -95,8 +95,6 @@
+--- ghc-7.4.0.20111219.orig/utils/haddock/haddock.cabal	2011-12-22 16:18:59.000000000 +0100
++++ ghc-7.4.0.20111219/utils/haddock/haddock.cabal	2011-12-22 22:53:25.000000000 +0100
+@@ -78,10 +78,6 @@
+ 
+ executable haddock
+   default-language:     Haskell2010
+-  -- In a GHC tree - in particular, in a source tarball - we don't
+-  -- require alex or happy
+-  if !flag(in-ghc-tree)
+-    build-tools: alex >= 2.3, happy >= 1.18
+   build-depends:
+     base >= 4.3 && < 4.6,
+     filepath,
+@@ -95,8 +91,6 @@
  
    if flag(in-ghc-tree)
      cpp-options: -DIN_GHC_TREE
@@ -11,7 +22,7 @@ Index: ghc-7.4.0.20111219/utils/haddock/haddock.cabal
  
    if flag(test)
      cpp-options: -DTEST
-@@ -158,8 +156,6 @@
+@@ -158,8 +152,6 @@
  
    if flag(in-ghc-tree)
      cpp-options: -DIN_GHC_TREE
@@ -22,8 +33,8 @@ Index: ghc-7.4.0.20111219/utils/haddock/haddock.cabal
      cpp-options: -DTEST
 Index: ghc-7.4.0.20111219/utils/haddock/src/Main.hs
 ===================================================================
---- ghc-7.4.0.20111219.orig/utils/haddock/src/Main.hs	2011-12-19 19:11:30.000000000 +0100
-+++ ghc-7.4.0.20111219/utils/haddock/src/Main.hs	2011-12-21 19:50:41.000000000 +0100
+--- ghc-7.4.0.20111219.orig/utils/haddock/src/Main.hs	2011-12-22 16:18:59.000000000 +0100
++++ ghc-7.4.0.20111219/utils/haddock/src/Main.hs	2011-12-22 21:26:51.000000000 +0100
 @@ -50,7 +50,6 @@
  #ifdef IN_GHC_TREE
  import System.FilePath
