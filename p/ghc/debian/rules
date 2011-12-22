@@ -40,8 +40,6 @@ configure: configure-stamp
 configure-stamp:
 	dh_testdir
 
-	autoconf
-
 	rm -f mk/build.mk
 	echo "SRC_HC_OPTS += -lffi -optl-pthread" >> mk/build.mk
 	echo "HADDOCK_DOCS := YES" >> mk/build.mk
@@ -255,7 +253,6 @@ clean:
 	dh_testdir
 	dh_testroot
 	rm -f configure-stamp build-stamp install-stamp binary-arch-stamp binary-indep-stamp
-	rm -f configure
 
 	$(MAKE) distclean
 	rm -f config.sub config.guess
