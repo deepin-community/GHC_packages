@@ -1,0 +1,199 @@
+Source: haskell-snap-server
+Priority: extra
+Section: haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Kiwamu Okabe <kiwamu@debian.or.jp>
+Build-Depends: debhelper (>= 7.0),
+               haskell-devscripts (>= 0.8),
+               cdbs,
+               ghc,
+               ghc-prof,
+               libghc-monadcatchio-transformers-dev (>= 0.2.1),
+               libghc-monadcatchio-transformers-dev (<< 0.3),
+               libghc-monadcatchio-transformers-prof,
+               libghc-psqueue-dev (>= 1.1),
+               libghc-psqueue-dev (<< 1.2),
+               libghc-psqueue-prof,
+               libghc-attoparsec-dev (>= 0.10),
+               libghc-attoparsec-dev (<< 0.11),
+               libghc-attoparsec-prof,
+               libghc-attoparsec-enumerator-dev (>= 0.3),
+               libghc-attoparsec-enumerator-dev (<< 0.4),
+               libghc-attoparsec-enumerator-prof,
+               libghc-binary-dev (>= 0.5),
+               libghc-binary-dev (<< 0.6),
+               libghc-binary-prof,
+               libghc-blaze-builder-dev (>= 0.2.1.4),
+               libghc-blaze-builder-dev (<< 0.4),
+               libghc-blaze-builder-prof,
+               libghc-blaze-builder-enumerator-dev (>= 0.2.0),
+               libghc-blaze-builder-enumerator-dev (<< 0.3),
+               libghc-blaze-builder-enumerator-prof,
+               libghc-bytestring-nums-dev,
+               libghc-bytestring-nums-prof,
+               libghc-case-insensitive-dev (>= 0.3),
+               libghc-case-insensitive-dev (<< 0.5),
+               libghc-case-insensitive-prof,
+               libghc-directory-tree-dev (>= 0.10),
+               libghc-directory-tree-dev (<< 0.11),
+               libghc-directory-tree-prof,
+               libghc-enumerator-dev (>= 0.4.13.1),
+               libghc-enumerator-dev (<< 0.5),
+               libghc-enumerator-prof,
+               libghc-mtl-dev (>= 2),
+               libghc-mtl-dev (<< 3),
+               libghc-mtl-prof,
+               libghc-murmur-hash-dev (>= 0.1),
+               libghc-murmur-hash-dev (<< 0.2),
+               libghc-murmur-hash-prof,
+               libghc-network-dev (>= 2.3),
+               libghc-network-dev (<< 2.4),
+               libghc-network-prof,
+               libghc-snap-core-dev (>= 0.7),
+               libghc-snap-core-dev (<< 0.8),
+               libghc-snap-core-prof,
+               libghc-text-dev (>= 0.11),
+               libghc-text-dev (<< 0.12),
+               libghc-text-prof,
+               libghc-transformers-dev (>= 0.2),
+               libghc-transformers-dev (<< 0.3),
+               libghc-transformers-prof,
+               libghc-unix-compat-dev (>= 0.2),
+               libghc-unix-compat-dev (<< 0.4),
+               libghc-unix-compat-prof,
+               libghc-vector-dev (>= 0.7),
+               libghc-vector-dev (<< 0.10),
+               libghc-vector-prof,
+               libghc-vector-algorithms-dev (>= 0.4),
+               libghc-vector-algorithms-dev (<< 0.6),
+               libghc-vector-algorithms-prof
+Build-Depends-Indep: ghc-doc,
+                     libghc-monadcatchio-transformers-doc,
+                     libghc-monadcatchio-transformers-doc,
+                     libghc-psqueue-doc,
+                     libghc-psqueue-doc,
+                     libghc-attoparsec-doc,
+                     libghc-attoparsec-doc,
+                     libghc-attoparsec-enumerator-doc,
+                     libghc-attoparsec-enumerator-doc,
+                     libghc-binary-doc,
+                     libghc-binary-doc,
+                     libghc-blaze-builder-doc,
+                     libghc-blaze-builder-doc,
+                     libghc-blaze-builder-enumerator-doc,
+                     libghc-blaze-builder-enumerator-doc,
+                     libghc-bytestring-nums-doc,
+                     libghc-case-insensitive-doc,
+                     libghc-case-insensitive-doc,
+                     libghc-directory-tree-doc,
+                     libghc-directory-tree-doc,
+                     libghc-enumerator-doc,
+                     libghc-enumerator-doc,
+                     libghc-mtl-doc,
+                     libghc-mtl-doc,
+                     libghc-murmur-hash-doc,
+                     libghc-murmur-hash-doc,
+                     libghc-network-doc,
+                     libghc-network-doc,
+                     libghc-snap-core-doc,
+                     libghc-snap-core-doc,
+                     libghc-text-doc,
+                     libghc-text-doc,
+                     libghc-transformers-doc,
+                     libghc-transformers-doc,
+                     libghc-unix-compat-doc,
+                     libghc-unix-compat-doc,
+                     libghc-vector-doc,
+                     libghc-vector-doc,
+                     libghc-vector-algorithms-doc,
+                     libghc-vector-algorithms-doc
+Standards-Version: 3.9.2
+Homepage: http://snapframework.com/
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-snap-server
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-snap-server
+DM-Upload-Allowed: yes
+
+Package: libghc-snap-server-dev
+Architecture: any
+Depends: ${shlibs:Depends},
+         ${haskell:Depends},
+         ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: iteratee-based, epoll-enabled web server for the Snap Framework
+ Snap is a simple and fast web development framework and server written in
+ Haskell. For more information or to download the latest version, you can
+ visit the Snap project website at <http://snapframework.com/>.
+ .
+ The Snap HTTP server is a high performance, epoll-enabled, iteratee-based web
+ server library written in Haskell. Together with the @snap-core@ library upon
+ which it depends, it provides a clean and efficient Haskell programming
+ interface to the HTTP protocol.
+ .
+ Higher-level facilities for building web applications (like user/session
+ management, component interfaces, data modeling, etc.) are planned but not
+ yet implemented, so this release will mostly be of interest for those who:
+ .
+ o need a fast and minimal HTTP API at roughly the same level of abstraction
+ as Java servlets, or
+ .
+ o are interested in contributing to the Snap Framework project.
+ .
+ This package contains the normal library files.
+
+Package: libghc-snap-server-prof
+Architecture: any
+Depends: ${haskell:Depends},
+         ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: iteratee-based, epoll-enabled web server for the Snap Framework; profiling lib
+ Snap is a simple and fast web development framework and server written in
+ Haskell. For more information or to download the latest version, you can
+ visit the Snap project website at <http://snapframework.com/>.
+ .
+ The Snap HTTP server is a high performance, epoll-enabled, iteratee-based web
+ server library written in Haskell. Together with the @snap-core@ library upon
+ which it depends, it provides a clean and efficient Haskell programming
+ interface to the HTTP protocol.
+ .
+ Higher-level facilities for building web applications (like user/session
+ management, component interfaces, data modeling, etc.) are planned but not
+ yet implemented, so this release will mostly be of interest for those who:
+ .
+ o need a fast and minimal HTTP API at roughly the same level of abstraction
+ as Java servlets, or
+ .
+ o are interested in contributing to the Snap Framework project.
+ .
+ This package contains the libraries compiled with profiling enabled.
+
+Package: libghc-snap-server-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+         ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: iteratee-based, epoll-enabled web server for the Snap Framework; documentation
+ Snap is a simple and fast web development framework and server written in
+ Haskell. For more information or to download the latest version, you can
+ visit the Snap project website at <http://snapframework.com/>.
+ .
+ The Snap HTTP server is a high performance, epoll-enabled, iteratee-based web
+ server library written in Haskell. Together with the @snap-core@ library upon
+ which it depends, it provides a clean and efficient Haskell programming
+ interface to the HTTP protocol.
+ .
+ Higher-level facilities for building web applications (like user/session
+ management, component interfaces, data modeling, etc.) are planned but not
+ yet implemented, so this release will mostly be of interest for those who:
+ .
+ o need a fast and minimal HTTP API at roughly the same level of abstraction
+ as Java servlets, or
+ .
+ o are interested in contributing to the Snap Framework project.
+ .
+ This package contains the documentation files.
