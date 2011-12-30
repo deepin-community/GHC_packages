@@ -1,0 +1,45 @@
+Description: Note bitness of S390/S390x
+Author: Joachim Breitner <nomeata@debian.org>
+Bug: http://hackage.haskell.org/trac/ghc/ticket/5735
+
+Index: ghc-7.4.0.20111219/aclocal.m4
+===================================================================
+--- ghc-7.4.0.20111219.orig/aclocal.m4	2011-12-30 17:56:25.000000000 +0100
++++ ghc-7.4.0.20111219/aclocal.m4	2011-12-30 18:01:59.000000000 +0100
+@@ -183,7 +183,13 @@
+         mipsel)
+             test -z "[$]2" || eval "[$]2=ArchMipsel"
+             ;;
+-        hppa|hppa1_1|ia64|m68k|rs6000|s390|s390x|sparc64|vax)
++        s390)
++            test -z "[$]2" || eval "[$]2=ArchS390"
++            ;;
++        s390x)
++            test -z "[$]2" || eval "[$]2=ArchS390x"
++            ;;
++        hppa|hppa1_1|ia64|m68k|rs6000|sparc64|vax)
+             test -z "[$]2" || eval "[$]2=ArchUnknown"
+             ;;
+         *)
+Index: ghc-7.4.0.20111219/compiler/utils/Platform.hs
+===================================================================
+--- ghc-7.4.0.20111219.orig/compiler/utils/Platform.hs	2011-12-30 17:56:25.000000000 +0100
++++ ghc-7.4.0.20111219/compiler/utils/Platform.hs	2011-12-30 18:02:06.000000000 +0100
+@@ -42,6 +42,8 @@
+         | ArchARM
+           { armISA    :: ArmISA
+           , armISAExt :: [ArmISAExt] }
++        | ArchS390
++        | ArchS390x
+         deriving (Read, Show, Eq)
+ 
+ 
+@@ -85,6 +87,8 @@
+                 ArchPPC_64  -> False
+                 ArchSPARC   -> True
+                 ArchARM _ _ -> True
++                ArchS390    -> True
++                ArchS390x   -> False
+ 
+ 
+ -- | This predicates tells us whether the OS supports ELF-like shared libraries.
