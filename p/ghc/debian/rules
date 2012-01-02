@@ -46,11 +46,6 @@ configure-stamp:
 	echo "SRC_HC_OPTS += -lffi -optl-pthread" >> mk/build.mk
 	echo "HADDOCK_DOCS := YES" >> mk/build.mk
 	echo "XSLTPROC_OPTS += --nonet" >> mk/build.mk
-ifneq (,$(findstring $(DEB_HOST_ARCH), i386 amd64 kfreebsd-i386 kfreebsd-amd64 powerpc armel armef))
-	echo "GhcUnregisterised=NO" >> mk/build.mk
-else
-	echo "GhcUnregisterised=YES" >> mk/build.mk
-endif
 ifneq (,$(findstring $(DEB_HOST_ARCH), arm armel armhf))
 	echo "SRC_HC_OPTS     += -optc-mlong-calls" >> mk/build.mk
 endif
