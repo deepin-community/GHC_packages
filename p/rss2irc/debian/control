@@ -1,0 +1,46 @@
+Source: rss2irc
+Section: net
+Priority: optional
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: haskell-devscripts (>= 0.8)
+  , ghc
+  , ghc-prof
+  , libghc-deepseq-dev (>> 1.1)
+  , libghc-deepseq-dev (<< 1.2)
+  , libghc-feed-dev (>> 0.3)
+  , libghc-feed-dev (<< 0.4)
+  , libghc-http-dev (>> 1:4000.0.3)
+  , libghc-http-dev (<< 1:4000.2)
+  , libghc-irc-dev (>> 0.4)
+  , libghc-irc-dev (<< 0.5)
+  , libghc-mtl-dev (>> 1.1)
+  , libghc-mtl-dev (<< 2.1)
+  , libghc-network-dev (>> 2.2)
+  , libghc-network-dev (<< 2.3.1)
+  , libghc-regexpr-dev (>> 0.5)
+  , libghc-regexpr-dev (<< 0.6)
+  , libghc-split-dev (>> 0.1)
+  , libghc-split-dev (<< 0.2)
+  , libghc-strict-concurrency-dev (>> 0.2)
+  , libghc-strict-concurrency-dev (<< 0.3)
+  , libghc-tagsoup-dev (>> 0.6)
+  , libghc-tagsoup-dev (<< 0.13)
+Standards-Version: 3.9.2
+Homepage: http://hackage.haskell.org/package/rss2irc
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/rss2irc
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/rss2irc
+
+Package: rss2irc
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: IRC bot that watches an RSS/Atom feed and relays it to a channel
+ This bot polls a single RSS or Atom feed and announces updates to
+ an IRC channel, with options for customizing output and behavior. It
+ aims to be a simple, dependable bot that does its job and creates no
+ problems.
