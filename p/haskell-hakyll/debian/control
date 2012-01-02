@@ -2,7 +2,7 @@ Source: haskell-hakyll
 Section: haskell
 Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders: Clint Adams <clint@debian.org>, Kiwamu Okabe <kiwamu@debian.or.jp>
 Build-Depends: debhelper (>= 7)
   , cdbs
   , haskell-devscripts (>= 0.8)
@@ -41,6 +41,12 @@ Build-Depends: debhelper (>= 7)
   , libghc-tagsoup-dev (>> 0.12)
   , libghc-tagsoup-dev (<< 0.13)
   , libghc-tagsoup-prof
+  , libghc-snap-core-dev (>= 0.6)
+  , libghc-snap-core-dev (<< 0.8)
+  , libghc-snap-core-prof
+  , libghc-snap-server-dev (>= 0.6)
+  , libghc-snap-server-dev (<< 0.8)
+  , libghc-snap-server-prof
 Build-Depends-Indep: ghc-doc
   , libghc-binary-doc
   , libghc-blaze-html-doc
@@ -53,10 +59,13 @@ Build-Depends-Indep: ghc-doc
   , libghc-regex-base-doc
   , libghc-regex-pcre-doc
   , libghc-tagsoup-doc
+  , libghc-snap-core-doc
+  , libghc-snap-server-doc
 Standards-Version: 3.9.2
 Homepage: http://hackage.haskell.org/package/hakyll
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-hakyll
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hakyll
+DM-Upload-Allowed: yes
 
 Package: libghc-hakyll-dev
 Architecture: any
