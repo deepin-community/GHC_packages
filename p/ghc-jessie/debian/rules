@@ -246,6 +246,10 @@ clean:
 	rm -f configure-stamp build-stamp install-stamp binary-arch-stamp binary-indep-stamp
 	rm -f configure
 
+	# Temporary, while the released tarball by accident contains the dph
+	# libraries
+	rm -rf libraries/dph libraries/primitive libraries/vector libraries/random
+
 	$(MAKE) distclean
 	rm -f config.sub config.guess
 	rm -f debian/*.install
