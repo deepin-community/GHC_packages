@@ -51,9 +51,6 @@ ifneq (,$(findstring $(DEB_HOST_ARCH), i386 amd64 kfreebsd-i386 kfreebsd-amd64 p
 else
 	echo "GhcUnregisterised=YES" >> mk/build.mk
 endif
-ifneq (,$(findstring $(DEB_HOST_ARCH), kfreebsd-i386 kfreebsd-amd64))
-	echo "GhcWithInterpreter=YES" >> mk/build.mk
-endif
 ifneq (,$(findstring $(DEB_HOST_ARCH), arm armel armhf))
 	echo "SRC_HC_OPTS     += -optc-mlong-calls" >> mk/build.mk
 endif
