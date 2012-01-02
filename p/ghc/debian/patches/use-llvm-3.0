@@ -1,0 +1,18 @@
+Description: Use LLVM 3.0 binaries
+ Can be done properly once http://hackage.haskell.org/trac/ghc/ticket/5739 is
+ fixed.
+Author: Joachim Breitner <nomeata@debian.org>
+Bug: http://hackage.haskell.org/trac/ghc/ticket/5739
+--- ghc-7.4.0.20111219.orig/compiler/main/SysTools.lhs
++++ ghc-7.4.0.20111219/compiler/main/SysTools.lhs
+@@ -249,8 +249,8 @@ initSysTools mbMinusB
+                 ld_args  = gcc_args
+ 
+         -- We just assume on command line
+-        ; let lc_prog = "llc"
+-              lo_prog = "opt"
++        ; let lc_prog = "llc-3.0"
++              lo_prog = "opt-3.0"
+ 
+         ; return $ Settings {
+                         sTargetPlatform = Platform {
