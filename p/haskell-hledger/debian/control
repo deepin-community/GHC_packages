@@ -1,0 +1,145 @@
+Source: haskell-hledger
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.8)
+  , ghc
+  , ghc-prof
+  , libghc-cmdargs-dev (>> 0.8)
+  , libghc-cmdargs-dev (<< 0.9)
+  , libghc-cmdargs-prof
+  , libghc-containers-dev
+  , libghc-containers-prof
+  , libghc-csv-dev
+  , libghc-csv-prof
+  , libghc-haskeline-dev (>> 0.6)
+  , libghc-haskeline-dev (<< 0.7)
+  , libghc-haskeline-prof
+  , libghc-hledger-lib-dev (>> 0.16.1)
+  , libghc-hledger-lib-dev (<< 0.16.2)
+  , libghc-hledger-lib-prof
+  , libghc-hunit-dev
+  , libghc-hunit-prof
+  , libghc-regexpr-dev (>> 0.5.1)
+  , libghc-regexpr-prof
+  , libghc-safe-dev (>> 0.2)
+  , libghc-safe-prof
+  , libghc-split-dev (>> 0.1)
+  , libghc-split-dev (<< 0.2)
+  , libghc-split-prof
+  , libghc-utf8-string-dev (>> 0.3.5)
+  , libghc-utf8-string-dev (<< 0.4)
+  , libghc-utf8-string-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-cmdargs-doc
+  , libghc-containers-doc
+  , libghc-csv-doc
+  , libghc-haskeline-doc
+  , libghc-hledger-lib-doc
+  , libghc-hunit-doc
+  , libghc-regexpr-doc
+  , libghc-safe-doc
+  , libghc-split-doc
+  , libghc-utf8-string-doc
+Standards-Version: 3.9.2
+Homepage: http://hackage.haskell.org/package/hledger
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-hledger
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hledger
+
+Package: hledger
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: command-line double-entry accounting program
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ hledger is a Haskell port and friendly fork of John Wiegley's ledger
+ accounting tool. This package provides the main hledger command-line
+ tool; see the other hledger-* packages for web and curses interfaces
+ and chart generation. hledger aims to be a reliable, practical
+ financial reporting tool for day-to-day use, and also a useful
+ library for building financial apps in haskell. Given a plain text
+ file describing transactions, of money or any other commodity,
+ .
+ hledger will print the chart of accounts, account balances, or
+ transactions you're interested in. It can also help you add
+ transactions to the journal file, or convert CSV data from your bank.
+
+Package: libghc-hledger-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: CLI libraries for hledger
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ hledger is a Haskell port and friendly fork of John Wiegley's ledger
+ accounting tool. This package provides the main hledger command-line
+ tool; see the other hledger-* packages for web and curses interfaces
+ and chart generation. hledger aims to be a reliable, practical
+ financial reporting tool for day-to-day use, and also a useful
+ library for building financial apps in haskell. Given a plain text
+ file describing transactions, of money or any other commodity,
+ .
+ hledger will print the chart of accounts, account balances, or
+ transactions you're interested in. It can also help you add
+ transactions to the journal file, or convert CSV data from your bank.
+
+Package: libghc-hledger-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: CLI libraries for hledger; profiling libraries
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ hledger is a Haskell port and friendly fork of John Wiegley's ledger
+ accounting tool. This package provides the main hledger command-line
+ tool; see the other hledger-* packages for web and curses interfaces
+ and chart generation. hledger aims to be a reliable, practical
+ financial reporting tool for day-to-day use, and also a useful
+ library for building financial apps in haskell. Given a plain text
+ file describing transactions, of money or any other commodity,
+ .
+ hledger will print the chart of accounts, account balances, or
+ transactions you're interested in. It can also help you add
+ transactions to the journal file, or convert CSV data from your bank.
+
+Package: libghc-hledger-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: CLI libraries for hledger; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ hledger is a Haskell port and friendly fork of John Wiegley's ledger
+ accounting tool. This package provides the main hledger command-line
+ tool; see the other hledger-* packages for web and curses interfaces
+ and chart generation. hledger aims to be a reliable, practical
+ financial reporting tool for day-to-day use, and also a useful
+ library for building financial apps in haskell. Given a plain text
+ file describing transactions, of money or any other commodity,
+ .
+ hledger will print the chart of accounts, account balances, or
+ transactions you're interested in. It can also help you add
+ transactions to the journal file, or convert CSV data from your bank.
