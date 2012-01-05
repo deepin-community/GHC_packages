@@ -8,11 +8,15 @@ INSTALL_DIR     = $(INSTALL) -p -d -o root -g root  -m  755
 
 package=hledger-vty
 
-clean:
-	$(checkdir)
-	runhaskell Setup.hs clean
+clean: checkroot
+#	debian/$(package).setup clean
+	rm -f debian/$(package).setup *.o *.hi
 	rm -f build-arch stamp-configure debian/files debian/substvars
+	rm -rf dist
 	rm -rf debian/$(package)
+
+debian/$(package).setup:
+	ghc Setup.hs -o $@
 
 build: build-arch build-indep
 build-indep:
@@ -20,14 +24,14 @@ build-indep:
 build-arch: stamp-configure
 	$(checkdir)
 
-	runhaskell Setup.hs build
+	debian/$(package).setup build
 
 	touch build-arch
 
-stamp-configure:
+stamp-configure: debian/$(package).setup
 	$(checkdir)
 
-	runhaskell Setup.hs configure --prefix=/usr
+	debian/$(package).setup configure --prefix=/usr
 
 	touch stamp-configure
 
@@ -38,7 +42,7 @@ binary-indep:	checkroot build
 binary-arch:	checkroot build
 	$(checkdir)
 
-	runhaskell Setup.hs copy --destdir=$(CURDIR)/debian/$(package)
+	debian/$(package).setup copy --destdir=$(CURDIR)/debian/$(package)
 	rm -rf debian/$(package)/usr/share/doc/$(package)-*
 	cd debian/$(package) && $(INSTALL_DIR) \
 		usr/bin \
