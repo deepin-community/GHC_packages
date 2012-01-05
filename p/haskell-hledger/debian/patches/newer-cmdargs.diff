@@ -9,3 +9,23 @@
                   ,csv
                   ,directory
                   ,filepath
+@@ -116,7 +116,7 @@
+                   hledger-lib == 0.16.1
+                  ,base >= 3 && < 5
+                  ,containers
+-                 ,cmdargs >= 0.8   && < 0.9
++                 ,cmdargs >= 0.8   && < 0.10
+                  ,csv
+                  ,directory
+                  ,filepath
+--- a/Hledger/Cli/Options.hs
++++ b/Hledger/Cli/Options.hs
+@@ -445,7 +445,7 @@
+             alias' = case alias of ('=':rest) -> rest
+                                    _ -> orig
+
+-showModeHelp = showText defaultWrap . helpText HelpFormatDefault
++showModeHelp = showText defaultWrap . helpText [] HelpFormatDefault
+
+ tests_Hledger_Cli_Options = TestList
+  [
