@@ -1,6 +1,6 @@
 --- a/hbro.cabal
 +++ b/hbro.cabal
-@@ -59,11 +59,37 @@
+@@ -66,13 +66,40 @@
 
  Executable hbro
      Build-depends:
@@ -19,14 +19,17 @@
 +        process,
 +        text,
 +        time,
++        unix,
 +        url,
 +        webkit,
-+        unix,
++        xdg-basedir,
 +        zeromq-haskell
      Main-is: Main.hs
 -    Hs-Source-Dirs: Hbro
 +    Hs-Source-Dirs: Hbro, .
-     Ghc-options: -Wall -threaded
+     Ghc-options: -Wall
+     if flag(threaded)
+         Ghc-options: -threaded
 -
 +    other-modules:
 +        Hbro.Core,
