@@ -9,13 +9,17 @@
 
 override_dh_auto_build:
 	cp -al testsuite testsuite-run
-	mkdir -p debian/ghc-testsuite/usr/share/doc/ghc-testsuite
 	# Does not seem to work:
 	# OUTPUT_SUMMARY="$(CURDIR)/debian/ghc-testsuite/usr/share/doc/ghc-testsuite/result.txt"
 	make -C testsuite-run \
 		SKIPWAY="optc profc optllvm" \
 		fast=YES \
-		2>&1 | tee "$(CURDIR)/debian/ghc-testsuite/usr/share/doc/ghc-testsuite/result.txt"
+		2>&1 | tee result.txt
+
+override_dh_auto_install:
+	mkdir -p debian/ghc-testsuite/usr/share/doc/ghc-testsuite
+	cp result.txt "$(CURDIR)/debian/ghc-testsuite/usr/share/doc/ghc-testsuite/result.txt"
 
 override_dh_auto_clean:
 	rm -rf testsuite-run
+	rm -f result.txt
