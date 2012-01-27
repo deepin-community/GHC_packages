@@ -1,0 +1,72 @@
+Source: haskell-blaze-builder-conduit
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.8)
+  , ghc
+  , ghc-prof
+  , libghc-blaze-builder-dev (>> 0.2.1.4)
+  , libghc-blaze-builder-dev (<< 0.4)
+  , libghc-blaze-builder-prof
+  , libghc-conduit-dev
+  , libghc-conduit-prof
+  , libghc-containers-dev
+  , libghc-containers-prof
+  , libghc-text-dev (>> 0.11)
+  , libghc-text-prof
+  , libghc-transformers-dev (>> 0.2.2)
+  , libghc-transformers-dev (<< 0.3)
+  , libghc-transformers-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-blaze-builder-doc
+  , libghc-conduit-doc
+  , libghc-containers-doc
+  , libghc-text-doc
+  , libghc-transformers-doc
+Standards-Version: 3.9.2
+Homepage: http://hackage.haskell.org/package/haskell-blaze-builder-conduit
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-blaze-builder-conduit
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-blaze-builder-conduit
+
+Package: libghc-blaze-builder-conduit-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: convert streams of builders to streams of bytestrings
+ Convert streams of builders to streams of bytestrings.
+ .
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-blaze-builder-conduit-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: convert streams of builders to streams of bytestrings; profiling libraries
+ Convert streams of builders to streams of bytestrings.
+ .
+ This package provides a library for the Haskell programming language, compiled
+ for profiling.  See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-blaze-builder-conduit-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: convert streams of builders to streams of bytestrings; documentation
+ Convert streams of builders to streams of bytestrings.
+ .
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
