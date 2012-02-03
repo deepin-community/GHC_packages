@@ -1,7 +1,7 @@
-Index: ghc-7.4.0.20111219/utils/haddock/haddock.cabal
+Index: ghc-7.4.1/utils/haddock/haddock.cabal
 ===================================================================
---- ghc-7.4.0.20111219.orig/utils/haddock/haddock.cabal	2011-12-22 16:18:59.000000000 +0100
-+++ ghc-7.4.0.20111219/utils/haddock/haddock.cabal	2011-12-22 22:53:25.000000000 +0100
+--- ghc-7.4.1.orig/utils/haddock/haddock.cabal	2012-02-01 19:10:43.000000000 +0100
++++ ghc-7.4.1/utils/haddock/haddock.cabal	2012-02-03 16:26:39.000000000 +0100
 @@ -78,10 +78,6 @@
  
  executable haddock
@@ -22,7 +22,7 @@ Index: ghc-7.4.0.20111219/utils/haddock/haddock.cabal
  
    if flag(test)
      cpp-options: -DTEST
-@@ -158,8 +152,6 @@
+@@ -157,8 +151,6 @@
  
    if flag(in-ghc-tree)
      cpp-options: -DIN_GHC_TREE
@@ -31,10 +31,10 @@ Index: ghc-7.4.0.20111219/utils/haddock/haddock.cabal
  
    if flag(test)
      cpp-options: -DTEST
-Index: ghc-7.4.0.20111219/utils/haddock/src/Main.hs
+Index: ghc-7.4.1/utils/haddock/src/Main.hs
 ===================================================================
---- ghc-7.4.0.20111219.orig/utils/haddock/src/Main.hs	2011-12-22 16:18:59.000000000 +0100
-+++ ghc-7.4.0.20111219/utils/haddock/src/Main.hs	2011-12-22 21:26:51.000000000 +0100
+--- ghc-7.4.1.orig/utils/haddock/src/Main.hs	2012-02-01 19:10:43.000000000 +0100
++++ ghc-7.4.1/utils/haddock/src/Main.hs	2012-02-03 16:26:39.000000000 +0100
 @@ -50,7 +50,6 @@
  #ifdef IN_GHC_TREE
  import System.FilePath
