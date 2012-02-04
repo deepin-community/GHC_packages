@@ -1,0 +1,103 @@
+Source: haskell-wai-app-file-cgi
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.8)
+  , ghc
+  , ghc-prof
+  , libghc-attoparsec-dev (>> 0.10.0.0)
+  , libghc-attoparsec-prof
+  , libghc-attoparsec-conduit-dev
+  , libghc-attoparsec-conduit-prof
+  , libghc-blaze-builder-dev
+  , libghc-blaze-builder-prof
+  , libghc-case-insensitive-dev
+  , libghc-case-insensitive-prof
+  , libghc-conduit-dev
+  , libghc-conduit-prof
+  , libghc-http-conduit-dev
+  , libghc-http-conduit-prof
+  , libghc-http-date-dev
+  , libghc-http-date-prof
+  , libghc-http-types-dev
+  , libghc-http-types-prof
+  , libghc-lifted-base-dev
+  , libghc-lifted-base-prof
+  , libghc-network-dev
+  , libghc-network-prof
+  , libghc-static-hash-dev
+  , libghc-static-hash-prof
+  , libghc-transformers-dev
+  , libghc-transformers-prof
+  , libghc-wai-dev
+  , libghc-wai-prof
+  , libghc-wai-app-static-dev (>> 0.3)
+  , libghc-wai-app-static-prof
+  , libghc-wai-logger-dev
+  , libghc-wai-logger-prof
+  , libghc-wai-logger-prefork-dev
+  , libghc-wai-logger-prefork-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-attoparsec-doc
+  , libghc-attoparsec-conduit-doc
+  , libghc-blaze-builder-doc
+  , libghc-case-insensitive-doc
+  , libghc-conduit-doc
+  , libghc-http-conduit-doc
+  , libghc-http-date-doc
+  , libghc-http-types-doc
+  , libghc-lifted-base-doc
+  , libghc-network-doc
+  , libghc-static-hash-doc
+  , libghc-transformers-doc
+  , libghc-wai-doc
+  , libghc-wai-app-static-doc
+  , libghc-wai-logger-doc
+  , libghc-wai-logger-prefork-doc
+Standards-Version: 3.9.2
+Homepage: http://hackage.haskell.org/package/haskell-wai-app-file-cgi
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-wai-app-file-cgi
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-wai-app-file-cgi
+
+Package: libghc-wai-app-file-cgi-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: file/CGI app of WAI
+ This WAI application handles static files and executes CGI scripts.
+ .
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-wai-app-file-cgi-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: file/CGI app of WAI; profiling libraries
+ This WAI application handles static files and executes CGI scripts.
+ .
+ This package provides a library for the Haskell programming language, compiled
+ for profiling.  See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-wai-app-file-cgi-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: file/CGI app of WAI; documentation
+ This WAI application handles static files and executes CGI scripts.
+ .
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
