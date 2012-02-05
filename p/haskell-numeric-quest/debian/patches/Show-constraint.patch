@@ -1,0 +1,11 @@
+--- a/QuantumVector.lhs
++++ b/QuantumVector.lhs
+@@ -1129,7 +1129,7 @@
+ >     showsPrec n (j :<+ k) = showsPrec n j . showString " + " . showsPrec n k
+
+
+-> showsScalar :: (RealFloat t) => Int -> Complex t -> String -> String
++> showsScalar :: (Show t, RealFloat t) => Int -> Complex t -> String -> String
+ > showsScalar n x@(a :+ b)
+ >     | b == 0    = showsPrec n a . showString " "
+ >     | otherwise = showString "(" .showsPrec n x . showString ") "
