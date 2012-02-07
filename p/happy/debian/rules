@@ -7,6 +7,8 @@
 
 DEB_BUILD_DEPENDENCIES = build-arch
 
+DEB_SETUP_GHC_CONFIGURE_ARGS := --datasubdir=/usr/share/happy --docdir=/usr/share/doc/happy
+
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
 include /usr/share/cdbs/1/rules/utils.mk
@@ -16,7 +18,6 @@ clean::
 
 	rm -f debian/get_version.o debian/get_version.hi debian/get_version
 	rm -f doc/happy.1
-	rm -rf out
 
 	# Hacks:
 	rm -f doc/config.log doc/config.status doc/config.mk doc/configure
@@ -24,10 +25,6 @@ clean::
 configure/happy::
 	# doc/configure is not shipped, generate it
 	cd doc && autoconf && rm -r autom4te.cache &&  ./configure --prefix=/usr
-
-	# make directory for the templates
-	[ -d out ] || mkdir out
-
 	# used in build to stick version into man page
 	ghc --make debian/get_version.hs -o debian/get_version
 
@@ -40,6 +37,5 @@ build/happy:: build-ghc-stamp
 
 # install templates to appropriate directory
 binary-post-install/happy::
-	rm -f $(CURDIR)/out/*bak
-	mkdir -p           $(CURDIR)/debian/happy/usr/share/happy-`debian/get_version`/
-	cp $(CURDIR)/out/* $(CURDIR)/debian/happy/usr/share/happy-`debian/get_version`/
+	$(DEB_SETUP_BIN_NAME) copy --builddir=dist-ghc --destdir=debian/happy
+	rm -f debian/happy/usr/share/doc/happy/LICENSE
