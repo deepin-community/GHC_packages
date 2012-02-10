@@ -5,9 +5,11 @@ Author: Joachim Breitner <nomeata@debian.org>
 Bug-Debian: http://bugs.debian.org/640088
 Forwarded: no
 
---- haskell-vector-0.9.orig/Data/Vector/Fusion/Stream/Monadic.hs
-+++ haskell-vector-0.9/Data/Vector/Fusion/Stream/Monadic.hs
-@@ -94,15 +94,19 @@ import Data.Int  ( Int8, Int16, Int32, I
+Index: haskell-vector-0.9.1/Data/Vector/Fusion/Stream/Monadic.hs
+===================================================================
+--- haskell-vector-0.9.1.orig/Data/Vector/Fusion/Stream/Monadic.hs	2012-02-10 23:48:51.000000000 +0100
++++ haskell-vector-0.9.1/Data/Vector/Fusion/Stream/Monadic.hs	2012-02-10 23:49:04.000000000 +0100
+@@ -94,15 +94,19 @@
  import Data.Word ( Word8, Word16, Word32, Word, Word64 )
 
  #if __GLASGOW_HASKELL__ >= 700
@@ -25,5 +27,5 @@ Forwarded: no
  #endif
 +#endif
 
-
- -- | Result of taking a single step in a stream
+ emptyStream :: String
+ {-# NOINLINE emptyStream #-}
