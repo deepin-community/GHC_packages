@@ -12,7 +12,7 @@ override_dh_auto_build:
 	# Does not seem to work:
 	# OUTPUT_SUMMARY="$(CURDIR)/debian/ghc-testsuite/usr/share/doc/ghc-testsuite/result.txt"
 	make -C testsuite-run \
-		SKIPWAY="optc profc optllvm" \
+		SKIPWAY="" \
 		fast=YES \
 		2>&1 | tee result.txt
 
