@@ -1,0 +1,15 @@
+Fri Jan 20 07:42:43 CET 2012  Duncan Coutts <duncan@community.haskell.org>
+  * Fix cairo for GHC 7.4
+  Changes in Num type class
+diff -rN -u old-cairo/Graphics/Rendering/Cairo/Types.chs new-cairo/Graphics/Rendering/Cairo/Types.chs
+--- old-cairo/Graphics/Rendering/Cairo/Types.chs	2012-02-13 23:08:40.710256212 +0100
++++ new-cairo/Graphics/Rendering/Cairo/Types.chs	2012-02-13 23:08:40.722256278 +0100
+@@ -361,7 +361,7 @@
+ cFromBool  = fromBool
+
+ {-# INLINE cToBool #-}
+-cToBool :: Num a => a -> Bool
++cToBool :: (Eq a, Num a) => a -> Bool
+ cToBool  = toBool
+
+ {-# INLINE cToEnum #-}
