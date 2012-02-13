@@ -14,7 +14,7 @@ Build-Depends:
  libghc-mtl-dev,
  libghc-mtl-prof,
  libghc-mtl-doc,
-Standards-Version: 3.8.4
+Standards-Version: 3.9.2
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-regex-base/
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-regex-base
 Homepage: http://sourceforge.net/projects/lazy-regex
@@ -22,6 +22,7 @@ Homepage: http://sourceforge.net/projects/lazy-regex
 Package: libghc-regex-base-dev
 Architecture: any
 Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
 Description: GHC library providing an API for regular expressions
@@ -34,6 +35,7 @@ Description: GHC library providing an API for regular expressions
 Package: libghc-regex-base-prof
 Architecture: any
 Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
 Description: GHC profiling library providing an API for regular expressions
@@ -47,11 +49,12 @@ Description: GHC profiling library providing an API for regular expressions
 Package: libghc-regex-base-doc
 Replaces: haskell-regex-base-doc (<< 0.93.1-7)
 Conflicts: haskell-regex-base-doc (<< 0.93.1-7)
-Provides: haskell-regex-base-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends}
-Recommends: doc-base, ghc-doc, libghc-mtl-doc
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: API documentation for regex-base Haskell library
  A library containing the interface API for the Haskell regular
  expressions library packages regex-posix, regex-pcre, regex-parsec,
