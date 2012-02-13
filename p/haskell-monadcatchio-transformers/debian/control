@@ -3,13 +3,14 @@ Section: haskell
 Priority: optional
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: TANIGUCHI Takaki <takaki@debian.org>
-Build-Depends: cdbs, debhelper (>= 7.0.50~), haskell-devscripts,
-	ghc,
-	ghc-prof,
-	ghc-doc,
-	libghc-transformers-dev,
-	libghc-transformers-prof,
-	libghc-transformers-doc,
+Build-Depends: cdbs, debhelper (>= 7.0.50~), haskell-devscripts
+  , ghc
+  , ghc-prof
+  , libghc-transformers-dev (>> 0.2)
+  , libghc-transformers-dev (<< 0.3)
+  , libghc-transformers-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-transformers-doc
 Standards-Version: 3.9.2
 #Homepage: None
 
