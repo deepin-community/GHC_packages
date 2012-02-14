@@ -8,9 +8,9 @@ Build-Depends: debhelper (>= 7)
   , cdbs
   , ghc
   , ghc-prof
-  , ghc-doc
   , zlib1g-dev
-Standards-Version: 3.9.1
+Standards-Version: 3.9.2
+Build-Depends-Indep: ghc-doc
 Homepage: http://hackage.haskell.org/package/digest
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-digest
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-digest
@@ -44,7 +44,7 @@ Description: efficient cryptographic hash implementations bytestrings; profiling
 Package: libghc-digest-doc
 Section: doc
 Architecture: all
-Depends: ${misc:Depends}
+Depends: ${haskell:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Description: efficient cryptographic hash implementations bytestrings; documentation
