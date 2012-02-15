@@ -16,7 +16,7 @@ Build-Depends:
  libghc-utf8-string-dev,
  libghc-utf8-string-prof,
  libghc-utf8-string-doc,
-Standards-Version: 3.8.4
+Standards-Version: 3.9.2
 Homepage: http://hackage.haskell.org/package/regex-tdfa
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-regex-tdfa-utf8
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-regex-tdfa-utf8
@@ -48,9 +48,10 @@ Description: Profiling libraries for the UTF8 version of the tagged DFA regex en
 Package: libghc-regex-tdfa-utf8-doc
 Section: doc
 Architecture: all
-Depends: ${misc:Depends}
+Depends: ${haskell:Depends}, ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
+Provides: ${haskell:Provides}
 Description: Documentation for the utf-8 version of the tagged DFA regex engine
  This combines regex-tdfa with utf8-string to allow searching over UTF8 encoded
  lazy bytestrings.
