@@ -9,9 +9,9 @@ Build-Depends: cdbs
  , cpphs
  , ghc
  , ghc-prof
- , ghc-doc
- , libghc-mtl-dev
+ , libghc-mtl-dev (>> 1.0)
  , libghc-mtl-prof
+Build-Depends-Indep: ghc-doc
  , libghc-mtl-doc
 Standards-Version: 3.9.2
 Homepage: http://www.cs.princeton.edu/~rdockins/edison/home/
@@ -64,7 +64,7 @@ Conflicts: haskell-edison-doc, haskell-edison-api-doc (<< 1.2.1-13), libghc6-edi
 Provides: haskell-edison-api-doc, libghc6-edison-api-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends}
+Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Description: documentation of the Edison Haskell library
