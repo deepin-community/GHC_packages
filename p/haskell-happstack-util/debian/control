@@ -8,28 +8,33 @@ Build-Depends:
  haskell-devscripts (>= 0.7),
  cdbs,
  ghc,
- ghc-prof,
- libghc-mtl-dev (>= 1.1),
- libghc-mtl-prof (>= 1.1),
- libghc-network-dev (>= 2.2),
- libghc-network-prof (>= 2.2),
- libghc-parsec3-dev,
- libghc-parsec3-prof,
- libghc-unix-compat-dev,
- libghc-unix-compat-prof,
- libghc-hslogger-dev (>= 1.0.2),
- libghc-hslogger-prof (>= 1.0.2),
- libghc-template-haskell-dev,
- libghc-template-haskell-prof
-Build-Depends-Indep:
- ghc-doc,
- libghc-mtl-doc (>= 1.1),
- libghc-network-doc (>= 2.2),
- libghc-parsec3-doc,
- libghc-unix-compat-doc,
- libghc-hslogger-doc (>= 1.0.2),
- libghc-template-haskell-doc
-Standards-Version: 3.9.1
+ ghc-prof
+ , libghc-mtl-dev (>> 1.1)
+ , libghc-mtl-dev (<< 2.1)
+ , libghc-mtl-prof
+ , libghc-network-dev (>> 2.2)
+ , libghc-network-dev (<< 3)
+ , libghc-network-prof
+ , libghc-parsec3-dev
+ , libghc-parsec3-prof
+ , libghc-random-dev
+ , libghc-random-prof
+ , libghc-unix-compat-dev
+ , libghc-unix-compat-prof
+ , libghc-hslogger-dev (>> 1.0.2)
+ , libghc-hslogger-prof
+ , ghc-ghci
+# , libghc-quickcheck2-dev (>> 2)
+# , libghc-quickcheck2-dev (<< 2.5)
+# , libghc-hunit-dev
+Build-Depends-Indep: ghc-doc
+ , libghc-mtl-doc
+ , libghc-network-doc
+ , libghc-parsec3-doc
+ , libghc-random-doc
+ , libghc-unix-compat-doc
+ , libghc-hslogger-doc
+Standards-Version: 3.9.3
 Homepage: http://hackage.haskell.org/package/happstack-util
 Vcs-Darcs: http://darcs.debian.org/darcs/pkg-haskell/haskell-happstack-util
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-happstack-util
