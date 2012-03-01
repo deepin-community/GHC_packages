@@ -1,3 +1,16 @@
+haskell-hsql (1.8.1-3) UNRELEASED; urgency=low
+
+  * Fixes for changed behaviour in GHC 7.4
+    + Use mkTyCon3 instead of deprecated mkTyCon in DB/HSQL/Error.hs. Takes 3
+      Strings: (Package Name, Module Name, Constructor)
+    + Also import constructors of CType in DB/HSQL/Type/Time.hsc. GHC 7.6 will
+      make using abstract newtypes in FFI declarations an error (for now it is
+      just a warning).
+    + Use FlexibleInstances extension in DB/HSQL/Type/Diverse.hs in order to
+      allow SqlBind instance to be defined for String ([Char]). *
+
+ -- Iain Lane <laney@debian.org>  Thu, 01 Mar 2012 21:36:01 +0000
+
 haskell-hsql (1.8.1-2) unstable; urgency=low
 
   * Add Replaces/Conflicts on libghc6-*-doc package (Closes: #656428)
