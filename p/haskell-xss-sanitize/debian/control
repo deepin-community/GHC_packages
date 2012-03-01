@@ -3,12 +3,11 @@ Priority: extra
 Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Giovanni Mascellani <gio@debian.org>
-Build-Depends:
- debhelper (>= 7),
- haskell-devscripts (>= 0.7),
- cdbs,
- ghc,
- ghc-prof
+Build-Depends: debhelper (>= 7)
+  , haskell-devscripts (>= 0.8.10)
+  , cdbs
+  , ghc
+  , ghc-prof
   , libghc-attoparsec-dev (>> 0.10.0.3)
   , libghc-attoparsec-dev (<< 1)
   , libghc-attoparsec-prof
@@ -27,6 +26,8 @@ Build-Depends:
   , libghc-text-dev (>> 0.11)
   , libghc-text-dev (<< 1)
   , libghc-text-prof
+  , libghc-hspec-dev (>> 0.8)
+  , libghc-hunit-dev (>> 1.2)
 Build-Depends-Indep: ghc-doc
   , libghc-attoparsec-doc,
  libghc-tagsoup-doc,
