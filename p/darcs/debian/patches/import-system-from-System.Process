@@ -1,0 +1,19 @@
+Description: Can no longer import System as of GHC 7.4; use system function
+  from System.Process instead
+Author: Iain Lane <laney@debian.org>
+Forwarded: not-needed
+
+--- darcs-2.5.2.orig/Distribution/ShellHarness.hs
++++ darcs-2.5.2/Distribution/ShellHarness.hs
+@@ -12,10 +12,9 @@ import System.Environment ( getEnv, getE
+ import System.Exit ( ExitCode (..) )
+ import System.FilePath
+ import System.IO
+-import System( system )
+ import System.Process ( ProcessHandle,
+                         runInteractiveProcess, waitForProcess,
+-                        getProcessExitCode )
++                        getProcessExitCode, system )
+ import Data.Maybe
+ import Data.List ( isInfixOf, isPrefixOf, (\\), nubBy, isSuffixOf )
+ import Control.Concurrent
