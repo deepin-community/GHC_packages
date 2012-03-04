@@ -10,11 +10,11 @@ Build-Depends:
  cpphs,
  ghc,
  ghc-prof,
- ghc-doc,
  libghc-hsql-dev (>= 1.8.0),
  libghc-hsql-prof,
- haskell-hsql-doc,
  libmysqlclient-dev,
+Build-Depends-Indep: ghc-doc
+  , libghc-hsql-doc
 Standards-Version: 3.8.4
 Homepage: http://hackage.haskell.org/package/hsql-mysql
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hsql-mysql/
@@ -46,7 +46,7 @@ Provides: haskell-hsql-mysql-doc
 Conflicts: haskell-hsql-mysql-doc (<< 1.7.1-4), libghc6-hsql-mysql-doc (<< 1:1)
 Section: doc
 Architecture: all
-Depends: ${misc:Depends}
+Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Description: API documentation of the hsql-mysql library for Haskell
