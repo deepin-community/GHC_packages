@@ -5,3 +5,6 @@
 
 (autoload 'ghc-init "ghc" nil t)
 (add-hook 'haskell-mode-hook (lambda () (ghc-init) (flymake-mode)))
+
+; ghc-mod's C-cC-t conflict with haskell-doc-mode
+(remove-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
