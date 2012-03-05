@@ -2,7 +2,7 @@ Source: gitit
 Priority: extra
 Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Giovanni Mascellani <gio@debian.org>
+Uploaders: Giovanni Mascellani <gio@debian.org>, Clint Adams <clint@debian.org>
 Build-Depends:
  debhelper (>= 7),
  haskell-devscripts (>= 0.8.8),
@@ -10,65 +10,116 @@ Build-Depends:
  ghc,
  pandoc (>= 1.8),
  xsltproc,
- docbook-xsl,
- libghc-pandoc-dev (>= 1.8.2-2),
- libghc-pandoc-types-dev (>= 1.8.2),
- libghc-safe-dev,
- libghc-parsec3-dev,
- libghc-xhtml-dev,
- libghc-mtl-dev,
- libghc-cgi-dev,
- libghc-text-dev,
- libghc-network-dev (>= 2.1.0.0),
- libghc-highlighting-kate-dev (>= 0.2.7.1),
- libghc-utf8-string-dev (>= 0.3),
- libghc-sha-dev (>= 1.1),
- libghc-http-dev (>= 4000.0),
- libghc-hstringtemplate-dev (>= 0.6),
- libghc-recaptcha-dev (>= 0.1),
- libghc-filestore-dev (>= 0.4.0.3-2),
- libghc-filestore-data (>= 0.4.0.3-2),
- libghc-zlib-dev (>= 0.5),
- libghc-url-dev (>= 2.1),
- libghc-happstack-server-dev (>= 6.0),
- libghc-happstack-server-dev (<< 6.3),
- libghc-happstack-util-dev (>= 6.0),
- libghc-xml-dev (>= 1.3.5),
- libghc-hslogger-dev (>= 1),
- libghc-configfile-dev (>= 1),
- libghc-feed-dev (>= 0.3.6),
- libghc-xss-sanitize-dev (>= 0.3),
- libghc-xss-sanitize-dev (<< 0.4),
- libghc-json-dev (>= 0.4)
-Build-Depends-Indep:
- ghc-doc,
- libghc-pandoc-doc (>= 1.8.1.1-2),
- libghc-pandoc-types-doc (>= 1.8),
- libghc-safe-doc,
- libghc-parsec3-doc,
- libghc-xhtml-doc,
- libghc-mtl-doc,
- libghc-cgi-doc,
- libghc-text-doc,
- libghc-network-doc (>= 2.1.0.0),
- libghc-highlighting-kate-doc (>= 0.2.7.1),
- libghc-utf8-string-doc (>= 0.3),
- libghc-sha-doc (>= 1.1),
- libghc-http-doc (>= 4000.0),
- libghc-hstringtemplate-doc (>= 0.6),
- libghc-recaptcha-doc (>= 0.1),
- libghc-filestore-doc (>= 0.4.0.3-2),
- libghc-zlib-doc (>= 0.5),
- libghc-url-doc (>= 2.1),
- libghc-happstack-server-doc (>= 6.0),
- libghc-happstack-util-doc (>= 6.0),
- libghc-xml-doc (>= 1.3.5),
- libghc-hslogger-doc (>= 1),
- libghc-configfile-doc (>= 1),
- libghc-feed-doc (>= 0.3.6),
- libghc-xss-sanitize-doc (>= 0.3),
- libghc-json-doc (>= 0.4)
-Standards-Version: 3.9.2
+ docbook-xsl
+ , libghc-blaze-html-dev (>> 0.4)
+ , libghc-blaze-html-dev (<< 0.5)
+ , libghc-blaze-html-prof
+ , libghc-cgi-dev
+ , libghc-cgi-prof
+ , libghc-configfile-dev (>> 1)
+ , libghc-configfile-dev (<< 1.2)
+ , libghc-configfile-prof
+ , libghc-feed-dev (>> 0.3.6)
+ , libghc-feed-dev (<< 0.4)
+ , libghc-feed-prof
+ , libghc-filestore-dev (>> 0.4.0.2)
+ , libghc-filestore-dev (<< 0.5)
+ , libghc-filestore-prof
+ , libghc-happstack-server-dev (>> 6.6)
+ , libghc-happstack-server-dev (<< 6.7)
+ , libghc-happstack-server-prof
+ , libghc-happstack-util-dev (>> 6.0)
+ , libghc-happstack-util-dev (<< 6.1)
+ , libghc-happstack-util-prof
+ , libghc-highlighting-kate-dev (>> 0.5.0.1)
+ , libghc-highlighting-kate-dev (<< 0.6)
+ , libghc-highlighting-kate-prof
+ , libghc-hslogger-dev (>> 1)
+ , libghc-hslogger-dev (<< 1.2)
+ , libghc-hslogger-prof
+ , libghc-hstringtemplate-dev (>> 0.6)
+ , libghc-hstringtemplate-dev (<< 0.7)
+ , libghc-hstringtemplate-prof
+ , libghc-http-dev (>> 1:4000.0)
+ , libghc-http-dev (<< 1:4000.3)
+ , libghc-http-prof
+ , libghc-json-dev (>> 0.4)
+ , libghc-json-dev (<< 0.6)
+ , libghc-json-prof
+ , libghc-mtl-dev
+ , libghc-mtl-prof
+ , libghc-network-dev (>> 2.1.0.0)
+ , libghc-network-dev (<< 2.4)
+ , libghc-network-prof
+ , libghc-pandoc-dev (>> 1.9.0.5)
+ , libghc-pandoc-dev (<< 1.10)
+ , libghc-pandoc-prof
+ , libghc-pandoc-types-dev (>> 1.9.0.2)
+ , libghc-pandoc-types-dev (<< 1.10)
+ , libghc-pandoc-types-prof
+ , libghc-parsec3-dev
+ , libghc-parsec3-prof
+ , libghc-random-dev
+ , libghc-random-prof
+ , libghc-recaptcha-dev (>> 0.1)
+ , libghc-recaptcha-prof
+ , libghc-safe-dev
+ , libghc-safe-prof
+ , libghc-sha-dev (>> 1)
+ , libghc-sha-dev (<< 1.6)
+ , libghc-sha-prof
+ , libghc-tagsoup-dev (>> 0.12)
+ , libghc-tagsoup-dev (<< 0.13)
+ , libghc-tagsoup-prof
+ , libghc-text-dev
+ , libghc-text-prof
+ , libghc-url-dev (>> 2.1)
+ , libghc-url-dev (<< 2.2)
+ , libghc-url-prof
+ , libghc-utf8-string-dev (>> 0.3)
+ , libghc-utf8-string-dev (<< 0.4)
+ , libghc-utf8-string-prof
+ , libghc-xhtml-dev
+ , libghc-xhtml-prof
+ , libghc-xml-dev (>> 1.3.5)
+ , libghc-xml-prof
+ , libghc-xss-sanitize-dev (>> 0.3)
+ , libghc-xss-sanitize-dev (<< 0.4)
+ , libghc-xss-sanitize-prof
+ , libghc-zlib-dev (>> 0.5)
+ , libghc-zlib-dev (<< 0.6)
+ , libghc-zlib-prof
+Build-Depends-Indep: ghc-doc
+ , libghc-blaze-html-doc
+ , libghc-cgi-doc
+ , libghc-configfile-doc
+ , libghc-feed-doc
+ , libghc-filestore-doc
+ , libghc-happstack-server-doc
+ , libghc-happstack-util-doc
+ , libghc-highlighting-kate-doc
+ , libghc-hslogger-doc
+ , libghc-hstringtemplate-doc
+ , libghc-http-doc
+ , libghc-json-doc
+ , libghc-mtl-doc
+ , libghc-network-doc
+ , libghc-pandoc-doc
+ , libghc-pandoc-types-doc
+ , libghc-parsec3-doc
+ , libghc-random-doc
+ , libghc-recaptcha-doc
+ , libghc-safe-doc
+ , libghc-sha-doc
+ , libghc-tagsoup-doc
+ , libghc-text-doc
+ , libghc-url-doc
+ , libghc-utf8-string-doc
+ , libghc-xhtml-doc
+ , libghc-xml-doc
+ , libghc-xss-sanitize-doc
+ , libghc-zlib-doc
+Standards-Version: 3.9.3
 Homepage: http://hackage.haskell.org/package/gitit
 Vcs-Darcs: http://darcs.debian.org/darcs/pkg-haskell/gitit
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/gitit
@@ -136,6 +187,37 @@ Description: Wiki engine backed by a git or darcs filestore - GHC libraries
    * pages can be written directly in literate Haskell.
  .
  This package contains the libraries compiled for GHC.
+
+Package: libghc-gitit-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Description: Wiki engine backed by a git or darcs filestore; profiling libraries
+ Gitit is a wiki backed by a git or darcs filestore. Pages and uploaded files
+ can be modified either directly via the VCS’s command-line tools or through
+ the wiki’s web interface. Pandoc is used for markup processing, so pages may
+ be written in (extended) markdown, reStructuredText, LaTeX, HTML, or literate
+ Haskell, and exported in ten different formats, including LaTeX, ConTeXt,
+ DocBook, RTF, OpenOffice ODT, and MediaWiki markup.
+ .
+ Other features include
+   * plugins: dynamically loaded page transformations written in Haskell;
+   * categories;
+   * support for Unicode;
+   * TeX math using texmath;
+   * syntax highlighting of source code files and code snippets using
+     highlighting-kate;
+   * wiki pages can be viewed as slide shows;
+   * caching;
+   * Atom feeds (site-wide and per-page);
+   * a library, Network.Gitit, that makes it simple to include a gitit wiki in
+     any happstack application;
+   * pages can be written directly in literate Haskell.
+ .
+ This package contains the libraries compiled for profiling.
 
 Package: libghc-gitit-doc
 Section: doc
