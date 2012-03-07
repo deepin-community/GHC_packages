@@ -18,6 +18,8 @@ Build-Depends: debhelper (>= 7)
   , libghc-monadcatchio-mtl-prof
   , libghc-ghc-mtl-dev
   , libghc-ghc-mtl-prof
+  , libghc-random-dev
+  , libghc-random-prof
   , libghc-utf8-string-dev
   , libghc-utf8-string-prof
   , ghc-doc
@@ -26,8 +28,9 @@ Build-Depends: debhelper (>= 7)
   , libghc-ghc-paths-doc
   , libghc-monadcatchio-mtl-doc
   , libghc-ghc-mtl-doc
+  , libghc-random-doc
   , libghc-utf8-string-doc
-Standards-Version: 3.8.4
+Standards-Version: 3.9.3
 Homepage: http://hackage.haskell.org/package/hint
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hint
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-hint
@@ -72,7 +75,7 @@ Description: runtime Haskell interpreter (GHC API wrapper); profiling libraries
 Package: libghc-hint-doc
 Section: doc
 Architecture: all
-Depends: ${misc:Depends}
+Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Description: runtime Haskell interpreter (GHC API wrapper); documentation
