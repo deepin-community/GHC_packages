@@ -14,7 +14,7 @@ Build-Depends: debhelper (>= 7)
  , libghc-syb-prof
 Build-Depends-Indep: ghc-doc
  , libghc-syb-doc
-Standards-Version: 3.9.2
+Standards-Version: 3.9.3
 Homepage: http://hackage.haskell.org/package/language-c
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-language-c
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-language-c
@@ -51,9 +51,8 @@ Description: Profiling libraries for Haskell Library.C module
 Package: libghc-language-c-doc
 Section: doc
 Architecture: all
-Depends: ${misc:Depends}
-Recommends: doc-base
- , libghc-network-doc
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
 Description: Documentation for Haskell Library.C module
  .
  Language C is a haskell library for the analysis and generation of C code. It
