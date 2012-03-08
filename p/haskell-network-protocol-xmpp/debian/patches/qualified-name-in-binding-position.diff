@@ -1,0 +1,30 @@
+--- a/Network/Protocol/XMPP/ErrorT.hs
++++ b/Network/Protocol/XMPP/ErrorT.hs
+@@ -43,7 +43,7 @@
+			Right r -> runErrorT (k r)
+
+ instance Monad m => E.MonadError (ErrorT e m) where
+-	type E.ErrorType (ErrorT e m) = e
++	type ErrorType (ErrorT e m) = e
+	throwError = ErrorT . return . Left
+	catchError m h = ErrorT $ do
+		x <- runErrorT m
+@@ -55,7 +55,7 @@
+	lift = ErrorT . liftM Right
+
+ instance R.MonadReader m => R.MonadReader (ErrorT e m) where
+-	type R.EnvType (ErrorT e m) = R.EnvType m
++	type EnvType (ErrorT e m) = R.EnvType m
+	ask = lift R.ask
+	local = mapErrorT . R.local
+
+--- a/Network/Protocol/XMPP/Monad.hs
++++ b/Network/Protocol/XMPP/Monad.hs
+@@ -96,7 +96,7 @@
+	liftIO = XMPP . liftIO
+
+ instance E.MonadError XMPP where
+-	type E.ErrorType XMPP = Error
++	type ErrorType XMPP = Error
+	throwError = XMPP . E.throwError
+	catchError m h = XMPP (E.catchError (unXMPP m) (unXMPP . h))
