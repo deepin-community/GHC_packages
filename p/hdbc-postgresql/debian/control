@@ -3,8 +3,7 @@ Priority: extra
 Section: haskell
 Uploaders: John Goerzen <jgoerzen@complete.org>
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Build-Depends:
- debhelper (>= 7),
+Build-Depends: debhelper (>= 7),
  ghc (>= 6.12),
  ghc-prof (>= 6.12),
  haskell-devscripts (>= 0.7.3),
@@ -15,15 +14,20 @@ Build-Depends:
  libghc-hdbc-dev (>= 2.2.0),
  libpq-dev (>= 8.1.1),
  libghc-mtl-dev,
- libghc-parsec-dev,
  libghc-hdbc-prof (>= 2.2.0),
- libghc-mtl-prof,
- libghc-parsec-prof
-Build-Depends-Indep:
- ghc-doc,
- libghc-hdbc-doc,
- libghc-mtl-doc,
- libghc-parsec-doc
+ libghc-mtl-prof
+ , libghc-convertible-dev
+ , libghc-convertible-prof
+ , libghc-parsec3-dev
+ , libghc-parsec3-prof
+ , libghc-utf8-string-dev
+ , libghc-utf8-string-prof
+Build-Depends-Indep: ghc-doc
+ , libghc-hdbc-doc
+ , libghc-mtl-doc
+ , libghc-parsec3-doc
+ , libghc-convertible-doc
+ , libghc-utf8-string-doc
 Standards-Version: 3.9.3
 Homepage: http://software.complete.org/hdbc-postgresql
 Vcs-Git: git://git.debian.org/git/pkg-haskell/hdbc-postgresql.git
