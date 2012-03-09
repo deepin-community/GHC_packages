@@ -25,13 +25,15 @@ build-arch: stamp-configure
 	$(checkdir)
 
 	debian/$(package).setup build
+	debian/$(package).setup test
 
 	touch build-arch
 
 stamp-configure: debian/$(package).setup
 	$(checkdir)
 
-	debian/$(package).setup configure --prefix=/usr
+	debian/$(package).setup configure --prefix=/usr \
+	                                  --enable-tests
 
 	touch stamp-configure
 
