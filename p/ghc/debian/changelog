@@ -14,10 +14,13 @@ ghc (7.4.1-2) UNRELEASED; urgency=low
       __ARM_PCS_VFP is defined (needs to be preprocessed for this)
     - debian/rules: Define __ARM_PCS_VFP on armhf for the above patch.
 
-  [Joachim Breitner]
+  [ Joachim Breitner]
 
   * patches/hurd-is-ELF added, Closes: #659530, thanks to Samuel
     Thibault
+  * Also conflict with any provided libghc-*-dev packages. Thus, if a packages
+    is moved _into_ ghc that was outside before, no external package can be
+    installed (as was the case with binary).
 
  -- Joachim Breitner <nomeata@debian.org>  Sat, 11 Feb 2012 23:38:11 +0100
 
