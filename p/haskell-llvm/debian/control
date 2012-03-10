@@ -8,12 +8,17 @@ Build-Depends: debhelper (>= 7),
   , haskell-devscripts (>= 0.7)
   , ghc
   , ghc-prof
-  , llvm-2.8-dev
   , libghc-mtl-dev
   , libghc-mtl-prof
   , libghc-type-level-dev
   , libghc-type-level-prof
+  , libghc-llvm-base-dev (>= 3.0)
+  , libghc-llvm-base-dev (<< 3.1)
+  , libghc-llvm-base-prof
 Build-Depends-Indep: ghc-doc
+  , libghc-mtl-doc
+  , libghc-type-level-doc
+  , libghc-llvm-base-doc
 Standards-Version: 3.9.2
 Homepage: http://hackage.haskell.org/package/llvm
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-llvm
@@ -24,7 +29,6 @@ Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
   , ${misc:Depends}
-  , llvm-2.8-dev
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
@@ -41,7 +45,6 @@ Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
   , ${misc:Depends}
-  , llvm-2.8-dev
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
