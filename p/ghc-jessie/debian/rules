@@ -48,6 +48,9 @@ configure-stamp:
 ifneq (,$(findstring $(DEB_HOST_ARCH), arm armel armhf))
 	echo "SRC_HC_OPTS     += -optc-mlong-calls" >> mk/build.mk
 endif
+ifeq (armhf,$(DEB_HOST_ARCH))
+	echo "SRC_HC_OPTS += -D__ARM_PCS_VFP" >> mk/build.mk
+endif
 # proper fix for #360177
 ifeq (ppc64,$(DEB_HOST_ARCH))
 	echo "SRC_HC_OPTS += -optc-mminimal-toc" >> mk/build.mk
