@@ -39,8 +39,7 @@ endif
 configure: configure-stamp
 configure-stamp:
 	dh_testdir
-
-	autoconf
+	dh_autoreconf
 
 	rm -f mk/build.mk
 	echo "SRC_HC_OPTS += -lffi -optl-pthread" >> mk/build.mk
@@ -280,7 +279,8 @@ clean:
 	rm -f utils/ghc-pwd/dist-boot/ghc-pwd
 
 	rm -f libraries/haskeline/a.out
-
+	
+	dh_autoreconf_clean
 	dh_clean
 
 binary-arch: binary-arch-stamp
