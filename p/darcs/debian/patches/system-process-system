@@ -1,0 +1,31 @@
+Description: fix System.Process.system import
+ Otherwise the haskell2010 module is needed.
+Author: Joachim Breitner <nomeata@debian.org>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: http://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: <YYYY-MM-DD>
+
+--- darcs-2.5.2.orig/Distribution/ShellHarness.hs
++++ darcs-2.5.2/Distribution/ShellHarness.hs
+@@ -12,10 +12,9 @@ import System.Environment ( getEnv, getE
+ import System.Exit ( ExitCode (..) )
+ import System.FilePath
+ import System.IO
+-import System( system )
+ import System.Process ( ProcessHandle,
+                         runInteractiveProcess, waitForProcess,
+-                        getProcessExitCode )
++                        getProcessExitCode, system )
+ import Data.Maybe
+ import Data.List ( isInfixOf, isPrefixOf, (\\), nubBy, isSuffixOf )
+ import Control.Concurrent
