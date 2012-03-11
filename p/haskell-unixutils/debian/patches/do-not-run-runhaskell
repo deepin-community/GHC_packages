@@ -1,0 +1,17 @@
+Description: runhaskell is not available on all architectures, do not run it by default
+Author: Joachim Breitner <nomeata@debian.org>
+
+Index: haskell-unixutils-1.48.1/Setup.hs
+===================================================================
+--- haskell-unixutils-1.48.1.orig/Setup.hs	2012-03-05 16:12:40.000000000 +0100
++++ haskell-unixutils-1.48.1/Setup.hs	2012-03-11 21:21:22.000000000 +0100
+@@ -5,8 +5,7 @@
+ import System.Exit
+
+ main = defaultMainWithHooks simpleUserHooks {
+-         postBuild = runTestScript
+-       , runTests = runTestScript
++         runTests = runTestScript
+        }
+
+ runTestScript _args _flag _pd _lbi =
