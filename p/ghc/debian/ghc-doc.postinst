@@ -22,25 +22,6 @@ set -e
 
 case "$1" in
     triggered|configure)
-        # Older versions of haskell_devscripts installed .haddock files in
-        # ghc-version-dependent paths. We thus merge them here using symbolic
-        # links. Luckily, dpkg will cleanly remove the symlinks when the last
-        # broken package is deinstalled.
-        # This can be removed once all packages have been rebuilt from source
-        # with a version of haskell-devscripts that installs into
-        # /usr/lib/ghc-doc/haddock/
-        for path in /usr/lib/ghc-7.0.2/haddock /usr/lib/ghc-7.0.3/haddock
-        do
-            if [ -d $path -a ! -L $path ]
-            then
-                echo "Turning $path into a symbolic link to /usr/lib/ghc-doc/haddock/"
-		# This line should successfully do nothing for an empty directory
-                find $path -maxdepth 1 -mindepth 1 -print0 | xargs -0 -r mv -t /usr/lib/ghc-doc/haddock/
-                rmdir $path
-                ln -s ../ghc-doc/haddock $path
-            fi
-        done
-
 	if test -x /usr/lib/ghc/bin/ghc-pkg; then /usr/lib/ghc/bin/ghc-pkg recache --global; fi
         /usr/lib/ghc-doc/gen_contents_index
 	;;
