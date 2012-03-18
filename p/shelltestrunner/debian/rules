@@ -1,0 +1,14 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/hlibrary.mk
+
+build/$(CABAL_PACKAGE) :: build-ghc-stamp debian/shelltest.1
+
+install/$(CABAL_PACKAGE) :: build/$(CABAL_PACKAGE)
+
+debian/shelltest.1: debian/shelltest.md
+	pandoc -s -w man $< -o $@
+
+clean::
+	rm -f debian/shelltest.1
