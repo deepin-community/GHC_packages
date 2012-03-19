@@ -9,4 +9,4 @@ build/$(CABAL_PACKAGE) :: build-ghc-stamp
 
 install/$(CABAL_PACKAGE) :: build/$(CABAL_PACKAGE)
 	$(DEB_SETUP_BIN_NAME) copy --builddir=dist-ghc --destdir=debian/$(CABAL_PACKAGE)
-	rm -rf debian/threadscope/usr/share/doc
+	rm -rf debian/$(CABAL_PACKAGE)/usr/share/doc
