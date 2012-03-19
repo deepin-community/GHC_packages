@@ -6,6 +6,10 @@ include /usr/share/cdbs/1/class/hlibrary.mk
 build/$(CABAL_PACKAGE) :: build-ghc-stamp debian/shelltest.1
 
 install/$(CABAL_PACKAGE) :: build/$(CABAL_PACKAGE)
+	$(DEB_SETUP_BIN_NAME) copy \
+	  --builddir=dist-ghc \
+	  --destdir=debian/$(CABAL_PACKAGE)
+	rm -rf debian/$(CABAL_PACKAGE)/usr/share/doc
 
 debian/shelltest.1: debian/shelltest.md
 	pandoc -s -w man $< -o $@
