@@ -10,5 +10,5 @@ DEB_HOST_ARCH_ENDIAN := $(shell dpkg-architecture -qDEB_HOST_ARCH_ENDIAN)
 ifeq ($(DEB_HOST_ARCH_ENDIAN),big)
 	DEB_SETUP_GHC_CONFIGURE_ARGS := -fforce-endianness -fbig-endian
 else
-#
+	DEB_SETUP_GHC_CONFIGURE_ARGS := -fforce-endianness -f-big-endian
 endif
