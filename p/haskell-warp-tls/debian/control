@@ -1,0 +1,99 @@
+Source: haskell-warp-tls
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.8)
+  , ghc
+  , ghc-prof
+  , libghc-certificate-dev (>> 1.1)
+  , libghc-certificate-dev (<< 1.2)
+  , libghc-certificate-prof
+  , libghc-conduit-dev (>> 0.2)
+  , libghc-conduit-prof
+  , libghc-crypto-api-dev (>> 0.8)
+  , libghc-crypto-api-dev (<< 0.10)
+  , libghc-crypto-api-prof
+  , libghc-cryptocipher-dev (>> 0.3)
+  , libghc-cryptocipher-dev (<< 0.4)
+  , libghc-cryptocipher-prof
+  , libghc-network-dev (>> 2.2.1)
+  , libghc-network-dev (<< 2.4)
+  , libghc-network-prof
+  , libghc-tls-dev (>> 0.9)
+  , libghc-tls-dev (<< 0.10)
+  , libghc-tls-prof
+  , libghc-tls-extra-dev (>> 0.4.3)
+  , libghc-tls-extra-dev (<< 0.5)
+  , libghc-tls-extra-prof
+  , libghc-transformers-dev (>> 0.2)
+  , libghc-transformers-dev (<< 0.3)
+  , libghc-transformers-prof
+  , libghc-wai-dev (>> 1.1)
+  , libghc-wai-dev (<< 1.2)
+  , libghc-wai-prof
+  , libghc-warp-dev (>> 1.1)
+  , libghc-warp-dev (<< 1.2)
+  , libghc-warp-prof
+  , netbase
+Build-Depends-Indep: ghc-doc
+  , libghc-certificate-doc
+  , libghc-conduit-doc
+  , libghc-crypto-api-doc
+  , libghc-cryptocipher-doc
+  , libghc-network-doc
+  , libghc-tls-doc
+  , libghc-tls-extra-doc
+  , libghc-transformers-doc
+  , libghc-wai-doc
+  , libghc-warp-doc
+Standards-Version: 3.9.3
+Homepage: http://hackage.haskell.org/package/warp-tls
+Vcs-Git: git://git.debian.org/collab-maint/haskell-warp-tls.git
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/haskell-warp-tls.git;a=summary
+
+Package: libghc-warp-tls-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: SSL/TLS support for Warp
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ It contains SSL/TLS support for Warp, the premier WAI handler, via
+ the native Haskell TLS implementation.
+
+Package: libghc-warp-tls-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: SSL/TLS support for Warp; profiling libraries
+ This package provides a library for the Haskell programming language,
+ compiled for profiling.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ It contains SSL/TLS support for Warp, the premier WAI handler, via
+ the native Haskell TLS implementation.
+
+Package: libghc-warp-tls-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: SSL/TLS support for Warp; documentation
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+ .
+ It contains SSL/TLS support for Warp, the premier WAI handler, via
+ the native Haskell TLS implementation.
