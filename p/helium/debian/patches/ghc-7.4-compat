@@ -1,0 +1,909 @@
+Description: GHC 7.4 compat patch
+ GHC does not support using both base and haskell98, hence adjust all imports.
+Author: Joachim Breitner <nomeata@debian.org>
+Bug-Debian: http://bugs.debian.org/665079
+
+--- helium-1.7~pre20090428.orig/lvm/test/compare.hs
++++ helium-1.7~pre20090428/lvm/test/compare.hs
+@@ -1,6 +1,6 @@
+ module Main where
+
+-import Char   (isSpace)
++import Data.Char   (isSpace)
+ import System (exitWith,getArgs,ExitCode(..))
+
+ main
+--- helium-1.7~pre20090428.orig/lvm/src/lib/asm/AsmToLvm.hs
++++ helium-1.7~pre20090428/lvm/src/lib/asm/AsmToLvm.hs
+@@ -12,7 +12,7 @@
+ module AsmToLvm( asmToLvm )  where
+
+ import Standard ( assert )
+-import List     ( partition)
++import Data.List     ( partition)
+ import Id       ( idFromString )
+ import IdMap    ( IdMap, lookupMap, mapFromList )
+ import Asm
+--- helium-1.7~pre20090428.orig/lvm/src/lib/lvm/Instr.hs
++++ helium-1.7~pre20090428/lvm/src/lib/lvm/Instr.hs
+@@ -24,7 +24,7 @@ module Instr( Instr(..)
+             , instrHasStrictResult
+             ) where
+
+-import Char     ( toUpper )
++import Data.Char     ( toUpper )
+ import Standard ( strict )
+ import Id       ( Id, dummyId )
+ import Byte     ( Bytes, nil )
+--- helium-1.7~pre20090428.orig/lvm/src/lib/lvm/LvmImport.hs
++++ helium-1.7~pre20090428/lvm/src/lib/lvm/LvmImport.hs
+@@ -12,7 +12,7 @@
+ module LvmImport( lvmImport, lvmImportDecls ) where
+
+
+-import Monad    ( foldM )
++import Control.Monad    ( foldM )
+ import Standard ( foldlStrict )
+ import Id       ( Id, stringFromId, idFromString )
+ import IdMap    ( IdMap, emptyMap, insertMap, elemMap, updateMap, listFromMap, lookupMap, findMap, mapMap  )
+--- helium-1.7~pre20090428.orig/lvm/src/lib/lvm/ModulePretty.hs
++++ helium-1.7~pre20090428/lvm/src/lib/lvm/ModulePretty.hs
+@@ -11,7 +11,7 @@
+
+ module ModulePretty ( modulePretty, ppId, ppVarId, ppConId, ppString ) where
+
+-import Char     ( isAlphaNum, isAlpha, isLower, isUpper )
++import Data.Char     ( isAlphaNum, isAlpha, isLower, isUpper )
+ import PPrint
+ import Byte     ( stringFromBytes )
+ import Id       ( Id, stringFromId, idFromString )
+--- helium-1.7~pre20090428.orig/lvm/src/lib/lvm/LvmRead.hs
++++ helium-1.7~pre20090428/lvm/src/lib/lvm/LvmRead.hs
+@@ -12,7 +12,7 @@
+ module LvmRead( lvmReadFile, lvmRead ) where
+
+ import Prelude hiding (Read)
+-import Array
++import Data.Array
+ import Id       ( Id, stringFromId, idFromString, newNameSupply, freshId )
+ import IdMap
+
+--- helium-1.7~pre20090428.orig/lvm/src/lib/lvm/LvmWrite.hs
++++ helium-1.7~pre20090428/lvm/src/lib/lvm/LvmWrite.hs
+@@ -14,7 +14,7 @@ module LvmWrite( lvmWriteFile, lvmToByte
+ import Standard ( assert, strict )
+ import Id       ( Id, stringFromId )
+ import IdMap    ( IdMap, emptyMap, insertMapWith, lookupMap )
+-import System   ( exitWith, ExitCode(..))
++import System.Exit   ( exitWith, ExitCode(..))
+ import Byte
+ import Instr
+ import Lvm
+@@ -519,4 +519,4 @@ encodeInt i
+   = (2*i)+1
+
+ encodeIdx i
+-  = (2*i)
+\ No newline at end of file
++  = (2*i)
+--- helium-1.7~pre20090428.orig/lvm/src/lib/common/TopSort.hs
++++ helium-1.7~pre20090428/lvm/src/lib/common/TopSort.hs
+@@ -34,8 +34,8 @@ module TopSort( topSort ) where
+         ) where
+ -}
+
+-import Array
+-import List
++import Data.Array
++import Data.List
+ import Special( ST,STArray, runST, newSTArray, readSTArray, writeSTArray)
+
+ type Vertex  = Int
+--- helium-1.7~pre20090428.orig/lvm/src/lib/common/Standard.hs
++++ helium-1.7~pre20090428/lvm/src/lib/common/Standard.hs
+@@ -21,9 +21,9 @@ module Standard( trace, warning, assert
+                , raiseIO, raiseErr
+                ) where
+
+-import List       (isPrefixOf)
+-import IO
+-import System     (getEnv)
++import Data.List       (isPrefixOf)
++import System.IO
++import System.Environment     (getEnv)
+ import Special    (doesFileExist,unsafeCoerce,unsafePerformIO)
+
+ ----------------------------------------------------------------
+--- helium-1.7~pre20090428.orig/lvm/src/lib/common/Byte.hs
++++ helium-1.7~pre20090428/lvm/src/lib/common/Byte.hs
+@@ -29,10 +29,10 @@ module Byte( Byte
+
+ import Data.Word
+
+-import IO       ( IOMode(..) )
++import System.IO       ( IOMode(..) )
+ import Special  ( openBinary, writeBinaryChar, readBinary, closeBinary )
+ import Standard ( strict )
+-import System   ( exitWith, ExitCode(..))
++import System.Exit   ( exitWith, ExitCode(..))
+
+ {----------------------------------------------------------------
+   types
+@@ -167,4 +167,4 @@ readByteList path
+       } `catch` (\exception ->
+             let message =  show exception ++ "\n\nUnable to read from file " ++ show path
+             in do { putStrLn message; exitWith (ExitFailure 1) })
+-
+\ No newline at end of file
++
+--- helium-1.7~pre20090428.orig/lvm/src/lib/common/Set.hs
++++ helium-1.7~pre20090428/lvm/src/lib/common/Set.hs
+@@ -127,7 +127,7 @@ import Prelude hiding (filter)
+ {-
+ -- just for testing
+ import QuickCheck
+-import List (nub,sort)
++import Data.List (nub,sort)
+ import qualified List
+ -}
+
+@@ -1029,4 +1029,4 @@ prop_Ordered
+ prop_List :: [Int] -> Bool
+ prop_List xs
+   = (sort (nub xs) == toList (fromList xs))
+--}
+\ No newline at end of file
++-}
+--- helium-1.7~pre20090428.orig/lvm/src/lib/common/PPrint.hs
++++ helium-1.7~pre20090428/lvm/src/lib/common/PPrint.hs
+@@ -57,7 +57,7 @@ module PPrint
+         , displayS, displayIO
+         ) where
+
+-import IO      (Handle,hPutStr,hPutChar,stdout)
++import System.IO      (Handle,hPutStr,hPutChar,stdout)
+
+ infixr 5 </>,<//>,<$>,<$$>
+ infixr 6 <>,<+>
+--- helium-1.7~pre20090428.orig/lvm/src/lib/common/ghc/Special.hs
++++ helium-1.7~pre20090428/lvm/src/lib/common/ghc/Special.hs
+@@ -21,8 +21,8 @@ module Special( doesFileExist
+               , unsafeCoerce, unsafePerformIO
+               ) where
+
+-import Directory  ( doesFileExist )
+-import IO         ( Handle, hGetContents, hClose, hPutChar, IOMode(..) )
++import System.Directory  ( doesFileExist )
++import System.IO  ( Handle, hGetContents, hClose, hPutChar, IOMode(..) )
+ import System.IO  ( openBinaryFile )
+ import System.IO.Unsafe ( unsafePerformIO )
+ import GHC.Base         ( unsafeCoerce# )
+--- helium-1.7~pre20090428.orig/lvm/src/lib/parsec/ParsecError.hs
++++ helium-1.7~pre20090428/lvm/src/lib/parsec/ParsecError.hs
+@@ -20,7 +20,7 @@ module ParsecError( Message(SysUnExpect,
+                   where
+
+
+-import List      (nub,sortBy)
++import Data.List      (nub,sortBy)
+ import ParsecPos
+
+ -----------------------------------------------------------
+--- helium-1.7~pre20090428.orig/lvm/src/lib/parsec/ParsecPrim.hs
++++ helium-1.7~pre20090428/lvm/src/lib/parsec/ParsecPrim.hs
+@@ -35,7 +35,7 @@ module ParsecPrim( -- operators: label a
+
+ import ParsecPos
+ import ParsecError
+-import Monad
++import Control.Monad
+
+ {-# INLINE parsecMap    #-}
+ {-# INLINE parsecReturn #-}
+--- helium-1.7~pre20090428.orig/lvm/src/lib/parsec/ParsecChar.hs
++++ helium-1.7~pre20090428/lvm/src/lib/parsec/ParsecChar.hs
+@@ -17,7 +17,7 @@ module ParsecChar ( CharParser
+                   , satisfy
+                   ) where
+
+-import Char
++import Data.Char
+ import ParsecPos( updatePosChar, updatePosString )
+ import ParsecPrim
+
+--- helium-1.7~pre20090428.orig/lvm/src/lib/parsec/ParsecCombinator.hs
++++ helium-1.7~pre20090428/lvm/src/lib/parsec/ParsecCombinator.hs
+@@ -24,7 +24,7 @@ module ParsecCombinator ( choice
+                         , manyTill, lookAhead, anyToken
+                         ) where
+
+-import Monad
++import Control.Monad
+ import ParsecPrim
+
+
+--- helium-1.7~pre20090428.orig/lvm/src/lib/core/Main.hs
++++ helium-1.7~pre20090428/lvm/src/lib/core/Main.hs
+@@ -11,7 +11,7 @@
+
+ module Main where
+
+-import System     ( getArgs )
++import System.Environment    ( getArgs )
+ import PPrint     ( putDoc )
+
+ import Standard   ( getLvmPath, searchPath, searchPathMaybe )
+--- helium-1.7~pre20090428.orig/lvm/src/lib/core/CoreSaturate.hs
++++ helium-1.7~pre20090428/lvm/src/lib/core/CoreSaturate.hs
+@@ -15,7 +15,7 @@
+ ----------------------------------------------------------------
+ module CoreSaturate( coreSaturate ) where
+
+-import List   ( mapAccumR )
++import Data.List   ( mapAccumR )
+ import Id     ( NameSupply, freshId, splitNameSupply, splitNameSupplies )
+ import IdMap  ( IdMap, lookupMap, mapFromList )
+ import Core
+--- helium-1.7~pre20090428.orig/lvm/src/lib/core/CoreLexer.hs
++++ helium-1.7~pre20090428/lvm/src/lib/core/CoreLexer.hs
+@@ -14,7 +14,7 @@ module CoreLexer( Token, Lexeme(..), Pos
+                 , layout, addLayout
+                 ) where
+
+-import Char
++import Data.Char hiding (isSymbol, isLetter)
+ import Standard( foldlStrict )
+
+ -----------------------------------------------------------
+--- helium-1.7~pre20090428.orig/lvm/src/lib/core/CoreLex.hs
++++ helium-1.7~pre20090428/lvm/src/lib/core/CoreLex.hs
+@@ -15,7 +15,7 @@ module CoreLex( topLevel
+               , integerOrFloat, integer, stringLiteral
+               ) where
+
+-import Char  ( digitToInt, isAlphaNum, isLower, isUpper )
++import Data.Char  ( digitToInt, isAlphaNum, isLower, isUpper )
+ import Set   ( Set, fromList, member )
+ import Id    ( Id, idFromString )
+
+--- helium-1.7~pre20090428.orig/helium/test/testinstallation/Simple.hs
++++ helium-1.7~pre20090428/helium/test/testinstallation/Simple.hs
+@@ -2,8 +2,8 @@ module Simple where
+
+ -- No need to import Prelude
+
+-import Char
+-import List
++import Data.Char
++import Data.List
+ import Base
+
+ type Strand = String
+--- helium-1.7~pre20090428.orig/helium/test/testinstallation/Overloaded.hs
++++ helium-1.7~pre20090428/helium/test/testinstallation/Overloaded.hs
+@@ -2,8 +2,8 @@ module Overloaded where
+
+ -- No need to import Prelude
+
+-import Char
+-import List
++import Data.Char
++import Data.List
+ import Base
+
+ type Strand = String
+--- helium-1.7~pre20090428.orig/helium/test/simple/typeerrors/Examples/HighlyTrustedReported.hs
++++ helium-1.7~pre20090428/helium/test/simple/typeerrors/Examples/HighlyTrustedReported.hs
+@@ -1,4 +1,4 @@
+-import List
++import Data.List
+
+ f lijst table
+    | elemBy eqString (head(head(transpose table))) lijst  =
+--- helium-1.7~pre20090428.orig/helium/test/simple/benchmarks/Main.hs
++++ helium-1.7~pre20090428/helium/test/simple/benchmarks/Main.hs
+@@ -5,7 +5,7 @@
+ -- ==========================================================--
+
+ module Main where
+--- import Char -- 1.3
++-- import Data.Char -- 1.3
+ ----------------------------------------------------------
+ -- Lexemes                                              --
+ ----------------------------------------------------------
+--- helium-1.7~pre20090428.orig/helium/test/typeerrors/Heuristics/OrdChr.hs
++++ helium-1.7~pre20090428/helium/test/typeerrors/Heuristics/OrdChr.hs
+@@ -1,3 +1,3 @@
+-import Char
++import Data.Char
+
+ main = (ord 65, chr 'a')
+--- helium-1.7~pre20090428.orig/helium/test/benchmarks/Main.hs
++++ helium-1.7~pre20090428/helium/test/benchmarks/Main.hs
+@@ -5,7 +5,7 @@
+ -- ==========================================================--
+
+ module Main where
+--- import Char -- 1.3
++-- import Data.Char -- 1.3
+ ----------------------------------------------------------
+ -- Lexemes                                              --
+ ----------------------------------------------------------
+--- helium-1.7~pre20090428.orig/helium/test/benchmarks/Parser.hs
++++ helium-1.7~pre20090428/helium/test/benchmarks/Parser.hs
+@@ -8,7 +8,7 @@
+ -- ==========================================================--
+
+ module Parser where
+-import Char -- 1.3
++import Data.Char -- 1.3
+ ----------------------------------------------------------
+ -- Lexemes                                              --
+ ----------------------------------------------------------
+--- helium-1.7~pre20090428.orig/helium/lib/Prelude.hs
++++ helium-1.7~pre20090428/helium/lib/Prelude.hs
+@@ -278,7 +278,7 @@ unzip3 = foldr (\(a,b,c) (as,bs,cs) -> (
+  -- List
+  -----------------------------------------------}
+
+--- We can't import Char here because that would mean we couldn't import
++-- We can't import Data.Char here because that would mean we couldn't import
+ -- it elsewhere. Therefore, we make local copies of the two functions
+ -- from that module
+ localIsSpace :: Char -> Bool
+--- helium-1.7~pre20090428.orig/helium/lib/simple/Prelude.hs
++++ helium-1.7~pre20090428/helium/lib/simple/Prelude.hs
+@@ -238,7 +238,7 @@ unzip3 = foldr (\(a,b,c) (as,bs,cs) -> (
+  -- List
+  -----------------------------------------------}
+
+- -- We can't import Char here because that would mean we couldn't import
++ -- We can't import Data.Char here because that would mean we couldn't import
+ -- it elsewhere. Therefore, we make local copies of the two functions
+ -- from that module
+ localIsSpace :: Char -> Bool
+--- helium-1.7~pre20090428.orig/helium/src/utils/Utils.hs
++++ helium-1.7~pre20090428/helium/src/utils/Utils.hs
+@@ -12,7 +12,7 @@ module Utils where
+
+ import Data.IORef
+ import GHC.IOBase (unsafePerformIO)
+-import List (group, groupBy, sort, elemIndex)
++import Data.List (group, groupBy, sort, elemIndex)
+ import Logger
+
+ -------------------------------------------------------
+--- helium-1.7~pre20090428.orig/helium/src/utils/Similarity.hs
++++ helium-1.7~pre20090428/helium/src/utils/Similarity.hs
+@@ -14,7 +14,7 @@
+
+ module Similarity(similar) where
+
+-import Char
++import Data.Char
+ import Utils(internalError)
+
+ similar :: String -> String -> Bool
+--- helium-1.7~pre20090428.orig/helium/src/utils/Logger.hs
++++ helium-1.7~pre20090428/helium/src/utils/Logger.hs
+@@ -10,12 +10,12 @@ module Logger ( logger, logInternalError
+
+ import Network
+ import Control.Concurrent
+-import Monad
+-import System
+-import Char
+-import List
++import Control.Monad
++import System.IO
++import System.Environment
++import Data.Char
++import Data.List
+ import Args
+-import IO
+ import Version
+
+ {-# NOTINLINE logger #-}
+--- helium-1.7~pre20090428.orig/helium/src/utils/OneLiner.hs
++++ helium-1.7~pre20090428/helium/src/utils/OneLiner.hs
+@@ -8,7 +8,7 @@
+
+ module OneLiner(OneLineTree(..), showOneLine) where
+
+-import List
++import Data.List
+
+ data OneLineTree
+     = OneLineNode [OneLineTree]
+--- helium-1.7~pre20090428.orig/helium/src/parser/Lexer.hs
++++ helium-1.7~pre20090428/helium/src/parser/Lexer.hs
+@@ -19,9 +19,9 @@ import LexerToken
+ import Text.ParserCombinators.Parsec.Pos
+ import Utils(internalError)
+
+-import Monad(when)
+-import Char(ord)
+-import List(isPrefixOf)
++import Control.Monad(when)
++import Data.Char(ord)
++import Data.List(isPrefixOf)
+
+ lexer :: String -> [Char] -> Either LexerError ([Token], [LexerWarning])
+ lexer fileName input = runLexerMonad fileName (mainLexer input)
+--- helium-1.7~pre20090428.orig/helium/src/parser/ResolveOperators.ag
++++ helium-1.7~pre20090428/helium/src/parser/ResolveOperators.ag
+@@ -3,7 +3,7 @@ import UHA_Utils
+ import UHA_Syntax
+ import UHA_Range
+ import OperatorTable
+-import Char
++import Data.Char
+ import Utils
+ import Messages
+ import qualified Data.Map as M
+--- helium-1.7~pre20090428.orig/helium/src/staticanalysis/messages/KindErrors.hs
++++ helium-1.7~pre20090428/helium/src/staticanalysis/messages/KindErrors.hs
+@@ -14,7 +14,7 @@ import Top.Types
+ import UHA_Syntax (Range, Type)
+ import PPrint (Doc)
+ import Messages
+-import List (union)
++import Data.List (union)
+ import qualified UHA_Pretty as PP
+ import qualified PPrint
+
+--- helium-1.7~pre20090428.orig/helium/src/staticanalysis/messages/HeliumMessages.hs
++++ helium-1.7~pre20090428/helium/src/staticanalysis/messages/HeliumMessages.hs
+@@ -15,10 +15,10 @@ import Messages
+ import Top.Types
+ import qualified PPrint
+ import qualified OneLiner
+-import List                (intersperse, zipWith4)
++import Data.List                (intersperse, zipWith4)
+ import TypesToAlignedDocs  (qualifiedTypesToAlignedDocs)
+ import UHA_Range           (isImportRange, showRanges)
+-import Char                (isSpace)
++import Data.Char                (isSpace)
+
+ ----------------------------------------------------------
+ -- message parameters
+--- helium-1.7~pre20090428.orig/helium/src/staticanalysis/messages/TypeErrors.hs
++++ helium-1.7~pre20090428/helium/src/staticanalysis/messages/TypeErrors.hs
+@@ -12,7 +12,7 @@ module TypeErrors where
+
+ import Messages
+ import Top.Types
+-import List       (union, partition)
++import Data.List       (union, partition)
+ import UHA_Syntax (Range, Name)
+ import UHA_Range  (getNameRange)
+ import UHA_Source
+@@ -124,4 +124,4 @@ makeRestrictedButOverloadedError name sc
+                  , "inferred type" >:> MessageType scheme
+                  ]
+        hint    = "Only functions and simple patterns can have an overloaded type"
+-   in TypeError [getNameRange name] [message] table [("hint", MessageString hint)]
+\ No newline at end of file
++   in TypeError [getNameRange name] [message] table [("hint", MessageString hint)]
+--- helium-1.7~pre20090428.orig/helium/src/staticanalysis/messages/StaticErrors.hs
++++ helium-1.7~pre20090428/helium/src/staticanalysis/messages/StaticErrors.hs
+@@ -13,8 +13,8 @@ module StaticErrors where
+ import UHA_Syntax
+ import UHA_Range
+ import Messages
+-import List        (nub, intersperse, sort, partition)
+-import Maybe       (fromJust)
++import Data.List        (nub, intersperse, sort, partition)
++import Data.Maybe       (fromJust)
+ import Utils       (commaList, internalError, maxInt)
+ import Top.Types
+
+--- helium-1.7~pre20090428.orig/helium/src/staticanalysis/messages/Messages.hs
++++ helium-1.7~pre20090428/helium/src/staticanalysis/messages/Messages.hs
+@@ -19,8 +19,8 @@ import Top.Types
+ import OneLiner
+ import Similarity (similar)
+ import Utils      (internalError)
+-import List       (sortBy, partition)
+-import Char       (toUpper)
++import Data.List       (sortBy, partition)
++import Data.Char       (toUpper)
+
+ type Message       = [MessageLine]
+
+--- helium-1.7~pre20090428.orig/helium/src/staticanalysis/inferencers/SelectConstraintSolver.hs
++++ helium-1.7~pre20090428/helium/src/staticanalysis/inferencers/SelectConstraintSolver.hs
+@@ -139,4 +139,4 @@ warnForTooSpecificSignatures solver clas
+    splitExplicit _ = Nothing
+
+ instance Show Warning where show _ = "<warning>"
+-instance IsState Warnings -}
+\ No newline at end of file
++instance IsState Warnings -}
+--- helium-1.7~pre20090428.orig/helium/src/staticanalysis/inferencers/KindInferencing.ag
++++ helium-1.7~pre20090428/helium/src/staticanalysis/inferencers/KindInferencing.ag
+@@ -43,7 +43,7 @@ import Utils (internalError)
+ import TopSort (topSort)
+ import ImportEnvironment hiding (setTypeSynonyms)
+ import KindErrors
+-import Char (isLower)
++import Data.Char (isLower)
+ import BindingGroupAnalysis (Assumptions, PatternAssumptions, noAssumptions, combine, single)
+ }
+
+--- helium-1.7~pre20090428.orig/helium/src/staticanalysis/miscellaneous/TypesToAlignedDocs.hs
++++ helium-1.7~pre20090428/helium/src/staticanalysis/miscellaneous/TypesToAlignedDocs.hs
+@@ -10,7 +10,7 @@
+
+ module TypesToAlignedDocs (qualifiedTypesToAlignedDocs, typesToAlignedDocs) where
+
+-import List     ( transpose )
++import Data.List     ( transpose )
+ import Top.Types
+ import PPrint
+
+--- helium-1.7~pre20090428.orig/helium/src/staticanalysis/miscellaneous/ConstraintInfo.hs
++++ helium-1.7~pre20090428/helium/src/staticanalysis/miscellaneous/ConstraintInfo.hs
+@@ -1,4 +1,4 @@
+-{-# OPTIONS -XTypeSynonymInstances #-}
++{-# OPTIONS -XTypeSynonymInstances -XFlexibleInstances #-}
+ {-| Module      :  ConstraintInfo
+     License     :  GPL
+
+@@ -440,4 +440,4 @@ maybeSpecialTypeError = errorMessage
+
+ setTypeError :: TypeError -> ConstraintInfo -> ConstraintInfo
+ setTypeError typeError info =
+-   info { errorMessage = Just typeError }
+\ No newline at end of file
++   info { errorMessage = Just typeError }
+--- helium-1.7~pre20090428.orig/helium/src/staticanalysis/miscellaneous/TypeConversion.hs
++++ helium-1.7~pre20090428/helium/src/staticanalysis/miscellaneous/TypeConversion.hs
+@@ -13,7 +13,7 @@ module TypeConversion where
+ import UHA_Utils (getNameName, nameFromString)
+ import UHA_Range (noRange)
+ import Utils (internalError)
+-import List (union)
++import Data.List (union)
+ import UHA_Syntax
+ import Top.Types
+
+--- helium-1.7~pre20090428.orig/helium/src/staticanalysis/directives/TS_Analyse.ag
++++ helium-1.7~pre20090428/helium/src/staticanalysis/directives/TS_Analyse.ag
+@@ -33,7 +33,7 @@ import TypeConstraints
+ import ConstraintInfo
+ import TS_Syntax
+ import TypeConversion
+-import List
++import Data.List
+ import UHA_Utils (nameFromString)
+ import UHA_Range (noRange)
+ import Messages
+--- helium-1.7~pre20090428.orig/helium/src/staticanalysis/directives/TS_ToCore.ag
++++ helium-1.7~pre20090428/helium/src/staticanalysis/directives/TS_ToCore.ag
+@@ -33,7 +33,7 @@ import UHA_Utils (getNameName, nameFromS
+ import qualified UHA_OneLine
+ import TypeConversion
+ import Utils (internalError)
+-import List
++import Data.List
+ import OneLiner
+ import TS_Attributes
+ import TypeConstraints
+@@ -119,4 +119,4 @@ useNameMap nameMap attribute =
+             Nothing -> attribute
+       _             -> attribute
+
+-}
+\ No newline at end of file
++}
+--- helium-1.7~pre20090428.orig/helium/src/staticanalysis/directives/TS_PatternMatching.ag
++++ helium-1.7~pre20090428/helium/src/staticanalysis/directives/TS_PatternMatching.ag
+@@ -14,7 +14,7 @@
+ -----------------------------------------------------------------------------
+
+ imports {
+-import List
++import Data.List
+ import Matchers
+ import TS_Apply (applyTypingStrategy, matchInformation)
+ import TS_CoreSyntax
+--- helium-1.7~pre20090428.orig/helium/src/staticanalysis/directives/TS_Apply.ag
++++ helium-1.7~pre20090428/helium/src/staticanalysis/directives/TS_Apply.ag
+@@ -17,7 +17,7 @@ import UHA_Syntax
+ import TypeConstraints
+ import ConstraintInfo
+ import Top.Types
+-import List
++import Data.List
+ import Utils (internalError)
+ import Messages
+ import TypeErrors
+@@ -228,4 +228,4 @@ ATTR Core_Judgements Core_Judgement Core
+
+ SEM Core_Judgement
+   | Judgement
+-       lhs . judgements = [(@expression, @type)]
+\ No newline at end of file
++       lhs . judgements = [(@expression, @type)]
+--- helium-1.7~pre20090428.orig/helium/src/staticanalysis/directives/TS_Compile.hs
++++ helium-1.7~pre20090428/helium/src/staticanalysis/directives/TS_Compile.hs
+@@ -15,13 +15,13 @@ module TS_Compile where
+ import TS_CoreSyntax
+ import ImportEnvironment
+ import TS_ToCore      (typingStrategyToCore)
+-import System         (exitWith, ExitCode(..) )
+-import Directory      (doesFileExist)
++import System.Exit         (exitWith, ExitCode(..) )
++import System.Directory      (doesFileExist)
+ import TS_Parser      (parseTypingStrategies)
+ import Lexer          (strategiesLexer)
+ import TS_Analyse     (analyseTypingStrategies)
+ import HeliumMessages (sortAndShowMessages)
+-import Monad          (unless, when)
++import Control.Monad          (unless, when)
+ import qualified Args (Option(..))
+ import ParseMessage ()
+ import CoreUtils
+--- helium-1.7~pre20090428.orig/helium/src/staticanalysis/staticchecks/StaticChecks.ag
++++ helium-1.7~pre20090428/helium/src/staticanalysis/staticchecks/StaticChecks.ag
+@@ -43,14 +43,14 @@ import Top.Types
+ import StaticErrors
+ import Warnings
+ import Messages
+-import List
++import Data.List
+ import Utils ( internalError, minInt, maxInt )
+ import TypeConversion
+ import DerivingShow
+ import qualified Data.Map as M
+ import ImportEnvironment
+ import OperatorTable
+-import Char ( isUpper )
++import Data.Char ( isUpper )
+ }
+
+ -- combine all the collected errors, then filter out the "entity is undefined"
+--- helium-1.7~pre20090428.orig/helium/src/main/Main.hs
++++ helium-1.7~pre20090428/helium/src/main/Main.hs
+@@ -10,10 +10,10 @@ module Main where
+ import Compile(compile)
+ import Parser(parseOnlyImports)
+
+-import List(nub, elemIndex, isSuffixOf, intersperse)
+-import Maybe(fromJust)
++import Data.List(nub, elemIndex, isSuffixOf, intersperse)
++import Data.Maybe(fromJust)
+ import Standard(getLvmPath, splitPath)
+-import Directory(doesFileExist, getModificationTime)
++import System.Directory(doesFileExist, getModificationTime)
+ import CompileUtils
+ import Data.IORef
+ import Args
+--- helium-1.7~pre20090428.orig/helium/src/main/CompileUtils.hs
++++ helium-1.7~pre20090428/helium/src/main/CompileUtils.hs
+@@ -19,9 +19,10 @@ module CompileUtils
+ import Args(Option(..))
+ import Messages(HasMessage)
+ import HeliumMessages(sortAndShowMessages)
+-import Monad(when, unless)
++import Control.Monad(when, unless)
+ import Utils(splitFilePath, combinePathAndFile)
+-import System(exitWith, ExitCode(..), getArgs)
++import System.Exit(exitWith, ExitCode(..))
++import System.Environment(getArgs)
+ import Logger
+ import ImportEnvironment
+ import UHA_Syntax(Module(..))
+--- helium-1.7~pre20090428.orig/helium/src/main/Args.hs
++++ helium-1.7~pre20090428/helium/src/main/Args.hs
+@@ -21,10 +21,11 @@ module Args
+     , hasAlertOption
+     ) where
+
+-import System
++import System.IO
++import System.Exit
+ import Version
+ import Data.Char
+-import Monad(when)
++import Control.Monad(when)
+ import System.Console.GetOpt
+
+ loggerDEFAULTHOST :: String
+--- helium-1.7~pre20090428.orig/helium/src/texthint/Main.hs
++++ helium-1.7~pre20090428/helium/src/texthint/Main.hs
+@@ -16,16 +16,18 @@
+
+ module Main where
+
+-import Char
++import Data.Char
+ import Data.List(isInfixOf, isPrefixOf, isSuffixOf)
+-import Monad(when)
+-import IO(stdout, hFlush)
++import Control.Monad(when)
++import System.IO(stdout, hFlush)
+ import Data.IORef       ( IORef, readIORef, newIORef, writeIORef )
+ import System.IO.Unsafe ( unsafePerformIO )
+-import System(system, getEnv, getArgs, exitWith, ExitCode(..))
++import System.Environment (getEnv, getArgs)
++import System.Exit (exitWith, ExitCode(..))
++import System.Process (system)
+ import qualified System.Console.Editline.Readline as RL
+ import OSSpecific(slash)
+-import Directory
++import System.Directory
+ import ConfigFile(Config, readConfig)
+ import Args
+
+--- helium-1.7~pre20090428.orig/helium/src/texthint/ConfigFile.hs
++++ helium-1.7~pre20090428/helium/src/texthint/ConfigFile.hs
+@@ -1,6 +1,6 @@
+ module ConfigFile (Config, readConfig) where
+
+-import Char
++import Data.Char
+ import Control.Monad
+ import qualified Data.Map as Map
+ import Text.ParserCombinators.Parsec
+--- helium-1.7~pre20090428.orig/helium/src/interpreter/Main.hs
++++ helium-1.7~pre20090428/helium/src/interpreter/Main.hs
+@@ -10,13 +10,15 @@
+
+ module Main where
+
+-import Char
+-import List(isPrefixOf, isSuffixOf)
+-import Monad(when)
++import Data.Char
++import Data.List(isPrefixOf, isSuffixOf)
++import Control.Monad(when)
+ import IO(stdout, hFlush)
+-import System(system, getEnv, getArgs, exitWith, ExitCode(..))
++import System.Environment (getEnv, getArgs)
++import System.Exit (exitWith, ExitCode(..))
++import System.IO (system)
+ import OSSpecific(slash)
+-import Directory
++import System.Directory
+
+ data State =
+     State
+--- helium-1.7~pre20090428.orig/helium/src/syntax/UHA_Pretty.ag
++++ helium-1.7~pre20090428/helium/src/syntax/UHA_Pretty.ag
+@@ -2,7 +2,7 @@ INCLUDE "../syntax/UHA_Syntax.ag"
+
+ imports{
+ import PPrint
+-import Char
++import Data.Char
+ import Top.Types (isTupleConstructor)
+ import UHA_Syntax
+ import Utils (internalError)
+--- helium-1.7~pre20090428.orig/helium/src/syntax/UHA_Range.hs
++++ helium-1.7~pre20090428/helium/src/syntax/UHA_Range.hs
+@@ -11,8 +11,8 @@ module UHA_Range where
+ import UHA_Syntax
+ import Id(Id, stringFromId)
+ import Utils(internalError)
+-import Maybe(isJust)
+-import List(sort, partition)
++import Data.Maybe(isJust)
++import Data.List(sort, partition)
+
+ --------------------------------------------------------------
+ -- instances for Range and Position
+--- helium-1.7~pre20090428.orig/helium/src/syntax/UHA_OneLine.ag
++++ helium-1.7~pre20090428/helium/src/syntax/UHA_OneLine.ag
+@@ -2,11 +2,11 @@ INCLUDE "UHA_Syntax.ag"
+
+ imports{
+ import OneLiner
+-import Char
++import Data.Char
+ import UHA_Utils (showNameAsOperator)
+ import TypeConversion
+ import UHA_Syntax
+-import List
++import Data.List
+ import Utils (internalError)
+ }
+
+--- helium-1.7~pre20090428.orig/helium/src/syntax/UHA_Utils.hs
++++ helium-1.7~pre20090428/helium/src/syntax/UHA_Utils.hs
+@@ -13,7 +13,7 @@ module UHA_Utils where
+ import UHA_Range(noRange, getNameRange)
+ import UHA_Syntax(Name(..), ImportDeclaration(..), Pattern(..))
+ import Id(Id, idFromString, stringFromId)
+-import Char
++import Data.Char
+ import Top.Types(isTupleConstructor)
+ import Utils(internalError)
+
+--- helium-1.7~pre20090428.orig/helium/src/codegeneration/CodeGeneration.ag
++++ helium-1.7~pre20090428/helium/src/codegeneration/CodeGeneration.ag
+@@ -25,7 +25,7 @@ import ImportEnvironment
+ import DictionaryEnvironment
+ import qualified Data.Map as M
+ import TypeConversion
+-import Char (ord)
++import Data.Char (ord)
+
+ import Id
+ import IdSet
+--- helium-1.7~pre20090428.orig/helium/src/codegeneration/CoreUtils.hs
++++ helium-1.7~pre20090428/helium/src/codegeneration/CoreUtils.hs
+@@ -17,7 +17,7 @@ module CoreUtils
+
+ import Core
+ import Id
+-import Char
++import Data.Char
+ import Byte(bytesFromString)
+
+ infixl `app_`
+--- helium-1.7~pre20090428.orig/helium/src/codegeneration/PatternMatch.hs
++++ helium-1.7~pre20090428/helium/src/codegeneration/PatternMatch.hs
+@@ -13,7 +13,7 @@ import UHA_Syntax
+ import UHA_Utils
+ import UHA_Range
+ import Id
+-import Char
++import Data.Char
+ import Utils
+ import CoreUtils
+
+--- helium-1.7~pre20090428.orig/Top/src/Top/Types/Substitution.hs
++++ helium-1.7~pre20090428/Top/src/Top/Types/Substitution.hs
+@@ -1,4 +1,4 @@
+-{-# OPTIONS -XExistentialQuantification -XTypeSynonymInstances #-}
++{-# OPTIONS -XExistentialQuantification -XTypeSynonymInstances -XFlexibleInstances #-}
+ -----------------------------------------------------------------------------
+ -- | License      :  GPL
+ --
+@@ -176,4 +176,4 @@ allTypeConstants =
+    let f (TVar _)   = []
+        f (TCon s)   = [s]
+        f (TApp l r) = f l ++ f r
+-   in nub . concatMap f . getTypes
+\ No newline at end of file
++   in nub . concatMap f . getTypes
+--- helium-1.7~pre20090428.orig/Top/src/Top/Types/Schemes.hs
++++ helium-1.7~pre20090428/Top/src/Top/Types/Schemes.hs
+@@ -1,4 +1,4 @@
+-{-# OPTIONS -XTypeSynonymInstances #-}
++{-# OPTIONS -XTypeSynonymInstances -XFlexibleInstances #-}
+ -----------------------------------------------------------------------------
+ -- | License      :  GPL
+ --
+@@ -121,4 +121,4 @@ instance IsSigmaPreds SigmaPreds where t
+ instance IsSigmaPreds TpScheme   where toSigmaPreds = SigmaScheme . toTpScheme
+ instance IsSigmaPreds QType      where toSigmaPreds = SigmaScheme . toTpScheme
+ instance IsSigmaPreds Tp         where toSigmaPreds = SigmaScheme . toTpScheme
+-instance IsSigmaPreds Int        where toSigmaPreds = SigmaVar
+\ No newline at end of file
++instance IsSigmaPreds Int        where toSigmaPreds = SigmaVar
+--- helium-1.7~pre20090428.orig/Top/src/Top/Implementation/TypeGraph/Heuristic.hs
++++ helium-1.7~pre20090428/Top/src/Top/Implementation/TypeGraph/Heuristic.hs
+@@ -1,4 +1,4 @@
+-{-# OPTIONS -XRankNTypes -XFlexibleContexts -XFlexibleContexts #-}
++{-# OPTIONS -XRankNTypes -XFlexibleContexts -XFlexibleContexts -XDatatypeContexts #-}
+ -----------------------------------------------------------------------------
+ -- | License      :  GPL
+ --
+--- helium-1.7~pre20090428.orig/Top/src/Top/Constraint/Information.hs
++++ helium-1.7~pre20090428/Top/src/Top/Constraint/Information.hs
+@@ -1,4 +1,4 @@
+-{-# OPTIONS -XTypeSynonymInstances #-}
++{-# OPTIONS -XTypeSynonymInstances -XFlexibleInstances #-}
+ -----------------------------------------------------------------------------
+ -- | License      :  GPL
+ --
+@@ -45,4 +45,4 @@ class TypeConstraintInfo info => PolyTyp
+
+    -- default definition
+    instantiatedTypeScheme _  = id
+-   skolemizedTypeScheme _    = id
+\ No newline at end of file
++   skolemizedTypeScheme _    = id
