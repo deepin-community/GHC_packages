@@ -5,6 +5,9 @@ PREFIX = debian/bustle/usr
 %:
 	dh $@
 
+override_dh_auto_clean:
+	rm -f dist/build/bustle-pcap
+
 override_dh_auto_build:
 	mkdir -p dist/build
 	dh_auto_build
