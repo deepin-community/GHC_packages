@@ -1,0 +1,25 @@
+Description: add a controllable -threaded flag
+ This can be used to disable the threaded runtime on platforms where it
+ is missing.
+Forwarded: no
+Author: Iustin Pop <iustin@debian.org>
+Last-Update: 2012-03-28
+--- a/shelltestrunner.cabal
++++ b/shelltestrunner.cabal
+@@ -23,9 +23,15 @@
+ extra-tmp-files:
+ extra-source-files:
+
++flag threaded
++  description: build threaded
++  default: True
++
+ executable shelltest
+   main-is:        shelltest.hs
+-  ghc-options:    -threaded -W -fwarn-tabs
++  ghc-options:    -W -fwarn-tabs
++  if flag(threaded)
++      ghc-options: -threaded
+   build-depends:
+                  base                 >= 4     && < 5
+                 ,filemanip            >= 0.3   && < 0.4
