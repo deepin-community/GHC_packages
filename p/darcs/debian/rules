@@ -5,7 +5,7 @@ include /usr/share/cdbs/1/class/hlibrary.mk
 
 DEB_INSTALL_CHANGELOGS_ALL=NEWS
 
-DEB_SETUP_GHC_CONFIGURE_ARGS=$(if $(wildcard /usr/lib/*/libHSrts_thr.a),,-f-threaded) -flibrary -fforce-char8-encoding --ghc-options="+RTS -V0 -RTS"
+DEB_SETUP_GHC_CONFIGURE_ARGS=$(if $(wildcard /usr/lib/*/libHSrts_thr.a),,-f-threaded) -flibrary -fforce-char8-encoding -fcurl --ghc-options="+RTS -V0 -RTS"
 
 common-binary-post-install-arch::
 ifneq (nocheck,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
