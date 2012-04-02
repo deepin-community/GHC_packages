@@ -9,20 +9,21 @@ Description:    use editor(1) and pager(1) instead of specific editors/pagers.
  uncheck the "standard" tasksel task.
  .
  Not forwarded because editor(1) and pager(1) are Debian-specific.
-Index: darcs-2.5.2/src/Darcs/Utils.hs
+Index: darcs-experimental/src/Darcs/Utils.hs
 ===================================================================
---- darcs-2.5.2.orig/src/Darcs/Utils.hs	2011-03-13 22:40:46.000000000 +0000
-+++ darcs-2.5.2/src/Darcs/Utils.hs	2011-04-26 03:32:43.895798358 +0000
-@@ -203,37 +203,29 @@
+--- darcs-experimental.orig/src/Darcs/Utils.hs	2012-04-01 10:29:45.000000000 +0100
++++ darcs-experimental/src/Darcs/Utils.hs	2012-04-02 19:42:31.288740993 +0100
+@@ -319,19 +319,12 @@
  runEditor f = do
-   ed <- getEditor
-   execInteractive ed f
--       `ortryrunning` execInteractive "emacs" f
--       `ortryrunning` execInteractive "emacs -nw" f
--       `ortryrunning` execInteractive "nano" f
+     ed <- getEditor
+     execInteractive ed f
+-         `ortryrunning` execInteractive "emacs" f
+-         `ortryrunning` execInteractive "emacs -nw" f
+-         `ortryrunning` execInteractive "nano" f
 -#ifdef WIN32
--       `ortryrunning` execInteractive "edit" f
+-         `ortryrunning` execInteractive "edit" f
 -#endif
+-
 
  getEditor :: IO String
  getEditor = getEnv "DARCS_EDITOR" `catchall`
@@ -31,14 +32,16 @@ Index: darcs-2.5.2/src/Darcs/Utils.hs
 -             getEnv "EDITOR" `catchall` return "vi"
 +             getEnv "EDITOR" `catchall` return "editor"
 
+
  environmentHelpEditor :: ([String], [String])
- environmentHelpEditor = (["DARCS_EDITOR", "DARCSEDITOR", "VISUAL", "EDITOR"],[
+@@ -339,20 +332,17 @@
   "To edit a patch description of email comment, Darcs will invoke an",
   "external editor.  Your preferred editor can be set as any of the",
   "environment variables $DARCS_EDITOR, $DARCSEDITOR, $VISUAL or $EDITOR.",
 - "If none of these are set, vi(1) is used.  If vi crashes or is not",
 - "found in your PATH, emacs, emacs -nw, nano and (on Windows) edit are",
 - "each tried in turn."])
+-
 + "If none of these are set, editor(1) is used."])
 
  getViewer :: IO String
