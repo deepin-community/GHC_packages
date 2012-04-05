@@ -1,0 +1,19 @@
+There are a few notes about the upstream source.
+
+First, it includes some third-party libraries in assets/:
+
+- jquery 1.6.4
+- jquery flot
+- bootstrap 1.4.0
+
+bootstrap 1.4.0 is not the version that is present in Debian (and is
+incompatible with that), so we have to use the embedded copy. I still
+have to determine whether we can replace the jquery libs with the ones
+shipped in Debian.
+
+Furthermore, there are (also in assets/) two icons that are from a
+third-party and licensed under CC-BY-3.0 (the license for these is not
+shipped in the upstream tarball, but you can see it at
+https://github.com/tibbe/ekg/blob/HEAD/LICENSE.icons).
+
+ -- Iustin Pop <iustin@debian.org>, Thu,  5 Apr 2012 22:21:48 +0200
