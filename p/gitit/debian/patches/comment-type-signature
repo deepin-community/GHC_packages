@@ -1,0 +1,26 @@
+Description: Comment out type signature in readFile function
+ When this type signature is present, a bug elsewhere (possibly in Haddock)
+ causes the document generation (and thus the build) to fail with a message
+ about this function's use of the FlexibleContexts extension to Haskell. If we
+ comment it out then the bug is not triggered and everything still works
+ because GHC can infer the type of the function.
+Author: Iain Lane <laney@debian.org>
+Forwarded: no
+
+--- gitit-0.9.0.1.orig/Network/Gitit/Config.hs
++++ gitit-0.9.0.1/Network/Gitit/Config.hs
+@@ -50,10 +50,10 @@ getConfigFromFile fname = do
+   readfile cp fname >>= extractConfig . forceEither
+
+ -- | A version of readfile that treats the file as UTF-8.
+-readfile :: MonadError CPError m
+-          => ConfigParser
+-          -> FilePath
+-          -> IO (m ConfigParser)
++-- readfile :: MonadError CPError m
++--           => ConfigParser
++--           -> FilePath
++--           -> IO (m ConfigParser)
+ readfile cp path' = do
+   contents <- readFileUTF8 path'
+   return $ readstring cp contents
