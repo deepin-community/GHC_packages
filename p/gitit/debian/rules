@@ -32,11 +32,6 @@ install/gitit:: debian/tmp-inst-ghc
 	# Build data packages depends
 	dh_haskell_depends -pgitit
 
-# Not used at the moment
-#install/libghc-gitit-dev:: debian/tmp-inst-ghc
-#	# Generate dependencies against data packages
-#	echo "gitit:Depends=pandoc (= ${PANDOC_DEP}), libghc-filestore-data (= ${FILESTORE_DEP})" >> debian/gitit.substvars
-
 clean::
 	rm -f $(MANPAGES)
 
