@@ -9,6 +9,8 @@ DEB_INSTALL_MANPAGES_gitit := $(MANPAGES)
 DB2MAN = /usr/share/sgml/docbook/stylesheet/xsl/docbook-xsl/manpages/docbook.xsl
 XP     = xsltproc -''-nonet -''-param man.charmap.use.subset "0"
 
+DEB_GHC_EXTRA_PACKAGES := gitit (>= $(CABAL_VERSION))
+
 %.1: debian/%.xml
 	$(XP) $(DB2MAN) $<
 
