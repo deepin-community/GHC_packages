@@ -89,6 +89,8 @@ Build-Depends:
  , libghc-zlib-dev (>> 0.5)
  , libghc-zlib-dev (<< 0.6)
  , libghc-zlib-prof
+ , libghc-ghc-paths-dev
+ , libghc-ghc-paths-prof
 Build-Depends-Indep: ghc-doc
  , libghc-blaze-html-doc
  , libghc-cgi-doc
@@ -119,6 +121,7 @@ Build-Depends-Indep: ghc-doc
  , libghc-xml-doc
  , libghc-xss-sanitize-doc
  , libghc-zlib-doc
+ , libghc-ghc-paths-doc
 Standards-Version: 3.9.3
 Homepage: http://hackage.haskell.org/package/gitit
 Vcs-Darcs: http://darcs.debian.org/darcs/pkg-haskell/gitit
@@ -158,6 +161,7 @@ Package: libghc-gitit-dev
 Architecture: any
 Depends:
  ${haskell:Depends},
+ ${haskell:Extra-Depends},
  ${misc:Depends},
  ${shlibs:Depends},
  gitit
