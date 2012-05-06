@@ -9,11 +9,11 @@ Date:   Wed May 2 15:24:46 2012 +0100
     
     Based on a patch by Joachim Breitner.
 
-diff --git a/compiler/cmm/PprC.hs b/compiler/cmm/PprC.hs
-index 9515612..39d5a84 100644
---- a/compiler/cmm/PprC.hs
-+++ b/compiler/cmm/PprC.hs
-@@ -203,9 +203,6 @@ pprStmt platform stmt = case stmt of
+Index: ghc-7.4.1/compiler/cmm/PprC.hs
+===================================================================
+--- ghc-7.4.1.orig/compiler/cmm/PprC.hs	2012-02-01 19:10:32.000000000 +0100
++++ ghc-7.4.1/compiler/cmm/PprC.hs	2012-05-06 21:41:11.000000000 +0200
+@@ -203,9 +203,6 @@
                          pprCFunType (pprCLabel platform lbl) cconv results args <>
                          noreturn_attr <> semi
  
@@ -23,7 +23,7 @@ index 9515612..39d5a84 100644
          noreturn_attr = case ret of
                            CmmNeverReturns -> text "__attribute__ ((noreturn))"
                            CmmMayReturn    -> empty
-@@ -226,12 +223,7 @@ pprStmt platform stmt = case stmt of
+@@ -226,31 +223,43 @@
                      let myCall = pprCall platform (pprCLabel platform lbl) cconv results args
                      in (real_fun_proto lbl, myCall)
                  | not (isMathFun lbl) ->
@@ -37,10 +37,9 @@ index 9515612..39d5a84 100644
                _ ->
                     (empty {- no proto -},
                      pprCall platform cast_fn cconv results args <> semi)
-@@ -241,19 +233,36 @@ pprStmt platform stmt = case stmt of
-         vcat $ map (pprStmt platform) stmts
+                         -- for a dynamic call, no declaration is necessary.
  
-     CmmCall (CmmPrim op _) results args _ret ->
+     CmmCall (CmmPrim op) results args _ret ->
 -        pprCall platform ppr_fn CCallConv results args'
 -        where
 -        ppr_fn = pprCallishMachOp_for_C op
@@ -64,7 +63,7 @@ index 9515612..39d5a84 100644
  
      CmmBranch ident          -> pprBranch ident
      CmmCondBranch expr ident -> pprCondBranch platform expr ident
-     CmmJump lbl _            -> mkJMP_(pprExpr platform lbl) <> semi
+     CmmJump lbl _params      -> mkJMP_(pprExpr platform lbl) <> semi
      CmmSwitch arg ids        -> pprSwitch platform arg ids
  
 +pprForeignCall :: Platform -> SDoc -> CCallConv -> [HintedCmmFormal] -> [HintedCmmActual] -> (SDoc, SDoc)
