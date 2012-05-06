@@ -1,13 +1,15 @@
 commit 40c1106c338e209f07023d165f32bff0f75e2e54
 Author: Paolo Capriotti <p.capriotti@gmail.com>
 Date:   Wed May 2 15:24:46 2012 +0100
-
+Description:
     Cast memory primops in the C backend (#5976)
     
     To prevent conflicts with GCC builtins, generate identical code for
     calls to mem primos and FFI calls.
     
     Based on a patch by Joachim Breitner.
+Bug: http://hackage.haskell.org/trac/ghc/ticket/5967
+Origin: http://hackage.haskell.org/trac/ghc/changeset/40c1106c338e209f07023d165f32bff0f75e2e54
 
 Index: ghc-7.4.1/compiler/cmm/PprC.hs
 ===================================================================
