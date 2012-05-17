@@ -1,17 +1,14 @@
-Index: haskell-debian-3.61/debian.cabal
-===================================================================
---- haskell-debian-3.61.orig/debian.cabal	2012-03-07 17:39:35.000000000 +0100
-+++ haskell-debian-3.61/debian.cabal	2012-03-25 22:00:24.000000000 +0200
-@@ -22,7 +22,7 @@
- Library
-  Build-Depends:  base >= 4 && < 5, bytestring, containers, directory,
-                  filepath, mtl, network, old-locale, parsec >= 2 && <4, pretty, process,
--                 regex-tdfa, regex-compat, time, unix, bzlib, HaXml >= 1.20, Unixutils >= 1.41, zlib, HUnit,
-+                 regex-tdfa, regex-compat, time, unix, bzlib, HaXml >= 1.20, Unixutils >= 1.41, zlib,
-                  utf8-string
-  ghc-options: -W -Wall -O2
-  if flag(cabal19)
-@@ -61,11 +61,7 @@
+--- a/debian.cabal
++++ b/debian.cabal
+@@ -28,7 +28,6 @@
+    directory,
+    filepath,
+    HaXml >= 1.20,
+-   HUnit,
+    mtl,
+    network,
+    old-locale,
+@@ -80,11 +79,7 @@
          Debian.URI,
          Debian.Util.FakeChanges
   other-modules:
@@ -24,10 +21,8 @@ Index: haskell-debian-3.61/debian.cabal
 
  Executable fakechanges
   Main-is: utils/FakeChanges.hs
-Index: haskell-debian-3.61/Setup.hs
-===================================================================
---- haskell-debian-3.61.orig/Setup.hs	2011-10-05 20:31:23.000000000 +0200
-+++ haskell-debian-3.61/Setup.hs	2012-03-25 22:02:02.000000000 +0200
+--- a/Setup.hs
++++ b/Setup.hs
 @@ -6,8 +6,7 @@
  import System.Exit
 
