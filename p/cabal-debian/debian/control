@@ -1,0 +1,34 @@
+Source: cabal-debian
+Priority: extra
+Section: haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 7.0)
+             , haskell-devscripts (>= 0.8)
+             , ghc
+             , ghc-prof
+             , libghc-unixutils-dev (>> 1.50)
+             , libghc-unixutils-prof
+             , libghc-debian-dev (>> 3.63)
+             , libghc-debian-prof
+             , libghc-mtl-dev
+             , libghc-mtl-prof
+             , libghc-parsec3-dev
+             , libghc-parsec3-prof
+             , libghc-regex-tdfa-dev
+             , libghc-regex-tdfa-prof
+             , libghc-utf8-string-dev
+             , libghc-utf8-string-prof
+Standards-Version: 3.9.3
+Homepage: http://src.seereason.com/cabal-debian
+
+Package: cabal-debian
+Architecture: any
+Section: utils
+Depends: ${shlibs:Depends}, ${haskell:Depends}, ${misc:Depends}
+Recommends: apt-file
+Conflicts: haskell-debian-utils (<< 3.59)
+Description: Create a debianization for a cabal package
+ Tool for creating debianizations of Haskell packages based on the .cabal
+ file.  If apt-file is installed it will use it to discover what is the
+ debian package name of a C library.
