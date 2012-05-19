@@ -16,7 +16,7 @@ DEB_GHC_EXTRA_PACKAGES := gitit (>= $(CABAL_VERSION))
 
 build/gitit:: $(MANPAGES)
 
-install/gitit:: debian/tmp-inst-ghc
+install/gitit:: debian/tmp-inst-ghc debian/extra-packages
 	cp -av debian/tmp-inst-ghc/usr/bin/* debian/gitit/usr/bin
 	cp -av debian/tmp-inst-ghc/usr/share/gitit-$(CABAL_VERSION) debian/gitit/usr/share
 
