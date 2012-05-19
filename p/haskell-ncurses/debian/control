@@ -1,0 +1,74 @@
+Source: haskell-ncurses
+Priority: optional
+Section: haskell
+Maintainer: John Millikin <jmillikin@gmail.com>
+Build-Depends:
+    c2hs (>= 0.15)
+  , cdbs
+  , debhelper (>= 8.0)
+  , haskell-devscripts (>= 0.8)
+  , ghc (>= 6.12)
+  , ghc-prof
+  , libghc-text-dev (>= 0.7)
+  , libghc-text-prof
+  , libghc-transformers-dev (>= 0.2)
+  , libghc-transformers-prof
+  , libncurses5-dev
+  , libncursesw5-dev
+Build-Depends-Indep:
+    ghc-doc
+  , haddock
+  , libghc-text-doc
+  , libghc-transformers-doc
+Standards-Version: 3.9.3
+Homepage: https://john-millikin.com/software/haskell-ncurses/
+Vcs-Browser: https://john-millikin.com/branches/haskell-ncurses.deb/wheezy/
+Vcs-Bzr: https://john-millikin.com/branches/haskell-ncurses.deb/wheezy/
+
+Package: libghc-ncurses-dev
+Architecture: any
+Depends:
+    ${haskell:Depends}
+  , ${misc:Depends}
+  , ${shlibs:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Haskell bindings to the GNU ncurses library
+ Haskell bindings to GNU ncurses, a library for creating advanced text-based
+ user interfaces.
+ .
+ This package provides a library written in the Haskell programming
+ language. See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-ncurses-prof
+Architecture: any
+Depends:
+    ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Haskell bindings to the GNU ncurses library; profiling libraries
+ Haskell bindings to GNU ncurses, a library for creating advanced text-based
+ user interfaces.
+ .
+ This package provides a library written in the Haskell programming language,
+ compiled for profiling. See http://www.haskell.org/ for more information on
+ Haskell.
+
+Package: libghc-ncurses-doc
+Section: doc
+Architecture: all
+Depends:
+    ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Haskell bindings to the GNU ncurses library; documentation
+ Haskell bindings to GNU ncurses, a library for creating advanced text-based
+ user interfaces.
+ .
+ This package provides documentation for a library written in the Haskell
+ programming language. See http://www.haskell.org/ for more information on
+ Haskell.
