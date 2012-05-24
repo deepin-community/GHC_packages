@@ -1,0 +1,44 @@
+From 59336ca28a14600dfe8f316449a49cfca23ad6ae Mon Sep 17 00:00:00 2001
+From: Peter Kasza <mr.schyte@gmail.com>
+Date: Sat, 14 Apr 2012 20:47:05 +0200
+Subject: [PATCH] Removed 'modifyTVar' to be compatible with STM-2.3.
+
+Conflicts:
+
+	xmobar.cabal
+	 - Merge build-depends changes
+---
+ src/Plugins/Mail.hs |    3 ---
+ xmobar.cabal        |    2 +-
+ 2 files changed, 1 insertion(+), 4 deletions(-)
+
+diff --git a/src/Plugins/Mail.hs b/src/Plugins/Mail.hs
+index 58431ce..b11b7ad 100644
+--- a/src/Plugins/Mail.hs
++++ b/src/Plugins/Mail.hs
+@@ -56,9 +56,6 @@ instance Exec Mail where
+                                     | (m, n) <- zip ts ns
+                                     , n /= 0 ]
+ 
+-modifyTVar :: TVar a -> (a -> a) -> STM ()
+-modifyTVar v f = readTVar v >>= writeTVar v . f
+-
+ handle :: TVar (Set String) -> Event -> IO ()
+ handle v e = atomically $ modifyTVar v $ case e of
+     Created  {} -> create
+diff --git a/xmobar.cabal b/xmobar.cabal
+index 99a6beb..6d7c1e2 100644
+--- a/xmobar.cabal
++++ b/xmobar.cabal
+@@ -96,7 +96,7 @@ executable xmobar
+     if impl (ghc < 7)
+        cpp-options: -DGHC6
+ 
+-    build-depends: X11>=1.3.0, mtl, unix, parsec, filepath, stm, time
++    build-depends: X11>=1.3.0, mtl, unix, parsec, filepath, stm==2.3.*, time
+ 
+     if flag(small_base)
+        build-depends: base == 4.*, containers, process, old-time, old-locale, bytestring, directory
+-- 
+1.7.10
+
