@@ -1,0 +1,32 @@
+Source: haskell-hledger-interest
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: haskell-devscripts (>= 0.8)
+  , ghc
+  , libghc-hledger-lib-dev (>> 0.18)
+  , libghc-mtl-dev
+Standards-Version: 3.9.3
+Homepage: http://hackage.haskell.org/package/hledger-interest
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-hledger-interest
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hledger-interest
+
+Package: hledger-interest
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: interest computing for (h)ledger
+ hledger-interest is a small command-line utility based on Simon Michael's
+ hledger library. Its purpose is to compute interest for a given ledger
+ account. Using command line flags, the program can be configured to use
+ various schemes for day-counting, such as act/act, 30/360, 30E/360, and
+ 30/360isda. Furthermore, it supports a (small) number of interest schemes,
+ i.e. annual interest with a fixed rate and the scheme mandated by the
+ German BGB288 (Basiszins für Verbrauchergeschäfte). Extending support for
+ other schemes is fairly easy, but currently requires changes to the source
+ code.
