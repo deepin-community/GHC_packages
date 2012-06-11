@@ -7,16 +7,16 @@ Description: Disable ghci on powerpc
 Author: Joachim Breitner <nomeata@debian.org>
 Bug-Debian: http://bugs.debian.org/631073
 
-Index: ghc-7.4.0.20111219/mk/config.mk.in
+Index: ghc-7.4.2/mk/config.mk.in
 ===================================================================
---- ghc-7.4.0.20111219.orig/mk/config.mk.in	2011-12-19 19:11:04.000000000 +0100
-+++ ghc-7.4.0.20111219/mk/config.mk.in	2011-12-21 19:56:11.000000000 +0100
+--- ghc-7.4.2.orig/mk/config.mk.in	2012-06-07 03:10:25.000000000 +1000
++++ ghc-7.4.2/mk/config.mk.in	2012-06-11 15:25:20.000000000 +1000
 @@ -172,7 +172,7 @@
  # has support for this OS/ARCH combination.
  
  OsSupportsGHCi=$(strip $(patsubst $(HostOS_CPP), YES, $(findstring $(HostOS_CPP), mingw32 cygwin32 linux solaris2 freebsd dragonfly netbsd openbsd darwin kfreebsdgnu)))
--ArchSupportsGHCi=$(strip $(patsubst $(HostArch_CPP), YES, $(findstring $(HostArch_CPP), i386 x86_64 powerpc sparc sparc64)))
-+ArchSupportsGHCi=$(strip $(patsubst $(HostArch_CPP), YES, $(findstring $(HostArch_CPP), i386 x86_64 sparc sparc64)))
+-ArchSupportsGHCi=$(strip $(patsubst $(HostArch_CPP), YES, $(findstring $(HostArch_CPP), i386 x86_64 powerpc sparc sparc64 arm)))
++ArchSupportsGHCi=$(strip $(patsubst $(HostArch_CPP), YES, $(findstring $(HostArch_CPP), i386 x86_64 sparc sparc64 arm)))
  
  ifeq "$(OsSupportsGHCi)$(ArchSupportsGHCi)" "YESYES"
  GhcWithInterpreter=YES

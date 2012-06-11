@@ -1,3 +1,14 @@
+ghc (7.4.2-1) experimental; urgency=low
+
+  * New upstream.
+  * debian/patches/series
+    - Remove patch fix-ARM-s-StgCRun-clobbered-register-list-for-both-A,
+      fix-ARM-StgCRun-to-not-save-and-restore-r11-fp-regis and memcpy-ffi.patch
+      (in upstream).
+    - Refresh other patches.
+
+ -- Erik de Castro Lopo <erikd@mega-nerd.com>  Mon, 11 Jun 2012 15:21:26 +1000
+
 ghc (7.4.1-3) unstable; urgency=low
 
   * Remove the ghc-doc symlink logic from 7.0.4-3, as with 7.4.1, every
@@ -18,7 +29,7 @@ ghc (7.4.1-2) unstable; urgency=low
     - fix-ARM-s-StgCRun-clobbered-register-list-for-both-A
     - fix-ARM-StgCRun-to-not-save-and-restore-r11-fp-regis
   * Use dh_autoreconf{,_clean} to autoreconf, mainly so we can have proper
-    clean support. 
+    clean support.
   * armhf support (thanks to Jani Monoses):
     - debian/patches/ARM-VFPv3D16: Use vfp3-d16 FPU for ARM builds.
     - debian/patches/armhf_llvm_abi: Pass -float-abi=hard to llc on armhf if
@@ -41,7 +52,7 @@ ghc (7.4.1-2) unstable; urgency=low
 
 ghc (7.4.1-1) unstable; urgency=low
 
-  * New upstream release. 
+  * New upstream release.
 
  -- Joachim Breitner <nomeata@debian.org>  Fri, 03 Feb 2012 16:27:31 +0100
 
@@ -53,9 +64,9 @@ ghc (7.4.0.20120126-1) experimental; urgency=low
 
 ghc (7.4.0.20120108-1) experimental; urgency=low
 
-  * s/armef/armhf/ in debian/control 
+  * s/armef/armhf/ in debian/control
   * New upstream release, drop all patches introduced in 7.4.0.20111219-3,
-    applied upstream. 
+    applied upstream.
 
  -- Joachim Breitner <nomeata@debian.org>  Mon, 09 Jan 2012 13:22:18 +0100
 
@@ -63,14 +74,14 @@ ghc (7.4.0.20111219-4) experimental; urgency=low
 
   * Prefix haddock interface number with "haddock-interface" in
     Depends/Provides pair
-  * Switch to llvm and registered builds on arm* 
+  * Switch to llvm and registered builds on arm*
   * Do not set UseLibFFIForAdjustors in debian/rules, as the code in
-    ./mk/config.mk.in seems to do the same anyways. 
+    ./mk/config.mk.in seems to do the same anyways.
   * Do not set GhcWithInterpreter=YES for kfreebsd-*, done in
-    ./mk/config.mk.in by now. 
+    ./mk/config.mk.in by now.
   * Do not set GhcUnregisterised=YES in debian/rules, ./mk/config.mk.in
-    already makes the right choice. 
-  * Do not build the accidentally included dph libraries. 
+    already makes the right choice.
+  * Do not build the accidentally included dph libraries.
   * Explicitly depend on llv-3.0 and use corresponding binary names.
 
  -- Joachim Breitner <nomeata@debian.org>  Mon, 02 Jan 2012 20:39:42 +0100
@@ -107,7 +118,7 @@ ghc (7.2.2-1) experimental; urgency=low
 
   * New upstream release
   * Call autoconf and remove configure in clean, to avoid having an
-    autoreconf-patch in debian/patches. 
+    autoreconf-patch in debian/patches.
   * Drop patches/hash-version-number, applied upstream
   * Drop improve_linker_script_handling, applied upstream
 
@@ -115,15 +126,15 @@ ghc (7.2.2-1) experimental; urgency=low
 
 ghc (7.2.1-1) experimental; urgency=low
 
-  * New upstream release. 
+  * New upstream release.
 
  -- Joachim Breitner <nomeata@debian.org>  Tue, 23 Aug 2011 20:58:31 +0200
 
 ghc (7.2.0.20110728-1) experimental; urgency=low
 
   * Remove ghc-doc dependency on ghc, it did not have the desired effect.
-    Instead call ghc-pkg recache in ghc-doc’s trigger as well. 
-  * Install 7.2.1-rc1 to experimental. 
+    Instead call ghc-pkg recache in ghc-doc’s trigger as well.
+  * Install 7.2.1-rc1 to experimental.
   * Undo the symlink-workarounds introduced in 7.0.4-3. The -doc work-around
     is still needed, as the haddock interface version did not change.
 
@@ -151,7 +162,7 @@ ghc (7.0.4-7) unstable; urgency=low
   * Handle linker scripts for which dlopen returns "file too short" and/or
     which contain INPUT statements (for example libncurses.so) (Closes:
     #644591)
-  * Standards-Version → 3.9.2, no changes required 
+  * Standards-Version → 3.9.2, no changes required
 
  -- Iain Lane <laney@debian.org>  Tue, 18 Oct 2011 17:09:39 +0100
 
@@ -169,7 +180,7 @@ ghc (7.0.4-6) unstable; urgency=low
 ghc (7.0.4-5) unstable; urgency=low
 
   * Remove ghc-doc dependency on ghc, it did not have the desired effect.
-    Instead call ghc-pkg recache in ghc-doc’s trigger as well. 
+    Instead call ghc-pkg recache in ghc-doc’s trigger as well.
   * Fix missing instance documentation (Closes: #609445)
     This was a Debian-specific regression, introduced in the fix for #566331
     or later caused by it, and fixed by building haddock with -DGHCI.
@@ -179,7 +190,7 @@ ghc (7.0.4-5) unstable; urgency=low
 ghc (7.0.4-4) unstable; urgency=low
 
   * Let ghc-doc depend on ghc. It already does via ghc-haddock, making this
-    explicit ensures that the triggers run in the right order. 
+    explicit ensures that the triggers run in the right order.
   * debian/patches/hash-version-number: Include the upstream version number in
     the ABI hash. We do need to recompile everything, even after a minor ghc
     upgrade. This allows to use the same mechanism to ensure correctness and
@@ -198,7 +209,7 @@ ghc (7.0.4-3) unstable; urgency=low
 
 ghc (7.0.4-2) unstable; urgency=low
 
-  * Fix ghc-ghci existance check logic 
+  * Fix ghc-ghci existance check logic
 
  -- Joachim Breitner <nomeata@debian.org>  Sun, 10 Jul 2011 15:23:55 +0200
 
@@ -219,14 +230,14 @@ ghc (7.0.3-2) unstable; urgency=low
   * Make Provides: ghc-ghci dependent on existence of ghci binary
     (Closes: #629038)
   * Make ghc-haddock depend on the exact version of ghc, just to be on the
-    safe side. (Closes: #539312) 
+    safe side. (Closes: #539312)
 
  -- Joachim Breitner <nomeata@debian.org>  Sat, 18 Jun 2011 21:07:06 +0200
 
 ghc (7.0.3-1) unstable; urgency=low
 
-  * Remove Build-Conflict on dash, as a fixed package has been uploaded. 
-  * Do not provide utf8-string or xhtml, as they are only built internally. 
+  * Remove Build-Conflict on dash, as a fixed package has been uploaded.
+  * Do not provide utf8-string or xhtml, as they are only built internally.
   * Remove Build-Depend alternative ghc6, and also remove Provides: ghc6, as
     this is a lie and I see no techical reason for it.
   * New upstream release
@@ -255,7 +266,7 @@ ghc (7.0.2-5) experimental; urgency=low
 
   * Build-Conflict with broken version of dash (See #618023)
   * Link ghc-doc to haddock via virtual package "haddock-interface-<n>"
-  * Remove redundand Build-dependency on autoconf 
+  * Remove redundand Build-dependency on autoconf
 
  -- Joachim Breitner <nomeata@debian.org>  Wed, 23 Mar 2011 12:03:56 +0530
 
@@ -264,8 +275,8 @@ ghc (7.0.2-4) experimental; urgency=low
   * ghc6-preinst: Remove package.cache file of any ghc6 installation to avoid
     dpkg warning at upgrade time.
   * Build-conflict with ccache. pbuilder installs ccache by default, which
-    causes ghc to pick up a wrong path for "gcc". 
-  * Pass -lpthread everywhere. This can possibly be dropped later. 
+    causes ghc to pick up a wrong path for "gcc".
+  * Pass -lpthread everywhere. This can possibly be dropped later.
 
  -- Joachim Breitner <nomeata@debian.org>  Fri, 11 Mar 2011 14:00:11 +0530
 
