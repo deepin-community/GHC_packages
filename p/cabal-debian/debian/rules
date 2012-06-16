@@ -43,7 +43,11 @@ binary-arch:	checkroot build
 	cd debian/$(package) && $(INSTALL_DIR) \
 		usr/bin \
 		usr/share/doc/$(package) \
+		usr/share/man/man1 \
 		DEBIAN
+
+	$(INSTALL_FILE) cabal-debian.1 debian/$(package)/usr/share/man/man1
+	gzip -9f debian/$(package)/usr/share/man/man1/cabal-debian.1
 
 	$(INSTALL_FILE) debian/copyright debian/$(package)/usr/share/doc/$(package)/copyright
 
