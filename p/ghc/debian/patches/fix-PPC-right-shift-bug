@@ -1,0 +1,26 @@
+From: Erik de Castro Lopo <erikd@mega-nerd.com>
+Date: Sat, Jun 16 10:48:05 EST 2012
+Subject: PPC: Handle right shift of > 31 bits. Fix #5900.
+Description: This fixes GHC bug #5900
+ http://hackage.haskell.org/trac/ghc/ticket/5900
+ which was being triggered when compiling cryptocipher on PowerPC.
+ This has been applied upstream and is in GHC 7.4.2.
+
+Index: ghc-7.4.1/compiler/nativeGen/PPC/Ppr.hs
+===================================================================
+--- ghc-7.4.1.orig/compiler/nativeGen/PPC/Ppr.hs
++++ ghc-7.4.1/compiler/nativeGen/PPC/Ppr.hs
+@@ -594,6 +594,13 @@
+ pprInstr platform (NOT reg1 reg2) = pprUnary platform (sLit "not") reg1 reg2
+
+ pprInstr platform (SLW reg1 reg2 ri) = pprLogic platform (sLit "slw") reg1 reg2 (limitShiftRI ri)
++
++pprInstr platform (SRW reg1 reg2 (RIImm (ImmInt i))) | i > 31 || i < 0 =
++    -- Handle the case where we are asked to shift a 32 bit register by
++    -- less than zero or more than 31 bits. We convert this into a clear
++    -- of the destination register.
++    -- Fixes ticket http://hackage.haskell.org/trac/ghc/ticket/5900
++    pprInstr platform (XOR reg1 reg2 (RIReg reg2))
+ pprInstr platform (SRW reg1 reg2 ri) = pprLogic platform (sLit "srw") reg1 reg2 (limitShiftRI ri)
+ pprInstr platform (SRAW reg1 reg2 ri) = pprLogic platform (sLit "sraw") reg1 reg2 (limitShiftRI ri)
+ pprInstr platform (RLWINM reg1 reg2 sh mb me) = hcat [
