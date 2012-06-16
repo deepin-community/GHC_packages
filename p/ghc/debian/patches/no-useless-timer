@@ -1,0 +1,180 @@
+commit a73d0a21c875ff539c2240e431eaf87173a92bd3
+Author: Ian Lynagh <igloo@earth.li>
+Date:   Sun Jan 15 19:21:38 2012 +0000
+
+    Fix a #define
+    
+    I don't think it was causing any problems, but
+        TimeToUS(x+y)
+    would have evaluated to
+        x + (y / 1000)
+    
+    MERGED from commit 54121fffb5ee069d9b7a5628104ff1114ea87182
+    
+    On the 7.4 branch, this was causing a wrong conversion in
+    getDelayTarget.
+    
+    Signed-off-by: Paolo Capriotti <p.capriotti@gmail.com>
+
+Index: ghc-7.4.1/includes/Rts.h
+===================================================================
+--- ghc-7.4.1.orig/includes/Rts.h	2012-02-01 19:10:32.000000000 +0100
++++ ghc-7.4.1/includes/Rts.h	2012-06-16 12:39:21.000000000 +0200
+@@ -166,7 +166,7 @@
+ 
+ #if TIME_RESOLUTION == 1000000000
+ // I'm being lazy, but it's awkward to define fully general versions of these
+-#define TimeToUS(t)      (t / 1000)
++#define TimeToUS(t)      ((t) / 1000)
+ #define TimeToNS(t)      (t)
+ #define USToTime(t)      ((Time)(t) * 1000)
+ #define NSToTime(t)      ((Time)(t))
+Index: ghc-7.4.1/rts/posix/Select.c
+===================================================================
+--- ghc-7.4.1.orig/rts/posix/Select.c	2012-02-01 19:10:32.000000000 +0100
++++ ghc-7.4.1/rts/posix/Select.c	2012-06-16 12:39:21.000000000 +0200
+@@ -2,7 +2,10 @@
+  *
+  * (c) The GHC Team 1995-2002
+  *
+- * Support for concurrent non-blocking I/O and thread waiting.
++ * Support for concurrent non-blocking I/O and thread waiting in the
++ * non-threaded RTS.  In the threded RTS, this file is not used at
++ * all, instead we use the IO manager thread implemented in Haskell in
++ * the base package.
+  *
+  * ---------------------------------------------------------------------------*/
+ 
+@@ -39,21 +42,39 @@
+ 
+ #if !defined(THREADED_RTS)
+ 
+-/* 
+- * The threaded RTS uses an IO-manager thread in Haskell instead (see GHC.Conc) 
+- */
+-
+-#define LowResTimeToTime(t) (USToTime((t) * 10000))
++// The target time for a threadDelay is stored in a one-word quantity
++// in the TSO (tso->block_info.target).  On a 32-bit machine we
++// therefore can't afford to use nanosecond resolution because it
++// would overflow too quickly, so instead we use millisecond
++// resolution.
++
++#if SIZEOF_VOID_P == 4
++#define LowResTimeToTime(t)          (USToTime((t) * 1000))
++#define TimeToLowResTimeRoundDown(t) (TimeToUS(t) / 1000)
++#define TimeToLowResTimeRoundUp(t)   ((TimeToUS(t) + 1000-1) / 1000)
++#else
++#define LowResTimeToTime(t) (t)
++#define TimeToLowResTimeRoundDown(t) (t)
++#define TimeToLowResTimeRoundUp(t)   (t)
++#endif
+ 
+ /*
+  * Return the time since the program started, in LowResTime,
+  * rounded down.
+- *
+- * This is only used by posix/Select.c.  It should probably go away.
+  */
+-LowResTime getourtimeofday(void)
++static LowResTime getLowResTimeOfDay(void)
++{
++    return TimeToLowResTimeRoundDown(stat_getElapsedTime());
++}
++
++/*
++ * For a given microsecond delay, return the target time in LowResTime.
++ */
++LowResTime getDelayTarget (HsInt us)
+ {
+-  return TimeToUS(stat_getElapsedTime()) / 10000;
++    // round up the target time, because we never want to sleep *less*
++    // than the desired amount.
++    return TimeToLowResTimeRoundUp(stat_getElapsedTime() + USToTime(us));
+ }
+ 
+ /* There's a clever trick here to avoid problems when the time wraps
+@@ -136,7 +157,7 @@
+      */
+     do {
+ 
+-      now = getourtimeofday();
++      now = getLowResTimeOfDay();
+       if (wakeUpSleepingThreads(now)) {
+ 	  return;
+       }
+@@ -196,10 +217,19 @@
+           ptv = NULL;
+       }
+ 
+-      /* Check for any interesting events */
+-      
+-      while ((numFound = select(maxfd+1, &rfd, &wfd, NULL, ptv)) < 0) {
+-	  if (errno != EINTR) {
++      while (1) { // repeat the select on EINTR
++
++          // Disable the timer signal while blocked in
++          // select(), to conserve power. (#1623, #5991)
++          if (wait) stopTimer();
++
++          numFound = select(maxfd+1, &rfd, &wfd, NULL, ptv);
++
++          if (wait) startTimer();
++
++          if (numFound >= 0) break;
++
++          if (errno != EINTR) {
+ 	    /* Handle bad file descriptors by unblocking all the
+ 	       waiting threads. Why? Because a thread might have been
+ 	       a bit naughty and closed a file descriptor while another
+@@ -246,7 +276,7 @@
+ 	  
+ 	  /* check for threads that need waking up 
+ 	   */
+-          wakeUpSleepingThreads(getourtimeofday());
++          wakeUpSleepingThreads(getLowResTimeOfDay());
+ 	  
+ 	  /* If new runnable threads have arrived, stop waiting for
+ 	   * I/O and run them.
+Index: ghc-7.4.1/includes/rts/storage/TSO.h
+===================================================================
+--- ghc-7.4.1.orig/includes/rts/storage/TSO.h	2012-02-01 19:10:32.000000000 +0100
++++ ghc-7.4.1/includes/rts/storage/TSO.h	2012-06-16 12:39:21.000000000 +0200
+@@ -57,7 +57,7 @@
+ #if !defined(THREADED_RTS)
+   StgWord target;
+     // Only for the non-threaded RTS: the target time for a thread
+-    // blocked in threadDelay, in units of 10ms.  This is a
++    // blocked in threadDelay, in units of 1ms.  This is a
+     // compromise: we don't want to take up much space in the TSO.  If
+     // you want better resolution for threadDelay, use -threaded.
+ #endif
+Index: ghc-7.4.1/rts/PrimOps.cmm
+===================================================================
+--- ghc-7.4.1.orig/rts/PrimOps.cmm	2012-02-01 19:10:32.000000000 +0100
++++ ghc-7.4.1/rts/PrimOps.cmm	2012-06-16 12:39:21.000000000 +0200
+@@ -1828,11 +1828,7 @@
+ #else
+ 
+ 
+-    W_ time;
+-    (time) = foreign "C" getourtimeofday() [R1];
+-    // getourtimeofday() returns a value in units of 10ms
+-    // R1 is in microseconds, we need to (/ 10000), rounding up
+-    target = time + 1 + (R1 + 10000-1) / 10000;
++    (target) = foreign "C" getDelayTarget(R1) [R1];
+ 
+     StgTSO_block_info(CurrentTSO) = target;
+ 
+Index: ghc-7.4.1/rts/posix/Select.h
+===================================================================
+--- ghc-7.4.1.orig/rts/posix/Select.h	2012-02-01 19:10:32.000000000 +0100
++++ ghc-7.4.1/rts/posix/Select.h	2012-06-16 12:39:21.000000000 +0200
+@@ -12,6 +12,6 @@
+ // An absolute time value in units of 10ms.
+ typedef StgWord LowResTime;
+ 
+-RTS_PRIVATE LowResTime getourtimeofday ( void );
++RTS_PRIVATE LowResTime getDelayTarget (HsInt us);
+ 
+ #endif /* POSIX_SELECT_H */
