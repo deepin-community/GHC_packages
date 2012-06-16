@@ -88,7 +88,9 @@ endif
 	rm -f config.guess
 	ln -s /usr/share/misc/config.sub .
 	ln -s /usr/share/misc/config.guess .
-	./configure $(confflags) --prefix=/usr $(EXTRA_CONFIGURE_FLAGS)
+	./configure $(confflags) --prefix=/usr \
+		$(EXTRA_CONFIGURE_FLAGS) \
+		--with-ld=ld.bfd
 
 	touch $@
 
