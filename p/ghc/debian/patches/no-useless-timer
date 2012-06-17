@@ -16,6 +16,31 @@ Date:   Sun Jan 15 19:21:38 2012 +0000
     
     Signed-off-by: Paolo Capriotti <p.capriotti@gmail.com>
 
+commit 6aee474574e0aff10602a6fd17d37826b04a996d
+Author: Simon Marlow <marlowsd@gmail.com>
+Date:   Wed Apr 11 10:12:14 2012 +0100
+
+    Disable the timer signal while blocked in select() (#5991)
+    
+    The threaded RTS had a fix for this a long time ago (#1623) but this
+    patch applies a similar fix to the non-threaded RTS.
+    
+    MERGED from commit dd24d6bc37879c6b32a3d5ac4ee765e59e13501c
+
+commit 27c2f292d23983fac0e1f333a43424264c2e290b
+Author: Simon Marlow <marlowsd@gmail.com>
+Date:   Wed Apr 11 11:38:24 2012 +0100
+
+    Improve the handling of threadDelay in the non-threaded RTS
+    
+    Firstly, we were rounding up too much, such that the smallest delay
+    was 20ms.  Secondly, there is no need to use millisecond resolution on
+    a 64-bit machine where we have room in the TSO to use the normal
+    nanosecond resolution that we use elsewhere in the RTS.
+    
+    MERGED from commit 9d26519c20194abc3832578a55fbe31327519eeb
+
+
 Index: ghc-7.4.1/includes/Rts.h
 ===================================================================
 --- ghc-7.4.1.orig/includes/Rts.h	2012-02-01 19:10:32.000000000 +0100
