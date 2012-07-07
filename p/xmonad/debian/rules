@@ -3,6 +3,9 @@
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
 
+build/xmonad::
+	runghc util/GenerateManpage.hs
+
 install/xmonad::
 	dh_installwm
 	cp dist-ghc/build/xmonad/xmonad debian/xmonad/usr/bin/xmonad
@@ -14,3 +17,6 @@ install/xmonad::
 	install -D -m 0644 debian/gnome-xmonad.desktop debian/xmonad/usr/share/xsessions/gnome-xmonad.desktop
 	install -D -m 0644 debian/xmonad.session debian/xmonad/usr/share/gnome-session/sessions/xmonad.session
 	install -D -m 0755 debian/gnome-session-xmonad debian/xmonad/usr/bin/gnome-session-xmonad
+
+clean::
+	rm -f man/xmonad.1 man/xmonad.1.html
