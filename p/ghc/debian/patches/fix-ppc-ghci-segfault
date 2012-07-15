@@ -1,0 +1,46 @@
+Description: Use contiguous mmap for PowerPC when allocating symbol_extras
+Author: Ben Collins <bcollins@ubuntu.com>
+Bug-GHC: http://hackage.haskell.org/trac/ghc/ticket/2972
+Forwarded: Yes
+
+--- ghc-7.4.1.orig/rts/Linker.c
++++ ghc-7.4.1/rts/Linker.c
+@@ -84,6 +84,11 @@
+ #include <fcntl.h>
+ #include <sys/mman.h>
+
++#if defined(powerpc_HOST_ARCH)
++/* We need to keep image and symbol_extras in the same contiguous space */
++#define MMAP_CONTIGUOUS
++#endif
++
+ #ifdef HAVE_UNISTD_H
+ #include <unistd.h>
+ #endif
+@@ -2514,8 +2519,25 @@ static int ocAllocateSymbolExtras( Objec
+      */
+     if( m > n ) // we need to allocate more pages
+     {
++#if defined(MMAP_CONTIGUOUS)
++        /* Keep image and symbol_extras contiguous */
++        void *new = mmapForLinker(n + (sizeof(SymbolExtra) * count),
++                                  MAP_ANONYMOUS, -1);
++        if (new)
++        {
++            memcpy(new, oc->image, oc->fileSize);
++            munmap(oc->image, n);
++            oc->image = new;
++            oc->symbol_extras = (SymbolExtra *) (oc->image + n);
++        }
++        else
++        {
++            oc->symbol_extras = NULL;
++        }
++#else
+         oc->symbol_extras = mmapForLinker(sizeof(SymbolExtra) * count,
+                                           MAP_ANONYMOUS, -1);
++#endif
+     }
+     else
+     {
+
