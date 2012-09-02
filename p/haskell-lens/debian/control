@@ -1,0 +1,97 @@
+Source: haskell-lens
+Priority: extra
+Section: haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 7.0)
+             , haskell-devscripts (>= 0.8)
+             , cdbs
+             , ghc
+             , ghc-prof
+             , libghc-mtl-dev (>> 2.1.1)
+             , libghc-mtl-dev (<< 2.2)
+             , libghc-mtl-prof
+             , libghc-parallel-dev (>> 3.1.0.1)
+             , libghc-parallel-dev (<< 3.3)
+             , libghc-parallel-prof
+             , ghc-ghci
+             , libghc-text-dev (>> 0.11.1.5)
+             , libghc-text-dev (<< 0.12)
+             , libghc-text-prof
+             , libghc-transformers-dev (>> 0.3)
+             , libghc-transformers-dev (<< 0.4)
+             , libghc-transformers-prof
+Build-Depends-Indep: ghc-doc
+                   , libghc-mtl-doc
+                   , libghc-parallel-doc
+                   , libghc-text-doc
+                   , libghc-transformers-doc
+Standards-Version: 3.9.3
+Homepage: http://github.com/ekmett/lens/
+
+Package: libghc-lens-dev
+Architecture: any
+Depends: ${shlibs:Depends}
+         , ${haskell:Depends}
+         , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Lenses, Folds and Traversals
+ This package comes "Batteries Included" with many useful lenses for the types
+ commonly used from the Haskell Platform, and with tools for automatically
+ generating lenses and isomorphisms for user-supplied data types.
+ .
+ The combinators in Control.Lens provide a highly generic toolbox for composing
+ families of getters, folds, isomorphisms, traversals, setters and lenses and
+ their indexed variants.
+ .
+ More information on the care and feeding of lenses, including a tutorial and
+ motivation for their types can be found on the lens wiki
+ (https://github.com/ekmett/lens/wiki).
+ .
+ This package contains the normal library files.
+
+Package: libghc-lens-prof
+Architecture: any
+Depends: ${haskell:Depends}
+         , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Lenses, Folds and Traversals; profiling libraries
+ This package comes "Batteries Included" with many useful lenses for the types
+ commonly used from the Haskell Platform, and with tools for automatically
+ generating lenses and isomorphisms for user-supplied data types.
+ .
+ The combinators in Control.Lens provide a highly generic toolbox for composing
+ families of getters, folds, isomorphisms, traversals, setters and lenses and
+ their indexed variants.
+ .
+ More information on the care and feeding of lenses, including a tutorial and
+ motivation for their types can be found on the lens wiki
+ (https://github.com/ekmett/lens/wiki).
+ .
+ This package contains the libraries compiled with profiling enabled.
+
+Package: libghc-lens-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends}
+         , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Lenses, Folds and Traversals; documentation
+ This package comes "Batteries Included" with many useful lenses for the types
+ commonly used from the Haskell Platform, and with tools for automatically
+ generating lenses and isomorphisms for user-supplied data types.
+ .
+ The combinators in Control.Lens provide a highly generic toolbox for composing
+ families of getters, folds, isomorphisms, traversals, setters and lenses and
+ their indexed variants.
+ .
+ More information on the care and feeding of lenses, including a tutorial and
+ motivation for their types can be found on the lens wiki
+ (https://github.com/ekmett/lens/wiki).
+ .
+ This package contains the documentation files.
