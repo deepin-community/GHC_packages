@@ -1,0 +1,8 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/hlibrary.mk
+
+build/doctest:: build-ghc-stamp
+binary-fixup/doctest::
+	install -m 755 -s -D dist-ghc/build/doctest/doctest debian/doctest/usr/bin/doctest || true

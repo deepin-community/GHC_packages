@@ -1,0 +1,101 @@
+Source: haskell-doctest
+Priority: extra
+Section: haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 7.0)
+             , haskell-devscripts (>= 0.8)
+             , cdbs
+             , ghc (<< 7.6)
+             , ghc-prof
+             , libghc-ghc-paths-dev (>> 0.1)
+             , libghc-ghc-paths-dev (<< 0.2)
+             , libghc-ghc-paths-prof
+             , libghc-syb-dev
+             , libghc-syb-prof
+             , libghc-transformers-dev
+             , libghc-transformers-prof
+Build-Depends-Indep: ghc-doc
+                   , libghc-ghc-paths-doc
+                   , libghc-syb-doc
+                   , libghc-transformers-doc
+Standards-Version: 3.9.3
+Homepage: https://github.com/sol/doctest-haskell
+
+Package: libghc-doctest-dev
+Architecture: any
+Depends: ${shlibs:Depends}
+         , ${haskell:Depends}
+         , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: test interactive Haskell examples
+ The doctest program checks examples in source code comments.
+ It is modeled after doctest for Python
+ (<http://docs.python.org/library/doctest.html>).
+ .
+ Documentation is at
+ <https://github.com/sol/doctest-haskell#readme>.
+ .
+  Author: Simon Hengel <sol@typeful.net>
+  Upstream-Maintainer: Simon Hengel <sol@typeful.net>
+ .
+ This package contains the normal library files.
+
+Package: libghc-doctest-prof
+Architecture: any
+Depends: ${haskell:Depends}
+         , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: test interactive Haskell examples; profiling libraries
+ The doctest program checks examples in source code comments.
+ It is modeled after doctest for Python
+ (<http://docs.python.org/library/doctest.html>).
+ .
+ Documentation is at
+ <https://github.com/sol/doctest-haskell#readme>.
+ .
+  Author: Simon Hengel <sol@typeful.net>
+  Upstream-Maintainer: Simon Hengel <sol@typeful.net>
+ .
+ This package contains the libraries compiled with profiling enabled.
+
+Package: libghc-doctest-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends}
+         , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: test interactive Haskell examples; documentation
+ The doctest program checks examples in source code comments.
+ It is modeled after doctest for Python
+ (<http://docs.python.org/library/doctest.html>).
+ .
+ Documentation is at
+ <https://github.com/sol/doctest-haskell#readme>.
+ .
+  Author: Simon Hengel <sol@typeful.net>
+  Upstream-Maintainer: Simon Hengel <sol@typeful.net>
+ .
+ This package contains the documentation files.
+
+Package: doctest
+Architecture: any
+Section: devel
+Depends: ${shlibs:Depends}, ${haskell:Depends}, ${misc:Depends}
+Description: test interactive Haskell examples; executable
+ The doctest program checks examples in source code comments.
+ It is modeled after doctest for Python
+ (<http://docs.python.org/library/doctest.html>).
+ .
+ Documentation is at
+ <https://github.com/sol/doctest-haskell#readme>.
+ .
+  Author: Simon Hengel <sol@typeful.net>
+  Upstream-Maintainer: Simon Hengel <sol@typeful.net>
+ .
+ This package contains the doctest executable.
