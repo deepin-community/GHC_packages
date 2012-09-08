@@ -1,0 +1,23 @@
+Index: haskell-hoogle-4.2.11/src/Web/All.hs
+===================================================================
+--- haskell-hoogle-4.2.11.orig/src/Web/All.hs	2012-09-09 02:23:35.650456618 +0900
++++ haskell-hoogle-4.2.11/src/Web/All.hs	2012-09-09 03:12:11.116913638 +0900
+@@ -2,11 +2,17 @@
+ module Web.All(action) where
+
+ import CmdLine.All
++import General.Base
+ import General.Web
+ import Web.Server
+ import Web.Response
++import Web.Page
++import Paths_hoogle
+
+
+ action :: CmdLine -> IO ()
+ action q@Server{} = server q
+-action q = cgiResponse =<< response responseArgs q
++action q = do
++  f <- readFile' =<< getDataFileName ("resources" </> "template" <.> "html")
++  let t = loadTemplates f
++  cgiResponse =<< response responseArgs{templates=t} q

@@ -1,0 +1,124 @@
+Source: haskell-hoogle
+Priority: extra
+Section: haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Kiwamu Okabe <kiwamu@debian.or.jp>
+Build-Depends: debhelper (>= 7.0)
+               , haskell-devscripts (>= 0.8)
+               , cdbs
+               , ghc
+               , ghc-prof
+               , libghc-blaze-builder-dev (>= 0.2)
+               , libghc-blaze-builder-dev (<< 0.4)
+               , libghc-blaze-builder-prof
+               , libghc-case-insensitive-dev (>= 0.2)
+               , libghc-case-insensitive-dev (<< 0.5)
+               , libghc-case-insensitive-prof
+               , libghc-cmdargs-dev (>= 0.7)
+               , libghc-cmdargs-dev (<< 0.10)
+               , libghc-cmdargs-prof
+               , libghc-conduit-dev (>= 0.2)
+               , libghc-conduit-dev (<< 0.6)
+               , libghc-conduit-prof
+               , libghc-src-exts-dev (>= 1.12)
+               , libghc-src-exts-dev (<< 1.14)
+               , libghc-src-exts-prof
+               , libghc-http-types-dev (>= 0.6)
+               , libghc-http-types-dev (<< 0.7)
+               , libghc-http-types-prof
+               , libghc-parsec3-dev (>= 3) | libghc-parsec2-dev (>= 2.1)
+               , libghc-parsec3-dev (>= 3) | libghc-parsec2-dev (<< 3)
+               , libghc-parsec3-prof | libghc-parsec2-prof
+               , libghc-random-dev
+               , libghc-random-prof
+               , libghc-safe-dev
+               , libghc-safe-prof
+               , libghc-tagsoup-dev (>= 0.11)
+               , libghc-tagsoup-dev (<< 0.13)
+               , libghc-tagsoup-prof
+               , libghc-transformers-dev (>= 0.2)
+               , libghc-transformers-dev (<< 0.4)
+               , libghc-transformers-prof
+               , libghc-uniplate-dev (>= 1.6)
+               , libghc-uniplate-dev (<< 1.7)
+               , libghc-uniplate-prof
+               , libghc-wai-dev (>= 1.1)
+               , libghc-wai-dev (<< 1.3)
+               , libghc-wai-prof
+               , libghc-warp-dev (>= 1.1)
+               , libghc-warp-dev (<< 1.3)
+               , libghc-warp-prof
+Build-Depends-Indep: ghc-doc
+                     , libghc-blaze-builder-doc
+                     , libghc-case-insensitive-doc
+                     , libghc-cmdargs-doc
+                     , libghc-conduit-doc
+                     , libghc-src-exts-doc
+                     , libghc-http-types-doc
+                     , libghc-parsec3-doc | libghc-parsec2-doc
+                     , libghc-random-doc
+                     , libghc-safe-doc
+                     , libghc-tagsoup-doc
+                     , libghc-transformers-doc
+                     , libghc-uniplate-doc
+                     , libghc-wai-doc
+                     , libghc-warp-doc
+Standards-Version: 3.9.3
+Homepage: http://www.haskell.org/hoogle/
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hoogle
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-hoogle
+DM-Upload-Allowed: yes
+
+Package: libghc-hoogle-dev
+Architecture: any
+Depends: ${shlibs:Depends}
+         , ${haskell:Depends}
+         , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Haskell API Search
+ Hoogle is a Haskell API search engine, which allows you to
+ search many standard Haskell libraries by either function name,
+ or by approximate type signature.
+ .
+ This package contains the normal library files.
+
+Package: libghc-hoogle-prof
+Architecture: any
+Depends: ${haskell:Depends}
+         , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Haskell API Search; profiling libraries
+ Hoogle is a Haskell API search engine, which allows you to
+ search many standard Haskell libraries by either function name,
+ or by approximate type signature.
+ .
+ This package contains the libraries compiled with profiling enabled.
+
+Package: libghc-hoogle-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends}
+         , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Haskell API Search; documentation
+ Hoogle is a Haskell API search engine, which allows you to
+ search many standard Haskell libraries by either function name,
+ or by approximate type signature.
+ .
+ This package contains the documentation files.
+
+Package: hoogle
+Architecture: any
+Section: misc
+Depends: ${shlibs:Depends}, ${haskell:Depends}, ${misc:Depends}
+Description: Haskell API Search for Debian system
+ Hoogle is a Haskell API search engine, which allows you to
+ search many standard Haskell libraries by either function name,
+ or by approximate type signature.
+ .
+ This package contains hoogle command and cgi settings.

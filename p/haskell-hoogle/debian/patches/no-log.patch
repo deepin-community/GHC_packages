@@ -1,0 +1,13 @@
+Index: haskell-hoogle-4.2.11/src/Web/Response.hs
+===================================================================
+--- haskell-hoogle-4.2.11.orig/src/Web/Response.hs	2012-04-06 03:03:44.000000000 +0900
++++ haskell-hoogle-4.2.11/src/Web/Response.hs	2012-09-09 02:20:41.369592400 +0900
+@@ -35,7 +35,7 @@
+
+ response :: ResponseArgs -> CmdLine -> IO Response
+ response ResponseArgs{..} q = do
+-    logMessage q
++    -- logMessage q
+     let response x ys = responseOK (headerContentType (fromString x) : ys) . fromString
+
+     dbs <- unsafeInterleaveIO $ case queryParsed q of

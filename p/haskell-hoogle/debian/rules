@@ -1,0 +1,10 @@
+#!/usr/bin/make -f
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/hlibrary.mk
+
+build/hoogle:: build-ghc-stamp
+binary-fixup/hoogle::
+	cd debian/hoogle/usr/share/hoogle-$(CABAL_VERSION)/ && ln -s /var/lib/hoogle/databases ./
+	cd debian/hoogle/var/www/ && ln -s /usr/share/hoogle-$(CABAL_VERSION) ./hoogle
+	sed -i -e "s/res\//\/hoogle\/resources\//g" debian/hoogle/usr/share/hoogle-$(CABAL_VERSION)/resources/template.html
+	sed -i -e "s/action=\"\.\"/action=\"\.\/hoogle\"/g" debian/hoogle/usr/share/hoogle-$(CABAL_VERSION)/resources/template.html
