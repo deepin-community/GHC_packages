@@ -2,9 +2,10 @@
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
 
+DEB_SETUP_GHC_CONFIGURE_ARGS := --datasubdir=/usr/share/hoogle
+HOOGLE_RESDIR := debian/hoogle/usr/share/hoogle/resources
+
 build/hoogle:: build-ghc-stamp
 binary-fixup/hoogle::
-	cd debian/hoogle/usr/share/hoogle-$(CABAL_VERSION)/ && ln -s /var/lib/hoogle/databases ./
-	cd debian/hoogle/usr/share/ && ln -s hoogle-$(CABAL_VERSION) hoogle
-	sed -i -e "s/res\//\/hoogle\//g" debian/hoogle/usr/share/hoogle-$(CABAL_VERSION)/resources/template.html
-	sed -i -e "s/action=\"\.\"/action=\"\.\/hoogle\"/g" debian/hoogle/usr/share/hoogle-$(CABAL_VERSION)/resources/template.html
+	sed -i -e "s/res\//\/hoogle\//g" $(HOOGLE_RESDIR)/template.html
+	sed -i -e "s/action=\"\.\"/action=\"\.\/hoogle\"/g" $(HOOGLE_RESDIR)/template.html
