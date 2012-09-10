@@ -1,0 +1,31 @@
+#!/bin/sh
+
+DATABASE_DIR=/var/lib/hoogle/databases
+HOOGLE=/usr/bin/hoogle
+URLPREFIX=http://localhost/cgi-bin/dwww
+
+# cleanup
+rm -rf $DATABASE_DIR/*
+
+# copy (fake) files
+mkdir -p $DATABASE_DIR/download/hackage-cabal
+cd $DATABASE_DIR/download && touch hackage-cabal.txt hackage-hoogle.txt haskell-platform.cabal base.txt ghc.txt
+cp /usr/share/hoogle/predownload/keyword.txt $DATABASE_DIR/download/
+
+# new database
+$HOOGLE data keyword
+
+# collect txt files (ghc-doc)
+find /usr/share/doc/ghc-doc/html/libraries/*/ -name "*.txt*" | \
+  /usr/share/hoogle/tool/haddock_collect.hs $URLPREFIX $DATABASE_DIR/
+
+# collect txt files (libghc-*)
+# -- TODO --
+
+# convert
+for i in $DATABASE_DIR/*.txt; do
+    $HOOGLE convert $i
+done
+
+# combine
+cd $DATABASE_DIR/ && $HOOGLE combine *.hoo
