@@ -115,11 +115,12 @@ Description: Haskell API Search; documentation
 Package: hoogle
 Architecture: any
 Section: misc
-Depends: ${shlibs:Depends}, ${haskell:Depends}, ${misc:Depends}
-Suggests: apache2
+Depends: ${shlibs:Depends}, ${haskell:Depends}, ${misc:Depends}, ghc | ghc6, haskell-platform
+Recommends: apache2, dwww
 Description: Haskell API Search for Debian system
  Hoogle is a Haskell API search engine, which allows you to
  search many standard Haskell libraries by either function name,
  or by approximate type signature.
  .
  This package contains hoogle command and cgi settings.
+ You can read hoogle page as http://localhost/cgi-bin/hoogle.
