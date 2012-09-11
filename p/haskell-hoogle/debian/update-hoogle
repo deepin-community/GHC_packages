@@ -24,7 +24,8 @@ find /usr/share/doc/ghc-doc/html/libraries/*/ -name "*.txt*" | \
 
 # convert
 for i in $DATABASE_DIR/*.txt; do
-    $HOOGLE convert $i
+    echo convert $i
+    $HOOGLE convert $i >/dev/null 2>&1
 done
 
 # combine
