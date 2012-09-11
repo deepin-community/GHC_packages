@@ -9,5 +9,5 @@ build/hoogle:: build-ghc-stamp
 binary-fixup/hoogle::
 	sed -i -e "s/res\//\/hoogle\//g" $(HOOGLE_RESDIR)/template.html
 	sed -i -e "s/action=\"\.\"/action=\"\.\/hoogle\"/g" $(HOOGLE_RESDIR)/template.html
-	install debian/update-hoogle debian/hoogle/usr/sbin/
-	install debian/haddock_collect.hs debian/hoogle/usr/share/hoogle/tool/
+	install debian/files_hoogle/update-hoogle debian/hoogle/usr/sbin/
+	install debian/files_hoogle/haddock_collect.hs debian/hoogle/usr/share/hoogle/tool/
