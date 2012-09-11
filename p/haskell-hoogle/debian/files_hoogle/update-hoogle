@@ -16,11 +16,11 @@ cp /usr/share/hoogle/predownload/keyword.txt $DATABASE_DIR/download/
 $HOOGLE data keyword
 
 echo "Collect txt files on ghc-doc"
-find /usr/share/doc/ghc-doc/html/libraries/*/ -name "*.txt*" | \
+find /usr/share/doc/ghc-doc/html/libraries/*/ -name "*.txt*" 2>/dev/null | \
   /usr/share/hoogle/tool/haddock_collect.hs $URLPREFIX $DATABASE_DIR/
 
 echo "Collect txt files on libghc-*-doc"
-find /usr/share/doc/libghc-*-doc/html/ -name "*.txt*" | \
+find /usr/share/doc/libghc-*-doc/html/ -name "*.txt*" 2>/dev/null | \
   /usr/share/hoogle/tool/haddock_collect.hs $URLPREFIX $DATABASE_DIR/
 
 # convert
