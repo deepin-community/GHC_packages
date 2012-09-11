@@ -1,0 +1,98 @@
+Source: haskell-hopenpgp
+Priority: extra
+Section: haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 7.0)
+             , haskell-devscripts (>= 0.8)
+             , cdbs
+             , ghc
+             , ghc-prof
+             , libghc-asn1-data-dev
+             , libghc-asn1-data-prof
+             , libghc-attoparsec-dev
+             , libghc-attoparsec-prof
+             , libghc-base64-bytestring-dev
+             , libghc-base64-bytestring-prof
+             , libghc-bzlib-dev
+             , libghc-bzlib-prof
+             , libghc-cereal-dev
+             , libghc-cereal-prof
+             , libghc-cereal-conduit-dev (>> 0.5)
+             , libghc-cereal-conduit-dev (<< 0.6)
+             , libghc-cereal-conduit-prof
+             , libghc-conduit-dev (>> 0.4)
+             , libghc-conduit-dev (<< 0.5)
+             , libghc-conduit-prof
+             , libghc-cryptocipher-dev
+             , libghc-cryptocipher-prof
+             , libghc-cryptohash-dev
+             , libghc-cryptohash-prof
+             , libghc-mtl-dev
+             , libghc-mtl-prof
+             , libghc-openpgp-asciiarmor-dev (>> 0.1)
+             , libghc-openpgp-asciiarmor-prof (>> 0.1)
+             , libghc-split-dev
+             , libghc-split-prof
+             , libghc-zlib-dev
+             , libghc-zlib-prof
+Build-Depends-Indep: ghc-doc
+                   , libghc-asn1-data-doc
+                   , libghc-attoparsec-doc
+                   , libghc-base64-bytestring-doc
+                   , libghc-bytestring-doc | ghc-doc
+                   , libghc-bzlib-doc
+                   , libghc-cereal-doc
+                   , libghc-cereal-conduit-doc
+                   , libghc-conduit-doc
+                   , libghc-cryptocipher-doc
+                   , libghc-cryptohash-doc
+                   , libghc-mtl-doc
+                   , libghc-openpgp-asciiarmor-doc
+                   , libghc-split-doc
+                   , libghc-zlib-doc
+Standards-Version: 3.9.3
+Homepage: http://floss.scru.org/hOpenPGP/
+
+Package: libghc-hopenpgp-dev
+Architecture: any
+Depends: ${shlibs:Depends}
+         , ${haskell:Depends}
+         , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: implementation of OpenPGP (RFC4880)
+ This is a native Haskell implementation of OpenPGP (RFC4880),
+ including message format serialization and some cryptographic
+ operations.
+ .
+ This package contains the normal library files.
+
+Package: libghc-hopenpgp-prof
+Architecture: any
+Depends: ${haskell:Depends}
+         , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: OpenPGP (RFC4880); profiling libraries
+ This is a native Haskell implementation of OpenPGP (RFC4880),
+ including message format serialization and some cryptographic
+ operations.
+ .
+ This package contains the libraries compiled with profiling enabled.
+
+Package: libghc-hopenpgp-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends}
+         , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: implementation of OpenPGP (RFC4880); documentation
+ This is a native Haskell implementation of OpenPGP (RFC4880),
+ including message format serialization and some cryptographic
+ operations.
+ .
+ This package contains the documentation files.
