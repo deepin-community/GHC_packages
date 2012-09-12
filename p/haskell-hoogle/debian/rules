@@ -4,10 +4,17 @@ include /usr/share/cdbs/1/class/hlibrary.mk
 
 DEB_SETUP_GHC_CONFIGURE_ARGS := --datasubdir=/usr/share/hoogle
 HOOGLE_RESDIR := debian/hoogle/usr/share/hoogle/resources
+FILES_HOOGLE := debian/files_hoogle
 
 build/hoogle:: build-ghc-stamp
+	cd $(FILES_HOOGLE)/ && ghc -Wall -O haddock_collect.hs
+	cd $(FILES_HOOGLE)/ && strip haddock_collect
+
 binary-fixup/hoogle::
 	sed -i -e "s/res\//\/hoogle\//g" $(HOOGLE_RESDIR)/template.html
 	sed -i -e "s/action=\"\.\"/action=\"\.\/hoogle\"/g" $(HOOGLE_RESDIR)/template.html
-	install debian/files_hoogle/update-hoogle debian/hoogle/usr/sbin/
-	install debian/files_hoogle/haddock_collect.hs debian/hoogle/usr/share/hoogle/tool/
+	install $(FILES_HOOGLE)/update-hoogle debian/hoogle/usr/sbin/
+	install $(FILES_HOOGLE)/haddock_collect debian/hoogle/usr/sbin/
+
+clean::
+	cd $(FILES_HOOGLE)/ && rm -f haddock_collect haddock_collect.hi haddock_collect.o
