@@ -20,7 +20,7 @@ find /usr/share/doc/ghc-doc/html/libraries/*/ -name "*.txt*" 2>/dev/null | \
   haddock_collect $URLPREFIX $DATABASE_DIR/
 
 echo "Collect txt files on libghc-*-doc"
-find /usr/share/doc/libghc-*-doc/html/ -name "*.txt*" 2>/dev/null | \
+find /usr/share/doc/libghc-*-doc/html -wholename "/usr/share/doc/libghc-*-doc/html/*.txt" 2>/dev/null | \
   haddock_collect $URLPREFIX $DATABASE_DIR/
 
 # convert
