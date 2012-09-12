@@ -1,0 +1,48 @@
+Index: haskell-hoogle-4.2.10/src/Web/Server.hs
+===================================================================
+--- haskell-hoogle-4.2.10.orig/src/Web/Server.hs	2012-09-12 23:25:05.160049446 +0900
++++ haskell-hoogle-4.2.10/src/Web/Server.hs	2012-09-12 23:26:48.840563557 +0900
+@@ -1,6 +1,6 @@
+ {-# LANGUAGE RecordWildCards, ScopedTypeVariables, PatternGuards #-}
+
+-module Web.Server(server) where
++module Web.Server(server, serveFile) where
+
+ import General.Base
+ import General.Web
+Index: haskell-hoogle-4.2.10/src/Web/All.hs
+===================================================================
+--- haskell-hoogle-4.2.10.orig/src/Web/All.hs	2012-09-12 23:15:40.000000000 +0900
++++ haskell-hoogle-4.2.10/src/Web/All.hs	2012-09-13 00:33:29.494184336 +0900
+@@ -2,11 +2,13 @@
+ module Web.All(action) where
+
+ import CmdLine.All
++import General.System
+ import General.Base
+ import General.Web
+ import Web.Server
+ import Web.Response
+ import Web.Page
++import Network.Wai
+ import Paths_hoogle
+
+
+@@ -15,4 +17,16 @@
+ action q = do
+   f <- readFile' =<< getDataFileName ("resources" </> "template" <.> "html")
+   let t = loadTemplates f
+-  cgiResponse =<< response responseArgs{templates=t} q
++  d <- getDataDir
++  p <- getEnvVar "PATH_INFO"
++  let p' = fromMaybe "" p
++  cgiResponse =<< go t d p'
++    where
++      go t d p | "/res/" `isPrefixOf` p =
++        serveFile True $ d </> "resources" </> takeFileName p
++      go t d p | "/file/usr/share/doc/" `isPrefixOf` p =
++        rewriteRootLinks =<< serveFile False (fromJust (stripPrefix "/file" p))
++      go t _ _ = response responseArgs{templates=t} q
++
++rewriteRootLinks :: Response -> IO Response
++rewriteRootLinks = responseRewrite $ lbsReplace (fromString "href=\"/") (fromString "href=\"/cgi-bin/hoogle/file/")

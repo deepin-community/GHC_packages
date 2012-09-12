@@ -11,7 +11,7 @@ build/hoogle:: build-ghc-stamp
 	cd $(FILES_HOOGLE)/ && strip haddock_collect
 
 binary-fixup/hoogle::
-	sed -i -e "s/res\//\/hoogle\//g" $(HOOGLE_RESDIR)/template.html
+	sed -i -e "s/res\//hoogle\/res\//g" $(HOOGLE_RESDIR)/template.html
 	sed -i -e "s/action=\"\.\"/action=\"\.\/hoogle\"/g" $(HOOGLE_RESDIR)/template.html
 	install $(FILES_HOOGLE)/update-hoogle debian/hoogle/usr/sbin/
 	install $(FILES_HOOGLE)/haddock_collect debian/hoogle/usr/sbin/
