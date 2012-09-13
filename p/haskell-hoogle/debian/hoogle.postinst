@@ -13,14 +13,17 @@ set -e
 #DEBHELPER#
 
 ## ----------------------------------------------------------------------
-if [ "$1" = "configure" ]
-then
-
-    ## ------------------------------------------------------------------
-    ## create /var/lib/hoogle/databases
-    [ -d /var/lib/hoogle/databases ] && update-hoogle
-
-fi
+case "$1" in
+    triggered|configure)
+	[ -d /var/lib/hoogle/databases ] && update-hoogle
+        ;;
+    abort-upgrade|abort-remove|abort-deconfigure)
+        ;;
+    *)
+        echo "postinst called with unknown argument \`$1'" >&2
+        exit 0
+        ;;
+esac
 
 ## ----------------------------------------------------------------------
 exit 0

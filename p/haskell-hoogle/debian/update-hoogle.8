@@ -10,12 +10,8 @@ update-hoogle
 This program creates hoogle database for Debian system.
 It collects haddock documents, then create the database for hoogle command.
 .PP
-.B update\-hoogle
-isn't called automatically when
-.B libghc\-*\-doc
-package installed.
-You should run this program manually to synchronize hoogle database with
-haddock documents.
+This program is called by hoogle's postinst script automatically.
+But you can run this program manually too, if hoogle database broken.
 .SH "FILES"
 .TP
 .B /var/lib/hoogle/databases
@@ -26,4 +22,4 @@ They are updated by update-hoogle command.
 Kiwamu Okabe <kiwamu@debian.or.jp>
 .SH "SEE ALSO"
 .LP
-hoogle(1), haddock(1)
+hoogle(1), haddock(1), deb-triggers(5)
