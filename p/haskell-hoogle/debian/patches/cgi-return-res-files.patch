@@ -1,7 +1,7 @@
 Index: haskell-hoogle-4.2.10/src/Web/Server.hs
 ===================================================================
---- haskell-hoogle-4.2.10.orig/src/Web/Server.hs	2012-09-12 23:25:05.160049446 +0900
-+++ haskell-hoogle-4.2.10/src/Web/Server.hs	2012-09-12 23:26:48.840563557 +0900
+--- haskell-hoogle-4.2.10.orig/src/Web/Server.hs	2012-09-13 10:00:53.975656209 +0900
++++ haskell-hoogle-4.2.10/src/Web/Server.hs	2012-09-13 16:29:32.680340578 +0900
 @@ -1,6 +1,6 @@
  {-# LANGUAGE RecordWildCards, ScopedTypeVariables, PatternGuards #-}
 
@@ -12,8 +12,8 @@ Index: haskell-hoogle-4.2.10/src/Web/Server.hs
  import General.Web
 Index: haskell-hoogle-4.2.10/src/Web/All.hs
 ===================================================================
---- haskell-hoogle-4.2.10.orig/src/Web/All.hs	2012-09-12 23:15:40.000000000 +0900
-+++ haskell-hoogle-4.2.10/src/Web/All.hs	2012-09-13 00:33:29.494184336 +0900
+--- haskell-hoogle-4.2.10.orig/src/Web/All.hs	2012-09-13 16:29:32.648340414 +0900
++++ haskell-hoogle-4.2.10/src/Web/All.hs	2012-09-22 15:01:38.137179335 +0900
 @@ -2,11 +2,13 @@
  module Web.All(action) where
 
@@ -28,7 +28,7 @@ Index: haskell-hoogle-4.2.10/src/Web/All.hs
  import Paths_hoogle
 
 
-@@ -15,4 +17,16 @@
+@@ -15,4 +17,17 @@
  action q = do
    f <- readFile' =<< getDataFileName ("resources" </> "template" <.> "html")
    let t = loadTemplates f
@@ -41,7 +41,8 @@ Index: haskell-hoogle-4.2.10/src/Web/All.hs
 +      go t d p | "/res/" `isPrefixOf` p =
 +        serveFile True $ d </> "resources" </> takeFileName p
 +      go t d p | "/file/usr/share/doc/" `isPrefixOf` p =
-+        rewriteRootLinks =<< serveFile False (fromJust (stripPrefix "/file" p))
++        let p' = if "/" `isSuffixOf` p then p ++ "index.html" else p
++        in rewriteRootLinks =<< serveFile False (fromJust (stripPrefix "/file" p'))
 +      go t _ _ = response responseArgs{templates=t} q
 +
 +rewriteRootLinks :: Response -> IO Response
