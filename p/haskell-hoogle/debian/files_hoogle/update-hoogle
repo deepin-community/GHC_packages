@@ -15,9 +15,13 @@ cp /usr/share/hoogle/predownload/keyword.txt $DATABASE_DIR/download/
 # new database
 $HOOGLE data keyword
 
-echo "Collect txt files from ghc-doc and libghc-*-doc"
-find /usr/share/doc -wholename "/usr/share/doc/ghc-doc/html/libraries/*/*.txt*" -or -wholename "/usr/share/doc/libghc-*-doc/html/*.txt" | \
-  haddock-collect $URLPREFIX $DATABASE_DIR/
+TXTFILES=`find /usr/lib/ghc-doc/hoogle/ -name "*.txt" 2>/dev/null`
+if [ "$TXTFILES" = "" ]; then
+  echo "No txt files on /usr/lib/ghc-doc/hoogle/ dir..."
+else
+  echo "Collect txt files from /usr/lib/ghc-doc/hoogle/ dir"
+  cp $TXTFILES $DATABASE_DIR/
+fi
 
 # convert
 for i in $DATABASE_DIR/*.txt; do
