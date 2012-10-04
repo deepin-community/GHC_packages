@@ -16,11 +16,13 @@ cp /usr/share/hoogle/predownload/keyword.txt $DATABASE_DIR/download/
 $HOOGLE data keyword
 
 # convert
+echo -n "Converting databases."
 TXTFILES=`find /usr/lib/ghc-doc/hoogle/ -name "*.txt"`
 for i in $TXTFILES; do
-    echo "Convert $i"
+    echo -n "."
     $HOOGLE convert $i $DATABASE_DIR/`basename $i`.hoo >/dev/null 2>&1
 done
+echo " done"
 
 # combine
 cd $DATABASE_DIR/ && $HOOGLE combine *.hoo
