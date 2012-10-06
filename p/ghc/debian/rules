@@ -30,6 +30,7 @@ ProjectVersion=$(shell cat VERSION)
 GHC=$(firstword $(shell bash -c "type -p ghc"))
 EXTRA_CONFIGURE_FLAGS=--with-ghc="$(GHC)"
 BUILD_HADDOCK_DOCS=YES
+DEB_HOOGLE_TXT_DIR = /usr/lib/ghc-doc/hoogle/
 
 ifneq (,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
     NUMJOBS = $(patsubst parallel=%,%,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
@@ -236,6 +237,10 @@ endif
 	find debian/tmp/usr/share/haddock-* $(FILES)	 >> debian/ghc-haddock.install
 	# ghc-doc
 ifeq (YES,$(BUILD_HADDOCK_DOCS))
+	mkdir -p debian/tmp/$(DEB_HOOGLE_TXT_DIR)
+	find debian/tmp/usr/share/doc/ghc-doc/html/libraries/*/ -name "*.txt" | \
+	  runghc debian/haddock-collect \
+	  debian/tmp debian/tmp/$(DEB_HOOGLE_TXT_DIR)
 	find debian/tmp/usr/share/doc/ghc-doc $(FILES) > debian/ghc-doc.install
 	find debian/tmp/usr/lib/ghc-doc $(FILES)      >> debian/ghc-doc.install
 endif
