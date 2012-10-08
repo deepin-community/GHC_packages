@@ -238,13 +238,12 @@ endif
 	# ghc-doc
 ifeq (YES,$(BUILD_HADDOCK_DOCS))
 	mkdir -p debian/tmp/$(DEB_HOOGLE_TXT_DIR)
-	find debian/tmp/usr/share/doc/ghc-doc/html/libraries/*/ -name "*.txt" | \
-	  runghc debian/haddock-collect \
-	  debian/tmp debian/tmp/$(DEB_HOOGLE_TXT_DIR)
+	find debian/tmp/usr/share/doc/ghc-doc/html/libraries/*/ -name "*.txt" \
+		-printf "%p $(DEB_HOOGLE_TXT_DIR)/%f\n" >> debian/ghc-doc.links
 	find debian/tmp/usr/share/doc/ghc-doc $(FILES) > debian/ghc-doc.install
 	find debian/tmp/usr/lib/ghc-doc $(FILES)      >> debian/ghc-doc.install
 endif
-	sed -i s,^debian/tmp,, debian/*.install
+	sed -i s,^debian/tmp,, debian/*.install debian/*.links
 	rm -f debian/ghc.links
 	echo "/var/lib/ghc/package.conf.d /usr/lib/ghc/package.conf.d" >> debian/ghc.links
 	touch $@
@@ -265,6 +264,7 @@ clean:
 	rm -f debian/*.1
 	rm -f debian/ghc.manpages
 	rm -f debian/ghc.links
+	rm -f debian/ghc-doc.links
 	rm -f mk/build.mk
 	rm -rf debian/testghc
 	rm -f ch01.html ch02.html index.html
@@ -305,7 +305,7 @@ binary-arch-stamp: install-stamp
 	dh_installman -a
 	dh_strip
 	dh_link -a
-	dh_compress -X.haddock -a
+	dh_compress -X.haddock -X.txt -a
 	dh_fixperms -a
 	sh debian/dh_haskell_provides
 	dh_installdeb -a
