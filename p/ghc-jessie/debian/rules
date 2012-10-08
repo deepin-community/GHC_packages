@@ -91,7 +91,9 @@ endif
 	ln -s /usr/share/misc/config.guess .
 	./configure $(confflags) --prefix=/usr \
 		$(EXTRA_CONFIGURE_FLAGS) \
-		--with-ld=ld.bfd
+		--with-ld=ld.bfd \
+		--with-llc=llc-3.0 \
+		--with-opt=opt-3.0
 
 	touch $@
 
