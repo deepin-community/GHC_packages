@@ -5,7 +5,7 @@
 open PKG, 'inplace/bin/ghc-pkg list --simple-output |'
     or die "ghc-pkg list failed: $!";
 my @pkgs;
-my @ignored = ('ghc', 'mtl', 'terminfo', 'haskeline', 'utf8-string', 'xhtml');
+my @ignored = ('ghc', 'mtl', 'transformers', 'terminfo', 'haskeline', 'utf8-string', 'xhtml', 'rts');
 while (<PKG>) {
     y/A-Z/a-z/;
     my $pkgstring = $_;
