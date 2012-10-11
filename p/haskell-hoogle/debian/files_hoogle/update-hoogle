@@ -27,7 +27,7 @@ TXTFILES_SYM=`find /usr/lib/ghc-doc/hoogle/ -name "*.txt"`
 TXTFILES=`readlinks $TXTFILES_SYM`
 for i in $TXTFILES; do
     echo -n "."
-    $HOOGLE convert $i $DATABASE_DIR/`basename $i`.hoo >/dev/null 2>&1
+    $HOOGLE convert $i $DATABASE_DIR/`basename $i`.hoo --addlocation >/dev/null 2>&1
 done
 echo " done"
 
