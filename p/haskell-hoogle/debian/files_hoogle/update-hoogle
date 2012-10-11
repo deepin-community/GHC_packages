@@ -1,5 +1,11 @@
 #!/bin/sh
 
+readlinks() {
+    for i in $*; do
+	readlink -f $i
+    done
+}
+
 DATABASE_DIR=/var/lib/hoogle/databases
 HOOGLE=/usr/bin/hoogle
 URLPREFIX=http://localhost/cgi-bin/hoogle/file
@@ -17,7 +23,8 @@ $HOOGLE data keyword
 
 # convert
 echo -n "Converting databases."
-TXTFILES=`find /usr/lib/ghc-doc/hoogle/ -name "*.txt"`
+TXTFILES_SYM=`find /usr/lib/ghc-doc/hoogle/ -name "*.txt"`
+TXTFILES=`readlinks $TXTFILES_SYM`
 for i in $TXTFILES; do
     echo -n "."
     $HOOGLE convert $i $DATABASE_DIR/`basename $i`.hoo >/dev/null 2>&1
