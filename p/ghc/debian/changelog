@@ -1,3 +1,44 @@
+ghc (7.6.1-2) UNRELEASED; urgency=low
+
+  [ Joachim Breitner ]
+  * Bump standards version, no change
+
+ -- Kiwamu Okabe <kiwamu@debian.or.jp>  Sun, 07 Oct 2012 17:44:33 +0900
+
+ghc (7.6.1-2) experimental; urgency=low
+
+  * Do not Provide transformers, it is only used internally.
+  * Ensure this is not used with unstable’s haskell-devscripts 
+
+ -- Joachim Breitner <nomeata@debian.org>  Mon, 08 Oct 2012 22:41:46 +0200
+
+ghc (7.6.1-1) experimental; urgency=low
+
+  * New upstream release 
+    Dropped patches, applied upstream:
+     + Fix-GHCi-segfault-on-linux-powerpc
+     + hurd-is-ELF
+     + use-llvm-3.0
+     + memcpy-ffi
+     + fix-PPC-right-shift-bug
+     + no-useless-time
+     + fix-ppc-ghci-segfault
+  * Configure the use of llc-3.0 and opt-3.0 via ./configure 
+  * Bump standards version
+
+ -- Joachim Breitner <nomeata@debian.org>  Mon, 08 Oct 2012 15:48:21 +0200
+
+ghc (7.4.2-2) experimental; urgency=low
+
+  [ Erik de Castro Lopo ]
+  * Add patch to fix GHCi segfault on startup on PowerPC (Closes: #631073).
+  * Remove patch no_ghci_on_powerpc.
+
+  [ Iain Lane ]
+  * Update Vcs-* to point to experimental branch
+
+ -- Erik de Castro Lopo <erikd@mega-nerd.com>  Mon,  6 Aug 2012 20:19:46 +1000
+
 ghc (7.4.2-1) experimental; urgency=low
 
    * New upstream.
