@@ -1,0 +1,77 @@
+Source: haskell-monad-logger
+Priority: extra
+Section: haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 7.0)
+             , haskell-devscripts (>= 0.8.13)
+             , cdbs
+             , ghc
+             , ghc-prof
+             , libghc-fast-logger-dev (>> 0.2)
+             , libghc-fast-logger-dev (<< 0.4)
+             , libghc-fast-logger-prof
+             , libghc-resourcet-dev (>> 0.3)
+             , libghc-resourcet-dev (<< 0.5)
+             , libghc-resourcet-prof
+             , ghc-ghci
+             , libghc-text-dev
+             , libghc-text-prof
+             , libghc-transformers-dev
+             , libghc-transformers-prof
+Build-Depends-Indep: ghc-doc
+                   , libghc-fast-logger-doc
+                   , libghc-resourcet-doc
+                   , libghc-text-doc
+                   , libghc-transformers-doc
+Standards-Version: 3.9.4
+Homepage: https://github.com/kazu-yamamoto/logger
+
+Package: libghc-monad-logger-dev
+Architecture: any
+Depends: ${shlibs:Depends}
+         , ${haskell:Depends}
+         , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: a class of monads which can log messages
+ This package uses Template Haskell for determining source code locations
+ of messages.
+ .
+  Author: Michael Snoyman
+  Upstream-Maintainer: michael@snoyman.com
+ .
+ This package contains the normal library files.
+
+Package: libghc-monad-logger-prof
+Architecture: any
+Depends: ${haskell:Depends}
+         , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: a class of monads which can log messages
+ This package uses Template Haskell for determining source code locations
+ of messages.
+ .
+  Author: Michael Snoyman
+  Upstream-Maintainer: michael@snoyman.com
+ .
+ This package contains the libraries compiled with profiling enabled.
+
+Package: libghc-monad-logger-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends}
+         , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: a class of monads which can log messages
+ This package uses Template Haskell for determining source code locations
+ of messages.
+ .
+  Author: Michael Snoyman
+  Upstream-Maintainer: michael@snoyman.com
+ .
+ This package contains the documentation files.
