@@ -18,25 +18,23 @@ Build-Depends: debhelper (>= 7),
                libghc-mtl-dev (>= 2.0.1.0),
                libghc-mtl-dev (<< 2.2),
                libghc-mtl-prof,
-               libghc-semigroupoids-dev (>= 1.3.1.2),
-               libghc-semigroupoids-dev (<< 1.4),
+               libghc-semigroupoids-dev (>= 3.0),
+               libghc-semigroupoids-dev (<< 3.1),
                libghc-semigroupoids-prof,
-               libghc-comonad-dev (>= 1.1.1.5),
-               libghc-comonad-dev (<< 1.4),
+               libghc-comonad-dev (>= 3.0),
+               libghc-comonad-dev (<< 3.1),
                libghc-comonad-prof,
-               libghc-comonad-transformers-dev (>= 2.1.1.1),
-               libghc-comonad-transformers-dev (<< 2.2),
+               libghc-comonad-transformers-dev (>= 3.0),
+               libghc-comonad-transformers-dev (<< 3.1),
                libghc-comonad-transformers-prof,
-               libghc-comonads-fd-dev (>= 2.1.1.1),
-               libghc-comonads-fd-dev (<< 2.2),
+               libghc-comonads-fd-dev (>= 3.0),
+               libghc-comonads-fd-dev (<< 3.1),
                libghc-comonads-fd-prof,
-               libghc-data-lens-dev (>= 2.0.4.1),
-               libghc-data-lens-dev (<< 2.11),
-               libghc-data-lens-prof,
                libghc-semigroups-dev (>= 0.8.3.1),
                libghc-semigroups-dev (<< 0.9),
                libghc-semigroups-prof,
 Build-Depends-Indep: ghc-doc,
+                     libghc-bifunctors-doc,
                      libghc-distributive-doc,
                      libghc-transformers-doc,
                      libghc-mtl-doc,
@@ -58,7 +56,17 @@ Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
 Description: Monads for free
- This package provides Cofree comonads and Free monads.
+ Free monads are useful for many tree-like structures and domain specific
+ languages.
+ .
+ A Monad n is a free Monad for f if every Monad homomorphism from n to another
+ monad m is equivalent to a natural transformation from f to m.
+ .
+ Cofree comonads provide convenient ways to talk about branching streams and
+ rose-trees, and can be used to annotate syntax trees.
+ .
+ A Comonad v is a cofree Comonad for f if every Comonad homomorphism another
+ comonad w to v is equivalent to a natural transformation from w to f.
  .
  This package provides a library for the Haskell programming language.
  See http://www.haskell.org/ for more information on Haskell.
@@ -70,7 +78,17 @@ Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
 Description: Monads for free; profiling data
- This package provides Cofree comonads and Free monads.
+ Free monads are useful for many tree-like structures and domain specific
+ languages.
+ .
+ A Monad n is a free Monad for f if every Monad homomorphism from n to another
+ monad m is equivalent to a natural transformation from f to m.
+ .
+ Cofree comonads provide convenient ways to talk about branching streams and
+ rose-trees, and can be used to annotate syntax trees.
+ .
+ A Comonad v is a cofree Comonad for f if every Comonad homomorphism another
+ comonad w to v is equivalent to a natural transformation from w to f.
  .
  This package provides a library for the Haskell programming language, compiled
  for profiling. See http://www.haskell.org/ for more information on Haskell.
@@ -82,7 +100,17 @@ Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Description: Monads for free; documentation
- This package provides Cofree comonads and Free monads.
+ Free monads are useful for many tree-like structures and domain specific
+ languages.
+ .
+ A Monad n is a free Monad for f if every Monad homomorphism from n to another
+ monad m is equivalent to a natural transformation from f to m.
+ .
+ Cofree comonads provide convenient ways to talk about branching streams and
+ rose-trees, and can be used to annotate syntax trees.
+ .
+ A Comonad v is a cofree Comonad for f if every Comonad homomorphism another
+ comonad w to v is equivalent to a natural transformation from w to f.
  .
  This package provides the documentation for a library for the Haskell
  programming language.
