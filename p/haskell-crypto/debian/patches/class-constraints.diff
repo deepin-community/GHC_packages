@@ -1,11 +1,10 @@
-Description: ghc 7.4 class constraints
- This patch has been emailed to upstream Caylee Hogg.
-Author: Clint Adams <clint@debian.org>
+Description: ghc 7.6 class constraints
+Author: Joachim Breitner <nomeata@debian.org>
 
 Index: haskell-crypto-4.2.5/Data/Digest/SHA2.hs
 ===================================================================
---- haskell-crypto-4.2.5.orig/Data/Digest/SHA2.hs	2012-10-19 23:38:06.092295145 +0200
-+++ haskell-crypto-4.2.5/Data/Digest/SHA2.hs	2012-10-19 23:38:18.804294678 +0200
+--- haskell-crypto-4.2.5.orig/Data/Digest/SHA2.hs	2012-05-14 13:58:24.000000000 +0200
++++ haskell-crypto-4.2.5/Data/Digest/SHA2.hs	2012-10-21 14:21:17.359966255 +0200
 @@ -25,7 +25,7 @@
  ch x y z = (x .&. y) `xor` (complement x .&. z)
  maj x y z = (x .&. y) `xor` (x .&. z) `xor` (y .&. z)
@@ -15,3 +14,64 @@ Index: haskell-crypto-4.2.5/Data/Digest/SHA2.hs
    bigSigma0 :: w -> w
    bigSigma1 :: w -> w
    smallSigma0 :: w -> w
+Index: haskell-crypto-4.2.5/Data/LargeWord.hs
+===================================================================
+--- haskell-crypto-4.2.5.orig/Data/LargeWord.hs	2012-05-14 13:58:24.000000000 +0200
++++ haskell-crypto-4.2.5/Data/LargeWord.hs	2012-10-21 14:25:31.855955472 +0200
+@@ -62,7 +62,7 @@
+ data LargeKey a b = LargeKey a b
+    deriving (Eq, Ord)
+
+-instance (Ord a, Bits a, LargeWord a, Bits b, LargeWord b) =>
++instance (Ord a, Bits a, Num a, LargeWord a, Bits b, Num b, LargeWord b) =>
+    LargeWord (LargeKey a b) where
+       largeWordToInteger (LargeKey lo hi) =
+          largeWordToInteger lo + (2^(bitSize lo)) * largeWordToInteger hi
+@@ -96,17 +96,17 @@
+          where conv = integerToLargeWord . largeWordToInteger
+       largeBitSize ~(LargeKey lo hi) = largeBitSize lo + largeBitSize hi
+
+-instance (Ord a, Bits a, LargeWord a, Bits b, LargeWord b) => Show (LargeKey a b) where
++instance (Ord a, Bits a, Num a, LargeWord a, Bits b, Num b, LargeWord b) => Show (LargeKey a b) where
+    showsPrec p = showInt . largeWordToInteger
+
+-instance (Ord a, Bits a, LargeWord a, Bits b, LargeWord b) =>
++instance (Ord a, Bits a, Num a, LargeWord a, Bits b, Num b, LargeWord b) =>
+    Num (LargeKey a b) where
+       (+) = largeWordPlus
+       fromInteger = integerToLargeWord
+
+ -- Larger keys are instances of Bits provided their constituents are keys.
+
+-instance (Ord a, Bits a, LargeWord a, Bits b, LargeWord b) =>
++instance (Ord a, Bits a, Num a, LargeWord a, Bits b, Num b, LargeWord b) =>
+    Bits (LargeKey a b) where
+       (.&.) = largeWordAnd
+       (.|.) = largeWordOr
+@@ -130,11 +130,11 @@
+ boflk :: (LargeKey a b) -> b
+ boflk = undefined
+
+-instance (Ord a, Bits a, LargeWord a, Ord b, Bits b, LargeWord b) =>
++instance (Ord a, Bits a, Num a, LargeWord a, Ord b, Bits b, Num b, LargeWord b) =>
+    Integral (LargeKey a b) where
+       toInteger = largeWordToInteger
+
+-instance (Ord a, Bits a, LargeWord a, Ord b, Bits b, LargeWord b) =>
++instance (Ord a, Bits a, Num a, LargeWord a, Ord b, Bits b, Num b, LargeWord b) =>
+    Real (LargeKey a b)
+
+ instance Enum (LargeKey a b)
+Index: haskell-crypto-4.2.5/Data/Digest/SHA1.hs
+===================================================================
+--- haskell-crypto-4.2.5.orig/Data/Digest/SHA1.hs	2012-05-14 13:58:24.000000000 +0200
++++ haskell-crypto-4.2.5/Data/Digest/SHA1.hs	2012-10-21 14:26:57.551951840 +0200
+@@ -93,7 +93,7 @@
+       g [] = Nothing
+       g xs = Just (splitAt 64 xs)
+
+-fromBytes :: (Bits a) => [a] -> a
++fromBytes :: (Bits a, Num a) => [a] -> a
+ fromBytes input =
+     let dofb accum [] = accum
+         dofb accum (x:xs) = dofb ((shiftL accum 8) .|. x) xs
