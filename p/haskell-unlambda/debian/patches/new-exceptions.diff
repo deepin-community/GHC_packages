@@ -1,0 +1,43 @@
+Index: haskell-unlambda-0.1/Language/Unlambda.hs
+===================================================================
+--- haskell-unlambda-0.1.orig/Language/Unlambda.hs	2012-10-31 03:59:04.000000000 +0000
++++ haskell-unlambda-0.1/Language/Unlambda.hs	2012-10-31 04:05:55.828986238 +0000
+@@ -26,6 +26,8 @@
+
+ module Language.Unlambda where
+
++import Control.Exception.Base (catch, IOException)
++
+ ------------------------------------------------------------------------
+ -- Abstract syntax
+
+@@ -132,7 +134,7 @@
+ apply (Dot c) x  = step >> io (putChar c) >> return x
+ apply E x        = exit x
+ apply At f = do
+-  dat <- io $ catch (getChar >>= return . Just) (const $ return Nothing)
++  dat <- io $ catch (getChar >>= return . Just) ((const $ return Nothing) :: IOException -> IO (Maybe Char))
+   setCurrentChar dat
+   apply f (case dat of Nothing -> V ; Just _  -> I)
+ apply (Ques c) f = do
+Index: haskell-unlambda-0.1/Main.hs
+===================================================================
+--- haskell-unlambda-0.1.orig/Main.hs	2008-06-08 22:40:02.000000000 +0000
++++ haskell-unlambda-0.1/Main.hs	2012-10-31 04:09:45.976968843 +0000
+@@ -7,6 +7,7 @@
+ import System.Posix.Resource
+ import Data.Char
+ import System.IO
++import Control.Exception.Base (catch, IOException)
+
+ import Language.Unlambda
+
+@@ -24,7 +25,7 @@
+ --
+ parse :: Handle -> IO Exp
+ parse h = do
+-  c <- catch (hGetChar h) (\_ -> error "Parse error at end of file")
++  c <- catch (hGetChar h) ((\_ -> error "Parse error at end of file") :: IOException -> IO Char)
+   case toLower c of
+     d | d `elem` " \t\n"  -> parse h
+     '`' -> do e1 <- parse h
