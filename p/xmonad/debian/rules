@@ -4,7 +4,8 @@ include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
 
 build/xmonad::
-	runghc util/GenerateManpage.hs
+	ghc util/GenerateManpage.hs
+	util/GenerateManpage
 
 install/xmonad::
 	dh_installwm
@@ -20,3 +21,6 @@ install/xmonad::
 
 clean::
 	rm -f man/xmonad.1 man/xmonad.1.html
+	rm -f util/GenerateManpage \
+	    util/GenerateManpage.o \
+	    util/GenerateManpage.hi
