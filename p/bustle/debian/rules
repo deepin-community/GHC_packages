@@ -1,17 +1,22 @@
 #!/usr/bin/make -f
-
-PREFIX = debian/bustle/usr
+# export DH_VERBOSE=1
 
 %:
 	dh $@
 
-override_dh_auto_clean:
-	rm -f dist/build/bustle-pcap
+clean:
+	dh $@
+	[ ! -f ./setup ] || ./setup clean
+	rm -rf bustle-pcap dist setup Setup.hi Setup.o
+
+override_dh_auto_configure:
+	ghc -package Cabal Setup.hs -o setup
+	./setup configure --prefix /usr
 
 override_dh_auto_build:
-	mkdir -p dist/build
-	dh_auto_build
+	$(MAKE)
+	./setup build
 
-override_dh_auto_install:
-	$(MAKE) install PREFIX=$(PREFIX)
-	cabal install --prefix=$(PREFIX)
+override_dh_install:
+	./setup copy --destdir debian/bustle
+	dh_install

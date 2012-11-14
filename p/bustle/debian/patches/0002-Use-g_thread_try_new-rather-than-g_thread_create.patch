@@ -1,0 +1,40 @@
+From b5bdd77ff2c8532365806bdfae490b59295fd795 Mon Sep 17 00:00:00 2001
+From: Will Thompson <will@willthompson.co.uk>
+Date: Mon, 3 Sep 2012 10:50:22 -0400
+Subject: [PATCH 2/2] Use g_thread_try_new rather than g_thread_create
+
+The latter is deprecated. This seems like an extremely worthwhile change
+to have to make.
+---
+ Makefile                 |    2 +-
+ c-sources/pcap-monitor.c |    2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 9be9b4c..c2537b4 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,6 +1,6 @@
+ CFLAGS = -g -O2 -Wall -Wunused
+ DBUS_FLAGS = $(shell pkg-config --cflags --libs dbus-1)
+-GIO_FLAGS := $(shell pkg-config --cflags --libs glib-2.0 gio-2.0 gio-unix-2.0)
++GIO_FLAGS := $(shell pkg-config --cflags --libs 'glib-2.0 >= 2.32' gio-2.0 gio-unix-2.0)
+ PCAP_FLAGS := $(shell pcap-config --cflags pcap-config --libs)
+ DESTDIR =
+ PREFIX = /usr/local
+diff --git a/c-sources/pcap-monitor.c b/c-sources/pcap-monitor.c
+index c642813..cfcda5a 100644
+--- a/c-sources/pcap-monitor.c
++++ b/c-sources/pcap-monitor.c
+@@ -443,7 +443,7 @@ initable_init (
+       return FALSE;
+     }
+ 
+-  priv->thread = g_thread_create (log_thread, &priv->td, TRUE, error);
++  priv->thread = g_thread_try_new ("monitor", log_thread, &priv->td, error);
+   if (priv->thread == NULL)
+     {
+       g_prefix_error (error, "Couldn't spawn logging thread: ");
+-- 
+1.7.10
+

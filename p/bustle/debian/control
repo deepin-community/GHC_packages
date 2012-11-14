@@ -1,12 +1,26 @@
 Source: bustle
 Section: devel
 Priority: optional
-Maintainer: Chris Lamb <lamby@debian.org>
-Build-Depends: debhelper (>= 7.0.50), ghc6 (>= 6.10), pkg-config, libdbus-1-dev, libglib2.0-dev, libghc6-mtl-dev, libghc6-cairo-dev, libghc6-gtk-dev, libghc6-parsec3-dev, libghc6-glade-dev, libpcap-dev, libglib2.0-dev, cabal-install
-Standards-Version: 3.9.2
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Hector Oron <zumbi@debian.org>, Iain Lane <laney@debian.org>
+Build-Depends: debhelper (>= 7.0.50)
+ , ghc (>= 6.10)
+ , pkg-config
+ , libdbus-1-dev
+ , libglib2.0-dev
+ , libghc-mtl-dev
+ , libghc-cairo-dev
+ , libghc-gtk-dev
+ , libghc-parsec3-dev
+ , libghc-glade-dev
+ , libpcap0.8-dev
+ , libghc-dbus-dev
+ , libghc-pcap-dev
+ , help2man
+Standards-Version: 3.9.3
 Homepage: http://willthompson.co.uk/bustle/
-Vcs-Git: git://github.com/lamby/pkg-bustle.git
-Vcs-Browser: https://github.com/lamby/pkg-bustle
+Vcs-Git: git://anonscm.debian.org/pkg-haskell/bustle.git
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-haskell/bustle.git
 
 Package: bustle
 Architecture: any
@@ -20,3 +34,6 @@ Description: D-Bus activity visualiser
  Calls are displayed using Message Sequence Charts, a succinct way of
  representing entities and interactions over time. It can also output
  data in Graphviz format.
+ .
+ This package contains the graphical visualizer for traces generated
+ with the bustle-pcap tool.
