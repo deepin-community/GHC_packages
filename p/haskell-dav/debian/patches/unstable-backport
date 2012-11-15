@@ -1,4 +1,4 @@
-Description: backport to unstable
+Description:
  Adjust code and build deps for packages in unstable.
  This mostly consisted of reverting 3 commits in upstream git:
   f49d16fd6a0d15b68b3b8587f952535c8d027103
@@ -6,9 +6,9 @@ Description: backport to unstable
   d3ca5d99fc5d6f62987f27f5a446fa5dd3897092
 Author: Joey Hess <joeyh@debian.org>
 
---- haskell-dav-0.1.orig/DAV.cabal
-+++ haskell-dav-0.1/DAV.cabal
-@@ -24,35 +24,32 @@ library
+--- haskell-dav-0.2.orig/DAV.cabal
++++ haskell-dav-0.2/DAV.cabal
+@@ -25,38 +25,35 @@ library
    exposed-modules:  Network.Protocol.HTTP.DAV
    other-modules:    Network.Protocol.HTTP.DAV.TH
    ghc-options:       -Wall
@@ -54,9 +54,12 @@ Author: Joey Hess <joeyh@debian.org>
 -                     , xml-hamlet >= 0.4           && <= 0.5
 +                     , xml-conduit >= 0.7          && <= 0.7.0.3
 +                     , xml-hamlet >= 0.3           && <= 0.3.0.1
---- haskell-dav-0.1.orig/Network/Protocol/HTTP/DAV.hs
-+++ haskell-dav-0.1/Network/Protocol/HTTP/DAV.hs
-@@ -39,12 +39,11 @@ import Control.Monad.Trans.State.Lazy (e
+
+ source-repository head
+   type:     git
+--- haskell-dav-0.2.orig/Network/Protocol/HTTP/DAV.hs
++++ haskell-dav-0.2/Network/Protocol/HTTP/DAV.hs
+@@ -42,12 +42,11 @@ import Control.Monad.Trans.State.Lazy (e
 
  import qualified Data.ByteString as B
  import qualified Data.ByteString.Lazy as BL
@@ -65,12 +68,12 @@ Author: Joey Hess <joeyh@debian.org>
  import Data.Maybe (fromMaybe)
 
  import Network.HTTP.Conduit (httpLbs, parseUrl, applyBasicAuth, Request(..), RequestBody(..), Response(..), newManager, closeManager, ManagerSettings(..), def, HttpException(..))
--import Network.HTTP.Types (hContentType, Method, RequestHeaders, unauthorized401)
-+import Network.HTTP.Types (headerContentType, Method, RequestHeaders, unauthorized401)
+-import Network.HTTP.Types (hContentType, Method, Status, RequestHeaders, unauthorized401, conflict409)
++import Network.HTTP.Types (headerContentType, Method, Status, RequestHeaders, unauthorized401, conflict409)
 
  import qualified Text.XML as XML
  import Text.XML.Cursor (($/), (&/), element, node, fromDocument, checkName)
-@@ -98,7 +97,7 @@ getOptions = do
+@@ -103,7 +102,7 @@ getOptions = do
 
  lockResource :: MonadResourceBase m => Bool -> DAVState m ()
  lockResource nocreate = do
@@ -79,7 +82,7 @@ Author: Joey Hess <joeyh@debian.org>
      let ahs = if nocreate then (mk "If-Match", "*"):ahs' else ahs'
      lockresp <- davRequest "LOCK" ahs (xmlBody locky)
      let hdrtoken = (lookup "Lock-Token" . responseHeaders) lockresp
-@@ -118,21 +117,21 @@ supportsLocking = liftA2 (&&) ("LOCK" `e
+@@ -123,21 +122,21 @@ supportsLocking = liftA2 (&&) ("LOCK" `e
 
  getAllProps :: MonadResourceBase m => DAVState m XML.Document
  getAllProps = do
@@ -104,7 +107,7 @@ Author: Joey Hess <joeyh@debian.org>
      _ <- davRequest "PUT" ahs (RequestBodyLBS body)
      return ()
 
-@@ -147,7 +146,7 @@ parenthesize x = B.concat ["(", x, ")"]
+@@ -163,7 +162,7 @@ parenthesize x = B.concat ["(", x, ")"]
  putProps :: MonadResourceBase m => XML.Document -> DAVState m ()
  putProps props = do
      d <- get
@@ -113,7 +116,7 @@ Author: Joey Hess <joeyh@debian.org>
      let ahs = ah':fromMaybe [] (fmap (return . (,) (mk "If") . parenthesize) (_lockToken d))
      _ <- davRequest "PROPPATCH" ahs ((RequestBodyLBS . props2patch) props) -- FIXME: should diff and remove props from target
      return ()
-@@ -157,12 +156,11 @@ props2patch = XML.renderLBS XML.def . pa
+@@ -173,12 +172,11 @@ props2patch = XML.renderLBS XML.def . pa
     where
         props cursor = map node (cursor $/ element "{DAV:}response" &/ element "{DAV:}propstat" &/ element "{DAV:}prop" &/ checkName (not . flip elem blacklist))
         patch prop = XML.Document (XML.Prologue [] Nothing []) (root prop) []
@@ -130,7 +133,7 @@ Author: Joey Hess <joeyh@debian.org>
         blacklist = [ "{DAV:}creationdate"
                     , "{DAV:}displayname"
                     , "{DAV:}getcontentlength"
-@@ -203,14 +201,14 @@ deleteContent url username password = wi
+@@ -238,14 +236,14 @@ makeCollection url username password = w
  propname :: XML.Document
  propname = XML.Document (XML.Prologue [] Nothing []) root []
      where
