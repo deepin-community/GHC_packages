@@ -1,0 +1,103 @@
+Source: haskell-cipher-aes
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.8.13)
+  , ghc
+  , ghc-prof
+  , libghc-crypto-api-dev (>> 0.5)
+  , libghc-quickcheck2-dev
+  , libghc-test-framework-dev (>> 0.3.3)
+  , libghc-test-framework-dev (<< 0.7)
+  , libghc-test-framework-quickcheck2-dev (>> 0.2.9)
+  , libghc-test-framework-quickcheck2-dev (<< 0.3)
+Build-Depends-Indep: ghc-doc
+Standards-Version: 3.9.4
+Homepage: http://hackage.haskell.org/package/cipher-aes
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-cipher-aes
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-cipher-aes
+
+Package: libghc-cipher-aes-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: fast AES cipher implementation with advanced mode of operations
+ Fast AES cipher implementation with advanced mode of operations.
+ .
+ The modes of operations available are ECB (Electronic code book),
+ CBC (Cipher block chaining), CTR (Counter), XTS (XEX with ciphertext
+ stealing), GCM (Galois Counter Mode).
+ .
+ The AES implementation uses AES-NI when available (on x86 and x86-64
+ architecture), but fallback gracefully to a software C implementation.
+ .
+ The software implementation uses S-Boxes, which might suffer for cache
+ timing issues.  However do note that most other known software
+ implementations, including very popular one (openssl, gnutls) also uses
+ same implementation. If it matters for your case, you should make sure
+ you have AES-NI available, or you'll need to use a different
+ implementation.
+ .
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-cipher-aes-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: fast AES cipher implementation with advanced mode; profiling libraries
+ Fast AES cipher implementation with advanced mode of operations.
+ .
+ The modes of operations available are ECB (Electronic code book),
+ CBC (Cipher block chaining), CTR (Counter), XTS (XEX with ciphertext
+ stealing), GCM (Galois Counter Mode).
+ .
+ The AES implementation uses AES-NI when available (on x86 and x86-64
+ architecture), but fallback gracefully to a software C implementation.
+ .
+ The software implementation uses S-Boxes, which might suffer for cache
+ timing issues.  However do note that most other known software
+ implementations, including very popular one (openssl, gnutls) also uses
+ same implementation. If it matters for your case, you should make sure
+ you have AES-NI available, or you'll need to use a different
+ implementation.
+ .
+ This package provides a library for the Haskell programming language, compiled
+ for profiling.  See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-cipher-aes-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: fast AES cipher implementation with advanced mode; documentation
+ Fast AES cipher implementation with advanced mode of operations.
+ .
+ The modes of operations available are ECB (Electronic code book),
+ CBC (Cipher block chaining), CTR (Counter), XTS (XEX with ciphertext
+ stealing), GCM (Galois Counter Mode).
+ .
+ The AES implementation uses AES-NI when available (on x86 and x86-64
+ architecture), but fallback gracefully to a software C implementation.
+ .
+ The software implementation uses S-Boxes, which might suffer for cache
+ timing issues.  However do note that most other known software
+ implementations, including very popular one (openssl, gnutls) also uses
+ same implementation. If it matters for your case, you should make sure
+ you have AES-NI available, or you'll need to use a different
+ implementation.
+ .
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
