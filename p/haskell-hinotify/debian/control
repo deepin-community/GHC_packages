@@ -2,14 +2,15 @@ Source: haskell-hinotify
 Section: haskell
 Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Andy Bailey <bailey@akamai.com>
+Uploaders: Andy Bailey <bailey@akamai.com>, Clint Adams <clint@debian.org>
 Standards-Version: 3.9.4
 Build-Depends: debhelper (>= 7)
-  , haskell-devscripts (>= 0.8.13)
   , cdbs
+  , haskell-devscripts (>= 0.8.13)
   , ghc
   , ghc-prof
-  , ghc-doc
+Build-Depends-Indep: ghc-doc
+Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/hinotify
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hinotify
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-hinotify
@@ -21,7 +22,7 @@ Depends: ${haskell:Depends}
   , ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Haskell inotify library for GHC
+Description: Haskell inotify library
  This package provides a library for the Haskell programming language.
  See http://www.haskell.org/ for more information on Haskell.
  .
@@ -37,7 +38,7 @@ Architecture: any
 Depends: ${haskell:Depends}
   , ${misc:Depends}
 Provides: ${haskell:Provides}
-Description: Haskell inotify library for GHC; profiling libraries
+Description: Haskell inotify library; profiling libraries
  This package provides a library for the Haskell programming language,
  compiled for profiling.
  See http://www.haskell.org/ for more information on Haskell.
@@ -55,7 +56,7 @@ Depends: ${haskell:Depends}
   , ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: Haskell inotify library for GHC; documentation
+Description: Haskell inotify library; documentation
  This package provides the documentation for a library for the Haskell
  programming language.
  See http://www.haskell.org/ for more information on Haskell.
