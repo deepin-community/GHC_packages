@@ -1,5 +1,8 @@
 #!/usr/bin/make -f
 # export DH_VERBOSE=1
+#
+
+THREADED := $(if $(wildcard /usr/lib/*/libHSrts_thr.a),,-f-threaded)
 
 %:
 	dh $@
@@ -11,7 +14,7 @@ clean:
 
 override_dh_auto_configure:
 	ghc -package Cabal Setup.hs -o setup
-	./setup configure --prefix /usr
+	./setup configure --prefix /usr $(THREADED)
 
 override_dh_auto_build:
 	$(MAKE)
