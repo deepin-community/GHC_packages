@@ -1,0 +1,13 @@
+Index: haskell-cond-0.4.0.1/src/Data/Algebra/Boolean.hs
+===================================================================
+--- haskell-cond-0.4.0.1.orig/src/Data/Algebra/Boolean.hs	2012-05-30 20:13:52.000000000 +0000
++++ haskell-cond-0.4.0.1/src/Data/Algebra/Boolean.hs	2012-11-27 05:47:42.370425585 +0000
+@@ -120,7 +120,7 @@
+                   deriving (Num, Bits, Eq, Ord, Bounded, Enum, Show, Read, Real,
+                             Integral, Typeable, Data, Ix, Storable, PrintfArg)
+
+-instance Bits a => Boolean (Bitwise a) where
++instance (Bits a, Num a) => Boolean (Bitwise a) where
+   true   = not false
+   false  = Bitwise 0
+   not    = Bitwise . complement . getBits
