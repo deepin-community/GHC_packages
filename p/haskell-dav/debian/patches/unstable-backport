@@ -84,22 +84,22 @@ Author: Joey Hess <joeyh@debian.org>
      let hdrtoken = (lookup "Lock-Token" . responseHeaders) lockresp
 @@ -123,21 +122,21 @@ supportsLocking = liftA2 (&&) ("LOCK" `e
 
- getAllProps :: MonadResourceBase m => DAVState m XML.Document
- getAllProps = do
+ getPropsM :: MonadResourceBase m => DAVState m XML.Document
+ getPropsM = do
 -    let ahs = [(hContentType, "application/xml; charset=\"utf-8\"")]
 +    let ahs = [headerContentType "application/xml; charset=\"utf-8\""]
      propresp <- davRequest "PROPFIND" ahs (xmlBody propname)
      return $ (XML.parseLBS_ def . responseBody) propresp
 
- getContent :: MonadResourceBase m => DAVState m (Maybe B.ByteString, BL.ByteString)
- getContent = do
+ getContentM :: MonadResourceBase m => DAVState m (Maybe B.ByteString, BL.ByteString)
+ getContentM = do
      resp <- davRequest "GET" [] emptyBody
 -    let ct = lookup (hContentType) (responseHeaders resp)
 +    let ct = lookup (mk "Content-Type") (responseHeaders resp)
      return $ (ct, responseBody resp)
 
- putContent :: MonadResourceBase m => (Maybe B.ByteString, BL.ByteString) -> DAVState m ()
- putContent (ct, body) = do
+ putContentM :: MonadResourceBase m => (Maybe B.ByteString, BL.ByteString) -> DAVState m ()
+ putContentM (ct, body) = do
      d <- get
      let ahs' = fromMaybe [] (fmap (return . (,) (mk "If") . parenthesize) (d ^. lockToken))
 -    let ahs = ahs' ++ fromMaybe [] (fmap (return . (,) (hContentType)) ct)
@@ -108,8 +108,8 @@ Author: Joey Hess <joeyh@debian.org>
      return ()
 
 @@ -163,7 +162,7 @@ parenthesize x = B.concat ["(", x, ")"]
- putProps :: MonadResourceBase m => XML.Document -> DAVState m ()
- putProps props = do
+ putPropsM :: MonadResourceBase m => XML.Document -> DAVState m ()
+ putPropsM props = do
      d <- get
 -    let ah' = (hContentType, "application/xml; charset=\"utf-8\"")
 +    let ah' = headerContentType "application/xml; charset=\"utf-8\""
