@@ -6,33 +6,43 @@ Uploaders: Joachim Breitner <nomeata@debian.org>
 Build-Depends: debhelper (>= 7)
   , cdbs
   , haskell-devscripts (>= 0.8.13)
-  , ghc (>= 7.2)
-  , libghc-binary-shared-dev (>= 0.8)
+  , ghc
+  , libghc-binary-dev (>= 0.5.0.0)
+  , libghc-binary-dev (<< 0.6)
+  , libghc-binary-prof
+  , libghc-binary-shared-dev (>= 0.8.2)
   , libghc-binary-shared-dev (<< 0.9)
   , libghc-binary-shared-prof
-  , libghc-ltk-dev (>= 0.12)
+  , libghc-ltk-dev (>= 0.12.1.0)
   , libghc-ltk-dev (<< 0.13)
   , libghc-parsec3-dev (<< 3.2)
-  , libghc-network-dev (>= 2.2)
-  , libghc-network-dev (<< 3)
-  , libghc-haddock-dev (>= 2.7.2)
-  , libghc-haddock-dev (<< 2.11)
+  , libghc-deepseq-dev (>= 1.1)
+  , libghc-deepseq-dev (<< 1.4)
+  , libghc-deepseq-prof
   , libghc-hslogger-dev (>= 1.0.7)
   , libghc-hslogger-dev (<< 1.2)
+  , libghc-hslogger-dev (<< 1.2)
+  , libghc-network-dev (>= 2.2)
+  , libghc-network-dev (<< 3)
   , libghc-enumerator-dev (>= 0.4.14)
   , libghc-enumerator-dev (<< 0.5)
-  , libghc-attoparsec-dev (>= 0.10.0.3)
-  , libghc-attoparsec-dev (<< 0.11)
   , libghc-attoparsec-enumerator-dev (>= 0.3)
   , libghc-attoparsec-enumerator-dev (<< 0.4)
+  , libghc-attoparsec-dev (>= 0.10.0.3)
+  , libghc-attoparsec-dev (<< 0.11)
   , libghc-transformers-dev (>= 0.2.2.0)
   , libghc-transformers-dev (<< 0.4)
-  , libghc-hslogger-dev (<< 1.2)
+  , libghc-strict-dev (>= 0.3.2)
+  , libghc-strict-dev (<< 0.4)
+  , libghc-haddock-dev (>= 2.7.2)
+  , libghc-haddock-dev (<< 2.11)
   , dpkg (>= 1.14.27)
 Build-Depends-Indep: ghc-doc
+  , libghc-binary-doc
   , libghc-binary-shared-doc
   , libghc-ltk-doc
   , libghc-parsec3-doc
+  , libghc-deepseq-doc
   , libghc-network-doc
   , libghc-haddock-doc
   , libghc-enumerator-doc
@@ -40,6 +50,7 @@ Build-Depends-Indep: ghc-doc
   , libghc-attoparsec-enumerator-doc
   , libghc-transformers-doc
   , libghc-hslogger-doc
+  , libghc-strict-doc
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/leksah-server
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-leksah-server
