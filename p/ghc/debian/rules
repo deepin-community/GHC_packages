@@ -72,6 +72,10 @@ ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
 	# echo "GhcLibHcOpts  += -O0" >> mk/build.mk
 	echo "GhcRtsCcOpts  += -O0" >> mk/build.mk
 endif
+	# We also want to build the threaded profiling-enabled debug runtime,
+	# because it does no harm
+	echo 'GhcRTSWays += $$(if $$(findstring p, $$(GhcLibWays)),thr_debug_p,)' >> mk/build.mk
+
 	# We can't do this with a configure flag in 6.8.1 as libdir is not
 	# defined at the point at which we := it
 	echo 'ghclibdir := $${libdir}/ghc' >> mk/build.mk
