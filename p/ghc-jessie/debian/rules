@@ -190,7 +190,7 @@ install-stamp: build-stamp
 	echo "haddock:Depends=haddock-interface-$$(debian/tmp/usr/bin/haddock --interface-version)" >> debian/ghc-doc.substvars
 	# Hardcode that 22 supports 21, until http://trac.haskell.org/haddock/ticket/231 is fixed
 	if [ $$(debian/tmp/usr/bin/haddock --interface-version) -eq 22 ] ; then \
-	    echo "haddock:Provides=haddock-interface-21, haddock-interfaces-22" >> debian/ghc-haddock.substvars; \
+	    echo "haddock:Provides=haddock-interface-21, haddock-interface-22" >> debian/ghc-haddock.substvars; \
 	    else \
 	    echo "haddock:Provides=haddock-interface-$$(debian/tmp/usr/bin/haddock --interface-version)" >> debian/ghc-haddock.substvars ;\
 	    fi
