@@ -8,10 +8,17 @@ Build-Depends: debhelper (>= 7.0)
              , cdbs
              , ghc
              , ghc-prof
+             , libghc-conduit-dev (>> 0.5)
+             , libghc-conduit-dev (<< 0.6)
+             , libghc-conduit-prof
              , libghc-fast-logger-dev (>> 0.2)
              , libghc-fast-logger-dev (<< 0.4)
              , libghc-fast-logger-prof
-             , libghc-resourcet-dev (>> 0.3)
+             , libghc-monad-control-dev
+             , libghc-monad-control-prof
+             , libghc-mtl-dev
+             , libghc-mtl-prof
+             , libghc-resourcet-dev (>> 0.4)
              , libghc-resourcet-dev (<< 0.5)
              , libghc-resourcet-prof
              , ghc-ghci
@@ -19,11 +26,17 @@ Build-Depends: debhelper (>= 7.0)
              , libghc-text-prof
              , libghc-transformers-dev
              , libghc-transformers-prof
+             , libghc-transformers-base-dev
+             , libghc-transformers-base-prof
 Build-Depends-Indep: ghc-doc
+                   , libghc-conduit-doc
                    , libghc-fast-logger-doc
+                   , libghc-monad-control-doc
+                   , libghc-mtl-doc
                    , libghc-resourcet-doc
                    , libghc-text-doc
                    , libghc-transformers-doc
+                   , libghc-transformers-base-doc
 Standards-Version: 3.9.4
 Homepage: https://github.com/kazu-yamamoto/logger
 
