@@ -1,8 +1,8 @@
-Index: lens-3.0.5/tests/doctests.hs
+Index: lens-3.7.1.2/tests/doctests.hs
 ===================================================================
---- lens-3.0.5.orig/tests/doctests.hs	2012-10-29 20:42:42.226273057 +0000
-+++ lens-3.0.5/tests/doctests.hs	2012-10-29 20:43:29.318137661 +0000
-@@ -10,9 +10,9 @@
+--- lens-3.7.1.2.orig/tests/doctests.hs	2013-01-01 22:22:52.236614171 +0000
++++ lens-3.7.1.2/tests/doctests.hs	2013-01-01 22:23:24.524573289 +0000
+@@ -11,9 +11,9 @@
  main :: IO ()
  main = getSources >>= \sources -> doctest $
      "-isrc"
@@ -11,6 +11,6 @@ Index: lens-3.0.5/tests/doctests.hs
    : "-optP-include"
 -  : "-optPdist/build/autogen/cabal_macros.h"
 +  : "-optPdist-ghc/build/autogen/cabal_macros.h"
-   : sources
+   : "-hide-all-packages"
+   : map ("-package="++) deps ++ sources
 
- getSources :: IO [FilePath]
