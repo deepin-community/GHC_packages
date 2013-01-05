@@ -1,0 +1,75 @@
+Source: haskell-threads
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.8.13)
+  , ghc
+  , ghc-prof
+  , libghc-base-unicode-symbols-dev (>= 0.1.1)
+  , libghc-base-unicode-symbols-dev (<< 0.3)
+  , libghc-base-unicode-symbols-prof
+  , libghc-stm-dev (>= 2.1)
+  , libghc-stm-dev (<< 2.5)
+  , libghc-stm-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-base-unicode-symbols-doc
+  , libghc-stm-doc
+Standards-Version: 3.9.2
+Homepage: http://hackage.haskell.org/package/threads
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-threads
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-threads
+
+Package: libghc-threads-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Fork threads and wait for their result
+ This package provides functions to fork threads and wait for their result,
+ whether it's an exception or a normal value.
+ .
+ Besides waiting for the termination of a single thread this packages also
+ provides functions to wait for a group of threads to terminate.
+ .
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-threads-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Fork threads and wait for their result; profiling libraries
+ This package provides functions to fork threads and wait for their result,
+ whether it's an exception or a normal value.
+ .
+ Besides waiting for the termination of a single thread this packages also
+ provides functions to wait for a group of threads to terminate.
+ .
+ This package provides a library for the Haskell programming language, compiled
+ for profiling.  See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-threads-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Fork threads and wait for their result; documentation
+ This package provides functions to fork threads and wait for their result,
+ whether it's an exception or a normal value.
+ .
+ Besides waiting for the termination of a single thread this packages also
+ provides functions to wait for a group of threads to terminate.
+ .
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
