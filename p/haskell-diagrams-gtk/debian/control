@@ -1,0 +1,70 @@
+Source: haskell-diagrams-gtk
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.8.13)
+  , ghc
+  , ghc-prof
+  , libghc-diagrams-lib-dev (>= 0.6)
+  , libghc-diagrams-lib-dev (<< 0.7)
+  , libghc-diagrams-lib-prof
+  , libghc-diagrams-cairo-dev (>= 0.6)
+  , libghc-diagrams-cairo-dev (<< 0.7)
+  , libghc-diagrams-cairo-prof
+  , libghc-gtk-dev (>= 0.12.0)
+  , libghc-gtk-dev (<< 0.13)
+  , libghc-gtk-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-diagrams-lib-doc
+  , libghc-diagrams-cairo-doc
+  , libghc-gtk-doc
+Standards-Version: 3.9.2
+Homepage: http://hackage.haskell.org/package/diagrams-gtk
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-diagrams-gtk
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-diagrams-gtk
+
+Package: libghc-diagrams-gtk-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Backend for rendering diagrams directly to GTK windows
+ An optional add-on to the diagrams-cairo package which allows rendering
+ diagrams directly to GTK windows.
+ .
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-diagrams-gtk-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Backend for rendering diagrams directly to GTK windows; profiling libraries
+ An optional add-on to the diagrams-cairo package which allows rendering
+ diagrams directly to GTK windows.
+ .
+ This package provides a library for the Haskell programming language, compiled
+ for profiling.  See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-diagrams-gtk-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Backend for rendering diagrams directly to GTK windows; documentation
+ An optional add-on to the diagrams-cairo package which allows rendering
+ diagrams directly to GTK windows.
+ .
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
