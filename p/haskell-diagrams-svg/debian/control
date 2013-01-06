@@ -1,0 +1,94 @@
+Source: haskell-diagrams-svg
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.8.13)
+  , ghc
+  , ghc-prof
+  , libghc-mtl-dev (>= 1)
+  , libghc-mtl-dev (<< 2.2)
+  , libghc-mtl-prof
+  , libghc-vector-space-dev (>= 0.7)
+  , libghc-vector-space-dev (<< 0.9)
+  , libghc-vector-space-prof
+  , libghc-colour-dev
+  , libghc-colour-prof
+  , libghc-diagrams-core-dev (>= 0.6)
+  , libghc-diagrams-core-dev (<< 0.7)
+  , libghc-diagrams-core-prof
+  , libghc-diagrams-lib-dev (>= 0.6)
+  , libghc-diagrams-lib-dev (<< 0.7)
+  , libghc-diagrams-lib-prof
+  , libghc-monoid-extras-dev (>= 0.2)
+  , libghc-monoid-extras-dev (<< 0.3)
+  , libghc-monoid-extras-prof
+  , libghc-blaze-svg-dev (>= 0.3.3)
+  , libghc-blaze-svg-prof
+  , libghc-cmdargs-dev (>= 0.6)
+  , libghc-cmdargs-dev (<< 0.11)
+  , libghc-cmdargs-prof
+  , libghc-split-dev (>= 0.1.2)
+  , libghc-split-dev (<< 0.3)
+  , libghc-split-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-vector-space-doc
+  , libghc-colour-doc
+  , libghc-diagrams-core-doc
+  , libghc-diagrams-lib-doc
+  , libghc-monoid-extras-doc
+  , libghc-blaze-svg-doc
+  , libghc-cmdargs-doc
+  , libghc-split-doc
+Standards-Version: 3.9.2
+Homepage: http://hackage.haskell.org/package/diagrams-svg
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-diagrams-svg
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-diagrams-svg
+
+Package: libghc-diagrams-svg-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: SVG backend for diagrams drawing EDSL
+ This package provides a modular backend for rendering diagrams created with
+ the diagrams EDSL using SVG. It uses blaze-svg to be a fast, pure-Haskell
+ backend.
+ .
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-diagrams-svg-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: SVG backend for diagrams drawing EDSL; profiling libraries
+ This package provides a modular backend for rendering diagrams created with
+ the diagrams EDSL using SVG. It uses blaze-svg to be a fast, pure-Haskell
+ backend.
+ .
+ This package provides a library for the Haskell programming language, compiled
+ for profiling.  See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-diagrams-svg-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: SVG backend for diagrams drawing EDSL; documentation
+ This package provides a modular backend for rendering diagrams created with
+ the diagrams EDSL using SVG. It uses blaze-svg to be a fast, pure-Haskell
+ backend.
+ .
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
