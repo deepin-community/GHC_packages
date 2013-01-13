@@ -8,8 +8,6 @@ Build-Depends: debhelper (>= 7.0)
              , cdbs
              , ghc
              , ghc-prof
-             , libghc-asn1-data-dev (>> 0.7)
-             , libghc-asn1-data-prof
              , libghc-attoparsec-dev
              , libghc-attoparsec-prof
              , libghc-base64-bytestring-dev
@@ -24,14 +22,18 @@ Build-Depends: debhelper (>= 7.0)
              , libghc-conduit-dev (>> 0.5)
              , libghc-conduit-dev (<< 0.6)
              , libghc-conduit-prof
-             , libghc-cryptocipher-dev
-             , libghc-cryptocipher-prof
+             , libghc-crypto-pubkey-dev (>> 0.1.1)
+             , libghc-crypto-pubkey-prof
              , libghc-cryptohash-dev
              , libghc-cryptohash-prof
+             , libghc-ixset-dev (>> 1.0)
+             , libghc-ixset-prof
+             , libghc-lens-dev (>> 3.0)
+             , libghc-lens-prof
              , libghc-mtl-dev
              , libghc-mtl-prof
              , libghc-openpgp-asciiarmor-dev (>> 0.1)
-             , libghc-openpgp-asciiarmor-prof (>> 0.1)
+             , libghc-openpgp-asciiarmor-prof
              , libghc-split-dev
              , libghc-split-prof
              , libghc-zlib-dev
@@ -42,20 +44,20 @@ Build-Depends: debhelper (>= 7.0)
              , libghc-test-framework-dev
              , libghc-test-framework-hunit-dev
 Build-Depends-Indep: ghc-doc
-                   , libghc-asn1-data-doc
-                   , libghc-attoparsec-doc
-                   , libghc-base64-bytestring-doc
-                   , libghc-bytestring-doc | ghc-doc
-                   , libghc-bzlib-doc
-                   , libghc-cereal-doc
-                   , libghc-cereal-conduit-doc
-                   , libghc-conduit-doc
-                   , libghc-cryptocipher-doc
-                   , libghc-cryptohash-doc
-                   , libghc-mtl-doc
-                   , libghc-openpgp-asciiarmor-doc
-                   , libghc-split-doc
-                   , libghc-zlib-doc
+             , libghc-attoparsec-doc
+             , libghc-base64-bytestring-doc
+             , libghc-bzlib-doc
+             , libghc-cereal-doc
+             , libghc-cereal-conduit-doc
+             , libghc-conduit-doc
+             , libghc-crypto-pubkey-doc
+             , libghc-cryptohash-doc
+             , libghc-ixset-doc
+             , libghc-lens-doc
+             , libghc-mtl-doc
+             , libghc-openpgp-asciiarmor-doc
+             , libghc-split-doc
+             , libghc-zlib-doc
 Standards-Version: 3.9.4
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-hopenpgp
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hopenpgp
