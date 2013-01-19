@@ -1,0 +1,77 @@
+Source: haskell-terminal-progress-bar
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.8.13)
+  , ghc
+  , ghc-prof
+  , libghc-base-unicode-symbols-dev (>= 0.2.2.3)
+  , libghc-base-unicode-symbols-dev (<< 0.3)
+  , libghc-base-unicode-symbols-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-base-unicode-symbols-doc
+Standards-Version: 3.9.2
+Homepage: http://hackage.haskell.org/package/terminal-progress-bar
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-terminal-progress-bar
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-terminal-progress-bar
+
+Package: libghc-terminal-progress-bar-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: A simple progress bar in the terminal
+ A progress bar is used to convey the progress of a task. This
+ package implements a very simple textual progress bar.
+ .
+ The animated progress bar depends entirely on the interpretation of
+ the carriage return character (\'\r\'). If your terminal interprets
+ it as something else then "move cursor to beginning of line", the
+ animation won't work.
+ .
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-terminal-progress-bar-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: A simple progress bar in the terminal; profiling libraries
+ A progress bar is used to convey the progress of a task. This
+ package implements a very simple textual progress bar.
+ .
+ The animated progress bar depends entirely on the interpretation of
+ the carriage return character (\'\r\'). If your terminal interprets
+ it as something else then "move cursor to beginning of line", the
+ animation won't work.
+ .
+ This package provides a library for the Haskell programming language, compiled
+ for profiling.  See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-terminal-progress-bar-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: A simple progress bar in the terminal; documentation
+ A progress bar is used to convey the progress of a task. This
+ package implements a very simple textual progress bar.
+ .
+ The animated progress bar depends entirely on the interpretation of
+ the carriage return character (\'\r\'). If your terminal interprets
+ it as something else then "move cursor to beginning of line", the
+ animation won't work.
+ .
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
