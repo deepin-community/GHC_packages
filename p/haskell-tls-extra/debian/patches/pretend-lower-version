@@ -1,0 +1,16 @@
+This upstream release contains a bugfix that does not modify the ABI of
+the resulting library. To avoid having to recompile its reverse
+dependencies, we patch the .cabal file to pretend to be still version
+0.4.6.
+
+Index: haskell-tls-extra-0.4.6.1/tls-extra.cabal
+===================================================================
+--- haskell-tls-extra-0.4.6.1.orig/tls-extra.cabal	2013-01-20 23:13:58.937092809 +0100
++++ haskell-tls-extra-0.4.6.1/tls-extra.cabal	2013-01-20 23:13:58.933092809 +0100
+@@ -1,5 +1,5 @@
+ Name:                tls-extra
+-Version:             0.4.6.1
++Version:             0.4.6
+ Description:
+    a set of extra definitions, default values and helpers for tls.
+ License:             BSD3
