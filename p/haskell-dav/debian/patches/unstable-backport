@@ -6,9 +6,11 @@ Description:
   d3ca5d99fc5d6f62987f27f5a446fa5dd3897092
 Author: Joey Hess <joeyh@debian.org>
 
---- haskell-dav-0.2.orig/DAV.cabal
-+++ haskell-dav-0.2/DAV.cabal
-@@ -25,38 +25,35 @@ library
+Index: haskell-dav-0.3/DAV.cabal
+===================================================================
+--- haskell-dav-0.3.orig/DAV.cabal	2013-02-06 18:00:32.733126700 +0100
++++ haskell-dav-0.3/DAV.cabal	2013-02-06 18:00:32.725126701 +0100
+@@ -25,38 +25,35 @@
    exposed-modules:  Network.Protocol.HTTP.DAV
    other-modules:    Network.Protocol.HTTP.DAV.TH
    ghc-options:       -Wall
@@ -57,9 +59,11 @@ Author: Joey Hess <joeyh@debian.org>
 
  source-repository head
    type:     git
---- haskell-dav-0.2.orig/Network/Protocol/HTTP/DAV.hs
-+++ haskell-dav-0.2/Network/Protocol/HTTP/DAV.hs
-@@ -42,12 +42,11 @@ import Control.Monad.Trans.State.Lazy (e
+Index: haskell-dav-0.3/Network/Protocol/HTTP/DAV.hs
+===================================================================
+--- haskell-dav-0.3.orig/Network/Protocol/HTTP/DAV.hs	2013-02-06 18:00:32.733126700 +0100
++++ haskell-dav-0.3/Network/Protocol/HTTP/DAV.hs	2013-02-06 18:00:32.725126701 +0100
+@@ -43,12 +43,11 @@
 
  import qualified Data.ByteString as B
  import qualified Data.ByteString.Lazy as BL
@@ -73,7 +77,7 @@ Author: Joey Hess <joeyh@debian.org>
 
  import qualified Text.XML as XML
  import Text.XML.Cursor (($/), (&/), element, node, fromDocument, checkName)
-@@ -103,7 +102,7 @@ getOptions = do
+@@ -104,7 +103,7 @@
 
  lockResource :: MonadResourceBase m => Bool -> DAVState m ()
  lockResource nocreate = do
@@ -82,7 +86,7 @@ Author: Joey Hess <joeyh@debian.org>
      let ahs = if nocreate then (mk "If-Match", "*"):ahs' else ahs'
      lockresp <- davRequest "LOCK" ahs (xmlBody locky)
      let hdrtoken = (lookup "Lock-Token" . responseHeaders) lockresp
-@@ -123,21 +122,21 @@ supportsLocking = liftA2 (&&) ("LOCK" `e
+@@ -124,21 +123,21 @@
 
  getPropsM :: MonadResourceBase m => DAVState m XML.Document
  getPropsM = do
@@ -107,7 +111,7 @@ Author: Joey Hess <joeyh@debian.org>
      _ <- davRequest "PUT" ahs (RequestBodyLBS body)
      return ()
 
-@@ -163,7 +162,7 @@ parenthesize x = B.concat ["(", x, ")"]
+@@ -164,7 +163,7 @@
  putPropsM :: MonadResourceBase m => XML.Document -> DAVState m ()
  putPropsM props = do
      d <- get
@@ -116,7 +120,7 @@ Author: Joey Hess <joeyh@debian.org>
      let ahs = ah':fromMaybe [] (fmap (return . (,) (mk "If") . parenthesize) (_lockToken d))
      _ <- davRequest "PROPPATCH" ahs ((RequestBodyLBS . props2patch) props) -- FIXME: should diff and remove props from target
      return ()
-@@ -173,12 +172,11 @@ props2patch = XML.renderLBS XML.def . pa
+@@ -174,12 +173,11 @@
     where
         props cursor = map node (cursor $/ element "{DAV:}response" &/ element "{DAV:}propstat" &/ element "{DAV:}prop" &/ checkName (not . flip elem blacklist))
         patch prop = XML.Document (XML.Prologue [] Nothing []) (root prop) []
@@ -133,7 +137,7 @@ Author: Joey Hess <joeyh@debian.org>
         blacklist = [ "{DAV:}creationdate"
                     , "{DAV:}displayname"
                     , "{DAV:}getcontentlength"
-@@ -238,14 +236,14 @@ makeCollection url username password = w
+@@ -246,14 +244,14 @@
  propname :: XML.Document
  propname = XML.Document (XML.Prologue [] Nothing []) root []
      where
