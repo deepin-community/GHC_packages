@@ -1,0 +1,51 @@
+Index: hdbc-odbc-2.3.1.1/Database/HDBC/ODBC/Statement.hsc
+===================================================================
+--- hdbc-odbc-2.3.1.1.orig/Database/HDBC/ODBC/Statement.hsc	2012-12-01 19:12:26.000000000 +0100
++++ hdbc-odbc-2.3.1.1/Database/HDBC/ODBC/Statement.hsc	2013-02-07 20:14:20.339820784 +0100
+@@ -489,9 +489,9 @@
+ -- This struct, and the ones which follow, are described here:
+ --     http://msdn.microsoft.com/en-us/library/ms714556(v=VS.85).aspx
+ data StructDate = StructDate
+-  #{type SQLSMALLINT}   -- ^ year
+-  #{type SQLUSMALLINT}  -- ^ month
+-  #{type SQLUSMALLINT}  -- ^ day
++  #{type SQLSMALLINT}
++  #{type SQLUSMALLINT}
++  #{type SQLUSMALLINT}
+  deriving Show
+
+ instance Storable StructDate where
+@@ -509,9 +509,9 @@
+
+ -- | StructTime is used to marshals the TIME_STRUCT:
+ data StructTime = StructTime
+-  #{type SQLUSMALLINT} -- ^ hour
+-  #{type SQLUSMALLINT} -- ^ minute
+-  #{type SQLUSMALLINT} -- ^ second
++  #{type SQLUSMALLINT}
++  #{type SQLUSMALLINT}
++  #{type SQLUSMALLINT}
+
+ instance Storable StructTime where
+   sizeOf _    = #{size TIME_STRUCT}
+@@ -527,13 +527,13 @@
+
+ -- | StructTimestamp is used to marshal the TIMESTAMP_STRUCT;
+ data StructTimestamp = StructTimestamp
+-  #{type SQLSMALLINT}   -- ^ year
+-  #{type SQLUSMALLINT}  -- ^ month
+-  #{type SQLUSMALLINT}  -- ^ day
+-  #{type SQLUSMALLINT}  -- ^ hour
+-  #{type SQLUSMALLINT}  -- ^ minute
+-  #{type SQLUSMALLINT}  -- ^ second
+-  #{type SQLUINTEGER}   -- ^ fraction
++  #{type SQLSMALLINT}
++  #{type SQLUSMALLINT}
++  #{type SQLUSMALLINT}
++  #{type SQLUSMALLINT}
++  #{type SQLUSMALLINT}
++  #{type SQLUSMALLINT}
++  #{type SQLUINTEGER}
+
+ instance Storable StructTimestamp where
+   sizeOf _    = #{size TIMESTAMP_STRUCT}
