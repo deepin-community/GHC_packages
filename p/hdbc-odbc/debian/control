@@ -5,13 +5,11 @@ Uploaders: John Goerzen <jgoerzen@complete.org>
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Build-Depends:
  debhelper (>= 7),
- ghc (>= 6.10),
- ghc-prof (>= 6.10),
+ ghc,
+ ghc-prof,
  haskell-devscripts (>= 0.8.13),
  cdbs,
  cpphs,
- haddock,
- hscolour,
  libghc-hdbc-dev (>= 2.2.0-2),
  libghc-hdbc-prof (>= 2.2.0-2),
  unixodbc-dev (>= 2.2.11),
@@ -23,6 +21,12 @@ Build-Depends:
  libghc-hunit-prof,
  libghc-time-prof,
  libghc-convertible-prof
+Build-Depends-Indep:
+ libghc-hdbc-doc,
+ libghc-mtl-doc,
+ libghc-hunit-doc,
+ libghc-time-doc,
+ libghc-convertible-doc
 Standards-Version: 3.9.3
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/hdbc-odbc
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/hdbc-odbc
@@ -55,18 +59,6 @@ Description: unixODBC Haskell Database Connectivity Driver; profiling libraries
  .
  This package provides the ODBC database driver for HDBC under GHC compiled for
  profiling.
-
-#Package: libhugs-hdbc-odbc
-#Section: libs
-#Architecture: any
-#Depends: libhugs-hdbc (>= 1.1.6.1), ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-#Description: unixODBC HDBC (Haskell Database Connectivity) Driver for Hugs
-# HDBC provides an abstraction layer between Haskell programs and SQL
-# relational databases. This lets you write database code once, in
-# Haskell, and have it work with any number of backend SQL databases
-# (MySQL, Oracle, PostgreSQL, ODBC-compliant databases, etc.)
-# .
-# This package provides the ODBC database driver for HDBC under Hugs.
 
 Package: libghc-hdbc-odbc-doc
 Replaces: haskell-hdbc-odbc-doc (<< 2.2.3.0-2)
