@@ -1,0 +1,58 @@
+Source: haskell-cipher-rc4
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.8.13)
+  , ghc
+  , ghc-prof
+  , libghc-quickcheck-dev (>= 0.2)
+  , libghc-test-framework-dev (>= 0.3.3)
+  , libghc-test-framework-quickcheck2-dev (>= 0.2.9)
+Build-Depends-Indep: ghc-doc
+Standards-Version: 3.9.2
+Homepage: http://hackage.haskell.org/package/cipher-rc4
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-cipher-rc4
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-cipher-rc4
+
+Package: libghc-cipher-rc4-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Fast RC4 cipher implementation
+ This package provides a RC 4 cipher implementation.
+ .
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-cipher-rc4-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Fast RC4 cipher implementation; profiling libraries
+ This package provides a RC 4 cipher implementation.
+ .
+ This package provides a library for the Haskell programming language, compiled
+ for profiling.  See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-cipher-rc4-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Fast RC4 cipher implementation; documentation
+ This package provides a RC 4 cipher implementation.
+ .
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
