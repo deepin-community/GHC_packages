@@ -10,9 +10,25 @@ Build-Depends: debhelper (>= 7)
   , ghc
   , ghc-prof
   , ghc-doc
-  , libgl1-mesa-dev | libgl-dev
-  , libglu1-mesa-dev | libglu-dev
-  , libx11-dev
+  , libghc-openglraw-dev (>= 1.3.0.0)
+  , libghc-openglraw-prof
+  , libghc-gluraw-dev (>= 1.1.0.0)
+  , libghc-gluraw-prof
+  , libghc-statevar-dev (>= 1.0)
+  , libghc-statevar-dev (<< 1.1)
+  , libghc-statevar-prof
+  , libghc-objectname-dev (>= 1.0)
+  , libghc-objectname-dev (<< 1.1)
+  , libghc-objectname-prof
+  , libghc-tensor-dev (>= 1.0)
+  , libghc-tensor-dev (<< 1.1)
+  , libghc-tensor-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-openglraw-doc
+  , libghc-gluraw-doc
+  , libghc-statevar-doc
+  , libghc-objectname-doc
+  , libghc-tensor-doc
 Homepage: http://hackage.haskell.org/package/OpenGL
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-opengl
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-opengl
@@ -22,21 +38,13 @@ Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
   , ${misc:Depends}
-  , libgl1-mesa-dev | libgl-dev
-  , libglu1-mesa-dev | libglu-dev
-  , libx11-dev
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
 Description: Haskell OpenGL binding for GHC
  This package provides a library for the Haskell programming language.
  .
- This library provides a binding for the OpenGL graphics system (GL,
- version 1.5) and its accompanying utility library (GLU, version 1.3).
- OpenGL is the industry's most widely used and supported 2D and 3D
- graphics application programming interface (API), incorporating
- a broad set of rendering, texture mapping, special effects, and
- other powerful visualization functions.  For more information
- about OpenGL, please see: <http://www.opengl.org/>.
+ A Haskell binding for the OpenGL graphics system (GL, version 3.2) and its
+ accompanying utility library (GLU, version 1.3).
 
 Package: libghc-opengl-prof
 Architecture: any
@@ -47,13 +55,8 @@ Description: Haskell OpenGL binding for GHC; profiling libraries
  This package provides a library for the Haskell programming language,
  compiled for profiling.
  .
- This library provides a binding for the OpenGL graphics system (GL,
- version 1.5) and its accompanying utility library (GLU, version 1.3).
- OpenGL is the industry's most widely used and supported 2D and 3D
- graphics application programming interface (API), incorporating
- a broad set of rendering, texture mapping, special effects, and
- other powerful visualization functions.  For more information
- about OpenGL, please see: <http://www.opengl.org/>.
+ A Haskell binding for the OpenGL graphics system (GL, version 3.2) and its
+ accompanying utility library (GLU, version 1.3).
 
 Package: libghc-opengl-doc
 Section: doc
@@ -66,10 +69,5 @@ Description: Haskell OpenGL binding for GHC; documentation
  This package provides the documentation for a library for the Haskell
  programming language.
  .
- This library provides a binding for the OpenGL graphics system (GL,
- version 1.5) and its accompanying utility library (GLU, version 1.3).
- OpenGL is the industry's most widely used and supported 2D and 3D
- graphics application programming interface (API), incorporating
- a broad set of rendering, texture mapping, special effects, and
- other powerful visualization functions.  For more information
- about OpenGL, please see: <http://www.opengl.org/>.
+ A Haskell binding for the OpenGL graphics system (GL, version 3.2) and its
+ accompanying utility library (GLU, version 1.3).
