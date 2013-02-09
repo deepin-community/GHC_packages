@@ -1,0 +1,69 @@
+Source: haskell-reform
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.8.13)
+  , ghc
+  , ghc-prof
+  , libghc-mtl-dev (>> 2.0)
+  , libghc-mtl-dev (<< 2.2)
+  , libghc-mtl-prof
+  , libghc-text-dev (>> 0.11)
+  , libghc-text-dev (<< 0.12)
+  , libghc-text-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-mtl-doc
+  , libghc-text-doc
+Standards-Version: 3.9.4
+Homepage: http://hackage.haskell.org/package/reform
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-reform
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-reform
+
+Package: libghc-reform-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: HTML form generation and validation library
+ reform follows in the footsteps of formlets and digestive-functors
+ <= 0.2. It provides a type-safe and composable method for generating
+ an HTML form that includes validation.
+ .
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-reform-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: HTML form generation and validation library; profiling libraries
+ reform follows in the footsteps of formlets and digestive-functors
+ <= 0.2. It provides a type-safe and composable method for generating
+ an HTML form that includes validation.
+ .
+ This package provides a library for the Haskell programming language, compiled
+ for profiling.  See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-reform-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: HTML form generation and validation library; documentation
+ reform follows in the footsteps of formlets and digestive-functors
+ <= 0.2. It provides a type-safe and composable method for generating
+ an HTML form that includes validation.
+ .
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
