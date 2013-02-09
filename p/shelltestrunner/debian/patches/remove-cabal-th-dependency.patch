@@ -6,32 +6,37 @@ Description: Remove cabal-th dependency
 Author: Iustin Pop <iustin@debian.org>
 Forwarded: no
 Last-Update: 2012-03-26
---- a/shelltest.hs
-+++ b/shelltest.hs
-@@ -41,14 +41,14 @@
+Index: shelltestrunner-1.3.1/shelltest.hs
+===================================================================
+--- shelltestrunner-1.3.1.orig/shelltest.hs	2013-02-09 12:59:08.930494458 +0100
++++ shelltestrunner-1.3.1/shelltest.hs	2013-02-09 12:59:49.650492958 +0100
+@@ -34,7 +34,6 @@
  import qualified System.FilePath.Find as Find (extension)
  import Control.Applicative ((<$>))
  import Data.Algorithm.Diff
 -import Distribution.PackageDescription.TH (packageVariable, package, pkgVersion)
 
- strace :: Show a => a -> a
- strace a = trace (show a) a
+ import PlatformString (fromPlatformString, toPlatformString)
+
+@@ -43,7 +42,8 @@
 
  progname, version, progversion :: String
  progname = "shelltest"
 -version = $(packageVariable (pkgVersion . package))
 +-- sync with the cabal file
-+version = "1.2.1"
++version = "1.3.1"
  progversion = progname ++ " " ++ version
  proghelpsuffix :: [String]
  proghelpsuffix = [
---- a/shelltestrunner.cabal
-+++ b/shelltestrunner.cabal
-@@ -28,7 +28,6 @@
+Index: shelltestrunner-1.3.1/shelltestrunner.cabal
+===================================================================
+--- shelltestrunner-1.3.1.orig/shelltestrunner.cabal	2013-02-09 12:59:08.930494458 +0100
++++ shelltestrunner-1.3.1/shelltestrunner.cabal	2013-02-09 12:59:08.930494458 +0100
+@@ -29,7 +29,6 @@
    ghc-options:    -threaded -W -fwarn-tabs
    build-depends:
                   base                 >= 4     && < 5
 -                ,cabal-file-th
                  ,filemanip            >= 0.3   && < 0.4
                  ,HUnit                            < 1.3
-                 ,cmdargs              >= 0.7   && < 0.10
+                 ,cmdargs              >= 0.7   && < 0.11
