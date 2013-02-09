@@ -10,12 +10,17 @@ Build-Depends: debhelper (>= 7),
                ghc,
                ghc-prof,
                libghc-semigroups-dev (>= 0.8.3.1),
-               libghc-semigroups-dev (<< 0.9),
                libghc-semigroups-prof,
                libghc-semigroupoids-dev (>= 3.0),
-               libghc-semigroupoids-dev (<< 3.1),
+               libghc-semigroupoids-dev (<< 4),
                libghc-semigroupoids-prof
-Build-Depends-Indep: ghc-doc, libghc-semigroups-doc, libghc-semigroupoids-doc
+ , libghc-tagged-dev (>> 0.4.4)
+ , libghc-tagged-dev (<< 1)
+ , libghc-tagged-prof
+Build-Depends-Indep: ghc-doc
+ , libghc-semigroups-doc
+ , libghc-semigroupoids-doc
+ , libghc-tagged-doc
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/bifunctors
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-bifunctors
