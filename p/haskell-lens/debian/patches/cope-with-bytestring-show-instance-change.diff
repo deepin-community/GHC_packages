@@ -1,0 +1,13 @@
+Index: lens-3.8.5/src/Data/ByteString/Lazy/Lens.hs
+===================================================================
+--- lens-3.8.5.orig/src/Data/ByteString/Lazy/Lens.hs	2013-01-26 14:22:29.000000000 +0000
++++ lens-3.8.5/src/Data/ByteString/Lazy/Lens.hs	2013-02-09 18:02:50.650439784 +0000
+@@ -35,7 +35,7 @@
+ -- @
+ --
+ -- >>> [104,101,108,108,111]^.packedBytes
+--- Chunk "hello" Empty
++-- "hello"
+ packedBytes :: Iso' [Word8] ByteString
+ packedBytes = iso Words.pack unpackLazy
+ {-# INLINE packedBytes #-}

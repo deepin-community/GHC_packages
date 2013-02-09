@@ -1,10 +1,8 @@
-Index: lens-3.7.1.2/tests/doctests.hs
-===================================================================
---- lens-3.7.1.2.orig/tests/doctests.hs	2013-01-01 22:22:52.236614171 +0000
-+++ lens-3.7.1.2/tests/doctests.hs	2013-01-01 22:23:24.524573289 +0000
-@@ -11,9 +11,9 @@
+--- a/tests/doctests.hsc
++++ b/tests/doctests.hsc
+@@ -52,9 +52,9 @@
  main :: IO ()
- main = getSources >>= \sources -> doctest $
+ main = withUnicode $ getSources >>= \sources -> doctest $
      "-isrc"
 -  : "-idist/build/autogen"
 +  : "-idist-ghc/build/autogen"
