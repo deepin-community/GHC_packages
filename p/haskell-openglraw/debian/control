@@ -1,0 +1,71 @@
+Source: haskell-openglraw
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.8.13)
+  , ghc
+  , ghc-prof
+Build-Depends-Indep: ghc-doc
+Standards-Version: 3.9.2
+Homepage: http://hackage.haskell.org/package/openglraw
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-openglraw
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-openglraw
+
+Package: libghc-openglraw-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+  , libgl1-mesa-dev | libgl-dev,
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Raw binding for the OpenGL graphics system
+ OpenGLRaw is a raw Haskell binding for the OpenGL 3.2 graphics system and lots
+ of OpenGL extensions. It is basically a 1:1 mapping of OpenGL's C API,
+ intended as a basis for a nicer interface. OpenGLRaw offers access to all
+ necessary functions, tokens and types plus a general facility for loading
+ extension entries. The module hierarchy closely mirrors the naming structure
+ of the OpenGL extensions, making it easy to find the right module to import.
+ .
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-openglraw-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Raw binding for the OpenGL graphics system; profiling libraries
+ OpenGLRaw is a raw Haskell binding for the OpenGL 3.2 graphics system and lots
+ of OpenGL extensions. It is basically a 1:1 mapping of OpenGL's C API,
+ intended as a basis for a nicer interface. OpenGLRaw offers access to all
+ necessary functions, tokens and types plus a general facility for loading
+ extension entries. The module hierarchy closely mirrors the naming structure
+ of the OpenGL extensions, making it easy to find the right module to import.
+ .
+ This package provides a library for the Haskell programming language, compiled
+ for profiling.  See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-openglraw-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Raw binding for the OpenGL graphics system; documentation
+ OpenGLRaw is a raw Haskell binding for the OpenGL 3.2 graphics system and lots
+ of OpenGL extensions. It is basically a 1:1 mapping of OpenGL's C API,
+ intended as a basis for a nicer interface. OpenGLRaw offers access to all
+ necessary functions, tokens and types plus a general facility for loading
+ extension entries. The module hierarchy closely mirrors the naming structure
+ of the OpenGL extensions, making it easy to find the right module to import.
+ .
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
