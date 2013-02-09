@@ -3,6 +3,35 @@
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
 
+# UUAGC is a self-bootstrapping program. Upstream ships the generated files in
+# a separate package, uuagc-boostrap. To avoid this in debian, we keep the
+# generated files in debian/generated-files. At build time, these are copied 
+# to the expected location.
+#
+# To update these, make sure a usable uuagc is on the path and run 
+# fakeroot debian/rules update-generated-files.
+
+build/uuagc:: dist-ghc/build/uuagc/uuagc-tmp build-ghc-stamp
+
+dist-ghc/build/uuagc/uuagc-tmp:
+	mkdir dist-ghc/build/uuagc/uuagc-tmp/ -p
+	cp -v debian/generated-files-uuagc/*.hs  dist-ghc/build/uuagc/uuagc-tmp/
+	cp -v debian/generated-files/*.hs  dist-ghc/build/
+	touch dist-ghc/build/uuagc/uuagc-tmp/*
+
+clean::
+	rm -f debian/bootstrapping
+
+debian/bootstrapping:
+	touch $@
+
+update-generated-files:: clean debian/bootstrapping build-ghc-stamp
+	rm -f debian/generated-files/*.hs
+	rm -f debian/generated-files-uuagc/*.hs
+	cp -v dist-ghc/build/*.hs debian/generated-files/
+	cp -v dist-ghc/build/uuagc/uuagc-tmp/*.hs debian/generated-files-uuagc/
+
+
 # UUAGC has a strange way of setting the flag: It has to be set via a cpp
 # defines when compiling Setup
 $(DEB_SETUP_BIN_NAME):
