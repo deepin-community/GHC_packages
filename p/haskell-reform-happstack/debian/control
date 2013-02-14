@@ -1,0 +1,78 @@
+Source: haskell-reform-happstack
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.8.13)
+  , ghc
+  , ghc-prof
+  , libghc-happstack-server-dev (>> 7.0)
+  , libghc-happstack-server-dev (<< 7.2)
+  , libghc-happstack-server-prof
+  , libghc-mtl-dev (>> 2.0)
+  , libghc-mtl-dev (<< 2.2)
+  , libghc-mtl-prof
+  , libghc-random-dev (>> 1.0)
+  , libghc-random-dev (<< 1.1)
+  , libghc-random-prof
+  , libghc-reform-dev (>> 0.1)
+  , libghc-reform-dev (<< 0.2)
+  , libghc-reform-prof
+  , libghc-utf8-string-dev (>> 0.3)
+  , libghc-utf8-string-dev (<< 0.4)
+  , libghc-utf8-string-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-happstack-server-doc
+  , libghc-mtl-doc
+  , libghc-random-doc
+  , libghc-reform-doc
+  , libghc-utf8-string-doc
+Standards-Version: 3.9.4
+Homepage: http://hackage.haskell.org/package/reform-happstack
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-reform-happstack
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-reform-happstack
+
+Package: libghc-reform-happstack-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Happstack support for reform
+ Reform is a library for building and validating forms using applicative
+ functors. This package add support for using reform with Happstack.
+ .
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-reform-happstack-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Happstack support for reform; profiling libraries
+ Reform is a library for building and validating forms using applicative
+ functors. This package add support for using reform with Happstack.
+ .
+ This package provides a library for the Haskell programming language, compiled
+ for profiling.  See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-reform-happstack-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Happstack support for reform; documentation
+ Reform is a library for building and validating forms using applicative
+ functors. This package add support for using reform with Happstack.
+ .
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
