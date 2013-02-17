@@ -1,9 +1,9 @@
 Forwarded: http://code.google.com/p/ndmitchell/issues/detail?id=590
 
-Index: haskell-hoogle-4.2.10/src/CmdLine/Type.hs
+Index: haskell-hoogle-4.2.15/src/CmdLine/Type.hs
 ===================================================================
---- haskell-hoogle-4.2.10.orig/src/CmdLine/Type.hs	2012-09-13 09:59:22.839204283 +0900
-+++ haskell-hoogle-4.2.10/src/CmdLine/Type.hs	2012-10-12 00:42:15.267088185 +0900
+--- haskell-hoogle-4.2.15.orig/src/CmdLine/Type.hs	2013-01-29 11:35:35.000000000 +0100
++++ haskell-hoogle-4.2.15/src/CmdLine/Type.hs	2013-02-17 17:26:49.000000000 +0100
 @@ -34,7 +34,7 @@
      | Data {redownload :: Bool, local :: [String], datadir :: FilePath, threads :: Int, actions :: [String]}
      | Server {port :: Int, local_ :: Bool, databases :: [FilePath], resources :: FilePath, dynamic :: Bool, template :: [FilePath]}
@@ -21,10 +21,10 @@ Index: haskell-hoogle-4.2.10/src/CmdLine/Type.hs
      } &= help "Convert an input file to a database"
 
  data_ = Data
-Index: haskell-hoogle-4.2.10/src/Console/All.hs
+Index: haskell-hoogle-4.2.15/src/Console/All.hs
 ===================================================================
---- haskell-hoogle-4.2.10.orig/src/Console/All.hs	2012-09-13 09:59:22.839204283 +0900
-+++ haskell-hoogle-4.2.10/src/Console/All.hs	2012-10-12 00:43:26.363440741 +0900
+--- haskell-hoogle-4.2.15.orig/src/Console/All.hs	2013-01-29 11:35:35.000000000 +0100
++++ haskell-hoogle-4.2.15/src/Console/All.hs	2013-02-17 17:33:42.662665170 +0100
 @@ -3,6 +3,7 @@
 
  import CmdLine.All
@@ -44,17 +44,17 @@ Index: haskell-hoogle-4.2.10/src/Console/All.hs
      putStrLn $ "Converting " ++ from
      src <- readFileUtf8 from
 -    let (err,db) = createDatabase Haskell [] src
-+    let from' = "file:/" ++ from
++    let from' = "file://" ++ from
 +        src' = if addloc then unlines . haddockPackageUrl from' . lines $ src
 +               else src
 +        (err,db) = createDatabase Haskell [] src'
      unless (null err) $ putStr $ unlines $ "Warning: parse errors" : map show err
      saveDatabase to db
      putStrLn $ "Written " ++ to
-Index: haskell-hoogle-4.2.10/src/Recipe/Hackage.hs
+Index: haskell-hoogle-4.2.15/src/Recipe/Hackage.hs
 ===================================================================
---- haskell-hoogle-4.2.10.orig/src/Recipe/Hackage.hs	2012-09-13 09:59:22.839204283 +0900
-+++ haskell-hoogle-4.2.10/src/Recipe/Hackage.hs	2012-10-12 00:42:15.271088200 +0900
+--- haskell-hoogle-4.2.15.orig/src/Recipe/Hackage.hs	2013-01-29 11:35:35.000000000 +0100
++++ haskell-hoogle-4.2.15/src/Recipe/Hackage.hs	2013-02-17 17:26:49.000000000 +0100
 @@ -1,5 +1,5 @@
 
 -module Recipe.Hackage(makePlatform, makeDefault, makePackage, makeAll) where
