@@ -1,0 +1,24 @@
+Index: xmonad-0.11/util/GenerateManpage.hs
+===================================================================
+--- xmonad-0.11.orig/util/GenerateManpage.hs	2013-01-01 02:31:47.000000000 +0100
++++ xmonad-0.11/util/GenerateManpage.hs	2013-02-17 17:01:53.186736898 +0100
+@@ -26,6 +26,7 @@
+ import Text.Regex.Posix
+ import Data.Char
+ import Data.List
++import qualified Data.Set as Set
+
+ import Distribution.PackageDescription.Parse
+ import Distribution.Verbosity
+@@ -68,9 +69,9 @@
+                     `liftM` readFile "./XMonad/Config.hs"
+
+     let manHeader = unwords [".TH xmonad 1","\""++releaseDate++"\"",releaseName,"\"xmonad manual\""]
+-        writeOpts = defaultWriterOptions -- { writerLiterateHaskell = True }
++        writeOpts = def -- { writerLiterateHaskell = True }
+
+-    parsed <- readMarkdown defaultParserState { stateLiterateHaskell = True }
++    parsed <- readMarkdown def { readerExtensions = Set.insert Ext_literate_haskell pandocExtensions }
+         . unlines
+         . replace "___KEYBINDINGS___" keybindings
+         . lines
