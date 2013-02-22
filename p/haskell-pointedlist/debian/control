@@ -1,0 +1,70 @@
+Source: haskell-pointedlist
+Priority: extra
+Section: haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Masayuki Hatta (mhatta) <mhatta@debian.org>
+Build-Depends: debhelper (>= 7.0)
+               , haskell-devscripts (>= 0.8)
+               , cdbs
+               , ghc
+               , ghc-prof
+               , libghc-derive-dev
+               , libghc-derive-prof
+               , libghc-fclabels-dev (>= 1.1)
+               , libghc-fclabels-dev (<< 1.2)
+               , libghc-fclabels-prof (>= 1.1)
+               , libghc-fclabels-prof (<< 1.2)
+Build-Depends-Indep: ghc-doc
+                     , libghc-derive-doc
+                     , libghc-fclabels-doc (>= 1.1)
+                     , libghc-fclabels-doc (<< 1.2)
+Standards-Version: 3.9.3
+Homepage: http://hackage.haskell.org/package/pointedlist
+Vcs-Darcs: http://darcs.debian.org/darcs/pkg-haskell/haskell-pointedlist
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-pointedlist
+
+Package: libghc-pointedlist-dev
+Architecture: any
+Depends: ${shlibs:Depends}
+         , ${haskell:Depends}
+         , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: zipper-like comonad which works as a list, tracking a position
+ This Haskell library provides PointedList, which tracks the position in a
+ non-empty list which works similarly to a zipper. A current item is always
+ required, and therefore the list may never be empty. A circular PointedList
+ wraps around to the other end when progressing past the actual edge.
+ .
+ This package contains the normal library files.
+
+Package: libghc-pointedlist-prof
+Architecture: any
+Depends: ${haskell:Depends}
+         , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: zipper-like comonad which works as a list, tracking a position
+ This Haskell library provides PointedList, which tracks the position in a
+ non-empty list which works similarly to a zipper. A current item is always
+ required, and therefore the list may never be empty. A circular PointedList
+ wraps around to the other end when progressing past the actual edge.
+ .
+ This package contains the libraries compiled with profiling enabled.
+
+Package: libghc-pointedlist-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends}
+         , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: zipper-like comonad which works as a list, tracking a position.
+ This Haskell library provides PointedList, which tracks the position in a
+ non-empty list which works similarly to a zipper. A current item is always
+ required, and therefore the list may never be empty. A circular PointedList
+ wraps around to the other end when progressing past the actual edge.
+ .
+ This package contains the documentation files.
