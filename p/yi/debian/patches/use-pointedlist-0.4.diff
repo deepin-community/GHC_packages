@@ -1,0 +1,207 @@
+--- a/src/library/Yi/Editor.hs
++++ b/src/library/Yi/Editor.hs
+@@ -32,7 +32,7 @@
+ import Yi.Window
+ import qualified Data.Rope as R
+ import qualified Data.DelayList as DelayList
+-import qualified Data.List.PointedList as PL (atEnd)
++import qualified Data.List.PointedList as PL (atEnd, moveTo)
+ import qualified Data.List.PointedList.Circular as PL
+ import qualified Data.Map as M
+ import {-# source #-} Yi.Keymap (extractTopKeymap)
+@@ -142,7 +142,7 @@
+ tabsA = tabs_A . fixCurrentBufferA_
+
+ currentTabA :: Accessor Editor Tab
+-currentTabA = PL.focusA . tabsA
++currentTabA = focusA . tabsA
+
+ dynA :: YiVariable a => Accessor Editor a
+ dynA = dynamicValueA . dynamicA
+@@ -314,7 +314,7 @@
+   withGivenBufferAndWindow0 w (bufkey w) f
+
+ currentWindowA :: Accessor Editor Window
+-currentWindowA = PL.focusA . windowsA
++currentWindowA = focusA . windowsA
+
+ -- | Return the current buffer
+ currentBuffer :: Editor -> BufferRef
+@@ -460,7 +460,7 @@
+ -- | Attach the specified buffer to the current window
+ switchToBufferE :: BufferRef -> EditorM ()
+ switchToBufferE bk = do
+-    modA (PL.focusA . windowsA) (\w ->
++    modA (focusA . windowsA) (\w ->
+            w { bufkey = bk,
+                bufAccessList = forceFold1 $ ((bufkey w):) . filter (bk/=) $ bufAccessList w })
+
+@@ -506,7 +506,7 @@
+
+ -- | Swaps the focused window with the first window. Useful for layouts such as 'HPairOneStack', for which the first window is the largest.
+ swapWinWithFirstE :: EditorM ()
+-swapWinWithFirstE = modA windowsA (swapFocus (fromJust . PL.move 0))
++swapWinWithFirstE = modA windowsA (swapFocus (fromJust . PL.moveTo 0))
+
+ -- | Moves the focused window to the first window, and moves all other windows down the stack.
+ pushWinToFirstE :: EditorM ()
+@@ -514,7 +514,7 @@
+   where
+       pushToFirst ws = case PL.delete ws of
+           Nothing -> ws
+-          Just ws' -> PL.insertLeft (ws ^. PL.focusA) (fromJust $ PL.move 0 ws')
++          Just ws' -> PL.insertLeft (ws ^. focusA) (fromJust $ PL.moveTo 0 ws')
+
+ -- | Swap focused window with the next one
+ moveWinNextE :: EditorM ()
+@@ -530,7 +530,7 @@
+ fixCurrentBufferA_ :: Accessor Editor Editor
+ fixCurrentBufferA_ = fromSetGet (\new _old -> let
+     ws = windows new
+-    b = findBufferWith (bufkey $ PL.focus ws) new
++    b = findBufferWith (bufkey $ PL._focus ws) new
+     newBufferStack = nub (bkey b : bufferStack new)
+     -- make sure we do not hold to old versions by seqing the length.
+     in length newBufferStack `seq` new { bufferStack = newBufferStack  } ) id
+@@ -541,7 +541,7 @@
+ fixCurrentWindow :: EditorM ()
+ fixCurrentWindow = do
+     b <- gets currentBuffer
+-    modA (PL.focusA . windowsA) (\w -> w {bufkey = b})
++    modA (focusA . windowsA) (\w -> w {bufkey = b})
+
+ withWindowE :: Window -> BufferM a -> EditorM a
+ withWindowE w = withGivenBufferAndWindow0 w (bufkey w)
+@@ -577,8 +577,8 @@
+     case foldl searchWindowSet  (False, 0, 0) ts of
+         (False, _, _) -> fail $ "No window with key " ++ show wkey ++ "found. (focusWindowE)"
+         (True, tabIndex, winIndex) -> do
+-            putA tabsA (fromJust $ PL.move tabIndex ts)
+-            modA windowsA (\ws -> fromJust $ PL.move winIndex ws)
++            putA tabsA (fromJust $ PL.moveTo tabIndex ts)
++            modA windowsA (\ws -> fromJust $ PL.moveTo winIndex ws)
+
+ -- | Split the current window, opening a second window onto current buffer.
+ -- TODO: unfold newWindowE here?
+@@ -604,7 +604,7 @@
+      go lms lm =
+        case findPL (layoutManagerSameType lm) lms of
+          Nothing -> head lms
+-         Just lmsPL -> f lmsPL ^. PL.focusA
++         Just lmsPL -> f lmsPL ^. focusA
+
+ -- | Next variant of the current layout manager, as given by 'nextVariant'
+ layoutManagerNextVariantE :: EditorM ()
+@@ -645,8 +645,8 @@
+ -- | Moves the focused tab to the given index, or to the end if the index is not specified.
+ moveTab :: Maybe Int -> EditorM ()
+ moveTab Nothing  = do count <- getsA tabsA PL.length
+-                      modA tabsA $ fromJust . PL.move (pred count)
+-moveTab (Just n) = do newTabs <- getsA tabsA (PL.move n)
++                      modA tabsA $ fromJust . PL.moveTo (pred count)
++moveTab (Just n) = do newTabs <- getsA tabsA (PL.moveTo n)
+                       when (isNothing newTabs) failure
+                       putA tabsA $ fromJust newTabs
+   where failure = fail $ "moveTab " ++ show n ++ ": no such tab"
+--- a/src/library/Yi/Prelude.hs
++++ b/src/library/Yi/Prelude.hs
+@@ -37,6 +37,7 @@
+ dummyGet,
+ every,
+ findPL,
++focusA,
+ fromIntegral,
+ fst,
+ fst3,
+@@ -232,9 +233,14 @@
+   go ls (f:rs) | p f    = Just (PL.PointedList ls f rs)
+                | otherwise = go (f:ls) rs
+
++focusA :: Accessor (PL.PointedList a) a
++focusA = accessor getter setter where
++  getter   (PL.PointedList _ x _) = x
++  setter y (PL.PointedList x _ z) = PL.PointedList x y z
++
+ -- | Given a function which moves the focus from index A to index B, return a function which swaps the elements at indexes A and B and then moves the focus. See Yi.Editor.swapWinWithFirstE for an example.
+ swapFocus :: (PL.PointedList a -> PL.PointedList a) -> (PL.PointedList a -> PL.PointedList a)
+-swapFocus moveFocus xs = PL.focusA ^= (xs ^. PL.focusA) $ moveFocus $ PL.focusA ^= (moveFocus xs ^. PL.focusA) $ xs
++swapFocus moveFocus xs = focusA ^= (xs ^. focusA) $ moveFocus $ focusA ^= (moveFocus xs ^. focusA) $ xs
+ ----------------------
+ -- Acessor stuff
+
+--- a/src/library/Yi/Tab.hs
++++ b/src/library/Yi/Tab.hs
+@@ -40,7 +40,7 @@
+  deriving Typeable
+
+ tabFocus :: Tab -> Window
+-tabFocus = PL.focus . tabWindows
++tabFocus = PL._focus . tabWindows
+
+ -- | Returns a list of all mini windows associated with the given tab
+ tabMiniWindows :: Tab -> [Window]
+--- a/src/library/Yi/UI/Pango.hs
++++ b/src/library/Yi/UI/Pango.hs
+@@ -13,6 +13,7 @@
+ import Data.Prototype
+ import Data.IORef
+ import Data.List (drop, intercalate, zip)
++import qualified Data.List.PointedList as PL (moveTo)
+ import qualified Data.List.PointedList.Circular as PL
+ import Data.Maybe
+ import qualified Data.Map as M
+@@ -198,7 +199,7 @@
+   let ui = UI win tabs status tc actionCh (configUI cfg) fontRef im
+
+   -- Keep the current tab focus up to date
+-  let move n pl = maybe pl id (PL.move n pl)
++  let move n pl = maybe pl id (PL.moveTo n pl)
+       runAction = uiActionCh ui . makeAction
+   -- why does this cause a hang without postGUIAsync?
+   simpleNotebookOnSwitchPage (uiNotebook ui) $ \n -> postGUIAsync $
+--- a/src/library/Yi/UI/Pango/Layouts.hs
++++ b/src/library/Yi/UI/Pango/Layouts.hs
+@@ -369,7 +369,7 @@
+     forM_ tsList $ \(w,s) -> update nb (notebookChildTabLabel w) s
+
+     -- now set the focus
+-    p <- notebookPageNum nb (fst $ PL.focus ts)
++    p <- notebookPageNum nb (fst $ PL._focus ts)
+     maybe (return ()) (update nb notebookPage) p
+
+     -- write the new status
+--- a/src/library/Yi/UI/TabBar.hs
++++ b/src/library/Yi/UI/TabBar.hs
+@@ -22,7 +22,7 @@
+ tabBarDescr :: Editor -> TabBarDescr
+ tabBarDescr editor =
+     let prefix = commonNamePrefix editor
+-        hintForTab tab = tabAbbrevTitle $ shortIdentString prefix $ findBufferWith (bufkey $ PL.focus (tab ^. tabWindowsA)) editor
++        hintForTab tab = tabAbbrevTitle $ shortIdentString prefix $ findBufferWith (bufkey $ PL._focus (tab ^. tabWindowsA)) editor
+         tabDescr (tab,True) = TabDescr (hintForTab tab) True
+         tabDescr (tab,False) = TabDescr (hintForTab tab) False
+     in fmap tabDescr (PL.withFocus $ editor ^. tabsA)
+--- a/src/library/Yi/UI/Vty.hs
++++ b/src/library/Yi/UI/Vty.hs
+@@ -216,8 +216,8 @@
+                         <->
+                         vert_cat (fmap formatCmdLine niceCmd)
+                       )
+-      ) { pic_cursor = case cursor (PL.focus renders) of
+-                        Just (y,x) -> Cursor (toEnum x) (toEnum $ y + PL.focus startXs)
++      ) { pic_cursor = case cursor (PL._focus renders) of
++                        Just (y,x) -> Cursor (toEnum x) (toEnum $ y + PL._focus startXs)
+                         -- Add the position of the window to the position of the cursor
+                         Nothing -> NoCursor
+                         -- This case can occur if the user resizes the window.
+--- a/yi.cabal
++++ b/yi.cabal
+@@ -225,7 +225,7 @@
+     hashable < 1.2,
+     hint > 0.3.1,
+     mtl >= 0.1.0.1,
+-    pointedlist >= 0.3.5 && <0.4,
++    pointedlist >= 0.4 && < 0.5,
+     pureMD5 >= 0.2.3,
+     random,
+     regex-base ==0.93.*,
