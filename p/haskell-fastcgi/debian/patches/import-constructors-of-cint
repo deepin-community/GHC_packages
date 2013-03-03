@@ -1,0 +1,15 @@
+Description: Import constructor of CInt; used in an FFI declaration
+Author: Iain Lane <laney@debian.org>
+Forwarded: <20130303190607.GA13916@iota>
+
+--- haskell-fastcgi-3001.0.2.3.orig/Network/FastCGI.hsc
++++ haskell-fastcgi-3001.0.2.3/Network/FastCGI.hsc
+@@ -33,7 +33,7 @@ import Control.Monad    ( liftM )
+ import Data.Word (Word8)
+ import Foreign          ( Ptr, castPtr, nullPtr, peekArray0
+                         , alloca, mallocBytes, free, throwIfNeg_)
+-import Foreign.C        ( CInt, CString, CStringLen
++import Foreign.C        ( CInt(..), CString, CStringLen
+                         , peekCString )
+ import Foreign.Storable ( Storable (..) )
+ import System.IO.Unsafe (unsafeInterleaveIO,unsafePerformIO)
