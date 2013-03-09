@@ -1,0 +1,76 @@
+Source: haskell-stringprep
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.8.13)
+  , ghc
+  , ghc-prof
+  , libghc-ranges-dev (>= 0.2.2)
+  , libghc-ranges-prof
+  , libghc-text-icu-dev (>= 0.6)
+  , libghc-text-icu-prof
+  , libghc-text-dev (>= 0.9)
+  , libghc-text-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-ranges-doc
+  , libghc-text-icu-doc
+  , libghc-text-doc
+Standards-Version: 3.9.2
+Homepage: http://hackage.haskell.org/package/stringprep
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-stringprep
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-stringprep
+
+Package: libghc-stringprep-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Implements the "StringPrep" algorithm
+ RFC 3454 describes a framework for preparing Unicode text strings in order to
+ increase the likelihood that string input and string comparison work in ways
+ that make sense for typical users throughout the world.  The stringprep
+ protocol is useful for protocol identifier values, company and personal names,
+ internationalized domain names, and other text strings.
+ .
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-stringprep-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Implements the "StringPrep" algorithm; profiling libraries
+ RFC 3454 describes a framework for preparing Unicode text strings in order to
+ increase the likelihood that string input and string comparison work in ways
+ that make sense for typical users throughout the world.  The stringprep
+ protocol is useful for protocol identifier values, company and personal names,
+ internationalized domain names, and other text strings.
+ .
+ This package provides a library for the Haskell programming language, compiled
+ for profiling.  See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-stringprep-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Implements the "StringPrep" algorithm; documentation
+ RFC 3454 describes a framework for preparing Unicode text strings in order to
+ increase the likelihood that string input and string comparison work in ways
+ that make sense for typical users throughout the world.  The stringprep
+ protocol is useful for protocol identifier values, company and personal names,
+ internationalized domain names, and other text strings.
+ .
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
