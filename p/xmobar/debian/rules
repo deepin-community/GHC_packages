@@ -10,9 +10,9 @@ GHC := $(firstword $(shell bash -c "type -p ghc6 ghc"))
 DEB_HOST_ARCH_OS := $(shell dpkg-architecture -qDEB_HOST_ARCH_OS)
 
 ifeq ($(DEB_HOST_ARCH_OS),linux)
-    CONFIGURE_OPTS += --flags="with_xft with_inotify with_iwlib"
+    CONFIGURE_OPTS += --flags="with_xft with_inotify with_iwlib with_mpris with_dbus"
 else
-    CONFIGURE_OPTS += --flags="with_xft"
+    CONFIGURE_OPTS += --flags="with_xft with_mpris with_dbus"
 endif
 
 build: build-arch build-indep
