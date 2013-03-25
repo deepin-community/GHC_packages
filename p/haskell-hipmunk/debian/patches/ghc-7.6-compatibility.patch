@@ -1,0 +1,26 @@
+Index: b/Hipmunk.cabal
+===================================================================
+--- a/Hipmunk.cabal
++++ b/Hipmunk.cabal
+@@ -199,7 +199,7 @@
+   if flag(small_base)
+     Build-Depends: base >= 3 && < 5,
+                    array >= 0.1 && < 0.5,
+-                   containers >= 0.1 && < 0.5,
++                   containers >= 0.1 && < 0.6,
+                    transformers >= 0.2 && < 0.4,
+                    StateVar >= 1.0 && < 1.1
+   else
+Index: b/Physics/Hipmunk/Space.hsc
+===================================================================
+--- a/Physics/Hipmunk/Space.hsc
++++ b/Physics/Hipmunk/Space.hsc
+@@ -59,7 +59,7 @@
+ import qualified Data.Map as M
+ import Control.Exception (bracket)
+ import Control.Monad (when)
+-import Data.IORef
++import Data.IORef hiding (modifyIORef')
+ import Data.StateVar
+ import Foreign hiding (new)
+ import Foreign.C.Types (CInt(..))
