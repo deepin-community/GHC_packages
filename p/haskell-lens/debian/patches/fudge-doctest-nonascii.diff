@@ -1,5 +1,7 @@
---- a/src/Data/Complex/Lens.hs
-+++ b/src/Data/Complex/Lens.hs
+Index: lens-3.9.0.2/src/Data/Complex/Lens.hs
+===================================================================
+--- lens-3.9.0.2.orig/src/Data/Complex/Lens.hs	2013-03-27 14:48:23.000000000 +0000
++++ lens-3.9.0.2/src/Data/Complex/Lens.hs	2013-04-02 01:54:13.162989222 +0000
 @@ -30,7 +30,7 @@
 
  -- $setup
@@ -26,4 +28,4 @@
 +-- >>> (mkPolar 10.0 2.0 ^. _conjugate . _phase) ~~ (-2.0)
  -- True
  _conjugate :: RealFloat a => Iso' (Complex a) (Complex a)
- _conjugate = iso conjugate conjugate
+ _conjugate = involuted conjugate
