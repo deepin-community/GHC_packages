@@ -8,6 +8,7 @@ Build-Depends: debhelper (>= 7)
   , haskell-devscripts (>= 0.8.13)
   , ghc
   , ghc-prof
+  , ghc-ghci
   , libghc-mtl-dev
   , libghc-mtl-prof
   , libghc-haskell-src-dev
@@ -37,7 +38,7 @@ Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-
 DM-Upload-Allowed: yes
 
 Package: libghc-hint-dev
-Architecture: amd64 i386 sparc kfreebsd-i386 kfreebsd-amd64
+Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
   , ${misc:Depends}
@@ -55,7 +56,7 @@ Description: runtime Haskell interpreter (GHC API wrapper)
  version was not tested with GHC.6).
 
 Package: libghc-hint-prof
-Architecture: amd64 i386 sparc kfreebsd-i386 kfreebsd-amd64
+Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
   , ${misc:Depends}
