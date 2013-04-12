@@ -1,0 +1,51 @@
+Description: Compile with GHC 7.6 (don't use Control.OldException)
+Forwarded: yes (private email)
+Author: Iain Lane <laney@debian.org>
+
+Index: haskell-strict-concurrency-0.2.4.1/Control/Concurrent/MVar/Strict.hs
+===================================================================
+--- haskell-strict-concurrency-0.2.4.1.orig/Control/Concurrent/MVar/Strict.hs	2010-08-12 00:01:17.000000000 +0000
++++ haskell-strict-concurrency-0.2.4.1/Control/Concurrent/MVar/Strict.hs	2013-04-12 11:49:08.322626389 +0000
+@@ -43,9 +43,9 @@
+ import GHC.IOBase
+
+ import Prelude
+-import Control.OldException as Exception
+ -- import Control.Parallel.Strategies
+ import Control.DeepSeq
++import Control.Exception
+
+ -- |Put a value into an 'MVar'.  If the 'MVar' is currently full,
+ -- 'putMVar' will wait until it becomes empty.
+@@ -121,8 +121,8 @@
+ withMVar :: NFData a => MVar a -> (a -> IO b) -> IO b
+ withMVar m io = block $ do
+     a <- takeMVar m
+-    b <- Exception.catch (unblock (io a))
+-            (\e -> do putMVar m a; throw e)
++    b <- catch (unblock (io a))
++            (\ (e :: IOException) -> do putMVar m a; throw e)
+     putMVar m a
+     return b
+
+@@ -135,8 +135,8 @@
+ modifyMVar_ :: NFData a => MVar a -> (a -> IO a) -> IO ()
+ modifyMVar_ m io = block $ do
+     a  <- takeMVar m
+-    a' <- Exception.catch (unblock (io a))
+-            (\e -> do putMVar m a; throw e)
++    a' <- catch (unblock (io a))
++            (\ (e :: IOException) -> do putMVar m a; throw e)
+     putMVar m a'
+
+ {-|
+@@ -147,8 +147,8 @@
+ modifyMVar :: NFData a => MVar a -> (a -> IO (a,b)) -> IO b
+ modifyMVar m io = block $ do
+     a      <- takeMVar m
+-    (a',b) <- Exception.catch (unblock (io a))
+-                (\e -> do putMVar m a; throw e)
++    (a',b) <- catch (unblock (io a))
++                (\ (e :: IOException) -> do putMVar m a; throw e)
+     putMVar m a'
+     return b
