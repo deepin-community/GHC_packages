@@ -11,6 +11,10 @@ XP     = xsltproc -''-nonet -''-param man.charmap.use.subset "0"
 
 DEB_GHC_EXTRA_PACKAGES := gitit (>= $(CABAL_VERSION))
 
+ifeq (0,$(shell ghc --info | grep 'Have interpreter.*NO' >/dev/null 2>&1; echo $?))
+DEB_SETUP_GHC_CONFIGURE_ARGS := --flags=-plugins
+endif
+
 %.1: debian/%.xml
 	$(XP) $(DB2MAN) $<
 
