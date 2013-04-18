@@ -1,0 +1,66 @@
+Source: haskell-wai-handler-scgi
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.8.13)
+  , ghc
+  , ghc-prof
+  , libghc-wai-dev (>> 1.3)
+  , libghc-wai-dev (<< 1.5)
+  , libghc-wai-prof
+  , libghc-wai-extra-dev (>> 1.3)
+  , libghc-wai-extra-dev (<< 1.4)
+  , libghc-wai-extra-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-wai-doc
+  , libghc-wai-extra-doc
+Standards-Version: 3.9.4
+Homepage: http://hackage.haskell.org/package/wai-handler-scgi
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-wai-handler-scgi
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-wai-handler-scgi
+
+Package: libghc-wai-handler-scgi-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: WAI handler to SCGI
+ Web Application Interface (WAI) handler to Simple Common Gateway
+ Interface (SCGI).
+ .
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-wai-handler-scgi-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: WAI handler to SCGI; profiling libraries
+ Web Application Interface (WAI) handler to Simple Common Gateway
+ Interface (SCGI).
+ .
+ This package provides a library for the Haskell programming language, compiled
+ for profiling.  See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-wai-handler-scgi-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: WAI handler to SCGI; documentation
+ Web Application Interface (WAI) handler to Simple Common Gateway
+ Interface (SCGI).
+ .
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
