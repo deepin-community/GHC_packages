@@ -1,12 +1,12 @@
-Index: ghc-7.6.1/ghc.mk
+Index: ghc-7.6.3/ghc.mk
 ===================================================================
---- ghc-7.6.1.orig/ghc.mk	2012-10-08 13:06:55.000000000 +0200
-+++ ghc-7.6.1/ghc.mk	2012-10-08 13:10:37.135879088 +0200
+--- ghc-7.6.3.orig/ghc.mk	2013-04-21 19:15:42.879976671 +0200
++++ ghc-7.6.3/ghc.mk	2013-04-21 19:16:05.491975805 +0200
 @@ -701,7 +701,6 @@
  # Build the Haddock contents and index
  ifeq "$(HADDOCK_DOCS)" "YES"
  libraries/dist-haddock/index.html: inplace/bin/haddock$(exeext) $(ALL_HADDOCK_FILES)
--	cd libraries && sh gen_contents_index --inplace
+-	cd libraries && sh gen_contents_index --intree
  ifeq "$(phase)" "final"
  $(eval $(call all-target,library_doc_index,libraries/dist-haddock/index.html))
  endif
