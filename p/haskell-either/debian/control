@@ -1,0 +1,81 @@
+Source: haskell-either
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.8.13)
+  , ghc
+  , ghc-prof
+  , libghc-monadrandom-dev (>> 0.1)
+  , libghc-monadrandom-dev (<< 0.2)
+  , libghc-monadrandom-prof
+  , libghc-mtl-dev (>> 2.0)
+  , libghc-mtl-dev (<< 2.2)
+  , libghc-mtl-prof
+  , libghc-semigroupoids-dev (>> 3)
+  , libghc-semigroupoids-dev (<< 4)
+  , libghc-semigroupoids-prof
+  , libghc-semigroups-dev (>> 0.8.3.1)
+  , libghc-semigroups-dev (<< 1)
+  , libghc-semigroups-prof
+  , libghc-transformers-dev (>> 0.2)
+  , libghc-transformers-dev (<< 0.4)
+  , libghc-transformers-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-monadrandom-doc
+  , libghc-mtl-doc
+  , libghc-semigroupoids-doc
+  , libghc-semigroups-doc
+  , libghc-transformers-doc
+Standards-Version: 3.9.4
+Homepage: http://hackage.haskell.org/package/either
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-either
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-either
+
+Package: libghc-either-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Either monad transformer
+ This library provides a minimalist Either monad transformer, EitherT.
+ EitherT is a version of ErrorT that does not require a spurious Error
+ instance for the Left case.
+ .
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-either-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Either monad transformer; profiling libraries
+ This library provides a minimalist Either monad transformer, EitherT.
+ EitherT is a version of ErrorT that does not require a spurious Error
+ instance for the Left case.
+ .
+ This package provides a library for the Haskell programming language, compiled
+ for profiling.  See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-either-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Either monad transformer; documentation
+ This library provides a minimalist Either monad transformer, EitherT.
+ EitherT is a version of ErrorT that does not require a spurious Error
+ instance for the Left case.
+ .
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
