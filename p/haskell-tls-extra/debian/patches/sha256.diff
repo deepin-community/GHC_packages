@@ -1,0 +1,11 @@
+Index: haskell-tls-extra-0.6.1/Network/TLS/Extra/Certificate.hs
+===================================================================
+--- haskell-tls-extra-0.6.1.orig/Network/TLS/Extra/Certificate.hs	2013-01-19 11:43:12.000000000 +0000
++++ haskell-tls-extra-0.6.1/Network/TLS/Extra/Certificate.hs	2013-04-27 03:59:42.148947546 +0000
+@@ -154,6 +154,7 @@
+ verifyF (SignatureALG HashMD5 PubKeyALG_RSA) (PubKeyRSA rsak) = RSA.verify HD.hashDescrMD5 rsak
+ verifyF (SignatureALG HashSHA1 PubKeyALG_RSA) (PubKeyRSA rsak) = RSA.verify HD.hashDescrSHA1 rsak
+ verifyF (SignatureALG HashSHA1 PubKeyALG_DSA) (PubKeyDSA dsak) = dsaSHA1Verify dsak
++verifyF (SignatureALG HashSHA256 PubKeyALG_RSA) (PubKeyRSA rsak) = RSA.verify HD.hashDescrSHA256 rsak
+
+ verifyF _ _ = \_ _ -> False
