@@ -1,0 +1,92 @@
+Source: haskell-ofx
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.8.13)
+  , ghc
+  , ghc-prof
+  , libghc-explicit-exception-dev (>> 0.1)
+  , libghc-explicit-exception-dev (<< 0.2)
+  , libghc-explicit-exception-prof
+  , libghc-parsec3-dev
+  , libghc-parsec3-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-explicit-exception-doc
+  , libghc-parsec3-doc
+Standards-Version: 3.9.4
+Homepage: http://hackage.haskell.org/package/ofx
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-ofx
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-ofx
+
+Package: libghc-ofx-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: parser for Open Financial Exchange (OFX) financial data
+ A parser for Open Financial Exchange (OFX) financial data. This
+ handles OFX version 1.03, which is documented at http//www.ofx.net/ .
+ This also handles QFX, which is OFX plus some minor additions made by
+ Intuit, the publishers of Quicken.
+ .
+ The parser will place all the data into a tree, which you can query
+ for whatever data you may need, although you will need to be familiar
+ with the OFX spec to do this. There is also a Transaction type which
+ you can easily parse from the tree; this will contain most, if not
+ all, of the data you will be interested in if your OFX file is from a
+ bank or credit card account.
+ .
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-ofx-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: parser for Open Financial Exchange (OFX) financial data; profiling librs
+ A parser for Open Financial Exchange (OFX) financial data. This
+ handles OFX version 1.03, which is documented at http//www.ofx.net/ .
+ This also handles QFX, which is OFX plus some minor additions made by
+ Intuit, the publishers of Quicken.
+ .
+ The parser will place all the data into a tree, which you can query
+ for whatever data you may need, although you will need to be familiar
+ with the OFX spec to do this. There is also a Transaction type which
+ you can easily parse from the tree; this will contain most, if not
+ all, of the data you will be interested in if your OFX file is from a
+ bank or credit card account.
+ .
+ This package provides a library for the Haskell programming language, compiled
+ for profiling.  See http://www.haskell.org/ for more information on Haskell.
+
+Package: libghc-ofx-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: parser for Open Financial Exchange (OFX) financial data; documentation
+ A parser for Open Financial Exchange (OFX) financial data. This
+ handles OFX version 1.03, which is documented at http//www.ofx.net/ .
+ This also handles QFX, which is OFX plus some minor additions made by
+ Intuit, the publishers of Quicken.
+ .
+ The parser will place all the data into a tree, which you can query
+ for whatever data you may need, although you will need to be familiar
+ with the OFX spec to do this. There is also a Transaction type which
+ you can easily parse from the tree; this will contain most, if not
+ all, of the data you will be interested in if your OFX file is from a
+ bank or credit card account.
+ .
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
