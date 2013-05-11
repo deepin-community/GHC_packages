@@ -1,11 +1,22 @@
 Source: bnfc
-Priority: optional
-Section: devel
-Maintainer: Antti-Juhani Kaijanaho <ajk@debian.org>
-Build-Depends: debhelper (>= 9), ghc (>= 7.0.1) | ghc6 (>= 6.10.1+dfsg1), alex (>= 3.0.1), libghc-mtl-dev | libghc6-mtl-dev
-Standards-Version: 3.9.3
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.8.13)
+  , ghc
+  , ghc-prof
+  , libghc-mtl-dev
+  , libghc-process-dev
+Standards-Version: 3.9.2
+Homepage: http://hackage.haskell.org/package/bnfc
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/bnfc
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/bnfc
 
 Package: bnfc
+Section: devel
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Compiler front-end generator based on Labelled BNF

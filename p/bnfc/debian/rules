@@ -1,20 +1,4 @@
 #!/usr/bin/make -f
-%:
-	dh $@
 
-override_dh_auto_configure:
-	ghc --make -o Setup Setup.lhs
-	./Setup configure --ghc \
-		--prefix=/usr --docdir=/usr/share/doc/bnfc
-
-override_dh_auto_build:
-	./Setup build
-
-override_dh_auto_install:
-	./Setup copy --destdir=debian/bnfc
-	rm debian/bnfc/usr/share/doc/bnfc/COPYING
-
-override_dh_auto_clean:
-	set -e ; if [ -x ./Setup ]; then ./Setup clean ; fi
-	rm -f Setup Setup.hi Setup.o
-
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/hlibrary.mk
