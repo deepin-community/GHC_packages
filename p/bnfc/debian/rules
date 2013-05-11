@@ -3,16 +3,18 @@
 	dh $@
 
 override_dh_auto_configure:
-	runghc Setup.lhs configure --ghc \
+	ghc --make -o Setup Setup.lhs
+	./Setup configure --ghc \
 		--prefix=/usr --docdir=/usr/share/doc/bnfc
 
 override_dh_auto_build:
-	runghc Setup.lhs build
+	./Setup build
 
 override_dh_auto_install:
-	runghc Setup.lhs copy --destdir=debian/bnfc
+	./Setup copy --destdir=debian/bnfc
 	rm debian/bnfc/usr/share/doc/bnfc/COPYING
 
 override_dh_auto_clean:
-	runghc Setup.lhs clean
+	set -e ; if [ -x ./Setup ]; then ./Setup clean ; fi
+	rm -f Setup Setup.hi Setup.o
 
