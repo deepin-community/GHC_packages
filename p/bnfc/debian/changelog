@@ -1,3 +1,17 @@
+bnfc (2.2-3) unstable; urgency=medium
+
+  * The "GHC 6.6 broke my toy" release.
+  * Backport GHC 6.6 compilation fix from upstream CVS:
+     - formats/cpp/RegToFlex.hs, formats/haskell2/CFtoAlex.hs,
+       formats/haskell2/CFtoAlex2.hs, GetCF.hs:
+       remove paragraph character (§) from lexer specs
+     - CF.hs: remove latin-1 whitespace character
+    Closes: #393590 (FTBFS with ghc6 6.6)
+    Reported by Arjan Oosting <arjanoosting@home.nl>.
+  * Standards-Version bumped to 3.7.2, no changes required.
+
+ -- Antti-Juhani Kaijanaho <ajk@debian.org>  Tue, 17 Oct 2006 19:00:41 +0300
+
 bnfc (2.2-2) unstable; urgency=low
 
   * The C++ transition made this package uninstallable.  Rebuild with new
