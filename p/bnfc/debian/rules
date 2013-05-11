@@ -1,36 +1,18 @@
 #!/usr/bin/make -f
-# Written by Antti-Juhani Kaijanaho <ajk@debian.org>.
-# You may treat this file as if it were in the public domain.
+%:
+	dh $@
 
-librules_interface = 2
-include debian/librules.mk
+override_dh_auto_configure:
+	runghc Setup.lhs configure --ghc \
+		--prefix=/usr --docdir=/usr/share/doc/bnfc
 
-debian/stamp/build: #debian/stamp/build-configure
-	$(MAKE)
-	touch $@
+override_dh_auto_build:
+	runghc Setup.lhs build
 
-clean-build:
-	[ ! -f Makefile ] || $(MAKE) clean
-	$(RM) bnfc
-	$(RM) $(shell find . -name *~)
+override_dh_auto_install:
+	runghc Setup.lhs copy --destdir=debian/bnfc
+	rm debian/bnfc/usr/share/doc/bnfc/COPYING
 
-debian/stamp/binary/arch: debian/stamp/binary/bnfc
+override_dh_auto_clean:
+	runghc Setup.lhs clean
 
-debian/stamp/binary/bnfc: package=bnfc
-debian/stamp/binary/bnfc: debian/stamp/build
-	$(prebinary)
-#	Install the binary.
-	$(install_dir) $(bindir)
-	$(install_exec) bnfc $(bindir)
-#	Install the supporting documentation.
-	$(install_nonex) doc/LBNF-report.tex $(docdir)
-	$(gzip) $(docdir)/LBNF-report.tex
-#	$(install_dir) $(exampledir)
-#	$(install_nonex) doc/examples/* $(exampledir)
-#	Get the shared library deps
-	dpkg-shlibdeps $(bindir)/bnfc
-	$(postbinary)
-	touch $@
-
-clean-binary:
-	$(RM) *~

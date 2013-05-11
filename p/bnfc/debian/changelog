@@ -1,3 +1,27 @@
+bnfc (2.4.2.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * Converted to source format 3.0 (quilt).
+  * Fixed a build failure with recent GHC and Alex.  New patches:
+      - remove-haskell98.patch
+      - use-alex-3.patch
+    Closes: #665063 (FTBFS: Could not find module `Char')
+    Reported by Lucas Nussbaum <lucas@lucas-nussbaum.net>.
+  * Now generates code that compiles with recent GHC and Alex.  New patches:
+      - generate-alex3.patch
+      - dont-generate-unqualified.patch
+  * Removed Homepage, as it seems to have disappeared.
+  * Rewrote the packaging to use dh instead of my aging personal helper script.
+  * Rewrote debian/copyright following copyright-format/1.0.
+  * Build-Depends:
+    - Added ghc as an alternative to ghc6.
+    - Added libghc-mtl-dev|libghc6-mtl-dev as it was split off from base.
+    - Restricted alex to at least version 3.
+    - Added debhelper.
+  * Standards-Version 3.9.3.
+
+ -- Antti-Juhani Kaijanaho <ajk@debian.org>  Sun, 01 Apr 2012 21:21:59 +0300
+
 bnfc (2.2-3.1) unstable; urgency=low
 
   * Non-maintainer upload.
@@ -70,10 +94,3 @@ bnfc (2.1-1) unstable; urgency=low
   * formats/haskell/CFtoAlex2.hs: Do not import Alex in generated code
 
  -- Antti-Juhani Kaijanaho <ajk@debian.org>  Sun, 21 Mar 2004 12:41:54 +0200
-
-bnfc (2.2-3.2) unstable; urgency=low
-
-  * Non-maintainer upload.
-  * Replace tabs with spaces in source files. (Closes: #460386)
-
- -- Barry deFreese <bdefreese@debian2.bddebian.com>  Fri, 11 Apr 2008 10:15:28 -0400

@@ -1,0 +1,97 @@
+Description: Makes BNFC buildable with Alex >= 3 (and only it)
+Author: Antti-Juhani Kaijanaho <ajk@debian.org>
+Bug-Debian: http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=665063
+Forwarded: by email to Markus Forsberg <markus.forsberg@gu.se> and Aarne Ranta <aarne@chalmers.se>
+Last-Update: 2012-04-01
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+--- a/BNFC.cabal
++++ b/BNFC.cabal
+@@ -25,6 +25,7 @@
+
+ Executable bnfc
+   Build-Depends: base>=4 && <5, mtl, directory, array, process
++  Build-Tools: alex>=3
+   Main-is: Main.hs
+   HS-source-dirs: . formats
+     formats/haskell2
+--- a/LexBNF.x
++++ b/LexBNF.x
+@@ -4,6 +4,8 @@
+ {-# OPTIONS -fno-warn-incomplete-patterns #-}
+ module LexBNF where
+
++import qualified Data.Bits
++import Data.Word (Word8)
+
+ }
+
+@@ -108,27 +110,54 @@
+ alexMove (Pn a l c) '\n' = Pn (a+1) (l+1)   1
+ alexMove (Pn a l c) _    = Pn (a+1)  l     (c+1)
+
++type Byte = Word8
++
+ type AlexInput = (Posn, -- current position,
+		  Char,	-- previous char
++		  [Byte], -- pending bytes on the current char
+		  String)	-- current input string
+
+ tokens :: String -> [Token]
+-tokens str = go (alexStartPos, '\n', str)
++tokens str = go (alexStartPos, '\n', [], str)
+     where
+-      go :: (Posn, Char, String) -> [Token]
+-      go inp@(pos, _, str) =
++      go :: (Posn, Char, [Byte], String) -> [Token]
++      go inp@(pos, _, _, str) =
+	  case alexScan inp 0 of
+-    	    AlexEOF                -> []
+-    	    AlexError (pos, _, _)  -> [Err pos]
+-    	    AlexSkip  inp' len     -> go inp'
+-    	    AlexToken inp' len act -> act pos (take len str) : (go inp')
+-
+-alexGetChar :: AlexInput -> Maybe (Char,AlexInput)
+-alexGetChar (p, c, [])    = Nothing
+-alexGetChar (p, _, (c:s)) =
+-    let p' = alexMove p c
+-     in p' `seq` Just (c, (p', c, s))
++    	    AlexEOF                   -> []
++    	    AlexError (pos, _, _, _)  -> [Err pos]
++    	    AlexSkip  inp' len        -> go inp'
++    	    AlexToken inp' len act    -> act pos (take len str) : (go inp')
++
++alexGetByte :: AlexInput -> Maybe (Byte,AlexInput)
++alexGetByte (p, c, (b:bs), s) = Just (b, (p, c, bs, s))
++alexGetByte (p, c, [], [])    = Nothing
++alexGetByte (p, _, [], (c:s)) =
++    let p'     = alexMove p c
++	(b:bs) = utf8Encode c
++     in p' `seq` Just (b, (p', c, bs, s))
+
+ alexInputPrevChar :: AlexInput -> Char
+-alexInputPrevChar (p, c, s) = c
++alexInputPrevChar (p, c, _, s) = c
++
++
++-- | Encode a Haskell String to a list of Word8 values, in UTF8 format.
++utf8Encode :: Char -> [Word8]
++utf8Encode = map fromIntegral . go . ord
++ where
++  go oc
++   | oc <= 0x7f       = [oc]
++
++   | oc <= 0x7ff      = [ 0xc0 + (oc `Data.Bits.shiftR` 6)
++                        , 0x80 + oc Data.Bits..&. 0x3f
++                        ]
++
++   | oc <= 0xffff     = [ 0xe0 + (oc `Data.Bits.shiftR` 12)
++                        , 0x80 + ((oc `Data.Bits.shiftR` 6) Data.Bits..&. 0x3f)
++                        , 0x80 + oc Data.Bits..&. 0x3f
++                        ]
++   | otherwise        = [ 0xf0 + (oc `Data.Bits.shiftR` 18)
++                        , 0x80 + ((oc `Data.Bits.shiftR` 12) Data.Bits..&. 0x3f)
++                        , 0x80 + ((oc `Data.Bits.shiftR` 6) Data.Bits..&. 0x3f)
++                        , 0x80 + oc Data.Bits..&. 0x3f
++                        ]
+ }

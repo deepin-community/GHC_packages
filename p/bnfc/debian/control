@@ -2,13 +2,12 @@ Source: bnfc
 Priority: optional
 Section: devel
 Maintainer: Antti-Juhani Kaijanaho <ajk@debian.org>
-Build-Depends: ghc6 (>= 6.4-4.1)
-Standards-Version: 3.7.2
-Homepage: http://www.cs.chalmers.se/~markus/BNFC/
+Build-Depends: debhelper (>= 9), ghc (>= 7.0.1) | ghc6 (>= 6.10.1+dfsg1), alex (>= 3.0.1), libghc-mtl-dev | libghc6-mtl-dev
+Standards-Version: 3.9.3
 
 Package: bnfc
 Architecture: any
-Depends: ${shlibs:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Compiler front-end generator based on Labelled BNF
  The BNF Converter is a compiler construction tool that generates a
  compiler front-end and a readable syntax description document from a
