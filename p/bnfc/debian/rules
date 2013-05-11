@@ -10,7 +10,7 @@ debian/stamp/build: #debian/stamp/build-configure
 	touch $@
 
 clean-build:
-	-$(MAKE) clean
+	[ ! -f Makefile ] || $(MAKE) clean
 	$(RM) bnfc
 	$(RM) $(shell find . -name *~)
 
