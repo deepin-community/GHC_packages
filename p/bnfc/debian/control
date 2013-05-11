@@ -1,0 +1,32 @@
+Source: bnfc
+Priority: optional
+Section: devel
+Maintainer: Antti-Juhani Kaijanaho <ajk@debian.org>
+Build-Depends: ghc6 (>= 6.2.1-1)
+Standards-Version: 3.6.1
+
+Package: bnfc
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: Compiler front-end generator based on Labelled BNF
+ The BNF Converter is a compiler construction tool that generates a
+ compiler front-end and a readable syntax description document from a
+ Labelled BNF grammar. It was originally written to generate Haskell,
+ but it can now also be used for generating Java, C++, and C.
+ .
+ To process Haskell output, you need the Glorious Glasgow Haskell
+ Compiler (virtual package ghc), the Happy parser generator (package
+ happy) and the Alex scanner generator (package alex).
+ .
+ To process Java output, you need a Java compiler and virtual machine,
+ the CUP parser generator (package cup) and the JLex scanner generator
+ (package jlex).
+ .
+ To process C or C++ output, you need a C or C++ compiler,
+ respectively, the Bison parser generator (package bison) and the flex
+ scanner generator (package flex).
+ .
+ To process the generated documents, you need LaTeX (packages
+ tetex-base, tetex-bin, etc.).
+ .
+  Homepage: http://www.cs.chalmers.se/~markus/BNFC/

@@ -1,0 +1,36 @@
+#!/usr/bin/make -f
+# Written by Antti-Juhani Kaijanaho <ajk@debian.org>.
+# You may treat this file as if it were in the public domain.
+
+librules_interface = 2
+include debian/librules.mk
+
+debian/stamp/build: #debian/stamp/build-configure
+	$(MAKE)
+	touch $@
+
+clean-build:
+	-$(MAKE) clean
+	$(RM) bnfc
+	$(RM) $(shell find . -name *~)
+
+debian/stamp/binary/arch: debian/stamp/binary/bnfc
+
+debian/stamp/binary/bnfc: package=bnfc
+debian/stamp/binary/bnfc: debian/stamp/build
+	$(prebinary)
+#	Install the binary.
+	$(install_dir) $(bindir)
+	$(install_exec) bnfc $(bindir)
+#	Install the supporting documentation.
+	$(install_nonex) doc/LBNF-report.tex $(docdir)
+	$(gzip) $(docdir)/LBNF-report.tex
+#	$(install_dir) $(exampledir)
+#	$(install_nonex) doc/examples/* $(exampledir)
+#	Get the shared library deps
+	dpkg-shlibdeps $(bindir)/bnfc
+	$(postbinary)
+	touch $@
+
+clean-binary:
+	$(RM) *~

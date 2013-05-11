@@ -1,0 +1,29 @@
+bnfc (2.1.2-2) unstable; urgency=low
+
+  * Fix the
+    formats/haskell/CFtoAlex2.hs: Do not import Alex in generated code
+    change from our diff (apparently our and upstream's patches
+    conflicted in a way I did not see before).
+
+ -- Antti-Juhani Kaijanaho <ajk@debian.org>  Sun,  2 May 2004 22:56:44 +0300
+
+bnfc (2.1.2-1) unstable; urgency=low
+
+  * New upstream release
+    - incorporates our change
+      formats/haskell/CFtoAlex2.hs: Do not import Alex in generated code
+  * debian/control [Build-Depends]: Add a version clause for ghc6, to
+    make sure that dynamically linked executables are produced on all
+    arches.  Thanks to Ian Lynagh.
+    Closes: #241591 ((hppa/unstable): FTBFS: ldd errors)
+  * debian/rules: lbnf_spec.tex has been replaced by LBNF-report.tex
+
+ -- Antti-Juhani Kaijanaho <ajk@debian.org>  Wed, 14 Apr 2004 17:46:00 +0300
+
+bnfc (2.1-1) unstable; urgency=low
+
+  * Initial packaging (closes: #151046).
+  * Makefile (GHC_OPTS): Remove -Wall to avoid clutter at build time
+  * formats/haskell/CFtoAlex2.hs: Do not import Alex in generated code
+
+ -- Antti-Juhani Kaijanaho <ajk@debian.org>  Sun, 21 Mar 2004 12:41:54 +0200
