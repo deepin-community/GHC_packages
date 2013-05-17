@@ -1,0 +1,68 @@
+Source: haskell-gloss
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Build-Depends: debhelper (>= 7)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-opengl-dev (>= 2.6)
+  , libghc-opengl-dev (<< 2.7)
+  , libghc-opengl-prof
+  , libghc-glut-dev (>= 2.3)
+  , libghc-glut-dev (<< 2.4)
+  , libghc-glut-prof
+  , libghc-bmp-dev (>= 1.2)
+  , libghc-bmp-dev (<< 1.3)
+  , libghc-bmp-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-opengl-doc
+  , libghc-glut-doc
+  , libghc-bmp-doc
+Standards-Version: 3.9.2
+Homepage: http://hackage.haskell.org/package/gloss
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-gloss
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-gloss
+X-Description: Painless 2D vector graphics, animations and simulations.
+ Gloss hides the pain of drawing simple vector graphics behind a nice data type
+ and a few display functions. Gloss comes for with support for animations and
+ simulations as well, and allows to create simple interactive games.  Gloss
+ uses OpenGL under the hood, but you won't need to worry about any of that.
+
+Package: libghc-gloss-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-gloss-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-gloss-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
