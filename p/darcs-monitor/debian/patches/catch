@@ -1,0 +1,27 @@
+Description: Use Control.Exception.catch
+Author: Joachim Breitner <nomeata@debian.org>
+
+--- darcs-monitor-0.4.2.orig/darcs-monitor.hs
++++ darcs-monitor-0.4.2/darcs-monitor.hs
+@@ -1,3 +1,4 @@
++{-# LANGUAGE ScopedTypeVariables #-}
+ {-  darcs-monitor - Darcs repository monitor
+     Copyright © 2007 Antti-Juhani Kaijanaho
+     Copyright © 2007 Benja Fallenstein
+@@ -36,6 +37,7 @@ import System.Exit
+ import System.IO
+ import Text.XML.HaXml hiding (when,version,x,tag,cdata)
+ import Text.XML.HaXml.Posn
++import Control.Exception (catch, IOException)
+
+ import Config
+ import Darcs
+@@ -184,7 +186,7 @@ readSeenPatches :: MonadIO m => String -
+ readSeenPatches repo =
+   liftIO $ catch (do fc <- readFile (repo ++ seenPatchesFileName)
+                      return (read fc)
+-                 ) $ \_ -> return Map.empty
++                 ) $ \(_::IOException) -> return Map.empty
+
+
+ processRepo :: (MonadConfig m, MonadIO m) => Bool -> Command m -> FilePath -> m ()
