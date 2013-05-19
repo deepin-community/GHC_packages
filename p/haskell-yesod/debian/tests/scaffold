@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -ex
+
+cd $ADTTMP
+
+echo -e 'some-project\ns\n' | yesod init
+cd some-project
+yesod test
