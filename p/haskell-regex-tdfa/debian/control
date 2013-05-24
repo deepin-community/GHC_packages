@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>
 Build-Depends:
  debhelper (>= 9),
- haskell-devscripts (>= 0.8.13),
+ haskell-devscripts (>= 0.8.15),
  cdbs,
  ghc,
  ghc-prof,
@@ -32,7 +32,7 @@ Depends: ${haskell:Depends}, ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
-Description: Haskell library for a tagged DFA regex engine
+Description: Haskell library for a tagged DFA regex engine${haskell:ShortBlurb}
  A pure Haskell alternative to GHC's Text.Regex module (with some
  enhancements). The Text.Regex module marshalls the data back and forth to
  c-arrays to call libc and this is far too slow (and strict).
@@ -43,7 +43,7 @@ Description: Haskell library for a tagged DFA regex engine
  FastPackedString. The input string is consumed lazily, so it may be an
  arbitrarily long or infinite source.
  .
- This package contains the libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-regex-tdfa-prof
 Architecture: any
@@ -51,7 +51,7 @@ Depends: ${haskell:Depends}, ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
-Description: Profiling libraries for the tagged DFA regex engine
+Description: Profiling libraries for the tagged DFA regex engine${haskell:ShortBlurb}
  A pure Haskell alternative to GHC's Text.Regex module (with some
  enhancements). The Text.Regex module marshalls the data back and forth to
  c-arrays to call libc and this is far too slow (and strict).
@@ -62,7 +62,7 @@ Description: Profiling libraries for the tagged DFA regex engine
  FastPackedString. The input string is consumed lazily, so it may be an
  arbitrarily long or infinite source.
  .
- This package contains the profiling libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-regex-tdfa-doc
 Section: doc
@@ -70,7 +70,7 @@ Architecture: all
 Depends: ${haskell:Depends}, ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
-Description: Documentation for the tagged DFA regex engine
+Description: Documentation for the tagged DFA regex engine${haskell:ShortBlurb}
  A pure Haskell alternative to GHC's Text.Regex module (with some
  enhancements). The Text.Regex module marshalls the data back and forth to
  c-arrays to call libc and this is far too slow (and strict).
@@ -81,4 +81,4 @@ Description: Documentation for the tagged DFA regex engine
  FastPackedString. The input string is consumed lazily, so it may be an
  arbitrarily long or infinite source.
  .
- This package contains the library documentation.
+ ${haskell:Blurb}
