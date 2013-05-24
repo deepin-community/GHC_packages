@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Joachim Breitner <nomeata@debian.org>
 Build-Depends: debhelper (>= 9)
   , cdbs
-  , haskell-devscripts (>= 0.8.13)
+  , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
   , ghc-doc
@@ -25,7 +25,7 @@ Depends: ${haskell:Depends}
   , ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Haskell-Source with eXtensions library for GHC
+Description: Haskell-Source with eXtensions library for GHC${haskell:ShortBlurb}
  haskell-src-exts (HSX, haskell-source with extensions) is an extension of the
  standard haskell-src package, and handles most common syntactic extensions to
  Haskell, including:
@@ -36,7 +36,7 @@ Description: Haskell-Source with eXtensions library for GHC
   * Implicit parameters (ghc and hugs style)
   * Template Haskell
  .
- This package contains the libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-src-exts-prof
 Architecture: any
@@ -45,7 +45,7 @@ Depends: ${haskell:Depends}
   , ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Haskell-Source with eXtensions library for GHC; profiling libraries
+Description: Haskell-Source with eXtensions library for GHC${haskell:ShortBlurb}
  haskell-src-exts (HSX, haskell-source with extensions) is an extension of the
  standard haskell-src package, and handles most common syntactic extensions to
  Haskell, including:
@@ -56,7 +56,7 @@ Description: Haskell-Source with eXtensions library for GHC; profiling libraries
   * Implicit parameters (ghc and hugs style)
   * Template Haskell
  .
- This package contains the profiling libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-src-exts-doc
 Replaces: haskell-src-exts-doc (<< 1.8.2-2)
@@ -67,7 +67,7 @@ Section: doc
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: API documentation of the haskell-src-exts library
+Description: API documentation of the haskell-src-exts library${haskell:ShortBlurb}
  haskell-src-exts (HSX, haskell-source with extensions) is an extension of the
  standard haskell-src package, and handles most common syntactic extensions to
  Haskell, including:
@@ -78,4 +78,4 @@ Description: API documentation of the haskell-src-exts library
    * Implicit parameters (ghc and hugs style)
    * Template Haskell
  .
- This package contains the library documentation.
+ ${haskell:Blurb}
