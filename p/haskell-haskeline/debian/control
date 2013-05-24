@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Marco Túlio Gontijo e Silva <marcot@debian.org>, Clint Adams <clint@debian.org>
 Standards-Version: 3.9.4
 Build-Depends: debhelper (>= 9)
-  , haskell-devscripts (>= 0.8.13)
+  , haskell-devscripts (>= 0.8.15)
   , cdbs
   , ghc
   , ghc-prof
@@ -30,9 +30,8 @@ Depends: ${haskell:Depends}
   , ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: A command-line interface for user input, written in Haskell
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
+Description: A command-line interface for user input, written in Haskell${haskell:ShortBlurb}
+ ${haskell:Blurb}
  .
  Haskeline provides a user interface for line input in command-line
  programs. This library is similar in purpose to readline, but since it is
@@ -46,10 +45,8 @@ Architecture: any
 Depends: ${haskell:Depends}
   , ${misc:Depends}
 Provides: ${haskell:Provides}
-Description: A command-line interface for user input; profiling libraries
- This package provides a library for the Haskell programming language,
- compiled for profiling.
- See http://www.haskell.org/ for more information on Haskell.
+Description: A command-line interface for user input${haskell:ShortBlurb}
+ ${haskell:Blurb}
  .
  Haskeline provides a user interface for line input in command-line
  programs. This library is similar in purpose to readline, but since it is
@@ -64,10 +61,8 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: A command-line interface for user input, written in Haskell; documentation
- This package provides the documentation for a library for the Haskell
- programming language.
- See http://www.haskell.org/ for more information on Haskell.
+Description: A command-line interface for user input, written in Haskell${haskell:ShortBlurb}
+ ${haskell:Blurb}
  .
  Haskeline provides a user interface for line input in command-line
  programs. This library is similar in purpose to readline, but since it is
