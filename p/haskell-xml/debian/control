@@ -4,7 +4,7 @@ Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Giovanni Mascellani <gio@debian.org>, Clint Adams <clint@debian.org>
 Build-Depends: debhelper (>= 9)
- , haskell-devscripts (>= 0.8.13)
+ , haskell-devscripts (>= 0.8.15)
  , cdbs
  , ghc
  , ghc-prof
@@ -25,10 +25,10 @@ Depends: ${haskell:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
-Description: A simple Haskell XML library - GHC libraries
+Description: A simple Haskell XML library${haskell:ShortBlurb}
  This library provides lightweight tools to parse, filter and generate XML.
  .
- This package contains the libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-xml-prof
 Architecture: any
@@ -37,10 +37,10 @@ Depends: ${haskell:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
-Description: A simple Haskell XML library - GHC profiling libraries
+Description: A simple Haskell XML library${haskell:ShortBlurb}
  This library provides lightweight tools to parse, filter and generate XML.
  .
- This package contains the profiling libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-xml-doc
 Section: doc
@@ -49,7 +49,7 @@ Depends: ${haskell:Depends}
  , ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
-Description: A simple Haskell XML library - documentation
+Description: A simple Haskell XML library${haskell:ShortBlurb}
  This library provides lightweight tools to parse, filter and generate XML.
  .
- This package contains the library documentation.
+ ${haskell:Blurb}
