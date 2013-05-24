@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Clint Adams <clint@debian.org>
 Build-Depends: debhelper (>= 9)
   , cdbs
-  , haskell-devscripts (>= 0.8.13)
+  , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
   , libghc-hashable-dev
@@ -48,7 +48,7 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: enhanced core prelude
+Description: enhanced core prelude${haskell:ShortBlurb}
  The premise of basic-prelude is that there are a lot of very commonly
  desired features missing from the standard Prelude, such as commonly
  used operators (<$> and >=>, for instance) and imports for common
@@ -65,8 +65,7 @@ Description: enhanced core prelude
  Users wishing to have an improved Prelude can use BasicPrelude.
  Developers wishing to create a new prelude should use CorePrelude.
  .
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-basic-prelude-prof
 Architecture: any
@@ -75,7 +74,7 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: enhanced core prelude; profiling libraries
+Description: enhanced core prelude${haskell:ShortBlurb}
  The premise of basic-prelude is that there are a lot of very commonly
  desired features missing from the standard Prelude, such as commonly
  used operators (<$> and >=>, for instance) and imports for common
@@ -92,8 +91,7 @@ Description: enhanced core prelude; profiling libraries
  Users wishing to have an improved Prelude can use BasicPrelude.
  Developers wishing to create a new prelude should use CorePrelude.
  .
- This package provides a library for the Haskell programming language, compiled
- for profiling.  See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-basic-prelude-doc
 Section: doc
@@ -101,7 +99,7 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: enhanced core prelude; documentation
+Description: enhanced core prelude${haskell:ShortBlurb}
  The premise of basic-prelude is that there are a lot of very commonly
  desired features missing from the standard Prelude, such as commonly
  used operators (<$> and >=>, for instance) and imports for common
@@ -118,6 +116,4 @@ Description: enhanced core prelude; documentation
  Users wishing to have an improved Prelude can use BasicPrelude.
  Developers wishing to create a new prelude should use CorePrelude.
  .
- This package provides the documentation for a library for the Haskell
- programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
