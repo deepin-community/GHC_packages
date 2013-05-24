@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Arjan Oosting <arjan@debian.org>, Clint Adams <clint@debian.org>
 Build-Depends:
   debhelper (>= 9),
-  haskell-devscripts (>= 0.8.13),
+  haskell-devscripts (>= 0.8.15),
   cdbs (>> 0.4.58),
   ghc,
   ghc-prof,
@@ -31,20 +31,20 @@ Architecture: any
 Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: GHC libraries for the Haskell HTTP client library
+Description: GHC libraries for the Haskell HTTP client library${haskell:ShortBlurb}
  HTTP is a set of Haskell client libraries for HTTP/1.0 and HTTP/1.1.
  .
- This package contains the libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-http-prof
 Architecture: any
 Depends: ${haskell:Depends}, ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: profiling libraries for the Haskell HTTP client library
+Description: profiling libraries for the Haskell HTTP client library${haskell:ShortBlurb}
  HTTP is a set of Haskell client libraries for HTTP/1.0 and HTTP/1.1.
  .
- This package contains the profiling libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-http-doc
 Replaces: haskell-http-doc (<< 40000006-4)
@@ -55,7 +55,7 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
-Description: Haskell HTTP client library documentation
+Description: Haskell HTTP client library documentation${haskell:ShortBlurb}
  HTTP is a set of Haskell client libraries for HTTP/1.0 and HTTP/1.1.
  .
- This package contains the library documentation.
+ ${haskell:Blurb}
