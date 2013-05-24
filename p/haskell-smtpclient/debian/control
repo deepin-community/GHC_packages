@@ -4,7 +4,7 @@ Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Giovanni Mascellani <gio@debian.org>, Clint Adams <clint@debian.org>
 Build-Depends: debhelper (>= 9)
- , haskell-devscripts (>= 0.8.13)
+ , haskell-devscripts (>= 0.8.15)
  , cdbs
  , ghc
  , ghc-prof
@@ -34,11 +34,11 @@ Depends:
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
-Description: Simple Haskell SMTP client library - GHC libraries
+Description: Simple Haskell SMTP client library${haskell:ShortBlurb}
  This Haskell library is a simple SMTP client, making the task of
  sending an email as easy as calling a function.
  .
- This package contains the libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-smtpclient-prof
 Architecture: any
@@ -48,11 +48,11 @@ Depends:
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
-Description: Simple Haskell SMTP client library - GHC profiling libraries
+Description: Simple Haskell SMTP client library${haskell:ShortBlurb}
  This Haskell library is a simple SMTP client, making the task of
  sending an email as easy as calling a function.
  .
- This package contains the profiling libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-smtpclient-doc
 Section: doc
@@ -62,8 +62,8 @@ Depends:
  ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
-Description: Simple Haskell SMTP client library - documentation
+Description: Simple Haskell SMTP client library${haskell:ShortBlurb}
  This Haskell library is a simple SMTP client, making the task of
  sending an email as easy as calling a function.
  .
- This package contains the library documentation.
+ ${haskell:Blurb}
