@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>
 Build-Depends: debhelper (>= 9)
   , cdbs
-  , haskell-devscripts (>= 0.8.13)
+  , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
   , libghc-syb-dev
@@ -26,7 +26,7 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: A Haskell library for type-level programming
+Description: A Haskell library for type-level programming${haskell:ShortBlurb}
  A haskell library for performing computations on the type-level. Type-level
  functions are implemented using functional dependencies of multi parameter
  type classes. To date, Booleans and Numerals (Naturals and Positives) are
@@ -39,7 +39,7 @@ Description: A Haskell library for type-level programming
  such as number-parameterized types (e.g. an array type parameterized by the
  array's size or a modular group type Zn parameterized by the modulus).
  .
- This package contains the libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-type-level-prof
 Architecture: any
@@ -49,7 +49,7 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Profiling libraries for type-level programming in Haskell
+Description: Profiling libraries for type-level programming in Haskell${haskell:ShortBlurb}
  A haskell library for performing computations on the type-level. Type-level
  functions are implemented using functional dependencies of multi parameter
  type classes. To date, Booleans and Numerals (Naturals and Positives) are
@@ -62,7 +62,7 @@ Description: Profiling libraries for type-level programming in Haskell
  such as number-parameterized types (e.g. an array type parameterized by the
  array's size or a modular group type Zn parameterized by the modulus).
  .
- This package contains the profiling libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-type-level-doc
 Section: doc
@@ -70,7 +70,7 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: Documentation for type-level programming in Haskell
+Description: Documentation for type-level programming in Haskell${haskell:ShortBlurb}
  A haskell library for performing computations on the type-level. Type-level
  functions are implemented using functional dependencies of multi parameter
  type classes. To date, Booleans and Numerals (Naturals and Positives) are
@@ -83,4 +83,4 @@ Description: Documentation for type-level programming in Haskell
  such as number-parameterized types (e.g. an array type parameterized by the
  array's size or a modular group type Zn parameterized by the modulus).
  .
- This package contains the library documentation.
+ ${haskell:Blurb}
