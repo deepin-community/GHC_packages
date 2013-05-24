@@ -3,7 +3,7 @@ Section: haskell
 Priority: optional
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: TANIGUCHI Takaki <takaki@debian.org>
-Build-Depends: cdbs, debhelper (>= 9), haskell-devscripts (>= 0.8.13),
+Build-Depends: cdbs, debhelper (>= 9), haskell-devscripts (>= 0.8.15),
 	ghc,
 	ghc-prof,
 	ghc-doc,
@@ -18,14 +18,14 @@ Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
 Suggests: ${haskell:Suggests}
-Description: binary serialization library
+Description: binary serialization library${haskell:ShortBlurb}
  A binary serialization library, similar to binary, that introduces an isolate
  primitive for parser isolation, and replaces the asynchronous errors with a
  user-handleable Either type.  Similar to binary in performance, but uses a
  strict ByteString instead of a lazy ByteString, thus restricting it to
  operating on finite inputs.
  .
- This package contains the libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-cereal-prof
 Architecture: any
@@ -33,14 +33,14 @@ Depends: ${haskell:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
 Suggests: ${haskell:Suggests}
-Description: binary serialization library; profiling library
+Description: binary serialization library${haskell:ShortBlurb}
  A binary serialization library, similar to binary, that introduces an isolate
  primitive for parser isolation, and replaces the asynchronous errors with a
  user-handleable Either type.  Similar to binary in performance, but uses a
  strict ByteString instead of a lazy ByteString, thus restricting it to
  operating on finite inputs.
  .
- This package contains the profiling libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-cereal-doc
 Architecture: all
@@ -48,11 +48,11 @@ Section: doc
 Depends: ${haskell:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: binary serialization library; documentation
+Description: binary serialization library${haskell:ShortBlurb}
  A binary serialization library, similar to binary, that introduces an isolate
  primitive for parser isolation, and replaces the asynchronous errors with a
  user-handleable Either type.  Similar to binary in performance, but uses a
  strict ByteString instead of a lazy ByteString, thus restricting it to
  operating on finite inputs.
  .
- This package contains the library documentation.
+ ${haskell:Blurb}
