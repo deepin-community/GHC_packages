@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Clint Adams <clint@debian.org>
 Build-Depends: debhelper (>= 9)
   , cdbs
-  , haskell-devscripts (>= 0.8.13)
+  , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
   , libghc-conduit-dev (>> 1.0)
@@ -40,12 +40,11 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: stream socket data using conduits
+Description: stream socket data using conduits${haskell:ShortBlurb}
  This package provides conduit sources and sinks for network sockets, as
  well as a simple TCP client/server interface.
  .
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-network-conduit-prof
 Architecture: any
@@ -54,12 +53,11 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: stream socket data using conduits; profiling libraries
+Description: stream socket data using conduits${haskell:ShortBlurb}
  This package provides conduit sources and sinks for network sockets, as
  well as a simple TCP client/server interface.
  .
- This package provides a library for the Haskell programming language, compiled
- for profiling.  See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-network-conduit-doc
 Section: doc
@@ -67,10 +65,8 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: stream socket data using conduits; documentation
+Description: stream socket data using conduits${haskell:ShortBlurb}
  This package provides conduit sources and sinks for network sockets, as
  well as a simple TCP client/server interface.
  .
- This package provides the documentation for a library for the Haskell
- programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
