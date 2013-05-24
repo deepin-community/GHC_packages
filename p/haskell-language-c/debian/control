@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>, Clint Adams <clint@debian.org>
 Build-Depends: debhelper (>= 9)
  , cdbs
- , haskell-devscripts (>= 0.8.13)
+ , haskell-devscripts (>= 0.8.15)
  , ghc
  , ghc-prof
  , alex
@@ -25,13 +25,13 @@ Depends: ${haskell:Depends}
  , ${misc:Depends}
 Suggests: libghc-language-c-doc (= ${source:Version})
 Provides: ${haskell:Provides}
-Description: Haskell library for the analysis and generation of C code
+Description: Haskell library for the analysis and generation of C code${haskell:ShortBlurb}
  .
  Language C is a haskell library for the analysis and generation of C code. It
  features a complete, well tested parser and pretty printer for all of C99 and
  a large set of GNU extensions.
  .
- This package contains the libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-language-c-prof
 Architecture: any
@@ -40,23 +40,23 @@ Depends: libghc-language-c-dev (= ${binary:Version})
  , ${misc:Depends}
 Suggests: haskell-language-c-doc (= ${source:Version})
 Provides: ${haskell:Provides}
-Description: Profiling libraries for Haskell Library.C module
+Description: Profiling libraries for Haskell Library.C module${haskell:ShortBlurb}
  .
  Language C is a haskell library for the analysis and generation of C code. It
  features a complete, well tested parser and pretty printer for all of C99 and
  a large set of GNU extensions.
  .
- This package contains the profiling libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-language-c-doc
 Section: doc
 Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
-Description: Documentation for Haskell Library.C module
+Description: Documentation for Haskell Library.C module${haskell:ShortBlurb}
  .
  Language C is a haskell library for the analysis and generation of C code. It
  features a complete, well tested parser and pretty printer for all of C99 and
  a large set of GNU extensions.
  .
- This package contains the library documentation.
+ ${haskell:Blurb}
