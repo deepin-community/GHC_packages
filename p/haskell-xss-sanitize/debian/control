@@ -4,7 +4,7 @@ Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Giovanni Mascellani <gio@debian.org>
 Build-Depends: debhelper (>= 9)
-  , haskell-devscripts (>= 0.8.13)
+  , haskell-devscripts (>= 0.8.15)
   , cdbs
   , ghc
   , ghc-prof
@@ -49,7 +49,7 @@ Depends:
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
-Description: Library to sanitize HTML and prevent XSS attacks - GHC libraries
+Description: Library to sanitize HTML and prevent XSS attacks${haskell:ShortBlurb}
  This library is able to parse strings that contain HTML code and check
  for the presence of potentially malicious tags that could trigger XSS
  (Cross-Site Scripting). It can be used in a Web application when using
@@ -58,7 +58,7 @@ Description: Library to sanitize HTML and prevent XSS attacks - GHC libraries
  Moreover, this library is also able to check for unbalanced tags and
  tries to fix them (even though it could produce invalid HTML).
  .
- This package contains the libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-xss-sanitize-prof
 Architecture: any
@@ -68,7 +68,7 @@ Depends:
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
-Description: Library to sanitize HTML and prevent XSS attacks - GHC profiling libraries
+Description: Library to sanitize HTML and prevent XSS attacks${haskell:ShortBlurb}
  This library is able to parse strings that contain HTML code and check
  for the presence of potentially malicious tags that could trigger XSS
  (Cross-Site Scripting). It can be used in a Web application when using
@@ -77,7 +77,7 @@ Description: Library to sanitize HTML and prevent XSS attacks - GHC profiling li
  Moreover, this library is also able to check for unbalanced tags and
  tries to fix them (even though it could produce invalid HTML).
  .
- This package contains the profiling libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-xss-sanitize-doc
 Section: doc
@@ -87,7 +87,7 @@ Depends:
  ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
-Description: Library to sanitize HTML and prevent XSS attacks - documentation
+Description: Library to sanitize HTML and prevent XSS attacks${haskell:ShortBlurb}
  This library is able to parse strings that contain HTML code and check
  for the presence of potentially malicious tags that could trigger XSS
  (Cross-Site Scripting). It can be used in a Web application when using
@@ -96,4 +96,4 @@ Description: Library to sanitize HTML and prevent XSS attacks - documentation
  Moreover, this library is also able to check for unbalanced tags and
  tries to fix them (even though it could produce invalid HTML).
  .
- This package contains the library documentation.
+ ${haskell:Blurb}
