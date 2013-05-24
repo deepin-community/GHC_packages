@@ -4,7 +4,7 @@ Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: TANIGUCHI Takaki <takaki@debian.org>
 Build-Depends: debhelper (>= 9),
-	haskell-devscripts (>= 0.8.13),
+	haskell-devscripts (>= 0.8.15),
 	cdbs,
 	ghc,
 	ghc-prof,
@@ -27,13 +27,13 @@ Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Cache for HXT XML Documents and other binary data
+Description: Cache for HXT XML Documents and other binary data${haskell:ShortBlurb}
  This is a part of Haskell XML Toolbox.
  .
  Extension for caching XML documents and other binary data in cache directory
  of the local filesystem.
  .
- This package contains the libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-hxt-cache-prof
 Architecture: any
@@ -41,13 +41,13 @@ Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Cache for HXT XML Documents and other binary data; profiling library
+Description: Cache for HXT XML Documents and other binary data${haskell:ShortBlurb}
  This is a part of Haskell XML Toolbox.
  .
  Extension for caching XML documents and other binary data in cache directory
  of the local filesystem.
  .
- This package contains the profiling libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-hxt-cache-doc
 Section: doc
@@ -56,10 +56,10 @@ Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Cache for HXT XML Documents and other binary data; documentation
+Description: Cache for HXT XML Documents and other binary data${haskell:ShortBlurb}
  This is a part of Haskell XML Toolbox.
  .
  Extension for caching XML documents and other binary data in cache directory
  of the local filesystem.
  .
- This package contains the library documentation.
+ ${haskell:Blurb}
