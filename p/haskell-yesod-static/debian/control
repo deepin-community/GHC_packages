@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Joachim Breitner <nomeata@debian.org>, Clint Adams <clint@debian.org>
 Build-Depends: debhelper (>= 9)
   , cdbs
-  , haskell-devscripts (>= 0.8.13)
+  , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
   , ghc-ghci
@@ -72,7 +72,7 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Static file serving subsite for Yesod Web Framework.
+Description: Static file serving subsite for Yesod Web Framework.${haskell:ShortBlurb}
  Yesod is a framework designed to foster creation of RESTful web
  application that have strong compile-time guarantees of correctness.
  It also affords space efficient code and portability to many
@@ -81,8 +81,7 @@ Description: Static file serving subsite for Yesod Web Framework.
  This package provides static file serving functionality for the Yesod
  Web Framework.
  .
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-yesod-static-prof
 Architecture: any
@@ -91,7 +90,7 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Static file serving subsite for Yesod Web Framework; profiling libraries
+Description: Static file serving subsite for Yesod Web Framework${haskell:ShortBlurb}
  Yesod is a framework designed to foster creation of RESTful web
  application that have strong compile-time guarantees of correctness.
  It also affords space efficient code and portability to many
@@ -100,8 +99,7 @@ Description: Static file serving subsite for Yesod Web Framework; profiling libr
  This package provides static file serving functionality for the Yesod
  Web Framework.
  .
- This package provides a library for the Haskell programming language, compiled
- for profiling.  See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-yesod-static-doc
 Section: doc
@@ -109,7 +107,7 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: Static file serving subsite for Yesod Web Framework; documentation
+Description: Static file serving subsite for Yesod Web Framework${haskell:ShortBlurb}
  Yesod is a framework designed to foster creation of RESTful web
  application that have strong compile-time guarantees of correctness.
  It also affords space efficient code and portability to many
@@ -118,6 +116,4 @@ Description: Static file serving subsite for Yesod Web Framework; documentation
  This package provides static file serving functionality for the Yesod
  Web Framework.
  .
- This package provides the documentation for a library for the Haskell
- programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
