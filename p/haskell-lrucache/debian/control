@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Joachim Breitner <nomeata@debian.org>
 Build-Depends: debhelper (>= 9)
   , cdbs
-  , haskell-devscripts (>= 0.8.13)
+  , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
 Build-Depends-Indep: ghc-doc
@@ -22,15 +22,14 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: simple, pure least-recent-used cache
+Description: simple, pure least-recent-used cache${haskell:ShortBlurb}
  This package contains a simple, pure LRU cache, implemented in terms of
  "Data.Map".
  .
  It also contains a mutable IO wrapper providing atomic updates to an LRU
  cache.
  .
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-lrucache-prof
 Architecture: any
@@ -39,15 +38,14 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: simple, pure least-recent-used cache; profiling libraries
+Description: simple, pure least-recent-used cache${haskell:ShortBlurb}
  This package contains a simple, pure LRU cache, implemented in terms of
  "Data.Map".
  .
  It also contains a mutable IO wrapper providing atomic updates to an LRU
  cache.
  .
- This package provides a library for the Haskell programming language, compiled
- for profiling.  See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-lrucache-doc
 Section: doc
@@ -55,13 +53,11 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: simple, pure least-recent-used cache; documentation
+Description: simple, pure least-recent-used cache${haskell:ShortBlurb}
  This package contains a simple, pure LRU cache, implemented in terms of
  "Data.Map".
  .
  It also contains a mutable IO wrapper providing atomic updates to an LRU
  cache.
  .
- This package provides the documentation for a library for the Haskell
- programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
