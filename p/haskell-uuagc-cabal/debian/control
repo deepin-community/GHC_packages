@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Joachim Breitner <nomeata@debian.org>
 Build-Depends: debhelper (>= 9)
   , cdbs
-  , haskell-devscripts (>= 0.8.13)
+  , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
   , libghc-uulib-dev (>= 0.9.15)
@@ -28,11 +28,10 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Cabal plugin for UUAGC
+Description: Cabal plugin for UUAGC${haskell:ShortBlurb}
  Cabal plugin for the Universiteit Utrecht Attribute Grammar System.
  .
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-uuagc-cabal-prof
 Architecture: any
@@ -41,11 +40,10 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Cabal plugin for UUAGC; profiling libraries
+Description: Cabal plugin for UUAGC${haskell:ShortBlurb}
  Cabal plugin for the Universiteit Utrecht Attribute Grammar System.
  .
- This package provides a library for the Haskell programming language, compiled
- for profiling.  See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-uuagc-cabal-doc
 Section: doc
@@ -53,9 +51,7 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: Cabal plugin for UUAGC; documentation
+Description: Cabal plugin for UUAGC${haskell:ShortBlurb}
  Cabal plugin for the Universiteit Utrecht Attribute Grammar System.
  .
- This package provides the documentation for a library for the Haskell
- programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
