@@ -4,7 +4,7 @@ Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Giovanni Mascellani <gio@debian.org>, Clint Adams <clint@debian.org>
 Build-Depends: debhelper (>= 9)
- , haskell-devscripts (>= 0.8.13)
+ , haskell-devscripts (>= 0.8.15)
  , cdbs
  , ghc
  , ghc-prof
@@ -22,7 +22,7 @@ Depends: ${haskell:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
-Description: Haskell library for splitting lists - GHC libraries
+Description: Haskell library for splitting lists${haskell:ShortBlurb}
  This Haskell library provides a wide range of strategies and a unified
  combinator framework for splitting lists with respect to some sort of
  delimiter.
@@ -30,7 +30,7 @@ Description: Haskell library for splitting lists - GHC libraries
  For example, it can split a list every N elements, or on elements that
  satisfy some condition.
  .
- This package contains the libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-split-prof
 Architecture: any
@@ -39,7 +39,7 @@ Depends: ${haskell:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
-Description: Haskell library for splitting lists - GHC profiling libraries
+Description: Haskell library for splitting lists${haskell:ShortBlurb}
  This Haskell library provides a wide range of strategies and a unified
  combinator framework for splitting lists with respect to some sort of
  delimiter.
@@ -47,7 +47,7 @@ Description: Haskell library for splitting lists - GHC profiling libraries
  For example, it can split a list every N elements, or on elements that
  satisfy some condition.
  .
- This package contains the profiling libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-split-doc
 Section: doc
@@ -56,7 +56,7 @@ Depends: ${haskell:Depends}
  , ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
-Description: Haskell library for splitting lists - documentation
+Description: Haskell library for splitting lists${haskell:ShortBlurb}
  This Haskell library provides a wide range of strategies and a unified
  combinator framework for splitting lists with respect to some sort of
  delimiter.
@@ -64,4 +64,4 @@ Description: Haskell library for splitting lists - documentation
  For example, it can split a list every N elements, or on elements that
  satisfy some condition.
  .
- This package contains the library documentation.
+ ${haskell:Blurb}
