@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Denis Laxalde <denis@laxalde.org>
 Build-Depends: debhelper (>= 9)
   , cdbs
-  , haskell-devscripts (>= 0.8.13)
+  , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
   , libghc-vector-dev (>= 0.10)
@@ -30,14 +30,13 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Regular parallel arrays for Haskell
+Description: Regular parallel arrays for Haskell${haskell:ShortBlurb}
  Repa provides high performance, regular, multi-dimensional, shape polymorphic
  parallel arrays. All numeric data is stored unboxed. Functions written with
  the Repa combinators are automatically parallel provided you supply +RTS -Nn
  on the command line when running the program.
  .
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-repa-prof
 Architecture: any
@@ -46,14 +45,13 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Regular parallel arrays for Haskell; profiling libraries
+Description: Regular parallel arrays for Haskell${haskell:ShortBlurb}
  Repa provides high performance, regular, multi-dimensional, shape polymorphic
  parallel arrays. All numeric data is stored unboxed. Functions written with
  the Repa combinators are automatically parallel provided you supply +RTS -Nn
  on the command line when running the program.
  .
- This package provides a library for the Haskell programming language, compiled
- for profiling.  See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-repa-doc
 Section: doc
@@ -61,12 +59,10 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: Regular parallel arrays for Haskell; documentation
+Description: Regular parallel arrays for Haskell${haskell:ShortBlurb}
  Repa provides high performance, regular, multi-dimensional, shape polymorphic
  parallel arrays. All numeric data is stored unboxed. Functions written with
  the Repa combinators are automatically parallel provided you supply +RTS -Nn
  on the command line when running the program.
  .
- This package provides the documentation for a library for the Haskell
- programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
