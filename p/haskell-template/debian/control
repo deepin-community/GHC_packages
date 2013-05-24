@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Joachim Breitner <nomeata@debian.org>
 Build-Depends: debhelper (>= 9)
   , cdbs
-  , haskell-devscripts (>= 0.8.13)
+  , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
   , libghc-mtl-dev (>= 1.1)
@@ -30,14 +30,13 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: string substitution library
+Description: string substitution library${haskell:ShortBlurb}
  This is a simple string substitution library that supports "$"-based
  substitution. It is meant to be used when Text.Printf or string concatenation
  would lead to code that is hard to read but when a full blown templating
  system is overkill.
  .
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-template-prof
 Architecture: any
@@ -46,14 +45,13 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: string substitution library; profiling libraries
+Description: string substitution library${haskell:ShortBlurb}
  This is a simple string substitution library that supports "$"-based
  substitution. It is meant to be used when Text.Printf or string concatenation
  would lead to code that is hard to read but when a full blown templating
  system is overkill.
  .
- This package provides a library for the Haskell programming language, compiled
- for profiling.  See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-template-doc
 Section: doc
@@ -61,12 +59,10 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: string substitution library; documentation
+Description: string substitution library${haskell:ShortBlurb}
  This is a simple string substitution library that supports "$"-based
  substitution. It is meant to be used when Text.Printf or string concatenation
  would lead to code that is hard to read but when a full blown templating
  system is overkill.
  .
- This package provides the documentation for a library for the Haskell
- programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
