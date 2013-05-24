@@ -4,7 +4,7 @@ Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Chris Lamb <lamby@debian.org>
 Build-Depends: debhelper (>= 9)
- , haskell-devscripts (>= 0.8.13)
+ , haskell-devscripts (>= 0.8.15)
  , cdbs
  , ghc
  , ghc-prof
@@ -26,7 +26,7 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Haskell IRC library
+Description: Haskell IRC library${haskell:ShortBlurb}
  A set of combinators and types for parsing IRC (Internet Relay Chat)
  messages.
  .
@@ -39,12 +39,11 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Haskell IRC library; profiling libraries
+Description: Haskell IRC library${haskell:ShortBlurb}
  A set of combinators and types for parsing IRC (Internet Relay Chat)
  messages.
  .
- This package provides a library for the Haskell programming language, compiled
- for profiling.  See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-irc-doc
 Section: doc
@@ -52,7 +51,7 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: Haskell IRC library; documentation
+Description: Haskell IRC library${haskell:ShortBlurb}
  A set of combinators and types for parsing IRC (Internet Relay Chat)
  messages.
  .
