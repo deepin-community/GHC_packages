@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Clint Adams <clint@debian.org>, Kiwamu Okabe <kiwamu@debian.or.jp>
 Build-Depends: debhelper (>= 9)
   , cdbs
-  , haskell-devscripts (>= 0.8.13)
+  , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
   , libghc-lifted-base-dev
@@ -35,13 +35,12 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: choice for IO and lifted IO
+Description: choice for IO and lifted IO${haskell:ShortBlurb}
  io-choice provides the choice operator (||>) for the IO monad and lifted
  IO monad.  If an IOException occurs in the left-hand side, the right-hand
  IO action is performed.
  .
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-io-choice-prof
 Architecture: any
@@ -50,13 +49,12 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: choice for IO and lifted IO; profiling libraries
+Description: choice for IO and lifted IO${haskell:ShortBlurb}
  io-choice provides the choice operator (||>) for the IO monad and lifted
  IO monad.  If an IOException occurs in the left-hand side, the right-hand
  IO action is performed.
  .
- This package provides a library for the Haskell programming language, compiled
- for profiling.  See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-io-choice-doc
 Section: doc
@@ -64,11 +62,9 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: choice for IO and lifted IO; documentation
+Description: choice for IO and lifted IO${haskell:ShortBlurb}
  io-choice provides the choice operator (||>) for the IO monad and lifted
  IO monad.  If an IOException occurs in the left-hand side, the right-hand
  IO action is performed.
  .
- This package provides the documentation for a library for the Haskell
- programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
