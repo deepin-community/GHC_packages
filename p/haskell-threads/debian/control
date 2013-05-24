@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Joachim Breitner <nomeata@debian.org>
 Build-Depends: debhelper (>= 9)
   , cdbs
-  , haskell-devscripts (>= 0.8.13)
+  , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
   , libghc-base-unicode-symbols-dev (>= 0.1.1)
@@ -30,15 +30,14 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Fork threads and wait for their result
+Description: Fork threads and wait for their result${haskell:ShortBlurb}
  This package provides functions to fork threads and wait for their result,
  whether it's an exception or a normal value.
  .
  Besides waiting for the termination of a single thread this package also
  provides functions to wait for a group of threads to terminate.
  .
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-threads-prof
 Architecture: any
@@ -47,15 +46,14 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Fork threads and wait for their result; profiling libraries
+Description: Fork threads and wait for their result${haskell:ShortBlurb}
  This package provides functions to fork threads and wait for their result,
  whether it's an exception or a normal value.
  .
  Besides waiting for the termination of a single thread this package also
  provides functions to wait for a group of threads to terminate.
  .
- This package provides a library for the Haskell programming language, compiled
- for profiling.  See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-threads-doc
 Section: doc
@@ -63,13 +61,11 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: Fork threads and wait for their result; documentation
+Description: Fork threads and wait for their result${haskell:ShortBlurb}
  This package provides functions to fork threads and wait for their result,
  whether it's an exception or a normal value.
  .
  Besides waiting for the termination of a single thread this package also
  provides functions to wait for a group of threads to terminate.
  .
- This package provides the documentation for a library for the Haskell
- programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
