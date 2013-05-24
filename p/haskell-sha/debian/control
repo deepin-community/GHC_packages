@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Giovanni Mascellani <gio@debian.org>
 Build-Depends:
  debhelper (>= 9),
- haskell-devscripts (>= 0.8.13),
+ haskell-devscripts (>= 0.8.15),
  cdbs,
  ghc,
  ghc-prof,
@@ -24,7 +24,7 @@ Depends:
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
-Description: Haskell SHA suite of message digest functions - GHC libraries
+Description: Haskell SHA suite of message digest functions${haskell:ShortBlurb}
  This library implements the SHA suite of message digest functions,
  according to NIST FIPS 180-2 (with the SHA-224 addendum), as well
  as the SHA-based HMAC routines.
@@ -34,7 +34,7 @@ Description: Haskell SHA suite of message digest functions - GHC libraries
  to performance, these do not presently reach the speed of well-tune
  libraries, like OpenSSL.
  .
- This package contains the libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-sha-prof
 Architecture: any
@@ -44,7 +44,7 @@ Depends:
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
-Description: Haskell SHA suite of message digest functions - GHC profiling libraries
+Description: Haskell SHA suite of message digest functions${haskell:ShortBlurb}
  This library implements the SHA suite of message digest functions,
  according to NIST FIPS 180-2 (with the SHA-224 addendum), as well
  as the SHA-based HMAC routines.
@@ -54,7 +54,7 @@ Description: Haskell SHA suite of message digest functions - GHC profiling libra
  to performance, these do not presently reach the speed of well-tune
  libraries, like OpenSSL.
  .
- This package contains the profiling libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-sha-doc
 Section: doc
@@ -64,7 +64,7 @@ Depends:
  ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
-Description: Haskell SHA suite of message digest functions - documentation
+Description: Haskell SHA suite of message digest functions${haskell:ShortBlurb}
  This library implements the SHA suite of message digest functions,
  according to NIST FIPS 180-2 (with the SHA-224 addendum), as well
  as the SHA-based HMAC routines.
@@ -74,4 +74,4 @@ Description: Haskell SHA suite of message digest functions - documentation
  to performance, these do not presently reach the speed of well-tune
  libraries, like OpenSSL.
  .
- This package contains the library documentation.
+ ${haskell:Blurb}
