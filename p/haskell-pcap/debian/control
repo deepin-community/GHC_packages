@@ -6,7 +6,7 @@ Uploaders: Iain Lane <laney@debian.org>
 Build-Depends:
     cdbs
   , debhelper (>= 9)
-  , haskell-devscripts (>= 0.8.13)
+  , haskell-devscripts (>= 0.8.15)
   , ghc (>= 6.12)
   , ghc-prof
   , libghc-network-dev
@@ -30,14 +30,13 @@ Depends:
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Haskell wrapper around the C libpcap library
+Description: Haskell wrapper around the C libpcap library${haskell:ShortBlurb}
  This library provides Haskell bindings for most of the libpcap API as of
  libpcap version 0.9.7. The bindings are divided into a very efficient
  low-level wrapper, Network.Pcap.Base, and a higher-level module, Network.Pcap,
  that's easier to use.
  .
- This package provides a library written in the Haskell programming
- language. See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-pcap-prof
 Architecture: any
@@ -47,15 +46,13 @@ Depends:
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Haskell wrapper around the C libpcap library; profiling libraries
+Description: Haskell wrapper around the C libpcap library${haskell:ShortBlurb}
  This library provides Haskell bindings for most of the libpcap API as of
  libpcap version 0.9.7. The bindings are divided into a very efficient
  low-level wrapper, Network.Pcap.Base, and a higher-level module, Network.Pcap,
  that's easier to use.
  .
- This package provides a library written in the Haskell programming language,
- compiled for profiling. See http://www.haskell.org/ for more information on
- Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-pcap-doc
 Section: doc
@@ -65,12 +62,10 @@ Depends:
   , ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: Haskell wrapper around the C libpcap library; documentation
+Description: Haskell wrapper around the C libpcap library${haskell:ShortBlurb}
  This library provides Haskell bindings for most of the libpcap API as of
  libpcap version 0.9.7. The bindings are divided into a very efficient
  low-level wrapper, Network.Pcap.Base, and a higher-level module, Network.Pcap,
  that's easier to use.
  .
- This package provides documentation for a library written in the Haskell
- programming language. See http://www.haskell.org/ for more information on
- Haskell.
+ ${haskell:Blurb}
