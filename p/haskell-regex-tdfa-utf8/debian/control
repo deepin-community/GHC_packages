@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>
 Build-Depends:
  debhelper (>= 9),
- haskell-devscripts (>= 0.8.13),
+ haskell-devscripts (>= 0.8.15),
  cdbs,
  ghc,
  ghc-prof,
@@ -27,11 +27,11 @@ Depends: ${haskell:Depends}, ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
-Description: Haskell library for the UTF8 version of the tagged DFA regex engine
+Description: Haskell library for the UTF8 version of the tagged DFA regex engine${haskell:ShortBlurb}
  This combines regex-tdfa with utf8-string to allow searching over UTF8 encoded
  lazy bytestrings.
  .
- This package contains the libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-regex-tdfa-utf8-prof
 Architecture: any
@@ -39,11 +39,11 @@ Depends: ${haskell:Depends}, ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
-Description: Profiling libraries for the UTF8 version of the tagged DFA regex engine
+Description: Profiling libraries for the UTF8 version of the tagged DFA regex engine${haskell:ShortBlurb}
  This combines regex-tdfa with utf8-string to allow searching over UTF8 encoded
  lazy bytestrings.
  .
- This package contains the profiling libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-regex-tdfa-utf8-doc
 Section: doc
@@ -52,8 +52,8 @@ Depends: ${haskell:Depends}, ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
-Description: Documentation for the utf-8 version of the tagged DFA regex engine
+Description: Documentation for the utf-8 version of the tagged DFA regex engine${haskell:ShortBlurb}
  This combines regex-tdfa with utf8-string to allow searching over UTF8 encoded
  lazy bytestrings.
  .
- This package contains the library documentation.
+ ${haskell:Blurb}
