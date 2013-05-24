@@ -8,7 +8,7 @@ Build-Depends: cdbs,
                ghc,
                ghc-doc,
                ghc-prof,
-               haskell-devscripts (>= 0.8.13),
+               haskell-devscripts (>= 0.8.15),
                libghc-hashable-dev (>= 1.1),
                libghc-hashable-dev (<< 2),
                libghc-hashable-prof,
@@ -30,7 +30,7 @@ Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: mutable hash tables
+Description: mutable hash tables${haskell:ShortBlurb}
  This package provides a couple of different implementations of mutable hash
  tables in the ST monad, as well as a typeclass abstracting their common
  operations, and a set of wrappers to use the hash tables in the IO monad.
@@ -48,8 +48,7 @@ Description: mutable hash tables
     insert and lookup performance for higher space efficiency and much shorter
     delays when expanding the table.
  .
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-hashtables-prof
 Architecture: any
@@ -57,7 +56,7 @@ Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: mutable hash tables -- profiling libraries
+Description: mutable hash tables -- profiling libraries${haskell:ShortBlurb}
  This package provides a couple of different implementations of mutable hash
  tables in the ST monad, as well as a typeclass abstracting their common
  operations, and a set of wrappers to use the hash tables in the IO monad.
@@ -75,8 +74,7 @@ Description: mutable hash tables -- profiling libraries
     insert and lookup performance for higher space efficiency and much shorter
     delays when expanding the table.
  .
- This package provides a library for the Haskell programming language, compiled
- for profiling.  See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-hashtables-doc
 Section: doc
@@ -85,7 +83,7 @@ Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: mutable hash tables -- documentation
+Description: mutable hash tables -- documentation${haskell:ShortBlurb}
  This package provides a couple of different implementations of mutable hash
  tables in the ST monad, as well as a typeclass abstracting their common
  operations, and a set of wrappers to use the hash tables in the IO monad.
@@ -103,6 +101,4 @@ Description: mutable hash tables -- documentation
     insert and lookup performance for higher space efficiency and much shorter
     delays when expanding the table.
  .
- This package provides the documentation for a library for the Haskell
- programming language.  See http://www.haskell.org/ for more information on
- Haskell.
+ ${haskell:Blurb}
