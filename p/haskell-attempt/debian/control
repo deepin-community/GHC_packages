@@ -6,7 +6,7 @@ Uploaders: Iulian Udrea <iulian@linux.com>, Clint Adams <clint@debian.org>
 DM-Upload-Allowed: yes
 Build-Depends: debhelper (>= 9),
                cdbs,
-               haskell-devscripts (>= 0.8.13),
+               haskell-devscripts (>= 0.8.15),
                ghc,
                ghc-prof,
                libghc-failure-dev (>= 0.2.0),
@@ -24,12 +24,11 @@ Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Concrete data type for handling extensible exceptions as failures
+Description: Concrete data type for handling extensible exceptions as failures${haskell:ShortBlurb}
  Defines a data type, Attempt, which has a Success and Failure constructor.
  Failure contains an extensible exception.
  .
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-attempt-prof
 Architecture: any
@@ -37,12 +36,11 @@ Depends: ${haskell:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Concrete data type for handling extensible exceptions as failures; prof
+Description: Concrete data type for handling extensible exceptions as failures${haskell:ShortBlurb}
  Defines a data type, Attempt, which has a Success and Failure constructor.
  Failure contains an extensible exception.
  .
- This package provides a library for the Haskell programming language, compiled
- for profiling. See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-attempt-doc
 Section: doc
@@ -50,10 +48,8 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: Concrete data type for handling extensible exceptions as failures; docs
+Description: Concrete data type for handling extensible exceptions as failures${haskell:ShortBlurb}
  Defines a data type, Attempt, which has a Success and Failure constructor.
  Failure contains an extensible exception.
  .
- This package provides the documentation for a library for the Haskell
- programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
