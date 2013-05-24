@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Joachim Breitner <nomeata@debian.org>
 Build-Depends: debhelper (>= 9)
   , cdbs
-  , haskell-devscripts (>= 0.8.13)
+  , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
 Build-Depends-Indep: ghc-doc
@@ -22,14 +22,13 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: A library for tracking the consumption of a lazy ByteString
+Description: A library for tracking the consumption of a lazy ByteString${haskell:ShortBlurb}
  In some cases, it is useful to know how fast a ByteString is being
  consumed. Typically, this could be to report some measure of progress
  to a waiting user, but it could also be to perform some form of testing
  on input / consumption code.
  .
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-bytestring-progress-prof
 Architecture: any
@@ -38,14 +37,13 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: A library for tracking the consumption of a lazy ByteString; profiling library
+Description: A library for tracking the consumption of a lazy ByteString${haskell:ShortBlurb}
  In some cases, it is useful to know how fast a ByteString is being
  consumed. Typically, this could be to report some measure of progress
  to a waiting user, but it could also be to perform some form of testing
  on input / consumption code.
  .
- This package provides a library for the Haskell programming language, compiled
- for profiling.  See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-bytestring-progress-doc
 Section: doc
@@ -53,12 +51,10 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: A library for tracking the consumption of a lazy ByteString; documentation
+Description: A library for tracking the consumption of a lazy ByteString${haskell:ShortBlurb}
  In some cases, it is useful to know how fast a ByteString is being
  consumed. Typically, this could be to report some measure of progress
  to a waiting user, but it could also be to perform some form of testing
  on input / consumption code.
  .
- This package provides the documentation for a library for the Haskell
- programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
