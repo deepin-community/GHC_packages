@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Giovanni Mascellani <gio@debian.org>
 Build-Depends:
  debhelper (>= 9),
- haskell-devscripts (>= 0.8.13),
+ haskell-devscripts (>= 0.8.15),
  cdbs,
  ghc,
  ghc-prof
@@ -25,13 +25,13 @@ Depends:
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
-Description: Haskell portable POSIX-compatible layer - GHC libraries
+Description: Haskell portable POSIX-compatible layer${haskell:ShortBlurb}
  This package provides portable Haskell implementations of some POSIX
  system calls contained in the unix package. This package re-exports the
  unix package when available. When it isn't available, portable
  implementations are used.
  .
- This package contains the libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-unix-compat-prof
 Architecture: any
@@ -41,13 +41,13 @@ Depends:
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
-Description: Haskell portable POSIX-compatible layer - GHC profiling libraries
+Description: Haskell portable POSIX-compatible layer${haskell:ShortBlurb}
  This package provides portable Haskell implementations of some POSIX
  system calls contained in the unix package. This package re-exports the
  unix package when available. When it isn't available, portable
  implementations are used.
  .
- This package contains the profiling libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-unix-compat-doc
 Section: doc
@@ -57,10 +57,10 @@ Depends:
  ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
-Description: Haskell portable POSIX-compatible layer - documentation
+Description: Haskell portable POSIX-compatible layer${haskell:ShortBlurb}
  This package provides portable Haskell implementations of some POSIX
  system calls contained in the unix package. This package re-exports the
  unix package when available. When it isn't available, portable
  implementations are used.
  .
- This package contains the library documentation.
+ ${haskell:Blurb}
