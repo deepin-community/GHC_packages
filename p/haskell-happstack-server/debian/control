@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Giovanni Mascellani <gio@debian.org>
 Build-Depends:
  debhelper (>= 9),
- haskell-devscripts (>= 0.8.13),
+ haskell-devscripts (>= 0.8.15),
  cdbs,
  ghc,
  ghc-prof
@@ -93,7 +93,7 @@ Depends:
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
-Description: Happstack web framework, HTTP server - GHC libraries
+Description: Happstack web framework, HTTP server${haskell:ShortBlurb}
  Happstack is a Haskell web framework, designed so that developers can
  prototype quickly, deploy painlessly, scale massively, operate reliably,
  and change easily. It supports GNU/Linux, OS X, FreeBSD, and Windows
@@ -107,7 +107,7 @@ Description: Happstack web framework, HTTP server - GHC libraries
  .
  Happstack-server contains the HTTP server itself.
  .
- This package contains the libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-happstack-server-prof
 Architecture: any
@@ -117,7 +117,7 @@ Depends:
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
-Description: Happstack web framework, HTTP server - GHC profiling libraries
+Description: Happstack web framework, HTTP server${haskell:ShortBlurb}
  Happstack is a Haskell web framework, designed so that developers can
  prototype quickly, deploy painlessly, scale massively, operate reliably,
  and change easily. It supports GNU/Linux, OS X, FreeBSD, and Windows
@@ -131,7 +131,7 @@ Description: Happstack web framework, HTTP server - GHC profiling libraries
  .
  Happstack-server contains the HTTP server itself.
  .
- This package contains the profiling libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-happstack-server-doc
 Section: doc
@@ -141,7 +141,7 @@ Depends:
  ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
-Description: Happstack web framework, HTTP server - documentation
+Description: Happstack web framework, HTTP server${haskell:ShortBlurb}
  Happstack is a Haskell web framework, designed so that developers can
  prototype quickly, deploy painlessly, scale massively, operate reliably,
  and change easily. It supports GNU/Linux, OS X, FreeBSD, and Windows
@@ -155,4 +155,4 @@ Description: Happstack web framework, HTTP server - documentation
  .
  Happstack-server contains the HTTP server itself.
  .
- This package contains the library documentation.
+ ${haskell:Blurb}
