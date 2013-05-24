@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>
 Build-Depends: debhelper (>= 9)
   , cdbs
-  , haskell-devscripts (>= 0.8.13)
+  , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
   , happy
@@ -22,7 +22,7 @@ Package: ppsh
 Architecture: any
 Depends: ${shlibs:Depends}
   , ${misc:Depends}
-Description: Program to parse and pretty print arbitrary Haskell Show output
+Description: Program to parse and pretty print arbitrary Haskell Show output${haskell:ShortBlurb}
  The ppsh program takes the output of an arbitrary Haskell Show output on
  stdin and pretty prints it to stdout. It uses the library provided in the
  libghc-pretty-show-dev package to parse the input and pretty print the
@@ -36,12 +36,12 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: A Haskell library for pretty printing data structures
+Description: A Haskell library for pretty printing data structures${haskell:ShortBlurb}
  A library that can parse derived Show instances into a generic data structure
  which can then be pretty printed. For complex data structures, the pretty
  printed version is significantly more readable that the standard Show output.
  .
- This package contains the libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-pretty-show-prof
 Architecture: any
@@ -51,12 +51,12 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Profiling libraries for pretty printing Haskell data structures
+Description: Profiling libraries for pretty printing Haskell data structures${haskell:ShortBlurb}
  A library that can parse derived Show instances into a generic data structure
  which can then be pretty printed. For complex data structures, the pretty
  printed version is significantly more readable that the standard Show output.
  .
- This package contains the profiling libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-pretty-show-doc
 Section: doc
@@ -64,9 +64,10 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: Documentation for Haskell pretty printing library
+Description: Documentation for Haskell pretty printing library${haskell:ShortBlurb}
  A library that can parse derived Show instances into a generic data structure
  which can then be pretty printed. For complex data structures, the pretty
  printed version is significantly more readable that the standard Show output.
  .
- This package contains the library documentation.
+ ${haskell:Blurb}
+
