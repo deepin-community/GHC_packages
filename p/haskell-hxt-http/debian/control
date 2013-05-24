@@ -4,7 +4,7 @@ Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: TANIGUCHI Takaki <takaki@debian.org>
 Build-Depends: debhelper (>= 9),
-	haskell-devscripts (>= 0.8.13),
+	haskell-devscripts (>= 0.8.15),
 	cdbs,
 	ghc,
 	ghc-prof,
@@ -24,14 +24,14 @@ Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Interface to native Haskell HTTP package HTTP
+Description: Interface to native Haskell HTTP package HTTP${haskell:ShortBlurb}
  This is a part of Haskell XML Toolbox.
  .
  Interface to native Haskell HTTP package HTTP.
  This package can be used as alternative for the hxt-curl package
  for accessing documents via HTTP
  .
- This package contains the libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-hxt-http-prof
 Architecture: any
@@ -39,14 +39,14 @@ Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Interface to native Haskell HTTP package HTTP; profiling library
+Description: Interface to native Haskell HTTP package HTTP${haskell:ShortBlurb}
  This is a part of Haskell XML Toolbox.
  .
  Interface to native Haskell HTTP package HTTP.
  This package can be used as alternative for the hxt-curl package
  for accessing documents via HTTP
  .
- This package contains the profiling libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-hxt-http-doc
 Section: doc
@@ -55,11 +55,11 @@ Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Interface to native Haskell HTTP package HTTP; documentation
+Description: Interface to native Haskell HTTP package HTTP${haskell:ShortBlurb}
  This is a part of Haskell XML Toolbox.
  .
  Interface to native Haskell HTTP package HTTP.
  This package can be used as alternative for the hxt-curl package
  for accessing documents via HTTP
  .
- This package contains the library documentation.
+ ${haskell:Blurb}
