@@ -3,7 +3,7 @@ Section: haskell
 Priority: optional
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: TANIGUCHI Takaki <takaki@debian.org>, Clint Adams <clint@debian.org>
-Build-Depends: cdbs, debhelper (>= 9), haskell-devscripts (>= 0.8.13)
+Build-Depends: cdbs, debhelper (>= 9), haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
   , libghc-text-dev (>> 0.11.1.5)
@@ -24,12 +24,12 @@ Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
 Suggests: ${haskell:Suggests}
-Description: Fast combinator parsing for bytestrings
+Description: Fast combinator parsing for bytestrings${haskell:ShortBlurb}
  A fast parser combinator library, aimed particularly at dealing
  efficiently with network protocols and complicated text/binary
  file formats.
  .
- This package contains the libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-attoparsec-prof
 Architecture: any
@@ -37,12 +37,12 @@ Depends: ${haskell:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
 Suggests: ${haskell:Suggests}
-Description: Fast combinator parsing for bytestrings; profiling library
+Description: Fast combinator parsing for bytestrings${haskell:ShortBlurb}
  A fast parser combinator library, aimed particularly at dealing
  efficiently with network protocols and complicated text/binary
  file formats.
  .
- This package contains the profiling libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-attoparsec-doc
 Architecture: all
@@ -50,9 +50,9 @@ Section: doc
 Depends: ${haskell:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: Fast combinator parsing for bytestrings; documentation
+Description: Fast combinator parsing for bytestrings${haskell:ShortBlurb}
  A fast parser combinator library, aimed particularly at dealing
  efficiently with network protocols and complicated text/binary
  file formats.
  .
- This package contains the library documentation.
+ ${haskell:Blurb}
