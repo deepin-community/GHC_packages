@@ -6,7 +6,7 @@ Uploaders: Iulian Udrea <iulian@linux.com>, Clint Adams <clint@debian.org>
 DM-Upload-Allowed: yes
 Build-Depends: debhelper (>= 9)
   , cdbs
-  , haskell-devscripts (>= 0.8.13)
+  , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
   , libghc-network-dev
@@ -24,12 +24,11 @@ Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Cross platform library for the sendfile system call
+Description: Cross platform library for the sendfile system call${haskell:ShortBlurb}
  Cross platform library for the sendfile system call. This library tries to
  call minimum system calls which are the bottleneck of web servers.
  .
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-simple-sendfile-prof
 Architecture: any
@@ -37,12 +36,11 @@ Depends: ${haskell:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Cross platform library for the sendfile system call; profiling data
+Description: Cross platform library for the sendfile system call${haskell:ShortBlurb}
  Cross platform library for the sendfile system call. This library tries to
  call minimum system calls which are the bottleneck of web servers.
  .
- This package provides a library for the Haskell programming language, compiled
- for profiling. See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-simple-sendfile-doc
 Section: doc
@@ -50,10 +48,8 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: Cross platform library for the sendfile system call; documentation
+Description: Cross platform library for the sendfile system call${haskell:ShortBlurb}
  Cross platform library for the sendfile system call. This library tries to
  call minimum system calls which are the bottleneck of web servers.
  .
- This package provides the documentation for a library for the Haskell
- programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
