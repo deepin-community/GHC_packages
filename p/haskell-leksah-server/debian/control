@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Joachim Breitner <nomeata@debian.org>
 Build-Depends: debhelper (>= 9)
   , cdbs
-  , haskell-devscripts (>= 0.8.13)
+  , haskell-devscripts (>= 0.8.15)
   , ghc
   , libghc-binary-shared-dev (>= 0.8)
   , libghc-binary-shared-dev (<< 0.9)
@@ -51,7 +51,7 @@ Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-
 Package: leksah-server
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}
-Description: haskell editor - GHC interface
+Description: haskell editor - GHC interface${haskell:ShortBlurb}
  Leksah is an Haskell IDE. It is written in Haskell and provides a graphical
  interface based on Gtk. Leksah is a practical tool to support the Haskell
  development process.
@@ -67,9 +67,8 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: haskell editor - GHC interface library
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
+Description: haskell editor - GHC interface library${haskell:ShortBlurb}
+ ${haskell:Blurb}
  .
  The library is used by the leksah package to interface with the leksah server.
  It is not required to use leksah, only to build it.
@@ -80,10 +79,8 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: haskell editor - GHC interface library; documentation
- This package provides the documentation for a library for the Haskell
- programming language.
- See http://www.haskell.org/ for more information on Haskell.
+Description: haskell editor - GHC interface library${haskell:ShortBlurb}
+ ${haskell:Blurb}
  .
  The library is used by the leksah package to interface with the leksah server.
  It is not required to use leksah, only to build it.
