@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Joachim Breitner <nomeata@debian.org>
 Build-Depends: debhelper (>= 9)
   , cdbs
-  , haskell-devscripts (>= 0.8.13)
+  , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
   , libghc-base-unicode-symbols-dev (>= 0.2.2.3)
@@ -26,7 +26,7 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: A simple progress bar in the terminal
+Description: A simple progress bar in the terminal${haskell:ShortBlurb}
  A progress bar is used to convey the progress of a task. This
  package implements a very simple textual progress bar.
  .
@@ -35,8 +35,7 @@ Description: A simple progress bar in the terminal
  it as something else then "move cursor to beginning of line", the
  animation won't work.
  .
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-terminal-progress-bar-prof
 Architecture: any
@@ -45,7 +44,7 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: A simple progress bar in the terminal; profiling libraries
+Description: A simple progress bar in the terminal${haskell:ShortBlurb}
  A progress bar is used to convey the progress of a task. This
  package implements a very simple textual progress bar.
  .
@@ -54,8 +53,7 @@ Description: A simple progress bar in the terminal; profiling libraries
  it as something else then "move cursor to beginning of line", the
  animation won't work.
  .
- This package provides a library for the Haskell programming language, compiled
- for profiling.  See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-terminal-progress-bar-doc
 Section: doc
@@ -63,7 +61,7 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: A simple progress bar in the terminal; documentation
+Description: A simple progress bar in the terminal${haskell:ShortBlurb}
  A progress bar is used to convey the progress of a task. This
  package implements a very simple textual progress bar.
  .
@@ -72,6 +70,4 @@ Description: A simple progress bar in the terminal; documentation
  it as something else then "move cursor to beginning of line", the
  animation won't work.
  .
- This package provides the documentation for a library for the Haskell
- programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
