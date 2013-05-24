@@ -3,7 +3,7 @@ Section: haskell
 Priority: optional
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: TANIGUCHI Takaki <takaki@debian.org>
-Build-Depends: cdbs, debhelper (>= 9), haskell-devscripts (>= 0.8.13),
+Build-Depends: cdbs, debhelper (>= 9), haskell-devscripts (>= 0.8.15),
 	ghc,
 	ghc-prof,
 	ghc-doc
@@ -18,7 +18,7 @@ Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
 Suggests: ${haskell:Suggests}
-Description: Generic support for list-like structures
+Description: Generic support for list-like structures${haskell:ShortBlurb}
  Generic support for list-like structures in Haskell.
  .
  The ListLike module provides a common interface to the various Haskell
@@ -30,7 +30,7 @@ Description: Generic support for list-like structures
  ByteString, for types that support input and output, and for types that can
  handle infinite lists.
  .
- This package contains the libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-listlike-prof
 Architecture: any
@@ -38,7 +38,7 @@ Depends: ${haskell:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
 Suggests: ${haskell:Suggests}
-Description: Generic support for list-like structures; profiling library
+Description: Generic support for list-like structures${haskell:ShortBlurb}
  Generic support for list-like structures in Haskell.
  .
  The ListLike module provides a common interface to the various Haskell
@@ -50,7 +50,7 @@ Description: Generic support for list-like structures; profiling library
  ByteString, for types that support input and output, and for types that can
  handle infinite lists.
  .
- This package contains the profiling libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-listlike-doc
 Architecture: all
@@ -58,7 +58,7 @@ Section: doc
 Depends: ${haskell:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: Generic support for list-like structures; documentation
+Description: Generic support for list-like structures${haskell:ShortBlurb}
  Generic support for list-like structures in Haskell.
  .
  The ListLike module provides a common interface to the various Haskell
@@ -70,4 +70,4 @@ Description: Generic support for list-like structures; documentation
  ByteString, for types that support input and output, and for types that can
  handle infinite lists.
  .
- This package contains the library documentation.
+ ${haskell:Blurb}
