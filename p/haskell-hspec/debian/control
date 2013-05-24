@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Clint Adams <clint@debian.org>
 Build-Depends: debhelper (>= 9)
   , cdbs
-  , haskell-devscripts (>= 0.8.13)
+  , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
   , libghc-setenv-dev
@@ -45,13 +45,12 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: behavior-driven development for Haskell
+Description: behavior-driven development for Haskell${haskell:ShortBlurb}
  Hspec is roughly based on the Ruby library RSpec. However, Hspec is just
  a framework for running HUnit and QuickCheck tests. Compared to other
  options, it provides a much nicer syntax that makes tests very easy to read.
  .
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-hspec-prof
 Architecture: any
@@ -60,13 +59,12 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: behavior-driven development for Haskell; profiling libraries
+Description: behavior-driven development for Haskell${haskell:ShortBlurb}
  Hspec is roughly based on the Ruby library RSpec. However, Hspec is just
  a framework for running HUnit and QuickCheck tests. Compared to other
  options, it provides a much nicer syntax that makes tests very easy to read.
  .
- This package provides a library for the Haskell programming language, compiled
- for profiling.  See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-hspec-doc
 Section: doc
@@ -74,11 +72,9 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: behavior-driven development for Haskell; documentation
+Description: behavior-driven development for Haskell${haskell:ShortBlurb}
  Hspec is roughly based on the Ruby library RSpec. However, Hspec is just
  a framework for running HUnit and QuickCheck tests. Compared to other
  options, it provides a much nicer syntax that makes tests very easy to read.
  .
- This package provides the documentation for a library for the Haskell
- programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
