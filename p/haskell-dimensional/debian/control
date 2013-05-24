@@ -6,7 +6,7 @@ Uploaders: Iulian Udrea <iulian@linux.com>
 DM-Upload-Allowed: yes
 Build-Depends: debhelper (>= 9),
                cdbs,
-               haskell-devscripts (>= 0.8.13),
+               haskell-devscripts (>= 0.8.15),
                ghc,
                ghc-prof,
                libghc-numtype-dev (<< 1.1),
@@ -23,7 +23,7 @@ Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: statically checked physical dimensions
+Description: statically checked physical dimensions${haskell:ShortBlurb}
  Dimensional is a library providing data types for performing arithmetic
  with physical quantities and units. Information about the physical
  dimensions of the quantities and units is embedded in their types and the
@@ -34,8 +34,7 @@ Description: statically checked physical dimensions
  The library is designed to, as far as is practical, enforce/encourage best
  practices of unit usage.
  .
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-dimensional-prof
 Architecture: any
@@ -43,7 +42,7 @@ Depends: ${haskell:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: statically checked physical dimensions; profiling data
+Description: statically checked physical dimensions${haskell:ShortBlurb}
  Dimensional is a library providing data types for performing arithmetic
  with physical quantities and units. Information about the physical
  dimensions of the quantities and units is embedded in their types and the
@@ -54,8 +53,7 @@ Description: statically checked physical dimensions; profiling data
  The library is designed to, as far as is practical, enforce/encourage best
  practices of unit usage.
  .
- This package provides a library for the Haskell programming language, compiled
- for profiling. See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-dimensional-doc
 Section: doc
@@ -63,7 +61,7 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: statically checked physical dimensions; documentation
+Description: statically checked physical dimensions${haskell:ShortBlurb}
  Dimensional is a library providing data types for performing arithmetic
  with physical quantities and units. Information about the physical
  dimensions of the quantities and units is embedded in their types and the
@@ -74,6 +72,4 @@ Description: statically checked physical dimensions; documentation
  The library is designed to, as far as is practical, enforce/encourage best
  practices of unit usage.
  .
- This package provides the documentation for a library for the Haskell
- programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
