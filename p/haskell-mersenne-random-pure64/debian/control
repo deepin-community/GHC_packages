@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Joachim Breitner <nomeata@debian.org>
 Build-Depends: debhelper (>= 9)
   , cdbs
-  , haskell-devscripts (>= 0.8.13)
+  , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
   , libghc-random-dev
@@ -26,7 +26,7 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Fast pure pseudorandom number generator
+Description: Fast pure pseudorandom number generator${haskell:ShortBlurb}
  The Mersenne twister is a pseudorandom number generator developed by Makoto
  Matsumoto and Takuji Nishimura that is based on a matrix linear recurrence
  over a finite binary field. It provides for fast generation of very high
@@ -38,8 +38,7 @@ Description: Fast pure pseudorandom number generator
  than the default StdGen (but a tad slower than the impure 'mersenne-random'
  library based on SIMD instructions and destructive state updates.
  .
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-mersenne-random-pure64-prof
 Architecture: any
@@ -48,7 +47,7 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Fast pure pseudorandom number generator; profiling libraries
+Description: Fast pure pseudorandom number generator${haskell:ShortBlurb}
  The Mersenne twister is a pseudorandom number generator developed by Makoto
  Matsumoto and Takuji Nishimura that is based on a matrix linear recurrence
  over a finite binary field. It provides for fast generation of very high
@@ -60,8 +59,7 @@ Description: Fast pure pseudorandom number generator; profiling libraries
  than the default StdGen (but a tad slower than the impure 'mersenne-random'
  library based on SIMD instructions and destructive state updates.
  .
- This package provides a library for the Haskell programming language, compiled
- for profiling.  See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-mersenne-random-pure64-doc
 Section: doc
@@ -69,7 +67,7 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: Fast pure pseudorandom number generator; documentation
+Description: Fast pure pseudorandom number generator${haskell:ShortBlurb}
  The Mersenne twister is a pseudorandom number generator developed by Makoto
  Matsumoto and Takuji Nishimura that is based on a matrix linear recurrence
  over a finite binary field. It provides for fast generation of very high
@@ -81,6 +79,4 @@ Description: Fast pure pseudorandom number generator; documentation
  than the default StdGen (but a tad slower than the impure 'mersenne-random'
  library based on SIMD instructions and destructive state updates.
  .
- This package provides the documentation for a library for the Haskell
- programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
