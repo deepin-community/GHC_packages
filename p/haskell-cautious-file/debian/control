@@ -4,7 +4,7 @@ Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Giovanni Mascellani <gio@debian.org>
 Build-Depends: debhelper (>= 9)
- , haskell-devscripts (>= 0.8.13)
+ , haskell-devscripts (>= 0.8.15)
  , cdbs
  , ghc
  , ghc-prof
@@ -22,12 +22,12 @@ Depends: ${haskell:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
-Description: Haskell library to write a file cautiously - GHC libraries
+Description: Haskell library to write a file cautiously${haskell:ShortBlurb}
  This Haskell library is able to write on a file using
  some techniques to reduce the chances of problems such as data loss
  due to crashes or power failures.
  .
- This package contains the libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-cautious-file-prof
 Architecture: any
@@ -36,12 +36,12 @@ Depends: ${haskell:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
-Description: Haskell library to write a file cautiously - GHC profiling libraries
+Description: Haskell library to write a file cautiously${haskell:ShortBlurb}
  This Haskell library is able to write on a file using
  some techniques to reduce the chances of problems such as data loss
  due to crashes or power failures.
  .
- This package contains the profiling libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-cautious-file-doc
 Section: doc
@@ -50,9 +50,9 @@ Depends: ${haskell:Depends}
  , ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
-Description: Haskell library to write a file cautiously - documentation
+Description: Haskell library to write a file cautiously${haskell:ShortBlurb}
  This Haskell library is able to write on a file using
  some techniques to reduce the chances of problems such as data loss
  due to crashes or power failures.
  .
- This package contains the library documentation.
+ ${haskell:Blurb}
