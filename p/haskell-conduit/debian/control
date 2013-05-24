@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Clint Adams <clint@debian.org>
 Build-Depends: debhelper (>= 9)
   , cdbs
-  , haskell-devscripts (>= 0.8.13)
+  , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
   , libghc-lifted-base-dev (>> 0.1)
@@ -52,14 +52,13 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: streaming data processing library
+Description: streaming data processing library${haskell:ShortBlurb}
  Conduits are an approach to the streaming data problem. It is meant as an
  alternative to enumerators/iterators, hoping to address the same issues with
  different trade-offs based on real-world experience with enumerators. For
  more information, see http://www.yesodweb.com/book/conduit.
  .
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-conduit-prof
 Architecture: any
@@ -68,14 +67,13 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: streaming data processing library; profiling libraries
+Description: streaming data processing library${haskell:ShortBlurb}
  Conduits are an approach to the streaming data problem. It is meant as an
  alternative to enumerators/iterators, hoping to address the same issues with
  different trade-offs based on real-world experience with enumerators. For
  more information, see http://www.yesodweb.com/book/conduit.
  .
- This package provides a library for the Haskell programming language, compiled
- for profiling.  See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-conduit-doc
 Section: doc
@@ -83,12 +81,10 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: streaming data processing library; documentation
+Description: streaming data processing library${haskell:ShortBlurb}
  Conduits are an approach to the streaming data problem. It is meant as an
  alternative to enumerators/iterators, hoping to address the same issues with
  different trade-offs based on real-world experience with enumerators. For
  more information, see http://www.yesodweb.com/book/conduit.
  .
- This package provides the documentation for a library for the Haskell
- programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
