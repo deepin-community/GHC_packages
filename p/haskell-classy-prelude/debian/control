@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Clint Adams <clint@debian.org>
 Build-Depends: debhelper (>= 9)
   , cdbs
-  , haskell-devscripts (>= 0.8.13)
+  , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
   , libghc-basic-prelude-dev (>> 0.3.4)
@@ -50,14 +50,13 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: typeclass-based prelude
+Description: typeclass-based prelude${haskell:ShortBlurb}
  Focuses on using common typeclasses when possible, and creating new ones
  to avoid name clashing. Exposes many recommended datastructures (Map,
  ByteString, etc) directly without requiring long import lists and
  qualified modules.
  .
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-classy-prelude-prof
 Architecture: any
@@ -66,14 +65,13 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: typeclass-based prelude; profiling libraries
+Description: typeclass-based prelude${haskell:ShortBlurb}
  Focuses on using common typeclasses when possible, and creating new ones
  to avoid name clashing. Exposes many recommended datastructures (Map,
  ByteString, etc) directly without requiring long import lists and
  qualified modules.
  .
- This package provides a library for the Haskell programming language, compiled
- for profiling.  See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-classy-prelude-doc
 Section: doc
@@ -81,12 +79,10 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: typeclass-based prelude; documentation
+Description: typeclass-based prelude${haskell:ShortBlurb}
  Focuses on using common typeclasses when possible, and creating new ones
  to avoid name clashing. Exposes many recommended datastructures (Map,
  ByteString, etc) directly without requiring long import lists and
  qualified modules.
  .
- This package provides the documentation for a library for the Haskell
- programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
