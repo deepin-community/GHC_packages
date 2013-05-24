@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>
 Build-Depends:
  debhelper (>= 9),
- haskell-devscripts (>= 0.8.13),
+ haskell-devscripts (>= 0.8.15),
  cdbs,
  ghc,
  ghc-prof,
@@ -30,7 +30,7 @@ Depends: ${haskell:Depends}, ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
-Description: Haskell library for serialising data to and from JSON
+Description: Haskell library for serialising data to and from JSON${haskell:ShortBlurb}
  JSON (JavaScript Object Notation) is a lightweight data-interchange format. It
  is easy for humans to read and write. It is easy for machines to parse and
  generate. It is based on a subset of the JavaScript Programming Language,
@@ -39,7 +39,7 @@ Description: Haskell library for serialising data to and from JSON
  This library provides a parser and pretty printer for converting between
  Haskell values and JSON.
  .
- This package contains the libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-json-prof
 Architecture: any
@@ -48,7 +48,7 @@ Depends: ${haskell:Depends},
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
-Description: Profiling version of the Haskell JSON library
+Description: Profiling version of the Haskell JSON library${haskell:ShortBlurb}
  JSON (JavaScript Object Notation) is a lightweight data-interchange format. It
  is easy for humans to read and write. It is easy for machines to parse and
  generate. It is based on a subset of the JavaScript Programming Language,
@@ -57,7 +57,7 @@ Description: Profiling version of the Haskell JSON library
  This library provides a parser and pretty printer for converting between
  Haskell values and JSON.
  .
- This package contains the profiling libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-json-doc
 Section: doc
@@ -65,7 +65,7 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: Documentation for the Haskell JSON library
+Description: Documentation for the Haskell JSON library${haskell:ShortBlurb}
  JSON (JavaScript Object Notation) is a lightweight data-interchange format. It
  is easy for humans to read and write. It is easy for machines to parse and
  generate. It is based on a subset of the JavaScript Programming Language,
@@ -74,4 +74,4 @@ Description: Documentation for the Haskell JSON library
  This library provides a parser and pretty printer for converting between
  Haskell values and JSON.
  .
- This package contains the library documentation.
+ ${haskell:Blurb}
