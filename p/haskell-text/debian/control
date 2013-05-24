@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Giovanni Mascellani <gio@debian.org>
 Build-Depends:
  debhelper (>= 9),
- haskell-devscripts (>= 0.8.13),
+ haskell-devscripts (>= 0.8.15),
  cdbs,
  ghc,
  ghc-prof,
@@ -25,7 +25,7 @@ Depends:
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
-Description: efficient packed Unicode text type for Haskell - GHC libraries
+Description: efficient packed Unicode text type for Haskell${haskell:ShortBlurb}
  This is a Haskell time and space-efficient implementation of Unicode
  text using packed Word16 arrays.  Suitable for performance critical use,
  both in terms of large data quantities and high speed.
@@ -33,7 +33,7 @@ Description: efficient packed Unicode text type for Haskell - GHC libraries
  It supports many basic string operations and has some substring search
  tools.
  .
- This package contains the libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-text-prof
 Architecture: any
@@ -43,7 +43,7 @@ Depends:
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
-Description: efficient packed Unicode text type for Haskell - GHC profiling libraries
+Description: efficient packed Unicode text type for Haskell${haskell:ShortBlurb}
  This is a Haskell time and space-efficient implementation of Unicode
  text using packed Word16 arrays.  Suitable for performance critical use,
  both in terms of large data quantities and high speed.
@@ -51,7 +51,7 @@ Description: efficient packed Unicode text type for Haskell - GHC profiling libr
  It supports many basic string operations and has some substring search
  tools.
  .
- This package contains the profiling libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-text-doc
 Section: doc
@@ -61,7 +61,7 @@ Depends:
  ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
-Description: efficient packed Unicode text type for Haskell - documentation
+Description: efficient packed Unicode text type for Haskell${haskell:ShortBlurb}
  This is a Haskell time and space-efficient implementation of Unicode
  text using packed Word16 arrays.  Suitable for performance critical use,
  both in terms of large data quantities and high speed.
@@ -69,4 +69,4 @@ Description: efficient packed Unicode text type for Haskell - documentation
  It supports many basic string operations and has some substring search
  tools.
  .
- This package contains the library documentation.
+ ${haskell:Blurb}
