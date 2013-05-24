@@ -3,7 +3,7 @@ Section: haskell
 Priority: optional
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: TANIGUCHI Takaki <takaki@debian.org>
-Build-Depends: cdbs, debhelper (>= 9), haskell-devscripts (>= 0.8.13),
+Build-Depends: cdbs, debhelper (>= 9), haskell-devscripts (>= 0.8.15),
 	ghc,
 	ghc-prof,
 	ghc-doc,
@@ -16,7 +16,7 @@ Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
 Suggests: ${haskell:Suggests}
-Description: simple directory-like tree datatype, with IO functions
+Description: simple directory-like tree datatype, with IO functions${haskell:ShortBlurb}
  A simple directory-like tree datatype, with useful IO functions and Foldable
  and Traversable instance
  .
@@ -24,7 +24,7 @@ Description: simple directory-like tree datatype, with IO functions
  filesystem, as well as useful functions for reading and writing
  file and directory structures in the IO monad.
  .
- This package contains the libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-directory-tree-prof
 Architecture: any
@@ -32,7 +32,7 @@ Depends: ${haskell:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
 Suggests: ${haskell:Suggests}
-Description: simple directory-like tree datatype, with IO functions; profiling library
+Description: simple directory-like tree datatype, with IO functions${haskell:ShortBlurb}
  A simple directory-like tree datatype, with useful IO functions and Foldable
  and Traversable instance
  .
@@ -40,7 +40,7 @@ Description: simple directory-like tree datatype, with IO functions; profiling l
  filesystem, as well as useful functions for reading and writing
  file and directory structures in the IO monad.
  .
- This package contains the profiling libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-directory-tree-doc
 Architecture: all
@@ -48,7 +48,7 @@ Section: doc
 Depends: ${haskell:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: simple directory-like tree datatype, with IO functions; documentation
+Description: simple directory-like tree datatype, with IO functions${haskell:ShortBlurb}
  A simple directory-like tree datatype, with useful IO functions and Foldable
  and Traversable instance
  .
@@ -56,4 +56,4 @@ Description: simple directory-like tree datatype, with IO functions; documentati
  filesystem, as well as useful functions for reading and writing
  file and directory structures in the IO monad.
  .
- This package contains the library documentation.
+ ${haskell:Blurb}
