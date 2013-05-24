@@ -6,7 +6,7 @@ Uploaders: Iulian Udrea <iulian@linux.com>, Clint Adams <clint@debian.org>
 DM-Upload-Allowed: yes
 Build-Depends: debhelper (>= 9)
              , cdbs
-             , haskell-devscripts (>= 0.8.13)
+             , haskell-devscripts (>= 0.8.15)
              , ghc
              , ghc-prof
              , libghc-semigroups-dev (>> 0.8.2)
@@ -24,12 +24,11 @@ Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Haskell 98 logically uninhabited data type
+Description: Haskell 98 logically uninhabited data type${haskell:ShortBlurb}
  Haskell 98 logically uninhabited data type. Used to indicate that a given
  term should not exist.
  .
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-void-prof
 Architecture: any
@@ -37,12 +36,11 @@ Depends: ${haskell:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Haskell 98 logically uninhabited data type; profiling data
+Description: Haskell 98 logically uninhabited data type${haskell:ShortBlurb}
  Haskell 98 logically uninhabited data type. Used to indicate that a given
  term should not exist.
  .
- This package provides a library for the Haskell programming language, compiled
- for profiling. See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-void-doc
 Section: doc
@@ -50,10 +48,8 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: Haskell 98 logically uninhabited data type; documentation
+Description: Haskell 98 logically uninhabited data type${haskell:ShortBlurb}
  Haskell 98 logically uninhabited data type. Used to indicate that a given
  term should not exist.
  .
- This package provides the documentation for a library for the Haskell
- programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
