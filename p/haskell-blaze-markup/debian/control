@@ -4,7 +4,7 @@ Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
 Build-Depends: debhelper (>= 9)
- , haskell-devscripts (>= 0.8.13)
+ , haskell-devscripts (>= 0.8.15)
  , cdbs
  , ghc
  , ghc-prof
@@ -42,12 +42,12 @@ Depends:
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
-Description: blazingly-fast markup combinator library
+Description: blazingly-fast markup combinator library${haskell:ShortBlurb}
  Core modules of a blazingly fast markup combinator library for the
  Haskell programming language. The Text.Blaze module is a good starting
  point, as well as this tutorial: http://jaspervdj.be/blaze/tutorial.html.
  .
- This package contains the libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-blaze-markup-prof
 Architecture: any
@@ -57,12 +57,12 @@ Depends:
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
-Description: blazingly-fast markup combinator library; profiling libraries
+Description: blazingly-fast markup combinator library${haskell:ShortBlurb}
  Core modules of a blazingly fast markup combinator library for the
  Haskell programming language. The Text.Blaze module is a good starting
  point, as well as this tutorial: http://jaspervdj.be/blaze/tutorial.html.
  .
- This package contains the profiling libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-blaze-markup-doc
 Section: doc
@@ -72,9 +72,9 @@ Depends:
  ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
-Description: blazingly-fast markup combinator library; documentation
+Description: blazingly-fast markup combinator library${haskell:ShortBlurb}
  Core modules of a blazingly fast markup combinator library for the
  Haskell programming language. The Text.Blaze module is a good starting
  point, as well as this tutorial: http://jaspervdj.be/blaze/tutorial.html.
  .
- This package contains the library documentation.
+ ${haskell:Blurb}
