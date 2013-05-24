@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Clint Adams <clint@debian.org>
 Build-Depends: debhelper (>= 9)
   , cdbs
-  , haskell-devscripts (>= 0.8.13)
+  , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
   , libghc-lifted-base-dev (>> 0.1)
@@ -41,14 +41,13 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: deterministic allocation and freeing of scarce resources
+Description: deterministic allocation and freeing of scarce resources${haskell:ShortBlurb}
  Control.Monad.Trans.Resource allocates resources which are guaranteed
  to be released.  One point to note: all register cleanup actions live
  in the IO monad, not the main monad. This allows both more efficient
  code, and for monads to be transformed.
  .
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-resourcet-prof
 Architecture: any
@@ -57,14 +56,13 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: deterministic allocation and freeing of scarce resources; profiling libraries
+Description: deterministic allocation and freeing of scarce resources${haskell:ShortBlurb}
  Control.Monad.Trans.Resource allocates resources which are guaranteed
  to be released.  One point to note: all register cleanup actions live
  in the IO monad, not the main monad. This allows both more efficient
  code, and for monads to be transformed.
  .
- This package provides a library for the Haskell programming language, compiled
- for profiling.  See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-resourcet-doc
 Section: doc
@@ -72,12 +70,10 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: deterministic allocation and freeing of scarce resources; documentation
+Description: deterministic allocation and freeing of scarce resources${haskell:ShortBlurb}
  Control.Monad.Trans.Resource allocates resources which are guaranteed
  to be released.  One point to note: all register cleanup actions live
  in the IO monad, not the main monad. This allows both more efficient
  code, and for monads to be transformed.
  .
- This package provides the documentation for a library for the Haskell
- programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
