@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Clint Adams <clint@debian.org>
 Build-Depends: debhelper (>= 9)
   , cdbs
-  , haskell-devscripts (>= 0.8.13)
+  , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
   , libghc-resource-pool-dev (>> 0.2.1)
@@ -33,12 +33,11 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: resource pool allocations via ResourceT
+Description: resource pool allocations via ResourceT${haskell:ShortBlurb}
  Allocate resources from a pool, guaranteeing resource handling via the
  ResourceT transformer.
  .
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-pool-conduit-prof
 Architecture: any
@@ -47,12 +46,11 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: resource pool allocations via ResourceT; profiling libraries
+Description: resource pool allocations via ResourceT${haskell:ShortBlurb}
  Allocate resources from a pool, guaranteeing resource handling via the
  ResourceT transformer.
  .
- This package provides a library for the Haskell programming language, compiled
- for profiling.  See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-pool-conduit-doc
 Section: doc
@@ -60,10 +58,8 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: resource pool allocations via ResourceT; documentation
+Description: resource pool allocations via ResourceT${haskell:ShortBlurb}
  Allocate resources from a pool, guaranteeing resource handling via the
  ResourceT transformer.
  .
- This package provides the documentation for a library for the Haskell
- programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
