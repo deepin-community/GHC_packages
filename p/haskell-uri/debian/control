@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Joey Hess <joeyh@debian.org>
 Build-Depends: debhelper (>= 9)
   , cdbs
-  , haskell-devscripts (>= 0.8.13)
+  , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
   , libghc-parsec3-dev (>= 3.0)
@@ -31,11 +31,11 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Haskell Text.URI library - GHC libraries
+Description: Haskell Text.URI library${haskell:ShortBlurb}
  This is a Haskell library for working with URIs, including parsing,
  rendering, merging, escaping
  .
- This package contains the libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-uri-prof
 Architecture: any
@@ -44,11 +44,11 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Haskell Text.URI library - GHC profiling libraries
+Description: Haskell Text.URI library${haskell:ShortBlurb}
  This is a Haskell library for working with URIs, including parsing,
  rendering, merging, escaping
  .
- This package contains the profiling libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-uri-doc
 Section: doc
@@ -56,8 +56,8 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: Haskell Text.URI library - documentation
+Description: Haskell Text.URI library${haskell:ShortBlurb}
  This is a Haskell library for working with URIs, including parsing,
  rendering, merging, escaping
  .
- This package contains the library documentation.
+ ${haskell:Blurb}
