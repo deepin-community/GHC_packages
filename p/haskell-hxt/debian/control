@@ -6,7 +6,7 @@ Uploaders: TANIGUCHI Takaki <takaki@debian.org>
 Build-Depends:
 	cdbs,
 	debhelper (>= 9),
-	haskell-devscripts (>= 0.8.13),
+	haskell-devscripts (>= 0.8.15),
 	ghc,
 	ghc-prof,
 	ghc-doc,
@@ -49,7 +49,7 @@ Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: xml toolkit for Haskell (library)
+Description: xml toolkit for Haskell (library)${haskell:ShortBlurb}
  The Haskell XML Toolbox bases on the ideas of HaXml and HXML, but
  introduces a more general and flexible approach for processing XML
  with Haskell. The Haskell XML Toolbox uses a generic data model for
@@ -60,7 +60,7 @@ Description: xml toolkit for Haskell (library)
  than the filter approach from HXML and HaXml, but all filter
  applications can easily be transformed into arrows.
  .
- This package contains the libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-hxt-prof
 Architecture: any
@@ -68,7 +68,7 @@ Depends: ${haskell:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: xml toolkit for Haskell (profiling library)
+Description: xml toolkit for Haskell (profiling library)${haskell:ShortBlurb}
  The Haskell XML Toolbox bases on the ideas of HaXml and HXML, but
  introduces a more general and flexible approach for processing XML
  with Haskell. The Haskell XML Toolbox uses a generic data model for
@@ -79,7 +79,7 @@ Description: xml toolkit for Haskell (profiling library)
  than the filter approach from HXML and HaXml, but all filter
  applications can easily be transformed into arrows.
  .
- This package contains the profiling libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-hxt-doc
 Section: doc
@@ -88,7 +88,7 @@ Depends: ${haskell:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: xml toolkit for Haskell (documentation)
+Description: xml toolkit for Haskell (documentation)${haskell:ShortBlurb}
  The Haskell XML Toolbox bases on the ideas of HaXml and HXML, but
  introduces a more general and flexible approach for processing XML
  with Haskell. The Haskell XML Toolbox uses a generic data model for
@@ -99,4 +99,5 @@ Description: xml toolkit for Haskell (documentation)
  than the filter approach from HXML and HaXml, but all filter
  applications can easily be transformed into arrows.
  .
- This package contains the library documentation.
+ ${haskell:Blurb}
+
