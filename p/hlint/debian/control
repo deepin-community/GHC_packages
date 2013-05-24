@@ -4,7 +4,7 @@ Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>
 Build-Depends: cdbs,
- haskell-devscripts (>= 0.8.13),
+ haskell-devscripts (>= 0.8.15),
  debhelper (>= 9),
  ghc,
  libghc-transformers-dev (<< 0.4),
@@ -35,7 +35,7 @@ Package: hlint
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Recommends: ghc
-Description: Haskell source code suggestions
+Description: Haskell source code suggestions${haskell:ShortBlurb}
  HLint gives suggestions on how to improve your source code. It can either
  print them directly, or generated a colored HTML output.
 
@@ -47,15 +47,14 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Haskell source code suggestions; library
+Description: Haskell source code suggestions${haskell:ShortBlurb}
  HLint gives suggestions on how to improve your source code. It can either
  print them directly, or generated a colored HTML output.
  .
  This is the HLint library, used by programs that want to incorporate HLint's
  functionality.
  .
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-hlint-prof
 Architecture: any
@@ -64,15 +63,14 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Haskell source code suggestions; profiling libraries
+Description: Haskell source code suggestions${haskell:ShortBlurb}
  HLint gives suggestions on how to improve your source code. It can either
  print them directly, or generated a colored HTML output.
  .
  This is the HLint library, used by programs that want to incorporate HLint's
  functionality.
  .
- This package provides a library for the Haskell programming language, compiled
- for profiling.  See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-hlint-doc
 Section: doc
@@ -80,13 +78,12 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: Haskell source code suggestions; library documentation
+Description: Haskell source code suggestions${haskell:ShortBlurb}
  HLint gives suggestions on how to improve your source code. It can either
  print them directly, or generated a colored HTML output.
  .
  This is the HLint library, used by programs that want to incorporate HLint's
  functionality.
  .
- This package provides the documentation for a library for the Haskell
- programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
+
