@@ -6,7 +6,7 @@ Uploaders: Joachim Breitner <nomeata@debian.org>, Iulian Udrea <iulian@physics.o
 DM-Upload-Allowed: yes
 Build-Depends: debhelper (>= 9)
   , cdbs
-  , haskell-devscripts (>= 0.8.13)
+  , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
   , libghc-mtl-dev
@@ -44,12 +44,11 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Haskell implementation of Mustache templates
+Description: Haskell implementation of Mustache templates${haskell:ShortBlurb}
  This library provides a Haskell implementation of Mustache templates
  (<http://mustache.github.com/>).
  .
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-hastache-prof
 Architecture: any
@@ -58,12 +57,11 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Haskell implementation of Mustache templates; profiling libraries
+Description: Haskell implementation of Mustache templates${haskell:ShortBlurb}
  This library provides a Haskell implementation of Mustache templates
  (<http://mustache.github.com/>).
  .
- This package provides a library for the Haskell programming language, compiled
- for profiling.  See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-hastache-doc
 Section: doc
@@ -71,10 +69,8 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: Haskell implementation of Mustache templates; documentation
+Description: Haskell implementation of Mustache templates${haskell:ShortBlurb}
  This library provides a Haskell implementation of Mustache templates
  (<http://mustache.github.com/>).
  .
- This package provides the documentation for a library for the Haskell
- programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
