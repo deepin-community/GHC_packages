@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Clint Adams <clint@debian.org>
 Build-Depends: debhelper (>= 9)
   , cdbs
-  , haskell-devscripts (>= 0.8.13)
+  , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
   , libghc-text-dev
@@ -25,7 +25,7 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: basic types for representing XML
+Description: basic types for representing XML${haskell:ShortBlurb}
  The idea is to have a full set of appropriate types, which various
  XML libraries can share. Instead of having equivalent-but-incompatible
  types for every binding, parser, or client, they all share the same
@@ -36,8 +36,7 @@ Description: basic types for representing XML
  combinators are included for common tasks, including traversing the
  node tree and filtering children.
  .
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-xml-types-prof
 Architecture: any
@@ -46,7 +45,7 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: basic types for representing XML; profiling libraries
+Description: basic types for representing XML${haskell:ShortBlurb}
  The idea is to have a full set of appropriate types, which various
  XML libraries can share. Instead of having equivalent-but-incompatible
  types for every binding, parser, or client, they all share the same
@@ -57,8 +56,7 @@ Description: basic types for representing XML; profiling libraries
  combinators are included for common tasks, including traversing the
  node tree and filtering children.
  .
- This package provides a library for the Haskell programming language, compiled
- for profiling.  See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-xml-types-doc
 Section: doc
@@ -66,7 +64,7 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: basic types for representing XML; documentation
+Description: basic types for representing XML${haskell:ShortBlurb}
  The idea is to have a full set of appropriate types, which various
  XML libraries can share. Instead of having equivalent-but-incompatible
  types for every binding, parser, or client, they all share the same
@@ -77,6 +75,4 @@ Description: basic types for representing XML; documentation
  combinators are included for common tasks, including traversing the
  node tree and filtering children.
  .
- This package provides the documentation for a library for the Haskell
- programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
