@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>
 Build-Depends:
  , debhelper (>= 9)
- , haskell-devscripts (>= 0.8.13)
+ , haskell-devscripts (>= 0.8.15)
  , cdbs
  , ghc
  , ghc-prof
@@ -23,14 +23,14 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: GHC Library for safe (pattern match free) functions
+Description: GHC Library for safe (pattern match free) functions${haskell:ShortBlurb}
  .
  Partial functions from the base library, such as head and !!, modified to
  return more descriptive error messages, programmer defined error messages,
  Maybe wrapped results and default values. These functions can be used to
  reduce the number of unsafe pattern matches in your code.
  .
- This package contains the libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-safe-prof
 Architecture: any
@@ -40,14 +40,14 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Profiling library for safe (pattern match free) functions
+Description: Profiling library for safe (pattern match free) functions${haskell:ShortBlurb}
  .
  Partial functions from the base library, such as head and !!, modified to
  return more descriptive error messages, programmer defined error messages,
  Maybe wrapped results and default values. These functions can be used to
  reduce the number of unsafe pattern matches in your code.
  .
- This package contains the profiling libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-safe-doc
 Section: doc
@@ -55,11 +55,11 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: Documentation for safe library for (pattern match free) functions
+Description: Documentation for safe library for (pattern match free) functions${haskell:ShortBlurb}
  .
  Partial functions from the base library, such as head and !!, modified to
  return more descriptive error messages, programmer defined error messages,
  Maybe wrapped results and default values. These functions can be used to
  reduce the number of unsafe pattern matches in your code.
  .
- This package contains the library documentation.
+ ${haskell:Blurb}
