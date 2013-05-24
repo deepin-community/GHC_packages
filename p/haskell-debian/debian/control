@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Joachim Breitner <nomeata@debian.org>
 Build-Depends: debhelper (>= 9)
   , cdbs
-  , haskell-devscripts (>= 0.8.13)
+  , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
   , libghc-ansi-wl-pprint-dev
@@ -66,9 +66,8 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Haskell library for working with the Debian package system
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
+Description: Haskell library for working with the Debian package system${haskell:ShortBlurb}
+ ${haskell:Blurb}
  .
  This library includes modules covering almost every aspect of the Debian
  packaging system, including low level data types such as version numbers
@@ -76,7 +75,7 @@ Description: Haskell library for working with the Debian package system
  installing build dependencies, building source and binary packages,
  and inserting them into a repository.
  .
- This package contains the libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-debian-prof
 Architecture: any
@@ -86,10 +85,8 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Profiling library for working with the Debian package system
- This package provides a library for the Haskell programming language,
- compiled for profiling.
- See http://www.haskell.org/ for more information on Haskell.
+Description: Profiling library for working with the Debian package system${haskell:ShortBlurb}
+ ${haskell:Blurb}
  .
  This library includes modules covering almost every aspect of the Debian
  packaging system, including low level data types such as version numbers
@@ -97,7 +94,7 @@ Description: Profiling library for working with the Debian package system
  installing build dependencies, building source and binary packages,
  and inserting them into a repository.
  .
- This package contains the profiling libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-debian-doc
 Section: doc
@@ -105,10 +102,8 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: Documentation for Debian package system library
- This package provides the documentation for a library for the Haskell
- programming language.
- See http://www.haskell.org/ for more information on Haskell.
+Description: Documentation for Debian package system library${haskell:ShortBlurb}
+ ${haskell:Blurb}
  .
  This library includes modules covering almost every aspect of the Debian
  packaging system, including low level data types such as version numbers
@@ -116,14 +111,14 @@ Description: Documentation for Debian package system library
  installing build dependencies, building source and binary packages,
  and inserting them into a repository.
  .
- This package contains the library documentation.
+ ${haskell:Blurb}
 
 Package: haskell-debian-utils
 Section: devel
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}
 Recommends: apt-file
-Description: Various helpers to work with Debian packages
+Description: Various helpers to work with Debian packages${haskell:ShortBlurb}
  This package contains tools shipped with the Haskell library “debian”:
  .
    * fakechanges:
