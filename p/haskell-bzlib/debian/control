@@ -6,7 +6,7 @@ Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>
 Build-Depends:
  , cdbs
  , debhelper (>= 9)
- , haskell-devscripts (>= 0.8.13)
+ , haskell-devscripts (>= 0.8.15)
  , ghc
  , ghc-prof
  , libbz2-dev
@@ -21,7 +21,7 @@ Architecture: any
 Depends: libbz2-dev, ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Haskell bindings to the bzip2 library
+Description: Haskell bindings to the bzip2 library${haskell:ShortBlurb}
  .
  This package provides a pure interface for compressing and decompressing
  streams of data represented as lazy ByteStrings. It uses the bz2 C library
@@ -31,14 +31,14 @@ Description: Haskell bindings to the bzip2 library
  few cases where more control is needed it provides access to the full bzip2
  feature set.
  .
- This package contains the libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-bzlib-prof
 Architecture: any
 Depends: ${haskell:Depends}, ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Profiling libraries for the Haskell bindings to the bzip2 library
+Description: Profiling libraries for the Haskell bindings to the bzip2 library${haskell:ShortBlurb}
  .
  This package provides a pure interface for compressing and decompressing
  streams of data represented as lazy ByteStrings. It uses the bz2 C library
@@ -48,7 +48,7 @@ Description: Profiling libraries for the Haskell bindings to the bzip2 library
  few cases where more control is needed it provides access to the full bzip2
  feature set.
  .
- This package contains the profiling libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-bzlib-doc
 Section: doc
@@ -56,7 +56,7 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: Documentation for the Haskell bindings to the bzip2 library
+Description: Documentation for the Haskell bindings to the bzip2 library${haskell:ShortBlurb}
  .
  This package provides a pure interface for compressing and decompressing
  streams of data represented as lazy ByteStrings. It uses the bz2 C library
@@ -66,4 +66,4 @@ Description: Documentation for the Haskell bindings to the bzip2 library
  few cases where more control is needed it provides access to the full bzip2
  feature set.
  .
- This package contains the library documentation.
+ ${haskell:Blurb}
