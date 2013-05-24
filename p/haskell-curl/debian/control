@@ -7,7 +7,7 @@ Build-Depends: dctrl-tools,
  dpkg-dev (>= 1.13.19),
  debhelper (>= 9),
  cdbs,
- haskell-devscripts (>= 0.8.13),
+ haskell-devscripts (>= 0.8.15),
  ghc,
  ghc-prof,
  libcurl4-gnutls-dev
@@ -22,7 +22,7 @@ Architecture: any
 Depends: libcurl4-gnutls-dev, ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: GHC libraries for the libcurl Haskell bindings
+Description: GHC libraries for the libcurl Haskell bindings${haskell:ShortBlurb}
  .
  libcurl is a client-side URL transfer library, supporting FTP, FTPS, HTTP,
  HTTPS, SCP, SFTP, TFTP, TELNET, DICT, LDAP, LDAPS and FILE. libcurl supports
@@ -30,14 +30,14 @@ Description: GHC libraries for the libcurl Haskell bindings
  proxies, cookies, user+password authentication (Basic, Digest, NTLM, Negotiate,
  Kerberos4), file transfer resume, http proxy tunneling and more!
  .
- This package contains the libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-curl-prof
 Architecture: any
 Depends: ${haskell:Depends}, ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Profiling libraries for the libcurl Haskell bindings
+Description: Profiling libraries for the libcurl Haskell bindings${haskell:ShortBlurb}
  .
  libcurl is a client-side URL transfer library, supporting FTP, FTPS, HTTP,
  HTTPS, SCP, SFTP, TFTP, TELNET, DICT, LDAP, LDAPS and FILE. libcurl supports
@@ -45,7 +45,7 @@ Description: Profiling libraries for the libcurl Haskell bindings
  proxies, cookies, user+password authentication (Basic, Digest, NTLM, Negotiate,
  Kerberos4), file transfer resume, http proxy tunneling and more!
  .
- This package contains the profiling libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-curl-doc
 Section: doc
@@ -53,7 +53,7 @@ Architecture: all
 Depends: ${haskell:Depends}, ${misc:Depends}
 Recommends: doc-base, ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: Documentation for the libcurl Haskell bindings
+Description: Documentation for the libcurl Haskell bindings${haskell:ShortBlurb}
  .
  libcurl is a client-side URL transfer library, supporting FTP, FTPS, HTTP,
  HTTPS, SCP, SFTP, TFTP, TELNET, DICT, LDAP, LDAPS and FILE. libcurl supports
@@ -61,4 +61,4 @@ Description: Documentation for the libcurl Haskell bindings
  proxies, cookies, user+password authentication (Basic, Digest, NTLM, Negotiate,
  Kerberos4), file transfer resume, http proxy tunneling and more!
  .
- This package contains the library documentation.
+ ${haskell:Blurb}
