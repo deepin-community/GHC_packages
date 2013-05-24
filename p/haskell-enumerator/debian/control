@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Clint Adams <clint@debian.org>
 Build-Depends: debhelper (>= 9)
   , cdbs
-  , haskell-devscripts (>= 0.8.13)
+  , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
   , libghc-text-dev (>> 0.7)
@@ -28,9 +28,8 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: high-performance left-fold enumerators
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
+Description: high-performance left-fold enumerators${haskell:ShortBlurb}
+ ${haskell:Blurb}
  .
  Typical buffer–based incremental I/O is based around a single loop,
  which reads data from some source (such as a socket or file),
@@ -77,10 +76,8 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: high-performance left-fold enumerators; profiling libraries
- This package provides a library for the Haskell programming language,
- compiled for profiling.
- See http://www.haskell.org/ for more information on Haskell.
+Description: high-performance left-fold enumerators${haskell:ShortBlurb}
+ ${haskell:Blurb}
 
 Package: libghc-enumerator-doc
 Section: doc
@@ -88,7 +85,5 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: high-performance left-fold enumerators; documentation
- This package provides the documentation for a library for the Haskell
- programming language.
- See http://www.haskell.org/ for more information on Haskell.
+Description: high-performance left-fold enumerators${haskell:ShortBlurb}
+ ${haskell:Blurb}
