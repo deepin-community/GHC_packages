@@ -6,7 +6,7 @@ Uploaders: Iulian Udrea <iulian@physics.org>
 DM-Upload-Allowed: yes
 Build-Depends: debhelper (>= 9),
                cdbs,
-               haskell-devscripts (>= 0.8.13),
+               haskell-devscripts (>= 0.8.15),
                ghc,
                ghc-prof,
                libghc-hunit-dev (>= 1.2),
@@ -23,7 +23,7 @@ Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: parallel programming based on a monad
+Description: parallel programming based on a monad${haskell:ShortBlurb}
  This library offers an alternative parallel programming API to that
  provided by the parallel package. The Par monad allows the simple
  description of parallel computations, and can be used to add
@@ -34,8 +34,7 @@ Description: parallel programming based on a monad
  the internals are also exposed so that you can build your own scheduler
  if necessary.
  .
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-monad-par-prof
 Architecture: any
@@ -43,7 +42,7 @@ Depends: ${haskell:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: parallel programming based on a monad; profiling data
+Description: parallel programming based on a monad${haskell:ShortBlurb}
  This library offers an alternative parallel programming API to that
  provided by the parallel package. The Par monad allows the simple
  description of parallel computations, and can be used to add
@@ -54,8 +53,7 @@ Description: parallel programming based on a monad; profiling data
  the internals are also exposed so that you can build your own scheduler
  if necessary.
  .
- This package provides a library for the Haskell programming language, compiled
- for profiling.  See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-monad-par-doc
 Section: doc
@@ -63,7 +61,7 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: parallel programming based on a monad; documentation
+Description: parallel programming based on a monad${haskell:ShortBlurb}
  This library offers an alternative parallel programming API to that
  provided by the parallel package. The Par monad allows the simple
  description of parallel computations, and can be used to add
@@ -74,6 +72,4 @@ Description: parallel programming based on a monad; documentation
  the internals are also exposed so that you can build your own scheduler
  if necessary.
  .
- This package provides the documentation for a library for the Haskell
- programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
