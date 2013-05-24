@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Giovanni Mascellani <gio@debian.org>
 Build-Depends:
  debhelper (>= 9),
- haskell-devscripts (>= 0.8.13),
+ haskell-devscripts (>= 0.8.15),
  cdbs,
  ghc,
  ghc-prof,
@@ -28,7 +28,7 @@ Depends:
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
-Description: Haskell portable sendfile library - GHC libraries
+Description: Haskell portable sendfile library${haskell:ShortBlurb}
  This Haskell library exposes zero-copy sendfile functionality in a
  portable way. sendfile is a non standard system call that copies data
  between one file descriptor and another. This library uses the native
@@ -36,7 +36,7 @@ Description: Haskell portable sendfile library - GHC libraries
  provides an Haskell replacement in other cases, thus providing a
  portable interface.
  .
- This package contains the libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-sendfile-prof
 Architecture: any
@@ -46,7 +46,7 @@ Depends:
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
-Description: Haskell portable sendfile library - GHC profiling libraries
+Description: Haskell portable sendfile library${haskell:ShortBlurb}
  This Haskell library exposes zero-copy sendfile functionality in a
  portable way. sendfile is a non standard system call that copies data
  between one file descriptor and another. This library uses the native
@@ -54,7 +54,7 @@ Description: Haskell portable sendfile library - GHC profiling libraries
  provides an Haskell replacement in other cases, thus providing a
  portable interface.
  .
- This package contains the profiling libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-sendfile-doc
 Section: doc
@@ -64,7 +64,7 @@ Depends:
  ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
-Description: Haskell portable sendfile library - documentation
+Description: Haskell portable sendfile library${haskell:ShortBlurb}
  This Haskell library exposes zero-copy sendfile functionality in a
  portable way. sendfile is a non standard system call that copies data
  between one file descriptor and another. This library uses the native
@@ -72,4 +72,4 @@ Description: Haskell portable sendfile library - documentation
  provides an Haskell replacement in other cases, thus providing a
  portable interface.
  .
- This package contains the library documentation.
+ ${haskell:Blurb}
