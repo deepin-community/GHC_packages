@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Clint Adams <clint@debian.org>
 Build-Depends: debhelper (>= 9)
   , cdbs
-  , haskell-devscripts (>= 0.8.13)
+  , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
   , libghc-hashable-dev (>> 1.0)
@@ -25,7 +25,7 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: persistent containers Map and Set based on hashing
+Description: persistent containers Map and Set based on hashing${haskell:ShortBlurb}
  An implementation of persistent Map and Set containers based on hashing.
  The implementation is build on top of Data.IntMap.IntMap and
  Data.IntSet.IntSet, with very similar API. It uses Hashable class from the
@@ -42,8 +42,7 @@ Description: persistent containers Map and Set based on hashing
  either one elem or Data.Set.Set elem for all elements with the same hash
  value.
  .
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-hashmap-prof
 Architecture: any
@@ -52,7 +51,7 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: persistent containers Map and Set based on hashing; profiling libraries
+Description: persistent containers Map and Set based on hashing${haskell:ShortBlurb}
  An implementation of persistent Map and Set containers based on hashing.
  The implementation is build on top of Data.IntMap.IntMap and
  Data.IntSet.IntSet, with very similar API. It uses Hashable class from the
@@ -69,8 +68,7 @@ Description: persistent containers Map and Set based on hashing; profiling libra
  either one elem or Data.Set.Set elem for all elements with the same hash
  value.
  .
- This package provides a library for the Haskell programming language, compiled
- for profiling.  See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-hashmap-doc
 Section: doc
@@ -78,7 +76,7 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: persistent containers Map and Set based on hashing; documentation
+Description: persistent containers Map and Set based on hashing${haskell:ShortBlurb}
  An implementation of persistent Map and Set containers based on hashing.
  The implementation is build on top of Data.IntMap.IntMap and
  Data.IntSet.IntSet, with very similar API. It uses Hashable class from the
@@ -95,6 +93,4 @@ Description: persistent containers Map and Set based on hashing; documentation
  either one elem or Data.Set.Set elem for all elements with the same hash
  value.
  .
- This package provides the documentation for a library for the Haskell
- programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
