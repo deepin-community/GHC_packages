@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Giovanni Mascellani <gio@debian.org>, Clint Adams <clint@debian.org>
 Build-Depends:
  debhelper (>= 9),
- haskell-devscripts (>= 0.8.13),
+ haskell-devscripts (>= 0.8.15),
  cdbs,
  ghc,
  ghc-prof,
@@ -28,13 +28,13 @@ Depends:
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
-Description: Haskell data types to represent structured documents - GHC libraries
+Description: Haskell data types to represent structured documents${haskell:ShortBlurb}
  This package ships the data types used by package Pandoc to internally
  represent structured documents. They've been split off from the main
  Pandoc package, so that other packages can use them without drawing in
  all the of Pandoc dependencies.
  .
- This package contains the libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-pandoc-types-prof
 Architecture: any
@@ -44,13 +44,13 @@ Depends:
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
-Description: Haskell data types to represent structured documents - GHC profiling libraries
+Description: Haskell data types to represent structured documents${haskell:ShortBlurb}
  This package ships the data types used by package Pandoc to internally
  represent structured documents. They've been split off from the main
  Pandoc package, so that other packages can use them without drawing in
  all the of Pandoc dependencies.
  .
- This package contains the profiling libraries compiled for GHC.
+ ${haskell:Blurb}
 
 Package: libghc-pandoc-types-doc
 Section: doc
@@ -60,10 +60,10 @@ Depends:
  ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
-Description: Haskell data types to represent structured documents - documentation
+Description: Haskell data types to represent structured documents${haskell:ShortBlurb}
  This package ships the data types used by package Pandoc to internally
  represent structured documents. They've been split off from the main
  Pandoc package, so that other packages can use them without drawing in
  all the of Pandoc dependencies.
  .
- This package contains the library documentation.
+ ${haskell:Blurb}
