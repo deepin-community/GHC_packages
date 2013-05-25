@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Clint Adams <clint@debian.org>
 Build-Depends: debhelper (>= 9)
   , cdbs
-  , haskell-devscripts (>= 0.8.13)
+  , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
   , libghc-system-filepath-dev (>> 0.4.7)
@@ -32,13 +32,12 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: simple command-line argument parsing
+Description: simple command-line argument parsing${haskell:ShortBlurb}
  ReadArgs provides the readArgs IO action, which lets you tell the
  compiler to parse the command line arguments to fit the type signature
  you give.
  .
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-readargs-prof
 Architecture: any
@@ -47,13 +46,12 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: simple command-line argument parsing; profiling libraries
+Description: simple command-line argument parsing${haskell:ShortBlurb}
  ReadArgs provides the readArgs IO action, which lets you tell the
  compiler to parse the command line arguments to fit the type signature
  you give.
  .
- This package provides a library for the Haskell programming language, compiled
- for profiling.  See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-readargs-doc
 Section: doc
@@ -61,11 +59,9 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: simple command-line argument parsing; documentation
+Description: simple command-line argument parsing${haskell:ShortBlurb}
  ReadArgs provides the readArgs IO action, which lets you tell the
  compiler to parse the command line arguments to fit the type signature
  you give.
  .
- This package provides the documentation for a library for the Haskell
- programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
