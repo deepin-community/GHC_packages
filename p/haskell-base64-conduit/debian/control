@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Clint Adams <clint@debian.org>
 Build-Depends: debhelper (>= 9)
   , cdbs
-  , haskell-devscripts (>= 0.8.13)
+  , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
   , libghc-base64-bytestring-dev (>> 0.1.1.1)
@@ -32,12 +32,11 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: base64-encode and decode streams of bytes
+Description: base64-encode and decode streams of bytes${haskell:ShortBlurb}
  This provides Conduits for encoding and decoding ByteStrings to and
  from Base64.
  .
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-base64-conduit-prof
 Architecture: any
@@ -46,12 +45,11 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: base64-encode and decode streams of bytes; profiling libraries
+Description: base64-encode and decode streams of bytes${haskell:ShortBlurb}
  This provides Conduits for encoding and decoding ByteStrings to and
  from Base64.
  .
- This package provides a library for the Haskell programming language, compiled
- for profiling.  See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-base64-conduit-doc
 Section: doc
@@ -59,10 +57,8 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: base64-encode and decode streams of bytes; documentation
+Description: base64-encode and decode streams of bytes${haskell:ShortBlurb}
  This provides Conduits for encoding and decoding ByteStrings to and
  from Base64.
  .
- This package provides the documentation for a library for the Haskell
- programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
