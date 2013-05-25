@@ -14,35 +14,35 @@ Build-Depends: debhelper (>= 9)
   , libghc-cpu-dev (>= 0.1.0-2)
   , libghc-cpu-dev (<< 0.2)
   , libghc-cpu-prof
+  , libghc-cipher-aes-dev
+  , libghc-cipher-aes-prof
+  , libghc-cipher-rc4-dev
+  , libghc-cipher-rc4-prof
   , libghc-crypto-api-dev (>> 0.5)
   , libghc-crypto-api-prof
-  , libghc-crypto-pubkey-types-dev (>> 0.2)
-  , libghc-crypto-pubkey-types-dev (<< 0.3)
-  , libghc-crypto-pubkey-types-prof
   , libghc-primitive-dev
   , libghc-primitive-prof
-  , libghc-tagged-dev
-  , libghc-tagged-prof
   , libghc-vector-dev (>> 0.7)
   , libghc-vector-prof
   , libghc-quickcheck2-dev
   , libghc-test-framework-dev (>> 0.3.3)
-  , libghc-test-framework-dev (<< 0.7)
   , libghc-test-framework-quickcheck2-dev (>> 0.2.9)
-  , libghc-test-framework-quickcheck2-dev (<< 0.3)
   , libghc-cryptohash-dev
 Build-Depends-Indep: ghc-doc
   , libghc-cereal-doc
+  , libghc-cipher-aes-doc
+  , libghc-cipher-rc4-doc
   , libghc-cpu-doc
   , libghc-crypto-api-doc
   , libghc-primitive-doc
-  , libghc-crypto-pubkey-types-doc
-  , libghc-tagged-doc
   , libghc-vector-doc
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/cryptocipher
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-cryptocipher
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-cryptocipher
+X-Description: Symmetrical block and stream ciphers
+  This library provides symmetrical block and stream ciphers like RC4, AES,
+  Blowfish and Camellia.
 
 Package: libghc-cryptocipher-dev
 Architecture: any
@@ -52,10 +52,10 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: symmetrical Block, Stream and PubKey ciphers${haskell:ShortBlurb}
- ${haskell:Blurb}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
- It provides symmetrical Block, Stream and PubKey ciphers.
+ ${haskell:Blurb}
 
 Package: libghc-cryptocipher-prof
 Architecture: any
@@ -64,10 +64,10 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: symmetrical Block, Stream and PubKey ciphers${haskell:ShortBlurb}
- ${haskell:Blurb}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
- It provides symmetrical Block, Stream and PubKey ciphers.
+ ${haskell:Blurb}
 
 Package: libghc-cryptocipher-doc
 Section: doc
@@ -75,7 +75,7 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: symmetrical Block, Stream and PubKey ciphers${haskell:ShortBlurb}
- ${haskell:Blurb}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
- It provides symmetrical Block, Stream and PubKey ciphers.
+ ${haskell:Blurb}
