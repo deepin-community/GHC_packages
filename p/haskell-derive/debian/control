@@ -4,7 +4,7 @@ Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Masayuki Hatta (mhatta) <mhatta@debian.org>
 Build-Depends: debhelper (>= 9)
-               , haskell-devscripts (>= 0.8)
+               , haskell-devscripts (>= 0.8.15)
                , cdbs
                , ghc
                , ghc-prof
@@ -44,14 +44,14 @@ Depends: ${shlibs:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Deriving instances for data types in Haskell
+Description: Deriving instances for data types in Haskell${haskell:ShortBlurb}
  Data.Derive is a library and a tool for deriving instances for Haskell
  programs.  It is designed to work with custom derivations, SYB and
  Template Haskell mechanisms.  The tool requires GHC, but the generated
  code is portable to all compilers.  This tool can be regarded as a
  competitor to DrIFT.
  .
- This package contains the normal library files.
+ ${haskell:Blurb}
 
 Package: libghc-derive-prof
 Architecture: any
@@ -60,14 +60,14 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Deriving instances for data types in Haskell
+Description: Deriving instances for data types in Haskell${haskell:ShortBlurb}
  Data.Derive is a library and a tool for deriving instances for Haskell
  programs.  It is designed to work with custom derivations, SYB and
  Template Haskell mechanisms.  The tool requires GHC, but the generated
  code is portable to all compilers.  This tool can be regarded as a
  competitor to DrIFT.
  .
- This package contains the libraries compiled with profiling enabled.
+ ${haskell:Blurb}
 
 Package: libghc-derive-doc
 Architecture: all
@@ -76,14 +76,14 @@ Depends: ${haskell:Depends}
          , ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: Deriving instances for data types in Haskell
+Description: Deriving instances for data types in Haskell${haskell:ShortBlurb}
  Data.Derive is a library and a tool for deriving instances for Haskell
  programs.  It is designed to work with custom derivations, SYB and
  Template Haskell mechanisms.  The tool requires GHC, but the generated
  code is portable to all compilers.  This tool can be regarded as a
  competitor to DrIFT.
  .
- This package contains the documentation files.
+ ${haskell:Blurb}
 
 Package: haskell-derive-utils
 Architecture: any
@@ -96,4 +96,4 @@ Description: Deriving instances for data types in Haskell
  code is portable to all compilers.  This tool can be regarded as a
  competitor to DrIFT.
  .
- This package contains an executable used with the derive library.
+ ${haskell:Blurb}
