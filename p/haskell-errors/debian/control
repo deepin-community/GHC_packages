@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Clint Adams <clint@debian.org>
 Build-Depends: debhelper (>= 9)
   , cdbs
-  , haskell-devscripts (>= 0.8.13)
+  , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
   , libghc-either-dev (>> 3.1)
@@ -34,12 +34,11 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: simplified error handling
+Description: simplified error handling${haskell:ShortBlurb}
  This library encourages an error-handling style that directly uses the
  type system, rather than out-of-band exceptions.
  .
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-errors-prof
 Architecture: any
@@ -48,12 +47,11 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: simplified error handling; profiling libraries
+Description: simplified error handling${haskell:ShortBlurb}
  This library encourages an error-handling style that directly uses the
  type system, rather than out-of-band exceptions.
  .
- This package provides a library for the Haskell programming language, compiled
- for profiling.  See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-errors-doc
 Section: doc
@@ -61,10 +59,8 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: simplified error handling; documentation
+Description: simplified error handling${haskell:ShortBlurb}
  This library encourages an error-handling style that directly uses the
  type system, rather than out-of-band exceptions.
  .
- This package provides the documentation for a library for the Haskell
- programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
