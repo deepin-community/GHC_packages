@@ -1,0 +1,47 @@
+Description: Add a "Num" constraint to the bytemask constant and functions which use Bits
+  In GHC versions < 7.6.1 this was implicit, but it was removed.
+Author: Iain Lane <laney@debian.org>
+Forwarded: yes (email)
+
+Index: b/Storage/Hashed/Utils.hs
+===================================================================
+--- a/Storage/Hashed/Utils.hs
++++ b/Storage/Hashed/Utils.hs
+@@ -92,8 +92,8 @@
+                      x -> i + boundary - x
+ {-# INLINE align #-}
+
+-xlate32 :: (Bits a) => a -> a
+-xlate64 :: (Bits a) => a -> a
++xlate32 :: (Num a, Bits a) => a -> a
++xlate64 :: (Num a, Bits a) => a -> a
+
+ #ifdef LITTLEENDIAN
+ xlate32 = id
+@@ -101,7 +101,7 @@
+ #endif
+
+ #ifdef BIGENDIAN
+-bytemask :: (Bits a) => a
++bytemask :: (Num a, Bits a) => a
+ bytemask = 255
+
+ xlate32 a = ((a .&. (bytemask `shift`  0)) `shiftL` 24) .|.
+Index: b/Storage/Hashed/Index.hs
+===================================================================
+--- a/Storage/Hashed/Index.hs
++++ b/Storage/Hashed/Index.hs
+@@ -152,11 +152,11 @@
+ itemIsDir i = unsafeHead (iDescriptor i) == c2w 'D'
+
+ -- xlatePeek32 = fmap xlate32 . peek
+-xlatePeek64 :: (Storable a, Bits a) => Ptr a -> IO a
++xlatePeek64 :: (Storable a, Num a, Bits a) => Ptr a -> IO a
+ xlatePeek64 = fmap xlate64 . peek
+
+ -- xlatePoke32 ptr v = poke ptr (xlate32 v)
+-xlatePoke64 :: (Storable a, Bits a) => Ptr a -> a -> IO ()
++xlatePoke64 :: (Storable a, Num a, Bits a) => Ptr a -> a -> IO ()
+ xlatePoke64 ptr v = poke ptr (xlate64 v)
+
+ -- | Lay out the basic index item structure in memory. The memory location is
