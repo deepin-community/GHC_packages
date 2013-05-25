@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Clint Adams <clint@debian.org>
 Build-Depends: debhelper (>= 9)
   , cdbs
-  , haskell-devscripts (>= 0.8.13)
+  , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
 Build-Depends-Indep: ghc-doc
@@ -22,7 +22,7 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: simple reflection of expressions containing variables
+Description: simple reflection of expressions containing variables${haskell:ShortBlurb}
  This package allows simple reflection of expressions containing variables.
  Reflection here means that a Haskell expression is turned into a string.
  .
@@ -30,8 +30,7 @@ Description: simple reflection of expressions containing variables
  there are no options for manipulating the reflected expressions beyond
  showing them.
  .
- This package provides a library for the Haskell programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-simple-reflect-prof
 Architecture: any
@@ -40,7 +39,7 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: simple reflection of expressions containing variables; profiling libraries
+Description: simple reflection of expressions containing variables${haskell:ShortBlurb}
  This package allows simple reflection of expressions containing variables.
  Reflection here means that a Haskell expression is turned into a string.
  .
@@ -48,8 +47,7 @@ Description: simple reflection of expressions containing variables; profiling li
  there are no options for manipulating the reflected expressions beyond
  showing them.
  .
- This package provides a library for the Haskell programming language, compiled
- for profiling.  See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-simple-reflect-doc
 Section: doc
@@ -57,7 +55,7 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: simple reflection of expressions containing variables; documentation
+Description: simple reflection of expressions containing variables${haskell:ShortBlurb}
  This package allows simple reflection of expressions containing variables.
  Reflection here means that a Haskell expression is turned into a string.
  .
@@ -65,6 +63,4 @@ Description: simple reflection of expressions containing variables; documentatio
  there are no options for manipulating the reflected expressions beyond
  showing them.
  .
- This package provides the documentation for a library for the Haskell
- programming language.
- See http://www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
