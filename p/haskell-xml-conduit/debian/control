@@ -3,21 +3,21 @@ Section: haskell
 Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
+Build-Depends: debhelper (>= 7)
   , cdbs
-  , haskell-devscripts (>= 0.8.15)
+  , haskell-devscripts (>= 0.8.13)
   , ghc
   , ghc-prof
   , libghc-attoparsec-dev (>> 0.10)
   , libghc-attoparsec-prof
-  , libghc-attoparsec-conduit-dev (>> 0.5)
-  , libghc-attoparsec-conduit-dev (<< 0.6)
+  , libghc-attoparsec-conduit-dev (>> 1.0)
+  , libghc-attoparsec-conduit-dev (<< 1.1)
   , libghc-attoparsec-conduit-prof
   , libghc-blaze-builder-dev (>> 0.2)
   , libghc-blaze-builder-dev (<< 0.4)
   , libghc-blaze-builder-prof
-  , libghc-blaze-builder-conduit-dev (>> 0.5)
-  , libghc-blaze-builder-conduit-dev (<< 0.6)
+  , libghc-blaze-builder-conduit-dev (>> 1.0)
+  , libghc-blaze-builder-conduit-dev (<< 1.1)
   , libghc-blaze-builder-conduit-prof
   , libghc-blaze-html-dev (>> 0.5)
   , libghc-blaze-html-dev (<< 0.6)
@@ -25,8 +25,8 @@ Build-Depends: debhelper (>= 9)
   , libghc-blaze-markup-dev (>> 0.5)
   , libghc-blaze-markup-dev (<< 0.6)
   , libghc-blaze-markup-prof
-  , libghc-conduit-dev (>> 0.5)
-  , libghc-conduit-dev (<< 0.6)
+  , libghc-conduit-dev (>> 1.0)
+  , libghc-conduit-dev (<< 1.1)
   , libghc-conduit-prof
   , libghc-data-default-dev
   , libghc-data-default-prof
@@ -82,13 +82,14 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: HTTP client package with conduit interface and HTTPS support${haskell:ShortBlurb}
+Description: HTTP client package with conduit interface and HTTPS support
  This package uses attoparsec for parsing the actual contents of the HTTP
  connection. It also provides higher-level functions which allow you to avoid
  direct usage of conduits. See http://www.yesodweb.com/book/xml-conduit
  for more information.
  .
- ${haskell:Blurb}
+ This package provides a library for the Haskell programming language.
+ See http://www.haskell.org/ for more information on Haskell.
 
 Package: libghc-xml-conduit-prof
 Architecture: any
@@ -97,13 +98,14 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: HTTP/HTTPS client package with conduit interface, profiling libraries${haskell:ShortBlurb}
+Description: HTTP/HTTPS client package with conduit interface, profiling libraries
  This package uses attoparsec for parsing the actual contents of the HTTP
  connection. It also provides higher-level functions which allow you to avoid
  direct usage of conduits. See http://www.yesodweb.com/book/xml-conduit
  for more information.
  .
- ${haskell:Blurb}
+ This package provides a library for the Haskell programming language, compiled
+ for profiling.  See http://www.haskell.org/ for more information on Haskell.
 
 Package: libghc-xml-conduit-doc
 Section: doc
@@ -111,10 +113,12 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: HTTP client package with conduit interface and HTTPS support${haskell:ShortBlurb}
+Description: HTTP client package with conduit interface and HTTPS support; documentation
  This package uses attoparsec for parsing the actual contents of the HTTP
  connection. It also provides higher-level functions which allow you to avoid
  direct usage of conduits. See http://www.yesodweb.com/book/xml-conduit
  for more information.
  .
- ${haskell:Blurb}
+ This package provides the documentation for a library for the Haskell
+ programming language.
+ See http://www.haskell.org/ for more information on Haskell.
