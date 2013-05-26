@@ -8,13 +8,16 @@ Build-Depends: debhelper (>= 9)
   , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
-  , libghc-parsec3-dev
-  , libghc-parsec3-prof
-  , libghc-ranges-dev
-  , libghc-ranges-prof
+  , libghc-attoparsec-dev (>> 0.10.0)
+  , libghc-attoparsec-prof
+  , libghc-hunit-dev (>> 1.2)
+  , libghc-hunit-dev (<< 2)
+  , libghc-quickcheck2-dev (>> 2.4)
+  , libghc-test-framework-dev (>> 0.4.1)
+  , libghc-test-framework-quickcheck2-dev
+  , libghc-test-framework-hunit-dev
 Build-Depends-Indep: ghc-doc
-  , libghc-parsec3-doc
-  , libghc-ranges-doc
+  , libghc-attoparsec-doc
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/email-validate
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-email-validate
