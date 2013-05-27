@@ -1,0 +1,43 @@
+Description: Avoid variadic open
+ GHC's LLVM backend doesn't properly handle multiple foreign imports of the
+ same C function with different argument counts; only a declaration for the
+ last one is emitted, and thus openRead fails to compile with "error: not
+ enough parameters specified for call".  Since the mode argument is ignored
+ if O_CREAT is not in the flags, it is safe to just pass it anyway.
+Author: Colin Watson <cjwatson@ubuntu.com>
+Forwarded: https://github.com/snoyberg/conduit/pull/99
+Last-Update: 2013-05-27
+
+Index: b/System/PosixFile.hsc
+===================================================================
+--- a/System/PosixFile.hsc
++++ b/System/PosixFile.hsc
+@@ -36,10 +36,7 @@
+     }
+
+ foreign import ccall "open"
+-    c_open :: CString -> Flag -> IO CInt
+-
+-foreign import ccall "open"
+-    c_open_mode :: CString -> Flag -> CInt -> IO CInt
++    c_open :: CString -> Flag -> CInt -> IO CInt
+
+ foreign import ccall "read"
+     c_read :: FD -> Ptr Word8 -> CInt -> IO CInt
+@@ -54,14 +51,14 @@
+
+ openRead :: FilePath -> IO FD
+ openRead fp = do
+-    h <- withCString fp $ \str -> c_open str oRdonly
++    h <- withCString fp $ \str -> c_open str oRdonly 438 -- == octal 666
+     if h < 0
+         then throwErrno $ "Could not open file: " ++ fp
+         else return $ FD h
+
+ openWrite :: FilePath -> IO FD
+ openWrite fp = do
+-    h <- withCString fp $ \str -> c_open_mode str (oWronly .|. oCreat) 438 -- == octal 666
++    h <- withCString fp $ \str -> c_open str (oWronly .|. oCreat) 438 -- == octal 666
+     if h < 0
+         then throwErrno $ "Could not open file: " ++ fp
+         else return $ FD h
