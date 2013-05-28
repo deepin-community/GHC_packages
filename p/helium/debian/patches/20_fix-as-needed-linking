@@ -1,0 +1,16 @@
+A better fix would be to split libs from LINKOPT but as it contains only
+libs in this case, moving all of it to the end of the linker call works
+too.
+Index: helium-1.6/lvm/src/runtime/makefile
+===================================================================
+--- helium-1.6.orig/lvm/src/runtime/makefile	2010-12-03 17:48:46.000000000 +0100
++++ helium-1.6/lvm/src/runtime/makefile	2010-12-03 17:49:07.000000000 +0100
+@@ -50,7 +50,7 @@
+ #	$(LINK) -o $@ $(LINKOPT) $(OBJS) -g
+
+ lvmrun$(EXE): $(OBJS)
+-	$(LINK) -o $@ $(LINKOPT) $(OBJS)
++	$(LINK) -o $@ $(OBJS) $(LINKOPT)
+ #	$(STRIP) $@
+
+ core/evaluator.o: core/evaluator.c
