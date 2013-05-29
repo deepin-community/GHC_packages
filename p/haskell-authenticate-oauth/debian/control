@@ -4,7 +4,7 @@ Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
 Build-Depends: debhelper (>= 9)
-             , haskell-devscripts (>= 0.8.13)
+             , haskell-devscripts (>= 0.8.16)
              , cdbs
              , ghc
              , ghc-prof
@@ -70,13 +70,10 @@ Depends: ${shlibs:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: authenticate with OAuth for Haskell web applications
+Description: authenticate with OAuth for Haskell web applications${haskell:ShortBlurb}
  OAuth authentication support.
  .
-  Author: Hiromi Ishii
-  Upstream-Maintainer: Hiromi Ishii
- .
- This package contains the normal library files.
+ ${haskell:Blurb}
 
 Package: libghc-authenticate-oauth-prof
 Architecture: any
@@ -85,13 +82,10 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: authenticate with OAuth for Haskell web applications; profiling libs
+Description: authenticate with OAuth for Haskell web applications${haskell:ShortBlurb}
  OAuth authentication support.
  .
-  Author: Hiromi Ishii
-  Upstream-Maintainer: Hiromi Ishii
- .
- This package contains the libraries compiled with profiling enabled.
+ ${haskell:Blurb}
 
 Package: libghc-authenticate-oauth-doc
 Architecture: all
@@ -100,10 +94,7 @@ Depends: ${haskell:Depends}
          , ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: authenticate with OAuth for Haskell web applications; documentation
+Description: authenticate with OAuth for Haskell web applications${haskell:ShortBlurb}
  OAuth authentication support.
  .
-  Author: Hiromi Ishii
-  Upstream-Maintainer: Hiromi Ishii
- .
- This package contains the documentation files.
+ ${haskell:Blurb}
