@@ -75,6 +75,11 @@ endif
 	# We also want to build the threaded profiling-enabled debug runtime,
 	# because it does no harm
 	echo 'GhcRTSWays += $$(if $$(findstring p, $$(GhcLibWays)),thr_debug_p,)' >> mk/build.mk
+ifneq (,$(findstring $(DEB_HOST_ARCH),armel armhf))
+	# GHCi is too badly broken on ARM; see
+	# http://hackage.haskell.org/trac/ghc/ticket/7794
+	echo "GhcWithInterpreter = NO" >> mk/build.mk
+endif
 
 	# We can't do this with a configure flag in 6.8.1 as libdir is not
 	# defined at the point at which we := it
