@@ -6,6 +6,9 @@
 my @ifaces;
 my %pkgs;
 
+# Only do something if we actually have /usr/share/doc
+exit 0 unless (-d "/usr/share/doc/ghc-doc/html/libraries/" and -r "/usr/share/doc/ghc-doc/html/libraries/prologue.txt");
+
 # Add everything from the global Cabal registry to index.
 if (-e '/usr/bin/ghc-pkg') {
     open CABAL, 'ghc-pkg dump --global |' or warn "ghc-pkg dump failed: $!";
