@@ -1,0 +1,77 @@
+Source: haskell-zeromq3-haskell
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-monadcatchio-transformers-dev
+  , libghc-monadcatchio-transformers-prof
+  , libghc-transformers-dev
+  , libghc-transformers-prof
+  , libzmq3-dev (>= 3.2.3-0)
+#  , libghc-quickcheck2-dev (>> 2.6)
+#  , libghc-checkers-dev (>> 0.3)
+#  , libghc-ansi-terminal-dev (>> 0.6)
+Build-Depends-Indep: ghc-doc
+  , libghc-monadcatchio-transformers-doc
+  , libghc-transformers-doc
+Standards-Version: 3.9.4
+Homepage: http://hackage.haskell.org/package/zeromq3-haskell
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-zeromq3-haskell
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-zeromq3-haskell
+
+Package: libghc-zeromq3-haskell-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+  , libzmq3-dev (>= 3.2.3-0)
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: bindings to ZeroMQ 3.x${haskell:ShortBlurb}
+ The 0MQ lightweight messaging kernel is a library which extends the standard
+ socket interfaces with features traditionally provided by specialised
+ messaging middleware products. 0MQ sockets provide an abstraction of
+ asynchronous message queues, multiple messaging patterns, message filtering
+ (subscriptions), seamless access to multiple transport protocols and more.
+ This library provides the Haskell language binding to 0MQ.
+ .
+ ${haskell:Blurb}
+
+Package: libghc-zeromq3-haskell-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: bindings to ZeroMQ 3.x${haskell:ShortBlurb}
+ The 0MQ lightweight messaging kernel is a library which extends the standard
+ socket interfaces with features traditionally provided by specialised
+ messaging middleware products. 0MQ sockets provide an abstraction of
+ asynchronous message queues, multiple messaging patterns, message filtering
+ (subscriptions), seamless access to multiple transport protocols and more.
+ This library provides the Haskell language binding to 0MQ.
+ .
+ ${haskell:Blurb}
+
+Package: libghc-zeromq3-haskell-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: bindings to ZeroMQ 3.x${haskell:ShortBlurb}
+ The 0MQ lightweight messaging kernel is a library which extends the standard
+ socket interfaces with features traditionally provided by specialised
+ messaging middleware products. 0MQ sockets provide an abstraction of
+ asynchronous message queues, multiple messaging patterns, message filtering
+ (subscriptions), seamless access to multiple transport protocols and more.
+ This library provides the Haskell language binding to 0MQ.
+ .
+ ${haskell:Blurb}
