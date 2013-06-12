@@ -1,0 +1,66 @@
+Source: haskell-cryptohash-cryptoapi
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Colin Watson <cjwatson@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-cryptohash-dev (>= 0.8.0)
+  , libghc-cryptohash-prof
+  , libghc-crypto-api-dev (>= 0.5)
+  , libghc-crypto-api-prof
+  , libghc-tagged-dev (>= 0.1)
+  , libghc-tagged-prof
+  , libghc-cereal-dev (>= 0.2)
+  , libghc-cereal-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-cryptohash-doc
+  , libghc-crypto-api-doc
+  , libghc-tagged-doc
+  , libghc-cereal-doc
+Standards-Version: 3.9.4
+Homepage: http://hackage.haskell.org/package/cryptohash-cryptoapi
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-cryptohash-cryptoapi
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-cryptohash-cryptoapi
+
+Package: libghc-cryptohash-cryptoapi-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: crypto-api interfaces for cryptohash${haskell:ShortBlurb}
+ This Haskell library exports the cryptohash interface through crypto-api.
+ See libghc-cryptohash-* and libghc-crypto-api-* for more information.
+ .
+ ${haskell:Blurb}
+
+Package: libghc-cryptohash-cryptoapi-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: crypto-api interfaces for cryptohash${haskell:ShortBlurb}
+ This Haskell library exports the cryptohash interface through crypto-api.
+ See libghc-cryptohash-* and libghc-crypto-api-* for more information.
+ .
+ ${haskell:Blurb}
+
+Package: libghc-cryptohash-cryptoapi-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: crypto-api interfaces for cryptohash${haskell:ShortBlurb}
+ This Haskell library exports the cryptohash interface through crypto-api.
+ See libghc-cryptohash-* and libghc-crypto-api-* for more information.
+ .
+ ${haskell:Blurb}
