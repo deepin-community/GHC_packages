@@ -1,0 +1,37 @@
+Description: Add allow-bsd flag for Debian GNU/kFreeBSD
+ On Debian GNU/kFreeBSD (FreeBSD kernel plus glibc), the BSD flavour of
+ sendfile is not usable (struct sf_hdtr is declared with -D_BSD_SOURCE=1,
+ but has no definition), and the Linux flavour doesn't work either since
+ MSG_MORE is absent.  However, the fallback version works fine.
+ .
+ Unfortunately, Cabal treats kfreebsdgnu as os(freebsd), and os(kfreebsdgnu)
+ doesn't work.  So, to make it possible to select the fallback
+ implementation on GNU/kFreeBSD, I believe a flag is necessary.
+Author: Colin Watson <cjwatson@debian.org>
+Forwarded: https://github.com/kazu-yamamoto/simple-sendfile/pull/13
+Last-Update: 2013-06-14
+
+Index: b/simple-sendfile.cabal
+===================================================================
+--- a/simple-sendfile.cabal
++++ b/simple-sendfile.cabal
+@@ -12,6 +12,10 @@
+ Cabal-Version:          >= 1.10
+ Build-Type:             Simple
+
++Flag allow-bsd
++  Description:          Allow use of BSD sendfile (disable on GNU/kFreeBSD)
++  Default:              True
++
+ Library
+   Default-Language:     Haskell2010
+   GHC-Options:          -Wall
+@@ -21,7 +25,7 @@
+                       , network
+                       , bytestring
+   -- NetBSD and OpenBSD don't have sendfile
+-  if os(freebsd)
++  if os(freebsd) && flag(allow-bsd)
+     CPP-Options:        -DOS_BSD
+     Other-Modules:      Network.Sendfile.BSD
+                         Network.Sendfile.IOVec
