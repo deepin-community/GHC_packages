@@ -8,9 +8,9 @@ Build-Depends: debhelper (>= 9)
   , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
-  , libghc-hinotify-dev (>> 0.3.5)
-  , libghc-hinotify-dev (<< 0.4)
-  , libghc-hinotify-prof
+  , libghc-hinotify-dev (>> 0.3.5) [linux-any]
+  , libghc-hinotify-dev (<< 0.4) [linux-any]
+  , libghc-hinotify-prof [linux-any]
   , libghc-system-fileio-dev (>> 0.3.8)
   , libghc-system-fileio-dev (<< 0.4)
   , libghc-system-fileio-prof
@@ -20,7 +20,7 @@ Build-Depends: debhelper (>= 9)
   , libghc-text-dev (>> 0.11.0)
   , libghc-text-prof
 Build-Depends-Indep: ghc-doc
-  , libghc-hinotify-doc
+  , libghc-hinotify-doc [linux-any]
   , libghc-system-fileio-doc
   , libghc-system-filepath-doc
   , libghc-text-doc
