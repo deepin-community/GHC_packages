@@ -1,0 +1,21 @@
+Description: Pass a valid locale name to newlocale
+ FreeBSD libc treats a NULL second argument to newlocale as equivalent to
+ "C", but glibc returns an error in that case, causing a segfault shortly
+ afterwards when passing a NULL locale to strftime_l/strptime_l.
+Author: Colin Watson <cjwatson@debian.org>
+Forwarded: https://github.com/kazu-yamamoto/unix-time/pull/11
+Last-Update: 2013-06-15
+
+Index: b/cbits/conv.c
+===================================================================
+--- a/cbits/conv.c
++++ b/cbits/conv.c
+@@ -21,7 +21,7 @@
+ locale_t c_locale = NULL;
+
+ void init_locale() {
+-    if (c_locale == NULL) c_locale = newlocale(LC_TIME_MASK, NULL, NULL);
++    if (c_locale == NULL) c_locale = newlocale(LC_TIME_MASK, "C", NULL);
+ }
+ #else
+ void init_locale() {
