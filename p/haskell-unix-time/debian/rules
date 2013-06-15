@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 
-DEB_ENABLE_TESTS = yes
+DEB_ENABLE_TESTS = $(shell test -e /usr/lib/ghc/bin/ghci && echo yes)
 
 # the test suite assumes it's being run under Japan Standard Time
 export TZ = Etc/GMT-9
