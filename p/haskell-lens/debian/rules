@@ -2,5 +2,11 @@
 
 DEB_ENABLE_TESTS = $(shell test -e /usr/lib/ghc/libHSrts_thr.a && echo yes)
 
+include /usr/share/cdbs/1/rules/buildvars.mk
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
+
+ifeq ($(DEB_HOST_ARCH),sparc)
+	# Disable tests that require SMP.
+	DEB_SETUP_GHC_CONFIGURE_ARGS := -f-test-hunit -f-test-properties
+endif
