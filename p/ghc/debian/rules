@@ -109,7 +109,7 @@ endif
 build: build-stamp
 build-stamp: configure-stamp
 	dh_testdir
-	$(MAKE) $(MAKEFLAGS)
+	$(MAKE) $(MAKEFLAGS) V=1
 
 	# Do some very simple tests that the compiler actually works
 	rm -rf debian/testghc
