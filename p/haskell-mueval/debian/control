@@ -1,0 +1,75 @@
+Source: haskell-mueval
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-mtl-dev (>= 2)
+  , libghc-mtl-prof
+  , libghc-hint-dev (>= 0.3.1)
+  , libghc-hint-prof
+  , libghc-show-dev (>= 0.3)
+  , libghc-show-prof
+  , libghc-utf8-string-dev
+  , libghc-utf8-string-prof
+  , libghc-simple-reflect-dev
+  , libghc-simple-reflect-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-mtl-doc
+  , libghc-hint-doc
+  , libghc-show-doc
+  , libghc-utf8-string-doc
+  , libghc-simple-reflect-doc
+Standards-Version: 3.9.2
+Homepage: http://hackage.haskell.org/package/mueval
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-mueval
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-mueval
+X-Description: Safely evaluate pure Haskell expressions
+ Mueval is a Haskell interpreter. It uses the GHC API to evaluate arbitrary
+ Haskell expressions.  Importantly, mueval takes many precautions to defang and
+ avoid "evil" code.  It uses resource limits, whitelisted modules and Safe
+ Haskell, special Show instances for IO, threads, processes, and changes of
+ directory to sandbox the Haskell code.
+ .
+ It is, in short, intended to be a standalone version of Lambdabot's famous
+ evaluation functionality.
+
+Package: libghc-mueval-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-mueval-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-mueval-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
