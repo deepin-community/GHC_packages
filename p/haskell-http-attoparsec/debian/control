@@ -1,0 +1,61 @@
+Source: haskell-http-attoparsec
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-attoparsec-dev (>> 0.10.4.0)
+  , libghc-attoparsec-dev (<< 0.11)
+  , libghc-attoparsec-prof
+  , libghc-http-types-dev (>> 0.8.0)
+  , libghc-http-types-dev (<< 0.9)
+  , libghc-http-types-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-attoparsec-doc
+  , libghc-http-types-doc
+Standards-Version: 3.9.4
+Homepage: http://hackage.haskell.org/package/http-attoparsec
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-http-attoparsec
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-http-attoparsec
+X-Description: Attoparsec parsers for http-types.
+ Attoparsec parsers for http-types (for RFC 2616 byteranges).
+
+Package: libghc-http-attoparsec-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-http-attoparsec-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-http-attoparsec-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
