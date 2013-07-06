@@ -1,0 +1,65 @@
+Source: haskell-web-routes-happstack
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-happstack-server-dev (>> 6.6)
+  , libghc-happstack-server-dev (<< 7.2)
+  , libghc-happstack-server-prof
+  , libghc-text-dev (>> 0.11)
+  , libghc-text-dev (<< 0.12)
+  , libghc-text-prof
+  , libghc-web-routes-dev (>> 0.27.1)
+  , libghc-web-routes-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-happstack-server-doc
+  , libghc-text-doc
+  , libghc-web-routes-doc
+Standards-Version: 3.9.4
+Homepage: http://hackage.haskell.org/package/web-routes-happstack
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-web-routes-happstack
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-web-routes-happstack
+X-Description: web-routes support for Happstack
+ Includes functions for converting web-routes Sites to normal Happstack
+ routes.
+
+Package: libghc-web-routes-happstack-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-web-routes-happstack-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-web-routes-happstack-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
