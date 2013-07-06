@@ -1,0 +1,100 @@
+Source: haskell-yesod-auth-account
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-base64-bytestring-dev (>> 1.0)
+  , libghc-base64-bytestring-prof
+  , libghc-blaze-html-dev (>> 0.6)
+  , libghc-blaze-html-prof
+  , libghc-mtl-dev (>> 2.1)
+  , libghc-mtl-prof
+  , libghc-persistent-dev (>> 1.1.5.1)
+  , libghc-persistent-dev (<< 1.2)
+  , libghc-persistent-prof
+  , libghc-pwstore-fast-dev (>> 2.0)
+  , libghc-pwstore-fast-prof
+  , libghc-random-dev (>> 1.0)
+  , libghc-random-prof
+  , libghc-text-dev (>> 0.11)
+  , libghc-text-prof
+  , libghc-yesod-auth-dev (>> 1.1)
+  , libghc-yesod-auth-dev (<< 1.2)
+  , libghc-yesod-auth-prof
+  , libghc-yesod-core-dev (>> 1.1)
+  , libghc-yesod-core-dev (<< 1.2)
+  , libghc-yesod-core-prof
+  , libghc-yesod-form-dev (>> 1.2)
+  , libghc-yesod-form-dev (<< 1.3)
+  , libghc-yesod-form-prof
+  , libghc-yesod-persistent-dev (>> 1.1)
+  , libghc-yesod-persistent-dev (<< 1.2)
+  , libghc-yesod-persistent-prof
+  , libghc-monad-logger-dev (>> 0.3)
+  , libghc-persistent-sqlite-dev
+  , libghc-resourcet-dev
+  , libghc-xml-conduit-dev
+  , libghc-yesod-dev
+  , libghc-yesod-test-dev
+Build-Depends-Indep: ghc-doc
+  , libghc-base64-bytestring-doc
+  , libghc-blaze-html-doc
+  , libghc-mtl-doc
+  , libghc-persistent-doc
+  , libghc-pwstore-fast-doc
+  , libghc-random-doc
+  , libghc-text-doc
+  , libghc-yesod-auth-doc
+  , libghc-yesod-core-doc
+  , libghc-yesod-form-doc
+  , libghc-yesod-persistent-doc
+Standards-Version: 3.9.4
+Homepage: http://hackage.haskell.org/package/yesod-auth-account
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-yesod-auth-account
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-yesod-auth-account
+X-Description: account authentication plugin for Yesod
+ An auth plugin for accounts. Each account consists of a username,
+ email, and password. The plugin provides new account, email
+ verification, and password reset pages that can be customized to
+ enhance the user experience.
+
+Package: libghc-yesod-auth-account-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-yesod-auth-account-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-yesod-auth-account-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
