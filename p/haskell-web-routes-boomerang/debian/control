@@ -1,0 +1,70 @@
+Source: haskell-web-routes-boomerang
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-boomerang-dev (>> 1.3.2)
+  , libghc-boomerang-prof
+  , libghc-mtl-dev
+  , libghc-mtl-prof
+  , libghc-parsec3-dev (>> 3.1)
+  , libghc-parsec3-prof
+  , libghc-text-dev (>> 0.11)
+  , libghc-text-dev (<< 0.12)
+  , libghc-text-prof
+  , libghc-web-routes-dev (>> 0.26)
+  , libghc-web-routes-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-boomerang-doc
+  , libghc-mtl-doc
+  , libghc-parsec3-doc
+  , libghc-text-doc
+  , libghc-web-routes-doc
+Standards-Version: 3.9.4
+Homepage: http://hackage.haskell.org/package/web-routes-boomerang
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-web-routes-boomerang
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-web-routes-boomerang
+X-Description: correctness and composability of application URLs
+ This module adds support for creating url parsers/printers using a
+ single unified grammar specification.
+
+Package: libghc-web-routes-boomerang-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-web-routes-boomerang-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-web-routes-boomerang-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
