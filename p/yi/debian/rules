@@ -9,8 +9,5 @@ build/yi:: build-ghc-stamp
 binary-fixup/yi::
 	install -m 755 -s -D dist-ghc/build/yi/yi debian/yi/usr/bin/yi || true
 	install -m 755 -s -D dist-ghc/build/parserTest/parserTest debian/yi/usr/bin/parserTest || true
-	install -m 644 -D art/*.png debian/yi/usr/share/yi/art || true
-	install -m 644 -D art/*.pdf debian/yi/usr/share/yi/art || true
-	install -m 644 -D example-configs/*.hs debian/yi/usr/share/yi/example-configs || true
-	install -m 644 -D art/*.xpm debian/yi/usr/share/yi/art || true
 	install -m 644 -D debian/*.desktop debian/yi/usr/share/applications || true
+	cp -R debian/tmp-inst-ghc/usr/share/yi debian/yi/usr/share
