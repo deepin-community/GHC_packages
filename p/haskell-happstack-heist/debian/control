@@ -1,0 +1,79 @@
+Source: haskell-happstack-heist
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-blaze-builder-dev (>> 0.2)
+  , libghc-blaze-builder-dev (<< 0.4)
+  , libghc-blaze-builder-prof
+  , libghc-either-dev (>> 3.4)
+  , libghc-either-dev (<< 3.5)
+  , libghc-either-prof
+  , libghc-happstack-server-dev (>> 7.0)
+  , libghc-happstack-server-dev (<< 7.2)
+  , libghc-happstack-server-prof
+  , libghc-heist-dev (>> 0.11)
+  , libghc-heist-dev (<< 0.13)
+  , libghc-heist-prof
+  , libghc-mtl-dev (>> 2)
+  , libghc-mtl-dev (<< 3)
+  , libghc-mtl-prof
+  , libghc-text-dev (>> 0.10)
+  , libghc-text-dev (<< 0.12)
+  , libghc-text-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-blaze-builder-doc
+  , libghc-either-doc
+  , libghc-happstack-server-doc
+  , libghc-heist-doc
+  , libghc-mtl-doc
+  , libghc-text-doc
+Standards-Version: 3.9.4
+Homepage: http://hackage.haskell.org/package/happstack-heist
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-happstack-heist
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-happstack-heist
+X-Description: support for Heist templates in Happstack
+ Happstack is a web application framework. Heist is an XML templating
+ solution. This package makes it easy to use Heist templates with
+ Happstack.
+
+Package: libghc-happstack-heist-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-happstack-heist-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-happstack-heist-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

@@ -1,0 +1,25 @@
+--- a/happstack-heist.cabal
++++ b/happstack-heist.cabal
+@@ -25,6 +25,6 @@
+                        either           == 3.4.*,
+                        filepath,
+                        happstack-server >= 7.0 && < 7.2,
+-                       heist            >= 0.11 && < 0.12,
++                       heist            >= 0.12 && < 0.13,
+                        mtl              == 2.*,
+                        text             >= 0.10 && < 0.12
+--- a/Happstack/Server/Heist.hs
++++ b/Happstack/Server/Heist.hs
+@@ -94,11 +94,10 @@
+                   -> m (Either [String] (HeistState n))
+ initHeistCompiled splices attrSplices templateDir =
+     liftIO $ runEitherT $
+-           do templateRepo <- loadTemplates templateDir
+               initHeist $ mempty { hcLoadTimeSplices  = defaultLoadTimeSplices
+                                  , hcCompiledSplices  = splices
+                                  , hcAttributeSplices = attrSplices
+-                                 , hcTemplates        = templateRepo
++                                 , hcTemplateLocations = [loadTemplates templateDir]
+                                  }
+
+ heistServe :: (Happstack m) =>
