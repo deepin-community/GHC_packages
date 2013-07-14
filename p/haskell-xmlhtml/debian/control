@@ -1,0 +1,92 @@
+Source: haskell-xmlhtml
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-blaze-builder-dev (>> 0.2)
+  , libghc-blaze-builder-dev (<< 0.4)
+  , libghc-blaze-builder-prof
+  , libghc-blaze-html-dev (>> 0.5)
+  , libghc-blaze-html-dev (<< 0.7)
+  , libghc-blaze-html-prof
+  , libghc-blaze-markup-dev (>> 0.5)
+  , libghc-blaze-markup-dev (<< 0.6)
+  , libghc-blaze-markup-prof
+  , libghc-parsec3-dev (>> 3.1.2)
+  , libghc-parsec3-dev (<< 3.2)
+  , libghc-parsec3-prof
+  , libghc-text-dev (>> 0.11)
+  , libghc-text-dev (<< 0.12)
+  , libghc-text-prof
+  , libghc-unordered-containers-dev (>> 0.1.4)
+  , libghc-unordered-containers-dev (<< 0.3)
+  , libghc-unordered-containers-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-blaze-builder-doc
+  , libghc-blaze-html-doc
+  , libghc-blaze-markup-doc
+  , libghc-parsec3-doc
+  , libghc-text-doc
+  , libghc-unordered-containers-doc
+Standards-Version: 3.9.4
+Homepage: http://hackage.haskell.org/package/xmlhtml
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-xmlhtml
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-xmlhtml
+X-Description: XML parser and renderer with HTML 5 quirks mode
+ Contains renderers and parsers for both XML and HTML 5 document
+ fragments, which share data structures so that it's easy to work with
+ both. Document fragments are bits of documents, which are not
+ constrained by some of the high-level structure rules (in particular,
+ they may contain more than one root element).
+ .
+ Note that this is not a compliant HTML 5 parser. Rather, it is a
+ parser for HTML 5 compliant documents. It does not implement the HTML
+ 5 parsing algorithm, and should generally be expected to perform
+ correctly only on documents that you trust to conform to HTML 5. This
+ is not a suitable library for implementing web crawlers or other
+ software that will be exposed to documents from outside sources. The
+ result is also not the HTML 5 node structure, but rather something
+ closer to the physical structure. For example, omitted start tags are
+ not inserted (and so, their corresponding end tags must also be
+ omitted).
+
+Package: libghc-xmlhtml-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-xmlhtml-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-xmlhtml-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
