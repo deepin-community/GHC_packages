@@ -2,3 +2,6 @@
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
+
+binary-fixup/taffybar::
+	install -m 755 -s -D dist-ghc/build/taffybar/taffybar debian/taffybar/usr/bin/taffybar || true

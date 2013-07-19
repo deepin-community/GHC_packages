@@ -73,8 +73,10 @@ Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/taffybar
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/taffybar
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/taffybar
-X-Description: Short description of foo
- Long description of foo
+X-Description: desktop bar extensible in Haskell
+ This bar is based on gtk2hs and provides several widgets (including a few
+ graphical ones).
+ It also sports an optional snazzy system tray.
 
 Package: libghc-taffybar-dev
 Architecture: any
@@ -112,3 +114,16 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
+
+Package: taffybar
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: desktop bar extensible in Haskell
+ This bar is based on gtk2hs and provides several widgets (including a few
+ graphical ones).
+ It also sports an optional snazzy system tray.
