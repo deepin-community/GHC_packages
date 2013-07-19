@@ -1,8 +1,9 @@
 #!/usr/bin/make -f
 
-DEB_SETUP_GHC_CONFIGURE_ARGS := --ghc-options='-optl -z -optl relro'
+DEB_SETUP_GHC_CONFIGURE_ARGS := --datasubdir=taffybar --ghc-options='-optl -z -optl relro'
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
 
 binary-fixup/taffybar::
 	install -m 755 -s -D dist-ghc/build/taffybar/taffybar debian/taffybar/usr/bin/taffybar || true
+	cp -R debian/tmp-inst-ghc/usr/share/taffybar debian/taffybar/usr/share
