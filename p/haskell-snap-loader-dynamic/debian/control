@@ -1,0 +1,75 @@
+Source: haskell-snap-loader-dynamic
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , ghc-ghci
+  , libghc-directory-tree-dev (>> 0.10)
+  , libghc-directory-tree-dev (<< 0.12)
+  , libghc-directory-tree-prof
+  , libghc-hint-dev (>> 0.3.3.1)
+  , libghc-hint-dev (<< 0.4)
+  , libghc-hint-prof
+  , libghc-mtl-dev (>> 2.0)
+  , libghc-mtl-dev (<< 2.2)
+  , libghc-mtl-prof
+  , libghc-snap-core-dev (>> 0.9)
+  , libghc-snap-core-dev (<< 0.11)
+  , libghc-snap-core-prof
+  , ghc-ghci
+Build-Depends-Indep: ghc-doc
+  , libghc-directory-tree-doc
+  , libghc-hint-doc
+  , libghc-mtl-doc
+  , libghc-snap-core-doc
+Standards-Version: 3.9.4
+Homepage: http://hackage.haskell.org/package/snap-loader-dynamic
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-snap-loader-dynamic
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-snap-loader-dynamic
+X-Description: dynamic loader for the Snap Web Framework
+ This library includes the machinery necessary to use hint to load
+ action code dynamically. It includes a Template Haskell function to
+ gather the necessary compile-time information about code location,
+ compiler arguments, etc, and bind that information into the calls to
+ the dynamic loader.
+
+Package: libghc-snap-loader-dynamic-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-snap-loader-dynamic-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-snap-loader-dynamic-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
