@@ -1,0 +1,181 @@
+Source: haskell-snap
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-aeson-dev (>> 0.6)
+  , libghc-aeson-dev (<< 0.7)
+  , libghc-aeson-prof
+  , libghc-attoparsec-dev (>> 0.10)
+  , libghc-attoparsec-dev (<< 0.11)
+  , libghc-attoparsec-prof
+  , libghc-cereal-dev (>> 0.3)
+  , libghc-cereal-dev (<< 0.4)
+  , libghc-cereal-prof
+  , libghc-clientsession-dev (>> 0.8)
+  , libghc-clientsession-dev (<< 0.10)
+  , libghc-clientsession-prof
+  , libghc-comonad-dev (>> 1.1)
+  , libghc-comonad-dev (<< 3.2)
+  , libghc-comonad-prof
+  , libghc-configurator-dev (>> 0.1)
+  , libghc-configurator-dev (<< 0.3)
+  , libghc-configurator-prof
+  , libghc-directory-tree-dev (>> 0.11)
+  , libghc-directory-tree-dev (<< 0.12)
+  , libghc-directory-tree-prof
+  , libghc-dlist-dev (>> 0.5)
+  , libghc-dlist-dev (<< 0.6)
+  , libghc-dlist-prof
+  , libghc-errors-dev (>> 1.4)
+  , libghc-errors-dev (<< 1.5)
+  , libghc-errors-prof
+  , libghc-hashable-dev (>> 1.1)
+  , libghc-hashable-dev (<< 1.3)
+  , libghc-hashable-prof
+  , libghc-lens-dev (>> 3.7.6)
+  , libghc-lens-dev (<< 3.10)
+  , libghc-lens-prof
+  , libghc-logict-dev (>> 0.4.2)
+  , libghc-logict-dev (<< 0.7)
+  , libghc-logict-prof
+  , libghc-monadcatchio-transformers-dev (>> 0.2)
+  , libghc-monadcatchio-transformers-dev (<< 0.4)
+  , libghc-monadcatchio-transformers-prof
+  , libghc-mtl-dev (>> 2.0)
+  , libghc-mtl-dev (<< 2.2)
+  , libghc-mtl-prof
+  , libghc-mwc-random-dev (>> 0.8)
+  , libghc-mwc-random-dev (<< 0.13)
+  , libghc-mwc-random-prof
+  , libghc-pwstore-fast-dev (>> 2.2)
+  , libghc-pwstore-fast-dev (<< 2.4)
+  , libghc-pwstore-fast-prof
+  , libghc-regex-posix-dev (>> 0.95)
+  , libghc-regex-posix-dev (<< 1)
+  , libghc-regex-posix-prof
+  , libghc-snap-core-dev (>> 0.9)
+  , libghc-snap-core-dev (<< 0.11)
+  , libghc-snap-core-prof
+  , libghc-snap-server-dev (>> 0.9)
+  , libghc-snap-server-dev (<< 0.11)
+  , libghc-snap-server-prof
+  , libghc-stm-dev (>> 2.2)
+  , libghc-stm-dev (<< 2.5)
+  , libghc-stm-prof
+  , libghc-syb-dev (>> 0.1)
+  , libghc-syb-dev (<< 0.5)
+  , libghc-syb-prof
+  , ghc-ghci
+  , libghc-text-dev (>> 0.11)
+  , libghc-text-dev (<< 0.12)
+  , libghc-text-prof
+  , libghc-transformers-dev (>> 0.2)
+  , libghc-transformers-dev (<< 0.4)
+  , libghc-transformers-prof
+  , libghc-unordered-containers-dev (>> 0.1.4)
+  , libghc-unordered-containers-dev (<< 0.3)
+  , libghc-unordered-containers-prof
+  , libghc-vector-dev (>> 0.7.1)
+  , libghc-vector-dev (<< 0.11)
+  , libghc-vector-prof
+  , libghc-vector-algorithms-dev (>> 0.4)
+  , libghc-vector-algorithms-dev (<< 0.6)
+  , libghc-vector-algorithms-prof
+  , libghc-xmlhtml-dev (>> 0.1)
+  , libghc-xmlhtml-dev (<< 0.3)
+  , libghc-xmlhtml-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-aeson-doc
+  , libghc-attoparsec-doc
+  , libghc-cereal-doc
+  , libghc-clientsession-doc
+  , libghc-comonad-doc
+  , libghc-configurator-doc
+  , libghc-directory-tree-doc
+  , libghc-dlist-doc
+  , libghc-errors-doc
+  , libghc-hashable-doc
+  , libghc-lens-doc
+  , libghc-logict-doc
+  , libghc-monadcatchio-transformers-doc
+  , libghc-mtl-doc
+  , libghc-mwc-random-doc
+  , libghc-pwstore-fast-doc
+  , libghc-regex-posix-doc
+  , libghc-snap-core-doc
+  , libghc-snap-server-doc
+  , libghc-stm-doc
+  , libghc-syb-doc
+  , libghc-text-doc
+  , libghc-transformers-doc
+  , libghc-unordered-containers-doc
+  , libghc-vector-doc
+  , libghc-vector-algorithms-doc
+  , libghc-xmlhtml-doc
+Standards-Version: 3.9.4
+Homepage: http://hackage.haskell.org/package/snap
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-snap
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-snap
+X-Description: Snap Web Framework
+ This is the top-level package for the official Snap Framework
+ libraries. It includes:
+ .
+ The Snaplets API
+ .
+ The "snap" executable program for generating starter projects
+ .
+ Snaplets for sessions, authentication, and templates
+
+Package: snap
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}, libghc-snap-core-dev, libghc-snap-server-dev
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Snap Web Framework - binary
+ This contains the "snap" executable program for generating starter
+ projects with the Snap Web Framework.
+
+Package: libghc-snap-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-snap-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-snap-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
