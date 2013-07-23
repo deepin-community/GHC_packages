@@ -120,10 +120,14 @@ Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
   , ${misc:Depends}
-Recommends: ${haskell:Recommends}
+Recommends: ${haskell:Recommends}, libghc-taffybar-dev, libghc-taffybar-doc
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
 Description: desktop bar extensible in Haskell
  This bar is based on gtk2hs and provides several widgets (including a few
  graphical ones).
  It also sports an optional snazzy system tray.
+ .
+ This package comes pre-configured with the default configuration. If you want
+ to build your custom-configured version, make sure that libghc-taffybar-dev is
+ installed and put your configuration in ~/.config/taffybar/taffybar.hs
