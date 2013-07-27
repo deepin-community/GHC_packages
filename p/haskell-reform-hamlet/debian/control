@@ -1,0 +1,71 @@
+Source: haskell-reform-hamlet
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-blaze-markup-dev (>> 0.5)
+  , libghc-blaze-markup-dev (<< 0.6)
+  , libghc-blaze-markup-prof
+  , libghc-hamlet-dev (>> 1.0)
+  , libghc-hamlet-dev (<< 1.2)
+  , libghc-hamlet-prof
+  , libghc-reform-dev (>> 0.2)
+  , libghc-reform-dev (<< 0.3)
+  , libghc-reform-prof
+  , libghc-text-dev (>> 0.11)
+  , libghc-text-dev (<< 0.12)
+  , libghc-text-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-blaze-markup-doc
+  , libghc-hamlet-doc
+  , libghc-reform-doc
+  , libghc-text-doc
+Standards-Version: 3.9.4
+Homepage: http://hackage.haskell.org/package/reform-hamlet
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-reform-hamlet
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-reform-hamlet
+X-Description: support for using Hamlet with Reform
+ Reform is a library for building and validating forms using
+ applicative functors. This package adds support for using reform
+ with Hamlet, a type-safe tool for generating HTML code.
+
+Package: libghc-reform-hamlet-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-reform-hamlet-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-reform-hamlet-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
