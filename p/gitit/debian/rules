@@ -22,18 +22,18 @@ build/gitit:: $(MANPAGES)
 
 install/gitit:: debian/tmp-inst-ghc debian/extra-depends
 	cp -av debian/tmp-inst-ghc/usr/bin/* debian/gitit/usr/bin
-	cp -av debian/tmp-inst-ghc/usr/share/gitit-$(CABAL_VERSION) debian/gitit/usr/share
+	cp -av debian/tmp-inst-ghc/usr/share/gitit debian/gitit/usr/share
 
 	# Don't use embedded copies of jQuery and jQuery UI; instead, make symlinks
-	rm -f debian/gitit/usr/share/gitit-$(CABAL_VERSION)/data/static/js/jquery.min.js
-	rm -f debian/gitit/usr/share/gitit-$(CABAL_VERSION)/data/static/js/jquery-ui.packed.js
-	dh_link -pgitit /usr/share/javascript/jquery/jquery.min.js usr/share/gitit-$(CABAL_VERSION)/data/static/js/jquery.min.js
-	dh_link -pgitit /usr/share/javascript/jquery-ui/jquery-ui.min.js usr/share/gitit-$(CABAL_VERSION)/data/static/js/jquery-ui.packed.js
+	rm -f debian/gitit/usr/share/gitit/data/static/js/jquery.min.js
+	rm -f debian/gitit/usr/share/gitit/data/static/js/jquery-ui.packed.js
+	dh_link -pgitit /usr/share/javascript/jquery/jquery.min.js usr/share/gitit/data/static/js/jquery.min.js
+	dh_link -pgitit /usr/share/javascript/jquery-ui/jquery-ui.min.js usr/share/gitit/data/static/js/jquery-ui.packed.js
 
 	# Removes a few files, that are not necessary and make lintian cry
-	rm -f debian/gitit/usr/share/gitit-$(CABAL_VERSION)/data/post-update
-	rm -f debian/gitit/usr/share/gitit-$(CABAL_VERSION)/BLUETRIP-LICENSE
-	rm -f debian/gitit/usr/share/gitit-$(CABAL_VERSION)/YUI-LICENSE
+	rm -f debian/gitit/usr/share/gitit/data/post-update
+	rm -f debian/gitit/usr/share/gitit/BLUETRIP-LICENSE
+	rm -f debian/gitit/usr/share/gitit/YUI-LICENSE
 
 	# Build data packages depends
 	dh_haskell_depends -pgitit
