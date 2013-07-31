@@ -14,7 +14,7 @@ clean:
 
 override_dh_auto_configure:
 	ghc -package Cabal Setup.hs -o setup
-	./setup configure --prefix /usr $(THREADED)
+	./setup configure --prefix /usr $(THREADED) --datasubdir=bustle
 
 override_dh_auto_build:
 	$(MAKE)
