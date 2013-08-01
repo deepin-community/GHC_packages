@@ -1,24 +1,19 @@
 xmobar for Debian
------------------
+=================
 
 xmobar for Debian has been compiled with Xft and Unicode support, so it should
 work out of the box in unicode environments and you should be able to use
 every TrueType font available to the X Server via xft.
 
-The weather plugin requires curl to be installed in your system to actually
-work.
+Plugin notes
+------------
+- The weather plugin requires curl to be installed in your system to actually
+  work.
 
-If you have a .xmobarrc from 0.9, note that you also have to include the
-`lowerOnStart' option to make 0.9.2 work.
+- The Mail, MBox and Wireless plugins are Linux-specific and have been
+  disabled in non-Linux architectures (kFreeBSD, Hurd).
 
- -- Apollon Oikonomopoulos <apoikos@gmail.com>  Mon, 21 Jun 2009 10:42:25 +0300
+- The MPRIS and DBus plugins require haskell-dbus, which is currently broken
+  for non-linux platforms and so they are enabled only for Linux.
 
-The Mail, MBox and Wireless plugins are Linux-specific and have been disabled
-in non-Linux architectures (kFreeBSD, Hurd).
-
- -- Apollon Oikonomopoulos <apoikos@gmail.com>  Mon, 19 Jul 2011 13:10:20 +0300
-
-As of 0.16-1, the mpd, alsa and datezone plugins are not compiled in due to
-missing dependencies.
-
- -- Apollon Oikonomopoulos <apoikos@gmail.com>  Thu, 14 Mar 2013 17:56:06 +0200
+- The mpd, alsa and datezone plugins are disabled to missing dependencies.
