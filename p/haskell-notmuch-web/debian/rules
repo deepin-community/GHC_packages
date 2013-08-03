@@ -1,0 +1,19 @@
+#!/usr/bin/make -f
+
+#DEB_ENABLE_TESTS = yes
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/hlibrary.mk
+
+install/notmuch-web:: debian/tmp-inst-ghc
+	cp -av debian/tmp-inst-ghc/usr/bin/* debian/notmuch-web/usr/bin
+	cp -r debian/tmp-inst-ghc/usr/share/notmuch-web debian/notmuch-web/usr/share/
+# Make sure JavaScript comes from unminimized sources
+	rm debian/notmuch-web/usr/share/notmuch-web/static/js/bootstrap.min.js \
+	   debian/notmuch-web/usr/share/notmuch-web/static/css/bootstrap.min.css \
+	   debian/notmuch-web/usr/share/notmuch-web/static/css/bootstrap-responsive.min.css \
+	   debian/notmuch-web/usr/share/notmuch-web/static/js/jquery-1-10-1.min.js
+	ln -s /usr/share/twitter-bootstrap/files/css/bootstrap.min.css debian/notmuch-web/usr/share/notmuch-web/static/css/
+	ln -s /usr/share/twitter-bootstrap/files/css/bootstrap-responsive.min.css debian/notmuch-web/usr/share/notmuch-web/static/css/
+	ln -s /usr/share/twitter-bootstrap/files/js/bootstrap.min.js debian/notmuch-web/usr/share/notmuch-web/static/js/
+	ln -s /usr/share/javascript/jquery/jquery.min.js debian/notmuch-web/usr/share/notmuch-web/static/js/jquery-1-10-1.min.js

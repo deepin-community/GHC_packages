@@ -1,0 +1,185 @@
+Source: haskell-notmuch-web
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.19)
+  , ghc
+  , ghc-prof
+  , libghc-aeson-dev
+  , libghc-aeson-prof
+  , libghc-attoparsec-dev
+  , libghc-attoparsec-prof
+  , libghc-attoparsec-conduit-dev
+  , libghc-attoparsec-conduit-prof
+  , libghc-blaze-builder-dev
+  , libghc-blaze-builder-prof
+  , libghc-blaze-html-dev
+  , libghc-blaze-html-prof
+  , libghc-blaze-markup-dev
+  , libghc-blaze-markup-prof
+  , libghc-case-insensitive-dev
+  , libghc-case-insensitive-prof
+  , libghc-conduit-dev
+  , libghc-conduit-prof
+  , libghc-data-default-dev
+  , libghc-data-default-prof
+  , libghc-email-validate-dev
+  , libghc-email-validate-prof
+  , libghc-hamlet-dev
+  , libghc-hamlet-prof
+  , libghc-hashable-dev
+  , libghc-hashable-prof
+  , libghc-hjsmin-dev
+  , libghc-hjsmin-prof
+  , libghc-http-conduit-dev
+  , libghc-http-conduit-prof
+  , libghc-http-types-dev
+  , libghc-http-types-prof
+  , libghc-lifted-base-dev
+  , libghc-lifted-base-prof
+  , libghc-markdown-dev (>> 0.1.5)
+  , libghc-markdown-prof
+  , libghc-mime-mail-dev
+  , libghc-mime-mail-prof
+  , libghc-network-dev
+  , libghc-network-prof
+  , libghc-process-conduit-dev (>> 0.5)
+  , libghc-process-conduit-prof
+  , libghc-pwstore-fast-dev
+  , libghc-pwstore-fast-prof
+  , libghc-random-dev
+  , libghc-random-prof
+  , libghc-tagsoup-dev
+  , libghc-tagsoup-prof
+  , ghc-ghci
+  , libghc-text-dev
+  , libghc-text-prof
+  , libghc-transformers-dev
+  , libghc-transformers-prof
+  , libghc-unordered-containers-dev
+  , libghc-unordered-containers-prof
+  , libghc-vector-dev
+  , libghc-vector-prof
+  , libghc-wai-dev
+  , libghc-wai-prof
+  , libghc-wai-extra-dev
+  , libghc-wai-extra-prof
+  , libghc-warp-dev
+  , libghc-warp-prof
+  , libghc-xss-sanitize-dev (>> 0.3.4)
+  , libghc-xss-sanitize-prof
+  , libghc-yaml-dev
+  , libghc-yaml-prof
+  , libghc-yesod-dev (>> 1.2)
+  , libghc-yesod-dev (<< 1.3)
+  , libghc-yesod-prof
+  , libghc-yesod-auth-dev
+  , libghc-yesod-auth-prof
+  , libghc-yesod-static-dev
+  , libghc-yesod-static-prof
+  , libghc-hspec-dev
+  , libghc-hunit-dev
+  , libghc-yesod-test-dev
+Build-Depends-Indep: ghc-doc
+  , libghc-aeson-doc
+  , libghc-attoparsec-doc
+  , libghc-attoparsec-conduit-doc
+  , libghc-blaze-builder-doc
+  , libghc-blaze-html-doc
+  , libghc-blaze-markup-doc
+  , libghc-case-insensitive-doc
+  , libghc-conduit-doc
+  , libghc-data-default-doc
+  , libghc-email-validate-doc
+  , libghc-hamlet-doc
+  , libghc-hashable-doc
+  , libghc-hjsmin-doc
+  , libghc-http-conduit-doc
+  , libghc-http-types-doc
+  , libghc-lifted-base-doc
+  , libghc-markdown-doc
+  , libghc-mime-mail-doc
+  , libghc-network-doc
+  , libghc-process-conduit-doc
+  , libghc-pwstore-fast-doc
+  , libghc-random-doc
+  , libghc-tagsoup-doc
+  , libghc-text-doc
+  , libghc-transformers-doc
+  , libghc-unordered-containers-doc
+  , libghc-vector-doc
+  , libghc-wai-doc
+  , libghc-wai-extra-doc
+  , libghc-warp-doc
+  , libghc-xss-sanitize-doc
+  , libghc-yaml-doc
+  , libghc-yesod-doc
+  , libghc-yesod-auth-doc
+  , libghc-yesod-static-doc
+Standards-Version: 3.9.4
+Homepage: http://hackage.haskell.org/package/notmuch-web
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-notmuch-web
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-notmuch-web
+X-Description: web interface to the notmuch email indexer
+ An email client for the notmuch email indexer
+ (http://notmuchmail.org), built using Yesod. This project implements
+ a web server and uses bootstrap and jquery for the UI. The client is
+ fully functional, with searching, viewing, and composing email
+ messages.
+
+Package: notmuch-web
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+  , notmuch
+  , libjs-jquery
+  , libjs-twitter-bootstrap
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: web interface to the notmuch email indexer
+ An email client for the notmuch email indexer
+ (http://notmuchmail.org), built using Yesod. This project implements
+ a web server and uses bootstrap and jquery for the UI. The client is
+ fully functional, with searching, viewing, and composing email
+ messages.
+
+Package: libghc-notmuch-web-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-notmuch-web-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-notmuch-web-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
