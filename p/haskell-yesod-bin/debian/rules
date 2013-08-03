@@ -1,0 +1,76 @@
+#!/usr/bin/make -f
+
+INSTALL = install
+INSTALL_FILE    = $(INSTALL) -p    -o root -g root  -m  644
+INSTALL_PROGRAM = $(INSTALL) -p    -o root -g root  -m  755
+INSTALL_SCRIPT  = $(INSTALL) -p    -o root -g root  -m  755
+INSTALL_DIR     = $(INSTALL) -p -d -o root -g root  -m  755
+
+package=yesod-bin
+
+clean: checkroot
+#	debian/$(package).setup clean
+	rm -f debian/$(package).setup *.o *.hi
+	rm -f build-arch stamp-configure debian/files debian/substvars
+	rm -rf dist
+	rm -rf debian/$(package)
+
+debian/$(package).setup:
+	ghc Setup.lhs -o $@
+
+build: build-arch build-indep
+build-indep:
+
+build-arch: stamp-configure
+	$(checkdir)
+
+	debian/$(package).setup build
+
+	touch build-arch
+
+stamp-configure: debian/$(package).setup
+	$(checkdir)
+
+	debian/$(package).setup configure --prefix=/usr
+
+	touch stamp-configure
+
+binary: binary-arch
+
+binary-indep:	checkroot build
+
+binary-arch:	checkroot build
+	$(checkdir)
+
+	debian/$(package).setup copy --destdir=$(CURDIR)/debian/$(package)
+	rm -rf debian/$(package)/usr/share/doc/$(package)-*
+	cd debian/$(package) && $(INSTALL_DIR) \
+		usr/bin \
+		usr/lib/$(package) \
+		usr/share/doc/$(package) \
+		DEBIAN
+
+	$(INSTALL_FILE) debian/copyright debian/$(package)/usr/share/doc/$(package)/copyright
+
+	$(INSTALL_FILE) debian/changelog debian/$(package)/usr/share/doc/$(package)/changelog.Debian
+	gzip -9f debian/$(package)/usr/share/doc/$(package)/changelog.Debian
+
+	dpkg-shlibdeps -Tdebian/substvars -dDepends debian/$(package)/usr/bin/*
+	dpkg-gencontrol -ldebian/changelog -isp -p$(package) -Tdebian/substvars -Pdebian/$(package)
+
+	cd debian/$(package) && find * -type f ! -regex '^DEBIAN/.*' -print0 | xargs -r0 md5sum > DEBIAN/md5sums
+
+	chown -R root:root debian/$(package)
+	chmod -R go=rX debian/$(package)
+
+	dpkg --build debian/$(package) ..
+
+define checkdir
+	test -f debian/rules
+endef
+
+checkroot:
+	$(checkdir)
+	test root = "`whoami`"
+
+.PHONY: build build-indep binary binary-arch binary-indep clean checkroot
