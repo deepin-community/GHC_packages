@@ -8,86 +8,36 @@ Build-Depends: debhelper (>= 9)
   , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
-  , libghc-attoparsec-dev (>> 0.10)
-  , libghc-attoparsec-prof
-  , libghc-base64-bytestring-dev
-  , libghc-base64-bytestring-prof
-  , libghc-blaze-builder-dev (>> 0.2.1.4)
-  , libghc-blaze-builder-dev (<< 0.4)
-  , libghc-blaze-builder-prof
+  , libghc-aeson-dev
+  , libghc-aeson-prof
   , libghc-blaze-html-dev (>> 0.5)
   , libghc-blaze-html-prof
   , libghc-blaze-markup-dev (>> 0.5.1)
   , libghc-blaze-markup-prof
-  , libghc-conduit-dev (>> 0.5)
-  , libghc-conduit-dev (<< 1.1)
-  , libghc-conduit-prof
-  , libghc-file-embed-dev
-  , libghc-file-embed-prof
-  , libghc-fsnotify-dev (>> 0.0)
-  , libghc-fsnotify-dev (<< 0.1)
-  , libghc-fsnotify-prof
-  , libghc-ghc-paths-dev (>> 0.1)
-  , libghc-ghc-paths-prof
+  , libghc-data-default-dev
+  , libghc-data-default-prof
   , libghc-hamlet-dev (>> 1.1)
   , libghc-hamlet-dev (<< 1.2)
   , libghc-hamlet-prof
-  , libghc-http-conduit-dev
-  , libghc-http-conduit-prof
-  , libghc-http-reverse-proxy-dev (>> 0.1.1)
-  , libghc-http-reverse-proxy-prof
-  , libghc-http-types-dev (>> 0.7)
-  , libghc-lifted-base-dev
-  , libghc-lifted-base-prof
   , libghc-monad-control-dev (>> 0.3)
   , libghc-monad-control-dev (<< 0.4)
   , libghc-monad-control-prof
-  , libghc-network-dev
-  , libghc-network-prof
   , libghc-network-conduit-dev
   , libghc-network-conduit-prof
-  , libghc-optparse-applicative-dev (>> 0.4)
-  , libghc-optparse-applicative-prof
-  , libghc-parsec3-dev
-  , libghc-parsec3-prof
-  , libghc-project-template-dev (>> 0.1.1)
-  , libghc-project-template-prof
-  , libghc-resourcet-dev (>> 0.3)
-  , libghc-resourcet-dev (<< 0.5)
-  , libghc-resourcet-prof
-  , libghc-shakespeare-dev (>> 1.0.2)
-  , libghc-shakespeare-dev (<< 1.1)
-  , libghc-shakespeare-prof
-  , libghc-shakespeare-css-dev (>> 1.0.2)
+  , libghc-safe-dev
+  , libghc-safe-prof
+  , libghc-shakespeare-css-dev (>> 1.0)
   , libghc-shakespeare-css-dev (<< 1.1)
   , libghc-shakespeare-css-prof
   , libghc-shakespeare-js-dev (>> 1.0.2)
   , libghc-shakespeare-js-dev (<< 1.2)
   , libghc-shakespeare-js-prof
-  , libghc-shakespeare-text-dev (>> 1.0)
-  , libghc-shakespeare-text-dev (<< 1.1)
-  , libghc-shakespeare-text-prof
-  , libghc-split-dev (>> 0.2)
-  , libghc-split-dev (<< 0.3)
-  , libghc-split-prof
-  , libghc-system-fileio-dev (>> 0.3)
-  , libghc-system-fileio-dev (<< 0.4)
-  , libghc-system-fileio-prof
-  , libghc-system-filepath-dev (>> 0.4)
-  , libghc-system-filepath-dev (<< 0.5)
-  , libghc-system-filepath-prof
-  , libghc-tar-dev (>> 0.4)
-  , libghc-tar-dev (<< 0.5)
-  , libghc-tar-prof
   , ghc-ghci
   , libghc-text-dev (>> 0.11)
   , libghc-text-prof
   , libghc-transformers-dev (>> 0.2.2)
   , libghc-transformers-dev (<< 0.4)
   , libghc-transformers-prof
-  , libghc-unix-compat-dev (>> 0.2)
-  , libghc-unix-compat-dev (<< 0.5)
-  , libghc-unix-compat-prof
   , libghc-unordered-containers-dev
   , libghc-unordered-containers-prof
   , libghc-wai-dev (>> 1.3)
@@ -99,62 +49,33 @@ Build-Depends: debhelper (>= 9)
   , libghc-warp-dev (>> 1.3)
   , libghc-warp-dev (<< 1.4)
   , libghc-warp-prof
-  , libghc-yaml-dev (>> 0.8)
-  , libghc-yaml-dev (<< 0.9)
+  , libghc-yaml-dev
   , libghc-yaml-prof
-  , libghc-yesod-auth-dev (>> 1.1)
-  , libghc-yesod-auth-dev (<< 1.2)
+  , libghc-yesod-auth-dev (>> 1.2)
+  , libghc-yesod-auth-dev (<< 1.3)
   , libghc-yesod-auth-prof
-  , libghc-yesod-core-dev (>> 1.1.5)
-  , libghc-yesod-core-dev (<< 1.2)
+  , libghc-yesod-core-dev (>> 1.2.2)
+  , libghc-yesod-core-dev (<< 1.3)
   , libghc-yesod-core-prof
-  , libghc-yesod-default-dev (>> 1.1.3)
-  , libghc-yesod-default-dev (<< 1.2)
-  , libghc-yesod-default-prof
-  , libghc-yesod-form-dev (>> 1.1)
-  , libghc-yesod-form-dev (<< 1.3)
+  , libghc-yesod-form-dev (>> 1.3)
+  , libghc-yesod-form-dev (<< 1.4)
   , libghc-yesod-form-prof
-  , libghc-yesod-json-dev (>> 1.1)
-  , libghc-yesod-json-dev (<< 1.2)
-  , libghc-yesod-json-prof
-  , libghc-yesod-persistent-dev (>> 1.1)
-  , libghc-yesod-persistent-dev (<< 1.2)
+  , libghc-yesod-persistent-dev (>> 1.2)
+  , libghc-yesod-persistent-dev (<< 1.3)
   , libghc-yesod-persistent-prof
-  , libghc-zlib-dev (>> 0.5)
-  , libghc-zlib-dev (<< 0.6)
-  , libghc-zlib-prof
 Build-Depends-Indep: ghc-doc
-  , libghc-attoparsec-doc
-  , libghc-blaze-builder-doc
+  , libghc-aeson-doc
   , libghc-blaze-html-doc
   , libghc-blaze-markup-doc
-  , libghc-conduit-doc
-  , libghc-file-embed-doc
-  , libghc-fsnotify-doc
-  , libghc-ghc-paths-doc
+  , libghc-data-default-doc
   , libghc-hamlet-doc
-  , libghc-http-conduit-doc
-  , libghc-http-reverse-proxy-doc
-  , libghc-http-types-doc
-  , libghc-lifted-base-doc
   , libghc-monad-control-doc
-  , libghc-network-doc
   , libghc-network-conduit-doc
-  , libghc-optparse-applicative-doc
-  , libghc-parsec3-doc
-  , libghc-project-template-doc
-  , libghc-resourcet-doc
-  , libghc-shakespeare-doc
+  , libghc-safe-doc
   , libghc-shakespeare-css-doc
   , libghc-shakespeare-js-doc
-  , libghc-shakespeare-text-doc
-  , libghc-split-doc
-  , libghc-system-fileio-doc
-  , libghc-system-filepath-doc
-  , libghc-tar-doc
   , libghc-text-doc
   , libghc-transformers-doc
-  , libghc-unix-compat-doc
   , libghc-unordered-containers-doc
   , libghc-wai-doc
   , libghc-wai-extra-doc
@@ -162,21 +83,20 @@ Build-Depends-Indep: ghc-doc
   , libghc-yaml-doc
   , libghc-yesod-auth-doc
   , libghc-yesod-core-doc
-  , libghc-yesod-default-doc
   , libghc-yesod-form-doc
-  , libghc-yesod-json-doc
   , libghc-yesod-persistent-doc
-  , libghc-zlib-doc
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/yesod
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-yesod
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-yesod
-XS-Testsuite: autopkgtest
 
 Package: yesod
 Architecture: any
+Section: oldlibs
+Priority: extra
 Depends: ${shlibs:Depends}
   , ${misc:Depends}
+  , yesod-bin
 # generated with
 # grep , *cabal| cut -d,  -f2|cut -d\  -f2|sort -u|perl -ne 'chomp; print " , libghc-$_-dev\n"'
 Recommends: ghc
@@ -217,11 +137,13 @@ Suggests: libghc-persistent-postgresql-dev
   , libghc-mongodb-dev
   , libghc-persistent-mysql-dev
   , libghc-yesod-platform-dev
-Description: framework for type-safe, RESTful web applications
+Description: framework for type-safe, RESTful web applications (transitional package)
  Yesod is a framework designed to foster creation of RESTful web
  application that have strong compile-time guarantees of correctness.
  It also affords space efficient code and portability to many
  deployment backends, from CGI to stand-alone serving.
+ .
+ This is a dummy package depending on yesod-bin.
  .
  ${haskell:Blurb}
 
