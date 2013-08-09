@@ -1,0 +1,67 @@
+Source: haskell-src-meta
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-src-exts-dev (>> 1.8)
+  , libghc-src-exts-dev (<< 1.14)
+  , libghc-src-exts-prof
+  , libghc-syb-dev (>> 0.1)
+  , libghc-syb-dev (<< 0.5)
+  , libghc-syb-prof
+  , ghc-ghci
+  , libghc-th-orphans-dev (>> 0.5)
+  , libghc-th-orphans-dev (<< 0.8)
+  , libghc-th-orphans-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-src-exts-doc
+  , libghc-syb-doc
+  , libghc-th-orphans-doc
+Standards-Version: 3.9.4
+Homepage: http://hackage.haskell.org/package/haskell-src-meta
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-src-meta
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-src-meta
+X-Description: parse source to Template Haskell abstract syntax
+ The translation from haskell-src-exts abstract syntax to Template Haskell
+ abstract syntax isn't 100% complete yet.
+
+Package: libghc-src-meta-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-src-meta-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-src-meta-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
