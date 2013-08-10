@@ -24,7 +24,7 @@ Build-Depends-Indep: ghc-doc
   , libghc-show-doc
   , libghc-utf8-string-doc
   , libghc-simple-reflect-doc
-Standards-Version: 3.9.2
+Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/mueval
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-mueval
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-mueval
@@ -37,6 +37,19 @@ X-Description: Safely evaluate pure Haskell expressions
  .
  It is, in short, intended to be a standalone version of Lambdabot's famous
  evaluation functionality.
+
+Package: mueval
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription} - executables
+ ${haskell:LongDescription}
+ .
+ This contains the mueval binaries.
 
 Package: libghc-mueval-dev
 Architecture: any
