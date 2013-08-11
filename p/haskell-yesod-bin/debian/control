@@ -65,7 +65,41 @@ Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
   , ${misc:Depends}
-Recommends: ${haskell:Recommends}
+Recommends:
+ ghc
+# generated with
+# grep , *cabal | grep '>=' | cut -d,  -f2|cut -d\  -f2|sort -u|perl -ne 'chomp; $_ = lc $_; print " , libghc-$_-dev\n"'
+ , libghc-attoparsec-dev
+ , libghc-blaze-builder-dev
+ , libghc-bytestring-dev
+ , libghc-conduit-dev
+ , libghc-containers-dev
+ , libghc-directory-dev
+ , libghc-filepath-dev
+ , libghc-fsnotify-dev
+ , libghc-ghc-dev
+ , libghc-ghc-paths-dev
+ , libghc-http-reverse-proxy-dev
+ , libghc-http-types-dev
+ , libghc-optparse-applicative-dev
+ , libghc-parsec-dev
+ , libghc-project-template-dev
+ , libghc-resourcet-dev
+ , libghc-shakespeare-dev
+ , libghc-shakespeare-css-dev
+ , libghc-shakespeare-js-dev
+ , libghc-shakespeare-text-dev
+ , libghc-split-dev
+ , libghc-system-fileio-dev
+ , libghc-system-filepath-dev
+ , libghc-tar-dev
+ , libghc-text-dev
+ , libghc-time-dev
+ , libghc-unix-compat-dev
+ , libghc-wai-dev
+ , libghc-warp-dev
+ , libghc-yaml-dev
+ , libghc-zlib-dev
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
 Description: Yesod helper executables
