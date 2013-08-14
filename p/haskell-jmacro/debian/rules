@@ -1,0 +1,7 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/hlibrary.mk
+
+install/jmacro:: debian/tmp-inst-ghc
+	cp -av debian/tmp-inst-ghc/usr/bin/* debian/jmacro/usr/bin
