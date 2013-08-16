@@ -261,6 +261,7 @@ endif
 	# ghc-doc
 ifeq (YES,$(BUILD_HADDOCK_DOCS))
 	mkdir -p debian/tmp/$(DEB_HOOGLE_TXT_DIR)
+	cat debian/ghc-doc.links.in                     > debian/ghc-doc.links
 	find debian/tmp/usr/share/doc/ghc-doc/html/libraries/*/ -name "*.txt" \
 		-printf "%p $(DEB_HOOGLE_TXT_DIR)/%f\n" >> debian/ghc-doc.links
 	find debian/tmp/usr/share/doc/ghc-doc $(FILES) > debian/ghc-doc.install
