@@ -94,6 +94,8 @@ endif
 	echo 'dvidir  := $$(docdir)'                   >> mk/build.mk
 	echo 'pdfdir  := $$(docdir)'                   >> mk/build.mk
 	echo 'psdir   := $$(docdir)'                   >> mk/build.mk
+	# We want verbose builds
+	echo 'V=1'                                     >> mk/build.mk
 	rm -f config.sub
 	rm -f config.guess
 	ln -s /usr/share/misc/config.sub .
@@ -109,7 +111,7 @@ endif
 build: build-stamp
 build-stamp: configure-stamp
 	dh_testdir
-	$(MAKE) $(MAKEFLAGS) V=1
+	$(MAKE) $(MAKEFLAGS)
 
 	# Do some very simple tests that the compiler actually works
 	rm -rf debian/testghc
