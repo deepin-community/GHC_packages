@@ -46,10 +46,14 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: ${haskell:ShortDescription} - executables
- ${haskell:LongDescription}
+Description: Safely evaluate pure Haskell expressions - executables
+ Mueval is a Haskell interpreter. It uses the GHC API to evaluate arbitrary
+ Haskell expressions.  Importantly, mueval takes many precautions to defang and
+ avoid "evil" code.  It uses resource limits, whitelisted modules and Safe
+ Haskell, special Show instances for IO, threads, processes, and changes of
+ directory to sandbox the Haskell code.
  .
- This contains the mueval binaries.
+ This contains the stand-alone mueval binaries.
 
 Package: libghc-mueval-dev
 Architecture: any
