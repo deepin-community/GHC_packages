@@ -1,0 +1,45 @@
+Description: Stop using Control.Concurrent.Chan and migrate to the
+ more modern Control.Concurrent.STM.TChan. Migration was triggered
+ by the fact that the library needs isEmptyChan and GHC 7.4 suggest
+ using STM's version instead.
+Forwarded: yes
+Author: Ernesto Hernández-Novich (USB) <emhn@usb.ve>
+
+--- a/Graphics/HGL/Internals/Events.hs
++++ b/Graphics/HGL/Internals/Events.hs
+@@ -20,7 +20,8 @@
+
+ import Graphics.HGL.Internals.Event
+ import Graphics.HGL.Internals.Flag
+-import Control.Concurrent.Chan(Chan, newChan, readChan, writeChan, isEmptyChan)
++import Control.Concurrent.STM (atomically)
++import Control.Concurrent.STM.TChan (TChan, newTChan, readTChan, writeTChan, isEmptyTChan)
+
+ ----------------------------------------------------------------
+ -- Interface
+@@ -37,7 +38,7 @@
+ -- of the Graphics library).  Exposure events in X11 behave in a
+ -- similar way except that they do not overtake other events.)
+
+-data Events = Events { events :: Chan Event
++data Events = Events { events :: TChan Event
+                      , tick   :: Flag ()
+                      }
+
+@@ -53,13 +54,13 @@
+ ----------------------------------------------------------------
+
+ newEvents = do
+-  events <- newChan
++  events <- atomically $ newTChan
+   tick   <- newFlag
+   return (Events { events=events, tick=tick })
+
+-getEvent  evs = readChan    (events evs)
+-isNoEvent evs = isEmptyChan (events evs)
+-sendEvent evs = writeChan   (events evs)
++getEvent  evs = atomically $ readTChan    (events evs)
++isNoEvent evs = atomically $ isEmptyTChan (events evs)
++sendEvent evs = atomically . writeTChan   (events evs)
+ sendTick  evs = setFlag     (tick evs) ()
+ getTick   evs = resetFlag   (tick evs)

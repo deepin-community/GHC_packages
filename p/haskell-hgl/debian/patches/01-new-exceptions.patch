@@ -1,0 +1,33 @@
+Description: Convert old-style try/catch to new-style Control.Exception
+ style. This gets rids of several compilation warnings. I left this
+ patch separate because I removed an #ifdef and am not sure if this is
+ the best way to solve the issue.
+Forwarded: yes
+Author: Ernesto Hernández-Novich <emhn@usb.ve>
+
+--- a/Graphics/HGL/Internals/Utilities.hs
++++ b/Graphics/HGL/Internals/Utilities.hs
+@@ -20,7 +20,7 @@
+         modMVar, modMVar_
+	) where
+
+-import qualified Control.Exception as E (bracket, try, IOException, tryJust, ioErrors)
++import qualified Control.Exception as E (bracket, try, IOException, tryJust)
+ import Control.Concurrent( MVar, takeMVar, putMVar )
+
+ bracket :: IO a -> (a -> IO b) -> (a -> IO c) -> IO c
+@@ -32,14 +32,7 @@
+
+ type Exception = E.IOException
+ safeTry :: IO a -> IO (Either Exception a)
+-
+-#if __GLASGOW_HASKELL >= 610
+--- ghc-6.10
+ safeTry = E.try
+-#else
+--- ghc 6.8 (and below?)
+-safeTry = E.tryJust E.ioErrors
+-#endif
+
+
+ ----------------------------------------------------------------
