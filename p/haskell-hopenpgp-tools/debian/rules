@@ -1,0 +1,72 @@
+#!/usr/bin/make -f
+
+INSTALL = install
+INSTALL_FILE    = $(INSTALL) -p    -o root -g root  -m  644
+INSTALL_PROGRAM = $(INSTALL) -p    -o root -g root  -m  755
+INSTALL_SCRIPT  = $(INSTALL) -p    -o root -g root  -m  755
+INSTALL_DIR     = $(INSTALL) -p -d -o root -g root  -m  755
+
+package=hopenpgp-tools
+
+clean: checkroot
+	rm -f debian/hopenpgp-tools.setup build-arch stamp-configure
+	rm -rf debian/$(package)
+
+debian/hopenpgp-tools.setup:
+	ghc Setup.hs -o $@
+
+build: build-arch build-indep
+build-indep:
+
+build-arch: stamp-configure
+	$(checkdir)
+
+	debian/hopenpgp-tools.setup build
+
+	touch build-arch
+
+stamp-configure: debian/hopenpgp-tools.setup
+	$(checkdir)
+
+	debian/hopenpgp-tools.setup configure --prefix=/usr
+
+	touch stamp-configure
+
+binary: binary-arch
+
+binary-indep:	checkroot build
+
+binary-arch:	checkroot build
+	$(checkdir)
+
+	debian/hopenpgp-tools.setup copy --destdir=$(CURDIR)/debian/$(package)
+	rm -rf debian/$(package)/usr/share/doc/$(package)-*
+	cd debian/$(package) && $(INSTALL_DIR) \
+		usr/bin \
+		usr/share/doc/$(package) \
+		DEBIAN
+
+	$(INSTALL_FILE) debian/copyright debian/$(package)/usr/share/doc/$(package)/copyright
+
+	$(INSTALL_FILE) debian/changelog debian/$(package)/usr/share/doc/$(package)/changelog.Debian
+	gzip -9f debian/$(package)/usr/share/doc/$(package)/changelog.Debian
+
+	dpkg-shlibdeps -Tdebian/substvars -dDepends debian/$(package)/usr/bin/*
+	dpkg-gencontrol -ldebian/changelog -isp -p$(package) -Tdebian/substvars -Pdebian/$(package)
+
+	cd debian/$(package) && find * -type f ! -regex '^DEBIAN/.*' -print0 | xargs -r0 md5sum > DEBIAN/md5sums
+
+	chown -R root:root debian/$(package)
+	chmod -R go=rX debian/$(package)
+
+	dpkg --build debian/$(package) ..
+
+define checkdir
+	test -f debian/rules
+endef
+
+checkroot:
+	$(checkdir)
+	test root = "`whoami`"
+
+.PHONY: binary binary-arch binary-indep clean checkroot build build-indep

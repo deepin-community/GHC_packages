@@ -1,0 +1,34 @@
+Source: haskell-hopenpgp-tools
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: haskell-devscripts (>= 0.8.15)
+  , ghc
+  , libghc-cereal-dev
+  , libghc-cereal-conduit-dev
+  , libghc-conduit-dev
+  , libghc-crypto-pubkey-dev
+  , libghc-hopenpgp-dev (>> 0.7)
+  , libghc-hopenpgp-dev (<< 0.8)
+  , libghc-ixset-dev
+  , libghc-lens-dev
+  , libghc-openpgp-asciiarmor-dev (>> 0.1)
+  , libghc-optparse-applicative-dev
+  , libghc-transformers-dev
+Standards-Version: 3.9.4
+Homepage: http://hackage.haskell.org/package/hopenpgp-tools
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-hopenpgp-tools
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hopenpgp-tools
+
+Package: hopenpgp-tools
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: hOpenPGP-based command-line tools
+ These utilities, hot, hokey, and hkt, are works in progress.  They
+ provide some OpenPGP-related functionality.
