@@ -1,0 +1,65 @@
+Source: haskell-cipher-camellia
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-byteable-dev
+  , libghc-byteable-prof
+  , libghc-crypto-cipher-types-dev (>> 0.0.3)
+  , libghc-crypto-cipher-types-prof
+  , libghc-securemem-dev (>> 0.1.2)
+  , libghc-securemem-prof
+  , libghc-vector-dev
+  , libghc-vector-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-byteable-doc
+  , libghc-crypto-cipher-types-doc
+  , libghc-securemem-doc
+  , libghc-vector-doc
+Standards-Version: 3.9.4
+Homepage: http://hackage.haskell.org/package/cipher-camellia
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-cipher-camellia
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-cipher-camellia
+X-Description: Camellia cipher
+ Camellia cipher primitives.
+
+Package: libghc-cipher-camellia-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-cipher-camellia-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-cipher-camellia-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
