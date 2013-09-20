@@ -1,0 +1,69 @@
+Source: haskell-scrobble
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-curl-dev
+  , libghc-curl-prof
+  , libghc-missingh-dev
+  , libghc-missingh-prof
+  , libghc-network-dev
+  , libghc-network-prof
+  , libghc-puremd5-dev
+  , libghc-puremd5-prof
+  , libghc-url-dev
+  , libghc-url-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-curl-doc
+  , libghc-missingh-doc
+  , libghc-network-doc
+  , libghc-puremd5-doc
+  , libghc-url-doc
+Standards-Version: 3.9.4
+Homepage: http://hackage.haskell.org/package/scrobble
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-scrobble
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-scrobble
+X-Description: Short description of scrobble
+ Client- and server-side support for the Audioscrobbler
+ Realtime Submission protocol.
+
+Package: libghc-scrobble-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-scrobble-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-scrobble-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
