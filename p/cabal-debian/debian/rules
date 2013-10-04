@@ -10,9 +10,13 @@ package=cabal-debian
 
 clean:
 	$(checkdir)
+	rm -f debian/$(package).setup
 
 	rm -f debian/files debian/substvars build-arch stamp-*
 	rm -rf dist debian/$(package)
+
+debian/$(package).setup:
+	ghc Setup.hs -o $@
 
 build: build-arch build-indep
 build-indep:
@@ -20,14 +24,14 @@ build-indep:
 build-arch: stamp-configure
 	$(checkdir)
 
-	runhaskell Setup.hs build
+	debian/$(package).setup build
 
-	touch build-arch
+	touch $@
 
-stamp-configure:
+stamp-configure: debian/$(package).setup
 	$(checkdir)
 
-	runhaskell Setup.hs configure --prefix=/usr
+	debian/$(package).setup configure --prefix=/usr
 
 	touch stamp-configure
 
@@ -38,7 +42,7 @@ binary-indep:	checkroot build
 binary-arch:	checkroot build
 	$(checkdir)
 
-	runhaskell Setup.hs copy --destdir=$(CURDIR)/debian/$(package)
+	debian/$(package).setup copy --destdir=$(CURDIR)/debian/$(package)
 	rm -rf debian/$(package)/usr/share/doc/$(package)-*
 	cd debian/$(package) && $(INSTALL_DIR) \
 		usr/bin \
