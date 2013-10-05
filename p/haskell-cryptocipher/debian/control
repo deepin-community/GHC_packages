@@ -8,34 +8,25 @@ Build-Depends: debhelper (>= 9)
   , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
-  , libghc-cereal-dev
-  , libghc-cereal-prof
-# Due to improved getSystemEndianness (Debian patch)
-  , libghc-cpu-dev (>= 0.1.0-2)
-  , libghc-cpu-dev (<< 0.2)
-  , libghc-cpu-prof
-  , libghc-cipher-aes-dev
+  , libghc-crypto-cipher-types-dev
+  , libghc-crypto-cipher-types-prof
+  , libghc-cipher-aes-dev (>= 0.2.3)
   , libghc-cipher-aes-prof
   , libghc-cipher-rc4-dev
   , libghc-cipher-rc4-prof
-  , libghc-crypto-api-dev (>> 0.5)
-  , libghc-crypto-api-prof
-  , libghc-primitive-dev
-  , libghc-primitive-prof
-  , libghc-vector-dev (>> 0.7)
-  , libghc-vector-prof
-  , libghc-quickcheck2-dev
-  , libghc-test-framework-dev (>> 0.3.3)
-  , libghc-test-framework-quickcheck2-dev (>> 0.2.9)
-  , libghc-cryptohash-dev
+  , libghc-cipher-des-dev
+  , libghc-cipher-des-prof
+  , libghc-cipher-blowfish-dev
+  , libghc-cipher-blowfish-prof
+  , libghc-cipher-camellia-dev
+  , libghc-cipher-camellia-prof
 Build-Depends-Indep: ghc-doc
-  , libghc-cereal-doc
+  , libghc-crypto-cipher-types-doc
   , libghc-cipher-aes-doc
   , libghc-cipher-rc4-doc
-  , libghc-cpu-doc
-  , libghc-crypto-api-doc
-  , libghc-primitive-doc
-  , libghc-vector-doc
+  , libghc-cipher-des-doc
+  , libghc-cipher-blowfish-doc
+  , libghc-cipher-camellia-doc
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/cryptocipher
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-cryptocipher
