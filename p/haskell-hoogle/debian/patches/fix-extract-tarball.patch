@@ -1,0 +1,19 @@
+Description: Ask if a tarball exists before trying to extract its contents
+ When a contents of the tarball are already present in the filesystem,
+ hoogle will not download it again. In this case, the tarball must not be
+ extracted because it does not exists.
+Bug: https://github.com/ndmitchell/hoogle/pull/35
+Author: Raúl Benencia <rul@kalgan.cc>
+--- a/src/Recipe/Download.hs
++++ b/src/Recipe/Download.hs
+@@ -47,8 +47,8 @@
+                 , (inputs <.> "txt", inputs <.> "tar.gz", "http://old.hackage.haskell.org/packages/archive/00-hoogle.tar.gz")
+                 ]
+     withDownloader opt downloader items
+-    extractTarball cabals
+-    extractTarball inputs
++    doesFileExist (cabals <.> "tar.gz") >>= \b -> when b $ extractTarball cabals
++    doesFileExist (inputs <.> "tar.gz") >>= \b -> when b $ extractTarball inputs
+
+
+ check :: String -> IO (Maybe FilePath)

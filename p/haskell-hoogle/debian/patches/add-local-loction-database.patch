@@ -1,64 +1,50 @@
-Forwarded: http://code.google.com/p/ndmitchell/issues/detail?id=590
+--- a/src/Recipe/Haddock.hs
++++ b/src/Recipe/Haddock.hs
+@@ -1,7 +1,7 @@
+ {-# LANGUAGE PatternGuards #-}
 
-Index: haskell-hoogle-4.2.15/src/CmdLine/Type.hs
-===================================================================
---- haskell-hoogle-4.2.15.orig/src/CmdLine/Type.hs	2013-01-29 11:35:35.000000000 +0100
-+++ haskell-hoogle-4.2.15/src/CmdLine/Type.hs	2013-02-17 17:26:49.000000000 +0100
-@@ -34,7 +34,7 @@
+ module Recipe.Haddock(
+-    haddockToHTML, haddockHacks
++    haddockToHTML, haddockHacks, haddockPackageUrl
+     ) where
+
+ import General.Base
+--- a/src/CmdLine/Type.hs
++++ b/src/CmdLine/Type.hs
+@@ -35,7 +35,7 @@
      | Data {redownload :: Bool, local :: [String], datadir :: FilePath, threads :: Int, actions :: [String]}
      | Server {port :: Int, local_ :: Bool, databases :: [FilePath], resources :: FilePath, dynamic :: Bool, template :: [FilePath]}
      | Combine {srcfiles :: [FilePath], outfile :: String}
--    | Convert {srcfile :: String, outfile :: String}
-+    | Convert {srcfile :: String, outfile :: String, addlocation :: Bool}
+-    | Convert {srcfile :: String, outfile :: String, doc :: Maybe String, merge :: [String], haddock :: Bool}
++    | Convert {srcfile :: String, outfile :: String, doc :: Maybe String, merge :: [String], haddock :: Bool, addlocation :: Bool}
      | Log {logfiles :: [FilePath]}
      | Test {testFiles :: [String], example :: Bool}
      | Dump {database :: String, section :: [String]}
-@@ -92,6 +92,7 @@
- convert = Convert
-     {srcfile = def &= argPos 0 &= typ "INPUT"
-     ,outfile = def &= argPos 1 &= typ "DATABASE" &= opt ""
+@@ -97,6 +97,7 @@
+     ,doc = def &= typDir &= help "Path to the root of local or Hackage documentation for the package (implies --haddock)"
+     ,merge = def &= typ "DATABASE" &= help "Merge other databases"
+     ,haddock = def &= help "Apply haddock-specific hacks"
 +    ,addlocation = def &= help "Add location infomation to database"
      } &= help "Convert an input file to a database"
 
  data_ = Data
-Index: haskell-hoogle-4.2.15/src/Console/All.hs
-===================================================================
---- haskell-hoogle-4.2.15.orig/src/Console/All.hs	2013-01-29 11:35:35.000000000 +0100
-+++ haskell-hoogle-4.2.15/src/Console/All.hs	2013-02-17 17:33:42.662665170 +0100
-@@ -3,6 +3,7 @@
-
- import CmdLine.All
- import Recipe.All
-+import Recipe.Hackage
- import Console.Log
- import Console.Search
- import Console.Test
-@@ -36,12 +37,15 @@
+--- a/src/Console/All.hs
++++ b/src/Console/All.hs
+@@ -40,12 +40,15 @@
 
  action (Log files) = logFiles files
 
--action (Convert from to) = do
-+action (Convert from to addloc) = do
-     to <- return $ if null to then replaceExtension from "hoo" else to
+-action (Convert from to doc merge haddock) = do
++action (Convert from to doc merge haddock addloc) = do
      when (any isUpper $ takeBaseName to) $ putStrLn $ "Warning: Hoogle databases should be all lower case, " ++ takeBaseName to
      putStrLn $ "Converting " ++ from
      src <- readFileUtf8 from
--    let (err,db) = createDatabase Haskell [] src
-+    let from' = "file://" ++ from
-+        src' = if addloc then unlines . haddockPackageUrl from' . lines $ src
-+               else src
-+        (err,db) = createDatabase Haskell [] src'
-     unless (null err) $ putStr $ unlines $ "Warning: parse errors" : map show err
-     saveDatabase to db
-     putStrLn $ "Written " ++ to
-Index: haskell-hoogle-4.2.15/src/Recipe/Hackage.hs
-===================================================================
---- haskell-hoogle-4.2.15.orig/src/Recipe/Hackage.hs	2013-01-29 11:35:35.000000000 +0100
-+++ haskell-hoogle-4.2.15/src/Recipe/Hackage.hs	2013-02-17 17:26:49.000000000 +0100
-@@ -1,5 +1,5 @@
-
--module Recipe.Hackage(makePlatform, makeDefault, makePackage, makeAll) where
-+module Recipe.Hackage(makePlatform, makeDefault, makePackage, makeAll, haddockPackageUrl) where
-
- import Recipe.Type
- import Recipe.Cabal
+-    convert merge (takeBaseName from) to $ unlines $ addLocalDoc doc (lines src)
++    convert merge (takeBaseName from) to $ unlines . fixURLs $ addLocalDoc doc (lines src)
+     where
++      fixURLs :: [String] -> [String]
++      fixURLs lns = if not addloc then lns else haddockPackageUrl ("file://" ++ from) lns
++
+       addLocalDoc :: Maybe FilePath -> [String] -> [String]
+       addLocalDoc doc = if haddock
+                           then haddockHacks $ addDoc doc
