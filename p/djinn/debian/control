@@ -1,0 +1,33 @@
+Source: djinn
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Raúl Benencia <rul@kalgan.cc>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-mtl-dev
+  , libghc-haskeline-dev
+  , libghc-pretty-dev
+Standards-Version: 3.9.4
+Homepage: http://hackage.haskell.org/package/djinn
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/djinn
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/djinn
+
+Package: djinn
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: generate Haskell expressions from types
+ Djinn uses a theorem prover for intuitionistic propositional logic to
+ generate a Haskell expression when given a type.
+ .
+ Given a type the program will deduce an expression of this type, if one
+ exists.  If the Djinn says the type is not realizable it is because there
+ is no (total) expression of the given type.

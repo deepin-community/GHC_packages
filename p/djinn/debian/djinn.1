@@ -1,0 +1,30 @@
+.TH DJINN 1 "October 06 2013"
+.SH NAME
+djinn \- generate Haskell expressions from types
+.SH SYNOPSIS
+.B \fBdjinn\fP [\fIOPTION\fP ... ] [\fIFILE\fP ... ]
+.SH DESCRIPTION
+Djinn uses a theorem prover for intuitionistic propositional logic to
+generate a Haskell expression when given a type.
+
+Given a type the program will deduce an expression of this type, if one
+exists. If the Djinn says the type is not realizable it is because there is
+no (total) expression of the given type.
+
+.SH OPTIONS
+.TP 20
+[\-|+]multi
+Print multiple solutions.
+.TP
+[\-|+]sorted
+Sort solutions.
+.TP
+[\-|+]debug
+Debug mode.
+.SH SEE ALSO
+The program provides interactive documentation.
+.SH AUTHOR
+.nh
+\fBdjinn\fP was written by Lennart Augustsson and Thomas Johnsson.
+
+This manual page was written by Raúl Benencia for the Debian Project.

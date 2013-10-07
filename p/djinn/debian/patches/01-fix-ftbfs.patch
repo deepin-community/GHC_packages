@@ -1,0 +1,12 @@
+Description: Fix a FTBFS due an unused linker option.
+Author: Raúl Benencia <rul@kalgan.cc>
+--- a/djinn.cabal
++++ b/djinn.cabal
+@@ -17,6 +17,6 @@
+ Hs-Source-Dirs: src
+ Other-modules:  Help, HCheck,  LJT, HTypes, LJTFormula, REPL
+
+-ghc-options:         -O2 -Wall -optl-Wl
++ghc-options:         -O2 -Wall
+ --ghc-options:         -Wall -optl-Wl
+ ghc-prof-options:    -prof -auto-all
