@@ -1,0 +1,64 @@
+Source: haskell-asn1-encoding
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-asn1-types-dev (>> 0.2.1)
+  , libghc-asn1-types-dev (<< 0.3)
+  , libghc-asn1-types-prof
+  , libghc-mtl-dev
+  , libghc-mtl-prof
+  , libghc-text-dev (>> 0.11)
+  , libghc-text-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-asn1-types-doc
+  , libghc-mtl-doc
+  , libghc-text-doc
+Standards-Version: 3.9.4
+Homepage: http://hackage.haskell.org/package/asn1-encoding
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-asn1-encoding
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-asn1-encoding
+X-Description: ASN1 data reader/writer in RAW, BER, and DER forms
+ ASN1 data reader and writer in raw form with supports for high level
+ forms of ASN1 (BER and DER).
+
+Package: libghc-asn1-encoding-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-asn1-encoding-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-asn1-encoding-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
