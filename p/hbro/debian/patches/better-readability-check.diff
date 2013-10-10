@@ -1,0 +1,18 @@
+diff -r b1e52e37899e -r 1c4bcc89f95f Hbro/Boot.hs
+--- a/Hbro/Boot.hs	Sun Mar 31 14:40:25 2013 +0200
++++ b/Hbro/Boot.hs	Wed Oct 09 00:23:16 2013 -0400
+@@ -119,10 +119,12 @@
+   where
+     firstReadableOf []    = return Nothing
+     firstReadableOf (x:y) = do
+-        isReadable <- fileAccess x True False False
++        isThere <- fileExist x
++	isReadable <- case isThere of
++	    False -> return False
++            True -> fileAccess x True False False
+         isReadable ? return (Just x) ?? firstReadableOf y
+
+-
+ withIPC :: (MonadBaseControl IO m) => CliOptions -> (IPC -> m a) -> m a
+ withIPC options f = restoreM =<< (liftBaseWith $ \runInIO -> do
+   ZMQ.withContext $ \c -> do
