@@ -1,0 +1,22 @@
+Description: Fix bug in preprocessing test suites and benchmarks
+
+ Preprocessed files would be written to dist/build instead of
+ dist/build/my-test-suite/my-test-suite-tmp, causing them not to be
+ found during compilation.
+
+ Fixes #1087.
+Author: Johan Tibell <johan.tibell@gmail.com>
+Origin: https://github.com/haskell/cabal/commit/dd691fa6791d67981388ec044b28343879d8c2b1
+diff --git a/libraries/Cabal/Cabal/Distribution/Simple/PreProcess.hs b/libraries/Cabal/Cabal/Distribution/Simple/PreProcess.hs
+index 0c6cb3e..ad9df9f 100644
+--- a/libraries/Cabal/Cabal/Distribution/Simple/PreProcess.hs
++++ b/libraries/Cabal/Cabal/Distribution/Simple/PreProcess.hs
+@@ -232,7 +232,7 @@ preprocessComponent pd comp lbi isSrcDist verbosity handlers = case comp of
+     preProcessComponent bi modules exePath dir = do
+         let biHandlers = localHandlers bi
+             sourceDirs = hsSourceDirs bi ++ [ autogenModulesDir lbi ]
+-        sequence_ [ preprocessFile sourceDirs (buildDir lbi) isSrcDist
++        sequence_ [ preprocessFile sourceDirs dir isSrcDist
+                 (ModuleName.toFilePath modu) verbosity builtinSuffixes
+                 biHandlers
+                 | modu <- modules ]
