@@ -1,0 +1,66 @@
+Source: haskell-osm
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-comonad-transformers-dev
+  , libghc-comonad-transformers-prof
+  , libghc-data-lens-dev
+  , libghc-data-lens-prof
+  , libghc-hxt-dev (>> 9)
+  , libghc-hxt-prof
+  , libghc-newtype-dev
+  , libghc-newtype-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-comonad-transformers-doc
+  , libghc-data-lens-doc
+  , libghc-hxt-doc
+  , libghc-newtype-doc
+Standards-Version: 3.9.4
+Homepage: http://hackage.haskell.org/package/osm
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-osm
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-osm
+X-Description: parse OpenStreetMap files
+ Parse OpenStreetMap files using HXT into data structures. The
+ Data.Geo.OSM module is the core module that exports all others.
+
+Package: libghc-osm-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-osm-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-osm-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
