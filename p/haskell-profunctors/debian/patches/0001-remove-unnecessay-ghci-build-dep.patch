@@ -1,0 +1,38 @@
+From e5cd465d18d2a47f7a69311692f232400dae3732 Mon Sep 17 00:00:00 2001
+From: Joey Hess <joey@kitenet.net>
+Date: Sun, 13 Oct 2013 00:25:48 -0400
+Subject: [PATCH] remove unnecessay ghci build dep
+
+---
+ debian/control                |    1 -
+ src/Data/Profunctor/Unsafe.hs |    3 ---
+ 2 files changed, 4 deletions(-)
+
+diff --git a/debian/control b/debian/control
+index d261268..28319b5 100644
+--- a/debian/control
++++ b/debian/control
+@@ -8,7 +8,6 @@ Build-Depends: debhelper (>= 9)
+   , haskell-devscripts (>= 0.8.15)
+   , ghc
+   , ghc-prof
+-  , ghc-ghci
+   , libghc-comonad-dev (>> 3.0)
+   , libghc-comonad-prof
+   , libghc-tagged-dev (>> 0.4.4)
+diff --git a/src/Data/Profunctor/Unsafe.hs b/src/Data/Profunctor/Unsafe.hs
+index 025c7c4..0249274 100644
+--- a/src/Data/Profunctor/Unsafe.hs
++++ b/src/Data/Profunctor/Unsafe.hs
+@@ -40,9 +40,6 @@ import Data.Tagged
+ import Prelude hiding (id,(.),sequence)
+ import Unsafe.Coerce
+
+-{-# ANN module "Hlint: ignore Redundant lambda" #-}
+-{-# ANN module "Hlint: ignore Collapse lambdas" #-}
+-
+ infixr 9 #.
+ infixl 8 .#
+
+--
+1.7.10.4
