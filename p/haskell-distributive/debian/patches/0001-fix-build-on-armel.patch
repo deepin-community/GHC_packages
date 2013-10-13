@@ -1,0 +1,47 @@
+From ef79f8fbbff8501b99ff08addfef752176f61117 Mon Sep 17 00:00:00 2001
+From: Joey Hess <joey@kitenet.net>
+Date: Sat, 12 Oct 2013 22:26:45 -0400
+Subject: [PATCH] fix build on armel
+
+---
+ distributive.cabal       |    1 +
+ src/Data/Distributive.hs |    4 ++++
+ 2 files changed, 5 insertions(+)
+
+diff --git a/distributive.cabal b/distributive.cabal
+index 316962a..562f99a 100644
+--- a/distributive.cabal
++++ b/distributive.cabal
+@@ -37,6 +37,7 @@ library
+
+   hs-source-dirs:  src
+   exposed-modules: Data.Distributive
++  extensions: CPP
+
+   if flag(lib-Werror)
+     ghc-options: -Werror
+diff --git a/src/Data/Distributive.hs b/src/Data/Distributive.hs
+index 6f5613d..171ec2f 100644
+--- a/src/Data/Distributive.hs
++++ b/src/Data/Distributive.hs
+@@ -15,6 +15,8 @@ module Data.Distributive
+   , comapM
+   ) where
+
++{-# LANGUAGE CPP #-}
++
+ import Control.Applicative
+ import Control.Applicative.Backwards
+ import Control.Monad (liftM)
+@@ -26,7 +28,9 @@ import Data.Functor.Identity
+ import Data.Functor.Product
+ import Data.Functor.Reverse
+
++#ifndef DEBIAN_NO_GHCI
+ {-# ANN module "ignore Use section" #-}
++#endif
+
+ -- | This is the categorical dual of 'Traversable'. However, there appears
+ -- to be little benefit to allow the distribution via an arbitrary comonad
+--
+1.7.10.4
