@@ -8,23 +8,11 @@ Subject: [PATCH] remove unnecessay ghci build dep
  src/Data/Profunctor/Unsafe.hs |    3 ---
  2 files changed, 4 deletions(-)
 
-diff --git a/debian/control b/debian/control
-index d261268..28319b5 100644
---- a/debian/control
-+++ b/debian/control
-@@ -8,7 +8,6 @@ Build-Depends: debhelper (>= 9)
-   , haskell-devscripts (>= 0.8.15)
-   , ghc
-   , ghc-prof
--  , ghc-ghci
-   , libghc-comonad-dev (>> 3.0)
-   , libghc-comonad-prof
-   , libghc-tagged-dev (>> 0.4.4)
-diff --git a/src/Data/Profunctor/Unsafe.hs b/src/Data/Profunctor/Unsafe.hs
-index 025c7c4..0249274 100644
---- a/src/Data/Profunctor/Unsafe.hs
-+++ b/src/Data/Profunctor/Unsafe.hs
-@@ -40,9 +40,6 @@ import Data.Tagged
+Index: haskell-profunctors-3.3/src/Data/Profunctor/Unsafe.hs
+===================================================================
+--- haskell-profunctors-3.3.orig/src/Data/Profunctor/Unsafe.hs	2013-10-13 10:55:50.579562315 +0200
++++ haskell-profunctors-3.3/src/Data/Profunctor/Unsafe.hs	2013-10-13 10:55:50.579562315 +0200
+@@ -40,9 +40,6 @@
  import Prelude hiding (id,(.),sequence)
  import Unsafe.Coerce
 
@@ -34,5 +22,3 @@ index 025c7c4..0249274 100644
  infixr 9 #.
  infixl 8 .#
 
---
-1.7.10.4
