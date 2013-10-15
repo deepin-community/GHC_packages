@@ -1,0 +1,131 @@
+From 42c73dc2026eb8aeeb1cf60ca4102357f3718a06 Mon Sep 17 00:00:00 2001
+From: Joey Hess <joey@kitenet.net>
+Date: Tue, 15 Oct 2013 09:56:50 -0400
+Subject: [PATCH 2/3] add without-th flag
+
+---
+ lens.cabal                             | 28 +++++++++++++++++++++-------
+ src/Control/Lens/Internal/Exception.hs |  6 ++++++
+ 2 files changed, 27 insertions(+), 7 deletions(-)
+
+diff --git a/lens.cabal b/lens.cabal
+index 8714cdd..7c31cab 100644
+--- a/lens.cabal
++++ b/lens.cabal
+@@ -133,6 +133,11 @@ flag dump-splices
+   default: False
+   manual: True
+
++-- Avoid bulding modules that need TH
++flag without-th
++  default: False
++  manual: True
++
+ -- You can disable the doctests test suite with -f-test-doctests
+ flag test-doctests
+   default: True
+@@ -175,7 +180,6 @@ library
+     containers                >= 0.4.0    && < 0.6,
+     distributive              >= 0.3      && < 1,
+     filepath                  >= 1.2.0.0  && < 1.4,
+-    generic-deriving          >= 1.4      && < 1.6,
+     ghc-prim,
+     hashable                  >= 1.1.2.3  && < 1.3,
+     MonadCatchIO-transformers >= 0.3      && < 0.4,
+@@ -183,7 +187,6 @@ library
+     parallel                  >= 3.1.0.1  && < 3.3,
+     profunctors               >= 3.2      && < 4,
+     profunctor-extras         >= 3.3      && < 4,
+-    reflection                >= 1.1.6    && < 2,
+     semigroupoids             >= 3.0.2    && < 4,
+     semigroups                >= 0.8.4    && < 1,
+     split                     == 0.2.*,
+@@ -237,7 +240,6 @@ library
+     Control.Lens.Review
+     Control.Lens.Setter
+     Control.Lens.Simple
+-    Control.Lens.TH
+     Control.Lens.Traversal
+     Control.Lens.Tuple
+     Control.Lens.Type
+@@ -268,14 +270,23 @@ library
+     Data.Typeable.Lens
+     Data.Vector.Lens
+     Data.Vector.Generic.Lens
+-    Generics.Deriving.Lens
+-    GHC.Generics.Lens
+     System.Exit.Lens
+     System.FilePath.Lens
+-    System.IO.Error.Lens
+-    Language.Haskell.TH.Lens
+     Numeric.Lens
+
++  if flag(without-th)
++    cpp-options: -DDISABLE_TEMPLATE_HASKELL
++  else
++    build-depends:
++      generic-deriving          >= 1.4      && < 1.6,
++      reflection                >= 1.1.6    && < 2
++    exposed-modules:
++      Control.Lens.TH
++      Language.Haskell.TH.Lens
++      Generics.Deriving.Lens
++      GHC.Generics.Lens
++      System.IO.Error.Lens
++
+   if flag(safe)
+     cpp-options: -DSAFE=1
+
+@@ -308,6 +319,9 @@ test-suite templates
+   build-depends: base, lens
+   ghc-options: -Wall -threaded
+   hs-source-dirs: tests
++
++  if flag(without-th)
++    buildable: False
+
+   if flag(dump-splices)
+     ghc-options: -ddump-splices
+diff --git a/src/Control/Lens/Internal/Exception.hs b/src/Control/Lens/Internal/Exception.hs
+index 387203e..43a59fa 100644
+--- a/src/Control/Lens/Internal/Exception.hs
++++ b/src/Control/Lens/Internal/Exception.hs
+@@ -34,7 +34,9 @@ import Control.Monad.CatchIO as CatchIO
+ import Data.IORef
+ import Data.Monoid
+ import Data.Proxy
++#ifndef DISABLE_TEMPLATE_HASKELL
+ import Data.Reflection
++#endif
+ import Data.Typeable
+ import System.IO.Unsafe
+
+@@ -128,6 +130,7 @@ class Handleable e (m :: * -> *) (h :: * -> *) | h -> e m where
+   handler_ l = handler l . const
+   {-# INLINE handler_ #-}
+
++#ifndef DISABLE_TEMPLATE_HASKELL
+ instance Handleable SomeException IO Exception.Handler where
+   handler = handlerIO
+
+@@ -139,6 +142,7 @@ handlerIO l f = reify (preview l) $ \ (_ :: Proxy s) -> Exception.Handler (\(Han
+
+ handlerCatchIO :: forall m a r. Getting (First a) SomeException a -> (a -> m r) -> CatchIO.Handler m r
+ handlerCatchIO l f = reify (preview l) $ \ (_ :: Proxy s) -> CatchIO.Handler (\(Handling a :: Handling a s m) -> f a)
++#endif
+
+ ------------------------------------------------------------------------------
+ -- Helpers
+@@ -172,8 +176,10 @@ instance Show (Handling a s m) where
+   showsPrec d _ = showParen (d > 10) $ showString "Handling ..."
+   {-# INLINE showsPrec #-}
+
++#ifndef DISABLE_TEMPLATE_HASKELL
+ instance Reifies s (SomeException -> Maybe a) => Exception (Handling a s m) where
+   toException _ = SomeException HandlingException
+   {-# INLINE toException #-}
+   fromException = fmap Handling . reflect (Proxy :: Proxy s)
+   {-# INLINE fromException #-}
++#endif
+--
+1.8.4.rc3

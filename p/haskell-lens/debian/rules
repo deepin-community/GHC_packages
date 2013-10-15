@@ -10,3 +10,7 @@ ifeq ($(DEB_HOST_ARCH),sparc)
 	# Disable tests that require SMP.
 	DEB_SETUP_GHC_CONFIGURE_ARGS := -f-test-hunit -f-test-properties
 endif
+
+ifeq ($(shell if [ ! -e /usr/bin/ghci ]; then echo 0; fi),0)
+	DEB_SETUP_GHC_CONFIGURE_ARGS := -fwithout-th -f-test-hunit -f-test-properties -f-test-doctests
+endif
