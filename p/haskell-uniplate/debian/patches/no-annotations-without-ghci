@@ -1,0 +1,16 @@
+Description: Patch out ANN pragma if GHCi is not available
+Author: Joachim Breitner <nomeata@debian.org>
+
+--- haskell-uniplate-1.6.11.orig/Data/Generics/Uniplate/Internal/Utils.hs
++++ haskell-uniplate-1.6.11/Data/Generics/Uniplate/Internal/Utils.hs
+@@ -24,8 +24,10 @@ import GHC.IO(IO(IO))
+
+ #if __GLASGOW_HASKELL__ >= 701
+ import GHC.Exts(SpecConstrAnnotation(..))
++#ifndef DEBIAN_NO_GHCI
+ {-# ANN type SPEC ForceSpecConstr #-}
+ #endif
++#endif
+
+
+ {-# INLINE builder #-}
