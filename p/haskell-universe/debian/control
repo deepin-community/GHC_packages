@@ -1,0 +1,83 @@
+Source: haskell-universe
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-comonad-transformers-dev (>> 0.1)
+  , libghc-comonad-transformers-dev (<< 3.2)
+  , libghc-comonad-transformers-prof
+  , libghc-keys-dev (>> 0.1)
+  , libghc-keys-dev (<< 4)
+  , libghc-keys-prof
+  , libghc-mtl-dev (>> 1.0)
+  , libghc-mtl-dev (<< 2.2)
+  , libghc-mtl-prof
+  , libghc-representable-functors-dev (>> 2.4)
+  , libghc-representable-functors-dev (<< 3.2)
+  , libghc-representable-functors-prof
+  , libghc-transformers-dev (>> 0.2)
+  , libghc-transformers-dev (<< 0.4)
+  , libghc-transformers-prof
+  , libghc-void-dev (>> 0.1)
+  , libghc-void-dev (<< 0.7)
+  , libghc-void-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-comonad-transformers-doc
+  , libghc-keys-doc
+  , libghc-mtl-doc
+  , libghc-representable-functors-doc
+  , libghc-transformers-doc
+  , libghc-void-doc
+Standards-Version: 3.9.4
+Homepage: http://hackage.haskell.org/package/universe
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-universe
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-universe
+X-Description: classes for types where we know all the values
+ Munge finite and recursively enumerable types.  It provides the
+ Universe class, which is a declaration that your type is recursively
+ enumerable (and that universe is that enumeration). In particular,
+ you promise that any finite inhabitant has a finite index in
+ universe, and that no inhabitant appears at two different finite
+ indices.  It also provides the Finite class, which is a declaration
+ that your universe eventually ends.
+
+Package: libghc-universe-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-universe-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-universe-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
