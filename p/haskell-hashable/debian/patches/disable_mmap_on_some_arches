@@ -12,7 +12,7 @@ Index: haskell-hashable-1.2.1.0/hashable.cabal
                       random == 1.0.*,
                       text >= 0.11.0.5
 -  if !os(windows)
-+  if !os(windows) && !(arch(armel) || arch(armhf) || arch(mips) || arch(mipsel) || arch(powerpc))
++  if !os(windows) && !(arch(arm) || arch(mips) || arch(mipsel) || arch(powerpc))
      Build-depends:   unix
      CPP-options:     -DHAVE_MMAP
      Other-modules:   Regress.Mmap
