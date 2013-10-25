@@ -5,14 +5,14 @@ Author: Louis Bettens <louis@bettens.info>
 This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
 Index: haskell-hashable-1.2.1.0/hashable.cabal
 ===================================================================
---- haskell-hashable-1.2.1.0.orig/hashable.cabal	2013-10-24 19:17:20.175994877 +0200
-+++ haskell-hashable-1.2.1.0/hashable.cabal	2013-10-24 19:17:39.491994704 +0200
+--- haskell-hashable-1.2.1.0.orig/hashable.cabal
++++ haskell-hashable-1.2.1.0/hashable.cabal
 @@ -77,7 +77,7 @@
                       QuickCheck >= 2.4.0.1,
                       random == 1.0.*,
                       text >= 0.11.0.5
 -  if !os(windows)
-+  if !os(windows) && !(arch(arm) || arch(mips) || arch(mipsel) || arch(powerpc) || arch(powerpc64))
++  if !os(windows) && !(arch(arm) || arch(mips) || arch(ppc) || arch(ppc64))
      Build-depends:   unix
      CPP-options:     -DHAVE_MMAP
      Other-modules:   Regress.Mmap
