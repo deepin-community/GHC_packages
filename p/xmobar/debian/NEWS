@@ -1,10 +1,26 @@
+xmobar (0.19-1) unstable; urgency=low
+
+  Beginning with 0.19, the Com configuration directive does not use a shell to
+  run the commands specified anymore. If you're using shell expansion or pipes
+  in your Com statements, you should change them to call a shell explicitly,
+  e.g.:
+
+    Run Com "/bin/bash" ["-c", "~/bin/script"]
+    Run Com "/bin/bash" ["-c", "~/bin/other_script | head -n 1"]
+
+  Also beginning with 0.19, xmobar supports an alternate configuration file
+  location, $XDG_CONFIG_HOME/xmobar/xmobarrc (default: ~/.config/xmobar/xmobarrc).
+  See the xmobar(1) manpage for more details.
+
+ -- Apollon Oikonomopoulos <apoikos@gmail.com>  Mon, 28 Oct 2013 10:25:45 +0200
+
 xmobar (0.16-1) experimental; urgency=low
 
-    If you used the Battery or BatteryP monitors, please note that after 0.15
-    they perform auto-discovery and so the "-c" argument is not needed anymore.
-    Be sure to remove it from your .xmobarrc.
+  If you used the Battery or BatteryP monitors, please note that after 0.15
+  they perform auto-discovery and so the "-c" argument is not needed anymore.
+  Be sure to remove it from your .xmobarrc.
 
-    Also, versions 0.15 and 0.16 introduced a number of new monitors, check out
-    /usr/share/doc/xmobar/news.md.gz for more information.
+  Also, versions 0.15 and 0.16 introduced a number of new monitors, check out
+  /usr/share/doc/xmobar/news.md.gz for more information.
 
  -- Apollon Oikonomopoulos <apoikos@gmail.com>  Thu, 14 Mar 2013 17:46:46 +0200
