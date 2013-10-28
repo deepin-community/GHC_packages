@@ -38,7 +38,16 @@ xmobar can be either configured with a configuration file or with
 command line options. In the second case, the command line options will
 overwrite the corresponding options set in the configuration file.
 
-The default configuration file is assumed to lie in ~/.xmobarrc. See
+The configuration file is searched for in the following locations, in order:
+
+.RS
+.I $XDG_CONFIG_HOME/xmobar/xmobarrc
+(default: ~/.config/xmobar/xmobarrc)
+.br
+.I ~/.xmobarrc
+.RE
+
+The first configuration file found will be used. See
 /usr/share/doc/xmobar/examples for sample configuration files.
 
 .PP
