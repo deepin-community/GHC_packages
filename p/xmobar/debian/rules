@@ -4,7 +4,7 @@
 
 DEB_HOST_ARCH_OS := $(shell dpkg-architecture -qDEB_HOST_ARCH_OS)
 
-CONFIGURE_OPTS = --ghc-options="-optl -Wl,-z,relro"
+CONFIGURE_OPTS = --ghc-options="-optl -Wl,-z,relro -optl -Wl,--as-needed"
 
 ifeq ($(DEB_HOST_ARCH_OS),linux)
     CONFIGURE_OPTS += --flags="with_xft with_inotify with_iwlib with_mpris with_dbus"
