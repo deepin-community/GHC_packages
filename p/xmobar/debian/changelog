@@ -1,6 +1,9 @@
 xmobar (0.19-2) UNRELEASED; urgency=low
 
   * Really use $XDG_CONFIG_HOME/xmobar/xmobarrc if it exists (closes: #728205)
+  * Pass -z,relro to the linker (fixes the hardening-no-relro lintian warning)
+  * Pass --as-needed to the linked. This avoids a useless dependency against
+    libxext6
 
  -- Apollon Oikonomopoulos <apoikos@gmail.com>  Tue, 29 Oct 2013 16:36:57 +0200
 
