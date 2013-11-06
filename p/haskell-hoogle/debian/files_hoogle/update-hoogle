@@ -25,10 +25,14 @@ echo -n "Converting databases."
 TXTFILES_SYM=`find /usr/lib/ghc-doc/hoogle/ -name "*.txt"`
 TXTFILES=`readlinks $TXTFILES_SYM`
 for i in $TXTFILES; do
-    echo -n "."
-    $HOOGLE convert $i $DATABASE_DIR/`basename $i`.hoo --addlocation >/dev/null 2>&1
+    if [ -r "$i"]
+    then
+        echo -n "."
+        $HOOGLE convert $i $DATABASE_DIR/`basename $i`.hoo --addlocation >/dev/null 2>&1
+    fi
 done
 echo " done"
 
 # combine
-cd $DATABASE_DIR/ && $HOOGLE combine *.hoo
+find $DATABASE_DIR -name \*.hoo -print0 |
+	xargs -0 -- hoogle combine -o $DATABASE_DIR/default.hoo
