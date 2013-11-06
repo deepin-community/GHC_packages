@@ -25,7 +25,7 @@ echo -n "Converting databases."
 TXTFILES_SYM=`find /usr/lib/ghc-doc/hoogle/ -name "*.txt"`
 TXTFILES=`readlinks $TXTFILES_SYM`
 for i in $TXTFILES; do
-    if [ -r "$i"]
+    if [ -r "$i" ]
     then
         echo -n "."
         $HOOGLE convert $i $DATABASE_DIR/`basename $i`.hoo --addlocation >/dev/null 2>&1
