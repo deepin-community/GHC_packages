@@ -3,7 +3,6 @@ Section: haskell
 Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Iulian Udrea <iulian@linux.com>
-DM-Upload-Allowed: yes
 Build-Depends: debhelper (>= 9),
                cdbs,
                haskell-devscripts (>= 0.8.15),
@@ -15,17 +14,21 @@ Build-Depends: debhelper (>= 9),
                libghc-contravariant-dev (>= 0.2.0.1),
                libghc-contravariant-dev (<< 1),
                libghc-contravariant-prof,
-               libghc-comonad-dev (>> 3),
-               libghc-comonad-dev (<< 4),
-               libghc-comonad-prof,
-               libghc-semigroups-dev (>= 0.8.3.1),
-               libghc-semigroups-dev (<< 1),
-               libghc-semigroups-prof
-Build-Depends-Indep: ghc-doc,
-                     libghc-transformers-doc,
-                     libghc-contravariant-doc,
-                     libghc-comonad-doc,
-                     libghc-semigroups-doc
+               libghc-comonad-dev (>> 4),
+               libghc-comonad-dev (<< 5),
+               libghc-comonad-prof
+   , libghc-distributive-dev (>= 0.2.2)
+   , libghc-distributive-dev (<< 1)
+   , libghc-distributive-prof
+   , libghc-semigroups-dev (>= 0.8.3.1)
+   , libghc-semigroups-dev (<< 1)
+   , libghc-semigroups-prof
+Build-Depends-Indep: ghc-doc
+   , libghc-transformers-doc
+   , libghc-contravariant-doc
+   , libghc-comonad-doc
+   , libghc-distributive-doc
+   , libghc-semigroups-doc
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/semigroupoids
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-semigroupoids
