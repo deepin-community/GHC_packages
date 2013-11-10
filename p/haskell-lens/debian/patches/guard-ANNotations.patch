@@ -20,11 +20,9 @@ Subject: [PATCH 3/3] guard ANNotations
  src/Data/Data/Lens.hs               | 2 ++
  14 files changed, 31 insertions(+)
 
-diff --git a/src/Control/Exception/Lens.hs b/src/Control/Exception/Lens.hs
-index 4bc3926..13b7beb 100644
 --- a/src/Control/Exception/Lens.hs
 +++ b/src/Control/Exception/Lens.hs
-@@ -112,7 +112,9 @@ import Prelude
+@@ -112,7 +112,9 @@
    ,  Maybe(..), Either(..), Functor(..), String, IO
    )
 
@@ -34,19 +32,15 @@ index 4bc3926..13b7beb 100644
 
  -- $setup
  -- >>> :set -XNoOverloadedStrings
-diff --git a/src/Control/Lens.hs b/src/Control/Lens.hs
-index 242c3c1..c53e6f6 100644
 --- a/src/Control/Lens.hs
 +++ b/src/Control/Lens.hs
-@@ -99,4 +99,6 @@ import Control.Lens.Wrapped
+@@ -99,4 +99,6 @@
  import Control.Lens.Zipper
  import Control.Lens.Zoom
 
 +#ifndef DISABLE_TEMPLATE_HASKELL
  {-# ANN module "HLint: ignore Use import/export shortcut" #-}
 +#endif
-diff --git a/src/Control/Lens/Equality.hs b/src/Control/Lens/Equality.hs
-index 982c2d7..b06d4b5 100644
 --- a/src/Control/Lens/Equality.hs
 +++ b/src/Control/Lens/Equality.hs
 @@ -1,3 +1,4 @@
@@ -54,7 +48,7 @@ index 982c2d7..b06d4b5 100644
  {-# LANGUAGE GADTs #-}
  {-# LANGUAGE Rank2Types #-}
  {-# LANGUAGE TypeFamilies #-}
-@@ -28,8 +29,10 @@ module Control.Lens.Equality
+@@ -28,8 +29,10 @@
  import Control.Lens.Internal.Setter
  import Control.Lens.Type
 
@@ -65,11 +59,9 @@ index 982c2d7..b06d4b5 100644
 
  -- $setup
  -- >>> import Control.Lens
-diff --git a/src/Control/Lens/Fold.hs b/src/Control/Lens/Fold.hs
-index 32a4073..459f959 100644
 --- a/src/Control/Lens/Fold.hs
 +++ b/src/Control/Lens/Fold.hs
-@@ -163,9 +163,11 @@ import Data.Traversable
+@@ -163,9 +163,11 @@
  -- >>> let g :: Expr -> Expr; g = Debug.SimpleReflect.Vars.g
  -- >>> let timingOut :: NFData a => a -> IO a; timingOut = fmap (fromMaybe (error "timeout")) . timeout (5*10^6) . evaluate . force
 
@@ -81,8 +73,6 @@ index 32a4073..459f959 100644
 
  infixl 8 ^.., ^?, ^?!, ^@.., ^@?, ^@?!
 
-diff --git a/src/Control/Lens/Internal.hs b/src/Control/Lens/Internal.hs
-index 295662e..6166014 100644
 --- a/src/Control/Lens/Internal.hs
 +++ b/src/Control/Lens/Internal.hs
 @@ -1,3 +1,4 @@
@@ -90,18 +80,16 @@ index 295662e..6166014 100644
  -----------------------------------------------------------------------------
  -- |
  -- Module      :  Control.Lens.Internal
-@@ -43,4 +44,6 @@ import Control.Lens.Internal.Review
+@@ -43,4 +44,6 @@
  import Control.Lens.Internal.Setter
  import Control.Lens.Internal.Zoom
 
 +#ifndef DISABLE_TEMPLATE_HASKELL
  {-# ANN module "HLint: ignore Use import/export shortcut" #-}
 +#endif
-diff --git a/src/Control/Lens/Internal/Zipper.hs b/src/Control/Lens/Internal/Zipper.hs
-index 95875b7..2840bd9 100644
 --- a/src/Control/Lens/Internal/Zipper.hs
 +++ b/src/Control/Lens/Internal/Zipper.hs
-@@ -53,7 +53,9 @@ import Data.Profunctor.Unsafe
+@@ -53,7 +53,9 @@
  -- >>> import Control.Lens
  -- >>> import Data.Char
 
@@ -111,11 +99,9 @@ index 95875b7..2840bd9 100644
 
  ------------------------------------------------------------------------------
  -- * Jacket
-diff --git a/src/Control/Lens/Iso.hs b/src/Control/Lens/Iso.hs
-index 1152af4..66a9588 100644
 --- a/src/Control/Lens/Iso.hs
 +++ b/src/Control/Lens/Iso.hs
-@@ -82,7 +82,9 @@ import Data.Maybe
+@@ -82,7 +82,9 @@
  import Data.Profunctor
  import Data.Profunctor.Unsafe
 
@@ -125,11 +111,9 @@ index 1152af4..66a9588 100644
 
  -- $setup
  -- >>> :set -XNoOverloadedStrings
-diff --git a/src/Control/Lens/Lens.hs b/src/Control/Lens/Lens.hs
-index b26cc06..e3fe89c 100644
 --- a/src/Control/Lens/Lens.hs
 +++ b/src/Control/Lens/Lens.hs
-@@ -126,7 +126,9 @@ import Data.Profunctor.Rep
+@@ -126,7 +126,9 @@
  import Data.Profunctor.Unsafe
  import Data.Void
 
@@ -139,8 +123,6 @@ index b26cc06..e3fe89c 100644
 
  -- $setup
  -- >>> :set -XNoOverloadedStrings
-diff --git a/src/Control/Lens/Operators.hs b/src/Control/Lens/Operators.hs
-index 11868e0..1c062f3 100644
 --- a/src/Control/Lens/Operators.hs
 +++ b/src/Control/Lens/Operators.hs
 @@ -1,3 +1,4 @@
@@ -148,18 +130,16 @@ index 11868e0..1c062f3 100644
  -----------------------------------------------------------------------------
  -- |
  -- Module      :  Control.Lens.Operators
-@@ -108,4 +109,6 @@ import Control.Lens.Review
+@@ -108,4 +109,6 @@
  import Control.Lens.Setter
  import Control.Lens.Zipper
 
 +#ifndef DISABLE_TEMPLATE_HASKELL
  {-# ANN module "HLint: ignore Use import/export shortcut" #-}
 +#endif
-diff --git a/src/Control/Lens/Plated.hs b/src/Control/Lens/Plated.hs
-index a8c4d20..019fded 100644
 --- a/src/Control/Lens/Plated.hs
 +++ b/src/Control/Lens/Plated.hs
-@@ -95,7 +95,9 @@ import           Data.Data.Lens
+@@ -95,7 +95,9 @@
  import           Data.Monoid
  import           Data.Tree
 
@@ -169,12 +149,10 @@ index a8c4d20..019fded 100644
 
  -- | A 'Plated' type is one where we know how to extract its immediate self-similar children.
  --
-diff --git a/src/Control/Lens/Prism.hs b/src/Control/Lens/Prism.hs
-index 0f3253f..e3a0a01 100644
 --- a/src/Control/Lens/Prism.hs
 +++ b/src/Control/Lens/Prism.hs
-@@ -51,7 +51,9 @@ import Data.Void
- import Unsafe.Coerce
+@@ -53,7 +53,9 @@
+ import Data.Profunctor.Unsafe
  #endif
 
 +#ifndef DISABLE_TEMPLATE_HASKELL
@@ -183,11 +161,9 @@ index 0f3253f..e3a0a01 100644
 
  -- $setup
  -- >>> :set -XNoOverloadedStrings
-diff --git a/src/Control/Lens/Setter.hs b/src/Control/Lens/Setter.hs
-index a1e953f..dc16dc4 100644
 --- a/src/Control/Lens/Setter.hs
 +++ b/src/Control/Lens/Setter.hs
-@@ -87,7 +87,9 @@ import Data.Profunctor
+@@ -87,7 +87,9 @@
  import Data.Profunctor.Rep
  import Data.Profunctor.Unsafe
 
@@ -197,11 +173,9 @@ index a1e953f..dc16dc4 100644
 
  -- $setup
  -- >>> import Control.Lens
-diff --git a/src/Control/Lens/TH.hs b/src/Control/Lens/TH.hs
-index a05eb07..00353dc 100644
 --- a/src/Control/Lens/TH.hs
 +++ b/src/Control/Lens/TH.hs
-@@ -87,7 +87,9 @@ import Language.Haskell.TH
+@@ -87,7 +87,9 @@
  import Language.Haskell.TH.Syntax
  import Language.Haskell.TH.Lens
 
@@ -211,11 +185,9 @@ index a05eb07..00353dc 100644
 
  -- | Flags for 'Lens' construction
  data LensFlag
-diff --git a/src/Data/Data/Lens.hs b/src/Data/Data/Lens.hs
-index cf1e7c9..52490b5 100644
 --- a/src/Data/Data/Lens.hs
 +++ b/src/Data/Data/Lens.hs
-@@ -65,9 +65,11 @@ import           Data.Monoid
+@@ -65,9 +65,11 @@
  import           GHC.Exts (realWorld#)
  #endif
 
@@ -227,5 +199,3 @@ index cf1e7c9..52490b5 100644
 
  -- $setup
  -- >>> :set -XNoOverloadedStrings
---
-1.8.4.rc3
