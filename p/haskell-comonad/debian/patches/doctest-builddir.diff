@@ -1,0 +1,14 @@
+--- a/tests/doctests.hsc
++++ b/tests/doctests.hsc
+@@ -54,9 +54,9 @@
+ main :: IO ()
+ main = withUnicode $ getSources >>= \sources -> doctest $
+     "-isrc"
+-  : "-idist/build/autogen"
++  : "-idist-ghc/build/autogen"
+   : "-optP-include"
+-  : "-optPdist/build/autogen/cabal_macros.h"
++  : "-optPdist-ghc/build/autogen/cabal_macros.h"
+   : "-hide-all-packages"
+   : "-Iincludes"
+   : map ("-package="++) deps ++ sources
