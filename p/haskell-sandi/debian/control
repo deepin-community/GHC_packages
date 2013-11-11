@@ -1,0 +1,57 @@
+Source: haskell-sandi
+Priority: extra
+Section: haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joey Hess <joeyh@debian.org>
+Build-Depends:
+ debhelper (>= 9),
+ haskell-devscripts (>= 0.8.15),
+ cdbs,
+ ghc,
+ ghc-prof,
+ ghc-doc,
+ libghc-conduit-dev (>= 1.0),
+ libghc-conduit-dev (<< 1.1),
+ libghc-conduit-prof,
+ libghc-conduit-doc
+Standards-Version: 3.9.4
+Homepage: http://hackage.haskell.org/package/sandi
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-sandi
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-sandi
+
+Package: libghc-sandi-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: A Haskell library of data encoders and decoders${haskell:ShortBlurb}
+ Data encoding library currently providing Base16, Base32, Base32Hex, Base64,
+ Base64Url, Base85, Python string escaping, Quoted-Printable, URL encoding,
+ uuencode, xxencode, and yEncoding.
+ .
+ ${haskell:Blurb}
+
+Package: libghc-sandi-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Profiling libraries for sandi encoders and decoders${haskell:ShortBlurb}
+ Data encoding library currently providing Base16, Base32, Base32Hex, Base64,
+ Base64Url, Base85, Python string escaping, Quoted-Printable, URL encoding,
+ uuencode, xxencode, and yEncoding.
+ .
+ ${haskell:Blurb}
+
+Package: libghc-sandi-doc
+Section: doc
+Architecture: all
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Documentation for sandi encoders and decoders${haskell:ShortBlurb}
+ Data encoding library currently providing Base16, Base32, Base32Hex, Base64,
+ Base64Url, Base85, Python string escaping, Quoted-Printable, URL encoding,
+ uuencode, xxencode, and yEncoding.
+ .
+ ${haskell:Blurb}
