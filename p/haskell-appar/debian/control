@@ -1,0 +1,47 @@
+Source: haskell-appar
+Priority: extra
+Section: haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joey Hess <joeyh@debian.org>
+Build-Depends:
+ debhelper (>= 9),
+ haskell-devscripts (>= 0.8.15),
+ cdbs,
+ ghc,
+ ghc-prof,
+ ghc-doc,
+Standards-Version: 3.9.4
+Homepage: http://hackage.haskell.org/package/appar
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-appar
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-appar
+
+Package: libghc-appar-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: A simple applicative parser in Parsec style${haskell:ShortBlurb}
+ This is a simple applicative parser.
+ .
+ ${haskell:Blurb}
+
+Package: libghc-appar-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: A simple applicative parser in Parsec style${haskell:ShortBlurb}
+ This is a simple applicative parser.
+ .
+ ${haskell:Blurb}
+
+Package: libghc-appar-doc
+Section: doc
+Architecture: all
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: A simple applicative parser in Parsec style${haskell:ShortBlurb}
+ This is a simple applicative parser.
+ .
+ ${haskell:Blurb}
