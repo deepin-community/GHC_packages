@@ -1,0 +1,65 @@
+Source: haskell-iproute
+Priority: extra
+Section: haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joey Hess <joeyh@debian.org>
+Build-Depends:
+ debhelper (>= 9),
+ haskell-devscripts (>= 0.8.15),
+ cdbs,
+ ghc,
+ ghc-prof,
+ ghc-doc,
+ libghc-appar-dev,
+ libghc-appar-prof,
+ libghc-appar-doc,
+ libghc-byteorder-dev,
+ libghc-byteorder-prof,
+ libghc-byteorder-doc,
+ libghc-containers-dev,
+ libghc-containers-prof,
+ libghc-containers-doc,
+ libghc-network-dev,
+ libghc-network-prof,
+ libghc-network-doc
+Standards-Version: 3.9.4
+Homepage: http://hackage.haskell.org/package/iproute
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-iproute
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-iproute
+
+Package: libghc-iproute-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Haskell IP routing table${haskell:ShortBlurb}
+ IP Routing Table is a tree of IP ranges to search one of them on
+ the longest match base. It is a kind of TRIE with one way branching
+ removed. Both IPv4 and IPv6 are supported.
+ .
+ ${haskell:Blurb}
+
+Package: libghc-iproute-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Haskell IP routing table${haskell:ShortBlurb}
+ IP Routing Table is a tree of IP ranges to search one of them on
+ the longest match base. It is a kind of TRIE with one way branching
+ removed. Both IPv4 and IPv6 are supported.
+ .
+ ${haskell:Blurb}
+
+Package: libghc-iproute-doc
+Section: doc
+Architecture: all
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Haskell IP routing table${haskell:ShortBlurb}
+ IP Routing Table is a tree of IP ranges to search one of them on
+ the longest match base. It is a kind of TRIE with one way branching
+ removed. Both IPv4 and IPv6 are supported.
+ .
+ ${haskell:Blurb}
