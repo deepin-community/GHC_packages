@@ -1,0 +1,83 @@
+Source: haskell-dns
+Priority: extra
+Section: haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joey Hess <joeyh@debian.org>
+Build-Depends:
+ debhelper (>= 9),
+ haskell-devscripts (>= 0.8.15),
+ cdbs,
+ ghc,
+ ghc-prof,
+ ghc-doc,
+ libghc-attoparsec-dev,
+ libghc-attoparsec-prof,
+ libghc-attoparsec-doc,
+ libghc-attoparsec-conduit-dev,
+ libghc-attoparsec-conduit-prof,
+ libghc-attoparsec-conduit-doc,
+ libghc-binary-dev,
+ libghc-binary-prof,
+ libghc-binary-doc,
+ libghc-blaze-builder-dev,
+ libghc-blaze-builder-prof,
+ libghc-blaze-builder-doc,
+ libghc-conduit-dev (>= 0.5),
+ libghc-conduit-prof,
+ libghc-conduit-doc,
+ libghc-containers-dev,
+ libghc-containers-prof,
+ libghc-containers-doc,
+ libghc-iproute-dev,
+ libghc-iproute-prof,
+ libghc-iproute-doc,
+ libghc-mtl-dev,
+ libghc-mtl-prof,
+ libghc-mtl-doc,
+ libghc-network-dev,
+ libghc-network-prof,
+ libghc-network-doc,
+ libghc-network-conduit-dev,
+ libghc-network-conduit-prof,
+ libghc-network-conduit-doc,
+ libghc-random-dev,
+ libghc-random-prof,
+ libghc-random-doc
+Standards-Version: 3.9.4
+Homepage: http://hackage.haskell.org/package/dns
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-dns
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-dns
+
+Package: libghc-dns-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: pure Haskell DNS library${haskell:ShortBlurb}
+ A thread-safe DNS library for both clients and servers
+ written in pure Haskell.
+ .
+ ${haskell:Blurb}
+
+Package: libghc-dns-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: pure Haskell DNS library${haskell:ShortBlurb}
+ A thread-safe DNS library for both clients and servers
+ written in pure Haskell.
+ .
+ ${haskell:Blurb}
+
+Package: libghc-dns-doc
+Section: doc
+Architecture: all
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: pure Haskell DNS library${haskell:ShortBlurb}
+ A thread-safe DNS library for both clients and servers
+ written in pure Haskell.
+ .
+ ${haskell:Blurb}
