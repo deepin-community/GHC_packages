@@ -1,0 +1,55 @@
+Source: haskell-tasty-quickcheck
+Priority: extra
+Section: haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joey Hess <joeyh@debian.org>
+Build-Depends:
+ debhelper (>= 9),
+ haskell-devscripts (>= 0.8.15),
+ cdbs,
+ ghc,
+ ghc-prof,
+ ghc-doc,
+ libghc-tasty-prof,
+ libghc-tasty-doc,
+ libghc-quickcheck2-prof (<< 3),
+ libghc-quickcheck2-doc,
+ libghc-tagged-prof,
+ libghc-tagged-doc,
+ libghc-random-prof,
+ libghc-random-doc
+Standards-Version: 3.9.4
+Homepage: http://hackage.haskell.org/package/tasty-quickcheck
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-tasty-quickcheck
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-tasty-quickcheck
+
+Package: libghc-tasty-quickcheck-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Haskell testing framework, QuickCheck support${haskell:ShortBlurb}
+ QuickCheck support for the Tasty test framework.
+ .
+ ${haskell:Blurb}
+
+Package: libghc-tasty-quickcheck-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Haskell testing framework, QuickCheck support${haskell:ShortBlurb}
+ QuickCheck support for the Tasty test framework.
+ .
+ ${haskell:Blurb}
+
+Package: libghc-tasty-quickcheck-doc
+Section: doc
+Architecture: all
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Haskell testing framework, QuickCheck support${haskell:ShortBlurb}
+ QuickCheck support for the Tasty test framework.
+ .
+ ${haskell:Blurb}
