@@ -1,0 +1,53 @@
+Source: haskell-tasty-hunit
+Priority: extra
+Section: haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joey Hess <joeyh@debian.org>
+Build-Depends:
+ debhelper (>= 9),
+ haskell-devscripts (>= 0.8.15),
+ cdbs,
+ ghc,
+ ghc-prof,
+ ghc-doc,
+ libghc-hunit-prof,
+ libghc-hunit-doc,
+ libghc-mtl-prof,
+ libghc-mtl-doc,
+ libghc-tasty-prof,
+ libghc-tasty-doc
+Standards-Version: 3.9.4
+Homepage: http://hackage.haskell.org/package/tasty-hunit
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-tasty-hunit
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-tasty-hunit
+
+Package: libghc-tasty-hunit-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Haskell testing framework, HUnit support${haskell:ShortBlurb}
+ HUnit support for the Tasty test framework.
+ .
+ ${haskell:Blurb}
+
+Package: libghc-tasty-hunit-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Haskell testing framework, HUnit support${haskell:ShortBlurb}
+ HUnit support for the Tasty test framework.
+ .
+ ${haskell:Blurb}
+
+Package: libghc-tasty-hunit-doc
+Section: doc
+Architecture: all
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Haskell testing framework, HUnit support${haskell:ShortBlurb}
+ HUnit support for the Tasty test framework.
+ .
+ ${haskell:Blurb}
