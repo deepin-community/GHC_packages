@@ -3,18 +3,22 @@ Priority: extra
 Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Giovanni Mascellani <gio@debian.org>, Clint Adams <clint@debian.org>
-Build-Depends:
- debhelper (>= 9),
- haskell-devscripts (>= 0.8.15),
- cdbs,
- ghc,
- ghc-prof,
- ghc-doc,
- libghc-syb-dev,
- libghc-syb-prof
+Build-Depends: debhelper (>= 9)
+  , haskell-devscripts (>= 0.8.15)
+  , cdbs
+  , ghc
+  , ghc-prof
+  , ghc-doc
+  , libghc-aeson-dev (>= 0.6.2)
+  , libghc-aeson-dev (<< 0.7)
+  , libghc-aeson-prof
+  , libghc-syb-dev (>= 0.1)
+  , libghc-syb-dev (<< 0.5)
+  , libghc-syb-prof
 Build-Depends-Indep:
- libghc-syb-doc
-Standards-Version: 3.9.4
+  , libghc-aeson-doc
+  , libghc-syb-doc
+Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/pandoc-types
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-pandoc-types
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-pandoc-types
