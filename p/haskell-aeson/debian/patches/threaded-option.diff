@@ -1,6 +1,6 @@
 --- a/aeson.cabal
 +++ b/aeson.cabal
-@@ -101,6 +101,10 @@
+@@ -95,6 +95,10 @@
    description: build TH bits
    default: True
 
@@ -11,14 +11,18 @@
  library
    exposed-modules:
      Data.Aeson
-@@ -152,7 +156,9 @@
-   main-is:        Properties.hs
+@@ -152,11 +156,13 @@
+                   Properties.Deprecated
 
    ghc-options:
 -    -Wall -threaded -rtsopts
 +    -Wall -rtsopts
+   if impl(ghc < 7.4)
+     ghc-options: -fcontext-stack=40
+   if impl(ghc >= 7.2)
+     cpp-options: -DGHC_GENERICS
 +  if flag(threaded)
-+      ghc-options: -threaded
++    ghc-options: -threaded
 
    build-depends:
      QuickCheck,
