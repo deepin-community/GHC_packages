@@ -5,7 +5,7 @@ include /usr/share/cdbs/1/class/hlibrary.mk
 
 DEB_GHC_EXTRA_PACKAGES := libghc-citeproc-hs-data (>= $(CABAL_VERSION))
 
-DEB_SETUP_GHC_CONFIGURE_ARGS = -fbibutils
+DEB_SETUP_GHC_CONFIGURE_ARGS = -fbibutils -funicode_collation
 
 install/libghc-citeproc-hs-data:: debian/tmp-inst-ghc
 	mv debian/tmp-inst-ghc/usr/share/citeproc-hs debian/libghc-citeproc-hs-data/usr/share
