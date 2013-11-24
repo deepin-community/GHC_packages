@@ -15,11 +15,11 @@ Build-Depends: debhelper (>= 9)
   , libghc-blaze-markup-dev (>> 0.5.1)
   , libghc-blaze-markup-dev (<< 0.6)
   , libghc-blaze-markup-prof
-  , libghc-citeproc-hs-dev (>> 0.3.2)
-  , libghc-citeproc-hs-dev (<< 0.4)
-  , libghc-citeproc-hs-prof
+  , libghc-cmdargs-dev (>= 0.10)
+  , libghc-cmdargs-dev (<< 1.11)
+  , libghc-cmdargs-prof
   , libghc-cryptohash-dev (>> 0.7)
-  , libghc-cryptohash-dev (<< 0.11)
+  , libghc-cryptohash-dev (<< 0.12)
   , libghc-cryptohash-prof
   , libghc-data-default-dev (>> 0.4)
   , libghc-data-default-dev (<< 0.6)
@@ -33,12 +33,12 @@ Build-Depends: debhelper (>= 9)
   , libghc-network-dev (>> 2.4)
   , libghc-network-dev (<< 2.5)
   , libghc-network-prof
-  , libghc-cmdargs-dev (>= 0.10)
-  , libghc-cmdargs-dev (<< 1.11)
-  , libghc-cmdargs-prof
-  , libghc-pandoc-dev (>= 1.10)
-  , libghc-pandoc-dev (<< 1.12)
+  , libghc-pandoc-dev (>= 1.12)
+  , libghc-pandoc-dev (<< 1.13)
   , libghc-pandoc-prof
+  , libghc-pandoc-citeproc-dev (>= 0.1)
+  , libghc-pandoc-citeproc-dev (<< 0.2)
+  , libghc-pandoc-citeproc-prof
   , libghc-parsec3-dev (>= 3.0)
   , libghc-parsec3-dev (<< 3.2)
   , libghc-parsec3-prof
@@ -52,7 +52,7 @@ Build-Depends: debhelper (>= 9)
   , libghc-regex-tdfa-dev (<< 1.2)
   , libghc-regex-tdfa-prof
   , libghc-tagsoup-dev (>= 0.12.6)
-  , libghc-tagsoup-dev (<< 0.13)
+  , libghc-tagsoup-dev (<< 0.14)
   , libghc-tagsoup-prof
   , libghc-text-dev (>= 0.11)
   , libghc-text-dev (<< 1.12)
@@ -80,15 +80,14 @@ Build-Depends: debhelper (>= 9)
   , libghc-quickcheck2-dev (<< 2.7)
   , libghc-test-framework-dev (>= 0.4)
   , libghc-test-framework-dev (<< 0.9)
-  , libghc-test-framework-hunit-dev (>= 0.2)
+  , libghc-test-framework-hunit-dev (>= 0.3)
   , libghc-test-framework-hunit-dev (<< 0.4)
-  , libghc-test-framework-quickcheck2-dev (>= 0.2)
+  , libghc-test-framework-quickcheck2-dev (>= 0.3)
   , libghc-test-framework-quickcheck2-dev (<< 0.4)
 Build-Depends-Indep: ghc-doc
   , libghc-binary-doc
   , libghc-blaze-html-doc
   , libghc-blaze-markup-doc
-  , libghc-citeproc-hs-doc
   , libghc-cryptohash-doc
   , libghc-http-conduit-doc
   , libghc-http-types-doc
@@ -97,6 +96,7 @@ Build-Depends-Indep: ghc-doc
   , libghc-network-doc
   , libghc-cmdargs-doc
   , libghc-pandoc-doc
+  , libghc-pandoc-citeproc-doc
   , libghc-parsec3-doc
   , libghc-random-doc
   , libghc-regex-base-doc
