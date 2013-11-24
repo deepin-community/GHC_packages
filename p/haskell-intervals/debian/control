@@ -1,0 +1,65 @@
+Source: haskell-intervals
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+# Make sure all dependencies listed in the cabal file are represented here,
+# including their version bounds. It is sufficient to add the bounds to the
+# -dev package only.
+  , libghc-numeric-extras-dev (>= 0.0.1)
+  , libghc-numeric-extras-dev (<< 0.1)
+  , libghc-numeric-extras-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-numeric-extras-doc
+Standards-Version: 3.9.2
+Homepage: http://hackage.haskell.org/package/intervals
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-intervals
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-intervals
+X-Description: A Haskell type for intervals
+  A Numeric.Interval.Interval is a closed, convex set of floating point values.
+  .
+  This package does not control the rounding mode of the end points of the
+  interval when using floating point arithmetic, so be aware that in order to
+  get precise containment of the result, you will need to use an underlying
+  type with both lower and upper bounds like CReal.
+
+Package: libghc-intervals-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-intervals-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-intervals-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
