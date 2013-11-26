@@ -1,0 +1,78 @@
+Source: haskell-pipes-safe
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-exceptions-dev (>= 0.3.2)
+  , libghc-exceptions-dev (<< 0.4)
+  , libghc-exceptions-prof
+  , libghc-pipes-dev (>= 4.0.0)
+  , libghc-pipes-dev (<< 4.1)
+  , libghc-pipes-prof
+  , libghc-transformers-dev (>= 0.2.0.0)
+  , libghc-transformers-dev (<< 0.4)
+  , libghc-transformers-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-exceptions-doc
+  , libghc-pipes-doc
+  , libghc-transformers-doc
+Standards-Version: 3.9.5
+Homepage: http://hackage.haskell.org/package/pipes-safe
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-pipes-safe
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-pipes-safe
+X-Description: safety for the pipes ecosystem
+ This package adds resource management and exception handling to the
+ pipes ecosystem.
+ .
+ Notable features include:
+ .
+  * Resource Safety: Guarantee finalization using `finally`, `bracket`
+    and more
+  * Exception Safety: Even against asynchronous exceptions!
+  * Laziness: Only acquire resources when you need them
+  * Promptness: Finalize resources early when you are done with them
+  * Native Exception Handling: Catch and resume from exceptions
+    inside pipes
+  * No Buy-in: Mix resource-safe pipes with unmanaged pipes using
+    `hoist`
+
+Package: libghc-pipes-safe-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-pipes-safe-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-pipes-safe-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
