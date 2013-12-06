@@ -1,0 +1,97 @@
+Source: haskell-http-client
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-base64-bytestring-dev (>= 1.0)
+  , libghc-base64-bytestring-dev (<< 1.1)
+  , libghc-base64-bytestring-prof
+  , libghc-blaze-builder-dev (>= 0.3)
+  , libghc-blaze-builder-prof
+  , libghc-case-insensitive-dev (>= 1.0)
+  , libghc-case-insensitive-dev (<< 1.2)
+  , libghc-case-insensitive-prof
+  , libghc-cookie-dev
+  , libghc-cookie-prof
+  , libghc-data-default-dev
+  , libghc-data-default-prof
+  , libghc-failure-dev (>= 0.2)
+  , libghc-failure-dev (<< 0.3)
+  , libghc-failure-prof
+  , libghc-http-types-dev (>= 0.8)
+  , libghc-http-types-prof
+  , libghc-network-dev (>= 2.3)
+  , libghc-network-prof
+  , libghc-publicsuffixlist-dev
+  , libghc-publicsuffixlist-prof
+  , libghc-text-dev (>= 0.11)
+  , libghc-text-prof
+  , libghc-transformers-dev
+  , libghc-transformers-prof
+  , libghc-zlib-bindings-dev (>= 0.1)
+  , libghc-zlib-bindings-dev (<< 0.2)
+  , libghc-zlib-bindings-prof
+  , libghc-hspec-dev
+Build-Depends-Indep: ghc-doc
+  , libghc-base64-bytestring-doc
+  , libghc-blaze-builder-doc
+  , libghc-case-insensitive-doc
+  , libghc-cookie-doc
+  , libghc-data-default-doc
+  , libghc-failure-doc
+  , libghc-http-types-doc
+  , libghc-network-doc
+  , libghc-publicsuffixlist-doc
+  , libghc-text-doc
+  , libghc-transformers-doc
+  , libghc-zlib-bindings-doc
+Standards-Version: 3.9.5
+Homepage: http://hackage.haskell.org/package/http-client
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-http-client
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-http-client
+X-Description: HTTP client engine
+ An HTTP client engine, intended as a base layer for more user-friendly
+ packages.
+ .
+ This code has been factored out of http-conduit.
+
+Package: libghc-http-client-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-http-client-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-http-client-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
