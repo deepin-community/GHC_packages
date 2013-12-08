@@ -1,0 +1,69 @@
+Source: haskell-http-client-tls
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-connection-dev (>= 0.1.3)
+  , libghc-connection-prof
+  , libghc-data-default-dev
+  , libghc-data-default-prof
+  , libghc-http-client-dev (>= 0.2)
+  , libghc-http-client-prof
+  , libghc-network-dev
+  , libghc-network-prof
+  , libghc-tls-dev (>= 1.1)
+  , libghc-tls-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-connection-doc
+  , libghc-data-default-doc
+  , libghc-http-client-doc
+  , libghc-network-doc
+  , libghc-tls-doc
+Standards-Version: 3.9.5
+Homepage: http://hackage.haskell.org/package/http-client-tls
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-http-client-tls
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-http-client-tls
+X-Description: http-client backend using connection and tls libraries
+ Support for making connections via the connection package and, in
+ turn, the tls package suite.
+
+Package: libghc-http-client-tls-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-http-client-tls-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-http-client-tls-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
