@@ -1,0 +1,47 @@
+From: Geoffrey Mainland <gmainlan@microsoft.com>
+Date: Wed, 12 Jun 2013 13:31:49 +0000 (+0100)
+Subject: Avoid generating empty llvm.used definitions.
+X-Git-Url: http://git.haskell.org/ghc.git/commitdiff_plain/db9b63105a54
+
+Avoid generating empty llvm.used definitions.
+
+LLVM 3.3rc3 complains when the llvm.used global is an empty array, so don't
+define llvm.used at all when it would be empty.
+---
+
+Index: ghc-7.6.3/compiler/llvmGen/LlvmCodeGen.hs
+===================================================================
+--- ghc-7.6.3.orig/compiler/llvmGen/LlvmCodeGen.hs	2013-12-08 17:13:46.119975151 +0000
++++ ghc-7.6.3/compiler/llvmGen/LlvmCodeGen.hs	2013-12-08 17:13:46.119975151 +0000
+@@ -112,19 +112,19 @@
+       -> [[LlvmVar]] -- ^ info tables that need to be marked as 'used'
+       -> IO ()
+ 
+-cmmProcLlvmGens _ _ _ _ [] _ []
+-  = return ()
+-
+ cmmProcLlvmGens dflags h _ _ [] _ ivars
+-  = let ivars' = concat ivars
+-        cast x = LMBitc (LMStaticPointer (pVarLift x)) i8Ptr
+-        ty     = (LMArray (length ivars') i8Ptr)
+-        usedArray = LMStaticArray (map cast ivars') ty
+-        lmUsed = (LMGlobalVar (fsLit "llvm.used") ty Appending
+-                  (Just $ fsLit "llvm.metadata") Nothing False, Just usedArray)
+-    in Prt.bufLeftRender h $ {-# SCC "llvm_used_ppr" #-}
+-                             withPprStyleDoc dflags (mkCodeStyle CStyle) $
+-                             pprLlvmData ([lmUsed], [])
++    | null ivars' = return ()
++    | otherwise   = Prt.bufLeftRender h $
++                        {-# SCC "llvm_used_ppr" #-}
++                        withPprStyleDoc dflags (mkCodeStyle CStyle) $
++                        pprLlvmData ([lmUsed], [])
++  where
++    ivars' = concat ivars
++    cast x = LMBitc (LMStaticPointer (pVarLift x)) i8Ptr
++    ty     = (LMArray (length ivars') i8Ptr)
++    usedArray = LMStaticArray (map cast ivars') ty
++    lmUsed = (LMGlobalVar (fsLit "llvm.used") ty Appending
++              (Just $ fsLit "llvm.metadata") Nothing False, Just usedArray)
+ 
+ cmmProcLlvmGens dflags h us env ((CmmData _ _) : cmms) count ivars
+  = cmmProcLlvmGens dflags h us env cmms count ivars
