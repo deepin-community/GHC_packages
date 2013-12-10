@@ -1,0 +1,74 @@
+Source: haskell-nettle
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-byteable-dev
+  , libghc-byteable-prof
+  , libghc-crypto-cipher-types-dev (>= 0.0.3)
+  , libghc-crypto-cipher-types-dev (<< 0.1)
+  , libghc-crypto-cipher-types-prof
+  , libghc-securemem-dev (>= 0.1.2)
+  , libghc-securemem-prof
+  , libghc-tagged-dev
+  , libghc-tagged-prof
+  , pkg-config
+  , nettle-dev
+  , libghc-quickcheck2-dev
+  , libghc-test-framework-dev (>= 0.3.3)
+  , libghc-test-framework-hunit-dev
+  , libghc-test-framework-quickcheck2-dev (>= 0.2.9)
+  , libghc-crypto-cipher-tests-dev
+Build-Depends-Indep: ghc-doc
+  , libghc-byteable-doc
+  , libghc-crypto-cipher-types-doc
+  , libghc-securemem-doc
+  , libghc-tagged-doc
+Standards-Version: 3.9.5
+Homepage: http://hackage.haskell.org/package/nettle
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-nettle
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-nettle
+X-Description: safe bindings to nettle crypto library
+ This is another set of bindings to Nettle.
+
+Package: libghc-nettle-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+  , nettle-dev
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-nettle-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-nettle-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
