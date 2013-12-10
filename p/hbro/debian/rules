@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 
-DEB_SETUP_GHC_CONFIGURE_ARGS := $(shell test -e /usr/lib/ghc-$(GHC_VERSION)/libHSrts_thr.a || echo --flags=-threaded)
+DEB_SETUP_GHC_CONFIGURE_ARGS := $(shell test -e /usr/lib/ghc/libHSrts_thr.a || echo --flags=-threaded)
 DEB_SETUP_GHC_CONFIGURE_ARGS += --datasubdir=hbro
 
 include /usr/share/cdbs/1/rules/debhelper.mk
