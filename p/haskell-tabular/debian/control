@@ -1,0 +1,73 @@
+Source: haskell-tabular
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-csv-dev (>= 0.1)
+  , libghc-csv-dev (<< 0.2)
+  , libghc-csv-prof
+  , libghc-html-dev (>= 1.0)
+  , libghc-html-dev (<< 2.0)
+  , libghc-html-prof
+  , libghc-mtl-dev (>= 1)
+  , libghc-mtl-dev (<< 2.2)
+  , libghc-mtl-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-csv-doc
+  , libghc-html-doc
+  , libghc-mtl-doc
+Standards-Version: 3.9.5
+Homepage: http://hackage.haskell.org/package/tabular
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-tabular
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-tabular
+X-Description: two-dimensional data tables with rendering functions
+ Tabular provides a Haskell representation of two-dimensional data
+ tables, the kind that you might find in a spreadsheet or or a
+ research report. It also comes with some default rendering functions
+ for turning those tables into ASCII art, simple text with an
+ arbitrary delimiter, CSV, HTML or LaTeX.
+ .
+ The tabular package can group rows and columns, each group having one
+ of three separators (no line, single line, double line) between its
+ members.
+
+Package: libghc-tabular-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-tabular-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-tabular-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
