@@ -1,0 +1,74 @@
+Source: haskell-wai-websockets
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Raúl Benencia <rul@kalgan.cc>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-conduit-dev (>= 0.5)
+  , libghc-conduit-dev (<< 1.1)
+  , libghc-wai-dev (>= 1.3)
+  , libghc-wai-dev (<< 1.5)
+  , libghc-wai-app-static-dev
+  , libghc-blaze-builder-dev (>= 0.2.1.4)
+  , libghc-blaze-builder-dev (<< 0.4)
+  , libghc-case-insensitive-dev (>= 0.2)
+  , libghc-network-dev (>= 2.2.1.5)
+  , libghc-transformers-dev (>= 0.2)
+  , libghc-transformers-dev (<< 0.4)
+  , libghc-websockets-dev (>= 0.8)
+  , libghc-websockets-prof
+  , libghc-warp-dev (>= 1.3)
+  , libghc-warp-dev (<< 1.4)
+  , libghc-warp-prof
+  , libghc-io-streams-dev (>= 1.1)
+  , libghc-io-streams-dev (<< 1.2)
+  , libghc-io-streams-prof
+Build-Depends-Indep: ghc-doc
+Standards-Version: 3.9.5
+Homepage: http://hackage.haskell.org/package/wai-websockets
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-wai-websockets
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-wai-websockets
+X-Description: bridge between WAI and the haskell websockets library
+ The Web Application Interface provides a common protocol for communication
+ between web applications and web servers. This package provides a bridge
+ between WAI and the haskell websockets library.
+
+Package: libghc-wai-websockets-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-wai-websockets-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-wai-websockets-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
