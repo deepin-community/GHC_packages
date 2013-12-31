@@ -3,26 +3,34 @@ Priority: extra
 Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joey Hess <joeyh@debian.org>
-Build-Depends:
- debhelper (>= 9),
- haskell-devscripts (>= 0.8.15),
- cdbs,
- ghc,
- ghc-prof,
- ghc-doc,
- libghc-mtl-prof,
- libghc-mtl-doc,
- libghc-optparse-applicative-prof (>= 0.6),
- libghc-optparse-applicative-doc,
- libghc-regex-posix-prof,
- libghc-regex-posix-doc,
- libghc-stm-prof (>= 2.3),
- libghc-stm-doc,
- libghc-tagged-prof (>= 0.5),
- libghc-tagged-doc,
- libghc-ansi-terminal-prof,
- libghc-ansi-terminal-doc
-Standards-Version: 3.9.4
+Build-Depends: debhelper (>= 9)
+ , haskell-devscripts (>= 0.8.15)
+ , cdbs
+ , ghc
+ , ghc-prof
+ , libghc-either-dev (>= 4.0)
+ , libghc-either-prof
+ , libghc-mtl-dev
+ , libghc-mtl-prof
+ , libghc-optparse-applicative-dev (>= 0.6)
+ , libghc-optparse-applicative-prof
+ , libghc-regex-tdfa-dev (>= 1.1.8)
+ , libghc-regex-tdfa-prof
+ , libghc-stm-dev (>= 2.3)
+ , libghc-stm-prof
+ , libghc-tagged-dev (>= 0.5)
+ , libghc-tagged-prof
+ , libghc-ansi-terminal-dev (>= 0.6.1)
+ , libghc-ansi-terminal-prof
+Build-Depends-Indep: ghc-doc
+ , libghc-either-doc
+ , libghc-mtl-doc
+ , libghc-optparse-applicative-doc
+ , libghc-regex-tdfa-doc
+ , libghc-stm-doc
+ , libghc-tagged-doc
+ , libghc-ansi-terminal-doc
+Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/tasty
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-tasty
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-tasty
