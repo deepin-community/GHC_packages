@@ -1,0 +1,9 @@
+#!/usr/bin/make -f
+
+# DEB_ENABLE_TESTS = yes
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/hlibrary.mk
+
+install/aeson-pretty:: debian/tmp-inst-ghc
+	mv debian/tmp-inst-ghc/usr/bin/* debian/aeson-pretty/usr/bin
