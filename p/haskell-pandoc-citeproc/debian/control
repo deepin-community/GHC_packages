@@ -1,0 +1,133 @@
+Source: haskell-pandoc-citeproc
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-aeson-dev
+  , libghc-aeson-prof
+  , libghc-hs-bibutils-dev (>= 0.3)
+  , libghc-hs-bibutils-prof
+  , libghc-http-dev (>= 1:4000.0.9)
+  , libghc-http-prof
+  , libghc-mtl-dev
+  , libghc-mtl-prof
+  , libghc-network-dev
+  , libghc-network-prof
+  , libghc-pandoc-dev (>= 1.12.1)
+  , libghc-pandoc-prof
+  , libghc-pandoc-types-dev (>= 1.12.3)
+  , libghc-pandoc-types-prof
+  , libghc-split-dev
+  , libghc-split-prof
+  , libghc-tagsoup-dev
+  , libghc-tagsoup-prof
+  , libghc-texmath-dev (>= 0.6.4)
+  , libghc-texmath-prof
+  , libghc-text-dev
+  , libghc-text-prof
+  , libghc-text-icu-dev
+  , libghc-text-icu-prof
+  , libghc-vector-dev
+  , libghc-vector-prof
+  , libghc-yaml-dev
+  , libghc-yaml-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-aeson-doc
+  , libghc-hs-bibutils-doc
+  , libghc-http-doc
+  , libghc-mtl-doc
+  , libghc-network-doc
+  , libghc-pandoc-doc
+  , libghc-pandoc-types-doc
+  , libghc-split-doc
+  , libghc-tagsoup-doc
+  , libghc-texmath-doc
+  , libghc-text-doc
+  , libghc-text-icu-doc
+  , libghc-vector-doc
+  , libghc-yaml-doc
+Standards-Version: 3.9.5
+Homepage: http://hackage.haskell.org/package/pandoc-citeproc
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-pandoc-citeproc
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-pandoc-citeproc
+X-Description: support for using pandoc with citeproc
+ The pandoc-citeproc library exports functions for using the citeproc
+ system with pandoc. It relies on citeproc-hs, a library for rendering
+ bibliographic reference citations into a variety of styles using a
+ macro language called Citation Style Language (CSL). More details on
+ CSL can be found here: http://citationstyles.org/ .
+
+Package: libghc-pandoc-citeproc-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-pandoc-citeproc-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-pandoc-citeproc-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-pandoc-citeproc-data
+Architecture: all
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Breaks: pandoc (<< 1.11.1-3)
+Description: Pandoc support for Citation Style Language - data files
+ pandoc-citeproc is a Haskell implementation of the Citation Style Language
+ (CSL).
+ .
+ pandoc-citeproc adds to pandoc, the famous Haskell text processing tool, a
+ Bibtex like citation and bibliographic formatting and generation
+ facility.
+ .
+ CSL is an XML language for specifying citation and bibliographic
+ formatting, similar in principle to BibTeX .bst files or the binary
+ style files in commercial products like Endnote or Reference Manager.
+ .
+ This package contains the data files needed to use the library.
+
+Package: pandoc-citeproc
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Description: Pandoc support for Citation Style Language - tools
+ pandoc-citeproc is a Haskell implementation of the Citation Style Language
+ (CSL).
+ .
+ This contains two executables: pandoc-citeproc, which works as a
+ pandoc filter (pandoc >= 1.12), and biblio2yaml, which converts
+ bibliographic databases to a yaml format suitable for inclusion in
+ pandoc YAML metadata.
