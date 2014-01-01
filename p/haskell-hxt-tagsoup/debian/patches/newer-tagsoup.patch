@@ -1,0 +1,31 @@
+Description: Port to tagsoup 0.13
+Author: Colin Watson <cjwatson@debian.org>
+Forwarded: https://github.com/UweSchmidt/hxt/pull/13
+Last-Update: 2014-01-01
+
+Index: b/hxt-tagsoup.cabal
+===================================================================
+--- a/hxt-tagsoup.cabal
++++ b/hxt-tagsoup.cabal
+@@ -33,7 +33,7 @@
+  extensions: MultiParamTypeClasses DeriveDataTypeable FunctionalDependencies FlexibleInstances
+
+  build-depends: base               >= 4    && < 5,
+-                tagsoup            >= 0.10 && < 0.13,
++                tagsoup            >= 0.13 && < 0.14,
+                 hxt-charproperties >= 9    && < 10,
+                 hxt-unicode        >= 9    && < 10,
+                 hxt                >= 9.1  && < 10
+Index: b/src/Text/XML/HXT/Parser/TagSoup.hs
+===================================================================
+--- a/src/Text/XML/HXT/Parser/TagSoup.hs
++++ b/src/Text/XML/HXT/Parser/TagSoup.hs
+@@ -244,7 +244,7 @@
+ lookupEntity    :: Bool -> Bool -> (String, Bool) -> Tags
+ lookupEntity withWarnings _asHtml (e0@('#':e), withSemicolon)
+     = case lookupNumericEntity e of
+-      Just c  -> (TagText [c])
++      Just c  -> (TagText c)
+		 : missingSemi
+       Nothing -> ( TagText $ "&" ++ e0 ++ [';' | withSemicolon])
+		 : if withWarnings
