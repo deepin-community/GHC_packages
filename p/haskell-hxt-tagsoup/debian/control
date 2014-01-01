@@ -3,22 +3,23 @@ Section: haskell
 Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: TANIGUCHI Takaki <takaki@debian.org>
-Build-Depends: debhelper (>= 9),
-	haskell-devscripts (>= 0.8.15),
-	cdbs,
-	ghc,
-	ghc-prof,
-	ghc-doc,
-	libghc-tagsoup-dev (>= 0.13),
-	libghc-tagsoup-dev (<< 0.14),
-	libghc-tagsoup-prof,
-	libghc-tagsoup-doc,
-	libghc-hxt-dev (>= 9), libghc-hxt-dev (<< 10),
-	libghc-hxt-prof (>= 9), libghc-hxt-prof (<< 10),
-	libghc-hxt-doc (>= 9), libghc-hxt-doc (<< 10),
-	libghc-hxt-charproperties-dev,
-	libghc-hxt-charproperties-prof,
-	libghc-hxt-charproperties-doc,
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-tagsoup-dev (>= 0.13)
+  , libghc-tagsoup-dev (<< 0.14)
+  , libghc-tagsoup-prof
+  , libghc-hxt-dev (>= 9)
+  , libghc-hxt-dev (<< 10)
+  , libghc-hxt-prof,
+  , libghc-hxt-charproperties-dev
+  , libghc-hxt-charproperties-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-tagsoup-doc
+  , libghc-hxt-doc
+  , libghc-hxt-charproperties-doc
 Standards-Version: 3.9.4
 Homepage: http://www.fh-wedel.de/~si/HXmlToolbox/
 
