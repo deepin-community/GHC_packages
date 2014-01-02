@@ -1,0 +1,11 @@
+--- a/tests/test-pandoc-citeproc.hs
++++ b/tests/test-pandoc-citeproc.hs
+@@ -89,7 +89,7 @@
+   let expected = BL.unlines yamllines
+   (ec, result, errout) <- pipeProcess
+                      (Just [("LANG","en_US.UTF-8"),("HOME",".")])
+-                     "dist/build/biblio2yaml/biblio2yaml"
++                     "dist-ghc/build/biblio2yaml/biblio2yaml"
+                      ["-f", drop 1 $ takeExtension fp] bib
+   if ec == ExitSuccess
+      then do
