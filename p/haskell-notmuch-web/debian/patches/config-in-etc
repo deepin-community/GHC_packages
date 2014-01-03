@@ -1,0 +1,39 @@
+--- a/main.hs
++++ b/main.hs
+@@ -27,7 +27,7 @@
+ import System.Environment   (getArgs)
+ import System.Exit          (exitWith, ExitCode(..))
+ import System.IO            (hSetEcho, hFlush, stdin, stdout, hPutStrLn, stderr)
+-import Yesod.Default.Config (fromArgs)
++import Yesod.Default.Config (fromArgsSettings, configSettings, ConfigSettings(csParseExtra, csFile))
+ import Yesod.Default.Main   (defaultMain)
+
+ genPassword :: IO ()
+@@ -51,4 +51,7 @@
+   a <- getArgs
+   if "--make-password" `elem` a
+     then genPassword
+-    else defaultMain (fromArgs parseExtra) makeApplication
++    else defaultMain etchack makeApplication
++  where
++      etchack = fromArgsSettings $ \env -> return (configSettings env) { csParseExtra = parseExtra
++                                                                       , csFile = const (return "/etc/notmuch-web/settings.yml") }
+--- a/notmuch-web.cabal
++++ b/notmuch-web.cabal
+@@ -146,7 +146,7 @@
+                      , warp
+                      , xss-sanitize                  >= 0.3.4
+                      , yaml
+-                     , yesod                         >= 1.2    && < 1.3
++                     , yesod                         >= 1.2.2  && < 1.3
+                      , yesod-auth
+                      , yesod-static                  >= 1.2.1  && < 1.3
+     else
+@@ -194,7 +194,7 @@
+                      , warp
+                      , xss-sanitize                  >= 0.3.4
+                      , yaml
+-                     , yesod                         >= 1.2    && < 1.3
++                     , yesod                         >= 1.2.2  && < 1.3
+                      , yesod-auth
+                      , yesod-static                  >= 1.2.1  && < 1.3
