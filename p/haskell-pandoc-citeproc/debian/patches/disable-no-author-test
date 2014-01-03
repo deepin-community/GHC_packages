@@ -1,0 +1,11 @@
+--- a/tests/test-pandoc-citeproc.hs
++++ b/tests/test-pandoc-citeproc.hs
+@@ -24,7 +24,7 @@
+
+ main = do
+   citeprocTests <- mapM testCase ["chicago-author-date", "ieee", "mhra",
+-                                  "number-of-volumes", "no-author"]
++                                  "number-of-volumes" {-, "no-author"-}]
+   fs <- filter (\f -> takeExtension f `elem` [".bibtex",".biblatex"])
+            `fmap` getDirectoryContents "tests/biblio2yaml"
+   biblio2yamlTests <- mapM biblio2yamlTest fs

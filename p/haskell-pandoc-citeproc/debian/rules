@@ -9,6 +9,8 @@ DEB_GHC_EXTRA_PACKAGES := libghc-pandoc-citeproc-data (>= $(CABAL_VERSION))
 
 DEB_SETUP_GHC_CONFIGURE_ARGS = -fbibutils -funicode_collation
 
+check-ghc-stamp: export LC_ALL := C.UTF-8
+
 install/libghc-pandoc-citeproc-data:: debian/tmp-inst-ghc
 	cp -a debian/tmp-inst-ghc/usr/share/pandoc-citeproc/locales debian/libghc-pandoc-citeproc-data/usr/share/pandoc-citeproc
 
