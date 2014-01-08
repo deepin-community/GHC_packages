@@ -12,7 +12,9 @@ DEB_SETUP_GHC_CONFIGURE_ARGS = -fbibutils -funicode_collation
 check-ghc-stamp: export LC_ALL := C.UTF-8
 
 install/libghc-pandoc-citeproc-data:: debian/tmp-inst-ghc
-	cp -a debian/tmp-inst-ghc/usr/share/pandoc-citeproc/locales debian/libghc-pandoc-citeproc-data/usr/share/pandoc-citeproc
+	cp -a debian/tmp-inst-ghc/usr/share/pandoc-citeproc/chicago-author-date.csl \
+		debian/tmp-inst-ghc/usr/share/pandoc-citeproc/locales \
+		debian/libghc-pandoc-citeproc-data/usr/share/pandoc-citeproc/
 
 install/pandoc-citeproc:: debian/tmp-inst-ghc
 	cp debian/tmp-inst-ghc/usr/bin/* debian/pandoc-citeproc/usr/bin

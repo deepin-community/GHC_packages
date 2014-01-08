@@ -70,6 +70,7 @@ Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
   , ${misc:Depends}
+  , libghc-pandoc-citeproc-data (>= ${source:Version})
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
@@ -123,7 +124,10 @@ Description: Pandoc support for Citation Style Language - data files
 
 Package: pandoc-citeproc
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+  , ${shlibs:Depends}
+  , libghc-pandoc-citeproc-data (>= ${source:Version})
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Description: Pandoc support for Citation Style Language - tools
