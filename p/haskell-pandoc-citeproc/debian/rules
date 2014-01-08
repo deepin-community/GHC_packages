@@ -9,6 +9,9 @@ DEB_GHC_EXTRA_PACKAGES := libghc-pandoc-citeproc-data (>= $(CABAL_VERSION))
 
 DEB_SETUP_GHC_CONFIGURE_ARGS = -fbibutils -funicode_collation
 
+# LANG needs to be en_SOMETHING to make sure that Text.CSL.Input.Bibtex
+# works as the test suite expects.
+check-ghc-stamp: export LANG := en_US.UTF-8
 check-ghc-stamp: export LC_ALL := C.UTF-8
 
 install/libghc-pandoc-citeproc-data:: debian/tmp-inst-ghc
