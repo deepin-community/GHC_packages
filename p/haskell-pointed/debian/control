@@ -1,0 +1,67 @@
+Source: haskell-pointed
+Priority: extra
+Section: haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joey Hess <joeyh@debian.org>
+Build-Depends: debhelper (>= 9)
+ , haskell-devscripts (>= 0.8.15)
+ , cdbs
+ , ghc
+ , ghc-prof
+ , libghc-comonad-dev (>= 4)
+ , libghc-comonad-prof
+ , libghc-data-default-class-dev (>= 0.0.1)
+ , libghc-data-default-class-prof
+ , libghc-semigroupoids-dev (>= 4)
+ , libghc-semigroupoids-prof
+ , libghc-semigroups-dev (>= 0.8.3.1)
+ , libghc-semigroups-prof
+ , libghc-stm-dev (>= 2.1.2.1)
+ , libghc-stm-prof
+ , libghc-tagged-dev (>= 0.5)
+ , libghc-tagged-prof
+ , libghc-transformers-dev (>= 0.2)
+ , libghc-transformers-prof
+Build-Depends-Indep: ghc-doc
+ , libghc-comonad-doc
+ , libghc-data-default-class-doc
+ , libghc-semigroupoids-doc
+ , libghc-semigroups-doc
+ , libghc-stm-doc
+ , libghc-tagged-doc
+ , libghc-transformers-doc
+Standards-Version: 3.9.5
+Homepage: http://hackage.haskell.org/package/pointed
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-pointed
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-pointed
+
+Package: libghc-pointed-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Pointed and copointed data${haskell:ShortBlurb}
+ Haskell 98 pointed and copointed data types.
+ .
+ ${haskell:Blurb}
+
+Package: libghc-pointed-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: Pointed and copointed data${haskell:ShortBlurb}
+ Haskell 98 pointed and copointed data types.
+ .
+ ${haskell:Blurb}
+
+Package: libghc-pointed-doc
+Section: doc
+Architecture: all
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: Pointed and copointed data${haskell:ShortBlurb}
+ Haskell 98 pointed and copointed data types.
+ .
+ ${haskell:Blurb}
