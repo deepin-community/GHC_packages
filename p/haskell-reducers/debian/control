@@ -1,0 +1,76 @@
+Source: haskell-reducers
+Priority: extra
+Section: haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joey Hess <joeyh@debian.org>
+Build-Depends: debhelper (>= 9)
+ , haskell-devscripts (>= 0.8.15)
+ , cdbs
+ , ghc
+ , ghc-prof
+ , libghc-transformers-dev (>= 0.2)
+ , libghc-transformers-prof
+ , libghc-fingertree-dev (>= 0.1)
+ , libghc-fingertree-prof
+ , libghc-hashable-dev (>= 1.1.2.1)
+ , libghc-hashable-prof
+ , libghc-text-dev (>= 0.11.1.5)
+ , libghc-text-prof
+ , libghc-unordered-containers-dev (>= 0.1.4)
+ , libghc-unordered-containers-prof
+ , libghc-semigroups-dev (>= 0.8.3.1)
+ , libghc-semigroups-prof
+ , libghc-semigroupoids-dev (>= 4)
+ , libghc-semigroupoids-prof
+ , libghc-comonad-dev (>= 4)
+ , libghc-comonad-prof
+ , libghc-pointed-dev (>= 4)
+ , libghc-pointed-prof
+ , libghc-keys-dev (>= 3.10)
+ , libghc-keys-prof
+Build-Depends-Indep: ghc-doc
+ , libghc-transformers-doc
+ , libghc-fingertree-doc
+ , libghc-hashable-doc
+ , libghc-text-doc
+ , libghc-unordered-containers-doc
+ , libghc-semigroups-doc
+ , libghc-semigroupoids-doc
+ , libghc-comonad-doc
+ , libghc-pointed-doc
+ , libghc-keys-doc
+Standards-Version: 3.9.5
+Homepage: http://hackage.haskell.org/package/reducers
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-reducers
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-reducers
+
+Package: libghc-reducers-dev
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: semigroup-based containers and reductions${haskell:ShortBlurb}
+ Semigroups, specialized containers and a general map/reduce framework.
+ .
+ ${haskell:Blurb}
+
+Package: libghc-reducers-prof
+Architecture: any
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: semigroup-based containers and reductions${haskell:ShortBlurb}
+ Semigroups, specialized containers and a general map/reduce framework.
+ .
+ ${haskell:Blurb}
+
+Package: libghc-reducers-doc
+Section: doc
+Architecture: all
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: semigroup-based containers and reductions${haskell:ShortBlurb}
+ Semigroups, specialized containers and a general map/reduce framework.
+ .
+ ${haskell:Blurb}
