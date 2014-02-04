@@ -145,7 +145,6 @@ build-stamp: configure-stamp
 
 FILES = \( -type f -o -type l \)
 PROF_FILE = \( -name "*.p_*" -o -name "lib*_p.a" \)
-DYNAMIC_FILE = \( -name "*.dyn_hi" -o -name lib*.so \)
 
 install: install-stamp
 install-stamp: build-stamp
@@ -246,15 +245,12 @@ endif
 	find debian/tmp/usr/bin $(FILES) ! -name haddock  > debian/ghc.install
 #	find debian/tmp/usr/share/ghc* $(FILES)          >> debian/ghc.install
 	find debian/tmp/usr/share/man $(FILES)           >> debian/ghc.install
-	find debian/tmp/usr/lib/ghc $(FILES) ! $(PROF_FILE) ! $(DYNAMIC_FILE) >> debian/ghc.install
+	find debian/tmp/usr/lib/ghc $(FILES) ! $(PROF_FILE) >> debian/ghc.install
 	find debian/tmp/var				 >> debian/ghc.install
 	echo debian/tmp/usr/share/lintian/overrides/ghc >> debian/ghc.install
 	# ghc-prof
 	find debian/tmp/usr/lib $(FILES) $(PROF_FILE) > debian/ghc-prof.install
 	echo debian/tmp/usr/share/lintian/overrides/ghc-prof >> debian/ghc-prof.install
-	# ghc-dynamic
-	find debian/tmp/usr/lib $(FILES) $(DYNAMIC_FILE) > debian/ghc-dynamic.install
-	echo debian/lintian-overrides/ghc-dynamic /usr/share/lintian/overrides >> debian/ghc-dynamic.install
 	# haddock
 	echo usr/bin/haddock				 > debian/ghc-haddock.install
 	find debian/tmp/usr/share/haddock-* $(FILES)	 >> debian/ghc-haddock.install

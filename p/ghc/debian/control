@@ -33,9 +33,9 @@ Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/ghc
 Package: ghc
 Architecture: any
 Depends: llvm [armel armhf], libgmp-dev, libffi-dev, libbsd-dev, libc6-dev, ${shlibs:Depends}, ${misc:Depends}
-Provides: haskell-compiler, ${provided-devs}, ${haskell:Provides}, ${ghci}
-Replaces: ghc6 (<< 7)
-Conflicts: ghc6 (<< 7), ${provided-devs}
+Provides: haskell-compiler, ${provided-devs}, ${haskell:Provides}, ${ghci}, ghc-dynamic
+Replaces: ghc6 (<< 7), ghc-dynamic (<< 7.8)
+Conflicts: ghc6 (<< 7), ghc-dynamic (<< 7.8), ${provided-devs}
 Breaks: cabal-install (<< 0.8.0), haskell-devscripts (<< 0.8.13), ghc-doc (<= 6.12.1-8)
 Suggests: perl, ghc-prof, ghc-doc, haskell-doc, llvm
 Description: The Glasgow Haskell Compilation system
@@ -85,22 +85,6 @@ Description: Documentation for the Glasgow Haskell Compilation system
  .
  This package includes HTML, DVI and PS versions of the SGML-based
  documentation around GHC.
-
-Package: ghc-dynamic
-Architecture: i386 amd64
-Depends: ghc (= ${binary:Version}), ${misc:Depends}
-Description: Dynamic libraries for the Glasgow Haskell Compilation system
- The Glorious Glasgow Haskell Compilation system (GHC) is a compiler for
- Haskell.
- .
- Haskell is "the" standard lazy functional programming language.  The language
- definition and additional documentation can be found in the `haskell-doc'
- package.  Alternatively, there is an online version at
- http://haskell.org/onlinereport/.
- .
- This package has dynamically linkable, shared versions of the
- libraries included with GHC.  Currently, they are available only on
- i386 and amd64 architectures.
 
 Package: ghc-haddock
 Architecture: any
