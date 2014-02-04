@@ -1,0 +1,19 @@
+Index: ghc-7.9.20140130/utils/hpc/ghc.mk
+===================================================================
+--- ghc-7.9.20140130.orig/utils/hpc/ghc.mk	2014-01-31 17:28:32.000000000 +0000
++++ ghc-7.9.20140130/utils/hpc/ghc.mk	2014-02-04 23:15:53.000000000 +0000
+@@ -15,4 +15,7 @@
+ utils/hpc_dist-install_INSTALL         = YES
+ utils/hpc_dist-install_INSTALL_INPLACE = YES
+ utils/hpc_dist-install_PROGNAME        = hpc
++utils/hpc_dist-install_SHELL_WRAPPER   = YES
++utils/hpc_dist-install_INSTALL_SHELL_WRAPPER_NAME = hpc
++
+ $(eval $(call build-prog,utils/hpc,dist-install,1))
+Index: ghc-7.9.20140130/utils/hpc/hpc.wrapper
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ ghc-7.9.20140130/utils/hpc/hpc.wrapper	2014-02-04 23:17:49.000000000 +0000
+@@ -0,0 +1,2 @@
++#!/bin/sh
++exec "$executablename" ${1+"$@"}
