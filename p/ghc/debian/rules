@@ -197,12 +197,7 @@ install-stamp: build-stamp
 
 	# Add haddock substvars
 	echo "haddock:Depends=haddock-interface-$$(debian/tmp/usr/bin/haddock --interface-version)" >> debian/ghc-doc.substvars
-	# Hardcode that 22 supports 21, until http://trac.haskell.org/haddock/ticket/231 is fixed
-	if [ $$(debian/tmp/usr/bin/haddock --interface-version) -eq 22 ] ; then \
-	    echo "haddock:Provides=haddock-interface-21, haddock-interface-22" >> debian/ghc-haddock.substvars; \
-	    else \
-	    echo "haddock:Provides=haddock-interface-$$(debian/tmp/usr/bin/haddock --interface-version)" >> debian/ghc-haddock.substvars ;\
-	    fi
+	echo "haddock:Provides=haddock-interface-$$(debian/tmp/usr/bin/haddock --interface-version)" >> debian/ghc-haddock.substvars 
 
 ifeq (YES,$(BUILD_HADDOCK_DOCS))
 	mkdir -p debian/tmp/usr/lib/ghc-doc
@@ -214,10 +209,6 @@ ifeq (YES,$(BUILD_HADDOCK_DOCS))
 	    mv $$f/*.haddock debian/tmp/usr/lib/ghc-doc/haddock/`basename $$f` ; done
 	cd debian/tmp/usr/share/doc/ghc-doc/html/libraries/; ln -s ghc-$(ProjectVersion) ghc
 	install -Dm 644 debian/index.html debian/tmp/usr/share/doc/ghc-doc/index.html
-endif
-
-ifeq (ia64,$(DEB_HOST_ARCH)) # Tested and seen to be necessary with 6.12.1
-	sed -i "s/exec /unset LC_ALL\nexport LC_CTYPE=en_US\nexec /" debian/tmp/usr/lib/ghc/bin/ghc-$(ProjectVersion)
 endif
 
 	# manpages
