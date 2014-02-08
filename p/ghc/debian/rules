@@ -188,7 +188,6 @@ install-stamp: build-stamp
 	if inplace/bin/ghc-stage2 --info | grep '"Have interpreter","NO"'; then \
 	    cd debian/tmp/usr/bin ;rm -f ghci* runghc* runhaskell*; \
 	fi
-	sed -i 's,topdir="/usr/lib,topdir="/var/lib,' debian/tmp/usr/bin/ghc-pkg-$(ProjectVersion)
 	cd debian/haddock-build/haddock; ./Setup copy --dest=../../tmp
 
 	# Check if we have a ghci binary
