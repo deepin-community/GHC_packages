@@ -22,7 +22,7 @@ set -e
 
 case "$1" in
     triggered|configure)
-	if test -x /usr/lib/ghc/bin/ghc-pkg; then /usr/lib/ghc/bin/ghc-pkg recache --global; fi
+	if test -x /usr/bin/ghc-pkg; then /usr/bin/ghc-pkg recache --global; fi
         /usr/lib/ghc-doc/gen_contents_index
 	;;
     abort-upgrade|abort-remove|abort-deconfigure)
