@@ -1,0 +1,52 @@
+Source: haskell-hsyslog
+Priority: extra
+Section: haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joey Hess <joeyh@debian.org>
+Build-Depends: debhelper (>= 9)
+ , haskell-devscripts (>= 0.8.13)
+ , cdbs
+ , ghc
+ , ghc-prof
+Build-Depends-Indep: ghc-doc
+Standards-Version: 3.9.5
+Homepage: http://github.com/peti/hsyslog
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-hsyslog
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hsyslog
+
+Package: libghc-hsyslog-dev
+Architecture: any
+Depends: ${shlibs:Depends}
+         , ${haskell:Depends}
+         , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: syslog bindings for Haskell
+ FFI bindings to syslog(3) from POSIX.1-2001.
+ .
+ This package contains the normal library files.
+
+Package: libghc-hsyslog-prof
+Architecture: any
+Depends: ${haskell:Depends}
+         , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: syslog bindings for Haskell; profiling libraries
+ FFI bindings to syslog(3) from POSIX.1-2001.
+ .
+ This package contains the libraries compiled with profiling enabled.
+
+Package: libghc-hsyslog-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends}
+         , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: syslog bindings for Haskell; documentation
+ FFI bindings to syslog(3) from POSIX.1-2001.
+ .
+ This package contains the documentation files.
