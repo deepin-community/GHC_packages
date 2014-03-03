@@ -1,0 +1,63 @@
+commit a4b1a43542b11d09dd3b603d82c5a0e99da67d74
+Author: Austin Seipp <austin@well-typed.com>
+Date:   Fri Nov 1 22:17:01 2013 -0500
+
+    Fix loop on 64bit Big-Endian platforms (#8134)
+    
+    This is a fun one.
+    
+    In the RTS, `cas` expects a pointer to StgWord which will translate to
+    unsigned long (8 bytes under LP64.) But we had previously declared
+    token_locked as *StgBool* - which evaluates to 'int' (4 bytes under
+    LP64.) That means we fail to provide enough storage for the cas
+    primitive, causing it to corrupt memory on a 64bit platform.
+    
+    Hilariously, this somehow did not affect little-endian platforms (ARM,
+    x86, etc) before. That's because to clear our lock token, we would say:
+    
+        token_locked = 0;
+    
+    But because token_locked is 32bits technically, this only writes to
+    half of the 64bit quantity. On a Big-Endian machine, this won't do
+    anything. That is, token_locked starts as 0:
+    
+     / token_locked
+     |
+     v
+     0x00000000
+    
+    and the first cas modifies the memory to:
+    
+     / valid    / corrupted
+     |          |
+     v          v
+     0x00000000 0x00000001
+    
+    We then clear token_locked, but this doesn't change the corrupted 4
+    bytes of memory. And then we try to lock the token again, spinning until
+    it is released - clearly a deadlock.
+    
+    Related: Windows (amd64) doesn't follow LP64, but LLP64, where both
+    int and long are 4 bytes, so this shouldn't change anything on these
+    platforms.
+    
+    Thanks to Reid Barton for helping the diagnosis. Also, thanks to Jens
+    Peterson who confirmed this also fixes building GHC on Fedora/ppc64 and
+    Fedora/s390x.
+    
+    Authored-by: Gustavo Luiz Duarte <gustavold@linux.vnet.ibm.com>
+    Signed-off-by: Austin Seipp <austin@well-typed.com>
+
+Index: ghc-7.6.3/rts/STM.c
+===================================================================
+--- ghc-7.6.3.orig/rts/STM.c	2014-03-03 09:11:24.714692842 +0100
++++ ghc-7.6.3/rts/STM.c	2014-03-03 09:11:24.714692842 +0100
+@@ -927,7 +927,7 @@
+ static volatile StgInt64 max_commits = 0;
+ 
+ #if defined(THREADED_RTS)
+-static volatile StgBool token_locked = FALSE;
++static volatile StgWord token_locked = FALSE;
+ 
+ static void getTokenBatch(Capability *cap) {
+   while (cas((void *)&token_locked, FALSE, TRUE) == TRUE) { /* nothing */ }
