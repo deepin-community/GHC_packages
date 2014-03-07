@@ -33,7 +33,8 @@ stamp-configure: debian/$(package).setup
 	$(checkdir)
 
 	debian/$(package).setup configure --prefix=/usr \
-	                                  --enable-tests
+	                                  --enable-tests \
+					  -ftls
 
 	touch stamp-configure
 
