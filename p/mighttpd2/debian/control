@@ -1,11 +1,12 @@
 Source: mighttpd2
-Section: haskell
+Section: web
 Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
 Build-Depends: ghc
   , cdbs
   , debhelper (>= 9)
+  , haskell-devscripts (>= 0.8.15)
   , ghc-prof
   , libghc-blaze-builder-dev
   , libghc-byteorder-dev
@@ -35,7 +36,7 @@ Vcs-Darcs: http://darcs.debian.org/pkg-haskell/mighttpd2
 
 Package: mighttpd2
 Architecture: any
-Depends: ${shlibs:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: classical web server on WAI/warp
  Mighttpd2 (pronounced as "mighty") is a simple but practical HTTP server
  written in Haskell. It handles static files and CGI scripts. It also
