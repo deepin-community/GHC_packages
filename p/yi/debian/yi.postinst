@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -e
+
+update-alternatives --install /usr/bin/editor editor /usr/bin/yi 30 \
+     --slave /usr/share/man/man1/editor.1.gz editor.1.gz /usr/share/man/man1/yi.1.gz
+
+#DEBHELPER#
+
+exit 0
