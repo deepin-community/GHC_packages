@@ -15,10 +15,9 @@ Build-Depends:
  libghc-hsql-dev (<< 1.9),
  libghc-hsql-prof,
  libghc-hsql-doc,
- libpq-dev (>= 8.0)
-Build-Conflicts:
- postgresql-server-dev-8.3,
- postgresql-server-dev-8.4
+ libpq-dev (>= 8.0),
+# We need some header files from the server dev package, https://bugs.debian.org/314427
+ postgresql-server-dev-9.3,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/hsql-postgresql
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hsql-postgresql/
