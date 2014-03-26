@@ -1,6 +1,6 @@
 Source: haskell-fdo-notify
-Priority: extra
 Section: haskell
+Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joey Hess <joeyh@debian.org>
 Build-Depends: debhelper (>= 9)
@@ -16,26 +16,29 @@ Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/fdo-notify
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-fdo-notify
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-fdo-notify
+X-Description: Haskell desktop notifications
+ A library for issuing notifications using FreeDesktop.org's Desktop
+ Notifications protocol.
 
 Package: libghc-fdo-notify-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
+Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Haskell desktop notifications${haskell:ShortBlurb}
- A library for issuing notifications using FreeDesktop.org's Desktop
- Notifications protocol.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-fdo-notify-prof
 Architecture: any
 Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Haskell desktop notifications${haskell:ShortBlurb}
- A library for issuing notifications using FreeDesktop.org's Desktop
- Notifications protocol.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
@@ -45,8 +48,7 @@ Architecture: all
 Depends: ${haskell:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: Haskell desktop notifications${haskell:ShortBlurb}
- A library for issuing notifications using FreeDesktop.org's Desktop
- Notifications protocol.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
