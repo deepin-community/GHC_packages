@@ -1,0 +1,99 @@
+Source: haskell-hit
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-attoparsec-dev (>= 0.10.1)
+  , libghc-attoparsec-prof
+  , libghc-cryptohash-dev
+  , libghc-cryptohash-prof
+  , libghc-mtl-dev
+  , libghc-mtl-prof
+  , libghc-parsec3-dev
+  , libghc-parsec3-prof
+  , libghc-patience-dev
+  , libghc-patience-prof
+  , libghc-random-dev
+  , libghc-random-prof
+  , libghc-system-fileio-dev
+  , libghc-system-fileio-prof
+  , libghc-system-filepath-dev
+  , libghc-system-filepath-prof
+  , libghc-vector-dev
+  , libghc-vector-prof
+  , libghc-zlib-dev
+  , libghc-zlib-prof
+  , libghc-zlib-bindings-dev (>= 0.1)
+  , libghc-zlib-bindings-dev (<< 0.2)
+  , libghc-zlib-bindings-prof
+  , libghc-hunit-dev
+  , libghc-quickcheck2-dev
+  , libghc-test-framework-dev
+  , libghc-test-framework-quickcheck2-dev
+Build-Depends-Indep: ghc-doc
+  , libghc-attoparsec-doc
+  , libghc-cryptohash-doc
+  , libghc-mtl-doc
+  , libghc-parsec3-doc
+  , libghc-patience-doc
+  , libghc-random-doc
+  , libghc-system-fileio-doc
+  , libghc-system-filepath-doc
+  , libghc-vector-doc
+  , libghc-zlib-doc
+  , libghc-zlib-bindings-doc
+Standards-Version: 3.9.5
+Homepage: http://hackage.haskell.org/package/hit
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hit
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-hit
+X-Description: Git operations in Haskell
+ A Haskell implementation of git storage operations, allowing users to
+ manipulate git repositories (read and write).
+ .
+ This implementation is fully interoperable with the main C
+ implementation.
+ .
+ This is strictly only manipulating the git store (what's inside
+ the .git directory), and doesn't do anything with the index or
+ your working directory files.
+
+Package: libghc-hit-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hit-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hit-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
