@@ -1,0 +1,47 @@
+From 7d7ef32f9c310b1f666607d05fa4fd2680c02420 Mon Sep 17 00:00:00 2001
+From: Colin Watson <cjwatson@debian.org>
+Date: Fri, 11 Apr 2014 21:07:06 +0100
+Subject: [PATCH] Fix documentation build failure without GHCi
+
+tcTopSpliceExpr, runMetaE, runMetaP, runMetaT, and runMetaD are only
+exported by TcSplice.lhs if GHCi is available, so TcSplice.lhs-boot
+should behave likewise to stop Haddock failing.
+
+Fixes #8988
+
+Signed-off-by: Colin Watson <cjwatson@debian.org>
+---
+ compiler/typecheck/TcSplice.lhs-boot | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/compiler/typecheck/TcSplice.lhs-boot b/compiler/typecheck/TcSplice.lhs-boot
+index c496aed..6cd8183 100644
+--- a/compiler/typecheck/TcSplice.lhs-boot
++++ b/compiler/typecheck/TcSplice.lhs-boot
+@@ -26,7 +26,9 @@ tcTypedBracket :: HsBracket Name
+                -> TcRhoType
+                -> TcM (HsExpr TcId)
+ 
++#ifdef GHCI
+ tcTopSpliceExpr :: Bool -> TcM (LHsExpr Id) -> TcM (LHsExpr Id)
++#endif
+ 
+ runQuasiQuoteDecl :: HsQuasiQuote RdrName -> TcM [LHsDecl RdrName]
+ runQuasiQuoteExpr :: HsQuasiQuote RdrName -> TcM (LHsExpr RdrName)
+@@ -34,12 +36,12 @@ runQuasiQuoteType :: HsQuasiQuote RdrName -> TcM (LHsType RdrName)
+ runQuasiQuotePat  :: HsQuasiQuote RdrName -> TcM (LPat RdrName)
+ runAnnotation     :: CoreAnnTarget -> LHsExpr Name -> TcM Annotation
+ 
++#ifdef GHCI
+ runMetaE :: LHsExpr Id -> TcM (LHsExpr RdrName)
+ runMetaP :: LHsExpr Id -> TcM (LPat RdrName)
+ runMetaT :: LHsExpr Id  -> TcM (LHsType RdrName)
+ runMetaD :: LHsExpr Id -> TcM [LHsDecl RdrName]
+ 
+-#ifdef GHCI
+ lookupThName_maybe :: TH.Name -> TcM (Maybe Name)
+ runQuasi :: TH.Q a -> TcM a
+ #endif
+-- 
+1.9.1
+
