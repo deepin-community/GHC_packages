@@ -1,157 +1,151 @@
 From 7eae0e500fb5762a2f09939a43fcbb8f6e4ef8af Mon Sep 17 00:00:00 2001
 From: Joey Hess <joey@kitenet.net>
 Date: Tue, 15 Oct 2013 10:03:28 -0400
+Last-Update: 2014-04-14
 Subject: [PATCH 3/3] guard ANNotations
-
----
- src/Control/Exception/Lens.hs       | 2 ++
- src/Control/Lens.hs                 | 2 ++
- src/Control/Lens/Equality.hs        | 3 +++
- src/Control/Lens/Fold.hs            | 2 ++
- src/Control/Lens/Internal.hs        | 3 +++
- src/Control/Lens/Internal/Zipper.hs | 2 ++
- src/Control/Lens/Iso.hs             | 2 ++
- src/Control/Lens/Lens.hs            | 2 ++
- src/Control/Lens/Operators.hs       | 3 +++
- src/Control/Lens/Plated.hs          | 2 ++
- src/Control/Lens/Prism.hs           | 2 ++
- src/Control/Lens/Setter.hs          | 2 ++
- src/Control/Lens/TH.hs              | 2 ++
- src/Data/Data/Lens.hs               | 2 ++
- 14 files changed, 31 insertions(+)
-
---- a/src/Control/Exception/Lens.hs
-+++ b/src/Control/Exception/Lens.hs
-@@ -112,7 +112,9 @@
-   ,  Maybe(..), Either(..), Functor(..), String, IO
-   )
-
-+#ifndef DISABLE_TEMPLATE_HASKELL
- {-# ANN module "HLint: ignore Use Control.Exception.catch" #-}
-+#endif
-
- -- $setup
- -- >>> :set -XNoOverloadedStrings
 --- a/src/Control/Lens.hs
 +++ b/src/Control/Lens.hs
-@@ -99,4 +99,6 @@
- import Control.Lens.Zipper
+@@ -95,6 +95,8 @@
+ import Control.Lens.Wrapped
  import Control.Lens.Zoom
 
 +#ifndef DISABLE_TEMPLATE_HASKELL
+ #ifdef HLINT
  {-# ANN module "HLint: ignore Use import/export shortcut" #-}
+ #endif
 +#endif
 --- a/src/Control/Lens/Equality.hs
 +++ b/src/Control/Lens/Equality.hs
-@@ -1,3 +1,4 @@
-+{-# LANGUAGE CPP #-}
- {-# LANGUAGE GADTs #-}
- {-# LANGUAGE Rank2Types #-}
- {-# LANGUAGE TypeFamilies #-}
-@@ -28,8 +29,10 @@
- import Control.Lens.Internal.Setter
+@@ -31,10 +31,12 @@
  import Control.Lens.Type
+ import Data.Functor.Identity
 
 +#ifndef DISABLE_TEMPLATE_HASKELL
+ #ifdef HLINT
  {-# ANN module "HLint: ignore Use id" #-}
  {-# ANN module "HLint: ignore Eta reduce" #-}
+ #endif
 +#endif
 
  -- $setup
  -- >>> import Control.Lens
+@@ -86,4 +88,4 @@
+ -- type of a used argument and avoid @ScopedTypeVariables@ or other ugliness.
+ simple :: Equality' a a
+ simple = id
+-{-# INLINE simple #-}
+\ No newline at end of file
++{-# INLINE simple #-}
 --- a/src/Control/Lens/Fold.hs
 +++ b/src/Control/Lens/Fold.hs
-@@ -163,9 +163,11 @@
+@@ -178,11 +178,13 @@
  -- >>> let g :: Expr -> Expr; g = Debug.SimpleReflect.Vars.g
  -- >>> let timingOut :: NFData a => a -> IO a; timingOut = fmap (fromMaybe (error "timeout")) . timeout (5*10^6) . evaluate . force
 
 +#ifndef DISABLE_TEMPLATE_HASKELL
+ #ifdef HLINT
  {-# ANN module "HLint: ignore Eta reduce" #-}
  {-# ANN module "HLint: ignore Use camelCase" #-}
  {-# ANN module "HLint: ignore Use curry" #-}
+ #endif
 +#endif
 
  infixl 8 ^.., ^?, ^?!, ^@.., ^@?, ^@?!
 
+--- a/src/Control/Exception/Lens.hs
++++ b/src/Control/Exception/Lens.hs
+@@ -119,9 +119,11 @@
+   , Maybe(..), Either(..), String
+   )
+
++#ifndef DISABLE_TEMPLATE_HASKELL
+ #ifdef HLINT
+ {-# ANN module "HLint: ignore Use Control.Exception.catch" #-}
+ #endif
++#endif
+
+ -- $setup
+ -- >>> :set -XNoOverloadedStrings
+--- a/src/Control/Lens/Cons.hs
++++ b/src/Control/Lens/Cons.hs
+@@ -55,7 +55,9 @@
+ import qualified Data.Vector.Unboxed as Unbox
+ import           Data.Word
+
++#ifndef DISABLE_TEMPLATE_HASKELL
+ {-# ANN module "HLint: ignore Eta reduce" #-}
++#endif
+
+ -- $setup
+ -- >>> :set -XNoOverloadedStrings
+--- a/src/Control/Lens/Internal/Fold.hs
++++ b/src/Control/Lens/Internal/Fold.hs
+@@ -37,7 +37,9 @@
+ import Data.Semigroup hiding (Min, getMin, Max, getMax)
+ import Data.Reflection
+
++#ifndef DISABLE_TEMPLATE_HASKELL
+ {-# ANN module "HLint: ignore Avoid lambda" #-}
++#endif
+
+ ------------------------------------------------------------------------------
+ -- Folding
 --- a/src/Control/Lens/Internal.hs
 +++ b/src/Control/Lens/Internal.hs
-@@ -1,3 +1,4 @@
-+{-# LANGUAGE CPP #-}
- -----------------------------------------------------------------------------
- -- |
- -- Module      :  Control.Lens.Internal
-@@ -43,4 +44,6 @@
+@@ -44,6 +44,8 @@
  import Control.Lens.Internal.Setter
  import Control.Lens.Internal.Zoom
 
 +#ifndef DISABLE_TEMPLATE_HASKELL
+ #ifdef HLINT
  {-# ANN module "HLint: ignore Use import/export shortcut" #-}
+ #endif
 +#endif
---- a/src/Control/Lens/Internal/Zipper.hs
-+++ b/src/Control/Lens/Internal/Zipper.hs
-@@ -53,7 +53,9 @@
- -- >>> import Control.Lens
- -- >>> import Data.Char
-
-+#ifndef DISABLE_TEMPLATE_HASKELL
- {-# ANN module "HLint: ignore Use foldl" #-}
-+#endif
-
- ------------------------------------------------------------------------------
- -- * Jacket
 --- a/src/Control/Lens/Iso.hs
 +++ b/src/Control/Lens/Iso.hs
-@@ -82,7 +82,9 @@
+@@ -88,9 +88,11 @@
  import Data.Profunctor
  import Data.Profunctor.Unsafe
 
 +#ifndef DISABLE_TEMPLATE_HASKELL
+ #ifdef HLINT
  {-# ANN module "HLint: ignore Use on" #-}
+ #endif
 +#endif
 
  -- $setup
  -- >>> :set -XNoOverloadedStrings
 --- a/src/Control/Lens/Lens.hs
 +++ b/src/Control/Lens/Lens.hs
-@@ -126,7 +126,9 @@
+@@ -136,9 +136,11 @@
  import Data.Profunctor.Unsafe
  import Data.Void
 
 +#ifndef DISABLE_TEMPLATE_HASKELL
+ #ifdef HLINT
  {-# ANN module "HLint: ignore Use ***" #-}
+ #endif
 +#endif
 
  -- $setup
  -- >>> :set -XNoOverloadedStrings
---- a/src/Control/Lens/Operators.hs
-+++ b/src/Control/Lens/Operators.hs
-@@ -1,3 +1,4 @@
-+{-# LANGUAGE CPP #-}
- -----------------------------------------------------------------------------
- -- |
- -- Module      :  Control.Lens.Operators
-@@ -108,4 +109,6 @@
- import Control.Lens.Setter
- import Control.Lens.Zipper
-
-+#ifndef DISABLE_TEMPLATE_HASKELL
- {-# ANN module "HLint: ignore Use import/export shortcut" #-}
-+#endif
 --- a/src/Control/Lens/Plated.hs
 +++ b/src/Control/Lens/Plated.hs
-@@ -95,7 +95,9 @@
- import           Data.Monoid
- import           Data.Tree
+@@ -106,9 +106,11 @@
+ import Data.Monoid
+ import Data.Tree
 
 +#ifndef DISABLE_TEMPLATE_HASKELL
+ #ifdef HLINT
  {-# ANN module "HLint: ignore Reduce duplication" #-}
+ #endif
 +#endif
 
  -- | A 'Plated' type is one where we know how to extract its immediate self-similar children.
  --
 --- a/src/Control/Lens/Prism.hs
 +++ b/src/Control/Lens/Prism.hs
-@@ -53,7 +53,9 @@
+@@ -59,7 +59,9 @@
  import Data.Profunctor.Unsafe
  #endif
 
@@ -163,38 +157,48 @@ Subject: [PATCH 3/3] guard ANNotations
  -- >>> :set -XNoOverloadedStrings
 --- a/src/Control/Lens/Setter.hs
 +++ b/src/Control/Lens/Setter.hs
-@@ -87,7 +87,9 @@
+@@ -91,9 +91,11 @@
  import Data.Profunctor.Rep
  import Data.Profunctor.Unsafe
 
 +#ifndef DISABLE_TEMPLATE_HASKELL
+ #ifdef HLINT
  {-# ANN module "HLint: ignore Avoid lambda" #-}
+ #endif
 +#endif
 
  -- $setup
  -- >>> import Control.Lens
---- a/src/Control/Lens/TH.hs
-+++ b/src/Control/Lens/TH.hs
-@@ -87,7 +87,9 @@
- import Language.Haskell.TH.Syntax
- import Language.Haskell.TH.Lens
+--- a/src/Control/Monad/Primitive/Lens.hs
++++ b/src/Control/Monad/Primitive/Lens.hs
+@@ -1,3 +1,4 @@
++{-# LANGUAGE CPP #-}
+ {-# LANGUAGE MagicHash #-}
+ {-# LANGUAGE UnboxedTuples #-}
+ {-# LANGUAGE TypeFamilies #-}
+@@ -20,7 +21,9 @@
+ import Control.Monad.Primitive (PrimMonad(..))
+ import GHC.Prim (State#)
 
 +#ifndef DISABLE_TEMPLATE_HASKELL
- {-# ANN module "HLint: ignore Use foldl" #-}
+ {-# ANN module "HLint: ignore Unused LANGUAGE pragma" #-}
 +#endif
 
- -- | Flags for 'Lens' construction
- data LensFlag
+ prim :: (PrimMonad m) => Iso' (m a) (State# (PrimState m) -> (# State# (PrimState m), a #))
+ prim = iso internal primitive
 --- a/src/Data/Data/Lens.hs
 +++ b/src/Data/Data/Lens.hs
-@@ -65,9 +65,11 @@
+@@ -65,12 +65,14 @@
+ import           Data.Monoid
  import           GHC.Exts (realWorld#)
- #endif
 
 +#ifndef DISABLE_TEMPLATE_HASKELL
+ #ifdef HLINT
  {-# ANN module "HLint: ignore Eta reduce" #-}
  {-# ANN module "HLint: ignore Use foldl" #-}
  {-# ANN module "HLint: ignore Reduce duplication" #-}
+ {-# ANN module "HLint: ignore Unused LANGUAGE pragma" #-}
+ #endif
 +#endif
 
  -- $setup

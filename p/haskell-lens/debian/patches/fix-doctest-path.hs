@@ -1,7 +1,5 @@
-Index: haskell-lens-3.9.0.2/tests/doctests.hsc
-===================================================================
---- haskell-lens-3.9.0.2.orig/tests/doctests.hsc	2013-06-15 13:40:30.329035355 +0200
-+++ haskell-lens-3.9.0.2/tests/doctests.hsc	2013-06-15 13:40:30.325035355 +0200
+--- a/tests/doctests.hsc
++++ b/tests/doctests.hsc
 @@ -54,9 +54,9 @@
  main :: IO ()
  main = withUnicode $ getSources >>= \sources -> doctest $
