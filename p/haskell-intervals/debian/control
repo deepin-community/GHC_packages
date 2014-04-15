@@ -8,25 +8,23 @@ Build-Depends: debhelper (>= 9)
   , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
-# Make sure all dependencies listed in the cabal file are represented here,
-# including their version bounds. It is sufficient to add the bounds to the
-# -dev package only.
-  , libghc-numeric-extras-dev (>= 0.0.1)
-  , libghc-numeric-extras-dev (<< 0.1)
-  , libghc-numeric-extras-prof
+  , libghc-distributive-dev (>= 0.2)
+  , libghc-distributive-dev (<< 1)
+  , libghc-distributive-prof
 Build-Depends-Indep: ghc-doc
-  , libghc-numeric-extras-doc
-Standards-Version: 3.9.2
+  , libghc-distributive-doc
+Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/intervals
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-intervals
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-intervals
-X-Description: A Haskell type for intervals
-  A Numeric.Interval.Interval is a closed, convex set of floating point values.
-  .
-  This package does not control the rounding mode of the end points of the
-  interval when using floating point arithmetic, so be aware that in order to
-  get precise containment of the result, you will need to use an underlying
-  type with both lower and upper bounds like CReal.
+X-Description: Haskell data type for intervals
+ A Numeric.Interval.Interval is a closed, convex set of floating point
+ values.
+ .
+ This package does not control the rounding mode of the end points of the
+ interval when using floating point arithmetic, so be aware that in order
+ to get precise containment of the result, you will need to use an
+ underlying type with both lower and upper bounds like CReal.
 
 Package: libghc-intervals-dev
 Architecture: any
