@@ -1,10 +1,15 @@
 #!/usr/bin/make -f
 
-#DEB_ENABLE_TESTS = $(shell test -e /usr/lib/ghc/libHSrts_thr.a && echo yes)
+DEB_ENABLE_TESTS = $(shell test -e /usr/lib/ghc/libHSrts_thr.a && echo yes)
 
 include /usr/share/cdbs/1/rules/buildvars.mk
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
+
+# LANG needs to be en_SOMETHING to make sure that some files work as the
+# test suite expects.
+check-ghc-stamp: export LANG := en_US.UTF-8
+check-ghc-stamp: export LC_ALL := C.UTF-8
 
 ifeq ($(DEB_HOST_ARCH),sparc)
 	# Disable tests that require SMP.
