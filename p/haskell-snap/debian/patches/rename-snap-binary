@@ -1,0 +1,73 @@
+Description: Rename snap binary
+ To avoid a conflict
+Author: Joachim Breitner <nomeata@debian.org>
+Bug-Debian: http://bugs.debian.org/741503
+Forwarded: not-needed
+
+--- haskell-snap-0.13.2.4.orig/snap.cabal
++++ haskell-snap-0.13.2.4/snap.cabal
+@@ -16,7 +16,7 @@ description:
+     @$ cabal install snap
+     $ mkdir myproject
+     $ cd myproject
+-    $ snap init@
++    $ snap-framework init@
+     .
+     If you have trouble or any questions, see our FAQ page
+     (<http://snapframework.com/faq>) or the documentation
+@@ -214,7 +214,7 @@ Library
+     ghc-options: -Wall -fwarn-tabs -funbox-strict-fields -O2
+                  -fno-warn-orphans
+
+-Executable snap
++Executable snap-framework
+   hs-source-dirs: src
+   main-is: Snap/Starter.hs
+
+--- haskell-snap-0.13.2.4.orig/src/Snap/Starter.hs
++++ haskell-snap-0.13.2.4/src/Snap/Starter.hs
+@@ -30,7 +30,7 @@ usage = unlines
+     , ""
+     , "Usage:"
+     , ""
+-    , "  snap <action>"
++    , "  snap-framework <action>"
+     , ""
+     , "    <action> can be one of:"
+     , "      init - create a new project directory structure in the " ++
+@@ -48,7 +48,7 @@ initUsage = unlines
+     , ""
+     , "Usage:"
+     , ""
+-    , "  snap init [type]"
++    , "  snap-framework init [type]"
+     , ""
+     , "    [type] can be one of:"
+     , "      default   - A default project using snaplets and heist"
+--- haskell-snap-0.13.2.4.orig/test/suite/Snap/TestCommon.hs
++++ haskell-snap-0.13.2.4/test/suite/Snap/TestCommon.hs
+@@ -35,7 +35,7 @@ import SafeCWD
+
+ ------------------------------------------------------------------------------
+ testGeneratedProject :: String  -- ^ project name and directory
+-                     -> String  -- ^ arguments to @snap init@
++                     -> String  -- ^ arguments to @snap-framework init@
+                      -> String  -- ^ arguments to @cabal install@
+                      -> Int     -- ^ port to run http server on
+                      -> IO ()   -- ^ action to run when the server goes up
+@@ -94,11 +94,11 @@ testGeneratedProject projName snapInitAr
+         findSnap = do
+             home <- fromEnv "HOME" "."
+             p1   <- gimmeIfExists $ snapRoot </> "dist" </> "build"
+-                                             </> "snap" </> "snap"
+-            p2   <- gimmeIfExists $ home </> ".cabal" </> "bin" </> "snap"
+-            p3   <- findExecutable "snap"
++                                             </> "snap-framework" </> "snap-framework"
++            p2   <- gimmeIfExists $ home </> ".cabal" </> "bin" </> "snap-framework"
++            p3   <- findExecutable "snap-framework"
+
+-            return $ fromMaybe (error "couldn't find snap executable")
++            return $ fromMaybe (error "couldn't find snap-framework executable")
+                                (getFirst $ mconcat $ map First [p1,p2,p3])
+
+     --------------------------------------------------------------------------
