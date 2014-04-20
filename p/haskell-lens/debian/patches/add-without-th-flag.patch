@@ -56,8 +56,11 @@ Subject: [PATCH 2/3] add without-th flag
 -    Language.Haskell.TH.Lens
      Numeric.Lens
 
-+  cpp-options: -traditional
-+
+-  other-modules:
+-    Control.Lens.Internal.TupleIxedTH
+-
+   cpp-options: -traditional
+
 +  if flag(without-th)
 +    cpp-options: -DDISABLE_TEMPLATE_HASKELL
 +  else
@@ -71,11 +74,9 @@ Subject: [PATCH 2/3] add without-th flag
 +      GHC.Generics.Lens
 +      Language.Haskell.TH.Lens
 +      System.IO.Error.Lens
-   other-modules:
-     Control.Lens.Internal.TupleIxedTH
-
--  cpp-options: -traditional
--
++    other-modules:
++      Control.Lens.Internal.TupleIxedTH
++
    if flag(safe)
      cpp-options: -DSAFE=1
 

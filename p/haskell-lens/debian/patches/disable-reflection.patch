@@ -1,0 +1,95 @@
+From: Raúl Benencia <rul@kalgan.cc>
+Date: 2014-04-19
+Description: disable Reflection on architectures without TH
+--- a/src/Control/Lens/Fold.hs
++++ b/src/Control/Lens/Fold.hs
+@@ -131,11 +131,13 @@
+   , Traversed
+   , Sequenced
+
++#ifndef DISABLE_TEMPLATE_HASKELL
+   -- * Fold with Reified Monoid
+   , foldBy
+   , foldByOf
+   , foldMapBy
+   , foldMapByOf
++#endif
+   ) where
+
+ import Control.Applicative as Applicative
+@@ -2397,6 +2399,7 @@
+ skip _ = ()
+ {-# INLINE skip #-}
+
++#ifndef DISABLE_TEMPLATE_HASKELL
+ ------------------------------------------------------------------------------
+ -- Folds with Reified Monoid
+ ------------------------------------------------------------------------------
+@@ -2412,3 +2415,4 @@
+
+ foldMapByOf :: (forall s. Getting (M r s) t a) -> (r -> r -> r) -> r -> (a -> r) -> t -> r
+ foldMapByOf l f z g = reifyFold f z (foldMapOf l (M #. g))
++#endif
+--- a/src/Control/Lens/Internal/Fold.hs
++++ b/src/Control/Lens/Internal/Fold.hs
+@@ -25,8 +25,10 @@
+   , Min(..), getMin
+   , Leftmost(..), getLeftmost
+   , Rightmost(..), getRightmost
++#ifndef DISABLE_TEMPLATE_HASKELL
+   , ReifiedMonoid(..), M(..)
+   , reifyFold
++#endif
+   ) where
+
+ import Control.Applicative
+@@ -35,7 +37,9 @@
+ import Data.Functor.Contravariant
+ import Data.Maybe
+ import Data.Semigroup hiding (Min, getMin, Max, getMax)
++#ifndef DISABLE_TEMPLATE_HASKELL
+ import Data.Reflection
++#endif
+
+ #ifndef DISABLE_TEMPLATE_HASKELL
+ {-# ANN module "HLint: ignore Avoid lambda" #-}
+@@ -212,6 +216,7 @@
+ getRightmost (RLeaf a) = Just a
+ getRightmost (RStep x) = getRightmost x
+
++#ifndef DISABLE_TEMPLATE_HASKELL
+ ------------------------------------------------------------------------------
+ -- Folding with Reified Monoid
+ ------------------------------------------------------------------------------
+@@ -232,3 +237,4 @@
+
+ reifyFold :: (a -> a -> a) -> a -> (forall s. Reifies s (ReifiedMonoid a) => t -> M a s) -> t -> a
+ reifyFold f z m xs = reify (ReifiedMonoid f z) (unM (m xs))
++#endif
+--- a/src/Control/Lens/Indexed.hs
++++ b/src/Control/Lens/Indexed.hs
+@@ -68,9 +68,11 @@
+   , iforM
+   , imapAccumR
+   , imapAccumL
++#ifndef DISABLE_TEMPLATE_HASKELL
+   -- * Indexed Folds with Reified Monoid
+   , ifoldMapBy
+   , ifoldMapByOf
++#endif
+   ) where
+
+ import Control.Applicative
+@@ -703,6 +705,7 @@
+ skip _ = ()
+ {-# INLINE skip #-}
+
++#ifndef DISABLE_TEMPLATE_HASKELL
+ -------------------------------------------------------------------------------
+ -- Indexed Folds with Reified Monoid
+ -------------------------------------------------------------------------------
+@@ -712,3 +715,4 @@
+
+ ifoldMapByOf :: (forall s. IndexedGetting i (M r s) t a) -> (r -> r -> r) -> r -> (i -> a -> r) -> t -> r
+ ifoldMapByOf l f z g = reifyFold f z (ifoldMapOf l (\i a -> M (g i a)))
++#endif
