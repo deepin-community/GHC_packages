@@ -32,13 +32,16 @@ Build-Depends: debhelper (>= 9)
   , libghc-text-prof
   , libghc-text-icu-dev
   , libghc-text-icu-prof
-  , libghc-vector-dev
+  , libghc-vector-dev (>= 0.10)
+  , libghc-vector-dev (<< 0.11)
   , libghc-vector-prof
-  , libghc-yaml-dev
+  , libghc-yaml-dev (>= 0.8)
   , libghc-yaml-prof
+  , libghc-syb-dev
+  , libghc-syb-prof
   , libghc-aeson-pretty-dev
   , libghc-temporary-dev (>= 1.1)
-  , libghc-yaml-dev (>= 0.8)
+  , libghc-attoparsec-dev
 Build-Depends-Indep: ghc-doc
   , libghc-aeson-doc
   , libghc-hs-bibutils-doc
@@ -53,6 +56,7 @@ Build-Depends-Indep: ghc-doc
   , libghc-text-doc
   , libghc-text-icu-doc
   , libghc-vector-doc
+  , libghc-yaml-doc
   , libghc-yaml-doc
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/pandoc-citeproc
@@ -134,7 +138,7 @@ Description: Pandoc support for Citation Style Language - tools
  pandoc-citeproc is a Haskell implementation of the Citation Style Language
  (CSL).
  .
- This contains two executables: pandoc-citeproc, which works as a
- pandoc filter (pandoc >= 1.12), and biblio2yaml, which converts
- bibliographic databases to a yaml format suitable for inclusion in
- pandoc YAML metadata.
+ This package also contains an executable: pandoc-citeproc, which works as a
+ pandoc filter (pandoc >= 1.12), and also has a mode for converting
+ bibliographic databases a YAML format suitable for inclusion in pandoc YAML
+ metadata.
