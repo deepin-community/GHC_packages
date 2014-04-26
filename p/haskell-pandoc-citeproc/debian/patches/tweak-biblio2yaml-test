@@ -1,11 +1,22 @@
---- a/tests/test-pandoc-citeproc.hs
-+++ b/tests/test-pandoc-citeproc.hs
-@@ -89,7 +89,7 @@
+Index: haskell-pandoc-citeproc-0.3.0.1/tests/test-pandoc-citeproc.hs
+===================================================================
+--- haskell-pandoc-citeproc-0.3.0.1.orig/tests/test-pandoc-citeproc.hs	2014-04-26 12:46:09.519772037 +0200
++++ haskell-pandoc-citeproc-0.3.0.1/tests/test-pandoc-citeproc.hs	2014-04-26 12:46:20.627771567 +0200
+@@ -61,7 +61,7 @@
+
+   (ec, jsonOut, errout) <- pipeProcess
+                      (Just [("LANG","en_US.UTF-8"),("HOME",".")])
+-                     "dist/build/pandoc-citeproc/pandoc-citeproc"
++                     "dist-ghc/build/pandoc-citeproc/pandoc-citeproc"
+                      [] jsonIn
+   if ec == ExitSuccess
+      then do
+@@ -102,7 +102,7 @@
    let expected = BL.unlines yamllines
    (ec, result, errout) <- pipeProcess
                       (Just [("LANG","en_US.UTF-8"),("HOME",".")])
--                     "dist/build/biblio2yaml/biblio2yaml"
-+                     "dist-ghc/build/biblio2yaml/biblio2yaml"
-                      ["-f", drop 1 $ takeExtension fp] bib
+-                     "dist/build/pandoc-citeproc/pandoc-citeproc"
++                     "dist-ghc/build/pandoc-citeproc/pandoc-citeproc"
+                      ["bib2yaml", "-f", drop 1 $ takeExtension fp] bib
    if ec == ExitSuccess
       then do
