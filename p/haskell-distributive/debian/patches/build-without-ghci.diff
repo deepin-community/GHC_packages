@@ -1,0 +1,20 @@
+Description: Fix inverted #ifdef for hlint
+ The annotation should be used when using hlint, not when not using it.
+ This fixes builds without GHCi with GHC builds predating the fix for
+ https://ghc.haskell.org/trac/ghc/ticket/4268.
+Author: Colin Watson <cjwatson@debian.org>
+Forwarded: https://github.com/ekmett/distributive/pull/6
+Last-Update: 2014-04-28
+
+Index: b/src/Data/Distributive.hs
+===================================================================
+--- a/src/Data/Distributive.hs
++++ b/src/Data/Distributive.hs
+@@ -32,7 +32,7 @@
+ import Data.Proxy
+ import Data.Tagged
+
+-#ifndef HLINT
++#ifdef HLINT
+ {-# ANN module "hlint: ignore Use section" #-}
+ #endif
