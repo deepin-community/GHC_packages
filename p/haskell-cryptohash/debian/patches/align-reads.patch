@@ -1,0 +1,102 @@
+Debian-Bug: https://bugs.debian.org/744920
+Upstream-Bug: https://github.com/vincenthz/hs-cryptohash/issues/24
+Upstream-Bug: https://github.com/vincenthz/hs-cryptohash/issues/25
+
+
+commit e669ab6569fd30cce2ec77d334d30c400533f855
+Author: Patrick Baggett <baggett.patrick@gmail.com>
+Date:   Tue Apr 29 13:21:10 2014 -0500
+
+    Remove stray character from commit
+
+commit 8546add3881b7468489fe38a4b2130d65c9313ab
+Author: Patrick Baggett <baggett.patrick@gmail.com>
+Date:   Tue Apr 29 13:18:37 2014 -0500
+
+    Fix unaligned loads for non-x86.
+diff --git a/cbits/bitfn.h b/cbits/bitfn.h
+index 9f638b7..b1fdcb8 100644
+--- a/cbits/bitfn.h
++++ b/cbits/bitfn.h
+@@ -25,11 +25,13 @@
+ #ifndef BITFN_H
+ #define BITFN_H
+ #include <stdint.h>
++#include <string.h>
+
+ #ifndef NO_INLINE_ASM
+ /**********************************************************/
+ # if (defined(__i386__))
+ #  define ARCH_HAS_SWAP32
++#  define ARCH_HAS_UNALIGNED_LOAD
+ static inline uint32_t bitfn_swap32(uint32_t a)
+ {
+	asm ("bswap %0" : "=r" (a) : "0" (a));
+@@ -52,6 +54,7 @@ static inline uint32_t bitfn_swap32(uint32_t a)
+ # elif defined(__x86_64__)
+ #  define ARCH_HAS_SWAP32
+ #  define ARCH_HAS_SWAP64
++#  define ARCH_HAS_UNALIGNED_LOAD
+ static inline uint32_t bitfn_swap32(uint32_t a)
+ {
+	asm ("bswap %0" : "=r" (a) : "0" (a));
+@@ -103,11 +106,33 @@ static inline uint32_t bitfn_swap32(uint32_t a)
+ }
+ #endif
+
++static inline uint32_t load32(uint32_t *p)
++{
++	uint32_t v;
++#ifdef ARCH_HAS_UNALIGNED_LOAD
++	v = *p;
++#else
++	memcpy(&v, p, sizeof(v));
++#endif
++	return v;
++}
++
++static inline uint64_t load64(uint64_t *p)
++{
++	uint64_t v;
++#ifdef ARCH_HAS_UNALIGNED_LOAD
++	v = *p;
++#else
++	memcpy(&v, p, sizeof(v));
++#endif
++	return v;
++}
++
+ #ifndef ARCH_HAS_ARRAY_SWAP32
+ static inline void array_swap32(uint32_t *d, uint32_t *s, uint32_t nb)
+ {
+	while (nb--)
+-		*d++ = bitfn_swap32(*s++);
++		*d++ = bitfn_swap32(load32(s++));
+ }
+ #endif
+
+@@ -123,7 +148,7 @@ static inline uint64_t bitfn_swap64(uint64_t a)
+ static inline void array_swap64(uint64_t *d, uint64_t *s, uint32_t nb)
+ {
+	while (nb--)
+-		*d++ = bitfn_swap64(*s++);
++		*d++ = bitfn_swap64(load64(s++));
+ }
+ #endif
+
+@@ -147,14 +172,14 @@ static inline void memory_zero(void *ptr, uint32_t len)
+ #ifndef ARCH_HAS_ARRAY_COPY32
+ static inline void array_copy32(uint32_t *d, uint32_t *s, uint32_t nb)
+ {
+-	while (nb--) *d++ = *s++;
++	while (nb--) *d++ = load32(s++);
+ }
+ #endif
+
+ #ifndef ARCH_HAS_ARRAY_COPY64
+ static inline void array_copy64(uint64_t *d, uint64_t *s, uint32_t nb)
+ {
+-	while (nb--) *d++ = *s++;
++	while (nb--) *d++ = load64(s++);
+ }
+ #endif
