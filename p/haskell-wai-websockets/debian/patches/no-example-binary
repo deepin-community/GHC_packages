@@ -1,0 +1,27 @@
+Author: Joachim Breitner
+Forwarded: https://github.com/yesodweb/wai/pull/251
+
+Index: wai-websockets-2.1.0.1/wai-websockets.cabal
+===================================================================
+--- wai-websockets-2.1.0.1.orig/wai-websockets.cabal	2014-05-03 22:17:12.782519427 +0200
++++ wai-websockets-2.1.0.1/wai-websockets.cabal	2014-05-03 22:20:39.166528230 +0200
+@@ -34,9 +34,7 @@
+ Executable           wai-websockets-example
+   if flag(example)
+     buildable: True
+-  else
+-    buildable: False
+-  Build-Depends:     base               >= 3 && < 5
++    Build-Depends:     base               >= 3 && < 5
+                    , conduit
+                    , wai-websockets
+                    , websockets
+@@ -52,6 +50,8 @@
+                    , file-embed
+                    , io-streams
+                    , http-types
++  else
++    buildable: False
+
+   ghc-options:       -Wall -threaded
+   main-is:           server.lhs
