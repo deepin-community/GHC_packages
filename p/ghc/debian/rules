@@ -57,10 +57,6 @@ endif
 ifeq (armhf,$(DEB_HOST_ARCH))
 	echo "SRC_HC_OPTS += -D__ARM_PCS_VFP" >> mk/build.mk
 endif
-# proper fix for #360177
-ifeq (ppc64,$(DEB_HOST_ARCH))
-	echo "SRC_HC_OPTS += -optc-mminimal-toc" >> mk/build.mk
-endif
 ifneq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
 #	echo "GhcStage1HcOpts += -DDEBUG" >> mk/build.mk
 #	echo "GhcStage2HcOpts += -DDEBUG" >> mk/build.mk
