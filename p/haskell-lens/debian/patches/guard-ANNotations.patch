@@ -3,9 +3,11 @@ From: Joey Hess <joey@kitenet.net>
 Date: Tue, 15 Oct 2013 10:03:28 -0400
 Last-Update: 2014-04-14
 Subject: [PATCH 3/3] guard ANNotations
---- a/src/Control/Lens.hs
-+++ b/src/Control/Lens.hs
-@@ -95,6 +95,8 @@
+Index: haskell-lens-4.1.2/src/Control/Lens.hs
+===================================================================
+--- haskell-lens-4.1.2.orig/src/Control/Lens.hs
++++ haskell-lens-4.1.2/src/Control/Lens.hs
+@@ -95,6 +95,8 @@ import Control.Lens.Type
  import Control.Lens.Wrapped
  import Control.Lens.Zoom
 
@@ -14,9 +16,11 @@ Subject: [PATCH 3/3] guard ANNotations
  {-# ANN module "HLint: ignore Use import/export shortcut" #-}
  #endif
 +#endif
---- a/src/Control/Lens/Equality.hs
-+++ b/src/Control/Lens/Equality.hs
-@@ -31,10 +31,12 @@
+Index: haskell-lens-4.1.2/src/Control/Lens/Equality.hs
+===================================================================
+--- haskell-lens-4.1.2.orig/src/Control/Lens/Equality.hs
++++ haskell-lens-4.1.2/src/Control/Lens/Equality.hs
+@@ -31,10 +31,12 @@ module Control.Lens.Equality
  import Control.Lens.Type
  import Data.Functor.Identity
 
@@ -29,16 +33,18 @@ Subject: [PATCH 3/3] guard ANNotations
 
  -- $setup
  -- >>> import Control.Lens
-@@ -86,4 +88,4 @@
+@@ -86,4 +88,4 @@ simply = id
  -- type of a used argument and avoid @ScopedTypeVariables@ or other ugliness.
  simple :: Equality' a a
  simple = id
 -{-# INLINE simple #-}
 \ No newline at end of file
 +{-# INLINE simple #-}
---- a/src/Control/Lens/Fold.hs
-+++ b/src/Control/Lens/Fold.hs
-@@ -178,11 +178,13 @@
+Index: haskell-lens-4.1.2/src/Control/Lens/Fold.hs
+===================================================================
+--- haskell-lens-4.1.2.orig/src/Control/Lens/Fold.hs
++++ haskell-lens-4.1.2/src/Control/Lens/Fold.hs
+@@ -178,11 +178,13 @@ import Data.Traversable
  -- >>> let g :: Expr -> Expr; g = Debug.SimpleReflect.Vars.g
  -- >>> let timingOut :: NFData a => a -> IO a; timingOut = fmap (fromMaybe (error "timeout")) . timeout (5*10^6) . evaluate . force
 
@@ -52,9 +58,11 @@ Subject: [PATCH 3/3] guard ANNotations
 
  infixl 8 ^.., ^?, ^?!, ^@.., ^@?, ^@?!
 
---- a/src/Control/Exception/Lens.hs
-+++ b/src/Control/Exception/Lens.hs
-@@ -119,9 +119,11 @@
+Index: haskell-lens-4.1.2/src/Control/Exception/Lens.hs
+===================================================================
+--- haskell-lens-4.1.2.orig/src/Control/Exception/Lens.hs
++++ haskell-lens-4.1.2/src/Control/Exception/Lens.hs
+@@ -119,9 +119,11 @@ import Prelude
    , Maybe(..), Either(..), String
    )
 
@@ -66,9 +74,11 @@ Subject: [PATCH 3/3] guard ANNotations
 
  -- $setup
  -- >>> :set -XNoOverloadedStrings
---- a/src/Control/Lens/Cons.hs
-+++ b/src/Control/Lens/Cons.hs
-@@ -55,7 +55,9 @@
+Index: haskell-lens-4.1.2/src/Control/Lens/Cons.hs
+===================================================================
+--- haskell-lens-4.1.2.orig/src/Control/Lens/Cons.hs
++++ haskell-lens-4.1.2/src/Control/Lens/Cons.hs
+@@ -55,7 +55,9 @@ import           Data.Vector.Unboxed (Un
  import qualified Data.Vector.Unboxed as Unbox
  import           Data.Word
 
@@ -78,9 +88,11 @@ Subject: [PATCH 3/3] guard ANNotations
 
  -- $setup
  -- >>> :set -XNoOverloadedStrings
---- a/src/Control/Lens/Internal/Fold.hs
-+++ b/src/Control/Lens/Internal/Fold.hs
-@@ -37,7 +37,9 @@
+Index: haskell-lens-4.1.2/src/Control/Lens/Internal/Fold.hs
+===================================================================
+--- haskell-lens-4.1.2.orig/src/Control/Lens/Internal/Fold.hs
++++ haskell-lens-4.1.2/src/Control/Lens/Internal/Fold.hs
+@@ -37,7 +37,9 @@ import Data.Maybe
  import Data.Semigroup hiding (Min, getMin, Max, getMax)
  import Data.Reflection
 
@@ -90,9 +102,11 @@ Subject: [PATCH 3/3] guard ANNotations
 
  ------------------------------------------------------------------------------
  -- Folding
---- a/src/Control/Lens/Internal.hs
-+++ b/src/Control/Lens/Internal.hs
-@@ -44,6 +44,8 @@
+Index: haskell-lens-4.1.2/src/Control/Lens/Internal.hs
+===================================================================
+--- haskell-lens-4.1.2.orig/src/Control/Lens/Internal.hs
++++ haskell-lens-4.1.2/src/Control/Lens/Internal.hs
+@@ -44,6 +44,8 @@ import Control.Lens.Internal.Review
  import Control.Lens.Internal.Setter
  import Control.Lens.Internal.Zoom
 
@@ -101,9 +115,11 @@ Subject: [PATCH 3/3] guard ANNotations
  {-# ANN module "HLint: ignore Use import/export shortcut" #-}
  #endif
 +#endif
---- a/src/Control/Lens/Iso.hs
-+++ b/src/Control/Lens/Iso.hs
-@@ -88,9 +88,11 @@
+Index: haskell-lens-4.1.2/src/Control/Lens/Iso.hs
+===================================================================
+--- haskell-lens-4.1.2.orig/src/Control/Lens/Iso.hs
++++ haskell-lens-4.1.2/src/Control/Lens/Iso.hs
+@@ -88,9 +88,11 @@ import Data.Maybe
  import Data.Profunctor
  import Data.Profunctor.Unsafe
 
@@ -115,9 +131,11 @@ Subject: [PATCH 3/3] guard ANNotations
 
  -- $setup
  -- >>> :set -XNoOverloadedStrings
---- a/src/Control/Lens/Lens.hs
-+++ b/src/Control/Lens/Lens.hs
-@@ -136,9 +136,11 @@
+Index: haskell-lens-4.1.2/src/Control/Lens/Lens.hs
+===================================================================
+--- haskell-lens-4.1.2.orig/src/Control/Lens/Lens.hs
++++ haskell-lens-4.1.2/src/Control/Lens/Lens.hs
+@@ -136,9 +136,11 @@ import Data.Profunctor.Rep
  import Data.Profunctor.Unsafe
  import Data.Void
 
@@ -129,9 +147,11 @@ Subject: [PATCH 3/3] guard ANNotations
 
  -- $setup
  -- >>> :set -XNoOverloadedStrings
---- a/src/Control/Lens/Plated.hs
-+++ b/src/Control/Lens/Plated.hs
-@@ -106,9 +106,11 @@
+Index: haskell-lens-4.1.2/src/Control/Lens/Plated.hs
+===================================================================
+--- haskell-lens-4.1.2.orig/src/Control/Lens/Plated.hs
++++ haskell-lens-4.1.2/src/Control/Lens/Plated.hs
+@@ -106,9 +106,11 @@ import Data.Data.Lens
  import Data.Monoid
  import Data.Tree
 
@@ -143,9 +163,11 @@ Subject: [PATCH 3/3] guard ANNotations
 
  -- | A 'Plated' type is one where we know how to extract its immediate self-similar children.
  --
---- a/src/Control/Lens/Prism.hs
-+++ b/src/Control/Lens/Prism.hs
-@@ -59,7 +59,9 @@
+Index: haskell-lens-4.1.2/src/Control/Lens/Prism.hs
+===================================================================
+--- haskell-lens-4.1.2.orig/src/Control/Lens/Prism.hs
++++ haskell-lens-4.1.2/src/Control/Lens/Prism.hs
+@@ -59,7 +59,9 @@ import Unsafe.Coerce
  import Data.Profunctor.Unsafe
  #endif
 
@@ -155,9 +177,11 @@ Subject: [PATCH 3/3] guard ANNotations
 
  -- $setup
  -- >>> :set -XNoOverloadedStrings
---- a/src/Control/Lens/Setter.hs
-+++ b/src/Control/Lens/Setter.hs
-@@ -91,9 +91,11 @@
+Index: haskell-lens-4.1.2/src/Control/Lens/Setter.hs
+===================================================================
+--- haskell-lens-4.1.2.orig/src/Control/Lens/Setter.hs
++++ haskell-lens-4.1.2/src/Control/Lens/Setter.hs
+@@ -91,9 +91,11 @@ import Data.Profunctor
  import Data.Profunctor.Rep
  import Data.Profunctor.Unsafe
 
@@ -169,14 +193,16 @@ Subject: [PATCH 3/3] guard ANNotations
 
  -- $setup
  -- >>> import Control.Lens
---- a/src/Control/Monad/Primitive/Lens.hs
-+++ b/src/Control/Monad/Primitive/Lens.hs
+Index: haskell-lens-4.1.2/src/Control/Monad/Primitive/Lens.hs
+===================================================================
+--- haskell-lens-4.1.2.orig/src/Control/Monad/Primitive/Lens.hs
++++ haskell-lens-4.1.2/src/Control/Monad/Primitive/Lens.hs
 @@ -1,3 +1,4 @@
 +{-# LANGUAGE CPP #-}
  {-# LANGUAGE MagicHash #-}
  {-# LANGUAGE UnboxedTuples #-}
  {-# LANGUAGE TypeFamilies #-}
-@@ -20,7 +21,9 @@
+@@ -20,7 +21,9 @@ import Control.Lens
  import Control.Monad.Primitive (PrimMonad(..))
  import GHC.Prim (State#)
 
@@ -186,9 +212,11 @@ Subject: [PATCH 3/3] guard ANNotations
 
  prim :: (PrimMonad m) => Iso' (m a) (State# (PrimState m) -> (# State# (PrimState m), a #))
  prim = iso internal primitive
---- a/src/Data/Data/Lens.hs
-+++ b/src/Data/Data/Lens.hs
-@@ -65,12 +65,14 @@
+Index: haskell-lens-4.1.2/src/Data/Data/Lens.hs
+===================================================================
+--- haskell-lens-4.1.2.orig/src/Data/Data/Lens.hs
++++ haskell-lens-4.1.2/src/Data/Data/Lens.hs
+@@ -65,12 +65,14 @@ import           Data.IORef
  import           Data.Monoid
  import           GHC.Exts (realWorld#)
 
@@ -203,3 +231,17 @@ Subject: [PATCH 3/3] guard ANNotations
 
  -- $setup
  -- >>> :set -XNoOverloadedStrings
+Index: haskell-lens-4.1.2/src/Control/Lens/Internal/Reflection.hs
+===================================================================
+--- haskell-lens-4.1.2.orig/src/Control/Lens/Internal/Reflection.hs
++++ haskell-lens-4.1.2/src/Control/Lens/Internal/Reflection.hs
+@@ -64,7 +64,9 @@ import Data.Word
+ import Data.Typeable
+ import Data.Reflection
+
++#ifndef DISABLE_TEMPLATE_HASKELL
+ {-# ANN module "HLint: ignore Avoid lambda" #-}
++#endif
+
+ class Typeable s => B s where
+   reflectByte :: proxy s -> IntPtr

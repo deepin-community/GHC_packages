@@ -1,11 +1,8 @@
-From 42c73dc2026eb8aeeb1cf60ca4102357f3718a06 Mon Sep 17 00:00:00 2001
-From: Joey Hess <joey@kitenet.net>
-Date: Tue, 15 Oct 2013 09:56:50 -0400
-Last-Update: 2014-04-14
-Subject: [PATCH 2/3] add without-th flag
---- a/lens.cabal
-+++ b/lens.cabal
-@@ -180,6 +180,11 @@
+Index: haskell-lens-4.1.2/lens.cabal
+===================================================================
+--- haskell-lens-4.1.2.orig/lens.cabal
++++ haskell-lens-4.1.2/lens.cabal
+@@ -121,6 +121,12 @@ flag benchmark-uniplate
    default: False
    manual: True
 
@@ -14,29 +11,19 @@ Subject: [PATCH 2/3] add without-th flag
 +  default: False
 +  manual: True
 +
- library
-   build-depends:
-     aeson                     >= 0.7      && < 0.8,
-@@ -200,7 +205,6 @@
-     parallel                  >= 3.1.0.1  && < 3.3,
-     primitive                 >= 0.4.0.1  && < 0.6,
-     profunctors               >= 4        && < 5,
--    reflection                >= 1.1.6    && < 2,
-     scientific                >= 0.2      && < 0.3,
-     semigroupoids             >= 4        && < 5,
-     semigroups                >= 0.8.4    && < 1,
-@@ -246,10 +250,8 @@
-     Control.Lens.Internal.Level
-     Control.Lens.Internal.Magma
-     Control.Lens.Internal.Prism
--    Control.Lens.Internal.Reflection
++
+ -- Generate inline pragmas when using template-haskell. This defaults to enabled, but you can
+ --
+ -- > cabal install lens -f-inlining
+@@ -248,7 +254,6 @@ library
+     Control.Lens.Internal.Reflection
      Control.Lens.Internal.Review
      Control.Lens.Internal.Setter
 -    Control.Lens.Internal.TH
      Control.Lens.Internal.Zoom
      Control.Lens.Iso
      Control.Lens.Lens
-@@ -261,7 +263,6 @@
+@@ -260,7 +265,6 @@ library
      Control.Lens.Reified
      Control.Lens.Review
      Control.Lens.Setter
@@ -44,43 +31,28 @@ Subject: [PATCH 2/3] add without-th flag
      Control.Lens.Traversal
      Control.Lens.Tuple
      Control.Lens.Type
-@@ -294,19 +295,28 @@
-     Data.Typeable.Lens
-     Data.Vector.Lens
-     Data.Vector.Generic.Lens
--    Generics.Deriving.Lens
--    GHC.Generics.Lens
-     System.Exit.Lens
-     System.FilePath.Lens
--    System.IO.Error.Lens
--    Language.Haskell.TH.Lens
+@@ -301,11 +305,18 @@ library
+     Language.Haskell.TH.Lens
      Numeric.Lens
 
 -  other-modules:
 -    Control.Lens.Internal.TupleIxedTH
--
+
    cpp-options: -traditional
 
 +  if flag(without-th)
 +    cpp-options: -DDISABLE_TEMPLATE_HASKELL
-+  else
-+    build-depends:
-+      reflection                >= 1.1.6    && < 2
++  else:
 +    exposed-modules:
-+      Control.Lens.Internal.Reflection
-+      Control.Lens.Internal.TH
 +      Control.Lens.TH
-+      Generics.Deriving.Lens
-+      GHC.Generics.Lens
-+      Language.Haskell.TH.Lens
-+      System.IO.Error.Lens
++      Control.Lens.Internal.TH
 +    other-modules:
 +      Control.Lens.Internal.TupleIxedTH
 +
    if flag(safe)
      cpp-options: -DSAFE=1
 
-@@ -340,6 +350,9 @@
+@@ -339,6 +350,9 @@ test-suite templates
    ghc-options: -Wall -threaded
    hs-source-dirs: tests
 
@@ -90,43 +62,50 @@ Subject: [PATCH 2/3] add without-th flag
    if flag(dump-splices)
      ghc-options: -ddump-splices
 
---- a/src/Control/Lens/Internal/Exception.hs
-+++ b/src/Control/Lens/Internal/Exception.hs
-@@ -39,7 +39,9 @@
- import Control.Exception as Exception
- import Control.Lens.Fold
- import Control.Lens.Getter
+Index: haskell-lens-4.1.2/src/Control/Lens/At.hs
+===================================================================
+--- haskell-lens-4.1.2.orig/src/Control/Lens/At.hs
++++ haskell-lens-4.1.2/src/Control/Lens/At.hs
+@@ -2,7 +2,9 @@
+ {-# LANGUAGE GADTs #-}
+ {-# LANGUAGE Rank2Types #-}
+ {-# LANGUAGE TypeFamilies #-}
 +#ifndef DISABLE_TEMPLATE_HASKELL
- import Control.Lens.Internal.Reflection
+ {-# LANGUAGE TemplateHaskell #-}
 +#endif
- import Control.Monad.Catch as Catch
- import Data.Monoid
- import Data.Proxy
-@@ -140,6 +142,7 @@
-   handler_ l = handler l . const
-   {-# INLINE handler_ #-}
-
+ {-# LANGUAGE FlexibleContexts #-}
+ {-# LANGUAGE DefaultSignatures #-}
+ {-# LANGUAGE FlexibleInstances #-}
+@@ -45,7 +47,9 @@ import Control.Applicative
+ import Control.Lens.Lens
+ import Control.Lens.Setter
+ import Control.Lens.Type
 +#ifndef DISABLE_TEMPLATE_HASKELL
- instance Handleable SomeException IO Exception.Handler where
-   handler = handlerIO
-
-@@ -151,7 +154,7 @@
-
- handlerCatchIO :: forall m a r. (Typeable a, Typeable1 m) => Getting (First a) SomeException a -> (a -> m r) -> Catch.Handler m r
- handlerCatchIO l f = reifyTypeable (preview l) $ \ (_ :: Proxy s) -> Catch.Handler (\(Handling a :: Handling a s m) -> f a)
--
+ import Control.Lens.Internal.TupleIxedTH (makeAllTupleIxed)
 +#endif
- ------------------------------------------------------------------------------
- -- Helpers
- ------------------------------------------------------------------------------
-@@ -197,8 +200,10 @@
-   showsPrec d _ = showParen (d > 10) $ showString "Handling ..."
-   {-# INLINE showsPrec #-}
+ import Data.Aeson as Aeson
+ import Data.Array.IArray as Array
+ import Data.Array.Unboxed
+@@ -441,4 +445,6 @@ instance (Eq k, Hashable k) => At (HashS
+     where mv = if HashSet.member k m then Just () else Nothing
+   {-# INLINE at #-}
 
 +#ifndef DISABLE_TEMPLATE_HASKELL
- instance (Reifies s (SomeException -> Maybe a), Typeable a, Typeable1 m, Typeable s) => Exception (Handling a s m) where
-   toException _ = SomeException HandlingException
-   {-# INLINE toException #-}
-   fromException = fmap Handling . reflect (Proxy :: Proxy s)
-   {-# INLINE fromException #-}
+ makeAllTupleIxed
++#endif
+Index: haskell-lens-4.1.2/src/System/IO/Error/Lens.hs
+===================================================================
+--- haskell-lens-4.1.2.orig/src/System/IO/Error/Lens.hs
++++ haskell-lens-4.1.2/src/System/IO/Error/Lens.hs
+@@ -1,3 +1,4 @@
++{-# LANGUAGE CPP #-}
+ {-# LANGUAGE TemplateHaskell #-}
+ {-# LANGUAGE FlexibleContexts #-}
+ {-# LANGUAGE FlexibleInstances #-}
+@@ -62,4 +63,6 @@ errorType f s = f (ioe_type s) <&> \e ->
+ --
+ -- (These prisms are generated automatically)
+
++#ifndef DISABLE_TEMPLATE_HASKELL
+ makePrisms ''IOErrorType
 +#endif
