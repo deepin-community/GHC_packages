@@ -11,11 +11,14 @@ include /usr/share/cdbs/1/class/hlibrary.mk
 check-ghc-stamp: export LANG := en_US.UTF-8
 check-ghc-stamp: export LC_ALL := C.UTF-8
 
+DEB_SETUP_GHC_CONFIGURE_ARGS += -f-hlint-tests
+
 ifeq ($(DEB_HOST_ARCH),sparc)
 	# Disable tests that require SMP.
-	DEB_SETUP_GHC_CONFIGURE_ARGS := -f-test-hunit -f-test-properties
+	DEB_SETUP_GHC_CONFIGURE_ARGS += -f-test-hunit -f-test-properties
 endif
 
 ifeq ($(shell if [ ! -e /usr/bin/ghci ]; then echo 0; fi),0)
-	DEB_SETUP_GHC_CONFIGURE_ARGS := -fwithout-th -f-test-hunit -f-test-properties -f-test-doctests
+	DEB_SETUP_GHC_CONFIGURE_ARGS += -fwithout-th -f-test-hunit -f-test-properties -f-test-doctests
 endif
+
