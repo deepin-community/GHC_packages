@@ -7,6 +7,6 @@ include /usr/share/cdbs/1/class/hlibrary.mk
 
 install/notmuch-web:: debian/tmp-inst-ghc
 	cp -av debian/tmp-inst-ghc/usr/bin/* debian/notmuch-web/usr/bin
-	install -d 755 debian/notmuch-web/usr/share/doc/notmuch-web
-	install -m 644 debian/tmp-inst-ghc/usr/share/notmuch-web/README.md debian/notmuch-web/usr/share/doc/notmuch-web
-	install -m 644 debian/tmp-inst-ghc/usr/share/notmuch-web/config/* debian/notmuch-web/etc/notmuch-web
+	install -d 0755 debian/notmuch-web/usr/share/doc/notmuch-web
+	install -m 0644 debian/tmp-inst-ghc/usr/share/notmuch-web/README.md debian/notmuch-web/usr/share/doc/notmuch-web
+	install -m 0644 debian/tmp-inst-ghc/usr/share/notmuch-web/config/* debian/notmuch-web/etc/notmuch-web
