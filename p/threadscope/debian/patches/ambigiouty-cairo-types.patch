@@ -1,0 +1,38 @@
+Desciption: Resolves an issue with new symbols in cairo
+Bug-debian: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=746076
+Forwarded: No
+Author: Sven Bartscher <sven.bartscher@weltraumschlangen.de>
+Last-Update: 2014-05-20
+--- a/GUI/Timeline/Render.hs
++++ b/GUI/Timeline/Render.hs
+@@ -21,7 +21,7 @@
+ import GUI.Timeline.CairoDrawing
+
+ import Graphics.UI.Gtk
+-import Graphics.Rendering.Cairo
++import Graphics.Rendering.Cairo hiding (RectangleInt, height, width, Region)
+
+ import Data.IORef
+ import Control.Monad
+--- a/GUI/Timeline.hs
++++ b/GUI/Timeline.hs
+@@ -34,7 +34,7 @@
+ import Events.HECs
+
+ import Graphics.UI.Gtk
+-import Graphics.Rendering.Cairo
++import Graphics.Rendering.Cairo hiding (height)
+
+ import Data.IORef
+ import Control.Monad
+--- a/GUI/SaveAs.hs
++++ b/GUI/SaveAs.hs
+@@ -9,7 +9,7 @@
+
+ -- Imports for GTK
+ import Graphics.UI.Gtk
+-import Graphics.Rendering.Cairo
++import Graphics.Rendering.Cairo hiding (height)
+
+ saveAs :: HECs -> ViewParameters -> Double -> DrawingArea
+        -> (Int, Int, Render ())
