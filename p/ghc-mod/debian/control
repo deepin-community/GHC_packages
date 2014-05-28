@@ -4,7 +4,7 @@ Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Kiwamu Okabe <kiwamu@debian.or.jp>
 Build-Depends: debhelper (>= 9),
-               haskell-devscripts (>= 0.8.19),
+               haskell-devscripts (>= 0.8.20),
                cdbs,
                ghc,
                ghc-ghci,
@@ -17,15 +17,15 @@ Build-Depends: debhelper (>= 9),
                libghc-ghc-syb-utils-dev,
                libghc-io-choice-dev,
                libghc-syb-dev
-Standards-Version: 3.9.4
+Standards-Version: 3.9.5
 Homepage: http://www.mew.org/~kazu/proj/ghc-mod/
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/ghc-mod
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/ghc-mod
 
 Package: ghc-mod
 Architecture: any
-Depends: ${shlibs:Depends}, ${haskell:Depends}, ${misc:Depends}, haskell-mode
-Recommends: ghc
+Depends: ${shlibs:Depends}, ${haskell:Depends}, ${misc:Depends}, haskell-mode,
+	 ghc (= ${haskell:ghc-version})
 Description: Happy Haskell programming on Emacs
  This package includes Elisp files and a Haskell command, "ghc-mod".
  "ghc*.el" enable completion of Haskell symbols on Emacs.
