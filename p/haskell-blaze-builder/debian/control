@@ -9,7 +9,7 @@ Build-Depends: debhelper (>= 9)
   , ghc
   , ghc-prof
   , libghc-text-dev (>= 0.10)
-  , libghc-text-dev (<< 0.13)
+  , libghc-text-dev (<< 1.2)
   , libghc-text-prof
 Build-Depends-Indep: ghc-doc
   , libghc-text-doc
@@ -17,6 +17,14 @@ Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/blaze-builder
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-blaze-builder
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-blaze-builder
+X-Description: abstraction of buffered output of byte streams
+ This library provides an abstraction of buffered output of byte streams and
+ several convenience functions to exploit it. For example, it allows one to
+ efficiently serialize Haskell values to lazy bytestrings with a large average
+ chunk size. The large average chunk size allows one to make good use of cache
+ prefetching in later processing steps (e.g. compression) and reduces the
+ system call overhead when writing the resulting lazy bytestring to a file or
+ sending it over the network.
 
 Package: libghc-blaze-builder-dev
 Architecture: any
@@ -26,14 +34,8 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: abstraction of buffered output of byte streams${haskell:ShortBlurb}
- This library provides an abstraction of buffered output of byte streams and
- several convenience functions to exploit it. For example, it allows one to
- efficiently serialize Haskell values to lazy bytestrings with a large average
- chunk size. The large average chunk size allows one to make good use of cache
- prefetching in later processing steps (e.g. compression) and reduces the sytem
- call overhead when writing the resulting lazy bytestring to a file or sending
- it over the network.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
@@ -44,14 +46,8 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: abstraction of buffered output of byte streams${haskell:ShortBlurb}
- This library provides an abstraction of buffered output of byte streams and
- several convenience functions to exploit it. For example, it allows one to
- efficiently serialize Haskell values to lazy bytestrings with a large average
- chunk size. The large average chunk size allows one to make good use of cache
- prefetching in later processing steps (e.g. compression) and reduces the sytem
- call overhead when writing the resulting lazy bytestring to a file or sending
- it over the network.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
@@ -61,13 +57,7 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: abstraction of buffered output of byte streams${haskell:ShortBlurb}
- This library provides an abstraction of buffered output of byte streams and
- several convenience functions to exploit it. For example, it allows one to
- efficiently serialize Haskell values to lazy bytestrings with a large average
- chunk size. The large average chunk size allows one to make good use of cache
- prefetching in later processing steps (e.g. compression) and reduces the sytem
- call overhead when writing the resulting lazy bytestring to a file or sending
- it over the network.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
