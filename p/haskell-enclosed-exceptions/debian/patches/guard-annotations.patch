@@ -1,0 +1,26 @@
+Description: Guard annotations to fix build without GHCi
+ This can be dropped once https://ghc.haskell.org/trac/ghc/ticket/4268 is
+ available in Debian's GHC, so does not need to be forwarded upstream.
+Author: Colin Watson <cjwatson@debian.org>
+Forwarded: not-needed
+Last-Update: 2014-06-05
+
+Index: b/test/main.hs
+===================================================================
+--- a/test/main.hs
++++ b/test/main.hs
+@@ -1,3 +1,4 @@
++{-# LANGUAGE CPP #-}
+ {-# LANGUAGE NoMonomorphismRestriction #-}
+ {-# LANGUAGE DeriveDataTypeable #-}
+ {-# LANGUAGE PatternGuards #-}
+@@ -11,7 +12,9 @@
+ import Control.Concurrent (throwTo, threadDelay, forkIO)
+ import Control.Exception.Enclosed
+
++#ifdef HLINT
+ {-# ANN main ("HLint: ignore Redundant do"::String) #-}
++#endif
+ main :: IO ()
+ main = hspec $ do
+     describe "any exceptions" $ do
