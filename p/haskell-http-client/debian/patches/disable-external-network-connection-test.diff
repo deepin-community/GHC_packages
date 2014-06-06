@@ -1,0 +1,14 @@
+--- a/test/Network/HTTP/ClientSpec.hs
++++ b/test/Network/HTTP/ClientSpec.hs
+@@ -55,11 +55,6 @@
+
+ spec :: Spec
+ spec = describe "Client" $ do
+-    it "works" $ withSocketsDo $ do
+-        req <- parseUrl "http://www.yesodweb.com/"
+-        man <- newManager defaultManagerSettings
+-        res <- httpLbs req man
+-        responseStatus res `shouldBe` status200
+     describe "fails on empty hostnames #40" $ do
+         let test url = it url $ do
+                 req <- parseUrl url
