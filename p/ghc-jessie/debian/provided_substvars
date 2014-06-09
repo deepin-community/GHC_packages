@@ -19,7 +19,7 @@ while (<PKG>) {
     my $pkgstring = $_;
     LOOP: while ($pkgstring =~ m,([^ ]*?)-\d.*? ?,g) {
 	my $pkg = $1;
-	next if $ignored{$pkg};
+	next if exists $ignored{$pkg};
 	push @pkgs, $1;
     }
 }
@@ -27,18 +27,14 @@ close PKG;
 
 my $buf;
 open DEV, '>debian/ghc.substvars';
-print DEV 'provided-devs=';
-$buf = "";
-foreach (@pkgs) {$buf .= "libghc-$_-dev, ";}
+$buf = "provided-devs=";
+foreach (sort @pkgs) {$buf .= "libghc-$_-dev, ";}
 $buf =~ s#(.*), #$1#;
 print DEV $buf."\n";
-close DEV;
 
-open DEV, '>debian/ghc.substvars';
-print DEV 'conflicting-devs=';
-$buf = "";
-foreach (@pkgs) {
-	next if $no_conflict{$pkg};
+$buf = "conflicting-devs=";
+foreach (sort @pkgs) {
+	next if $no_conflict{$_};
 	$buf .= "libghc-$_-dev, ";
 }
 $buf =~ s#(.*), #$1#;
