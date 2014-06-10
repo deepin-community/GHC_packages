@@ -1,0 +1,63 @@
+--- a/publicsuffixlist.cabal
++++ b/publicsuffixlist.cabal
+@@ -22,6 +22,8 @@
+     build-depends: base       >= 4       && < 5
+                  , containers
+                  , data-default
++                 , exceptions
++                 , resourcet
+                  , bytestring >= 0.9
+                  , text       >= 0.11
+                  , utf8-string
+@@ -29,6 +31,7 @@
+     if flag(create)
+         build-depends: idna             >= 0.1.2 && < 1.0
+                      , conduit          >= 1.0.0 && < 2.0.0
++                     , conduit-extra
+     exposed-modules: Network.PublicSuffixList.Lookup
+                    , Network.PublicSuffixList.DataStructure
+     other-modules: Network.PublicSuffixList.Types
+@@ -46,6 +49,7 @@
+     build-depends: base     >= 4 && < 5
+                  , containers
+                  , data-default
++                 , resourcet
+                  , text     >= 0.11
+                  , HUnit
+                  , idna     >= 0.1.1   && < 1.0
+--- a/Network/PublicSuffixList/Create.hs
++++ b/Network/PublicSuffixList/Create.hs
+@@ -24,6 +24,7 @@
+ module Network.PublicSuffixList.Create (PublicSuffixListException, sink) where
+
+ import           Control.Exception
++import           Control.Monad.Catch (MonadThrow)
+ import qualified Data.ByteString      as BS
+ import qualified Data.Conduit         as C
+ import qualified Data.Conduit.List    as CL
+@@ -67,6 +68,6 @@
+ {-
+ Generate the opaque 'DataStructure'
+ -}
+-sink :: C.MonadThrow m => C.Sink BS.ByteString m DataStructure
++sink :: MonadThrow m => C.Sink BS.ByteString m DataStructure
+ sink = CT.decode CT.utf8 C.=$ CT.lines C.=$ CL.fold foldingFunction def
+
+--- a/Network/PublicSuffixList/DataStructure.hs
++++ b/Network/PublicSuffixList/DataStructure.hs
+@@ -5,6 +5,7 @@
+
+ module Network.PublicSuffixList.DataStructure (dataStructure) where
+
++import           Control.Monad.Trans.Resource (runResourceT)
+ import           Data.ByteString.Char8 ()
+
+ import Network.PublicSuffixList.Types
+@@ -29,7 +30,7 @@
+ dataStructure :: DataStructure
+ #if defined(RUNTIMELIST)
+ {-# NOINLINE dataStructure #-}
+-dataStructure = unsafePerformIO $ C.runResourceT $ sourceFile RUNTIMELIST C.$$ PSLC.sink
++dataStructure = unsafePerformIO $ runResourceT $ sourceFile RUNTIMELIST C.$$ PSLC.sink
+ #else
+ dataStructure = let Right ds = runGet getDataStructure serializedDataStructure in ds
