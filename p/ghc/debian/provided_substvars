@@ -4,32 +4,46 @@
 
 open PKG, 'inplace/bin/ghc-pkg list --simple-output |'
     or die "ghc-pkg list failed: $!";
-my @pkgs;
+
 my @ignored = ('ghc', 'mtl', 'terminfo', 'haskeline', 'utf8-string', 'xhtml', 'rts', 'stm', 'parallel');
+my %ignored;
+$ignored{$_}++ for @ignored;
+
+my @no_conflict = ('cabal');
+my %no_conflict;
+$no_conflict{$_}++ for @no_conflict;
+
+my @pkgs;
 while (<PKG>) {
     y/A-Z/a-z/;
     my $pkgstring = $_;
     LOOP: while ($pkgstring =~ m,([^ ]*?)-\d.*? ?,g) {
 	my $pkg = $1;
-	foreach (@ignored, @pkgs) {
-	    next LOOP if $_ eq $pkg;
-	}
+	next if exists $ignored{$pkg};
 	push @pkgs, $1;
     }
 }
 close PKG;
 
+my $buf;
 open DEV, '>debian/ghc.substvars';
-print DEV 'provided-devs=';
-my $buf = "";
-foreach (@pkgs) {$buf .= "libghc-$_-dev, ";}
+$buf = "provided-devs=";
+foreach (sort @pkgs) {$buf .= "libghc-$_-dev, ";}
+$buf =~ s#(.*), #$1#;
+print DEV $buf."\n";
+
+$buf = "conflicting-devs=";
+foreach (sort @pkgs) {
+	next if $no_conflict{$_};
+	$buf .= "libghc-$_-dev, ";
+}
 $buf =~ s#(.*), #$1#;
 print DEV $buf."\n";
 close DEV;
 
 open PROF, '>debian/ghc-prof.substvars';
 print PROF 'provided-profs=';
-my $buf = "";
+$buf = "";
 foreach (@pkgs) {$buf .= "libghc-$_-prof, ";}
 $buf =~ s#(.*), #$1#;
 print PROF $buf."\n";
@@ -37,7 +51,7 @@ close PROF;
 
 open DOC, '>debian/ghc-doc.substvars';
 print DOC 'provided-docs=';
-my $buf = "";
+$buf = "";
 foreach (@pkgs) {$buf .= "libghc-$_-doc, ";}
 $buf =~ s#(.*), #$1#;
 print DOC $buf."\n";
