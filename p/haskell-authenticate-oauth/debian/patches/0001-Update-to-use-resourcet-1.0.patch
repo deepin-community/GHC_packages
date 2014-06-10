@@ -1,0 +1,154 @@
+From 332e06f5933c6b75a073349476bfae9e8d263642 Mon Sep 17 00:00:00 2001
+From: Oliver Charles <ollie@ocharles.org.uk>
+Date: Mon, 14 Apr 2014 15:07:05 +0100
+Subject: [PATCH] Update to use resourcet >= 1.0
+
+resourcet-1.0 doesn't have the `MonadUnsafeIO` class anymore, but
+authenticate-oauth seems to be abusing that anyway. I have instead opted
+to use `MonadIO` in the cases where `MonadUnsafeIO` was used.
+---
+ authenticate-oauth/Web/Authenticate/OAuth.hs    | 68 ++++++++-----------------
+ authenticate-oauth/Web/Authenticate/OAuth/IO.hs |  6 +--
+ authenticate-oauth/authenticate-oauth.cabal     |  2 +-
+ 3 files changed, 24 insertions(+), 52 deletions(-)
+
+--- haskell-authenticate-oauth-1.4.0.8.orig/Web/Authenticate/OAuth.hs
++++ haskell-authenticate-oauth-1.4.0.8/Web/Authenticate/OAuth.hs
+@@ -32,9 +32,6 @@
+ import qualified Data.ByteString.Char8        as BS
+ import qualified Data.ByteString.Lazy.Char8   as BSL
+ import           Data.Char
+-import           Data.Conduit                 (Source, ($$), ($=))
+-import           Data.Conduit.Blaze           (builderToByteString)
+-import qualified Data.Conduit.List            as CL
+ import           Data.Default
+ import           Data.Digest.Pure.SHA
+ import qualified Data.IORef                   as I
+@@ -285,7 +282,7 @@
+ injectVerifier = insert "oauth_verifier"
+
+ -- | Add OAuth headers & sign to 'Request'.
+-signOAuth :: (MonadUnsafeIO m)
++signOAuth :: MonadIO m
+           => OAuth              -- ^ OAuth Application
+           -> Credential         -- ^ Credential
+ #if MIN_VERSION_http_conduit(2, 0, 0)
+@@ -315,14 +312,14 @@
+ showSigMtd HMACSHA1  = "HMAC-SHA1"
+ showSigMtd (RSASHA1 _) = "RSA-SHA1"
+
+-addNonce :: MonadUnsafeIO m => Credential -> m Credential
++addNonce :: MonadIO m => Credential -> m Credential
+ addNonce cred = do
+-  nonce <- unsafeLiftIO $ replicateM 10 (randomRIO ('a','z')) -- FIXME very inefficient
++  nonce <- liftIO $ replicateM 10 (randomRIO ('a','z')) -- FIXME very inefficient
+   return $ insert "oauth_nonce" (BS.pack nonce) cred
+
+-addTimeStamp :: MonadUnsafeIO m => Credential -> m Credential
++addTimeStamp :: MonadIO m => Credential -> m Credential
+ addTimeStamp cred = do
+-  stamp <- (floor . (`diffUTCTime` baseTime)) `liftM` unsafeLiftIO getCurrentTime
++  stamp <- (floor . (`diffUTCTime` baseTime)) `liftM` liftIO getCurrentTime
+   return $ insert "oauth_timestamp" (BS.pack $ show (stamp :: Integer)) cred
+
+ injectOAuthToCred :: OAuth -> Credential -> Credential
+@@ -333,9 +330,9 @@
+             ] cred
+
+ #if MIN_VERSION_http_conduit(2, 0, 0)
+-genSign :: MonadUnsafeIO m => OAuth -> Credential -> Request -> m BS.ByteString
++genSign :: MonadIO m => OAuth -> Credential -> Request -> m BS.ByteString
+ #else
+-genSign :: MonadUnsafeIO m => OAuth -> Credential -> Request m -> m BS.ByteString
++genSign :: MonadIO m => OAuth -> Credential -> Request m -> m BS.ByteString
+ #endif
+ genSign oa tok req =
+   case oauthSignatureMethod oa of
+@@ -369,9 +366,9 @@
+                            in BS.pack oct
+
+ #if MIN_VERSION_http_conduit(2, 0, 0)
+-getBaseString :: MonadUnsafeIO m => Credential -> Request -> m BSL.ByteString
++getBaseString :: MonadIO m => Credential -> Request -> m BSL.ByteString
+ #else
+-getBaseString :: MonadUnsafeIO m => Credential -> Request m -> m BSL.ByteString
++getBaseString :: MonadIO m => Credential -> Request m -> m BSL.ByteString
+ #endif
+ getBaseString tok req = do
+   let bsMtd  = BS.map toUpper $ method req
+@@ -393,7 +390,7 @@
+   return $ BSL.intercalate "&" $ map (fromStrict.paramEncode) [bsMtd, bsURI, bsParams]
+
+ #if MIN_VERSION_http_conduit(2, 0, 0)
+-toLBS :: MonadUnsafeIO m => RequestBody -> m BS.ByteString
++toLBS :: MonadIO m => RequestBody -> m BS.ByteString
+ toLBS (RequestBodyLBS l) = return $ toStrict l
+ toLBS (RequestBodyBS s) = return s
+ toLBS (RequestBodyBuilder _ b) = return $ toByteString b
+@@ -404,9 +401,8 @@
+ type NeedsPopper a = Popper -> IO a
+ type GivesPopper a = NeedsPopper a -> IO a
+
+-toLBS' :: MonadUnsafeIO m => GivesPopper () -> m BS.ByteString
+--- FIXME probably shouldn't be using MonadUnsafeIO
+-toLBS' gp = unsafeLiftIO $ do
++toLBS' :: MonadIO m => GivesPopper () -> m BS.ByteString
++toLBS' gp = liftIO $ do
+     ref <- I.newIORef BS.empty
+     gp (go ref)
+     I.readIORef ref
+@@ -420,14 +416,14 @@
+                 then I.writeIORef ref $ BS.concat $ front []
+                 else loop (front . (bs:))
+ #else
+-toLBS :: MonadUnsafeIO m => RequestBody m -> m BS.ByteString
++toLBS :: MonadIO m => RequestBody m -> m BS.ByteString
+ toLBS (RequestBodyLBS l) = return $ toStrict l
+ toLBS (RequestBodyBS s) = return s
+ toLBS (RequestBodyBuilder _ b) = return $ toByteString b
+ toLBS (RequestBodySource _ src) = toLBS' src
+ toLBS (RequestBodySourceChunked src) = toLBS' src
+
+-toLBS' :: MonadUnsafeIO m => Source m Builder -> m BS.ByteString
++toLBS' :: MonadIO m => Source m Builder -> m BS.ByteString
+ toLBS' src = liftM BS.concat $ src $= builderToByteString $$ CL.consume
+ #endif
+
+--- haskell-authenticate-oauth-1.4.0.8.orig/Web/Authenticate/OAuth/IO.hs
++++ haskell-authenticate-oauth-1.4.0.8/Web/Authenticate/OAuth/IO.hs
+@@ -5,13 +5,13 @@
+ -- What this module do is just adding 'withManager' or 'runResourceT'.
+ module Web.Authenticate.OAuth.IO
+     {-# DEPRECATED "This module is deprecated; rewrite your code using MonadResource" #-}
+-    (
++    (
+       module Web.Authenticate.OAuth,
+       getAccessToken,
+       getTemporaryCredential, getTemporaryCredentialWithScope,
+       getTemporaryCredentialProxy, getTemporaryCredential',
+       getTokenCredential,
+-      getAccessTokenProxy, getTokenCredentialProxy,
++      getAccessTokenProxy, getTokenCredentialProxy,
+       getAccessToken'
+     ) where
+ import Network.HTTP.Conduit
+@@ -24,7 +24,7 @@
+      getAccessTokenProxy, getTemporaryCredentialProxy,
+      getTokenCredentialProxy,
+      getAccessToken', getTemporaryCredential')
+-import Data.Conduit
++
+ import Control.Monad.IO.Class
+ import qualified Data.ByteString.Char8 as BS
+
+--- haskell-authenticate-oauth-1.4.0.8.orig/authenticate-oauth.cabal
++++ haskell-authenticate-oauth-1.4.0.8/authenticate-oauth.cabal
+@@ -28,7 +28,7 @@
+                    , http-types                    >= 0.6      && < 0.9
+                    , blaze-builder
+                    , conduit                       >= 0.4
+-                   , resourcet                     >= 0.3      && < 0.5
++                   , resourcet                     >= 1.0
+                    , blaze-builder-conduit         >= 0.4
+                    , monad-control                 >= 0.3      && < 0.4
+     exposed-modules: Web.Authenticate.OAuth, Web.Authenticate.OAuth.IO
