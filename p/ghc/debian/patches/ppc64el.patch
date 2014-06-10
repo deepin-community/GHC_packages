@@ -1,0 +1,41 @@
+Description: Add ppc64el support
+Author: Colin Watson <cjwatson@ubuntu.com>
+Bug: https://ghc.haskell.org/trac/ghc/ticket/8965
+Last-Update: 2014-04-12
+
+Index: ghc-7.8.2/aclocal.m4
+===================================================================
+--- ghc-7.8.2.orig/aclocal.m4	2014-06-10 10:51:13.973444977 +0200
++++ ghc-7.8.2/aclocal.m4	2014-06-10 10:51:23.113444589 +0200
+@@ -209,7 +209,7 @@
+         mipsel)
+             test -z "[$]2" || eval "[$]2=ArchMipsel"
+             ;;
+-        hppa|hppa1_1|ia64|m68k|rs6000|s390|s390x|sparc64|vax)
++        hppa|hppa1_1|ia64|m68k|powerpc64le|rs6000|s390|s390x|sparc64|vax)
+             test -z "[$]2" || eval "[$]2=ArchUnknown"
+             ;;
+         *)
+@@ -1877,6 +1877,9 @@
+   mips*)
+     $2="mips"
+     ;;
++  powerpc64le*)
++    $2="powerpc64le"
++    ;;
+   powerpc64*)
+     $2="powerpc64"
+     ;;
+Index: ghc-7.8.2/includes/Stg.h
+===================================================================
+--- ghc-7.8.2.orig/includes/Stg.h	2014-06-10 10:51:13.973444977 +0200
++++ ghc-7.8.2/includes/Stg.h	2014-06-10 10:51:13.973444977 +0200
+@@ -213,7 +213,7 @@
+ #define II_(X)          static StgWordArray (X) GNU_ATTRIBUTE(aligned (8))
+ #define IF_(f)    static StgFunPtr GNUC3_ATTRIBUTE(used) f(void)
+ #define FN_(f)    StgFunPtr f(void)
+-#define EF_(f)    extern StgFunPtr f(void)
++#define EF_(f)    extern StgFunPtr f()
+ 
+ /* -----------------------------------------------------------------------------
+    Tail calls
