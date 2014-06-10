@@ -1,0 +1,60 @@
+Source: haskell-control-monad-free
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-transformers-dev
+  , libghc-transformers-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-transformers-doc
+Standards-Version: 3.9.2
+Homepage: http://hackage.haskell.org/package/control-monad-free
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-control-monad-free
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-control-monad-free
+X-Description: free monads
+ This package provides datatypes to construct Free monads, Free monad
+ transformers, and useful instances. In addition it provides the constructs to
+ avoid quadratic complexity of left associative bind, as explained in:
+ .
+ Janis Voigtlander, Asymptotic Improvement of Computations over Free Monads, MPC'08
+
+Package: libghc-control-monad-free-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-control-monad-free-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-control-monad-free-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
