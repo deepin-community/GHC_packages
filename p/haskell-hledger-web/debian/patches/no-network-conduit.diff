@@ -1,54 +1,18 @@
 --- a/hledger-web.cabal
 +++ b/hledger-web.cabal
-@@ -120,6 +120,7 @@
-                    , bytestring
-                    , clientsession
-                    , cmdargs              >= 0.10 && < 0.11
-+                   , conduit-extra
-                    , data-default
-                    , directory
-                    , filepath
-@@ -128,7 +129,6 @@
+@@ -127,7 +127,6 @@ library
                     , http-conduit
                     , http-client          >= 0.2 && < 0.4
                     , HUnit
 -                   , network-conduit
+                    , conduit-extra
                     , old-locale
                     , parsec
-                    , regexpr              >= 0.5.1
-@@ -212,6 +212,7 @@
-                    , bytestring
-                    , clientsession
-                    , cmdargs              >= 0.10 && < 0.11
-+                   , conduit-extra
-                    , data-default
-                    , directory
-                    , filepath
-@@ -220,7 +221,6 @@
+@@ -227,7 +226,6 @@ executable         hledger-web
                     , http-conduit
                     , http-client          >= 0.2 && < 0.4
                     , HUnit
 -                   , network-conduit
+                    , conduit-extra
                     , old-locale
                     , parsec
-                    , regexpr              >= 0.5.1
---- a/Hledger/Web/Main.hs
-+++ b/Hledger/Web/Main.hs
-@@ -15,7 +15,7 @@
- -- import Yesod.Default.Main   (defaultMain)
- import Settings            --  (parseExtra)
- import Application          (makeApplication)
--import Data.Conduit.Network (HostPreference(HostIPv4))
-+import Data.Conduit.Network ()
- import Network.Wai.Handler.Warp (runSettings, defaultSettings, settingsPort)
- import Network.Wai.Handler.Launch (runUrlPort)
- --
-@@ -63,7 +63,7 @@
-   app <- makeApplication opts j' AppConfig{appEnv = Development
-                                           ,appPort = p
-                                           ,appRoot = pack u
--                                          ,appHost = HostIPv4
-+                                          ,appHost = "*4"
-                                           ,appExtra = Extra "" Nothing
-                                           }
-   if server_ opts
