@@ -8,15 +8,18 @@ Build-Depends: debhelper (>= 9)
   , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
-  , libghc-storable-complex-dev
-  , libghc-storable-complex-prof
   , libghc-random-dev
   , libghc-random-prof
+  , libghc-split-dev
+  , libghc-split-prof
+  , libghc-storable-complex-dev
+  , libghc-storable-complex-prof
   , libghc-vector-dev (>= 0.8)
   , libghc-vector-prof
-  , libgsl0-dev
+  , libblas-dev
   , liblapack-dev
 Build-Depends-Indep: ghc-doc
+  , libghc-split-doc
   , libghc-random-doc
   , libghc-vector-doc
 Standards-Version: 3.9.4
@@ -29,19 +32,14 @@ Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
   , ${misc:Depends}
-  , libgsl0-dev
+  , libblas-dev
   , liblapack-dev
 Recommends: ${haskell:Recommends}
-  , gnuplot
-  , imagemagick
-  , texlive-latex-base
-  , texlive-extra-utils
-  , texlive-font-utils
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Linear algebra and numerical computation in Haskell${haskell:ShortBlurb}
- Purely functional interface to basic linear algebra and other numerical
- computations, internally implemented using GSL, BLAS and LAPACK.
+Description: Linear algebra in Haskell${haskell:ShortBlurb}
+ Purely functional interface to linear algebra base on BLAS
+ and LAPACK.
  .
  ${haskell:Blurb}
 
@@ -52,9 +50,9 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Linear algebra and numerical computation in Haskell${haskell:ShortBlurb}
- Purely functional interface to basic linear algebra and other numerical
- computations, internally implemented using GSL, BLAS and LAPACK.
+Description: Linear algebra in Haskell${haskell:ShortBlurb}
+ Purely functional interface to linear algebra base on BLAS
+ and LAPACK.
  .
  ${haskell:Blurb}
 
@@ -64,8 +62,8 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: Linear algebra and numerical computation in Haskell${haskell:ShortBlurb}
- Purely functional interface to basic linear algebra and other numerical
- computations, internally implemented using GSL, BLAS and LAPACK.
+Description: Linear algebra in Haskell${haskell:ShortBlurb}
+ Purely functional interface to linear algebra base on BLAS
+ and LAPACK.
  .
  ${haskell:Blurb}
