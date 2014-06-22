@@ -1,0 +1,62 @@
+Source: haskell-hourglass
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-tasty-dev
+  , libghc-tasty-quickcheck-dev
+  , libghc-tasty-hunit-dev
+  , libghc-mtl-dev
+Build-Depends-Indep: ghc-doc
+Standards-Version: 3.9.5
+Homepage: http://hackage.haskell.org/package/hourglass
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hourglass
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-hourglass
+X-Description: simple performant time-related library
+ Simple time library focusing on simple but powerful and performant API
+ .
+ The backbone of the library is the Timeable and Time type classes.
+ .
+ Each Timeable instances can be converted to type that has a Time
+ instances, and thus are different representations of current time.
+
+Package: libghc-hourglass-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hourglass-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hourglass-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
