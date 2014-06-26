@@ -4,7 +4,7 @@
 			      "/site-lisp/ghc-mod") load-path))
 
 (autoload 'ghc-init "ghc" nil t)
-(add-hook 'haskell-mode-hook (lambda () (ghc-init) (flymake-mode)))
+(add-hook 'haskell-mode-hook (lambda () (ghc-init)))
 
 ; ghc-mod's C-cC-t conflict with haskell-doc-mode
 (remove-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
