@@ -12,3 +12,7 @@ install/libghc-shake-data:: debian/tmp-inst-ghc
 
 binary-post-install/libghc-shake-data::
 	dh_linktree -p$(cdbs_curpkg)
+
+# darcs can't version symlinks, so add this here.
+clean::
+	ln -sf ../../js-src/jquery-1.8.3.js debian/missing-sources/jquery.js
