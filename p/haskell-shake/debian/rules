@@ -1,0 +1,14 @@
+#!/usr/bin/make -f
+
+DEB_SETUP_GHC_CONFIGURE_ARGS := --datasubdir=/usr/share/shake
+DEB_ENABLE_TESTS := yes
+DEB_GHC_EXTRA_PACKAGES := libghc-shake-data (>= $(CABAL_VERSION))
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/hlibrary.mk
+
+install/libghc-shake-data:: debian/tmp-inst-ghc
+	mv debian/tmp-inst-ghc/usr/share/shake debian/libghc-shake-data/usr/share
+
+binary-post-install/libghc-shake-data::
+	dh_linktree -p$(cdbs_curpkg)
