@@ -5,19 +5,13 @@ Source: http://hackage.haskell.org/package/shake
 # Disable viz.js; it's hard to provide source for this
 # see https://github.com/ndmitchell/shake/issues/100
 # and https://github.com/ndmitchell/shake/commit/3613e6
-Files-Excluded: html/viz.js
+# Also disable jquery and jquery.flot as we're going to replace them using
+# dh_linktree anyway.
+Files-Excluded: html/jquery*.js html/viz.js js-src/*
 
 Files: *
 Copyright: 2011-2014 Neil Mitchell
 License: BSD-3-clause
-
-Files: js-src/jquery-*.js
-Copyright: 2012 jQuery Foundation and other contributors
-License: MIT
-
-Files: js-src/flot-*.zip
-Copyright: 2007-2013 IOLA and Ole Laursen
-License: MIT
 
 Files: debian/*
 Copyright: 2014 Colin Watson
@@ -53,23 +47,3 @@ License: BSD-3-clause
  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-License: MIT
-  Permission is hereby granted, free of charge, to any person obtaining
-  a copy of this software and associated documentation files (the
-  "Software"), to deal in the Software without restriction, including
-  without limitation the rights to use, copy, modify, merge, publish,
-  distribute, sublicense, and/or sell copies of the Software, and to
-  permit persons to whom the Software is furnished to do so, subject to
-  the following conditions:
-  .
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-  .
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-  LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-  OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
