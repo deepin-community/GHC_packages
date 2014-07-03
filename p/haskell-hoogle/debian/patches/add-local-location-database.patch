@@ -1,3 +1,5 @@
+Index: b/src/Recipe/Haddock.hs
+===================================================================
 --- a/src/Recipe/Haddock.hs
 +++ b/src/Recipe/Haddock.hs
 @@ -1,7 +1,7 @@
@@ -9,38 +11,43 @@
      ) where
 
  import General.Base
+Index: b/src/CmdLine/Type.hs
+===================================================================
 --- a/src/CmdLine/Type.hs
 +++ b/src/CmdLine/Type.hs
-@@ -35,7 +35,7 @@
-     | Data {redownload :: Bool, local :: [String], datadir :: FilePath, threads :: Int, actions :: [String]}
-     | Server {port :: Int, local_ :: Bool, databases :: [FilePath], resources :: FilePath, dynamic :: Bool, template :: [FilePath]}
-     | Combine {srcfiles :: [FilePath], outfile :: String}
--    | Convert {srcfile :: String, outfile :: String, doc :: Maybe String, merge :: [String], haddock :: Bool}
-+    | Convert {srcfile :: String, outfile :: String, doc :: Maybe String, merge :: [String], haddock :: Bool, addlocation :: Bool}
+@@ -47,7 +47,8 @@
+         , outfile :: String
+         , doc :: Maybe String
+         , merge :: [String]
+-        , haddock :: Bool}
++        , haddock :: Bool
++        , addlocation :: Bool}
      | Log {logfiles :: [FilePath]}
      | Test {testFiles :: [String], example :: Bool}
      | Dump {database :: String, section :: [String]}
-@@ -97,6 +97,7 @@
+@@ -110,6 +111,7 @@
      ,doc = def &= typDir &= help "Path to the root of local or Hackage documentation for the package (implies --haddock)"
      ,merge = def &= typ "DATABASE" &= help "Merge other databases"
      ,haddock = def &= help "Apply haddock-specific hacks"
-+    ,addlocation = def &= help "Add location infomation to database"
++    ,addlocation = def &= help "Add location information to database"
      } &= help "Convert an input file to a database"
 
  data_ = Data
+Index: b/src/Console/All.hs
+===================================================================
 --- a/src/Console/All.hs
 +++ b/src/Console/All.hs
-@@ -39,12 +39,15 @@
+@@ -40,12 +40,15 @@
 
  action (Log files) = logFiles files
 
--action (Convert from to doc merge haddock) = do
-+action (Convert from to doc merge haddock addloc) = do
+-action (Convert url from to doc merge haddock) = do
++action (Convert url from to doc merge haddock addloc) = do
      when (any isUpper $ takeBaseName to) $ putStrLn $ "Warning: Hoogle databases should be all lower case, " ++ takeBaseName to
      putStrLn $ "Converting " ++ from
      src <- readFileUtf8 from
--    convert merge (takeBaseName from) to $ unlines $ addLocalDoc doc (lines src)
-+    convert merge (takeBaseName from) to $ unlines . fixURLs $ addLocalDoc doc (lines src)
+-    convert url merge (takeBaseName from) to $ unlines $ addLocalDoc doc (lines src)
++    convert url merge (takeBaseName from) to $ unlines . fixURLs $ addLocalDoc doc (lines src)
      where
 +      fixURLs :: [String] -> [String]
 +      fixURLs lns = if not addloc then lns else haddockPackageUrl ("file://" ++ from) lns
