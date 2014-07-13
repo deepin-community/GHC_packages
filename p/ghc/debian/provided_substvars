@@ -5,7 +5,7 @@
 open PKG, 'inplace/bin/ghc-pkg list --simple-output |'
     or die "ghc-pkg list failed: $!";
 
-my @ignored = ('ghc', 'mtl', 'terminfo', 'haskeline', 'utf8-string', 'xhtml', 'rts', 'stm', 'parallel');
+my @ignored = ('ghc', 'mtl', 'utf8-string', 'rts', 'stm', 'parallel');
 my %ignored;
 $ignored{$_}++ for @ignored;
 
