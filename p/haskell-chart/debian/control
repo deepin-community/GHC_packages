@@ -8,28 +8,32 @@ Build-Depends: debhelper (>= 9)
   , haskell-devscripts (>= 0.8.15)
   , ghc
   , ghc-prof
-  , libghc-cairo-dev (>= 0.9.11)
-  , libghc-cairo-prof
+  , libghc-colour-dev (>= 2.2.1)
+  , libghc-colour-dev (<< 2.4)
+  , libghc-colour-prof
+  , libghc-data-default-class-dev (<< 0.1)
+  , libghc-data-default-class-prof
+  , libghc-lens-dev (>= 3.9)
+  , libghc-lens-dev (<< 4.3)
+  , libghc-lens-prof
   , libghc-mtl-dev
   , libghc-mtl-prof
-  , libghc-data-accessor-dev (>= 0.2)
-  , libghc-data-accessor-dev (<< 0.3)
-  , libghc-data-accessor-prof
-  , libghc-data-accessor-template-dev (>= 0.2.1.1)
-  , libghc-data-accessor-template-dev (<< 0.3)
-  , libghc-data-accessor-template-prof
-  , libghc-colour-dev (>= 2.2.1)
-  , libghc-colour-prof
+  , libghc-operational-dev (>= 0.2.2)
+  , libghc-operational-dev (<< 0.3)
+  , libghc-operational-prof
 Build-Depends-Indep: ghc-doc
-  , libghc-cairo-doc
-  , libghc-mtl-doc
-  , libghc-data-accessor-doc
-  , libghc-data-accessor-template-doc
   , libghc-colour-doc
+  , libghc-data-default-class-doc
+  , libghc-lens-doc
+  , libghc-mtl-doc
+  , libghc-operational-doc
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/Chart
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-chart
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-chart
+X-Description: library for generating 2D Charts and Plots
+ Chart is a library for generating 2D Charts and Plots.  There are
+ backends available for Cairo and Diagrams.
 
 Package: libghc-chart-dev
 Architecture: any
@@ -39,10 +43,9 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: library for generating 2D Charts and Plots${haskell:ShortBlurb}
- It is a library for generating 2D Charts and Plots, based upon the
- cairo graphics library.
- .
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+  .
  ${haskell:Blurb}
 
 Package: libghc-chart-prof
@@ -52,9 +55,8 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: library for generating 2D Charts and Plots${haskell:ShortBlurb}
- It is a library for generating 2D Charts and Plots, based upon the
- cairo graphics library.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
@@ -64,8 +66,7 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: library for generating 2D Charts and Plots${haskell:ShortBlurb}
- It is a library for generating 2D Charts and Plots, based upon the
- cairo graphics library.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
