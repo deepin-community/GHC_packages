@@ -85,9 +85,10 @@ endif
 	# We also want to build the threaded profiling-enabled debug runtime,
 	# because it does no harm
 	echo 'GhcRTSWays += $$(if $$(findstring p, $$(GhcLibWays)),thr_debug_p,)' >> mk/build.mk
-ifneq (,$(findstring $(DEB_HOST_ARCH),armel armhf))
+ifneq (,$(findstring $(DEB_HOST_ARCH),armel armhf mips mipsel))
 	# GHCi is too badly broken on ARM; see
 	# http://hackage.haskell.org/trac/ghc/ticket/7794
+	# also on arm: https://bugs.debian.org/751479
 	echo "GhcWithInterpreter = NO" >> mk/build.mk
 endif
 	
