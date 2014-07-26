@@ -3,70 +3,55 @@ Section: haskell
 Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>
-Build-Depends:
- haskell-devscripts (>= 0.7),
- debhelper (>= 7),
- cdbs,
- ghc,
- ghc-prof,
- ghc-doc,
- cpphs,
-Standards-Version: 3.8.4
-Homepage: http://code.haskell.org/binary/
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-binary/
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+Build-Depends-Indep: ghc-doc
+Standards-Version: 3.9.2
+Homepage: http://hackage.haskell.org/package/binary
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-binary
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-binary
+X-Description: Haskell library for binary serialisation
+ Binary serialisation of Haskell values to and from lazy ByteStrings.
+ The Binary library provides methods for encoding Haskell values as
+ streams of bytes directly in memory. The resulting ByteString can
+ then be written to disk, sent over the network, or futher processed
+ (for example, compressed with gzip).
 
 Package: libghc-binary-dev
 Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
   , ${misc:Depends}
+Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Haskell library for binary serialisation using lazy ByteStrings
- Binary serialisation of Haskell values to and from lazy ByteStrings.
- The Binary library provides methods for encoding Haskell values as
- streams of bytes directly in memory. The resulting ByteString can
- then be written to disk, sent over the network, or futher processed
- (for example, compressed with gzip).
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
- The 'Binary' package is notable in that it provides both pure, and
- high performance serialisation.
- .
- Values are always encoded in network order (big endian) form, and
- encoded data should be portable across machine endianness, word size,
- or compiler version. For example, data encoded using the Binary class
- could be written from GHC, and read back in Hugs.
+ ${haskell:Blurb}
 
 Package: libghc-binary-prof
 Architecture: any
 Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
-Description: Haskell library for binary serialisation; profiling library
- This package provides a library for the Haskell programming language,
- compiled for profiling.
- .
- Binary serialisation of Haskell values to and from lazy ByteStrings.
- The Binary library provides methods for encoding Haskell values as
- streams of bytes directly in memory. The resulting ByteString can
- then be written to disk, sent over the network, or futher processed
- (for example, compressed with gzip).
-
-Package: libghc-binary-doc
-Architecture: all
-Section: doc
-Depends: ${haskell:Depends}
   , ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: Haskell library for binary serialisation; documentation
- This package provides documentation for Data.Binary Haskell module.
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
- Binary serialisation of Haskell values to and from lazy ByteStrings.
- The Binary library provides methods for encoding Haskell values as
- streams of bytes directly in memory. The resulting ByteString can
- then be written to disk, sent over the network, or futher processed
- (for example, compressed with gzip).
+ ${haskell:Blurb}
+
+Package: libghc-binary-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
