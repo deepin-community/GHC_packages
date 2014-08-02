@@ -1,0 +1,37 @@
+Index: haskell-lens-4.1.2.1/lens-properties/src/Control/Lens/Properties.hs
+===================================================================
+--- haskell-lens-4.1.2.1.orig/lens-properties/src/Control/Lens/Properties.hs	2014-05-16 19:17:35.000000000 +0200
++++ haskell-lens-4.1.2.1/lens-properties/src/Control/Lens/Properties.hs	2014-08-02 11:13:41.898140422 +0200
+@@ -44,8 +44,8 @@
+                   .&. do as <- arbitrary
+                          bs <- arbitrary
+                          t <- arbitrary
+-                         property $ traverse_compose l (\x -> as++[x]++bs)
+-                                                       (\x -> if t then Just x else Nothing)
++                         return $ traverse_compose l (\x -> as++[x]++bs)
++                                                     (\x -> if t then Just x else Nothing)
+
+
+ --------------------------------------------------------------------------------
+Index: haskell-lens-4.1.2.1/src/Data/Aeson/Lens.hs
+===================================================================
+--- haskell-lens-4.1.2.1.orig/src/Data/Aeson/Lens.hs	2014-08-02 11:22:48.690121006 +0200
++++ haskell-lens-4.1.2.1/src/Data/Aeson/Lens.hs	2014-08-02 11:22:59.310120629 +0200
+@@ -215,7 +215,7 @@
+ -- Just (String "xyz")
+ --
+ -- >>> "{\"a\": {}, \"b\": null}" ^? key "a" . nonNull
+--- Just (Object fromList [])
++-- Just (Object (fromList []))
+ --
+ -- >>> "{\"a\": \"xyz\", \"b\": null}" ^? key "b" . nonNull
+ -- Nothing
+@@ -235,7 +235,7 @@
+
+   -- |
+   -- >>> "{\"a\": {}, \"b\": null}" ^? key "a" . _Object
+-  -- Just fromList []
++  -- Just (fromList [])
+   --
+   -- >>> "{\"a\": {}, \"b\": null}" ^? key "b" . _Object
+   -- Nothing
