@@ -1,0 +1,70 @@
+Source: haskell-abstract-deque
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-random-dev
+  , libghc-random-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-random-doc
+Standards-Version: 3.9.5
+Homepage: http://hackage.haskell.org/package/abstract-deque
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-abstract-deque
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-abstract-deque
+X-Description: abstract, parameterized interface to mutable Deques
+ An abstract interface to highly-parameterizable queues/deques.
+ .
+ Background: There exists a feature space for queues that extends between:
+   * simple, single-ended, non-concurrent, bounded queues
+   * double-ended, threadsafe, growable queues
+ with important points inbetween (such as the queues used for
+ work-stealing).
+ .
+ This package includes an interface for Deques that allows the
+ programmer to use a single API for all of the above, while using
+ the type-system to select an efficient implementation given the
+ requirements (using type families).
+ .
+ This package also includes a simple reference implementation based
+ on IORef and Data.Sequence.
+
+Package: libghc-abstract-deque-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-abstract-deque-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-abstract-deque-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
