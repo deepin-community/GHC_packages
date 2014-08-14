@@ -45,7 +45,10 @@ Homepage: http://src.seereason.com/cabal-debian
 Package: cabal-debian
 Architecture: any
 Section: utils
-Depends: ${shlibs:Depends}, ${haskell:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}
+       , ${haskell:Depends}
+       , ${misc:Depends}
+       , debhelper (>= 9)
 Recommends: apt-file
 Conflicts: haskell-debian-utils (<< 3.59)
 Description: Create a debianization for a cabal package
