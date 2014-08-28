@@ -1,0 +1,62 @@
+Source: haskell-glob
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-dlist-dev (>= 0.4)
+  , libghc-dlist-dev (<< 0.8)
+  , libghc-dlist-prof
+  , libghc-transformers-dev (>= 0.2)
+  , libghc-transformers-dev (<< 0.6)
+  , libghc-transformers-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-dlist-doc
+  , libghc-transformers-doc
+Standards-Version: 3.9.5
+Homepage: http://hackage.haskell.org/package/glob
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-glob
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-glob
+X-Description: A library for globbing: matching patterns against file paths.
+ This package contians a haskell library for globbing: matching patterns
+ against file paths.
+
+Package: libghc-glob-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-glob-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-glob-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
