@@ -3,17 +3,24 @@ Section: haskell
 Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Iulian Udrea <iulian@physics.org>
-DM-Upload-Allowed: yes
 Build-Depends: debhelper (>= 9),
                cdbs,
                haskell-devscripts (>= 0.8.15),
                ghc,
                ghc-prof,
+               libghc-deepseq-dev,
+               libghc-deepseq-prof,
                libghc-erf-dev (>= 2),
                libghc-erf-prof,
                libghc-vector-dev (>= 0.7),
-               libghc-vector-prof
-Build-Depends-Indep: ghc-doc, libghc-erf-doc, libghc-vector-doc
+               libghc-vector-prof,
+               libghc-vector-th-unbox-dev,
+               libghc-vector-th-unbox-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-deepseq-doc,
+ libghc-erf-doc,
+ libghc-vector-doc,
+ libghc-vector-th-unbox-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/math-functions
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-math-functions
