@@ -1,0 +1,75 @@
+Source: haskell-monad-par-extras
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-abstract-par-dev (>= 0.3)
+  , libghc-abstract-par-dev (<< 0.4)
+  , libghc-abstract-par-prof
+  , libghc-cereal-dev (>= 0.3)
+  , libghc-cereal-prof
+  , libghc-random-dev (>= 1.0)
+  , libghc-random-prof
+  , libghc-mtl-dev (>= 2.0)
+  , libghc-mtl-prof
+  , libghc-transformers-dev (>= 0.2)
+  , libghc-transformers-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-abstract-par-doc
+  , libghc-cereal-doc
+  , libghc-random-doc
+  , libghc-mtl-doc
+  , libghc-transformers-doc
+Standards-Version: 3.9.5
+Homepage: http://hackage.haskell.org/package/monad-par-extras
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-monad-par-extras
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-monad-par-extras
+X-Description: Combinators and extra features for Par monads
+ The Par monad offers a simple API for parallel programming. The library works
+ for parallelising both pure and IO computations, although only the pure
+ version is deterministic. The default implementation provides a work-stealing
+ scheduler and supports forking tasks that are much lighter weight than
+ IO-threads.
+ .
+ This package provides combinators and extra features for Par monads.
+
+Package: libghc-monad-par-extras-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-monad-par-extras-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-monad-par-extras-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
