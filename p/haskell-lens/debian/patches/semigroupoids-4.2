@@ -1,0 +1,49 @@
+From b569dbd963b4d7bb8f14bc04f6cb72e4bd93227c Mon Sep 17 00:00:00 2001
+From: EdwardKmett <>
+Date: Thu, 31 Jul 2014 03:08:00 +0200
+Subject: version 4.3.3
+
+
+diff --git a/src/Control/Lens/Internal/Instances.hs b/src/Control/Lens/Internal/Instances.hs
+index 16aa51c..b109b1e 100644
+--- a/src/Control/Lens/Internal/Instances.hs
++++ b/src/Control/Lens/Internal/Instances.hs
+@@ -4,6 +4,10 @@
+ #ifndef MIN_VERSION_base
+ #define MIN_VERSION_base(x,y,z) 1
+ #endif
++
++#ifndef MIN_VERSION_semigroupoids
++#define MIN_VERSION_semigroupoids(x,y,z) 1
++#endif
+ -----------------------------------------------------------------------------
+ -- |
+ -- Module      :  Control.Lens.Internal.Instances
+@@ -14,14 +18,19 @@
+ -- Portability :  non-portable
+ --
+ -- This module includes orphan instances for @(,)@, 'Either' and 'Const' that
+--- should be supplied by base.
++-- should be supplied by base. These have moved to @semigroupoids@ as of 4.2.
+ ----------------------------------------------------------------------------
+ module Control.Lens.Internal.Instances () where
+
++import Data.Traversable.Instances ()
++
++#if !(MIN_VERSION_semigroupoids(0,4,2))
++
+ import Control.Applicative
+ import Data.Semigroup.Foldable
+ import Data.Semigroup.Traversable
+
++
+ #if !(MIN_VERSION_base(4,7,0))
+ import Data.Monoid
+ import Data.Foldable
+@@ -60,3 +69,4 @@ instance Foldable1 ((,) b) where
+ instance Traversable1 ((,) b) where
+   traverse1 f (b, a) = (,) b <$> f a
+
++#endif
+--
+cgit v0.10.2
