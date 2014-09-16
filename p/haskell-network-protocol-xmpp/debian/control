@@ -26,7 +26,6 @@ Build-Depends: debhelper (>= 9)
  , libghc-network-dev (>> 2.2)
  , libghc-network-prof
  , libghc-text-dev (>> 0.10)
- , libghc-text-dev (<< 0.12)
  , libghc-text-prof
  , libghc-transformers-dev (>> 0.2)
  , libghc-transformers-prof
@@ -43,10 +42,12 @@ Build-Depends-Indep: ghc-doc
  , libghc-text-doc
  , libghc-transformers-doc
  , libghc-xml-types-doc
-Standards-Version: 3.9.4
+Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/network-protocol-xmpp
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-network-protocol-xmpp
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-network-protocol-xmpp
+X-Description: Haskell XMPP (Jabber) library${haskell:ShortBlurb}
+ This library defines an XMPP data type and functions.
 
 Package: libghc-network-protocol-xmpp-dev
 Architecture: any
@@ -56,10 +57,10 @@ Depends: ${shlibs:Depends},
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: XMPP (Jabber) library
- This library defines an XMPP data type and functions.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
- This package contains the normal library files.
+ ${haskell:Blurb}
 
 Package: libghc-network-protocol-xmpp-prof
 Architecture: any
@@ -68,10 +69,10 @@ Depends: ${haskell:Depends},
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: XMPP (Jabber) library; profiling libraries
- This library defines an XMPP data type and functions.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
- This package contains the libraries compiled with profiling enabled.
+ ${haskell:Blurb}
 
 Package: libghc-network-protocol-xmpp-doc
 Architecture: all
@@ -80,7 +81,7 @@ Depends: ${haskell:Depends},
          ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: XMPP (Jabber) library; documentation
- This library defines an XMPP data type and functions.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
- This package contains the documentation files.
+ ${haskell:Blurb}
