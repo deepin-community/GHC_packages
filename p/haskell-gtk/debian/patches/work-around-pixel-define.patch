@@ -1,0 +1,17 @@
+Description: Work around predefined "pixel" on some architectures
+ "pixel" is predefined on some Ubuntu architectures, confusing gtk2hsC2hs.
+ Explicitly undefine it to work around this.
+Author: Colin Watson <cjwatson@ubuntu.com>
+Forwarded: no
+Last-Update: 2014-06-05
+
+Index: b/gtk.cabal
+===================================================================
+--- a/gtk.cabal
++++ b/gtk.cabal
+@@ -399,3 +399,5 @@
+           cc-options: -DGTK2HS_SET_FMODE_BINARY
+
+         pkgconfig-depends: gthread-2.0, gtk+-2.0
++
++        cpp-options: -Upixel
