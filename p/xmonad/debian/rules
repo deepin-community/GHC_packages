@@ -9,12 +9,6 @@ build/xmonad::
 
 install/xmonad::
 	dh_installwm
-	cp dist-ghc/build/xmonad/xmonad debian/xmonad/usr/bin/xmonad
-	# Pure xmonad session
-	install -D -m 0644 debian/xmonad-session.desktop debian/xmonad/usr/share/xsessions/xmonad.desktop
-	install -D -m 0755 debian/xmonad-session debian/xmonad/usr/bin/xmonad-session
-	# xmonad as window manager (gnome 2)
-	install -D -m 0644 debian/xmonad.desktop debian/xmonad/usr/share/applications/xmonad.desktop
 
 clean::
 	rm -f man/xmonad.1 man/xmonad.1.html
