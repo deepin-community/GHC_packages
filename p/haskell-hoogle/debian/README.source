@@ -1,0 +1,20 @@
+Since hoogle usually works by downloading some databases or source
+files from Hackage/HaskellWiki, and in Debian we want a hermetic
+build/install, the `debian/files_hoogle/update_hoogle` script tries to
+trick hoogle into working fully offline.
+
+This doesn't offer the full functionality of hoogle (e.g. full package
+list is not available), but we do have full local indexing (based on
+what packages are installed) plus the keywords file.
+
+This file (`debian/files_hoogle/keyword.txt`) is being shipped as
+processed by a normal (with access to online resources) hoogle
+database. To regenerate it:
+
+- Create an empty directory and `cd` to it.
+- Run: `hoogle data -d .`; this will take a while as it downloads and
+  unpacks things, and then finally generate the default database.
+- You should then have, amongst many other things, a `keyword.txt`
+  file in it; simply copy it to `debian/files_hoogle`.
+
+ -- Iustin Pop <iustin@debian.org>, Sun, 21 Sep 2014 22:06:10 +0200
