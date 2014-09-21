@@ -6,19 +6,12 @@ readlinks() {
   done
 }
 
+SHIPPED_DIR=/usr/share/hoogle/predownload
 DATABASE_DIR=/var/lib/hoogle/databases
 HOOGLE=/usr/bin/hoogle
 
 # cleanup
 rm -rf $DATABASE_DIR/*
-
-# copy (fake) files
-mkdir -p $DATABASE_DIR/download/hackage-cabal
-cd $DATABASE_DIR/download && touch hackage-cabal.txt hackage-hoogle.txt haskell-platform.cabal base.txt ghc.txt
-cp /usr/share/hoogle/predownload/keyword.txt $DATABASE_DIR/download/
-
-# new database
-$HOOGLE data keyword
 
 # convert
 echo -n "Converting databases."
@@ -30,8 +23,12 @@ for i in $TXTFILES; do
     $HOOGLE convert $i $DATABASE_DIR/`basename $i`.hoo --addlocation >/dev/null 2>&1
   fi
 done
+# convert the pre-shipped keyword file (no addlocation here!)
+$HOOGLE convert $SHIPPED_DIR/keyword.txt $DATABASE_DIR/keyword.txt.hoo >/dev/null 2>&1
 echo " done"
 
-# combine
+# combine, removing first default.hoo (if by any chance the above
+# commands generated one)
+rm -f $DATABASE_DIR/default.hoo
 find $DATABASE_DIR -name \*.hoo -print0 | \
   xargs -0 -- hoogle combine -o $DATABASE_DIR/default.hoo
