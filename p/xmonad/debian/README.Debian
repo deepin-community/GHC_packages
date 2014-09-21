@@ -1,3 +1,22 @@
+xmonad session
+==============
+
+The xmonad package registers a session "xmonad" with the display managers (e.g.
+gdm). This session
+
+ * sources .xmonad/xmonad-session-rc, if that file is available, and then
+ * executes xmonad.
+
+This provides a simple way to start auxillary programs and set up various
+things. Here are some suggestions what to put in that file:
+
+	xsetroot -xcf /usr/share/icons/Adwaita/cursors/left_ptr 16 -solid black
+	xscreensaver -nosplash &
+	$(gnome-keyring-daemon --start --daemonize)
+	setxkbmap de nodeadkeys
+	xmodmap ~/.Xmodmap
+
+
 xmonad packages for debian
 ==========================
 
