@@ -30,6 +30,13 @@ export DEB_HOST_ARCH      ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
 #  confflags += --build $(DEB_BUILD_GNU_TYPE) --host $(DEB_HOST_GNU_TYPE)
 #endif
 
+ifneq (,$(findstring $(DEB_HOST_ARCH), armel armhf))
+# Force use of a specific llvm package, the same version that ghc
+# depends (and build-depends) on.
+LLVM_PATH=/usr/lib/llvm-3.4/bin
+export PATH:=$(LLVM_PATH):$(PATH)
+endif
+
 ProjectVersion=$(shell cat VERSION)
 
 GHC=$(firstword $(shell bash -c "type -p ghc"))
@@ -230,6 +237,13 @@ endif
 
 ifeq (ia64,$(DEB_HOST_ARCH)) # Tested and seen to be necessary with 6.12.1
 	sed -i "s/exec /unset LC_ALL\nexport LC_CTYPE=en_US\nexec /" debian/tmp/usr/lib/ghc/bin/ghc-$(ProjectVersion)
+endif
+
+ifneq (,$(findstring $(DEB_HOST_ARCH), armel armhf))
+	# Ensure that the same llvm used to build ghc is used at runtime.
+	sed -i "s,exec ,PATH=\"$(LLVM_PATH):\$$PATH\"\nexport PATH\nexec ," debian/tmp/usr/lib/ghc/bin/ghc-$(ProjectVersion) debian/tmp/usr/lib/ghc/bin
+/ghc-pkg-$(ProjectVersion) debian/tmp/usr/lib/ghc/bin/ghci-$(ProjectVersion) debian/tmp/usr/lib/ghc/bin/runghc-$(ProjectVersion)
+debian/tmp/usr/lib/ghc/bin/hsc2hs debian/tmp/usr/lib/ghc/bin/haddock-ghc-$(ProjectVersion)
 endif
 
 	# manpages

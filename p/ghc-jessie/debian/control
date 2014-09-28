@@ -13,7 +13,7 @@ Build-Depends:
   grep-dctrl,
   dh-autoreconf,
   autotools-dev,
-  llvm [armel armhf],
+  llvm-3.4 [armel armhf],
   libffi-dev,
   pkg-config,
   xsltproc,
@@ -33,7 +33,7 @@ Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/ghc
 
 Package: ghc
 Architecture: any
-Depends: llvm [armel armhf], gcc, libgmp-dev, libffi-dev, libbsd-dev, libc6-dev, ${shlibs:Depends}, ${misc:Depends}
+Depends: llvm-3.4 [armel armhf], gcc, libgmp-dev, libffi-dev, libbsd-dev, libc6-dev, ${shlibs:Depends}, ${misc:Depends}
 Provides: haskell-compiler, ${provided-devs}, ${haskell:Provides}, ${ghci}
 Replaces: ghc6 (<< 7)
 Conflicts: ghc6 (<< 7), ${conflicting-devs}
