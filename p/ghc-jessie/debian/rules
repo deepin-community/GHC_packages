@@ -241,9 +241,13 @@ endif
 
 ifneq (,$(findstring $(DEB_HOST_ARCH), armel armhf))
 	# Ensure that the same llvm used to build ghc is used at runtime.
-	sed -i "s,exec ,PATH=\"$(LLVM_PATH):\$$PATH\"\nexport PATH\nexec ," debian/tmp/usr/lib/ghc/bin/ghc-$(ProjectVersion) debian/tmp/usr/lib/ghc/bin
-/ghc-pkg-$(ProjectVersion) debian/tmp/usr/lib/ghc/bin/ghci-$(ProjectVersion) debian/tmp/usr/lib/ghc/bin/runghc-$(ProjectVersion)
-debian/tmp/usr/lib/ghc/bin/hsc2hs debian/tmp/usr/lib/ghc/bin/haddock-ghc-$(ProjectVersion)
+	sed -i "s,exec ,PATH=\"$(LLVM_PATH):\$$PATH\"\nexport PATH\nexec ," \
+		debian/tmp/usr/lib/ghc/bin/ghc-$(ProjectVersion) \
+		debian/tmp/usr/lib/ghc/bin/ghc-pkg-$(ProjectVersion) \
+		debian/tmp/usr/lib/ghc/bin/ghci-$(ProjectVersion) \
+		debian/tmp/usr/lib/ghc/bin/runghc-$(ProjectVersion) \
+		debian/tmp/usr/lib/ghc/bin/hsc2hs \
+		debian/tmp/usr/lib/ghc/bin/haddock-ghc-$(ProjectVersion)
 endif
 
 	# manpages
