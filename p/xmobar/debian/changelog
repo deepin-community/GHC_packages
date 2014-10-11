@@ -1,3 +1,29 @@
+xmobar (0.22-1) unstable; urgency=medium
+
+  * New upstream version; see /usr/share/doc/xmobar/news.md.gz.
+    + New features:
+      o New MarqueePipeReader plugin.
+      o Network monitor has now adaptive units (`-S` is used now to switch
+        them on).
+      o Weather now offers dewPointC and dewPointF instead of dewPoint, and
+        the new windCardinal, windAzimuth, windMph and windKnots variables.
+      o Strings in the configuration file can now span multiple lines using
+        Haskell-style multiline script.
+      o New borderWidth option to set xmobar's border width.
+      o Support for multiple Xft fonts.
+      o Icon patterns for several monitors, that allow you to specify a
+        collection of icons to use for successive integer variable values,
+    + Bugfixes:
+      o More CPU-efficient implementation of the Locks plugin.
+      o Do not colorize total disk size in DiskU.
+      o Avoid zombies on click actions.
+  * Bump standards to 3.9.6; no changes needed.
+  * d/copyright: update with new plugin information.
+  * New patch, build-with-mtl-2.1, to allow building against mtl 2.1.
+  * Enable XPM icon support and Build-Depend on libxpm-dev.
+
+ -- Apollon Oikonomopoulos <apoikos@debian.org>  Sat, 11 Oct 2014 09:42:14 +0300
+
 xmobar (0.21-1) unstable; urgency=medium
 
   * New upstream version, see /usr/share/doc/xmobar/news.md.gz.
