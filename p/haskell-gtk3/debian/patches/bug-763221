@@ -1,0 +1,22 @@
+This patched over this change in the gtk api, without exposing it to the
+Haskell API:
+https://git.gnome.org/browse/gtk+/commit/?id=68ad33cb89329cf8161dbd1e868097ac1829c16d
+
+
+Index: gtk3-0.12.5.6/Graphics/UI/Gtk/Multiline/TextTagTable.chs
+===================================================================
+--- gtk3-0.12.5.6.orig/Graphics/UI/Gtk/Multiline/TextTagTable.chs	2014-10-13 10:29:46.431712334 +0200
++++ gtk3-0.12.5.6/Graphics/UI/Gtk/Multiline/TextTagTable.chs	2014-10-13 10:30:08.227937577 +0200
+@@ -84,10 +84,11 @@
+ -- an already-added tag.
+ --
+ textTagTableAdd :: (TextTagTableClass self, TextTagClass tag) => self -> tag -> IO ()
+-textTagTableAdd self tag =
++textTagTableAdd self tag = do
+   {# call text_tag_table_add #}
+     (toTextTagTable self)
+     (toTextTag tag)
++  return ()
+
+ -- | Remove a tag from the table.
+ --
