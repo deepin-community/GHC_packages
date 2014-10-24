@@ -2,10 +2,19 @@ Source: helium
 Section: haskell
 Priority: optional
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Marco Túlio Gontijo e Silva <marcot@debian.org>
-Build-Depends: autotools-dev, debhelper (>= 9),
- ghc (>= 6.8.2), haddock, libghc-mtl-dev, libghc-parsec3-dev, uuagc, libghc-editline-dev, libghc-network-dev, libncurses-dev
-Build-Conflicts: libghc-parsec2-dev
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Build-Depends: autotools-dev,
+   debhelper (>= 9),
+   haskell-devscripts,
+   ghc,
+   libghc-mtl-dev,
+   libghc-parsec3-dev,
+   libghc-network-dev,
+   libghc-process-dev,
+   libghc-transformers-dev,
+   libghc-wl-pprint-dev,
+   libghc-top-dev,
+   libghc-lvmlib-dev,
 Standards-Version: 3.9.4
 Homepage: http://www.cs.uu.nl/wiki/bin/view/Helium/WebHome
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/helium
@@ -15,12 +24,8 @@ Package: helium
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: compiler used for learning the programming language Haskell
- Helium is a functional programming language and a compiler designed
- especially for learning Haskell. Quality of the error messages has
- been the main concern both in the choice of the language features and
- in the implementation of the compiler. The goal of the language and
- the compiler is to let students (or anyone) learn functional
- programming more quickly and with more fun.
- .
- Note: Helium does not support type classes yet. For that reason it is
- incompatible with Haskell text books.
+ Helium is a compiler for a subset of Haskell that aims at delivering high
+ quality type error messages particularly for beginner programmers. It also
+ includes facilities for specializing type error diagnosis for embedded domain
+ specific languages. The compiler supports Haskell 98, but without the ability
+ to define new type classes and instances.
