@@ -67,3 +67,17 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
+
+Package: lvm-coreasm
+Architecture: any
+Section: misc
+Depends: ${haskell:Depends}, ${misc:Depends}
+Description: Lazy Virtual Machine (LVM) assembler
+ The Lazy Virtual Machine (LVM) defines a portable instruction set and file
+ format. It is specifically designed to execute languages with non-strict (or
+ lazy) semantics.
+ .
+ The LVM is used as a backend for the Helium compiler.
+ .
+ This package contians the core assembler binary (coreasm) for compiling core
+ programs into LVM instructions and a library.
