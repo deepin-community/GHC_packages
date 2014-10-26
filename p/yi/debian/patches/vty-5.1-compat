@@ -9,16 +9,14 @@ are templates for supplementary fields that you might want to add:
 
 Origin: upstream, https://github.com/yi-editor/yi/commit/a42841dbeb4f716a50b82aa4c71c419f033806d5#diff-68f4dd75b91abeba23f0417a614830e5
 
-Index: yi-0.7.1/src/library/Yi/Config.hs
-===================================================================
---- yi-0.7.1.orig/src/library/Yi/Config.hs	2014-09-10 22:48:39.667336537 +0200
-+++ yi-0.7.1/src/library/Yi/Config.hs	2014-09-10 22:48:39.663336537 +0200
+--- yi-0.7.1.orig/src/library/Yi/Config.hs
++++ yi-0.7.1/src/library/Yi/Config.hs
 @@ -1,3 +1,4 @@
 +{-# LANGUAGE CPP #-}
  {-# LANGUAGE TemplateHaskell #-}
 
  module Yi.Config where
-@@ -16,9 +17,14 @@
+@@ -16,9 +17,14 @@ import Yi.Style
  import Yi.Style.Library
  import {-# source #-} Yi.UI.Common
  import qualified Yi.Interact as I
@@ -34,11 +32,17 @@ Index: yi-0.7.1/src/library/Yi/Config.hs
     configFontName :: Maybe String,  -- ^ Font name, for the UI that support it.
     configFontSize :: Maybe Int,     -- ^ Font size, for the UI that support it.
     configScrollStyle ::Maybe ScrollStyle,
-Index: yi-0.7.1/src/library/Yi/Config/Default.hs
-===================================================================
---- yi-0.7.1.orig/src/library/Yi/Config/Default.hs	2014-09-10 22:48:39.667336537 +0200
-+++ yi-0.7.1/src/library/Yi/Config/Default.hs	2014-09-10 22:48:39.663336537 +0200
-@@ -47,6 +47,7 @@
+--- yi-0.7.1.orig/src/library/Yi/Config/Default.hs
++++ yi-0.7.1/src/library/Yi/Config/Default.hs
+@@ -6,6 +6,7 @@ module Yi.Config.Default (defaultConfig,
+                           toVimStyleConfig, toVim2StyleConfig, toEmacsStyleConfig, toCuaStyleConfig) where
+
+ import Control.Monad (forever)
++import Data.Default
+ import Data.Either (rights)
+ import Paths_yi
+ import Prelude ()
+@@ -47,6 +47,7 @@ import qualified Yi.UI.Vte
  #endif
  #ifdef FRONTEND_VTY
  import qualified Yi.UI.Vty
@@ -46,30 +50,38 @@ Index: yi-0.7.1/src/library/Yi/Config/Default.hs
  #endif
  #ifdef FRONTEND_PANGO
  import qualified Yi.UI.Pango
-@@ -145,7 +146,6 @@
+@@ -145,7 +146,9 @@ defaultConfig =
             , configAutoHideTabBar = True
             , configWindowFill = ' '
             , configTheme = defaultTheme
 -           , configVtyEscDelay = 0
++#ifdef FRONTEND_VTY
++           , configVty = def
++#endif
             }
           , defaultKm        = modelessKeymapSet nilKeymap
           , startActions     = []
-@@ -193,7 +193,9 @@
+@@ -193,7 +193,16 @@ defaultCuaConfig = toCuaStyleConfig defa
  toEmacsStyleConfig, toVimStyleConfig, toVim2StyleConfig, toCuaStyleConfig :: Config -> Config
  toEmacsStyleConfig cfg
      = cfg {
 -            configUI = (configUI cfg) { configVtyEscDelay = 1000 , configScrollStyle = Just SnapToCenter},
 +            configUI = (configUI cfg)
 +                       { configScrollStyle = Just SnapToCenter
++#ifdef FRONTEND_VTY
++                       -- corey: does this actually matter? escToMeta appears to perform all the
++                       -- meta joining required. I'm not an emacs user and cannot evaluate feel. For
++                       -- me these settings join esc;key to meta-key OK. The 100 millisecond lag in
++                       -- ESC is terrible for me. Maybe that's just how it is under emacs...
++                       , configVty = def { Vty.vtime = Just 100, Vty.vmin = Just 2 }
++#endif
 +                       },
              defaultKm = Emacs.keymap,
              startActions = makeAction openScratchBuffer : startActions cfg,
              configInputPreprocess = escToMeta,
-Index: yi-0.7.1/src/library/Yi/Config/Simple.hs
-===================================================================
---- yi-0.7.1.orig/src/library/Yi/Config/Simple.hs	2014-09-10 22:48:39.667336537 +0200
-+++ yi-0.7.1/src/library/Yi/Config/Simple.hs	2014-09-10 22:48:39.663336537 +0200
-@@ -108,7 +108,7 @@
+--- yi-0.7.1.orig/src/library/Yi/Config/Simple.hs
++++ yi-0.7.1/src/library/Yi/Config/Simple.hs
+@@ -108,7 +108,7 @@ import Yi.Config(Config, UIConfig,
                   startFrontEndA, configUIA, startActionsA, initialActionsA, defaultKmA,
                   configInputPreprocessA, modeTableA, debugModeA,
                   configRegionStyleA, configKillringAccumulateA, bufferUpdateHandlerA,
@@ -78,11 +90,9 @@ Index: yi-0.7.1/src/library/Yi/Config/Simple.hs
                   configScrollStyleA, configCursorStyleA, CursorStyle(..),
                   configLeftSideScrollBarA, configAutoHideScrollBarA, configAutoHideTabBarA,
                   configLineWrapA, configWindowFillA, configThemeA, layoutManagersA, configVarsA,
-Index: yi-0.7.1/src/library/Yi/UI/Vty.hs
-===================================================================
---- yi-0.7.1.orig/src/library/Yi/UI/Vty.hs	2014-09-10 22:48:39.667336537 +0200
-+++ yi-0.7.1/src/library/Yi/UI/Vty.hs	2014-09-10 22:48:39.663336537 +0200
-@@ -34,7 +34,7 @@
+--- yi-0.7.1.orig/src/library/Yi/UI/Vty.hs
++++ yi-0.7.1/src/library/Yi/UI/Vty.hs
+@@ -34,7 +34,7 @@ import qualified Yi.UI.Common as Common
  import Yi.Config
  import Yi.Window
  import Yi.Style as Style
@@ -91,7 +101,7 @@ Index: yi-0.7.1/src/library/Yi/UI/Vty.hs
  import qualified Graphics.Vty as Vty
  import Yi.Keymap (makeAction, YiM)
 
-@@ -73,11 +73,11 @@
+@@ -73,11 +73,11 @@ start :: UIBoot
  start cfg ch outCh editor = do
    liftIO $ do
            oattr <- getTerminalAttributes stdInput
@@ -105,7 +115,7 @@ Index: yi-0.7.1/src/library/Yi/UI/Vty.hs
            sz <- newIORef (fromEnum y0, fromEnum x0)
            -- fork input-reading thread. important to block *thread* on getKey
            -- otherwise all threads will block waiting for input
-@@ -97,7 +97,7 @@
+@@ -97,7 +97,7 @@ start cfg ch outCh editor = do
                -- | Read a key. UIs need to define a method for getting events.
                getKey :: IO Yi.Event.Event
                getKey = do
@@ -114,7 +124,7 @@ Index: yi-0.7.1/src/library/Yi/UI/Vty.hs
                  case event of
                    (EvResize x y) -> do
                        logPutStrLn $ "UI: EvResize: " ++ show (x,y)
-@@ -146,28 +146,28 @@
+@@ -146,28 +146,28 @@ fromVtyEvent _ = error "fromVtyEvent: un
 
 
  fromVtyKey :: Vty.Key -> Yi.Event.Key
@@ -165,7 +175,7 @@ Index: yi-0.7.1/src/library/Yi/UI/Vty.hs
 
  fromVtyMod :: Vty.Modifier -> Yi.Event.Modifier
  fromVtyMod Vty.MShift = Yi.Event.MShift
-@@ -229,13 +229,13 @@
+@@ -229,13 +229,13 @@ refresh ui e = do
    logPutStrLn "refreshing screen."
    logPutStrLn $ "startXs: " ++ show startXs
    Vty.update (vty $ ui)
@@ -186,7 +196,7 @@ Index: yi-0.7.1/src/library/Yi/UI/Vty.hs
                          Just (y,x) -> Cursor (toEnum x) (toEnum $ y + PL._focus startXs)
                          -- Add the position of the window to the position of the cursor
                          Nothing -> NoCursor
-@@ -254,12 +254,12 @@
+@@ -254,12 +254,12 @@ renderTabBar e ui xss =
    where tabImages       = foldr1 (<|>) $ fmap tabToVtyImage $ tabBarDescr e
          extraImage      = withAttributes (tabBarAttributes uiStyle) (replicate (xss - fromEnum totalTabWidth) ' ')
 
@@ -202,7 +212,7 @@ Index: yi-0.7.1/src/library/Yi/UI/Vty.hs
          tabToVtyImage _tab@(TabDescr text inFocus) = Vty.string (tabAttr inFocus) (tabTitle text)
 
  -- | Determine whether it is necessary to render the tab bar
-@@ -303,7 +303,7 @@
+@@ -303,7 +303,7 @@ drawWindow cfg e focused win w h = (Rend
          off = if notMini then 1 else 0
          h' = h - off
          ground = baseAttributes sty
@@ -211,7 +221,7 @@ Index: yi-0.7.1/src/library/Yi/UI/Vty.hs
          eofsty = appEndo (eofStyle sty) ground
          (point, _) = runBuffer win b pointB
          (eofPoint, _) = runBuffer win b sizeB
-@@ -320,9 +320,9 @@
+@@ -320,9 +320,9 @@ drawWindow cfg e focused win w h = (Rend
          -- TODO: I suspect that this costs quite a lot of CPU in the "dry run" which determines the window size;
          -- In that case, since attributes are also useless there, it might help to replace the call by a dummy value.
          -- This is also approximately valid of the call to "indexedAnnotatedStreamB".
@@ -223,7 +233,7 @@ Index: yi-0.7.1/src/library/Yi/UI/Vty.hs
          tabWidth = tabSize . fst $ runBuffer win b indentSettingsB
          prompt = if isMini win then miniIdentString b else ""
 
-@@ -338,7 +338,7 @@
+@@ -338,7 +338,7 @@ drawWindow cfg e focused win w h = (Rend
          modeStyle = (if focused then appEndo (modelineFocusStyle sty) else id) (modelineAttributes sty)
          filler = take w (configWindowFill cfg : repeat ' ')
 
@@ -232,7 +242,7 @@ Index: yi-0.7.1/src/library/Yi/UI/Vty.hs
 
  -- | Renders text in a rectangle.
  -- This also returns
-@@ -357,7 +357,7 @@
+@@ -357,7 +357,7 @@ drawText :: Int    -- ^ The height of th
           -> ([Image], Point, Maybe (Int,Int), Int)
  drawText h w topPoint point tabWidth bufData
      | h == 0 || w == 0 = ([], topPoint, Nothing, 0)
@@ -241,7 +251,7 @@ Index: yi-0.7.1/src/library/Yi/UI/Vty.hs
    where
 
    -- the number of lines that taking wrapping into account,
-@@ -372,14 +372,14 @@
+@@ -372,14 +372,14 @@ drawText h w topPoint point tabWidth buf
    pntpos = listToMaybe [(y,x) | (y,l) <- zip [0..] lns0, (x,(_char,(_attr,p))) <- zip [0..] l, p == point]
 
    -- fill lines with blanks, so the selection looks ok.
@@ -260,7 +270,7 @@ Index: yi-0.7.1/src/library/Yi/UI/Vty.hs
                      where (_,(a,_x)) = last l
 
    -- | Cut a string in lines separated by a '\n' char. Note
-@@ -404,7 +404,7 @@
+@@ -404,7 +404,7 @@ drawText h w topPoint point tabWidth buf
      | otherwise = [(c,p)]
 
  withAttributes :: Attributes -> String -> Image
@@ -269,7 +279,7 @@ Index: yi-0.7.1/src/library/Yi/UI/Vty.hs
 
  ------------------------------------------------------------------------
 
-@@ -432,31 +432,31 @@
+@@ -432,31 +432,31 @@ colorToAttr :: (Vty.Color -> Vty.Attr ->
  colorToAttr set c =
    case c of
      RGB 0 0 0         -> set Vty.black
@@ -314,11 +324,17 @@ Index: yi-0.7.1/src/library/Yi/UI/Vty.hs
 
 
  ---------------------------------
-Index: yi-0.7.1/yi.cabal
-===================================================================
---- yi-0.7.1.orig/yi.cabal	2014-09-10 22:48:39.667336537 +0200
-+++ yi-0.7.1/yi.cabal	2014-09-10 22:48:39.663336537 +0200
-@@ -293,7 +293,7 @@
+--- yi-0.7.1.orig/yi.cabal
++++ yi-0.7.1/yi.cabal
+@@ -230,6 +230,7 @@ library
+     data-accessor >= 0.2.1.4 && < 0.3,
+     data-accessor-mtl == 0.2.*,
+     data-accessor-template >= 0.2.1.3 && < 0.2.2,
++    data-default,
+     dlist >=0.4.1,
+     dyre >=0.8.11,
+     filepath>=1.1 && <1.4,
+@@ -293,7 +293,7 @@ library
        Yi.UI.Vty
      build-depends:
        unix-compat >=0.1 && <0.5,
