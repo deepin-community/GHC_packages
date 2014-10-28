@@ -1,0 +1,16 @@
+Description: Work around predefined "bool" on some architectures
+ "bool" is predefined on some Debian/Ubuntu architectures, confusing gtk2hsC2hs.
+ Explicitly undefine it to work around this.
+Author: Colin Watson <cjwatson@ubuntu.com>
+Forwarded: no
+
+Index: haskell-gtksourceview2-0.12.3.1/gtksourceview2.cabal
+===================================================================
+--- haskell-gtksourceview2-0.12.3.1.orig/gtksourceview2.cabal
++++ haskell-gtksourceview2-0.12.3.1/gtksourceview2.cabal
+@@ -81,3 +81,5 @@ Library
+         include-dirs: .
+         x-c2hs-Header:  gtksourceview2.h
+         pkgconfig-depends: gtksourceview-2.0 >= 2.0.2
++
++        cpp-options: -Ubool
