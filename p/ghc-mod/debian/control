@@ -2,21 +2,29 @@ Source: ghc-mod
 Priority: extra
 Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Kiwamu Okabe <kiwamu@debian.or.jp>
+Uploaders: Daniel Gröber <dxld@darkboxed.org>, Kiwamu Okabe <kiwamu@debian.or.jp>
 Build-Depends: debhelper (>= 9),
                haskell-devscripts (>= 0.8.20),
                cdbs,
                ghc,
                ghc-ghci,
+               libghc-async-dev,
                libghc-convertible-dev,
+               libghc-djinn-ghc-dev (>= 0.0.2.2),
+               libghc-data-default-dev,
                libghc-ghc-paths-dev,
-               libghc-hlint-dev (>= 1.8.61),
-               libghc-regex-posix-dev,
-               libghc-transformers-dev,
-               libghc-filemanip-dev,
                libghc-ghc-syb-utils-dev,
+               libghc-src-exts-dev,
+               libghc-hlint-dev (>= 1.8.61),
                libghc-io-choice-dev,
-               libghc-syb-dev
+               libghc-monad-control-dev,
+               libghc-monad-journal-dev (>= 0.4),
+               libghc-mtl-dev (>= 2.0),
+               libghc-split-dev,
+               libghc-syb-dev,
+               libghc-text-dev,
+               libghc-transformers-dev,
+               libghc-transformers-base-dev,
 Standards-Version: 3.9.5
 Homepage: http://www.mew.org/~kazu/proj/ghc-mod/
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/ghc-mod
@@ -24,12 +32,11 @@ Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/ghc-mod
 
 Package: ghc-mod
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, haskell-mode,
+Recommends: haskell-mode
+Depends: ${shlibs:Depends}, ${misc:Depends}
 	 ${haskell:ghc-version}, emacsen-common (>= 2.0.8)
 Description: Happy Haskell programming on Emacs
- This package includes Elisp files and a Haskell command, "ghc-mod".
- "ghc*.el" enable completion of Haskell symbols on Emacs.
- Flymake is also integrated. "ghc-mod" is a backend of "ghc*.el".
- It lists up all installed modules or extracts names of functions, classes,
- and data declarations.
- Note: This package DO NOT support xemacs*. Only for emacs*.
+ This package includes the executables ghc-mod and ghc-modi as well as Emacs Lisp
+ code for integration with GNU Emacs.
+ .
+ Note: This package does NOT support xemacs*. Only for emacs*.
