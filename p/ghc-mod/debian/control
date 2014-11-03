@@ -25,6 +25,7 @@ Build-Depends: debhelper (>= 9),
                libghc-text-dev,
                libghc-transformers-dev,
                libghc-transformers-base-dev,
+               libghc-temporary-dev
 Standards-Version: 3.9.5
 Homepage: http://www.mew.org/~kazu/proj/ghc-mod/
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/ghc-mod
@@ -32,11 +33,19 @@ Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/ghc-mod
 
 Package: ghc-mod
 Architecture: any
+Recommends: ghc-mod-el
+Depends: ${shlibs:Depends}, ${misc:Depends}
+	 ${haskell:ghc-version}, emacsen-common (>= 2.0.8)
+Description: Happy Haskell programming
+ This package provides the executables ghc-mod and ghc-modi. The GNU Emacs
+ integration code is provided by a separate package.
+
+Package: ghc-mod-el
+Architecture: all
 Recommends: haskell-mode
 Depends: ${shlibs:Depends}, ${misc:Depends}
 	 ${haskell:ghc-version}, emacsen-common (>= 2.0.8)
-Description: Happy Haskell programming on Emacs
- This package includes the executables ghc-mod and ghc-modi as well as Emacs Lisp
- code for integration with GNU Emacs.
+Description: Happy Haskell programming with Emacs
+ This package proviceds the GNU Emacs integration code for ghc-mod.
  .
  Note: This package does NOT support xemacs*. Only for emacs*.
