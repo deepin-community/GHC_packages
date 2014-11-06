@@ -33,7 +33,7 @@ Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/ghc-mod
 
 Package: ghc-mod
 Architecture: any
-Recommends: ghc-mod-el
+Recommends: ghc-mod-el (>= 5.2.1.1-1)
 Depends: ${shlibs:Depends}, ${misc:Depends},
 	 ${haskell:ghc-version}, emacsen-common (>= 2.0.8)
 Description: Happy Haskell programming
@@ -44,7 +44,11 @@ Package: ghc-mod-el
 Architecture: all
 Recommends: haskell-mode
 Depends: ${shlibs:Depends}, ${misc:Depends},
-	 ${haskell:ghc-version}, emacsen-common (>= 2.0.8), ghc-mod
+	 ${haskell:ghc-version},
+         emacsen-common (>= 2.0.8),
+         ghc-mod
+Replaces: ghc-mod (<< 5.2.1.1-1)
+Breaks: ghc-mod (<< 5.2.1.1-1)
 Description: Happy Haskell programming with Emacs
  This package proviceds the GNU Emacs integration code for ghc-mod.
  .
