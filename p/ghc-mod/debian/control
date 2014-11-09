@@ -46,7 +46,8 @@ Recommends: haskell-mode
 Depends: ${shlibs:Depends}, ${misc:Depends},
 	 ${haskell:ghc-version},
          emacsen-common (>= 2.0.8),
-         ghc-mod
+         ghc-mod (>= ${source:Version}),
+         ghc-mod (<< ${source:Version}.1~)
 Replaces: ghc-mod (<< 5.2.1.1-1)
 Breaks: ghc-mod (<< 5.2.1.1-1)
 Description: Happy Haskell programming with Emacs
