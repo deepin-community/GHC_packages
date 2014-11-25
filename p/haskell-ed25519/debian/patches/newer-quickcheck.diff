@@ -1,0 +1,13 @@
+--- a/tests/properties.hs
++++ b/tests/properties.hs
+@@ -86,7 +86,9 @@
+       case r of
+         Success n _ _           -> return (True, n)
+         GaveUp  n _ _           -> return (True, n)
+-#if MIN_VERSION_QuickCheck(2,6,0)
++#if MIN_VERSION_QuickCheck(2,7,0)
++        Failure n _ _ _ _ _ _ _ _ _ -> return (False, n)
++#elif MIN_VERSION_QuickCheck(2,6,0)
+         Failure n _ _ _ _ _ _ _ -> return (False, n)
+ #else
+         Failure n _ _ _ _ _ _   -> return (False, n)
