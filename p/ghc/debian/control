@@ -33,12 +33,12 @@ Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/ghc
 
 Package: ghc
 Architecture: any
-Depends: llvm [armel armhf], gcc, libgmp-dev, libffi-dev, libbsd-dev, libc6-dev, libncurses5-dev, ${shlibs:Depends}, ${misc:Depends}
+Depends: llvm-3.4 [armel armhf], gcc, libgmp-dev, libffi-dev, libbsd-dev, libc6-dev, libncurses5-dev, ${shlibs:Depends}, ${misc:Depends}
 Provides: haskell-compiler, ${provided-devs}, ${haskell:Provides}, ${ghci}, ghc-dynamic
 Replaces: ghc6 (<< 7), ghc-dynamic (<< 7.8)
 Conflicts: ghc6 (<< 7), ghc-dynamic (<< 7.8), ${conflicting-devs}
 Breaks: cabal-install (<< 0.8.0), haskell-devscripts (<< 0.8.13), ghc-doc (<< 7.8)
-Suggests: perl, ghc-prof, ghc-doc, haskell-doc, llvm
+Suggests: perl, ghc-prof, ghc-doc, haskell-doc, llvm-3.4
 Description: The Glasgow Haskell Compilation system
  The Glorious Glasgow Haskell Compilation system (GHC) is a compiler for
  Haskell.
