@@ -7,10 +7,10 @@ Bug: https://ghc.haskell.org/trac/ghc/ticket/7942
     
     Signed-off-by: Austin Seipp <austin@well-typed.com>
 
-Index: ghc-7.8.3/aclocal.m4
+Index: ghc-7.8.3.20141119/aclocal.m4
 ===================================================================
---- ghc-7.8.3.orig/aclocal.m4	2014-07-10 10:16:42.533187516 +0200
-+++ ghc-7.8.3/aclocal.m4	2014-07-10 10:16:42.529187516 +0200
+--- ghc-7.8.3.20141119.orig/aclocal.m4	2014-11-26 10:06:01.993559720 +0100
++++ ghc-7.8.3.20141119/aclocal.m4	2014-11-26 10:06:01.989559661 +0100
 @@ -197,6 +197,9 @@
              GET_ARM_ISA()
              test -z "[$]2" || eval "[$]2=\"ArchARM {armISA = \$ARM_ISA, armISAExt = \$ARM_ISA_EXT, armABI = \$ARM_ABI}\""
@@ -31,10 +31,10 @@ Index: ghc-7.8.3/aclocal.m4
    alpha*)
      $2="alpha"
      ;;
-Index: ghc-7.8.3/compiler/nativeGen/AsmCodeGen.lhs
+Index: ghc-7.8.3.20141119/compiler/nativeGen/AsmCodeGen.lhs
 ===================================================================
---- ghc-7.8.3.orig/compiler/nativeGen/AsmCodeGen.lhs	2014-07-10 10:16:42.533187516 +0200
-+++ ghc-7.8.3/compiler/nativeGen/AsmCodeGen.lhs	2014-07-10 10:16:42.529187516 +0200
+--- ghc-7.8.3.20141119.orig/compiler/nativeGen/AsmCodeGen.lhs	2014-11-26 10:06:01.993559720 +0100
++++ ghc-7.8.3.20141119/compiler/nativeGen/AsmCodeGen.lhs	2014-11-26 10:06:01.989559661 +0100
 @@ -166,6 +166,7 @@
        ArchPPC     -> nCG' (ppcNcgImpl    dflags)
        ArchSPARC   -> nCG' (sparcNcgImpl  dflags)
@@ -43,10 +43,10 @@ Index: ghc-7.8.3/compiler/nativeGen/AsmCodeGen.lhs
        ArchPPC_64  -> panic "nativeCodeGen: No NCG for PPC 64"
        ArchAlpha   -> panic "nativeCodeGen: No NCG for Alpha"
        ArchMipseb  -> panic "nativeCodeGen: No NCG for mipseb"
-Index: ghc-7.8.3/compiler/nativeGen/RegAlloc/Graph/TrivColorable.hs
+Index: ghc-7.8.3.20141119/compiler/nativeGen/RegAlloc/Graph/TrivColorable.hs
 ===================================================================
---- ghc-7.8.3.orig/compiler/nativeGen/RegAlloc/Graph/TrivColorable.hs	2014-07-10 10:16:42.533187516 +0200
-+++ ghc-7.8.3/compiler/nativeGen/RegAlloc/Graph/TrivColorable.hs	2014-07-10 10:16:42.529187516 +0200
+--- ghc-7.8.3.20141119.orig/compiler/nativeGen/RegAlloc/Graph/TrivColorable.hs	2014-11-26 10:06:01.993559720 +0100
++++ ghc-7.8.3.20141119/compiler/nativeGen/RegAlloc/Graph/TrivColorable.hs	2014-11-26 10:06:01.989559661 +0100
 @@ -113,6 +113,7 @@
                              ArchSPARC     -> 14
                              ArchPPC_64    -> panic "trivColorable ArchPPC_64"
@@ -79,10 +79,10 @@ Index: ghc-7.8.3/compiler/nativeGen/RegAlloc/Graph/TrivColorable.hs
                              ArchAlpha     -> panic "trivColorable ArchAlpha"
                              ArchMipseb    -> panic "trivColorable ArchMipseb"
                              ArchMipsel    -> panic "trivColorable ArchMipsel"
-Index: ghc-7.8.3/compiler/nativeGen/RegAlloc/Linear/FreeRegs.hs
+Index: ghc-7.8.3.20141119/compiler/nativeGen/RegAlloc/Linear/FreeRegs.hs
 ===================================================================
---- ghc-7.8.3.orig/compiler/nativeGen/RegAlloc/Linear/FreeRegs.hs	2014-07-10 10:16:42.533187516 +0200
-+++ ghc-7.8.3/compiler/nativeGen/RegAlloc/Linear/FreeRegs.hs	2014-07-10 10:16:42.529187516 +0200
+--- ghc-7.8.3.20141119.orig/compiler/nativeGen/RegAlloc/Linear/FreeRegs.hs	2014-11-26 10:06:01.993559720 +0100
++++ ghc-7.8.3.20141119/compiler/nativeGen/RegAlloc/Linear/FreeRegs.hs	2014-11-26 10:06:01.989559661 +0100
 @@ -74,6 +74,7 @@
                  ArchPPC       -> PPC.Instr.maxSpillSlots dflags
                  ArchSPARC     -> SPARC.Instr.maxSpillSlots dflags
@@ -91,22 +91,22 @@ Index: ghc-7.8.3/compiler/nativeGen/RegAlloc/Linear/FreeRegs.hs
                  ArchPPC_64    -> panic "maxSpillSlots ArchPPC_64"
                  ArchAlpha     -> panic "maxSpillSlots ArchAlpha"
                  ArchMipseb    -> panic "maxSpillSlots ArchMipseb"
-Index: ghc-7.8.3/compiler/nativeGen/RegAlloc/Linear/Main.hs
+Index: ghc-7.8.3.20141119/compiler/nativeGen/RegAlloc/Linear/Main.hs
 ===================================================================
---- ghc-7.8.3.orig/compiler/nativeGen/RegAlloc/Linear/Main.hs	2014-07-10 10:16:42.533187516 +0200
-+++ ghc-7.8.3/compiler/nativeGen/RegAlloc/Linear/Main.hs	2014-07-10 10:16:42.529187516 +0200
+--- ghc-7.8.3.20141119.orig/compiler/nativeGen/RegAlloc/Linear/Main.hs	2014-11-26 10:06:01.993559720 +0100
++++ ghc-7.8.3.20141119/compiler/nativeGen/RegAlloc/Linear/Main.hs	2014-11-26 10:06:01.993559720 +0100
 @@ -207,6 +207,7 @@
-       ArchSPARC     -> linearRegAlloc' dflags (frInitFreeRegs platform :: SPARC.FreeRegs)  first_id block_live sccs
-       ArchPPC       -> linearRegAlloc' dflags (frInitFreeRegs platform :: PPC.FreeRegs)    first_id block_live sccs
+       ArchSPARC     -> linearRegAlloc' dflags (frInitFreeRegs platform :: SPARC.FreeRegs)  entry_ids block_live sccs
+       ArchPPC       -> linearRegAlloc' dflags (frInitFreeRegs platform :: PPC.FreeRegs)    entry_ids block_live sccs
        ArchARM _ _ _ -> panic "linearRegAlloc ArchARM"
 +      ArchARM64     -> panic "linearRegAlloc ArchARM64"
        ArchPPC_64    -> panic "linearRegAlloc ArchPPC_64"
        ArchAlpha     -> panic "linearRegAlloc ArchAlpha"
        ArchMipseb    -> panic "linearRegAlloc ArchMipseb"
-Index: ghc-7.8.3/compiler/nativeGen/TargetReg.hs
+Index: ghc-7.8.3.20141119/compiler/nativeGen/TargetReg.hs
 ===================================================================
---- ghc-7.8.3.orig/compiler/nativeGen/TargetReg.hs	2014-07-10 10:16:42.533187516 +0200
-+++ ghc-7.8.3/compiler/nativeGen/TargetReg.hs	2014-07-10 10:16:42.529187516 +0200
+--- ghc-7.8.3.20141119.orig/compiler/nativeGen/TargetReg.hs	2014-11-26 10:06:01.993559720 +0100
++++ ghc-7.8.3.20141119/compiler/nativeGen/TargetReg.hs	2014-11-26 10:06:01.993559720 +0100
 @@ -54,6 +54,7 @@
        ArchSPARC     -> SPARC.virtualRegSqueeze
        ArchPPC_64    -> panic "targetVirtualRegSqueeze ArchPPC_64"
@@ -147,10 +147,10 @@ Index: ghc-7.8.3/compiler/nativeGen/TargetReg.hs
        ArchAlpha     -> panic "targetRegDotColor ArchAlpha"
        ArchMipseb    -> panic "targetRegDotColor ArchMipseb"
        ArchMipsel    -> panic "targetRegDotColor ArchMipsel"
-Index: ghc-7.8.3/compiler/utils/Platform.hs
+Index: ghc-7.8.3.20141119/compiler/utils/Platform.hs
 ===================================================================
---- ghc-7.8.3.orig/compiler/utils/Platform.hs	2014-07-10 10:16:42.533187516 +0200
-+++ ghc-7.8.3/compiler/utils/Platform.hs	2014-07-10 10:16:42.529187516 +0200
+--- ghc-7.8.3.20141119.orig/compiler/utils/Platform.hs	2014-11-26 10:06:01.993559720 +0100
++++ ghc-7.8.3.20141119/compiler/utils/Platform.hs	2014-11-26 10:06:01.993559720 +0100
 @@ -52,6 +52,7 @@
            , armISAExt :: [ArmISAExt]
            , armABI    :: ArmABI
@@ -159,10 +159,10 @@ Index: ghc-7.8.3/compiler/utils/Platform.hs
          | ArchAlpha
          | ArchMipseb
          | ArchMipsel
-Index: ghc-7.8.3/includes/stg/HaskellMachRegs.h
+Index: ghc-7.8.3.20141119/includes/stg/HaskellMachRegs.h
 ===================================================================
---- ghc-7.8.3.orig/includes/stg/HaskellMachRegs.h	2014-07-10 10:16:42.533187516 +0200
-+++ ghc-7.8.3/includes/stg/HaskellMachRegs.h	2014-07-10 10:16:42.533187516 +0200
+--- ghc-7.8.3.20141119.orig/includes/stg/HaskellMachRegs.h	2014-11-26 10:06:01.993559720 +0100
++++ ghc-7.8.3.20141119/includes/stg/HaskellMachRegs.h	2014-11-26 10:06:01.993559720 +0100
 @@ -38,6 +38,7 @@
  #define MACHREGS_powerpc  (powerpc_TARGET_ARCH || powerpc64_TARGET_ARCH || rs6000_TARGET_ARCH)
  #define MACHREGS_sparc    sparc_TARGET_ARCH
@@ -171,10 +171,10 @@ Index: ghc-7.8.3/includes/stg/HaskellMachRegs.h
  #define MACHREGS_darwin   darwin_TARGET_OS
  
  #endif
-Index: ghc-7.8.3/includes/stg/MachRegs.h
+Index: ghc-7.8.3.20141119/includes/stg/MachRegs.h
 ===================================================================
---- ghc-7.8.3.orig/includes/stg/MachRegs.h	2014-07-10 10:16:42.533187516 +0200
-+++ ghc-7.8.3/includes/stg/MachRegs.h	2014-07-10 10:16:42.533187516 +0200
+--- ghc-7.8.3.20141119.orig/includes/stg/MachRegs.h	2014-11-26 10:06:01.993559720 +0100
++++ ghc-7.8.3.20141119/includes/stg/MachRegs.h	2014-11-26 10:06:01.993559720 +0100
 @@ -1,6 +1,6 @@
  /* -----------------------------------------------------------------------------
   *
@@ -245,10 +245,10 @@ Index: ghc-7.8.3/includes/stg/MachRegs.h
  #else
  
  #error Cannot find platform to give register info for
-Index: ghc-7.8.3/rts/StgCRun.c
+Index: ghc-7.8.3.20141119/rts/StgCRun.c
 ===================================================================
---- ghc-7.8.3.orig/rts/StgCRun.c	2014-07-10 10:16:42.533187516 +0200
-+++ ghc-7.8.3/rts/StgCRun.c	2014-07-10 10:16:42.533187516 +0200
+--- ghc-7.8.3.20141119.orig/rts/StgCRun.c	2014-11-26 10:06:01.993559720 +0100
++++ ghc-7.8.3.20141119/rts/StgCRun.c	2014-11-26 10:06:01.993559720 +0100
 @@ -748,4 +748,70 @@
  }
  #endif
