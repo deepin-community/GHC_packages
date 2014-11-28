@@ -42,6 +42,13 @@ ifneq (,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
     MAKEFLAGS += -j$(NUMJOBS)
 endif
 
+ifneq (,$(findstring $(DEB_HOST_ARCH),arm64 armel armhf))
+        LINKER = ld.gold
+else
+        LINKER = ld.bfd
+endif
+
+
 autoreconf:
 	autoreconf -fi
 	for c_g in $$(find -type f -name config.guess); do \
@@ -91,6 +98,7 @@ ifneq (,$(findstring $(DEB_HOST_ARCH),armel armhf mips mipsel))
 	# also on arm: https://bugs.debian.org/751479
 	echo "GhcWithInterpreter = NO" >> mk/build.mk
 endif
+
 	
 	# We can't do this with a configure flag in 6.8.1 as libdir is not
 	# defined at the point at which we := it
@@ -113,7 +121,7 @@ endif
 	./configure $(confflags) --prefix=/usr \
 		$(EXTRA_CONFIGURE_FLAGS) \
 		--with-system-libffi \
-		--with-ld=ld.bfd \
+		--with-ld=$(LINKER) \
 		--with-llc=llc-3.4 \
 		--with-opt=opt-3.4
 
