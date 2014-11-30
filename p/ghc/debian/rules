@@ -42,12 +42,6 @@ ifneq (,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
     MAKEFLAGS += -j$(NUMJOBS)
 endif
 
-ifneq (,$(findstring $(DEB_HOST_ARCH),arm64 armel armhf))
-        LINKER = ld.gold
-else
-        LINKER = ld.bfd
-endif
-
 
 autoreconf:
 	autoreconf -fi
@@ -67,8 +61,9 @@ configure-stamp:
 	echo "SRC_HC_OPTS += -lffi -optl-pthread" >> mk/build.mk
 	echo "HADDOCK_DOCS := YES" >> mk/build.mk
 	echo "XSLTPROC_OPTS += --nonet" >> mk/build.mk
-ifneq (,$(findstring $(DEB_HOST_ARCH), arm armel armhf))
+ifneq (,$(findstring $(DEB_HOST_ARCH), arm64 armel armhf))
 	echo "SRC_HC_OPTS     += -optc-mlong-calls" >> mk/build.mk
+	echo "SRC_HC_OPTS     += -optc-B/usr/bin/ld.gold" >> mk/build.mk
 endif
 ifeq (armhf,$(DEB_HOST_ARCH))
 	echo "SRC_HC_OPTS += -D__ARM_PCS_VFP" >> mk/build.mk
@@ -121,7 +116,6 @@ endif
 	./configure $(confflags) --prefix=/usr \
 		$(EXTRA_CONFIGURE_FLAGS) \
 		--with-system-libffi \
-		--with-ld=$(LINKER) \
 		--with-llc=llc-3.4 \
 		--with-opt=opt-3.4
 
