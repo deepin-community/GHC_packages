@@ -65,7 +65,7 @@ ifneq (,$(findstring $(DEB_HOST_ARCH), armel armhf))
 	echo "SRC_HC_OPTS     += -optc-mlong-calls" >> mk/build.mk
 endif
 ifneq (,$(findstring $(DEB_HOST_ARCH), arm64 armel armhf))
-	echo "SRC_HC_OPTS     += -optc-B/usr/bin/ld.gold" >> mk/build.mk
+	echo "SRC_HC_OPTS     += -optl-B/usr/bin/ld.gold" >> mk/build.mk
 endif
 ifeq (armhf,$(DEB_HOST_ARCH))
 	echo "SRC_HC_OPTS += -D__ARM_PCS_VFP" >> mk/build.mk
