@@ -1,0 +1,20 @@
+Description: Work around predefined "pixel" on some architectures
+ "pixel" is predefined on some architectures, confusing gtk2hsC2hs.
+ Explicitly undefine it to work around this.
+Author: Colin Watson <cjwatson@ubuntu.com>
+Forwarded: no
+Last-Update: 2014-12-03
+
+Index: b/gtk3.cabal
+===================================================================
+--- a/gtk3.cabal
++++ b/gtk3.cabal
+@@ -386,6 +386,8 @@
+
+         pkgconfig-depends: gthread-2.0, gtk+-3.0
+
++        cpp-options: -Upixel
++
+ Executable gtk2hs-demo-actionMenu
+     hs-source-dirs: demo/actionMenu
+     main-is: ActionMenu.hs
