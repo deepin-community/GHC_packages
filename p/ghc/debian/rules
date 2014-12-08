@@ -42,20 +42,10 @@ ifneq (,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
     MAKEFLAGS += -j$(NUMJOBS)
 endif
 
-
-autoreconf:
-	autoreconf -fi
-	for c_g in $$(find -type f -name config.guess); do \
-		cp -f /usr/share/misc/config.guess "$$c_g"; \
-	done
-	for c_s in $$(find -type f -name config.sub); do \
-		cp -f /usr/share/misc/config.sub "$$c_s"; \
-	done
-
 configure: configure-stamp
 configure-stamp:
 	dh_testdir
-	dh_autoreconf debian/rules -- autoreconf
+	dh_autoreconf perl -- boot
 
 	rm -f mk/build.mk
 	echo "SRC_HC_OPTS += -lffi -optl-pthread" >> mk/build.mk
@@ -274,7 +264,7 @@ clean:
 	rm -rf libraries/dph libraries/primitive libraries/vector libraries/random
 
 	$(MAKE) distclean
-	rm -f config.sub config.guess
+
 	rm -f debian/*.install
 	rm -f debian/*.1
 	rm -f debian/ghc.manpages
