@@ -1,0 +1,40 @@
+commit e7b414a3cc0e27049f2608f5e0a00c47146cc46d
+Author: Sebastian Dröge <sebastian@centricular.com>
+Date:   Tue Nov 18 12:40:20 2014 -0600
+
+    Fix detection of GNU gold linker if invoked via gcc with parameters
+    
+    Previously the linker was called without any commandline parameters to
+    detect whether bfd or gold is used. However the -fuse-ld parameter can
+    be used to switch between gold and bfd and should be taken into account
+    here.
+    
+    Trac #9336
+    
+    Signed-off-by: Austin Seipp <austin@well-typed.com>
+
+Index: ghc-7.8.3.20141119/compiler/main/SysTools.lhs
+===================================================================
+--- ghc-7.8.3.20141119.orig/compiler/main/SysTools.lhs	2014-12-08 18:45:13.829021078 +0100
++++ ghc-7.8.3.20141119/compiler/main/SysTools.lhs	2014-12-08 18:45:13.829021078 +0100
+@@ -739,7 +739,10 @@
+ getLinkerInfo' dflags = do
+   let platform = targetPlatform dflags
+       os = platformOS platform
+-      (pgm,_) = pgm_l dflags
++      (pgm,args0) = pgm_l dflags
++      args1     = map Option (getOpts dflags opt_l)
++      args2     = args0 ++ args1
++      args3     = filter notNull (map showOpt args2)
+ 
+       -- Try to grab the info from the process output.
+       parseLinkerInfo stdo _stde _exitc
+@@ -790,7 +793,7 @@
+                  -- In practice, we use the compiler as the linker here. Pass
+                  -- -Wl,--version to get linker version info.
+                  (exitc, stdo, stde) <- readProcessEnvWithExitCode pgm
+-                                        ["-Wl,--version"]
++                                        (["-Wl,--version"] ++ args3)
+                                         en_locale_env
+                  -- Split the output by lines to make certain kinds
+                  -- of processing easier. In particular, 'clang' and 'gcc'

@@ -1,0 +1,69 @@
+commit e42f158ddc7b4d1d2ca41bd62fc9432030889ac7
+Author: Joachim Breitner <mail@joachim-breitner.de>
+Date:   Mon Dec 8 18:37:52 2014 +0100
+
+    Link pre-ARMv6 spinlocks into all RTS variants
+    
+    Summary:
+    For compatibility with ARM machines from pre v6, the RTS provides
+    implementations of certain atomic operations. Previously, these
+    were only included in the threaded RTS.
+    
+    But ghc (the library) contains the code in compiler/cbits/genSym.c, which
+    uses these operations if there is more than one capability. But there is only
+    one libHSghc, so the linker wants to resolve these symbols in every case.
+    
+    By providing these operations in all RTSs, the linker is happy. The only
+    downside is a small amount of dead code in the non-threaded RTS on old ARM
+    machines.
+    
+    Test Plan: It helped here.
+    
+    Reviewers: bgamari, austin
+    
+    Subscribers: carter, thomie
+    
+    Differential Revision: https://phabricator.haskell.org/D564
+    
+    GHC Trac Issues: #8951
+
+Index: ghc-7.8.3.20141119/includes/stg/SMP.h
+===================================================================
+--- ghc-7.8.3.20141119.orig/includes/stg/SMP.h	2014-12-08 18:44:25.438412602 +0100
++++ ghc-7.8.3.20141119/includes/stg/SMP.h	2014-12-08 18:44:25.434412386 +0100
+@@ -14,13 +14,13 @@
+ #ifndef SMP_H
+ #define SMP_H
+ 
+-#if defined(THREADED_RTS)
+-
+ #if arm_HOST_ARCH && defined(arm_HOST_ARCH_PRE_ARMv6)
+ void arm_atomic_spin_lock(void);
+ void arm_atomic_spin_unlock(void);
+ #endif
+ 
++#if defined(THREADED_RTS)
++
+ /* ----------------------------------------------------------------------------
+    Atomic operations
+    ------------------------------------------------------------------------- */
+Index: ghc-7.8.3.20141119/rts/OldARMAtomic.c
+===================================================================
+--- ghc-7.8.3.20141119.orig/rts/OldARMAtomic.c	2014-12-08 18:44:25.438412602 +0100
++++ ghc-7.8.3.20141119/rts/OldARMAtomic.c	2014-12-08 18:44:32.678806807 +0100
+@@ -14,8 +14,6 @@
+ #include <sched.h>
+ #endif
+ 
+-#if defined(THREADED_RTS)
+-
+ #if arm_HOST_ARCH && defined(arm_HOST_ARCH_PRE_ARMv6)
+ 
+ static volatile int atomic_spin = 0;
+@@ -51,6 +49,3 @@
+ } 
+ 
+ #endif  /* arm_HOST_ARCH && defined(arm_HOST_ARCH_PRE_ARMv6) */
+-
+-#endif  /* defined(THREADED_RTS) */
+-

@@ -1,0 +1,193 @@
+commit 2a8ea4745d6ff79d6ce17961a64d9013243fc3c6
+Author: Sergei Trofimovich <slyfox@gentoo.org>
+Date:   Sat Oct 4 20:48:22 2014 +0100
+
+    ghc.mk: fix list for dll-split on GHCi-less builds
+    
+    To reproduce build failure it's enough to try
+    to build GHC on amd64 with the following setup:
+    
+        $ cat mk/build.mk
+        # for #9552
+        GhcWithInterpreter = NO
+    
+    It gives:
+    
+        Reachable modules from DynFlags out of date
+        Please fix compiler/ghc.mk, or building DLLs on Windows may break (#7780)
+        Redundant modules: Bitmap BlockId ... <list of 42 modules>
+        <make error>
+    
+    dll-split among other things makes sure
+    all mentioned modules are used by DynFlags.
+    '#ifdef GHCI' keeps is from happening.
+    
+    Patch moves those 42 modules under
+    'GhcWithInterpreter' guard.
+    
+    Fixes Issue #9552
+    
+    Signed-off-by: Sergei Trofimovich <slyfox@gentoo.org>
+
+Index: ghc-7.8.3.20141119/compiler/ghc.mk
+===================================================================
+--- ghc-7.8.3.20141119.orig/compiler/ghc.mk	2014-12-08 18:45:43.683249077 +0100
++++ ghc-7.8.3.20141119/compiler/ghc.mk	2014-12-08 18:45:43.683249077 +0100
+@@ -461,36 +461,15 @@
+ 	BasicTypes \
+ 	BinIface \
+ 	Binary \
+-	Bitmap \
+-	BlockId \
+ 	BooleanFormula \
+ 	BreakArray \
+ 	BufWrite \
+ 	BuildTyCl \
+-	ByteCodeAsm \
+-	ByteCodeInstr \
+-	ByteCodeItbls \
+-	CLabel \
+ 	Class \
+ 	CmdLineParser \
+-	Cmm \
+-	CmmCallConv \
+-	CmmExpr \
+-	CmmInfo \
+-	CmmMachOp \
+-	CmmNode \
+ 	CmmType \
+-	CmmUtils \
+ 	CoAxiom \
+ 	ConLike \
+-	CodeGen.Platform \
+-	CodeGen.Platform.ARM \
+-	CodeGen.Platform.NoRegs \
+-	CodeGen.Platform.PPC \
+-	CodeGen.Platform.PPC_Darwin \
+-	CodeGen.Platform.SPARC \
+-	CodeGen.Platform.X86 \
+-	CodeGen.Platform.X86_64 \
+ 	Coercion \
+ 	Config \
+ 	Constants \
+@@ -514,7 +493,6 @@
+ 	Exception \
+ 	ExtsCompat46 \
+ 	FamInstEnv \
+-	FastBool \
+ 	FastFunctions \
+ 	FastMutInt \
+ 	FastString \
+@@ -524,8 +502,6 @@
+ 	FiniteMap \
+ 	ForeignCall \
+ 	Hooks \
+-	Hoopl \
+-	Hoopl.Dataflow \
+ 	HsBinds \
+ 	HsDecls \
+ 	HsDoc \
+@@ -544,14 +520,12 @@
+ 	IfaceSyn \
+ 	IfaceType \
+ 	InstEnv \
+-	InteractiveEvalTypes \
+ 	Kind \
+ 	ListSetOps \
+ 	Literal \
+ 	LoadIface \
+ 	Maybes \
+ 	MkCore \
+-	MkGraph \
+ 	MkId \
+ 	Module \
+ 	MonadUtils \
+@@ -571,9 +545,6 @@
+ 	PipelineMonad \
+ 	Platform \
+ 	PlatformConstants \
+-	PprCmm \
+-	PprCmmDecl \
+-	PprCmmExpr \
+ 	PprCore \
+ 	PrelInfo \
+ 	PrelNames \
+@@ -581,23 +552,10 @@
+ 	Pretty \
+ 	PrimOp \
+ 	RdrName \
+-	Reg \
+-	RegClass \
+ 	Rules \
+-	SMRep \
+ 	Serialized \
+ 	SrcLoc \
+ 	StaticFlags \
+-	StgCmmArgRep \
+-	StgCmmClosure \
+-	StgCmmEnv \
+-	StgCmmLayout \
+-	StgCmmMonad \
+-	StgCmmProf \
+-	StgCmmTicky \
+-	StgCmmUtils \
+-	StgSyn \
+-	Stream \
+ 	StringBuffer \
+ 	TcEvidence \
+ 	TcIface \
+@@ -621,6 +579,54 @@
+ 	VarEnv \
+ 	VarSet
+ 
++ifeq "$(GhcWithInterpreter)" "YES"
++# These files are reacheable from DynFlags
++# only by GHCi-enabled code (see #9552)
++compiler_stage2_dll0_MODULES += \
++	Bitmap \
++	BlockId \
++	ByteCodeAsm \
++	ByteCodeInstr \
++	ByteCodeItbls \
++	CLabel \
++	Cmm \
++	CmmCallConv \
++	CmmExpr \
++	CmmInfo \
++	CmmMachOp \
++	CmmNode \
++	CmmUtils \
++	CodeGen.Platform \
++	CodeGen.Platform.ARM \
++	CodeGen.Platform.NoRegs \
++	CodeGen.Platform.PPC \
++	CodeGen.Platform.PPC_Darwin \
++	CodeGen.Platform.SPARC \
++	CodeGen.Platform.X86 \
++	CodeGen.Platform.X86_64 \
++	FastBool \
++	Hoopl \
++	Hoopl.Dataflow \
++	InteractiveEvalTypes \
++	MkGraph \
++	PprCmm \
++	PprCmmDecl \
++	PprCmmExpr \
++	Reg \
++	RegClass \
++	SMRep \
++	StgCmmArgRep \
++	StgCmmClosure \
++	StgCmmEnv \
++	StgCmmLayout \
++	StgCmmMonad \
++	StgCmmProf \
++	StgCmmTicky \
++	StgCmmUtils \
++	StgSyn \
++	Stream
++endif
++
+ compiler_stage2_dll0_HS_OBJS = \
+     $(patsubst %,compiler/stage2/build/%.$(dyn_osuf),$(subst .,/,$(compiler_stage2_dll0_MODULES)))
+ 
