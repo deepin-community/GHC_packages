@@ -121,6 +121,7 @@ build-stamp: configure-stamp
 	rm debian/testghc/*
 
 # build haddock separately and hard code paths according to install paths
+	rm -rf debian/haddock-build
 	mkdir -p debian/haddock-build
 	cp -r utils/haddock debian/haddock-build
 	cd debian/haddock-build/haddock; \
