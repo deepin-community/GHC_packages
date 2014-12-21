@@ -28,34 +28,41 @@ Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/tasty-quickcheck
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-tasty-quickcheck
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-tasty-quickcheck
+X-Description: Haskell testing framework, QuickCheck support
+ QuickCheck support for the Tasty test framework.
 
 Package: libghc-tasty-quickcheck-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Haskell testing framework, QuickCheck support${haskell:ShortBlurb}
- QuickCheck support for the Tasty test framework.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-tasty-quickcheck-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Haskell testing framework, QuickCheck support${haskell:ShortBlurb}
- QuickCheck support for the Tasty test framework.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-tasty-quickcheck-doc
 Section: doc
 Architecture: all
-Depends: ${haskell:Depends}, ${misc:Depends}
+Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: Haskell testing framework, QuickCheck support${haskell:ShortBlurb}
- QuickCheck support for the Tasty test framework.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
