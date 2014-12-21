@@ -1,0 +1,65 @@
+Source: haskell-auto-update
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 7.0),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+Build-Depends-Indep: ghc-doc,
+Standards-Version: 3.9.5
+Homepage: http://hackage.haskell.org/package/auto-update
+X-Description: Efficiently run periodic, on-demand actions
+ A common problem is the desire to have an action run at a scheduled interval,
+ but only if it is needed. For example, instead of having every web request
+ result in a new getCurrentTime call, we'd like to have a single worker
+ thread run every second, updating an IORef. However, if the request
+ frequency is less than once per second, this is a pessimization, and worse,
+ kills idle GC.
+ .
+ This library allows you to define actions which will either be performed by a
+ dedicated thread or, in times of low volume, will be executed by the calling
+ thread.
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-auto-update
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-auto-update
+
+Package: libghc-auto-update-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-auto-update-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-auto-update-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
