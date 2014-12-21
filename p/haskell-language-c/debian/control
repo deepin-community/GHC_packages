@@ -18,45 +18,43 @@ Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/language-c
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-language-c
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-language-c
+X-Description: Haskell library for the analysis and generation of C code
+ Language C is a haskell library for the analysis and generation of C code. It
+ features a complete, well tested parser and pretty printer for all of C99 and
+ a large set of GNU extensions.
 
-Package: libghc-language-c-dev
+Package: libghc-foo-dev
 Architecture: any
 Depends: ${haskell:Depends}
- , ${misc:Depends}
-Suggests: libghc-language-c-doc (= ${source:Version})
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Haskell library for the analysis and generation of C code${haskell:ShortBlurb}
- .
- Language C is a haskell library for the analysis and generation of C code. It
- features a complete, well tested parser and pretty printer for all of C99 and
- a large set of GNU extensions.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
-Package: libghc-language-c-prof
+Package: libghc-foo-prof
 Architecture: any
-Depends: libghc-language-c-dev (= ${binary:Version})
- , ${haskell:Depends}
- , ${misc:Depends}
-Suggests: haskell-language-c-doc (= ${source:Version})
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Profiling libraries for Haskell Library.C module${haskell:ShortBlurb}
- .
- Language C is a haskell library for the analysis and generation of C code. It
- features a complete, well tested parser and pretty printer for all of C99 and
- a large set of GNU extensions.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
-Package: libghc-language-c-doc
+Package: libghc-foo-doc
 Section: doc
 Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
-Description: Documentation for Haskell Library.C module${haskell:ShortBlurb}
- .
- Language C is a haskell library for the analysis and generation of C code. It
- features a complete, well tested parser and pretty printer for all of C99 and
- a large set of GNU extensions.
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
