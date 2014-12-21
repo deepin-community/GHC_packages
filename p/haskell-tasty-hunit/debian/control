@@ -18,34 +18,41 @@ Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/tasty-hunit
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-tasty-hunit
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-tasty-hunit
+X-Description: Haskell testing framework, HUnit support
+ HUnit support for the Tasty test framework.
 
 Package: libghc-tasty-hunit-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Haskell testing framework, HUnit support${haskell:ShortBlurb}
- HUnit support for the Tasty test framework.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-tasty-hunit-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Haskell testing framework, HUnit support${haskell:ShortBlurb}
- HUnit support for the Tasty test framework.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-tasty-hunit-doc
 Section: doc
 Architecture: all
-Depends: ${haskell:Depends}, ${misc:Depends}
+Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: Haskell testing framework, HUnit support${haskell:ShortBlurb}
- HUnit support for the Tasty test framework.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
