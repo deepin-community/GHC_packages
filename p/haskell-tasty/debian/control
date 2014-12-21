@@ -40,34 +40,41 @@ Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/tasty
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-tasty
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-tasty
+X-Description: Haskell testing framework
+ A modern and extensible testing framework.
 
 Package: libghc-tasty-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Haskell testing framework${haskell:ShortBlurb}
- A modern and extensible testing framework.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-tasty-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Haskell testing framework${haskell:ShortBlurb}
- A modern and extensible testing framework.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-tasty-doc
 Section: doc
 Architecture: all
-Depends: ${haskell:Depends}, ${misc:Depends}
+Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: Haskell testing framework${haskell:ShortBlurb}
- A modern and extensible testing framework.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
