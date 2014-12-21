@@ -40,34 +40,41 @@ Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/reducers
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-reducers
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-reducers
+X-Description: semigroup-based containers and reductions
+ Semigroups, specialized containers and a general map/reduce framework.
 
 Package: libghc-reducers-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: semigroup-based containers and reductions${haskell:ShortBlurb}
- Semigroups, specialized containers and a general map/reduce framework.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-reducers-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: semigroup-based containers and reductions${haskell:ShortBlurb}
- Semigroups, specialized containers and a general map/reduce framework.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-reducers-doc
 Section: doc
 Architecture: all
-Depends: ${haskell:Depends}, ${misc:Depends}
+Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: semigroup-based containers and reductions${haskell:ShortBlurb}
- Semigroups, specialized containers and a general map/reduce framework.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
