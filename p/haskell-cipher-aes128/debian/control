@@ -1,0 +1,69 @@
+Source: haskell-cipher-aes128
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 7.0),
+ haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-cereal-dev,
+ libghc-cereal-prof,
+ libghc-crypto-api-dev (>= 0.13),
+ libghc-crypto-api-prof,
+ libghc-tagged-dev,
+ libghc-tagged-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-cereal-doc,
+ libghc-crypto-api-doc,
+ libghc-tagged-doc,
+Standards-Version: 3.9.5
+Homepage: http://hackage.haskell.org/package/cipher-aes128
+X-Description: AES and common modes using AES-NI when available.
+ Cipher-aes128 is an implementation of AES and common modes of operation.  It borrows Hanquez's C AES code (see 'cipher-aes') but
+ is unique due to including compile-time detection of
+ NI compiler support, a slightly more functional interface
+ for GCM operations, exposure of 'Ptr' based operations via the .Internal module, and build-in crypto-api support.
+ Cipher-aes128 was originally developed as "'cipher-aes' plus trampolines", which has since been adopted into cipher-aes.
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-cipher-aes128
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-cipher-aes128
+
+Package: libghc-cipher-aes128-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-cipher-aes128-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-cipher-aes128-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
