@@ -25,14 +25,7 @@ Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/regex-tdfa
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-regex-tdfa
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-regex-tdfa
-
-Package: libghc-regex-tdfa-dev
-Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
-Description: Haskell library for a tagged DFA regex engine${haskell:ShortBlurb}
+X-Description: Haskell library for a tagged DFA regex engine
  A pure Haskell alternative to GHC's Text.Regex module (with some
  enhancements). The Text.Regex module marshalls the data back and forth to
  c-arrays to call libc and this is far too slow (and strict).
@@ -42,43 +35,39 @@ Description: Haskell library for a tagged DFA regex engine${haskell:ShortBlurb}
  transformed a DFA table for matching against the input String or
  FastPackedString. The input string is consumed lazily, so it may be an
  arbitrarily long or infinite source.
+
+Package: libghc-regex-tdfa-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-regex-tdfa-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
-Suggests: ${haskell:Suggests}
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
 Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Profiling libraries for the tagged DFA regex engine${haskell:ShortBlurb}
- A pure Haskell alternative to GHC's Text.Regex module (with some
- enhancements). The Text.Regex module marshalls the data back and forth to
- c-arrays to call libc and this is far too slow (and strict).
- .
- This module parses regular expression Strings using a Parsec parser and
- creates an internal data structure (Text.Regex.Lazy.Pattern). This is then
- transformed a DFA table for matching against the input String or
- FastPackedString. The input string is consumed lazily, so it may be an
- arbitrarily long or infinite source.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-regex-tdfa-doc
 Section: doc
 Architecture: all
-Depends: ${haskell:Depends}, ${misc:Depends}
-Suggests: ${haskell:Suggests}
+Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
-Description: Documentation for the tagged DFA regex engine${haskell:ShortBlurb}
- A pure Haskell alternative to GHC's Text.Regex module (with some
- enhancements). The Text.Regex module marshalls the data back and forth to
- c-arrays to call libc and this is far too slow (and strict).
- .
- This module parses regular expression Strings using a Parsec parser and
- creates an internal data structure (Text.Regex.Lazy.Pattern). This is then
- transformed a DFA table for matching against the input String or
- FastPackedString. The input string is consumed lazily, so it may be an
- arbitrarily long or infinite source.
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
