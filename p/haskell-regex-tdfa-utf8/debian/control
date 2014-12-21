@@ -20,40 +20,42 @@ Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/regex-tdfa
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-regex-tdfa-utf8
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-regex-tdfa-utf8
+X-Description: Haskell library for the UTF8 version of the tagged DFA regex engine
+ This combines regex-tdfa with utf8-string to allow searching over UTF8 encoded
+ lazy bytestrings.
 
 Package: libghc-regex-tdfa-utf8-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
-Suggests: ${haskell:Suggests}
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
 Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Haskell library for the UTF8 version of the tagged DFA regex engine${haskell:ShortBlurb}
- This combines regex-tdfa with utf8-string to allow searching over UTF8 encoded
- lazy bytestrings.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-regex-tdfa-utf8-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
-Suggests: ${haskell:Suggests}
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
 Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Profiling libraries for the UTF8 version of the tagged DFA regex engine${haskell:ShortBlurb}
- This combines regex-tdfa with utf8-string to allow searching over UTF8 encoded
- lazy bytestrings.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-regex-tdfa-utf8-doc
 Section: doc
 Architecture: all
-Depends: ${haskell:Depends}, ${misc:Depends}
-Suggests: ${haskell:Suggests}
+Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
-Description: Documentation for the utf-8 version of the tagged DFA regex engine${haskell:ShortBlurb}
- This combines regex-tdfa with utf8-string to allow searching over UTF8 encoded
- lazy bytestrings.
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
