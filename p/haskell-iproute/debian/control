@@ -26,40 +26,43 @@ Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/iproute
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-iproute
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-iproute
-
-Package: libghc-iproute-dev
-Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
-Description: Haskell IP routing table${haskell:ShortBlurb}
+X-Description: Haskell IP routing table
  IP Routing Table is a tree of IP ranges to search one of them on
  the longest match base. It is a kind of TRIE with one way branching
  removed. Both IPv4 and IPv6 are supported.
+
+Package: libghc-iproute-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-iproute-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Haskell IP routing table${haskell:ShortBlurb}
- IP Routing Table is a tree of IP ranges to search one of them on
- the longest match base. It is a kind of TRIE with one way branching
- removed. Both IPv4 and IPv6 are supported.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-iproute-doc
 Section: doc
 Architecture: all
-Depends: ${haskell:Depends}, ${misc:Depends}
+Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: Haskell IP routing table${haskell:ShortBlurb}
- IP Routing Table is a tree of IP ranges to search one of them on
- the longest match base. It is a kind of TRIE with one way branching
- removed. Both IPv4 and IPv6 are supported.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
