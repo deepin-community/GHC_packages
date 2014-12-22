@@ -1,0 +1,95 @@
+Source: haskell-network-uri
+Priority: extra
+Section: haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Christopher Reichert <creichert07@gmail.com>
+Build-Depends: debhelper (>= 7.0),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-network-dev,
+ libghc-network-prof,
+ libghc-parsec3-dev (>= 3.0),
+ libghc-parsec3-dev (<< 3.2),
+ libghc-parsec3-prof (>= 3) | libghc-parsec3-prof (<< 3.2),
+ libghc-hunit-dev,
+ libghc-hunit-prof,
+ libghc-test-framework-dev,
+ libghc-test-framework-prof,
+ libghc-test-framework-hunit-dev,
+ libghc-test-framework-hunit-prof,
+ libghc-test-framework-quickcheck2-dev,
+ libghc-test-framework-quickcheck2-prof
+Build-Depends-Indep: ghc-doc,
+ libghc-network-doc,
+ libghc-parsec3-doc (>= 3) | libghc-parsec3-doc (<< 3.2),
+ libghc-hunit-doc,
+ libghc-test-framework-doc,
+ libghc-test-framework-hunit-doc,
+ libghc-test-framework-quickcheck2-doc
+Standards-Version: 3.9.6
+Homepage: http://hackage.haskell.org/package/network-uri
+X-Description: URI manipulation
+ This package provides an URI manipulation inteface.
+ .
+ In network-2.6 the @Network.URI@ module was split off from the
+ network package into this package. If you're using the @Network.URI@
+ module you can automatically get it from the right package by adding
+ this to your .cabal file:
+ .
+ > flag network-uri
+ >   description: Get Network.URI from the network-uri package
+ >   default: True
+ >
+ > library
+ >   -- ...
+ >   if flag(network-uri)
+ >     build-depends: network-uri >= 2.6, network >= 2.6
+ >   else
+ >     build-depends: network-uri < 2.6, network < 2.6
+ .
+ That is, get the module from either network < 2.6 or from
+ network-uri >= 2.6.
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-network-uri
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-network-uri
+
+Package: libghc-network-uri-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+  ${haskell:LongDescription}
+  .
+  ${haskell:Blurb}
+
+Package: libghc-network-uri-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+  ${haskell:LongDescription}
+  .
+  ${haskell:Blurb}
+
+Package: libghc-network-uri-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+  ${haskell:LongDescription}
+  .
+  ${haskell:Blurb}
