@@ -6,7 +6,6 @@ Uploaders: Erik de Castro Lopo <merikd@mega-nerd.com>,
  Petr Rockai <mornfall@debian.org>
 Build-Depends: cdbs, debhelper (>= 9), haskell-devscripts (>= 0.9),
  ghc (>= 7.4),
- ghc-prof,
  bash-completion (>= 1:1.1),
  libcurl4-gnutls-dev (>= 7.19.1),
  libghc-hashed-storage-dev (>= 0.5.6),
@@ -30,8 +29,6 @@ Build-Depends: cdbs, debhelper (>= 9), haskell-devscripts (>= 0.9),
  libghc-regex-compat-dev (>= 0.95.1),
  libghc-tar-dev (>= 0.3),
  libghc-tar-dev (<< 0.5),
- libghc-terminfo-dev (>= 0.3),
- libghc-terminfo-dev (<< 0.4),
  libghc-text-dev (>= 0.11.0.6),
  libghc-text-dev (<< 1.2),
  libghc-vector-dev (>= 0.7),
@@ -39,39 +36,6 @@ Build-Depends: cdbs, debhelper (>= 9), haskell-devscripts (>= 0.9),
  libghc-utf8-string-dev (<< 0.4),
  libghc-zlib-dev (>= 0.5.1.0),
  libghc-zlib-dev (<< 0.6.0.0),
- libghc-hashed-storage-prof,
- libghc-haskeline-prof,
- libghc-html-prof,
- libghc-http-prof,
- libghc-mmap-prof,
- libghc-mtl-prof,
- libghc-network-prof,
- libghc-parsec3-prof,
- libghc-random-prof,
- libghc-regex-compat-prof,
- libghc-tar-prof,
- libghc-terminfo-prof,
- libghc-text-prof,
- libghc-vector-prof,
- libghc-utf8-string-prof,
- libghc-zlib-prof
-Build-Depends-Indep:
- ghc-doc,
- libghc-hashed-storage-doc,
- libghc-haskeline-doc,
- libghc-html-doc,
- libghc-http-doc,
- libghc-mmap-doc,
- libghc-mtl-doc,
- libghc-network-doc,
- libghc-parsec3-doc,
- libghc-random-doc,
- libghc-regex-compat-doc,
- libghc-tar-doc,
- libghc-terminfo-doc,
- libghc-text-doc,
- libghc-vector-doc,
- libghc-zlib-doc
 Build-Conflicts:
  libghc-parsec2-dev,
 Homepage: http://darcs.net/
@@ -100,39 +64,3 @@ Description: distributed, interactive, smart revision control system
     based on a unique algebra of patches. This smartness lets you
     respond to changing demands in ways that would otherwise not be
     possible.
-
-Package: libghc-darcs-dev
-Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
-Description: distributed, interactive, smart revision control system${haskell:ShortBlurb}
- This library provides an interface to the Darcs distributed revision control
- system.
- .
- ${haskell:Blurb}
-
-Package: libghc-darcs-prof
-Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
-Description: distributed, interactive, smart revision control system${haskell:ShortBlurb}
- This library provides an interface to the Darcs distributed revision control
- system.
- .
- ${haskell:Blurb}
-
-Package: libghc-darcs-doc
-Section: doc
-Architecture: all
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Description: distributed, interactive, smart revision control system${haskell:ShortBlurb}
- This library provides an interface to the Darcs distributed revision control
- system.
- .
- ${haskell:Blurb}
