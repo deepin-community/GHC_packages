@@ -1,0 +1,60 @@
+Source: haskell-th-expand-syns
+Priority: extra
+Section: haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders:Christopher Reichert <creichert07@gmail.com>
+Build-Depends: debhelper (>= 7.0),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-syb-dev,
+ libghc-syb-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-syb-doc,
+Standards-Version: 3.9.6
+Homepage: http://hackage.haskell.org/package/th-expand-syns
+X-Description: Expands type synonyms in Template Haskell ASTs
+ Expands type synonyms in Template Haskell ASTs
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-th-expand-syns
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-th-expand-syns
+
+Package: libghc-th-expand-syns-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+  ${haskell:LongDescription}
+  .
+  ${haskell:Blurb}
+
+Package: libghc-th-expand-syns-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+  ${haskell:LongDescription}
+  .
+  ${haskell:Blurb}
+
+Package: libghc-th-expand-syns-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+  ${haskell:LongDescription}
+  .
+  ${haskell:Blurb}
