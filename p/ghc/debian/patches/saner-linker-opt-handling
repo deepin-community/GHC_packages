@@ -13,11 +13,11 @@ where -fuse-ld=gold caused problems.
 So as a work-around we remove any other use of CONF_GCC_LINKER_OPTS_STAGE2.
 
 
-Index: ghc-7.8.3.20141119/libffi/ghc.mk
+Index: ghc-7.8.4/libffi/ghc.mk
 ===================================================================
---- ghc-7.8.3.20141119.orig/libffi/ghc.mk	2014-04-07 20:26:08.000000000 +0200
-+++ ghc-7.8.3.20141119/libffi/ghc.mk	2014-12-08 18:57:03.392339809 +0100
-@@ -88,7 +88,7 @@
+--- ghc-7.8.4.orig/libffi/ghc.mk	2014-12-23 15:28:03.043620563 +0100
++++ ghc-7.8.4/libffi/ghc.mk	2014-12-23 15:28:03.039620491 +0100
+@@ -95,7 +95,7 @@
  	    NM=$(NM) \
  	    RANLIB=$(REAL_RANLIB_CMD) \
          CFLAGS="$(SRC_CC_OPTS) $(CONF_CC_OPTS_STAGE1) -w" \
@@ -26,10 +26,10 @@ Index: ghc-7.8.3.20141119/libffi/ghc.mk
          "$(SHELL)" ./configure \
  	          --prefix=$(TOP)/libffi/build/inst \
  	          --libdir=$(TOP)/libffi/build/inst/lib \
-Index: ghc-7.8.3.20141119/mk/config.mk.in
+Index: ghc-7.8.4/mk/config.mk.in
 ===================================================================
---- ghc-7.8.3.20141119.orig/mk/config.mk.in	2014-12-08 18:49:28.215171926 +0100
-+++ ghc-7.8.3.20141119/mk/config.mk.in	2014-12-08 18:57:20.637055726 +0100
+--- ghc-7.8.4.orig/mk/config.mk.in	2014-12-23 15:28:03.043620563 +0100
++++ ghc-7.8.4/mk/config.mk.in	2014-12-23 15:28:03.039620491 +0100
 @@ -570,7 +570,6 @@
  # $1 = stage
  SRC_HSC2HS_OPTS_STAGE$1 += $$(addprefix --cflag=,$$(filter-out -O,$$(SRC_CC_OPTS) $$(CONF_CC_OPTS_STAGE$1)))
@@ -38,10 +38,10 @@ Index: ghc-7.8.3.20141119/mk/config.mk.in
  endef
  $(eval $(call set_stage_HSC2HS_OPTS,0))
  $(eval $(call set_stage_HSC2HS_OPTS,1))
-Index: ghc-7.8.3.20141119/rules/build-package-data.mk
+Index: ghc-7.8.4/rules/build-package-data.mk
 ===================================================================
---- ghc-7.8.3.20141119.orig/rules/build-package-data.mk	2014-04-14 14:38:12.000000000 +0200
-+++ ghc-7.8.3.20141119/rules/build-package-data.mk	2014-12-08 18:57:49.366250332 +0100
+--- ghc-7.8.4.orig/rules/build-package-data.mk	2014-12-23 15:28:03.043620563 +0100
++++ ghc-7.8.4/rules/build-package-data.mk	2014-12-23 15:28:03.039620491 +0100
 @@ -50,7 +50,7 @@
  # for a feature it may not generate warning-free C code, and thus may
  # think that the feature doesn't exist if -Werror is on.
@@ -51,10 +51,10 @@ Index: ghc-7.8.3.20141119/rules/build-package-data.mk
  $1_$2_CONFIGURE_CPPFLAGS = $$(SRC_CPP_OPTS) $$(CONF_CPP_OPTS_STAGE$3) $$($1_CPP_OPTS) $$($1_$2_CPP_OPTS)
  
  $1_$2_CONFIGURE_OPTS += --configure-option=CFLAGS="$$($1_$2_CONFIGURE_CFLAGS)"
-Index: ghc-7.8.3.20141119/rules/distdir-opts.mk
+Index: ghc-7.8.4/rules/distdir-opts.mk
 ===================================================================
---- ghc-7.8.3.20141119.orig/rules/distdir-opts.mk	2014-04-07 20:26:08.000000000 +0200
-+++ ghc-7.8.3.20141119/rules/distdir-opts.mk	2014-12-08 18:58:18.435461083 +0100
+--- ghc-7.8.4.orig/rules/distdir-opts.mk	2014-12-23 15:28:03.043620563 +0100
++++ ghc-7.8.4/rules/distdir-opts.mk	2014-12-23 15:28:03.039620491 +0100
 @@ -64,7 +64,6 @@
  endif
  
@@ -63,10 +63,10 @@ Index: ghc-7.8.3.20141119/rules/distdir-opts.mk
   $$(SRC_LD_OPTS) \
   $$($1_LD_OPTS) \
   $$($1_$2_LD_OPTS) \
-Index: ghc-7.8.3.20141119/utils/hsc2hs/ghc.mk
+Index: ghc-7.8.4/utils/hsc2hs/ghc.mk
 ===================================================================
---- ghc-7.8.3.20141119.orig/utils/hsc2hs/ghc.mk	2014-04-07 20:26:15.000000000 +0200
-+++ ghc-7.8.3.20141119/utils/hsc2hs/ghc.mk	2014-12-08 18:57:07.848524715 +0100
+--- ghc-7.8.4.orig/utils/hsc2hs/ghc.mk	2014-12-23 15:28:03.043620563 +0100
++++ ghc-7.8.4/utils/hsc2hs/ghc.mk	2014-12-23 15:28:03.039620491 +0100
 @@ -27,7 +27,7 @@
  # system uses it for all stages and passes the right options for each stage
  # on the command line
