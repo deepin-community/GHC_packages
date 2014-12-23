@@ -1,6 +1,8 @@
---- a/aeson.cabal
-+++ b/aeson.cabal
-@@ -85,6 +85,10 @@
+Index: aeson-0.8.0.2/aeson.cabal
+===================================================================
+--- aeson-0.8.0.2.orig/aeson.cabal	2014-12-23 13:51:58.479832676 +0100
++++ aeson-0.8.0.2/aeson.cabal	2014-12-23 13:52:36.524513794 +0100
+@@ -84,6 +84,10 @@
    description: build TH bits
    default: True
 
@@ -11,18 +13,14 @@
  library
    exposed-modules:
      Data.Aeson
-@@ -156,11 +160,13 @@
-     Types
+@@ -132,6 +136,10 @@
+   ghc-options: -O2 -Wall
+   cpp-options: -DGENERICS
 
-   ghc-options:
--    -Wall -threaded -rtsopts
-+    -Wall -rtsopts
-   if impl(ghc < 7.4)
-     ghc-options: -fcontext-stack=40
-   if impl(ghc >= 7.2)
-     cpp-options: -DGHC_GENERICS
 +  if flag(threaded)
 +    ghc-options: -threaded
-
-   build-depends:
-     QuickCheck,
++
++
+ test-suite tests
+   type:           exitcode-stdio-1.0
+   hs-source-dirs: tests
