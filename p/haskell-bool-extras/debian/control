@@ -1,0 +1,69 @@
+Source: haskell-bool-extras
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 9.0)
+               , haskell-devscripts (>= 0.8)
+               , cdbs
+               , ghc
+               , ghc-prof
+Standards-Version: 3.9.6
+Build-Depends-Indep: ghc-doc
+Vcs-Git: git://github.com/kaction/deb-bool-extras
+Vcs-Browser: https://github.com/kaction/deb-bool-extras
+Homepage: http://tom.lokhorst.eu/bool-extras
+X-Description: Fold function for Bool type
+ Function `bool' allows folding over boolean values, that is
+ comparable to the `maybe' or `either' functions on their respective
+ types.
+ .
+ Function `bool' is a replacement for the build-in if-then-else
+ syntax. However, since it is a function, it can be partially
+ applied and passed around to higher order functions.
+
+Package: libghc-bool-extras-dev
+Architecture: any
+Depends: ${shlibs:Depends}
+         , ${haskell:Depends}
+         , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Conflicts: ${haskell:Conflicts}
+Provides: ${haskell:Provides}
+Replaces: ${haskell:Replaces}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-bool-extras-prof
+Architecture: any
+Depends: ${shlibs:Depends}
+         , ${haskell:Depends}
+         , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Conflicts: ${haskell:Conflicts}
+Provides: ${haskell:Provides}
+Replaces: ${haskell:Replaces}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+
+Package: libghc-bool-extras-doc
+Architecture: all
+Section: doc
+Depends: ${shlibs:Depends}
+         , ${haskell:Depends}
+         , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Conflicts: ${haskell:Conflicts}
+Provides: ${haskell:Provides}
+Replaces: ${haskell:Replaces}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
