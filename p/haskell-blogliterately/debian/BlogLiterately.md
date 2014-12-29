@@ -1,4 +1,4 @@
-% BLOGLITERATELY(1) BlogLiteerately Manual
+% BLOGLITERATELY(1) BlogLiterately Manual
 % Robert Greayer, Brent Yorgey
 % 2014-12-04
 # NAME
