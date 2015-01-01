@@ -1,0 +1,23 @@
+#!/bin/sh
+set -e
+
+# Create the example package
+cd debian/tests
+cp Setup.hs example.cabal example.hs $ADTTMP
+cd $ADTTMP
+mkdir example
+mv Setup.hs example.cabal example.hs example
+cd example
+touch LICENSE.txt # Cabal expects this
+
+# These tests are needed to make sure the cabal libraries used to compile
+# cabal-install and hgettext are compatible.
+# Test whether we can configure this
+cabal configure
+# Test whether we can build this
+cabal build
+# Test whether we can compile to repl
+cabal repl
+# Test whether we can install
+mkdir $ADTTMP/test-install
+cabal install --prefix $ADTTMP/test-install
