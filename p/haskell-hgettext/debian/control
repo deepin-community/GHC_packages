@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Sven Bartscher <sven.bartscher@weltraumschlangen.de>
 Build-Depends: debhelper (>= 9)
   , cdbs
-  , haskell-devscripts (>= 0.9)
+  , haskell-devscripts (>= 0.8)
   , ghc
   , ghc-prof
   , libghc-setlocale-dev
@@ -14,17 +14,20 @@ Build-Depends: debhelper (>= 9)
   , libghc-uniplate-prof
   , libghc-src-exts-dev
   , libghc-src-exts-prof
-  , libghc-cabal-dev
-  , libghc-cabal-prof
+  , libghc-cabal-dev (>= 1.20)
+  , libghc-cabal-prof (>= 1.20)
+# The -prof and -doc packages also need the constraint, because ghc
+# provieds libghc-cabal-prof and -doc
 Build-Depends-Indep: ghc-doc
 		   , libghc-setlocale-doc
 		   , libghc-uniplate-doc
 		   , libghc-src-exts-doc
-		   , libghc-cabal-doc
+		   , libghc-cabal-doc (>= 1.20)
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/hgettext
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hgettext
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-hgettext
+Testsuite: autopkgtest
 X-Description: Gettext bindings for haskell
  This package provides bindings to gettext in haskell.
 
