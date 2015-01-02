@@ -17,7 +17,7 @@ cabal configure
 # Test whether we can build this
 cabal build
 # Test whether we can compile to repl
-cabal repl
+/bin/echo -e 'putStrLn "works"\n:quit' | cabal repl
 # Test whether we can install
 mkdir $ADTTMP/test-install
 cabal install --prefix $ADTTMP/test-install
