@@ -5,7 +5,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Christopher Reichert <creichert07@gmail.com>
 Build-Depends: debhelper (>= 9)
   , cdbs
-  , haskell-devscripts (>= 0.8.15)
+  , haskell-devscripts (>= 0.9)
   , ghc
   , ghc-prof
   , c2hs
@@ -137,11 +137,23 @@ X-Description:  Web application deployment manager, focusing on Haskell web fram
     zero downtime deployments. For more information, please see the
     README on Github: <https://github.com/snoyberg/keter#readme>
 
+Package: keter
+Architecture: any
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommend}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
 Package: libghc-keter-dev
 Architecture: any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
   , ${misc:Depends}
+  , keter (>= ${binary:Version})
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
