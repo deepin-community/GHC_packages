@@ -19,7 +19,7 @@ install/keter:: debian/tmp-inst-ghc debian/extra-depends
 	cp -av debian/tmp-inst-ghc/usr/bin/keter debian/keter/usr/bin
 	@#cp -av debian/tmp-inst-ghc/usr/share/keter debian/keter/usr/share
 
-	@cp debian/keter-config.yaml debian/keter/etc/keter.conf
+	@cp debian/keter.conf debian/keter/etc
 	@cp debian/keter.service /lib/systemd/system
 
 	@# Build data packages depends
