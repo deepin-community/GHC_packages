@@ -4,6 +4,7 @@ Uploaders: Dmitry Bogatov <KAction@gnu.org>
 Priority: extra
 Section: haskell
 Build-Depends: debhelper (>= 9.0),
+ pandoc,
  haskell-devscripts (>= 0.9),
  cdbs,
  ghc,
@@ -42,9 +43,40 @@ Homepage: http://hackage.haskell.org/package/stylish-haskell
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-stylish-haskell
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-stylish-haskell
 X-Description: Haskell code prettifier
- A Haskell code prettifier. For more information, see:
+ Simple Haskell code prettifier. This tool tries to help where
+ necessary without getting in the way.
  .
- <https://github.com/jaspervdj/stylish-haskell/blob/master/README.markdown>
+ Features:
+ .
+  * Aligns and sorts import statements
+  * Groups and wraps {-# LANGUAGE #-} pragmas,
+    can remove (some) redundant pragmas
+  * Removes trailing whitespace
+  * Replaces tabs by four spaces
+    (turned off by default)
+  * Replaces some ASCII sequences by their Unicode equivalents
+    (turned off by default)
+ .
+ As end-user, you are probably interested in `stylish-haskell`.
+
+Package: stylish-haskell
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Recommends: ghc
+Description: Haskell code prettifier
+ Simple Haskell code prettifier. This tool tries to help where
+ necessary without getting in the way.
+ .
+ Features:
+ .
+  * Aligns and sorts import statements
+  * Groups and wraps {-# LANGUAGE #-} pragmas,
+    can remove (some) redundant pragmas
+  * Removes trailing whitespace
+  * Replaces tabs by four spaces
+    (turned off by default)
+  * Replaces some ASCII sequences by their Unicode equivalents
+    (turned off by default)
 
 Package: libghc-stylish-haskell-dev
 Architecture: any
