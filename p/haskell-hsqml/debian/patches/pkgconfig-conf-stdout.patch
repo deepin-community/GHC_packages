@@ -1,10 +1,10 @@
---- a/Setup.hs	2015-01-22 11:12:48.119095024 -0600
-+++ b/Setup.hs	2015-01-22 11:28:05.567114932 -0600
+--- a/Setup.hs
++++ b/Setup.hs
 @@ -288,6 +288,7 @@ regWithQt pkg@PackageDescription { libra
      Just regFile -> do
        writeUTF8File (fromMaybe (display (packageId pkg) <.> "conf") regFile) $
          I.showInstalledPackageInfo instPkgInfo'
-+      putStrLn fromMaybe (display (packageId pkg) <.> "conf") regFile
++      putStrLn $ fromMaybe (display (packageId pkg) <.> "conf") regFile
      _ | fromFlag (regGenScript flags) ->
        die "Registration scripts are not implemented."
        | otherwise ->
