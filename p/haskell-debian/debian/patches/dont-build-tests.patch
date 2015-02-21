@@ -1,16 +1,22 @@
-Index: debian-3.83.3.1/debian.cabal
-===================================================================
---- debian-3.83.3.1.orig/debian.cabal	2014-08-29 10:01:11.647168975 -0700
-+++ debian-3.83.3.1/debian.cabal	2014-08-29 10:06:49.767183397 -0700
-@@ -35,7 +35,6 @@
-    exceptions,
-    filepath,
-    HaXml >= 1.20,
--   HUnit,
-    ListLike,
-    mtl,
-    old-locale,
-@@ -98,11 +97,7 @@
+--- a/Setup.hs
++++ b/Setup.hs
+@@ -8,12 +8,4 @@ import System.Exit
+ import System.FilePath ((</>))
+ import System.Process
+
+-main = copyFile "debian/changelog" "changelog" >>
+-       defaultMainWithHooks simpleUserHooks {
+-         postBuild = \ _ _ _ lbi -> runTestScript lbi
+-       , runTests = \ _ _ _ lbi -> runTestScript lbi
+-       }
+-
+-runTestScript lbi =
+-    system (buildDir lbi </> "debian-tests/debian-tests") >>= \ code ->
+-    if code == ExitSuccess then return () else error "Test Failure"
++main = defaultMain
+--- a/debian.cabal
++++ b/debian.cabal
+@@ -93,11 +93,7 @@ Library
          Debian.UTF8,
          Debian.Util.FakeChanges
   other-modules:
@@ -23,37 +29,19 @@ Index: debian-3.83.3.1/debian.cabal
 
  Executable fakechanges
   Hs-Source-Dirs: utils
-@@ -129,19 +124,6 @@
+@@ -124,15 +120,6 @@ Executable apt-get-build-depends
   ghc-options: -threaded -W -O2
   Extensions:           ExistentialQuantification CPP
 
 -Executable debian-tests
 - Main-is: Test/Main.hs
 - ghc-options: -threaded -W -O2
-- Build-Depends: ansi-wl-pprint, base, bytestring, containers, debian, directory, exceptions, HUnit, ListLike, mtl, parsec, process, regex-compat, regex-tdfa, template-haskell, text, utf8-string
+- Build-Depends: ansi-wl-pprint, base, bytestring, containers, debian, directory, exceptions, HUnit, ListLike >= 4.1.1, mtl, parsec, pretty, prettyclass, process, process-extras >= 0.2.0, regex-compat, regex-tdfa, template-haskell, text, utf8-string
 - if flag(network-uri)
 -   Build-Depends: network >= 2.6, network-uri >= 2.6
 - else
 -   Build-Depends: network >= 2.4 && < 2.6
-- if flag(listlike)
--   build-depends: process-listlike
-- else
--   build-depends: process-extras
 -
  source-repository head
-   type:     darcs
+   type:     git
    location: https://github.com/ddssff/debian-haskell
-Index: debian-3.83.3.1/Setup.hs
-===================================================================
---- debian-3.83.3.1.orig/Setup.hs	2014-08-29 10:01:11.647168975 -0700
-+++ debian-3.83.3.1/Setup.hs	2014-08-29 10:25:00.283229913 -0700
-@@ -10,8 +10,7 @@
-
- main = copyFile "debian/changelog" "changelog" >>
-        defaultMainWithHooks simpleUserHooks {
--         postBuild = \ _ _ _ lbi -> runTestScript lbi
--       , runTests = \ _ _ _ lbi -> runTestScript lbi
-+         runTests = \ _ _ _ lbi -> runTestScript lbi
-        }
-
- runTestScript lbi =
