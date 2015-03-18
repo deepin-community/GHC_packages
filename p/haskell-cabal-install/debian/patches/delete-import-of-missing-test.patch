@@ -1,0 +1,19 @@
+--- a/tests/PackageTests.hs
++++ b/tests/PackageTests.hs
+@@ -35,7 +35,6 @@ import PackageTests.PackageTester ( Test
+ -- Modules containing the tests.
+ import qualified PackageTests.Exec.Check
+ import qualified PackageTests.Freeze.Check
+-import qualified PackageTests.MultipleSource.Check
+
+ -- List of tests to run. Each test will be called with the path to the
+ -- cabal binary to use.
+@@ -43,7 +42,7 @@ tests :: PackageTests.PackageTester.Test
+ tests paths =
+     [ testGroup "Freeze"         $ PackageTests.Freeze.Check.tests         paths
+     , testGroup "Exec"           $ PackageTests.Exec.Check.tests           paths
+-    , testGroup "MultipleSource" $ PackageTests.MultipleSource.Check.tests paths
++
+     ]
+
+ cabalProgram :: Program
