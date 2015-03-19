@@ -2,7 +2,7 @@ Source: haskell-unixutils
 Priority: extra
 Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>
+Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>, Dmitry Bogatov <KAction@gnu.org>
 Build-Depends:
  , debhelper (>= 9)
  , haskell-devscripts (>= 0.9)
@@ -19,10 +19,14 @@ Build-Depends-Indep: ghc-doc
  , libghc-puremd5-doc
  , libghc-regex-tdfa-doc
  , libghc-zlib-doc
-Standards-Version: 3.9.5
+Standards-Version: 3.9.6
 Homepage: http://hackage.haskell.org/package/Unixutils
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-unixutils
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-unixutils
+X-Description: interface between Haskell and Unix-like operating systems
+ Unixutils is a collection of useful and mildly useful functions that
+ you might expect to find in System.* with a heavy bias towards
+ Unix-type operating systems.
 
 Package: libghc-unixutils-dev
 Architecture: any
@@ -32,9 +36,8 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: An interface between Haskell and Unix-like operating systems${haskell:ShortBlurb}
- A collection of useful and mildly useful functions that you might expect to
- find in System.* with a heavy bias towards Unix-type operating systems.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
@@ -46,9 +49,8 @@ Depends: ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
-Description: Profiling libraries for the haskell-unixutils package${haskell:ShortBlurb}
- A collection of useful and mildly useful functions that you might expect to
- find in System.* with a heavy bias towards Unix-type operating systems.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
@@ -58,8 +60,7 @@ Architecture: all
 Depends: ${misc:Depends}, ${haskell:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
-Description: Documentation for the haskell-unixutils package${haskell:ShortBlurb}
- A collection of useful and mildly useful functions that you might expect to
- find in System.* with a heavy bias towards Unix-type operating systems.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
