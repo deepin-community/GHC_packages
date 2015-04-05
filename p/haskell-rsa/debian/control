@@ -9,24 +9,30 @@ Build-Depends: debhelper (>= 9)
   , ghc
   , ghc-prof
   , libghc-crypto-api-dev (>> 0.10)
+  , libghc-crypto-api-dev (<< 0.14)
   , libghc-crypto-api-prof
   , libghc-crypto-pubkey-types-dev (>= 0.2)
+  , libghc-crypto-pubkey-types-dev (<< 0.6)
   , libghc-crypto-pubkey-types-prof
-  , libghc-monadcryptorandom-dev
-  , libghc-monadcryptorandom-prof
-  , libghc-puremd5-dev
+  , libghc-puremd5-dev (>= 2.1)
+  , libghc-puremd5-dev (<< 2.3)
   , libghc-puremd5-prof
-  , libghc-sha-dev
+  , libghc-sha-dev (>= 1.6.4.1)
+  , libghc-sha-dev (<< 2.0)
   , libghc-sha-prof
 # for the test suite
   , libghc-drbg-dev (>= 0.5.2)
+  , libghc-drbg-dev (<< 0.7)
   , libghc-quickcheck2-dev (>= 2.5)
+  , libghc-tagged-dev (>= 0.2)
+  , libghc-tagged-dev (<< 0.9)
   , libghc-test-framework-dev (>= 0.8.0.3)
-  , libghc-test-framework-quickcheck2-dev (>=0.3.0.2)
+  , libghc-test-framework-dev (<< 0.10)
+  , libghc-test-framework-quickcheck2-dev (>= 0.3.0.2)
+  , libghc-test-framework-quickcheck2-dev (<< 0.5)
 Build-Depends-Indep: ghc-doc
   , libghc-crypto-api-doc
   , libghc-crypto-pubkey-types-doc
-  , libghc-monadcryptorandom-doc
   , libghc-puremd5-doc
   , libghc-sha-doc
 Standards-Version: 3.9.4
