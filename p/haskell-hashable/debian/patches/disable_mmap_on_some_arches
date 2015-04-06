@@ -3,13 +3,13 @@ That is armel, armhf, mips, mipsel and powerpc, where mmap fails with EINVAL.
 Author: Louis Bettens <louis@bettens.info>
 ---
 This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
-Index: haskell-hashable-1.2.1.0/hashable.cabal
+Index: hashable-1.2.3.2/hashable.cabal
 ===================================================================
---- haskell-hashable-1.2.1.0.orig/hashable.cabal
-+++ haskell-hashable-1.2.1.0/hashable.cabal
-@@ -77,7 +77,7 @@
+--- hashable-1.2.3.2.orig/hashable.cabal	2015-04-06 12:56:09.854973988 +0200
++++ hashable-1.2.3.2/hashable.cabal	2015-04-06 12:56:09.850973899 +0200
+@@ -79,7 +79,7 @@
                       QuickCheck >= 2.4.0.1,
-                      random == 1.0.*,
+                      random >= 1.0 && < 1.2,
                       text >= 0.11.0.5
 -  if !os(windows)
 +  if !os(windows) && !(arch(arm) || arch(mips) || arch(ppc) || arch(ppc64) || arch(hppa))
