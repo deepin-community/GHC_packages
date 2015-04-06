@@ -1,14 +1,17 @@
---- a/hslua.cabal
-+++ b/hslua.cabal
-@@ -23,14 +23,14 @@
+Index: hslua-0.3.13/hslua.cabal
+===================================================================
+--- hslua-0.3.13.orig/hslua.cabal	2015-04-06 12:29:13.105252831 +0200
++++ hslua-0.3.13/hslua.cabal	2015-04-06 12:30:15.828744759 +0200
+@@ -25,7 +25,7 @@
 
  flag system-lua
    description:          Use the system-wide lua instead of the bundled copy
 -  default:              False
 +  default:              True
 
- Library
-   Build-depends:        base==4.*, mtl >= 2.1
+ flag apicheck
+   description:          Compile Lua with -DLUA_USE_APICHECK.
+@@ -36,7 +36,7 @@
    Exposed-modules:      Scripting.Lua, Scripting.Lua.ConfigFile
    Hs-source-dirs:       src
    if flag(system-lua)
