@@ -1,0 +1,27 @@
+Source: haskell-hspec-discover
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ libghc-hspec-meta-dev (>= 1.12),
+Standards-Version: 3.9.6
+Homepage: http://hspec.github.io/hspec-discover.html
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-hspec-discover
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hspec-discover
+
+Package: hspec-discover
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Automatically discover and run Hspec tests
+ It is a useful convention to have one spec file for each source file. That way
+ it is straightforward to find the corresponding spec for a given piece of
+ code. But it requires error prone, and neither challenging nor interesting
+ boiler plate code. So it should be automated. Hspec provides a solution for
+ that. It makes creative use of GHC's support for custom preprocessors. The
+ developer only has to create a test driver that contains a single line.
+ .
+ A complete example is at https://github.com/hspec/hspec-example.
