@@ -1,0 +1,16 @@
+Do not depend on hspec-discover (the haskell library), as that is empty
+anyways. We ensure that the hspec-discover binary is available via
+control/debian.
+
+Index: hspec-2.1.5/hspec.cabal
+===================================================================
+--- hspec-2.1.5.orig/hspec.cabal	2015-04-16 21:38:14.701740958 +0200
++++ hspec-2.1.5/hspec.cabal	2015-04-16 21:38:42.110995831 +0200
+@@ -42,7 +42,6 @@
+   build-depends:
+       base == 4.*
+     , hspec-core == 2.1.5
+-    , hspec-discover == 2.1.5
+     , hspec-expectations == 0.6.1.*
+     , transformers >= 0.2.2.0
+     , QuickCheck >= 2.5.1
