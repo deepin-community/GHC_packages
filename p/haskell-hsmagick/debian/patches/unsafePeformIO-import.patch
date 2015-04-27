@@ -1,0 +1,41 @@
+From 9c7f5fd528f71054edb2705f962fa8c87c81e312 Mon Sep 17 00:00:00 2001
+From: nek0 <nek0@chelnok.de>
+Date: Fri, 17 Oct 2014 21:20:15 +0200
+Subject: [PATCH] mitigite build error
+
+---
+ Graphics/Transform/Magick/FFIHelpers.hsc | 4 ++++
+ Graphics/Transform/Magick/Images.hsc     | 4 ++++
+ hsmagick.cabal                           | 2 +-
+ 3 files changed, 9 insertions(+), 1 deletion(-)
+
+Index: hsmagick-0.5/Graphics/Transform/Magick/FFIHelpers.hsc
+===================================================================
+--- hsmagick-0.5.orig/Graphics/Transform/Magick/FFIHelpers.hsc	2015-04-27 23:17:13.129585878 +0200
++++ hsmagick-0.5/Graphics/Transform/Magick/FFIHelpers.hsc	2015-04-27 23:17:13.129585878 +0200
+@@ -45,6 +45,10 @@
+ import Prelude hiding (maximum, minimum)
+ import Control.Monad
+
++-- mitigate compile error
++
++import System.IO.Unsafe (unsafePerformIO)
++
+ -- functions to help with doing FFI
+
+ setImage :: HImage -> Ptr HImage_ -> HImage
+Index: hsmagick-0.5/Graphics/Transform/Magick/Images.hsc
+===================================================================
+--- hsmagick-0.5.orig/Graphics/Transform/Magick/Images.hsc	2015-04-27 23:17:13.129585878 +0200
++++ hsmagick-0.5/Graphics/Transform/Magick/Images.hsc	2015-04-27 23:17:13.129585878 +0200
+@@ -65,6 +65,10 @@
+ import Data.List
+ import System.Directory
+
++-- mitigate compile error
++
++import System.IO.Unsafe (unsafePerformIO)
++
+ -- The externally-visible Haskell API for GraphicsMagick.
+
+ -- API:
