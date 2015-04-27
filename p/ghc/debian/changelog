@@ -1,13 +1,15 @@
 ghc (7.8.4-1) UNRELEASED; urgency=medium
 
-  * Upload to unstable. Fix version glitch this way, so that we have the
-    "right" version where it matters.
+  * Upload to unstable.
+  * Fix version glitch now, so that it never affects anything besides
+    experimental.
   * ghc-doc: Conflict with libghc-xhtml-doc
-  * Let ghc-haddock break on ghc-doc (<< 7.6.3-20~). Closes #781649.
-  * Improve watch file
-  * Mark all triggers -noawait. Closes: #769554
-  * Joey Hess: armel,armhf: Force use of llvm-3.4, rather than unversioned
-    lvm, which can have abi changes that break ghc. Closes: #763078
+  * Merge from unstable:
+    - Let ghc-haddock break on ghc-doc (<< 7.6.3-20~). Closes #781649.
+    - Improve watch file
+    - Mark all triggers -noawait. Closes: #769554
+    - Joey Hess: armel,armhf: Force use of llvm-3.4, rather than unversioned
+      lvm, which can have abi changes that break ghc. Closes: #763078
 
  -- Joachim Breitner <nomeata@debian.org>  Wed, 18 Feb 2015 00:51:28 +0100
 
@@ -180,6 +182,60 @@ ghc (7.8.20140130-1) experimental; urgency=low
   * Drop ghc-dynamic, now contained in ghc
 
  -- Joachim Breitner <nomeata@debian.org>  Wed, 05 Feb 2014 10:51:51 +0000
+
+ghc (7.6.3-21) unstable; urgency=medium
+
+  * Fix watch file.
+  * Let ghc-haddock break on ghc-doc (<< 7.6.3-20~). If I used piuparts
+    correctly, this finally closes: #781649.
+
+ -- Joachim Breitner <nomeata@debian.org>  Wed, 01 Apr 2015 13:35:10 +0200
+
+ghc (7.6.3-20) unstable; urgency=medium
+
+  * Mark all triggers -noawait. Possibly Closes: #769554
+
+ -- Joachim Breitner <nomeata@debian.org>  Sun, 23 Nov 2014 11:20:59 +0100
+
+ghc (7.6.3-19) unstable; urgency=medium
+
+  * Fix armel/armhf script munging; ghci and runghc are not available on
+    those arches.
+
+ -- Joey Hess <joeyh@debian.org>  Mon, 29 Sep 2014 16:28:23 +0100
+
+ghc (7.6.3-18) unstable; urgency=medium
+
+  * Fix accidental line wrap in debian/rules
+
+ -- Joachim Breitner <nomeata@debian.org>  Mon, 29 Sep 2014 09:52:40 +0200
+
+ghc (7.6.3-17) unstable; urgency=medium
+
+  * armel,armhf: Force use of llvm-3.4, rather than unversioned lvm,
+    which can have abi changes that break ghc. Closes: #763078
+
+ -- Joey Hess <joeyh@debian.org>  Sun, 28 Sep 2014 19:16:16 +0100
+
+ghc (7.6.3-16) unstable; urgency=medium
+
+  * Also do not conflict with libghc-binary-doc
+
+ -- Joachim Breitner <nomeata@debian.org>  Tue, 29 Jul 2014 14:21:49 +0200
+
+ghc (7.6.3-15) unstable; urgency=medium
+
+  * Do not conflict with libghc-binary-dev.
+
+ -- Joachim Breitner <nomeata@debian.org>  Sat, 26 Jul 2014 15:32:10 +0200
+
+ghc (7.6.3-14) unstable; urgency=medium
+
+  * Backport from 7.8: Do not panic when annotations are encountered on non-TH
+    architectures. Less work this way than patching all the library code.
+    (Closes: 752460). Thanks to Dejan Latinovic to provide the patch.
+
+ -- Joachim Breitner <nomeata@debian.org>  Tue, 01 Jul 2014 09:18:02 +0200
 
 ghc (7.6.3-13) unstable; urgency=medium
 
