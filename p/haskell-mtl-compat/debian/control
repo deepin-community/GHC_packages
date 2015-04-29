@@ -1,0 +1,69 @@
+Source: haskell-mtl-compat
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-mtl-dev (>= 2.2.1),
+ libghc-mtl-dev (<< 2.3),
+ libghc-mtl-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-mtl-doc,
+Standards-Version: 3.9.6
+Homepage: https://github.com/haskell-compat/mtl-compat
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-mtl-compat
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-mtl-compat
+X-Description: Backported Control.Monad.Except module from mtl
+ This package backports the "Control.Monad.Except" module from
+ mtl (if using mtl-2.2.0.1 or earlier), which reexports the
+ ExceptT monad transformer and the MonadError class.
+ .
+ This package should only be used if there is a need to use the
+ Control.Monad.Except module specifically. If you just want
+ the mtl class instances for ExceptT, use
+ transformers-compat instead, since mtl-compat does nothing
+ but reexport the instances from that package.
+
+Package: libghc-mtl-compat-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-mtl-compat-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-mtl-compat-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
