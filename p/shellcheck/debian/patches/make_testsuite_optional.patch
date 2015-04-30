@@ -8,18 +8,20 @@ build on non-TH architectures. This patch removes the runTests symbol defined
 using TemplateHaskell on non-TH architectures by branching on the
 Debian-specific DEBIAN_NO_GHCI CPP macro (Thanks to Joachim Breitner).
 
-Index: ShellCheck-0.3.5/ShellCheck/Analytics.hs
+Index: ShellCheck-0.3.7/ShellCheck/Analytics.hs
 ===================================================================
---- ShellCheck-0.3.5.orig/ShellCheck/Analytics.hs	2014-12-30 21:44:59.000000000 +0100
-+++ ShellCheck-0.3.5/ShellCheck/Analytics.hs	2014-12-30 21:46:39.000000000 +0100
-@@ -15,8 +15,15 @@
+--- ShellCheck-0.3.7.orig/ShellCheck/Analytics.hs	2015-04-30 21:00:47.000000000 +0200
++++ ShellCheck-0.3.7/ShellCheck/Analytics.hs	2015-04-30 21:03:09.000000000 +0200
+@@ -15,8 +15,16 @@
      You should have received a copy of the GNU Affero General Public License
      along with this program.  If not, see <http://www.gnu.org/licenses/>.
  -}
-+{-# LANGUAGE CPP #-}
-+#ifndef DEBIAN_NO_GHCI
- {-# LANGUAGE TemplateHaskell #-}
+-{-# LANGUAGE TemplateHaskell, FlexibleContexts #-}
 -module ShellCheck.Analytics (AnalysisOptions(..), defaultAnalysisOptions, filterByAnnotation, runAnalytics, shellForExecutable, runTests) where
++{-# LANGUAGE CPP #-}
++{-# LANGUAGE FlexibleContexts #-}
++#ifndef DEBIAN_NO_GHCI
++{-# LANGUAGE TemplateHaskell #-}
 +#endif
 +module ShellCheck.Analytics (AnalysisOptions(..), defaultAnalysisOptions, filterByAnnotation, runAnalytics, shellForExecutable
 +#ifndef DEBIAN_NO_GHCI
@@ -29,36 +31,35 @@ Index: ShellCheck-0.3.5/ShellCheck/Analytics.hs
 
  import Control.Arrow (first)
  import Control.Monad
-@@ -34,7 +41,9 @@
+@@ -35,7 +43,9 @@
  import ShellCheck.Parser hiding (runTests)
- import Text.Regex
+ import ShellCheck.Regex
  import qualified Data.Map as Map
 +#ifndef DEBIAN_NO_GHCI
- import Test.QuickCheck.All (quickCheckAll)
+ import Test.QuickCheck.All (forAllProperties)
 +#endif
+ import Test.QuickCheck.Test (quickCheckWithResult, stdArgs, maxSuccess)
 
  data Parameters = Parameters {
-     variableFlow :: [StackData],
-@@ -3012,6 +3021,8 @@
-         return $ param `elem` strs
-     warnFor t = warn (getId t) 2146 "This action ignores everything before the -o. Use \\( \\) to group."
+@@ -3312,5 +3322,7 @@
+ checkMaskedReturns _ _ = return ()
+
 
 +#ifndef DEBIAN_NO_GHCI
  return []
- runTests = $quickCheckAll
+ runTests =  $( [| $(forAllProperties) (quickCheckWithResult (stdArgs { maxSuccess = 1 }) ) |])
 +#endif
-
-Index: ShellCheck-0.3.5/ShellCheck/Parser.hs
+Index: ShellCheck-0.3.7/ShellCheck/Parser.hs
 ===================================================================
---- ShellCheck-0.3.5.orig/ShellCheck/Parser.hs	2014-12-30 21:44:59.000000000 +0100
-+++ ShellCheck-0.3.5/ShellCheck/Parser.hs	2014-12-30 21:48:13.000000000 +0100
+--- ShellCheck-0.3.7.orig/ShellCheck/Parser.hs	2015-04-30 21:00:47.000000000 +0200
++++ ShellCheck-0.3.7/ShellCheck/Parser.hs	2015-04-30 21:04:25.000000000 +0200
 @@ -15,8 +15,15 @@
      You should have received a copy of the GNU Affero General Public License
      along with this program.  If not, see <http://www.gnu.org/licenses/>.
  -}
--{-# LANGUAGE NoMonomorphismRestriction, TemplateHaskell #-}
+-{-# LANGUAGE NoMonomorphismRestriction, TemplateHaskell, FlexibleContexts #-}
 -module ShellCheck.Parser (Note(..), Severity(..), parseShell, ParseResult(..), ParseNote(..), sortNotes, noteToParseNote, runTests, readScript) where
-+{-# LANGUAGE CPP, NoMonomorphismRestriction #-}
++{-# LANGUAGE CPP, NoMonomorphismRestriction, FlexibleContexts #-}
 +#ifndef DEBIAN_NO_GHCI
 +{-# LANGUAGE TemplateHaskell #-}
 +#endif
@@ -70,7 +71,7 @@ Index: ShellCheck-0.3.5/ShellCheck/Parser.hs
 
  import ShellCheck.AST
  import ShellCheck.Data
-@@ -33,7 +40,9 @@
+@@ -34,7 +41,9 @@
  import System.IO
  import Text.Parsec.Error
  import GHC.Exts (sortWith)
@@ -80,7 +81,7 @@ Index: ShellCheck-0.3.5/ShellCheck/Parser.hs
 
  backslash = char '\\'
  linefeed = optional carriageReturn >> char '\n'
-@@ -2138,6 +2147,8 @@
+@@ -2164,6 +2173,8 @@
  lt x = trace (show x) x
  ltt t = trace (show t)
 
@@ -89,10 +90,10 @@ Index: ShellCheck-0.3.5/ShellCheck/Parser.hs
  runTests = $quickCheckAll
 +#endif
 
-Index: ShellCheck-0.3.5/ShellCheck/Simple.hs
+Index: ShellCheck-0.3.7/ShellCheck/Simple.hs
 ===================================================================
---- ShellCheck-0.3.5.orig/ShellCheck/Simple.hs	2014-12-30 21:44:59.000000000 +0100
-+++ ShellCheck-0.3.5/ShellCheck/Simple.hs	2014-12-30 21:52:22.000000000 +0100
+--- ShellCheck-0.3.7.orig/ShellCheck/Simple.hs	2015-04-30 21:00:47.000000000 +0200
++++ ShellCheck-0.3.7/ShellCheck/Simple.hs	2015-04-30 21:00:47.000000000 +0200
 @@ -15,15 +15,24 @@
      You should have received a copy of the GNU Affero General Public License
      along with this program.  If not, see <http://www.gnu.org/licenses/>.
@@ -119,9 +120,9 @@ Index: ShellCheck-0.3.5/ShellCheck/Simple.hs
  import Text.Parsec.Pos
 
  shellCheck :: AnalysisOptions -> String -> [ShellCheckComment]
-@@ -72,6 +81,7 @@
- prop_optionDisablesIssue1 =
-     null $ shellCheck (defaultAnalysisOptions { optionExcludes = [2086, 2148] }) "echo $1"
+@@ -75,6 +84,7 @@
+ prop_optionDisablesIssue2 =
+     null $ shellCheck (defaultAnalysisOptions { optionExcludes = [2148, 1037] }) "echo \"$10\""
 
 +#ifndef DEBIAN_NO_GHCI
  return []
