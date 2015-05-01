@@ -167,7 +167,7 @@ install-stamp: build-stamp
 	rm debian/tmp/var/lib/ghc/package.conf.d/package.cache
 	chmod +x debian/provided_substvars
 	debian/provided_substvars
-	sed -ri 's,^haddock-interfaces: /.*?/libraries/,haddock-interfaces: /usr/lib/ghc-doc/haddock/,' debian/tmp/var/lib/ghc/package.conf.d/*.conf
+	sed -ri 's,^haddock-interfaces: /.*?/libraries/,haddock-interfaces: /usr/lib/ghc-doc/haddock/ghc/,' debian/tmp/var/lib/ghc/package.conf.d/*.conf
 
 	# Remove haddock as built within the ghc tree
 	rm -f debian/tmp/usr/bin/haddock \
@@ -193,10 +193,10 @@ ifeq (YES,$(BUILD_HADDOCK_DOCS))
 	mkdir -p debian/tmp/usr/lib/ghc-doc
 	cp debian/gen_contents_index debian/tmp/usr/lib/ghc-doc/
 	chmod +x debian/tmp/usr/lib/ghc-doc/gen_contents_index
-	mkdir debian/tmp/usr/lib/ghc-doc/haddock/
+	mkdir debian/tmp/usr/lib/ghc-doc/haddock/ghc/
 	for f in `find debian/tmp/usr/share/doc/ghc-doc/html/libraries/ -maxdepth 1 -mindepth 1 -type d`; do \
-	    mkdir debian/tmp/usr/lib/ghc-doc/haddock/`basename $$f` ; \
-	    mv $$f/*.haddock debian/tmp/usr/lib/ghc-doc/haddock/`basename $$f` ; done
+	    mkdir debian/tmp/usr/lib/ghc-doc/haddock/ghc/`basename $$f` ; \
+	    mv $$f/*.haddock debian/tmp/usr/lib/ghc-doc/haddock/ghc/`basename $$f` ; done
 	cd debian/tmp/usr/share/doc/ghc-doc/html/libraries/; ln -s ghc-$(ProjectVersion) ghc
 	install -Dm 644 debian/index.html debian/tmp/usr/share/doc/ghc-doc/index.html
 endif
