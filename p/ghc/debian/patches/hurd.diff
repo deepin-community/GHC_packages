@@ -1,0 +1,43 @@
+Provided by “Pino” via Samuel Thibault. Not yet pushed upstream.
+
+Index: ghc-7.8.4/aclocal.m4
+===================================================================
+--- ghc-7.8.4.orig/aclocal.m4	2015-05-01 08:18:15.978547005 +0200
++++ ghc-7.8.4/aclocal.m4	2015-05-01 08:18:15.974546986 +0200
+@@ -271,12 +271,15 @@
+         nto-qnx)
+             test -z "[$]2" || eval "[$]2=OSQNXNTO"
+             ;;
+-        dragonfly|osf1|hpux|linuxaout|freebsd2|cygwin32|gnu|nextstep2|nextstep3|sunos4|ultrix|irix|aix)
++        dragonfly|osf1|hpux|linuxaout|freebsd2|cygwin32|nextstep2|nextstep3|sunos4|ultrix|irix|aix)
+             test -z "[$]2" || eval "[$]2=OSUnknown"
+             ;;
+         linux-android)
+             test -z "[$]2" || eval "[$]2=OSAndroid"
+             ;;
++        gnu)
++            test -z "[$]2" || eval "[$]2=OSHurd"
++            ;;
+         *)
+             echo "Unknown OS '[$]1'"
+             exit 1
+Index: ghc-7.8.4/compiler/utils/Platform.hs
+===================================================================
+--- ghc-7.8.4.orig/compiler/utils/Platform.hs	2015-05-01 08:18:15.978547005 +0200
++++ ghc-7.8.4/compiler/utils/Platform.hs	2015-05-01 08:18:15.974546986 +0200
+@@ -81,6 +81,7 @@
+         | OSOsf3
+         | OSQNXNTO
+         | OSAndroid
++        | OSHurd
+         deriving (Read, Show, Eq)
+
+ -- | ARM Instruction Set Architecture, Extensions and ABI
+@@ -125,6 +126,7 @@
+                                 -- per comment below it's safe
+ osElfTarget OSQNXNTO    = False
+ osElfTarget OSAndroid   = True
++osElfTarget OSHurd      = True
+ osElfTarget OSUnknown   = False
+  -- Defaulting to False is safe; it means don't rely on any
+  -- ELF-specific functionality.  It is important to have a default for
