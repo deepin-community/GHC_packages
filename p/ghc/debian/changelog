@@ -1,6 +1,11 @@
 ghc (7.8.4-4) UNRELEASED; urgency=medium
 
   * Apply hurd compatibility patch by Pino
+  * Put .haddock files of libraries shipped with GHC into
+    /usr/lib/ghc-doc/haddock/ghc/<pkg> instead of
+    /usr/lib/ghc-doc/haddock/<pkg>. This avoids overriding such a file if a
+    -doc package of the same package and version is installed.
+    Closes: #783863.
 
  -- Joachim Breitner <nomeata@debian.org>  Fri, 01 May 2015 08:18:51 +0200
 
