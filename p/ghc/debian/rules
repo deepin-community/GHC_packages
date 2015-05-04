@@ -193,6 +193,7 @@ ifeq (YES,$(BUILD_HADDOCK_DOCS))
 	mkdir -p debian/tmp/usr/lib/ghc-doc
 	cp debian/gen_contents_index debian/tmp/usr/lib/ghc-doc/
 	chmod +x debian/tmp/usr/lib/ghc-doc/gen_contents_index
+	mkdir debian/tmp/usr/lib/ghc-doc/haddock
 	mkdir debian/tmp/usr/lib/ghc-doc/haddock/ghc/
 	for f in `find debian/tmp/usr/share/doc/ghc-doc/html/libraries/ -maxdepth 1 -mindepth 1 -type d`; do \
 	    mkdir debian/tmp/usr/lib/ghc-doc/haddock/ghc/`basename $$f` ; \
