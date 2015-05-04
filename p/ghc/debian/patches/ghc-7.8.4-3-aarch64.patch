@@ -1,0 +1,80 @@
+Provided by Edmund Grimley Evans in http://bugs.debian.org/783987 based on
+
+https://git.haskell.org/ghc.git/commit/0bbc2ac6dae9ce2838f23a75a6a989826c06f3f5
+https://git.haskell.org/ghc.git/commit/1e8c9b81a819da8eb54405a029fc33a9f5220321
+
+Not in 7.10.1, but one patch likely to be in 7.10.2, see
+https://ghc.haskell.org/trac/ghc/ticket/9673
+
+
+Index: ghc-7.8.4/aclocal.m4
+===================================================================
+--- ghc-7.8.4.orig/aclocal.m4	2015-05-04 09:45:38.144580614 +0200
++++ ghc-7.8.4/aclocal.m4	2015-05-04 09:45:38.140580592 +0200
+@@ -556,8 +556,11 @@
+         $3="$$3 -D_HPUX_SOURCE"
+         $5="$$5 -D_HPUX_SOURCE"
+         ;;
+-    arm*)
+-        # On arm, link using gold
++    arm*linux*       | \
++    aarch64*linux*   )
++        # On arm/linux, aarch64/linux, arm/android and aarch64/android, tell
++        # gcc to link using the gold linker.
++        # Forcing LD to be ld.gold is done in FIND_LD m4 macro.
+         $3="$$3 -fuse-ld=gold"
+         ;;
+     esac
+@@ -2074,6 +2077,30 @@
+     fi
+ ])
+ 
++# FIND_LD
++# Find the version of `ld` to use. This is used in both in the top level
++# configure.ac and in distrib/configure.ac.in.
++#
++# $1 = the variable to set
++#
++AC_DEFUN([FIND_LD],[
++    FP_ARG_WITH_PATH_GNU_PROG([LD], [ld], [ld])
++    case $target in
++        arm*linux*       | \
++        aarch64*linux*   )
++            # Arm and Aarch64 requires use of the binutils ld.gold linker.
++            # This case should catch at least arm-unknown-linux-gnueabihf,
++            # arm-linux-androideabi, arm64-unknown-linux and
++            # aarch64-linux-android
++            FP_ARG_WITH_PATH_GNU_PROG([LD_GOLD], [ld.gold], [ld.gold])
++            $1="$LD_GOLD"
++            ;;
++        *)
++            $1="$LD"
++            ;;
++    esac
++])
++
+ # FIND_GCC()
+ # --------------------------------
+ # Finds where gcc is
+Index: ghc-7.8.4/mk/config.mk.in
+===================================================================
+--- ghc-7.8.4.orig/mk/config.mk.in	2015-05-04 09:45:38.144580614 +0200
++++ ghc-7.8.4/mk/config.mk.in	2015-05-04 09:45:38.140580592 +0200
+@@ -176,7 +176,7 @@
+ 
+ # ArchSupportsSMP should be set iff there is support for that arch in
+ # includes/stg/SMP.h
+-ArchSupportsSMP=$(strip $(patsubst $(TargetArch_CPP), YES, $(findstring $(TargetArch_CPP), i386 x86_64 sparc powerpc arm)))
++ArchSupportsSMP=$(strip $(patsubst $(TargetArch_CPP), YES, $(findstring $(TargetArch_CPP), i386 x86_64 sparc powerpc arm aarch64)))
+ 
+ GhcWithSMP := $(strip $(if $(filter YESNO, $(ArchSupportsSMP)$(GhcUnregisterised)),YES,NO))
+ 
+@@ -184,7 +184,7 @@
+ # has support for this OS/ARCH combination.
+ 
+ OsSupportsGHCi=$(strip $(patsubst $(TargetOS_CPP), YES, $(findstring $(TargetOS_CPP), mingw32 cygwin32 linux solaris2 freebsd dragonfly netbsd openbsd darwin kfreebsdgnu)))
+-ArchSupportsGHCi=$(strip $(patsubst $(TargetArch_CPP), YES, $(findstring $(TargetArch_CPP), i386 x86_64 powerpc sparc sparc64 arm)))
++ArchSupportsGHCi=$(strip $(patsubst $(TargetArch_CPP), YES, $(findstring $(TargetArch_CPP), i386 x86_64 powerpc sparc sparc64 arm aarch64)))
+ 
+ ifeq "$(OsSupportsGHCi)$(ArchSupportsGHCi)" "YESYES"
+ GhcWithInterpreter=YES
