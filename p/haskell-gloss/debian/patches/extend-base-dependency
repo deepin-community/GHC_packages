@@ -1,0 +1,64 @@
+Index: gloss-1.9.3.1/gloss.cabal
+===================================================================
+--- gloss-1.9.3.1.orig/gloss.cabal	2015-05-05 23:15:59.758337339 +0200
++++ gloss-1.9.3.1/gloss.cabal	2015-05-05 23:16:48.291327847 +0200
+@@ -37,8 +37,8 @@
+
+ Library
+   Build-Depends:
+-        base       == 4.8.*,
+-        ghc-prim   == 0.4.*,
++        base,
++        ghc-prim,
+         containers == 0.5.*,
+         bytestring == 0.10.*,
+         OpenGL     == 2.12.*,
+Index: gloss-1.9.3.1/Graphics/Gloss/Internals/Interface/Event.hs
+===================================================================
+--- gloss-1.9.3.1.orig/Graphics/Gloss/Internals/Interface/Event.hs	2015-05-05 23:15:59.746337087 +0200
++++ gloss-1.9.3.1/Graphics/Gloss/Internals/Interface/Event.hs	2015-05-05 23:35:31.547347728 +0200
+@@ -6,6 +6,7 @@
+ where
+ import Data.IORef
+ import Graphics.Gloss.Internals.Interface.Backend
++import Data.Functor
+
+ -- | Possible input events.
+ data Event
+Index: gloss-1.9.3.1/Graphics/Gloss/Internals/Interface/Display.hs
+===================================================================
+--- gloss-1.9.3.1.orig/Graphics/Gloss/Internals/Interface/Display.hs	2015-05-05 23:15:59.746337087 +0200
++++ gloss-1.9.3.1/Graphics/Gloss/Internals/Interface/Display.hs	2015-05-05 23:35:54.879883667 +0200
+@@ -16,6 +16,7 @@
+ import qualified Graphics.Gloss.Internals.Interface.Callback as Callback
+ import Data.IORef
+ import System.Mem
++import Data.Functor
+
+
+ displayWithBackend
+Index: gloss-1.9.3.1/Graphics/Gloss/Internals/Interface/Animate.hs
+===================================================================
+--- gloss-1.9.3.1.orig/Graphics/Gloss/Internals/Interface/Animate.hs	2015-05-05 23:15:59.746337087 +0200
++++ gloss-1.9.3.1/Graphics/Gloss/Internals/Interface/Animate.hs	2015-05-05 23:36:13.856314870 +0200
+@@ -20,7 +20,7 @@
+ import Control.Monad
+ import System.Mem
+ import GHC.Float (double2Float)
+-
++import Data.Functor
+
+ animateWithBackendIO
+         :: Backend a
+Index: gloss-1.9.3.1/Graphics/Gloss/Internals/Interface/Simulate.hs
+===================================================================
+--- gloss-1.9.3.1.orig/Graphics/Gloss/Internals/Interface/Simulate.hs	2015-05-05 23:15:59.746337087 +0200
++++ gloss-1.9.3.1/Graphics/Gloss/Internals/Interface/Simulate.hs	2015-05-05 23:36:37.416844644 +0200
+@@ -22,6 +22,7 @@
+ import qualified Graphics.Gloss.Internals.Interface.Animate.State       as AN
+ import Data.IORef
+ import System.Mem
++import Data.Functor
+
+
+ simulateWithBackendIO
