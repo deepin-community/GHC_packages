@@ -1,0 +1,61 @@
+Source: haskell-newtype-generics
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Dmitry Bogatov <KAction@gnu.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof
+Build-Depends-Indep: ghc-doc
+Standards-Version: 3.9.6
+Homepage: http://hackage.haskell.org/package/newtype-generics
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-newtype-generics
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-newtype-generics
+X-Description: Typeclass and set of functions for working with newtypes
+ Per Conor McBride, the Newtype typeclass represents the packing and unpacking
+ of a newtype, and allows you to operatate under that newtype with functions
+ such as ala.  Generics support was added in version 0.4, making this package a
+ full replacement for the original newtype package, and a better alternative to
+ newtype-th.
+
+Package: libghc-newtype-generics-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-newtype-generics-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-newtype-generics-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
