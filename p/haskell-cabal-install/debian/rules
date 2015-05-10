@@ -1,13 +1,16 @@
 #!/usr/bin/make -f
 
 DEB_ENABLE_TESTS = yes
-cabal_version = $(shell dpkg-query --showformat='$${version}' --show libghc-cabal-dev)
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
+
+cabal_version = $(shell dpkg-query --showformat='$${version}' --show \
+		libghc-cabal-dev | egrep -o ".*-" | egrep -o "[^-]*")
 
 build/cabal-install:: build-ghc-stamp
 
 binary-post-install/cabal-install::
 	dh_bash-completion
-	echo "cabal-dep=libghc-cabal-dev (= $(cabal_version))" >> debian/cabal-install.substvars
+	echo "cabal-dep=libghc-cabal-dev (>= $(cabal_version)), \
+	libghc-cabal-dev (<< $(cabal_version).1)" >> debian/cabal-install.substvars
