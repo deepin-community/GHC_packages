@@ -1,8 +1,8 @@
-Index: ghc-7.9.20140130/ghc.mk
+Index: ghc-7.10.1/ghc.mk
 ===================================================================
---- ghc-7.9.20140130.orig/ghc.mk	2014-01-31 12:18:02.170196705 +0000
-+++ ghc-7.9.20140130/ghc.mk	2014-01-31 12:18:17.654196059 +0000
-@@ -755,7 +755,6 @@
+--- ghc-7.10.1.orig/ghc.mk	2015-05-11 22:23:36.181457550 +0200
++++ ghc-7.10.1/ghc.mk	2015-05-11 22:23:36.181457550 +0200
+@@ -772,7 +772,6 @@
  # Build the Haddock contents and index
  ifeq "$(HADDOCK_DOCS)" "YES"
  libraries/dist-haddock/index.html: $(haddock_INPLACE) $(ALL_HADDOCK_FILES)
@@ -10,7 +10,7 @@ Index: ghc-7.9.20140130/ghc.mk
  ifeq "$(phase)" "final"
  $(eval $(call all-target,library_doc_index,libraries/dist-haddock/index.html))
  endif
-@@ -864,12 +863,8 @@
+@@ -881,12 +880,8 @@
  	$(call INSTALL_DIR,"$(DESTDIR)$(docdir)/html")
  	$(call INSTALL_DOC,$(INSTALL_OPTS),docs/index.html,"$(DESTDIR)$(docdir)/html")
  ifneq "$(INSTALL_LIBRARY_DOCS)" ""
@@ -24,7 +24,7 @@ Index: ghc-7.9.20140130/ghc.mk
  endif
  ifneq "$(INSTALL_HTML_DOC_DIRS)" ""
  	for i in $(INSTALL_HTML_DOC_DIRS); do \
-@@ -981,7 +976,6 @@
+@@ -998,7 +993,6 @@
      mk/project.mk \
      mk/install.mk.in \
      bindist.mk \

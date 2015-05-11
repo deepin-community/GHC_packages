@@ -7,25 +7,11 @@ Not in 7.10.1, but one patch likely to be in 7.10.2, see
 https://ghc.haskell.org/trac/ghc/ticket/9673
 
 
-Index: ghc-7.8.4/aclocal.m4
+Index: ghc-7.10.1/aclocal.m4
 ===================================================================
---- ghc-7.8.4.orig/aclocal.m4	2015-05-04 09:45:38.144580614 +0200
-+++ ghc-7.8.4/aclocal.m4	2015-05-04 09:45:38.140580592 +0200
-@@ -556,8 +556,11 @@
-         $3="$$3 -D_HPUX_SOURCE"
-         $5="$$5 -D_HPUX_SOURCE"
-         ;;
--    arm*)
--        # On arm, link using gold
-+    arm*linux*       | \
-+    aarch64*linux*   )
-+        # On arm/linux, aarch64/linux, arm/android and aarch64/android, tell
-+        # gcc to link using the gold linker.
-+        # Forcing LD to be ld.gold is done in FIND_LD m4 macro.
-         $3="$$3 -fuse-ld=gold"
-         ;;
-     esac
-@@ -2074,6 +2077,30 @@
+--- ghc-7.10.1.orig/aclocal.m4	2015-05-11 22:27:09.955842452 +0200
++++ ghc-7.10.1/aclocal.m4	2015-05-11 22:27:09.955842452 +0200
+@@ -2121,6 +2121,30 @@
      fi
  ])
  
@@ -56,11 +42,11 @@ Index: ghc-7.8.4/aclocal.m4
  # FIND_GCC()
  # --------------------------------
  # Finds where gcc is
-Index: ghc-7.8.4/mk/config.mk.in
+Index: ghc-7.10.1/mk/config.mk.in
 ===================================================================
---- ghc-7.8.4.orig/mk/config.mk.in	2015-05-04 09:45:38.144580614 +0200
-+++ ghc-7.8.4/mk/config.mk.in	2015-05-04 09:45:38.140580592 +0200
-@@ -176,7 +176,7 @@
+--- ghc-7.10.1.orig/mk/config.mk.in	2015-05-11 22:27:09.955842452 +0200
++++ ghc-7.10.1/mk/config.mk.in	2015-05-11 22:27:09.955842452 +0200
+@@ -172,7 +172,7 @@
  
  # ArchSupportsSMP should be set iff there is support for that arch in
  # includes/stg/SMP.h
@@ -69,7 +55,7 @@ Index: ghc-7.8.4/mk/config.mk.in
  
  GhcWithSMP := $(strip $(if $(filter YESNO, $(ArchSupportsSMP)$(GhcUnregisterised)),YES,NO))
  
-@@ -184,7 +184,7 @@
+@@ -180,7 +180,7 @@
  # has support for this OS/ARCH combination.
  
  OsSupportsGHCi=$(strip $(patsubst $(TargetOS_CPP), YES, $(findstring $(TargetOS_CPP), mingw32 cygwin32 linux solaris2 freebsd dragonfly netbsd openbsd darwin kfreebsdgnu)))

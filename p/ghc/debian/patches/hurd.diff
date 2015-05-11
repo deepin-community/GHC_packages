@@ -1,9 +1,9 @@
 Provided by “Pino” via Samuel Thibault. Not yet pushed upstream.
 
-Index: ghc-7.8.4/aclocal.m4
+Index: ghc-7.10.1/aclocal.m4
 ===================================================================
---- ghc-7.8.4.orig/aclocal.m4	2015-05-01 08:18:15.978547005 +0200
-+++ ghc-7.8.4/aclocal.m4	2015-05-01 08:18:15.974546986 +0200
+--- ghc-7.10.1.orig/aclocal.m4	2015-05-11 22:26:43.282047557 +0200
++++ ghc-7.10.1/aclocal.m4	2015-05-11 22:26:49.254449440 +0200
 @@ -271,12 +271,15 @@
          nto-qnx)
              test -z "[$]2" || eval "[$]2=OSQNXNTO"
@@ -21,11 +21,11 @@ Index: ghc-7.8.4/aclocal.m4
          *)
              echo "Unknown OS '[$]1'"
              exit 1
-Index: ghc-7.8.4/compiler/utils/Platform.hs
+Index: ghc-7.10.1/compiler/utils/Platform.hs
 ===================================================================
---- ghc-7.8.4.orig/compiler/utils/Platform.hs	2015-05-01 08:18:15.978547005 +0200
-+++ ghc-7.8.4/compiler/utils/Platform.hs	2015-05-01 08:18:15.974546986 +0200
-@@ -81,6 +81,7 @@
+--- ghc-7.10.1.orig/compiler/utils/Platform.hs	2015-05-11 22:26:43.282047557 +0200
++++ ghc-7.10.1/compiler/utils/Platform.hs	2015-05-11 22:26:43.278047288 +0200
+@@ -82,6 +82,7 @@
          | OSOsf3
          | OSQNXNTO
          | OSAndroid
@@ -33,7 +33,7 @@ Index: ghc-7.8.4/compiler/utils/Platform.hs
          deriving (Read, Show, Eq)
  
  -- | ARM Instruction Set Architecture, Extensions and ABI
-@@ -125,6 +126,7 @@
+@@ -126,6 +127,7 @@
                                  -- per comment below it's safe
  osElfTarget OSQNXNTO    = False
  osElfTarget OSAndroid   = True
