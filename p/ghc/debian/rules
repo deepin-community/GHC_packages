@@ -137,6 +137,9 @@ install-stamp: build-stamp
 	# Delete all the library LICENSE files
 	rm -f debian/tmp/usr/share/doc/ghc-doc/html/libraries/*/LICENSE
 
+	# Remove the haddock.t files, they really should not be in the released package
+	find debian/tmp -name \*.haddock.t -delete
+
 	# Generate lintian overrides
 	mkdir -p debian/tmp/usr/share/lintian/overrides
 	echo "ghc binary: extra-license-file `cd debian/tmp && echo usr/lib/ghc/Cabal-*/Distribution/License.hi`" >> debian/tmp/usr/share/lintian/overrides/ghc
