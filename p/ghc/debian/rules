@@ -164,7 +164,7 @@ install-stamp: build-stamp
 
 	# Add haddock substvars
 	echo "haddock:Depends=haddock-interface-$$(debian/tmp/usr/bin/haddock --interface-version)" >> debian/ghc-doc.substvars
-	echo "haddock:Provides=haddock-interface-$$(debian/tmp/usr/bin/haddock --interface-version)" >> debian/ghc-haddock.substvars
+	echo "haddock:Provides=haddock-interface-$$(debian/tmp/usr/bin/haddock --interface-version)" >> debian/ghc.substvars
 
 ifeq (YES,$(BUILD_HADDOCK_DOCS))
 	mkdir -p debian/tmp/usr/lib/ghc-doc
@@ -193,13 +193,13 @@ endif
 
 	echo debian/*.1 > debian/ghc.manpages
 	cp debian/haddock.man debian/haddock.1
-	echo debian/haddock.1 >debian/ghc-haddock.manpages
+	echo debian/haddock.1 >> debian/ghc.manpages
 
 	# ####################
 	# Now all the files are sorted, create the package filelists
 
 	# ghc
-	find debian/tmp/usr/bin $(FILES) ! -name haddock  > debian/ghc.install
+	find debian/tmp/usr/bin $(FILES)                  > debian/ghc.install
 #	find debian/tmp/usr/share/ghc* $(FILES)          >> debian/ghc.install
 	find debian/tmp/usr/share/man $(FILES)           >> debian/ghc.install
 	find debian/tmp/usr/lib/ghc $(FILES) ! $(PROF_FILE) >> debian/ghc.install
@@ -208,9 +208,6 @@ endif
 	# ghc-prof
 	find debian/tmp/usr/lib $(FILES) $(PROF_FILE) > debian/ghc-prof.install
 	echo debian/tmp/usr/share/lintian/overrides/ghc-prof >> debian/ghc-prof.install
-	# haddock
-	echo usr/bin/haddock				 > debian/ghc-haddock.install
-	find debian/tmp/usr/share/haddock $(FILES)	 >> debian/ghc-haddock.install
 	# ghc-doc
 ifeq (YES,$(BUILD_HADDOCK_DOCS))
 	mkdir -p debian/tmp/$(DEB_HOOGLE_TXT_DIR)
