@@ -1,34 +1,3 @@
-ghc (7.10.1-4) experimental; urgency=medium
-
-  * Fix patch/ghc-7.8.4-3-aarch64.patch; dropped a hunk when upgrading to
-    7.10 that I should not have dropped. Thanks Gianfranco Costamagna for
-    noticing.
-
- -- Joachim Breitner <nomeata@debian.org>  Thu, 14 May 2015 23:16:55 +0200
-
-ghc (7.10.1-3) experimental; urgency=medium
-
-  * Apply patch by Sergei Trofimovich to implement load_/store_load_barrier on
-    armv6 and older (upstream ticket #10244)
-
- -- Joachim Breitner <nomeata@debian.org>  Thu, 14 May 2015 09:37:06 +0200
-
-ghc (7.10.1-2) experimental; urgency=medium
-
-  * Build against llvm-3.5 (Closes: 784245) 
-
- -- Joachim Breitner <nomeata@debian.org>  Wed, 13 May 2015 11:18:54 +0200
-
-ghc (7.10.1-1) experimental; urgency=medium
-
-  * New upstream release. Optimistically dropping lots of patches, lets see
-    what now works out of the box.
-  * Ship haddock with ghc, and leave (most) paths as they are. It is easier to
-    not fight against the way upstream builds and installs stuff.
-  * Remove the hack introduced in 7.2.0 for a clean upgrade from 7.0.3.
-
- -- Joachim Breitner <nomeata@debian.org>  Tue, 12 May 2015 12:41:40 +0200
-
 ghc (7.8.4-4) unstable; urgency=medium
 
   * Apply hurd compatibility patch by Pino
