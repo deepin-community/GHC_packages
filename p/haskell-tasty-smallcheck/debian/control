@@ -1,0 +1,70 @@
+Source: haskell-tasty-smallcheck
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-async-dev,
+ libghc-async-prof,
+ libghc-smallcheck-dev (>= 1.0),
+ libghc-smallcheck-prof,
+ libghc-tagged-dev,
+ libghc-tagged-prof,
+ libghc-tasty-dev (>= 0.8),
+ libghc-tasty-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-async-doc,
+ libghc-smallcheck-doc,
+ libghc-tagged-doc,
+ libghc-tasty-doc,
+Standards-Version: 3.9.6
+Homepage: http://documentup.com/feuerbach/tasty
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-tasty-smallcheck
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-tasty-smallcheck
+X-Description: SmallCheck support for the Tasty test framework.
+ This packages contains the glue code to run SmallCheck tests within the Tasty
+ test framework.
+
+Package: libghc-tasty-smallcheck-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-tasty-smallcheck-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-tasty-smallcheck-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
