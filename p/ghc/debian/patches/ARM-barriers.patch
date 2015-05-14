@@ -1,0 +1,38 @@
+From 5fcb235d132065bc08752612f91a6d7c01d4fd6d Mon Sep 17 00:00:00 2001
+From: Sergei Trofimovich <siarheit@google.com>
+Date: Wed, 13 May 2015 23:13:57 +0100
+Subject: [PATCH] includes/stg/SMP.h: implement load_/store_load_barrier on
+ armv6 and older
+
+Fixes trac: #10244
+
+Signed-off-by: Sergei Trofimovich <siarheit@google.com>
+---
+ includes/stg/SMP.h | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/includes/stg/SMP.h b/includes/stg/SMP.h
+index 5ded05d..5460a2b 100644
+--- a/includes/stg/SMP.h
++++ b/includes/stg/SMP.h
+@@ -373,6 +373,8 @@ store_load_barrier(void) {
+     __asm__ __volatile__ ("sync" : : : "memory");
+ #elif sparc_HOST_ARCH
+     __asm__ __volatile__ ("membar #StoreLoad" : : : "memory");
++#elif arm_HOST_ARCH && defined(arm_HOST_ARCH_PRE_ARMv7)
++    __asm__ __volatile__ ("" : : : "memory");
+ #elif arm_HOST_ARCH && !defined(arm_HOST_ARCH_PRE_ARMv7)
+     __asm__ __volatile__ ("dmb" : : : "memory");
+ #elif aarch64_HOST_ARCH
+@@ -395,6 +397,8 @@ load_load_barrier(void) {
+ #elif sparc_HOST_ARCH
+     /* Sparc in TSO mode does not require load/load barriers. */
+     __asm__ __volatile__ ("" : : : "memory");
++#elif arm_HOST_ARCH && defined(arm_HOST_ARCH_PRE_ARMv7)
++    __asm__ __volatile__ ("" : : : "memory");
+ #elif arm_HOST_ARCH && !defined(arm_HOST_ARCH_PRE_ARMv7)
+     __asm__ __volatile__ ("dmb" : : : "memory");
+ #elif aarch64_HOST_ARCH
+-- 
+2.3.6
+
