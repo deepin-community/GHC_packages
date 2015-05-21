@@ -9,11 +9,11 @@ R_PPC_REL16_HA, emitted by other parts of the current toolchain.
  rts/Linker.c | 13 +++++++++++++
  1 file changed, 13 insertions(+)
 
-Index: ghc-7.8.4/rts/Linker.c
+Index: ghc-7.10.1/rts/Linker.c
 ===================================================================
---- ghc-7.8.4.orig/rts/Linker.c	2015-05-13 21:04:36.925078989 +0200
-+++ ghc-7.8.4/rts/Linker.c	2015-05-13 21:04:36.921078903 +0200
-@@ -5622,6 +5622,7 @@
+--- ghc-7.10.1.orig/rts/Linker.c	2015-05-21 12:51:06.803899231 +0200
++++ ghc-7.10.1/rts/Linker.c	2015-05-21 12:51:06.799899140 +0200
+@@ -5944,6 +5944,7 @@
              break;
  
           case R_PPC_REL24:
@@ -21,7 +21,7 @@ Index: ghc-7.8.4/rts/Linker.c
              delta = value - P;
  
              if( delta << 6 >> 6 != delta )
-@@ -5641,6 +5642,18 @@
+@@ -5963,6 +5964,18 @@
              *(Elf_Word *) P = (*(Elf_Word *) P & 0xfc000003)
                                            | (delta & 0x3fffffc);
              break;
