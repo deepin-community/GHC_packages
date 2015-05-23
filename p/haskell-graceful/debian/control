@@ -1,97 +1,71 @@
 Source: haskell-graceful
-Maintainer: Noriyuki OHKAWA <n.ohkawa@gmail.com>
-Priority: optional
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Noriyuki OHKAWA <n.ohkawa@gmail.com>, Joachim Breitner <nomeata@debian.org>
+Priority: extra
 Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-hspec-dev (>= 1.3),
+ libghc-hspec-prof,
+ libghc-network-dev (>= 2.3),
+ libghc-network-dev (<< 2.7),
+ libghc-network-prof,
+ libghc-stm-dev (>= 2.3),
+ libghc-stm-dev (<< 2.5),
+ libghc-stm-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-hspec-doc,
+ libghc-network-doc,
+ libghc-stm-doc,
 Standards-Version: 3.9.6
-Build-Depends: debhelper (>= 9)
-               , haskell-devscripts (>= 0.8)
-               , cdbs
-               , ghc
-               , ghc-prof
-               , libghc-base-dev (>= 4.5) | ghc
-               , libghc-base-dev (<< 4.9) | ghc
-               , libghc-base-prof (>= 4.5) | ghc-prof
-               , libghc-base-prof (<< 4.9) | ghc-prof
-               , libghc-directory-dev (>= 1.1) | ghc
-               , libghc-directory-dev (<< 1.3) | ghc
-               , libghc-directory-prof (>= 1.1) | ghc-prof
-               , libghc-directory-prof (<< 1.3) | ghc-prof
-               , libghc-network-dev (>= 2.3)
-               , libghc-network-dev (<< 2.7)
-               , libghc-network-prof (>= 2.3)
-               , libghc-network-prof (<< 2.7)
-               , libghc-stm-dev (>= 2.3)
-               , libghc-stm-dev (<< 2.5)
-               , libghc-stm-prof (>= 2.3)
-               , libghc-stm-prof (<< 2.5)
-               , libghc-unix-dev (>= 2.5) | ghc
-               , libghc-unix-dev (<< 2.8) | ghc
-               , libghc-unix-prof (>= 2.5) | ghc-prof
-               , libghc-unix-prof (<< 2.8) | ghc-prof
-Build-Depends-Indep: ghc-doc
-                     , libghc-base-doc (>= 4.5) | ghc-doc
-                     , libghc-base-doc (<< 4.9) | ghc-doc
-                     , libghc-directory-doc (>= 1.1) | ghc-doc
-                     , libghc-directory-doc (<< 1.3) | ghc-doc
-                     , libghc-network-doc (>= 2.3)
-                     , libghc-network-doc (<< 2.7)
-                     , libghc-stm-doc (>= 2.3)
-                     , libghc-stm-doc (<< 2.5)
-                     , libghc-unix-doc (>= 2.5) | ghc-doc
-                     , libghc-unix-doc (<< 2.8) | ghc-doc
+Homepage: http://hackage.haskell.org/package/graceful
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-graceful
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-graceful
+X-Description: Library to write graceful shutdown / upgrade service.
+ This library help you to create nginx like network services.
+ Program written with this library handles some signal
+ and do "graceful shutdown" or "on the fly upgrade".
+
 
 Package: libghc-graceful-dev
 Architecture: any
-Depends: ${shlibs:Depends}
-         , ${haskell:Depends}
-         , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Conflicts: ${haskell:Conflicts}
-Provides: ${haskell:Provides}
-Replaces: ${haskell:Replaces}
-Description: Library to write graceful shutdown / upgrade service.
- This library help you to create nginx like network services.
- Program written with this library handles some signal
- and do "graceful shutdown" or "on the fly upgrade".
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
- This package provides a library for the Haskell programming language.
- See http:///www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-graceful-prof
 Architecture: any
-Depends: ${shlibs:Depends}
-         , ${haskell:Depends}
-         , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Conflicts: ${haskell:Conflicts}
-Provides: ${haskell:Provides}
-Replaces: ${haskell:Replaces}
-Description: Library to write graceful shutdown / upgrade service - prof
- This library help you to create nginx like network services.
- Program written with this library handles some signal
- and do "graceful shutdown" or "on the fly upgrade".
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
- This package provides a library for the Haskell programming language, compiled
- for profiling.  See http:///www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-graceful-doc
 Architecture: all
 Section: doc
-Depends: ${shlibs:Depends}
-         , ${haskell:Depends}
-         , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Conflicts: ${haskell:Conflicts}
-Provides: ${haskell:Provides}
-Replaces: ${haskell:Replaces}
-Description: Library to write graceful shutdown / upgrade service - doc
- This library help you to create nginx like network services.
- Program written with this library handles some signal
- and do "graceful shutdown" or "on the fly upgrade".
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
- This package provides the documentation for a library for the Haskell
- programming language.
- See http:///www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
