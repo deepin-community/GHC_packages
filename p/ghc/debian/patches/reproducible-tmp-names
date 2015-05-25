@@ -1,0 +1,20 @@
+This is an attempt to make GHC build reproducible. The name of .c files may end
+up in the resulting binary (in the debug section), but not the directory.
+
+Since the temporary directory already contains the process id, there is no need
+to put it into the filename as well.
+
+Index: ghc-7.8.4/compiler/main/SysTools.lhs
+===================================================================
+--- ghc-7.8.4.orig/compiler/main/SysTools.lhs	2015-05-25 11:05:18.028939756 +0200
++++ ghc-7.8.4/compiler/main/SysTools.lhs	2015-05-25 11:05:18.028939756 +0200
+@@ -1011,8 +1011,7 @@
+ newTempName :: DynFlags -> Suffix -> IO FilePath
+ newTempName dflags extn
+   = do d <- getTempDir dflags
+-       x <- getProcessID
+-       findTempName (d </> "ghc" ++ show x ++ "_")
++       findTempName (d </> "ghc_")
+   where
+     findTempName :: FilePath -> IO FilePath
+     findTempName prefix
