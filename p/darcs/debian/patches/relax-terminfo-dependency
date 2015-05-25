@@ -1,8 +1,8 @@
-Index: darcs-2.8.5/darcs.cabal
+Index: darcs-2.10.0/darcs.cabal
 ===================================================================
---- darcs-2.8.5.orig/darcs.cabal	2015-05-07 10:43:00.655962113 +0200
-+++ darcs-2.8.5/darcs.cabal	2015-05-07 10:43:58.365565650 +0200
-@@ -453,7 +453,7 @@
+--- darcs-2.10.0.orig/darcs.cabal	2015-05-25 12:04:42.223855913 +0200
++++ darcs-2.10.0/darcs.cabal	2015-05-25 12:13:32.567727009 +0200
+@@ -501,7 +501,7 @@
 
      -- The terminfo package cannot be built on Windows.
      if flag(terminfo) && !os(windows)
@@ -10,13 +10,4 @@ Index: darcs-2.8.5/darcs.cabal
 +      build-depends:    terminfo >= 0.3
        cpp-options:      -DHAVE_TERMINFO
 
-     if flag(color)
-@@ -616,7 +616,7 @@
-
-   -- The terminfo package cannot be built on Windows.
-   if flag(terminfo) && !os(windows)
--    build-depends:    terminfo == 0.3.*
-+    build-depends:    terminfo >= 0.3
-     cpp-options:      -DHAVE_TERMINFO
-
-   if flag(color)
+     -- if true to work around cabal bug with flag ordering
