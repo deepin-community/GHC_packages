@@ -20,15 +20,24 @@ endif
 
 build/gitit:: $(MANPAGES)
 
+define link_jquery_ui
+	dh_link -pgitit /usr/share/javascript/jquery-ui/ui/jquery.ui.$(1).min.js \
+		usr/share/gitit/data/static/js/jquery.ui.$(1).js
+
+endef
+
 install/gitit:: debian/tmp-inst-ghc debian/extra-depends-ghc
 	cp -av debian/tmp-inst-ghc/usr/bin/* debian/gitit/usr/bin
 	cp -av debian/tmp-inst-ghc/usr/share/gitit debian/gitit/usr/share
 
-	# Don't use embedded copies of jQuery and jQuery UI; instead, make symlinks
-	rm -f debian/gitit/usr/share/gitit/data/static/js/jquery.min.js
-	rm -f debian/gitit/usr/share/gitit/data/static/js/jquery-ui.packed.js
-	dh_link -pgitit /usr/share/javascript/jquery/jquery.min.js usr/share/gitit/data/static/js/jquery.min.js
-	dh_link -pgitit /usr/share/javascript/jquery-ui/jquery-ui.min.js usr/share/gitit/data/static/js/jquery-ui.packed.js
+	$(foreach mod, core draggable droppable tabs, $(call link_jquery_ui,$(mod)))
+	dh_link -pgitit /usr/share/javascript/jquery/jquery.min.js \
+		usr/share/gitit/data/static/js/jquery.js
+
+	# Unlike other libraries, jquery-hotkeys does not provide minimized
+	# version.
+	dh_link -pgitit /usr/share/javascript/jquery-hotkeys/jquery.hotkeys.js \
+		usr/share/gitit/data/static/js/jquery.hotkeys.js
 
 	# Removes a few files, that are not necessary and make lintian cry
 	rm -f debian/gitit/usr/share/gitit/data/post-update
@@ -37,7 +46,3 @@ install/gitit:: debian/tmp-inst-ghc debian/extra-depends-ghc
 
 	# Build data packages depends
 	dh_haskell_depends -pgitit
-
-clean::
-	rm -f $(MANPAGES)
-
