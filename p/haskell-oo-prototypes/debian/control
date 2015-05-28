@@ -1,69 +1,55 @@
 Source: haskell-oo-prototypes
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Priority: optional
+Uploaders: Marcel Fourne <debian@marcelfourne.de>
+Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 7.0)
-               , haskell-devscripts (>= 0.8)
-               , cdbs
-               , ghc
-               , ghc-prof
-Build-Depends-Indep: ghc-doc
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+Build-Depends-Indep: ghc-doc,
+Standards-Version: 3.9.6
+Homepage: https://github.com/yi-editor/oo-prototypes
+X-Description: Support for OO-like prototypes
+ Support for OO-like prototypes
 
 Package: libghc-oo-prototypes-dev
 Architecture: any
-Depends: ${shlibs:Depends}
-         , ${haskell:Depends}
-         , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Conflicts: ${haskell:Conflicts}
-Provides: ${haskell:Provides}
-Replaces: ${haskell:Replaces}
-Description: Support for OO-like prototypes
- Support for OO-like prototypes
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
-  Author: Mateusz Kowalczyk
-  Upstream-Maintainer: yi-devel@googlegroups.com
- .
- This package provides a library for the Haskell programming language.
- See http:///www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-oo-prototypes-prof
 Architecture: any
-Depends: ${shlibs:Depends}
-         , ${haskell:Depends}
-         , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Conflicts: ${haskell:Conflicts}
-Provides: ${haskell:Provides}
-Replaces: ${haskell:Replaces}
-Description: Support for OO-like prototypes
- Support for OO-like prototypes
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
-  Author: Mateusz Kowalczyk
-  Upstream-Maintainer: yi-devel@googlegroups.com
- .
- This package provides a library for the Haskell programming language, compiled
- for profiling.  See http:///www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-oo-prototypes-doc
 Architecture: all
 Section: doc
-Depends: ${shlibs:Depends}
-         , ${haskell:Depends}
-         , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Conflicts: ${haskell:Conflicts}
-Provides: ${haskell:Provides}
-Replaces: ${haskell:Replaces}
-Description: Support for OO-like prototypes
- Support for OO-like prototypes
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
-  Author: Mateusz Kowalczyk
-  Upstream-Maintainer: yi-devel@googlegroups.com
- .
- This package provides the documentation for a library for the Haskell
- programming language.
- See http:///www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
