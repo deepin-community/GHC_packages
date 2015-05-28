@@ -1,85 +1,61 @@
 Source: haskell-charsetdetect-ae
-Maintainer: Artyom <yom@artyom.me>
-Priority: optional
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Marcel Fourne <debian@marcelfourne.de>
+Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 7.0)
-               , haskell-devscripts (>= 0.8)
-               , cdbs
-               , ghc
-               , ghc-prof
-               , libstdc++-dev
-Build-Depends-Indep: ghc-doc
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libstdc++-dev,
+Build-Depends-Indep: ghc-doc,
+Standards-Version: 3.9.6
+Homepage: http://github.com/Aelve/charsetdetect-ae
+X-Description: Character set detection using Mozilla's Universal Character Set Detector
+ Mozilla have developed a robust and efficient character set detection algorithm for
+ use in their web browsers.  The algorithm is able to detect all of the most frequently
+ encountered character encodings totally automatically.
+ .
+ This library wraps up their library and exposes a very simple Haskell interface to it.
+ The library is portable, and is confirmed to work on both Unix and Windows.
 
 Package: libghc-charsetdetect-ae-dev
 Architecture: any
-Depends: ${shlibs:Depends}
-         , ${haskell:Depends}
-         , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Conflicts: ${haskell:Conflicts}
-Provides: ${haskell:Provides}
-Replaces: ${haskell:Replaces}
-Description: Character set detection using Mozilla's Universal Character Set Detector
- Mozilla have developed a robust and efficient character set detection algorithm for
- use in their web browsers.  The algorithm is able to detect all of the most frequently
- encountered character encodings totally automatically.
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
- This library wraps up their library and exposes a very simple Haskell interface to it.
- The library is portable, and is confirmed to work on both Unix and Windows.
- .
-  Author: Max Bolingbroke <batterseapower@hotmail.com>
-  Upstream-Maintainer: Artyom <yom@artyom.me>
- .
- This package provides a library for the Haskell programming language.
- See http:///www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-charsetdetect-ae-prof
 Architecture: any
-Depends: ${shlibs:Depends}
-         , ${haskell:Depends}
-         , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Conflicts: ${haskell:Conflicts}
-Provides: ${haskell:Provides}
-Replaces: ${haskell:Replaces}
-Description: Character set detection using Mozilla's Universal Character Set Detector
- Mozilla have developed a robust and efficient character set detection algorithm for
- use in their web browsers.  The algorithm is able to detect all of the most frequently
- encountered character encodings totally automatically.
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
- This library wraps up their library and exposes a very simple Haskell interface to it.
- The library is portable, and is confirmed to work on both Unix and Windows.
- .
-  Author: Max Bolingbroke <batterseapower@hotmail.com>
-  Upstream-Maintainer: Artyom <yom@artyom.me>
- .
- This package provides a library for the Haskell programming language, compiled
- for profiling.  See http:///www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-charsetdetect-ae-doc
 Architecture: all
 Section: doc
-Depends: ${shlibs:Depends}
-         , ${haskell:Depends}
-         , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Conflicts: ${haskell:Conflicts}
-Provides: ${haskell:Provides}
-Replaces: ${haskell:Replaces}
-Description: Character set detection using Mozilla's Universal Character Set Detector
- Mozilla have developed a robust and efficient character set detection algorithm for
- use in their web browsers.  The algorithm is able to detect all of the most frequently
- encountered character encodings totally automatically.
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
- This library wraps up their library and exposes a very simple Haskell interface to it.
- The library is portable, and is confirmed to work on both Unix and Windows.
- .
-  Author: Max Bolingbroke <batterseapower@hotmail.com>
-  Upstream-Maintainer: Artyom <yom@artyom.me>
- .
- This package provides the documentation for a library for the Haskell
- programming language.
- See http:///www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
