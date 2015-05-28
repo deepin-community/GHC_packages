@@ -1,84 +1,80 @@
 Source: haskell-yi-rope
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Priority: optional
+Uploaders: Marcel Fourne <debian@marcelfourne.de>
+Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 7.0)
-               , haskell-devscripts (>= 0.8)
-               , cdbs
-               , ghc
-               , ghc-prof
-               , libghc-charsetdetect-ae-dev (>= 1.0.1)
-               , libghc-charsetdetect-ae-prof (>= 1.0.1)
-               , libghc-data-default-dev
-               , libghc-data-default-prof
-               , libghc-fingertree-dev
-               , libghc-fingertree-prof
-               , libghc-text-dev
-               , libghc-text-prof
-               , libghc-text-icu-dev
-               , libghc-text-icu-prof
-Build-Depends-Indep: ghc-doc
-                     , libghc-charsetdetect-ae-doc (>= 1.0.1)
-                     , libghc-data-default-doc
-                     , libghc-fingertree-doc
-                     , libghc-text-doc
-                     , libghc-text-icu-doc
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-quickcheck2-dev (>= 2),
+ libghc-quickcheck2-dev (<< 3),
+ libghc-quickcheck2-prof (>= 2),
+ libghc-quickcheck2-prof (<< 3),
+ libghc-charsetdetect-ae-dev (>= 1.0.1),
+ libghc-charsetdetect-ae-prof (>= 1.0.1),
+ libghc-data-default-dev,
+ libghc-data-default-prof,
+ libghc-fingertree-dev,
+ libghc-fingertree-prof,
+ libghc-hspec-dev,
+ libghc-hspec-prof,
+ libghc-quickcheck-instances-dev,
+ libghc-quickcheck-instances-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+ libghc-text-icu-dev,
+ libghc-text-icu-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-quickcheck2-doc (>= 2) | libghc-quickcheck1-doc (<< 2),
+ libghc-charsetdetect-ae-doc,
+ libghc-data-default-doc,
+ libghc-fingertree-doc,
+ libghc-hspec-doc,
+ libghc-quickcheck-instances-doc,
+ libghc-text-doc,
+ libghc-text-icu-doc,
+Standards-Version: 3.9.6
+X-Description: A rope data structure used by Yi
+ A rope data structure used by Yi
 
 Package: libghc-yi-rope-dev
 Architecture: any
-Depends: ${shlibs:Depends}
-         , ${haskell:Depends}
-         , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Conflicts: ${haskell:Conflicts}
-Provides: ${haskell:Provides}
-Replaces: ${haskell:Replaces}
-Description: A rope data structure used by Yi
- A rope data structure used by Yi
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
-  Author: Mateusz Kowalczyk
-  Upstream-Maintainer: fuuzetsu@fuuzetsu.co.uk
- .
- This package provides a library for the Haskell programming language.
- See http:///www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-yi-rope-prof
 Architecture: any
-Depends: ${shlibs:Depends}
-         , ${haskell:Depends}
-         , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Conflicts: ${haskell:Conflicts}
-Provides: ${haskell:Provides}
-Replaces: ${haskell:Replaces}
-Description: A rope data structure used by Yi
- A rope data structure used by Yi
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
-  Author: Mateusz Kowalczyk
-  Upstream-Maintainer: fuuzetsu@fuuzetsu.co.uk
- .
- This package provides a library for the Haskell programming language, compiled
- for profiling.  See http:///www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-yi-rope-doc
 Architecture: all
 Section: doc
-Depends: ${shlibs:Depends}
-         , ${haskell:Depends}
-         , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Conflicts: ${haskell:Conflicts}
-Provides: ${haskell:Provides}
-Replaces: ${haskell:Replaces}
-Description: A rope data structure used by Yi
- A rope data structure used by Yi
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
-  Author: Mateusz Kowalczyk
-  Upstream-Maintainer: fuuzetsu@fuuzetsu.co.uk
- .
- This package provides the documentation for a library for the Haskell
- programming language.
- See http:///www.haskell.org/ for more information on Haskell.
+ ${haskell:Blurb}
