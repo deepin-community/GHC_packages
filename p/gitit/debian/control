@@ -8,6 +8,7 @@ Uploaders: Giovanni Mascellani <gio@debian.org>, Clint Adams <clint@debian.org>
 Build-Depends:
  debhelper (>= 9),
  haskell-devscripts (>= 0.9),
+ dh-linktree,
  cdbs,
  ghc,
  pandoc (>= 1.12.4),
@@ -191,7 +192,7 @@ Depends:
  ${haskell:Extra-Depends},
  ${misc:Depends},
  ${shlibs:Depends},
- libghc-gitit-data (== ${binary:Version}),
+ libghc-gitit-data (= ${source:Version}),
  git | darcs | mercurial
 Recommends: mime-support
 Section: web
@@ -207,7 +208,7 @@ Depends:
  ${haskell:Extra-Depends},
  ${misc:Depends},
  ${shlibs:Depends},
- libghc-gitit-data (>= ${binary:Version})
+ libghc-gitit-data (= ${source:Version})
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
