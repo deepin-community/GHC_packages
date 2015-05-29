@@ -161,6 +161,27 @@ Standards-Version: 3.9.6
 Homepage: http://gitit.net/
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/gitit
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/gitit
+X-Description: Wiki engine backed by a git or darcs filestore
+ Gitit is a wiki backed by a git or darcs filestore. Pages and uploaded files
+ can be modified either directly via the VCS’s command-line tools or through
+ the wiki’s web interface. Pandoc is used for markup processing, so pages may
+ be written in (extended) markdown, reStructuredText, LaTeX, HTML, or literate
+ Haskell, and exported in ten different formats, including LaTeX, ConTeXt,
+ DocBook, RTF, OpenOffice ODT, and MediaWiki markup.
+ .
+ Other features include
+   * plugins: dynamically loaded page transformations written in Haskell;
+   * categories;
+   * support for Unicode;
+   * TeX math using texmath;
+   * syntax highlighting of source code files and code snippets using
+     highlighting-kate;
+   * wiki pages can be viewed as slide shows;
+   * caching;
+   * Atom feeds (site-wide and per-page);
+   * a library, Network.Gitit, that makes it simple to include a gitit wiki in
+     any happstack application;
+   * pages can be written directly in literate Haskell.
 
 Package: gitit
 Architecture: any
@@ -173,27 +194,10 @@ Depends:
  git | darcs | mercurial
 Recommends: mime-support
 Section: web
-Description: Wiki engine backed by a git or darcs filestore
- Gitit is a wiki backed by a git or darcs filestore. Pages and uploaded files
- can be modified either directly via the VCS’s command-line tools or through
- the wiki’s web interface. Pandoc is used for markup processing, so pages may
- be written in (extended) markdown, reStructuredText, LaTeX, HTML, or literate
- Haskell, and exported in ten different formats, including LaTeX, ConTeXt,
- DocBook, RTF, OpenOffice ODT, and MediaWiki markup.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
- Other features include
-   * plugins: dynamically loaded page transformations written in Haskell;
-   * categories;
-   * support for Unicode;
-   * TeX math using texmath;
-   * syntax highlighting of source code files and code snippets using
-     highlighting-kate;
-   * wiki pages can be viewed as slide shows;
-   * caching;
-   * Atom feeds (site-wide and per-page);
-   * a library, Network.Gitit, that makes it simple to include a gitit wiki in
-     any happstack application;
-   * pages can be written directly in literate Haskell.
+ ${haskell:Blurb}
 
 Package: libghc-gitit-dev
 Architecture: any
@@ -206,27 +210,8 @@ Depends:
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
-Description: Wiki engine backed by a git or darcs filestore${haskell:ShortBlurb}
- Gitit is a wiki backed by a git or darcs filestore. Pages and uploaded files
- can be modified either directly via the VCS’s command-line tools or through
- the wiki’s web interface. Pandoc is used for markup processing, so pages may
- be written in (extended) markdown, reStructuredText, LaTeX, HTML, or literate
- Haskell, and exported in ten different formats, including LaTeX, ConTeXt,
- DocBook, RTF, OpenOffice ODT, and MediaWiki markup.
- .
- Other features include
-   * plugins: dynamically loaded page transformations written in Haskell;
-   * categories;
-   * support for Unicode;
-   * TeX math using texmath;
-   * syntax highlighting of source code files and code snippets using
-     highlighting-kate;
-   * wiki pages can be viewed as slide shows;
-   * caching;
-   * Atom feeds (site-wide and per-page);
-   * a library, Network.Gitit, that makes it simple to include a gitit wiki in
-     any happstack application;
-   * pages can be written directly in literate Haskell.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
@@ -238,29 +223,10 @@ Depends: ${haskell:Depends},
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
-Description: Wiki engine backed by a git or darcs filestore${haskell:ShortBlurb}
- Gitit is a wiki backed by a git or darcs filestore. Pages and uploaded files
- can be modified either directly via the VCS’s command-line tools or through
- the wiki’s web interface. Pandoc is used for markup processing, so pages may
- be written in (extended) markdown, reStructuredText, LaTeX, HTML, or literate
- Haskell, and exported in ten different formats, including LaTeX, ConTeXt,
- DocBook, RTF, OpenOffice ODT, and MediaWiki markup.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
- Other features include
-   * plugins: dynamically loaded page transformations written in Haskell;
-   * categories;
-   * support for Unicode;
-   * TeX math using texmath;
-   * syntax highlighting of source code files and code snippets using
-     highlighting-kate;
-   * wiki pages can be viewed as slide shows;
-   * caching;
-   * Atom feeds (site-wide and per-page);
-   * a library, Network.Gitit, that makes it simple to include a gitit wiki in
-     any happstack application;
-   * pages can be written directly in literate Haskell.
- .
- This package contains the libraries compiled for profiling.
+ ${haskell:Blurb}
 
 Package: libghc-gitit-doc
 Section: doc
@@ -270,26 +236,7 @@ Depends:
  ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
-Description: Wiki engine backed by a git or darcs filestore${haskell:ShortBlurb}
- Gitit is a wiki backed by a git or darcs filestore. Pages and uploaded files
- can be modified either directly via the VCS’s command-line tools or through
- the wiki’s web interface. Pandoc is used for markup processing, so pages may
- be written in (extended) markdown, reStructuredText, LaTeX, HTML, or literate
- Haskell, and exported in ten different formats, including LaTeX, ConTeXt,
- DocBook, RTF, OpenOffice ODT, and MediaWiki markup.
- .
- Other features include
-   * plugins: dynamically loaded page transformations written in Haskell;
-   * categories;
-   * support for Unicode;
-   * TeX math using texmath;
-   * syntax highlighting of source code files and code snippets using
-     highlighting-kate;
-   * wiki pages can be viewed as slide shows;
-   * caching;
-   * Atom feeds (site-wide and per-page);
-   * a library, Network.Gitit, that makes it simple to include a gitit wiki in
-     any happstack application;
-   * pages can be written directly in literate Haskell.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
