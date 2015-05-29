@@ -12,7 +12,9 @@ Build-Depends:
  ghc,
  pandoc (>= 1.12.4),
  xsltproc,
- docbook-xsl
+ docbook-xsl,
+ libjs-jquery,
+ libjs-jquery-ui,
 # -dev dependencies
  , libghc-parsec3-dev
  , libghc-pretty-dev
@@ -189,8 +191,7 @@ Depends:
  ${haskell:Extra-Depends},
  ${misc:Depends},
  ${shlibs:Depends},
- libjs-jquery,
- libjs-jquery-ui,
+ libghc-gitit-data (== ${binary:Version}),
  git | darcs | mercurial
 Recommends: mime-support
 Section: web
@@ -206,7 +207,7 @@ Depends:
  ${haskell:Extra-Depends},
  ${misc:Depends},
  ${shlibs:Depends},
- gitit (>= ${binary:Version})
+ libghc-gitit-data (>= ${binary:Version})
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Provides: ${haskell:Provides}
@@ -234,6 +235,16 @@ Architecture: all
 Depends:
  ${haskell:Depends},
  ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Recommends: ${haskell:Recommends}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-gitit-data
+Architecture: all
+Depends: ${misc:Depends}
 Suggests: ${haskell:Suggests}
 Recommends: ${haskell:Recommends}
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}

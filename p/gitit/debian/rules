@@ -1,15 +1,13 @@
 #!/usr/bin/make -f
+DEB_DH_INSTALL_ARGS := --sourcedir=debian/tmp-inst-ghc
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
 
 MANPAGES := gitit.1 expireGititCache.1
-DEB_INSTALL_MANPAGES_gitit := $(MANPAGES)
 
 DB2MAN = /usr/share/sgml/docbook/stylesheet/xsl/docbook-xsl/manpages/docbook.xsl
 XP     = xsltproc -''-nonet -''-param man.charmap.use.subset "0"
-
-DEB_GHC_EXTRA_PACKAGES := gitit (>= $(CABAL_VERSION))
 
 ifeq (0,$(shell ghc --info | grep 'Have interpreter.*NO' >/dev/null 2>&1; echo $$?))
 DEB_SETUP_GHC_CONFIGURE_ARGS := --flags=-plugins
@@ -20,29 +18,5 @@ endif
 
 build/gitit:: $(MANPAGES)
 
-define link_jquery_ui
-	dh_link -pgitit /usr/share/javascript/jquery-ui/ui/jquery.ui.$(1).min.js \
-		usr/share/gitit/data/static/js/jquery.ui.$(1).js
-
-endef
-
-install/gitit:: debian/tmp-inst-ghc debian/extra-depends-ghc
-	cp -av debian/tmp-inst-ghc/usr/bin/* debian/gitit/usr/bin
-	cp -av debian/tmp-inst-ghc/usr/share/gitit debian/gitit/usr/share
-
-	$(foreach mod, core draggable droppable tabs, $(call link_jquery_ui,$(mod)))
-	dh_link -pgitit /usr/share/javascript/jquery/jquery.min.js \
-		usr/share/gitit/data/static/js/jquery.js
-
-	# Unlike other libraries, jquery-hotkeys does not provide minimized
-	# version.
-	dh_link -pgitit /usr/share/javascript/jquery-hotkeys/jquery.hotkeys.js \
-		usr/share/gitit/data/static/js/jquery.hotkeys.js
-
-	# Removes a few files, that are not necessary and make lintian cry
-	rm -f debian/gitit/usr/share/gitit/data/post-update
-	rm -f debian/gitit/usr/share/gitit/BLUETRIP-LICENSE
-	rm -f debian/gitit/usr/share/gitit/YUI-LICENSE
-
-	# Build data packages depends
-	dh_haskell_depends -pgitit
+binary-post-install/libghc-gitit-data::
+	dh_linktree -p$(cdbs_curpkg)
