@@ -1,0 +1,14 @@
+#!/usr/bin/make -f
+
+DEB_ENABLE_TESTS = yes
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/hlibrary.mk
+
+DEB_GHC_EXTRA_PACKAGES := libghc-js-flot-data (>= $(CABAL_VERSION))
+
+DEB_SETUP_GHC_CONFIGURE_ARGS := --datasubdir=haskell-js-flot
+
+install/libghc-js-flot-data:: debian/tmp-inst-ghc
+	mv debian/tmp-inst-ghc/usr/share/haskell-js-flot \
+	  debian/libghc-js-flot-data/usr/share/
