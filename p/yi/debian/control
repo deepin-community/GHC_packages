@@ -5,122 +5,98 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Masayuki Hatta (mhatta) <mhatta@debian.org>
 Build-Depends: debhelper (>= 9)
  , haskell-devscripts (>= 0.9)
+ , alex (>= 3.0.3)
  , cdbs
  , ghc
  , ghc-prof
- , libghc-diff-dev (>= 0.1)
- , libghc-diff-dev (<< 0.4)
- , libghc-diff-prof
- , libghc-quickcheck2-dev (>= 2.1.0.2)
- , libghc-quickcheck2-prof
- , libghc-cautious-file-dev (>= 1.0.1)
- , libghc-cautious-file-prof
- , libghc-concrete-typerep-dev (>= 0.1.0.2)
- , libghc-concrete-typerep-dev (<< 0.1.1)
- , libghc-concrete-typerep-prof
- , libghc-data-accessor-dev (>= 0.2.1.4)
- , libghc-data-accessor-dev (<< 0.3)
- , libghc-data-accessor-prof
- , libghc-data-accessor-mtl-dev (>= 0.2)
- , libghc-data-accessor-mtl-dev (<< 0.3)
- , libghc-data-accessor-mtl-prof
- , libghc-data-accessor-template-dev (>= 0.2.1.3)
- , libghc-data-accessor-template-dev (<< 0.2.2)
- , libghc-data-accessor-template-prof
  , libghc-data-default-dev
  , libghc-data-default-prof
- , libghc-derive-dev (>= 2.4)
- , libghc-derive-dev (<< 2.7)
- , libghc-derive-prof
  , libghc-dlist-dev (>= 0.4.1)
  , libghc-dlist-prof
+ , libghc-dynamic-state-dev (>= 0.1.0.5)
+ , libghc-dynamic-state-prof
  , libghc-dyre-dev (>= 0.8.11)
  , libghc-dyre-prof
- , libghc-fingertree-dev (<< 0.2)
- , libghc-fingertree-prof
- , libghc-ghc-paths-dev (>= 0.1)
- , libghc-ghc-paths-dev (<< 0.2)
- , libghc-ghc-paths-prof
+ , libghc-gtk-dev
+ , libghc-gtk-prof
  , libghc-hashable-dev (>= 1.1.2.5)
  , libghc-hashable-prof
  , libghc-hint-dev (>> 0.3.1)
  , libghc-hint-prof
+ , libghc-lens-dev (>= 4.4.0.1)
+ , libghc-lens-prof
  , libghc-mtl-dev (>= 0.1.0.1)
  , libghc-mtl-prof
+ , libghc-oo-prototypes-dev
+ , libghc-oo-prototypes-prof
  , libghc-parsec3-dev
  , libghc-parsec3-prof
- , libghc-pointedlist-dev (>= 0.4)
- , libghc-pointedlist-dev (<< 0.6)
+ , libghc-pointedlist-dev (>= 0.5)
  , libghc-pointedlist-prof
- , libghc-puremd5-dev (>= 0.2.3)
- , libghc-puremd5-prof
- , libghc-random-dev
- , libghc-random-prof
+ , libghc-quickcheck2-dev (>= 2.7)
+ , libghc-quickcheck2-dev (<< 2.8)
+ , libghc-quickcheck2-prof
  , libghc-regex-base-dev (>= 0.93)
  , libghc-regex-base-dev (<< 0.94)
  , libghc-regex-base-prof
  , libghc-regex-tdfa-dev (>= 1.1)
  , libghc-regex-tdfa-dev (<< 1.3)
  , libghc-regex-tdfa-prof
- , libghc-rosezipper-dev (>= 0.1)
- , libghc-rosezipper-dev (<< 0.3)
- , libghc-rosezipper-prof
+ , libghc-safe-dev (>= 0.3.4)
+ , libghc-safe-dev (<< 0.4)
+ , libghc-safe-prof
+ , libghc-semigroups-dev
+ , libghc-semigroups-prof
  , libghc-split-dev (>= 0.1)
  , libghc-split-dev (<< 0.3)
  , libghc-split-prof
- , libghc-uniplate-dev
- , libghc-uniplate-prof
+ , libghc-text-dev (>= 1.1.1.3)
+ , libghc-text-prof
  , libghc-unix-compat-dev (>= 0.1)
  , libghc-unix-compat-dev (<< 0.5)
  , libghc-unix-compat-prof
  , libghc-unordered-containers-dev (>= 0.1.3)
  , libghc-unordered-containers-dev (<< 0.3)
  , libghc-unordered-containers-prof
- , libghc-utf8-string-dev (>= 0.3.1)
- , libghc-utf8-string-prof
  , libghc-vty-dev (>= 5.2.3-2)
  , libghc-vty-dev (<< 6)
  , libghc-vty-prof
+ , libghc-word-trie-dev (>= 0.2.0.4)
+ , libghc-word-trie-prof
  , libghc-xdg-basedir-dev (>= 0.2.1)
  , libghc-xdg-basedir-dev (<< 0.3)
  , libghc-xdg-basedir-prof
- , alex (>= 3.0.3)
- , libghc-gtk-dev
- , libghc-gtk-prof
- , libghc-vte-dev
- , libghc-vte-prof
+ , libghc-yi-language-dev (>= 0.1.1.0)
+ , libghc-yi-language-prof
+ , libghc-yi-rope-dev (>= 0.7.0.0)
+ , libghc-yi-rope-dev (<= 0.8)
+ , libghc-yi-rope-prof
 Build-Depends-Indep: ghc-doc
- , libghc-diff-doc
- , libghc-quickcheck2-doc
- , libghc-cautious-file-doc
- , libghc-concrete-typerep-doc
- , libghc-data-accessor-doc
- , libghc-data-accessor-mtl-doc
- , libghc-data-accessor-template-doc
  , libghc-data-default-doc
- , libghc-derive-doc
  , libghc-dlist-doc
+ , libghc-dynamic-state-doc
  , libghc-dyre-doc
- , libghc-fingertree-doc
- , libghc-ghc-paths-doc
+ , libghc-gtk-doc
  , libghc-hashable-doc
  , libghc-hint-doc
+ , libghc-lens-doc
  , libghc-mtl-doc
+ , libghc-oo-prototypes-doc
  , libghc-parsec3-doc
  , libghc-pointedlist-doc
- , libghc-puremd5-doc
- , libghc-random-doc
+ , libghc-quickcheck2-doc
  , libghc-regex-base-doc
  , libghc-regex-tdfa-doc
- , libghc-rosezipper-doc
+ , libghc-safe-doc
+ , libghc-semigroups-doc
  , libghc-split-doc
- , libghc-uniplate-doc
  , libghc-unix-compat-doc
  , libghc-unordered-containers-doc
- , libghc-utf8-string-doc
  , libghc-vty-doc
- , libghc-gtk-doc
- , libghc-vte-doc
+ , libghc-word-trie-doc
+ , libghc-xdg-basedir-doc
+ , libghc-yi-language-doc
+ , libghc-yi-rope-doc
 Standards-Version: 3.9.4
 Homepage: http://haskell.org/haskellwiki/Yi
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/yi
