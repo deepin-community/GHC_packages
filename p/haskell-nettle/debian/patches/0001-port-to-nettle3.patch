@@ -1,0 +1,779 @@
+From a47c2ab1001852f99d617cae950bba885466dafd Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Stefan=20B=C3=BChler?= <stbuehler@web.de>
+Date: Tue, 2 Jun 2015 19:24:24 +0200
+Subject: [PATCH 1/5] port to nettle3
+
+---
+ src/Crypto/Nettle/Ciphers.hs                 | 130 ++++++++---------
+ src/Crypto/Nettle/Ciphers/ForeignImports.hsc | 207 ++++++++++++++++++++++-----
+ src/nettle-ciphers.c                         | 124 +++++++++++++++-
+ src/nettle-ciphers.h                         |  55 ++++++-
+ src/nettle-hash.h                            |   6 +
+ 5 files changed, 411 insertions(+), 111 deletions(-)
+
+diff --git a/src/Crypto/Nettle/Ciphers.hs b/src/Crypto/Nettle/Ciphers.hs
+index 866468d..97a8850 100644
+--- a/src/Crypto/Nettle/Ciphers.hs
++++ b/src/Crypto/Nettle/Ciphers.hs
+@@ -125,7 +125,6 @@ instance StreamNonceCipher Typ where \
+	; streamNonceSize = witness nbsc_nonceSize \
+	}
+
+-
+ {-|
+ 'AES' is the generic cipher context for the AES cipher, supporting key sizes
+ of 128, 196 and 256 bits (16, 24 and 32 bytes). The 'blockSize' is always 128 bits (16 bytes).
+@@ -142,35 +141,32 @@ instance NettleCipher AES where
+	nc_Ctx           = AES
+ instance NettleBlockCipher AES where
+	nbc_blockSize          = Tagged 16
+-	nbc_encrypt_ctx_offset = Tagged c_hs_aes_ctx_encrypt
+-	nbc_decrypt_ctx_offset = Tagged c_hs_aes_ctx_decrypt
+-	nbc_ecb_encrypt        = Tagged c_aes_encrypt
+-	nbc_ecb_decrypt        = Tagged c_aes_decrypt
+-	nbc_fun_encrypt        = Tagged p_aes_encrypt
+-	nbc_fun_decrypt        = Tagged p_aes_decrypt
++	nbc_ecb_encrypt        = Tagged c_hs_aes_encrypt
++	nbc_ecb_decrypt        = Tagged c_hs_aes_decrypt
++	nbc_fun_encrypt        = Tagged p_hs_aes_encrypt
++	nbc_fun_decrypt        = Tagged p_hs_aes_decrypt
+
+ INSTANCE_BLOCKCIPHER(AES)
+
+-
+ {-|
+ 'AES128' provides the same interface as 'AES', but is restricted to 128-bit keys.
+ -}
+ newtype AES128 = AES128 SecureMem
+ instance NettleCipher AES128 where
+-	nc_cipherInit    = Tagged c_hs_aes_init
++	nc_cipherInit    = Tagged (\ctx _ key -> c_hs_aes128_init ctx key)
+	nc_cipherName    = Tagged "AES-128"
+	nc_cipherKeySize = Tagged $ KeySizeFixed 16
+-	nc_ctx_size      = Tagged c_hs_aes_ctx_size
++	nc_ctx_size      = Tagged c_hs_aes128_ctx_size
+	nc_ctx (AES128 c) = c
+	nc_Ctx            = AES128
+ instance NettleBlockCipher AES128 where
+	nbc_blockSize          = Tagged 16
+-	nbc_encrypt_ctx_offset = Tagged c_hs_aes_ctx_encrypt
+-	nbc_decrypt_ctx_offset = Tagged c_hs_aes_ctx_decrypt
+-	nbc_ecb_encrypt        = Tagged c_aes_encrypt
+-	nbc_ecb_decrypt        = Tagged c_aes_decrypt
+-	nbc_fun_encrypt        = Tagged p_aes_encrypt
+-	nbc_fun_decrypt        = Tagged p_aes_decrypt
++	nbc_encrypt_ctx_offset = Tagged c_hs_aes128_ctx_encrypt
++	nbc_decrypt_ctx_offset = Tagged c_hs_aes128_ctx_decrypt
++	nbc_ecb_encrypt        = Tagged c_aes128_encrypt
++	nbc_ecb_decrypt        = Tagged c_aes128_decrypt
++	nbc_fun_encrypt        = Tagged p_aes128_encrypt
++	nbc_fun_decrypt        = Tagged p_aes128_decrypt
+
+ INSTANCE_BLOCKCIPHER(AES128)
+
+@@ -180,20 +176,20 @@ INSTANCE_BLOCKCIPHER(AES128)
+ -}
+ newtype AES192 = AES192 SecureMem
+ instance NettleCipher AES192 where
+-	nc_cipherInit    = Tagged c_hs_aes_init
++	nc_cipherInit    = Tagged (\ctx _ key -> c_hs_aes192_init ctx key)
+	nc_cipherName    = Tagged "AES-192"
+	nc_cipherKeySize = Tagged $ KeySizeFixed 24
+-	nc_ctx_size      = Tagged c_hs_aes_ctx_size
++	nc_ctx_size      = Tagged c_hs_aes192_ctx_size
+	nc_ctx  (AES192 c) = c
+	nc_Ctx             = AES192
+ instance NettleBlockCipher AES192 where
+	nbc_blockSize          = Tagged 16
+-	nbc_encrypt_ctx_offset = Tagged c_hs_aes_ctx_encrypt
+-	nbc_decrypt_ctx_offset = Tagged c_hs_aes_ctx_decrypt
+-	nbc_ecb_encrypt        = Tagged c_aes_encrypt
+-	nbc_ecb_decrypt        = Tagged c_aes_decrypt
+-	nbc_fun_encrypt        = Tagged p_aes_encrypt
+-	nbc_fun_decrypt        = Tagged p_aes_decrypt
++	nbc_encrypt_ctx_offset = Tagged c_hs_aes192_ctx_encrypt
++	nbc_decrypt_ctx_offset = Tagged c_hs_aes192_ctx_decrypt
++	nbc_ecb_encrypt        = Tagged c_aes192_encrypt
++	nbc_ecb_decrypt        = Tagged c_aes192_decrypt
++	nbc_fun_encrypt        = Tagged p_aes192_encrypt
++	nbc_fun_decrypt        = Tagged p_aes192_decrypt
+
+ INSTANCE_BLOCKCIPHER(AES192)
+
+@@ -203,20 +199,20 @@ INSTANCE_BLOCKCIPHER(AES192)
+ -}
+ newtype AES256 = AES256 SecureMem
+ instance NettleCipher AES256 where
+-	nc_cipherInit    = Tagged c_hs_aes_init
++	nc_cipherInit    = Tagged (\ctx _ key -> c_hs_aes256_init ctx key)
+	nc_cipherName    = Tagged "AES-256"
+	nc_cipherKeySize = Tagged $ KeySizeFixed 32
+-	nc_ctx_size      = Tagged c_hs_aes_ctx_size
++	nc_ctx_size      = Tagged c_hs_aes256_ctx_size
+	nc_ctx  (AES256 c) = c
+	nc_Ctx             = AES256
+ instance NettleBlockCipher AES256 where
+	nbc_blockSize          = Tagged 16
+-	nbc_encrypt_ctx_offset = Tagged c_hs_aes_ctx_encrypt
+-	nbc_decrypt_ctx_offset = Tagged c_hs_aes_ctx_decrypt
+-	nbc_ecb_encrypt        = Tagged c_aes_encrypt
+-	nbc_ecb_decrypt        = Tagged c_aes_decrypt
+-	nbc_fun_encrypt        = Tagged p_aes_encrypt
+-	nbc_fun_decrypt        = Tagged p_aes_decrypt
++	nbc_encrypt_ctx_offset = Tagged c_hs_aes256_ctx_encrypt
++	nbc_decrypt_ctx_offset = Tagged c_hs_aes256_ctx_decrypt
++	nbc_ecb_encrypt        = Tagged c_aes256_encrypt
++	nbc_ecb_decrypt        = Tagged c_aes256_decrypt
++	nbc_fun_encrypt        = Tagged p_aes256_encrypt
++	nbc_fun_decrypt        = Tagged p_aes256_decrypt
+
+ INSTANCE_BLOCKCIPHER(AES256)
+
+@@ -297,12 +293,10 @@ instance NettleCipher Camellia where
+	nc_Ctx             = Camellia
+ instance NettleBlockCipher Camellia where
+	nbc_blockSize          = Tagged 16
+-	nbc_encrypt_ctx_offset = Tagged c_hs_camellia_ctx_encrypt
+-	nbc_decrypt_ctx_offset = Tagged c_hs_camellia_ctx_decrypt
+-	nbc_ecb_encrypt        = Tagged c_camellia_crypt
+-	nbc_ecb_decrypt        = Tagged c_camellia_crypt
+-	nbc_fun_encrypt        = Tagged p_camellia_crypt
+-	nbc_fun_decrypt        = Tagged p_camellia_crypt
++	nbc_ecb_encrypt        = Tagged c_hs_camellia_encrypt
++	nbc_ecb_decrypt        = Tagged c_hs_camellia_decrypt
++	nbc_fun_encrypt        = Tagged p_hs_camellia_encrypt
++	nbc_fun_decrypt        = Tagged p_hs_camellia_decrypt
+
+ INSTANCE_BLOCKCIPHER(Camellia)
+
+@@ -311,20 +305,20 @@ INSTANCE_BLOCKCIPHER(Camellia)
+ -}
+ newtype Camellia128 = Camellia128 SecureMem
+ instance NettleCipher Camellia128 where
+-	nc_cipherInit    = Tagged c_hs_camellia_init
++	nc_cipherInit    = Tagged (\ctx _ key -> c_hs_camellia128_init ctx key)
+	nc_cipherName    = Tagged "Camellia-128"
+	nc_cipherKeySize = Tagged $ KeySizeFixed 16
+-	nc_ctx_size      = Tagged c_hs_camellia_ctx_size
++	nc_ctx_size      = Tagged c_hs_camellia128_ctx_size
+	nc_ctx  (Camellia128 c) = c
+	nc_Ctx             = Camellia128
+ instance NettleBlockCipher Camellia128 where
+	nbc_blockSize          = Tagged 16
+-	nbc_encrypt_ctx_offset = Tagged c_hs_camellia_ctx_encrypt
+-	nbc_decrypt_ctx_offset = Tagged c_hs_camellia_ctx_decrypt
+-	nbc_ecb_encrypt        = Tagged c_camellia_crypt
+-	nbc_ecb_decrypt        = Tagged c_camellia_crypt
+-	nbc_fun_encrypt        = Tagged p_camellia_crypt
+-	nbc_fun_decrypt        = Tagged p_camellia_crypt
++	nbc_encrypt_ctx_offset = Tagged c_hs_camellia128_ctx_encrypt
++	nbc_decrypt_ctx_offset = Tagged c_hs_camellia128_ctx_decrypt
++	nbc_ecb_encrypt        = Tagged c_camellia128_crypt
++	nbc_ecb_decrypt        = Tagged c_camellia128_crypt
++	nbc_fun_encrypt        = Tagged p_camellia128_crypt
++	nbc_fun_decrypt        = Tagged p_camellia128_crypt
+
+ INSTANCE_BLOCKCIPHER(Camellia128)
+
+@@ -333,20 +327,20 @@ INSTANCE_BLOCKCIPHER(Camellia128)
+ -}
+ newtype Camellia192 = Camellia192 SecureMem
+ instance NettleCipher Camellia192 where
+-	nc_cipherInit    = Tagged c_hs_camellia_init
++	nc_cipherInit    = Tagged (\ctx _ key -> c_hs_camellia192_init ctx key)
+	nc_cipherName    = Tagged "Camellia-192"
+	nc_cipherKeySize = Tagged $ KeySizeFixed 24
+-	nc_ctx_size      = Tagged c_hs_camellia_ctx_size
++	nc_ctx_size      = Tagged c_hs_camellia192_ctx_size
+	nc_ctx  (Camellia192 c) = c
+	nc_Ctx             = Camellia192
+ instance NettleBlockCipher Camellia192 where
+	nbc_blockSize          = Tagged 16
+-	nbc_encrypt_ctx_offset = Tagged c_hs_camellia_ctx_encrypt
+-	nbc_decrypt_ctx_offset = Tagged c_hs_camellia_ctx_decrypt
+-	nbc_ecb_encrypt        = Tagged c_camellia_crypt
+-	nbc_ecb_decrypt        = Tagged c_camellia_crypt
+-	nbc_fun_encrypt        = Tagged p_camellia_crypt
+-	nbc_fun_decrypt        = Tagged p_camellia_crypt
++	nbc_encrypt_ctx_offset = Tagged c_hs_camellia192_ctx_encrypt
++	nbc_decrypt_ctx_offset = Tagged c_hs_camellia192_ctx_decrypt
++	nbc_ecb_encrypt        = Tagged c_camellia192_crypt
++	nbc_ecb_decrypt        = Tagged c_camellia192_crypt
++	nbc_fun_encrypt        = Tagged p_camellia192_crypt
++	nbc_fun_decrypt        = Tagged p_camellia192_crypt
+
+ INSTANCE_BLOCKCIPHER(Camellia192)
+
+@@ -355,20 +349,20 @@ INSTANCE_BLOCKCIPHER(Camellia192)
+ -}
+ newtype Camellia256 = Camellia256 SecureMem
+ instance NettleCipher Camellia256 where
+-	nc_cipherInit    = Tagged c_hs_camellia_init
++	nc_cipherInit    = Tagged (\ctx _ key -> c_hs_camellia256_init ctx key)
+	nc_cipherName    = Tagged "Camellia-256"
+	nc_cipherKeySize = Tagged $ KeySizeFixed 32
+-	nc_ctx_size      = Tagged c_hs_camellia_ctx_size
++	nc_ctx_size      = Tagged c_hs_camellia256_ctx_size
+	nc_ctx  (Camellia256 c) = c
+	nc_Ctx             = Camellia256
+ instance NettleBlockCipher Camellia256 where
+	nbc_blockSize          = Tagged 16
+-	nbc_encrypt_ctx_offset = Tagged c_hs_camellia_ctx_encrypt
+-	nbc_decrypt_ctx_offset = Tagged c_hs_camellia_ctx_decrypt
+-	nbc_ecb_encrypt        = Tagged c_camellia_crypt
+-	nbc_ecb_decrypt        = Tagged c_camellia_crypt
+-	nbc_fun_encrypt        = Tagged p_camellia_crypt
+-	nbc_fun_decrypt        = Tagged p_camellia_crypt
++	nbc_encrypt_ctx_offset = Tagged c_hs_camellia256_ctx_encrypt
++	nbc_decrypt_ctx_offset = Tagged c_hs_camellia256_ctx_decrypt
++	nbc_ecb_encrypt        = Tagged c_camellia256_crypt
++	nbc_ecb_decrypt        = Tagged c_camellia256_crypt
++	nbc_fun_encrypt        = Tagged p_camellia256_crypt
++	nbc_fun_decrypt        = Tagged p_camellia256_crypt
+
+ INSTANCE_BLOCKCIPHER(Camellia256)
+
+@@ -378,7 +372,7 @@ and a variable key size of 40 up to 128 bits (5 to 16 bytes).
+ -}
+ newtype CAST128 = CAST128 SecureMem
+ instance NettleCipher CAST128 where
+-	nc_cipherInit    = Tagged c_cast128_set_key
++	nc_cipherInit    = Tagged c_cast5_set_key
+	nc_cipherName    = Tagged "CAST-128"
+	nc_cipherKeySize = Tagged $ KeySizeRange 5 16
+	nc_ctx_size      = Tagged c_cast128_ctx_size
+@@ -533,11 +527,11 @@ wrap_salsa20_set_key :: Ptr Word8 -> Word -> Ptr Word8 -> IO ()
+ wrap_salsa20_set_key ctxptr keylen keyptr = do
+	c_salsa20_set_key ctxptr keylen keyptr
+	withByteStringPtr (B.replicate 8 0) $ \_ nonceptr ->
+-		c_salsa20_set_iv ctxptr nonceptr
++		c_salsa20_set_nonce ctxptr nonceptr
+
+ -- check nonce length
+-wrap_salsa20_set_iv :: Ptr Word8 -> Word -> Ptr Word8 -> IO ()
+-wrap_salsa20_set_iv ctxptr ivlen ivptr = if ivlen == 8 then c_salsa20_set_iv ctxptr ivptr else fail "Invalid nonce length"
++wrap_salsa20_set_nonce :: Ptr Word8 -> Word -> Ptr Word8 -> IO ()
++wrap_salsa20_set_nonce ctxptr ivlen ivptr = if ivlen == 8 then c_salsa20_set_nonce ctxptr ivptr else fail "Invalid nonce length"
+
+ {-|
+ 'SALSA20' is a fairly recent stream cipher designed by D. J. Bernstein.
+@@ -566,7 +560,7 @@ instance NettleBlockedStreamCipher SALSA20 where
+	nbsc_incompleteState (SALSA20 (_, inc)) = inc
+	nbsc_streamCombine = Tagged c_salsa20_crypt
+	nbsc_nonceSize     = Tagged $ KeySizeFixed 8
+-	nbsc_setNonce      = Tagged $ Just wrap_salsa20_set_iv
++	nbsc_setNonce      = Tagged $ Just wrap_salsa20_set_nonce
+ INSTANCE_BLOCKEDSTREAMNONCECIPHER(SALSA20)
+
+
+@@ -587,5 +581,5 @@ instance NettleBlockedStreamCipher ESTREAM_SALSA20 where
+	nbsc_incompleteState (ESTREAM_SALSA20 (_, inc)) = inc
+	nbsc_streamCombine = Tagged c_salsa20r12_crypt
+	nbsc_nonceSize     = Tagged $ KeySizeFixed 8
+-	nbsc_setNonce      = Tagged $ Just wrap_salsa20_set_iv
++	nbsc_setNonce      = Tagged $ Just wrap_salsa20_set_nonce
+ INSTANCE_BLOCKEDSTREAMNONCECIPHER(ESTREAM_SALSA20)
+diff --git a/src/Crypto/Nettle/Ciphers/ForeignImports.hsc b/src/Crypto/Nettle/Ciphers/ForeignImports.hsc
+index 33e7cc9..34a0d52 100644
+--- a/src/Crypto/Nettle/Ciphers/ForeignImports.hsc
++++ b/src/Crypto/Nettle/Ciphers/ForeignImports.hsc
+@@ -23,13 +23,38 @@ module Crypto.Nettle.Ciphers.ForeignImports
+	, c_gcm_digest
+
+	, c_hs_aes_ctx_size
+-	, c_hs_aes_ctx_encrypt
+-	, c_hs_aes_ctx_decrypt
+	, c_hs_aes_init
+-	, c_aes_encrypt
+-	, p_aes_encrypt
+-	, c_aes_decrypt
+-	, p_aes_decrypt
++	, c_hs_aes_encrypt
++	, p_hs_aes_encrypt
++	, c_hs_aes_decrypt
++	, p_hs_aes_decrypt
++
++	, c_hs_aes128_ctx_size
++	, c_hs_aes128_ctx_encrypt
++	, c_hs_aes128_ctx_decrypt
++	, c_hs_aes128_init
++	, c_aes128_encrypt
++	, p_aes128_encrypt
++	, c_aes128_decrypt
++	, p_aes128_decrypt
++
++	, c_hs_aes192_ctx_size
++	, c_hs_aes192_ctx_encrypt
++	, c_hs_aes192_ctx_decrypt
++	, c_hs_aes192_init
++	, c_aes192_encrypt
++	, p_aes192_encrypt
++	, c_aes192_decrypt
++	, p_aes192_decrypt
++
++	, c_hs_aes256_ctx_size
++	, c_hs_aes256_ctx_encrypt
++	, c_hs_aes256_ctx_decrypt
++	, c_hs_aes256_init
++	, c_aes256_encrypt
++	, p_aes256_encrypt
++	, c_aes256_decrypt
++	, p_aes256_decrypt
+
+	, c_arctwo_ctx_size
+	, c_arctwo_set_key
+@@ -48,14 +73,35 @@ module Crypto.Nettle.Ciphers.ForeignImports
+	, p_blowfish_decrypt
+
+	, c_hs_camellia_ctx_size
+-	, c_hs_camellia_ctx_encrypt
+-	, c_hs_camellia_ctx_decrypt
+	, c_hs_camellia_init
+-	, c_camellia_crypt
+-	, p_camellia_crypt
++	, c_hs_camellia_encrypt
++	, p_hs_camellia_encrypt
++	, c_hs_camellia_decrypt
++	, p_hs_camellia_decrypt
++
++	, c_hs_camellia128_ctx_size
++	, c_hs_camellia128_ctx_encrypt
++	, c_hs_camellia128_ctx_decrypt
++	, c_hs_camellia128_init
++	, c_camellia128_crypt
++	, p_camellia128_crypt
++
++	, c_hs_camellia192_ctx_size
++	, c_hs_camellia192_ctx_encrypt
++	, c_hs_camellia192_ctx_decrypt
++	, c_hs_camellia192_init
++	, c_camellia192_crypt
++	, p_camellia192_crypt
++
++	, c_hs_camellia256_ctx_size
++	, c_hs_camellia256_ctx_encrypt
++	, c_hs_camellia256_ctx_decrypt
++	, c_hs_camellia256_init
++	, c_camellia256_crypt
++	, p_camellia256_crypt
+
+	, c_cast128_ctx_size
+-	, c_cast128_set_key
++	, c_cast5_set_key
+	, c_cast128_encrypt
+	, p_cast128_encrypt
+	, c_cast128_decrypt
+@@ -95,7 +141,7 @@ module Crypto.Nettle.Ciphers.ForeignImports
+
+	, c_salsa20_ctx_size
+	, c_salsa20_set_key
+-	, c_salsa20_set_iv
++	, c_salsa20_set_nonce
+	, c_salsa20_crypt
+	, c_salsa20r12_crypt
+	) where
+@@ -145,21 +191,67 @@ foreign import ccall unsafe "nettle_gcm_digest"
+
+ c_hs_aes_ctx_size :: Int
+ c_hs_aes_ctx_size = #{size struct hs_aes_ctx}
+-c_hs_aes_ctx_encrypt :: Ptr Word8 -> Ptr Word8
+-c_hs_aes_ctx_encrypt = #ptr struct hs_aes_ctx, encrypt
+-c_hs_aes_ctx_decrypt :: Ptr Word8 -> Ptr Word8
+-c_hs_aes_ctx_decrypt = #ptr struct hs_aes_ctx, decrypt
+ foreign import ccall unsafe "hs_nettle_aes_init"
+	c_hs_aes_init :: Ptr Word8 -> Word -> Ptr Word8 -> IO ()
+-foreign import ccall unsafe "nettle_aes_encrypt"
+-	c_aes_encrypt :: NettleCryptFunc
+-foreign import ccall unsafe "&nettle_aes_encrypt"
+-	p_aes_encrypt :: FunPtr NettleCryptFunc
+-foreign import ccall unsafe "nettle_aes_decrypt"
+-	c_aes_decrypt :: NettleCryptFunc
+-foreign import ccall unsafe "&nettle_aes_decrypt"
+-	p_aes_decrypt :: FunPtr NettleCryptFunc
+-
++foreign import ccall unsafe "hs_nettle_aes_encrypt"
++	c_hs_aes_encrypt :: NettleCryptFunc
++foreign import ccall unsafe "&hs_nettle_aes_encrypt"
++	p_hs_aes_encrypt :: FunPtr NettleCryptFunc
++foreign import ccall unsafe "hs_nettle_aes_decrypt"
++	c_hs_aes_decrypt :: NettleCryptFunc
++foreign import ccall unsafe "&hs_nettle_aes_decrypt"
++	p_hs_aes_decrypt :: FunPtr NettleCryptFunc
++
++c_hs_aes128_ctx_size :: Int
++c_hs_aes128_ctx_size = #{size struct hs_aes128_ctx}
++c_hs_aes128_ctx_encrypt :: Ptr Word8 -> Ptr Word8
++c_hs_aes128_ctx_encrypt = #ptr struct hs_aes128_ctx, encrypt
++c_hs_aes128_ctx_decrypt :: Ptr Word8 -> Ptr Word8
++c_hs_aes128_ctx_decrypt = #ptr struct hs_aes128_ctx, decrypt
++foreign import ccall unsafe "hs_nettle_aes128_init"
++	c_hs_aes128_init :: Ptr Word8 -> Ptr Word8 -> IO ()
++foreign import ccall unsafe "nettle_aes128_encrypt"
++	c_aes128_encrypt :: NettleCryptFunc
++foreign import ccall unsafe "&nettle_aes128_encrypt"
++	p_aes128_encrypt :: FunPtr NettleCryptFunc
++foreign import ccall unsafe "nettle_aes128_decrypt"
++	c_aes128_decrypt :: NettleCryptFunc
++foreign import ccall unsafe "&nettle_aes128_decrypt"
++	p_aes128_decrypt :: FunPtr NettleCryptFunc
++
++c_hs_aes192_ctx_size :: Int
++c_hs_aes192_ctx_size = #{size struct hs_aes192_ctx}
++c_hs_aes192_ctx_encrypt :: Ptr Word8 -> Ptr Word8
++c_hs_aes192_ctx_encrypt = #ptr struct hs_aes192_ctx, encrypt
++c_hs_aes192_ctx_decrypt :: Ptr Word8 -> Ptr Word8
++c_hs_aes192_ctx_decrypt = #ptr struct hs_aes192_ctx, decrypt
++foreign import ccall unsafe "hs_nettle_aes192_init"
++	c_hs_aes192_init :: Ptr Word8 -> Ptr Word8 -> IO ()
++foreign import ccall unsafe "nettle_aes192_encrypt"
++	c_aes192_encrypt :: NettleCryptFunc
++foreign import ccall unsafe "&nettle_aes192_encrypt"
++	p_aes192_encrypt :: FunPtr NettleCryptFunc
++foreign import ccall unsafe "nettle_aes192_decrypt"
++	c_aes192_decrypt :: NettleCryptFunc
++foreign import ccall unsafe "&nettle_aes192_decrypt"
++	p_aes192_decrypt :: FunPtr NettleCryptFunc
++
++c_hs_aes256_ctx_size :: Int
++c_hs_aes256_ctx_size = #{size struct hs_aes256_ctx}
++c_hs_aes256_ctx_encrypt :: Ptr Word8 -> Ptr Word8
++c_hs_aes256_ctx_encrypt = #ptr struct hs_aes256_ctx, encrypt
++c_hs_aes256_ctx_decrypt :: Ptr Word8 -> Ptr Word8
++c_hs_aes256_ctx_decrypt = #ptr struct hs_aes256_ctx, decrypt
++foreign import ccall unsafe "hs_nettle_aes256_init"
++	c_hs_aes256_init :: Ptr Word8 -> Ptr Word8 -> IO ()
++foreign import ccall unsafe "nettle_aes256_encrypt"
++	c_aes256_encrypt :: NettleCryptFunc
++foreign import ccall unsafe "&nettle_aes256_encrypt"
++	p_aes256_encrypt :: FunPtr NettleCryptFunc
++foreign import ccall unsafe "nettle_aes256_decrypt"
++	c_aes256_decrypt :: NettleCryptFunc
++foreign import ccall unsafe "&nettle_aes256_decrypt"
++	p_aes256_decrypt :: FunPtr NettleCryptFunc
+
+ c_arctwo_ctx_size :: Int
+ c_arctwo_ctx_size = #{size struct arctwo_ctx}
+@@ -193,21 +285,62 @@ foreign import ccall unsafe "&nettle_blowfish_decrypt"
+
+ c_hs_camellia_ctx_size :: Int
+ c_hs_camellia_ctx_size = #{size struct hs_camellia_ctx}
+-c_hs_camellia_ctx_encrypt :: Ptr Word8 -> Ptr Word8
+-c_hs_camellia_ctx_encrypt = #ptr struct hs_camellia_ctx, encrypt
+-c_hs_camellia_ctx_decrypt :: Ptr Word8 -> Ptr Word8
+-c_hs_camellia_ctx_decrypt = #ptr struct hs_camellia_ctx, decrypt
+ foreign import ccall unsafe "hs_nettle_camellia_init"
+	c_hs_camellia_init :: Ptr Word8 -> Word -> Ptr Word8 -> IO ()
+-foreign import ccall unsafe "nettle_camellia_crypt"
+-	c_camellia_crypt :: NettleCryptFunc
+-foreign import ccall unsafe "&nettle_camellia_crypt"
+-	p_camellia_crypt :: FunPtr NettleCryptFunc
++foreign import ccall unsafe "hs_nettle_camellia_encrypt"
++	c_hs_camellia_encrypt :: NettleCryptFunc
++foreign import ccall unsafe "&hs_nettle_camellia_encrypt"
++	p_hs_camellia_encrypt :: FunPtr NettleCryptFunc
++foreign import ccall unsafe "hs_nettle_camellia_decrypt"
++	c_hs_camellia_decrypt :: NettleCryptFunc
++foreign import ccall unsafe "&hs_nettle_camellia_decrypt"
++	p_hs_camellia_decrypt :: FunPtr NettleCryptFunc
++
++c_hs_camellia128_ctx_size :: Int
++c_hs_camellia128_ctx_size = #{size struct hs_camellia128_ctx}
++c_hs_camellia128_ctx_encrypt :: Ptr Word8 -> Ptr Word8
++c_hs_camellia128_ctx_encrypt = #ptr struct hs_camellia128_ctx, encrypt
++c_hs_camellia128_ctx_decrypt :: Ptr Word8 -> Ptr Word8
++c_hs_camellia128_ctx_decrypt = #ptr struct hs_camellia128_ctx, decrypt
++foreign import ccall unsafe "hs_nettle_camellia128_init"
++	c_hs_camellia128_init :: Ptr Word8 -> Ptr Word8 -> IO ()
++foreign import ccall unsafe "nettle_camellia128_crypt"
++	c_camellia128_crypt :: NettleCryptFunc
++foreign import ccall unsafe "&nettle_camellia128_crypt"
++	p_camellia128_crypt :: FunPtr NettleCryptFunc
++
++c_hs_camellia192_ctx_size :: Int
++c_hs_camellia192_ctx_size = #{size struct hs_camellia192_ctx}
++c_hs_camellia192_ctx_encrypt :: Ptr Word8 -> Ptr Word8
++c_hs_camellia192_ctx_encrypt = #ptr struct hs_camellia192_ctx, encrypt
++c_hs_camellia192_ctx_decrypt :: Ptr Word8 -> Ptr Word8
++c_hs_camellia192_ctx_decrypt = #ptr struct hs_camellia192_ctx, decrypt
++foreign import ccall unsafe "hs_nettle_camellia192_init"
++	c_hs_camellia192_init :: Ptr Word8 -> Ptr Word8 -> IO ()
++-- 192 and 256 bit variants use same crypt function
++foreign import ccall unsafe "nettle_camellia256_crypt"
++	c_camellia192_crypt :: NettleCryptFunc
++foreign import ccall unsafe "&nettle_camellia256_crypt"
++	p_camellia192_crypt :: FunPtr NettleCryptFunc
++
++c_hs_camellia256_ctx_size :: Int
++c_hs_camellia256_ctx_size = #{size struct hs_camellia256_ctx}
++c_hs_camellia256_ctx_encrypt :: Ptr Word8 -> Ptr Word8
++c_hs_camellia256_ctx_encrypt = #ptr struct hs_camellia256_ctx, encrypt
++c_hs_camellia256_ctx_decrypt :: Ptr Word8 -> Ptr Word8
++c_hs_camellia256_ctx_decrypt = #ptr struct hs_camellia256_ctx, decrypt
++foreign import ccall unsafe "hs_nettle_camellia256_init"
++	c_hs_camellia256_init :: Ptr Word8 -> Ptr Word8 -> IO ()
++foreign import ccall unsafe "nettle_camellia256_crypt"
++	c_camellia256_crypt :: NettleCryptFunc
++foreign import ccall unsafe "&nettle_camellia256_crypt"
++	p_camellia256_crypt :: FunPtr NettleCryptFunc
+
+ c_cast128_ctx_size :: Int
+ c_cast128_ctx_size = #{size struct cast128_ctx}
+-foreign import ccall unsafe "nettle_cast128_set_key"
+-	c_cast128_set_key :: Ptr Word8 -> Word -> Ptr Word8 -> IO ()
++-- cast128_set_key uses a 128-bit fixed size key, cast-5 supports the variable length
++foreign import ccall unsafe "nettle_cast5_set_key"
++	c_cast5_set_key :: Ptr Word8 -> Word -> Ptr Word8 -> IO ()
+ foreign import ccall unsafe "nettle_cast128_encrypt"
+	c_cast128_encrypt :: NettleCryptFunc
+ foreign import ccall unsafe "&nettle_cast128_encrypt"
+@@ -282,8 +415,8 @@ c_salsa20_ctx_size :: Int
+ c_salsa20_ctx_size = #{size struct salsa20_ctx}
+ foreign import ccall unsafe "nettle_salsa20_set_key"
+	c_salsa20_set_key :: Ptr Word8 -> Word -> Ptr Word8 -> IO ()
+-foreign import ccall unsafe "nettle_salsa20_set_iv"
+-	c_salsa20_set_iv :: Ptr Word8 -> Ptr Word8 -> IO ()
++foreign import ccall unsafe "nettle_salsa20_set_nonce"
++	c_salsa20_set_nonce :: Ptr Word8 -> Ptr Word8 -> IO ()
+ foreign import ccall unsafe "nettle_salsa20_crypt"
+	c_salsa20_crypt :: NettleCryptFunc
+ foreign import ccall unsafe "nettle_salsa20r12_crypt"
+diff --git a/src/nettle-ciphers.c b/src/nettle-ciphers.c
+index 779791a..3d81c89 100644
+--- a/src/nettle-ciphers.c
++++ b/src/nettle-ciphers.c
+@@ -38,16 +38,132 @@ void hs_nettle_cfb_decrypt(void *ctx, nettle_crypt_func *f,
+	}
+ }
+
++void hs_nettle_aes128_init(struct hs_aes128_ctx *ctx, const char *key) {
++	aes128_set_encrypt_key(&ctx->encrypt, key);
++	aes128_invert_key(&ctx->decrypt, &ctx->encrypt);
++}
++
++void hs_nettle_aes192_init(struct hs_aes192_ctx *ctx, const char *key) {
++	aes192_set_encrypt_key(&ctx->encrypt, key);
++	aes192_invert_key(&ctx->decrypt, &ctx->encrypt);
++}
++
++void hs_nettle_aes256_init(struct hs_aes256_ctx *ctx, const char *key) {
++	aes256_set_encrypt_key(&ctx->encrypt, key);
++	aes256_invert_key(&ctx->decrypt, &ctx->encrypt);
++}
++
+ void hs_nettle_aes_init(struct hs_aes_ctx *ctx, unsigned int key_size, const char *key) {
+	assert(16 == key_size || 24 == key_size || 32 == key_size);
+
+-	aes_set_encrypt_key(&ctx->encrypt, key_size, key);
+-	aes_invert_key(&ctx->decrypt, &ctx->encrypt);
++	switch (key_size) {
++	case 16:
++		ctx->selector = AES128;
++		aes128_set_encrypt_key(&ctx->encrypt.inner128, key);
++		aes128_invert_key(&ctx->decrypt.inner128, &ctx->encrypt.inner128);
++		break;
++	case 24:
++		ctx->selector = AES192;
++		aes192_set_encrypt_key(&ctx->encrypt.inner192, key);
++		aes192_invert_key(&ctx->decrypt.inner192, &ctx->encrypt.inner192);
++		break;
++	case 32:
++		ctx->selector = AES256;
++		aes256_set_encrypt_key(&ctx->encrypt.inner256, key);
++		aes256_invert_key(&ctx->decrypt.inner256, &ctx->encrypt.inner256);
++		break;
++	}
++}
++
++void hs_nettle_aes_encrypt(const struct hs_aes_ctx *ctx, size_t length, uint8_t *dst, const uint8_t *src) {
++	switch (ctx->selector) {
++	case AES128:
++		aes128_encrypt(&ctx->encrypt.inner128, length, dst, src);
++		break;
++	case AES192:
++		aes192_encrypt(&ctx->encrypt.inner192, length, dst, src);
++		break;
++	case AES256:
++		aes256_encrypt(&ctx->encrypt.inner256, length, dst, src);
++		break;
++	}
++}
++
++void hs_nettle_aes_decrypt(const struct hs_aes_ctx *ctx, size_t length, uint8_t *dst, const uint8_t *src) {
++	switch (ctx->selector) {
++	case AES128:
++		aes128_decrypt(&ctx->decrypt.inner128, length, dst, src);
++		break;
++	case AES192:
++		aes192_decrypt(&ctx->decrypt.inner192, length, dst, src);
++		break;
++	case AES256:
++		aes256_decrypt(&ctx->decrypt.inner256, length, dst, src);
++		break;
++	}
++}
++
++void hs_nettle_camellia128_init(struct hs_camellia128_ctx *ctx, const char *key) {
++	camellia128_set_encrypt_key(&ctx->encrypt, key);
++	camellia128_invert_key(&ctx->decrypt, &ctx->encrypt);
++}
++
++void hs_nettle_camellia192_init(struct hs_camellia192_ctx *ctx, const char *key) {
++	camellia192_set_encrypt_key(&ctx->encrypt, key);
++	camellia192_invert_key(&ctx->decrypt, &ctx->encrypt);
++}
++
++void hs_nettle_camellia256_init(struct hs_camellia256_ctx *ctx, const char *key) {
++	camellia256_set_encrypt_key(&ctx->encrypt, key);
++	camellia256_invert_key(&ctx->decrypt, &ctx->encrypt);
+ }
+
+ void hs_nettle_camellia_init(struct hs_camellia_ctx *ctx, unsigned int key_size, const char *key) {
+	assert(16 == key_size || 24 == key_size || 32 == key_size);
+
+-	camellia_set_encrypt_key(&ctx->encrypt, key_size, key);
+-	camellia_invert_key(&ctx->decrypt, &ctx->encrypt);
++	switch (key_size) {
++	case 16:
++		ctx->selector = CAMELLIA128;
++		camellia128_set_encrypt_key(&ctx->encrypt.inner128, key);
++		camellia128_invert_key(&ctx->decrypt.inner128, &ctx->encrypt.inner128);
++		break;
++	case 24:
++		ctx->selector = CAMELLIA192;
++		camellia192_set_encrypt_key(&ctx->encrypt.inner192, key);
++		camellia192_invert_key(&ctx->decrypt.inner192, &ctx->encrypt.inner192);
++		break;
++	case 32:
++		ctx->selector = CAMELLIA256;
++		camellia256_set_encrypt_key(&ctx->encrypt.inner256, key);
++		camellia256_invert_key(&ctx->decrypt.inner256, &ctx->encrypt.inner256);
++		break;
++	}
++}
++
++void hs_nettle_camellia_encrypt(const struct hs_camellia_ctx *ctx, size_t length, uint8_t *dst, const uint8_t *src) {
++	switch (ctx->selector) {
++	case CAMELLIA128:
++		camellia128_crypt(&ctx->encrypt.inner128, length, dst, src);
++		break;
++	case CAMELLIA192:
++		camellia192_crypt(&ctx->encrypt.inner192, length, dst, src);
++		break;
++	case CAMELLIA256:
++		camellia256_crypt(&ctx->encrypt.inner256, length, dst, src);
++		break;
++	}
++}
++
++void hs_nettle_camellia_decrypt(const struct hs_camellia_ctx *ctx, size_t length, uint8_t *dst, const uint8_t *src) {
++	switch (ctx->selector) {
++	case CAMELLIA128:
++		camellia128_crypt(&ctx->decrypt.inner128, length, dst, src);
++		break;
++	case CAMELLIA192:
++		camellia192_crypt(&ctx->decrypt.inner192, length, dst, src);
++		break;
++	case CAMELLIA256:
++		camellia256_crypt(&ctx->decrypt.inner256, length, dst, src);
++		break;
++	}
+ }
+diff --git a/src/nettle-ciphers.h b/src/nettle-ciphers.h
+index a81571b..37b2d60 100644
+--- a/src/nettle-ciphers.h
++++ b/src/nettle-ciphers.h
+@@ -2,6 +2,12 @@
+ #ifndef _HS_NETTLE_CIPHERS_H
+ #define _HS_NETTLE_CIPHERS_H _HS_NETTLE_CIPHERS_H
+
++#include <nettle/version.h>
++
++#if (NETTLE_VERSION_MAJOR != 3)
++#error unsupported nettle version
++#endif
++
+ #include <sys/types.h>
+ #include <nettle/cbc.h>
+ #include <nettle/gcm.h>
+@@ -33,15 +39,60 @@ void hs_nettle_cfb_decrypt(void *ctx, nettle_crypt_func *f,
+	const uint8_t *src);
+
+
++struct hs_aes128_ctx {
++	struct aes128_ctx encrypt, decrypt;
++};
++void hs_nettle_aes128_init(struct hs_aes128_ctx *ctx, const char *key);
++
++struct hs_aes192_ctx {
++	struct aes192_ctx encrypt, decrypt;
++};
++void hs_nettle_aes192_init(struct hs_aes192_ctx *ctx, const char *key);
++
++struct hs_aes256_ctx {
++	struct aes256_ctx encrypt, decrypt;
++};
++void hs_nettle_aes256_init(struct hs_aes256_ctx *ctx, const char *key);
++
++union hs_aes_ctx_inner {
++	struct aes128_ctx inner128;
++	struct aes192_ctx inner192;
++	struct aes256_ctx inner256;
++};
+ struct hs_aes_ctx {
+-	struct aes_ctx encrypt, decrypt;
++	enum { AES128, AES192, AES256 } selector;
++	union hs_aes_ctx_inner encrypt, decrypt;
+ };
+ void hs_nettle_aes_init(struct hs_aes_ctx *ctx, unsigned int key_size, const char *key);
++void hs_nettle_aes_encrypt(const struct hs_aes_ctx *ctx, size_t length, uint8_t *dst, const uint8_t *src);
++void hs_nettle_aes_decrypt(const struct hs_aes_ctx *ctx, size_t length, uint8_t *dst, const uint8_t *src);
++
++struct hs_camellia128_ctx {
++	struct camellia128_ctx encrypt, decrypt;
++};
++void hs_nettle_camellia128_init(struct hs_camellia128_ctx *ctx, const char *key);
+
++struct hs_camellia192_ctx {
++	struct camellia192_ctx encrypt, decrypt;
++};
++void hs_nettle_camellia192_init(struct hs_camellia192_ctx *ctx, const char *key);
++
++struct hs_camellia256_ctx {
++	struct camellia256_ctx encrypt, decrypt;
++};
++void hs_nettle_camellia256_init(struct hs_camellia256_ctx *ctx, const char *key);
+
++union hs_camellia_ctx_inner {
++	struct camellia128_ctx inner128;
++	struct camellia192_ctx inner192;
++	struct camellia256_ctx inner256;
++};
+ struct hs_camellia_ctx {
+-	struct camellia_ctx encrypt, decrypt;
++	enum { CAMELLIA128, CAMELLIA192, CAMELLIA256 } selector;
++	union hs_camellia_ctx_inner encrypt, decrypt;
+ };
+ void hs_nettle_camellia_init(struct hs_camellia_ctx *ctx, unsigned int key_size, const char *key);
++void hs_nettle_camellia_encrypt(const struct hs_camellia_ctx *ctx, size_t length, uint8_t *dst, const uint8_t *src);
++void hs_nettle_camellia_decrypt(const struct hs_camellia_ctx *ctx, size_t length, uint8_t *dst, const uint8_t *src);
+
+ #endif
+diff --git a/src/nettle-hash.h b/src/nettle-hash.h
+index 5ba03d9..09a0158 100644
+--- a/src/nettle-hash.h
++++ b/src/nettle-hash.h
+@@ -2,6 +2,12 @@
+ #ifndef _HS_NETTLE_HASH_H
+ #define _HS_NETTLE_HASH_H _HS_NETTLE_HASH_H
+
++#include <nettle/version.h>
++
++#if (NETTLE_VERSION_MAJOR != 3)
++#error unsupported nettle version
++#endif
++
+ #include <sys/types.h>
+ #include <nettle/cbc.h>
+ #include <nettle/gcm.h>
+--
+2.1.4
