@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 
-DEB_ENABLE_TESTS = $(shell test -e /usr/lib/ghc/rts-1.0/libHSrts_thr.a && echo yes)
+DEB_ENABLE_TESTS = yes
 
 include /usr/share/cdbs/1/rules/buildvars.mk
 include /usr/share/cdbs/1/rules/debhelper.mk
@@ -13,7 +13,7 @@ check-ghc-stamp: export LC_ALL := C.UTF-8
 
 DEB_SETUP_GHC_CONFIGURE_ARGS += -f-test-hlint
 
-ifeq ($GHC_HAS_SMP,no)
+ifeq ($(GHC_HAS_SMP),no)
 	# Disable tests that require SMP.
 	DEB_SETUP_GHC_CONFIGURE_ARGS += -f-test-hunit -f-test-properties
 endif
