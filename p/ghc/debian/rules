@@ -167,8 +167,8 @@ install-stamp: build-stamp
 	    echo 'ghci=ghc-ghci' >> debian/ghc.substvars ; fi
 
 	# Add haddock substvars
-	echo "haddock:Depends=haddock-interface-$$(debian/tmp/usr/bin/haddock --interface-version)" >> debian/ghc-doc.substvars
-	echo "haddock:Provides=haddock-interface-$$(debian/tmp/usr/bin/haddock --interface-version)" >> debian/ghc.substvars
+	echo "haddock:Depends=haddock-interface-$$(debian/tmp/usr/lib/ghc/bin/haddock --interface-version)" >> debian/ghc-doc.substvars
+	echo "haddock:Provides=haddock-interface-$$(debian/tmp/usr/lib/ghc/bin/haddock --interface-version)" >> debian/ghc.substvars
 
 ifeq (YES,$(BUILD_HADDOCK_DOCS))
 	mkdir -p debian/tmp/usr/lib/ghc-doc
