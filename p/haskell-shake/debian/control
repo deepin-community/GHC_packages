@@ -17,14 +17,22 @@ Build-Depends: debhelper (>= 9)
   , libghc-utf8-string-dev (>= 0.3)
   , libghc-utf8-string-prof
   , libghc-quickcheck2-dev (>= 2.0)
-  , dh-linktree
-  , libjs-jquery
-  , libjs-jquery-flot
+  , libghc-js-jquery-dev
+  , libghc-js-jquery-data
+  , libghc-js-jquery-prof
+  , libghc-js-flot-dev
+  , libghc-js-flot-data
+  , libghc-js-flot-prof
+  , libghc-extra-dev
+  , libghc-extra-prof
 Build-Depends-Indep: ghc-doc
   , libghc-hashable-doc
   , libghc-random-doc
   , libghc-unordered-containers-doc
   , libghc-utf8-string-doc
+  , libghc-js-jquery-doc
+  , libghc-js-flot-doc
+  , libghc-extra-doc
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/shake
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-shake
@@ -86,6 +94,7 @@ Package: libghc-shake-data
 Architecture: all
 Depends: ${haskell:Depends}
   , ${misc:Depends}
+  , ${haskell:Extra-Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}

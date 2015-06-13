@@ -2,34 +2,23 @@
 
 DEB_UPSTREAM_URL = http://hackage.haskell.org/package/shake-$(DEB_UPSTREAM_TARBALL_VERSION)
 DEB_UPSTREAM_PACKAGE := shake
-DEB_UPSTREAM_REPACKAGE_EXCLUDES := ./html/jquery*.js ./html/viz.js ./js-src/
+DEB_UPSTREAM_REPACKAGE_EXCLUDES := ./html/viz.js
 DEB_UPSTREAM_REPACKAGE_DELIMITER := +
 DEB_SETUP_GHC_CONFIGURE_ARGS := --datasubdir=/usr/share/shake
-DEB_ENABLE_TESTS := $(shell test -e /usr/lib/ghc/bin/ghci && echo yes)
+DEB_ENABLE_TESTS := $(shell test -e /usr/bin/ghci && echo yes)
 DEB_GHC_EXTRA_PACKAGES := libghc-shake-data (>= $(CABAL_VERSION))
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/rules/upstream-tarball.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
 
-html/jquery.js: /usr/share/javascript/jquery/jquery.js
-	ln -sf $< $@
-
-html/jquery.flot.js: /usr/share/javascript/jquery-flot/jquery.flot.js
-	ln -sf $< $@
-
-html/jquery.flot.stack.js: /usr/share/javascript/jquery-flot/jquery.flot.stack.js
-	ln -sf $< $@
-
 html/viz.js:
 	touch $@
 
 # Create versions of the files we stripped from the upstream tarball that
 # are good enough to pass tests.
-check-ghc-stamp: html/jquery.js html/jquery.flot.js html/jquery.flot.stack.js html/viz.js
+check-ghc-stamp: html/viz.js
 
 install/libghc-shake-data:: debian/tmp-inst-ghc
 	mv debian/tmp-inst-ghc/usr/share/shake debian/libghc-shake-data/usr/share
-
-binary-post-install/libghc-shake-data::
-	dh_linktree -p$(cdbs_curpkg)
+	dh_haskell_depends -plibghc-shake-data # for haskell:Extra-Depends substvar
