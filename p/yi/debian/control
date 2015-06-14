@@ -9,6 +9,11 @@ Build-Depends: debhelper (>= 9)
  , cdbs
  , ghc
  , ghc-prof
+# newer needed for Setup.hs
+ , libghc-cabal-dev (>= 1.20)
+# use version range to get the actual cabal package, and not ghc-prof
+ , libghc-cabal-prof (>= 1.20)
+# normal dependencies
  , libghc-data-default-dev
  , libghc-data-default-prof
  , libghc-dlist-dev (>= 0.4.1)
@@ -72,6 +77,7 @@ Build-Depends: debhelper (>= 9)
  , libghc-yi-rope-dev (<= 0.8)
  , libghc-yi-rope-prof
 Build-Depends-Indep: ghc-doc
+ , libghc-cabal-doc (>= 1.20)
  , libghc-data-default-doc
  , libghc-dlist-doc
  , libghc-dynamic-state-doc
