@@ -1,6 +1,12 @@
 #!/usr/bin/make -f
 
+# The test suite requires template haskell
+ifeq (0,$(shell ghc --info | grep 'Have interpreter.*YES' >/dev/null 2>&1; echo $$?))
 DEB_ENABLE_TESTS = yes
+else
+DEB_ENABLE_TESTS = no
+endif
+
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
