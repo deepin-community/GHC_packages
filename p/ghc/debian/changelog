@@ -3,6 +3,7 @@ ghc (7.10.1.20150612-1) UNRELEASED; urgency=medium
   * Calculate haddock interface version using the built haddock, not the
     installed (Thanks to David Fox for noticing).
   * New upstream release randidate (7.10.2-rc1)
+  * Merge from unstable
 
  -- Joachim Breitner <nomeata@debian.org>  Mon, 15 Jun 2015 09:26:23 +0200
 
@@ -44,6 +45,20 @@ ghc (7.10.1-1) experimental; urgency=medium
   * Remove the hack introduced in 7.2.0 for a clean upgrade from 7.0.3.
 
  -- Joachim Breitner <nomeata@debian.org>  Tue, 12 May 2015 12:41:40 +0200
+
+ghc (7.8.4-9) unstable; urgency=medium
+
+  * Another stab at making GHC more reproducible: Use a hash of the command
+    line instead of the pid when calculating a "random" directory name.
+
+ -- Joachim Breitner <nomeata@debian.org>  Sun, 07 Jun 2015 16:21:38 +0200
+
+ghc (7.8.4-8) unstable; urgency=medium
+
+  * debian/patches/stable-specialization-rule-names: Root out another cause of
+    binary ABI instability.
+
+ -- Joachim Breitner <nomeata@debian.org>  Mon, 25 May 2015 19:28:56 +0200
 
 ghc (7.8.4-7) unstable; urgency=medium
 
