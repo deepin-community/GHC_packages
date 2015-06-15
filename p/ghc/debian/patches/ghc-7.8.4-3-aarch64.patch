@@ -1,34 +1,18 @@
 Provided by Edmund Grimley Evans in http://bugs.debian.org/783987 based on
 
-https://git.haskell.org/ghc.git/commit/0bbc2ac6dae9ce2838f23a75a6a989826c06f3f5
 https://git.haskell.org/ghc.git/commit/1e8c9b81a819da8eb54405a029fc33a9f5220321
 
-Not in 7.10.1, but one patch likely to be in 7.10.2, see
+Not in 7.10.2-rc1, but maybe we can fix that before 7.10.2:
 https://ghc.haskell.org/trac/ghc/ticket/9673
 
 
-Index: ghc-7.10.1/aclocal.m4
+Index: ghc-7.10/aclocal.m4
 ===================================================================
---- ghc-7.10.1.orig/aclocal.m4	2015-05-12 12:41:52.000000000 +0200
-+++ ghc-7.10.1/aclocal.m4	2015-05-14 23:16:10.221224576 +0200
-@@ -568,9 +568,11 @@
-         $3="$$3 -D_HPUX_SOURCE"
-         $5="$$5 -D_HPUX_SOURCE"
-         ;;
--    arm*linux*)
--        # On arm/linux and arm/android, tell gcc to link using the gold linker.
--        # Forcing LD to be ld.gold is done in configre.ac.
-+    arm*linux*       | \
-+    aarch64*linux*   )
-+        # On arm/linux, aarch64/linux, arm/android and aarch64/android, tell
-+        # gcc to link using the gold linker.
-+        # Forcing LD to be ld.gold is done in FIND_LD m4 macro.
-         $3="$$3 -fuse-ld=gold"
-         ;;
-     esac
-@@ -2121,6 +2123,30 @@
-     fi
+--- ghc-7.10.orig/aclocal.m4	2015-06-15 09:29:12.405875831 +0200
++++ ghc-7.10/aclocal.m4	2015-06-15 09:29:12.405875831 +0200
+@@ -2163,6 +2163,30 @@
  ])
+ 
  
 +# FIND_LD
 +# Find the version of `ld` to use. This is used in both in the top level
@@ -57,10 +41,10 @@ Index: ghc-7.10.1/aclocal.m4
  # FIND_GCC()
  # --------------------------------
  # Finds where gcc is
-Index: ghc-7.10.1/mk/config.mk.in
+Index: ghc-7.10/mk/config.mk.in
 ===================================================================
---- ghc-7.10.1.orig/mk/config.mk.in	2015-05-12 10:54:02.000000000 +0200
-+++ ghc-7.10.1/mk/config.mk.in	2015-05-12 12:41:52.000000000 +0200
+--- ghc-7.10.orig/mk/config.mk.in	2015-06-15 09:29:12.405875831 +0200
++++ ghc-7.10/mk/config.mk.in	2015-06-15 09:29:12.405875831 +0200
 @@ -172,7 +172,7 @@
  
  # ArchSupportsSMP should be set iff there is support for that arch in
