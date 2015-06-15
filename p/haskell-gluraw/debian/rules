@@ -1,4 +1,21 @@
 #!/usr/bin/make -f
 
+# haskell-gluraw needs a lot of memory during compilation.
+# Unfortunately, this amount of memory is not available on all platforms,
+# and error: "virtual memory exhausted: Cannot allocate memory." could appear.
+#
+# In this case possible solution could be using ggc-min-expand.
+# This parameter specifies the minimum percentage by which the
+# garbage collector’s heap should be allowed to expand between collections.
+# Tuning this may improve compilation speed; it has no effect on code generation.
+#
+# http://hostingfu.com/article/compiling-with-gcc-on-low-memory-vps
+#  -- Dejan Latinovic <Dejan.Latinovic@imgtec.com>
+DEB_BUILD_ARCH     ?= $(shell dpkg-architecture -qDEB_BUILD_ARCH)
+ifneq (,$(filter $(DEB_BUILD_ARCH),mips mipsel))
+       DEB_SETUP_GHC6_CONFIGURE_ARGS += --ghc-options="-optc--param -optcggc-min-expand=10"
+endif
+
+
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
