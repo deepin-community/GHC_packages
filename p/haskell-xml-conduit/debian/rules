@@ -1,6 +1,10 @@
 #!/usr/bin/make -f
 
+ifeq (0,$(shell ghc --info | grep -q 'Have interpreter.*YES'; echo $$?))
 DEB_ENABLE_TESTS = yes
+else
+DEB_ENABLE_TESTS = no
+endif
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
