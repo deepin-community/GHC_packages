@@ -1,0 +1,15 @@
+As suggested by Edmund Grimley Evans
+
+Index: charsetdetect-ae-1.0.1/libcharsetdetect/nspr-emu/prcpucfg.h
+===================================================================
+--- charsetdetect-ae-1.0.1.orig/libcharsetdetect/nspr-emu/prcpucfg.h	2015-06-17 10:35:16.813934265 +0200
++++ charsetdetect-ae-1.0.1/libcharsetdetect/nspr-emu/prcpucfg.h	2015-06-17 10:37:24.203688373 +0200
+@@ -34,7 +34,7 @@
+ #include "prcpucfg_win.h"
+ #elif defined(__APPLE__)
+ #include "prcpucfg_mac.h"
+-#elif defined(__linux__)
++#elif defined(__linux__) || (defined(__FreeBSD_kernel__) && defined(__GLIBC__))
+ #include "prcpucfg_linux.h"
+ #elif defined(__FreeBSD__)
+ #include "prcpucfg_freebsd.h"
