@@ -9,7 +9,8 @@ export HOME="$(pwd)"
 mkdir -p .cabal/packages/hackage.haskell.org
 tar -cf .cabal/packages/hackage.haskell.org/00-index.tar -T /dev/null
 
-echo -e 'some-project\ns\n' | yesod init
-cd some-project
-cp some-project.cabal $ADT_ARTIFACTS
+echo -e 'yesod-init-test\ns\n' | yesod init
+cd yesod-init-test
+cp yesod-init-test.cabal $ADT_ARTIFACTS
 yesod test
+
