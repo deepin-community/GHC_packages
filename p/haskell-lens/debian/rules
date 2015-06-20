@@ -23,6 +23,6 @@ ifeq ($(GHC_HAS_SMP),no)
 endif
 
 ifeq ($(shell if [ ! -e /usr/bin/ghci ]; then echo 0; fi),0)
-	DEB_SETUP_GHC_CONFIGURE_ARGS += -fwithout-th -f-test-hunit -ftest-templates -f-test-properties
+	DEB_SETUP_GHC_CONFIGURE_ARGS += -fwithout-th -f-test-hunit -f-test-templates -f-test-properties
 endif
 
