@@ -1,0 +1,12 @@
+Index: lambdabot-4.3.0.1/src/Lambdabot/Monad.hs-boot
+===================================================================
+--- lambdabot-4.3.0.1.orig/src/Lambdabot/Monad.hs-boot	2015-06-20 19:20:39.812844448 +0200
++++ lambdabot-4.3.0.1/src/Lambdabot/Monad.hs-boot	2015-06-20 19:26:29.294282756 +0200
+@@ -1,5 +1,6 @@
+-{-# LANGUAGE RankNTypes #-}
++{-# LANGUAGE RankNTypes, RoleAnnotations #-}
+ module Lambdabot.Monad where
+
++type role LB nominal
+ data LB a
+ instance Monad LB
