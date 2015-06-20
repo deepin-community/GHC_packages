@@ -1,0 +1,25 @@
+Index: lens-4.6.0.1/lens.cabal
+===================================================================
+--- lens-4.6.0.1.orig/lens.cabal	2015-06-20 16:11:21.128425436 +0200
++++ lens-4.6.0.1/lens.cabal	2015-06-20 16:12:38.766233282 +0200
+@@ -146,6 +146,11 @@
+   default: True
+   manual: True
+
++-- You can disable the templates test suite with -f-test-templates
++flag test-templates
++  default: True
++  manual: True
++
+ -- You can disable the doctests test suite with -f-test-doctests
+ flag test-doctests
+   default: True
+@@ -336,6 +341,9 @@
+   ghc-options: -Wall -Werror -threaded
+   hs-source-dirs: tests
+
++  if !flag(test-templates)
++    buildable: False
++
+   if flag(dump-splices)
+     ghc-options: -ddump-splices
