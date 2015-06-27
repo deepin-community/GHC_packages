@@ -1,14 +1,20 @@
 --- a/test/Network/HTTP/ClientSpec.hs
 +++ b/test/Network/HTTP/ClientSpec.hs
-@@ -55,11 +55,6 @@
+@@ -11,16 +11,4 @@
+ main = hspec spec
 
  spec :: Spec
- spec = describe "Client" $ do
+-spec = describe "Client" $ do
 -    it "works" $ withSocketsDo $ do
--        req <- parseUrl "http://www.yesodweb.com/"
+-        req <- parseUrl "http://httpbin.org/"
 -        man <- newManager defaultManagerSettings
 -        res <- httpLbs req man
 -        responseStatus res `shouldBe` status200
-     describe "fails on empty hostnames #40" $ do
-         let test url = it url $ do
-                 req <- parseUrl url
+-
+-    it "managerModifyRequest" $ do
+-        let modify req = return req { port = 80 }
+-            settings = defaultManagerSettings { managerModifyRequest = modify }
+-        withManager settings $ \man -> do
+-            res <- httpLbs "http://httpbin.org:1234" man
+-            responseStatus res `shouldBe` status200
++spec = return ()
