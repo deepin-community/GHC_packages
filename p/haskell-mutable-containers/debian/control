@@ -1,0 +1,74 @@
+Source: haskell-mutable-containers
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-mono-traversable-dev,
+ libghc-mono-traversable-prof,
+ libghc-primitive-dev,
+ libghc-primitive-prof,
+ libghc-vector-dev,
+ libghc-vector-prof,
+ libghc-quickcheck2-dev,
+ libghc-hspec-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-mono-traversable-doc,
+ libghc-primitive-doc,
+ libghc-vector-doc,
+Standards-Version: 3.9.6
+Homepage: https://github.com/fpco/mutable-containers
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-mutable-containers
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-mutable-containers
+X-Description: Abstactions and concrete implementations of mutable containers
+ One of Haskell's strengths is immutable data structures. These structures make
+ it easier to reason about code, simplify concurrency and parallelism, and in
+ some cases can improve performance by allowing sharing. However, there are
+ still classes of problems where mutable data structures can both be more
+ convenient, and provide a performance boost. This library is meant to provide
+ such structures in a performant, well tested way. It also provides a simple
+ abstraction over such data structures via typeclasses.
+
+Package: libghc-mutable-containers-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-mutable-containers-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-mutable-containers-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
