@@ -1,0 +1,103 @@
+Source: haskell-jwt
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-cryptohash-dev (>= 0.11),
+ libghc-cryptohash-prof,
+ libghc-base64-bytestring-dev (>= 1.0),
+ libghc-base64-bytestring-prof,
+ libghc-text-dev (>= 0.11),
+ libghc-text-prof,
+ libghc-aeson-dev (>= 0.7),
+ libghc-aeson-prof,
+ libghc-unordered-containers-dev (>= 0.2),
+ libghc-unordered-containers-prof,
+ libghc-scientific-dev (>= 0.2),
+ libghc-scientific-prof,
+ libghc-data-default-dev (>= 0.5),
+ libghc-data-default-prof,
+ libghc-http-types-dev (>= 0.8),
+ libghc-http-types-prof,
+ libghc-vector-dev (>= 0.7.1),
+ libghc-vector-prof,
+ libghc-semigroups-dev (>= 0.15.4),
+ libghc-semigroups-prof,
+ libghc-network-dev (>= 2.6),
+ libghc-network-prof,
+ libghc-network-uri-dev (>= 2.6),
+ libghc-network-uri-prof,
+ libghc-hunit-dev,
+ libghc-quickcheck2-dev (>= 2.4.0.1),
+ libghc-lens-dev,
+ libghc-lens-aeson-dev,
+ libghc-tasty-dev (>= 0.7),
+ libghc-tasty-hunit-dev (>= 0.4),
+ libghc-tasty-quickcheck-dev (>= 0.3),
+ libghc-tasty-th-dev (>= 0.1),
+Build-Depends-Indep: ghc-doc,
+ libghc-cryptohash-doc,
+ libghc-base64-bytestring-doc,
+ libghc-text-doc,
+ libghc-aeson-doc,
+ libghc-unordered-containers-doc,
+ libghc-scientific-doc,
+ libghc-data-default-doc,
+ libghc-http-types-doc,
+ libghc-vector-doc,
+ libghc-semigroups-doc,
+ libghc-network-doc,
+ libghc-network-uri-doc,
+Standards-Version: 3.9.6
+Homepage: https://bitbucket.org/ssaasen/haskell-jwt
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-jwt
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-jwt
+X-Description: JSON Web Token (JWT) decoding and encoding
+ JSON Web Token (JWT) is a compact URL-safe means of representing claims to be transferred between two parties.
+ .
+ To get started, see the documentation for the "Web.JWT" module.
+
+Package: libghc-jwt-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-jwt-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-jwt-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
