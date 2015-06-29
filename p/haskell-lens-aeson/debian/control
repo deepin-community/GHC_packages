@@ -1,0 +1,94 @@
+Source: haskell-lens-aeson
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-aeson-dev (>= 0.7.0.5),
+ libghc-aeson-dev (<< 0.10),
+ libghc-aeson-prof,
+ libghc-attoparsec-dev (>= 0.10),
+ libghc-attoparsec-dev (<< 0.14),
+ libghc-attoparsec-prof,
+ libghc-generic-deriving-dev,
+ libghc-generic-deriving-prof,
+ libghc-lens-dev (>= 4.4),
+ libghc-lens-dev (<< 5),
+ libghc-lens-prof,
+ libghc-scientific-dev (>= 0.3.2),
+ libghc-scientific-dev (<< 0.4),
+ libghc-scientific-prof,
+ libghc-semigroups-dev (>= 0.9),
+ libghc-semigroups-prof,
+ libghc-simple-reflect-dev (>= 0.3.1),
+ libghc-simple-reflect-prof,
+ libghc-text-dev (>= 0.11.1.10),
+ libghc-text-dev (<< 1.3),
+ libghc-text-prof,
+ libghc-unordered-containers-dev (>= 0.2.3),
+ libghc-unordered-containers-dev (<< 0.3),
+ libghc-unordered-containers-prof,
+ libghc-vector-dev (>= 0.9),
+ libghc-vector-dev (<< 0.11),
+ libghc-vector-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-aeson-doc,
+ libghc-attoparsec-doc,
+ libghc-generic-deriving-doc,
+ libghc-lens-doc,
+ libghc-scientific-doc,
+ libghc-semigroups-doc,
+ libghc-simple-reflect-doc,
+ libghc-text-doc,
+ libghc-unordered-containers-doc,
+ libghc-vector-doc,
+Standards-Version: 3.9.6
+Homepage: http://github.com/lens/lens-aeson/
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-lens-aeson
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-lens-aeson
+X-Description: Law-abiding lenses for aeson
+ This package provides lenses for the data structures of the aeson package.
+
+Package: libghc-lens-aeson-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-lens-aeson-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-lens-aeson-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
