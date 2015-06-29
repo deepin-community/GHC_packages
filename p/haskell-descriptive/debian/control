@@ -1,0 +1,86 @@
+Source: haskell-descriptive
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-aeson-dev (>= 0.7.0.5),
+ libghc-aeson-prof,
+ libghc-bifunctors-dev,
+ libghc-bifunctors-prof,
+ libghc-hspec-dev,
+ libghc-hspec-prof,
+ libghc-mtl-dev,
+ libghc-mtl-prof,
+ libghc-scientific-dev (>= 0.3.2),
+ libghc-scientific-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+ libghc-vector-dev,
+ libghc-vector-prof,
+ libghc-hunit-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-aeson-doc,
+ libghc-bifunctors-doc,
+ libghc-hspec-doc,
+ libghc-mtl-doc,
+ libghc-scientific-doc,
+ libghc-text-doc,
+ libghc-vector-doc,
+Standards-Version: 3.9.6
+Homepage: https://github.com/chrisdone/descriptive
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-descriptive
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-descriptive
+X-Description: Self-describing consumers/parsers; forms, cmd-line args, JSON, etc.
+ There are a variety of Haskell libraries which are implementable
+ through a common interface: self-describing parsers:
+ .
+  * A formlet is a self-describing parser.
+  * A regular old text parser can be self-describing.
+  * A command-line options parser is a self-describing parser.
+  * A MUD command set is a self-describing parser.
+  * A JSON API can be a self-describing parser.
+
+Package: libghc-descriptive-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-descriptive-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-descriptive-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
