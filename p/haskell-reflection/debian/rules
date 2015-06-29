@@ -1,9 +1,9 @@
 #!/usr/bin/make -f
 
 ifeq (0,$(shell ghc --info | grep -q 'Have interpreter.*YES'; echo $$?))
-DEB_SETUP_GHC_CONFIGURE_ARGS += --flags=template-haskell --flags=th
+DEB_SETUP_GHC_CONFIGURE_ARGS += --flags=template-haskell
 else
-DEB_SETUP_GHC_CONFIGURE_ARGS += --flags=-template-haskell --flags=-th
+DEB_SETUP_GHC_CONFIGURE_ARGS += --flags=-template-haskell
 endif
 
 include /usr/share/cdbs/1/rules/debhelper.mk
