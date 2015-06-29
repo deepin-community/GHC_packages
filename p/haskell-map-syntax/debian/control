@@ -1,0 +1,74 @@
+Source: haskell-map-syntax
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-mtl-dev (>= 2.0),
+ libghc-mtl-dev (<< 2.3),
+ libghc-mtl-prof,
+ libghc-hunit-dev (>= 1.2),
+ libghc-hunit-dev (<< 2),
+ libghc-quickcheck2-dev (>= 2.3.0.2),
+ libghc-quickcheck2-dev (<< 3),
+ libghc-test-framework-dev (>= 0.8.0.3),
+ libghc-test-framework-dev (<< 0.9),
+ libghc-test-framework-hunit-dev (>= 0.2.7),
+ libghc-test-framework-hunit-dev (<< 0.4),
+ libghc-test-framework-quickcheck2-dev (>= 0.2.12.1),
+ libghc-test-framework-quickcheck2-dev (<< 0.4),
+Build-Depends-Indep: ghc-doc,
+ libghc-mtl-doc,
+Standards-Version: 3.9.6
+Homepage: http://hackage.haskell.org/package/map-syntax
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-map-syntax
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-map-syntax
+X-Description: Syntax sugar for defining maps
+ Haskell's canonical list of tuples syntax for defining maps is not very
+ convenient and also has ambiguous semantics.  This package leverages do
+ notation to create a lighter syntax that makes semantics explicit and also
+ allows the option of fail-fast handling of duplicate keys.
+
+Package: libghc-map-syntax-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-map-syntax-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-map-syntax-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
