@@ -1,0 +1,89 @@
+Source: haskell-happstack-jmacro
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-base64-bytestring-dev (>= 0.1),
+ libghc-base64-bytestring-dev (<< 1.1),
+ libghc-base64-bytestring-prof,
+ libghc-cereal-dev (>= 0.3),
+ libghc-cereal-dev (<< 0.5),
+ libghc-cereal-prof,
+ libghc-digest-dev (>= 0.0),
+ libghc-digest-dev (<< 0.1),
+ libghc-digest-prof,
+ libghc-happstack-server-dev (>= 6.4),
+ libghc-happstack-server-dev (<< 7.5),
+ libghc-happstack-server-prof,
+ libghc-jmacro-dev (>= 0.6),
+ libghc-jmacro-dev (<< 0.7),
+ libghc-jmacro-prof,
+ libghc-text-dev (>= 0.9),
+ libghc-text-dev (<< 1.3),
+ libghc-text-prof,
+ libghc-utf8-string-dev (>= 0.3),
+ libghc-utf8-string-dev (<< 1.1),
+ libghc-utf8-string-prof,
+ libghc-wl-pprint-text-dev (>= 1.1),
+ libghc-wl-pprint-text-dev (<< 1.2),
+ libghc-wl-pprint-text-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-base64-bytestring-doc,
+ libghc-cereal-doc,
+ libghc-digest-doc,
+ libghc-happstack-server-doc,
+ libghc-jmacro-doc,
+ libghc-text-doc,
+ libghc-utf8-string-doc,
+ libghc-wl-pprint-text-doc,
+Standards-Version: 3.9.6
+Homepage: http://www.happstack.com/
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-happstack-jmacro
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-happstack-jmacro
+X-Description: Support for using JMacro with Happstack
+ This package integrates jmacro with HAppStack
+
+Package: libghc-happstack-jmacro-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-happstack-jmacro-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-happstack-jmacro-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
