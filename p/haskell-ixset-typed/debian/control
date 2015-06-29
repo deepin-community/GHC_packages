@@ -1,0 +1,84 @@
+Source: haskell-ixset-typed
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-safecopy-dev (>= 0.8),
+ libghc-safecopy-dev (<< 1),
+ libghc-safecopy-prof,
+ libghc-syb-dev (>= 0.4),
+ libghc-syb-dev (<< 1),
+ libghc-syb-prof,
+ libghc-hunit-dev,
+ libghc-quickcheck2-dev,
+ libghc-tasty-dev,
+ libghc-tasty-hunit-dev,
+ libghc-tasty-quickcheck-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-safecopy-doc,
+ libghc-syb-doc,
+Standards-Version: 3.9.6
+Homepage: http://hackage.haskell.org/package/ixset-typed
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-ixset-typed
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-ixset-typed
+X-Description: Efficient relational queries on Haskell sets.
+ This Haskell package provides a data structure of sets that are indexed by
+ potentially multiple indices.
+ .
+ Sets can be created, modified, and queried in various ways.
+ .
+ The package is a variant of the ixset package. The ixset package makes use of
+ run-time type information to find a suitable index on a query, resulting in
+ possible run-time errors when no suitable index exists. In ixset-typed, the
+ types of all indices available or tracked in the type system.  Thus,
+ ixset-typed should be safer to use than ixset, but in turn requires more GHC
+ extensions.
+ .
+ At the moment, the two packages are relatively compatible. As a consequence of
+ the more precise types, a few manual tweaks are necessary when switching from
+ one to the other, but the interface is mostly the same.
+
+Package: libghc-ixset-typed-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-ixset-typed-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-ixset-typed-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
