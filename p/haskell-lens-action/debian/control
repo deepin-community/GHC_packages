@@ -1,0 +1,87 @@
+Source: haskell-lens-action
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-comonad-dev (>= 4),
+ libghc-comonad-dev (<< 5),
+ libghc-comonad-prof,
+ libghc-contravariant-dev (>= 0.3),
+ libghc-contravariant-dev (<< 2),
+ libghc-contravariant-prof,
+ libghc-lens-dev (>= 4.7),
+ libghc-lens-dev (<< 5),
+ libghc-lens-prof,
+ libghc-mtl-dev (>= 2.0.1),
+ libghc-mtl-dev (<< 2.3),
+ libghc-mtl-prof,
+ libghc-profunctors-dev (>= 4),
+ libghc-profunctors-dev (<< 5),
+ libghc-profunctors-prof,
+ libghc-semigroupoids-dev (>= 4),
+ libghc-semigroupoids-dev (<< 5),
+ libghc-semigroupoids-prof,
+ libghc-semigroups-dev (>= 0.8.4),
+ libghc-semigroups-dev (<< 1),
+ libghc-semigroups-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-comonad-doc,
+ libghc-contravariant-doc,
+ libghc-lens-doc,
+ libghc-mtl-doc,
+ libghc-profunctors-doc,
+ libghc-semigroupoids-doc,
+ libghc-semigroups-doc,
+Standards-Version: 3.9.6
+Homepage: http://github.com/ekmett/lens-action/
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-lens-action
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-lens-action
+X-Description: Monadic Getters and Folds
+ This package contains combinators and types for working with
+ monadic getters and folds as split off from the original
+ lens package.
+
+Package: libghc-lens-action-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-lens-action-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-lens-action-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
