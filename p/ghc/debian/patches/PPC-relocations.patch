@@ -11,22 +11,20 @@ R_PPC_REL16_HA, emitted by other parts of the current toolchain.
 
 Index: ghc-7.10/rts/Linker.c
 ===================================================================
---- ghc-7.10.orig/rts/Linker.c	2015-06-15 09:30:13.062408171 +0200
-+++ ghc-7.10/rts/Linker.c	2015-06-15 09:30:13.058408137 +0200
-@@ -5957,6 +5957,7 @@
-             break;
- 
+--- ghc-7.10.orig/rts/Linker.c	2015-07-03 12:27:24.622584042 +0200
++++ ghc-7.10/rts/Linker.c	2015-07-03 12:27:24.618583956 +0200
+@@ -5960,6 +5960,7 @@
+             value -= 0x8000; /* See Note [.LCTOC1 in PPC PIC code] */
+             /* fallthrough */
           case R_PPC_REL24:
 +         case R_PPC_PLTREL24:
              delta = value - P;
  
              if( delta << 6 >> 6 != delta )
-@@ -5976,6 +5977,18 @@
-             *(Elf_Word *) P = (*(Elf_Word *) P & 0xfc000003)
-                                           | (delta & 0x3fffffc);
+@@ -5981,6 +5982,18 @@
              break;
-+
-+         case R_PPC_REL16_LO:
+ 
+          case R_PPC_REL16_LO:
 +            *(Elf32_Half*) P = value - P;
 +            break;
 +
@@ -37,6 +35,8 @@ Index: ghc-7.10/rts/Linker.c
 +         case R_PPC_REL16_HA:
 +            *(Elf32_Half*) P = (value + 0x8000 - P) >> 16;
 +            break;
- #        endif
++
++         case R_PPC_REL16_LO:
+             *(Elf32_Half*) P = value - P;
+             break;
  
- #if x86_64_HOST_ARCH
