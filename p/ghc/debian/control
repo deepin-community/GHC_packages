@@ -2,25 +2,24 @@ Source: ghc
 Section: haskell
 Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>,
- Erik de Castro Lopo <erikd@mega-nerd.com>
+Uploaders: Joachim Breitner <nomeata@debian.org>
 Standards-Version: 3.9.5
 Build-Depends:
   debhelper (>= 9),
-  libgmp-dev,
   devscripts,
-  ghc,
-  grep-dctrl,
   dh-autoreconf,
   autotools-dev,
+  grep-dctrl,
+  pkg-config,
+  ghc,
+  libgmp-dev,
   llvm-3.5 [arm64 armel armhf],
   libffi-dev,
-  pkg-config,
+  binutils [arm64 armel armhf],
+  libncurses5-dev,
   xsltproc,
   docbook-xsl,
   docbook-xml,
-  binutils [arm64 armel armhf],
-  libncurses5-dev,
   dpkg-dev (>= 1.16.1.1)
 Build-Depends-Indep:
   hscolour,
@@ -33,14 +32,23 @@ Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/ghc
 
 Package: ghc
 Architecture: any
-Depends: llvm-3.5 [arm64 armel armhf], gcc, libgmp-dev, libffi-dev, libbsd-dev, libc6-dev, libncurses5-dev, ${shlibs:Depends}, ${misc:Depends}
+Depends:
+  llvm-3.5 [arm64 armel armhf],
+  gcc,
+  libgmp-dev,
+  libffi-dev,
+  libbsd-dev,
+  libc6-dev,
+  libncurses5-dev,
+  ${shlibs:Depends},
+  ${misc:Depends}
 Pre-Depends: dpkg (>= 1.16.1)
 Provides:
   haskell-compiler,
+  ghc-dynamic,
+  ${ghci},
   ${provided-devs},
   ${haskell:Provides},
-  ${ghci},
-  ghc-dynamic,
   haddock,
   ghc-haddock,
   ${haddock:Provides}
