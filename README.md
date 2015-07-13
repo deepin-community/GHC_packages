@@ -62,8 +62,18 @@ the Debian source package name:
 In the full debian version, `:` and `~` are replaced by `_`.
 
 
-Useful tools
-------------
+Scripts in this repository
+--------------------------
+
+ * `./what-to-build.pl`.
+
+   This script expects to be run with any number of directories as arguments,
+   and defaults to `p/*/`. It prints the name of those directories that contain a
+   package that is to be released (i.e. marked for upload, but not yet tagged).
+
+
+Useful general tools
+--------------------
 
  * `origtargz`:
 
