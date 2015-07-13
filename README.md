@@ -34,6 +34,33 @@ the parent, we introduced the /p/ directory. Again, a `.gitignore` file is set
 up so that git will not bother you about the tarballs, `deb`-files or
 `changes`-files therein.
 
+Tagging convention and workflow
+-------------------------------
+
+Packages are in one of three states:
+
+ * `UNRELEASED` in `debian/changelog`:
+
+   Changes (compared to the version in the archive) present, package not ready for upload.
+
+
+ * `unstable` in `debian/changelog`, no corresponding git tag:
+
+   Changes (compared to the version in the archive) present, package ready for upload.
+
+
+ * `unstable` in `debian/changelog`, corresponding tag present
+
+   Repository matches state in the archive, nothing to do.
+
+
+Because git cannot tag individual directory, the tagging convention includes
+the Debian source package name:
+
+    <source package name>_v<full debian version>
+
+In the full debian version, `:` and `~` are replaced by `_`.
+
 
 Useful tools
 ------------
