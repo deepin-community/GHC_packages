@@ -1,0 +1,41 @@
+Index: darcs/Setup.lhs
+===================================================================
+--- darcs.orig/Setup.lhs	2015-07-09 18:48:56.000000000 +0200
++++ darcs/Setup.lhs	2015-07-15 19:07:44.318794915 +0200
+@@ -1,5 +1,4 @@
+ \begin{code}
+-{-# LANGUAGE TemplateHaskell #-}
+ -- copyright (c) 2008 Duncan Coutts
+ -- portions copyright (c) 2008 David Roundy
+ -- portions copyright (c) 2007-2009 Judah Jacobson
+@@ -81,17 +80,20 @@
+ catchAny f h = Exception.catch f (\e -> h (e :: Exception.SomeException))
+ 
+ {- Template Haskell hackery for replHook while we want to support Cabal < 1.18 -}
++{-
+ replVerbosity =
+   $(if cabalVersion >= Version [1,18,0] []
+         then varE (mkName "DSS.replVerbosity")
+         else [| error "This shouldn't be called" |]
+    )
++-}
+ 
+ replHookBody replHookSel =
+   \pkg lbi hooks flags args ->
+-    let verb = fromFlag $ replVerbosity flags
++    let verb = fromFlag $ DSS.replVerbosity flags
+     in commonBuildHook replHookSel pkg lbi hooks verb >>= (\f -> f flags args)
+ 
++{-
+ addReplHook =
+   $(if cabalVersion >= Version [1,18,0] []
+         then
+@@ -101,6 +103,8 @@
+                lamE [varP hooks] (recUpdE (varE hooks) [return (replHook, app)])
+         else [| \hooks -> hooks |]
+    )
++-}
++addReplHook = \hooks -> hooks { replHook = replHookBody replHook }
+ {- End of Template Haskell hackery -}
+ 
+ main :: IO ()
