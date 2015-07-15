@@ -1,7 +1,18 @@
 Index: darcs/hashed-storage/Storage/Hashed/Utils.hs
 ===================================================================
 --- darcs.orig/hashed-storage/Storage/Hashed/Utils.hs	2015-07-09 18:48:56.000000000 +0200
-+++ darcs/hashed-storage/Storage/Hashed/Utils.hs	2015-07-15 19:35:55.341427506 +0200
++++ darcs/hashed-storage/Storage/Hashed/Utils.hs	2015-07-15 20:05:09.425950430 +0200
+@@ -91,8 +91,8 @@
+                      x -> i + boundary - x
+ {-# INLINE align #-}
+ 
+-xlate32 :: (Bits a) => a -> a
+-xlate64 :: (Bits a) => a -> a
++xlate32 :: (Num a, Bits a) => a -> a
++xlate64 :: (Num a, Bits a) => a -> a
+ 
+ #ifdef LITTLEENDIAN
+ xlate32 = id
 @@ -100,7 +100,7 @@
  #endif
  
@@ -11,3 +22,21 @@ Index: darcs/hashed-storage/Storage/Hashed/Utils.hs
  bytemask = 255
  
  xlate32 a = ((a .&. (bytemask `shift`  0)) `shiftL` 24) .|.
+Index: darcs/hashed-storage/Storage/Hashed/Index.hs
+===================================================================
+--- darcs.orig/hashed-storage/Storage/Hashed/Index.hs	2015-07-09 18:48:56.000000000 +0200
++++ darcs/hashed-storage/Storage/Hashed/Index.hs	2015-07-15 20:05:52.470960853 +0200
+@@ -166,11 +166,11 @@
+ itemIsDir i = unsafeHead (iDescriptor i) == c2w 'D'
+ 
+ -- xlatePeek32 = fmap xlate32 . peek
+-xlatePeek64 :: (Storable a, Bits a) => Ptr a -> IO a
++xlatePeek64 :: (Storable a, Num a, Bits a) => Ptr a -> IO a
+ xlatePeek64 = fmap xlate64 . peek
+ 
+ -- xlatePoke32 ptr v = poke ptr (xlate32 v)
+-xlatePoke64 :: (Storable a, Bits a) => Ptr a -> a -> IO ()
++xlatePoke64 :: (Storable a, Num a, Bits a) => Ptr a -> a -> IO ()
+ xlatePoke64 ptr v = poke ptr (xlate64 v)
+ 
+ -- | Lay out the basic index item structure in memory. The memory location is
