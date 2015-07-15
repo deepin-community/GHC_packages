@@ -1,0 +1,13 @@
+Index: darcs/hashed-storage/Storage/Hashed/Utils.hs
+===================================================================
+--- darcs.orig/hashed-storage/Storage/Hashed/Utils.hs	2015-07-09 18:48:56.000000000 +0200
++++ darcs/hashed-storage/Storage/Hashed/Utils.hs	2015-07-15 19:35:55.341427506 +0200
+@@ -100,7 +100,7 @@
+ #endif
+ 
+ #ifdef BIGENDIAN
+-bytemask :: (Bits a) => a
++bytemask :: (Num a, Bits a) => a
+ bytemask = 255
+ 
+ xlate32 a = ((a .&. (bytemask `shift`  0)) `shiftL` 24) .|.
