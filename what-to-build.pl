@@ -24,6 +24,7 @@ for my $dir (@dirs) {
 	if ($firstline =~ m/([\w-]+) \(([\w:~.+-]+)\) (\w+);/) {
 		my ($source, $version, $suite) = ($1, $2, $3);
 		my $tag = sprintf "%s_v%s", $source, $version;
+		$tag =~ tr/:~/_/;
 		next if ($suite eq "UNRELEASED");
 		next if ($tags{$tag});
 		printf "%s\n", $dir;

@@ -22,6 +22,7 @@ for my $dir (@dirs) {
 	if ($firstline =~ m/([\w-]+) \(([\w:~.+-]+)\) (\w+);/) {
 		my ($source, $version, $suite) = ($1, $2, $3);
 		my $tag = sprintf "%s_v%s", $source, $version;
+		$tag =~ tr/:~/_/;
 		my $msg = sprintf "Tagging %s version %s, targetted for %s", $source, $version, $suite;
 		if ($suite eq "UNRELEASED") {
 			printf STDERR "Cannot tag UNRELEASED package %s-%s", $source, $version;
