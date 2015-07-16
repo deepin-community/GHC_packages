@@ -26,9 +26,10 @@ for my $dir (@dirs) {
 		if ($suite eq "UNRELEASED") {
 			printf STDERR "Cannot tag UNRELEASED package %s-%s", $source, $version;
 		} else {
-			my $ret = system(qw/git tag -a -m/, $msg, $tag);
+			my $rev = `git log -n 1 --pretty=format:%h -- $dir`;
+			my $ret = system(qw/git tag -a -m/, $msg, $tag, $rev);
 			die (sprintf "Failed to tag %s: %d\n", $tag, $?>>8) if $ret != 0;
-			printf "Added tag %s\n", $tag;
+			printf "Added tag %s (revision %s)\n", $tag, $rev;
 		}
 	} else {
 		printf STDERR "Cannot parse %s:\n%s", $changelog, $firstline;
