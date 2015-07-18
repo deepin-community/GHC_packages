@@ -1,0 +1,87 @@
+Source: haskell-chart-cairo
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-chart-dev (>= 1.3),
+ libghc-chart-dev (<< 1.4),
+ libghc-chart-prof,
+ libghc-cairo-dev (>= 0.9.11),
+ libghc-cairo-prof,
+ libghc-colour-dev (>= 2.2.1),
+ libghc-colour-dev (<< 2.4),
+ libghc-colour-prof,
+ libghc-data-default-class-dev (<< 0.1),
+ libghc-data-default-class-prof,
+ libghc-lens-dev (>= 3.9),
+ libghc-lens-dev (<< 4.8),
+ libghc-lens-prof,
+ libghc-mtl-dev,
+ libghc-mtl-prof,
+ libghc-old-locale-dev,
+ libghc-old-locale-prof,
+ libghc-operational-dev (>= 0.2.2),
+ libghc-operational-dev (<< 0.3),
+ libghc-operational-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-chart-doc,
+ libghc-cairo-doc,
+ libghc-colour-doc,
+ libghc-data-default-class-doc,
+ libghc-lens-doc,
+ libghc-mtl-doc,
+ libghc-old-locale-doc,
+ libghc-operational-doc,
+Standards-Version: 3.9.6
+Homepage: https://github.com/timbod7/haskell-chart/wiki
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-chart-cairo
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-chart-cairo
+X-Description: Cairo backend for Charts.
+ Chart is a library for generating 2D Charts and Plots.
+ .
+ This is the backend using the cairo library.
+
+Package: libghc-chart-cairo-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-chart-cairo-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-chart-cairo-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
