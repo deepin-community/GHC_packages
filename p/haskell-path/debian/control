@@ -1,0 +1,63 @@
+Source: haskell-path
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-exceptions-dev,
+ libghc-exceptions-prof,
+ libghc-hunit-dev,
+ libghc-hspec-dev,
+ libghc-mtl-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-exceptions-doc,
+Standards-Version: 3.9.6
+Homepage: http://hackage.haskell.org/package/path
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-path
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-path
+X-Description: A normalizing well-typed path type
+ This packages provides support for well-typed paths in Haskell.
+
+Package: libghc-path-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-path-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-path-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
