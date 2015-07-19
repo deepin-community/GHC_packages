@@ -1,0 +1,67 @@
+Source: haskell-optparse-simple
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ ghc-ghci,
+ libghc-either-dev,
+ libghc-either-prof,
+ libghc-gitrev-dev,
+ libghc-gitrev-prof,
+ libghc-optparse-applicative-dev,
+ libghc-optparse-applicative-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-either-doc,
+ libghc-gitrev-doc,
+ libghc-optparse-applicative-doc,
+Standards-Version: 3.9.6
+Homepage: http://hackage.haskell.org/package/optparse-simple
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-optparse-simple
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-optparse-simple
+X-Description: Simple interface to optparse-applicative
+ This package provides a simpler interface to optparse-applicative.
+
+Package: libghc-optparse-simple-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-optparse-simple-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-optparse-simple-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
