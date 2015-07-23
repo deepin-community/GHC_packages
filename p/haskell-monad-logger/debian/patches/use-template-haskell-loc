@@ -1,0 +1,30 @@
+Author: Joachim Breitner <nomeata@debian.org>
+
+--- haskell-monad-logger-0.3.13.2.orig/Control/Monad/Logger.hs
++++ haskell-monad-logger-0.3.13.2/Control/Monad/Logger.hs
+@@ -74,6 +74,8 @@ module Control.Monad.Logger
+ 
+ #if WITH_TEMPLATE_HASKELL
+ import Language.Haskell.TH.Syntax (Lift (lift), Q, Exp, Loc (..), qLocation)
++#else
++import Language.Haskell.TH.Syntax (Loc (..))
+ #endif
+ 
+ import Data.Monoid (Monoid)
+@@ -159,16 +161,6 @@ instance Lift LogLevel where
+     lift LevelError = [|LevelError|]
+     lift (LevelOther x) = [|LevelOther $ pack $(lift $ unpack x)|]
+ 
+-#else
+-
+-data Loc
+-  = Loc { loc_filename :: String
+-    , loc_package  :: String
+-    , loc_module   :: String
+-    , loc_start    :: CharPos
+-    , loc_end      :: CharPos }
+-type CharPos = (Int, Int)
+-
+ #endif
+ 
+ -- | A @Monad@ which has the ability to log messages in some manner.
