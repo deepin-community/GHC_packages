@@ -1,8 +1,10 @@
 Author: Joachim Breitner <nomeata@debian.org>
 
---- haskell-monad-logger-0.3.13.2.orig/Control/Monad/Logger.hs
-+++ haskell-monad-logger-0.3.13.2/Control/Monad/Logger.hs
-@@ -74,6 +74,8 @@ module Control.Monad.Logger
+Index: haskell-monad-logger/Control/Monad/Logger.hs
+===================================================================
+--- haskell-monad-logger.orig/Control/Monad/Logger.hs	2015-07-23 23:30:03.000000000 +0200
++++ haskell-monad-logger/Control/Monad/Logger.hs	2015-07-23 23:30:03.000000000 +0200
+@@ -74,6 +74,8 @@
  
  #if WITH_TEMPLATE_HASKELL
  import Language.Haskell.TH.Syntax (Lift (lift), Q, Exp, Loc (..), qLocation)
@@ -11,7 +13,7 @@ Author: Joachim Breitner <nomeata@debian.org>
  #endif
  
  import Data.Monoid (Monoid)
-@@ -159,16 +161,6 @@ instance Lift LogLevel where
+@@ -159,16 +161,6 @@
      lift LevelError = [|LevelError|]
      lift (LevelOther x) = [|LevelOther $ pack $(lift $ unpack x)|]
  
@@ -28,3 +30,17 @@ Author: Joachim Breitner <nomeata@debian.org>
  #endif
  
  -- | A @Monad@ which has the ability to log messages in some manner.
+Index: haskell-monad-logger/monad-logger.cabal
+===================================================================
+--- haskell-monad-logger.orig/monad-logger.cabal	2015-07-07 04:17:06.000000000 +0200
++++ haskell-monad-logger/monad-logger.cabal	2015-07-24 09:31:58.217637791 +0200
+@@ -43,8 +43,7 @@
+                      , bytestring
+                      , blaze-builder
+                      , exceptions
+-  if flag(template_haskell)
+-     build-depends:     template-haskell
++                     , template-haskell
+ 
+   if flag(template_haskell)
+      cpp-options: -DWITH_TEMPLATE_HASKELL
