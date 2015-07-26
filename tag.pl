@@ -19,7 +19,7 @@ for my $dir (@dirs) {
 	next unless -r $changelog;
 	open CHANGELOG, '<', $changelog or die @!;
 	my $firstline = <CHANGELOG>;
-	if ($firstline =~ m/([\w-]+) \(([\w:~.+-]+)\) (\w+);/) {
+	if ($firstline =~ m/([\w-]+) \(([\w:~.+-]+)\) ([\w-]+);/) {
 		my ($source, $version, $suite) = ($1, $2, $3);
 		my $tag = sprintf "%s_v%s", $source, $version;
 		$tag =~ tr/:~/_/;
