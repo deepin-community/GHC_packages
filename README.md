@@ -8,7 +8,7 @@ Rationale
 As always, the Debian Haskell Group (DHG) does a few things different than
 others. Most of our packages are trivial to maintain, so an individual
 repository for the package would be overkill. On the other hand, it is
-precisely the orchestration of hundrets of packages that are the distinguishing
+precisely the orchestration of hundreds of packages that are the distinguishing
 feature of our work, hence the choice to put all our packaging into one
 repository.
 
