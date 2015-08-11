@@ -23,7 +23,7 @@ index 9f638b7..b1fdcb8 100644
  #define BITFN_H
  #include <stdint.h>
 +#include <string.h>
-
+ 
  #ifndef NO_INLINE_ASM
  /**********************************************************/
  # if (defined(__i386__))
@@ -31,7 +31,7 @@ index 9f638b7..b1fdcb8 100644
 +#  define ARCH_HAS_UNALIGNED_LOAD
  static inline uint32_t bitfn_swap32(uint32_t a)
  {
-	asm ("bswap %0" : "=r" (a) : "0" (a));
+ 	asm ("bswap %0" : "=r" (a) : "0" (a));
 @@ -52,6 +54,7 @@ static inline uint32_t bitfn_swap32(uint32_t a)
  # elif defined(__x86_64__)
  #  define ARCH_HAS_SWAP32
@@ -39,11 +39,11 @@ index 9f638b7..b1fdcb8 100644
 +#  define ARCH_HAS_UNALIGNED_LOAD
  static inline uint32_t bitfn_swap32(uint32_t a)
  {
-	asm ("bswap %0" : "=r" (a) : "0" (a));
+ 	asm ("bswap %0" : "=r" (a) : "0" (a));
 @@ -103,11 +106,33 @@ static inline uint32_t bitfn_swap32(uint32_t a)
  }
  #endif
-
+ 
 +static inline uint32_t load32(uint32_t *p)
 +{
 +	uint32_t v;
@@ -69,21 +69,21 @@ index 9f638b7..b1fdcb8 100644
  #ifndef ARCH_HAS_ARRAY_SWAP32
  static inline void array_swap32(uint32_t *d, uint32_t *s, uint32_t nb)
  {
-	while (nb--)
+ 	while (nb--)
 -		*d++ = bitfn_swap32(*s++);
 +		*d++ = bitfn_swap32(load32(s++));
  }
  #endif
-
+ 
 @@ -123,7 +148,7 @@ static inline uint64_t bitfn_swap64(uint64_t a)
  static inline void array_swap64(uint64_t *d, uint64_t *s, uint32_t nb)
  {
-	while (nb--)
+ 	while (nb--)
 -		*d++ = bitfn_swap64(*s++);
 +		*d++ = bitfn_swap64(load64(s++));
  }
  #endif
-
+ 
 @@ -147,14 +172,14 @@ static inline void memory_zero(void *ptr, uint32_t len)
  #ifndef ARCH_HAS_ARRAY_COPY32
  static inline void array_copy32(uint32_t *d, uint32_t *s, uint32_t nb)
@@ -92,7 +92,7 @@ index 9f638b7..b1fdcb8 100644
 +	while (nb--) *d++ = load32(s++);
  }
  #endif
-
+ 
  #ifndef ARCH_HAS_ARRAY_COPY64
  static inline void array_copy64(uint64_t *d, uint64_t *s, uint32_t nb)
  {
@@ -100,3 +100,4 @@ index 9f638b7..b1fdcb8 100644
 +	while (nb--) *d++ = load64(s++);
  }
  #endif
+ 
