@@ -7,7 +7,7 @@ import Data.List.Split
 import Data.Maybe
 import Control.Monad
 import Text.Read
-import System.Directory.Extra
+import System.Directory.Extra (listFiles)
 import System.Exit
 
 import Options.Applicative hiding (many)
@@ -125,6 +125,9 @@ versionOfSource s = do
 
 ensureVersion :: String -> String -> Action ()
 ensureVersion s v = do
+    ex <- doesFileExist $ "p" </> s </> "debian" </> "changelog"
+    unless ex $ do
+        fail $ "I do not know about package " ++ s
     v' <- versionOfSource s
     when (v /= v') $ do
         fail $ "Cannot build " ++ s ++ " version " ++ v ++ ", as we have " ++ v' ++ "."
@@ -202,7 +205,7 @@ debFileNameToPackage filename =
     let [pkgname,_version,_] = splitOn "_" filename
     in pkgname
 
-defaultExcludedPackages = words "ghc haskell-devscripts uuagc haskell98-report haskell-platform haskell-ghcjs-base"
+defaultExcludedPackages = words "ghc haskell-devscripts haskell98-report haskell-platform"
 newtype GetExcludedSources = GetExcludedSources () deriving (Show,Typeable,Eq,Hashable,Binary,NFData)
 
 newtype GetBuiltBy = GetBuiltBy String  deriving (Show,Typeable,Eq,Hashable,Binary,NFData)
@@ -291,25 +294,31 @@ shakeMain conf@(Conf {..}) = do
         let dsc = sourceFileName source version
         need [targetDir </> dsc]
         deps <- liftIO $ dependsOfDsc $ targetDir </> dsc
-        -- TODO: avoid multiple calls to builtBy
-        usedDeps <- filterM (\f -> isJust <$> builtBy f) deps
-        let usedDepsS = S.fromList usedDeps
-        depSources <- catMaybes <$> mapM builtBy usedDeps
+        depSources <- catMaybes <$> mapM builtBy deps
         depChanges <- forM depSources $ \s -> do
             v <- versionOfSource s
             return $ targetDir </> changesFileName s v
-        need depChanges
 
-        -- Actual package building
+        -- This ensures all dependencies are up-to-date
+        -- For the sake of packages like alex, uuagc etc, we exclude ourselves
+        -- from this, thus allowing the use of the binary from the archive to
+        -- bootstrap.
+        need $ filter (/= out) depChanges
+
+        -- What files do we have built locally?
+        -- Make sure the build uses only them
+        localDebs <-
+            filter ((==".deb") . takeExtension) .
+            map (makeRelative targetDir) <$>
+            liftIO (listFiles targetDir)
+        let localDepPkgs = map debFileNameToPackage localDebs
 
         -- Monkey patch dependencies out of the package lists
         withTempDir $ \tmpdir -> do
             let fixup = tmpdir </> "fixup.sh"
-            liftIO $ writeFile fixup  $ fixupScript usedDeps
-            localDebs <- filter ((==".deb").takeExtension) . map (makeRelative targetDir) <$> liftIO (listFiles targetDir)
-            let debs = filter ((`S.member` usedDepsS) . debFileNameToPackage) localDebs
+            liftIO $ writeFile fixup  $ fixupScript localDepPkgs
             Exit c <- cmd (Cwd targetDir) (EchoStdout False)
-                ["sbuild", "-c", schrootName,"-A","--no-apt-update","--dist", distribution, "--chroot-setup-commands=bash "++fixup, dsc] ["--extra-package="++d | d <- debs]
+                ["sbuild", "-c", schrootName,"-A","--no-apt-update","--dist", distribution, "--chroot-setup-commands=bash "++fixup, dsc] ["--extra-package="++d | d <- localDebs ]
             unless (c == ExitSuccess) $ do
                 putNormal $ "Failed to build " ++ source ++ "_" ++ version
                 putNormal $ "See " ++ targetDir </> logFileName source version ++ " for details."
