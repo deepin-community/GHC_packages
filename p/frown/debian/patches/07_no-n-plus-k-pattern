@@ -13,12 +13,12 @@ Index: frown-0.6.1/SearchTree.lhs
  >           (l, (a, v) : y)     =  build m       x
 ->           (r, z)              =  build (n - m) y
 +>           (r, z)              =  build (n - 1 - m) y
-
+ 
  > fromList_C                    :: (Ord a) => (v -> v -> v) -> [(a, v)] -> FM a v
  > fromList_C combine            =  fromOrdList . group . mergeSortBy (\ (a1, _) (a2, _) -> a1 <= a2)
 @@ -99,4 +99,4 @@
-
-
+ 
+ 
  > unsafeLookup                  :: (Ord a, Show a) => FM a v -> a -> v
 -> unsafeLookup fm a             =  fromMaybe (error ("unsafeLookup: key not found: " ++ show a)) (lookup fm a)
 \ No newline at end of file
@@ -28,21 +28,21 @@ Index: frown-0.6.1/Base.lhs
 --- frown-0.6.1.orig/Base.lhs	2011-06-02 20:29:02.000000000 +0200
 +++ frown-0.6.1/Base.lhs	2011-06-02 20:30:17.000000000 +0200
 @@ -166,13 +166,13 @@
-
+ 
  > revTake                       :: Int -> RevList a -> RevList a
  > revTake 0 _                   =  Nil
 -> revTake (_n + 1) Nil          =  Nil
 -> revTake (n + 1) (as :> a)     =  revTake n as :> a
 +> revTake _n Nil                =  Nil
 +> revTake n (as :> a)           =  revTake (n-1) as :> a
-
+ 
  > revDrop                       :: Int -> RevList a -> RevList a
  > revDrop 0 as                  =  as
 -> revDrop (_n + 1) Nil          =  Nil
 -> revDrop (n + 1) (as :> _a)    =  revDrop n as
 +> revDrop _n Nil                =  Nil
 +> revDrop n (as :> _a)          =  revDrop (n-1) as
-
+ 
  %-------------------------------------------------------------------------------
  \subsection{Formatting text}
 Index: frown-0.6.1/Lexer2.lhs
@@ -57,9 +57,9 @@ Index: frown-0.6.1/Lexer2.lhs
 +> nested n     ('-' : '}' : s)	=  '-' <| '}' <| nested (n - 1) s
  > nested n     ('{' : '-' : s)	=  '{' <| '-' <| nested (n + 1) s
  > nested n     (c : s)		=  c <| nested n s
-
+ 
 @@ -156,4 +156,4 @@
-
+ 
  > isSymbol, isIdChar	        :: Char -> Bool
  > isSymbol c			=  c `elem` "!@#$%&*+./<=>?\\^|:-~"
 -> isIdChar c			=  isAlphaNum c || c `elem` "_'"
@@ -70,11 +70,11 @@ Index: frown-0.6.1/Future.lhs
 --- frown-0.6.1.orig/Future.lhs	2011-06-02 20:31:44.000000000 +0200
 +++ frown-0.6.1/Future.lhs	2011-06-02 20:32:01.000000000 +0200
 @@ -60,7 +60,7 @@
-
+ 
  > prune                         :: Int -> Future -> Future
  > prune 0 (Future _ts)          =  fromList []
 -> prune (n + 1) (Future ts)     =  fromList [ (a, prune n us) | (a, us) <- FM.toList ts ]
 +> prune n (Future ts)           =  fromList [ (a, prune (n-1) us) | (a, us) <- FM.toList ts ]
-
+ 
  > domain                        :: Future -> Set Symbol
  > domain (Future f)             =  Set.fromList (map fst (FM.toList f))

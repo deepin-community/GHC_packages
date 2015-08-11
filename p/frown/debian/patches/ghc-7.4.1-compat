@@ -16,13 +16,13 @@ Index: frown-0.6.1/Main.lhs
  > import System.Console.GetOpt
 +> import System.Exit
 +> import System.Environment
-
+ 
  %-------------------------------=  --------------------------------------------
  \section{The main program}
 @@ -689,4 +690,4 @@
                                   | let add op = ADDOP (op :: Addop)
                                   | let id  s  = IDENT (s :: String);
-
+ 
 -   |add op| serves as an abbreviation for |ADDOP op|.
 \ No newline at end of file
 +   |add op| serves as an abbreviation for |ADDOP op|.
@@ -40,7 +40,7 @@ Index: frown-0.6.1/Base.lhs
 +> import Control.Monad          (  MonadPlus(..)  )
 +> import System.Exit
 +> import System.IO
-
+ 
  %-------------------------------------------------------------------------------
  \subsection{List utilities}
 Index: frown-0.6.1/Case.lhs
@@ -60,7 +60,7 @@ Index: frown-0.6.1/Case.lhs
 +> import Control.Monad
 +> import Data.List              (  partition  )
  > import Prelude                hiding (  lookup  )
-
+ 
  %-------------------------------=  --------------------------------------------
 @@ -347,4 +347,4 @@
  > actions'                      :: Symbol -> Past -> Past
@@ -84,10 +84,10 @@ Index: frown-0.6.1/Compact.lhs
 +> import System.IO
 +> import Data.Maybe
  > import Prelude                hiding (  lookup  )
-
+ 
  %-------------------------------=  --------------------------------------------
 @@ -444,4 +444,4 @@
-
+ 
  >     wrap s                    =  prefix opts ++ s ++ suffix opts
  >     wrap_var s                =  var (wrap s)
 ->     wrap_con s                =  con (wrap s)
@@ -113,7 +113,7 @@ Index: frown-0.6.1/Convert.lhs
 +> import Control.Monad
 +> import System.IO              hiding (  isEOF  )
  > import Options
-
+ 
  > newEOF                        :: Ident
 @@ -361,4 +361,4 @@
  >           | terminal w        =  w
@@ -136,12 +136,12 @@ Index: frown-0.6.1/GParser2.hs
 +  import Data.Char              hiding ( isSymbol )
 +  import Data.List
 +  import System.IO
-
-
-
+ 
+ 
+ 
 @@ -2258,4 +2258,4 @@
        where verb                =  verbose opts
-
+  
    run                           :: (Monad m) => Lex m Answer -> (String -> m Answer)
 -  run parser inp                =  unLex parser (\a _ _ _ _ -> return a) False inp 1 (take 1 (lines inp))
 \ No newline at end of file
@@ -160,7 +160,7 @@ Index: frown-0.6.1/GParser2.lg
 +> import Data.Char
 +> import Data.List
 +> import System.IO
-
+ 
  % - - - - - - - - - - - - - - - = - - - - - - - - - - - - - - - - - - - - - - -
  \subsection{Abstract syntax}
 @@ -481,4 +481,4 @@
@@ -187,7 +187,7 @@ Index: frown-0.6.1/GVStack.lhs
 +> import Data.Char
 +> import Data.List              (  maximumBy  )
  > import Prelude                hiding (  lookup  )
-
+ 
  %-------------------------------=  --------------------------------------------
 Index: frown-0.6.1/Generate.lhs
 ===================================================================
@@ -199,9 +199,9 @@ Index: frown-0.6.1/Generate.lhs
  > --import Char                   (  toLower, toUpper  )
 -> import List                   (  intersperse  )
 +> import Data.List              (  intersperse  )
-
+ 
  Symbols.
-
+ 
 Index: frown-0.6.1/Haskell.lhs
 ===================================================================
 --- frown-0.6.1.orig/Haskell.lhs	2012-03-15 13:09:04.000000000 +0100
@@ -213,7 +213,7 @@ Index: frown-0.6.1/Haskell.lhs
 -> import Char
 +> import Data.Char
  > import Prelude                hiding (  concat  )
-
+ 
  %-------------------------------=  --------------------------------------------
 Index: frown-0.6.1/LR0.lhs
 ===================================================================
@@ -226,11 +226,11 @@ Index: frown-0.6.1/LR0.lhs
 -> import IO
 +> import System.IO
  > import Options
-
+ 
  %-------------------------------=  --------------------------------------------
 @@ -269,4 +269,4 @@
  productions such as |Start# : Start, EOF;|.
-
+ 
  > errorState                    :: State
 -> errorState                    =  State 0 (Set.empty :\/ Set.empty)
 \ No newline at end of file
@@ -251,7 +251,7 @@ Index: frown-0.6.1/Lexer2.lhs
 +> import Control.Monad
  > import Base
  > import Options
-
+ 
 Index: frown-0.6.1/Lib/OrdUniqListFM.lhs
 ===================================================================
 --- frown-0.6.1.orig/Lib/OrdUniqListFM.lhs	2012-03-15 13:09:04.000000000 +0100
@@ -264,12 +264,12 @@ Index: frown-0.6.1/Lib/OrdUniqListFM.lhs
 -> import Maybe                  (  fromMaybe  )
 +> import qualified Data.List as List
 +> import Data.Maybe             (  fromMaybe  )
-
+ 
  > infixl 9  !
  > infixl 9  //
 @@ -292,4 +292,4 @@
  @prefixLookup@ returns the list of all completions of the given list.
-
+ 
   prefixLookup			:: Ord a => FM [a] b -> [a] -> [([a], b)]
 - prefixLookup (FM f) s		=  [ b | Assoc b@(a, _)<-f, s `isPrefixOf` a ]
 \ No newline at end of file
@@ -286,7 +286,7 @@ Index: frown-0.6.1/Lib/OrdUniqListSet.lhs
 -> import Monad
 +> import qualified Data.List as List
 +> import Control.Monad
-
+ 
  %-------------------------------------------------------------------------------
  \subsection{Type definitions and instance declarations}
 Index: frown-0.6.1/Lookahead.lhs
@@ -303,7 +303,7 @@ Index: frown-0.6.1/Lookahead.lhs
 +> import System.IO
 +> import Data.Maybe
 +> import Control.Monad             (  when  )
-
+ 
  %-------------------------------=  --------------------------------------------
  \section{Grouping of actions}
 Index: frown-0.6.1/Options.lhs
@@ -318,12 +318,12 @@ Index: frown-0.6.1/Options.lhs
 -> import IO
 +> import Data.Char
 +> import System.IO
-
+ 
  %-------------------------------=  --------------------------------------------
  \section{Command line options}
 @@ -149,4 +149,4 @@
  >   | otherwise                 =  Signature False
-
+ 
  > (<<)                          :: String -> String -> Bool
 -> s << t                        =  map toLower s `isPrefix` map toLower t
 \ No newline at end of file
@@ -340,7 +340,7 @@ Index: frown-0.6.1/SearchTree.lhs
 +> import Data.Maybe             (  fromMaybe  )
  > import Prelude                hiding (  length, lookup  )
  > import qualified Prelude
-
+ 
 Index: frown-0.6.1/Stackless.lhs
 ===================================================================
 --- frown-0.6.1.orig/Stackless.lhs	2012-03-15 13:09:04.000000000 +0100
@@ -358,10 +358,10 @@ Index: frown-0.6.1/Stackless.lhs
 +> import System.IO
 +> import Control.Monad
  > import Prelude                hiding (  lookup  )
-
+ 
  Characteristics.
 @@ -311,4 +311,4 @@
-
+ 
  >     wrap s                    =  prefix opts ++ s ++ suffix opts
  >     wrap_var s                =  var (wrap s)
 ->     wrap_con s                =  con (wrap s)
@@ -382,10 +382,10 @@ Index: frown-0.6.1/Standard.lhs
 +> import System.IO
 +> import Data.Maybe
  > import Prelude                hiding (  lookup  )
-
+ 
  Characteristics.
 @@ -293,4 +293,4 @@
-
+ 
  >     wrap s                    =  prefix opts ++ s ++ suffix opts
  >     wrap_var s                =  var (wrap s)
 ->     wrap_con s                =  con (wrap s)
