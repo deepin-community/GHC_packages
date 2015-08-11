@@ -200,7 +200,7 @@ ignoreArchiveDepends pkgs =
     , "apt-get install dctrl-tools" -- Just in case it is not installed in the base schroot
     , "for f in /var/lib/apt/lists/*_Packages"
     , "do"
-    , "grep-dctrl -v -F Package -X " ++ disj ++ " < \"$f\" > \"$f\".tmp"
+    , "grep-dctrl -v -F Package -X \\( " ++ disj ++ " \\) < \"$f\" > \"$f\".tmp"
     , "mv \"$f\".tmp \"$f\""
     , "done"
     ]
