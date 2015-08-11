@@ -151,6 +151,9 @@ parseFlatRel = flatRels . parseRels
 fixupScript :: [String] -> String
 fixupScript pkgs = unlines $
     [ "#!/bin/bash"
+    -- I disable locking in the schroot. I have /var/cache/apt/archives bind-mounted
+    -- via /etc/schroot/default/fstab, so with locking, I could not run
+    -- multiple sbuilds at the same time
     , "echo 'Debug::NoLocking \"true\";' > /etc/apt/apt.conf.d/no-locking"
     ] ++ ignoreArchiveDepends pkgs
 
@@ -158,6 +161,7 @@ ignoreArchiveDepends :: [String] -> [String]
 ignoreArchiveDepends [] = []
 ignoreArchiveDepends pkgs =
     [ "#!/bin/bash"
+    , "apt-get install dctrl-tools" -- Just in case it is not installed in the base schroot
     , "for f in /var/lib/apt/lists/*_Packages"
     , "do"
     , "grep-dctrl -v -F Package -X " ++ disj ++ " < \"$f\" > \"$f\".tmp"
