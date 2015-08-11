@@ -8,7 +8,7 @@ Index: darcs-monitor-0.4.2/darcs-monitor.cabal
 +++ darcs-monitor-0.4.2/darcs-monitor.cabal	2015-06-11 10:38:04.772409588 +0200
 @@ -28,7 +28,7 @@
    description: Choose the new smaller, split-up base package.
-
+ 
  Executable darcs-monitor
 -  Build-Depends: mtl, HaXml == 1.20.*
 +  Build-Depends: mtl, HaXml >= 1.25 && <= 1.26
@@ -23,17 +23,17 @@ Index: darcs-monitor-0.4.2/darcs-monitor.hs
    liftIO $ createDirectoryIfMissing True (repo++dir)
    seenPatches <- readSeenPatches repo
    xml <- invokeDarcs ["changes", "--reverse", "--repo="++repo,"--xml-output","-a"]
--  let Document _ _ (Elem "changelog" _ content) _ = xmlParse repo xml
-+  let Document _ _ (Elem (N "changelog") _ content) _ = xmlParse repo xml
+-  let Document _ _ (Elem "changelog" _ content) _ = xmlParse repo xml 
++  let Document _ _ (Elem (N "changelog") _ content) _ = xmlParse repo xml 
    let patches
          = filter (\c -> case c of CElem _e _ -> True ; _ -> False) content
--  spl <- forM patches $ \ (CElem (Elem "patch" attrs content_) _) ->
+-  spl <- forM patches $ \ (CElem (Elem "patch" attrs content_) _) -> 
 -      do let author = getAttr "author" attrs
 -             localDate = getAttr "local_date" attrs
 -             hash = getAttr "hash" attrs
 -             name = getElem "name" content_
 -             comment = getElem "comment" content_
-+  spl <- forM patches $ \ (CElem (Elem (N "patch") attrs content_) _) ->
++  spl <- forM patches $ \ (CElem (Elem (N "patch") attrs content_) _) -> 
 +      do let author = getAttr (N "author") attrs
 +             localDate = getAttr (N "local_date") attrs
 +             hash = getAttr (N "hash") attrs
@@ -45,7 +45,7 @@ Index: darcs-monitor-0.4.2/darcs-monitor.hs
 @@ -251,7 +251,7 @@
                                       massage ss
            massage [] = id
-
+ 
 -getElem :: Name -> [Content Posn] -> String
 +getElem :: QName -> [Content Posn] -> String
  getElem name (CElem (Elem name' _ content) _ : _rest)

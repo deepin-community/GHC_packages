@@ -15,11 +15,11 @@ Index: darcs-monitor-0.4.2/darcs-monitor.hs
  import Text.XML.HaXml hiding (when,version,x,tag,cdata)
  import Text.XML.HaXml.Posn
 +import Control.Exception (catch, IOException)
-
+ 
  import Config
  import Darcs
 @@ -182,9 +184,9 @@
-
+ 
  readSeenPatches :: MonadIO m => String -> m SeenPatches
  readSeenPatches repo =
 -  liftIO $ catch (do fc <- readFile (repo ++ seenPatchesFileName)
@@ -28,6 +28,6 @@ Index: darcs-monitor-0.4.2/darcs-monitor.hs
 +  liftIO $ Control.Exception.catch (do fc <- readFile (repo ++ seenPatchesFileName)
 +                                       return (read fc)
 +                 ) $ \(_::IOException) -> return Map.empty
-
-
+ 
+ 
  processRepo :: (MonadConfig m, MonadIO m) => Bool -> Command m -> FilePath -> m ()
