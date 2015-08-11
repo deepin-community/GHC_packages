@@ -205,7 +205,7 @@ debFileNameToPackage filename =
     let [pkgname,_version,_] = splitOn "_" filename
     in pkgname
 
-defaultExcludedPackages = words "ghc haskell-devscripts haskell98-report haskell-platform"
+defaultExcludedPackages = words "ghc ghc-testsuite haskell-devscripts haskell98-report haskell-platform"
 newtype GetExcludedSources = GetExcludedSources () deriving (Show,Typeable,Eq,Hashable,Binary,NFData)
 
 newtype GetBuiltBy = GetBuiltBy String  deriving (Show,Typeable,Eq,Hashable,Binary,NFData)
