@@ -7,6 +7,7 @@ import Data.List.Split
 import Data.Maybe
 import Control.Monad
 import Text.Read
+import qualified System.Directory
 import System.Directory.Extra (listFiles)
 import System.Exit
 
@@ -269,7 +270,7 @@ shakeMain conf@(Conf {..}) = do
     let builtBy :: String -> Action (Maybe String)
         builtBy = getBuiltBy . GetBuiltBy
 
-    targetDir </> "cache/all-logs.txt" %> \out -> do
+    targetDir </> "cache/all-changes-files.txt" %> \out -> do
         sources <- readFileLines $ targetDir </> "cache/sources.txt"
         versioned <- forM sources $ \s -> do
             v <- versionOfSource s
@@ -282,10 +283,10 @@ shakeMain conf@(Conf {..}) = do
         writeFileChanged out (unlines pkgs)
 
     "all" ~> do
-        logs <- readFileLines $ targetDir </> "cache/all-logs.txt"
-        need [ targetDir </>  l | l <- logs]
+        changesFiles <- readFileLines $ targetDir </> "cache/all-changes-files.txt"
+        need [ targetDir </>  l | l <- changesFiles]
 
-    -- Binary packages depend on the corresponding build log
+    -- Binary packages depend on the corresponding changes file log
     targetDir </> "*.deb" %> \out -> do
         let filename = takeFileName out
         let [pkgname,version,_] = splitOn "_" filename
@@ -294,10 +295,18 @@ shakeMain conf@(Conf {..}) = do
             Nothing -> fail $ "Binary " ++ show pkgname ++ " not built by us."
             Just source -> need [targetDir </> changesFileName source version]
 
-    -- Build log depends on the corresponding source, and the dependencies
+    -- Changes files depend on the corresponding log file
     targetDir </> "*.changes" %> \out -> do
         let filename = takeFileName out
         let [source,version,_] = splitOn "_" filename
+        need [targetDir </> logFileName source version]
+
+    -- Build log depends on the corresponding source, and the dependencies
+    targetDir </> "*.build" %> \out -> do
+        let filename = takeFileName out
+        let [source,version,_] = splitOn "_" filename
+        let changes = changesFileName source version
+
         ensureVersion source version
         let dsc = sourceFileName source version
         need [targetDir </> dsc]
@@ -329,7 +338,9 @@ shakeMain conf@(Conf {..}) = do
                 ["sbuild", "-c", schrootName,"-A","--no-apt-update","--dist", distribution, "--chroot-setup-commands=bash "++fixup, dsc] ["--extra-package="++d | d <- localDebs ]
             unless (c == ExitSuccess) $ do
                 putNormal $ "Failed to build " ++ source ++ "_" ++ version
-                putNormal $ "See " ++ targetDir </> logFileName source version ++ " for details."
+                ex <- liftIO $ System.Directory.doesFileExist out
+                putNormal $ "See " ++ out ++ " for details."
+            unit $ cmd "changestool" (targetDir </> changes) "adddsc" (targetDir </> dsc)
 
 
     -- Build log depends on the corresponding source, and the dependencies
