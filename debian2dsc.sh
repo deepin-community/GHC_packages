@@ -2,6 +2,15 @@
 
 set -e
 
+if [ "$1" = "-o" ]
+then
+    shift
+    dest="$1"
+    shift
+else
+    dest="."
+fi
+
 until [ -z "$1" ]
 do
     case "$1" in
@@ -13,9 +22,9 @@ do
 done
 
 if [ -z "$DIRS" ]
-then 
+then
    cat <<__END__
-Usage: $0 [dir ...]
+Usage: $0 [-o output/] [dir ...]
 
 Expects directories containing the contents of the debian/ directory of a
 Debian source package (i.e. control, changelog, watch, ...). Uses the watch
@@ -43,9 +52,9 @@ do
     	UPSTREAM=`echo $UPSTREAM | cut -d: -f2-`
     	VERSION=`echo $VERSION | cut -d: -f2-`
     fi
-    TARBALL_GZ=${PACKAGE}_$UPSTREAM.orig.tar.gz
-    TARBALL_BZ2=${PACKAGE}_$UPSTREAM.orig.tar.bz2
-    TARBALL_XZ=${PACKAGE}_$UPSTREAM.orig.tar.xz
+    TARBALL_GZ=$dest/${PACKAGE}_$UPSTREAM.orig.tar.gz
+    TARBALL_BZ2=$dest/${PACKAGE}_$UPSTREAM.orig.tar.bz2
+    TARBALL_XZ=$dest/${PACKAGE}_$UPSTREAM.orig.tar.xz
     # see 375138 for why this doesn't work as well as it could. Fall back to apt-get source
     # as a last resort.
     [ ! -e $TARBALL_GZ -a ! -e $TARBALL_BZ2 -a ! -e $TARBALL_XZ ] && \
@@ -58,9 +67,9 @@ do
         --copyright-file $DIR/copyright \
         --download-version "$UPSTREAM" \
         --upstream-version "$UPSTREAM" \
-        --destdir . \
+        --destdir "$dest" \
 	--rename ||
-        apt-get source "$PACKAGE" --tar-only )
+        ( cd $dest ; apt-get source "$PACKAGE" --tar-only )  )
 
     if [ ! -e $TARBALL_GZ -a ! -e $TARBALL_BZ2 -a ! -e $TARBALL_XZ ]
     then
@@ -88,7 +97,7 @@ do
 	fi
     fi
     
-    DEBIAN_TARBALL=${PACKAGE}_${VERSION}.debian.tar.xz
+    DEBIAN_TARBALL=$dest/${PACKAGE}_${VERSION}.debian.tar.xz
     # -I line taken from "man dpkg-source"
     tar --create \
 	--xz \
@@ -98,6 +107,8 @@ do
 	--directory $DIR \
 	"--exclude=*.a" "--exclude=*.la" "--exclude=*.o" "--exclude=*.so" "--exclude=.*.sw?" "--exclude=*/*~" "--exclude=,,*" "--exclude=.[#~]*" "--exclude=.arch-ids" "--exclude=.arch-inventory" "--exclude=.be" "--exclude=.bzr" "--exclude=.bzr.backup" "--exclude=.bzr.tags" "--exclude=.bzrignore" "--exclude=.cvsignore" "--exclude=.deps" "--exclude=.git" "--exclude=.gitattributes" "--exclude=.gitignore" "--exclude=.gitmodules" "--exclude=.hg" "--exclude=.hgignore" "--exclude=.hgsigs" "--exclude=.hgtags" "--exclude=.shelf" "--exclude=.svn" "--exclude=CVS" "--exclude=DEADJOE" "--exclude=RCS" "--exclude=_MTN" "--exclude=_darcs" "--exclude={arch}" \
 	.
+
+    # dpkg-source insists on cluttering the current directory
     dpkg-source \
 	-c$DIR/control -l$DIR/changelog \
 	--format="3.0 (custom)" --target-format="3.0 (quilt)" \
@@ -108,6 +119,7 @@ do
     DSC=${PACKAGE}_${VERSION}.dsc
     if [ -e $DSC ]
     then
+	mv $DSC "$dest/$DSC"
 	echo "Successfully created $DSC."
     else
 	echo "Failed to create $DSC."
