@@ -3,9 +3,9 @@ Index: gloss-1.9.3.1/gloss.cabal
 --- gloss-1.9.3.1.orig/gloss.cabal	2015-05-05 23:15:59.758337339 +0200
 +++ gloss-1.9.3.1/gloss.cabal	2015-05-05 23:16:48.291327847 +0200
 @@ -37,8 +37,8 @@
-
+ 
  Library
-   Build-Depends:
+   Build-Depends: 
 -        base       == 4.8.*,
 -        ghc-prim   == 0.4.*,
 +        base,
@@ -22,7 +22,7 @@ Index: gloss-1.9.3.1/Graphics/Gloss/Internals/Interface/Event.hs
  import Data.IORef
  import Graphics.Gloss.Internals.Interface.Backend
 +import Data.Functor
-
+ 
  -- | Possible input events.
  data Event
 Index: gloss-1.9.3.1/Graphics/Gloss/Internals/Interface/Display.hs
@@ -34,8 +34,8 @@ Index: gloss-1.9.3.1/Graphics/Gloss/Internals/Interface/Display.hs
  import Data.IORef
  import System.Mem
 +import Data.Functor
-
-
+ 
+ 
  displayWithBackend
 Index: gloss-1.9.3.1/Graphics/Gloss/Internals/Interface/Animate.hs
 ===================================================================
@@ -47,7 +47,7 @@ Index: gloss-1.9.3.1/Graphics/Gloss/Internals/Interface/Animate.hs
  import GHC.Float (double2Float)
 -
 +import Data.Functor
-
+ 
  animateWithBackendIO
          :: Backend a
 Index: gloss-1.9.3.1/Graphics/Gloss/Internals/Interface/Simulate.hs
@@ -59,6 +59,6 @@ Index: gloss-1.9.3.1/Graphics/Gloss/Internals/Interface/Simulate.hs
  import Data.IORef
  import System.Mem
 +import Data.Functor
-
-
+ 
+ 
  simulateWithBackendIO
