@@ -8,6 +8,7 @@ import Data.Maybe
 import Control.Monad
 import Text.Read
 import System.Directory.Extra
+import System.Exit
 
 import Options.Applicative hiding (many)
 import qualified Options.Applicative as O
@@ -275,8 +276,11 @@ shakeMain conf@(Conf {..}) = do
             liftIO $ writeFile fixup  $ fixupScript usedDeps
             localDebs <- filter ((==".deb").takeExtension) . map (makeRelative targetDir) <$> liftIO (listFiles targetDir)
             let debs = filter ((`S.member` usedDepsS) . debFileNameToPackage) localDebs
-            unit $ cmd (Cwd targetDir) (EchoStdout False)
+            Exit c <- cmd (Cwd targetDir) (EchoStdout False)
                 ["sbuild", "-c", "haskell","-A","--no-apt-update","--dist", distribution, "--chroot-setup-commands=bash "++fixup, dsc] ["--extra-package="++d | d <- debs]
+            unless (c == ExitSuccess) $ do
+                putNormal $ "Failed to build " ++ source ++ "_" ++ version
+                putNormal $ "See " ++ targetDir </> logFileName source version ++ " for details."
 
 
     -- Build log depends on the corresponding source, and the dependencies
