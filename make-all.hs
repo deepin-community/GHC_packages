@@ -1,3 +1,4 @@
+{-# LANGUAGE GeneralizedNewtypeDeriving, DeriveDataTypeable, RecordWildCards #-}
 import qualified Data.Map as M
 import qualified Data.Set as S
 import Control.Applicative hiding (many)
@@ -5,17 +6,79 @@ import Data.List
 import Data.List.Split
 import Data.Maybe
 import Control.Monad
+import Text.Read
 import System.Directory.Extra
 
+import Options.Applicative hiding (many)
+import qualified Options.Applicative as O
+import Options.Applicative.Types (readerAsk)
+
 import Development.Shake
+import Development.Shake.Classes
 import Development.Shake.FilePath
 
 import Debian.Relation.Common
 import Debian.Control.String
 import Debian.Control.Policy
 
-import Text.Parsec
+import Text.Parsec hiding (option, oneOf)
 import Text.Parsec.String
+
+-- Option parsing
+data Conf = Conf
+    { distribution :: String
+    , excludedPackages :: [String]
+    , targetDir :: FilePath
+    , jobs :: Int
+    , targets :: [String]
+    }
+
+confSpec :: O.Parser Conf
+confSpec = Conf
+ <$> strOption (
+    long "distribution" <>
+    metavar "DIST" <>
+    help "Distribution to build for (passed to sbuild)" <>
+    showDefault <>
+    value "unstable"
+    )
+ <*> option parseCommaOrSpace (
+    long "excluded-packages" <>
+    metavar "PKG,PKG,..." <>
+    help "comma or space separated list of source package names to ignore" <>
+    value defaultExcludedPackages <>
+    showDefaultWith (intercalate ", ")
+    )
+ <*> strOption (
+    long "output" <>
+    short 'o' <>
+    metavar "DIR" <>
+    help "output directory" <>
+    showDefault <>
+    value "lab"
+    )
+ <*> option parseNat (
+    long "jobs" <>
+    short 'j' <>
+    metavar "INT" <>
+    help "numbe of parallel jobs" <>
+    showDefault <>
+    value 1
+    )
+  <*> O.many (argument str (metavar "TARGET..."))
+
+parseCommaOrSpace:: ReadM [String]
+parseCommaOrSpace = do
+    s <- readerAsk
+    return $ split (dropBlanks $ dropDelims $ oneOf ";, ") s
+
+parseNat :: ReadM Int
+parseNat  = do
+    s <- readerAsk
+    case readMaybe s of
+        Nothing -> fail "Not a number"
+        Just n | n < 0 -> fail "I cannot do a negative number of jobs"
+               | otherwise -> return n
 
 -- dpkg-parsechangelog is slow, so here is a quick hack
 -- TODO: Ensure this is not run unnecessarily often
@@ -47,6 +110,7 @@ removeEpoch s | ':' `elem` s = tail $ dropWhile (/= ':') s
 
 
 changesFileName s v = s ++ "_" ++ v ++ "_amd64.changes"
+logFileName s v = s ++ "_" ++ v ++ "_amd64.build"
 sourceFileName s v = s ++ "_" ++ v ++ ".dsc"
 
 binaryPackagesOfSource :: String -> Action [String]
@@ -83,10 +147,15 @@ parseFlatRel = flatRels . parseRels
       Left pe ->  error $ "Failed to parse relations " ++ (show pe)
       Right rel -> rel
 
-
 fixupScript :: [String] -> String
-fixupScript [] = "#!/bin/bash"
-fixupScript pkgs = unlines
+fixupScript pkgs = unlines $
+    [ "#!/bin/bash"
+    , "echo 'Debug::NoLocking \"true\";' > /etc/apt/apt.conf.d/no-locking"
+    ] ++ ignoreArchiveDepends pkgs
+
+ignoreArchiveDepends :: [String] -> [String]
+ignoreArchiveDepends [] = []
+ignoreArchiveDepends pkgs =
     [ "#!/bin/bash"
     , "for f in /var/lib/apt/lists/*_Packages"
     , "do"
@@ -96,73 +165,106 @@ fixupScript pkgs = unlines
     ]
   where disj = intercalate " -o " pkgs
 
-excludedSources = words "ghc haskell-devscripts uuagc haskell98-report"
 
-main = shakeArgsWith shakeOptions [] $ \_ targets -> return $ Just $ do
+debFileNameToPackage filename =
+    let [pkgname,_version,_] = splitOn "_" filename
+    in pkgname
+
+defaultExcludedPackages = words "ghc haskell-devscripts uuagc haskell98-report haskell-platform haskell-ghcjs-base"
+newtype GetExcludedSources = GetExcludedSources () deriving (Show,Typeable,Eq,Hashable,Binary,NFData)
+
+newtype GetBuiltBy = GetBuiltBy String  deriving (Show,Typeable,Eq,Hashable,Binary,NFData)
+
+main = execParser opts >>= run
+  where
+    opts = info (helper <*> confSpec)
+        ( fullDesc
+       <> progDesc "Rebuilds a set of packages"
+       <> header "make-all - Rebuilds a set of packages" )
+
+    run conf = shake (makeShakeOptions conf) (shakeMain conf)
+
+makeShakeOptions :: Conf -> ShakeOptions
+makeShakeOptions Conf{..} = shakeOptions
+    { shakeFiles = targetDir </> ".shake"
+    , shakeThreads = jobs
+    }
+
+shakeMain conf@(Conf {..}) = do
     if null targets then want ["all"] else want targets
 
-    "lab/cache/sources.txt" %> \out -> do
+    getExcludedSources <- addOracle $ \GetExcludedSources{} ->
+        return $ excludedPackages
+
+    targetDir </> "cache/sources.txt" %> \out -> do
         sources <- getDirectoryDirs "p"
-        let sources' = filter (`notElem` excludedSources) sources
+        excluded <- getExcludedSources (GetExcludedSources ())
+        let sources' = filter (`notElem` excluded) sources
         writeFileChanged out (unlines sources')
 
-    "lab/cache/all-binaries.txt" %> \out -> do
-        sources <- readFileLines $ "lab/cache/sources.txt"
-        binaries <- concat <$> mapM readFileLines ["lab/cache/binaries/" ++ s ++ ".txt" | s <- sources]
+    targetDir </> "cache/all-binaries.txt" %> \out -> do
+        sources <- readFileLines $ targetDir </> "cache/sources.txt"
+        binaries <- concat <$> mapM readFileLines [targetDir </> "cache/binaries/" ++ s ++ ".txt" | s <- sources]
         writeFileChanged out (unlines binaries)
 
-    "lab/cache/built-by.txt" %> \out -> do
-        sources <- readFileLines $ "lab/cache/sources.txt"
+    targetDir </> "cache/built-by.txt" %> \out -> do
+        sources <- readFileLines $ targetDir </> "cache/sources.txt"
         builtBy <- liftM (sort . concat) $ forM sources $ \s -> do
-            pkgs <- readFileLines $ "lab/cache/binaries/" ++ s ++ ".txt"
+            pkgs <- readFileLines $ targetDir </> "cache/binaries/" ++ s ++ ".txt"
             return [(pkg,s) | pkg <- pkgs]
         writeFileChanged out $ unlines [ unwords [pkg,s] | (pkg,s) <- builtBy ]
 
-    builtBy' <- newCache $ \() -> do
-        builtBy <- readFileLines $ "lab/cache/built-by.txt"
-        let map = M.fromList [ (p,s) | [p,s] <- words <$> builtBy ]
-        return $ \b -> M.lookup b map
-    let builtBy x = ($x) <$> builtBy' ()
+    builtByMap <- newCache $ \() -> do
+        builtBy <- readFileLines $ targetDir </> "cache/built-by.txt"
+        return $ M.fromList [ (p,s) | [p,s] <- words <$> builtBy ]
 
-    "lab/cache/all-logs.txt" %> \out -> do
-        sources <- readFileLines $ "lab/cache/sources.txt"
+    getBuiltBy <- addOracle $ \(GetBuiltBy bin) -> do
+        map <- builtByMap ()
+        return $ M.lookup bin map
+
+    let builtBy :: String -> Action (Maybe String)
+        builtBy = getBuiltBy . GetBuiltBy
+
+    targetDir </> "cache/all-logs.txt" %> \out -> do
+        sources <- readFileLines $ targetDir </> "cache/sources.txt"
         versioned <- forM sources $ \s -> do
             v <- versionOfSource s
             return (s,v)
         writeFileChanged out $ unlines $ map (uncurry changesFileName) versioned
 
-    "lab/cache/binaries/*.txt" %> \out -> do
+    targetDir </> "cache/binaries/*.txt" %> \out -> do
         let s = dropExtension $ takeFileName $ out
         pkgs <- binaryPackagesOfSource s
         writeFileChanged out (unlines pkgs)
 
     "all" ~> do
-        logs <- readFileLines "lab/cache/all-logs.txt"
-        need [ "lab" </>  l | l <- logs]
+        logs <- readFileLines $ targetDir </> "cache/all-logs.txt"
+        need [ targetDir </>  l | l <- logs]
 
     -- Binary packages depend on the corresponding build log
-    "lab/*.deb" %> \out -> do
+    targetDir </> "*.deb" %> \out -> do
         let filename = takeFileName out
         let [pkgname,version,_] = splitOn "_" filename
         sourceMB <- builtBy pkgname
         case sourceMB of
             Nothing -> fail $ "Binary " ++ show pkgname ++ " not built by us."
-            Just source -> need ["lab" </> changesFileName source version]
+            Just source -> need [targetDir </> changesFileName source version]
 
     -- Build log depends on the corresponding source, and the dependencies
-    "lab/*.changes" %> \out -> do
+    targetDir </> "*.changes" %> \out -> do
         let filename = takeFileName out
         let [source,version,_] = splitOn "_" filename
         ensureVersion source version
         let dsc = sourceFileName source version
-        need ["lab" </> dsc]
-        deps <- liftIO $ dependsOfDsc $ "lab" </> dsc
+        need [targetDir </> dsc]
+        deps <- liftIO $ dependsOfDsc $ targetDir </> dsc
         -- TODO: avoid multiple calls to builtBy
         usedDeps <- filterM (\f -> isJust <$> builtBy f) deps
-        depSources <- catMaybes <$> mapM builtBy deps
+        let usedDepsS = S.fromList usedDeps
+        depSources <- catMaybes <$> mapM builtBy usedDeps
         depChanges <- forM depSources $ \s -> do
             v <- versionOfSource s
-            return $ "lab" </> changesFileName s v
+            return $ targetDir </> changesFileName s v
         need depChanges
 
         -- Actual package building
@@ -171,18 +273,19 @@ main = shakeArgsWith shakeOptions [] $ \_ targets -> return $ Just $ do
         withTempDir $ \tmpdir -> do
             let fixup = tmpdir </> "fixup.sh"
             liftIO $ writeFile fixup  $ fixupScript usedDeps
-            unit $ cmd "chmod" "+x" fixup
-            debs <- filter ((==".deb").takeExtension) <$> liftIO (listFiles "lab")
-            unit $ cmd (Cwd "lab") (EchoStdout False) "sbuild" "-c" "haskell" "-A" "-j4" "--no-apt-update" "--dist" "unstable" ("--chroot-setup-commands="++fixup) dsc ["--extra-package=../"++d | d <- debs]
+            localDebs <- filter ((==".deb").takeExtension) . map (makeRelative targetDir) <$> liftIO (listFiles targetDir)
+            let debs = filter ((`S.member` usedDepsS) . debFileNameToPackage) localDebs
+            unit $ cmd (Cwd targetDir) (EchoStdout False)
+                ["sbuild", "-c", "haskell","-A","--no-apt-update","--dist", distribution, "--chroot-setup-commands=bash "++fixup, dsc] ["--extra-package="++d | d <- debs]
 
 
     -- Build log depends on the corresponding source, and the dependencies
-    "lab/*.dsc" %> \out -> do
+    targetDir </> "*.dsc" %> \out -> do
         let filename = dropExtension $ takeFileName out
         let [source,version] = splitOn "_" filename
         ensureVersion source version
         sourceFiles <- getDirectoryFiles ("p" </> source) ["debian//*"]
         need [ "p" </> source </> f | f <- sourceFiles]
-        unit $ cmd (Cwd "lab") (EchoStdout False) "../debian2dsc.sh" (".." </> "p" </> source </> "debian")
+        unit $ cmd  (EchoStdout False) "./debian2dsc.sh" "-o" targetDir ("p" </> source </> "debian")
 
 
