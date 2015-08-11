@@ -33,6 +33,7 @@ data Conf = Conf
     , jobs :: Int
     , schrootName :: String
     , shakeVerbosity' :: Verbosity
+    , keepGoing :: Bool
     , targets :: [String]
     }
 
@@ -82,6 +83,11 @@ confSpec = Conf
     help "verbosity for shake (Silent, Quiet, Normal, Loud, Chatty or Diagnostic)" <>
     showDefault <>
     value Normal
+    )
+ <*> switch  (
+    long "keep-going" <>
+    help "keep going even if there are errors" <>
+    showDefault
     )
   <*> O.many (argument str (metavar "TARGET..."))
 
@@ -225,6 +231,7 @@ makeShakeOptions Conf{..} = shakeOptions
     , shakeThreads = jobs
     , shakeVerbosity = shakeVerbosity'
     , shakeChange = ChangeModtimeAndDigestInput
+    , shakeStaunch = keepGoing
     }
 
 shakeMain conf@(Conf {..}) = do
