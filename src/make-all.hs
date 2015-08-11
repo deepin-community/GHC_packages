@@ -224,6 +224,7 @@ makeShakeOptions Conf{..} = shakeOptions
     { shakeFiles = targetDir </> ".shake"
     , shakeThreads = jobs
     , shakeVerbosity = shakeVerbosity'
+    , shakeChange = ChangeModtimeAndDigestInput
     }
 
 shakeMain conf@(Conf {..}) = do
