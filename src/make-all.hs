@@ -123,16 +123,19 @@ binaryPackagesOfSource s = do
         Left e -> fail (show e)
         Right dc -> return $ map unBinPkgName $ debianBinaryPackageNames dc
 
--- TODO: Include Build-Depends-Indep
 dependsOfDsc :: FilePath -> IO [String]
 dependsOfDsc f = do
     ret <- parseControlFromFile f
     case ret of
         Left e -> fail (show e)
         Right (Control (p:_)) -> do
-            case fieldValue "Build-Depends" (p:: Paragraph) of
+            deps <- case fieldValue "Build-Depends" (p:: Paragraph) of
                 Nothing -> fail "no Build-Depends"
                 Just depV -> return $ nub $ parseFlatRel depV
+            ideps <- case fieldValue "Build-Depends-Indep" (p:: Paragraph) of
+                Nothing -> return []
+                Just depV -> return $ nub $ parseFlatRel depV
+            return $ deps ++ ideps
 
 
 -- Parsing package relations with flattening
