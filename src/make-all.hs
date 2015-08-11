@@ -31,6 +31,8 @@ data Conf = Conf
     , excludedPackages :: [String]
     , targetDir :: FilePath
     , jobs :: Int
+    , schrootName :: String
+    , shakeVerbosity' :: Verbosity
     , targets :: [String]
     }
 
@@ -62,9 +64,24 @@ confSpec = Conf
     long "jobs" <>
     short 'j' <>
     metavar "INT" <>
-    help "numbe of parallel jobs" <>
+    help "number of parallel jobs" <>
     showDefault <>
     value 1
+    )
+ <*> strOption  (
+    long "chroot" <>
+    short 'j' <>
+    metavar "SCHROOT" <>
+    help "name of the schroot to use" <>
+    showDefault <>
+    value "haskell"
+    )
+ <*> option readOption  (
+    long "shake-verbosity" <>
+    metavar "VERBOSITY" <>
+    help "verbosity for shake (Silent, Quiet, Normal, Loud, Chatty or Diagnostic)" <>
+    showDefault <>
+    value Normal
     )
   <*> O.many (argument str (metavar "TARGET..."))
 
@@ -72,6 +89,13 @@ parseCommaOrSpace:: ReadM [String]
 parseCommaOrSpace = do
     s <- readerAsk
     return $ split (dropBlanks $ dropDelims $ oneOf ";, ") s
+
+readOption :: Read a => ReadM a
+readOption  = do
+    s <- readerAsk
+    case readMaybe s of
+        Nothing -> fail $ "Cannot parse " ++ s
+        Just n -> return n
 
 parseNat :: ReadM Int
 parseNat  = do
@@ -196,6 +220,7 @@ makeShakeOptions :: Conf -> ShakeOptions
 makeShakeOptions Conf{..} = shakeOptions
     { shakeFiles = targetDir </> ".shake"
     , shakeThreads = jobs
+    , shakeVerbosity = shakeVerbosity'
     }
 
 shakeMain conf@(Conf {..}) = do
@@ -284,7 +309,7 @@ shakeMain conf@(Conf {..}) = do
             localDebs <- filter ((==".deb").takeExtension) . map (makeRelative targetDir) <$> liftIO (listFiles targetDir)
             let debs = filter ((`S.member` usedDepsS) . debFileNameToPackage) localDebs
             Exit c <- cmd (Cwd targetDir) (EchoStdout False)
-                ["sbuild", "-c", "haskell","-A","--no-apt-update","--dist", distribution, "--chroot-setup-commands=bash "++fixup, dsc] ["--extra-package="++d | d <- debs]
+                ["sbuild", "-c", schrootName,"-A","--no-apt-update","--dist", distribution, "--chroot-setup-commands=bash "++fixup, dsc] ["--extra-package="++d | d <- debs]
             unless (c == ExitSuccess) $ do
                 putNormal $ "Failed to build " ++ source ++ "_" ++ version
                 putNormal $ "See " ++ targetDir </> logFileName source version ++ " for details."
