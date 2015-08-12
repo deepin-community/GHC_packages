@@ -1,0 +1,66 @@
+Source: haskell-applicative-quoters
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Kristoffer H Rose <krisrose@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-src-meta-dev (>= 0.2),
+ libghc-src-meta-dev (<< 1),
+ libghc-src-meta-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-src-meta-doc,
+Standards-Version: 3.9.6
+Homepage: http://hackage.haskell.org/package/applicative-quoters
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-applicative-quoters
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-applicative-quoters
+X-Description: Quasiquoters for idiom brackets and an applicative do-notation
+ Quasiquoters taken from Matt Morrow's haskell-src-meta to implement
+ Conor McBride's idiom brackets, and a do-notation that only requires
+ Applicative (and is correspondingly less powerful).
+ .
+ applicative-quoters currently has no maintainer: if it is broken and
+ you want it to be fixed, then fix it!
+
+Package: libghc-applicative-quoters-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-applicative-quoters-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-applicative-quoters-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
