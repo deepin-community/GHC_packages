@@ -47,7 +47,7 @@ fi
 debchange --changelog debian/changelog --newversion="$epoch$version-1" 'New upstream release'
 origtargz -u
 
-if fgrep -q 'DEB_ENABLE_TESTS = yes' debian/rules
+if grep -q '^DEB_ENABLE_TESTS = yes' debian/rules
 then
   test=""
 else
