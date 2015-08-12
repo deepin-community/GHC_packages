@@ -1,51 +1,51 @@
 Source: haskell-reform-happstack
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-happstack-server-dev (>> 7.0)
-  , libghc-happstack-server-dev (<< 7.5)
-  , libghc-happstack-server-prof
-  , libghc-mtl-dev (>> 2.0)
-  , libghc-mtl-dev (<< 2.3)
-  , libghc-mtl-prof
-  , libghc-random-dev (>> 1.0)
-  , libghc-random-dev (<< 1.2)
-  , libghc-random-prof
-  , libghc-reform-dev (>> 0.2)
-  , libghc-reform-dev (<< 0.3)
-  , libghc-reform-prof
-  , libghc-text-dev (>> 0.11)
-  , libghc-text-dev (<< 1.3)
-  , libghc-text-prof
-  , libghc-utf8-string-dev (>> 0.3)
-  , libghc-utf8-string-dev (<< 1.1)
-  , libghc-utf8-string-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-happstack-server-doc
-  , libghc-mtl-doc
-  , libghc-random-doc
-  , libghc-reform-doc
-  , libghc-text-doc
-  , libghc-utf8-string-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-happstack-server-dev (>> 7.0),
+ libghc-happstack-server-dev (<< 7.5),
+ libghc-happstack-server-prof,
+ libghc-mtl-dev (>> 2.0),
+ libghc-mtl-dev (<< 2.3),
+ libghc-mtl-prof,
+ libghc-random-dev (>> 1.0),
+ libghc-random-dev (<< 1.2),
+ libghc-random-prof,
+ libghc-reform-dev (>> 0.2),
+ libghc-reform-dev (<< 0.3),
+ libghc-reform-prof,
+ libghc-text-dev (>> 0.11),
+ libghc-text-dev (<< 1.3),
+ libghc-text-prof,
+ libghc-utf8-string-dev (>> 0.3),
+ libghc-utf8-string-dev (<< 1.1),
+ libghc-utf8-string-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-happstack-server-doc,
+ libghc-mtl-doc,
+ libghc-random-doc,
+ libghc-reform-doc,
+ libghc-text-doc,
+ libghc-utf8-string-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/reform-happstack
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-reform-happstack
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-reform-happstack
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-reform-happstack
 
 Package: libghc-reform-happstack-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Happstack support for reform${haskell:ShortBlurb}
  Reform is a library for building and validating forms using applicative
  functors. This package add support for using reform with Happstack.
@@ -54,11 +54,11 @@ Description: Happstack support for reform${haskell:ShortBlurb}
 
 Package: libghc-reform-happstack-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Happstack support for reform${haskell:ShortBlurb}
  Reform is a library for building and validating forms using applicative
  functors. This package add support for using reform with Happstack.
@@ -66,11 +66,12 @@ Description: Happstack support for reform${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-reform-happstack-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Happstack support for reform${haskell:ShortBlurb}
  Reform is a library for building and validating forms using applicative
  functors. This package add support for using reform with Happstack.

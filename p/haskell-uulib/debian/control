@@ -1,19 +1,18 @@
 Source: haskell-uulib
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Marco Túlio Gontijo e Silva <marcot@debian.org>
-Build-Depends: debhelper (>= 9)
- , cdbs
- , haskell-devscripts (>= 0.9)
- , ghc
- , ghc-prof
- , ghc-doc
- , cpphs
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ ghc-doc,
+ cpphs,
 Standards-Version: 3.9.4
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-uulib/
-Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-uulib
 Homepage: http://www.cs.uu.nl/wiki/HUT/WebHome
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-uulib
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-uulib/
 X-Description: parser and pretty print combinator library for GHC
  The uulib Haskell library contains fast, error repairing parser
  combinators (UU.Parsing), pretty print combinators (UU.Pretty) and a
@@ -25,12 +24,12 @@ X-Description: parser and pretty print combinator library for GHC
 
 Package: libghc-uulib-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -38,22 +37,23 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-uulib-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-uulib-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .

@@ -1,48 +1,47 @@
 Source: haskell-ekg
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Iustin Pop <iustin@debian.org>
-         , Louis Bettens <louis@bettens.info>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-aeson-dev (<< 0.9)
-  , libghc-aeson-prof
-  , libghc-ekg-core-dev (>= 0.1)
-  , libghc-ekg-core-dev (<< 0.2)
-  , libghc-ekg-core-prof
-  , libghc-snap-core-dev (<< 0.10)
-  , libghc-snap-core-prof
-  , libghc-snap-server-dev (<< 0.10)
-  , libghc-snap-server-prof
-  , libghc-text-dev (<< 1.3)
-  , libghc-text-prof
-  , libghc-unordered-containers-dev (<< 0.3)
-  , libghc-unordered-containers-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-aeson-doc
-  , libghc-ekg-core-doc
-  , libghc-snap-core-doc
-  , libghc-snap-server-doc
-  , libghc-text-doc
-  , libghc-unordered-containers-doc
+Uploaders: Iustin Pop <iustin@debian.org>, Louis Bettens <louis@bettens.info>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-aeson-dev (<< 0.9),
+ libghc-aeson-prof,
+ libghc-ekg-core-dev (>= 0.1),
+ libghc-ekg-core-dev (<< 0.2),
+ libghc-ekg-core-prof,
+ libghc-snap-core-dev (<< 0.10),
+ libghc-snap-core-prof,
+ libghc-snap-server-dev (<< 0.10),
+ libghc-snap-server-prof,
+ libghc-text-dev (<< 1.3),
+ libghc-text-prof,
+ libghc-unordered-containers-dev (<< 0.3),
+ libghc-unordered-containers-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-aeson-doc,
+ libghc-ekg-core-doc,
+ libghc-snap-core-doc,
+ libghc-snap-server-doc,
+ libghc-text-doc,
+ libghc-unordered-containers-doc,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/ekg
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-ekg
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-ekg
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-ekg
 
 Package: libghc-ekg-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-  , libghc-ekg-data (= ${source:Version})
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+ libghc-ekg-data (= ${source:Version}),
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: remote monitoring of Haskell processes over HTTP${haskell:ShortBlurb}
  The ekg library lets you remotely monitor a running (Haskell) process
  over HTTP. It provides a simple way to integrate a monitoring server
@@ -52,11 +51,11 @@ Description: remote monitoring of Haskell processes over HTTP${haskell:ShortBlur
 
 Package: libghc-ekg-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: remote monitoring of Haskell processes over HTTP${haskell:ShortBlurb}
  The ekg library lets you remotely monitor a running (Haskell) process
  over HTTP. It provides a simple way to integrate a monitoring server
@@ -65,11 +64,12 @@ Description: remote monitoring of Haskell processes over HTTP${haskell:ShortBlur
  ${haskell:Blurb}
 
 Package: libghc-ekg-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: remote monitoring of Haskell processes over HTTP${haskell:ShortBlurb}
  The ekg library lets you remotely monitor a running (Haskell) process
  over HTTP. It provides a simple way to integrate a monitoring server
@@ -79,9 +79,10 @@ Description: remote monitoring of Haskell processes over HTTP${haskell:ShortBlur
 
 Package: libghc-ekg-data
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: remote monitoring of Haskell processes over HTTP - common files
  The ekg library lets you remotely monitor a running (Haskell) process
  over HTTP. It provides a simple way to integrate a monitoring server

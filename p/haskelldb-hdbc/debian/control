@@ -1,41 +1,44 @@
 Source: haskelldb-hdbc
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-mtl-dev (>= 1)
-  , libghc-mtl-dev (<< 3)
-  , libghc-mtl-prof
-  , libghc-haskelldb-dev (>= 2.2)
-  , libghc-haskelldb-dev (<< 3)
-  , libghc-haskelldb-prof
-  , libghc-hdbc-dev (>= 2.0.0)
-  , libghc-hdbc-dev (<< 3)
-  , libghc-hdbc-prof
-  , libghc-convertible-dev (>= 1.0.1)
-  , libghc-convertible-dev (<< 2)
-  , libghc-convertible-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-mtl-doc
-  , libghc-haskelldb-doc
-  , libghc-hdbc-doc
-  , libghc-convertible-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-mtl-dev (>= 1),
+ libghc-mtl-dev (<< 3),
+ libghc-mtl-prof,
+ libghc-haskelldb-dev (>= 2.2),
+ libghc-haskelldb-dev (<< 3),
+ libghc-haskelldb-prof,
+ libghc-hdbc-dev (>= 2.0.0),
+ libghc-hdbc-dev (<< 3),
+ libghc-hdbc-prof,
+ libghc-convertible-dev (>= 1.0.1),
+ libghc-convertible-dev (<< 2),
+ libghc-convertible-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-mtl-doc,
+ libghc-haskelldb-doc,
+ libghc-hdbc-doc,
+ libghc-convertible-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/haskelldb-hdbc
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskelldb-hdbc
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskelldb-hdbc
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskelldb-hdbc
 
 Package: libghc-haskelldb-hdbc-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Recommends: libghc-haskelldb-hdbc-odbc-dev | libghc-haskelldb-hdbc-sqlite3-dev | libghc-haskelldb-hdbc-postgresql-dev, ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: libghc-haskelldb-hdbc-odbc-dev | libghc-haskelldb-hdbc-sqlite3-dev | libghc-haskelldb-hdbc-postgresql-dev,
+ ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: HaskellDB support for HDBC${haskell:ShortBlurb}
  This library allows you to use the HaskellDB database abstraction library with
  the HDBC database driver interface. You will also need one or more back-end
@@ -45,10 +48,12 @@ Description: HaskellDB support for HDBC${haskell:ShortBlurb}
 
 Package: libghc-haskelldb-hdbc-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: HaskellDB support for HDBC${haskell:ShortBlurb}
  This library allows you to use the HaskellDB database abstraction library with
  the HDBC database driver interface. You will also need one or more back-end
@@ -57,11 +62,12 @@ Description: HaskellDB support for HDBC${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-haskelldb-hdbc-doc
-Section: doc
 Architecture: all
-Depends: ${haskell:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: HaskellDB support for HDBC${haskell:ShortBlurb}
  This library allows you to use the HaskellDB database abstraction library with
  the HDBC database driver interface. You will also need one or more back-end

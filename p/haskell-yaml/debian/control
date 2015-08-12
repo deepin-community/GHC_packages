@@ -1,65 +1,65 @@
 Source: haskell-yaml
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-aeson-dev (>= 0.8.0.2-3)
-  , libghc-aeson-prof
-  , libghc-attoparsec-dev
-  , libghc-attoparsec-prof
-  , libghc-conduit-dev (>= 1.1.0)
-  , libghc-conduit-dev (<< 1.3)
-  , libghc-conduit-prof
-  , libghc-resourcet-dev (>= 0.3)
-  , libghc-resourcet-dev (<< 1.2)
-  , libghc-resourcet-prof
-  , libghc-text-dev
-  , libghc-text-prof
-  , libghc-unordered-containers-dev
-  , libghc-unordered-containers-prof
-  , libghc-scientific-dev
-  , libghc-scientific-prof
-  , libghc-vector-dev
-  , libghc-vector-prof
-  , libghc-enclosed-exceptions-dev
-  , libghc-enclosed-exceptions-prof
-  , libyaml-dev
-  , pkg-config
-  , libghc-hspec-dev (>= 1.3) [any-amd64 any-i386 powerpc sparc]
-  , libghc-hspec-expectations-dev [any-amd64 any-i386 powerpc sparc]
-  , libghc-hunit-dev [any-amd64 any-i386 powerpc sparc]
-  , libghc-aeson-qq-dev [any-amd64 any-i386 powerpc sparc]
-  , libghc-mockery-dev [any-amd64 any-i386 powerpc sparc]
-  , libghc-base-compat-dev [any-amd64 any-i386 powerpc sparc]
-Build-Depends-Indep: ghc-doc
-  , libghc-aeson-doc
-  , libghc-attoparsec-doc
-  , libghc-conduit-doc
-  , libghc-resourcet-doc
-  , libghc-text-doc
-  , libghc-unordered-containers-doc
-  , libghc-scientific-doc
-  , libghc-vector-doc
-  , libghc-enclosed-exceptions-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-aeson-dev (>= 0.8.0.2-3),
+ libghc-aeson-prof,
+ libghc-attoparsec-dev,
+ libghc-attoparsec-prof,
+ libghc-conduit-dev (>= 1.1.0),
+ libghc-conduit-dev (<< 1.3),
+ libghc-conduit-prof,
+ libghc-resourcet-dev (>= 0.3),
+ libghc-resourcet-dev (<< 1.2),
+ libghc-resourcet-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+ libghc-unordered-containers-dev,
+ libghc-unordered-containers-prof,
+ libghc-scientific-dev,
+ libghc-scientific-prof,
+ libghc-vector-dev,
+ libghc-vector-prof,
+ libghc-enclosed-exceptions-dev,
+ libghc-enclosed-exceptions-prof,
+ libyaml-dev,
+ pkg-config,
+ libghc-hspec-dev (>= 1.3) [powerpcsparcany-amd64any-i386],
+ libghc-hspec-expectations-dev [powerpcsparcany-amd64any-i386],
+ libghc-hunit-dev [powerpcsparcany-amd64any-i386],
+ libghc-aeson-qq-dev [powerpcsparcany-amd64any-i386],
+ libghc-mockery-dev [powerpcsparcany-amd64any-i386],
+ libghc-base-compat-dev [powerpcsparcany-amd64any-i386],
+Build-Depends-Indep: ghc-doc,
+ libghc-aeson-doc,
+ libghc-attoparsec-doc,
+ libghc-conduit-doc,
+ libghc-resourcet-doc,
+ libghc-text-doc,
+ libghc-unordered-containers-doc,
+ libghc-scientific-doc,
+ libghc-vector-doc,
+ libghc-enclosed-exceptions-doc,
 Standards-Version: 3.9.6
 Homepage: http://hackage.haskell.org/package/yaml
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-yaml
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-yaml
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-yaml
 
 Package: libghc-yaml-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-  , libyaml-dev
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+ libyaml-dev,
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: interface to LibYAML${haskell:ShortBlurb}
  Provides support for parsing and emitting Yaml documents.
  .
@@ -67,22 +67,23 @@ Description: interface to LibYAML${haskell:ShortBlurb}
 
 Package: libghc-yaml-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: interface to LibYAML${haskell:ShortBlurb}
  Provides support for parsing and emitting Yaml documents.
  .
  ${haskell:Blurb}
 
 Package: libghc-yaml-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: interface to LibYAML${haskell:ShortBlurb}
  Provides support for parsing and emitting Yaml documents.
  .

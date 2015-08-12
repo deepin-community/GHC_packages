@@ -1,34 +1,34 @@
 Source: haskell-chasingbottoms
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>, Dmitry Bogatov <KAction@gnu.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-quickcheck2-dev (>= 2.1)
-  , libghc-quickcheck2-dev (<< 2.9)
-  , libghc-quickcheck2-prof
-  , libghc-mtl-dev (>= 1.1)
-  , libghc-mtl-dev (<< 2.3)
-  , libghc-mtl-prof
-  , libghc-random-dev (>= 1.0)
-  , libghc-random-dev (<< 1.2)
-  , libghc-random-prof
-  , libghc-syb-dev (>= 0.1.0.2)
-  , libghc-syb-dev (<< 0.6)
-  , libghc-syb-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-quickcheck2-doc
-  , libghc-mtl-doc
-  , libghc-random-doc
-  , libghc-syb-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-quickcheck2-dev (>= 2.1),
+ libghc-quickcheck2-dev (<< 2.9),
+ libghc-quickcheck2-prof,
+ libghc-mtl-dev (>= 1.1),
+ libghc-mtl-dev (<< 2.3),
+ libghc-mtl-prof,
+ libghc-random-dev (>= 1.0),
+ libghc-random-dev (<< 1.2),
+ libghc-random-prof,
+ libghc-syb-dev (>= 0.1.0.2),
+ libghc-syb-dev (<< 0.6),
+ libghc-syb-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-quickcheck2-doc,
+ libghc-mtl-doc,
+ libghc-random-doc,
+ libghc-syb-doc,
 Standards-Version: 3.9.6
 Homepage: http://hackage.haskell.org/package/ChasingBottoms
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-chasingbottoms
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-chasingbottoms
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-chasingbottoms
 X-Description: Library for testing partial and infinite values
  Do you ever feel the need to test code involving bottoms (e.g. calls to the
  error function), or code involving infinite values? Then this library could be
@@ -41,12 +41,12 @@ X-Description: Library for testing partial and infinite values
 
 Package: libghc-chasingbottoms-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -54,22 +54,23 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-chasingbottoms-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-chasingbottoms-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .

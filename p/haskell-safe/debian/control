@@ -1,28 +1,27 @@
 Source: haskell-safe
-Priority: extra
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>
-Build-Depends:
- , debhelper (>= 9)
- , haskell-devscripts (>= 0.9)
- , cdbs
- , ghc
- , ghc-prof
- , ghc-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ ghc-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/safe
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-safe
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-safe
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-safe
 
 Package: libghc-safe-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: GHC Library for safe (pattern match free) functions${haskell:ShortBlurb}
  .
  Partial functions from the base library, such as head and !!, modified to
@@ -34,12 +33,12 @@ Description: GHC Library for safe (pattern match free) functions${haskell:ShortB
 
 Package: libghc-safe-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Profiling library for safe (pattern match free) functions${haskell:ShortBlurb}
  .
  Partial functions from the base library, such as head and !!, modified to
@@ -50,11 +49,12 @@ Description: Profiling library for safe (pattern match free) functions${haskell:
  ${haskell:Blurb}
 
 Package: libghc-safe-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Documentation for safe library for (pattern match free) functions${haskell:ShortBlurb}
  .
  Partial functions from the base library, such as head and !!, modified to

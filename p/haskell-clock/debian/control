@@ -1,28 +1,27 @@
 Source: haskell-clock
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>,
-           Dmitry Bogatov <KAction@gnu.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-Build-Depends-Indep: ghc-doc
+Uploaders: Joachim Breitner <nomeata@debian.org>, Dmitry Bogatov <KAction@gnu.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.6
 Homepage: http://hackage.haskell.org/package/clock
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-clock
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-clock
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-clock
 
 Package: libghc-clock-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: High-resolution clock and timer${haskell:ShortBlurb}
  This library provides convenient access to high-resolution clock and timer
  functions.
@@ -31,11 +30,11 @@ Description: High-resolution clock and timer${haskell:ShortBlurb}
 
 Package: libghc-clock-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: High-resolution clock and timer${haskell:ShortBlurb}
  This library provides convenient access to high-resolution clock and timer
  functions.
@@ -43,11 +42,12 @@ Description: High-resolution clock and timer${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-clock-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: High-resolution clock and timer${haskell:ShortBlurb}
  This library provides convenient access to high-resolution clock and timer
  functions.

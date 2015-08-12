@@ -1,40 +1,39 @@
 Source: haskell-x11
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>, Ryan Kavanagh <rak@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libx11-dev,
+ libxt-dev,
+ libxinerama-dev,
+ libxrandr-dev,
+ libxext-dev,
+ libghc-data-default-dev,
+ libghc-data-default-prof,
+Build-Depends-Indep: ghc-doc,
+ ghc-doc,
+ libghc-data-default-doc,
 Standards-Version: 3.9.5
-Build-Depends: debhelper (>= 9)
-  , haskell-devscripts (>= 0.9)
-  , cdbs
-  , ghc
-  , ghc-prof
-  , libx11-dev
-  , libxt-dev
-  , libxinerama-dev
-  , libxrandr-dev
-  , libxext-dev
-  , libghc-data-default-dev
-  , libghc-data-default-prof
-Build-Depends-Indep: ghc-doc
-  , ghc-doc
-  , libghc-data-default-doc
 Homepage: http://hackage.haskell.org/package/X11
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-x11/
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-x11
-
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-x11/
 
 Package: libghc-x11-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-  , libx11-dev
-  , libxt-dev
-  , libxinerama-dev
-  , libxrandr-dev
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+ libx11-dev,
+ libxt-dev,
+ libxinerama-dev,
+ libxrandr-dev,
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell X11 binding for GHC${haskell:ShortBlurb}
  This library is a binding to the X11 graphics library.
  The binding is a direct translation of the C binding; for
@@ -45,9 +44,9 @@ Description: Haskell X11 binding for GHC${haskell:ShortBlurb}
 
 Package: libghc-x11-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Provides: ${haskell:Provides},
 Description: Haskell X11 binding for GHC${haskell:ShortBlurb}
  This library is a binding to the X11 graphics library.
  The binding is a direct translation of the C binding; for
@@ -57,12 +56,12 @@ Description: Haskell X11 binding for GHC${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-x11-doc
-Section: doc
 Architecture: all
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Haskell X11 binding for GHC${haskell:ShortBlurb}
  This library is a binding to the X11 graphics library.
  The binding is a direct translation of the C binding; for
@@ -70,4 +69,3 @@ Description: Haskell X11 binding for GHC${haskell:ShortBlurb}
  Manual", available online at <http://tronche.com/gui/x/xlib/>.
  .
  ${haskell:Blurb}
-

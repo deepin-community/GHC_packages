@@ -1,21 +1,19 @@
 Source: haskell-options
-Priority: optional
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: John Millikin <jmillikin@gmail.com>
-Build-Depends:
-    cdbs
-  , debhelper (>= 9)
-  , haskell-devscripts (>= 0.9)
-  , ghc (>= 6.12)
-  , ghc-prof
-  , ghc-ghci
-  , libghc-monads-tf-dev (>= 0.1)
-  , libghc-monads-tf-prof
-Build-Depends-Indep:
-    ghc-doc
-  , haddock
-  , libghc-monads-tf-doc
+Priority: optional
+Section: haskell
+Build-Depends: cdbs,
+ debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ ghc (>= 6.12),
+ ghc-prof,
+ ghc-ghci,
+ libghc-monads-tf-dev (>= 0.1),
+ libghc-monads-tf-prof,
+Build-Depends-Indep: ghc-doc,
+ haddock,
+ libghc-monads-tf-doc,
 Standards-Version: 3.9.4
 Homepage: https://john-millikin.com/software/haskell-options/
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-options
@@ -23,13 +21,12 @@ Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-options
 
 Package: libghc-options-dev
 Architecture: any
-Depends:
-    ${haskell:Depends}
-  , ${misc:Depends}
-  , ${shlibs:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell library for parsing command-line options${haskell:ShortBlurb}
  The options package lets library and application developers easily work
  with command-line options.
@@ -38,12 +35,11 @@ Description: Haskell library for parsing command-line options${haskell:ShortBlur
 
 Package: libghc-options-prof
 Architecture: any
-Depends:
-    ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell library for parsing command-line options${haskell:ShortBlurb}
  The options package lets library and application developers easily work
  with command-line options.
@@ -51,13 +47,12 @@ Description: Haskell library for parsing command-line options${haskell:ShortBlur
  ${haskell:Blurb}
 
 Package: libghc-options-doc
-Section: doc
 Architecture: all
-Depends:
-    ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Haskell library for parsing command-line options${haskell:ShortBlurb}
  The options package lets library and application developers easily work
  with command-line options.

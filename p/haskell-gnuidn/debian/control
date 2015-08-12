@@ -1,31 +1,31 @@
 Source: haskell-gnuidn
-Priority: extra
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
- , haskell-devscripts (>= 0.9)
- , cdbs
- , ghc
- , ghc-prof
- , libghc-text-dev
- , libghc-text-prof
- , c2hs
- , libidn11-dev
-Build-Depends-Indep: ghc-doc
- , libghc-text-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+ c2hs,
+ libidn11-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-text-doc,
 Standards-Version: 3.9.4
 Homepage: http://john-millikin.com/software/bindings/gnuidn/
 
 Package: libghc-gnuidn-dev
 Architecture: any
-Depends: ${shlibs:Depends}
- ,  ${haskell:Depends}
- , ${misc:Depends}
- , libidn11-dev
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${shlibs:Depends},
+ ${haskell:Depends},
+ ${misc:Depends},
+ libidn11-dev,
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: bindings for GNU IDN
  These are Haskell bindings to the GNU IDN (Internationalized Domain Names)
  library for Unicode domain names.
@@ -35,10 +35,10 @@ Description: bindings for GNU IDN
 Package: libghc-gnuidn-prof
 Architecture: any
 Depends: ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: bindings for GNU IDN; profiling libraries
  These are Haskell bindings to the GNU IDN (Internationalized Domain Names)
  library for Unicode domain names.
@@ -49,9 +49,9 @@ Package: libghc-gnuidn-doc
 Architecture: all
 Section: doc
 Depends: ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: bindings for GNU IDN; documentation
  These are Haskell bindings to the GNU IDN (Internationalized Domain Names)
  library for Unicode domain names.

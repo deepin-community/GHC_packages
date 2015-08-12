@@ -1,14 +1,14 @@
 Source: haskell-data-binary-ieee754
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-Build-Depends-Indep: ghc-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/data-binary-ieee754
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-data-binary-ieee754
@@ -16,12 +16,12 @@ Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-data-binary-ieee754
 
 Package: libghc-data-binary-ieee754-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: parser/serialiser for IEEE-754 floating-point values${haskell:ShortBlurb}
  It converts Float and Decimal values to and from raw octets.
  .
@@ -29,22 +29,23 @@ Description: parser/serialiser for IEEE-754 floating-point values${haskell:Short
 
 Package: libghc-data-binary-ieee754-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: parser/serialiser for IEEE-754 floating-point values${haskell:ShortBlurb}
  It converts Float and Decimal values to and from raw octets.
  .
  ${haskell:Blurb}
 
 Package: libghc-data-binary-ieee754-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: parser/serialiser for IEEE-754 floating-point values${haskell:ShortBlurb}
  It converts Float and Decimal values to and from raw octets.
  .

@@ -1,37 +1,37 @@
 Source: haskell-charset
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-semigroups-dev (>= 0.8.3.1)
-  , libghc-semigroups-dev (<< 1)
-  , libghc-semigroups-prof
-  , libghc-unordered-containers-dev (>= 0.1.4.6)
-  , libghc-unordered-containers-dev (<< 0.3)
-  , libghc-unordered-containers-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-semigroups-doc
-  , libghc-unordered-containers-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-semigroups-dev (>= 0.8.3.1),
+ libghc-semigroups-dev (<< 1),
+ libghc-semigroups-prof,
+ libghc-unordered-containers-dev (>= 0.1.4.6),
+ libghc-unordered-containers-dev (<< 0.3),
+ libghc-unordered-containers-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-semigroups-doc,
+ libghc-unordered-containers-doc,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/charset
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-charset
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-charset
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-charset
 X-Description: Fast Unicode character sets
  Fast Unicode character sets based on complemented PATRICIA tries.
 
 Package: libghc-charset-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -39,22 +39,23 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-charset-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-charset-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .

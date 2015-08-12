@@ -1,35 +1,35 @@
 Source: haskell-template
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-mtl-dev (>= 1.1)
-  , libghc-mtl-dev (<< 2.3)
-  , libghc-mtl-prof
-  , libghc-text-dev (>= 0.7.2)
-  , libghc-text-dev (<< 1.3)
-  , libghc-text-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-mtl-doc
-  , libghc-text-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-mtl-dev (>= 1.1),
+ libghc-mtl-dev (<< 2.3),
+ libghc-mtl-prof,
+ libghc-text-dev (>= 0.7.2),
+ libghc-text-dev (<< 1.3),
+ libghc-text-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-mtl-doc,
+ libghc-text-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/template
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-template
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-template
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-template
 
 Package: libghc-template-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: string substitution library${haskell:ShortBlurb}
  This is a simple string substitution library that supports "$"-based
  substitution. It is meant to be used when Text.Printf or string concatenation
@@ -40,11 +40,11 @@ Description: string substitution library${haskell:ShortBlurb}
 
 Package: libghc-template-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: string substitution library${haskell:ShortBlurb}
  This is a simple string substitution library that supports "$"-based
  substitution. It is meant to be used when Text.Printf or string concatenation
@@ -54,11 +54,12 @@ Description: string substitution library${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-template-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: string substitution library${haskell:ShortBlurb}
  This is a simple string substitution library that supports "$"-based
  substitution. It is meant to be used when Text.Printf or string concatenation

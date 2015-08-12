@@ -1,32 +1,32 @@
 Source: haskell-filemanip
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Iain Lane <laney@ubuntu.com>
+Priority: extra
+Section: haskell
 Build-Depends: debhelper (>= 9),
-               haskell-devscripts (>= 0.9),
-               cdbs,
-               ghc,
-               ghc-prof,
-               ghc-doc,
-               libghc-mtl-dev,
-               libghc-mtl-prof,
-               libghc-mtl-doc,
-               libghc-unix-compat-dev,
-               libghc-unix-compat-prof,
-               libghc-unix-compat-doc,
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ ghc-doc,
+ libghc-mtl-dev,
+ libghc-mtl-prof,
+ libghc-mtl-doc,
+ libghc-unix-compat-dev,
+ libghc-unix-compat-prof,
+ libghc-unix-compat-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/FileManip
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-filemanip
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-filemanip
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-filemanip
 
 Package: libghc-filemanip-dev
 Architecture: any
 Depends: ${haskell:Depends},
-         ${shlibs:Depends},
-         ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+ ${shlibs:Depends},
+ ${misc:Depends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: expressive file and directory manipulation for Haskell${haskell:ShortBlurb}
  FileManip is a Haskell library for working with files and directories.
  Includes code for pattern matching, finding files, modifying file contents,
@@ -36,13 +36,12 @@ Description: expressive file and directory manipulation for Haskell${haskell:Sho
  .
  ${haskell:Blurb}
 
-
 Package: libghc-filemanip-prof
 Architecture: any
 Depends: ${haskell:Depends},
-         ${shlibs:Depends},
-         ${misc:Depends}
-Provides: ${haskell:Provides}
+ ${shlibs:Depends},
+ ${misc:Depends},
+Provides: ${haskell:Provides},
 Description: expressive file and directory manipulation for Haskell${haskell:ShortBlurb}
  FileManip is a Haskell library for working with files and directories.
  Includes code for pattern matching, finding files, modifying file contents,
@@ -53,11 +52,12 @@ Description: expressive file and directory manipulation for Haskell${haskell:Sho
  ${haskell:Blurb}
 
 Package: libghc-filemanip-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: expressive file and directory manipulation for Haskell${haskell:ShortBlurb}
  FileManip is a Haskell library for working with files and directories.
  Includes code for pattern matching, finding files, modifying file contents,

@@ -1,45 +1,45 @@
 Source: haskell-hspec
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-hspec-core-dev (>= 2.1.7)
-  , libghc-hspec-core-dev (<< 2.1.8)
-  , libghc-hspec-core-prof
-  , hspec-discover (>= 2.1.7)
-  , hspec-discover (<< 2.1.8)
-  , libghc-hspec-expectations-dev (>= 0.6.1)
-  , libghc-hspec-expectations-dev (<< 0.6.2)
-  , libghc-hspec-expectations-prof
-  , libghc-hunit-dev (>= 1.2.5)
-  , libghc-hunit-prof
-  , libghc-quickcheck2-dev (>= 2.5.1)
-  , libghc-quickcheck2-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-hspec-core-doc
-  , libghc-hspec-expectations-doc
-  , libghc-hunit-doc
-  , libghc-quickcheck2-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-hspec-core-dev (>= 2.1.7),
+ libghc-hspec-core-dev (<< 2.1.8),
+ libghc-hspec-core-prof,
+ hspec-discover (>= 2.1.7),
+ hspec-discover (<< 2.1.8),
+ libghc-hspec-expectations-dev (>= 0.6.1),
+ libghc-hspec-expectations-dev (<< 0.6.2),
+ libghc-hspec-expectations-prof,
+ libghc-hunit-dev (>= 1.2.5),
+ libghc-hunit-prof,
+ libghc-quickcheck2-dev (>= 2.5.1),
+ libghc-quickcheck2-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-hspec-core-doc,
+ libghc-hspec-expectations-doc,
+ libghc-hunit-doc,
+ libghc-quickcheck2-doc,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/hspec
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hspec
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-hspec
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hspec
 
 Package: libghc-hspec-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-  , hspec-discover (>= 2.1.7)
-  , hspec-discover (<< 2.1.9)
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+ hspec-discover (>= 2.1.7),
+ hspec-discover (<< 2.1.9),
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: behavior-driven development for Haskell${haskell:ShortBlurb}
  Hspec is roughly based on the Ruby library RSpec. However, Hspec is just
  a framework for running HUnit and QuickCheck tests. Compared to other
@@ -49,11 +49,11 @@ Description: behavior-driven development for Haskell${haskell:ShortBlurb}
 
 Package: libghc-hspec-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: behavior-driven development for Haskell${haskell:ShortBlurb}
  Hspec is roughly based on the Ruby library RSpec. However, Hspec is just
  a framework for running HUnit and QuickCheck tests. Compared to other
@@ -62,11 +62,12 @@ Description: behavior-driven development for Haskell${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-hspec-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: behavior-driven development for Haskell${haskell:ShortBlurb}
  Hspec is roughly based on the Ruby library RSpec. However, Hspec is just
  a framework for running HUnit and QuickCheck tests. Compared to other

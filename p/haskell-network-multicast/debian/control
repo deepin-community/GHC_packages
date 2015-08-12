@@ -1,30 +1,30 @@
 Source: haskell-network-multicast
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joey Hess <joeyh@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-network-dev
-  , libghc-network-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-network-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-network-dev,
+ libghc-network-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-network-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/network-multicast
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-network-multicast
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-network-multicast
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-network-multicast
 
 Package: libghc-network-multicast-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell multicast networking${haskell:ShortBlurb}
  An interface for sending UDP datagrams over multicast (class D) addresses.
  .
@@ -32,22 +32,23 @@ Description: Haskell multicast networking${haskell:ShortBlurb}
 
 Package: libghc-network-multicast-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell multicast networking${haskell:ShortBlurb}
  An interface for sending UDP datagrams over multicast (class D) addresses.
  .
  This package contains the profiling library compiled for GHC.
 
 Package: libghc-network-multicast-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Haskell multicast networking${haskell:ShortBlurb}
  An interface for sending UDP datagrams over multicast (class D) addresses.
  .

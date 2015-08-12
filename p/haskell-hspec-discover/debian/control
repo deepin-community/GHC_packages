@@ -14,9 +14,10 @@ Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hspec-discover
 
 Package: hspec-discover
 Architecture: any
-Breaks: libghc-hspec-dev (<< 2.1.5)
-Replaces: libghc-hspec-dev (<< 2.1.5)
-Depends: ${misc:Depends}, ${shlibs:Depends}
+Depends: ${misc:Depends},
+ ${shlibs:Depends},
+Breaks: libghc-hspec-dev (<< 2.1.5),
+Replaces: libghc-hspec-dev (<< 2.1.5),
 Description: Automatically discover and run Hspec tests
  It is a useful convention to have one spec file for each source file. That way
  it is straightforward to find the corresponding spec for a given piece of

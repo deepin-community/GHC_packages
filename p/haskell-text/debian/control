@@ -1,30 +1,27 @@
 Source: haskell-text
-Priority: extra
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Giovanni Mascellani <gio@debian.org>
-Build-Depends:
- debhelper (>= 9),
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
  haskell-devscripts (>= 0.9),
  cdbs,
  ghc,
  ghc-prof,
-Build-Depends-Indep:
- ghc-doc,
+Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/text
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-text
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-text
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-text
 
 Package: libghc-text-dev
 Architecture: any
-Depends:
- ${haskell:Depends},
+Depends: ${haskell:Depends},
  ${misc:Depends},
- ${shlibs:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: efficient packed Unicode text type for Haskell${haskell:ShortBlurb}
  This is a Haskell time and space-efficient implementation of Unicode
  text using packed Word16 arrays.  Suitable for performance critical use,
@@ -37,12 +34,11 @@ Description: efficient packed Unicode text type for Haskell${haskell:ShortBlurb}
 
 Package: libghc-text-prof
 Architecture: any
-Depends:
- ${haskell:Depends},
- ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: efficient packed Unicode text type for Haskell${haskell:ShortBlurb}
  This is a Haskell time and space-efficient implementation of Unicode
  text using packed Word16 arrays.  Suitable for performance critical use,
@@ -54,13 +50,12 @@ Description: efficient packed Unicode text type for Haskell${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-text-doc
-Section: doc
 Architecture: all
-Depends:
- ${haskell:Depends},
- ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: efficient packed Unicode text type for Haskell${haskell:ShortBlurb}
  This is a Haskell time and space-efficient implementation of Unicode
  text using packed Word16 arrays.  Suitable for performance critical use,

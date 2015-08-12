@@ -1,51 +1,51 @@
 Source: haskell-persistent-sqlite
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-aeson-dev (>> 0.6.2)
-  , libghc-aeson-prof
-  , libghc-conduit-dev (>> 0.5.3)
-  , libghc-conduit-prof
-  , libghc-monad-control-dev (>> 0.2)
-  , libghc-monad-control-prof
-  , libghc-monad-logger-dev (>> 0.2.4)
-  , libghc-monad-logger-prof
-  , libghc-persistent-dev (>> 2.1)
-  , libghc-persistent-dev (<< 3)
-  , libghc-persistent-prof
-  , libghc-text-dev (>> 0.7)
-  , libghc-text-prof
-  , libghc-resourcet-dev (>= 1.1)
-  , libghc-resourcet-prof
-  , libsqlite3-dev
-Build-Depends-Indep: ghc-doc
-  , libghc-aeson-doc
-  , libghc-conduit-doc
-  , libghc-monad-control-doc
-  , libghc-monad-logger-doc
-  , libghc-persistent-doc
-  , libghc-text-doc
-  , libghc-resourcet-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-aeson-dev (>> 0.6.2),
+ libghc-aeson-prof,
+ libghc-conduit-dev (>> 0.5.3),
+ libghc-conduit-prof,
+ libghc-monad-control-dev (>> 0.2),
+ libghc-monad-control-prof,
+ libghc-monad-logger-dev (>> 0.2.4),
+ libghc-monad-logger-prof,
+ libghc-persistent-dev (>> 2.1),
+ libghc-persistent-dev (<< 3),
+ libghc-persistent-prof,
+ libghc-text-dev (>> 0.7),
+ libghc-text-prof,
+ libghc-resourcet-dev (>= 1.1),
+ libghc-resourcet-prof,
+ libsqlite3-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-aeson-doc,
+ libghc-conduit-doc,
+ libghc-monad-control-doc,
+ libghc-monad-logger-doc,
+ libghc-persistent-doc,
+ libghc-text-doc,
+ libghc-resourcet-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/persistent-sqlite
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-persistent-sqlite
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-persistent-sqlite
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-persistent-sqlite
 
 Package: libghc-persistent-sqlite-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-  , libsqlite3-dev
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+ libsqlite3-dev,
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: SQLite3 backend for the persistent library${haskell:ShortBlurb}
  This library allows Haskell applications to access an SQLite database
  in a type-safe, non-relational way.
@@ -54,11 +54,11 @@ Description: SQLite3 backend for the persistent library${haskell:ShortBlurb}
 
 Package: libghc-persistent-sqlite-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: SQLite3 backend for the persistent library${haskell:ShortBlurb}
  This library allows Haskell applications to access an SQLite database
  in a type-safe, non-relational way.
@@ -66,11 +66,12 @@ Description: SQLite3 backend for the persistent library${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-persistent-sqlite-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: SQLite3 backend for the persistent library${haskell:ShortBlurb}
  This library allows Haskell applications to access an SQLite database
  in a type-safe, non-relational way.

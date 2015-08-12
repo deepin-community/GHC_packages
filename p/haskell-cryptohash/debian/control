@@ -1,35 +1,35 @@
 Source: haskell-cryptohash
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-byteable-dev
-  , libghc-byteable-prof
-  , libghc-hunit-dev
-  , libghc-quickcheck2-dev
-  , libghc-tasty-dev
-  , libghc-tasty-quickcheck-dev
-  , libghc-tasty-hunit-dev
-Build-Depends-Indep: ghc-doc
-  , libghc-byteable-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-byteable-dev,
+ libghc-byteable-prof,
+ libghc-hunit-dev,
+ libghc-quickcheck2-dev,
+ libghc-tasty-dev,
+ libghc-tasty-quickcheck-dev,
+ libghc-tasty-hunit-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-byteable-doc,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/cryptohash
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-cryptohash
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-cryptohash
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-cryptohash
 
 Package: libghc-cryptohash-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: collection of crypto hashes, fast, pure and practical${haskell:ShortBlurb}
  A collection of crypto hashes, with a practical incremental and
  one-pass, pure APIs, with performance close to the fastest
@@ -42,11 +42,11 @@ Description: collection of crypto hashes, fast, pure and practical${haskell:Shor
 
 Package: libghc-cryptohash-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: collection of crypto hashes, fast, pure and practical${haskell:ShortBlurb}
  A collection of crypto hashes, with a practical incremental and
  one-pass, pure APIs, with performance close to the fastest
@@ -58,11 +58,12 @@ Description: collection of crypto hashes, fast, pure and practical${haskell:Shor
  ${haskell:Blurb}
 
 Package: libghc-cryptohash-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: collection of crypto hashes, fast, pure and practical${haskell:ShortBlurb}
  A collection of crypto hashes, with a practical incremental and
  one-pass, pure APIs, with performance close to the fastest

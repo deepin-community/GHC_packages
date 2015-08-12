@@ -1,36 +1,36 @@
 Source: haskell-process-extras
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>, Dmitry Bogatov <KAction@gnu.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-text-dev
-  , libghc-text-prof
-  , libghc-listlike-dev (>= 4)
-  , libghc-listlike-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-text-doc
-  , libghc-listlike-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+ libghc-listlike-dev (>= 4),
+ libghc-listlike-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-text-doc,
+ libghc-listlike-doc,
 Standards-Version: 3.9.6
 Homepage: http://hackage.haskell.org/package/process-extras
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-process-extras
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-process-extras
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-process-extras
 X-Description: Extra functionality for the Process library
  This libraries provides variants of the System.Process module, based on lazy
  and strict ByteStrings resp. lazy and strict Text.
 
 Package: libghc-process-extras-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Extra functionality for the Process library${haskell:ShortBlurb}
  This libraries provides variants of the System.Process module, based on lazy
  and strict ByteStrings resp. lazy and strict Text.
@@ -39,11 +39,11 @@ Description: Extra functionality for the Process library${haskell:ShortBlurb}
 
 Package: libghc-process-extras-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Extra functionality for the Process library${haskell:ShortBlurb}
  This libraries provides variants of the System.Process module, based on lazy
  and strict ByteStrings resp. lazy and strict Text.
@@ -51,11 +51,12 @@ Description: Extra functionality for the Process library${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-process-extras-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Extra functionality for the Process library${haskell:ShortBlurb}
  This libraries provides variants of the System.Process module, based on lazy
  and strict ByteStrings resp. lazy and strict Text.

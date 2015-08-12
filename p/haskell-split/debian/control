@@ -1,27 +1,27 @@
 Source: haskell-split
-Priority: extra
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Giovanni Mascellani <gio@debian.org>, Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
- , haskell-devscripts (>= 0.9)
- , cdbs
- , ghc
- , ghc-prof
- , ghc-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ ghc-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/split
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-split
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-split
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-split
 
 Package: libghc-split-dev
 Architecture: any
-Depends: ${haskell:Depends}
- , ${misc:Depends}
- , ${shlibs:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell library for splitting lists${haskell:ShortBlurb}
  This Haskell library provides a wide range of strategies and a unified
  combinator framework for splitting lists with respect to some sort of
@@ -34,11 +34,11 @@ Description: Haskell library for splitting lists${haskell:ShortBlurb}
 
 Package: libghc-split-prof
 Architecture: any
-Depends: ${haskell:Depends}
- , ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell library for splitting lists${haskell:ShortBlurb}
  This Haskell library provides a wide range of strategies and a unified
  combinator framework for splitting lists with respect to some sort of
@@ -50,12 +50,12 @@ Description: Haskell library for splitting lists${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-split-doc
-Section: doc
 Architecture: all
-Depends: ${haskell:Depends}
- , ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Haskell library for splitting lists${haskell:ShortBlurb}
  This Haskell library provides a wide range of strategies and a unified
  combinator framework for splitting lists with respect to some sort of

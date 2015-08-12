@@ -1,10 +1,8 @@
 Source: haskell-tagsoup
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Marco Túlio Gontijo e Silva <marcot@debian.org>, Clint Adams <clint@debian.org>
-Build-Depends:
- cdbs,
+Priority: extra
+Section: haskell
+Build-Depends: cdbs,
  debhelper (>= 9),
  haskell-devscripts (>= 0.9),
  ghc,
@@ -13,21 +11,22 @@ Build-Depends:
  libghc-network-prof,
  libghc-text-dev,
  libghc-text-prof,
-Build-Depends-Indep:
- ghc-doc,
+Build-Depends-Indep: ghc-doc,
  libghc-network-doc,
  libghc-text-doc,
 Standards-Version: 3.9.5
 Homepage: http://www-users.cs.york.ac.uk/~ndm/tagsoup/
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-tagsoup
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-tagsoup
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-tagsoup
 
 Package: libghc-tagsoup-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell library to robustly parse unstructured HTML
  TagSoup extracts information out of unstructured HTML code, sometimes
  known as tag soup. TagSoup does not require well-formed or
@@ -40,10 +39,12 @@ Description: Haskell library to robustly parse unstructured HTML
 
 Package: libghc-tagsoup-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Profiling support for TagSoup Haskell library
  TagSoup extracts information out of unstructured HTML code, sometimes
  known as tag soup. TagSoup does not require well-formed or
@@ -55,11 +56,12 @@ Description: Profiling support for TagSoup Haskell library
  This package contains the profiling support for the TagSoup library.
 
 Package: libghc-tagsoup-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Documentation for Haskell TagSoup library
  TagSoup extracts information out of unstructured HTML code, sometimes
  known as tag soup. TagSoup does not require well-formed or
@@ -70,4 +72,3 @@ Description: Documentation for Haskell TagSoup library
  .
  This package contains the API documentation and example for the TagSoup
  library.
-

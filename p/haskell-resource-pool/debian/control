@@ -1,42 +1,42 @@
 Source: haskell-resource-pool
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-hashable-dev
-  , libghc-hashable-prof
-  , libghc-monad-control-dev (>> 0.2.0.1)
-  , libghc-monad-control-prof
-  , libghc-stm-dev (>= 2.3)
-  , libghc-stm-prof
-  , libghc-transformers-base-dev (>> 0.4)
-  , libghc-transformers-base-prof
-  , libghc-vector-dev (>> 0.7)
-  , libghc-vector-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-hashable-doc
-  , libghc-monad-control-doc
-  , libghc-stm-doc
-  , libghc-transformers-base-doc
-  , libghc-vector-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-hashable-dev,
+ libghc-hashable-prof,
+ libghc-monad-control-dev (>> 0.2.0.1),
+ libghc-monad-control-prof,
+ libghc-stm-dev (>= 2.3),
+ libghc-stm-prof,
+ libghc-transformers-base-dev (>> 0.4),
+ libghc-transformers-base-prof,
+ libghc-vector-dev (>> 0.7),
+ libghc-vector-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-hashable-doc,
+ libghc-monad-control-doc,
+ libghc-stm-doc,
+ libghc-transformers-base-doc,
+ libghc-vector-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/resource-pool
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-resource-pool
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-resource-pool
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-resource-pool
 
 Package: libghc-resource-pool-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: high-performance striped resource-pooling implementation${haskell:ShortBlurb}
  A high-performance striped pooling abstraction for managing flexibly-sized
  collections of resources such as database connections.  .
@@ -44,11 +44,11 @@ Description: high-performance striped resource-pooling implementation${haskell:S
 
 Package: libghc-resource-pool-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: high-performance striped resource-pooling implementation${haskell:ShortBlurb}
  A high-performance striped pooling abstraction for managing flexibly-sized
  collections of resources such as database connections.
@@ -56,11 +56,12 @@ Description: high-performance striped resource-pooling implementation${haskell:S
  ${haskell:Blurb}
 
 Package: libghc-resource-pool-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: high-performance striped resource-pooling implementation${haskell:ShortBlurb}
  A high-performance striped pooling abstraction for managing flexibly-sized
  collections of resources such as database connections.

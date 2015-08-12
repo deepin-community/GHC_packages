@@ -1,33 +1,31 @@
 Source: haskell-sendfile
-Priority: extra
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Giovanni Mascellani <gio@debian.org>
-Build-Depends:
- debhelper (>= 9),
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
  haskell-devscripts (>= 0.9),
  cdbs,
  ghc,
  ghc-prof,
  libghc-network-dev (>= 2),
  libghc-network-dev (<< 3),
- libghc-network-prof
-Build-Depends-Indep: ghc-doc
- , libghc-network-doc
+ libghc-network-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-network-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/sendfile
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-sendfile
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-sendfile
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-sendfile
 
 Package: libghc-sendfile-dev
 Architecture: any
-Depends:
- ${haskell:Depends},
+Depends: ${haskell:Depends},
  ${misc:Depends},
- ${shlibs:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell portable sendfile library${haskell:ShortBlurb}
  This Haskell library exposes zero-copy sendfile functionality in a
  portable way. sendfile is a non standard system call that copies data
@@ -40,12 +38,11 @@ Description: Haskell portable sendfile library${haskell:ShortBlurb}
 
 Package: libghc-sendfile-prof
 Architecture: any
-Depends:
- ${haskell:Depends},
- ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell portable sendfile library${haskell:ShortBlurb}
  This Haskell library exposes zero-copy sendfile functionality in a
  portable way. sendfile is a non standard system call that copies data
@@ -57,13 +54,12 @@ Description: Haskell portable sendfile library${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-sendfile-doc
-Section: doc
 Architecture: all
-Depends:
- ${haskell:Depends},
- ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Haskell portable sendfile library${haskell:ShortBlurb}
  This Haskell library exposes zero-copy sendfile functionality in a
  portable way. sendfile is a non standard system call that copies data

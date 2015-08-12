@@ -1,35 +1,36 @@
 Source: haskell-edison-core
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Marco Túlio Gontijo e Silva <marcot@debian.org>
-Build-Depends: cdbs
- , debhelper (>= 9)
- , haskell-devscripts (>= 0.9)
- , ghc
- , ghc-prof
- , ghc-doc
- , libghc-mtl-dev
- , libghc-mtl-prof
- , libghc-mtl-doc
- , libghc-edison-api-dev (>= 1.2.2.1)
- , libghc-edison-api-dev (<< 1.2.2.1+)
- , libghc-edison-api-prof
- , libghc-edison-api-doc
- , libghc-quickcheck2-dev
- , libghc-quickcheck2-prof
- , libghc-quickcheck2-doc
- , cpphs
+Priority: extra
+Section: haskell
+Build-Depends: cdbs,
+ debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ ghc-doc,
+ libghc-mtl-dev,
+ libghc-mtl-prof,
+ libghc-mtl-doc,
+ libghc-edison-api-dev (>= 1.2.2.1),
+ libghc-edison-api-dev (<< 1.2.2.1+),
+ libghc-edison-api-prof,
+ libghc-edison-api-doc,
+ libghc-quickcheck2-dev,
+ libghc-quickcheck2-prof,
+ libghc-quickcheck2-doc,
+ cpphs,
 Standards-Version: 3.9.4
 Homepage: http://www.cs.princeton.edu/~rdockins/edison/home/
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-edison-core
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-edison-core
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-edison-core
 
 Package: libghc-edison-core-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell library of efficent, purely-functional data structures
  Some concrete implementations of the abstract interface of the Edison
  library for Haskell for use with ghc.
@@ -46,9 +47,11 @@ Description: Haskell library of efficent, purely-functional data structures
 
 Package: libghc-edison-core-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell library of data structures; profiling libraries
  Some concrete implementations of the abstract interface of the Edison
  library for Haskell for use with ghc.
@@ -64,14 +67,17 @@ Description: Haskell library of data structures; profiling libraries
  This package contains the concrete implementations.
 
 Package: libghc-edison-core-doc
-Replaces: haskell-edison-core-doc (<< 1.2.1.3-4), libghc6-edison-core-doc (<< 1:1)
-Conflicts: haskell-edison-core-doc (<< 1.2.1.3-4), libghc6-edison-core-doc (<< 1:1)
-Provides: haskell-edison-core-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: haskell-edison-core-doc (<< 1.2.1.3-4),
+ libghc6-edison-core-doc (<< 1:1),
+Provides: haskell-edison-core-doc,
+Replaces: haskell-edison-core-doc (<< 1.2.1.3-4),
+ libghc6-edison-core-doc (<< 1:1),
 Description: documentation of the Edison Haskell library
  Some concrete implementations of the abstract interface of the Edison
  library for Haskell for use with hugs.

@@ -1,41 +1,41 @@
 Source: haskell-case-insensitive
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-text-dev (>> 0.3)
-  , libghc-text-dev (<< 1.3)
-  , libghc-text-prof
-  , libghc-hashable-dev (>> 1.0)
-  , libghc-hashable-dev (<< 1.3)
-  , libghc-hashable-prof
-  , libghc-hunit-dev (>= 1.2.2)
-  , libghc-hunit-dev (<< 1.3)
-  , libghc-test-framework-dev (>= 0.2.4)
-  , libghc-test-framework-dev (<< 0.9)
-  , libghc-test-framework-hunit-dev (>= 0.2.4)
-  , libghc-test-framework-hunit-dev (<< 0.4)
-Build-Depends-Indep: ghc-doc
-  , libghc-text-doc
-  , libghc-hashable-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-text-dev (>> 0.3),
+ libghc-text-dev (<< 1.3),
+ libghc-text-prof,
+ libghc-hashable-dev (>> 1.0),
+ libghc-hashable-dev (<< 1.3),
+ libghc-hashable-prof,
+ libghc-hunit-dev (>= 1.2.2),
+ libghc-hunit-dev (<< 1.3),
+ libghc-test-framework-dev (>= 0.2.4),
+ libghc-test-framework-dev (<< 0.9),
+ libghc-test-framework-hunit-dev (>= 0.2.4),
+ libghc-test-framework-hunit-dev (<< 0.4),
+Build-Depends-Indep: ghc-doc,
+ libghc-text-doc,
+ libghc-hashable-doc,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/case-insensitive
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-case-insensitive
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-case-insensitive
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-case-insensitive
 
 Package: libghc-case-insensitive-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: case-insensitive string comparison${haskell:ShortBlurb}
  The module Data.CaseInsensitive provides the CI type constructor which
  can be parameterised by a string-like type like: String, ByteString,
@@ -46,11 +46,11 @@ Description: case-insensitive string comparison${haskell:ShortBlurb}
 
 Package: libghc-case-insensitive-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: case-insensitive string comparison${haskell:ShortBlurb}
  The module Data.CaseInsensitive provides the CI type constructor which
  can be parameterised by a string-like type like: String, ByteString,
@@ -60,11 +60,12 @@ Description: case-insensitive string comparison${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-case-insensitive-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: case-insensitive string comparison${haskell:ShortBlurb}
  The module Data.CaseInsensitive provides the CI type constructor which
  can be parameterised by a string-like type like: String, ByteString,

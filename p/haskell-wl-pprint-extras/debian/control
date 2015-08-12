@@ -1,43 +1,43 @@
 Source: haskell-wl-pprint-extras
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.8.15)
-  , ghc
-  , ghc-prof
-  , libghc-nats-dev (>= 0.1)
-  , libghc-nats-dev (<< 2)
-  , libghc-nats-prof
-  , libghc-semigroupoids-dev (>= 3)
-  , libghc-semigroupoids-dev (<< 6)
-  , libghc-semigroupoids-prof
-  , libghc-semigroups-dev (>= 0.9)
-  , libghc-semigroups-dev (<< 1)
-  , libghc-semigroups-prof
-  , libghc-semigroups-dev (>= 0.9)
-  , libghc-semigroups-dev (<< 1)
-  , libghc-semigroups-prof
-  , libghc-text-dev (>= 0.11)
-  , libghc-text-dev (<< 1.3)
-  , libghc-text-prof
-  , libghc-utf8-string-dev (>= 0.3.6)
-  , libghc-utf8-string-dev (<< 1.1)
-  , libghc-utf8-string-prof
-  , libghc-hunit-dev
-  , libghc-test-framework-dev
-  , libghc-test-framework-hunit-dev
-Build-Depends-Indep: ghc-doc
-  , libghc-nats-doc
-  , libghc-semigroupoids-doc
-  , libghc-semigroups-doc
-  , libghc-text-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.8.15),
+ ghc,
+ ghc-prof,
+ libghc-nats-dev (>= 0.1),
+ libghc-nats-dev (<< 2),
+ libghc-nats-prof,
+ libghc-semigroupoids-dev (>= 3),
+ libghc-semigroupoids-dev (<< 6),
+ libghc-semigroupoids-prof,
+ libghc-semigroups-dev (>= 0.9),
+ libghc-semigroups-dev (<< 1),
+ libghc-semigroups-prof,
+ libghc-semigroups-dev (>= 0.9),
+ libghc-semigroups-dev (<< 1),
+ libghc-semigroups-prof,
+ libghc-text-dev (>= 0.11),
+ libghc-text-dev (<< 1.3),
+ libghc-text-prof,
+ libghc-utf8-string-dev (>= 0.3.6),
+ libghc-utf8-string-dev (<< 1.1),
+ libghc-utf8-string-prof,
+ libghc-hunit-dev,
+ libghc-test-framework-dev,
+ libghc-test-framework-hunit-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-nats-doc,
+ libghc-semigroupoids-doc,
+ libghc-semigroups-doc,
+ libghc-text-doc,
 Standards-Version: 3.9.6
 Homepage: http://hackage.haskell.org/package/wl-pprint-extras
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-wl-pprint-extras
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-wl-pprint-extras
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-wl-pprint-extras
 X-Description: free monad based on the Wadler/Leijen pretty printer
  This is an implementation of the pretty printing combinators described
  by Philip Wadler (1997). In their bare essence, the combinators of
@@ -53,12 +53,12 @@ X-Description: free monad based on the Wadler/Leijen pretty printer
 
 Package: libghc-wl-pprint-extras-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -66,22 +66,23 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-wl-pprint-extras-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-wl-pprint-extras-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .

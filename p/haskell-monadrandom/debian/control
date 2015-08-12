@@ -1,37 +1,37 @@
 Source: haskell-monadrandom
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>, Iulian Udrea <iulian@physics.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-transformers-compat-dev (>= 0.4)
-  , libghc-transformers-compat-dev (<< 0.5)
-  , libghc-transformers-compat-prof
-  , libghc-mtl-dev
-  , libghc-mtl-prof
-  , libghc-random-dev
-  , libghc-random-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-transformers-compat-doc
-  , libghc-mtl-doc
-  , libghc-random-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-transformers-compat-dev (>= 0.4),
+ libghc-transformers-compat-dev (<< 0.5),
+ libghc-transformers-compat-prof,
+ libghc-mtl-dev,
+ libghc-mtl-prof,
+ libghc-random-dev,
+ libghc-random-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-transformers-compat-doc,
+ libghc-mtl-doc,
+ libghc-random-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/MonadRandom
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-monadrandom
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-monadrandom
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-monadrandom
 
 Package: libghc-monadrandom-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: random-number generation monad${haskell:ShortBlurb}
  Support for computations which consume random values.
  .
@@ -39,22 +39,23 @@ Description: random-number generation monad${haskell:ShortBlurb}
 
 Package: libghc-monadrandom-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: random-number generation monad${haskell:ShortBlurb}
  Support for computations which consume random values.
  .
  ${haskell:Blurb}
 
 Package: libghc-monadrandom-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: random-number generation monad${haskell:ShortBlurb}
  Support for computations which consume random values.
  .

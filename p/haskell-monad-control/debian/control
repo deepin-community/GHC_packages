@@ -1,39 +1,39 @@
 Source: haskell-monad-control
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-stm-dev (>= 2.3)
-  , libghc-stm-dev (<< 3)
-  , libghc-stm-prof
-  , libghc-transformers-compat-dev (>> 0.3)
-  , libghc-transformers-compat-dev (<< 0.5)
-  , libghc-transformers-compat-prof
-  , libghc-transformers-base-dev (>> 0.4.1)
-  , libghc-transformers-base-dev (<< 0.5)
-  , libghc-transformers-base-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-stm-doc
-  , libghc-transformers-compat-doc
-  , libghc-transformers-base-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-stm-dev (>= 2.3),
+ libghc-stm-dev (<< 3),
+ libghc-stm-prof,
+ libghc-transformers-compat-dev (>> 0.3),
+ libghc-transformers-compat-dev (<< 0.5),
+ libghc-transformers-compat-prof,
+ libghc-transformers-base-dev (>> 0.4.1),
+ libghc-transformers-base-dev (<< 0.5),
+ libghc-transformers-base-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-stm-doc,
+ libghc-transformers-compat-doc,
+ libghc-transformers-base-doc,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/monad-control
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-monad-control
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-monad-control
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-monad-control
 
 Package: libghc-monad-control-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Monad transformers to lift control operations${haskell:ShortBlurb}
  It defines the type class MonadControlIO, a subset of MonadIO into
  which generic control operations such as catch can be lifted from IO.
@@ -60,11 +60,11 @@ Description: Monad transformers to lift control operations${haskell:ShortBlurb}
 
 Package: libghc-monad-control-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Monad transformers to lift control operations${haskell:ShortBlurb}
  It defines the type class MonadControlIO, a subset of MonadIO into
  which generic control operations such as catch can be lifted from IO.
@@ -90,11 +90,12 @@ Description: Monad transformers to lift control operations${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-monad-control-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Monad transformers to lift control operations${haskell:ShortBlurb}
  It defines the type class MonadControlIO, a subset of MonadIO into
  which generic control operations such as catch can be lifted from IO.

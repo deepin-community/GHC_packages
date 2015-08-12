@@ -1,47 +1,45 @@
 Source: haskell-blaze-markup
-Priority: extra
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
- , haskell-devscripts (>= 0.9)
- , cdbs
- , ghc
- , ghc-prof
- , ghc-doc
- , libghc-blaze-builder-dev (>> 0.3)
- , libghc-blaze-builder-dev (<< 0.5)
- , libghc-blaze-builder-prof
- , libghc-text-dev (>> 0.10)
- , libghc-text-dev (<< 1.3)
- , libghc-text-prof
- , libghc-hunit-dev (>> 1.2)
- , libghc-hunit-dev (<< 1.3)
- , libghc-quickcheck2-dev (>> 2.4)
- , libghc-quickcheck2-dev (<< 2.9)
- , libghc-test-framework-dev (>> 0.4)
- , libghc-test-framework-dev (<< 0.9)
- , libghc-test-framework-hunit-dev (>> 0.3)
- , libghc-test-framework-hunit-dev (<< 0.4)
- , libghc-test-framework-quickcheck2-dev (>> 0.3)
- , libghc-test-framework-quickcheck2-dev (<< 0.4)
-Build-Depends-Indep:
- , libghc-blaze-builder-doc
- , libghc-text-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ ghc-doc,
+ libghc-blaze-builder-dev (>> 0.3),
+ libghc-blaze-builder-dev (<< 0.5),
+ libghc-blaze-builder-prof,
+ libghc-text-dev (>> 0.10),
+ libghc-text-dev (<< 1.3),
+ libghc-text-prof,
+ libghc-hunit-dev (>> 1.2),
+ libghc-hunit-dev (<< 1.3),
+ libghc-quickcheck2-dev (>> 2.4),
+ libghc-quickcheck2-dev (<< 2.9),
+ libghc-test-framework-dev (>> 0.4),
+ libghc-test-framework-dev (<< 0.9),
+ libghc-test-framework-hunit-dev (>> 0.3),
+ libghc-test-framework-hunit-dev (<< 0.4),
+ libghc-test-framework-quickcheck2-dev (>> 0.3),
+ libghc-test-framework-quickcheck2-dev (<< 0.4),
+Build-Depends-Indep: libghc-blaze-builder-doc,
+ libghc-text-doc,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/blaze-markup
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-blaze-markup
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-blaze-markup
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-blaze-markup
 
 Package: libghc-blaze-markup-dev
 Architecture: any
-Depends:
- ${haskell:Depends},
+Depends: ${haskell:Depends},
  ${misc:Depends},
- ${shlibs:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: blazingly-fast markup combinator library${haskell:ShortBlurb}
  Core modules of a blazingly fast markup combinator library for the
  Haskell programming language. The Text.Blaze module is a good starting
@@ -51,12 +49,11 @@ Description: blazingly-fast markup combinator library${haskell:ShortBlurb}
 
 Package: libghc-blaze-markup-prof
 Architecture: any
-Depends:
- ${haskell:Depends},
- ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: blazingly-fast markup combinator library${haskell:ShortBlurb}
  Core modules of a blazingly fast markup combinator library for the
  Haskell programming language. The Text.Blaze module is a good starting
@@ -65,13 +62,12 @@ Description: blazingly-fast markup combinator library${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-blaze-markup-doc
-Section: doc
 Architecture: all
-Depends:
- ${haskell:Depends},
- ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: blazingly-fast markup combinator library${haskell:ShortBlurb}
  Core modules of a blazingly fast markup combinator library for the
  Haskell programming language. The Text.Blaze module is a good starting

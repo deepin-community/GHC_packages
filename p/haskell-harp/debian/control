@@ -1,30 +1,27 @@
 Source: haskell-harp
-Priority: extra
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Giovanni Mascellani <gio@debian.org>
-Build-Depends:
- debhelper (>= 9),
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
  haskell-devscripts (>= 0.9),
  cdbs,
  ghc,
- ghc-prof
-Build-Depends-Indep:
- ghc-doc
+ ghc-prof,
+Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/harp
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-harp
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-harp
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-harp
 
 Package: libghc-harp-dev
 Architecture: any
-Depends:
- ${haskell:Depends},
+Depends: ${haskell:Depends},
  ${misc:Depends},
- ${shlibs:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell support for regexp based pattern matching${haskell:ShortBlurb}
  HaRP, or Haskell Regular Patterns, is a Haskell extension that extends
  the normal pattern matching facility, allowing the user to match against
@@ -37,12 +34,11 @@ Description: Haskell support for regexp based pattern matching${haskell:ShortBlu
 
 Package: libghc-harp-prof
 Architecture: any
-Depends:
- ${haskell:Depends},
- ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell support for regexp based pattern matching${haskell:ShortBlurb}
  HaRP, or Haskell Regular Patterns, is a Haskell extension that extends
  the normal pattern matching facility, allowing the user to match against
@@ -54,13 +50,12 @@ Description: Haskell support for regexp based pattern matching${haskell:ShortBlu
  ${haskell:Blurb}
 
 Package: libghc-harp-doc
-Section: doc
 Architecture: all
-Depends:
- ${haskell:Depends},
- ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Haskell support for regexp based pattern matching${haskell:ShortBlurb}
  HaRP, or Haskell Regular Patterns, is a Haskell extension that extends
  the normal pattern matching facility, allowing the user to match against

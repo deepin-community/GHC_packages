@@ -1,38 +1,38 @@
 Source: haskell-warp-tls
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-cprng-aes-dev (>= 0.5.0)
-  , libghc-cprng-aes-prof
-  , libghc-data-default-class-dev (>= 0.0.1)
-  , libghc-data-default-class-prof
-  , libghc-network-dev (>= 2.2.1)
-  , libghc-network-prof
-  , libghc-streaming-commons-dev
-  , libghc-streaming-commons-prof
-  , libghc-tls-dev (>= 1.2.16)
-  , libghc-tls-prof
-  , libghc-wai-dev (>= 3.0)
-  , libghc-wai-dev (<< 3.1)
-  , libghc-wai-prof
-  , libghc-warp-dev (>= 3.0.8)
-  , libghc-warp-dev (<< 3.1)
-  , libghc-warp-prof
-  , netbase
-Build-Depends-Indep: ghc-doc
-  , libghc-cprng-aes-doc
-  , libghc-data-default-class-doc
-  , libghc-network-doc
-  , libghc-streaming-commons-doc
-  , libghc-tls-doc
-  , libghc-wai-doc
-  , libghc-warp-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-cprng-aes-dev (>= 0.5.0),
+ libghc-cprng-aes-prof,
+ libghc-data-default-class-dev (>= 0.0.1),
+ libghc-data-default-class-prof,
+ libghc-network-dev (>= 2.2.1),
+ libghc-network-prof,
+ libghc-streaming-commons-dev,
+ libghc-streaming-commons-prof,
+ libghc-tls-dev (>= 1.2.16),
+ libghc-tls-prof,
+ libghc-wai-dev (>= 3.0),
+ libghc-wai-dev (<< 3.1),
+ libghc-wai-prof,
+ libghc-warp-dev (>= 3.0.8),
+ libghc-warp-dev (<< 3.1),
+ libghc-warp-prof,
+ netbase,
+Build-Depends-Indep: ghc-doc,
+ libghc-cprng-aes-doc,
+ libghc-data-default-class-doc,
+ libghc-network-doc,
+ libghc-streaming-commons-doc,
+ libghc-tls-doc,
+ libghc-wai-doc,
+ libghc-warp-doc,
 Standards-Version: 3.9.6
 Homepage: http://hackage.haskell.org/package/warp-tls
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-warp-tls
@@ -40,12 +40,12 @@ Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-warp-tls
 
 Package: libghc-warp-tls-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: SSL/TLS support for Warp${haskell:ShortBlurb}
  It contains SSL/TLS support for Warp, the premier WAI handler, via
  the native Haskell TLS implementation.
@@ -54,11 +54,11 @@ Description: SSL/TLS support for Warp${haskell:ShortBlurb}
 
 Package: libghc-warp-tls-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: SSL/TLS support for Warp${haskell:ShortBlurb}
  It contains SSL/TLS support for Warp, the premier WAI handler, via
  the native Haskell TLS implementation.
@@ -66,11 +66,12 @@ Description: SSL/TLS support for Warp${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-warp-tls-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: SSL/TLS support for Warp${haskell:ShortBlurb}
  It contains SSL/TLS support for Warp, the premier WAI handler, via
  the native Haskell TLS implementation.

@@ -1,12 +1,14 @@
 Source: haskell-cereal
-Section: haskell
-Priority: optional
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: TANIGUCHI Takaki <takaki@debian.org>
-Build-Depends: cdbs, debhelper (>= 9), haskell-devscripts (>= 0.9),
-	ghc,
-	ghc-prof,
-	ghc-doc,
+Priority: optional
+Section: haskell
+Build-Depends: cdbs,
+ debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ ghc-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/cereal
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-cereal
@@ -14,10 +16,12 @@ Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-cereal
 
 Package: libghc-cereal-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
-Suggests: ${haskell:Suggests}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: binary serialization library${haskell:ShortBlurb}
  A binary serialization library, similar to binary, that introduces an isolate
  primitive for parser isolation, and replaces the asynchronous errors with a
@@ -29,10 +33,11 @@ Description: binary serialization library${haskell:ShortBlurb}
 
 Package: libghc-cereal-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
-Suggests: ${haskell:Suggests}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: binary serialization library${haskell:ShortBlurb}
  A binary serialization library, similar to binary, that introduces an isolate
  primitive for parser isolation, and replaces the asynchronous errors with a
@@ -45,9 +50,10 @@ Description: binary serialization library${haskell:ShortBlurb}
 Package: libghc-cereal-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: binary serialization library${haskell:ShortBlurb}
  A binary serialization library, similar to binary, that introduces an isolate
  primitive for parser isolation, and replaces the asynchronous errors with a

@@ -1,22 +1,29 @@
 Source: ldap-haskell
-Priority: optional
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: John Goerzen <jgoerzen@complete.org>
-Build-Depends: debhelper (>= 9), ghc, ghc-prof, haskell-devscripts (>= 0.9), libldap2-dev (>= 2.4.7), cdbs
-Build-Depends-Indep: ghc-doc
-Standards-Version: 3.9.4
+Priority: optional
 Section: haskell
+Build-Depends: debhelper (>= 9),
+ ghc,
+ ghc-prof,
+ haskell-devscripts (>= 0.9),
+ libldap2-dev (>= 2.4.7),
+ cdbs,
+Build-Depends-Indep: ghc-doc,
+Standards-Version: 3.9.4
 Homepage: http://software.complete.org/ldap-haskell
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/ldap-haskell
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/ldap-haskell
-
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/ldap-haskell
 
 Package: libghc-ldap-dev
-Section: haskell
 Architecture: any
-Suggests: ${haskell:Suggests}
-Depends: ${haskell:Depends}, libldap2-dev, ${shlibs:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
+Section: haskell
+Depends: ${haskell:Depends},
+ libldap2-dev,
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: LDAP Interface for Haskell
  This package provides an interface to the C LDAP API for Haskell programmers.
  With it, you can search, modify, and interrogate LDAP directories.
@@ -27,11 +34,13 @@ Description: LDAP Interface for Haskell
  This package is built for GHC.
 
 Package: libghc-ldap-prof
-Section: haskell
 Architecture: any
-Suggests: ${haskell:Suggests}
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
+Section: haskell
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: LDAP Interface for Haskell; profiling libraries
  This package provides an interface to the C LDAP API for Haskell programmers.
  With it, you can search, modify, and interrogate LDAP directories.
@@ -42,14 +51,15 @@ Description: LDAP Interface for Haskell; profiling libraries
  This package is built for GHC, compiled for profiling.
 
 Package: libghc-ldap-doc
-Replaces: ldap-haskell-doc (<< 0.6.6-2)
-Conflicts: ldap-haskell-doc (<< 0.6.6-2)
-Provides: ldap-haskell-doc
-Section: doc
 Architecture: all
-Depends: ${haskell:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ldap-haskell-doc (<< 0.6.6-2),
+Provides: ldap-haskell-doc,
+Replaces: ldap-haskell-doc (<< 0.6.6-2),
 Description: LDAP Interface for Haskell
  This package provides an interface to the C LDAP API for Haskell programmers.
  With it, you can search, modify, and interrogate LDAP directories.

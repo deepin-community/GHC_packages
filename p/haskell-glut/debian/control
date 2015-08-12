@@ -1,48 +1,48 @@
 Source: haskell-glut
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>, Dmitry Bogatov <KAction@gnu.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-statevar-dev (>= 1.1),
+ libghc-statevar-dev (<< 1.2),
+ libghc-statevar-prof,
+ libghc-openglraw-dev (>= 2.3),
+ libghc-openglraw-dev (<< 2.6),
+ libghc-openglraw-prof,
+ libghc-opengl-dev (>= 2.12),
+ libghc-opengl-dev (<< 2.13),
+ libghc-opengl-prof,
+ freeglut3-dev,
+ libice-dev,
+ libsm-dev,
+ libxi-dev,
+ libxmu-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-statevar-doc,
+ libghc-opengl-doc,
+ libghc-openglraw-doc,
 Standards-Version: 3.9.6
-Build-Depends: debhelper (>= 9)
-  , haskell-devscripts (>= 0.9)
-  , cdbs
-  , ghc
-  , ghc-prof
-  , libghc-statevar-dev (>= 1.1)
-  , libghc-statevar-dev (<< 1.2)
-  , libghc-statevar-prof
-  , libghc-openglraw-dev (>= 2.3)
-  , libghc-openglraw-dev (<< 2.6)
-  , libghc-openglraw-prof
-  , libghc-opengl-dev (>= 2.12)
-  , libghc-opengl-dev (<< 2.13)
-  , libghc-opengl-prof
-  , freeglut3-dev
-  , libice-dev
-  , libsm-dev
-  , libxi-dev
-  , libxmu-dev
-Build-Depends-Indep: ghc-doc
-  , libghc-statevar-doc
-  , libghc-opengl-doc
-  , libghc-openglraw-doc
 Homepage: http://hackage.haskell.org/package/GLUT
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-glut
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-glut
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-glut
 
 Package: libghc-glut-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-  , freeglut3-dev
-  , libice-dev
-  , libsm-dev
-  , libxi-dev
-  , libxmu-dev
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+ freeglut3-dev,
+ libice-dev,
+ libsm-dev,
+ libxi-dev,
+ libxmu-dev,
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell GLUT binding for GHC
  This package provides a library for the Haskell programming language.
  .
@@ -53,9 +53,9 @@ Description: Haskell GLUT binding for GHC
 
 Package: libghc-glut-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Provides: ${haskell:Provides},
 Description: Haskell GLUT binding for GHC; profiling libraries
  This package provides a library for the Haskell programming language,
  compiled for profiling.
@@ -66,12 +66,12 @@ Description: Haskell GLUT binding for GHC; profiling libraries
  please see: <http://www.opengl.org/resources/libraries/glut/>.
 
 Package: libghc-glut-doc
-Section: doc
 Architecture: all
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Haskell GLUT binding for GHC; documentation
  This package provides the documentation for a library for the Haskell
  programming language.

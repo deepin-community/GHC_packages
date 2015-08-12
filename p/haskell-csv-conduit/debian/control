@@ -1,70 +1,70 @@
 Source: haskell-csv-conduit
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-attoparsec-dev (>= 0.10)
-  , libghc-attoparsec-prof
-  , libghc-blaze-builder-dev
-  , libghc-blaze-builder-prof
-  , libghc-conduit-dev (>= 1.0)
-  , libghc-conduit-dev (<< 2.0)
-  , libghc-conduit-prof
-  , libghc-conduit-extra-dev
-  , libghc-conduit-extra-prof
-  , libghc-data-default-dev
-  , libghc-data-default-prof
-  , libghc-mmorph-dev
-  , libghc-mmorph-prof
-  , libghc-monad-control-dev
-  , libghc-monad-control-prof
-  , libghc-mtl-dev
-  , libghc-mtl-prof
-  , libghc-primitive-dev
-  , libghc-primitive-prof
-  , libghc-resourcet-dev (>= 1.1.2.1)
-  , libghc-resourcet-prof
-  , libghc-text-dev
-  , libghc-text-prof
-  , libghc-unordered-containers-dev
-  , libghc-unordered-containers-prof
-  , libghc-vector-dev
-  , libghc-vector-prof
-  , libghc-hunit-dev (>= 1.2)
-  , libghc-test-framework-dev
-  , libghc-test-framework-hunit-dev
-Build-Depends-Indep: ghc-doc
-  , libghc-attoparsec-doc
-  , libghc-blaze-builder-doc
-  , libghc-conduit-doc
-  , libghc-conduit-extra-doc
-  , libghc-data-default-doc
-  , libghc-mmorph-doc
-  , libghc-monad-control-doc
-  , libghc-mtl-doc
-  , libghc-primitive-doc
-  , libghc-resourcet-doc
-  , libghc-text-doc
-  , libghc-unordered-containers-doc
-  , libghc-vector-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-attoparsec-dev (>= 0.10),
+ libghc-attoparsec-prof,
+ libghc-blaze-builder-dev,
+ libghc-blaze-builder-prof,
+ libghc-conduit-dev (>= 1.0),
+ libghc-conduit-dev (<< 2.0),
+ libghc-conduit-prof,
+ libghc-conduit-extra-dev,
+ libghc-conduit-extra-prof,
+ libghc-data-default-dev,
+ libghc-data-default-prof,
+ libghc-mmorph-dev,
+ libghc-mmorph-prof,
+ libghc-monad-control-dev,
+ libghc-monad-control-prof,
+ libghc-mtl-dev,
+ libghc-mtl-prof,
+ libghc-primitive-dev,
+ libghc-primitive-prof,
+ libghc-resourcet-dev (>= 1.1.2.1),
+ libghc-resourcet-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+ libghc-unordered-containers-dev,
+ libghc-unordered-containers-prof,
+ libghc-vector-dev,
+ libghc-vector-prof,
+ libghc-hunit-dev (>= 1.2),
+ libghc-test-framework-dev,
+ libghc-test-framework-hunit-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-attoparsec-doc,
+ libghc-blaze-builder-doc,
+ libghc-conduit-doc,
+ libghc-conduit-extra-doc,
+ libghc-data-default-doc,
+ libghc-mmorph-doc,
+ libghc-monad-control-doc,
+ libghc-mtl-doc,
+ libghc-primitive-doc,
+ libghc-resourcet-doc,
+ libghc-text-doc,
+ libghc-unordered-containers-doc,
+ libghc-vector-doc,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/csv-conduit
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-csv-conduit
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-csv-conduit
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-csv-conduit
 
 Package: libghc-csv-conduit-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: fast, conduit-based CSV parser library${haskell:ShortBlurb}
  csv-conduit is a library that provides
  .
@@ -78,11 +78,11 @@ Description: fast, conduit-based CSV parser library${haskell:ShortBlurb}
 
 Package: libghc-csv-conduit-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: fast, conduit-based CSV parser library${haskell:ShortBlurb}
  csv-conduit is a library that provides
  .
@@ -95,11 +95,12 @@ Description: fast, conduit-based CSV parser library${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-csv-conduit-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: fast, conduit-based CSV parser library${haskell:ShortBlurb}
  csv-conduit is a library that provides
  .

@@ -1,27 +1,25 @@
 Source: haskell-chell-quickcheck2
-Priority: optional
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: John Millikin <jmillikin@gmail.com>
-Build-Depends:
-    cdbs
-  , debhelper (>= 9)
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-chell-dev (>= 0.3)
-  , libghc-chell-dev (<< 0.5)
-  , libghc-chell-prof
-  , libghc-quickcheck2-dev (>= 2.3)
-  , libghc-quickcheck2-dev (<< 2.9)
-  , libghc-quickcheck2-prof
-  , libghc-random-dev
-  , libghc-random-prof
-Build-Depends-Indep:
-    ghc-doc
-  , haddock
-  , libghc-chell-doc
-  , libghc-quickcheck2-doc
+Priority: optional
+Section: haskell
+Build-Depends: cdbs,
+ debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-chell-dev (>= 0.3),
+ libghc-chell-dev (<< 0.5),
+ libghc-chell-prof,
+ libghc-quickcheck2-dev (>= 2.3),
+ libghc-quickcheck2-dev (<< 2.9),
+ libghc-quickcheck2-prof,
+ libghc-random-dev,
+ libghc-random-prof,
+Build-Depends-Indep: ghc-doc,
+ haddock,
+ libghc-chell-doc,
+ libghc-quickcheck2-doc,
 Standards-Version: 3.9.5
 Homepage: https://john-millikin.com/software/chell/
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-chell-quickcheck2
@@ -29,13 +27,12 @@ Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-chell-quickcheck2
 
 Package: libghc-chell-quickcheck2-dev
 Architecture: any
-Depends:
-    ${haskell:Depends}
-  , ${misc:Depends}
-  , ${shlibs:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: QuickCheck2 support for the Chell testing library${haskell:ShortBlurb}
  Chell is a simple and intuitive library for automated testing. It natively
  supports assertion-based testing, and can use companion libraries to
@@ -48,12 +45,11 @@ Description: QuickCheck2 support for the Chell testing library${haskell:ShortBlu
 
 Package: libghc-chell-quickcheck2-prof
 Architecture: any
-Depends:
-    ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: QuickCheck2 support for the Chell testing library${haskell:ShortBlurb}
  Chell is a simple and intuitive library for automated testing. It natively
  supports assertion-based testing, and can use companion libraries to
@@ -65,13 +61,12 @@ Description: QuickCheck2 support for the Chell testing library${haskell:ShortBlu
  ${haskell:Blurb}
 
 Package: libghc-chell-quickcheck2-doc
-Section: doc
 Architecture: all
-Depends:
-    ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: QuickCheck2 support for the Chell testing library${haskell:ShortBlurb}
  Chell is a simple and intuitive library for automated testing. It natively
  supports assertion-based testing, and can use companion libraries to

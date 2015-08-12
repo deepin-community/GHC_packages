@@ -1,27 +1,27 @@
 Source: haskell-reflection
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-Build-Depends-Indep: ghc-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/reflection
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-reflection
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-reflection
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-reflection
 
 Package: libghc-reflection-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: reifies arbitrary terms into types that can be reflected back into terms${haskell:ShortBlurb}
  This package provides an implementation of the ideas presented in the
  paper "Functional Pearl: Implicit Configurations" by Oleg Kiselyov and
@@ -32,11 +32,11 @@ Description: reifies arbitrary terms into types that can be reflected back into 
 
 Package: libghc-reflection-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: reifies arbitrary terms into types that can be reflected${haskell:ShortBlurb}
  This package provides an implementation of the ideas presented in the
  paper "Functional Pearl: Implicit Configurations" by Oleg Kiselyov and
@@ -46,11 +46,12 @@ Description: reifies arbitrary terms into types that can be reflected${haskell:S
  ${haskell:Blurb}
 
 Package: libghc-reflection-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: reifies arbitrary terms into types that can be reflected${haskell:ShortBlurb}
  This package provides an implementation of the ideas presented in the
  paper "Functional Pearl: Implicit Configurations" by Oleg Kiselyov and

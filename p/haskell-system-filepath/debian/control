@@ -1,33 +1,33 @@
 Source: haskell-system-filepath
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-deepseq-dev
-  , libghc-deepseq-prof
-  , libghc-text-dev (>> 0.11.0.6)
-  , libghc-text-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-deepseq-doc
-  , libghc-text-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-deepseq-dev,
+ libghc-deepseq-prof,
+ libghc-text-dev (>> 0.11.0.6),
+ libghc-text-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-deepseq-doc,
+ libghc-text-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/system-filepath
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-system-filepath
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-system-filepath
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-system-filepath
 
 Package: libghc-system-filepath-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: high-level, byte-based file and directory path manipulations${haskell:ShortBlurb}
  Functions for portable file path manipulation.
  .
@@ -35,22 +35,23 @@ Description: high-level, byte-based file and directory path manipulations${haske
 
 Package: libghc-system-filepath-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: high-level, byte-based file and directory path manipulations${haskell:ShortBlurb}
  Functions for portable file path manipulation.
  .
  ${haskell:Blurb}
 
 Package: libghc-system-filepath-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: high-level, byte-based file and directory path manipulations${haskell:ShortBlurb}
  Functions for portable file path manipulation.
  .

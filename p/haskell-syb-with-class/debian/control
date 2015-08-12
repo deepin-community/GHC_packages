@@ -1,27 +1,27 @@
 Source: haskell-syb-with-class
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , ghc-ghci
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ ghc-ghci,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/syb-with-class
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-syb-with-class
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-syb-with-class
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-syb-with-class
 
 Package: libghc-syb-with-class-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell library for generic programming${haskell:ShortBlurb}
  The "Scrap your boilerplate" approach is a lightweight generic
  programming approach for Haskell.  Using this approach, you can write
@@ -33,12 +33,12 @@ Description: Haskell library for generic programming${haskell:ShortBlurb}
 
 Package: libghc-syb-with-class-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell library for generic programming${haskell:ShortBlurb}
  The "Scrap your boilerplate" approach is a lightweight generic
  programming approach for Haskell.  Using this approach, you can write
@@ -51,13 +51,12 @@ Description: Haskell library for generic programming${haskell:ShortBlurb}
  This package contains the profiling libraries.
 
 Package: libghc-syb-with-class-doc
-Section: doc
 Architecture: all
-Depends:
- ${haskell:Depends},
- ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Haskell library for generic programming${haskell:ShortBlurb}
  The "Scrap your boilerplate" approach is a lightweight generic
  programming approach for Haskell.  Using this approach, you can write

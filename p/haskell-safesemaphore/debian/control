@@ -1,30 +1,30 @@
 Source: haskell-safesemaphore
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joey Hess <joeyh@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-stm-dev
-  , libghc-stm-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-stm-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-stm-dev,
+ libghc-stm-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-stm-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/SafeSemaphore
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-foo
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-foo
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-foo
 
 Package: libghc-safesemaphore-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: exception safe alternatives to QSem, QSemN, and SampleVar - GHC libraries${haskell:ShortBlurb}
  This is an alternative to the deprecated QSem, QSemN, and SampleVar in
  GHC base. Those base modules are not exception safe and can be broken
@@ -34,11 +34,11 @@ Description: exception safe alternatives to QSem, QSemN, and SampleVar - GHC lib
 
 Package: libghc-safesemaphore-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: exception safe alternatives to QSem, QSemN, and SampleVar - GHC profiling data${haskell:ShortBlurb}
  This is an alternative to the deprecated QSem, QSemN, and SampleVar in
  GHC base. Those base modules are not exception safe and can be broken
@@ -47,11 +47,12 @@ Description: exception safe alternatives to QSem, QSemN, and SampleVar - GHC pro
  ${haskell:Blurb}
 
 Package: libghc-safesemaphore-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: exception safe alternatives to QSem, QSemN, and SampleVar - documentation${haskell:ShortBlurb}
  This is an alternative to the deprecated QSem, QSemN, and SampleVar in
  GHC base. Those base modules are not exception safe and can be broken

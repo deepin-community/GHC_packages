@@ -1,26 +1,28 @@
 Source: haskell-bzlib
-Priority: extra
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>
-Build-Depends:
- , cdbs
- , debhelper (>= 9)
- , haskell-devscripts (>= 0.9)
- , ghc
- , ghc-prof
- , libbz2-dev
-Build-Depends-Indep: ghc-doc
+Priority: extra
+Section: haskell
+Build-Depends: cdbs,
+ debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libbz2-dev,
+Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/bzlib
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-bzlib
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-bzlib
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-bzlib
 
 Package: libghc-bzlib-dev
 Architecture: any
-Depends: libbz2-dev, ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: libbz2-dev,
+ ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell bindings to the bzip2 library${haskell:ShortBlurb}
  .
  This package provides a pure interface for compressing and decompressing
@@ -35,9 +37,10 @@ Description: Haskell bindings to the bzip2 library${haskell:ShortBlurb}
 
 Package: libghc-bzlib-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Profiling libraries for the Haskell bindings to the bzip2 library${haskell:ShortBlurb}
  .
  This package provides a pure interface for compressing and decompressing
@@ -51,11 +54,12 @@ Description: Profiling libraries for the Haskell bindings to the bzip2 library${
  ${haskell:Blurb}
 
 Package: libghc-bzlib-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Documentation for the Haskell bindings to the bzip2 library${haskell:ShortBlurb}
  .
  This package provides a pure interface for compressing and decompressing

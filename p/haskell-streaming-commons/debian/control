@@ -1,52 +1,52 @@
 Source: haskell-streaming-commons
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-blaze-builder-dev (>= 0.3)
-  , libghc-blaze-builder-dev (<< 0.5)
-  , libghc-blaze-builder-prof
-  , libghc-network-dev
-  , libghc-network-prof
-  , libghc-random-dev
-  , libghc-random-prof
-  , libghc-stm-dev
-  , libghc-stm-prof
-  , libghc-text-dev
-  , libghc-text-prof
-  , libghc-zlib-dev
-  , libghc-zlib-prof
-  , libghc-hspec-dev (>= 1.8)
-  , libghc-quickcheck2-dev
-  , libghc-async-dev
-Build-Depends-Indep: ghc-doc
-  , libghc-blaze-builder-doc
-  , libghc-network-doc
-  , libghc-random-doc
-  , libghc-stm-doc
-  , libghc-text-doc
-  , libghc-zlib-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-blaze-builder-dev (>= 0.3),
+ libghc-blaze-builder-dev (<< 0.5),
+ libghc-blaze-builder-prof,
+ libghc-network-dev,
+ libghc-network-prof,
+ libghc-random-dev,
+ libghc-random-prof,
+ libghc-stm-dev,
+ libghc-stm-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+ libghc-zlib-dev,
+ libghc-zlib-prof,
+ libghc-hspec-dev (>= 1.8),
+ libghc-quickcheck2-dev,
+ libghc-async-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-blaze-builder-doc,
+ libghc-network-doc,
+ libghc-random-doc,
+ libghc-stm-doc,
+ libghc-text-doc,
+ libghc-zlib-doc,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/streaming-commons
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-streaming-commons
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-streaming-commons
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-streaming-commons
 X-Description: common lower-level functions for various streaming data libraries
  Provides low-dependency functionality commonly needed by various
  streaming data libraries, such as conduit and pipes.
 
 Package: libghc-streaming-commons-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -54,22 +54,23 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-streaming-commons-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-streaming-commons-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .

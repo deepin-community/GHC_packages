@@ -1,35 +1,37 @@
 Source: haskell-configfile
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: John Goerzen <jgoerzen@complete.org>
-Build-Depends: debhelper (>= 9)
-             , cdbs
-             , ghc
-             , haskell-devscripts (>= 0.9)
-             , cpphs
-             , libghc-missingh-dev (>> 1.0.0)
-             , libghc-regex-compat-dev
-             , libghc-mtl-dev
-             , ghc-prof
-             , libghc-missingh-prof
-             , libghc-regex-compat-prof
-             , libghc-mtl-prof
-Build-Depends-Indep: ghc-doc
-                   , libghc-missingh-doc
-                   , libghc-regex-compat-doc
-                   , libghc-mtl-doc
-Standards-Version: 3.9.4
+Priority: extra
 Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ ghc,
+ haskell-devscripts (>= 0.9),
+ cpphs,
+ libghc-missingh-dev (>> 1.0.0),
+ libghc-regex-compat-dev,
+ libghc-mtl-dev,
+ ghc-prof,
+ libghc-missingh-prof,
+ libghc-regex-compat-prof,
+ libghc-mtl-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-missingh-doc,
+ libghc-regex-compat-doc,
+ libghc-mtl-doc,
+Standards-Version: 3.9.4
 Homepage: http://software.complete.org/configfile
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-configfile
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-configfile
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-configfile
 
 Package: libghc-configfile-dev
 Architecture: any
-Depends: ${misc:Depends}, ${haskell:Depends}, ${shlibs:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Parser and writer for sectioned config files in Haskell${haskell:ShortBlurb}
  The ConfigFile module works with configuration files in a standard
  format that is easy for the user to edit, easy for the programmer
@@ -46,10 +48,12 @@ Description: Parser and writer for sectioned config files in Haskell${haskell:Sh
 
 Package: libghc-configfile-prof
 Architecture: any
-Depends: ${misc:Depends}, ${haskell:Depends}, ${shlibs:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Parser and writer for sectioned config files in Haskell${haskell:ShortBlurb}
  The ConfigFile module works with configuration files in a standard
  format that is easy for the user to edit, easy for the programmer
@@ -67,13 +71,14 @@ Description: Parser and writer for sectioned config files in Haskell${haskell:Sh
  ${haskell:Blurb}
 
 Package: libghc-configfile-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
-Breaks: configfile-doc (<< 1.0.6-2)
-Replaces: configfile-doc (<< 1.0.6-2)
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Breaks: configfile-doc (<< 1.0.6-2),
+Replaces: configfile-doc (<< 1.0.6-2),
 Description: Parser and writer for sectioned config files in Haskell${haskell:ShortBlurb}
  The ConfigFile module works with configuration files in a standard
  format that is easy for the user to edit, easy for the programmer
@@ -87,4 +92,3 @@ Description: Parser and writer for sectioned config files in Haskell${haskell:Sh
  the Unix shell, and make.
  .
  ${haskell:Blurb}
-

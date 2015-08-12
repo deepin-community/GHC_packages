@@ -1,34 +1,33 @@
 Source: haskell-monad-journal
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Daniel Gröber <dxld@darkboxed.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-mtl-dev (>=2.1)
-  , libghc-mtl-dev (<<2.3)
-  , libghc-either-dev (>= 4.1)
-  , libghc-either-dev (<< 4.5)
-  , libghc-monad-control-dev (>= 0.3)
-  , libghc-monad-control-dev (<< 1.1)
-  , libghc-transformers-base-dev (>= 0.4)
-  , libghc-transformers-base-dev (<< 0.5)
-  , libghc-mtl-prof
-  , libghc-either-prof
-  , libghc-monad-control-prof
-  , libghc-transformers-base-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-mtl-doc
-  , libghc-either-doc
-  , libghc-monad-control-doc
-  , libghc-transformers-base-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-mtl-dev (>= 2.1),
+ libghc-mtl-dev (<< 2.3),
+ libghc-either-dev (>= 4.1),
+ libghc-either-dev (<< 4.5),
+ libghc-monad-control-dev (>= 0.3),
+ libghc-monad-control-dev (<< 1.1),
+ libghc-transformers-base-dev (>= 0.4),
+ libghc-transformers-base-dev (<< 0.5),
+ libghc-mtl-prof,
+ libghc-either-prof,
+ libghc-monad-control-prof,
+ libghc-transformers-base-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-mtl-doc,
+ libghc-either-doc,
+ libghc-monad-control-doc,
+ libghc-transformers-base-doc,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/monad-journal
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-monad-journal
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-monad-journal
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-monad-journal
 X-Description: Pure logger typeclass and monad transformer
  This package provides a typeclass for logging in pure code, or more generally,
  in any kind of context. You can do whatever you want with logs, especially get
@@ -36,12 +35,12 @@ X-Description: Pure logger typeclass and monad transformer
 
 Package: libghc-monad-journal-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -49,22 +48,23 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-monad-journal-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-monad-journal-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .

@@ -1,10 +1,9 @@
 Source: haskell-monad-par
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Iulian Udrea <iulian@physics.org>
-Build-Depends:
- debhelper (>= 9),
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
  cdbs,
  haskell-devscripts (>= 0.9),
  ghc,
@@ -21,13 +20,12 @@ Build-Depends:
  libghc-parallel-prof,
  libghc-mtl-dev (>= 2.0.1.0),
  libghc-mtl-prof,
-# test suite dependencies
- libghc-quickcheck2-dev [!mips !mipsel !sparc],
- libghc-hunit-dev [!mips !mipsel !sparc],
- libghc-test-framework-hunit-dev [!mips !mipsel !sparc],
- libghc-test-framework-quickcheck2-dev [!mips !mipsel !sparc],
- libghc-test-framework-dev [!mips !mipsel !sparc],
- libghc-test-framework-th-dev [!mips !mipsel !sparc],
+ libghc-quickcheck2-dev [!mips!mipsel!sparc],
+ libghc-hunit-dev [!mips!mipsel!sparc],
+ libghc-test-framework-hunit-dev [!mips!mipsel!sparc],
+ libghc-test-framework-quickcheck2-dev [!mips!mipsel!sparc],
+ libghc-test-framework-dev [!mips!mipsel!sparc],
+ libghc-test-framework-th-dev [!mips!mipsel!sparc],
 Build-Depends-Indep: ghc-doc,
  libghc-abstract-par-doc,
  libghc-abstract-deque-doc,
@@ -37,15 +35,17 @@ Build-Depends-Indep: ghc-doc,
  libghc-mtl-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/monad-par
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-monad-par
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-monad-par
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-monad-par
 
 Package: libghc-monad-par-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: parallel programming based on a monad${haskell:ShortBlurb}
  This library offers an alternative parallel programming API to that
  provided by the parallel package. The Par monad allows the simple
@@ -61,10 +61,11 @@ Description: parallel programming based on a monad${haskell:ShortBlurb}
 
 Package: libghc-monad-par-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: parallel programming based on a monad${haskell:ShortBlurb}
  This library offers an alternative parallel programming API to that
  provided by the parallel package. The Par monad allows the simple
@@ -79,11 +80,12 @@ Description: parallel programming based on a monad${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-monad-par-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: parallel programming based on a monad${haskell:ShortBlurb}
  This library offers an alternative parallel programming API to that
  provided by the parallel package. The Par monad allows the simple

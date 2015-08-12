@@ -1,55 +1,59 @@
 Source: haskell-haxr
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: TANIGUCHI Takaki <takaki@debian.org>
-Build-Depends: cdbs, debhelper (>= 9), haskell-devscripts (>= 0.9),
-        ghc,
-        ghc-prof,
-        ghc-ghci,
-        libghc-mtl-dev,
-        libghc-mtl-prof,
-        libghc-mtl-compat-dev,
-        libghc-mtl-compat-prof,
-        libghc-network-dev (>= 2.6),
-        libghc-network-dev (<< 2.7),
-        libghc-network-prof,
-        libghc-network-uri-dev (>= 2.6),
-        libghc-network-uri-dev (<< 2.7),
-        libghc-network-uri-prof,
-        libghc-haxml-dev (>= 1:1.22),
-        libghc-haxml-dev (<< 1:1.26),
-        libghc-haxml-prof,
-        libghc-http-dev (>= 1:4000),
-        libghc-http-prof,
-        libghc-base64-bytestring-dev,
-        libghc-base64-bytestring-prof,
-        libghc-utf8-string-dev,
-        libghc-utf8-string-prof,
-        libghc-blaze-builder-dev (>= 0.2),
-        libghc-blaze-builder-dev (<< 0.5),
-        libghc-blaze-builder-prof,
+Priority: extra
+Section: haskell
+Build-Depends: cdbs,
+ debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ ghc-ghci,
+ libghc-mtl-dev,
+ libghc-mtl-prof,
+ libghc-mtl-compat-dev,
+ libghc-mtl-compat-prof,
+ libghc-network-dev (>= 2.6),
+ libghc-network-dev (<< 2.7),
+ libghc-network-prof,
+ libghc-network-uri-dev (>= 2.6),
+ libghc-network-uri-dev (<< 2.7),
+ libghc-network-uri-prof,
+ libghc-haxml-dev (>= 1:1.22),
+ libghc-haxml-dev (<< 1:1.26),
+ libghc-haxml-prof,
+ libghc-http-dev (>= 1:4000),
+ libghc-http-prof,
+ libghc-base64-bytestring-dev,
+ libghc-base64-bytestring-prof,
+ libghc-utf8-string-dev,
+ libghc-utf8-string-prof,
+ libghc-blaze-builder-dev (>= 0.2),
+ libghc-blaze-builder-dev (<< 0.5),
+ libghc-blaze-builder-prof,
 Build-Depends-Indep: ghc-doc,
-        libghc-mtl-doc,
-        libghc-mtl-compat-doc,
-        libghc-network-doc,
-        libghc-network-uri-doc,
-        libghc-haxml-doc,
-        libghc-http-doc,
-        libghc-base64-bytestring-doc,
-        libghc-utf8-string-doc,
-        libghc-blaze-builder-doc
+ libghc-mtl-doc,
+ libghc-mtl-compat-doc,
+ libghc-network-doc,
+ libghc-network-uri-doc,
+ libghc-haxml-doc,
+ libghc-http-doc,
+ libghc-base64-bytestring-doc,
+ libghc-utf8-string-doc,
+ libghc-blaze-builder-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/haxr
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-haxr
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-haxr
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-haxr
 
 Package: libghc-haxr-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: XML-RPC client and server library for Haskell
  HaXR is a library for writing XML-RPC client and server applications in
  Haskell.
@@ -62,10 +66,11 @@ Description: XML-RPC client and server library for Haskell
 
 Package: libghc-haxr-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: XML-RPC client and server library for Haskell; profiling library
  HaXR is a library for writing XML-RPC client and server applications in
  Haskell.
@@ -77,12 +82,13 @@ Description: XML-RPC client and server library for Haskell; profiling library
  This package contains the profiling libraries compiled for GHC.
 
 Package: libghc-haxr-doc
-Section: doc
 Architecture: all
-Depends: ${haskell:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: XML-RPC client and server library for Haskell; documentation
  HaXR is a library for writing XML-RPC client and server applications in
  Haskell.

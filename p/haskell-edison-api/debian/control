@@ -1,29 +1,31 @@
 Source: haskell-edison-api
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Marco Túlio Gontijo e Silva <marcot@debian.org>
-Build-Depends: cdbs
- , debhelper (>= 9)
- , haskell-devscripts (>= 0.9)
- , cpphs
- , ghc
- , ghc-prof
- , libghc-mtl-dev (>> 1.0)
- , libghc-mtl-prof
-Build-Depends-Indep: ghc-doc
- , libghc-mtl-doc
+Priority: extra
+Section: haskell
+Build-Depends: cdbs,
+ debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cpphs,
+ ghc,
+ ghc-prof,
+ libghc-mtl-dev (>> 1.0),
+ libghc-mtl-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-mtl-doc,
 Standards-Version: 3.9.4
 Homepage: http://www.cs.princeton.edu/~rdockins/edison/home/
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-edison-api
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-edison-api
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-edison-api
 
 Package: libghc-edison-api-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Recommends: libghc-edison-core-dev, ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: libghc-edison-core-dev,
+ ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell library of efficent, purely-functional data structures
  The abstract interface (API) of the Edison library for Haskell for
  use with ghc.
@@ -40,10 +42,13 @@ Description: Haskell library of efficent, purely-functional data structures
 
 Package: libghc-edison-api-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Recommends: libghc-edison-core-prof, ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: libghc-edison-core-prof,
+ ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell library of data structures; profiling libraries
  The abstract interface (API) of the Edison library for Haskell for
  use with ghc.
@@ -59,14 +64,20 @@ Description: Haskell library of data structures; profiling libraries
  This package contains the set of type classes.
 
 Package: libghc-edison-api-doc
-Replaces: haskell-edison-doc, haskell-edison-api-doc (<< 1.2.1-13), libghc6-edison-api-doc (<< 1:1)
-Conflicts: haskell-edison-doc, haskell-edison-api-doc (<< 1.2.1-13), libghc6-edison-api-doc (<< 1:1)
-Provides: haskell-edison-api-doc, libghc6-edison-api-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: haskell-edison-doc,
+ haskell-edison-api-doc (<< 1.2.1-13),
+ libghc6-edison-api-doc (<< 1:1),
+Provides: haskell-edison-api-doc,
+ libghc6-edison-api-doc,
+Replaces: haskell-edison-doc,
+ haskell-edison-api-doc (<< 1.2.1-13),
+ libghc6-edison-api-doc (<< 1:1),
 Description: documentation of the Edison Haskell library
  Documentation of the Edison library containing efficent,
  purely-functional data structures for Haskell.

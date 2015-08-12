@@ -1,35 +1,33 @@
 Source: haskell-chell
-Priority: optional
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: John Millikin <jmillikin@gmail.com>
-Build-Depends:
-    cdbs
-  , debhelper (>= 9)
-  , haskell-devscripts (>= 0.9)
-  , ghc (>= 6.12)
-  , ghc-prof
-  , ghc-ghci
-  , libghc-options-dev (>= 1.0)
-  , libghc-options-dev (<< 2.0)
-  , libghc-options-prof
-  , libghc-patience-dev (>= 0.1)
-  , libghc-patience-dev (<< 0.2)
-  , libghc-patience-prof
-  , libghc-random-dev (>= 1.0)
-  , libghc-random-prof
-  , libghc-text-dev
-  , libghc-text-prof
-  , libghc-ansi-terminal-dev (>= 0.5)
-  , libghc-ansi-terminal-dev (<< 0.7)
-  , libghc-ansi-terminal-prof
-Build-Depends-Indep:
-    ghc-doc
-  , haddock
-  , libghc-options-doc
-  , libghc-patience-doc
-  , libghc-text-doc
-  , libghc-ansi-terminal-doc
+Priority: optional
+Section: haskell
+Build-Depends: cdbs,
+ debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ ghc (>= 6.12),
+ ghc-prof,
+ ghc-ghci,
+ libghc-options-dev (>= 1.0),
+ libghc-options-dev (<< 2.0),
+ libghc-options-prof,
+ libghc-patience-dev (>= 0.1),
+ libghc-patience-dev (<< 0.2),
+ libghc-patience-prof,
+ libghc-random-dev (>= 1.0),
+ libghc-random-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+ libghc-ansi-terminal-dev (>= 0.5),
+ libghc-ansi-terminal-dev (<< 0.7),
+ libghc-ansi-terminal-prof,
+Build-Depends-Indep: ghc-doc,
+ haddock,
+ libghc-options-doc,
+ libghc-patience-doc,
+ libghc-text-doc,
+ libghc-ansi-terminal-doc,
 Standards-Version: 3.9.4
 Homepage: https://john-millikin.com/software/chell/
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-chell
@@ -37,13 +35,12 @@ Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-chell
 
 Package: libghc-chell-dev
 Architecture: any
-Depends:
-    ${haskell:Depends}
-  , ${misc:Depends}
-  , ${shlibs:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell library for simple and intuitive automated testing${haskell:ShortBlurb}
  Chell is a simple and intuitive library for automated testing. It natively
  supports assertion-based testing, and can use companion libraries to
@@ -53,12 +50,11 @@ Description: Haskell library for simple and intuitive automated testing${haskell
 
 Package: libghc-chell-prof
 Architecture: any
-Depends:
-    ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell library for simple and intuitive automated testing${haskell:ShortBlurb}
  Chell is a simple and intuitive library for automated testing. It natively
  supports assertion-based testing, and can use companion libraries to
@@ -67,13 +63,12 @@ Description: Haskell library for simple and intuitive automated testing${haskell
  ${haskell:Blurb}
 
 Package: libghc-chell-doc
-Section: doc
 Architecture: all
-Depends:
-    ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Haskell library for simple and intuitive automated testing${haskell:ShortBlurb}
  Chell is a simple and intuitive library for automated testing. It natively
  supports assertion-based testing, and can use companion libraries to

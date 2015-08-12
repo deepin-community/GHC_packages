@@ -1,30 +1,27 @@
 Source: haskell-unix-compat
-Priority: extra
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Giovanni Mascellani <gio@debian.org>
-Build-Depends:
- debhelper (>= 9),
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
  haskell-devscripts (>= 0.9),
  cdbs,
  ghc,
- ghc-prof
-Build-Depends-Indep:
- ghc-doc
+ ghc-prof,
+Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/unix-compat
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-unix-compat
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-unix-compat
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-unix-compat
 
 Package: libghc-unix-compat-dev
 Architecture: any
-Depends:
- ${haskell:Depends},
+Depends: ${haskell:Depends},
  ${misc:Depends},
- ${shlibs:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell portable POSIX-compatible layer${haskell:ShortBlurb}
  This package provides portable Haskell implementations of some POSIX
  system calls contained in the unix package. This package re-exports the
@@ -35,12 +32,11 @@ Description: Haskell portable POSIX-compatible layer${haskell:ShortBlurb}
 
 Package: libghc-unix-compat-prof
 Architecture: any
-Depends:
- ${haskell:Depends},
- ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell portable POSIX-compatible layer${haskell:ShortBlurb}
  This package provides portable Haskell implementations of some POSIX
  system calls contained in the unix package. This package re-exports the
@@ -50,13 +46,12 @@ Description: Haskell portable POSIX-compatible layer${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-unix-compat-doc
-Section: doc
 Architecture: all
-Depends:
- ${haskell:Depends},
- ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Haskell portable POSIX-compatible layer${haskell:ShortBlurb}
  This package provides portable Haskell implementations of some POSIX
  system calls contained in the unix package. This package re-exports the

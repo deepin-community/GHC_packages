@@ -1,44 +1,43 @@
 Source: haskell-listlike
-Section: haskell
-Priority: optional
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: TANIGUCHI Takaki <takaki@debian.org>, Dmitry Bogatov <KAction@gnu.org>
-Build-Depends:
-	cdbs,
-	debhelper (>= 9),
-	haskell-devscripts (>= 0.9),
-	ghc,
-	ghc-prof,
-	libghc-text-dev (>= 0.11),
-	libghc-text-dev (<< 1.3),
-	libghc-text-prof,
-	libghc-fmlist-dev (>= 0.8),
-	libghc-fmlist-dev (<< 0.10),
-	libghc-fmlist-prof,
-	libghc-dlist-dev (>= 0.7),
-	libghc-dlist-dev (<< 0.9),
-	libghc-dlist-prof,
-	libghc-vector-dev (>= 0.5),
-	libghc-vector-dev (<< 0.11),
-	libghc-vector-prof,
-Build-Depends-Indep:
-	ghc-doc,
-	libghc-text-doc,
-	libghc-fmlist-doc,
-	libghc-dlist-doc,
-	libghc-vector-doc
+Priority: optional
+Section: haskell
+Build-Depends: cdbs,
+ debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-text-dev (>= 0.11),
+ libghc-text-dev (<< 1.3),
+ libghc-text-prof,
+ libghc-fmlist-dev (>= 0.8),
+ libghc-fmlist-dev (<< 0.10),
+ libghc-fmlist-prof,
+ libghc-dlist-dev (>= 0.7),
+ libghc-dlist-dev (<< 0.9),
+ libghc-dlist-prof,
+ libghc-vector-dev (>= 0.5),
+ libghc-vector-dev (<< 0.11),
+ libghc-vector-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-text-doc,
+ libghc-fmlist-doc,
+ libghc-dlist-doc,
+ libghc-vector-doc,
 Standards-Version: 3.9.6
 Homepage: http://software.complete.org/listlike
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-listlike
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-listlike
-
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-listlike
 
 Package: libghc-listlike-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
-Suggests: ${haskell:Suggests}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Generic support for list-like structures${haskell:ShortBlurb}
  Generic support for list-like structures in Haskell.
  .
@@ -55,10 +54,11 @@ Description: Generic support for list-like structures${haskell:ShortBlurb}
 
 Package: libghc-listlike-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
-Suggests: ${haskell:Suggests}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Generic support for list-like structures${haskell:ShortBlurb}
  Generic support for list-like structures in Haskell.
  .
@@ -76,9 +76,10 @@ Description: Generic support for list-like structures${haskell:ShortBlurb}
 Package: libghc-listlike-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Generic support for list-like structures${haskell:ShortBlurb}
  Generic support for list-like structures in Haskell.
  .

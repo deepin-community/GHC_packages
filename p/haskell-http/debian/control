@@ -1,70 +1,70 @@
 Source: haskell-http
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Arjan Oosting <arjan@debian.org>, Clint Adams <clint@debian.org>, Dmitry Bogatov <KAction@gnu.org>
 Priority: extra
 Section: haskell
-Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Arjan Oosting <arjan@debian.org>, Clint Adams <clint@debian.org>,
- Dmitry Bogatov <KAction@gnu.org>
-Build-Depends:
-  debhelper (>= 9),
-  haskell-devscripts (>= 0.9),
-  cdbs (>> 0.4.58),
-  ghc,
-  ghc-prof,
-  libghc-mtl-dev (>= 2.0),
-  libghc-mtl-dev (<< 2.2),
-  libghc-mtl-prof,
-  libghc-network-dev (>= 2.6),
-  libghc-network-dev (<< 2.7),
-  libghc-network-prof,
-  libghc-network-uri-dev (>= 2.6),
-  libghc-network-uri-dev (<< 2.7),
-  libghc-network-uri-prof,
-  libghc-parsec3-prof,
-  libghc-parsec3-dev (>= 2.0),
-  libghc-parsec3-dev (<< 3.2),
-Build-Depends-Indep:
-  ghc-doc,
-  libghc-mtl-doc,
-  libghc-network-doc,
-  libghc-network-uri-doc,
-  libghc-parsec3-doc
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs (>> 0.4.58),
+ ghc,
+ ghc-prof,
+ libghc-mtl-dev (>= 2.0),
+ libghc-mtl-dev (<< 2.2),
+ libghc-mtl-prof,
+ libghc-network-dev (>= 2.6),
+ libghc-network-dev (<< 2.7),
+ libghc-network-prof,
+ libghc-network-uri-dev (>= 2.6),
+ libghc-network-uri-dev (<< 2.7),
+ libghc-network-uri-prof,
+ libghc-parsec3-prof,
+ libghc-parsec3-dev (>= 2.0),
+ libghc-parsec3-dev (<< 3.2),
+Build-Depends-Indep: ghc-doc,
+ libghc-mtl-doc,
+ libghc-network-doc,
+ libghc-network-uri-doc,
+ libghc-parsec3-doc,
 Standards-Version: 3.9.6
 Homepage: http://projects.haskell.org/http/
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-http/
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-http
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-http/
 X-Description: GHC libraries for the Haskell HTTP client library
  HTTP is a set of Haskell client libraries for HTTP/1.0 and HTTP/1.1.
 
 Package: libghc-http-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
-
 Package: libghc-http-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-http-doc
-Replaces: haskell-http-doc (<< 40000006-4)
-Conflicts: haskell-http-doc (<< 40000006-4)
-Provides: haskell-http-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: haskell-http-doc (<< 40000006-4),
+Provides: haskell-http-doc,
+Replaces: haskell-http-doc (<< 40000006-4),
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .

@@ -1,27 +1,27 @@
 Source: haskell-fingertree
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Masayuki Hatta <mhatta@debian.org>
 Priority: extra
 Section: haskell
-Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Masayuki Hatta (mhatta) <mhatta@debian.org>
-Build-Depends: debhelper (>= 9)
-               , haskell-devscripts (>= 0.9)
-               , cdbs
-               , ghc
-               , ghc-prof
-Build-Depends-Indep: ghc-doc
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.3
 Homepage: http://hackage.haskell.org/package/fingertree
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-fingertree
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-fingertree
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-fingertree
 
 Package: libghc-fingertree-dev
 Architecture: any
-Depends: ${shlibs:Depends}
-         , ${haskell:Depends}
-         , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${shlibs:Depends},
+ ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Generic finger-tree data structure implementation in Haskell${haskell:ShortBlurb}
  This Haskell library provides a general sequence representation with
  arbitrary annotations, for use as a base for implementations of
@@ -31,11 +31,11 @@ Description: Generic finger-tree data structure implementation in Haskell${haske
 
 Package: libghc-fingertree-prof
 Architecture: any
-Depends: ${haskell:Depends}
-         , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Generic finger-tree data structure implementation in Haskell${haskell:ShortBlurb}
  This Haskell library provides a general sequence representation with
  arbitrary annotations, for use as a base for implementations of
@@ -46,10 +46,10 @@ Description: Generic finger-tree data structure implementation in Haskell${haske
 Package: libghc-fingertree-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends}
-         , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Generic finger-tree data structure implementation in Haskell${haskell:ShortBlurb}
  This Haskell library provides a general sequence representation with
  arbitrary annotations, for use as a base for implementations of

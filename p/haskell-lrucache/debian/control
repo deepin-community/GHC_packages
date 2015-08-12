@@ -1,31 +1,31 @@
 Source: haskell-lrucache
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-contravariant-dev (>= 0.5)
-  , libghc-contravariant-dev (<< 2)
-  , libghc-contravariant-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-contravariant-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-contravariant-dev (>= 0.5),
+ libghc-contravariant-dev (<< 2),
+ libghc-contravariant-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-contravariant-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/lrucache
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-lrucache
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-lrucache
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-lrucache
 
 Package: libghc-lrucache-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: simple, pure least-recent-used cache${haskell:ShortBlurb}
  This package contains a simple, pure LRU cache, implemented in terms of
  "Data.Map".
@@ -37,11 +37,11 @@ Description: simple, pure least-recent-used cache${haskell:ShortBlurb}
 
 Package: libghc-lrucache-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: simple, pure least-recent-used cache${haskell:ShortBlurb}
  This package contains a simple, pure LRU cache, implemented in terms of
  "Data.Map".
@@ -52,11 +52,12 @@ Description: simple, pure least-recent-used cache${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-lrucache-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: simple, pure least-recent-used cache${haskell:ShortBlurb}
  This package contains a simple, pure LRU cache, implemented in terms of
  "Data.Map".

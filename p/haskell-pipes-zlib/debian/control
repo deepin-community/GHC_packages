@@ -1,42 +1,42 @@
 Source: haskell-pipes-zlib
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-pipes-dev (>= 4.0)
-  , libghc-pipes-dev (<< 4.2)
-  , libghc-pipes-prof
-  , libghc-zlib-dev (>= 0.5)
-  , libghc-zlib-dev (<< 0.7)
-  , libghc-zlib-prof
-  , libghc-zlib-bindings-dev (>= 0.1)
-  , libghc-zlib-bindings-dev (<< 0.2)
-  , libghc-zlib-bindings-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-pipes-doc
-  , libghc-zlib-doc
-  , libghc-zlib-bindings-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-pipes-dev (>= 4.0),
+ libghc-pipes-dev (<< 4.2),
+ libghc-pipes-prof,
+ libghc-zlib-dev (>= 0.5),
+ libghc-zlib-dev (<< 0.7),
+ libghc-zlib-prof,
+ libghc-zlib-bindings-dev (>= 0.1),
+ libghc-zlib-bindings-dev (<< 0.2),
+ libghc-zlib-bindings-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-pipes-doc,
+ libghc-zlib-doc,
+ libghc-zlib-bindings-doc,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/pipes-zlib
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-pipes-zlib
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-pipes-zlib
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-pipes-zlib
 X-Description: Zlib compression and decompression for Pipes streams
  This module exports utility functions to compress and decompress
  pipes streams using the zlib compression codec.
 
 Package: libghc-pipes-zlib-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -44,22 +44,23 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-pipes-zlib-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-pipes-zlib-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .

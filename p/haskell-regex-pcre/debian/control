@@ -1,32 +1,32 @@
 Source: haskell-regex-pcre
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: cdbs
-  , debhelper (>= 9)
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-regex-base-dev (>> 0.93)
-  , libghc-regex-base-prof
-  , libpcre3-dev
-Build-Depends-Indep: ghc-doc
-  , libghc-regex-base-doc
+Priority: extra
+Section: haskell
+Build-Depends: cdbs,
+ debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-regex-base-dev (>> 0.93),
+ libghc-regex-base-prof,
+ libpcre3-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-regex-base-doc,
 Standards-Version: 3.9.4
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-regex-pcre/
-Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-regex-pcre
 Homepage: http://sourceforge.net/projects/lazy-regex
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-regex-pcre
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-regex-pcre/
 
 Package: libghc-regex-pcre-dev
 Architecture: any
-Depends: ${haskell:Depends}
-	 , ${misc:Depends}
-	 , ${shlibs:Depends}
-	 , libpcre3-dev
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+ libpcre3-dev,
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Perl-compatible regular expressions
  A library containing the PCRE backend to accompany regex-base.
  .
@@ -34,10 +34,11 @@ Description: Perl-compatible regular expressions
 
 Package: libghc-regex-pcre-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Perl-compatible regular expressions; profiling libraries
  A library containing the PCRE backend to accompany regex-base.
  .
@@ -45,14 +46,15 @@ Description: Perl-compatible regular expressions; profiling libraries
  used with ghc-prof.
 
 Package: libghc-regex-pcre-doc
-Replaces: haskell-regex-pcre-doc (<< 0.93.1-7)
-Conflicts: haskell-regex-pcre-doc (<< 0.93.1-7)
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: haskell-regex-pcre-doc (<< 0.93.1-7),
+Provides: ${haskell:Provides},
+Replaces: haskell-regex-pcre-doc (<< 0.93.1-7),
 Description: Perl-compatible regular expressions; documentation
  A library containing the PCRE backend to accompany regex-base.
  .

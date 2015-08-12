@@ -1,24 +1,23 @@
 Source: haskell-vector-th-unbox
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , ghc-ghci
-  , libghc-vector-dev (>= 0.7)
-  , libghc-vector-prof
-# test suite dependencies
-  , libghc-data-default-dev
-Build-Depends-Indep: ghc-doc
-  , libghc-vector-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ ghc-ghci,
+ libghc-vector-dev (>= 0.7),
+ libghc-vector-prof,
+ libghc-data-default-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-vector-doc,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/vector-th-unbox
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-vector-th-unbox
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-vector-th-unbox
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-vector-th-unbox
 X-Description: Deriver for Data.Vector.Unboxed using Template Haskell
  This Haskell library package provides a Template Haskell deriver for unboxed
  vectors, given a pair of coercion functions to and from some existing type
@@ -26,12 +25,12 @@ X-Description: Deriver for Data.Vector.Unboxed using Template Haskell
 
 Package: libghc-vector-th-unbox-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -39,22 +38,23 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-vector-th-unbox-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-vector-th-unbox-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .

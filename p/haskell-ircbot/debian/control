@@ -1,54 +1,54 @@
 Source: haskell-ircbot
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-irc-dev (>> 0.6)
-  , libghc-irc-dev (<< 0.7)
-  , libghc-irc-prof
-  , libghc-mtl-dev (>> 2.0)
-  , libghc-mtl-dev (<< 2.3)
-  , libghc-mtl-prof
-  , libghc-network-dev (>> 2.3)
-  , libghc-network-dev (<< 2.7)
-  , libghc-network-prof
-  , libghc-parsec3-dev (>> 3.1)
-  , libghc-parsec3-prof
-  , libghc-random-dev (>> 1.0)
-  , libghc-random-dev (<< 1.2)
-  , libghc-random-prof
-  , libghc-stm-dev (>> 2.2)
-  , libghc-stm-dev (<< 2.5)
-  , libghc-stm-prof
-  , libghc-safesemaphore-dev (>> 0.10)
-  , libghc-safesemaphore-dev (<< 0.11)
-  , libghc-safesemaphore-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-irc-doc
-  , libghc-mtl-doc
-  , libghc-network-doc
-  , libghc-parsec3-doc
-  , libghc-random-doc
-  , libghc-stm-doc
-  , libghc-safesemaphore-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-irc-dev (>> 0.6),
+ libghc-irc-dev (<< 0.7),
+ libghc-irc-prof,
+ libghc-mtl-dev (>> 2.0),
+ libghc-mtl-dev (<< 2.3),
+ libghc-mtl-prof,
+ libghc-network-dev (>> 2.3),
+ libghc-network-dev (<< 2.7),
+ libghc-network-prof,
+ libghc-parsec3-dev (>> 3.1),
+ libghc-parsec3-prof,
+ libghc-random-dev (>> 1.0),
+ libghc-random-dev (<< 1.2),
+ libghc-random-prof,
+ libghc-stm-dev (>> 2.2),
+ libghc-stm-dev (<< 2.5),
+ libghc-stm-prof,
+ libghc-safesemaphore-dev (>> 0.10),
+ libghc-safesemaphore-dev (<< 0.11),
+ libghc-safesemaphore-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-irc-doc,
+ libghc-mtl-doc,
+ libghc-network-doc,
+ libghc-parsec3-doc,
+ libghc-random-doc,
+ libghc-stm-doc,
+ libghc-safesemaphore-doc,
 Standards-Version: 3.9.6
 Homepage: http://hackage.haskell.org/package/ircbot
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-ircbot
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-ircbot
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-ircbot
 
 Package: libghc-ircbot-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: library for writing IRC bots${haskell:ShortBlurb}
  The ircbot library provides a BotMonad class and assorted routines for
  writing IRC robots.
@@ -57,11 +57,11 @@ Description: library for writing IRC bots${haskell:ShortBlurb}
 
 Package: libghc-ircbot-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: library for writing IRC bots${haskell:ShortBlurb}
  The ircbot library provides a BotMonad class and assorted routines for
  writing IRC robots.
@@ -69,11 +69,12 @@ Description: library for writing IRC bots${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-ircbot-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: library for writing IRC bots${haskell:ShortBlurb}
  The ircbot library provides a BotMonad class and assorted routines for
  writing IRC robots.

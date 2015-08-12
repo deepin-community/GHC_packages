@@ -1,41 +1,40 @@
 Source: haskell-tasty-golden
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-mtl-dev
-  , libghc-mtl-prof
-  , libghc-optparse-applicative-dev
-  , libghc-optparse-applicative-prof
-  , libghc-tagged-dev
-  , libghc-tagged-prof
-  , libghc-tasty-dev (>= 0.8)
-  , libghc-tasty-prof
-  , libghc-temporary-dev (>= 1.2.0.3)
-  , libghc-temporary-prof
-  , libghc-tagged-dev
-  , libghc-tagged-prof
-  , libghc-async-dev
-  , libghc-async-prof
-# for the test suite
-  , libghc-tasty-hunit-dev
-Build-Depends-Indep: ghc-doc
-  , libghc-mtl-doc
-  , libghc-optparse-applicative-doc
-  , libghc-tagged-doc
-  , libghc-tasty-doc
-  , libghc-temporary-doc
-  , libghc-tagged-doc
-  , libghc-async-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-mtl-dev,
+ libghc-mtl-prof,
+ libghc-optparse-applicative-dev,
+ libghc-optparse-applicative-prof,
+ libghc-tagged-dev,
+ libghc-tagged-prof,
+ libghc-tasty-dev (>= 0.8),
+ libghc-tasty-prof,
+ libghc-temporary-dev (>= 1.2.0.3),
+ libghc-temporary-prof,
+ libghc-tagged-dev,
+ libghc-tagged-prof,
+ libghc-async-dev,
+ libghc-async-prof,
+ libghc-tasty-hunit-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-mtl-doc,
+ libghc-optparse-applicative-doc,
+ libghc-tagged-doc,
+ libghc-tasty-doc,
+ libghc-temporary-doc,
+ libghc-tagged-doc,
+ libghc-async-doc,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/tasty-golden
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-tasty-golden
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-tasty-golden
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-tasty-golden
 X-Description: Golden test support for Tasty test framework
  This library provides support for golden testing. A golden test is an
  IO action that writes its result to a file. To pass the test, this
@@ -44,12 +43,12 @@ X-Description: Golden test support for Tasty test framework
 
 Package: libghc-tasty-golden-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -57,22 +56,23 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-tasty-golden-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-tasty-golden-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .

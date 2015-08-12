@@ -1,30 +1,29 @@
 Source: haskell-fgl
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-mtl-dev,
+ libghc-mtl-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-mtl-doc,
 Standards-Version: 3.9.5
-Build-Depends: debhelper (>= 9)
-  , haskell-devscripts (>= 0.9)
-  , cdbs
-  , ghc
-  , ghc-prof
-  , libghc-mtl-dev
-  , libghc-mtl-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-mtl-doc
 Homepage: http://web.engr.oregonstate.edu/~erwig/fgl/haskell
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-fgl
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-fgl
-
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-fgl
 
 Package: libghc-fgl-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell graph library for GHC${haskell:ShortBlurb}
  This is Martin Erwig's Functional Graph Library.
  .
@@ -32,23 +31,22 @@ Description: Haskell graph library for GHC${haskell:ShortBlurb}
 
 Package: libghc-fgl-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Provides: ${haskell:Provides},
 Description: Haskell graph library for GHC${haskell:ShortBlurb}
  This is Martin Erwig's Functional Graph Library.
  .
  ${haskell:Blurb}
 
 Package: libghc-fgl-doc
-Section: doc
 Architecture: all
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Haskell graph library for GHC${haskell:ShortBlurb}
  This is Martin Erwig's Functional Graph Library.
  .
  ${haskell:Blurb}
-

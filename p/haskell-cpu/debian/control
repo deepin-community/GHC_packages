@@ -1,27 +1,27 @@
 Source: haskell-cpu
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-Build-Depends-Indep: ghc-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/cpu
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-cpu
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-cpu
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-cpu
 
 Package: libghc-cpu-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: low-level routines to get basic properties of the platform${haskell:ShortBlurb}
  It contains low-level routines to get basic properties of the platform,
  such as endianness and architecture.
@@ -30,11 +30,11 @@ Description: low-level routines to get basic properties of the platform${haskell
 
 Package: libghc-cpu-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: low-level routines to get basic properties of the platform${haskell:ShortBlurb}
  It contains low-level routines to get basic properties of the platform,
  such as endianness and architecture.
@@ -42,11 +42,12 @@ Description: low-level routines to get basic properties of the platform${haskell
  ${haskell:Blurb}
 
 Package: libghc-cpu-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: low-level routines to get basic properties of the platform${haskell:ShortBlurb}
  It contains low-level routines to get basic properties of the platform,
  such as endianness and architecture.

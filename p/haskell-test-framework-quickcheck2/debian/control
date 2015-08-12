@@ -1,38 +1,38 @@
 Source: haskell-test-framework-quickcheck2
-Priority: extra
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Kiwamu Okabe <kiwamu@debian.or.jp>
+Priority: extra
+Section: haskell
 Build-Depends: debhelper (>= 9),
-               haskell-devscripts (>= 0.9),
-               cdbs,
-               ghc,
-               ghc-prof,
-               libghc-extensible-exceptions-dev (>= 0.1.1),
-               libghc-extensible-exceptions-dev (<< 0.2.0),
-               libghc-extensible-exceptions-prof,
-               libghc-quickcheck2-dev (>= 2.4),
-               libghc-quickcheck2-dev (<< 2.8),
-               libghc-quickcheck2-prof,
-               libghc-test-framework-dev (>= 0.7.1),
-               libghc-test-framework-prof
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-extensible-exceptions-dev (>= 0.1.1),
+ libghc-extensible-exceptions-dev (<< 0.2.0),
+ libghc-extensible-exceptions-prof,
+ libghc-quickcheck2-dev (>= 2.4),
+ libghc-quickcheck2-dev (<< 2.8),
+ libghc-quickcheck2-prof,
+ libghc-test-framework-dev (>= 0.7.1),
+ libghc-test-framework-prof,
 Build-Depends-Indep: ghc-doc,
-                     libghc-extensible-exceptions-doc,
-                     libghc-quickcheck2-doc,
-                     libghc-test-framework-doc
+ libghc-extensible-exceptions-doc,
+ libghc-quickcheck2-doc,
+ libghc-test-framework-doc,
 Standards-Version: 3.9.5
 Homepage: http://batterseapower.github.com/test-framework/
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-test-framework-quickcheck2
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-test-framework-quickcheck2
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-test-framework-quickcheck2
 
 Package: libghc-test-framework-quickcheck2-dev
 Architecture: any
 Depends: ${shlibs:Depends},
-         ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+ ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: QuickCheck2 support for the test-framework package.
  Allows QuickCheck2 properties to be used with the test-framework package.
  .
@@ -41,10 +41,10 @@ Description: QuickCheck2 support for the test-framework package.
 Package: libghc-test-framework-quickcheck2-prof
 Architecture: any
 Depends: ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: QuickCheck2 support for the test-framework package.; profiling libraries
  Allows QuickCheck2 properties to be used with the test-framework package.
  .
@@ -54,9 +54,9 @@ Package: libghc-test-framework-quickcheck2-doc
 Architecture: all
 Section: doc
 Depends: ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: QuickCheck2 support for the test-framework package.; documentation
  Allows QuickCheck2 properties to be used with the test-framework package.
  .

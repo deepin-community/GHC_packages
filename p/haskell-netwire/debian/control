@@ -1,39 +1,39 @@
 Source: haskell-netwire
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-parallel-dev (>= 3.2)
-  , libghc-parallel-dev (<< 4)
-  , libghc-parallel-prof
-  , libghc-random-dev (>> 1.0)
-  , libghc-random-dev (<< 2)
-  , libghc-random-prof
-  , libghc-semigroups-dev (>= 0.9)
-  , libghc-semigroups-dev (<< 1)
-  , libghc-semigroups-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-parallel-doc
-  , libghc-random-doc
-  , libghc-semigroups-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-parallel-dev (>= 3.2),
+ libghc-parallel-dev (<< 4),
+ libghc-parallel-prof,
+ libghc-random-dev (>> 1.0),
+ libghc-random-dev (<< 2),
+ libghc-random-prof,
+ libghc-semigroups-dev (>= 0.9),
+ libghc-semigroups-dev (<< 1),
+ libghc-semigroups-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-parallel-doc,
+ libghc-random-doc,
+ libghc-semigroups-doc,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/netwire
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-netwire
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-netwire
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-netwire
 
 Package: libghc-netwire-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: flexible wire arrows for FRP${haskell:ShortBlurb}
  It provides efficient and flexible wire arrows for functional reactive
  programming and other forms of locally stateful programming.
@@ -42,11 +42,11 @@ Description: flexible wire arrows for FRP${haskell:ShortBlurb}
 
 Package: libghc-netwire-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: flexible wire arrows for FRP${haskell:ShortBlurb}
  It provides efficient and flexible wire arrows for functional reactive
  programming and other forms of locally stateful programming.
@@ -54,11 +54,12 @@ Description: flexible wire arrows for FRP${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-netwire-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: flexible wire arrows for FRP${haskell:ShortBlurb}
  It provides efficient and flexible wire arrows for functional reactive
  programming and other forms of locally stateful programming.

@@ -1,8 +1,8 @@
 Source: hdbc-postgresql
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: John Goerzen <jgoerzen@complete.org>
 Priority: extra
 Section: haskell
-Uploaders: John Goerzen <jgoerzen@complete.org>
-Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Build-Depends: debhelper (>= 9),
  ghc (>= 6.12),
  ghc-prof (>= 6.12),
@@ -15,30 +15,33 @@ Build-Depends: debhelper (>= 9),
  libpq-dev (>= 8.1.1),
  libghc-mtl-dev,
  libghc-hdbc-prof (>= 2.2.0),
- libghc-mtl-prof
- , libghc-convertible-dev
- , libghc-convertible-prof
- , libghc-parsec3-dev
- , libghc-parsec3-prof
- , libghc-utf8-string-dev
- , libghc-utf8-string-prof
-Build-Depends-Indep: ghc-doc
- , libghc-hdbc-doc
- , libghc-mtl-doc
- , libghc-parsec3-doc
- , libghc-convertible-doc
- , libghc-utf8-string-doc
+ libghc-mtl-prof,
+ libghc-convertible-dev,
+ libghc-convertible-prof,
+ libghc-parsec3-dev,
+ libghc-parsec3-prof,
+ libghc-utf8-string-dev,
+ libghc-utf8-string-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-hdbc-doc,
+ libghc-mtl-doc,
+ libghc-parsec3-doc,
+ libghc-convertible-doc,
+ libghc-utf8-string-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/HDBC-postgresql
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/hdbc-postgresql
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/hdbc-postgresql
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/hdbc-postgresql
 
 Package: libghc-hdbc-postgresql-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}, libpq-dev (>= 8.1.1)
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+ libpq-dev (>= 8.1.1),
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: PostgreSQL HDBC (Haskell Database Connectivity) Driver for GHC
  HDBC provides an abstraction layer between Haskell programs and SQL
  relational databases. This lets you write database code once, in
@@ -48,10 +51,12 @@ Description: PostgreSQL HDBC (Haskell Database Connectivity) Driver for GHC
 
 Package: libghc-hdbc-postgresql-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: PostgreSQL HDBC Driver for GHC; profiling libraries
  HDBC provides an abstraction layer between Haskell programs and SQL
  relational databases. This lets you write database code once, in
@@ -61,14 +66,16 @@ Description: PostgreSQL HDBC Driver for GHC; profiling libraries
  compiled for profiling.
 
 Package: libghc-hdbc-postgresql-doc
-Replaces: haskell-hdbc-postgresql-doc (<< 2.2.3.1-3)
-Conflicts: haskell-hdbc-postgresql-doc (<< 2.2.3.1-3)
-Provides: haskell-hdbc-postgresql-doc, ${haskell:Provides}
-Section: doc
 Architecture: all
-Depends: ${haskell:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: haskell-hdbc-postgresql-doc (<< 2.2.3.1-3),
+Provides: haskell-hdbc-postgresql-doc,
+ ${haskell:Provides},
+Replaces: haskell-hdbc-postgresql-doc (<< 2.2.3.1-3),
 Description: PostgreSQL HDBC (Haskell Database Connectivity) documentation
  HDBC provides an abstraction layer between Haskell programs and SQL
  relational databases. This lets you write database code once, in

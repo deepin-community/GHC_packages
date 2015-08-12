@@ -1,27 +1,27 @@
 Source: haskell-silently
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-Build-Depends-Indep: ghc-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.6
 Homepage: http://hackage.haskell.org/package/silently
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-silently
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-silently
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-silently
 
 Package: libghc-silently-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: prevent or capture writing to stdout and other handles${haskell:ShortBlurb}
  Need to prevent output to the terminal, a file, or stderr? Need to
  capture it and use it for your own means? Now you can, with silence
@@ -31,11 +31,11 @@ Description: prevent or capture writing to stdout and other handles${haskell:Sho
 
 Package: libghc-silently-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: prevent or capture writing to stdout and other handles${haskell:ShortBlurb}
  Need to prevent output to the terminal, a file, or stderr? Need to
  capture it and use it for your own means? Now you can, with silence
@@ -44,11 +44,12 @@ Description: prevent or capture writing to stdout and other handles${haskell:Sho
  ${haskell:Blurb}
 
 Package: libghc-silently-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: prevent or capture writing to stdout and other handles${haskell:ShortBlurb}
  Need to prevent output to the terminal, a file, or stderr? Need to
  capture it and use it for your own means? Now you can, with silence

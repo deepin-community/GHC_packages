@@ -1,40 +1,40 @@
 Source: haskell-test-framework-hunit
-Priority: extra
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Kiwamu Okabe <kiwamu@debian.or.jp>
+Priority: extra
+Section: haskell
 Build-Depends: debhelper (>= 9),
-               haskell-devscripts (>= 0.9),
-               cdbs,
-               ghc,
-               ghc-prof,
-               libghc-hunit-dev (>= 1.2),
-               libghc-hunit-dev (<< 2),
-               libghc-hunit-prof,
-               libghc-hunit-prof,
-               libghc-test-framework-dev (>= 0.2.0),
-               libghc-test-framework-prof
-             , libghc-extensible-exceptions-dev (>= 0.1.1),
-             , libghc-extensible-exceptions-dev (<< 0.2.0),
-             , libghc-extensible-exceptions-prof
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-hunit-dev (>= 1.2),
+ libghc-hunit-dev (<< 2),
+ libghc-hunit-prof,
+ libghc-hunit-prof,
+ libghc-test-framework-dev (>= 0.2.0),
+ libghc-test-framework-prof,
+ libghc-extensible-exceptions-dev (>= 0.1.1),
+ libghc-extensible-exceptions-dev (<< 0.2.0),
+ libghc-extensible-exceptions-prof,
 Build-Depends-Indep: ghc-doc,
-                     libghc-hunit-doc,
-                     libghc-hunit-doc,
-                     libghc-test-framework-doc
-             , libghc-extensible-exceptions-doc
+ libghc-hunit-doc,
+ libghc-hunit-doc,
+ libghc-test-framework-doc,
+ libghc-extensible-exceptions-doc,
 Standards-Version: 3.9.5
 Homepage: http://batterseapower.github.com/test-framework/
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-test-framework-hunit
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-test-framework-hunit
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-test-framework-hunit
 
 Package: libghc-test-framework-hunit-dev
 Architecture: any
 Depends: ${shlibs:Depends},
-         ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+ ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: HUnit support for the test-framework package.
  Allows HUnit test cases to be used with the test-framework package.
  .
@@ -43,10 +43,10 @@ Description: HUnit support for the test-framework package.
 Package: libghc-test-framework-hunit-prof
 Architecture: any
 Depends: ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: HUnit support for the test-framework package.; profiling libraries
  Allows HUnit test cases to be used with the test-framework package.
  .
@@ -56,9 +56,9 @@ Package: libghc-test-framework-hunit-doc
 Architecture: all
 Section: doc
 Depends: ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: HUnit support for the test-framework package.; documentation
  Allows HUnit test cases to be used with the test-framework package.
  .

@@ -1,46 +1,45 @@
 Source: haskell-juicypixels
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Raúl Benencia <rul@kalgan.cc>, Dmitry Bogatov <KAction@gnu.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-mtl-dev (>= 1.1)
-  , libghc-mtl-dev (<< 2.3)
-  , libghc-mtl-prof
-  , libghc-primitive-dev (>= 0.4)
-  , libghc-primitive-dev (<< 0.7)
-  , libghc-primitive-prof
-  , libghc-vector-dev (>= 0.9)
-  , libghc-vector-dev (<< 0.12)
-  , libghc-vector-prof
-  , libghc-zlib-dev (>= 0.5.3.1)
-  , libghc-zlib-dev (<< 0.7)
-  , libghc-zlib-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-mtl-doc
-  , libghc-primitive-doc
-  , libghc-vector-doc
-  , libghc-zlib-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-mtl-dev (>= 1.1),
+ libghc-mtl-dev (<< 2.3),
+ libghc-mtl-prof,
+ libghc-primitive-dev (>= 0.4),
+ libghc-primitive-dev (<< 0.7),
+ libghc-primitive-prof,
+ libghc-vector-dev (>= 0.9),
+ libghc-vector-dev (<< 0.12),
+ libghc-vector-prof,
+ libghc-zlib-dev (>= 0.5.3.1),
+ libghc-zlib-dev (<< 0.7),
+ libghc-zlib-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-mtl-doc,
+ libghc-primitive-doc,
+ libghc-vector-doc,
+ libghc-zlib-doc,
 Standards-Version: 3.9.6
 Homepage: http://hackage.haskell.org/package/JuicyPixels
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-juicypixels
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-juicypixels
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-juicypixels
 X-Description: Haskell picture loading and serialization library
  This library allows the developer to load and store images in PNG, Bitmap,
  Jpeg, Radiance, Tiff and Gif format.
 
 Package: libghc-juicypixels-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -48,22 +47,23 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-juicypixels-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-juicypixels-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .

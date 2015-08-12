@@ -1,31 +1,31 @@
 Source: hslogger
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: John Goerzen <jgoerzen@complete.org>
-Build-Depends: debhelper (>= 9)
- , cdbs
- , haskell-devscripts (>= 0.9)
- , cpphs
- , ghc
- , ghc-prof
- , libghc-mtl-dev
- , libghc-mtl-prof
- , libghc-hunit-dev
- , libghc-hunit-prof
- , libghc-time-dev
- , libghc-time-prof
- , libghc-network-dev
- , libghc-network-prof
-Build-Depends-Indep: ghc-doc
- , libghc-mtl-doc
- , libghc-hunit-doc
- , libghc-time-doc
- , libghc-network-doc
-Standards-Version: 3.9.6
+Priority: extra
 Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ cpphs,
+ ghc,
+ ghc-prof,
+ libghc-mtl-dev,
+ libghc-mtl-prof,
+ libghc-hunit-dev,
+ libghc-hunit-prof,
+ libghc-time-dev,
+ libghc-time-prof,
+ libghc-network-dev,
+ libghc-network-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-mtl-doc,
+ libghc-hunit-doc,
+ libghc-time-doc,
+ libghc-network-doc,
+Standards-Version: 3.9.6
 Homepage: http://software.complete.org/hslogger
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/hslogger
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/hslogger
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/hslogger
 X-Description: logging framework for Haskell
  hslogger is a logging framework for Haskell, roughly similar to
  Python's logging module.
@@ -39,10 +39,12 @@ X-Description: logging framework for Haskell
 
 Package: libghc-hslogger-dev
 Architecture: any
-Depends: ${misc:Depends}, ${haskell:Depends}, ${shlibs:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -50,24 +52,26 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-hslogger-prof
 Architecture: any
-Depends: ${misc:Depends}, ${haskell:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-hslogger-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
-Provides: hslogger-doc
-Conflicts: hslogger-doc
-Replaces: hslogger-doc
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: hslogger-doc,
+Provides: hslogger-doc,
+Replaces: hslogger-doc,
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .

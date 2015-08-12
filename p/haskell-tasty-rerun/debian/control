@@ -1,47 +1,49 @@
 Source: haskell-tasty-rerun
-Priority: extra
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joey Hess <joeyh@debian.org>
-Build-Depends: debhelper (>= 9)
- , haskell-devscripts (>= 0.8.15)
- , cdbs
- , ghc
- , ghc-prof
- , libghc-mtl-dev (>= 2.1.2)
- , libghc-mtl-prof
- , libghc-optparse-applicative-dev (>= 0.6)
- , libghc-optparse-applicative-prof
- , libghc-reducers-dev (>= 3.10.1)
- , libghc-reducers-prof
- , libghc-split-dev (>= 0.1)
- , libghc-split-dev (<< 0.3)
- , libghc-split-prof
- , libghc-stm-dev (>= 2.4.2)
- , libghc-stm-prof
- , libghc-tagged-dev (>= 0.7)
- , libghc-tagged-dev (<< 0.8)
- , libghc-tagged-prof
- , libghc-tasty-dev (>= 0.10)
- , libghc-tasty-dev (<< 0.11)
- , libghc-tasty-prof
-Build-Depends-Indep: ghc-doc
- , libghc-optparse-applicative-doc
- , libghc-reducers-doc
- , libghc-split-doc
- , libghc-stm-doc
- , libghc-tagged-doc
- , libghc-tasty-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.8.15),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-mtl-dev (>= 2.1.2),
+ libghc-mtl-prof,
+ libghc-optparse-applicative-dev (>= 0.6),
+ libghc-optparse-applicative-prof,
+ libghc-reducers-dev (>= 3.10.1),
+ libghc-reducers-prof,
+ libghc-split-dev (>= 0.1),
+ libghc-split-dev (<< 0.3),
+ libghc-split-prof,
+ libghc-stm-dev (>= 2.4.2),
+ libghc-stm-prof,
+ libghc-tagged-dev (>= 0.7),
+ libghc-tagged-dev (<< 0.8),
+ libghc-tagged-prof,
+ libghc-tasty-dev (>= 0.10),
+ libghc-tasty-dev (<< 0.11),
+ libghc-tasty-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-optparse-applicative-doc,
+ libghc-reducers-doc,
+ libghc-split-doc,
+ libghc-stm-doc,
+ libghc-tagged-doc,
+ libghc-tasty-doc,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/tasty-rerun
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-tasty-rerun
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-tasty-rerun
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-tasty-rerun
 
 Package: libghc-tasty-rerun-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell testing framework, rerun support${haskell:ShortBlurb}
  This ingredient adds the ability to run tests by first filtering the
  test tree based on the result of a previous test run.
@@ -53,9 +55,10 @@ Description: Haskell testing framework, rerun support${haskell:ShortBlurb}
 
 Package: libghc-tasty-rerun-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell testing framework, rerun support${haskell:ShortBlurb}
  This ingredient adds the ability to run tests by first filtering the
  test tree based on the result of a previous test run.
@@ -66,11 +69,12 @@ Description: Haskell testing framework, rerun support${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-tasty-rerun-doc
-Section: doc
 Architecture: all
-Depends: ${haskell:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Haskell testing framework, rereun support${haskell:ShortBlurb}
  This ingredient adds the ability to run tests by first filtering the
  test tree based on the result of a previous test run.

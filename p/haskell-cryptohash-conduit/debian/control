@@ -1,42 +1,42 @@
 Source: haskell-cryptohash-conduit
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-conduit-dev
-  , libghc-conduit-prof
-  , libghc-conduit-extra-dev
-  , libghc-conduit-extra-prof
-  , libghc-cryptohash-dev
-  , libghc-cryptohash-prof
-  , libghc-resourcet-dev
-  , libghc-resourcet-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-conduit-doc
-  , libghc-conduit-extra-doc
-  , libghc-cryptohash-doc
-  , libghc-resourcet-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-conduit-dev,
+ libghc-conduit-prof,
+ libghc-conduit-extra-dev,
+ libghc-conduit-extra-prof,
+ libghc-cryptohash-dev,
+ libghc-cryptohash-prof,
+ libghc-resourcet-dev,
+ libghc-resourcet-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-conduit-doc,
+ libghc-conduit-extra-doc,
+ libghc-cryptohash-doc,
+ libghc-resourcet-doc,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/cryptohash-conduit
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-cryptohash-conduit
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-cryptohash-conduit
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-cryptohash-conduit
 X-Description: Conduit interface to cryptohash
  This package supports the cryptohash package, providing conduits as defined in
  the conduits package.
 
 Package: libghc-cryptohash-conduit-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -44,22 +44,23 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-cryptohash-conduit-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-cryptohash-conduit-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .

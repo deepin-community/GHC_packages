@@ -1,31 +1,33 @@
 Source: haskell-void
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Iulian Udrea <iulian@linux.com>, Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-hashable-dev (>= 1.1)
-  , libghc-hashable-prof
-  , libghc-semigroups-dev (>= 0.8.2)
-  , libghc-semigroups-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-hashable-doc
-  , libghc-semigroups-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-hashable-dev (>= 1.1),
+ libghc-hashable-prof,
+ libghc-semigroups-dev (>= 0.8.2),
+ libghc-semigroups-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-hashable-doc,
+ libghc-semigroups-doc,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/void
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-void
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-void
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-void
 
 Package: libghc-void-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell 98 logically uninhabited data type${haskell:ShortBlurb}
  Haskell 98 logically uninhabited data type. Used to indicate that a given
  term should not exist.
@@ -34,10 +36,11 @@ Description: Haskell 98 logically uninhabited data type${haskell:ShortBlurb}
 
 Package: libghc-void-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell 98 logically uninhabited data type${haskell:ShortBlurb}
  Haskell 98 logically uninhabited data type. Used to indicate that a given
  term should not exist.
@@ -45,11 +48,12 @@ Description: Haskell 98 logically uninhabited data type${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-void-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Haskell 98 logically uninhabited data type${haskell:ShortBlurb}
  Haskell 98 logically uninhabited data type. Used to indicate that a given
  term should not exist.

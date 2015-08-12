@@ -1,48 +1,48 @@
 Source: haskell-crypto-pubkey
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-byteable-dev
-  , libghc-byteable-prof
-  , libghc-crypto-numbers-dev (>= 0.2.2)
-  , libghc-crypto-numbers-prof
-  , libghc-crypto-pubkey-types-dev (>= 0.4.1)
-  , libghc-crypto-pubkey-types-dev (<< 0.5)
-  , libghc-crypto-pubkey-types-prof
-  , libghc-crypto-random-dev (>> 0.0)
-  , libghc-crypto-random-dev (<< 0.1)
-  , libghc-crypto-random-prof
-  , libghc-cryptohash-dev (>> 0.9.1)
-  , libghc-cryptohash-prof
-  , libghc-tasty-dev
-  , libghc-tasty-quickcheck-dev
-  , libghc-tasty-hunit-dev
-  , libghc-tasty-kat-dev
-Build-Depends-Indep: ghc-doc
-  , libghc-byteable-doc
-  , libghc-crypto-numbers-doc
-  , libghc-crypto-pubkey-types-doc
-  , libghc-crypto-random-doc
-  , libghc-cryptohash-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-byteable-dev,
+ libghc-byteable-prof,
+ libghc-crypto-numbers-dev (>= 0.2.2),
+ libghc-crypto-numbers-prof,
+ libghc-crypto-pubkey-types-dev (>= 0.4.1),
+ libghc-crypto-pubkey-types-dev (<< 0.5),
+ libghc-crypto-pubkey-types-prof,
+ libghc-crypto-random-dev (>> 0.0),
+ libghc-crypto-random-dev (<< 0.1),
+ libghc-crypto-random-prof,
+ libghc-cryptohash-dev (>> 0.9.1),
+ libghc-cryptohash-prof,
+ libghc-tasty-dev,
+ libghc-tasty-quickcheck-dev,
+ libghc-tasty-hunit-dev,
+ libghc-tasty-kat-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-byteable-doc,
+ libghc-crypto-numbers-doc,
+ libghc-crypto-pubkey-types-doc,
+ libghc-crypto-random-doc,
+ libghc-cryptohash-doc,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/crypto-pubkey
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-crypto-pubkey
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-crypto-pubkey
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-crypto-pubkey
 
 Package: libghc-crypto-pubkey-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: public-key cryptography routines${haskell:ShortBlurb}
  Public-key cryptographic routines supporting RSA PKCS15, RSA OAEP,
  RSA PSS, DSA, ElGamal signature.  Also includes primitive support for
@@ -52,11 +52,11 @@ Description: public-key cryptography routines${haskell:ShortBlurb}
 
 Package: libghc-crypto-pubkey-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: public-key cryptography routines${haskell:ShortBlurb}
  Public-key cryptographic routines supporting RSA PKCS15, RSA OAEP,
  RSA PSS, DSA, ElGamal signature.  Also includes primitive support for
@@ -65,11 +65,12 @@ Description: public-key cryptography routines${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-crypto-pubkey-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: public-key cryptography routines${haskell:ShortBlurb}
  Public-key cryptographic routines supporting RSA PKCS15, RSA OAEP,
  RSA PSS, DSA, ElGamal signature.  Also includes primitive support for

@@ -1,27 +1,27 @@
 Source: haskell-setenv
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-Build-Depends-Indep: ghc-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/setenv
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-setenv
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-setenv
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-setenv
 
 Package: libghc-setenv-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Cross-platform library for setting environment variables${haskell:ShortBlurb}
  This package provides a cross-platform library for setting environment
  variables.
@@ -30,11 +30,11 @@ Description: Cross-platform library for setting environment variables${haskell:S
 
 Package: libghc-setenv-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Cross-platform library for setting environment variables${haskell:ShortBlurb}
  This package provides a cross-platform library for setting environment
  variables.
@@ -42,11 +42,12 @@ Description: Cross-platform library for setting environment variables${haskell:S
  ${haskell:Blurb}
 
 Package: libghc-setenv-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Cross-platform library for setting environment variables${haskell:ShortBlurb}
  This package provides a cross-platform library for setting environment
  variables.

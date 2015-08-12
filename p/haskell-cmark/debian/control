@@ -1,38 +1,36 @@
 Source: haskell-cmark
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.8.15)
-  , ghc
-  , ghc-prof
-  , libghc-text-dev (>= 1.0)
-  , libghc-text-dev (<< 1.3)
-  , libghc-text-prof
-  , libghc-hunit-dev (>= 1.2)
-  , libghc-hunit-dev (<< 1.3)
-Build-Depends-Indep: ghc-doc
-  , libghc-text-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.8.15),
+ ghc,
+ ghc-prof,
+ libghc-text-dev (>= 1.0),
+ libghc-text-dev (<< 1.3),
+ libghc-text-prof,
+ libghc-hunit-dev (>= 1.2),
+ libghc-hunit-dev (<< 1.3),
+Build-Depends-Indep: ghc-doc,
+ libghc-text-doc,
 Standards-Version: 3.9.6
 Homepage: http://hackage.haskell.org/package/cmark
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-cmark
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-cmark
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-cmark
 X-Description: fast, accurate CommonMark (Markdown) parser and renderer
  This package provides Haskell bindings for libcmark, the reference
  parser for CommonMark, a fully specified variant of Markdown.
 
 Package: libghc-cmark-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-# if this is a C library binding, repeat the dev packages here:
-# , libcmark-dev
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -40,22 +38,23 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-cmark-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-cmark-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .

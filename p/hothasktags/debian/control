@@ -1,23 +1,23 @@
 Source: hothasktags
-Section: devel
-Priority: optional
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joey Hess <joeyh@debian.org>
-Build-Depends: debhelper (>= 9)
-  , ghc
-  , libghc-src-exts-dev (>= 1.14)
-  , cpphs (>= 1.11)
-  , cpphs (<< 1.20)
-  , libghc-cmdargs-dev
+Priority: optional
+Section: devel
+Build-Depends: debhelper (>= 9),
+ ghc,
+ libghc-src-exts-dev (>= 1.14),
+ cpphs (>= 1.11),
+ cpphs (<< 1.20),
+ libghc-cmdargs-dev,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/hothasktags
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/hothasktags
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/hothasktags
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/hothasktags
 
 Package: hothasktags
 Architecture: any
-Depends: ${shlibs:Depends}
-  , ${misc:Depends}
+Depends: ${shlibs:Depends},
+ ${misc:Depends},
 Description: Haskell ctags generator
  hothasktags generates ctags files for Haskell, with knowledge of
  import lists and qualified imports. It provides a smart go-to-definition

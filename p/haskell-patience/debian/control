@@ -1,18 +1,16 @@
 Source: haskell-patience
-Priority: optional
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: John Millikin <jmillikin@gmail.com>
 DM-Upload-Allowed: yes
-Build-Depends:
-    cdbs
-  , debhelper (>= 9)
-  , haskell-devscripts (>= 0.9)
-  , ghc (>= 6.12)
-  , ghc-prof
-Build-Depends-Indep:
-    ghc-doc
-  , haddock
+Priority: optional
+Section: haskell
+Build-Depends: cdbs,
+ debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ ghc (>= 6.12),
+ ghc-prof,
+Build-Depends-Indep: ghc-doc,
+ haddock,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/patience
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-patience
@@ -20,13 +18,12 @@ Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-patience
 
 Package: libghc-patience-dev
 Architecture: any
-Depends:
-    ${haskell:Depends}
-  , ${misc:Depends}
-  , ${shlibs:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell implementation of the Patience Diff algorithm${haskell:ShortBlurb}
  This library implements the "patience diff" algorithm, as well as the patience
  algorithm for the longest increasing subsequence problem.
@@ -41,12 +38,11 @@ Description: Haskell implementation of the Patience Diff algorithm${haskell:Shor
 
 Package: libghc-patience-prof
 Architecture: any
-Depends:
-    ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell implementation of the Patience Diff algorithm${haskell:ShortBlurb}
  This library implements the "patience diff" algorithm, as well as the patience
  algorithm for the longest increasing subsequence problem.
@@ -60,13 +56,12 @@ Description: Haskell implementation of the Patience Diff algorithm${haskell:Shor
  ${haskell:Blurb}
 
 Package: libghc-patience-doc
-Section: doc
 Architecture: all
-Depends:
-    ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Haskell implementation of the Patience Diff algorithm${haskell:ShortBlurb}
  This library implements the "patience diff" algorithm, as well as the patience
  algorithm for the longest increasing subsequence problem.

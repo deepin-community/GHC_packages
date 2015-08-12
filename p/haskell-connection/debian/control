@@ -1,51 +1,51 @@
 Source: haskell-connection
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-byteable-dev
-  , libghc-byteable-prof
-  , libghc-crypto-random-dev
-  , libghc-crypto-random-prof
-  , libghc-data-default-class-dev
-  , libghc-data-default-class-prof
-  , libghc-network-dev (>= 2.3)
-  , libghc-network-prof
-  , libghc-socks-dev (>= 0.4)
-  , libghc-socks-prof
-  , libghc-securemem-dev
-  , libghc-securemem-prof
-  , libghc-tls-dev (>= 1.2)
-  , libghc-tls-prof
-  , libghc-x509-dev (>= 1.4)
-  , libghc-x509-prof
-  , libghc-x509-store-dev (>= 1.4)
-  , libghc-x509-store-prof
-  , libghc-x509-system-dev (>= 1.4)
-  , libghc-x509-system-prof
-  , libghc-x509-validation-dev (>= 1.5)
-  , libghc-x509-validation-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-byteable-doc
-  , libghc-crypto-random-doc
-  , libghc-data-default-class-doc
-  , libghc-network-doc
-  , libghc-socks-doc
-  , libghc-securemem-doc
-  , libghc-tls-doc
-  , libghc-x509-doc
-  , libghc-x509-store-doc
-  , libghc-x509-system-doc
-  , libghc-x509-validation-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-byteable-dev,
+ libghc-byteable-prof,
+ libghc-crypto-random-dev,
+ libghc-crypto-random-prof,
+ libghc-data-default-class-dev,
+ libghc-data-default-class-prof,
+ libghc-network-dev (>= 2.3),
+ libghc-network-prof,
+ libghc-socks-dev (>= 0.4),
+ libghc-socks-prof,
+ libghc-securemem-dev,
+ libghc-securemem-prof,
+ libghc-tls-dev (>= 1.2),
+ libghc-tls-prof,
+ libghc-x509-dev (>= 1.4),
+ libghc-x509-prof,
+ libghc-x509-store-dev (>= 1.4),
+ libghc-x509-store-prof,
+ libghc-x509-system-dev (>= 1.4),
+ libghc-x509-system-prof,
+ libghc-x509-validation-dev (>= 1.5),
+ libghc-x509-validation-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-byteable-doc,
+ libghc-crypto-random-doc,
+ libghc-data-default-class-doc,
+ libghc-network-doc,
+ libghc-socks-doc,
+ libghc-securemem-doc,
+ libghc-tls-doc,
+ libghc-x509-doc,
+ libghc-x509-store-doc,
+ libghc-x509-system-doc,
+ libghc-x509-validation-doc,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/connection
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-connection
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-connection
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-connection
 X-Description: simple and easy network connections API
  Simple network library for all your connection needs.  This library
  provides a very simple API to create sockets to a destination with
@@ -53,12 +53,12 @@ X-Description: simple and easy network connections API
 
 Package: libghc-connection-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -66,22 +66,23 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-connection-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-connection-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .

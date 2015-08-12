@@ -1,10 +1,9 @@
 Source: haxml
-Priority: extra
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>
-Build-Depends:
- debhelper (>= 9),
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
  cdbs,
  haskell-devscripts (>= 0.9),
  ghc,
@@ -18,15 +17,17 @@ Build-Depends:
  libghc-random-doc,
  html2text,
 Standards-Version: 3.9.4
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haxml/
-Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haxml
 Homepage: http://hackage.haskell.org/package/HaXml
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haxml
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haxml/
 
 Package: haxml
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: libghc-haxml-dev (= ${binary:Version})
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: libghc-haxml-dev (= ${binary:Version}),
+Suggests: ${haskell:Suggests},
 Description: utilities for using XML documents with Haskell
  .
  HaXml is a collection of utilities for parsing, filtering,
@@ -41,10 +42,12 @@ Description: utilities for using XML documents with Haskell
 
 Package: libghc-haxml-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: GHC libraries for using XML documents with Haskell
  HaXml is a collection of utilities for parsing, filtering,
  transforming, and generating XML documents using Haskell. Its basic
@@ -60,10 +63,12 @@ Description: GHC libraries for using XML documents with Haskell
 
 Package: libghc-haxml-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Profiling libraries for the haskell haxml library
  HaXml is a collection of utilities for parsing, filtering,
  transforming, and generating XML documents using Haskell. Its basic
@@ -78,10 +83,11 @@ Description: Profiling libraries for the haskell haxml library
 Package: libghc-haxml-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: haxml-doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: haxml-doc,
 Description: Documentation of HaXml
  HaXml is a collection of utilities for parsing, filtering,
  transforming, and generating XML documents using Haskell. Its basic

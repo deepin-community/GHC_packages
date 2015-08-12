@@ -1,45 +1,45 @@
 Source: haskell-fsnotify
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-hinotify-dev (>> 0.3.7) [linux-any]
-  , libghc-hinotify-dev (<< 0.4) [linux-any]
-  , libghc-hinotify-prof [linux-any]
-  , libghc-system-fileio-dev (>> 0.3.8)
-  , libghc-system-fileio-dev
-  , libghc-system-fileio-prof
-  , libghc-system-filepath-dev (>> 0.4.6)
-  , libghc-system-filepath-dev
-  , libghc-system-filepath-prof
-  , libghc-text-dev (>> 0.11.0)
-  , libghc-text-prof
-  , libghc-async-dev (>= 2.0.1)
-  , libghc-async-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-hinotify-doc [linux-any]
-  , libghc-system-fileio-doc
-  , libghc-system-filepath-doc
-  , libghc-text-doc
-  , libghc-async-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-hinotify-dev (>> 0.3.7) [any],
+ libghc-hinotify-dev (<< 0.4) [any],
+ libghc-hinotify-prof [any],
+ libghc-system-fileio-dev (>> 0.3.8),
+ libghc-system-fileio-dev,
+ libghc-system-fileio-prof,
+ libghc-system-filepath-dev (>> 0.4.6),
+ libghc-system-filepath-dev,
+ libghc-system-filepath-prof,
+ libghc-text-dev (>> 0.11.0),
+ libghc-text-prof,
+ libghc-async-dev (>= 2.0.1),
+ libghc-async-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-hinotify-doc [any],
+ libghc-system-fileio-doc,
+ libghc-system-filepath-doc,
+ libghc-text-doc,
+ libghc-async-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/fsnotify
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-fsnotify
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-fsnotify
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-fsnotify
 
 Package: libghc-fsnotify-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: file creation/modification/deletion notification${haskell:ShortBlurb}
  Cross-platform library for file creation, modification, and deletion
  notification. This library builds upon existing libraries for
@@ -49,11 +49,11 @@ Description: file creation/modification/deletion notification${haskell:ShortBlur
 
 Package: libghc-fsnotify-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: file creation/modification/deletion notification${haskell:ShortBlurb}
  Cross-platform library for file creation, modification, and deletion
  notification. This library builds upon existing libraries for
@@ -62,11 +62,12 @@ Description: file creation/modification/deletion notification${haskell:ShortBlur
  ${haskell:Blurb}
 
 Package: libghc-fsnotify-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: file creation/modification/deletion notification${haskell:ShortBlurb}
  Cross-platform library for file creation, modification, and deletion
  notification. This library builds upon existing libraries for

@@ -1,47 +1,49 @@
 Source: missingh
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: John Goerzen <jgoerzen@complete.org>
-Build-Depends: debhelper (>= 9)
- , cdbs (>= 0.4.59)
- , haskell-devscripts (>= 0.9)
- , ghc
- , cpphs
- , libghc-network-dev
- , libghc-mtl-dev
- , libghc-hunit-dev
- , libghc-hslogger-dev
- , libghc-regex-compat-dev
- , libghc-parsec3-dev
- , libghc-random-dev
- , ghc-prof
- , libghc-network-prof
- , libghc-mtl-prof
- , libghc-hunit-prof
- , libghc-hslogger-prof
- , libghc-regex-compat-prof
- , libghc-parsec3-prof
- , libghc-random-prof
-Build-Depends-Indep: ghc-doc
- , libghc-network-doc
- , libghc-mtl-doc
- , libghc-hunit-doc
- , libghc-hslogger-doc
- , libghc-regex-compat-doc
- , libghc-parsec3-doc
- , libghc-random-doc
-Standards-Version: 3.9.4
+Priority: extra
 Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs (>= 0.4.59),
+ haskell-devscripts (>= 0.9),
+ ghc,
+ cpphs,
+ libghc-network-dev,
+ libghc-mtl-dev,
+ libghc-hunit-dev,
+ libghc-hslogger-dev,
+ libghc-regex-compat-dev,
+ libghc-parsec3-dev,
+ libghc-random-dev,
+ ghc-prof,
+ libghc-network-prof,
+ libghc-mtl-prof,
+ libghc-hunit-prof,
+ libghc-hslogger-prof,
+ libghc-regex-compat-prof,
+ libghc-parsec3-prof,
+ libghc-random-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-network-doc,
+ libghc-mtl-doc,
+ libghc-hunit-doc,
+ libghc-hslogger-doc,
+ libghc-regex-compat-doc,
+ libghc-parsec3-doc,
+ libghc-random-doc,
+Standards-Version: 3.9.4
 Homepage: http://software.complete.org/software/projects/show/missingh
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/missingh
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/missingh
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/missingh
 
 Package: libghc-missingh-dev
 Architecture: any
-Depends: ${misc:Depends}, ${haskell:Depends}, ${shlibs:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Library of utility functions for Haskell
  MissingH is a library of all sorts of utility functions for
  Haskell programmers.  It is written in pure Haskell and thus should
@@ -56,10 +58,12 @@ Description: Library of utility functions for Haskell
 
 Package: libghc-missingh-prof
 Architecture: any
-Depends: ${misc:Depends}, ${haskell:Depends}, ${shlibs:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Library of utility functions for Haskell, profiling libraries
  MissingH is a library of all sorts of utility functions for
  Haskell programmers.  It is written in pure Haskell and thus should
@@ -75,14 +79,15 @@ Description: Library of utility functions for Haskell, profiling libraries
  This package provides the MissingH libraries compiled for profiling.
 
 Package: libghc-missingh-doc
-Section: doc
 Architecture: all
-Depends: ${haskell:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: missingh-doc
-Replaces: missingh-doc (<< 1.1.0.3-2)
-Breaks: missingh-doc (<< 1.1.0.3-2)
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Breaks: missingh-doc (<< 1.1.0.3-2),
+Provides: missingh-doc,
+Replaces: missingh-doc (<< 1.1.0.3-2),
 Description: Documentation for Haskell utility library
  MissingH is a library of all sorts of utility functions for
  Haskell programmers.  It is written in pure Haskell and thus should

@@ -1,10 +1,9 @@
 Source: haskell-hsemail
-Priority: extra
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Giovanni Mascellani <gio@debian.org>, Clint Adams <clint@debian.org>
-Build-Depends:
- debhelper (>= 9),
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
  haskell-devscripts (>= 0.9),
  cdbs,
  ghc,
@@ -12,25 +11,23 @@ Build-Depends:
  libghc-mtl-dev,
  libghc-mtl-prof,
  libghc-parsec3-dev,
- libghc-parsec3-prof
-Build-Depends-Indep:
- ghc-doc,
+ libghc-parsec3-prof,
+Build-Depends-Indep: ghc-doc,
  libghc-mtl-doc,
- libghc-parsec3-doc
+ libghc-parsec3-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/hsemail
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hsemail
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-hsemail
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hsemail
 
 Package: libghc-hsemail-dev
 Architecture: any
-Depends:
- ${haskell:Depends},
+Depends: ${haskell:Depends},
  ${misc:Depends},
- ${shlibs:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell parser for emails and SMTP conversations${haskell:ShortBlurb}
  This Haskell library is parser for email messages (as described in RFC
  2822) and SMTP conversation (as described in RFC 2821).
@@ -39,12 +36,11 @@ Description: Haskell parser for emails and SMTP conversations${haskell:ShortBlur
 
 Package: libghc-hsemail-prof
 Architecture: any
-Depends:
- ${haskell:Depends},
- ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell parser for emails and SMTP conversations${haskell:ShortBlurb}
  This Haskell library is parser for email messages (as described in RFC
  2822) and SMTP conversation (as described in RFC 2821).
@@ -52,13 +48,12 @@ Description: Haskell parser for emails and SMTP conversations${haskell:ShortBlur
  ${haskell:Blurb}
 
 Package: libghc-hsemail-doc
-Section: doc
 Architecture: all
-Depends:
- ${haskell:Depends},
- ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Haskell parser for emails and SMTP conversations${haskell:ShortBlurb}
  This Haskell library is parser for email messages (as described in RFC
  2822) and SMTP conversation (as described in RFC 2821).

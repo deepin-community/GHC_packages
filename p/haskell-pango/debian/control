@@ -1,42 +1,41 @@
 Source: haskell-pango
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Marco Túlio Gontijo e Silva <marcot@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-glib-dev (>= 0.13)
-  , libghc-glib-dev (<< 0.14)
-  , libghc-glib-prof
-  , libghc-cairo-dev (>= 0.13)
-  , libghc-cairo-dev (<< 0.14)
-  , libghc-cairo-prof
-  , libghc-text-dev (>= 0.11.0.6)
-  , libghc-text-dev (<= 1.3)
-  , libghc-text-prof
-  , libpango1.0-dev
-  , gtk2hs-buildtools (>= 0.13.0.3)
-Build-Depends-Indep: ghc-doc
-  , libghc-glib-doc
-  , libghc-cairo-doc
-  , libghc-text-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-glib-dev (>= 0.13),
+ libghc-glib-dev (<< 0.14),
+ libghc-glib-prof,
+ libghc-cairo-dev (>= 0.13),
+ libghc-cairo-dev (<< 0.14),
+ libghc-cairo-prof,
+ libghc-text-dev (>= 0.11.0.6),
+ libghc-text-dev (<= 1.3),
+ libghc-text-prof,
+ libpango1.0-dev,
+ gtk2hs-buildtools (>= 0.13.0.3),
+Build-Depends-Indep: ghc-doc,
+ libghc-glib-doc,
+ libghc-cairo-doc,
+ libghc-text-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/pango
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-pango
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-pango
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-pango
 
 Package: libghc-pango-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-  , libpango1.0-dev
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+ libpango1.0-dev,
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Binding to the Pango text rendering engine${haskell:ShortBlurb}
  This package provides a wrapper around the Pango C library that allows
  high-quality rendering of Unicode text. It can be used either with Cairo to
@@ -47,11 +46,11 @@ Description: Binding to the Pango text rendering engine${haskell:ShortBlurb}
 
 Package: libghc-pango-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Binding to the Pango text rendering engine${haskell:ShortBlurb}
  This package provides a wrapper around the Pango C library that allows
  high-quality rendering of Unicode text. It can be used either with Cairo to
@@ -61,11 +60,12 @@ Description: Binding to the Pango text rendering engine${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-pango-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Binding to the Pango text rendering engine${haskell:ShortBlurb}
  This package provides a wrapper around the Pango C library that allows
  high-quality rendering of Unicode text. It can be used either with Cairo to

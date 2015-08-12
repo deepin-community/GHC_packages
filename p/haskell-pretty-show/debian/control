@@ -1,27 +1,27 @@
 Source: haskell-pretty-show
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , happy
-  , libghc-haskell-lexer-dev
-  , libghc-haskell-lexer-prof
-  , libghc-haskell-lexer-doc
-Build-Depends-Indep: ghc-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ happy,
+ libghc-haskell-lexer-dev,
+ libghc-haskell-lexer-prof,
+ libghc-haskell-lexer-doc,
+Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/pretty-show
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-pretty-show
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-pretty-show
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-pretty-show
 
 Package: ppsh
 Architecture: any
-Depends: ${shlibs:Depends}
-  , ${misc:Depends}
+Depends: ${shlibs:Depends},
+ ${misc:Depends},
 Description: Program to parse and pretty print arbitrary Haskell Show output
  The ppsh program takes the output of an arbitrary Haskell Show output on
  stdin and pretty prints it to stdout. It uses the library provided in the
@@ -30,12 +30,12 @@ Description: Program to parse and pretty print arbitrary Haskell Show output
 
 Package: libghc-pretty-show-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: A Haskell library for pretty printing data structures${haskell:ShortBlurb}
  A library that can parse derived Show instances into a generic data structure
  which can then be pretty printed. For complex data structures, the pretty
@@ -45,12 +45,12 @@ Description: A Haskell library for pretty printing data structures${haskell:Shor
 
 Package: libghc-pretty-show-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Profiling libraries for pretty printing Haskell data structures${haskell:ShortBlurb}
  A library that can parse derived Show instances into a generic data structure
  which can then be pretty printed. For complex data structures, the pretty
@@ -59,15 +59,15 @@ Description: Profiling libraries for pretty printing Haskell data structures${ha
  ${haskell:Blurb}
 
 Package: libghc-pretty-show-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Documentation for Haskell pretty printing library${haskell:ShortBlurb}
  A library that can parse derived Show instances into a generic data structure
  which can then be pretty printed. For complex data structures, the pretty
  printed version is significantly more readable that the standard Show output.
  .
  ${haskell:Blurb}
-

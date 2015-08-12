@@ -1,39 +1,39 @@
 Source: haskell-derive
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Masayuki Hatta <mhatta@debian.org>
 Priority: extra
 Section: haskell
-Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Masayuki Hatta (mhatta) <mhatta@debian.org>
-Build-Depends: debhelper (>= 9)
-               , haskell-devscripts (>= 0.9)
-               , cdbs
-               , ghc
-               , ghc-prof
-               , ghc-ghci
-               , libghc-src-exts-dev (>= 1.16)
-               , libghc-src-exts-dev (<< 1.17)
-               , libghc-src-exts-prof
-               , libghc-syb-dev
-               , libghc-syb-prof
-               , libghc-uniplate-dev (>= 1.5)
-               , libghc-uniplate-dev (<< 1.7)
-               , libghc-uniplate-prof
-Build-Depends-Indep: ghc-doc
-                     , libghc-src-exts-doc
-                     , libghc-syb-doc
-                     , libghc-uniplate-doc
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ ghc-ghci,
+ libghc-src-exts-dev (>= 1.16),
+ libghc-src-exts-dev (<< 1.17),
+ libghc-src-exts-prof,
+ libghc-syb-dev,
+ libghc-syb-prof,
+ libghc-uniplate-dev (>= 1.5),
+ libghc-uniplate-dev (<< 1.7),
+ libghc-uniplate-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-src-exts-doc,
+ libghc-syb-doc,
+ libghc-uniplate-doc,
 Standards-Version: 3.9.4
 Homepage: http://community.haskell.org/~ndm/derive/
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-derive
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-derive
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-derive
 
 Package: libghc-derive-dev
 Architecture: any
-Depends: ${shlibs:Depends}
-         , ${haskell:Depends}
-         , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${shlibs:Depends},
+ ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Deriving instances for data types in Haskell${haskell:ShortBlurb}
  Data.Derive is a library and a tool for deriving instances for Haskell
  programs.  It is designed to work with custom derivations, SYB and
@@ -45,11 +45,11 @@ Description: Deriving instances for data types in Haskell${haskell:ShortBlurb}
 
 Package: libghc-derive-prof
 Architecture: any
-Depends: ${haskell:Depends}
-         , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Deriving instances for data types in Haskell${haskell:ShortBlurb}
  Data.Derive is a library and a tool for deriving instances for Haskell
  programs.  It is designed to work with custom derivations, SYB and
@@ -62,10 +62,10 @@ Description: Deriving instances for data types in Haskell${haskell:ShortBlurb}
 Package: libghc-derive-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends}
-         , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Deriving instances for data types in Haskell${haskell:ShortBlurb}
  Data.Derive is a library and a tool for deriving instances for Haskell
  programs.  It is designed to work with custom derivations, SYB and
@@ -78,7 +78,9 @@ Description: Deriving instances for data types in Haskell${haskell:ShortBlurb}
 Package: haskell-derive-utils
 Architecture: any
 Section: misc
-Depends: ${shlibs:Depends}, ${haskell:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends},
+ ${haskell:Depends},
+ ${misc:Depends},
 Description: Deriving instances for data types in Haskell
  Data.Derive is a library and a tool for deriving instances for Haskell
  programs.  It is designed to work with custom derivations, SYB and

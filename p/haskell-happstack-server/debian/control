@@ -1,99 +1,97 @@
 Source: haskell-happstack-server
-Priority: extra
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Giovanni Mascellani <gio@debian.org>
-Build-Depends:
- debhelper (>= 9),
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
  haskell-devscripts (>= 0.9),
  cdbs,
  ghc,
- ghc-prof
- , libghc-base64-bytestring-dev (>= 1.0)
- , libghc-base64-bytestring-dev (<< 1.1)
- , libghc-base64-bytestring-prof
- , libghc-blaze-html-dev (>= 0.5)
- , libghc-blaze-html-dev (<< 0.9)
- , libghc-blaze-html-prof
- , libghc-exceptions-dev
- , libghc-exceptions-prof
- , libghc-extensible-exceptions-dev
- , libghc-extensible-exceptions-prof
- , libghc-hslogger-dev (>= 1.0.2)
- , libghc-hslogger-prof
- , libghc-html-dev
- , libghc-html-prof
- , libghc-monad-control-dev (>= 0.3)
- , libghc-monad-control-dev (<< 1.1)
- , libghc-monad-control-prof
- , libghc-mtl-dev (>= 2)
- , libghc-mtl-dev (<< 2.3)
- , libghc-mtl-prof
- , libghc-network-dev (>= 2.6)
- , libghc-network-dev (<< 2.7)
- , libghc-network-prof
- , libghc-network-uri-dev (>= 2.6)
- , libghc-network-uri-dev (<< 2.7)
- , libghc-network-uri-prof
- , libghc-parsec3-dev
- , libghc-parsec3-prof
- , libghc-sendfile-dev (>= 0.7.1)
- , libghc-sendfile-dev (<< 0.8)
- , libghc-sendfile-prof
- , libghc-syb-dev
- , libghc-syb-prof
- , libghc-system-filepath-dev (>= 0.3.1)
- , libghc-system-filepath-prof
- , libghc-text-dev (>= 0.10)
- , libghc-text-dev (<< 1.3)
- , libghc-text-prof
- , libghc-threads-dev (>= 0.5)
- , libghc-threads-prof
- , libghc-time-compat-dev
- , libghc-time-compat-prof
- , libghc-transformers-base-dev (>= 0.4)
- , libghc-transformers-base-dev (<< 0.5)
- , libghc-transformers-base-prof
- , libghc-utf8-string-dev (>= 0.3.4)
- , libghc-utf8-string-dev (<< 1.1)
- , libghc-utf8-string-prof
- , libghc-zlib-dev
- , libghc-zlib-prof
- , libghc-hunit-dev
-Build-Depends-Indep: ghc-doc
- , libghc-base64-bytestring-doc
- , libghc-blaze-html-doc
- , libghc-exceptions-doc
- , libghc-extensible-exceptions-doc
- , libghc-hslogger-doc
- , libghc-html-doc
- , libghc-monad-control-doc
- , libghc-mtl-doc
- , libghc-network-doc
- , libghc-network-uri-doc
- , libghc-sendfile-doc
- , libghc-syb-doc
- , libghc-system-filepath-doc
- , libghc-text-doc
- , libghc-threads-doc
- , libghc-time-compat-doc
- , libghc-transformers-base-doc
- , libghc-utf8-string-doc
- , libghc-zlib-doc
+ ghc-prof,
+ libghc-base64-bytestring-dev (>= 1.0),
+ libghc-base64-bytestring-dev (<< 1.1),
+ libghc-base64-bytestring-prof,
+ libghc-blaze-html-dev (>= 0.5),
+ libghc-blaze-html-dev (<< 0.9),
+ libghc-blaze-html-prof,
+ libghc-exceptions-dev,
+ libghc-exceptions-prof,
+ libghc-extensible-exceptions-dev,
+ libghc-extensible-exceptions-prof,
+ libghc-hslogger-dev (>= 1.0.2),
+ libghc-hslogger-prof,
+ libghc-html-dev,
+ libghc-html-prof,
+ libghc-monad-control-dev (>= 0.3),
+ libghc-monad-control-dev (<< 1.1),
+ libghc-monad-control-prof,
+ libghc-mtl-dev (>= 2),
+ libghc-mtl-dev (<< 2.3),
+ libghc-mtl-prof,
+ libghc-network-dev (>= 2.6),
+ libghc-network-dev (<< 2.7),
+ libghc-network-prof,
+ libghc-network-uri-dev (>= 2.6),
+ libghc-network-uri-dev (<< 2.7),
+ libghc-network-uri-prof,
+ libghc-parsec3-dev,
+ libghc-parsec3-prof,
+ libghc-sendfile-dev (>= 0.7.1),
+ libghc-sendfile-dev (<< 0.8),
+ libghc-sendfile-prof,
+ libghc-syb-dev,
+ libghc-syb-prof,
+ libghc-system-filepath-dev (>= 0.3.1),
+ libghc-system-filepath-prof,
+ libghc-text-dev (>= 0.10),
+ libghc-text-dev (<< 1.3),
+ libghc-text-prof,
+ libghc-threads-dev (>= 0.5),
+ libghc-threads-prof,
+ libghc-time-compat-dev,
+ libghc-time-compat-prof,
+ libghc-transformers-base-dev (>= 0.4),
+ libghc-transformers-base-dev (<< 0.5),
+ libghc-transformers-base-prof,
+ libghc-utf8-string-dev (>= 0.3.4),
+ libghc-utf8-string-dev (<< 1.1),
+ libghc-utf8-string-prof,
+ libghc-zlib-dev,
+ libghc-zlib-prof,
+ libghc-hunit-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-base64-bytestring-doc,
+ libghc-blaze-html-doc,
+ libghc-exceptions-doc,
+ libghc-extensible-exceptions-doc,
+ libghc-hslogger-doc,
+ libghc-html-doc,
+ libghc-monad-control-doc,
+ libghc-mtl-doc,
+ libghc-network-doc,
+ libghc-network-uri-doc,
+ libghc-sendfile-doc,
+ libghc-syb-doc,
+ libghc-system-filepath-doc,
+ libghc-text-doc,
+ libghc-threads-doc,
+ libghc-time-compat-doc,
+ libghc-transformers-base-doc,
+ libghc-utf8-string-doc,
+ libghc-zlib-doc,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/happstack-server
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-happstack-server
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-happstack-server
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-happstack-server
 
 Package: libghc-happstack-server-dev
 Architecture: any
-Depends:
- ${haskell:Depends},
+Depends: ${haskell:Depends},
  ${misc:Depends},
- ${shlibs:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Happstack web framework, HTTP server${haskell:ShortBlurb}
  Happstack is a Haskell web framework, designed so that developers can
  prototype quickly, deploy painlessly, scale massively, operate reliably,
@@ -112,12 +110,11 @@ Description: Happstack web framework, HTTP server${haskell:ShortBlurb}
 
 Package: libghc-happstack-server-prof
 Architecture: any
-Depends:
- ${haskell:Depends},
- ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Happstack web framework, HTTP server${haskell:ShortBlurb}
  Happstack is a Haskell web framework, designed so that developers can
  prototype quickly, deploy painlessly, scale massively, operate reliably,
@@ -135,13 +132,12 @@ Description: Happstack web framework, HTTP server${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-happstack-server-doc
-Section: doc
 Architecture: all
-Depends:
- ${haskell:Depends},
- ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Happstack web framework, HTTP server${haskell:ShortBlurb}
  Happstack is a Haskell web framework, designed so that developers can
  prototype quickly, deploy painlessly, scale massively, operate reliably,

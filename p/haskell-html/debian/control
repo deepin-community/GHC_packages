@@ -1,26 +1,26 @@
 Source: haskell-html
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ ghc-doc,
 Standards-Version: 3.9.4
-Build-Depends: debhelper (>= 9)
-  , haskell-devscripts (>= 0.9)
-  , cdbs
-  , ghc
-  , ghc-prof
-  , ghc-doc
 Homepage: http://web.archive.org/web/20070406145557/http://www.cse.ogi.edu/~andy/html/intro.htm
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-html
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-html
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-html
 
 Package: libghc-html-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell html library for GHC
  This package provides a library for the Haskell programming language.
  .
@@ -28,9 +28,9 @@ Description: Haskell html library for GHC
 
 Package: libghc-html-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Provides: ${haskell:Provides},
 Description: Haskell html library for GHC; profiling libraries
  This package provides a library for the Haskell programming language,
  compiled for profiling.
@@ -38,12 +38,12 @@ Description: Haskell html library for GHC; profiling libraries
  This library provides combinators for constructing HTML documents.
 
 Package: libghc-html-doc
-Section: doc
 Architecture: all
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Haskell html library for GHC; documentation
  This package provides the documentation for a library for the Haskell
  programming language.

@@ -1,45 +1,45 @@
 Source: haskell-wai
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-blaze-builder-dev (>= 0.2.1.4)
-  , libghc-blaze-builder-dev (<< 0.5)
-  , libghc-blaze-builder-prof
-  , libghc-http-types-dev (>= 0.7)
-  , libghc-http-types-prof
-  , libghc-network-dev (>= 2.2.1.5)
-  , libghc-network-prof
-  , libghc-text-dev (>= 0.7)
-  , libghc-text-prof
-  , libghc-vault-dev (>= 0.3)
-  , libghc-vault-dev (<< 0.4)
-  , libghc-vault-prof
-  , libghc-hspec-dev
-Build-Depends-Indep: ghc-doc
-  , libghc-blaze-builder-doc
-  , libghc-http-types-doc
-  , libghc-network-doc
-  , libghc-text-doc
-  , libghc-vault-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-blaze-builder-dev (>= 0.2.1.4),
+ libghc-blaze-builder-dev (<< 0.5),
+ libghc-blaze-builder-prof,
+ libghc-http-types-dev (>= 0.7),
+ libghc-http-types-prof,
+ libghc-network-dev (>= 2.2.1.5),
+ libghc-network-prof,
+ libghc-text-dev (>= 0.7),
+ libghc-text-prof,
+ libghc-vault-dev (>= 0.3),
+ libghc-vault-dev (<< 0.4),
+ libghc-vault-prof,
+ libghc-hspec-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-blaze-builder-doc,
+ libghc-http-types-doc,
+ libghc-network-doc,
+ libghc-text-doc,
+ libghc-vault-doc,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/wai
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-wai
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-wai
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-wai
 
 Package: libghc-wai-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: web application interface${haskell:ShortBlurb}
  It provides a common protocol for communication between web
  applications and web servers.
@@ -48,11 +48,11 @@ Description: web application interface${haskell:ShortBlurb}
 
 Package: libghc-wai-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: web application interface${haskell:ShortBlurb}
  It provides a common protocol for communication between web
  applications and web servers.
@@ -60,11 +60,12 @@ Description: web application interface${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-wai-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: web application interface${haskell:ShortBlurb}
  It provides a common protocol for communication between web
  applications and web servers.

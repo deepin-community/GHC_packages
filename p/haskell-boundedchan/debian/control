@@ -1,27 +1,27 @@
 Source: haskell-boundedchan
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-Build-Depends-Indep: ghc-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/BoundedChan
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-boundedchan
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-boundedchan
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-boundedchan
 
 Package: libghc-boundedchan-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: bounded (maximum-limited) channels${haskell:ShortBlurb}
  This library introduces BoundedChan. BoundedChans differ from Chans
  in that they are guaranteed to contain no more than a certain number
@@ -31,11 +31,11 @@ Description: bounded (maximum-limited) channels${haskell:ShortBlurb}
 
 Package: libghc-boundedchan-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: bounded (maximum-limited) channels${haskell:ShortBlurb}
  This library introduces BoundedChan. BoundedChans differ from Chans
  in that they are guaranteed to contain no more than a certain number
@@ -44,11 +44,12 @@ Description: bounded (maximum-limited) channels${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-boundedchan-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: bounded (maximum-limited) channels${haskell:ShortBlurb}
  This library introduces BoundedChan. BoundedChans differ from Chans
  in that they are guaranteed to contain no more than a certain number

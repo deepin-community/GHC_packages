@@ -1,46 +1,46 @@
 Source: haskell-yesod-auth-hashdb
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.8.15)
-  , ghc
-  , ghc-prof
-  , libghc-cryptohash-dev (>= 0.8)
-  , libghc-cryptohash-prof
-  , libghc-persistent-dev (>= 2.1)
-  , libghc-persistent-dev (<< 2.3)
-  , libghc-persistent-prof
-  , libghc-pwstore-fast-dev (>= 2.2)
-  , libghc-pwstore-fast-prof
-  , libghc-text-dev (>= 0.7)
-  , libghc-text-prof
-  , libghc-yesod-core-dev (>= 1.4)
-  , libghc-yesod-core-dev (<< 1.5)
-  , libghc-yesod-core-prof
-  , libghc-yesod-auth-dev (>= 1.4)
-  , libghc-yesod-auth-dev (<< 1.5)
-  , libghc-yesod-auth-prof
-  , libghc-yesod-form-dev (>= 1.4)
-  , libghc-yesod-form-dev (<< 1.5)
-  , libghc-yesod-form-prof
-  , libghc-yesod-persistent-dev (>= 1.2)
-  , libghc-yesod-persistent-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-cryptohash-doc
-  , libghc-persistent-doc
-  , libghc-pwstore-fast-doc
-  , libghc-text-doc
-  , libghc-yesod-auth-doc
-  , libghc-yesod-core-doc
-  , libghc-yesod-form-doc
-  , libghc-yesod-persistent-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.8.15),
+ ghc,
+ ghc-prof,
+ libghc-cryptohash-dev (>= 0.8),
+ libghc-cryptohash-prof,
+ libghc-persistent-dev (>= 2.1),
+ libghc-persistent-dev (<< 2.3),
+ libghc-persistent-prof,
+ libghc-pwstore-fast-dev (>= 2.2),
+ libghc-pwstore-fast-prof,
+ libghc-text-dev (>= 0.7),
+ libghc-text-prof,
+ libghc-yesod-core-dev (>= 1.4),
+ libghc-yesod-core-dev (<< 1.5),
+ libghc-yesod-core-prof,
+ libghc-yesod-auth-dev (>= 1.4),
+ libghc-yesod-auth-dev (<< 1.5),
+ libghc-yesod-auth-prof,
+ libghc-yesod-form-dev (>= 1.4),
+ libghc-yesod-form-dev (<< 1.5),
+ libghc-yesod-form-prof,
+ libghc-yesod-persistent-dev (>= 1.2),
+ libghc-yesod-persistent-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-cryptohash-doc,
+ libghc-persistent-doc,
+ libghc-pwstore-fast-doc,
+ libghc-text-doc,
+ libghc-yesod-auth-doc,
+ libghc-yesod-core-doc,
+ libghc-yesod-form-doc,
+ libghc-yesod-persistent-doc,
 Standards-Version: 3.9.6
 Homepage: http://hackage.haskell.org/package/yesod-auth-hashdb
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-yesod-auth-hashdb
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-yesod-auth-hashdb
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-yesod-auth-hashdb
 X-Description: HashDB authentication plugin for Yesod web framework
  This package is the Yesod.Auth.HashDB plugin, originally included in
  yesod-auth, but now modified to be more secure and placed in a
@@ -48,12 +48,12 @@ X-Description: HashDB authentication plugin for Yesod web framework
 
 Package: libghc-yesod-auth-hashdb-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -61,22 +61,23 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-yesod-auth-hashdb-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-yesod-auth-hashdb-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .

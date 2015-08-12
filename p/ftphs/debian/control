@@ -1,34 +1,32 @@
 Source: ftphs
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: John Goerzen <jgoerzen@complete.org>, Louis Bettens <louis@bettens.info>
 Priority: extra
 Section: haskell
-Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: John Goerzen <jgoerzen@complete.org>
-         , Louis Bettens <louis@bettens.info>
-Build-Depends:
-    debhelper (>= 9)
-  , haskell-devscripts (>= 0.9)
-  , cpphs
-  , libghc-mtl-dev
-  , libghc-mtl-prof
-  , libghc-missingh-dev (>= 1.0.3.2)
-  , libghc-missingh-prof
-  , libghc-hslogger-dev (>= 1.0.7.2)
-  , libghc-hslogger-prof
-  , libghc-hunit-dev
-  , libghc-hunit-prof
-  , libghc-regex-compat-dev
-  , libghc-regex-compat-prof
-  , cdbs
-Build-Depends-Indep: ghc-doc
-  , libghc-mtl-doc
-  , libghc-missingh-doc
-  , libghc-hslogger-doc
-  , libghc-hunit-doc
-  , libghc-regex-compat-doc
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cpphs,
+ libghc-mtl-dev,
+ libghc-mtl-prof,
+ libghc-missingh-dev (>= 1.0.3.2),
+ libghc-missingh-prof,
+ libghc-hslogger-dev (>= 1.0.7.2),
+ libghc-hslogger-prof,
+ libghc-hunit-dev,
+ libghc-hunit-prof,
+ libghc-regex-compat-dev,
+ libghc-regex-compat-prof,
+ cdbs,
+Build-Depends-Indep: ghc-doc,
+ libghc-mtl-doc,
+ libghc-missingh-doc,
+ libghc-hslogger-doc,
+ libghc-hunit-doc,
+ libghc-regex-compat-doc,
 Standards-Version: 3.9.4
 Homepage: http://software.complete.org/ftphs
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/ftphs
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/ftphs
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/ftphs
 X-Description: FTP Client and Server Library for Haskell
  ftphs provides a Haskell library to implement a FTP client
  and a FTP server.
@@ -43,12 +41,12 @@ X-Description: FTP Client and Server Library for Haskell
 
 Package: libghc-ftphs-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -56,22 +54,23 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-ftphs-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-ftphs-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .

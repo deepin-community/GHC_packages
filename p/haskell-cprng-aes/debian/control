@@ -1,38 +1,38 @@
 Source: haskell-cprng-aes
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-byteable-dev
-  , libghc-byteable-prof
-  , libghc-crypto-random-dev (>> 0.0.7)
-  , libghc-crypto-random-dev (<< 0.1)
-  , libghc-crypto-random-prof
-  , libghc-cipher-aes-dev (>> 0.2.9)
-  , libghc-cipher-aes-dev (<< 0.3)
-  , libghc-cipher-aes-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-byteable-doc
-  , libghc-crypto-random-doc
-  , libghc-cipher-aes-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-byteable-dev,
+ libghc-byteable-prof,
+ libghc-crypto-random-dev (>> 0.0.7),
+ libghc-crypto-random-dev (<< 0.1),
+ libghc-crypto-random-prof,
+ libghc-cipher-aes-dev (>> 0.2.9),
+ libghc-cipher-aes-dev (<< 0.3),
+ libghc-cipher-aes-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-byteable-doc,
+ libghc-crypto-random-doc,
+ libghc-cipher-aes-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/cprng-aes
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-cprng-aes
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-cprng-aes
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-cprng-aes
 
 Package: libghc-cprng-aes-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: pseudo-random number generator using AES in counter mode${haskell:ShortBlurb}
  It contains a simple crypto pseudo-random-number-generator with
  really good randomness property.
@@ -54,11 +54,11 @@ Description: pseudo-random number generator using AES in counter mode${haskell:S
 
 Package: libghc-cprng-aes-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: pseudo-random number generator using AES in counter mode${haskell:ShortBlurb}
  It contains a simple crypto pseudo-random-number-generator with
  really good randomness property.
@@ -79,11 +79,12 @@ Description: pseudo-random number generator using AES in counter mode${haskell:S
  ${haskell:Blurb}
 
 Package: libghc-cprng-aes-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: pseudo-random number generator using AES in counter mode${haskell:ShortBlurb}
   It contains a simple crypto pseudo-random-number-generator with
  really good randomness property.

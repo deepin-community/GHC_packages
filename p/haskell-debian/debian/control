@@ -1,86 +1,85 @@
 Source: haskell-debian
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>, Dmitry Bogatov <KAction@gnu.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-either-dev
-  , libghc-either-prof
-  , libghc-exceptions-dev
-  , libghc-exceptions-prof
-  , libghc-bzlib-dev
-  , libghc-bzlib-prof
-  , libghc-haxml-dev (>= 1:1.20)
-  , libghc-haxml-prof
-  , libghc-listlike-dev (>= 4.1.1)
-  , libghc-listlike-prof
-  , libghc-mtl-dev
-  , libghc-mtl-prof
-  , libghc-network-dev (>= 2.6)
-  , libghc-network-prof
-  , libghc-network-uri-dev (>= 2.6)
-  , libghc-network-uri-prof
-  , libghc-parsec3-dev
-  , libghc-parsec3-prof
-  , libghc-process-extras-dev
-  , libghc-process-extras-prof
-  , libghc-puremd5-dev
-  , libghc-puremd5-prof
-  , libghc-regex-compat-dev
-  , libghc-regex-compat-prof
-  , libghc-regex-tdfa-dev
-  , libghc-regex-tdfa-prof
-  , libghc-text-dev
-  , libghc-text-prof
-  , libghc-unixutils-dev (>= 1.50)
-  , libghc-unixutils-prof
-  , libghc-utf8-string-dev
-  , libghc-utf8-string-prof
-  , libghc-zlib-dev
-  , libghc-zlib-prof
-  , libghc-hunit-dev
-  , libghc-hunit-prof
-  , libghc-prettyclass-dev
-  , libghc-prettyclass-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-either-doc
-  , libghc-exceptions-doc
-  , libghc-mtl-doc
-  , libghc-parsec3-doc
-  , libghc-regex-compat-doc
-  , libghc-regex-tdfa-doc
-  , libghc-bzlib-doc
-  , libghc-haxml-doc
-  , libghc-listlike-doc
-  , libghc-unixutils-doc
-  , libghc-zlib-doc
-  , libghc-network-doc
-  , libghc-network-uri-doc
-  , libghc-utf8-string-doc
-  , libghc-process-extras-doc
-  , libghc-puremd5-doc
-  , libghc-text-doc
-  , libghc-prettyclass-doc
-  , libghc-hunit-doc
-Build-Conflicts:
-  libghc-parsec2-dev
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-either-dev,
+ libghc-either-prof,
+ libghc-exceptions-dev,
+ libghc-exceptions-prof,
+ libghc-bzlib-dev,
+ libghc-bzlib-prof,
+ libghc-haxml-dev (>= 1:1.20),
+ libghc-haxml-prof,
+ libghc-listlike-dev (>= 4.1.1),
+ libghc-listlike-prof,
+ libghc-mtl-dev,
+ libghc-mtl-prof,
+ libghc-network-dev (>= 2.6),
+ libghc-network-prof,
+ libghc-network-uri-dev (>= 2.6),
+ libghc-network-uri-prof,
+ libghc-parsec3-dev,
+ libghc-parsec3-prof,
+ libghc-process-extras-dev,
+ libghc-process-extras-prof,
+ libghc-puremd5-dev,
+ libghc-puremd5-prof,
+ libghc-regex-compat-dev,
+ libghc-regex-compat-prof,
+ libghc-regex-tdfa-dev,
+ libghc-regex-tdfa-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+ libghc-unixutils-dev (>= 1.50),
+ libghc-unixutils-prof,
+ libghc-utf8-string-dev,
+ libghc-utf8-string-prof,
+ libghc-zlib-dev,
+ libghc-zlib-prof,
+ libghc-hunit-dev,
+ libghc-hunit-prof,
+ libghc-prettyclass-dev,
+ libghc-prettyclass-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-either-doc,
+ libghc-exceptions-doc,
+ libghc-mtl-doc,
+ libghc-parsec3-doc,
+ libghc-regex-compat-doc,
+ libghc-regex-tdfa-doc,
+ libghc-bzlib-doc,
+ libghc-haxml-doc,
+ libghc-listlike-doc,
+ libghc-unixutils-doc,
+ libghc-zlib-doc,
+ libghc-network-doc,
+ libghc-network-uri-doc,
+ libghc-utf8-string-doc,
+ libghc-process-extras-doc,
+ libghc-puremd5-doc,
+ libghc-text-doc,
+ libghc-prettyclass-doc,
+ libghc-hunit-doc,
+Build-Conflicts: libghc-parsec2-dev,
 Standards-Version: 3.9.6
 Homepage: http://hackage.haskell.org/package/debian
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-debian
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-debian
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-debian
 
 Package: libghc-debian-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell library for working with the Debian package system
  This library includes modules covering almost every aspect of the Debian
  packaging system, including low level data types such as version numbers
@@ -92,12 +91,12 @@ Description: Haskell library for working with the Debian package system
 
 Package: libghc-debian-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Profiling library for working with the Debian package system${haskell:ShortBlurb}
  This library includes modules covering almost every aspect of the Debian
  packaging system, including low level data types such as version numbers
@@ -108,11 +107,12 @@ Description: Profiling library for working with the Debian package system${haske
  ${haskell:Blurb}
 
 Package: libghc-debian-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Documentation for Debian package system library${haskell:ShortBlurb}
  This library includes modules covering almost every aspect of the Debian
  packaging system, including low level data types such as version numbers
@@ -123,10 +123,11 @@ Description: Documentation for Debian package system library${haskell:ShortBlurb
  ${haskell:Blurb}
 
 Package: haskell-debian-utils
-Section: devel
 Architecture: any
-Depends: ${misc:Depends}, ${shlibs:Depends}
-Recommends: apt-file
+Section: devel
+Depends: ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: apt-file,
 Description: Various helpers to work with Debian packages${haskell:ShortBlurb}
  This package contains tools shipped with the Haskell library “debian”:
  .

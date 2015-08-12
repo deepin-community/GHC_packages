@@ -1,28 +1,30 @@
 Source: haskell-haskell-src
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ ghc-doc,
+ happy,
+ libghc-syb-dev,
+ libghc-syb-prof,
+ libghc-syb-doc,
 Standards-Version: 3.9.4
-Build-Depends: debhelper (>= 9)
-  , haskell-devscripts (>= 0.9)
-  , cdbs
-  , ghc
-  , ghc-prof
-  , ghc-doc
-  , happy
-  , libghc-syb-dev
-  , libghc-syb-prof
-  , libghc-syb-doc
 Homepage: http://hackage.haskell.org/package/haskell-src
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-haskell-src
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-haskell-src
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-haskell-src
 
 Package: libghc-haskell-src-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell module to manipulate Haskell source
  This package provides a library for the Haskell programming language.
  .
@@ -31,9 +33,9 @@ Description: Haskell module to manipulate Haskell source
 
 Package: libghc-haskell-src-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Provides: ${haskell:Provides},
 Description: Haskell module to manipulate Haskell source; profiling libraries
  This package provides a library for the Haskell programming language,
  compiled for profiling.
@@ -42,12 +44,12 @@ Description: Haskell module to manipulate Haskell source; profiling libraries
  an abstract syntax, lexer, parser and pretty-printer.
 
 Package: libghc-haskell-src-doc
-Section: doc
 Architecture: all
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Haskell module to manipulate Haskell source; documentation
  This package provides the documentation for a library for the Haskell
  programming language.

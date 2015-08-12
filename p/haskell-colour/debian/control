@@ -1,27 +1,26 @@
 Source: haskell-colour
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Marco Túlio Gontijo e Silva <marcot@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-Build-Depends-Indep: ghc-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/colour
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-colour
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-colour
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-colour
 
 Package: libghc-colour-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: A model for human colour/color perception${haskell:ShortBlurb}
  This package provides a data type for colours and transparency. Colours can be
  blended and composed. Various colour spaces are supported. A module of colour
@@ -31,11 +30,11 @@ Description: A model for human colour/color perception${haskell:ShortBlurb}
 
 Package: libghc-colour-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: A model for human colour/color perception${haskell:ShortBlurb}
  This package provides a data type for colours and transparency. Colours can be
  blended and composed. Various colour spaces are supported. A module of colour
@@ -44,11 +43,12 @@ Description: A model for human colour/color perception${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-colour-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: A model for human colour/color perception${haskell:ShortBlurb}
  This package provides a data type for colours and transparency. Colours can be
  blended and composed. Various colour spaces are supported. A module of colour

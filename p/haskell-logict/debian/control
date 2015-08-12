@@ -1,31 +1,31 @@
 Source: haskell-logict
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-mtl-dev (>= 2)
-  , libghc-mtl-dev (<< 2.3)
-  , libghc-mtl-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-mtl-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-mtl-dev (>= 2),
+ libghc-mtl-dev (<< 2.3),
+ libghc-mtl-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-mtl-doc,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/logict
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-logict
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-logict
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-logict
 
 Package: libghc-logict-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Backtracking logic-programming monad${haskell:ShortBlurb}
  It is a continuation-based, backtracking, logic programming monad. An
  adaptation of the two-continuation implementation found in the paper
@@ -36,11 +36,11 @@ Description: Backtracking logic-programming monad${haskell:ShortBlurb}
 
 Package: libghc-logict-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Backtracking logic-programming monad${haskell:ShortBlurb}
  It is a continuation-based, backtracking, logic programming monad. An
  adaptation of the two-continuation implementation found in the paper
@@ -50,11 +50,12 @@ Description: Backtracking logic-programming monad${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-logict-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Backtracking logic-programming monad${haskell:ShortBlurb}
  It is a continuation-based, backtracking, logic programming monad. An
  adaptation of the two-continuation implementation found in the paper

@@ -1,10 +1,9 @@
 Source: haskell-utf8-string
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>, Clint Adams <clint@debian.org>
-Build-Depends:
- debhelper (>= 9),
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
  haskell-devscripts (>= 0.9),
  cdbs,
  ghc,
@@ -13,17 +12,16 @@ Build-Depends:
  cpphs,
 Standards-Version: 3.9.4
 Homepage: http://github.com/glguy/utf8-string/
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-utf8-string/
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-utf8-string
-
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-utf8-string/
 
 Package: libghc-utf8-string-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: GHC libraries for the Haskell UTF-8 library
  UTF8 layer for Strings. The utf8-string package provides operations
  for encoding UTF8 strings to Word8 lists and back, and for reading and
@@ -33,9 +31,9 @@ Description: GHC libraries for the Haskell UTF-8 library
 
 Package: libghc-utf8-string-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Provides: ${haskell:Provides},
 Description: Profiling support for the GHC Haskell UTF-8 library
  UTF8 layer for Strings. The utf8-string package provides operations
  for encoding UTF8 strings to Word8 lists and back, and for reading and
@@ -45,12 +43,12 @@ Description: Profiling support for the GHC Haskell UTF-8 library
  libghc-utf8-string-dev.
 
 Package: libghc-utf8-string-doc
-Section: doc
 Architecture: all
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: GHC libraries for the Haskell UTF-8 library (documentation)
  UTF8 layer for Strings. The utf8-string package provides operations
  for encoding UTF8 strings to Word8 lists and back, and for reading and

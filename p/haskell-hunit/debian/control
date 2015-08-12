@@ -1,21 +1,26 @@
 Source: haskell-hunit
-Section: haskell
-Priority: optional
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Marco Túlio Gontijo e Silva <marcot@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ cdbs,
+Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.4
-Build-Depends: debhelper (>= 9), haskell-devscripts (>= 0.9), ghc, ghc-prof, cdbs
-Build-Depends-Indep: ghc-doc
 Homepage: http://hunit.sourceforge.net/
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hunit
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-hunit
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hunit
 
 Package: libghc-hunit-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell unit testing framework for GHC${haskell:ShortBlurb}
  HUnit is a unit testing framework for Haskell, inspired by the
  JUnit tool for Java, see: <http://www.junit.org>.
@@ -24,10 +29,11 @@ Description: Haskell unit testing framework for GHC${haskell:ShortBlurb}
 
 Package: libghc-hunit-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell unit testing framework for GHC${haskell:ShortBlurb}
  HUnit is a unit testing framework for Haskell, inspired by the
  JUnit tool for Java, see: <http://www.junit.org>.
@@ -35,14 +41,15 @@ Description: Haskell unit testing framework for GHC${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-hunit-doc
-Section: doc
 Architecture: all
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Haskell unit testing framework for GHC${haskell:ShortBlurb}
  HUnit is a unit testing framework for Haskell, inspired by the
  JUnit tool for Java, see: <http://www.junit.org>.
  .
  ${haskell:Blurb}
-

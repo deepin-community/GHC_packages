@@ -1,54 +1,54 @@
 Source: haskell-cassava
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-attoparsec-dev (>= 0.10.2)
-  , libghc-attoparsec-dev (<< 0.14)
-  , libghc-attoparsec-prof
-  , libghc-blaze-builder-dev (<< 0.5)
-  , libghc-blaze-builder-prof
-  , libghc-hashable-dev (<< 1.3)
-  , libghc-hashable-prof
-  , libghc-text-dev (<< 1.3)
-  , libghc-text-prof
-  , libghc-unordered-containers-dev (<< 0.3)
-  , libghc-unordered-containers-prof
-  , libghc-vector-dev (<< 0.12)
-  , libghc-vector-prof
-  , libghc-hunit-dev
-  , libghc-quickcheck2-dev
-  , libghc-test-framework-dev
-  , libghc-test-framework-hunit-dev
-  , libghc-test-framework-quickcheck2-dev
-Build-Depends-Indep: ghc-doc
-  , libghc-attoparsec-doc
-  , libghc-blaze-builder-doc
-  , libghc-hashable-doc
-  , libghc-text-doc
-  , libghc-unordered-containers-doc
-  , libghc-vector-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-attoparsec-dev (>= 0.10.2),
+ libghc-attoparsec-dev (<< 0.14),
+ libghc-attoparsec-prof,
+ libghc-blaze-builder-dev (<< 0.5),
+ libghc-blaze-builder-prof,
+ libghc-hashable-dev (<< 1.3),
+ libghc-hashable-prof,
+ libghc-text-dev (<< 1.3),
+ libghc-text-prof,
+ libghc-unordered-containers-dev (<< 0.3),
+ libghc-unordered-containers-prof,
+ libghc-vector-dev (<< 0.12),
+ libghc-vector-prof,
+ libghc-hunit-dev,
+ libghc-quickcheck2-dev,
+ libghc-test-framework-dev,
+ libghc-test-framework-hunit-dev,
+ libghc-test-framework-quickcheck2-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-attoparsec-doc,
+ libghc-blaze-builder-doc,
+ libghc-hashable-doc,
+ libghc-text-doc,
+ libghc-unordered-containers-doc,
+ libghc-vector-doc,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/cassava
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-cassava
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-cassava
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-cassava
 X-Description: CSV parsing and encoding library
  A CSV parsing and encoding library optimized for ease of use and
  high performance.
 
 Package: libghc-cassava-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -56,22 +56,23 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-cassava-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-cassava-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .

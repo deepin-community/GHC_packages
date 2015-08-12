@@ -1,35 +1,35 @@
 Source: haskell-vault
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-hashable-dev (>> 1.1.2.5)
-  , libghc-hashable-dev (<< 1.3)
-  , libghc-hashable-prof
-  , libghc-unordered-containers-dev (>> 0.2.3.0)
-  , libghc-unordered-containers-dev (<< 0.3)
-  , libghc-unordered-containers-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-hashable-doc
-  , libghc-unordered-containers-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-hashable-dev (>> 1.1.2.5),
+ libghc-hashable-dev (<< 1.3),
+ libghc-hashable-prof,
+ libghc-unordered-containers-dev (>> 0.2.3.0),
+ libghc-unordered-containers-dev (<< 0.3),
+ libghc-unordered-containers-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-hashable-doc,
+ libghc-unordered-containers-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/vault
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-vault
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-vault
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-vault
 
 Package: libghc-vault-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: typed, persistent store for values of arbitrary types${haskell:ShortBlurb}
  A vault is a typed, persistent store for values of arbitrary types. It's
  like having first-class access to the storage space behind IORefs.
@@ -41,11 +41,11 @@ Description: typed, persistent store for values of arbitrary types${haskell:Shor
 
 Package: libghc-vault-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: typed, persistent store for values of arbitrary types${haskell:ShortBlurb}
  A vault is a typed, persistent store for values of arbitrary types. It's
  like having first-class access to the storage space behind IORefs.
@@ -56,11 +56,12 @@ Description: typed, persistent store for values of arbitrary types${haskell:Shor
  ${haskell:Blurb}
 
 Package: libghc-vault-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: typed, persistent store for values of arbitrary types${haskell:ShortBlurb}
  A vault is a typed, persistent store for values of arbitrary types. It's
  like having first-class access to the storage space behind IORefs.

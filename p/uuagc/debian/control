@@ -1,31 +1,31 @@
 Source: uuagc
-Section: devel
-Priority: optional
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>
-Build-Depends:
-    debhelper (>= 9)
-  , haskell-devscripts (>= 0.9)
-  , cdbs
-  , ghc
-  , uuagc (<< 0.9.42.1-1) | uuagc (>> 0.9.42.2-2)
-  , libghc-uuagc-cabal-dev (>= 1.0.4.0-2)
-  , libghc-mtl-dev (>= 1.1.1.1)
-  , libghc-src-exts-dev (>= 1.11.1)
+Priority: optional
+Section: devel
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ uuagc (<< 0.9.42.1-1) | uuagc (>> 0.9.42.2-2),
+ libghc-uuagc-cabal-dev (>= 1.0.4.0-2),
+ libghc-mtl-dev (>= 1.1.1.1),
+ libghc-src-exts-dev (>= 1.11.1),
 Standards-Version: 3.9.4
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/uuagc
-Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/uuagc
 Homepage: http://www.cs.uu.nl/wiki/HUT/AttributeGrammarSystem
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/uuagc
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/uuagc
 
 Package: uuagc
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends},
+ ${misc:Depends},
 Description: compiler for the Utrecht University Attribute Grammar system
  The Attribute Grammar system can be used to annotate the production
  rules of a grammar with inherited and synthesised attributes. The
  values of the attributes can be determined while parsing/traversing
  the abstract syntax tree and will give the semantic value of the tree.
- . 
+ .
  The inherited attributes are values which are passed downwards through
  the abstract syntax tree and the synthesised attributes are passed
  upwards. Haskell expressions are used to describe the computation of
@@ -39,4 +39,3 @@ Description: compiler for the Utrecht University Attribute Grammar system
  .
  The (Utrecht University) Attribute Grammar system is part of the
  Haskell Utrecht Tools set.
-

@@ -1,41 +1,39 @@
 Source: haskell-pandoc-types
-Priority: extra
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Giovanni Mascellani <gio@debian.org>, Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , haskell-devscripts (>= 0.9)
-  , cdbs
-  , ghc
-  , ghc-prof
-  , ghc-doc
-  , libghc-aeson-dev (>= 0.6.2)
-  , libghc-aeson-dev (<< 0.10)
-  , libghc-aeson-prof
-  , libghc-deepseq-generics-dev (>= 0.1)
-  , libghc-deepseq-generics-dev (<< 0.2)
-  , libghc-deepseq-generics-prof
-  , libghc-syb-dev (>= 0.1)
-  , libghc-syb-dev (<< 0.6)
-  , libghc-syb-prof
-Build-Depends-Indep:
-  , libghc-aeson-doc
-  , libghc-deepseq-generics-doc
-  , libghc-syb-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ ghc-doc,
+ libghc-aeson-dev (>= 0.6.2),
+ libghc-aeson-dev (<< 0.10),
+ libghc-aeson-prof,
+ libghc-deepseq-generics-dev (>= 0.1),
+ libghc-deepseq-generics-dev (<< 0.2),
+ libghc-deepseq-generics-prof,
+ libghc-syb-dev (>= 0.1),
+ libghc-syb-dev (<< 0.6),
+ libghc-syb-prof,
+Build-Depends-Indep: libghc-aeson-doc,
+ libghc-deepseq-generics-doc,
+ libghc-syb-doc,
 Standards-Version: 3.9.6
 Homepage: http://hackage.haskell.org/package/pandoc-types
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-pandoc-types
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-pandoc-types
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-pandoc-types
 
 Package: libghc-pandoc-types-dev
 Architecture: any
-Depends:
- ${haskell:Depends},
+Depends: ${haskell:Depends},
  ${misc:Depends},
- ${shlibs:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell data types to represent structured documents${haskell:ShortBlurb}
  This package ships the data types used by package Pandoc to internally
  represent structured documents. They've been split off from the main
@@ -46,12 +44,11 @@ Description: Haskell data types to represent structured documents${haskell:Short
 
 Package: libghc-pandoc-types-prof
 Architecture: any
-Depends:
- ${haskell:Depends},
- ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell data types to represent structured documents${haskell:ShortBlurb}
  This package ships the data types used by package Pandoc to internally
  represent structured documents. They've been split off from the main
@@ -61,13 +58,12 @@ Description: Haskell data types to represent structured documents${haskell:Short
  ${haskell:Blurb}
 
 Package: libghc-pandoc-types-doc
-Section: doc
 Architecture: all
-Depends:
- ${haskell:Depends},
- ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Haskell data types to represent structured documents${haskell:ShortBlurb}
  This package ships the data types used by package Pandoc to internally
  represent structured documents. They've been split off from the main

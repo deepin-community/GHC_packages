@@ -1,10 +1,12 @@
 Source: haskell-ghc-events
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Ernesto Hernández-Novich (USB) <emhn@usb.ve>
-Build-Depends: debhelper (>= 9), cdbs, haskell-devscripts (>= 0.9),
- ghc, ghc-prof,
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
  libghc-mtl-dev (>= 1.1),
  libghc-mtl-dev (<< 3),
  libghc-mtl-prof,
@@ -12,15 +14,17 @@ Build-Depends-Indep: ghc-doc,
  libghc-mtl-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/ghc-events
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-ghc-events
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=haskell/haskell-ghc-events
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-ghc-events
 
 Package: libghc-ghc-events-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Library for parsing GHC event log files${haskell:ShortBlurb}
  This library provides functions to parse .eventlog files emitted by
  the GHC.12.1 and later runtimes.
@@ -29,10 +33,12 @@ Description: Library for parsing GHC event log files${haskell:ShortBlurb}
 
 Package: libghc-ghc-events-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Library for parsing GHC event log files${haskell:ShortBlurb}
  This library provides functions to parse .eventlog files emitted by
  the GHC.12.1 and later runtimes.
@@ -40,11 +46,12 @@ Description: Library for parsing GHC event log files${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-ghc-events-doc
-Section: doc
 Architecture: all
-Depends: ${haskell:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Library for parsing GHC event log files${haskell:ShortBlurb}
  This library provides functions to parse .eventlog files emitted by
  the GHC.12.1 and later runtimes.

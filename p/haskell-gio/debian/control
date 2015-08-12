@@ -1,36 +1,35 @@
 Source: haskell-gio
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Marco Túlio Gontijo e Silva <marcot@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-mtl-dev
-  , libghc-mtl-prof
-  , libghc-glib-dev (>= 0.13)
-  , libghc-glib-dev (<< 0.14)
-  , libghc-glib-prof
-  , libglib2.0-dev
-  , gtk2hs-buildtools (>= 0.13.0.3)
-Build-Depends-Indep: ghc-doc
-  , libghc-mtl-doc
-  , libghc-glib-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-mtl-dev,
+ libghc-mtl-prof,
+ libghc-glib-dev (>= 0.13),
+ libghc-glib-dev (<< 0.14),
+ libghc-glib-prof,
+ libglib2.0-dev,
+ gtk2hs-buildtools (>= 0.13.0.3),
+Build-Depends-Indep: ghc-doc,
+ libghc-mtl-doc,
+ libghc-glib-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/gio
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-gio
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-gio
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-gio
 
 Package: libghc-gio-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Binding to the GIO${haskell:ShortBlurb}
  GIO is striving to provide a modern, easy-to-use VFS API that sits at the
  right level in the library stack. The goal is to overcome the shortcomings of
@@ -43,11 +42,11 @@ Description: Binding to the GIO${haskell:ShortBlurb}
 
 Package: libghc-gio-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Binding to the GIO${haskell:ShortBlurb}
  GIO is striving to provide a modern, easy-to-use VFS API that sits at the
  right level in the library stack. The goal is to overcome the shortcomings of
@@ -59,11 +58,12 @@ Description: Binding to the GIO${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-gio-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Binding to the GIO${haskell:ShortBlurb}
  GIO is striving to provide a modern, easy-to-use VFS API that sits at the
  right level in the library stack. The goal is to overcome the shortcomings of

@@ -1,34 +1,34 @@
 Source: haskell-gloss
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-opengl-dev (>= 2.12)
-  , libghc-opengl-dev (<< 2.13)
-  , libghc-opengl-prof
-  , libghc-glut-dev (>= 2.7)
-  , libghc-glut-dev (<< 2.8)
-  , libghc-glut-prof
-  , libghc-bmp-dev (>= 1.2)
-  , libghc-bmp-dev (<< 1.3)
-  , libghc-bmp-prof
-  , libghc-gloss-rendering-dev (>= 1.9.3)
-  , libghc-gloss-rendering-dev (<< 1.9.4)
-  , libghc-gloss-rendering-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-opengl-doc
-  , libghc-glut-doc
-  , libghc-bmp-doc
-  , libghc-gloss-rendering-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-opengl-dev (>= 2.12),
+ libghc-opengl-dev (<< 2.13),
+ libghc-opengl-prof,
+ libghc-glut-dev (>= 2.7),
+ libghc-glut-dev (<< 2.8),
+ libghc-glut-prof,
+ libghc-bmp-dev (>= 1.2),
+ libghc-bmp-dev (<< 1.3),
+ libghc-bmp-prof,
+ libghc-gloss-rendering-dev (>= 1.9.3),
+ libghc-gloss-rendering-dev (<< 1.9.4),
+ libghc-gloss-rendering-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-opengl-doc,
+ libghc-glut-doc,
+ libghc-bmp-doc,
+ libghc-gloss-rendering-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/gloss
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-gloss
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-gloss
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-gloss
 X-Description: Painless 2D vector graphics, animations and simulations.
  Gloss hides the pain of drawing simple vector graphics behind a nice data type
  and a few display functions. Gloss comes for with support for animations and
@@ -37,12 +37,12 @@ X-Description: Painless 2D vector graphics, animations and simulations.
 
 Package: libghc-gloss-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -50,22 +50,23 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-gloss-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-gloss-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .

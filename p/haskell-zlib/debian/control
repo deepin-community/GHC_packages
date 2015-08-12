@@ -1,29 +1,28 @@
 Source: haskell-zlib
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Marco Túlio Gontijo e Silva <marcot@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ zlib1g-dev,
+Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.4
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , zlib1g-dev
-Build-Depends-Indep: ghc-doc
 Homepage: http://hackage.haskell.org/package/zlib
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-zlib
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-zlib
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-zlib
 
 Package: libghc-zlib-dev
 Architecture: any
-Depends: zlib1g-dev
-  , ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: zlib1g-dev,
+ ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Compression and decompression in the gzip and zlib formats${haskell:ShortBlurb}
  This package provides a pure interface for compressing and decompressing
  streams of data represented as lazy ByteStrings. It uses the zlib C library so
@@ -38,12 +37,12 @@ Description: Compression and decompression in the gzip and zlib formats${haskell
 
 Package: libghc-zlib-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Compression and decompression in the gzip and zlib formats${haskell:ShortBlurb}
  This package provides a pure interface for compressing and decompressing
  streams of data represented as lazy ByteStrings. It uses the zlib C library so
@@ -57,14 +56,15 @@ Description: Compression and decompression in the gzip and zlib formats${haskell
  ${haskell:Blurb}
 
 Package: libghc-zlib-doc
-Provides: haskell-zlib-doc
-Replaces: haskell-zlib-doc (<< 0.5.2.0-3)
-Conflicts: haskell-zlib-doc (<< 0.5.2.0-3)
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: haskell-zlib-doc (<< 0.5.2.0-3),
+Provides: haskell-zlib-doc,
+Replaces: haskell-zlib-doc (<< 0.5.2.0-3),
 Description: Compression and decompression in the gzip and zlib formats${haskell:ShortBlurb}
  This package provides a pure interface for compressing and decompressing
  streams of data represented as lazy ByteStrings. It uses the zlib C library so

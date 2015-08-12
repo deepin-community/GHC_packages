@@ -1,59 +1,60 @@
 Source: haskell-diagrams-core
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-semigroups-dev (>= 0.8.4)
-  , libghc-semigroups-dev (<< 0.17)
-  , libghc-semigroups-prof
-  , libghc-vector-space-dev (>= 0.8.4)
-  , libghc-vector-space-dev (<< 0.11)
-  , libghc-vector-space-prof
-  , libghc-vector-space-points-dev (>= 0.1)
-  , libghc-vector-space-points-dev (<< 0.3)
-  , libghc-vector-space-points-prof
-  , libghc-memotrie-dev (>= 0.4.7)
-  , libghc-memotrie-dev (<< 0.7)
-  , libghc-memotrie-prof
-  , libghc-newtype-dev (>= 0.2)
-  , libghc-newtype-dev (<< 0.3)
-  , libghc-newtype-prof
-  , libghc-monoid-extras-dev (>= 0.3)
-  , libghc-monoid-extras-dev (<< 0.4)
-  , libghc-monoid-extras-prof
-  , libghc-dual-tree-dev (>= 0.2)
-  , libghc-dual-tree-dev (<< 0.3)
-  , libghc-dual-tree-prof
-  , libghc-lens-dev (>= 4.0)
-  , libghc-lens-dev (<< 4.10)
-  , libghc-lens-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-semigroups-doc
-  , libghc-vector-space-doc
-  , libghc-vector-space-points-doc
-  , libghc-memotrie-doc
-  , libghc-newtype-doc
-  , libghc-monoid-extras-doc
-  , libghc-dual-tree-doc
-  , libghc-lens-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-semigroups-dev (>= 0.8.4),
+ libghc-semigroups-dev (<< 0.17),
+ libghc-semigroups-prof,
+ libghc-vector-space-dev (>= 0.8.4),
+ libghc-vector-space-dev (<< 0.11),
+ libghc-vector-space-prof,
+ libghc-vector-space-points-dev (>= 0.1),
+ libghc-vector-space-points-dev (<< 0.3),
+ libghc-vector-space-points-prof,
+ libghc-memotrie-dev (>= 0.4.7),
+ libghc-memotrie-dev (<< 0.7),
+ libghc-memotrie-prof,
+ libghc-newtype-dev (>= 0.2),
+ libghc-newtype-dev (<< 0.3),
+ libghc-newtype-prof,
+ libghc-monoid-extras-dev (>= 0.3),
+ libghc-monoid-extras-dev (<< 0.4),
+ libghc-monoid-extras-prof,
+ libghc-dual-tree-dev (>= 0.2),
+ libghc-dual-tree-dev (<< 0.3),
+ libghc-dual-tree-prof,
+ libghc-lens-dev (>= 4.0),
+ libghc-lens-dev (<< 4.10),
+ libghc-lens-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-semigroups-doc,
+ libghc-vector-space-doc,
+ libghc-vector-space-points-doc,
+ libghc-memotrie-doc,
+ libghc-newtype-doc,
+ libghc-monoid-extras-doc,
+ libghc-dual-tree-doc,
+ libghc-lens-doc,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/diagrams-core
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-diagrams-core
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-diagrams-core
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-diagrams-core
 
 Package: libghc-diagrams-core-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}, libghc-diagrams-dev
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+ libghc-diagrams-dev,
+Provides: ${haskell:Provides},
 Description: Core libraries for diagrams EDSL${haskell:ShortBlurb}
  The core modules underlying diagrams, an embedded domain-specific language for
  compositional, declarative drawing.
@@ -62,11 +63,12 @@ Description: Core libraries for diagrams EDSL${haskell:ShortBlurb}
 
 Package: libghc-diagrams-core-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}, libghc-diagrams-prof
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+ libghc-diagrams-prof,
+Provides: ${haskell:Provides},
 Description: Core libraries for diagrams EDSL${haskell:ShortBlurb}
  The core modules underlying diagrams, an embedded domain-specific language for
  compositional, declarative drawing.
@@ -74,11 +76,13 @@ Description: Core libraries for diagrams EDSL${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-diagrams-core-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}, libghc-diagrams-doc
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+ libghc-diagrams-doc,
 Description: Core libraries for diagrams EDSL${haskell:ShortBlurb}
  The core modules underlying diagrams, an embedded domain-specific language for
  compositional, declarative drawing.

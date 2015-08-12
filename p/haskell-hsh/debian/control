@@ -1,38 +1,39 @@
 Source: haskell-hsh
-Priority: optional
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: John Goerzen <jgoerzen@complete.org>
-Build-Depends: cdbs,
-               debhelper (>= 9),
-               ghc (>= 6.12),
-               ghc-doc (>= 6.12),
-               ghc-prof (>= 6.12),
-               haddock,
-               haskell-devscripts (>= 0.9),
-               hscolour,
-               libghc-hslogger-dev (>= 1.0.8-2~),
-               libghc-hslogger-doc (>= 1.0.8-2~),
-               libghc-hslogger-prof (>= 1.0.8-2~),
-               libghc-missingh-dev (>= 1.1.0.1-1~),
-               libghc-missingh-doc (>= 1.1.0.1-1~),
-               libghc-missingh-prof (>= 1.1.0.1-1~),
-               libghc-mtl-dev,
-               libghc-mtl-doc,
-               libghc-mtl-prof
-Standards-Version: 3.9.4
+Priority: optional
 Section: haskell
+Build-Depends: cdbs,
+ debhelper (>= 9),
+ ghc (>= 6.12),
+ ghc-doc (>= 6.12),
+ ghc-prof (>= 6.12),
+ haddock,
+ haskell-devscripts (>= 0.9),
+ hscolour,
+ libghc-hslogger-dev (>= 1.0.8-2~),
+ libghc-hslogger-doc (>= 1.0.8-2~),
+ libghc-hslogger-prof (>= 1.0.8-2~),
+ libghc-missingh-dev (>= 1.1.0.1-1~),
+ libghc-missingh-doc (>= 1.1.0.1-1~),
+ libghc-missingh-prof (>= 1.1.0.1-1~),
+ libghc-mtl-dev,
+ libghc-mtl-doc,
+ libghc-mtl-prof,
+Standards-Version: 3.9.4
 Homepage: http://software.complete.org/hsh
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hsh
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-hsh
-
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hsh
 
 Package: libghc-hsh-dev
-Section: haskell
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Section: haskell
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Library to mix shell scripting with Haskell programs
  HSH is designed to let you mix and match shell expressions with
  Haskell programs. With HSH, it is possible to easily run shell
@@ -40,12 +41,14 @@ Description: Library to mix shell scripting with Haskell programs
  to/from other shell commands and arbitrary Haskell functions at will.
 
 Package: libghc-hsh-prof
-Section: haskell
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Section: haskell
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Library to mix shell scripting with Haskell programs; profiling
  HSH is designed to let you mix and match shell expressions with
  Haskell programs. With HSH, it is possible to easily run shell
@@ -55,12 +58,14 @@ Description: Library to mix shell scripting with Haskell programs; profiling
  This package contains the HSH library compiled for profiling support
 
 Package: libghc-hsh-doc
-Section: haskell
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Section: haskell
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Library to mix shell scripting with Haskell programs; documentation
  HSH is designed to let you mix and match shell expressions with
  Haskell programs. With HSH, it is possible to easily run shell

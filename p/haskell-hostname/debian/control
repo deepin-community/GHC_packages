@@ -1,28 +1,28 @@
 Source: haskell-hostname
-Priority: extra
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Kiwamu Okabe <kiwamu@debian.or.jp>
+DM-Upload-Allowed: yes
+Priority: extra
+Section: haskell
 Build-Depends: debhelper (>= 9),
-               haskell-devscripts (>= 0.9),
-               cdbs,
-               ghc,
-               ghc-prof
-Build-Depends-Indep: ghc-doc
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/hostname
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hostname
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-hostname
-DM-Upload-Allowed: yes
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hostname
 
 Package: libghc-hostname-dev
 Architecture: any
 Depends: ${shlibs:Depends},
-         ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+ ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: providing a cross-platform means of determining the hostname
  A very simple package providing a cross-platform means of determining
  the hostname
@@ -32,10 +32,10 @@ Description: providing a cross-platform means of determining the hostname
 Package: libghc-hostname-prof
 Architecture: any
 Depends: ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: providing a cross-platform means of determining the hostname; profiling lib
  A very simple package providing a cross-platform means of determining
  the hostname
@@ -46,9 +46,9 @@ Package: libghc-hostname-doc
 Architecture: all
 Section: doc
 Depends: ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: providing a cross-platform means of determining the hostname; documentation
  A very simple package providing a cross-platform means of determining
  the hostname

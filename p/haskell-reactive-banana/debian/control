@@ -1,39 +1,39 @@
 Source: haskell-reactive-banana
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-vault-dev (>> 0.3)
-  , libghc-vault-dev (<< 0.4)
-  , libghc-vault-prof
-  , libghc-unordered-containers-dev (>> 0.2.1)
-  , libghc-unordered-containers-dev (<< 0.3)
-  , libghc-unordered-containers-prof
-  , libghc-hashable-dev (>> 1.1)
-  , libghc-hashable-dev (<< 1.3)
-  , libghc-hashable-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-vault-doc
-  , libghc-unordered-containers-doc
-  , libghc-hashable-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-vault-dev (>> 0.3),
+ libghc-vault-dev (<< 0.4),
+ libghc-vault-prof,
+ libghc-unordered-containers-dev (>> 0.2.1),
+ libghc-unordered-containers-dev (<< 0.3),
+ libghc-unordered-containers-prof,
+ libghc-hashable-dev (>> 1.1),
+ libghc-hashable-dev (<< 1.3),
+ libghc-hashable-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-vault-doc,
+ libghc-unordered-containers-doc,
+ libghc-hashable-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/reactive-banana
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-reactive-banana
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-reactive-banana
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-reactive-banana
 
 Package: libghc-reactive-banana-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: small but solid library for FRP${haskell:ShortBlurb}
  The current focus of this library is to implement a subset of the semantic
  model for functional reactive programming pioneered by Conal Elliott.
@@ -58,11 +58,11 @@ Description: small but solid library for FRP${haskell:ShortBlurb}
 
 Package: libghc-reactive-banana-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: small but solid library for FRP${haskell:ShortBlurb}
  The current focus of this library is to implement a subset of the semantic
  model for functional reactive programming pioneered by Conal Elliott.
@@ -86,11 +86,12 @@ Description: small but solid library for FRP${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-reactive-banana-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: small but solid library for FRP${haskell:ShortBlurb}
  The current focus of this library is to implement a subset of the semantic
  model for functional reactive programming pioneered by Conal Elliott.
@@ -112,5 +113,3 @@ Description: small but solid library for FRP${haskell:ShortBlurb}
  versions.
  .
  ${haskell:Blurb}
-
-

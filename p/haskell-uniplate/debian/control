@@ -1,38 +1,37 @@
 Source: haskell-uniplate
-Priority: extra
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>
-Build-Depends:
- , debhelper (>= 9)
- , haskell-devscripts (>= 0.9)
- , cdbs
- , ghc
- , ghc-prof
- , libghc-syb-dev
- , libghc-syb-prof
- , libghc-syb-doc
- , libghc-hashable-dev (>= 1.1.2.3)
- , libghc-hashable-dev (<< 1.3)
- , libghc-hashable-prof
- , libghc-hashable-doc
- , libghc-unordered-containers-dev (>= 0.2.1)
- , libghc-unordered-containers-dev (<< 0.3)
- , libghc-unordered-containers-prof
- , libghc-unordered-containers-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-syb-dev,
+ libghc-syb-prof,
+ libghc-syb-doc,
+ libghc-hashable-dev (>= 1.1.2.3),
+ libghc-hashable-dev (<< 1.3),
+ libghc-hashable-prof,
+ libghc-hashable-doc,
+ libghc-unordered-containers-dev (>= 0.2.1),
+ libghc-unordered-containers-dev (<< 0.3),
+ libghc-unordered-containers-prof,
+ libghc-unordered-containers-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/uniplate
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-uniplate
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-uniplate
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-uniplate
 
 Package: libghc-uniplate-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: A Haskell library for uniform type generic traversals${haskell:ShortBlurb}
  .
  The Haskell Uniplate library abstracts over common traversals and queries in a
@@ -46,12 +45,12 @@ Description: A Haskell library for uniform type generic traversals${haskell:Shor
 
 Package: libghc-uniplate-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Profiling libraries for uniform type generic traversals${haskell:ShortBlurb}
  .
  The Haskell Uniplate library abstracts over common traversals and queries in a
@@ -64,11 +63,12 @@ Description: Profiling libraries for uniform type generic traversals${haskell:Sh
  ${haskell:Blurb}
 
 Package: libghc-uniplate-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Documentation for uniform type generic traversals${haskell:ShortBlurb}
  .
  The Haskell Uniplate library abstracts over common traversals and queries in a

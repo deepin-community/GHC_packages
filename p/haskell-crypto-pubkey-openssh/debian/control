@@ -1,54 +1,54 @@
 Source: haskell-crypto-pubkey-openssh
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-asn1-encoding-dev
-  , libghc-asn1-encoding-prof
-  , libghc-asn1-types-dev
-  , libghc-asn1-types-prof
-  , libghc-attoparsec-dev
-  , libghc-attoparsec-prof
-  , libghc-base64-bytestring-dev
-  , libghc-base64-bytestring-prof
-  , libghc-cereal-dev
-  , libghc-cereal-prof
-  , libghc-crypto-pubkey-types-dev
-  , libghc-crypto-pubkey-types-prof
-  , libghc-pem-dev
-  , libghc-pem-prof
-  , libghc-tasty-dev
-  , libghc-tasty-quickcheck-dev
-  , libghc-quickcheck2-dev
-  , libghc-temporary-dev
-Build-Depends-Indep: ghc-doc
-  , libghc-asn1-encoding-doc
-  , libghc-asn1-types-doc
-  , libghc-attoparsec-doc
-  , libghc-base64-bytestring-doc
-  , libghc-cereal-doc
-  , libghc-crypto-pubkey-types-doc
-  , libghc-pem-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-asn1-encoding-dev,
+ libghc-asn1-encoding-prof,
+ libghc-asn1-types-dev,
+ libghc-asn1-types-prof,
+ libghc-attoparsec-dev,
+ libghc-attoparsec-prof,
+ libghc-base64-bytestring-dev,
+ libghc-base64-bytestring-prof,
+ libghc-cereal-dev,
+ libghc-cereal-prof,
+ libghc-crypto-pubkey-types-dev,
+ libghc-crypto-pubkey-types-prof,
+ libghc-pem-dev,
+ libghc-pem-prof,
+ libghc-tasty-dev,
+ libghc-tasty-quickcheck-dev,
+ libghc-quickcheck2-dev,
+ libghc-temporary-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-asn1-encoding-doc,
+ libghc-asn1-types-doc,
+ libghc-attoparsec-doc,
+ libghc-base64-bytestring-doc,
+ libghc-cereal-doc,
+ libghc-crypto-pubkey-types-doc,
+ libghc-pem-doc,
 Standards-Version: 3.9.6
 Homepage: http://hackage.haskell.org/package/crypto-pubkey-openssh
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-crypto-pubkey-openssh
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-crypto-pubkey-openssh
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-crypto-pubkey-openssh
 X-Description: OpenSSH key codec
  This encodes and decodes OpenSSH public and private keys.
 
 Package: libghc-crypto-pubkey-openssh-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -56,22 +56,23 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-crypto-pubkey-openssh-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-crypto-pubkey-openssh-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .

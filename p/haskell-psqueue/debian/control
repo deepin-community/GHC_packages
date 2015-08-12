@@ -1,28 +1,28 @@
 Source: haskell-psqueue
-Priority: extra
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Kiwamu Okabe <kiwamu@debian.or.jp>
+DM-Upload-Allowed: yes
+Priority: extra
+Section: haskell
 Build-Depends: debhelper (>= 9),
-               haskell-devscripts (>= 0.9),
-               cdbs,
-               ghc,
-               ghc-prof
-Build-Depends-Indep: ghc-doc
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/PSQueue
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-psqueue
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-psqueue
-DM-Upload-Allowed: yes
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-psqueue
 
 Package: libghc-psqueue-dev
 Architecture: any
 Depends: ${shlibs:Depends},
-         ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+ ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Priority Search Queue
  A /priority search queue/ efficiently supports the
  opperations of both a search tree and a priority queue. A
@@ -37,10 +37,10 @@ Description: Priority Search Queue
 Package: libghc-psqueue-prof
 Architecture: any
 Depends: ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Priority Search Queue; profiling libraries
  A /priority search queue/ efficiently supports the
  opperations of both a search tree and a priority queue. A
@@ -56,9 +56,9 @@ Package: libghc-psqueue-doc
 Architecture: all
 Section: doc
 Depends: ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Priority Search Queue; documentation
  A /priority search queue/ efficiently supports the
  opperations of both a search tree and a priority queue. A

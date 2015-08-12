@@ -1,27 +1,27 @@
 Source: haskell-gsasl
-Priority: extra
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
- , haskell-devscripts (>= 0.9)
- , cdbs
- , ghc
- , ghc-prof
- , libgsasl7-dev
-Build-Depends-Indep: ghc-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libgsasl7-dev,
+Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.4
 Homepage: http://ianen.org/haskell/bindings/gsasl/
 
 Package: libghc-gsasl-dev
 Architecture: any
-Depends: ${shlibs:Depends}
- , ${haskell:Depends}
- , ${misc:Depends}
- , libgsasl7-dev
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${shlibs:Depends},
+ ${haskell:Depends},
+ ${misc:Depends},
+ libgsasl7-dev,
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: bindings for GNU SASL
  These are Haskell bindings to the GNU SASL (Simple Authentication and
  Security Layer) library.
@@ -31,10 +31,10 @@ Description: bindings for GNU SASL
 Package: libghc-gsasl-prof
 Architecture: any
 Depends: ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: bindings for GNU SASL; profiling libraries
  These are Haskell bindings to the GNU SASL (Simple Authentication and
  Security Layer) library.
@@ -45,9 +45,9 @@ Package: libghc-gsasl-doc
 Architecture: all
 Section: doc
 Depends: ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: bindings for GNU SASL; documentation
  These are Haskell bindings to the GNU SASL (Simple Authentication and
  Security Layer) library.

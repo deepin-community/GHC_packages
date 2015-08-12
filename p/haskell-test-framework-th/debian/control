@@ -1,8 +1,8 @@
 Source: haskell-test-framework-th
-Priority: extra
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Kiwamu Okabe <kiwamu@debian.or.jp>
+Priority: extra
+Section: haskell
 Build-Depends: debhelper (>= 9),
  haskell-devscripts (>= 0.9),
  cdbs,
@@ -16,25 +16,25 @@ Build-Depends: debhelper (>= 9),
  libghc-regex-posix-dev,
  libghc-regex-posix-prof,
  libghc-test-framework-dev,
- libghc-test-framework-prof
+ libghc-test-framework-prof,
 Build-Depends-Indep: ghc-doc,
  libghc-src-exts-doc,
  libghc-language-haskell-extract-doc,
  libghc-regex-posix-doc,
- libghc-test-framework-doc
+ libghc-test-framework-doc,
 Standards-Version: 3.9.5
 Homepage: http://github.com/finnsson/test-generator
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-test-framework-th
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-test-framework-th
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-test-framework-th
 
 Package: libghc-test-framework-th-dev
 Architecture: any
 Depends: ${shlibs:Depends},
-         ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+ ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Automagically generate the {HUnit,Quickcheck}-bulk-code
  test-framework-th contains two interesting functions:
  defaultMainGenerator and testGroupGenerator.
@@ -51,10 +51,10 @@ Description: Automagically generate the {HUnit,Quickcheck}-bulk-code
 Package: libghc-test-framework-th-prof
 Architecture: any
 Depends: ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Automagically generate the {HUnit,Quickcheck}-bulk-code; profiling libraries
  test-framework-th contains two interesting functions:
  defaultMainGenerator and testGroupGenerator.
@@ -72,9 +72,9 @@ Package: libghc-test-framework-th-doc
 Architecture: all
 Section: doc
 Depends: ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Automagically generate the {HUnit,Quickcheck}-bulk-code; documentation
  test-framework-th contains two interesting functions:
  defaultMainGenerator and testGroupGenerator.

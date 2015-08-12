@@ -1,36 +1,36 @@
 Source: haskell-language-python
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , happy
-  , alex
-  , libghc-monads-tf-dev (>= 0.1)
-  , libghc-monads-tf-dev (<< 0.2)
-  , libghc-monads-tf-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-monads-tf-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ happy,
+ alex,
+ libghc-monads-tf-dev (>= 0.1),
+ libghc-monads-tf-dev (<< 0.2),
+ libghc-monads-tf-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-monads-tf-doc,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/language-python
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-language-python
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-language-python
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-language-python
 X-Description: Parsing and pretty printing of Python code.
  language-python is a Haskell library for lexical analysis, parsing and pretty
  printing Python code. It supports versions 2.x and 3.x of Python.
 
 Package: libghc-language-python-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -38,22 +38,23 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-language-python-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-language-python-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .

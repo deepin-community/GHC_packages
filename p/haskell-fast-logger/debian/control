@@ -1,34 +1,34 @@
 Source: haskell-fast-logger
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-auto-update-dev (>= 0.1.2)
-  , libghc-auto-update-prof
-  , libghc-text-dev
-  , libghc-text-prof
-  , libghc-hspec-dev
-Build-Depends-Indep: ghc-doc
-  , libghc-auto-update-doc
-  , libghc-text-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-auto-update-dev (>= 0.1.2),
+ libghc-auto-update-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+ libghc-hspec-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-auto-update-doc,
+ libghc-text-doc,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/fast-logger
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-fast-logger
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-fast-logger
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-fast-logger
 
 Package: libghc-fast-logger-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: a fast logging system${haskell:ShortBlurb}
  Fast logging system to copy log data directly to Handle buffer.
  It also supports rotation.
@@ -37,11 +37,11 @@ Description: a fast logging system${haskell:ShortBlurb}
 
 Package: libghc-fast-logger-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: a fast logging system${haskell:ShortBlurb}
  Fast logging system to copy log data directly to Handle buffer.
  It also supports rotation.
@@ -49,11 +49,12 @@ Description: a fast logging system${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-fast-logger-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: a fast logging system${haskell:ShortBlurb}
  Fast logging system to copy log data directly to Handle buffer.
  It also supports rotation.

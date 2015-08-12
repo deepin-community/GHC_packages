@@ -1,11 +1,9 @@
 Source: haskell-sdl-gfx
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Miriam Ruiz <little_miry@yahoo.es>
-Standards-Version: 3.9.4
-Build-Depends:
- debhelper (>= 9),
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
  haskell-devscripts (>= 0.9),
  cdbs,
  ghc,
@@ -20,17 +18,20 @@ Build-Depends:
  libsdl1.2-dev,
  libsdl-gfx1.2-dev,
  libghc-sdl-dev,
- libghc-sdl-prof
-Build-Depends-Indep: ghc-doc
+ libghc-sdl-prof,
+Build-Depends-Indep: ghc-doc,
+Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/SDL-gfx
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-sdl-gfx
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-sdl-gfx
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-sdl-gfx
 
 Package: libghc-sdl-gfx-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Haskell SDL gfx binding for GHC
  This package provides the SDL gfx library bindings for the Haskell
  programming language. SDL gfx is an extension to the SDL library which
@@ -40,9 +41,11 @@ Description: Haskell SDL gfx binding for GHC
 
 Package: libghc-sdl-gfx-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Haskell SDL gfx binding for GHC - profiling libraries
  This package provides the SDL gfx library bindings for the Haskell
  programming language, compiled for profiling. SDL gfx is an extension
@@ -51,11 +54,12 @@ Description: Haskell SDL gfx binding for GHC - profiling libraries
  surfaces, framerate control and MMX image filters.
 
 Package: libghc-sdl-gfx-doc
-Section: doc
 Architecture: all
-Depends: ${haskell:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Haskell SDL gfx binding for GHC - documentation
  This package provides the documentation for the SDL gfx library bindings
  for the Haskell programming language. SDL gfx is an extension to the SDL

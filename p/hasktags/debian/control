@@ -1,27 +1,26 @@
 Source: hasktags
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-json-dev (>= 0.5)
-  , libghc-json-dev (<< 0.10)
-  , libghc-utf8-string-dev
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-json-dev (>= 0.5),
+ libghc-json-dev (<< 0.10),
+ libghc-utf8-string-dev,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/hasktags
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/hasktags
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/hasktags
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/hasktags
 
 Package: hasktags
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Multi-Arch: foreign
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
 Description: Producer of ctags "tags" and etags "TAGS" files for Haskell programs
  This package provides the hasktags program, which provides ctags "tags" and
  etags "TAGS" files for Haskell programs.

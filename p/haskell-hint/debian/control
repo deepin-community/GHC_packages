@@ -1,43 +1,42 @@
 Source: haskell-hint
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Marco Túlio Gontijo e Silva <marcot@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , ghc-ghci
-  , libghc-mtl-dev
-  , libghc-mtl-prof
-  , libghc-ghc-paths-dev
-  , libghc-ghc-paths-prof
-  , libghc-exceptions-dev
-  , libghc-exceptions-prof
-  , libghc-ghc-mtl-dev (>= 1.2.1)
-  , libghc-ghc-mtl-dev (<< 1.2.2)
-  , libghc-ghc-mtl-prof
-  , libghc-random-dev
-  , libghc-random-prof
-  , ghc-doc
-  , libghc-mtl-doc
-  , libghc-ghc-paths-doc
-  , libghc-exceptions-doc
-  , libghc-ghc-mtl-doc
-  , libghc-random-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ ghc-ghci,
+ libghc-mtl-dev,
+ libghc-mtl-prof,
+ libghc-ghc-paths-dev,
+ libghc-ghc-paths-prof,
+ libghc-exceptions-dev,
+ libghc-exceptions-prof,
+ libghc-ghc-mtl-dev (>= 1.2.1),
+ libghc-ghc-mtl-dev (<< 1.2.2),
+ libghc-ghc-mtl-prof,
+ libghc-random-dev,
+ libghc-random-prof,
+ ghc-doc,
+ libghc-mtl-doc,
+ libghc-ghc-paths-doc,
+ libghc-exceptions-doc,
+ libghc-ghc-mtl-doc,
+ libghc-random-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/hint
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hint
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-hint
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hint
 
 Package: libghc-hint-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: runtime Haskell interpreter (GHC API wrapper)${haskell:ShortBlurb}
  This library defines an Interpreter monad. It allows one to load Haskell
  modules, browse them, type-check and evaluate strings with Haskell expressions
@@ -50,10 +49,10 @@ Description: runtime Haskell interpreter (GHC API wrapper)${haskell:ShortBlurb}
 
 Package: libghc-hint-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Provides: ${haskell:Provides},
 Description: runtime Haskell interpreter (GHC API wrapper)${haskell:ShortBlurb}
  This library defines an Interpreter monad. It allows one to load Haskell
  modules, browse them, type-check and evaluate strings with Haskell expressions
@@ -65,11 +64,12 @@ Description: runtime Haskell interpreter (GHC API wrapper)${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-hint-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: runtime Haskell interpreter (GHC API wrapper)${haskell:ShortBlurb}
  This library defines an Interpreter monad. It allows one to load Haskell
  modules, browse them, type-check and evaluate strings with Haskell expressions

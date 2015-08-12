@@ -1,66 +1,66 @@
 Source: haskell-mime-mail-ses
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Christopher Reichert <creichert07@gmail.com>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-base64-bytestring-dev (>= 0.1)
-  , libghc-base64-bytestring-prof
-  , libghc-old-locale-dev
-  , libghc-old-locale-prof
-  , libghc-http-client-dev (>= 0.2.2.2)
-  , libghc-http-client-prof
-  , libghc-http-conduit-dev (>= 2.1)
-  , libghc-http-conduit-prof
-  , libghc-mime-mail-dev (>= 0.3)
-  , libghc-mime-mail-prof
-  , libghc-http-types-dev (>= 0.6.8)
-  , libghc-http-types-prof
-  , libghc-xml-conduit-dev
-  , libghc-xml-conduit-prof
-  , libghc-xml-types-dev
-  , libghc-xml-types-prof
-  , libghc-text-dev
-  , libghc-text-prof
-  , libghc-conduit-dev
-  , libghc-conduit-prof
-  , libghc-cryptohash-dev (>= 0.7.3)
-  , libghc-cryptohash-prof
-  , libghc-byteable-dev
-  , libghc-byteable-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-conduit-doc
-  , libghc-base64-bytestring-doc
-  , libghc-old-locale-doc
-  , libghc-http-client-doc
-  , libghc-http-conduit-doc
-  , libghc-mime-mail-doc
-  , libghc-http-types-doc
-  , libghc-xml-conduit-doc
-  , libghc-xml-types-doc
-  , libghc-text-doc
-  , libghc-conduit-doc
-  , libghc-cryptohash-doc
-  , libghc-byteable-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-base64-bytestring-dev (>= 0.1),
+ libghc-base64-bytestring-prof,
+ libghc-old-locale-dev,
+ libghc-old-locale-prof,
+ libghc-http-client-dev (>= 0.2.2.2),
+ libghc-http-client-prof,
+ libghc-http-conduit-dev (>= 2.1),
+ libghc-http-conduit-prof,
+ libghc-mime-mail-dev (>= 0.3),
+ libghc-mime-mail-prof,
+ libghc-http-types-dev (>= 0.6.8),
+ libghc-http-types-prof,
+ libghc-xml-conduit-dev,
+ libghc-xml-conduit-prof,
+ libghc-xml-types-dev,
+ libghc-xml-types-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+ libghc-conduit-dev,
+ libghc-conduit-prof,
+ libghc-cryptohash-dev (>= 0.7.3),
+ libghc-cryptohash-prof,
+ libghc-byteable-dev,
+ libghc-byteable-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-conduit-doc,
+ libghc-base64-bytestring-doc,
+ libghc-old-locale-doc,
+ libghc-http-client-doc,
+ libghc-http-conduit-doc,
+ libghc-mime-mail-doc,
+ libghc-http-types-doc,
+ libghc-xml-conduit-doc,
+ libghc-xml-types-doc,
+ libghc-text-doc,
+ libghc-conduit-doc,
+ libghc-cryptohash-doc,
+ libghc-byteable-doc,
 Standards-Version: 3.9.6
 Homepage: http://hackage.haskell.org/package/mime-mail-ses
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-mime-mail-ses
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-mime-mail-ses
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-mime-mail-ses
 X-Description: Send mime-mail messages via Amazon SES
   Amazon SES support for mime-mail messages.
 
 Package: libghc-mime-mail-ses-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -68,22 +68,23 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-mime-mail-ses-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-mime-mail-ses-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .

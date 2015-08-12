@@ -1,27 +1,27 @@
 Source: haskell-time-compat
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-Build-Depends-Indep: ghc-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/time-compat
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-time-compat
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-time-compat
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-time-compat
 
 Package: libghc-time-compat-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Compatibility with old-time for the time package${haskell:ShortBlurb}
  This package provides a compatibility layer with the old-time package for the
  "new" time package.
@@ -30,11 +30,11 @@ Description: Compatibility with old-time for the time package${haskell:ShortBlur
 
 Package: libghc-time-compat-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Compatibility with old-time for the time package${haskell:ShortBlurb}
  This package provides a compatibility layer with the old-time package for the
  "new" time package.
@@ -42,11 +42,12 @@ Description: Compatibility with old-time for the time package${haskell:ShortBlur
  ${haskell:Blurb}
 
 Package: libghc-time-compat-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Compatibility with old-time for the time package${haskell:ShortBlurb}
  This package provides a compatibility layer with the old-time package for the
  "new" time package.

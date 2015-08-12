@@ -1,33 +1,33 @@
 Source: haskell-smallcheck
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-logict-dev
-  , libghc-logict-prof
-  , libghc-mtl-dev
-  , libghc-mtl-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-logict-doc
-  , libghc-mtl-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-logict-dev,
+ libghc-logict-prof,
+ libghc-mtl-dev,
+ libghc-mtl-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-logict-doc,
+ libghc-mtl-doc,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/smallcheck
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-smallcheck
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-smallcheck
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-smallcheck
 
 Package: libghc-smallcheck-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Another lightweight testing library${haskell:ShortBlurb}
  SmallCheck is similar to QuickCheck (Claessen and Hughes 2000-) but
  instead of testing for a sample of randomly generated values, SmallCheck
@@ -38,11 +38,11 @@ Description: Another lightweight testing library${haskell:ShortBlurb}
 
 Package: libghc-smallcheck-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Another lightweight testing library${haskell:ShortBlurb}
  SmallCheck is similar to QuickCheck (Claessen and Hughes 2000-) but
  instead of testing for a sample of randomly generated values, SmallCheck
@@ -52,11 +52,12 @@ Description: Another lightweight testing library${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-smallcheck-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Another lightweight testing library${haskell:ShortBlurb}
  SmallCheck is similar to QuickCheck (Claessen and Hughes 2000-) but
  instead of testing for a sample of randomly generated values, SmallCheck

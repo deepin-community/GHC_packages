@@ -1,30 +1,30 @@
 Source: haskell-show
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-syb-dev
-  , libghc-syb-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-syb-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-syb-dev,
+ libghc-syb-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-syb-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/show
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-show
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-show
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-show
 
 Package: libghc-show-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Show instances for lambdabot${haskell:ShortBlurb}
  Show instances for functions and IO procedures.
  .
@@ -34,11 +34,11 @@ Description: Show instances for lambdabot${haskell:ShortBlurb}
 
 Package: libghc-show-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Show instances for lambdabot${haskell:ShortBlurb}
  Show instances for functions and IO procedures.
  .
@@ -47,11 +47,12 @@ Description: Show instances for lambdabot${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-show-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Show instances for lambdabot${haskell:ShortBlurb}
  Show instances for functions and IO procedures.
  .

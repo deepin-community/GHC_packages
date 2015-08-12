@@ -1,35 +1,35 @@
 Source: haskell-zlib-enum
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-enumerator-dev (>> 0.4)
-  , libghc-enumerator-dev (<< 0.5)
-  , libghc-enumerator-prof
-  , libghc-zlib-bindings-dev (>> 0.1)
-  , libghc-zlib-bindings-dev (<< 0.2)
-  , libghc-zlib-bindings-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-enumerator-doc
-  , libghc-zlib-bindings-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-enumerator-dev (>> 0.4),
+ libghc-enumerator-dev (<< 0.5),
+ libghc-enumerator-prof,
+ libghc-zlib-bindings-dev (>> 0.1),
+ libghc-zlib-bindings-dev (<< 0.2),
+ libghc-zlib-bindings-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-enumerator-doc,
+ libghc-zlib-bindings-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/zlib-enum
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-zlib-enum
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-zlib-enum
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-zlib-enum
 
 Package: libghc-zlib-enum-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: enumerator interface for zlib compression${haskell:ShortBlurb}
  zlib-enum is a stop-gap package to provide enumeratees for zlib
  compression/decompression.
@@ -38,11 +38,11 @@ Description: enumerator interface for zlib compression${haskell:ShortBlurb}
 
 Package: libghc-zlib-enum-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: enumerator interface for zlib compression${haskell:ShortBlurb}
  zlib-enum is a stop-gap package to provide enumeratees for zlib
  compression/decompression.
@@ -50,11 +50,12 @@ Description: enumerator interface for zlib compression${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-zlib-enum-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: enumerator interface for zlib compression${haskell:ShortBlurb}
  zlib-enum is a stop-gap package to provide enumeratees for zlib
  compression/decompression.

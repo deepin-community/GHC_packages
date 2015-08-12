@@ -1,24 +1,24 @@
 Source: haskell-sockaddr
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-byteorder-dev
-  , libghc-byteorder-prof
-  , libghc-network-dev
-  , libghc-network-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-byteorder-doc
-  , libghc-network-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-byteorder-dev,
+ libghc-byteorder-prof,
+ libghc-network-dev,
+ libghc-network-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-byteorder-doc,
+ libghc-network-doc,
 Standards-Version: 3.9.2
 Homepage: http://hackage.haskell.org/package/sockaddr
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-sockaddr
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-sockaddr
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-sockaddr
 X-Description: Printing SockAddr value
  This package provides code to convert a SockAddr to its human readable
  representation. If the address is an IPv4-embedded IPv6 address, the IPv4 is
@@ -26,12 +26,12 @@ X-Description: Printing SockAddr value
 
 Package: libghc-sockaddr-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -39,22 +39,23 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-sockaddr-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-sockaddr-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .

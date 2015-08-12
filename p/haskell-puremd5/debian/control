@@ -1,36 +1,36 @@
 Source: haskell-puremd5
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-cereal-dev (>= 0.2)
-  , libghc-cereal-prof
-  , libghc-crypto-api-dev
-  , libghc-crypto-api-prof
-  , libghc-tagged-dev
-  , libghc-tagged-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-cereal-doc
-  , libghc-crypto-api-doc
-  , libghc-tagged-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-cereal-dev (>= 0.2),
+ libghc-cereal-prof,
+ libghc-crypto-api-dev,
+ libghc-crypto-api-prof,
+ libghc-tagged-dev,
+ libghc-tagged-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-cereal-doc,
+ libghc-crypto-api-doc,
+ libghc-tagged-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/pureMD5
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-puremd5
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-puremd5
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-puremd5
 
 Package: libghc-puremd5-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: implementation of the MD5 digest (hash) algorithm${haskell:ShortBlurb}
  It is a Haskell-only implementation of the MD5 digest (hash) algorithm.
  This now supports the crypto-api class interface.
@@ -39,11 +39,11 @@ Description: implementation of the MD5 digest (hash) algorithm${haskell:ShortBlu
 
 Package: libghc-puremd5-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: implementation of the MD5 digest (hash) algorithm${haskell:ShortBlurb}
  It is a Haskell-only implementation of the MD5 digest (hash) algorithm.
  This now supports the crypto-api class interface.
@@ -51,11 +51,12 @@ Description: implementation of the MD5 digest (hash) algorithm${haskell:ShortBlu
  ${haskell:Blurb}
 
 Package: libghc-puremd5-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: implementation of the MD5 digest (hash) algorithm${haskell:ShortBlurb}
  It is a Haskell-only implementation of the MD5 digest (hash) algorithm.
  This now supports the crypto-api class interface.

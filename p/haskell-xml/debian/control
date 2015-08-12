@@ -1,30 +1,30 @@
 Source: haskell-xml
-Priority: extra
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Giovanni Mascellani <gio@debian.org>, Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
- , haskell-devscripts (>= 0.9)
- , cdbs
- , ghc
- , ghc-prof
- , libghc-text-dev
- , libghc-text-prof
-Build-Depends-Indep: ghc-doc
- , libghc-text-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-text-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/xml
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-xml
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-xml
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-xml
 
 Package: libghc-xml-dev
 Architecture: any
-Depends: ${haskell:Depends}
- , ${misc:Depends}
- , ${shlibs:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: A simple Haskell XML library${haskell:ShortBlurb}
  This library provides lightweight tools to parse, filter and generate XML.
  .
@@ -32,23 +32,23 @@ Description: A simple Haskell XML library${haskell:ShortBlurb}
 
 Package: libghc-xml-prof
 Architecture: any
-Depends: ${haskell:Depends}
- , ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: A simple Haskell XML library${haskell:ShortBlurb}
  This library provides lightweight tools to parse, filter and generate XML.
  .
  ${haskell:Blurb}
 
 Package: libghc-xml-doc
-Section: doc
 Architecture: all
-Depends: ${haskell:Depends}
- , ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: A simple Haskell XML library${haskell:ShortBlurb}
  This library provides lightweight tools to parse, filter and generate XML.
  .

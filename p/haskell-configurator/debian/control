@@ -1,29 +1,29 @@
 Source: haskell-configurator
-Priority: extra
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-             , haskell-devscripts (>= 0.9)
-             , cdbs
-             , ghc
-             , ghc-prof
-             , libghc-attoparsec-dev (>> 0.10.0.2)
-             , libghc-attoparsec-prof
-             , libghc-hashable-dev
-             , libghc-hashable-prof
-             , libghc-text-dev (>> 0.11.1.0)
-             , libghc-text-prof
-             , libghc-unix-compat-dev
-             , libghc-unix-compat-prof
-             , libghc-unordered-containers-dev
-             , libghc-unordered-containers-prof
-Build-Depends-Indep: ghc-doc
-                   , libghc-attoparsec-doc
-                   , libghc-hashable-doc
-                   , libghc-text-doc
-                   , libghc-unix-compat-doc
-                   , libghc-unordered-containers-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-attoparsec-dev (>> 0.10.0.2),
+ libghc-attoparsec-prof,
+ libghc-hashable-dev,
+ libghc-hashable-prof,
+ libghc-text-dev (>> 0.11.1.0),
+ libghc-text-prof,
+ libghc-unix-compat-dev,
+ libghc-unix-compat-prof,
+ libghc-unordered-containers-dev,
+ libghc-unordered-containers-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-attoparsec-doc,
+ libghc-hashable-doc,
+ libghc-text-doc,
+ libghc-unix-compat-doc,
+ libghc-unordered-containers-doc,
 Standards-Version: 3.9.4
 Homepage: http://github.com/bos/configurator
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-configurator
@@ -32,11 +32,11 @@ Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-configurator
 Package: libghc-configurator-dev
 Architecture: any
 Depends: ${shlibs:Depends},
-         ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+ ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: dynamic config file reloading
  A configuration management library for programs and daemons.
  .
@@ -62,10 +62,10 @@ Description: dynamic config file reloading
 Package: libghc-configurator-prof
 Architecture: any
 Depends: ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: dynamic config file reloading; profiling libraries
  A configuration management library for programs and daemons.
  .
@@ -92,9 +92,9 @@ Package: libghc-configurator-doc
 Architecture: all
 Section: doc
 Depends: ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: dynamic config file reloading; documentation
  A configuration management library for programs and daemons.
  .

@@ -1,31 +1,31 @@
 Source: haskell-sandi
-Priority: extra
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joey Hess <joeyh@debian.org>
-Build-Depends: debhelper (>= 9)
- , haskell-devscripts (>= 0.9)
- , cdbs
- , ghc
- , ghc-prof
- , libghc-conduit-dev (>= 1.2)
- , libghc-conduit-dev (<< 1.3)
- , libghc-conduit-prof
- , libghc-exceptions-dev (>= 0.6)
- , libghc-exceptions-dev (<< 0.9)
- , libghc-exceptions-prof
- , libghc-hunit-dev [!mips !mipsel !sparc]
- , libghc-tasty-dev [!mips !mipsel !sparc]
- , libghc-tasty-hunit-dev [!mips !mipsel !sparc]
- , libghc-tasty-quickcheck-dev [!mips !mipsel !sparc]
- , libghc-tasty-th-dev [!mips !mipsel !sparc]
-Build-Depends-Indep: ghc-doc
- , libghc-conduit-doc
- , libghc-exceptions-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-conduit-dev (>= 1.2),
+ libghc-conduit-dev (<< 1.3),
+ libghc-conduit-prof,
+ libghc-exceptions-dev (>= 0.6),
+ libghc-exceptions-dev (<< 0.9),
+ libghc-exceptions-prof,
+ libghc-hunit-dev [!mips!mipsel!sparc],
+ libghc-tasty-dev [!mips!mipsel!sparc],
+ libghc-tasty-hunit-dev [!mips!mipsel!sparc],
+ libghc-tasty-quickcheck-dev [!mips!mipsel!sparc],
+ libghc-tasty-th-dev [!mips!mipsel!sparc],
+Build-Depends-Indep: ghc-doc,
+ libghc-conduit-doc,
+ libghc-exceptions-doc,
 Standards-Version: 3.9.6
 Homepage: http://hackage.haskell.org/package/sandi
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-sandi
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-sandi
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-sandi
 X-Description: A Haskell library of data encoders and decoders
  Data encoding library currently providing Base16, Base32, Base32Hex, Base64,
  Base64Url, Base85, Python string escaping, Quoted-Printable, URL encoding,
@@ -33,12 +33,12 @@ X-Description: A Haskell library of data encoders and decoders
 
 Package: libghc-sandi-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -46,22 +46,23 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-sandi-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-sandi-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .

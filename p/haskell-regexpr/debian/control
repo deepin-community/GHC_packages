@@ -1,36 +1,36 @@
 Source: haskell-regexpr
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-hunit-dev
-  , libghc-hunit-prof
-  , libghc-mtl-dev
-  , libghc-mtl-prof
-  , libghc-mtlparse-dev
-  , libghc-mtlparse-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-hunit-doc
-  , libghc-mtl-doc
-  , libghc-mtlparse-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-hunit-dev,
+ libghc-hunit-prof,
+ libghc-mtl-dev,
+ libghc-mtl-prof,
+ libghc-mtlparse-dev,
+ libghc-mtlparse-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-hunit-doc,
+ libghc-mtl-doc,
+ libghc-mtlparse-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/regexpr
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-regexpr
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-regexpr
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-regexpr
 
 Package: libghc-regexpr-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Regular expression library like Perl/Ruby${haskell:ShortBlurb}
  This package contains Haskell functions for regular expressions.
  .
@@ -38,22 +38,23 @@ Description: Regular expression library like Perl/Ruby${haskell:ShortBlurb}
 
 Package: libghc-regexpr-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Regular expression library like Perl/Ruby${haskell:ShortBlurb}
  This package contains Haskell functions for regular expressions.
  .
  ${haskell:Blurb}
 
 Package: libghc-regexpr-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Regular expression library like Perl/Ruby${haskell:ShortBlurb}
  This package contains Haskell functions for regular expressions.
  .

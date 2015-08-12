@@ -1,24 +1,23 @@
 Source: haskell-scientific
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Raúl Benencia <rul@kalgan.cc>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-text-dev (>= 0.8)
-  , libghc-text-dev (<< 1.3)
-  , libghc-text-prof
-  , libghc-hashable-dev (>= 1.1.2)
-  , libghc-hashable-dev (<< 1.3)
-  , libghc-hashable-prof
-Build-Depends-Indep: ghc-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-text-dev (>= 0.8),
+ libghc-text-dev (<< 1.3),
+ libghc-text-prof,
+ libghc-hashable-dev (>= 1.1.2),
+ libghc-hashable-dev (<< 1.3),
+ libghc-hashable-prof,
+Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/scientific
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-scientific
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-scientific
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-scientific
 X-Description: scientific notation for floating-point numbers
  This package provides a Haskell datatype for representing and pretty-printing
  arbitrary-precision numbers using scientific notation.
@@ -29,12 +28,12 @@ X-Description: scientific notation for floating-point numbers
 
 Package: libghc-scientific-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -42,22 +41,23 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-scientific-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-scientific-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .

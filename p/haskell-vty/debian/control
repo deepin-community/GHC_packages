@@ -1,62 +1,64 @@
 Source: haskell-vty
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: cdbs
-  , debhelper (>= 9)
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , ghc-ghci
-  , libghc-blaze-builder-dev (>= 0.3.3.2)
-  , libghc-blaze-builder-dev (<< 0.5)
-  , libghc-blaze-builder-prof
-  , libghc-cabal-dev (>= 1.18.0)
-  , libghc-cabal-prof
-  , libghc-data-default-dev (>= 0.5.3)
-  , libghc-data-default-prof
-  , libghc-hashable-dev (>= 1.2)
-  , libghc-hashable-prof
-  , libghc-lens-dev (>= 3.9.0.2)
-  , libghc-lens-dev (<< 4.9)
-  , libghc-lens-prof
-  , libghc-mtl-dev (>= 1.1.1.0)
-  , libghc-mtl-dev (<< 2.3)
-  , libghc-mtl-prof
-  , libghc-parallel-dev (>= 2.2)
-  , libghc-parallel-dev (<< 3.3)
-  , libghc-parallel-prof
-  , libghc-parsec3-dev
-  , libghc-parsec3-prof
-  , libghc-text-dev (>= 0.11.3)
-  , libghc-text-prof
-  , libghc-utf8-string-dev (>= 0.3)
-  , libghc-utf8-string-dev (<< 1.1)
-  , libghc-utf8-string-prof
-  , libghc-vector-dev (>= 0.7)
-  , libghc-vector-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-blaze-builder-doc
-  , libghc-data-default-doc
-  , libghc-hashable-doc
-  , libghc-lens-doc
-  , libghc-mtl-doc
-  , libghc-parallel-doc
-  , libghc-parsec3-doc
-  , libghc-text-doc
-  , libghc-utf8-string-doc
-  , libghc-vector-doc
+Priority: extra
+Section: haskell
+Build-Depends: cdbs,
+ debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ ghc-ghci,
+ libghc-blaze-builder-dev (>= 0.3.3.2),
+ libghc-blaze-builder-dev (<< 0.5),
+ libghc-blaze-builder-prof,
+ libghc-cabal-dev (>= 1.18.0),
+ libghc-cabal-prof,
+ libghc-data-default-dev (>= 0.5.3),
+ libghc-data-default-prof,
+ libghc-hashable-dev (>= 1.2),
+ libghc-hashable-prof,
+ libghc-lens-dev (>= 3.9.0.2),
+ libghc-lens-dev (<< 4.9),
+ libghc-lens-prof,
+ libghc-mtl-dev (>= 1.1.1.0),
+ libghc-mtl-dev (<< 2.3),
+ libghc-mtl-prof,
+ libghc-parallel-dev (>= 2.2),
+ libghc-parallel-dev (<< 3.3),
+ libghc-parallel-prof,
+ libghc-parsec3-dev,
+ libghc-parsec3-prof,
+ libghc-text-dev (>= 0.11.3),
+ libghc-text-prof,
+ libghc-utf8-string-dev (>= 0.3),
+ libghc-utf8-string-dev (<< 1.1),
+ libghc-utf8-string-prof,
+ libghc-vector-dev (>= 0.7),
+ libghc-vector-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-blaze-builder-doc,
+ libghc-data-default-doc,
+ libghc-hashable-doc,
+ libghc-lens-doc,
+ libghc-mtl-doc,
+ libghc-parallel-doc,
+ libghc-parsec3-doc,
+ libghc-text-doc,
+ libghc-utf8-string-doc,
+ libghc-vector-doc,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/vty
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-vty
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-vty
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-vty
 
 Package: libghc-vty-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Terminal interface library for ghc${haskell:ShortBlurb}
  Vty is a terminal interface/control library for Haskell. It has a
  very easy API.
@@ -65,9 +67,11 @@ Description: Terminal interface library for ghc${haskell:ShortBlurb}
 
 Package: libghc-vty-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Terminal interface library for ghc${haskell:ShortBlurb}
  Vty is a terminal interface/control library for Haskell. It has a
  very easy API.
@@ -77,9 +81,10 @@ Description: Terminal interface library for ghc${haskell:ShortBlurb}
 Package: libghc-vty-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Terminal interface library for ghc${haskell:ShortBlurb}
  Vty is a terminal interface/control library for Haskell. It has a
  very easy API.

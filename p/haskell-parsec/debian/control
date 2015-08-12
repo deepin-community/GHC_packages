@@ -1,36 +1,35 @@
 Source: haskell-parsec
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Marco Túlio Gontijo e Silva <marcot@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ cdbs,
+ libghc-mtl-dev,
+ libghc-mtl-prof,
+ libghc-text-dev (>= 0.2),
+ libghc-text-dev (<< 1.3),
+ libghc-text-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-mtl-doc,
+ libghc-text-doc,
 Standards-Version: 3.9.4
-Build-Depends: debhelper (>= 9)
- , haskell-devscripts (>= 0.9)
- , ghc
- , ghc-prof
- , cdbs
- , libghc-mtl-dev
- , libghc-mtl-prof
- , libghc-text-dev (>= 0.2)
- , libghc-text-dev (<< 1.3)
- , libghc-text-prof
-Build-Depends-Indep: ghc-doc
- , libghc-mtl-doc
- , libghc-text-doc
 Homepage: http://legacy.cs.uu.nl/daan/parsec.html
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-parsec
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-parsec
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-parsec
 
 Package: libghc-parsec3-dev
 Architecture: any
-Depends: ${haskell:Depends}
- , ${shlibs:Depends}
- , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
-Conflicts: libghc-parsec-dev (<< 3.0.0-5)
-Replaces: libghc-parsec-dev (<< 3.0.0-5)
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: libghc-parsec-dev (<< 3.0.0-5),
+Provides: ${haskell:Provides},
+Replaces: libghc-parsec-dev (<< 3.0.0-5),
 Description: Haskell monadic parser combinator library for GHC
  This package provides a library for the Haskell programming language.
  .
@@ -42,13 +41,13 @@ Description: Haskell monadic parser combinator library for GHC
 
 Package: libghc-parsec3-prof
 Architecture: any
-Depends: ${haskell:Depends}
- , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
-Conflicts: libghc-parsec-prof (<< 3.0.0-5)
-Replaces: libghc-parsec-prof (<< 3.0.0-5)
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: libghc-parsec-prof (<< 3.0.0-5),
+Provides: ${haskell:Provides},
+Replaces: libghc-parsec-prof (<< 3.0.0-5),
 Description: Haskell monadic parser combinator library for GHC; profiling libraries
  This package provides a library for the Haskell programming language,
  compiled for profiling.
@@ -60,15 +59,15 @@ Description: Haskell monadic parser combinator library for GHC; profiling librar
  it is also parametric in the input stream type.
 
 Package: libghc-parsec3-doc
-Section: doc
 Architecture: all
-Depends: ${haskell:Depends}
- , ${shlibs:Depends}
- , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Conflicts: libghc-parsec-doc (<< 3.0.0-5)
-Replaces: libghc-parsec-doc (<< 3.0.0-5)
+Section: doc
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: libghc-parsec-doc (<< 3.0.0-5),
+Replaces: libghc-parsec-doc (<< 3.0.0-5),
 Description: Haskell monadic parser combinator library for GHC; documentation
  This package provides the documentation for a library for the Haskell
  programming language.

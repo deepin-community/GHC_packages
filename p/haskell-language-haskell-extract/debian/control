@@ -1,30 +1,30 @@
 Source: haskell-language-haskell-extract
-Priority: extra
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Kiwamu Okabe <kiwamu@debian.or.jp>
+Priority: extra
+Section: haskell
 Build-Depends: debhelper (>= 9),
-               haskell-devscripts (>= 0.9),
-               cdbs,
-               ghc,
-               ghc-prof,
-               libghc-regex-posix-dev,
-               libghc-regex-posix-prof
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-regex-posix-dev,
+ libghc-regex-posix-prof,
 Build-Depends-Indep: ghc-doc,
-                     libghc-regex-posix-doc
+ libghc-regex-posix-doc,
 Standards-Version: 3.9.5
 Homepage: http://github.com/finnsson/template-helper
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-language-haskell-extract
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-language-haskell-extract
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-language-haskell-extract
 
 Package: libghc-language-haskell-extract-dev
 Architecture: any
 Depends: ${shlibs:Depends},
-         ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+ ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: automatically extract functions from the local code.
  language-haskell-extract contains some useful helper functions on top of
  Template Haskell.
@@ -51,10 +51,10 @@ Description: automatically extract functions from the local code.
 Package: libghc-language-haskell-extract-prof
 Architecture: any
 Depends: ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: automatically extract functions from the local code.; profiling libraries
  language-haskell-extract contains some useful helper functions on top of
  Template Haskell.
@@ -82,9 +82,9 @@ Package: libghc-language-haskell-extract-doc
 Architecture: all
 Section: doc
 Depends: ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: automatically extract functions from the local code.; documentation
  language-haskell-extract contains some useful helper functions on top of
  Template Haskell.

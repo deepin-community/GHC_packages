@@ -1,9 +1,10 @@
 Source: threadscope
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Ernesto Hernández-Novich (USB) <emhn@usb.ve>
-Build-Depends: debhelper (>= 9), cdbs, haskell-devscripts (>= 0.9),
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
  ghc,
  libghc-mtl-dev,
  libghc-ghc-events-dev (>= 0.4.2),
@@ -15,13 +16,14 @@ Build-Depends: debhelper (>= 9), cdbs, haskell-devscripts (>= 0.9),
  libghc-text-dev,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/threadscope
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/threadscope
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/threadscope
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/threadscope
 
 Package: threadscope
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Provides: ${haskell:Provides}
+Depends: ${shlibs:Depends},
+ ${misc:Depends},
+Provides: ${haskell:Provides},
 Description: graphical thread profiler for Haskell programs
  Threadscope is a graphical thread profiler for Haskell programs.
  It parses and displays the content of .eventlog files emitted by the

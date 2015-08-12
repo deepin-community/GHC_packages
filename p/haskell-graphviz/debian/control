@@ -1,45 +1,45 @@
 Source: haskell-graphviz
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-colour-dev (>= 2.3)
-  , libghc-colour-dev (<< 2.4)
-  , libghc-colour-prof
-  , libghc-dlist-dev (>= 0.5)
-  , libghc-dlist-dev (<< 0.8)
-  , libghc-dlist-prof
-  , libghc-fgl-dev (>= 5.4)
-  , libghc-fgl-dev (<< 5.6)
-  , libghc-fgl-prof
-  , libghc-polyparse-dev (>= 1.9)
-  , libghc-polyparse-dev (<< 1.12)
-  , libghc-polyparse-prof
-  , libghc-temporary-dev (>= 1.1)
-  , libghc-temporary-dev (<< 1.3)
-  , libghc-temporary-prof
-  , libghc-text-dev
-  , libghc-text-prof
-  , libghc-wl-pprint-text-dev (>= 1.1.0.0)
-  , libghc-wl-pprint-text-dev (<< 1.2.0.0)
-  , libghc-wl-pprint-text-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-colour-doc
-  , libghc-dlist-doc
-  , libghc-fgl-doc
-  , libghc-polyparse-doc
-  , libghc-temporary-doc
-  , libghc-text-doc
-  , libghc-wl-pprint-text-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-colour-dev (>= 2.3),
+ libghc-colour-dev (<< 2.4),
+ libghc-colour-prof,
+ libghc-dlist-dev (>= 0.5),
+ libghc-dlist-dev (<< 0.8),
+ libghc-dlist-prof,
+ libghc-fgl-dev (>= 5.4),
+ libghc-fgl-dev (<< 5.6),
+ libghc-fgl-prof,
+ libghc-polyparse-dev (>= 1.9),
+ libghc-polyparse-dev (<< 1.12),
+ libghc-polyparse-prof,
+ libghc-temporary-dev (>= 1.1),
+ libghc-temporary-dev (<< 1.3),
+ libghc-temporary-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+ libghc-wl-pprint-text-dev (>= 1.1.0.0),
+ libghc-wl-pprint-text-dev (<< 1.2.0.0),
+ libghc-wl-pprint-text-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-colour-doc,
+ libghc-dlist-doc,
+ libghc-fgl-doc,
+ libghc-polyparse-doc,
+ libghc-temporary-doc,
+ libghc-text-doc,
+ libghc-wl-pprint-text-doc,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/graphviz
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-graphviz
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-graphviz
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-graphviz
 X-Description: bindings to Graphviz for graph visualization
  This library provides bindings for the Dot language used by the
  Graphviz (http://graphviz.org/) suite of programs for visualising
@@ -69,12 +69,12 @@ X-Description: bindings to Graphviz for graph visualization
 
 Package: libghc-graphviz-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -82,22 +82,23 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-graphviz-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-graphviz-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .

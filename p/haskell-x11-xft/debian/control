@@ -1,34 +1,34 @@
 Source: haskell-x11-xft
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ ghc-doc,
+ libghc-x11-dev (>= 1.6.0),
+ libghc-x11-doc,
+ libghc-x11-prof,
+ libghc-utf8-string-dev,
+ libghc-utf8-string-doc,
+ libghc-utf8-string-prof,
+ libxft-dev,
 Standards-Version: 3.9.4
-Build-Depends: debhelper (>= 9)
-  , haskell-devscripts (>= 0.9)
-  , cdbs
-  , ghc
-  , ghc-prof
-  , ghc-doc
-  , libghc-x11-dev (>= 1.6.0)
-  , libghc-x11-doc
-  , libghc-x11-prof
-  , libghc-utf8-string-dev
-  , libghc-utf8-string-doc
-  , libghc-utf8-string-prof
-  , libxft-dev
 Homepage: http://hackage.haskell.org/package/X11-xft
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-x11-xft
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-x11-xft
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-x11-xft
 
 Package: libghc-x11-xft-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-  , libxft-dev
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+ libxft-dev,
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell Xft binding for GHC${haskell:ShortBlurb}
  This library is a binding to the Xft library.
  .
@@ -41,9 +41,9 @@ Description: Haskell Xft binding for GHC${haskell:ShortBlurb}
 
 Package: libghc-x11-xft-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Provides: ${haskell:Provides},
 Description: Haskell Xft binding for GHC${haskell:ShortBlurb}
  This library is a binding to the Xft library.
  .
@@ -55,12 +55,12 @@ Description: Haskell Xft binding for GHC${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-x11-xft-doc
-Section: doc
 Architecture: all
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Haskell Xft binding for GHC${haskell:ShortBlurb}
  This library is a binding to the Xft library.
  .

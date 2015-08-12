@@ -1,30 +1,30 @@
 Source: haskell-edit-distance
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joey Hess <joeyh@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-random-dev (>= 1.0)
-  , libghc-random-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-random-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-random-dev (>= 1.0),
+ libghc-random-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-random-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/edit-distance
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-edit-distance
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-edit-distance
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-edit-distance
 
 Package: libghc-edit-distance-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell fuzzy matching${haskell:ShortBlurb}
  Optimized edit distances for fuzzy matching, including Levenshtein
  and restricted Damerau-Levenshtein algorithms.
@@ -33,11 +33,11 @@ Description: Haskell fuzzy matching${haskell:ShortBlurb}
 
 Package: libghc-edit-distance-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell fuzzy matching${haskell:ShortBlurb}
  Optimized edit distances for fuzzy matching, including Levenshtein
  and restricted Damerau-Levenshtein algorithms.
@@ -45,11 +45,12 @@ Description: Haskell fuzzy matching${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-edit-distance-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Haskell fuzzy matching${haskell:ShortBlurb}
  Optimized edit distances for fuzzy matching, including Levenshtein
  and restricted Damerau-Levenshtein algorithms.

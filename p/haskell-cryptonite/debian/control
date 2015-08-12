@@ -1,26 +1,26 @@
 Source: haskell-cryptonite
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.8.15)
-  , ghc
-  , ghc-prof
-  , libghc-memory-dev (>= 0.2)
-  , libghc-memory-prof
-  , libghc-byteable-dev
-  , libghc-tasty-dev
-  , libghc-tasty-quickcheck-dev
-  , libghc-tasty-hunit-dev
-  , libghc-tasty-kat-dev
-Build-Depends-Indep: ghc-doc
-  , libghc-memory-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.8.15),
+ ghc,
+ ghc-prof,
+ libghc-memory-dev (>= 0.2),
+ libghc-memory-prof,
+ libghc-byteable-dev,
+ libghc-tasty-dev,
+ libghc-tasty-quickcheck-dev,
+ libghc-tasty-hunit-dev,
+ libghc-tasty-kat-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-memory-doc,
 Standards-Version: 3.9.6
 Homepage: http://hackage.haskell.org/package/cryptonite
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-cryptonite
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-cryptonite
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-cryptonite
 X-Description: cryptographic primitives
  A repository of cryptographic primitives.
   - Symmetric ciphers: AES, DES, 3DES, Blowfish, Camellia, RC4, Salsa,
@@ -40,12 +40,12 @@ X-Description: cryptographic primitives
 
 Package: libghc-cryptonite-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -53,22 +53,23 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-cryptonite-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-cryptonite-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .

@@ -1,15 +1,15 @@
 Source: haskell-hledger-interest
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , libghc-hledger-lib-dev (>> 0.24)
-  , libghc-mtl-dev
-  , libghc-decimal-dev
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ libghc-hledger-lib-dev (>> 0.24),
+ libghc-mtl-dev,
+ libghc-decimal-dev,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/hledger-interest
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-hledger-interest
@@ -17,12 +17,12 @@ Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hledger-interest
 
 Package: hledger-interest
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: interest computing for (h)ledger
  hledger-interest is a small command-line utility based on Simon Michael's
  hledger library. Its purpose is to compute interest for a given ledger

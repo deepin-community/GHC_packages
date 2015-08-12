@@ -1,19 +1,19 @@
 Source: haskell-fclabels
-Priority: extra
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-             , haskell-devscripts (>= 0.9)
-             , cdbs
-             , ghc
-             , ghc-prof
-             , libghc-mtl-dev (>> 1.0)
-             , libghc-mtl-dev (<< 2.3)
-             , libghc-mtl-prof
-             , ghc-ghci
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-mtl-dev (>> 1.0),
+ libghc-mtl-dev (<< 2.3),
+ libghc-mtl-prof,
+ ghc-ghci,
 Build-Depends-Indep: ghc-doc,
-                   , libghc-mtl-doc
+ libghc-mtl-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/fclabels
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/cabal-debian
@@ -22,11 +22,11 @@ Vcs-Darcs: http://darcs.debian.org/pkg-haskell/cabal-debian
 Package: libghc-fclabels-dev
 Architecture: any
 Depends: ${shlibs:Depends},
-         ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+ ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: first-class accessor labels
  This package provides first class labels that can act as
  bidirectional record fields. The labels can be derived
@@ -58,10 +58,10 @@ Description: first-class accessor labels
 Package: libghc-fclabels-prof
 Architecture: any
 Depends: ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: first-class accessor labels; profiling libraries
  This package provides first class labels that can act as
  bidirectional record fields. The labels can be derived
@@ -94,9 +94,9 @@ Package: libghc-fclabels-doc
 Architecture: all
 Section: doc
 Depends: ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: first-class accessor labels; documentation
  This package provides first class labels that can act as
  bidirectional record fields. The labels can be derived

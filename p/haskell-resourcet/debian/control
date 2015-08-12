@@ -1,53 +1,53 @@
 Source: haskell-resourcet
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-exceptions-dev (>= 0.5)
-  , libghc-exceptions-prof
-  , libghc-lifted-base-dev (>= 0.1)
-  , libghc-lifted-base-prof
-  , libghc-mmorph-dev
-  , libghc-mmorph-prof
-  , libghc-monad-control-dev (>= 0.3.1)
-  , libghc-monad-control-dev (<< 1.1)
-  , libghc-monad-control-prof
-  , libghc-mtl-dev (>= 2.0)
-  , libghc-mtl-dev (<< 2.3)
-  , libghc-mtl-prof
-  , libghc-transformers-base-dev (>= 0.4.4)
-  , libghc-transformers-base-dev (<< 0.5)
-  , libghc-transformers-base-prof
-  , libghc-transformers-compat-dev (>= 0.3)
-  , libghc-transformers-compat-dev (<< 0.5)
-  , libghc-transformers-compat-prof
-  , libghc-hspec-dev (>= 1.3)
-Build-Depends-Indep: ghc-doc
-  , libghc-exceptions-doc
-  , libghc-lifted-base-doc
-  , libghc-mmorph-doc
-  , libghc-monad-control-doc
-  , libghc-mtl-doc
-  , libghc-transformers-base-doc
-  , libghc-transformers-compat-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-exceptions-dev (>= 0.5),
+ libghc-exceptions-prof,
+ libghc-lifted-base-dev (>= 0.1),
+ libghc-lifted-base-prof,
+ libghc-mmorph-dev,
+ libghc-mmorph-prof,
+ libghc-monad-control-dev (>= 0.3.1),
+ libghc-monad-control-dev (<< 1.1),
+ libghc-monad-control-prof,
+ libghc-mtl-dev (>= 2.0),
+ libghc-mtl-dev (<< 2.3),
+ libghc-mtl-prof,
+ libghc-transformers-base-dev (>= 0.4.4),
+ libghc-transformers-base-dev (<< 0.5),
+ libghc-transformers-base-prof,
+ libghc-transformers-compat-dev (>= 0.3),
+ libghc-transformers-compat-dev (<< 0.5),
+ libghc-transformers-compat-prof,
+ libghc-hspec-dev (>= 1.3),
+Build-Depends-Indep: ghc-doc,
+ libghc-exceptions-doc,
+ libghc-lifted-base-doc,
+ libghc-mmorph-doc,
+ libghc-monad-control-doc,
+ libghc-mtl-doc,
+ libghc-transformers-base-doc,
+ libghc-transformers-compat-doc,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/resourcet
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-resourcet
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-resourcet
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-resourcet
 
 Package: libghc-resourcet-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: deterministic allocation and freeing of scarce resources${haskell:ShortBlurb}
  Control.Monad.Trans.Resource allocates resources which are guaranteed
  to be released.  One point to note: all register cleanup actions live
@@ -58,11 +58,11 @@ Description: deterministic allocation and freeing of scarce resources${haskell:S
 
 Package: libghc-resourcet-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: deterministic allocation and freeing of scarce resources${haskell:ShortBlurb}
  Control.Monad.Trans.Resource allocates resources which are guaranteed
  to be released.  One point to note: all register cleanup actions live
@@ -72,11 +72,12 @@ Description: deterministic allocation and freeing of scarce resources${haskell:S
  ${haskell:Blurb}
 
 Package: libghc-resourcet-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: deterministic allocation and freeing of scarce resources${haskell:ShortBlurb}
  Control.Monad.Trans.Resource allocates resources which are guaranteed
  to be released.  One point to note: all register cleanup actions live

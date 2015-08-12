@@ -1,10 +1,11 @@
 Source: darcs
-Section: haskell
-Priority: optional
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Erik de Castro Lopo <merikd@mega-nerd.com>,
- Petr Rockai <mornfall@debian.org>
-Build-Depends: cdbs, debhelper (>= 9), haskell-devscripts (>= 0.9),
+Uploaders: Erik de Castro Lopo <merikd@mega-nerd.com>, Petr Rockai <mornfall@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: cdbs,
+ debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
  ghc (>= 7.4),
  bash-completion (>= 1:1.1),
  libcurl4-gnutls-dev (>= 7.19.1),
@@ -51,17 +52,17 @@ Build-Depends: cdbs, debhelper (>= 9), haskell-devscripts (>= 0.9),
  libghc-dataenc-dev (<< 0.15),
  libghc-unix-compat-dev (>= 0.1.2),
  libghc-unix-compat-dev (<< 0.5),
-Homepage: http://darcs.net/
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/darcs
-Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/darcs
 Standards-Version: 3.9.6
+Homepage: http://darcs.net/
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/darcs
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/darcs
 
 Package: darcs
-Section: vcs
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Recommends: default-mta | mail-transport-agent
-Multi-Arch: foreign
+Section: vcs
+Depends: ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: default-mta | mail-transport-agent,
 Description: distributed, interactive, smart revision control system
  Darcs is a free, open source revision control system.  It is:
  .

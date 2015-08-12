@@ -1,27 +1,27 @@
 Source: haskell-bytestring-progress
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-Build-Depends-Indep: ghc-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/bytestring-progress
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-bytestring-progress
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-bytestring-progress
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-bytestring-progress
 
 Package: libghc-bytestring-progress-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: A library for tracking the consumption of a lazy ByteString${haskell:ShortBlurb}
  In some cases, it is useful to know how fast a ByteString is being
  consumed. Typically, this could be to report some measure of progress
@@ -32,11 +32,11 @@ Description: A library for tracking the consumption of a lazy ByteString${haskel
 
 Package: libghc-bytestring-progress-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: A library for tracking the consumption of a lazy ByteString${haskell:ShortBlurb}
  In some cases, it is useful to know how fast a ByteString is being
  consumed. Typically, this could be to report some measure of progress
@@ -46,11 +46,12 @@ Description: A library for tracking the consumption of a lazy ByteString${haskel
  ${haskell:Blurb}
 
 Package: libghc-bytestring-progress-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: A library for tracking the consumption of a lazy ByteString${haskell:ShortBlurb}
  In some cases, it is useful to know how fast a ByteString is being
  consumed. Typically, this could be to report some measure of progress

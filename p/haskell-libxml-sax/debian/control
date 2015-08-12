@@ -1,35 +1,35 @@
 Source: haskell-libxml-sax
-Priority: extra
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
- , haskell-devscripts (>= 0.9)
- , cdbs
- , ghc
- , ghc-prof
- , libghc-text-dev (>> 0.7)
- , libghc-text-prof
- , libghc-xml-types-dev (>> 0.3)
- , libghc-xml-types-dev (<< 0.4)
- , libghc-xml-types-prof
- , libxml2-dev
- , pkg-config
-Build-Depends-Indep: ghc-doc
- , libghc-text-doc
- , libghc-xml-types-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-text-dev (>> 0.7),
+ libghc-text-prof,
+ libghc-xml-types-dev (>> 0.3),
+ libghc-xml-types-dev (<< 0.4),
+ libghc-xml-types-prof,
+ libxml2-dev,
+ pkg-config,
+Build-Depends-Indep: ghc-doc,
+ libghc-text-doc,
+ libghc-xml-types-doc,
 Standards-Version: 3.9.4
 Homepage: http://ianen.org/haskell/bindings/libxml-sax/
 
 Package: libghc-libxml-sax-dev
 Architecture: any
 Depends: ${shlibs:Depends},
-         ${haskell:Depends},
-         ${misc:Depends},
-         libxml2-dev
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+ ${haskell:Depends},
+ ${misc:Depends},
+ libxml2-dev,
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: bindings for libXML2 SAX
  These are Haskell bindings to the libXML2 SAX library.
  .
@@ -38,10 +38,10 @@ Description: bindings for libXML2 SAX
 Package: libghc-libxml-sax-prof
 Architecture: any
 Depends: ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: bindings for libXML2 SAX; profiling libraries
  These are Haskell bindings to the libXML2 SAX library.
  .
@@ -51,9 +51,9 @@ Package: libghc-libxml-sax-doc
 Architecture: all
 Section: doc
 Depends: ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: bindings for libXML2 SAX; documentation
  These are Haskell bindings to the libXML2 SAX library.
  .

@@ -1,33 +1,33 @@
 Source: haskell-hs-bibutils
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Giovanni Mascellani <gio@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-syb-dev
-  , libghc-syb-prof
-  , libbibutils-dev (>= 4.12-5)
-  , pkg-config
-Build-Depends-Indep: ghc-doc
-  , libghc-syb-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-syb-dev,
+ libghc-syb-prof,
+ libbibutils-dev (>= 4.12-5),
+ pkg-config,
+Build-Depends-Indep: ghc-doc,
+ libghc-syb-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/hs-bibutils
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hs-bibutils
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-hs-bibutils
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hs-bibutils
 
 Package: libghc-hs-bibutils-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-  , libbibutils-dev (>= 4.12-3.1)
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+ libbibutils-dev (>= 4.12-3.1),
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell bindings to bibutils library${haskell:ShortBlurb}
  bibutils is a program by Chris Putnam to convert between various
  bibliography formats, using a common MODS-format XML intermediate. This
@@ -37,11 +37,11 @@ Description: Haskell bindings to bibutils library${haskell:ShortBlurb}
 
 Package: libghc-hs-bibutils-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell bindings to bibutils library${haskell:ShortBlurb}
  bibutils is a program by Chris Putnam to convert between various
  bibliography formats, using a common MODS-format XML intermediate. This
@@ -50,11 +50,12 @@ Description: Haskell bindings to bibutils library${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-hs-bibutils-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Haskell bindings to bibutils library${haskell:ShortBlurb}
  bibutils is a program by Chris Putnam to convert between various
  bibliography formats, using a common MODS-format XML intermediate. This

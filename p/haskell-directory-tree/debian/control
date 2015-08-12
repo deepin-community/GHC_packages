@@ -1,21 +1,25 @@
 Source: haskell-directory-tree
-Section: haskell
-Priority: optional
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: TANIGUCHI Takaki <takaki@debian.org>
-Build-Depends: cdbs, debhelper (>= 9), haskell-devscripts (>= 0.9),
-	ghc,
-	ghc-prof
-Build-Depends-Indep: ghc-doc
+Priority: optional
+Section: haskell
+Build-Depends: cdbs,
+ debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/directory-tree
 
 Package: libghc-directory-tree-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
-Suggests: ${haskell:Suggests}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: simple directory-like tree datatype, with IO functions${haskell:ShortBlurb}
  A simple directory-like tree datatype, with useful IO functions and Foldable
  and Traversable instance
@@ -28,10 +32,11 @@ Description: simple directory-like tree datatype, with IO functions${haskell:Sho
 
 Package: libghc-directory-tree-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
-Suggests: ${haskell:Suggests}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: simple directory-like tree datatype, with IO functions${haskell:ShortBlurb}
  A simple directory-like tree datatype, with useful IO functions and Foldable
  and Traversable instance
@@ -45,9 +50,10 @@ Description: simple directory-like tree datatype, with IO functions${haskell:Sho
 Package: libghc-directory-tree-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: simple directory-like tree datatype, with IO functions${haskell:ShortBlurb}
  A simple directory-like tree datatype, with useful IO functions and Foldable
  and Traversable instance

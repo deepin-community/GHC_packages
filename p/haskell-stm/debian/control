@@ -1,26 +1,26 @@
 Source: haskell-stm
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ ghc-doc,
 Standards-Version: 3.9.4
-Build-Depends: debhelper (>= 9)
-  , haskell-devscripts (>= 0.9)
-  , cdbs
-  , ghc
-  , ghc-prof
-  , ghc-doc
 Homepage: http://hackage.haskell.org/package/stm
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-stm
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-stm
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-stm
 
 Package: libghc-stm-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell Software Transactional Memory library for GHC${haskell:ShortBlurb}
  Provides a Haskell Software Transactional Memory (STM) library.
  STM is a modular composable concurrency abstraction.
@@ -29,9 +29,9 @@ Description: Haskell Software Transactional Memory library for GHC${haskell:Shor
 
 Package: libghc-stm-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Provides: ${haskell:Provides},
 Description: Haskell Software Transactional Memory library for GHC${haskell:ShortBlurb}
  Provides a Haskell Software Transactional Memory (STM) library.
  STM is a modular composable concurrency abstraction.
@@ -39,15 +39,14 @@ Description: Haskell Software Transactional Memory library for GHC${haskell:Shor
  ${haskell:Blurb}
 
 Package: libghc-stm-doc
-Section: doc
 Architecture: all
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Haskell Software Transactional Memory library for GHC${haskell:ShortBlurb}
  Provides a Haskell Software Transactional Memory (STM) library.
  STM is a modular composable concurrency abstraction.
  .
  ${haskell:Blurb}
-

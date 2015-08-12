@@ -1,27 +1,26 @@
 Source: haskell-diagrams
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Marco Túlio Gontijo e Silva <marcot@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/diagrams
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-diagrams
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-diagrams
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-diagrams
 
 Package: libghc-diagrams-dev
 Architecture: all
-Depends: ${shlibs:Depends}
-  , ${misc:Depends}
-  , libghc-diagrams-core-dev (>= 1.2)
-  , libghc-diagrams-core-dev (<< 1.3)
-  , libghc-diagrams-lib-dev (>= 1.2)
-  , libghc-diagrams-lib-dev (<< 1.3)
-  , libghc-diagrams-cairo-dev (>= 1.2)
-  , libghc-diagrams-cairo-dev (<< 1.3)
-  , libghc-diagrams-svg-dev (>= 1.0.1.4)
-  , libghc-diagrams-svg-dev (<< 1.2)
+Depends: ${shlibs:Depends},
+ ${misc:Depends},
+ libghc-diagrams-core-dev (>= 1.2),
+ libghc-diagrams-core-dev (<< 1.3),
+ libghc-diagrams-lib-dev (>= 1.2),
+ libghc-diagrams-lib-dev (<< 1.3),
+ libghc-diagrams-cairo-dev (>= 1.2),
+ libghc-diagrams-cairo-dev (<< 1.3),
+ libghc-diagrams-svg-dev (>= 1.0.1.4),
+ libghc-diagrams-svg-dev (<< 1.2),
 Description: Embedded domain-specific language for declarative vector graphics${haskell:ShortBlurb}
  Diagrams is an embedded domain-specific language for declarative vector
  graphics.  This package is just a wrapper that depends on the
@@ -31,12 +30,12 @@ Description: Embedded domain-specific language for declarative vector graphics${
 
 Package: libghc-diagrams-prof
 Architecture: all
-Depends: ${misc:Depends}
-  , libghc-diagrams-dev (= ${binary:Version})
-  , libghc-diagrams-core-prof
-  , libghc-diagrams-lib-prof
-  , libghc-diagrams-cairo-prof
-  , libghc-diagrams-svg-prof
+Depends: ${misc:Depends},
+ libghc-diagrams-dev (= ${binary:Version}),
+ libghc-diagrams-core-prof,
+ libghc-diagrams-lib-prof,
+ libghc-diagrams-cairo-prof,
+ libghc-diagrams-svg-prof,
 Description: Embedded domain-specific language for declarative vector graphics${haskell:ShortBlurb}
  Diagrams is an embedded domain-specific language for declarative vector
  graphics.  This package is just a wrapper that depends on the
@@ -45,13 +44,13 @@ Description: Embedded domain-specific language for declarative vector graphics${
  ${haskell:Blurb}
 
 Package: libghc-diagrams-doc
-Section: doc
 Architecture: all
+Section: doc
 Depends: ${misc:Depends},
-  , libghc-diagrams-core-doc
-  , libghc-diagrams-lib-doc
-  , libghc-diagrams-cairo-doc
-  , libghc-diagrams-svg-doc
+ libghc-diagrams-core-doc,
+ libghc-diagrams-lib-doc,
+ libghc-diagrams-cairo-doc,
+ libghc-diagrams-svg-doc,
 Description: Embedded domain-specific language for declarative vector graphics${haskell:ShortBlurb}
  Diagrams is an embedded domain-specific language for declarative vector
  graphics.  This package is just a wrapper that depends on the

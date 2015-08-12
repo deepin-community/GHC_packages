@@ -1,38 +1,38 @@
 Source: haskell-pipes-safe
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-exceptions-dev (>= 0.6)
-  , libghc-exceptions-dev (<< 0.9)
-  , libghc-exceptions-prof
-  , libghc-monad-control-dev (>= 1.0.0.4)
-  , libghc-monad-control-dev (<< 1.1)
-  , libghc-monad-control-prof
-  , libghc-mtl-dev (>= 2.1)
-  , libghc-mtl-dev (<< 2.3)
-  , libghc-mtl-prof
-  , libghc-pipes-dev (>= 4.0.0)
-  , libghc-pipes-dev (<< 4.2)
-  , libghc-pipes-prof
-  , libghc-transformers-base-dev (>= 0.4.4)
-  , libghc-transformers-base-dev (<< 0.5)
-  , libghc-transformers-base-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-exceptions-doc
-  , libghc-monad-control-doc
-  , libghc-mtl-doc
-  , libghc-pipes-doc
-  , libghc-transformers-base-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-exceptions-dev (>= 0.6),
+ libghc-exceptions-dev (<< 0.9),
+ libghc-exceptions-prof,
+ libghc-monad-control-dev (>= 1.0.0.4),
+ libghc-monad-control-dev (<< 1.1),
+ libghc-monad-control-prof,
+ libghc-mtl-dev (>= 2.1),
+ libghc-mtl-dev (<< 2.3),
+ libghc-mtl-prof,
+ libghc-pipes-dev (>= 4.0.0),
+ libghc-pipes-dev (<< 4.2),
+ libghc-pipes-prof,
+ libghc-transformers-base-dev (>= 0.4.4),
+ libghc-transformers-base-dev (<< 0.5),
+ libghc-transformers-base-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-exceptions-doc,
+ libghc-monad-control-doc,
+ libghc-mtl-doc,
+ libghc-pipes-doc,
+ libghc-transformers-base-doc,
 Standards-Version: 3.9.6
 Homepage: http://hackage.haskell.org/package/pipes-safe
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-pipes-safe
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-pipes-safe
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-pipes-safe
 X-Description: safety for the pipes ecosystem
  This package adds resource management and exception handling to the
  pipes ecosystem.
@@ -51,12 +51,12 @@ X-Description: safety for the pipes ecosystem
 
 Package: libghc-pipes-safe-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -64,22 +64,23 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-pipes-safe-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-pipes-safe-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .

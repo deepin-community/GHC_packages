@@ -1,30 +1,30 @@
 Source: haskell-csv
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-parsec3-dev
-  , libghc-parsec3-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-parsec3-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-parsec3-dev,
+ libghc-parsec3-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-parsec3-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/csv
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-csv
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-csv
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-csv
 
 Package: libghc-csv-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: CSV loader and dumper${haskell:ShortBlurb}
  This library parses and dumps documents that are formatted according
  to RFC 4180, "The common Format and MIME Type for Comma-Separated
@@ -35,11 +35,11 @@ Description: CSV loader and dumper${haskell:ShortBlurb}
 
 Package: libghc-csv-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: CSV loader and dumper${haskell:ShortBlurb}
  This library parses and dumps documents that are formatted according
  to RFC 4180, "The common Format and MIME Type for Comma-Separated
@@ -49,11 +49,12 @@ Description: CSV loader and dumper${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-csv-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: CSV loader and dumper${haskell:ShortBlurb}
  This library parses and dumps documents that are formatted according
  to RFC 4180, "The common Format and MIME Type for Comma-Separated

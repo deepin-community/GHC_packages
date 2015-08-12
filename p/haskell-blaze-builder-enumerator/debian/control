@@ -1,39 +1,39 @@
 Source: haskell-blaze-builder-enumerator
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-blaze-builder-dev (>> 0.2.1.4)
-  , libghc-blaze-builder-dev (<< 0.5)
-  , libghc-blaze-builder-prof
-  , libghc-enumerator-dev (>> 0.4.3.1)
-  , libghc-enumerator-dev (<< 0.5)
-  , libghc-enumerator-prof
-  , libghc-streaming-commons-dev (>= 0.1.10)
-  , libghc-streaming-commons-dev (<< 0.2)
-  , libghc-streaming-commons-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-blaze-builder-doc
-  , libghc-enumerator-doc
-  , libghc-streaming-commons-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-blaze-builder-dev (>> 0.2.1.4),
+ libghc-blaze-builder-dev (<< 0.5),
+ libghc-blaze-builder-prof,
+ libghc-enumerator-dev (>> 0.4.3.1),
+ libghc-enumerator-dev (<< 0.5),
+ libghc-enumerator-prof,
+ libghc-streaming-commons-dev (>= 0.1.10),
+ libghc-streaming-commons-dev (<< 0.2),
+ libghc-streaming-commons-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-blaze-builder-doc,
+ libghc-enumerator-doc,
+ libghc-streaming-commons-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/blaze-builder-enumerator
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-blaze-builder-enumerator
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-blaze-builder-enumerator
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-blaze-builder-enumerator
 
 Package: libghc-blaze-builder-enumerator-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: enumeratees for incremental conversion of builders to bytestrings${haskell:ShortBlurb}
  It integrates the builders from the blaze-builder package with the
  enumerator package. It provides infrastructure and enumeratees for
@@ -44,11 +44,11 @@ Description: enumeratees for incremental conversion of builders to bytestrings${
 
 Package: libghc-blaze-builder-enumerator-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: enumeratees for conversion of builders to bytestrings${haskell:ShortBlurb}
  It integrates the builders from the blaze-builder package with the
  enumerator package. It provides infrastructure and enumeratees for
@@ -58,11 +58,12 @@ Description: enumeratees for conversion of builders to bytestrings${haskell:Shor
  ${haskell:Blurb}
 
 Package: libghc-blaze-builder-enumerator-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: enumeratees for conversion of builders to bytestrings${haskell:ShortBlurb}
  It integrates the builders from the blaze-builder package with the
  enumerator package. It provides infrastructure and enumeratees for

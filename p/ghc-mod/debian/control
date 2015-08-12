@@ -1,54 +1,55 @@
 Source: ghc-mod
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Priority: extra
 Section: haskell
-Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Daniel Gröber <dxld@darkboxed.org>, Kiwamu Okabe <kiwamu@debian.or.jp>
 Build-Depends: debhelper (>= 9),
-               haskell-devscripts (>= 0.9),
-               cdbs,
-               ghc,
-               ghc-ghci,
-               libghc-async-dev,
-               libghc-convertible-dev,
-               libghc-djinn-ghc-dev (>= 0.0.2.2),
-               libghc-data-default-dev,
-               libghc-ghc-paths-dev,
-               libghc-ghc-syb-utils-dev,
-               libghc-src-exts-dev,
-               libghc-hlint-dev (>= 1.8.61),
-               libghc-io-choice-dev,
-               libghc-monad-control-dev,
-               libghc-monad-journal-dev (>= 0.4),
-               libghc-mtl-dev (>= 2.0),
-               libghc-split-dev,
-               libghc-syb-dev,
-               libghc-text-dev,
-               libghc-transformers-base-dev,
-               libghc-temporary-dev
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-ghci,
+ libghc-async-dev,
+ libghc-convertible-dev,
+ libghc-djinn-ghc-dev (>= 0.0.2.2),
+ libghc-data-default-dev,
+ libghc-ghc-paths-dev,
+ libghc-ghc-syb-utils-dev,
+ libghc-src-exts-dev,
+ libghc-hlint-dev (>= 1.8.61),
+ libghc-io-choice-dev,
+ libghc-monad-control-dev,
+ libghc-monad-journal-dev (>= 0.4),
+ libghc-mtl-dev (>= 2.0),
+ libghc-split-dev,
+ libghc-syb-dev,
+ libghc-text-dev,
+ libghc-transformers-base-dev,
+ libghc-temporary-dev,
 Standards-Version: 3.9.5
 Homepage: http://www.mew.org/~kazu/proj/ghc-mod/
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/ghc-mod
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/ghc-mod
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/ghc-mod
 
 Package: ghc-mod
 Architecture: any
-Recommends: ghc-mod-el (=${binary:Version})
-Depends: ${shlibs:Depends}, ${misc:Depends},
-	 ${haskell:ghc-version}
+Depends: ${shlibs:Depends},
+ ${misc:Depends},
+ ${haskell:ghc-version},
+Recommends: ghc-mod-el (= ${binary:Version}),
 Description: Happy Haskell programming
  This package provides the executables ghc-mod and ghc-modi. The GNU Emacs
  integration code is provided by a separate package, namely ghc-mod-el.
 
 Package: ghc-mod-el
 Architecture: all
-Recommends: haskell-mode
-Depends: ${shlibs:Depends}, ${misc:Depends},
-	 ${haskell:ghc-version},
-         emacsen-common (>= 2.0.8),
-         ghc-mod (>= ${source:Version}),
-         ghc-mod (<< ${source:Version}.1~)
-Replaces: ghc-mod (<< 5.2.1.1-1)
-Breaks: ghc-mod (<< 5.2.1.1-1)
+Depends: ${shlibs:Depends},
+ ${misc:Depends},
+ ${haskell:ghc-version},
+ emacsen-common (>= 2.0.8),
+ ghc-mod (>= ${source:Version}),
+ ghc-mod (<< ${source:Version}.1~),
+Recommends: haskell-mode,
+Breaks: ghc-mod (<< 5.2.1.1-1),
+Replaces: ghc-mod (<< 5.2.1.1-1),
 Description: Happy Haskell programming with Emacs
  This package proviceds the GNU Emacs integration code for ghc-mod.
  .

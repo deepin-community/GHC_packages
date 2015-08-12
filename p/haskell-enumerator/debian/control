@@ -1,30 +1,30 @@
 Source: haskell-enumerator
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-text-dev (>> 0.7)
-  , libghc-text-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-text-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-text-dev (>> 0.7),
+ libghc-text-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-text-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/enumerator
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-enumerator
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-enumerator
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-enumerator
 
 Package: libghc-enumerator-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: high-performance left-fold enumerators${haskell:ShortBlurb}
  Typical buffer–based incremental I/O is based around a single loop,
  which reads data from some source (such as a socket or file),
@@ -68,11 +68,11 @@ Description: high-performance left-fold enumerators${haskell:ShortBlurb}
 
 Package: libghc-enumerator-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: high-performance left-fold enumerators${haskell:ShortBlurb}
  Typical buffer–based incremental I/O is based around a single loop,
  which reads data from some source (such as a socket or file),
@@ -115,11 +115,12 @@ Description: high-performance left-fold enumerators${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-enumerator-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: high-performance left-fold enumerators${haskell:ShortBlurb}
  Typical buffer–based incremental I/O is based around a single loop,
  which reads data from some source (such as a socket or file),

@@ -1,30 +1,29 @@
 Source: haskell-mmap
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Marco Túlio Gontijo e Silva <marcot@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-hunit-dev
-  , libghc-hunit-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-hunit-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-hunit-dev,
+ libghc-hunit-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-hunit-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/mmap
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-mmap
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-mmap
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-mmap
 
 Package: libghc-mmap-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Memory mapped files for POSIX and Windows${haskell:ShortBlurb}
  This library provides a wrapper to mmap(2) or MapViewOfFile, allowing files or
  devices to be lazily loaded into memory as strict or lazy ByteStrings,
@@ -35,12 +34,12 @@ Description: Memory mapped files for POSIX and Windows${haskell:ShortBlurb}
 
 Package: libghc-mmap-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Memory mapped files for POSIX and Windows${haskell:ShortBlurb}
  This library provides a wrapper to mmap(2) or MapViewOfFile, allowing files or
  devices to be lazily loaded into memory as strict or lazy ByteStrings,
@@ -50,11 +49,12 @@ Description: Memory mapped files for POSIX and Windows${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-mmap-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Memory mapped files for POSIX and Windows${haskell:ShortBlurb}
  This library provides a wrapper to mmap(2) or MapViewOfFile, allowing files or
  devices to be lazily loaded into memory as strict or lazy ByteStrings,

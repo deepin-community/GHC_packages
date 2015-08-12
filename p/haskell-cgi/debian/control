@@ -1,53 +1,52 @@
 Source: haskell-cgi
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>, Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-parsec3-dev,
+ libghc-parsec3-prof,
+ libghc-exceptions-dev (<< 0.9),
+ libghc-exceptions-prof,
+ libghc-multipart-dev (>= 0.1.2),
+ libghc-multipart-dev (<< 0.2),
+ libghc-multipart-prof,
+ libghc-network-dev (>= 2.6),
+ libghc-network-dev (<< 2.7),
+ libghc-network-prof,
+ libghc-network-uri-dev (>= 2.6),
+ libghc-network-uri-dev (<< 2.7),
+ libghc-network-uri-prof,
+ libghc-mtl-dev (>= 2.1.3.1),
+ libghc-mtl-dev (<< 2.3),
+ libghc-mtl-prof,
+ libghc-mtl-compat-dev (>= 0.2.1.1),
+ libghc-mtl-compat-dev (<< 0.3),
+ libghc-mtl-compat-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-parsec3-doc,
+ libghc-exceptions-doc,
+ libghc-multipart-doc,
+ libghc-network-doc,
+ libghc-network-uri-doc,
+ libghc-mtl-doc,
+ libghc-mtl-compat-doc,
 Standards-Version: 3.9.4
-Build-Depends: debhelper (>= 9)
-  , haskell-devscripts (>= 0.9)
-  , cdbs
-  , ghc
-  , ghc-prof
-  , libghc-parsec3-dev
-  , libghc-parsec3-prof
-  , libghc-exceptions-dev (<< 0.9)
-  , libghc-exceptions-prof
-  , libghc-multipart-dev (>= 0.1.2)
-  , libghc-multipart-dev (<< 0.2)
-  , libghc-multipart-prof
-  , libghc-network-dev (>= 2.6)
-  , libghc-network-dev (<< 2.7)
-  , libghc-network-prof
-  , libghc-network-uri-dev (>= 2.6)
-  , libghc-network-uri-dev (<< 2.7)
-  , libghc-network-uri-prof
-  , libghc-mtl-dev (>= 2.1.3.1)
-  , libghc-mtl-dev (<< 2.3)
-  , libghc-mtl-prof
-  , libghc-mtl-compat-dev (>= 0.2.1.1)
-  , libghc-mtl-compat-dev (<< 0.3)
-  , libghc-mtl-compat-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-parsec3-doc
-  , libghc-exceptions-doc
-  , libghc-multipart-doc
-  , libghc-network-doc
-  , libghc-network-uri-doc
-  , libghc-mtl-doc
-  , libghc-mtl-compat-doc
 Homepage: http://hackage.haskell.org/package/cgi
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-cgi
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-cgi
-
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-cgi
 
 Package: libghc-cgi-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell CGI library for GHC${haskell:ShortBlurb}
  This library is for writing CGI programs.
  .
@@ -55,23 +54,22 @@ Description: Haskell CGI library for GHC${haskell:ShortBlurb}
 
 Package: libghc-cgi-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Provides: ${haskell:Provides},
 Description: Haskell CGI library for GHC${haskell:ShortBlurb}
  This library is for writing CGI programs.
  .
  ${haskell:Blurb}
 
 Package: libghc-cgi-doc
-Section: doc
 Architecture: all
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Haskell CGI library for GHC${haskell:ShortBlurb}
  This library is for writing CGI programs.
  .
  ${haskell:Blurb}
-

@@ -1,11 +1,9 @@
 Source: haskell-network
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>, Dmitry Bogatov <KAction@gnu.org>
-Standards-Version: 3.9.6
-Build-Depends:
- debhelper (>= 9),
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
  haskell-devscripts (>= 0.9),
  autotools-dev,
  cdbs,
@@ -15,19 +13,22 @@ Build-Depends:
  libghc-parsec3-prof,
 Build-Depends-Indep: ghc-doc,
  libghc-parsec3-doc,
- libghc-mtl-doc
+ libghc-mtl-doc,
+Standards-Version: 3.9.6
 Homepage: http://hackage.haskell.org/package/network
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-network
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-network
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-network
 X-Description: Haskell low-level network library
  Library `network' provides means to perform network
  operations on level of ByteString's and sockets.
 
 Package: libghc-network-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -35,19 +36,22 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-network-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-network-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .

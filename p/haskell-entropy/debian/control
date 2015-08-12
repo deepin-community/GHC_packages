@@ -1,27 +1,27 @@
 Source: haskell-entropy
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-Build-Depends-Indep: ghc-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/entropy
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-entropy
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-entropy
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-entropy
 
 Package: libghc-entropy-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: cryptographically-strong entropy${haskell:ShortBlurb}
  It is a platform-independent method to obtain cryptographically strong
  entropy (urandom on Linux, CryptAPI on Windows, patches welcome). Users
@@ -32,11 +32,11 @@ Description: cryptographically-strong entropy${haskell:ShortBlurb}
 
 Package: libghc-entropy-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: cryptographically-strong entropy${haskell:ShortBlurb}
  It is a platform-independent method to obtain cryptographically strong
  entropy (urandom on Linux, CryptAPI on Windows, patches welcome). Users
@@ -46,11 +46,12 @@ Description: cryptographically-strong entropy${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-entropy-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: cryptographically-strong entropy${haskell:ShortBlurb}
  It is a platform-independent method to obtain cryptographically strong
  entropy (urandom on Linux, CryptAPI on Windows, patches welcome). Users

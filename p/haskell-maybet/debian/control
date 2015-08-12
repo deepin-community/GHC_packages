@@ -1,33 +1,30 @@
 Source: haskell-maybet
-Priority: extra
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Giovanni Mascellani <gio@debian.org>
-Build-Depends:
- debhelper (>= 9),
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
  haskell-devscripts (>= 0.9),
  cdbs,
  ghc,
  ghc-prof,
  libghc-mtl-dev,
- libghc-mtl-prof
-Build-Depends-Indep:
- ghc-doc,
- libghc-mtl-doc
+ libghc-mtl-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-mtl-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/MaybeT
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-maybet
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-maybet
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-maybet
 
 Package: libghc-maybet-dev
 Architecture: any
-Depends:
- ${haskell:Depends},
+Depends: ${haskell:Depends},
  ${misc:Depends},
- ${shlibs:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell MaybeT monad transformer${haskell:ShortBlurb}
  MaybeT is a Haskell monad transformer that adds Maybe semantics to an
  existing monad, making it able to fail (i.e. return Nothing) or be
@@ -39,12 +36,11 @@ Description: Haskell MaybeT monad transformer${haskell:ShortBlurb}
 
 Package: libghc-maybet-prof
 Architecture: any
-Depends:
- ${haskell:Depends},
- ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell MaybeT monad transformer${haskell:ShortBlurb}
  MaybeT is a Haskell monad transformer that adds Maybe semantics to an
  existing monad, making it able to fail (i.e. return Nothing) or be
@@ -55,13 +51,12 @@ Description: Haskell MaybeT monad transformer${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-maybet-doc
-Section: doc
 Architecture: all
-Depends:
- ${haskell:Depends},
- ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Haskell MaybeT monad transformer${haskell:ShortBlurb}
  MaybeT is a Haskell monad transformer that adds Maybe semantics to an
  existing monad, making it able to fail (i.e. return Nothing) or be

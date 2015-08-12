@@ -1,23 +1,27 @@
 Source: haskell-dlist
-Section: haskell
-Priority: optional
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: TANIGUCHI Takaki <takaki@debian.org>
-Build-Depends: cdbs, debhelper (>= 9), haskell-devscripts (>= 0.9),
-	ghc,
-	ghc-prof
-  , libghc-quickcheck2-dev (>= 2.5)
-  , libghc-quickcheck2-dev (<< 2.9)
-Build-Depends-Indep: ghc-doc
+Priority: optional
+Section: haskell
+Build-Depends: cdbs,
+ debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-quickcheck2-dev (>= 2.5),
+ libghc-quickcheck2-dev (<< 2.9),
+Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.5
 Homepage: http://code.haskell.org/~dons/code/dlist/
 
 Package: libghc-dlist-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
-Suggests: ${haskell:Suggests}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell library for Differences lists${haskell:ShortBlurb}
  Differences lists: a list-like type supporting O(1) append.
  This is particularly useful for efficient logging and pretty
@@ -28,10 +32,11 @@ Description: Haskell library for Differences lists${haskell:ShortBlurb}
 
 Package: libghc-dlist-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
-Suggests: ${haskell:Suggests}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell library for Differences lists${haskell:ShortBlurb}
  Differences lists: a list-like type supporting O(1) append.
  This is particularly useful for efficient logging and pretty
@@ -43,9 +48,10 @@ Description: Haskell library for Differences lists${haskell:ShortBlurb}
 Package: libghc-dlist-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Haskell library for Differences lists${haskell:ShortBlurb}
  Differences lists: a list-like type supporting O(1) append.
  This is particularly useful for efficient logging and pretty

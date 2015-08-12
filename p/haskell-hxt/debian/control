@@ -1,53 +1,54 @@
 Source: haskell-hxt
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: TANIGUCHI Takaki <takaki@debian.org>
-Build-Depends:
-	cdbs,
-	debhelper (>= 9),
-	haskell-devscripts (>= 0.9),
-	ghc,
-	ghc-prof,
-	ghc-doc,
-	libghc-network-uri-dev (>= 2.6),
-	libghc-network-uri-prof,
-	libghc-network-uri-doc,
-	libghc-parsec3-dev (>= 2.1),
-	libghc-parsec3-dev (<< 4),
-	libghc-parsec3-prof,
-	libghc-parsec3-doc,
-	libghc-hunit-dev (>= 1.2),
-	libghc-hunit-dev (<< 2),
-	libghc-hunit-prof,
-	libghc-hunit-doc,
-	libghc-mtl-dev (>= 2.0.1),
-	libghc-mtl-dev (<< 3),
-	libghc-mtl-prof,
-	libghc-mtl-doc,
-	libghc-hxt-charproperties-dev (>= 9.1),
-	libghc-hxt-charproperties-dev (<< 10),
-	libghc-hxt-charproperties-prof,
-	libghc-hxt-charproperties-doc,
-	libghc-hxt-unicode-dev (>= 9.0.1),
-	libghc-hxt-unicode-dev (<< 10),
-	libghc-hxt-unicode-prof,
-	libghc-hxt-unicode-doc,
-	libghc-hxt-regex-xmlschema-dev (>= 9.2),
-	libghc-hxt-regex-xmlschema-dev (<< 10),
-	libghc-hxt-regex-xmlschema-prof ,
-	libghc-hxt-regex-xmlschema-doc,
+Priority: extra
+Section: haskell
+Build-Depends: cdbs,
+ debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ ghc-doc,
+ libghc-network-uri-dev (>= 2.6),
+ libghc-network-uri-prof,
+ libghc-network-uri-doc,
+ libghc-parsec3-dev (>= 2.1),
+ libghc-parsec3-dev (<< 4),
+ libghc-parsec3-prof,
+ libghc-parsec3-doc,
+ libghc-hunit-dev (>= 1.2),
+ libghc-hunit-dev (<< 2),
+ libghc-hunit-prof,
+ libghc-hunit-doc,
+ libghc-mtl-dev (>= 2.0.1),
+ libghc-mtl-dev (<< 3),
+ libghc-mtl-prof,
+ libghc-mtl-doc,
+ libghc-hxt-charproperties-dev (>= 9.1),
+ libghc-hxt-charproperties-dev (<< 10),
+ libghc-hxt-charproperties-prof,
+ libghc-hxt-charproperties-doc,
+ libghc-hxt-unicode-dev (>= 9.0.1),
+ libghc-hxt-unicode-dev (<< 10),
+ libghc-hxt-unicode-prof,
+ libghc-hxt-unicode-doc,
+ libghc-hxt-regex-xmlschema-dev (>= 9.2),
+ libghc-hxt-regex-xmlschema-dev (<< 10),
+ libghc-hxt-regex-xmlschema-prof,
+ libghc-hxt-regex-xmlschema-doc,
 Standards-Version: 3.9.4
 Homepage: http://www.fh-wedel.de/~si/HXmlToolbox/
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hxt
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-hxt
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hxt
 
 Package: libghc-hxt-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: xml toolkit for Haskell (library)${haskell:ShortBlurb}
  The Haskell XML Toolbox bases on the ideas of HaXml and HXML, but
  introduces a more general and flexible approach for processing XML
@@ -63,10 +64,11 @@ Description: xml toolkit for Haskell (library)${haskell:ShortBlurb}
 
 Package: libghc-hxt-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: xml toolkit for Haskell (profiling library)${haskell:ShortBlurb}
  The Haskell XML Toolbox bases on the ideas of HaXml and HXML, but
  introduces a more general and flexible approach for processing XML
@@ -81,12 +83,13 @@ Description: xml toolkit for Haskell (profiling library)${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-hxt-doc
-Section: doc
 Architecture: all
-Depends: ${haskell:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: xml toolkit for Haskell (documentation)${haskell:ShortBlurb}
  The Haskell XML Toolbox bases on the ideas of HaXml and HXML, but
  introduces a more general and flexible approach for processing XML
@@ -99,4 +102,3 @@ Description: xml toolkit for Haskell (documentation)${haskell:ShortBlurb}
  applications can easily be transformed into arrows.
  .
  ${haskell:Blurb}
-

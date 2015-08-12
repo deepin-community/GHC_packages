@@ -1,93 +1,90 @@
 Source: haskell-wai-app-file-cgi
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-attoparsec-dev (>= 0.10.0.0)
-  , libghc-attoparsec-prof
-  , libghc-blaze-builder-dev
-  , libghc-blaze-builder-prof
-  , libghc-blaze-html-dev
-  , libghc-blaze-html-prof
-  , libghc-case-insensitive-dev
-  , libghc-case-insensitive-prof
-  , libghc-conduit-dev (>= 1.1)
-  , libghc-conduit-prof
-  , libghc-conduit-extra-dev
-  , libghc-conduit-extra-prof
-  , libghc-data-default-class-dev
-  , libghc-data-default-class-prof
-  , libghc-http-client-dev (>= 0.3)
-  , libghc-http-client-prof
-  , libghc-http-conduit-dev (>= 2.1)
-  , libghc-http-conduit-prof
-  , libghc-http-date-dev
-  , libghc-http-date-prof
-  , libghc-http-types-dev (>= 0.7)
-  , libghc-http-types-prof
-  , libghc-io-choice-dev
-  , libghc-io-choice-prof
-  , libghc-lifted-base-dev
-  , libghc-lifted-base-prof
-  , libghc-mime-types-dev
-  , libghc-mime-types-prof
-  , libghc-network-dev
-  , libghc-network-prof
-  , libghc-sockaddr-dev
-  , libghc-sockaddr-prof
-  , libghc-static-hash-dev
-  , libghc-static-hash-prof
-  , libghc-text-dev
-  , libghc-text-prof
-  , libghc-wai-dev (>= 3.0)
-  , libghc-wai-dev (<< 3.1)
-  , libghc-wai-prof
-  , libghc-wai-conduit-dev (>= 3.0)
-  , libghc-wai-conduit-prof
-  , libghc-word8-dev
-  , libghc-word8-prof
-#  , libghc-doctest-dev (>> 0.9.3)
-#  , libghc-hspec-dev (>> 1.3)
-#  , libghc-warp-dev
-Build-Depends-Indep: ghc-doc
-  , libghc-attoparsec-doc
-  , libghc-blaze-builder-doc
-  , libghc-blaze-html-doc
-  , libghc-case-insensitive-doc
-  , libghc-conduit-doc
-  , libghc-conduit-extra-doc
-  , libghc-data-default-doc
-  , libghc-http-client-doc
-  , libghc-http-date-doc
-  , libghc-http-types-doc
-  , libghc-io-choice-doc
-  , libghc-lifted-base-doc
-  , libghc-mime-types-doc
-  , libghc-network-doc
-  , libghc-sockaddr-doc
-  , libghc-static-hash-doc
-  , libghc-text-doc
-  , libghc-wai-doc
-  , libghc-wai-conduit-doc
-  , libghc-word8-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-attoparsec-dev (>= 0.10.0.0),
+ libghc-attoparsec-prof,
+ libghc-blaze-builder-dev,
+ libghc-blaze-builder-prof,
+ libghc-blaze-html-dev,
+ libghc-blaze-html-prof,
+ libghc-case-insensitive-dev,
+ libghc-case-insensitive-prof,
+ libghc-conduit-dev (>= 1.1),
+ libghc-conduit-prof,
+ libghc-conduit-extra-dev,
+ libghc-conduit-extra-prof,
+ libghc-data-default-class-dev,
+ libghc-data-default-class-prof,
+ libghc-http-client-dev (>= 0.3),
+ libghc-http-client-prof,
+ libghc-http-conduit-dev (>= 2.1),
+ libghc-http-conduit-prof,
+ libghc-http-date-dev,
+ libghc-http-date-prof,
+ libghc-http-types-dev (>= 0.7),
+ libghc-http-types-prof,
+ libghc-io-choice-dev,
+ libghc-io-choice-prof,
+ libghc-lifted-base-dev,
+ libghc-lifted-base-prof,
+ libghc-mime-types-dev,
+ libghc-mime-types-prof,
+ libghc-network-dev,
+ libghc-network-prof,
+ libghc-sockaddr-dev,
+ libghc-sockaddr-prof,
+ libghc-static-hash-dev,
+ libghc-static-hash-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+ libghc-wai-dev (>= 3.0),
+ libghc-wai-dev (<< 3.1),
+ libghc-wai-prof,
+ libghc-wai-conduit-dev (>= 3.0),
+ libghc-wai-conduit-prof,
+ libghc-word8-dev,
+ libghc-word8-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-attoparsec-doc,
+ libghc-blaze-builder-doc,
+ libghc-blaze-html-doc,
+ libghc-case-insensitive-doc,
+ libghc-conduit-doc,
+ libghc-conduit-extra-doc,
+ libghc-data-default-doc,
+ libghc-http-client-doc,
+ libghc-http-date-doc,
+ libghc-http-types-doc,
+ libghc-io-choice-doc,
+ libghc-lifted-base-doc,
+ libghc-mime-types-doc,
+ libghc-network-doc,
+ libghc-sockaddr-doc,
+ libghc-static-hash-doc,
+ libghc-text-doc,
+ libghc-wai-doc,
+ libghc-wai-conduit-doc,
+ libghc-word8-doc,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/wai-app-file-cgi
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-wai-app-file-cgi
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-wai-app-file-cgi
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-wai-app-file-cgi
 
 Package: libghc-wai-app-file-cgi-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: file/CGI app of WAI${haskell:ShortBlurb}
  This WAI application handles static files and executes CGI scripts.
  .
@@ -95,22 +92,23 @@ Description: file/CGI app of WAI${haskell:ShortBlurb}
 
 Package: libghc-wai-app-file-cgi-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: file/CGI app of WAI${haskell:ShortBlurb}
  This WAI application handles static files and executes CGI scripts.
  .
  ${haskell:Blurb}
 
 Package: libghc-wai-app-file-cgi-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: file/CGI app of WAI${haskell:ShortBlurb}
  This WAI application handles static files and executes CGI scripts.
  .

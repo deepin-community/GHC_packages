@@ -1,37 +1,37 @@
 Source: haskell-oeis
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-http-dev (>= 1:4000.2)
-  , libghc-http-dev (<< 1:4000.3)
-  , libghc-http-prof
-  , libghc-network-dev (>= 2.6)
-  , libghc-network-prof
-  , libghc-network-uri-dev (>= 2.6)
-  , libghc-network-uri-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-http-doc
-  , libghc-network-doc
-  , libghc-network-uri-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-http-dev (>= 1:4000.2),
+ libghc-http-dev (<< 1:4000.3),
+ libghc-http-prof,
+ libghc-network-dev (>= 2.6),
+ libghc-network-prof,
+ libghc-network-uri-dev (>= 2.6),
+ libghc-network-uri-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-http-doc,
+ libghc-network-doc,
+ libghc-network-uri-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/oeis
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-oeis
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-oeis
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-oeis
 
 Package: libghc-oeis-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Interface to the Online Encyclopedia of Integer Sequences${haskell:ShortBlurb}
  It is an interface to the Online Encyclopedia of Integer Sequences.
  See http://oeis.org/
@@ -40,11 +40,11 @@ Description: Interface to the Online Encyclopedia of Integer Sequences${haskell:
 
 Package: libghc-oeis-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Interface to the Online Encyclopedia of Integer Sequences${haskell:ShortBlurb}
  It is an interface to the Online Encyclopedia of Integer Sequences.
  See http://oeis.org/
@@ -52,11 +52,12 @@ Description: Interface to the Online Encyclopedia of Integer Sequences${haskell:
  ${haskell:Blurb}
 
 Package: libghc-oeis-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Interface to the Online Encyclopedia of Integer Sequences${haskell:ShortBlurb}
  It is an interface to the Online Encyclopedia of Integer Sequences.
  See http://oeis.org/

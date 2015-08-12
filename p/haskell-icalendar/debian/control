@@ -1,58 +1,58 @@
 Source: haskell-icalendar
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.8.15)
-  , ghc
-  , ghc-prof
-  , libghc-base64-bytestring-dev (>= 1.0)
-  , libghc-base64-bytestring-dev (<< 1.1)
-  , libghc-base64-bytestring-prof
-  , libghc-case-insensitive-dev (>= 0.4)
-  , libghc-case-insensitive-prof
-  , libghc-data-default-dev (>= 0.3)
-  , libghc-data-default-prof
-  , libghc-mime-dev (>= 0.4)
-  , libghc-mime-dev (<< 0.5)
-  , libghc-mime-prof
-  , libghc-mtl-dev (>> 2.1.0)
-  , libghc-mtl-prof
-  , libghc-network-dev (>= 2.6)
-  , libghc-network-prof
-  , libghc-network-uri-dev (>= 2.6)
-  , libghc-network-uri-prof
-  , libghc-parsec3-dev (>= 3.1.0)
-  , libghc-parsec3-prof
-  , libghc-text-dev
-  , libghc-text-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-base64-bytestring-doc
-  , libghc-case-insensitive-doc
-  , libghc-data-default-doc
-  , libghc-mime-doc
-  , libghc-mtl-doc
-  , libghc-network-doc
-  , libghc-network-uri-doc
-  , libghc-parsec3-doc
-  , libghc-text-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.8.15),
+ ghc,
+ ghc-prof,
+ libghc-base64-bytestring-dev (>= 1.0),
+ libghc-base64-bytestring-dev (<< 1.1),
+ libghc-base64-bytestring-prof,
+ libghc-case-insensitive-dev (>= 0.4),
+ libghc-case-insensitive-prof,
+ libghc-data-default-dev (>= 0.3),
+ libghc-data-default-prof,
+ libghc-mime-dev (>= 0.4),
+ libghc-mime-dev (<< 0.5),
+ libghc-mime-prof,
+ libghc-mtl-dev (>> 2.1.0),
+ libghc-mtl-prof,
+ libghc-network-dev (>= 2.6),
+ libghc-network-prof,
+ libghc-network-uri-dev (>= 2.6),
+ libghc-network-uri-prof,
+ libghc-parsec3-dev (>= 3.1.0),
+ libghc-parsec3-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-base64-bytestring-doc,
+ libghc-case-insensitive-doc,
+ libghc-data-default-doc,
+ libghc-mime-doc,
+ libghc-mtl-doc,
+ libghc-network-doc,
+ libghc-network-uri-doc,
+ libghc-parsec3-doc,
+ libghc-text-doc,
 Standards-Version: 3.9.6
 Homepage: http://hackage.haskell.org/package/icalendar
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-icalendar
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-icalendar
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-icalendar
 X-Description: iCalendar data types, parser, and printer
  Data definitions, parsing and printing of the iCalendar format (RFC5545).
 
 Package: libghc-icalendar-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -60,22 +60,23 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-icalendar-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-icalendar-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .

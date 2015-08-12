@@ -1,38 +1,38 @@
 Source: haskell-crypto-numbers
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-crypto-random-dev (>> 0.0)
-  , libghc-crypto-random-dev (<< 0.1)
-  , libghc-crypto-random-prof
-  , libghc-vector-dev
-  , libghc-vector-prof
-  , libghc-byteable-dev
-  , libghc-tasty-dev
-  , libghc-tasty-quickcheck-dev
-  , libghc-tasty-hunit-dev
-Build-Depends-Indep: ghc-doc
-  , libghc-crypto-random-doc
-  , libghc-vector-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-crypto-random-dev (>> 0.0),
+ libghc-crypto-random-dev (<< 0.1),
+ libghc-crypto-random-prof,
+ libghc-vector-dev,
+ libghc-vector-prof,
+ libghc-byteable-dev,
+ libghc-tasty-dev,
+ libghc-tasty-quickcheck-dev,
+ libghc-tasty-hunit-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-crypto-random-doc,
+ libghc-vector-doc,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/crypto-numbers
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-crypto-numbers
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-crypto-numbers
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-crypto-numbers
 
 Package: libghc-crypto-numbers-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: cryptographic numbers: functions and algorithms${haskell:ShortBlurb}
  This provides various functions useful to manipulate numbers in a
  cryptographic context.
@@ -41,11 +41,11 @@ Description: cryptographic numbers: functions and algorithms${haskell:ShortBlurb
 
 Package: libghc-crypto-numbers-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: cryptographic numbers: functions and algorithms${haskell:ShortBlurb}
  This provides various functions useful to manipulate numbers in a
  cryptographic context.
@@ -53,11 +53,12 @@ Description: cryptographic numbers: functions and algorithms${haskell:ShortBlurb
  ${haskell:Blurb}
 
 Package: libghc-crypto-numbers-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: cryptographic numbers: functions and algorithms${haskell:ShortBlurb}
  This provides various functions useful to manipulate numbers in a
  cryptographic context.

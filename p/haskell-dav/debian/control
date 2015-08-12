@@ -1,61 +1,61 @@
 Source: haskell-dav
-Priority: extra
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
- , haskell-devscripts (>= 0.9)
- , cdbs
- , ghc (>= 7.8)
- , ghc-prof
- , ghc-ghci
- , libghc-case-insensitive-dev (>= 0.4)
- , libghc-case-insensitive-prof
- , libghc-either-dev (>= 4.3)
- , libghc-either-prof
- , libghc-exceptions-dev
- , libghc-exceptions-prof
- , libghc-http-client-dev (>= 0.2)
- , libghc-http-client-prof
- , libghc-http-client-tls-dev (>= 0.2)
- , libghc-http-client-tls-prof
- , libghc-http-types-dev (>= 0.7)
- , libghc-http-types-prof
- , libghc-lens-dev (>= 3.0)
- , libghc-lens-prof
- , libghc-mtl-dev (>= 2.1)
- , libghc-mtl-prof
- , libghc-network-dev (>= 2.6)
- , libghc-network-prof
- , libghc-network-uri-dev (>= 2.6)
- , libghc-network-uri-prof
- , libghc-optparse-applicative-dev (>= 0.10.0)
- , libghc-optparse-applicative-prof
- , libghc-transformers-base-dev
- , libghc-transformers-base-prof
- , libghc-utf8-string-dev
- , libghc-utf8-string-prof
- , libghc-xml-conduit-dev (>= 1.0)
- , libghc-xml-conduit-prof
- , libghc-xml-hamlet-dev (>= 0.4)
- , libghc-xml-hamlet-dev (<< 0.5)
- , libghc-xml-hamlet-prof
-Build-Depends-Indep: ghc-doc
- , libghc-case-insensitive-doc
- , libghc-either-doc
- , libghc-exceptions-doc
- , libghc-http-client-doc
- , libghc-http-client-tls-doc
- , libghc-http-types-doc
- , libghc-lens-doc
- , libghc-mtl-doc
- , libghc-network-doc
- , libghc-network-uri-doc
- , libghc-optparse-applicative-doc
- , libghc-transformers-base-doc
- , libghc-utf8-string-doc
- , libghc-xml-conduit-doc
- , libghc-xml-hamlet-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc (>= 7.8),
+ ghc-prof,
+ ghc-ghci,
+ libghc-case-insensitive-dev (>= 0.4),
+ libghc-case-insensitive-prof,
+ libghc-either-dev (>= 4.3),
+ libghc-either-prof,
+ libghc-exceptions-dev,
+ libghc-exceptions-prof,
+ libghc-http-client-dev (>= 0.2),
+ libghc-http-client-prof,
+ libghc-http-client-tls-dev (>= 0.2),
+ libghc-http-client-tls-prof,
+ libghc-http-types-dev (>= 0.7),
+ libghc-http-types-prof,
+ libghc-lens-dev (>= 3.0),
+ libghc-lens-prof,
+ libghc-mtl-dev (>= 2.1),
+ libghc-mtl-prof,
+ libghc-network-dev (>= 2.6),
+ libghc-network-prof,
+ libghc-network-uri-dev (>= 2.6),
+ libghc-network-uri-prof,
+ libghc-optparse-applicative-dev (>= 0.10.0),
+ libghc-optparse-applicative-prof,
+ libghc-transformers-base-dev,
+ libghc-transformers-base-prof,
+ libghc-utf8-string-dev,
+ libghc-utf8-string-prof,
+ libghc-xml-conduit-dev (>= 1.0),
+ libghc-xml-conduit-prof,
+ libghc-xml-hamlet-dev (>= 0.4),
+ libghc-xml-hamlet-dev (<< 0.5),
+ libghc-xml-hamlet-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-case-insensitive-doc,
+ libghc-either-doc,
+ libghc-exceptions-doc,
+ libghc-http-client-doc,
+ libghc-http-client-tls-doc,
+ libghc-http-types-doc,
+ libghc-lens-doc,
+ libghc-mtl-doc,
+ libghc-network-doc,
+ libghc-network-uri-doc,
+ libghc-optparse-applicative-doc,
+ libghc-transformers-base-doc,
+ libghc-utf8-string-doc,
+ libghc-xml-conduit-doc,
+ libghc-xml-hamlet-doc,
 Standards-Version: 3.9.6
 Homepage: http://floss.scru.org/hDAV
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-dav
@@ -68,19 +68,21 @@ X-Description: RFC 4918 WebDAV support
 Package: hdav
 Architecture: any
 Section: web
-Depends: ${shlibs:Depends}, ${haskell:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends},
+ ${haskell:Depends},
+ ${misc:Depends},
 Description: command-line WebDAV client
  hdav currently only supports copying a file and associated WebDAV
  properties from one URL to another.
 
 Package: libghc-dav-dev
 Architecture: any
-Depends: ${shlibs:Depends}
-         , ${haskell:Depends}
-         , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${shlibs:Depends},
+ ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -88,11 +90,11 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-dav-prof
 Architecture: any
-Depends: ${haskell:Depends}
-         , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -101,10 +103,10 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-dav-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends}
-         , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .

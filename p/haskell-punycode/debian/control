@@ -1,36 +1,36 @@
 Source: haskell-punycode
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-cereal-dev
-  , libghc-cereal-prof
-  , libghc-mtl-dev
-  , libghc-mtl-prof
-  , libghc-text-dev
-  , libghc-text-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-cereal-doc
-  , libghc-mtl-doc
-  , libghc-text-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-cereal-dev,
+ libghc-cereal-prof,
+ libghc-mtl-dev,
+ libghc-mtl-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-cereal-doc,
+ libghc-mtl-doc,
+ libghc-text-doc,
 Standards-Version: 3.9.4
 Homepage: http://hackage.haskell.org/package/punycode
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-punycode
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-punycode
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-punycode
 
 Package: libghc-punycode-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Encode unicode strings to ascii forms according to RFC 3492${haskell:ShortBlurb}
  Encode unicode strings to ascii forms according to RFC 3492. It is written in
  pure Haskell.
@@ -39,11 +39,11 @@ Description: Encode unicode strings to ascii forms according to RFC 3492${haskel
 
 Package: libghc-punycode-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Encode unicode strings to ascii forms according to RFC 3492${haskell:ShortBlurb}
  Encode unicode strings to ascii forms according to RFC 3492. It is written in
  pure Haskell.
@@ -51,11 +51,12 @@ Description: Encode unicode strings to ascii forms according to RFC 3492${haskel
  ${haskell:Blurb}
 
 Package: libghc-punycode-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Encode unicode strings to ascii forms according to RFC 3492${haskell:ShortBlurb}
  Encode unicode strings to ascii forms according to RFC 3492. It is written in
  pure Haskell.

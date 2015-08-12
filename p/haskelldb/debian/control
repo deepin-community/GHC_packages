@@ -1,29 +1,31 @@
 Source: haskelldb
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>
-Build-Depends: debhelper (>= 9)
- , cdbs
- , haskell-devscripts (>= 0.9)
- , ghc
- , ghc-prof
- , ghc-doc
- , libghc-mtl-dev (>= 1.1)
- , libghc-mtl-dev (<< 3)
- , libghc-mtl-prof
- , libghc-mtl-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ ghc-doc,
+ libghc-mtl-dev (>= 1.1),
+ libghc-mtl-dev (<< 3),
+ libghc-mtl-prof,
+ libghc-mtl-doc,
 Standards-Version: 3.9.4
 Homepage: http://haskelldb.sourceforge.net/
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskelldb/
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskelldb
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskelldb/
 
 Package: libghc-haskelldb-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell library for expressing database queries
  HaskellDB is library for expressing database queries and operations
  in a type safe and declarative way. This package contains the library
@@ -35,10 +37,11 @@ Description: Haskell library for expressing database queries
 
 Package: libghc-haskelldb-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell library for expressing database queries; profiling libraries
  HaskellDB is library for expressing database queries and operations
  in a type safe and declarative way. This package contains the library
@@ -49,9 +52,10 @@ Description: Haskell library for expressing database queries; profiling librarie
  results as ordinary Haskell values.
 
 Package: haskelldb-doc
-Depends: haskell-haskelldb-doc, ${misc:Depends}
 Architecture: all
 Section: doc
+Depends: haskell-haskelldb-doc,
+ ${misc:Depends},
 Description: transitional dummy package
  This package is a dummy package and is used to easy the upgrade from
  previous versions of haskelldb-doc to haskell-haskelldb-doc.
@@ -59,14 +63,16 @@ Description: transitional dummy package
  This package can safely be removed.
 
 Package: libghc-haskelldb-doc
-Provides: haskell-haskelldb-doc
-Conflicts: haskell-haskelldb-doc (<< 0.12-6)
-Replaces: haskelldb-doc (<< 0.10-1), haskell-haskelldb-doc (<< 0.12-6)
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends}, ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: haskell-haskelldb-doc (<< 0.12-6),
+Provides: haskell-haskelldb-doc,
+Replaces: haskelldb-doc (<< 0.10-1),
+ haskell-haskelldb-doc (<< 0.12-6),
 Description: API documentation of haskelldb
  The API documentation of HaskellDB, a Haskell library for expressing
  database queries and operations in a type safe and declarative way.

@@ -1,60 +1,60 @@
 Source: haskell-x509
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-asn1-types-dev (>= 0.3.0)
-  , libghc-asn1-types-dev (<< 0.4)
-  , libghc-asn1-types-prof
-  , libghc-asn1-encoding-dev (>= 0.9)
-  , libghc-asn1-encoding-dev (<< 0.10)
-  , libghc-asn1-encoding-prof
-  , libghc-asn1-parse-dev (>= 0.9)
-  , libghc-asn1-parse-dev (<< 0.10)
-  , libghc-asn1-parse-prof
-  , libghc-crypto-pubkey-types-dev (>= 0.4.2.1)
-  , libghc-crypto-pubkey-types-dev (<< 0.5)
-  , libghc-crypto-pubkey-types-prof
-  , libghc-cryptohash-dev (>= 0.9)
-  , libghc-cryptohash-dev (<< 0.12)
-  , libghc-cryptohash-prof
-  , libghc-mtl-dev
-  , libghc-mtl-prof
-  , libghc-pem-dev (>= 0.1)
-  , libghc-pem-dev (<< 0.3)
-  , libghc-pem-prof
-  , libghc-tasty-dev
-  , libghc-tasty-quickcheck-dev
-  , libghc-hourglass-dev
-Build-Depends-Indep: ghc-doc
-  , libghc-asn1-encoding-doc
-  , libghc-asn1-parse-doc
-  , libghc-asn1-types-doc
-  , libghc-crypto-pubkey-types-doc
-  , libghc-cryptohash-doc
-  , libghc-mtl-doc
-  , libghc-pem-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ cdbs,
+ haskell-devscripts (>= 0.9),
+ ghc,
+ ghc-prof,
+ libghc-asn1-types-dev (>= 0.3.0),
+ libghc-asn1-types-dev (<< 0.4),
+ libghc-asn1-types-prof,
+ libghc-asn1-encoding-dev (>= 0.9),
+ libghc-asn1-encoding-dev (<< 0.10),
+ libghc-asn1-encoding-prof,
+ libghc-asn1-parse-dev (>= 0.9),
+ libghc-asn1-parse-dev (<< 0.10),
+ libghc-asn1-parse-prof,
+ libghc-crypto-pubkey-types-dev (>= 0.4.2.1),
+ libghc-crypto-pubkey-types-dev (<< 0.5),
+ libghc-crypto-pubkey-types-prof,
+ libghc-cryptohash-dev (>= 0.9),
+ libghc-cryptohash-dev (<< 0.12),
+ libghc-cryptohash-prof,
+ libghc-mtl-dev,
+ libghc-mtl-prof,
+ libghc-pem-dev (>= 0.1),
+ libghc-pem-dev (<< 0.3),
+ libghc-pem-prof,
+ libghc-tasty-dev,
+ libghc-tasty-quickcheck-dev,
+ libghc-hourglass-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-asn1-encoding-doc,
+ libghc-asn1-parse-doc,
+ libghc-asn1-types-doc,
+ libghc-crypto-pubkey-types-doc,
+ libghc-cryptohash-doc,
+ libghc-mtl-doc,
+ libghc-pem-doc,
 Standards-Version: 3.9.5
 Homepage: http://hackage.haskell.org/package/x509
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-x509
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-x509
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-x509
 X-Description: X.509 reader and writer
  Reads/writes X.509 Certificate, CRLs and their signed equivalents.
  Follows RFC5280 / RFC6818.
 
 Package: libghc-x509-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -62,22 +62,23 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-x509-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-x509-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
