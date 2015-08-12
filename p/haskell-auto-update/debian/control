@@ -3,14 +3,16 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Joachim Breitner <nomeata@debian.org>
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 7.0),
+Build-Depends: debhelper (>= 9),
  haskell-devscripts (>= 0.9),
  cdbs,
  ghc,
  ghc-prof,
 Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.5
-Homepage: http://hackage.haskell.org/package/auto-update
+Homepage: https://github.com/yesodweb/wai
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-auto-update
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-auto-update
 X-Description: Efficiently run periodic, on-demand actions
  A common problem is the desire to have an action run at a scheduled interval,
  but only if it is needed. For example, instead of having every web request
@@ -22,8 +24,6 @@ X-Description: Efficiently run periodic, on-demand actions
  This library allows you to define actions which will either be performed by a
  dedicated thread or, in times of low volume, will be executed by the calling
  thread.
-Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-auto-update
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-auto-update
 
 Package: libghc-auto-update-dev
 Architecture: any

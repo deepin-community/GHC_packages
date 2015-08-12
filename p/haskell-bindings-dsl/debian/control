@@ -1,25 +1,27 @@
 Source: haskell-bindings-dsl
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.5
 Homepage: https://github.com/jwiegley/bindings-dsl/wiki
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-bindings-dsl
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-bindings-dsl
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-bindings-dsl
 
 Package: libghc-bindings-dsl-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: FFI domain specific language, on top of hsc2hs${haskell:ShortBlurb}
  This is a set of macros to be used when writing Haskell FFI. They were
  designed to be able to fully describe C interfaces, so that hsc2hs can

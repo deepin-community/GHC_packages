@@ -1,40 +1,36 @@
 Source: haskell-asn1-data
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-cereal-dev
-  , libghc-cereal-prof
-  , libghc-mtl-dev
-  , libghc-mtl-prof
-  , libghc-text-dev (>> 0.11)
-  , libghc-text-prof
-  , libghc-hunit-dev
-  , libghc-quickcheck2-dev
-  , libghc-test-framework-dev (>> 0.3)
-  , libghc-test-framework-quickcheck2-dev (>> 0.2)
-Build-Depends-Indep: ghc-doc
-  , libghc-cereal-doc
-  , libghc-mtl-doc
-  , libghc-text-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-cereal-dev,
+ libghc-cereal-prof,
+ libghc-mtl-dev,
+ libghc-mtl-prof,
+ libghc-text-dev (>= 0.11),
+ libghc-text-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-cereal-doc,
+ libghc-mtl-doc,
+ libghc-text-doc,
 Standards-Version: 3.9.4
-Homepage: http://hackage.haskell.org/package/asn1-data
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-asn1-data
+Homepage: http://github.com/vincenthz/hs-asn1-data
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-asn1-data
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-asn1-data
 
 Package: libghc-asn1-data-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ASN1 data reader/writer in RAW, BER, DER and CER forms${haskell:ShortBlurb}
  ASN1 data reader and writer in raw form with supports for high level
  forms of ASN1 (BER, CER and DER).
@@ -45,11 +41,11 @@ Description: ASN1 data reader/writer in RAW, BER, DER and CER forms${haskell:Sho
 
 Package: libghc-asn1-data-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ASN1 data reader/writer in RAW, BER, DER, CER forms${haskell:ShortBlurb}
  ASN1 data reader and writer in raw form with supports for high level
  forms of ASN1 (BER, CER and DER).
@@ -59,11 +55,12 @@ Description: ASN1 data reader/writer in RAW, BER, DER, CER forms${haskell:ShortB
  ${haskell:Blurb}
 
 Package: libghc-asn1-data-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: ASN1 data reader/writer in RAW, BER, DER, CER forms${haskell:ShortBlurb}
  ASN1 data reader and writer in raw form with supports for high level
  forms of ASN1 (BER, CER and DER).

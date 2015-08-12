@@ -1,27 +1,27 @@
 Source: haskell-base16-bytestring
-Priority: extra
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Kiwamu Okabe <kiwamu@debian.or.jp>
+Priority: extra
+Section: haskell
 Build-Depends: debhelper (>= 9),
-               haskell-devscripts (>= 0.9),
-               cdbs,
-               ghc,
-               ghc-prof
-Build-Depends-Indep: ghc-doc
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.5
 Homepage: http://github.com/bos/base16-bytestring
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-base16-bytestring
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-base16-bytestring
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-base16-bytestring
 
 Package: libghc-base16-bytestring-dev
 Architecture: any
 Depends: ${shlibs:Depends},
-         ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+ ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Fast base16 (hex) encoding and decoding for ByteStrings
  This package provides a Haskell library for working with base16-encoded
  data quickly and efficiently, using the ByteString type.
@@ -31,10 +31,10 @@ Description: Fast base16 (hex) encoding and decoding for ByteStrings
 Package: libghc-base16-bytestring-prof
 Architecture: any
 Depends: ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Fast base16 (hex) encoding and decoding for ByteStrings; profiling libraries
  This package provides a Haskell library for working with base16-encoded
  data quickly and efficiently, using the ByteString type.
@@ -45,9 +45,9 @@ Package: libghc-base16-bytestring-doc
 Architecture: all
 Section: doc
 Depends: ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Fast base16 (hex) encoding and decoding for ByteStrings; documentation
  This package provides a Haskell library for working with base16-encoded
  data quickly and efficiently, using the ByteString type.

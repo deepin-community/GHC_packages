@@ -1,26 +1,25 @@
 Source: bnfc
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-mtl-dev
-  , libghc-process-dev
-  , alex
-  , happy
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-mtl-dev,
+Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.4
 Homepage: http://bnfc.digitalgrammars.com/
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/bnfc
-Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/bnfc
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-bnfc
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-bnfc
 
 Package: bnfc
-Section: devel
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Section: devel
+Depends: ${shlibs:Depends},
+ ${misc:Depends},
 Description: Compiler front-end generator based on Labelled BNF
  The BNF Converter is a compiler construction tool that generates a
  compiler front-end and a readable syntax description document from a

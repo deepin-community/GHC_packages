@@ -1,27 +1,27 @@
 Source: haskell-base-unicode-symbols
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-Build-Depends-Indep: ghc-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.4
-Homepage: http://hackage.haskell.org/package/base-unicode-symbols
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-base-unicode-symbols
+Homepage: http://haskell.org/haskellwiki/Unicode-symbols
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-base-unicode-symbols
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-base-unicode-symbols
 
 Package: libghc-base-unicode-symbols-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Unicode alternatives for common functions and operators${haskell:ShortBlurb}
  It defines new symbols for a number of functions and operators in the
  base package.
@@ -39,11 +39,11 @@ Description: Unicode alternatives for common functions and operators${haskell:Sh
 
 Package: libghc-base-unicode-symbols-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Unicode alternatives for common functions and operators${haskell:ShortBlurb}
  All symbols are documented with their actual definition and information
  regarding their Unicode code point. They should be completely
@@ -57,11 +57,12 @@ Description: Unicode alternatives for common functions and operators${haskell:Sh
  ${haskell:Blurb}
 
 Package: libghc-base-unicode-symbols-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Unicode alternatives for common functions and operators${haskell:ShortBlurb}
  All symbols are documented with their actual definition and information
  regarding their Unicode code point. They should be completely

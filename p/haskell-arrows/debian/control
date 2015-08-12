@@ -1,28 +1,29 @@
 Source: haskell-arrows
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>
-Standards-Version: 3.9.4
-Build-Depends:
- cdbs,
- debhelper (>= 9),
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
  haskell-devscripts (>= 0.9),
+ cdbs,
  ghc,
  ghc-prof,
  libghc-stream-dev,
  libghc-stream-prof,
-Build-Depends-Indep: ghc-doc
-  , libghc-stream-doc
+Build-Depends-Indep: ghc-doc,
+ libghc-stream-doc,
+Standards-Version: 3.9.4
 Homepage: http://www.haskell.org/arrows/
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-arrows
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-arrows
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-arrows
 
 Package: libghc-arrows-dev
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell arrow classes and transformers for GHC${haskell:ShortBlurb}
  This library provides several classes that extend the Arrow class, and
  some transformers that implement or lift these classes.
@@ -31,8 +32,10 @@ Description: Haskell arrow classes and transformers for GHC${haskell:ShortBlurb}
 
 Package: libghc-arrows-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Provides: ${haskell:Provides},
 Description: Haskell arrow classes and transformers for GHC${haskell:ShortBlurb}
  This library provides several classes that extend the Arrow class, and
  some transformers that implement or lift these classes.
@@ -40,14 +43,14 @@ Description: Haskell arrow classes and transformers for GHC${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-arrows-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Haskell arrow classes and transformers for GHC${haskell:ShortBlurb}
  This library provides several classes that extend the Arrow class, and
  some transformers that implement or lift these classes.
  .
  ${haskell:Blurb}
-

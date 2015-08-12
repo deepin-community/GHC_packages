@@ -1,28 +1,33 @@
 Source: haskell-binary-conduit
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.8.15)
-  , ghc
-  , ghc-prof
-  , libghc-conduit-dev (>= 1.1)
-  , libghc-conduit-dev (<< 1.3)
-  , libghc-conduit-prof
-  , libghc-resourcet-dev (>= 1.1)
-  , libghc-resourcet-prof
-  , libghc-vector-dev (>= 0.10)
-  , libghc-vector-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-conduit-doc
-  , libghc-resourcet-doc
-  , libghc-vector-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-conduit-dev (>= 1.1),
+ libghc-conduit-dev (<< 1.3),
+ libghc-conduit-prof,
+ libghc-resourcet-dev (>= 1.1),
+ libghc-resourcet-prof,
+ libghc-vector-dev (>= 0.10),
+ libghc-vector-prof,
+ libghc-quickcheck2-dev,
+ libghc-conduit-dev,
+ libghc-hspec-dev,
+ libghc-quickcheck-assertions-dev,
+ libghc-resourcet-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-conduit-doc,
+ libghc-resourcet-doc,
+ libghc-vector-doc,
 Standards-Version: 3.9.6
-Homepage: http://hackage.haskell.org/package/binary-conduit
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-binary-conduit
+Homepage: http://github.com/qnikst/binary-conduit/
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-binary-conduit
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-binary-conduit
 X-Description: data serialization/deserialization conduit library
  Allow binary serialization using iterative conduit interface.
  .
@@ -30,12 +35,12 @@ X-Description: data serialization/deserialization conduit library
 
 Package: libghc-binary-conduit-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -43,22 +48,23 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-binary-conduit-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-binary-conduit-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .

@@ -1,27 +1,27 @@
 Source: haskell-ansi-terminal
-Priority: extra
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Kiwamu Okabe <kiwamu@debian.or.jp>
+Priority: extra
+Section: haskell
 Build-Depends: debhelper (>= 9),
-               haskell-devscripts (>= 0.9),
-               cdbs,
-               ghc,
-               ghc-prof
-Build-Depends-Indep: ghc-doc
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.5
-Homepage: http://batterseapower.github.com/ansi-terminal
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-ansi-terminal
+Homepage: https://github.com/feuerbach/ansi-terminal
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-ansi-terminal
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-ansi-terminal
 
 Package: libghc-ansi-terminal-dev
 Architecture: any
 Depends: ${shlibs:Depends},
-         ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+ ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Simple ANSI terminal support, with Windows compatibility
  ANSI terminal support for Haskell: allows cursor movement, screen clearing,
  color output showing or hiding the cursor, and changing the title.
@@ -33,10 +33,10 @@ Description: Simple ANSI terminal support, with Windows compatibility
 Package: libghc-ansi-terminal-prof
 Architecture: any
 Depends: ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Simple ANSI terminal support, with Windows compatibility; profiling libraries
  ANSI terminal support for Haskell: allows cursor movement, screen clearing,
  color output showing or hiding the cursor, and changing the title.
@@ -49,9 +49,9 @@ Package: libghc-ansi-terminal-doc
 Architecture: all
 Section: doc
 Depends: ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Simple ANSI terminal support, with Windows compatibility; documentation
  ANSI terminal support for Haskell: allows cursor movement, screen clearing,
  color output showing or hiding the cursor, and changing the title.

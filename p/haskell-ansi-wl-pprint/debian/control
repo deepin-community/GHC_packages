@@ -1,32 +1,31 @@
 Source: haskell-ansi-wl-pprint
-Priority: extra
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Kiwamu Okabe <kiwamu@debian.or.jp>
+Priority: extra
+Section: haskell
 Build-Depends: debhelper (>= 9),
-               haskell-devscripts (>= 0.9),
-               cdbs,
-               ghc,
-               ghc-prof,
-               libghc-ansi-terminal-dev (>= 0.4.0),
-               libghc-ansi-terminal-dev (<< 0.7)
-             , libghc-ansi-terminal-prof
-             , libghc-ansi-terminal-prof
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-ansi-terminal-dev (>= 0.4.0),
+ libghc-ansi-terminal-dev (<< 0.7),
+ libghc-ansi-terminal-prof,
 Build-Depends-Indep: ghc-doc,
-                   , libghc-ansi-terminal-doc
+ libghc-ansi-terminal-doc,
 Standards-Version: 3.9.5
 Homepage: http://github.com/batterseapower/ansi-wl-pprint
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-ansi-wl-pprint
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-ansi-wl-pprint
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-ansi-wl-pprint
 
 Package: libghc-ansi-wl-pprint-dev
 Architecture: any
 Depends: ${shlibs:Depends},
-         ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+ ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Wadler/Leijen Pretty Printer for colored ANSI terminal output
  This is a pretty printing library based on Wadler's paper
  "A Prettier Printer". It has been enhanced with support for ANSI terminal
@@ -37,10 +36,10 @@ Description: Wadler/Leijen Pretty Printer for colored ANSI terminal output
 Package: libghc-ansi-wl-pprint-prof
 Architecture: any
 Depends: ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Wadler/Leijen Pretty Printer for colored ANSI terminal output; profiling lib
  This is a pretty printing library based on Wadler's paper
  "A Prettier Printer". It has been enhanced with support for ANSI terminal
@@ -52,9 +51,9 @@ Package: libghc-ansi-wl-pprint-doc
 Architecture: all
 Section: doc
 Depends: ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Wadler/Leijen Pretty Printer for colored ANSI terminal output; documentation
  This is a pretty printing library based on Wadler's paper
  "A Prettier Printer". It has been enhanced with support for ANSI terminal

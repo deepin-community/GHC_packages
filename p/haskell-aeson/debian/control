@@ -1,64 +1,64 @@
 Source: haskell-aeson
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc (>= 7.4.2)
-  , ghc-prof
-  , libghc-attoparsec-dev (>> 0.11.3.4)
-  , libghc-attoparsec-prof
-  , libghc-deepseq-dev
-  , libghc-deepseq-prof
-  , libghc-hashable-dev (>> 1.1.2.0)
-  , libghc-hashable-prof
-  , libghc-hunit-dev
-  , libghc-mtl-dev
-  , libghc-mtl-prof
-  , libghc-syb-dev
-  , libghc-syb-prof
-  , libghc-dlist-dev (>= 0.2)
-  , libghc-dlist-prof
-  , libghc-text-dev (>= 1.1.1.0)
-  , libghc-text-prof
-  , libghc-unordered-containers-dev (>= 0.2.3.0)
-  , libghc-unordered-containers-prof
-  , libghc-vector-dev (>= 0.7.1)
-  , libghc-vector-prof
-  , libghc-hunit-dev
-  , libghc-quickcheck2-dev
-  , libghc-scientific-dev (>= 0.3.1)
-  , libghc-scientific-dev (<< 0.4)
-  , libghc-scientific-prof
-  , libghc-test-framework-dev
-  , libghc-test-framework-hunit-dev
-  , libghc-test-framework-quickcheck2-dev
-Build-Depends-Indep: ghc-doc
-  , libghc-attoparsec-doc
-  , libghc-deepseq-doc
-  , libghc-hashable-doc
-  , libghc-mtl-doc
-  , libghc-scientific-doc
-  , libghc-syb-doc
-  , libghc-dlist-doc
-  , libghc-text-doc
-  , libghc-unordered-containers-doc
-  , libghc-vector-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-attoparsec-dev (>= 0.11.3.4),
+ libghc-attoparsec-prof,
+ libghc-dlist-dev (>= 0.2),
+ libghc-dlist-prof,
+ libghc-hashable-dev (>= 1.1.2.0),
+ libghc-hashable-prof,
+ libghc-mtl-dev,
+ libghc-mtl-prof,
+ libghc-scientific-dev (>= 0.3.1),
+ libghc-scientific-dev (<< 0.4),
+ libghc-scientific-prof,
+ libghc-syb-dev,
+ libghc-syb-prof,
+ libghc-text-dev (>= 1.1.1.0),
+ libghc-text-prof,
+ libghc-unordered-containers-dev (>= 0.2.3.0),
+ libghc-unordered-containers-prof,
+ libghc-vector-dev (>= 0.7.1),
+ libghc-vector-prof,
+ libghc-hunit-dev,
+ libghc-quickcheck2-dev,
+ libghc-attoparsec-dev,
+ libghc-test-framework-dev,
+ libghc-test-framework-hunit-dev,
+ libghc-test-framework-quickcheck2-dev,
+ libghc-text-dev,
+ libghc-unordered-containers-dev,
+ libghc-vector-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-attoparsec-doc,
+ libghc-dlist-doc,
+ libghc-hashable-doc,
+ libghc-mtl-doc,
+ libghc-scientific-doc,
+ libghc-syb-doc,
+ libghc-text-doc,
+ libghc-unordered-containers-doc,
+ libghc-vector-doc,
 Standards-Version: 3.9.5
-Homepage: http://hackage.haskell.org/package/aeson
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-aeson
+Homepage: https://github.com/bos/aeson
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-aeson
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-aeson
 
 Package: libghc-aeson-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Fast JSON parsing and encoding library${haskell:ShortBlurb}
  It is a JSON parsing and encoding library optimized for ease of use
  and high performance.
@@ -67,11 +67,11 @@ Description: Fast JSON parsing and encoding library${haskell:ShortBlurb}
 
 Package: libghc-aeson-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Fast JSON parsing and encoding library${haskell:ShortBlurb}
  It is a JSON parsing and encoding library optimized for ease of use
  and high performance.
@@ -79,11 +79,12 @@ Description: Fast JSON parsing and encoding library${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-aeson-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Fast JSON parsing and encoding library${haskell:ShortBlurb}
  It is a JSON parsing and encoding library optimized for ease of use
  and high performance.

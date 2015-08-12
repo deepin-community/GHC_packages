@@ -1,53 +1,53 @@
 Source: haskell-basic-prelude
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>, Dmitry Bogatov <KAction@gnu.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , libghc-hashable-dev
-  , libghc-hashable-prof
-  , libghc-readargs-dev (>= 1.2)
-  , libghc-readargs-dev (<< 1.3)
-  , libghc-readargs-prof
-  , libghc-system-filepath-dev (>= 0.4)
-  , libghc-system-filepath-dev (<< 0.5)
-  , libghc-system-filepath-prof
-  , libghc-text-dev
-  , libghc-text-prof
-  , libghc-unordered-containers-dev
-  , libghc-unordered-containers-prof
-  , libghc-vector-dev
-  , libghc-vector-prof
-  , libghc-lifted-base-dev
-  , libghc-lifted-base-prof
-  , libghc-safe-dev
-  , libghc-safe-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-hashable-doc
-  , libghc-readargs-doc
-  , libghc-system-filepath-doc
-  , libghc-text-doc
-  , libghc-unordered-containers-doc
-  , libghc-vector-doc
-  , libghc-lifted-base-doc
-  , libghc-safe-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-readargs-dev (>= 1.2),
+ libghc-readargs-dev (<< 1.3),
+ libghc-readargs-prof,
+ libghc-hashable-dev,
+ libghc-hashable-prof,
+ libghc-lifted-base-dev,
+ libghc-lifted-base-prof,
+ libghc-safe-dev,
+ libghc-safe-prof,
+ libghc-system-filepath-dev (>= 0.4),
+ libghc-system-filepath-dev (<< 0.5),
+ libghc-system-filepath-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+ libghc-unordered-containers-dev,
+ libghc-unordered-containers-prof,
+ libghc-vector-dev,
+ libghc-vector-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-readargs-doc,
+ libghc-hashable-doc,
+ libghc-lifted-base-doc,
+ libghc-safe-doc,
+ libghc-system-filepath-doc,
+ libghc-text-doc,
+ libghc-unordered-containers-doc,
+ libghc-vector-doc,
 Standards-Version: 3.9.6
-Homepage: http://hackage.haskell.org/package/basic-prelude
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-basic-prelude
+Homepage: https://github.com/snoyberg/basic-prelude
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-basic-prelude
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-basic-prelude
 
 Package: libghc-basic-prelude-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: enhanced core prelude${haskell:ShortBlurb}
  The premise of basic-prelude is that there are a lot of very commonly
  desired features missing from the standard Prelude, such as commonly
@@ -69,11 +69,11 @@ Description: enhanced core prelude${haskell:ShortBlurb}
 
 Package: libghc-basic-prelude-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: enhanced core prelude${haskell:ShortBlurb}
  The premise of basic-prelude is that there are a lot of very commonly
  desired features missing from the standard Prelude, such as commonly
@@ -94,11 +94,12 @@ Description: enhanced core prelude${haskell:ShortBlurb}
  ${haskell:Blurb}
 
 Package: libghc-basic-prelude-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: enhanced core prelude${haskell:ShortBlurb}
  The premise of basic-prelude is that there are a lot of very commonly
  desired features missing from the standard Prelude, such as commonly

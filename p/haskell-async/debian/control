@@ -1,32 +1,34 @@
 Source: haskell-async
-Priority: extra
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-             , haskell-devscripts (>= 0.9)
-             , cdbs
-             , ghc
-             , ghc-prof
-             , libghc-stm-dev (>> 2.2)
-             , libghc-stm-dev (<< 2.5)
-             , libghc-stm-prof
-             , libghc-test-framework-dev
-             , libghc-test-framework-hunit-dev
-             , libghc-hunit-dev
-Build-Depends-Indep: ghc-doc
-                   , libghc-stm-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-stm-dev (>= 2.2),
+ libghc-stm-dev (<< 2.5),
+ libghc-stm-prof,
+ libghc-hunit-dev,
+ libghc-test-framework-dev,
+ libghc-test-framework-hunit-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-stm-doc,
 Standards-Version: 3.9.4
 Homepage: https://github.com/simonmar/async
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-async
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-async
 
 Package: libghc-async-dev
 Architecture: any
-Depends: ${shlibs:Depends}
-         , ${haskell:Depends}
-         , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${shlibs:Depends},
+ ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: run IO operations asynchronously and wait for their results
  This package provides a higher-level interface over
  threads, in which an (Async a) is a concurrent
@@ -39,11 +41,11 @@ Description: run IO operations asynchronously and wait for their results
 
 Package: libghc-async-prof
 Architecture: any
-Depends: ${haskell:Depends}
-         , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: run IO operations asynchronously and wait for their results; profiling libs
  This package provides a higher-level interface over
  threads, in which an (Async a) is a concurrent
@@ -57,10 +59,10 @@ Description: run IO operations asynchronously and wait for their results; profil
 Package: libghc-async-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends}
-         , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: run IO operations asynchronously and wait for their results; documentation
  This package provides a higher-level interface over
  threads, in which an (Async a) is a concurrent

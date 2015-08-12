@@ -1,62 +1,58 @@
 Source: haskell-authenticate-oauth
-Priority: extra
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , haskell-devscripts (>= 0.9)
-  , cdbs
-  , ghc
-  , ghc-prof
-  , libghc-rsa-dev (>= 2.0)
-  , libghc-rsa-dev (<< 2.2)
-  , libghc-rsa-prof
-  , libghc-sha-dev (>= 1.4)
-  , libghc-sha-dev (<< 1.7)
-  , libghc-sha-prof
-  , libghc-base64-bytestring-dev (>= 0.1)
-  , libghc-base64-bytestring-dev (<< 1.1)
-  , libghc-base64-bytestring-prof
-  , libghc-blaze-builder-dev
-  , libghc-blaze-builder-prof
-  , libghc-conduit-dev (>= 0.4)
-  , libghc-conduit-prof
-  , libghc-conduit-extra-dev
-  , libghc-conduit-extra-prof
-  , libghc-crypto-pubkey-types-dev (>= 0.1)
-  , libghc-crypto-pubkey-types-dev (<< 0.5)
-  , libghc-crypto-pubkey-types-prof
-  , libghc-data-default-dev
-  , libghc-data-default-prof
-  , libghc-http-client-dev (>= 0.3)
-  , libghc-http-client-prof
-  , libghc-http-types-dev (>= 0.6)
-  , libghc-http-types-prof
-  , libghc-random-dev
-  , libghc-random-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-rsa-doc
-  , libghc-sha-doc
-  , libghc-base64-bytestring-doc
-  , libghc-blaze-builder-doc
-  , libghc-conduit-doc
-  , libghc-conduit-extra-prof
-  , libghc-crypto-pubkey-types-doc
-  , libghc-data-default-doc
-  , libghc-http-client-doc
-  , libghc-http-types-doc
-  , libghc-random-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-rsa-dev (>= 2.0),
+ libghc-rsa-dev (<< 2.2),
+ libghc-rsa-prof,
+ libghc-sha-dev (>= 1.4),
+ libghc-sha-dev (<< 1.7),
+ libghc-sha-prof,
+ libghc-base64-bytestring-dev (>= 0.1),
+ libghc-base64-bytestring-dev (<< 1.1),
+ libghc-base64-bytestring-prof,
+ libghc-blaze-builder-dev,
+ libghc-blaze-builder-prof,
+ libghc-crypto-pubkey-types-dev (>= 0.1),
+ libghc-crypto-pubkey-types-dev (<< 0.5),
+ libghc-crypto-pubkey-types-prof,
+ libghc-data-default-dev,
+ libghc-data-default-prof,
+ libghc-http-client-dev (>= 0.3),
+ libghc-http-client-prof,
+ libghc-http-types-dev (>= 0.6),
+ libghc-http-types-prof,
+ libghc-random-dev,
+ libghc-random-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-rsa-doc,
+ libghc-sha-doc,
+ libghc-base64-bytestring-doc,
+ libghc-blaze-builder-doc,
+ libghc-crypto-pubkey-types-doc,
+ libghc-data-default-doc,
+ libghc-http-client-doc,
+ libghc-http-types-doc,
+ libghc-random-doc,
 Standards-Version: 3.9.5
 Homepage: http://github.com/yesodweb/authenticate
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-authenticate-oauth
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-authenticate-oauth
 
 Package: libghc-authenticate-oauth-dev
 Architecture: any
-Depends: ${shlibs:Depends}
-         , ${haskell:Depends}
-         , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${shlibs:Depends},
+ ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: authenticate with OAuth for Haskell web applications${haskell:ShortBlurb}
  OAuth authentication support.
  .
@@ -64,11 +60,11 @@ Description: authenticate with OAuth for Haskell web applications${haskell:Short
 
 Package: libghc-authenticate-oauth-prof
 Architecture: any
-Depends: ${haskell:Depends}
-         , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: authenticate with OAuth for Haskell web applications${haskell:ShortBlurb}
  OAuth authentication support.
  .
@@ -77,10 +73,10 @@ Description: authenticate with OAuth for Haskell web applications${haskell:Short
 Package: libghc-authenticate-oauth-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends}
-         , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: authenticate with OAuth for Haskell web applications${haskell:ShortBlurb}
  OAuth authentication support.
  .
