@@ -320,7 +320,7 @@ shakeMain conf@(Conf {..}) = do
         -- For the sake of packages like alex, uuagc etc, we exclude ourselves
         -- from this, thus allowing the use of the binary from the archive to
         -- bootstrap.
-        need $ filter (/= out) depChanges
+        need $ filter (/= targetDir </> changesFileName source version) depChanges
 
         -- What files do we have built locally?
         -- Make sure the build uses only them
