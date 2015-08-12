@@ -1,67 +1,71 @@
 Source: haskell-yesod-bin
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , haskell-devscripts (>= 0.9)
-  , cdbs
-  , ghc
-  , libghc-attoparsec-dev (>= 0.10)
-  , libghc-base64-bytestring-dev
-  , libghc-blaze-builder-dev (>= 0.2.1.4)
-  , libghc-blaze-builder-dev (<< 0.5)
-  , libghc-conduit-dev (>= 1.2)
-  , libghc-conduit-extra-dev
-  , libghc-data-default-class-dev
-  , libghc-file-embed-dev
-  , libghc-fsnotify-dev (>= 0.0)
-  , libghc-fsnotify-dev (<< 0.2)
-  , libghc-ghc-paths-dev (>= 0.1)
-  , libghc-http-conduit-dev (>= 2.1.4)
-  , libghc-http-client-dev
-  , libghc-http-reverse-proxy-dev (>= 0.4)
-  , libghc-http-types-dev (>= 0.7)
-  , libghc-lifted-base-dev
-  , libghc-network-dev
-  , libghc-optparse-applicative-dev (>= 0.11)
-  , libghc-parsec3-dev
-  , libghc-project-template-dev (>= 0.1.1)
-  , libghc-resourcet-dev (>= 0.3)
-  , libghc-resourcet-dev (<< 1.2)
-  , libghc-shakespeare-dev (>= 2.0)
-  , libghc-split-dev (>= 0.2)
-  , libghc-split-dev (<< 0.3)
-  , libghc-streaming-commons-dev
-  , libghc-tar-dev (>= 0.4)
-  , libghc-tar-dev (<< 0.5)
-  , ghc-ghci
-  , libghc-text-dev (>= 0.11)
-  , libghc-transformers-compat-dev
-  , libghc-unix-compat-dev (>= 0.2)
-  , libghc-unix-compat-dev (<< 0.5)
-  , libghc-unordered-containers-dev
-  , libghc-wai-dev (>= 1.4)
-  , libghc-wai-extra-dev
-  , libghc-warp-dev (>= 1.3.7.5)
-  , libghc-yaml-dev (>= 0.8)
-  , libghc-yaml-dev (<< 0.9)
-  , libghc-zlib-dev (>= 0.5)
-  , libghc-warp-tls-dev (>= 3.0.1)
-  , libghc-async-dev
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ ghc-ghci,
+ libghc-cabal-dev,
+ libghc-async-dev,
+ libghc-attoparsec-dev (>= 0.10),
+ libghc-base64-bytestring-dev,
+ libghc-blaze-builder-dev (>= 0.2.1.4),
+ libghc-blaze-builder-dev (<< 0.5),
+ libghc-conduit-dev (>= 1.2),
+ libghc-conduit-extra-dev,
+ libghc-data-default-class-dev,
+ libghc-file-embed-dev,
+ libghc-fsnotify-dev (>= 0.0),
+ libghc-fsnotify-dev (<< 0.3),
+ libghc-ghc-paths-dev (>= 0.1),
+ libghc-http-client-dev,
+ libghc-http-conduit-dev (>= 2.1.4),
+ libghc-http-reverse-proxy-dev (>= 0.4),
+ libghc-http-types-dev (>= 0.7),
+ libghc-lifted-base-dev,
+ libghc-network-dev,
+ libghc-optparse-applicative-dev (>= 0.11),
+ libghc-parsec3-dev (>= 3) | libghc-parsec2-dev (>= 2.1),
+ libghc-parsec3-dev (>= 3) | libghc-parsec2-dev (<< 3),
+ libghc-parsec3-dev (<< 4) | libghc-parsec2-dev (>= 2.1),
+ libghc-parsec3-dev (<< 4) | libghc-parsec2-dev (<< 3),
+ libghc-project-template-dev (>= 0.1.1),
+ libghc-resourcet-dev (>= 0.3),
+ libghc-resourcet-dev (<< 1.2),
+ libghc-shakespeare-dev (>= 2.0),
+ libghc-split-dev (>= 0.2),
+ libghc-split-dev (<< 0.3),
+ libghc-streaming-commons-dev,
+ libghc-tar-dev (>= 0.4),
+ libghc-tar-dev (<< 0.5),
+ libghc-text-dev (>= 0.11),
+ libghc-transformers-compat-dev,
+ libghc-unix-compat-dev (>= 0.2),
+ libghc-unix-compat-dev (<< 0.5),
+ libghc-unordered-containers-dev,
+ libghc-wai-dev (>= 1.4),
+ libghc-wai-extra-dev,
+ libghc-warp-dev (>= 1.3.7.5),
+ libghc-warp-tls-dev (>= 3.0.1),
+ libghc-yaml-dev (>= 0.8),
+ libghc-yaml-dev (<< 0.9),
+ libghc-zlib-dev (>= 0.5),
 Standards-Version: 3.9.6
-Homepage: http://hackage.haskell.org/package/yesod-bin
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-yesod-bin
+Homepage: http://www.yesodweb.com/
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-yesod-bin
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-yesod-bin
 XS-Testsuite: autopkgtest
 
 Package: yesod
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends:
- ghc,
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ghc,
 # generated with
 # grep , *cabal | grep '>=' | cut -d,  -f2|cut -d\  -f2|sort -u|perl -ne 'chomp; $_ = lc $_; print " , libghc-$_-dev\n"'
 # in a "yesod init" directory
@@ -97,8 +101,8 @@ Recommends:
  libghc-yesod-form-dev,
  libghc-yesod-static-dev,
  libghc-yesod-test-dev,
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Helper executables for the Haskell web framework Yesod
  Provides scaffolding, devel server, and some simple code generation helpers
  (yesod, yesod-ar-wrapper, yesod-ld-wrapper, yesod-ghc-wrapper).

@@ -34,14 +34,20 @@ version=$(grep "^$cabal_name " ../../../package-plan/packages.txt|cut -d\  -f2)
 
 if [ -z "$version" ]
 then
-	echo "could not detect version to upgrade to"
+	echo "could not detect version to upgrade to."
+	exit 1
+fi
+
+if [ "$version" = "$old_version" ]
+then
+	echo "No new version to upgrade to."
 	exit 1
 fi
 
 debchange --changelog debian/changelog --newversion="$epoch$version-1" 'New upstream release'
 origtargz -u
 
-if fgrep -q 'DEB_ENABLE_TESTS = yes' debian/rules
+if grep -q '^DEB_ENABLE_TESTS = yes' debian/rules
 then
   test=""
 else

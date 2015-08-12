@@ -1,27 +1,33 @@
 Source: cpphs
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-old-locale-dev,
+ libghc-old-locale-prof,
+ libghc-old-time-dev,
+ libghc-old-time-prof,
+ libghc-polyparse-dev (>= 1.9),
+ libghc-polyparse-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-old-locale-doc,
+ libghc-old-time-doc,
+ libghc-polyparse-doc,
 Standards-Version: 3.9.5
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.9)
-  , ghc
-  , ghc-prof
-  , ghc-doc
-  , libghc-polyparse-dev (>= 1.9)
-  , libghc-polyparse-prof
-Build-Depends-Indep: libghc-polyparse-doc
-Homepage: http://hackage.haskell.org/package/cpphs
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/cpphs
-Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/cpphs
+Homepage: http://projects.haskell.org/cpphs/
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-cpphs
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-cpphs
 
 Package: cpphs
 Architecture: any
-Depends: ${shlibs:Depends}
-  , ${misc:Depends}
-Suggests: ghc | hugs
+Depends: ${shlibs:Depends},
+ ${misc:Depends},
+Suggests: ghc | hugs,
 Description: Simplified cpp-a-like preprocessor for Haskell
  The C pre-processor has been widely used in Haskell source code. It
  enables conditional compilation for different compilers, different
@@ -37,35 +43,35 @@ Description: Simplified cpp-a-like preprocessor for Haskell
 
 Package: libghc-cpphs-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: cpphs-library for haskell
  This package provides some of the features of cpphs as a haskell library.
 
 Package: libghc-cpphs-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: cpphs-library for haskell; profiling libraries
  This package provides some of the features of cpphs as a haskell library.
 
 Package: libghc-cpphs-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Replaces: haskell-cpphs-doc (<< 1.11-2)
-Conflicts: haskell-cpphs-doc (<< 1.11-2)
-Provides: haskell-cpphs-doc
+Depends: ${misc:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: haskell-cpphs-doc (<< 1.11-2),
+Provides: haskell-cpphs-doc,
+Replaces: haskell-cpphs-doc (<< 1.11-2),
 Description: cpphs-library for haskell; documentation
  This package provides some of the features of cpphs as a haskell library.
   .
  This package contains the API documentation for this library
-

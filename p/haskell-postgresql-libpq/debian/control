@@ -1,15 +1,15 @@
 Source: haskell-postgresql-libpq
-Priority: extra
-Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-             , haskell-devscripts (>= 0.9)
-             , cdbs
-             , ghc
-             , ghc-prof
-             , libpq-dev
-Build-Depends-Indep: ghc-doc
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libpq-dev,
+Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.4
 Homepage: http://github.com/lpsmith/postgresql-libpq
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-postgresql-libpq
@@ -17,13 +17,13 @@ Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-postgresql-libpq
 
 Package: libghc-postgresql-libpq-dev
 Architecture: any
-Depends: ${shlibs:Depends}
-       , ${haskell:Depends}
-       , ${misc:Depends}
-       , libpq-dev
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${shlibs:Depends},
+ ${haskell:Depends},
+ ${misc:Depends},
+ libpq-dev,
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: low-level binding to libpq
  This is a binding to libpq: the C application programmer's interface to
  PostgreSQL. libpq is a set of library functions that allow client
@@ -38,10 +38,10 @@ Description: low-level binding to libpq
 Package: libghc-postgresql-libpq-prof
 Architecture: any
 Depends: ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: low-level binding to libpq; profiling libraries
  This is a binding to libpq: the C application programmer's interface to
  PostgreSQL. libpq is a set of library functions that allow client
@@ -57,9 +57,9 @@ Package: libghc-postgresql-libpq-doc
 Architecture: all
 Section: doc
 Depends: ${haskell:Depends},
-         ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: low-level binding to libpq; documentation
  This is a binding to libpq: the C application programmer's interface to
  PostgreSQL. libpq is a set of library functions that allow client
