@@ -35,7 +35,7 @@ for my $dir (@dirs) {
 	my $firstline = <CHANGELOG>;
 	if ($firstline =~ m/([\w-]+) \(([\w:~.+-]+)\) (\w+);/) {
 		my ($source, $version, $suite) = ($1, $2, $3);
-		my ($cabal_version) = ($version =~ m/(?:.*:)?(.*)-.*?/);
+		my ($cabal_version) = ($version =~ m/^(?:.*:)?(.*?)(?:\+dfsg\d*)?-.*?$/);
 
 		my $watch = read_file($watchfile) or die @!;
 		unless ($watch =~ m!http://hackage.haskell.org/package/(.*)/distro-monitor!) {
