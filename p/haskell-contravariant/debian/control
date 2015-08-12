@@ -1,46 +1,47 @@
 Source: haskell-contravariant
-Section: haskell
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Iulian Udrea <iulian@linux.com>
-Build-Depends: debhelper (>= 9)
- , cdbs
- , haskell-devscripts (>= 0.9)
- , ghc
- , ghc-prof
- , libghc-transformers-compat-dev (>= 0.3)
- , libghc-transformers-compat-dev (<< 1)
- , libghc-transformers-compat-prof
- , libghc-semigroups-dev (>= 0.15.2)
- , libghc-semigroups-dev (<< 1)
- , libghc-semigroups-prof
- , libghc-statevar-dev (>= 1.1)
- , libghc-statevar-dev (<< 1.2)
- , libghc-statevar-prof
- , libghc-void-dev (>= 0.6)
- , libghc-void-dev (<< 1)
- , libghc-void-prof
-Build-Depends-Indep: ghc-doc
- , libghc-transformers-compat-doc
- , libghc-semigroups-doc
- , libghc-statevar-doc
- , libghc-void-doc
-Standards-Version: 3.9.5
-Homepage: http://hackage.haskell.org/package/contravariant
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-contravariant
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-statevar-dev (>= 1.1),
+ libghc-statevar-dev (<< 1.2),
+ libghc-statevar-prof,
+ libghc-semigroups-dev (>= 0.15.2),
+ libghc-semigroups-dev (<< 1),
+ libghc-semigroups-prof,
+ libghc-transformers-compat-dev (>= 0.3),
+ libghc-transformers-compat-dev (<< 1),
+ libghc-transformers-compat-prof,
+ libghc-void-dev (>= 0.6),
+ libghc-void-dev (<< 1),
+ libghc-void-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-statevar-doc,
+ libghc-semigroups-doc,
+ libghc-transformers-compat-doc,
+ libghc-void-doc,
+Standards-Version: 3.9.6
+Homepage: http://github.com/ekmett/contravariant/
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-contravariant
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-contravariant
 X-Description: Contravariant functors
  This packages provides a type class for contravariant functors, i.e. those with
  a method contramap :: (a -> b) -> f b -> f a.
 
 Package: libghc-contravariant-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -48,22 +49,25 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-contravariant-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-contravariant-doc
-Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
