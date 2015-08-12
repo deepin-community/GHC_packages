@@ -4,8 +4,8 @@ Uploaders: Clint Adams <clint@debian.org>
 Priority: extra
 Section: haskell
 Build-Depends: debhelper (>= 9),
- cdbs,
  haskell-devscripts (>= 0.9),
+ cdbs,
  ghc,
  ghc-prof,
  libghc-byteable-dev,
@@ -19,18 +19,20 @@ Build-Depends: debhelper (>= 9),
  libghc-tagged-prof,
  pkg-config,
  nettle-dev (>= 3),
- libghc-quickcheck2-dev,
+ libghc-hunit-dev,
+ libghc-quickcheck2-dev (>= 2),
+ libghc-crypto-cipher-tests-dev,
+ libghc-crypto-cipher-types-dev,
  libghc-test-framework-dev (>= 0.3.3),
  libghc-test-framework-hunit-dev,
  libghc-test-framework-quickcheck2-dev (>= 0.2.9),
- libghc-crypto-cipher-tests-dev,
 Build-Depends-Indep: ghc-doc,
  libghc-byteable-doc,
  libghc-crypto-cipher-types-doc,
  libghc-securemem-doc,
  libghc-tagged-doc,
 Standards-Version: 3.9.6
-Homepage: http://hackage.haskell.org/package/nettle
+Homepage: https://github.com/stbuehler/haskell-nettle
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-nettle
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-nettle
 X-Description: safe bindings to nettle crypto library

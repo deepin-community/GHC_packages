@@ -4,10 +4,12 @@ Uploaders: Clint Adams <clint@debian.org>
 Priority: extra
 Section: haskell
 Build-Depends: debhelper (>= 9),
- cdbs,
  haskell-devscripts (>= 0.9),
+ cdbs,
  ghc,
  ghc-prof,
+ libghc-async-dev,
+ libghc-async-prof,
  libghc-mtl-dev,
  libghc-mtl-prof,
  libghc-optparse-applicative-dev,
@@ -18,21 +20,16 @@ Build-Depends: debhelper (>= 9),
  libghc-tasty-prof,
  libghc-temporary-dev (>= 1.2.0.3),
  libghc-temporary-prof,
- libghc-tagged-dev,
- libghc-tagged-prof,
- libghc-async-dev,
- libghc-async-prof,
  libghc-tasty-hunit-dev,
 Build-Depends-Indep: ghc-doc,
+ libghc-async-doc,
  libghc-mtl-doc,
  libghc-optparse-applicative-doc,
  libghc-tagged-doc,
  libghc-tasty-doc,
  libghc-temporary-doc,
- libghc-tagged-doc,
- libghc-async-doc,
 Standards-Version: 3.9.5
-Homepage: http://hackage.haskell.org/package/tasty-golden
+Homepage: https://github.com/feuerbach/tasty-golden
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-tasty-golden
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-tasty-golden
 X-Description: Golden test support for Tasty test framework

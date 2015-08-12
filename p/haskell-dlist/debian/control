@@ -3,16 +3,19 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: TANIGUCHI Takaki <takaki@debian.org>
 Priority: optional
 Section: haskell
-Build-Depends: cdbs,
- debhelper (>= 9),
+Build-Depends: debhelper (>= 9),
  haskell-devscripts (>= 0.9),
+ cdbs,
  ghc,
  ghc-prof,
- libghc-quickcheck2-dev (>= 2.5),
+ libghc-cabal-dev,
+ libghc-quickcheck2-dev (>= 2.7),
  libghc-quickcheck2-dev (<< 2.9),
 Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.5
-Homepage: http://code.haskell.org/~dons/code/dlist/
+Homepage: https://github.com/spl/dlist
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-dlist
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-dlist
 
 Package: libghc-dlist-dev
 Architecture: any

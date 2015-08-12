@@ -3,11 +3,12 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Clint Adams <clint@debian.org>
 Priority: extra
 Section: haskell
-Build-Depends: haskell-devscripts (>= 0.9),
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
  cdbs,
- debhelper (>= 9),
  ghc,
  ghc-ghci,
+ libghc-hunit-dev,
  libghc-blaze-html-dev,
  libghc-blaze-markup-dev,
  libghc-clientsession-dev,
@@ -22,9 +23,8 @@ Build-Depends: haskell-devscripts (>= 0.9),
  libghc-hledger-lib-dev (<< 0.25),
  libghc-http-client-dev,
  libghc-http-conduit-dev,
- libghc-hunit-dev,
  libghc-json-dev,
- libghc-parsec3-dev,
+ libghc-parsec3-dev (>= 3),
  libghc-regexpr-dev (>= 0.5.1),
  libghc-safe-dev (>= 0.2),
  libghc-shakespeare-dev (>= 2.0),
@@ -39,8 +39,9 @@ Build-Depends: haskell-devscripts (>= 0.9),
  libghc-yesod-core-dev,
  libghc-yesod-static-dev,
  libjs-jquery,
+ libghc-shakespeare-dev (<< 2.1),
 Standards-Version: 3.9.5
-Homepage: http://hackage.haskell.org/package/hledger-web
+Homepage: http://hledger.org
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-hledger-web
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hledger-web
 

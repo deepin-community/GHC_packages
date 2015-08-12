@@ -2,27 +2,27 @@ Source: haskell-edison-core
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Priority: extra
 Section: haskell
-Build-Depends: cdbs,
- debhelper (>= 9),
+Build-Depends: debhelper (>= 9),
  haskell-devscripts (>= 0.9),
+ cdbs,
  ghc,
  ghc-prof,
- ghc-doc,
+ libghc-edisonapi-dev (>= 1.2.2.1),
+ libghc-edisonapi-dev (<< 1.2.2.2),
+ libghc-edisonapi-prof,
+ libghc-quickcheck2-dev (>= 2.0),
+ libghc-quickcheck2-dev (<< 3),
+ libghc-quickcheck2-prof,
  libghc-mtl-dev,
  libghc-mtl-prof,
- libghc-mtl-doc,
- libghc-edison-api-dev (>= 1.2.2.1),
- libghc-edison-api-dev (<< 1.2.2.1+),
- libghc-edison-api-prof,
- libghc-edison-api-doc,
- libghc-quickcheck2-dev,
- libghc-quickcheck2-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-edisonapi-doc,
  libghc-quickcheck2-doc,
- cpphs,
+ libghc-mtl-doc,
 Standards-Version: 3.9.4
-Homepage: http://www.cs.princeton.edu/~rdockins/edison/home/
-Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-edison-core
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-edison-core
+Homepage: http://rwd.rdockins.name/edison/home/
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-edisoncore
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-edisoncore
 
 Package: libghc-edison-core-dev
 Architecture: any

@@ -3,17 +3,16 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Clint Adams <clint@debian.org>
 Priority: extra
 Section: haskell
-Build-Depends: cdbs,
- debhelper (>= 9),
+Build-Depends: debhelper (>= 9),
  haskell-devscripts (>= 0.9),
+ cdbs,
  ghc,
  ghc-prof,
- ghc-ghci,
  libghc-blaze-builder-dev (>= 0.3.3.2),
  libghc-blaze-builder-dev (<< 0.5),
  libghc-blaze-builder-prof,
  libghc-cabal-dev (>= 1.18.0),
- libghc-cabal-prof,
+ libghc-cabal-prof (>= 1.18.0),
  libghc-data-default-dev (>= 0.5.3),
  libghc-data-default-prof,
  libghc-hashable-dev (>= 1.2),
@@ -27,7 +26,8 @@ Build-Depends: cdbs,
  libghc-parallel-dev (>= 2.2),
  libghc-parallel-dev (<< 3.3),
  libghc-parallel-prof,
- libghc-parsec3-dev,
+ libghc-parsec3-dev (>= 2),
+ libghc-parsec3-dev (<< 4),
  libghc-parsec3-prof,
  libghc-text-dev (>= 0.11.3),
  libghc-text-prof,
@@ -36,6 +36,7 @@ Build-Depends: cdbs,
  libghc-utf8-string-prof,
  libghc-vector-dev (>= 0.7),
  libghc-vector-prof,
+ libghc-lens-dev,
 Build-Depends-Indep: ghc-doc,
  libghc-blaze-builder-doc,
  libghc-data-default-doc,
@@ -48,7 +49,7 @@ Build-Depends-Indep: ghc-doc,
  libghc-utf8-string-doc,
  libghc-vector-doc,
 Standards-Version: 3.9.5
-Homepage: http://hackage.haskell.org/package/vty
+Homepage: https://github.com/coreyoconnor/vty
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-vty
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-vty
 

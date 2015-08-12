@@ -8,18 +8,23 @@ Build-Depends: debhelper (>= 9),
  cdbs,
  ghc,
  ghc-prof,
- ghc-doc,
- libghc-curl-dev,
+ libghc-curl-dev (>= 1.3),
+ libghc-curl-dev (<< 2),
  libghc-curl-prof,
- libghc-curl-doc,
  libghc-hxt-dev (>= 9.1),
  libghc-hxt-dev (<< 10),
- libghc-hxt-prof (>= 9.1),
- libghc-hxt-prof (<< 10),
- libghc-hxt-doc (>= 9.1),
- libghc-hxt-doc (<< 10),
+ libghc-hxt-prof,
+ libghc-parsec3-dev (>= 2.1),
+ libghc-parsec3-dev (<< 4),
+ libghc-parsec3-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-curl-doc,
+ libghc-hxt-doc,
+ libghc-parsec3-doc,
 Standards-Version: 3.9.4
-Homepage: http://www.fh-wedel.de/~si/HXmlToolbox/
+Homepage: https://github.com/UweSchmidt/hxt
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-hxt-curl
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hxt-curl
 
 Package: libghc-hxt-curl-dev
 Architecture: any

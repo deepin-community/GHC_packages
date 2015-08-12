@@ -8,24 +8,27 @@ Build-Depends: debhelper (>= 9),
  cdbs,
  ghc,
  ghc-prof,
- ghc-doc,
- libghc-http-dev,
+ libghc-http-dev (>= 1:4000),
+ libghc-http-dev (<< 1:5000),
  libghc-http-prof,
- libghc-http-doc,
- libghc-network-dev (>= 2.6),
- libghc-network-prof,
- libghc-network-doc,
- libghc-network-uri-dev (>= 2.6),
- libghc-network-uri-prof,
- libghc-network-uri-doc,
  libghc-hxt-dev (>= 9.1),
  libghc-hxt-dev (<< 10),
- libghc-hxt-prof (>= 9.1),
- libghc-hxt-prof (<< 10),
- libghc-hxt-doc (>= 9.1),
- libghc-hxt-doc (<< 10),
+ libghc-hxt-prof,
+ libghc-network-dev (>= 2.4),
+ libghc-network-dev (<< 2.6),
+ libghc-network-prof,
+ libghc-parsec3-dev (>= 2.1),
+ libghc-parsec3-dev (<< 4),
+ libghc-parsec3-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-http-doc,
+ libghc-hxt-doc,
+ libghc-network-doc,
+ libghc-parsec3-doc,
 Standards-Version: 3.9.4
-Homepage: http://www.fh-wedel.de/~si/HXmlToolbox/
+Homepage: https://github.com/UweSchmidt/hxt
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-hxt-http
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hxt-http
 
 Package: libghc-hxt-http-dev
 Architecture: any
