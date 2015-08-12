@@ -7,7 +7,7 @@ DEB_CABAL_PACKAGE=darcs
 
 DEB_INSTALL_CHANGELOGS_ALL=NEWS
 
-DEB_SETUP_GHC_CONFIGURE_ARGS=$(if $(wildcard /usr/lib/*/libHSrts_thr.a),,-f-threaded) -fpkgconfig -fcurl -f-http -fterminfo --ghc-options="+RTS -V0 -RTS"
+DEB_SETUP_GHC_CONFIGURE_ARGS=$(if $(wildcard /usr/lib/ghc/*/libHSrts_thr.a),,-f-threaded) -fpkgconfig -fcurl -f-http -fterminfo --ghc-options="+RTS -V0 -RTS"
 
 binary-post-install/darcs::
 	dh_bash-completion
