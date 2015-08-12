@@ -2,6 +2,7 @@
 import qualified Data.Map as M
 import qualified Data.Set as S
 import Control.Applicative hiding (many)
+import qualified Data.Text as T
 import Data.List
 import Data.List.Split
 import Data.Maybe
@@ -148,14 +149,17 @@ changesFileName s v = s ++ "_" ++ v ++ "_amd64.changes"
 logFileName s v = s ++ "_" ++ v ++ "_amd64.build"
 sourceFileName s v = s ++ "_" ++ v ++ ".dsc"
 
-binaryPackagesOfSource :: String -> Action [String]
+binaryPackagesOfSource :: String -> Action [(String, String)]
 binaryPackagesOfSource s = do
     let controlFile = "p" </> s </> "debian" </> "control"
     need [controlFile]
     ret <- liftIO $ parseDebianControlFromFile controlFile
     case ret of
         Left e -> fail (show e)
-        Right dc -> return $ map unBinPkgName $ debianBinaryPackageNames dc
+        Right dc -> forM (debianBinaryParagraphs dc) $  \bp -> do
+            p <- maybe (fail "No Package field") (return . T.unpack) $ fieldValue "Package" bp
+            a <- maybe (fail "No Arch field") (return . T.unpack) $ fieldValue "Architecture" bp
+            return (p, if a == "all" then a else "amd64")
 
 dependsOfDsc :: FilePath -> IO [String]
 dependsOfDsc f = do
@@ -249,8 +253,9 @@ shakeMain conf@(Conf {..}) = do
 
     targetDir </> "cache/all-binaries.txt" %> \out -> do
         sources <- readFileLines $ targetDir </> "cache/sources.txt"
-        binaries <- concat <$> mapM readFileLines [targetDir </> "cache/binaries/" ++ s ++ ".txt" | s <- sources]
-        writeFileChanged out (unlines binaries)
+        binaries <- concat <$> mapM readFileLines
+            [ targetDir </> "cache" </> "binaries" </> s <.> "txt" | s <- sources ]
+        writeFileChanged out $ unlines binaries
 
     targetDir </> "cache/built-by.txt" %> \out -> do
         sources <- readFileLines $ targetDir </> "cache/sources.txt"
@@ -280,7 +285,9 @@ shakeMain conf@(Conf {..}) = do
     targetDir </> "cache/binaries/*.txt" %> \out -> do
         let s = dropExtension $ takeFileName $ out
         pkgs <- binaryPackagesOfSource s
-        writeFileChanged out (unlines pkgs)
+        v <- versionOfSource s
+
+        writeFileChanged out $ unlines [ p ++ "_" ++ v ++ "_" ++ a ++ ".deb" | (p,a) <- pkgs]
 
     "all" ~> do
         changesFiles <- readFileLines $ targetDir </> "cache/all-changes-files.txt"
@@ -308,15 +315,18 @@ shakeMain conf@(Conf {..}) = do
         let changes = changesFileName source version
 
         ensureVersion source version
+
+        -- To build something, we need the source
         let dsc = sourceFileName source version
         need [targetDir </> dsc]
+
+        -- This ensures all dependencies are up-to-date
         deps <- liftIO $ dependsOfDsc $ targetDir </> dsc
         depSources <- catMaybes <$> mapM builtBy deps
         depChanges <- forM depSources $ \s -> do
             v <- versionOfSource s
             return $ targetDir </> changesFileName s v
 
-        -- This ensures all dependencies are up-to-date
         -- For the sake of packages like alex, uuagc etc, we exclude ourselves
         -- from this, thus allowing the use of the binary from the archive to
         -- bootstrap.
@@ -324,22 +334,29 @@ shakeMain conf@(Conf {..}) = do
 
         -- What files do we have built locally?
         -- Make sure the build uses only them
+        expectedDeps <- S.fromList <$> readFileLines (targetDir </> "cache" </> "all-binaries.txt")
         localDebs <-
-            filter ((==".deb") . takeExtension) .
+            filter (`S.member` expectedDeps) .
             map (makeRelative targetDir) <$>
             liftIO (listFiles targetDir)
         let localDepPkgs = map debFileNameToPackage localDebs
 
-        -- Monkey patch dependencies out of the package lists
         withTempDir $ \tmpdir -> do
+            -- Now monkey-patch dependencies out of the package lists
             let fixup = tmpdir </> "fixup.sh"
             liftIO $ writeFile fixup  $ fixupScript localDepPkgs
+
+            -- Run sbuild
             Exit c <- cmd (Cwd targetDir) (EchoStdout False)
                 ["sbuild", "-c", schrootName,"-A","--no-apt-update","--dist", distribution, "--chroot-setup-commands=bash "++fixup, dsc] ["--extra-package="++d | d <- localDebs ]
             unless (c == ExitSuccess) $ do
                 putNormal $ "Failed to build " ++ source ++ "_" ++ version
                 ex <- liftIO $ System.Directory.doesFileExist out
                 putNormal $ "See " ++ out ++ " for details."
+
+            -- Add the sources to the changes file. We do not simply pass
+            -- "-s" to sbuild, as it would make sbuild re-create and override the .dsc file
+            -- which confuses the build system.
             unit $ cmd "changestool" (targetDir </> changes) "adddsc" (targetDir </> dsc)
 
 
