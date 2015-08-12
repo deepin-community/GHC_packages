@@ -8,6 +8,7 @@ Build-Depends: debhelper (>= 9),
  cdbs,
  ghc,
  ghc-prof,
+ ghc-ghci,
  libghc-cabal-dev,
  libghc-async-dev,
  libghc-attoparsec-dev (>= 0.10),
@@ -65,6 +66,9 @@ Depends: ${haskell:Depends},
  ${shlibs:Depends},
  ${misc:Depends},
 Recommends: ghc,
+# generated with
+# grep , *cabal | grep '>=' | cut -d,  -f2|cut -d\  -f2|sort -u|perl -ne 'chomp; $_ = lc $_; print " , libghc-$_-dev\n"'
+# in a "yesod init" directory
  libghc-aeson-dev,
  libghc-classy-prelude-dev,
  libghc-classy-prelude-conduit-dev,
