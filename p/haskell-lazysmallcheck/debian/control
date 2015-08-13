@@ -9,21 +9,11 @@ Build-Depends: debhelper (>= 9),
  ghc,
  ghc-prof,
 Build-Depends-Indep: ghc-doc,
-Standards-Version: 3.9.4
+Standards-Version: 3.9.6
 Homepage: http://www.cs.york.ac.uk/~mfn/lazysmallcheck/
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-lazysmallcheck
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-lazysmallcheck
-
-Package: libghc-lazysmallcheck-dev
-Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
- ${misc:Depends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
-Description: A library for demand-driven testing of Haskell programs
- This package provides a library for the Haskell programming language.
- .
+X-Description: A library for demand-driven testing of Haskell programs
  Lazy SmallCheck is a library for exhaustive, demand-driven testing of
  Haskell programs.  It is based on the idea that if a property holds
  for a partially-defined input then it must also hold for all
@@ -31,20 +21,43 @@ Description: A library for demand-driven testing of Haskell programs
  input generation as in SmallCheck, Lazy SmallCheck may require
  significantly fewer test-cases to verify a property for all inputs up
  to a given depth.
+
+Package: libghc-lazysmallcheck-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
 
 Package: libghc-lazysmallcheck-prof
 Architecture: any
 Depends: ${haskell:Depends},
  ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
 Provides: ${haskell:Provides},
-Description: A library for demand-driven testing of Haskell programs; profiling libraries
- This package provides a library for the Haskell programming language,
- compiled for profiling.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
- Lazy SmallCheck is a library for exhaustive, demand-driven testing of
- Haskell programs.  It is based on the idea that if a property holds
- for a partially-defined input then it must also hold for all
- fully-defined refinements of the that input.  Compared to ``eager''
- input generation as in SmallCheck, Lazy SmallCheck may require
- significantly fewer test-cases to verify a property for all inputs up
- to a given depth.
+ ${haskell:Blurb}
+
+Package: libghc-lazysmallcheck-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
