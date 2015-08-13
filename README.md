@@ -62,14 +62,13 @@ the Debian source package name:
 In the full debian version, `:` and `~` are replaced by `_`.
 
 
-Scripts in this repository
---------------------------
+Debian Haskell Tools
+--------------------
 
- * `./what-to-build.pl`.
+We provide tools for a number of repeated tasks, such as tagging, upgrading, knowing what to build and what to upgrade, etc. They are provided in the `pkg-haskell-tools` package, available in sid, or at ssh://git.debian.org/git/pkg-haskell/pkg-haskell-tools.git (git://anonscm.debian.org/pkg-haskell/pkg-haskell-tools.git for non-Debian-developers).
 
-   This script expects to be run with any number of directories as arguments,
-   and defaults to `p/*/`. It prints the name of those directories that contain a
-   package that is to be released (i.e. marked for upload, but not yet tagged).
+All tools are under the `dht` prefix, and it has a manpage (man dht) or at
+<file:///usr/share/doc/pkg-haskell-tools/dht.html>.
 
 
 Useful general tools
