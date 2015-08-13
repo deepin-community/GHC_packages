@@ -1,0 +1,66 @@
+Source: haskell-stateref
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-mtl-dev
+  , libghc-mtl-prof
+  , libghc-stm-dev
+  , libghc-stm-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-mtl-doc
+  , libghc-stm-doc
+Standards-Version: 3.9.6
+Homepage: http://hackage.haskell.org/package/stateref
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-stateref
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-stateref
+X-Description: Abstraction for things that work like IORef
+ A collection of type-classes generalizing the read/write/modify
+ operations for stateful variables provided by things like IORef,
+ TVar, &c. Note that The interface has changed a bit from the 0.2.*
+ version. "*Ref" functions are now called "*Reference" and new "*Ref"
+ function exist with simpler signatures. The new Ref existential type
+ provides a convenient monad-indexed reference type, and the HasRef
+ class indicates monads for which there is a default reference type
+ for every referent.
+
+Package: libghc-stateref-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-stateref-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-stateref-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
