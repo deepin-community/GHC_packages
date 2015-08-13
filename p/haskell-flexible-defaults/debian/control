@@ -1,0 +1,68 @@
+Source: haskell-flexible-defaults
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , ghc-ghci
+  , libghc-th-extras-dev
+  , libghc-th-extras-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-th-extras-doc
+Standards-Version: 3.9.6
+Homepage: http://hackage.haskell.org/package/flexible-defaults
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-flexible-defaults
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-flexible-defaults
+X-Description: Generate default function implementations for complex type classes
+ Template Haskell code to implement default implementations for
+ type-class functions based on which functions are already implemented.
+ Currently extremely crude but still fairly effective.
+ .
+ When defining a type class with many functions, each of which can be
+ implemented based on arbitrary subsets of the others, the standard
+ default-implementation concept breaks down quite badly.  This library
+ provides a system by which more complex rules can be described for
+ choosing default implementations based on which ones the user
+ supplies.  These implementations can additionally be given
+ "suitability scores", so that when multiple possible choices could be
+ made, the library can choose the "best" one.
+
+Package: libghc-flexible-defaults-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-flexible-defaults-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-flexible-defaults-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
