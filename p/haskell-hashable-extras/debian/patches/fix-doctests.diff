@@ -1,0 +1,16 @@
+Index: hashable-extras-0.2.2/tests/doctests.hsc
+===================================================================
+--- hashable-extras-0.2.2.orig/tests/doctests.hsc
++++ hashable-extras-0.2.2/tests/doctests.hsc
+@@ -56,9 +56,9 @@ withUnicode m = m
+ main :: IO ()
+ main = withUnicode $ getSources >>= \sources -> doctest $
+     "-isrc"
+-  : "-idist/build/autogen"
++  : "-idist-ghc/build/autogen"
+   : "-optP-include"
+-  : "-optPdist/build/autogen/cabal_macros.h"
++  : "-optPdist-ghc/build/autogen/cabal_macros.h"
+   : "-hide-all-packages"
+   : "-Iincludes"
+   : map ("-package="++) deps ++ sources
