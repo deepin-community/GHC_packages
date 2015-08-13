@@ -1,6 +1,6 @@
 Source: haskell-storable-complex
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Denis Laxalde <denis@laxalde.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
 Priority: extra
 Section: haskell
 Build-Depends: debhelper (>= 9),
@@ -9,22 +9,29 @@ Build-Depends: debhelper (>= 9),
  ghc,
  ghc-prof,
 Build-Depends-Indep: ghc-doc,
-Standards-Version: 3.9.4
+Standards-Version: 3.9.6
 Homepage: https://github.com/cartazio/storable-complex
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-storable-complex
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-storable-complex
+X-Description: Storable instance for Complex
+ Provides a Storable instance for Complex which is binary
+ compatible with C99, C++ and Fortran complex data types.
+ .
+ The only purpose of this package is to provide a standard
+ location for this instance so that other packages needing
+ this instance can play nicely together.
 
 Package: libghc-storable-complex-dev
 Architecture: any
 Depends: ${haskell:Depends},
- ${shlibs:Depends},
  ${misc:Depends},
+ ${shlibs:Depends},
 Recommends: ${haskell:Recommends},
 Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
 Provides: ${haskell:Provides},
-Description: Haskell library providing storable instance for Complex${haskell:ShortBlurb}
- Provides a Storable instance for Complex which is binary compatible with
- C99, C++ and Fortran complex data types.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
@@ -34,9 +41,22 @@ Depends: ${haskell:Depends},
  ${misc:Depends},
 Recommends: ${haskell:Recommends},
 Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
 Provides: ${haskell:Provides},
-Description: Haskell library providing storable instance for Complex${haskell:ShortBlurb}
- Provides a Storable instance for Complex which is binary compatible with
- C99, C++ and Fortran complex data types.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-storable-complex-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
