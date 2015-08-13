@@ -1,0 +1,71 @@
+Source: haskell-rvar
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-monadprompt-dev (>= 1.0)
+  , libghc-monadprompt-dev (<< 1.1)
+  , libghc-monadprompt-prof
+  , libghc-mtl-dev (>= 2)
+  , libghc-mtl-dev (<< 3)
+  , libghc-mtl-prof
+  , libghc-random-source-dev (>= 0.3)
+  , libghc-random-source-dev (<< 0.4)
+  , libghc-random-source-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-monadprompt-doc
+  , libghc-mtl-doc
+  , libghc-random-source-doc
+Standards-Version: 3.9.6
+Homepage: http://hackage.haskell.org/package/rvar
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-rvar
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-rvar
+X-Description: random variables
+ Random number generation based on modeling random variables by an
+ abstract type (RVar) which can be composed and manipulated
+ monadically and sampled in either monadic or "pure" styles.
+ .
+ The primary purpose of this library is to support defining and
+ sampling a wide variety of high quality random variables. Quality is
+ prioritized over speed, but performance is an important goal too.
+
+Package: libghc-rvar-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-rvar-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-rvar-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
