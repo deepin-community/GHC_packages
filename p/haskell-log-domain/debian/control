@@ -1,0 +1,95 @@
+Source: haskell-log-domain
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-bytes-dev (>= 0.7)
+  , libghc-bytes-dev (<< 1)
+  , libghc-bytes-prof
+  , libghc-cereal-dev (>= 0.3.5)
+  , libghc-cereal-dev (<< 0.5)
+  , libghc-cereal-prof
+  , libghc-comonad-dev (>= 4)
+  , libghc-comonad-dev (<< 5)
+  , libghc-comonad-prof
+  , libghc-distributive-dev (>= 0.3)
+  , libghc-distributive-dev (<< 1)
+  , libghc-distributive-prof
+  , libghc-generic-deriving-dev (>= 1.4)
+  , libghc-generic-deriving-dev (<< 1.9)
+  , libghc-generic-deriving-prof
+  , libghc-hashable-dev (>= 1.1.2.3)
+  , libghc-hashable-dev (<< 1.3)
+  , libghc-hashable-prof
+  , libghc-hashable-extras-dev (>= 0.2)
+  , libghc-hashable-extras-dev (<< 1)
+  , libghc-hashable-extras-prof
+  , libghc-safecopy-dev (>= 0.8.1)
+  , libghc-safecopy-dev (<< 0.9)
+  , libghc-safecopy-prof
+  , libghc-semigroupoids-dev (>= 0.8.4)
+  , libghc-semigroupoids-dev (<< 1)
+  , libghc-semigroupoids-prof
+  , libghc-vector-dev (>= 0.9)
+  , libghc-vector-dev (<< 0.11)
+  , libghc-vector-prof
+  , libghc-doctest-dev (>= 0.9.1)
+  , libghc-simple-reflect-dev (>= 0.3.1)
+Build-Depends-Indep: ghc-doc
+  , libghc-bytes-doc
+  , libghc-cereal-doc
+  , libghc-comonad-doc
+  , libghc-distributive-doc
+  , libghc-generic-deriving-doc
+  , libghc-hashable-doc
+  , libghc-hashable-extras-doc
+  , libghc-safecopy-doc
+  , libghc-semigroupoids-doc
+  , libghc-vector-doc
+Standards-Version: 3.9.6
+Homepage: http://hackage.haskell.org/package/log-domain
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-log-domain
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-log-domain
+X-Description: Log-domain arithmetic
+ This package provides log-domain floats, doubles and complex numbers.
+
+Package: libghc-log-domain-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-log-domain-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-log-domain-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
