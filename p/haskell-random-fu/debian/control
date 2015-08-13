@@ -1,0 +1,99 @@
+Source: haskell-random-fu
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Build-Depends: debhelper (>= 9)
+  , cdbs
+  , haskell-devscripts (>= 0.8.15)
+  , ghc
+  , ghc-prof
+  , libghc-erf-dev
+  , libghc-erf-prof
+  , libghc-erf-native-dev
+  , libghc-erf-native-prof
+  , libghc-log-domain-dev (>= 0.9)
+  , libghc-log-domain-dev (<< 1.0)
+  , libghc-log-domain-prof
+  , libghc-math-functions-dev
+  , libghc-math-functions-prof
+  , libghc-monad-loops-dev (>= 0.3.0.1)
+  , libghc-monad-loops-prof
+  , libghc-mtl-dev (>= 1)
+  , libghc-mtl-dev (<< 3)
+  , libghc-mtl-prof
+  , libghc-random-shuffle-dev
+  , libghc-random-shuffle-prof
+  , libghc-random-source-dev (>= 0.3)
+  , libghc-random-source-dev (<< 0.3)
+  , libghc-random-source-prof
+  , libghc-rvar-dev (>= 0.2)
+  , libghc-rvar-dev (<< 0.3)
+  , libghc-rvar-prof
+  , libghc-syb-dev
+  , libghc-syb-prof
+  , ghc-ghci
+  , libghc-vector-dev (>= 0.7)
+  , libghc-vector-prof
+Build-Depends-Indep: ghc-doc
+  , libghc-erf-doc
+  , libghc-erf-native-doc
+  , libghc-log-domain-doc
+  , libghc-math-functions-doc
+  , libghc-monad-loops-doc
+  , libghc-mtl-doc
+  , libghc-random-shuffle-doc
+  , libghc-random-source-doc
+  , libghc-rvar-doc
+  , libghc-syb-doc
+  , libghc-vector-doc
+Standards-Version: 3.9.6
+Homepage: http://hackage.haskell.org/package/random-fu
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-random-fu
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-random-fu
+X-Description: random number generation
+ Random number generation based on modeling random variables in two
+ complementary ways: first, by the parameters of standard mathematical
+ distributions and, second, by an abstract type (RVar) which can be
+ composed and manipulated monadically and sampled in either monadic
+ or "pure" styles.
+ .
+ The primary purpose of this library is to support defining and
+ sampling a wide variety of high quality random variables. Quality is
+ prioritized over speed, but performance is an important goal too.
+
+Package: libghc-random-fu-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-random-fu-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-random-fu-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
