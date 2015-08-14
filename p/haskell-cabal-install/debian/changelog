@@ -1,3 +1,13 @@
+haskell-cabal-install (1.22.0.1-4) UNRELEASED; urgency=medium
+
+  * Weaken the dependency rules for libghc-cabal-dev because otherwise
+    we can't install ghc 7.10 from experimental to prepare the transition.
+  * We believe this is okay because the frequency of configuration file
+    format changes is sufficiently low that we can manually bump revisions
+    should we encounter difficulty.
+
+ -- Daniel Silverstone <dsilvers@digital-scurf.org>  Thu, 13 Aug 2015 10:15:08 +0200
+
 haskell-cabal-install (1.22.0.1-3) unstable; urgency=medium
 
   * Lose dependency on libhc-cabal-dev to avoid binNMUs on every upload of
