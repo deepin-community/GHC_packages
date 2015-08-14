@@ -2,9 +2,14 @@ haskell-cabal-install (1.22.0.1-4) UNRELEASED; urgency=medium
 
   * Weaken the dependency rules for libghc-cabal-dev because otherwise
     we can't install ghc 7.10 from experimental to prepare the transition.
-  * We believe this is okay because the frequency of configuration file
-    format changes is sufficiently low that we can manually bump revisions
-    should we encounter difficulty.
+
+    The original motivation was that cabal-install-1.22 could create a cabal
+    configuration file that could not be read by the Cabal library with
+    ghc-7.8. So if cabal-install is installed, the user probably wants a
+    sufficient recent Cabal library installed.
+
+    We expect that such breakages are not very common, so we plan to put in
+    version constraints as we discover the need for them.
 
  -- Daniel Silverstone <dsilvers@digital-scurf.org>  Thu, 13 Aug 2015 10:15:08 +0200
 
