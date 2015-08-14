@@ -1,0 +1,68 @@
+Source: haskell-hsmtlib
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Kristoffer H Rose <krisrose@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-parsec3-dev (>= 3.1),
+ libghc-parsec3-dev (<< 3.2),
+ libghc-parsec3-prof (>= 3.1),
+ libghc-parsec3-prof (<< 3.2),
+ libghc-smtlib-dev (>= 1.0),
+ libghc-smtlib-dev (<< 1.1),
+ libghc-smtlib-prof (>= 1.0),
+ libghc-smtlib-prof (<< 1.1),
+Build-Depends-Indep: ghc-doc,
+ libghc-parsec3-doc (>= 3) | libghc-parsec2-doc (<< 3),
+ libghc-smtlib-doc,
+Standards-Version: 3.9.6
+Homepage: https://github.com/MfesGA/Hsmtlib
+X-Description: Haskell library for easy interaction with SMT-LIB 2 compliant solvers.
+ Hsmtl provides functions to interact with several smt solvers using SMT-LIB 2.
+ The current suported solvers are Alt-Ergo, Cvc4, MathSat, Yices, Z3.
+ Additional solvers can be used if they are SMT-LIB 2 compliant.
+ More information and tutorials can be found in <https://github.com/MfesGA/Hsmtlib>
+
+Package: libghc-hsmtlib-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests}, cvc4 | z3 | mathsat,
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hsmtlib-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hsmtlib-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
