@@ -10,6 +10,6 @@ import Distribution.Verbosity
 import Distribution.Version
 
 main :: IO ()
-main = do fp <- findPackageDesc "."
+main = do Right fp <- findPackageDesc "."
           pd <- readPackageDescription normal fp
           putStr $ showVersion $ pkgVersion $ package $ packageDescription pd
