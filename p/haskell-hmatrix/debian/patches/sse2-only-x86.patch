@@ -3,17 +3,18 @@ Author: Colin Watson <cjwatson@debian.org>
 Forwarded: no
 Last-Update: 2015-05-08
 
-Index: b/hmatrix.cabal
+Index: haskell-hmatrix/hmatrix.cabal
 ===================================================================
---- a/hmatrix.cabal
-+++ b/hmatrix.cabal
-@@ -90,7 +90,9 @@
+--- haskell-hmatrix.orig/hmatrix.cabal	2015-08-15 14:36:37.499182986 +0200
++++ haskell-hmatrix/hmatrix.cabal	2015-08-15 14:36:37.495182903 +0200
+@@ -101,7 +101,9 @@
                          -fno-warn-missing-signatures
                          -fno-warn-orphans
-
+ 
 -    cc-options:         -O4 -msse2 -Wall
 +    cc-options:         -O4 -Wall
 +    if arch(x86_64) || arch(i386)
 +        cc-options:     -msse2
-
+ 
      cpp-options:        -DBINARY
+ 

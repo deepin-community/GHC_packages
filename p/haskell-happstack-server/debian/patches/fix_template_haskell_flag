@@ -1,19 +1,19 @@
-Index: happstack-server-7.3.9/happstack-server.cabal
+Index: haskell-happstack-server/happstack-server.cabal
 ===================================================================
---- happstack-server-7.3.9.orig/happstack-server.cabal	2015-06-18 13:00:30.275601032 +0200
-+++ happstack-server-7.3.9/happstack-server.cabal	2015-06-18 13:02:35.043596430 +0200
-@@ -104,6 +104,7 @@
+--- haskell-happstack-server.orig/happstack-server.cabal	2015-08-15 14:36:14.690710352 +0200
++++ haskell-happstack-server/happstack-server.cabal	2015-08-15 14:36:14.690710352 +0200
+@@ -105,6 +105,7 @@
    if (flag(template_haskell) && !(arch(arm)))
      Build-Depends:     template-haskell
      cpp-options:       -DTEMPLATE_HASKELL
 +    Extensions:        TemplateHaskell
-
+ 
    hs-source-dirs:      src
-
-@@ -111,7 +112,7 @@
+ 
+@@ -112,7 +113,7 @@
       Build-Depends:    unix
       cpp-options:      -DUNIX
-
+ 
 -  Extensions:          TemplateHaskell, DeriveDataTypeable, MultiParamTypeClasses,
 +  Extensions:          DeriveDataTypeable, MultiParamTypeClasses,
                         TypeFamilies, FlexibleContexts, OverlappingInstances,
