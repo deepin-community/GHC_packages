@@ -1,0 +1,73 @@
+Source: haskell-http2
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-mwc-random-dev,
+ libghc-mwc-random-prof,
+ libghc-stm-dev,
+ libghc-stm-prof,
+ libghc-unordered-containers-dev,
+ libghc-unordered-containers-prof,
+ libghc-aeson-dev,
+ libghc-aeson-pretty-dev,
+ libghc-hex-dev,
+ libghc-text-dev,
+ libghc-vector-dev,
+ libghc-word8-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-mwc-random-doc,
+ libghc-stm-doc,
+ libghc-unordered-containers-doc,
+Standards-Version: 3.9.6
+Homepage: http://hackage.haskell.org/package/http2
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-http2
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-http2
+X-Description: HTTP/2.0 library including frames and HPACK
+ This package provides a HTTP/2.0 library including frames and HPACK.
+ Currently HTTP/2 16 framing and HPACK 10 is supported.
+
+Package: libghc-http2-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-http2-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-http2-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
