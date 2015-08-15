@@ -1,11 +1,11 @@
-Index: lens-4.6.0.1/lens.cabal
+Index: haskell-lens/lens.cabal
 ===================================================================
---- lens-4.6.0.1.orig/lens.cabal	2015-06-20 16:11:21.128425436 +0200
-+++ lens-4.6.0.1/lens.cabal	2015-06-20 16:12:38.766233282 +0200
-@@ -146,6 +146,11 @@
+--- haskell-lens.orig/lens.cabal	2015-08-15 14:18:19.157739242 +0200
++++ haskell-lens/lens.cabal	2015-08-15 14:18:19.153739174 +0200
+@@ -145,6 +145,11 @@
    default: True
    manual: True
-
+ 
 +-- You can disable the templates test suite with -f-test-templates
 +flag test-templates
 +  default: True
@@ -14,12 +14,13 @@ Index: lens-4.6.0.1/lens.cabal
  -- You can disable the doctests test suite with -f-test-doctests
  flag test-doctests
    default: True
-@@ -336,6 +341,9 @@
-   ghc-options: -Wall -Werror -threaded
+@@ -327,6 +332,9 @@
+   ghc-options: -Wall -threaded
    hs-source-dirs: tests
-
+ 
 +  if !flag(test-templates)
 +    buildable: False
 +
    if flag(dump-splices)
      ghc-options: -ddump-splices
+ 
