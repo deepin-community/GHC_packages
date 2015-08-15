@@ -1,0 +1,69 @@
+Source: haskell-lucid-svg
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-blaze-builder-dev (>= 0.2),
+ libghc-blaze-builder-dev (<< 0.5),
+ libghc-blaze-builder-prof,
+ libghc-lucid-dev (>= 2.9.2),
+ libghc-lucid-dev (<< 3.0),
+ libghc-lucid-prof,
+ libghc-text-dev (>= 0.11),
+ libghc-text-dev (<< 1.3),
+ libghc-text-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-blaze-builder-doc,
+ libghc-lucid-doc,
+ libghc-text-doc,
+Standards-Version: 3.9.6
+Homepage: http://github.com/jeffreyrosenbluth/lucid-svg.git
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-lucid-svg
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-lucid-svg
+X-Description: DSL for SVG using lucid for HTML
+ This package provides an easy to write SVG in the syle of lucid.
+
+Package: libghc-lucid-svg-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-lucid-svg-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-lucid-svg-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
