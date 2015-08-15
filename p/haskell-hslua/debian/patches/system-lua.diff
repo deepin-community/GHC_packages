@@ -1,7 +1,7 @@
 Index: haskell-hslua/hslua.cabal
 ===================================================================
---- haskell-hslua.orig/hslua.cabal	2015-08-15 14:37:56.512810553 +0200
-+++ haskell-hslua/hslua.cabal	2015-08-15 14:39:58.063289762 +0200
+--- haskell-hslua.orig/hslua.cabal	2015-08-15 23:30:14.160921481 +0200
++++ haskell-hslua/hslua.cabal	2015-08-15 23:39:33.232545895 +0200
 @@ -30,7 +30,7 @@
  
  flag system-lua
@@ -11,12 +11,17 @@ Index: haskell-hslua/hslua.cabal
  
  flag apicheck
    description:          Compile Lua with -DLUA_USE_APICHECK.
-@@ -49,7 +49,7 @@
-     if flag(luajit)
-       Extra-libraries:  luajit-5.1
-     else
+@@ -46,11 +46,8 @@
+   hs-source-dirs:       src
+   ghc-options:          -Wall -O2
+   if flag(system-lua)
+-    if flag(luajit)
+-      Extra-libraries:  luajit-5.1
+-    else
 -      Extra-libraries:  lua
-+      Extra-libraries:  lua5
-     includes:           lua.h
+-    includes:           lua.h
++    Pkgconfig-depends:  lua5.1
++    Pkgconfig-depends:  luajit
    else
      c-sources:          lua-5.1.5/lobject.c, lua-5.1.5/ltm.c, lua-5.1.5/ldblib.c,
+                         lua-5.1.5/ldo.c, lua-5.1.5/lvm.c, lua-5.1.5/ltable.c,
