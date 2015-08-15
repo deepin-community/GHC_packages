@@ -1,0 +1,74 @@
+Source: haskell-hsopenssl
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-network-dev (>= 2.1),
+ libghc-network-dev (<< 2.7),
+ libghc-network-prof,
+ libghc-old-locale-dev (>= 1.0),
+ libghc-old-locale-dev (<< 1.1),
+ libghc-old-locale-prof,
+ libssl-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-network-doc,
+ libghc-old-locale-doc,
+Standards-Version: 3.9.6
+Homepage: https://github.com/phonohawk/HsOpenSSL
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-hsopenssl
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hsopenssl
+X-Description: Partial OpenSSL binding for Haskell
+ HsOpenSSL is an OpenSSL binding for Haskell. It can generate RSA
+ and DSA keys, read and write PEM files, generate message digests,
+ sign and verify messages, encrypt and decrypt messages. It has
+ also some capabilities of creating SSL clients and servers.
+ .
+ This package is in production use by a number of Haskell based
+ systems and stable. You may also be interested in the tls package,
+ which is a pure Haskell implementation of SSL.
+
+Package: libghc-hsopenssl-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+ libssl-dev,
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hsopenssl-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hsopenssl-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
