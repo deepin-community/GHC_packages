@@ -1,0 +1,73 @@
+Source: haskell-quickcheck-safe
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-quickcheck2-dev (>= 2.7),
+ libghc-quickcheck2-dev (<< 2.9),
+ libghc-quickcheck2-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-quickcheck2-doc,
+Standards-Version: 3.9.6
+Homepage: http://hackage.haskell.org/package/QuickCheck-safe
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-quickcheck-safe
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-quickcheck-safe
+X-Description: Safe reimplementation of QuickCheck's core
+ QuickCheck-safe reimplements the quickCheck functionality with a pure
+ interface and a very small trusted base (see Test.QuickCheck.Safe.Trusted).
+ .
+ * uses the existing Arbitrary instances
+ * implemented features: testing, result minimization (i.e., shrinking)
+ * missing features: expected failures, label frequencies, coverage
+ .
+ The package is targeted at users who want to leverage SafeHaskell for
+ sandboxing.
+ .
+   >>> putStr $ quickCheck (inventQCGen ()) (\x -> length (x :: [()]) < 10)
+   *** Failed! Falsifiable (after 18 tests and 3 shrinks):
+   [(),(),(),(),(),(),(),(),(),(),(),(),(),(),()]
+
+Package: libghc-quickcheck-safe-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-quickcheck-safe-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-quickcheck-safe-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
