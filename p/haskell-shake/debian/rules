@@ -7,8 +7,7 @@ DEB_UPSTREAM_REPACKAGE_DELIMITER := +
 DEB_SETUP_GHC_CONFIGURE_ARGS := --datasubdir=/usr/share/shake
 
 ifeq (yes,$(shell test -e /usr/bin/ghci && echo yes))
-# http://ghc.haskell.org/trac/ghc/ticket/10549
-# DEB_ENABLE_TESTS := yes
+DEB_ENABLE_TESTS := yes
 endif
 
 DEB_GHC_EXTRA_PACKAGES := libghc-shake-data (>= $(CABAL_VERSION))
