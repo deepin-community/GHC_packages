@@ -1,0 +1,99 @@
+Source: haskell-cabal-helper
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-data-default-dev,
+ libghc-data-default-prof,
+ libghc-mtl-dev,
+ libghc-mtl-prof,
+ libghc-temporary-dev,
+ libghc-utf8-string-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-data-default-doc,
+ libghc-mtl-doc,
+Standards-Version: 3.9.6
+Homepage: http://hackage.haskell.org/package/cabal-helper
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-cabal-helper
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-cabal-helper
+X-Description: Simple interface to some of Cabal's configuration state used by ghc-mod
+ cabal-helper provides a library which wraps the internal use of
+ anexecutable to lift the restrictions imposed by linking against versions of
+ GHC before 7.10. This has the pleasant side effect of isolating the user
+ from having to deal with Cabal version changes manually as cabal-helper
+ can simply recompile it's helper program automatically as needed.
+ .
+ cabal-helper uses a wrapper executable to compile the actual cabal-helper
+ executable at runtime while linking against an arbitrary version of
+ Cabal. This runtime-compiled helper executable is then used to extract
+ various bits and peices from Cabal's on disk state (dist/setup-config)
+ written by it's configure command.
+ .
+ In addition to this the wrapper executable also supports installing any
+ version of Cabal from hackage in case it cannot be found in any available
+ package database. The wrapper installs these instances of the Cabal library
+ into a private package database so as to not interfere with the user's
+ packages.
+ .
+ Furthermore the wrapper supports one special case namely reading a state
+ file for Cabal itself. This is needed as Cabal compiles it's Setup.hs using
+ itself and not using any version of Cabal installed in any package database.
+
+Package: libghc-cabal-helper-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+ cabal-helper,
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-cabal-helper-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-cabal-helper-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: cabal-helper
+Architecture: any
+Section: misc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
