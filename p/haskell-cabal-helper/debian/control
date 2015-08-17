@@ -21,16 +21,16 @@ Homepage: http://hackage.haskell.org/package/cabal-helper
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-cabal-helper
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-cabal-helper
 X-Description: Simple interface to some of Cabal's configuration state used by ghc-mod
- @cabal-helper@ provides a library which wraps the internal use of
+ cabal-helper provides a library which wraps the internal use of
  anexecutable to lift the restrictions imposed by linking against versions of
- GHC before @7.10@. This has the pleasant side effect of isolating the user
- from having to deal with Cabal version changes manually as @cabal-helper@
+ GHC before 7.10. This has the pleasant side effect of isolating the user
+ from having to deal with Cabal version changes manually as cabal-helper
  can simply recompile it's helper program automatically as needed.
  .
- @cabal-helper@ uses a wrapper executable to compile the actual cabal-helper
+ cabal-helper uses a wrapper executable to compile the actual cabal-helper
  executable at runtime while linking against an arbitrary version of
  Cabal. This runtime-compiled helper executable is then used to extract
- various bits and peices from Cabal\'s on disk state (dist/setup-config)
+ various bits and peices from Cabal's on disk state (dist/setup-config)
  written by it's configure command.
  .
  In addition to this the wrapper executable also supports installing any
@@ -42,9 +42,6 @@ X-Description: Simple interface to some of Cabal's configuration state used by g
  Furthermore the wrapper supports one special case namely reading a state
  file for Cabal itself. This is needed as Cabal compiles it's Setup.hs using
  itself and not using any version of Cabal installed in any package database.
- .
- @cabal-helper@ can compile with @Cabal >= 1.14@ but requires @Cabal >= 1.16@
- at runtime.
 
 Package: libghc-cabal-helper-dev
 Architecture: any
