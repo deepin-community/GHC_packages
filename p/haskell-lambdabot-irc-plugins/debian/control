@@ -1,0 +1,86 @@
+Source: haskell-lambdabot-irc-plugins
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-safesemaphore-dev (>= 0.9),
+ libghc-safesemaphore-prof,
+ libghc-lambdabot-core-dev (>= 5.0.3),
+ libghc-lambdabot-core-dev (<< 5.1),
+ libghc-lambdabot-core-prof,
+ libghc-lifted-base-dev (>= 0.2),
+ libghc-lifted-base-prof,
+ libghc-mtl-dev (>= 2),
+ libghc-mtl-prof,
+ libghc-network-dev (>= 2.3.0.13),
+ libghc-network-prof,
+ libghc-split-dev (>= 0.2),
+ libghc-split-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-safesemaphore-doc,
+ libghc-lambdabot-core-doc,
+ libghc-lifted-base-doc,
+ libghc-mtl-doc,
+ libghc-network-doc,
+ libghc-split-doc,
+Standards-Version: 3.9.6
+Homepage: http://haskell.org/haskellwiki/Lambdabot
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-lambdabot-irc-plugins
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-lambdabot-irc-plugins
+X-Description: IRC plugins for lambdabot.
+ Lambdabot is an IRC bot written over several years by
+ those on the #haskell IRC channel.
+ .
+ Provided plugins:
+ .
+ [irc] Lets lambdabot connect to IRC.
+ .
+ [localtime] Check user's local time.
+ .
+ [log] Log IRC channels.
+ .
+ [topic] Modify channel topics.
+
+Package: libghc-lambdabot-irc-plugins-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-lambdabot-irc-plugins-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-lambdabot-irc-plugins-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
