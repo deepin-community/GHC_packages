@@ -1,0 +1,106 @@
+Source: haskell-lambdabot-reference-plugins
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-http-dev (>= 1:4000),
+ libghc-http-prof,
+ libghc-lambdabot-core-dev (>= 5.0.3),
+ libghc-lambdabot-core-dev (<< 5.1),
+ libghc-lambdabot-core-prof,
+ libghc-mtl-dev (>= 2),
+ libghc-mtl-prof,
+ libghc-network-dev (>= 2.6),
+ libghc-network-prof,
+ libghc-network-uri-dev (>= 2.6),
+ libghc-network-uri-prof,
+ libghc-oeis-dev (>= 0.3.1),
+ libghc-oeis-prof,
+ libghc-regex-tdfa-dev (>= 1.1),
+ libghc-regex-tdfa-prof,
+ libghc-split-dev (>= 0.2),
+ libghc-split-prof,
+ libghc-tagsoup-dev (>= 0.12),
+ libghc-tagsoup-prof,
+ libghc-utf8-string-dev (>= 0.3),
+ libghc-utf8-string-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-http-doc,
+ libghc-lambdabot-core-doc,
+ libghc-mtl-doc,
+ libghc-network-doc,
+ libghc-network-uri-doc,
+ libghc-oeis-doc,
+ libghc-regex-tdfa-doc,
+ libghc-split-doc,
+ libghc-tagsoup-doc,
+ libghc-utf8-string-doc,
+Standards-Version: 3.9.6
+Homepage: http://haskell.org/haskellwiki/Lambdabot
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-lambdabot-reference-plugins
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-lambdabot-reference-plugins
+X-Description: Lambdabot reference plugins.
+ Lambdabot is an IRC bot written over several years by
+ those on the #haskell IRC channel.
+ .
+ Provided plugins:
+ .
+ [dict] Query various dictionaries.
+ .
+ [metar] Look up avian weather reports.
+ .
+ [oeis] Look up number sequences on OEIS.
+ .
+ [search] Query search engines.
+ .
+ [spell] Check spelling of wrods.
+ .
+ [ticker] Look up stock quotes.
+ .
+ [url] Display titles of URLs on channels.
+ .
+ [where] Manage and query a key-URL list.
+
+Package: libghc-lambdabot-reference-plugins-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-lambdabot-reference-plugins-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-lambdabot-reference-plugins-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
