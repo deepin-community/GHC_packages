@@ -1,0 +1,99 @@
+Source: haskell-lambdabot-novelty-plugins
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-brainfuck-dev (>= 0.1),
+ libghc-brainfuck-prof,
+ libghc-dice-dev (>= 0.1),
+ libghc-dice-prof,
+ libghc-lambdabot-core-dev (>= 5.0.3),
+ libghc-lambdabot-core-dev (<< 5.1),
+ libghc-lambdabot-core-prof,
+ libghc-misfortune-dev (>= 0.1),
+ libghc-misfortune-prof,
+ libghc-random-fu-dev (>= 0.2),
+ libghc-random-fu-prof,
+ libghc-regex-tdfa-dev (>= 1.1),
+ libghc-regex-tdfa-prof,
+ libghc-unlambda-dev (>= 0.1),
+ libghc-unlambda-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-brainfuck-doc,
+ libghc-dice-doc,
+ libghc-lambdabot-core-doc,
+ libghc-misfortune-doc,
+ libghc-random-fu-doc,
+ libghc-regex-tdfa-doc,
+ libghc-unlambda-doc,
+Standards-Version: 3.9.6
+Homepage: http://haskell.org/haskellwiki/Lambdabot
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-lambdabot-novelty-plugins
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-lambdabot-novelty-plugins
+X-Description: Novelty plugins for Lambdabot
+ Lambdabot is an IRC bot written over several years by
+ those on the #haskell IRC channel.
+ .
+ Provided plugins:
+ .
+ [bf] Run Brainf*ck code.
+ .
+ [dice] Roll some dice.
+ .
+ [elite] zPEak Gib8erI$|-|.
+ .
+ [filter] More gibberish.
+ .
+ [numberwang] Sorry, that's not Numberwang.
+ .
+ [quote] Parrot profound wisdom.
+ .
+ [slap] Delegate punishment.
+ .
+ [unlambda] Run Unlambda code.
+ .
+ [vixen] Let's chat, honey.
+
+Package: libghc-lambdabot-novelty-plugins-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-lambdabot-novelty-plugins-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-lambdabot-novelty-plugins-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
