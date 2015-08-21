@@ -1,0 +1,47 @@
+Source: haskell-lambdabot
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-lambdabot-core-dev (>= 5.0.3),
+ libghc-lambdabot-core-dev (<< 5.1),
+ libghc-lambdabot-haskell-plugins-dev (>= 5.0.3),
+ libghc-lambdabot-haskell-plugins-dev (<< 5.1),
+ libghc-lambdabot-irc-plugins-dev (>= 5.0.3),
+ libghc-lambdabot-irc-plugins-dev (<< 5.1),
+ libghc-lambdabot-misc-plugins-dev (>= 5.0.1),
+ libghc-lambdabot-misc-plugins-dev (<< 5.1),
+ libghc-lambdabot-novelty-plugins-dev (>= 5.0.3),
+ libghc-lambdabot-novelty-plugins-dev (<< 5.1),
+ libghc-lambdabot-reference-plugins-dev (>= 5.0.3),
+ libghc-lambdabot-reference-plugins-dev (<< 5.1),
+ libghc-lambdabot-social-plugins-dev (>= 5.0.1),
+ libghc-lambdabot-social-plugins-dev (<< 5.1),
+Standards-Version: 3.9.6
+Homepage: http://haskell.org/haskellwiki/Lambdabot
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-lambdabot
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-lambdabot
+X-Description: Lambdabot is a development tool and advanced IRC bot
+ Lambdabot is an IRC bot written over several years by
+ those on the #haskell IRC channel.
+ .
+ It operates as a command line tool, embedded in an editor,
+ embedded in GHCi, via internet relay chat and on the web.
+
+Package: haskell-lambdabot-utils
+Architecture: any
+Section: misc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
