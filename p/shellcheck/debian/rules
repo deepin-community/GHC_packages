@@ -1,6 +1,12 @@
 #!/usr/bin/make -f
 
-DEB_ENABLE_TESTS = $(shell test -x /usr/bin/ghci && echo yes)
+
+ifeq (yes,$(shell test -e /usr/bin/ghci && echo yes))
+# https://github.com/haskell/cabal/issues/2398
+ifeq (yes,$(shell ghc --info | grep -q 'Support SMP.*YES' && echo yes))
+DEB_ENABLE_TESTS = yes
+endif
+endif
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
