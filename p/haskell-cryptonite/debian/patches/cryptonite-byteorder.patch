@@ -1,0 +1,95 @@
+Index: haskell-cryptonite/Crypto/Internal/CompatPrim.hs
+===================================================================
+--- haskell-cryptonite.orig/Crypto/Internal/CompatPrim.hs	2015-08-25 22:03:04.947561177 +0200
++++ haskell-cryptonite/Crypto/Internal/CompatPrim.hs	2015-08-25 22:03:04.943561093 +0200
+@@ -18,32 +18,29 @@
+ module Crypto.Internal.CompatPrim
+     ( be32Prim
+     , le32Prim
+-    , byteswap32Prim
+     , booleanPrim
+-    , convert4To32
+     ) where
+ 
+ import GHC.Prim
++import System.ByteOrder
+ 
+ -- | byteswap Word# to or from Big Endian
+ --
+ -- on a big endian machine, this function is a nop.
+ be32Prim :: Word# -> Word#
+-#ifdef ARCH_IS_LITTLE_ENDIAN
+-be32Prim = byteswap32Prim
+-#else
+-be32Prim w = w
+-#endif
++be32Prim w = case byteOrder of
++    BigEndian    -> w
++    LittleEndian -> byteswap32Prim w
++    _            -> error "be32Prim"
+ 
+ -- | byteswap Word# to or from Little Endian
+ --
+ -- on a little endian machine, this function is a nop.
+ le32Prim :: Word# -> Word#
+-#ifdef ARCH_IS_LITTLE_ENDIAN
+-le32Prim w = w
+-#else
+-le32Prim = byteswap32Prim
+-#endif
++le32Prim w = case byteOrder of
++    BigEndian    -> byteswap32Prim w
++    LittleEndian -> w
++    _            -> error "le32Prim"
+ 
+ -- | Simple compatibility for byteswap the lower 32 bits of a Word#
+ -- at the primitive level
+@@ -59,23 +56,6 @@
+      in or# a (or# b (or# c d))
+ #endif
+ 
+--- | combine 4 word8 [a,b,c,d] to a word32 representing [a,b,c,d]
+-convert4To32 :: Word# -> Word# -> Word# -> Word#
+-             -> Word#
+-convert4To32 a b c d = or# (or# c1 c2) (or# c3 c4)
+-  where
+-#ifdef ARCH_IS_LITTLE_ENDIAN
+-        !c1 = uncheckedShiftL# a 24#
+-        !c2 = uncheckedShiftL# b 16#
+-        !c3 = uncheckedShiftL# c 8#
+-        !c4 = d
+-#else
+-        !c1 = uncheckedShiftL# d 24#
+-        !c2 = uncheckedShiftL# c 16#
+-        !c3 = uncheckedShiftL# b 8#
+-        !c4 = a
+-#endif
+-
+ -- | Simple wrapper to handle pre 7.8 and future, where
+ -- most comparaison functions don't returns a boolean
+ -- anymore.
+Index: haskell-cryptonite/cryptonite.cabal
+===================================================================
+--- haskell-cryptonite.orig/cryptonite.cabal	2015-08-25 22:03:04.947561177 +0200
++++ haskell-cryptonite/cryptonite.cabal	2015-08-25 22:03:04.943561093 +0200
+@@ -165,6 +165,7 @@
+                      Crypto.Internal.Words
+                      Crypto.Internal.WordArray
+   Build-depends:     base >= 4.3 && < 5
++                   , byteorder
+                    , bytestring
+                    , memory >= 0.2
+                    , ghc-prim
+@@ -199,12 +200,6 @@
+                    , cbits/cryptonite_sysrand.c
+   include-dirs:  cbits cbits/ed25519
+ 
+-  -- FIXME armel or mispel is also little endian.
+-  -- might be a good idea to also add a runtime autodetect mode.
+-  -- ARCH_ENDIAN_UNKNOWN
+-  if (arch(i386) || arch(x86_64))
+-    CPP-options: -DARCH_IS_LITTLE_ENDIAN
+-
+   if arch(i386)
+     CPP-options: -DARCH_X86
+ 
