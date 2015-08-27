@@ -1,5 +1,64 @@
-haskell-lambdabot (5.0.3-1) UNRELEASED; urgency=low
+lambdabot (5.0.3-1) unstable; urgency=medium
 
-  * Initial release
+  * Depend on haskell-devscripts 0.9, found in experimental
+  * Do not depend on transformers, which now comes with GHC
+  * Do not depend on haskeline, which now comes with GHC
+  * Patch: use network-uri
+  * Other build-compatibility patches
+  * New upstream release
 
- -- Alexandre Delanoë <anoe@debian.org> Thu, 20 Aug 2015 13:54:27 +0200
+ -- Joachim Breitner <nomeata@debian.org>  Sat, 15 Aug 2015 14:12:53 +0200
+
+lambdabot (4.3.0.1-1) unstable; urgency=low
+
+  [ Joachim Breitner ]
+  * Depend on haskell-devscripts 0.8.13 to ensure this package is built
+    against experimental
+  * Bump standards version, no change
+  * New upstream release
+  * Enable compat level 9
+
+  [ Colin Watson ]
+  * Build-depend on ghc-ghci, due to use of Template Haskell.
+
+  [ Joachim Breitner ]
+  * Disable some plugins that have a bad dependency-to-usefulness ratio (Dice,
+    Quote, Numberwang, Stats)
+  * Adjust watch file to new hackage layout
+
+  [ Raúl Benencia ]
+  * New upstream release
+  * Update disable-some-plugins patch in order for it to work with the new
+    upstream release
+  * Depend on libghc-src-exts-dev (>= 1.14.0)
+  * Add plugins packages to Suggest and Recommends
+  * Rename bf binary name to match the one provided by hsbrainfuck package
+
+ -- Clint Adams <clint@debian.org>  Sat, 09 Nov 2013 20:12:07 -0500
+
+lambdabot (4.2.3.2-4) unstable; urgency=low
+
+  * Build-Depend on cdbs to make lintian (and dak) happy, although
+    haskell-devscripts does depend on cdbs.
+
+ -- Joachim Breitner <nomeata@debian.org>  Sun, 11 Mar 2012 17:57:32 +0100
+
+lambdabot (4.2.3.2-3) unstable; urgency=low
+
+  * patches/use-FlexibleInstances: GHC 7.4.1 compatibility
+  * Redo debian/rules to use hlibrary.mk
+
+ -- Joachim Breitner <nomeata@debian.org>  Sun, 11 Mar 2012 16:28:15 +0100
+
+lambdabot (4.2.3.2-2) unstable; urgency=low
+
+  * Change fptools path.
+  * Change maintainer to Debian Haskell Group.
+
+ -- Clint Adams <clint@debian.org>  Sat, 01 Oct 2011 17:04:47 -0400
+
+lambdabot (4.2.3.2-1) unstable; urgency=low
+
+  * Initial release.
+
+ -- Clint Adams <clint@debian.org>  Thu, 02 Jun 2011 10:37:55 -0400

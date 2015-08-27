@@ -1,12 +1,12 @@
-Source: lambdabot
+Source: haskell-lambdabot
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
-Priority: optional
-Section: net
+Priority: extra
+Section: haskell
 Build-Depends: debhelper (>= 9),
  haskell-devscripts (>= 0.9),
  cdbs,
  ghc,
+ ghc-prof,
  libghc-lambdabot-core-dev (>= 5.0.3),
  libghc-lambdabot-core-dev (<< 5.1),
  libghc-lambdabot-haskell-plugins-dev (>= 5.0.3),
@@ -21,28 +21,27 @@ Build-Depends: debhelper (>= 9),
  libghc-lambdabot-reference-plugins-dev (<< 5.1),
  libghc-lambdabot-social-plugins-dev (>= 5.0.1),
  libghc-lambdabot-social-plugins-dev (<< 5.1),
-Standards-Version: 3.9.5
-Homepage: http://hackage.haskell.org/package/lambdabot
-Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/lambdabot
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/lambdabot
+Standards-Version: 3.9.6
+Homepage: http://haskell.org/haskellwiki/Lambdabot
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-lambdabot
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-lambdabot
+X-Description: Lambdabot is a development tool and advanced IRC bot
+ Lambdabot is an IRC bot written over several years by
+ those on the #haskell IRC channel.
+ .
+ It operates as a command line tool, embedded in an editor,
+ embedded in GHCi, via internet relay chat and on the web.
 
-Package: lambdabot
+Package: haskell-lambdabot-utils
 Architecture: any
+Section: misc
 Depends: ${haskell:Depends},
- ${shlibs:Depends},
  ${misc:Depends},
 Recommends: ${haskell:Recommends},
- djinn,
 Suggests: ${haskell:Suggests},
- mueval,
- aspell,
- hoogle (>= 4.2.23),
- hsbrainfuck,
- unlambda,
+Conflicts: ${haskell:Conflicts},
 Provides: ${haskell:Provides},
-Description: Development tool and advanced IRC bot
- Lambdabot is an IRC bot written over several years by those on
- the #haskell IRC channel.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
- It operates as a command-line tool, embedded in an editor, embedded
- in GHCi, via Internet Relay Chat and on the Web.
+ ${haskell:Blurb}
