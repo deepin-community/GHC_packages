@@ -1,0 +1,23 @@
+Description: Fix invalid syntax when calling dbus-send in XMonad.Config.Gnome
+ Use dbus-send --print-reply=literal instead of the invalid
+ --print-reply=string. The incorrect syntax used to be ignored
+ but not anymore.
+Author: Per Olofsson <pelle@debian.org>
+Bug-Debian: https://bugs.debian.org/780463
+Forwarded: not-needed
+Applied-Upstream: a7dd328b3938b51a86bade5a21f3364aec22547f
+Last-Update: 2015-07-05
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+--- a/XMonad/Config/Gnome.hs
++++ b/XMonad/Config/Gnome.hs
+@@ -74,7 +74,7 @@ gnomeRegister = io $ do
+     x <- lookup "DESKTOP_AUTOSTART_ID" `fmap` getEnvironment
+     whenJust x $ \sessionId -> safeSpawn "dbus-send"
+             ["--session"
+-            ,"--print-reply=string"
++            ,"--print-reply=literal"
+             ,"--dest=org.gnome.SessionManager"
+             ,"/org/gnome/SessionManager"
+             ,"org.gnome.SessionManager.RegisterClient"
+
