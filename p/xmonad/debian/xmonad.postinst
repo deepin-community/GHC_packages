@@ -7,6 +7,11 @@ if [ "$1" = configure ]; then
         /usr/bin/xmonad-session 20 \
         --slave /usr/share/man/man1/x-session-manager.1.gz \
         x-session-manager.1.gz /usr/share/man/man1/xmonad-session.1.gz
+    update-alternatives \
+        --install /usr/bin/x-session-manager x-session-manager \
+        /usr/bin/gnome-flashback-xmonad 15 \
+        --slave /usr/share/man/man1/x-session-manager.1.gz \
+        x-session-manager.1.gz /usr/share/man/man1/gnome-flashback-xmonad.1.gz
 fi
 
 #DEBHELPER#
