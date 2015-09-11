@@ -13,6 +13,11 @@ DEB_ENABLE_TESTS := yes
 endif
 endif
 
+# unicode problems in the testsuite
+check-ghc-stamp: export LANG := en_US.UTF-8
+check-ghc-stamp: export LC_ALL := C.UTF-8
+
+
 DEB_GHC_EXTRA_PACKAGES := libghc-shake-data (>= $(CABAL_VERSION))
 
 include /usr/share/cdbs/1/rules/debhelper.mk
