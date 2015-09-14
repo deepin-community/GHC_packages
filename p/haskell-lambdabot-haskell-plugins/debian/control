@@ -1,0 +1,168 @@
+Source: haskell-lambdabot-haskell-plugins
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.10),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-http-dev (>= 1:4000),
+ libghc-http-prof,
+ libghc-iospec-dev (>= 0.2),
+ libghc-iospec-prof,
+ libghc-monadrandom-dev (>= 0.1),
+ libghc-monadrandom-prof,
+ libghc-quickcheck2-dev (>= 2),
+ libghc-quickcheck2-prof,
+ libghc-arrows-dev (>= 0.4),
+ libghc-arrows-prof,
+ libghc-data-memocombinators-dev (>= 0.4),
+ libghc-data-memocombinators-prof,
+ libghc-src-exts-dev (>= 1.16.0),
+ libghc-src-exts-prof,
+ libghc-hoogle-dev (>= 4.2),
+ libghc-hoogle-prof,
+ libghc-lambdabot-core-dev (>= 5.0.3),
+ libghc-lambdabot-core-dev (<< 5.1),
+ libghc-lambdabot-core-prof,
+ libghc-lambdabot-reference-plugins-dev (>= 5.0.3),
+ libghc-lambdabot-reference-plugins-dev (<< 5.1),
+ libghc-lambdabot-reference-plugins-prof,
+ libghc-lambdabot-trusted-dev (>= 5.0.2),
+ libghc-lambdabot-trusted-dev (<< 5.1),
+ libghc-lambdabot-trusted-prof,
+ libghc-lifted-base-dev (>= 0.2),
+ libghc-lifted-base-prof,
+ libghc-logict-dev (>= 0.5),
+ libghc-logict-prof,
+ libghc-mtl-dev (>= 2),
+ libghc-mtl-prof,
+ libghc-mueval-dev (>= 0.9),
+ libghc-mueval-prof,
+ libghc-network-dev (>= 2.3.0.13),
+ libghc-network-prof,
+ libghc-numbers-dev (>= 3000),
+ libghc-numbers-prof,
+ libghc-oeis-dev (>= 0.3.1),
+ libghc-oeis-prof,
+ libghc-parsec3-dev,
+ libghc-parsec3-prof,
+ libghc-regex-tdfa-dev (>= 1.1),
+ libghc-regex-tdfa-prof,
+ libghc-show-dev (>= 0.4),
+ libghc-show-prof,
+ libghc-split-dev (>= 0.2),
+ libghc-split-prof,
+ libghc-syb-dev (>= 0.3),
+ libghc-syb-prof,
+ libghc-transformers-dev,
+ libghc-transformers-prof,
+ libghc-utf8-string-dev (>= 0.3),
+ libghc-utf8-string-prof,
+ libghc-vector-space-dev (>= 0.8),
+ libghc-vector-space-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-http-doc,
+ libghc-iospec-doc,
+ libghc-monadrandom-doc,
+ libghc-quickcheck2-doc,
+ libghc-arrows-doc,
+ libghc-data-memocombinators-doc,
+ libghc-src-exts-doc,
+ libghc-hoogle-doc,
+ libghc-lambdabot-core-doc,
+ libghc-lambdabot-reference-plugins-doc,
+ libghc-lambdabot-trusted-doc,
+ libghc-lifted-base-doc,
+ libghc-logict-doc,
+ libghc-mtl-doc,
+ libghc-mueval-doc,
+ libghc-network-doc,
+ libghc-numbers-doc,
+ libghc-oeis-doc,
+ libghc-parsec3-doc,
+ libghc-regex-tdfa-doc,
+ libghc-show-doc,
+ libghc-split-doc,
+ libghc-syb-doc,
+ libghc-transformers-doc,
+ libghc-utf8-string-doc,
+ libghc-vector-space-doc,
+Standards-Version: 3.9.6
+Homepage: http://haskell.org/haskellwiki/Lambdabot
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-lambdabot-haskell-plugins
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-lambdabot-haskell-plugins
+X-Description: Lambdabot Haskell plugins
+ Lambdabot is an IRC bot written over several years by
+ those on the #haskell IRC channel.
+ .
+ Provided plugins:
+ .
+ [check] Quick, check!
+ .
+ [djinn] Derive implementations from types intuitinistically.
+ .
+ [eval] Run Haskell code.
+ .
+ [free] Theorems for free.
+ .
+ [haddock] Find modules implementing a function.
+ .
+ [hoogle] Search for functions by type using hoogle.
+ .
+ [instances] Query instances of type classes.
+ .
+ [pl] Produce point-less code.
+ .
+ [pointful] Produce point-ful code.
+ .
+ [pretty] Print code prettily.
+ .
+ [source] Show implementations of standard functions.
+ .
+ [type] Query type of expressions.
+ .
+ [undo] Unfold do notation.
+ .
+ [unmtl] Expand monad transformers stacks.
+
+Package: libghc-lambdabot-haskell-plugins-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-lambdabot-haskell-plugins-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-lambdabot-haskell-plugins-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

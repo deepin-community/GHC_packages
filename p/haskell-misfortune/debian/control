@@ -1,0 +1,100 @@
+Source: haskell-misfortune
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.10),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-cereal-dev,
+ libghc-cereal-prof,
+ libghc-knob-dev,
+ libghc-knob-prof,
+ libghc-random-fu-dev (>= 0.2.2),
+ libghc-random-fu-prof,
+ libghc-semigroups-dev,
+ libghc-semigroups-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+ libghc-utf8-string-dev,
+ libghc-utf8-string-prof,
+ libghc-vector-dev,
+ libghc-vector-prof,
+ libghc-monad-loops-dev,
+ libghc-monad-loops-prof,
+ libghc-regex-base-dev,
+ libghc-regex-base-prof,
+ libghc-regex-pcre-dev,
+ libghc-regex-pcre-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-cereal-doc,
+ libghc-knob-doc,
+ libghc-random-fu-doc,
+ libghc-semigroups-doc,
+ libghc-text-doc,
+ libghc-utf8-string-doc,
+ libghc-vector-doc,
+ libghc-monad-loops-doc,
+ libghc-regex-base-doc,
+ libghc-regex-pcre-doc,
+Standards-Version: 3.9.6
+Homepage: https://github.com/mokus0/misfortune
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-misfortune
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-misfortune
+X-Description: fortune-mod clone
+ fortune-mod clone, in library and executable form.
+
+Package: libghc-misfortune-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-misfortune-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-misfortune-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: haskell-misfortune
+Architecture: any
+Section: misc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
