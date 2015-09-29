@@ -5,9 +5,9 @@ set -e
 
 case "$1" in
     upgrade)
-	# Remove the .cache file of any previous ghc6 installation, to avoid dpkg warnings
+    	# Remove the .cache file of any previous ghc6 installation, to avoid dpkg warnings 
 	# about non-empty directories to be remoed.
-	rm -f /var/lib/ghc-6.*/package.conf.d/package.cache || true
+    	rm -f /var/lib/ghc-6.*/package.conf.d/package.cache || true
 	exit 0
 	;;
     install|abort-upgrade)

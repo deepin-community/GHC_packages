@@ -1,3 +1,81 @@
+ghc (7.10.2-2) experimental; urgency=medium
+
+  * Backport patch to fix GHC bug #10549, to unbreak shake’s test suite
+
+ -- Joachim Breitner <nomeata@debian.org>  Sun, 16 Aug 2015 15:05:54 +0200
+
+ghc (7.10.2-1) experimental; urgency=medium
+
+  * New upstream release
+
+ -- Joachim Breitner <nomeata@debian.org>  Wed, 22 Jul 2015 11:17:24 +0200
+
+ghc (7.10.1.20150630-2) experimental; urgency=medium
+
+  * Remove PPC-relocations.patch
+
+ -- Joachim Breitner <nomeata@debian.org>  Sat, 04 Jul 2015 10:06:16 +0200
+
+ghc (7.10.1.20150630-1) experimental; urgency=medium
+
+  [ Joachim Breitner ]
+  * New upstream release candidate, 7.10.2-rc2
+  * Clean up debian/control a bit, based on a patch by Gianfranco
+
+  [ Gianfranco Costamagna ]
+  * Bump std version
+  * Refactor rules file to use dh
+
+ -- Joachim Breitner <nomeata@debian.org>  Fri, 03 Jul 2015 12:28:07 +0200
+
+ghc (7.10.1.20150612-1) experimental; urgency=medium
+
+  * Calculate haddock interface version using the built haddock, not the
+    installed (Thanks to David Fox for noticing).
+  * New upstream release randidate (7.10.2-rc1)
+  * Merge from unstable
+
+ -- Joachim Breitner <nomeata@debian.org>  Mon, 15 Jun 2015 09:41:16 +0200
+
+ghc (7.10.1-5) experimental; urgency=medium
+
+  * Merge from unstable (Closes: #785282, #785194 )
+  * A lucky guess at making GHC build reproducible, by not putting the process
+    id in temporary filenames.
+
+ -- Joachim Breitner <nomeata@debian.org>  Sun, 24 May 2015 10:47:09 +0200
+
+ghc (7.10.1-4) experimental; urgency=medium
+
+  * Fix patch/ghc-7.8.4-3-aarch64.patch; dropped a hunk when upgrading to
+    7.10 that I should not have dropped. Thanks Gianfranco Costamagna for
+    noticing.
+
+ -- Joachim Breitner <nomeata@debian.org>  Thu, 14 May 2015 23:16:55 +0200
+
+ghc (7.10.1-3) experimental; urgency=medium
+
+  * Apply patch by Sergei Trofimovich to implement load_/store_load_barrier on
+    armv6 and older (upstream ticket #10244)
+
+ -- Joachim Breitner <nomeata@debian.org>  Thu, 14 May 2015 09:37:06 +0200
+
+ghc (7.10.1-2) experimental; urgency=medium
+
+  * Build against llvm-3.5 (Closes: 784245) 
+
+ -- Joachim Breitner <nomeata@debian.org>  Wed, 13 May 2015 11:18:54 +0200
+
+ghc (7.10.1-1) experimental; urgency=medium
+
+  * New upstream release. Optimistically dropping lots of patches, lets see
+    what now works out of the box.
+  * Ship haddock with ghc, and leave (most) paths as they are. It is easier to
+    not fight against the way upstream builds and installs stuff.
+  * Remove the hack introduced in 7.2.0 for a clean upgrade from 7.0.3.
+
+ -- Joachim Breitner <nomeata@debian.org>  Tue, 12 May 2015 12:41:40 +0200
+
 ghc (7.8.4-9) unstable; urgency=medium
 
   * Another stab at making GHC more reproducible: Use a hash of the command
@@ -29,7 +107,7 @@ ghc (7.8.4-6) unstable; urgency=medium
 
 ghc (7.8.4-5) unstable; urgency=medium
 
-  * New patch patches/PPC-relocations.patch by Colin Watson, Closes: #785194
+  * New patch patches/PPC-relocations.patch by Colin Watson, Closes: #785194 
 
  -- Joachim Breitner <nomeata@debian.org>  Wed, 13 May 2015 21:06:05 +0200
 
@@ -58,7 +136,7 @@ ghc (7.8.4-2) unstable; urgency=medium
 
   * Fix debian/rules syntax (tab instead of spaces) to unbreak build on armel,
     armhf
-  * Apply all hacks for armel and armhf also on arm64
+  * Apply all hacks for armel and armhf also on arm64 
 
  -- Joachim Breitner <nomeata@debian.org>  Thu, 30 Apr 2015 09:08:39 +0200
 
@@ -88,13 +166,13 @@ ghc (7.8.20141223-1) experimental; urgency=medium
 ghc (7.8.20141119-8) experimental; urgency=medium
 
   * Now that the package builds on armel and armhf, try to build with GHCi
-    enabled.
+    enabled. 
 
  -- Joachim Breitner <nomeata@debian.org>  Tue, 09 Dec 2014 14:29:13 +0100
 
 ghc (7.8.20141119-7) experimental; urgency=medium
 
-  * Apply patches taken from GHC HEAD that help building on ARM
+  * Apply patches taken from GHC HEAD that help building on ARM  
     - always_build_arm_spinlocks.patch
     - dll-split-fix.patch
     - linker-detection-fix
@@ -103,13 +181,13 @@ ghc (7.8.20141119-7) experimental; urgency=medium
   * Pass -fuse-ld=gold to gcc when used as alinker on arm
     (patches/use-gold-on-arm) and make sure this setting does not affect other
     parts (patches/saner-linker-opt-handling).
-  * Try to handle autoreconf saner, by simply calling perl bool
+  * Try to handle autoreconf saner, by simply calling perl bool 
 
  -- Joachim Breitner <nomeata@debian.org>  Mon, 08 Dec 2014 19:08:01 +0100
 
 ghc (7.8.20141119-6) experimental; urgency=medium
 
-  * According to Ben Gamari, the flag is -optl-B..., not -optc-B...
+  * According to Ben Gamari, the flag is -optl-B..., not -optc-B... 
   * Do not pass -mlong-calls to gcc on arm, on the grounds that upstream is
     not doing it.
 
@@ -117,13 +195,13 @@ ghc (7.8.20141119-6) experimental; urgency=medium
 
 ghc (7.8.20141119-5) experimental; urgency=medium
 
-  * Try using ld.gold on arm, using -optc-B/usr/bin/ld.gold
+  * Try using ld.gold on arm, using -optc-B/usr/bin/ld.gold 
 
  -- Joachim Breitner <nomeata@debian.org>  Sun, 30 Nov 2014 18:51:45 +0100
 
 ghc (7.8.20141119-4) experimental; urgency=medium
 
-  * Try using ld.gold on arm.
+  * Try using ld.gold on arm. 
 
  -- Joachim Breitner <nomeata@debian.org>  Fri, 28 Nov 2014 22:15:29 +0100
 
@@ -135,13 +213,13 @@ ghc (7.8.20141119-3) experimental; urgency=medium
 
 ghc (7.8.20141119-2) experimental; urgency=medium
 
-  * Explicitly depend on llvm-3.4 on arm, maybe that works better.
+  * Explicitly depend on llvm-3.4 on arm, maybe that works better. 
 
  -- Joachim Breitner <nomeata@debian.org>  Wed, 26 Nov 2014 16:14:54 +0100
 
 ghc (7.8.20141119-1) experimental; urgency=medium
 
-  * New upstream release candidate (7.8.4-rc1)
+  * New upstream release candidate (7.8.4-rc1) 
 
  -- Joachim Breitner <nomeata@debian.org>  Wed, 26 Nov 2014 10:12:08 +0100
 
@@ -157,7 +235,7 @@ ghc (7.8.20140710-4) experimental; urgency=medium
 ghc (7.8.20140710-3) experimental; urgency=medium
 
   * Depend on libncurses5-dev, since we ship terminfo in ghc now. Thanks to
-    David Fox for noticing.
+    David Fox for noticing. 
 
  -- Joachim Breitner <nomeata@debian.org>  Wed, 16 Jul 2014 19:50:39 +0200
 
@@ -183,7 +261,7 @@ ghc (7.8.20140411-5) experimental; urgency=medium
 
 ghc (7.8.20140411-4) experimental; urgency=medium
 
-  * Merge 7.6.3-9 to 7.6.3-12 from unstable
+  * Merge 7.6.3-9 to 7.6.3-12 from unstable 
 
  -- Joachim Breitner <nomeata@debian.org>  Tue, 10 Jun 2014 12:25:10 +0200
 
@@ -196,7 +274,7 @@ ghc (7.8.20140411-3) experimental; urgency=medium
 
 ghc (7.8.20140411-2) experimental; urgency=medium
 
-  * Try building without hardening and see what architectures work then.
+  * Try building without hardening and see what architectures work then. 
 
  -- Joachim Breitner <nomeata@debian.org>  Mon, 28 Apr 2014 16:21:08 +0200
 
@@ -229,7 +307,7 @@ ghc (7.8.20140228-1) experimental; urgency=medium
 
 ghc (7.8.20140130-3) experimental; urgency=medium
 
-  * transformers now comes with ghc, put it in the Provides line
+  * transformers now comes with ghc, put it in the Provides line 
 
  -- Joachim Breitner <nomeata@debian.org>  Sun, 09 Feb 2014 20:54:01 +0000
 
@@ -317,7 +395,7 @@ ghc (7.6.3-12) unstable; urgency=medium
 
 ghc (7.6.3-11) unstable; urgency=medium
 
-  * Do no conflict with libghc-cabal-dev.
+  * Do no conflict with libghc-cabal-dev. 
 
  -- Joachim Breitner <nomeata@debian.org>  Sun, 08 Jun 2014 13:56:51 +0200
 
@@ -394,14 +472,14 @@ ghc (7.6.3-3) unstable; urgency=low
     http://hackage.haskell.org/trac/ghc/ticket/7794)
   * Do not create system-wide documentation index if /usr/share/doc is
     missing. (Closes: #709911)
-  * Create a symlink from prof_scc.png to prof_scc (Closes: #664043)
+  * Create a symlink from prof_scc.png to prof_scc (Closes: #664043) 
 
  -- Joachim Breitner <nomeata@debian.org>  Wed, 05 Jun 2013 20:57:49 +0200
 
 ghc (7.6.3-2) unstable; urgency=low
 
   * Enable compat level 9
-  * Remove transitional ghc6-* packages
+  * Remove transitional ghc6-* packages 
 
  -- Joachim Breitner <nomeata@debian.org>  Fri, 24 May 2013 11:12:19 +0200
 
@@ -419,7 +497,7 @@ ghc (7.6.2-1) experimental; urgency=low
 
 ghc (7.6.1.20121207-2) experimental; urgency=low
 
-  * Typo in ghc-haddock’s Provides, thanks to David Fox for noticing.
+  * Typo in ghc-haddock’s Provides, thanks to David Fox for noticing. 
 
  -- Joachim Breitner <nomeata@debian.org>  Thu, 13 Dec 2012 18:33:48 +0100
 
@@ -437,7 +515,7 @@ ghc (7.6.1.20121207-1) experimental; urgency=low
 ghc (7.6.1-3) experimental; urgency=low
 
   * Bump standards version, no change
-  * Change VCS fields back to regular repo
+  * Change VCS fields back to regular repo 
   * Build the runtime also in the thr_debug_p way, suggestion by Michał J.
     Gajda
 
@@ -446,13 +524,13 @@ ghc (7.6.1-3) experimental; urgency=low
 ghc (7.6.1-2) experimental; urgency=low
 
   * Do not Provide transformers, it is only used internally.
-  * Ensure this is not used with unstable’s haskell-devscripts
+  * Ensure this is not used with unstable’s haskell-devscripts 
 
  -- Joachim Breitner <nomeata@debian.org>  Mon, 08 Oct 2012 22:41:46 +0200
 
 ghc (7.6.1-1) experimental; urgency=low
 
-  * New upstream release
+  * New upstream release 
     Dropped patches, applied upstream:
      + Fix-GHCi-segfault-on-linux-powerpc
      + hurd-is-ELF
@@ -461,7 +539,7 @@ ghc (7.6.1-1) experimental; urgency=low
      + fix-PPC-right-shift-bug
      + no-useless-time
      + fix-ppc-ghci-segfault
-  * Configure the use of llc-3.0 and opt-3.0 via ./configure
+  * Configure the use of llc-3.0 and opt-3.0 via ./configure 
   * Bump standards version
 
  -- Joachim Breitner <nomeata@debian.org>  Mon, 08 Oct 2012 15:48:21 +0200
@@ -500,7 +578,7 @@ ghc (7.4.1-4) unstable; urgency=low
   * debian/patches/no-useless-timer: Backported from GHC 7.4.2, (Closes:
     #677096)
   * Make sure GHC is using ld.bfd, as it passes arguments not understood by
-    the gold linker (Closes: #673081)
+    the gold linker (Closes: #673081) 
   * Use a saner priority for the runhaskell alternative. (Closes: #676970).
     TODO for later: Consider removing the alternatives code altogether.
 
@@ -2329,3 +2407,5 @@ ghc4 (4.03-1) unstable; urgency=low
   * Initial Release.
 
  -- Michael Weber <michael.weber@post.rwth-aachen.de>  Sat, 26 Jun 1999 17:52:29 +0200
+
+
