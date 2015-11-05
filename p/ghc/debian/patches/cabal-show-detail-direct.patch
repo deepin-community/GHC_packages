@@ -1,0 +1,103 @@
+commit 3792d212a6f60573ef43dd72088a353725d09461
+Author: Joachim Breitner <mail@joachim-breitner.de>
+Date:   Thu Nov 5 11:31:12 2015 +0100
+
+    test: New mode --show-details=direct
+    
+    This mode implements #2911, and allows to connect the test runner
+    directly to stdout/stdin. This is more reliable in the presence of no
+    threading, i.e. a work-arond for #2398.
+    
+    I make the test suite use this, so that it passes again, despite
+    printing lots of stuff. Once #2398 is fixed properly, the test suite
+    should probably be extended to test all the various --show-details
+    modes.
+
+Index: ghc/libraries/Cabal/Cabal/Distribution/Simple/Setup.hs
+===================================================================
+--- ghc.orig/libraries/Cabal/Cabal/Distribution/Simple/Setup.hs	2015-11-05 12:36:38.385252394 +0100
++++ ghc/libraries/Cabal/Cabal/Distribution/Simple/Setup.hs	2015-11-05 12:36:38.377252228 +0100
+@@ -1725,7 +1725,7 @@
+ -- * Test flags
+ -- ------------------------------------------------------------
+ 
+-data TestShowDetails = Never | Failures | Always | Streaming
++data TestShowDetails = Never | Failures | Always | Streaming | Direct
+     deriving (Eq, Ord, Enum, Bounded, Show)
+ 
+ knownTestShowDetails :: [TestShowDetails]
+@@ -1813,7 +1813,8 @@
+             ("'always': always show results of individual test cases. "
+              ++ "'never': never show results of individual test cases. "
+              ++ "'failures': show results of failing test cases. "
+-             ++ "'streaming': show results of test cases in real time.")
++             ++ "'streaming': show results of test cases in real time."
++             ++ "'direct': send results of test cases in real time; no log file.")
+             testShowDetails (\v flags -> flags { testShowDetails = v })
+             (reqArg "FILTER"
+                 (readP_to_E (\_ -> "--show-details flag expects one of "
+Index: ghc/libraries/Cabal/Cabal/Distribution/Simple/Test/ExeV10.hs
+===================================================================
+--- ghc.orig/libraries/Cabal/Cabal/Distribution/Simple/Test/ExeV10.hs	2015-11-05 12:36:38.385252394 +0100
++++ ghc/libraries/Cabal/Cabal/Distribution/Simple/Test/ExeV10.hs	2015-11-05 12:36:38.377252228 +0100
+@@ -30,7 +30,7 @@
+     , getCurrentDirectory, removeDirectoryRecursive )
+ import System.Exit ( ExitCode(..) )
+ import System.FilePath ( (</>), (<.>) )
+-import System.IO ( hGetContents, hPutStr, stdout )
++import System.IO ( hGetContents, hPutStr, stdout, stderr )
+ 
+ runTest :: PD.PackageDescription
+         -> LBI.LocalBuildInfo
+@@ -63,15 +63,20 @@
+     -- Write summary notices indicating start of test suite
+     notice verbosity $ summarizeSuiteStart $ PD.testName suite
+ 
+-    (rOut, wOut) <- createPipe
++    (wOut, wErr, logText) <- case details of
++        Direct -> return (stdout, stderr, "")
++        _ -> do
++            (rOut, wOut) <- createPipe
++
++            -- Read test executable's output lazily (returns immediately)
++            logText <- hGetContents rOut
++            -- Force the IO manager to drain the test output pipe
++            void $ forkIO $ length logText `seq` return ()
+ 
+-    -- Read test executable's output lazily (returns immediately)
+-    logText <- hGetContents rOut
+-    -- Force the IO manager to drain the test output pipe
+-    void $ forkIO $ length logText `seq` return ()
++            -- '--show-details=streaming': print the log output in another thread
++            when (details == Streaming) $ void $ forkIO $ hPutStr stdout logText
+ 
+-    -- '--show-details=streaming': print the log output in another thread
+-    when (details == Streaming) $ void $ forkIO $ hPutStr stdout logText
++            return (wOut, wOut, logText)
+ 
+     -- Run the test executable
+     let opts = map (testOption pkg_descr lbi suite)
+@@ -93,7 +98,7 @@
+ 
+     exit <- rawSystemIOWithEnv verbosity cmd opts Nothing (Just shellEnv')
+                                -- these handles are automatically closed
+-                               Nothing (Just wOut) (Just wOut)
++                               Nothing (Just wOut) (Just wErr)
+ 
+     -- Generate TestSuiteLog from executable exit code and a machine-
+     -- readable test log.
+@@ -112,12 +117,10 @@
+     -- Show the contents of the human-readable log file on the terminal
+     -- if there is a failure and/or detailed output is requested
+     let whenPrinting = when $
+-            (details > Never)
+-            && (not (suitePassed $ testLogs suiteLog) || details == Always)
++            ( details == Always ||
++              details == Failures && not (suitePassed $ testLogs suiteLog))
+             -- verbosity overrides show-details
+             && verbosity >= normal
+-            -- if streaming, we already printed the log
+-            && details /= Streaming
+     whenPrinting $ putStr $ unlines $ lines logText
+ 
+     -- Write summary notice to terminal indicating end of test suite
