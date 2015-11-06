@@ -17,6 +17,7 @@ Build-Depends: debhelper (>= 9),
  libghc-mtl-dev,
  libghc-mwc-random-dev,
  libghc-vector-dev,
+ libghc-quickcheck2-dev (>= 2),
 Build-Depends-Indep: ghc-doc,
  libghc-primitive-doc,
  libghc-vector-doc,
@@ -24,41 +25,45 @@ Standards-Version: 3.9.6
 Homepage: http://code.haskell.org/~dolio/
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-vector-algorithms
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-vector-algorithms
+X-Description: Efficient algorithms for vector arrays
+ Efficient algorithms for vector arrays
 
 Package: libghc-vector-algorithms-dev
 Architecture: any
 Depends: ${haskell:Depends},
- ${shlibs:Depends},
  ${misc:Depends},
+ ${shlibs:Depends},
 Recommends: ${haskell:Recommends},
 Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
 Provides: ${haskell:Provides},
-Description: Efficient algorithms for vector array${haskell:ShortBlurb}
- Efficient algorithms for vector arrays
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-vector-algorithms-prof
 Architecture: any
 Depends: ${haskell:Depends},
- ${shlibs:Depends},
  ${misc:Depends},
 Recommends: ${haskell:Recommends},
 Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
 Provides: ${haskell:Provides},
-Description: Efficient algorithms for vector arrays${haskell:ShortBlurb}
- Efficient algorithms for vector arrays
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
 Package: libghc-vector-algorithms-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
- ${haskell:Depends},
+Depends: ${haskell:Depends},
+ ${misc:Depends},
 Recommends: ${haskell:Recommends},
 Suggests: ${haskell:Suggests},
-Description: Efficient algorithms for vector arrays${haskell:ShortBlurb}
- Efficient algorithms for vector arrays
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
