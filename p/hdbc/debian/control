@@ -1,39 +1,41 @@
 Source: hdbc
-Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: John Goerzen <jgoerzen@complete.org>
-Build-Depends:
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.10),
  cdbs,
- debhelper (>= 9),
- ghc (>= 6.12),
- haskell-devscripts (>= 0.9),
- cpphs,
+ ghc,
+ ghc-prof,
+ libghc-convertible-dev (>= 1.1.0.0),
+ libghc-convertible-prof,
  libghc-mtl-dev,
  libghc-mtl-prof,
  libghc-text-dev,
  libghc-text-prof,
- libghc-convertible-dev (>= 1.1.0.0),
- libghc-convertible-prof,
  libghc-utf8-string-dev,
  libghc-utf8-string-prof,
- ghc-doc,
- haddock,
- hscolour,
+Build-Depends-Indep: ghc-doc,
+ libghc-convertible-doc,
  libghc-mtl-doc,
  libghc-text-doc,
- libghc-convertible-doc
-Standards-Version: 3.9.5
-Section: haskell
+ libghc-utf8-string-doc,
+Standards-Version: 3.9.6
 Homepage: https://github.com/hdbc/hdbc
-Vcs-Darcs: http://darcs.debian.org/pkg-haskell/hdbc
-Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/hdbc
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-hdbc
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-hdbc
 
 Package: libghc-hdbc-dev
 Architecture: any
-Depends: ${misc:Depends}, ${shlibs:Depends}, ${haskell:Depends}
-Suggests: libghc-hdbc-postgresql-dev | libghc-hdbc-sqlite3-dev, libghc-hdbc-missingh-dev, ${haskell:Suggests}
-Recommends: ${haskell:Recommends}
-Provides: ${haskell:Provides}
+Depends: ${misc:Depends},
+ ${shlibs:Depends},
+ ${haskell:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: libghc-hdbc-postgresql-dev | libghc-hdbc-sqlite3-dev,
+ libghc-hdbc-missingh-dev,
+ ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell Database Connectivity, GHC package
  HDBC provides an abstraction layer between Haskell programs and SQL
  relational databases. This lets you write database code once, in
@@ -48,40 +50,27 @@ Description: Haskell Database Connectivity, GHC package
 
 Package: libghc-hdbc-prof
 Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell Database Connectivity, GHC profiling data
  HDBC provides an abstraction layer between Haskell programs and SQL
  relational databases. This package provides profiling information for using
  HDBC with GHC.
 
-#Package: libhugs-hdbc
-#Section: libs
-#Architecture: all
-#Depends: ${haskell:Depends}, libhugs-convertible (>= 1.0.1-2), libhugs-time-bundled
-#Description: Haskell Database Connectivity, Hugs package
-# HDBC provides an abstraction layer between Haskell programs and SQL
-# relational databases. This lets you write database code once, in
-# Haskell, and have it work with any number of backend SQL databases
-# (MySQL, Oracle, PostgreSQL, ODBC-compliant databases, etc.)
-# .
-# HDBC is modeled loosely on Perl's DBI interface, though it has also been
-# influenced by Python's DB-API v2, JDBC in Java, and HSQL in Haskell.
-# .
-# To use HDBC, you'll need both this package, and a driver package such
-# as libhugs-hdbc-postgresql.
-
 Package: libghc-hdbc-doc
-Replaces: haskell-hdbc-doc (<< 2.2.3-2)
-Conflicts: haskell-hdbc-doc (<< 2.2.3-2)
-Provides: haskell-hdbc-doc, ${haskell:Provides}
-Section: doc
 Architecture: all
-Depends: ${haskell:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: haskell-hdbc-doc (<< 2.2.3-2),
+Provides: haskell-hdbc-doc,
+ ${haskell:Provides},
+Replaces: haskell-hdbc-doc (<< 2.2.3-2),
 Description: Haskell Database Connectivity, Documentation
  HDBC provides an abstraction layer between Haskell programs and SQL
  relational databases. This lets you write database code once, in

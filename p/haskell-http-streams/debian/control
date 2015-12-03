@@ -1,0 +1,107 @@
+Source: haskell-http-streams
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.10),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-hsopenssl-dev (>= 0.10.3.5),
+ libghc-hsopenssl-prof,
+ libghc-aeson-dev,
+ libghc-aeson-prof,
+ libghc-attoparsec-dev,
+ libghc-attoparsec-prof,
+ libghc-base64-bytestring-dev,
+ libghc-base64-bytestring-prof,
+ libghc-blaze-builder-dev (>= 0.4),
+ libghc-blaze-builder-prof,
+ libghc-case-insensitive-dev,
+ libghc-case-insensitive-prof,
+ libghc-http-common-dev (>= 0.8.2),
+ libghc-http-common-prof,
+ libghc-io-streams-dev (>= 1.3),
+ libghc-io-streams-dev (<< 1.4),
+ libghc-io-streams-prof,
+ libghc-mtl-dev,
+ libghc-mtl-prof,
+ libghc-network-dev (>= 2.6),
+ libghc-network-prof,
+ libghc-network-uri-dev (>= 2.6),
+ libghc-network-uri-prof,
+ libghc-openssl-streams-dev (>= 1.1),
+ libghc-openssl-streams-dev (<< 1.4),
+ libghc-openssl-streams-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+ libghc-unordered-containers-dev,
+ libghc-unordered-containers-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-hsopenssl-doc,
+ libghc-aeson-doc,
+ libghc-attoparsec-doc,
+ libghc-base64-bytestring-doc,
+ libghc-blaze-builder-doc,
+ libghc-case-insensitive-doc,
+ libghc-http-common-doc,
+ libghc-io-streams-doc,
+ libghc-mtl-doc,
+ libghc-network-doc,
+ libghc-network-uri-doc,
+ libghc-openssl-streams-doc,
+ libghc-text-doc,
+ libghc-unordered-containers-doc,
+Standards-Version: 3.9.6
+Homepage: http://research.operationaldynamics.com/projects/http-streams/
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-http-streams
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-http-streams
+X-Description: An HTTP client using io-streams
+ This package provides an HTTP client, using the Snap Framework's 'io-streams'
+ library to hande the streaming IO. The API is optimized for ease of use for
+ the rather common case of code needing to query web services and deal with
+ the result.
+ .
+ The library is exported in a single module; see "Network.Http.Client" for full
+ documentation.
+
+Package: libghc-http-streams-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-http-streams-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-http-streams-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

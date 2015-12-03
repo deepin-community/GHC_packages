@@ -1,0 +1,126 @@
+Source: haskell-lambdabot-misc-plugins
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.10),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-safesemaphore-dev (>= 0.9),
+ libghc-safesemaphore-prof,
+ libghc-hstatsd-dev (>= 0.1),
+ libghc-hstatsd-prof,
+ libghc-lambdabot-core-dev (>= 5.0.1),
+ libghc-lambdabot-core-dev (<< 5.1),
+ libghc-lambdabot-core-prof,
+ libghc-lifted-base-dev (>= 0.2),
+ libghc-lifted-base-prof,
+ libghc-mtl-dev (>= 2),
+ libghc-mtl-prof,
+ libghc-network-dev (>= 2.6),
+ libghc-network-prof,
+ libghc-network-uri-dev (>= 2.6),
+ libghc-network-uri-prof,
+ libghc-parsec3-dev,
+ libghc-parsec3-prof,
+ libghc-random-dev (>= 1),
+ libghc-random-prof,
+ libghc-random-fu-dev (>= 0.2),
+ libghc-random-fu-prof,
+ libghc-random-source-dev (>= 0.3),
+ libghc-random-source-prof,
+ libghc-regex-tdfa-dev (>= 1.1),
+ libghc-regex-tdfa-prof,
+ libghc-split-dev (>= 0.2),
+ libghc-split-prof,
+ libghc-tagsoup-dev (>= 0.12),
+ libghc-tagsoup-prof,
+ libghc-transformers-dev,
+ libghc-transformers-prof,
+ libghc-transformers-base-dev (>= 0.4),
+ libghc-transformers-base-prof,
+ libghc-utf8-string-dev (>= 0.3),
+ libghc-utf8-string-prof,
+ libghc-zlib-dev (>= 0.5),
+ libghc-zlib-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-safesemaphore-doc,
+ libghc-hstatsd-doc,
+ libghc-lambdabot-core-doc,
+ libghc-lifted-base-doc,
+ libghc-mtl-doc,
+ libghc-network-doc,
+ libghc-network-uri-doc,
+ libghc-parsec3-doc,
+ libghc-random-doc,
+ libghc-random-fu-doc,
+ libghc-random-source-doc,
+ libghc-regex-tdfa-doc,
+ libghc-split-doc,
+ libghc-tagsoup-doc,
+ libghc-transformers-doc,
+ libghc-transformers-base-doc,
+ libghc-utf8-string-doc,
+ libghc-zlib-doc,
+Standards-Version: 3.9.6
+Homepage: http://haskell.org/haskellwiki/Lambdabot
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-lambdabot-misc-plugins
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-lambdabot-misc-plugins
+X-Description: Lambdabot miscellaneous plugins
+ Lambdabot is an IRC bot written over several years by
+ those on the #haskell IRC channel.
+ .
+ Provided plugins:
+ .
+ [dummy] Many commands with fixed replies.
+ .
+ [error] Debug error handling.
+ .
+ [fresh] Generate Haskell project names.
+ .
+ [hello] Hello, world.
+ .
+ [stats] Ad-hoc statsd queries.
+ .
+ [todo] A to-do list for lambdabot.
+
+Package: libghc-lambdabot-misc-plugins-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-lambdabot-misc-plugins-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-lambdabot-misc-plugins-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

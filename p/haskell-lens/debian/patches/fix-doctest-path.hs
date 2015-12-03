@@ -1,6 +1,8 @@
---- a/tests/doctests.hsc
-+++ b/tests/doctests.hsc
-@@ -54,9 +54,9 @@
+Index: haskell-lens/tests/doctests.hsc
+===================================================================
+--- haskell-lens.orig/tests/doctests.hsc	2015-08-15 14:18:10.501591463 +0200
++++ haskell-lens/tests/doctests.hsc	2015-08-15 14:18:10.501591463 +0200
+@@ -56,9 +56,9 @@
  main :: IO ()
  main = withUnicode $ getSources >>= \sources -> doctest $
      "-isrc"
@@ -10,5 +12,5 @@
 -  : "-optPdist/build/autogen/cabal_macros.h"
 +  : "-optPdist-ghc/build/autogen/cabal_macros.h"
    : "-hide-all-packages"
-   : map ("-package="++) deps ++ sources
-
+ #ifdef TRUSTWORTHY
+   : "-DTRUSTWORTHY=1"

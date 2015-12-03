@@ -1,21 +1,21 @@
-Index: b/src/Recipe/Haddock.hs
+Index: haskell-hoogle/src/Recipe/Haddock.hs
 ===================================================================
---- a/src/Recipe/Haddock.hs
-+++ b/src/Recipe/Haddock.hs
+--- haskell-hoogle.orig/src/Recipe/Haddock.hs	2015-08-15 14:37:07.203799247 +0200
++++ haskell-hoogle/src/Recipe/Haddock.hs	2015-08-15 14:37:07.199799164 +0200
 @@ -1,7 +1,7 @@
  {-# LANGUAGE PatternGuards #-}
-
+ 
  module Recipe.Haddock(
 -    haddockToHTML, haddockHacks
 +    haddockToHTML, haddockHacks, haddockPackageUrl
      ) where
-
+ 
  import General.Base
-Index: b/src/CmdLine/Type.hs
+Index: haskell-hoogle/src/CmdLine/Type.hs
 ===================================================================
---- a/src/CmdLine/Type.hs
-+++ b/src/CmdLine/Type.hs
-@@ -47,7 +47,8 @@
+--- haskell-hoogle.orig/src/CmdLine/Type.hs	2015-08-15 14:37:07.203799247 +0200
++++ haskell-hoogle/src/CmdLine/Type.hs	2015-08-15 14:37:07.199799164 +0200
+@@ -49,7 +49,8 @@
          , outfile :: String
          , doc :: Maybe String
          , merge :: [String]
@@ -25,22 +25,22 @@ Index: b/src/CmdLine/Type.hs
      | Log {logfiles :: [FilePath]}
      | Test {testFiles :: [String], example :: Bool}
      | Dump {database :: String, section :: [String]}
-@@ -110,6 +111,7 @@
+@@ -112,6 +113,7 @@
      ,doc = def &= typDir &= help "Path to the root of local or Hackage documentation for the package (implies --haddock)"
      ,merge = def &= typ "DATABASE" &= help "Merge other databases"
      ,haddock = def &= help "Apply haddock-specific hacks"
 +    ,addlocation = def &= help "Add location information to database"
      } &= help "Convert an input file to a database"
-
+ 
  data_ = Data
-Index: b/src/Console/All.hs
+Index: haskell-hoogle/src/Console/All.hs
 ===================================================================
---- a/src/Console/All.hs
-+++ b/src/Console/All.hs
+--- haskell-hoogle.orig/src/Console/All.hs	2015-08-15 14:37:07.203799247 +0200
++++ haskell-hoogle/src/Console/All.hs	2015-08-15 14:37:07.199799164 +0200
 @@ -40,12 +40,15 @@
-
+ 
  action (Log files) = logFiles files
-
+ 
 -action (Convert url from to doc merge haddock) = do
 +action (Convert url from to doc merge haddock addloc) = do
      when (any isUpper $ takeBaseName to) $ putStrLn $ "Warning: Hoogle databases should be all lower case, " ++ takeBaseName to

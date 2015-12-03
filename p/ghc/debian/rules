@@ -37,17 +37,11 @@ EXTRA_CONFIGURE_FLAGS=--with-ghc="$(GHC)"
 BUILD_HADDOCK_DOCS=YES
 DEB_HOOGLE_TXT_DIR = /usr/lib/ghc-doc/hoogle/
 
-ifneq (,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
-    NUMJOBS = $(patsubst parallel=%,%,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
-    MAKEFLAGS += -j$(NUMJOBS)
-endif
+%:
+	dh $@ --with autotools-dev
 
-configure: configure-stamp
-configure-stamp:
-	dh_testdir
+override_dh_auto_configure:
 	dh_autoreconf perl -- boot
-
-	rm -f mk/build.mk
 	echo "SRC_HC_OPTS += -lffi -optl-pthread" >> mk/build.mk
 	echo "HADDOCK_DOCS := YES" >> mk/build.mk
 	echo "XSLTPROC_OPTS += --nonet" >> mk/build.mk
@@ -76,7 +70,7 @@ endif
 	# We also want to build the threaded profiling-enabled debug runtime,
 	# because it does no harm
 	echo 'GhcRTSWays += $$(if $$(findstring p, $$(GhcLibWays)),thr_debug_p,)' >> mk/build.mk
-
+	
 	# We can't do this with a configure flag in 6.8.1 as libdir is not
 	# defined at the point at which we := it
 	echo 'ghclibdir := $${libdir}/ghc' >> mk/build.mk
@@ -91,23 +85,14 @@ endif
 	echo 'psdir   := $$(docdir)'                   >> mk/build.mk
 	# We want verbose builds
 	echo 'V=1'                                     >> mk/build.mk
-	rm -f config.sub
-	rm -f config.guess
-	ln -s /usr/share/misc/config.sub .
-	ln -s /usr/share/misc/config.guess .
 	./configure $(confflags) --prefix=/usr \
 		$(EXTRA_CONFIGURE_FLAGS) \
 		--with-system-libffi \
-		--with-llc=llc-3.4 \
-		--with-opt=opt-3.4
+		--with-llc=llc-3.5 \
+		--with-opt=opt-3.5
 
-	touch $@
-
-build: build-stamp
-build-stamp: configure-stamp
-	dh_testdir
-	$(MAKE) $(MAKEFLAGS)
-
+override_dh_auto_build:
+	dh_auto_build
 	# Do some very simple tests that the compiler actually works
 	rm -rf debian/testghc
 	mkdir debian/testghc
@@ -120,35 +105,11 @@ build-stamp: configure-stamp
 	[ "$$(debian/testghc/foo)" = "Foo" ]
 	rm debian/testghc/*
 
-# build haddock separately and hard code paths according to install paths
-	rm -rf debian/haddock-build
-	mkdir -p debian/haddock-build
-	cp -r utils/haddock debian/haddock-build
-	cd debian/haddock-build/haddock; \
-	        rm -rf dist; \
-		../../../inplace/bin/ghc-stage2 --make Setup.lhs; \
-		./Setup configure --prefix=/usr --with-compiler=../../../inplace/bin/ghc-stage2 \
-			--package-db=../../../inplace/lib/package.conf.d/ \
-			--htmldir=/usr/share/doc/ghc-haddock/html/ \
-			--datadir=/usr/share \
-			--datasubdir=haddock \
-			--libdir=/usr/lib \
-			--libsubdir=haddock  ; \
-		./Setup build
-
-	touch $@
-
 FILES = \( -type f -o -type l \)
 PROF_FILE = \( -name "*.p_*" -o -name "lib*_p.a" \)
 
-install: install-stamp
-install-stamp: build-stamp
-	dh_testdir
-	dh_testroot
-	dh_prep
-
-	# Install the basic stuff
-	$(MAKE) DESTDIR=$(CURDIR)/debian/tmp install
+override_dh_auto_install:
+	dh_auto_install
 
 	# Delete all the library LICENSE files
 	rm -f debian/tmp/usr/share/doc/ghc-doc/html/libraries/*/LICENSE
@@ -173,25 +134,18 @@ install-stamp: build-stamp
 	debian/provided_substvars
 	sed -ri 's,^haddock-interfaces: /.*?/libraries/,haddock-interfaces: /usr/lib/ghc-doc/haddock/ghc/,' debian/tmp/var/lib/ghc/package.conf.d/*.conf
 
-	# Remove haddock as built within the ghc tree
-	rm -f debian/tmp/usr/bin/haddock \
-	      debian/tmp/usr/bin/haddock-$(ProjectVersion) \
-	      debian/tmp/usr/lib/ghc/lib/haddock
-	rm -rf debian/tmp/usr/lib/ghc/html
-
 	# Sort out the binaries
 	if inplace/bin/ghc-stage2 --info | grep '"Have interpreter","NO"'; then \
 	    cd debian/tmp/usr/bin ;rm -f ghci* runghc* runhaskell*; \
 	fi
-	cd debian/haddock-build/haddock; ./Setup copy --dest=../../tmp
 
 	# Check if we have a ghci binary
 	if test -e debian/tmp/usr/bin/ghci-$(ProjectVersion); then \
 	    echo 'ghci=ghc-ghci' >> debian/ghc.substvars ; fi
 
 	# Add haddock substvars
-	echo "haddock:Depends=haddock-interface-$$(debian/tmp/usr/bin/haddock --interface-version)" >> debian/ghc-doc.substvars
-	echo "haddock:Provides=haddock-interface-$$(debian/tmp/usr/bin/haddock --interface-version)" >> debian/ghc-haddock.substvars
+	echo "haddock:Depends=haddock-interface-$$(debian/tmp/usr/lib/ghc/bin/haddock --interface-version)" >> debian/ghc-doc.substvars
+	echo "haddock:Provides=haddock-interface-$$(debian/tmp/usr/lib/ghc/bin/haddock --interface-version)" >> debian/ghc.substvars
 
 ifeq (YES,$(BUILD_HADDOCK_DOCS))
 	mkdir -p debian/tmp/usr/lib/ghc-doc
@@ -220,13 +174,13 @@ endif
 
 	echo debian/*.1 > debian/ghc.manpages
 	cp debian/haddock.man debian/haddock.1
-	echo debian/haddock.1 >debian/ghc-haddock.manpages
+	echo debian/haddock.1 >> debian/ghc.manpages
 
 	# ####################
 	# Now all the files are sorted, create the package filelists
 
 	# ghc
-	find debian/tmp/usr/bin $(FILES) ! -name haddock  > debian/ghc.install
+	find debian/tmp/usr/bin $(FILES)                  > debian/ghc.install
 #	find debian/tmp/usr/share/ghc* $(FILES)          >> debian/ghc.install
 	find debian/tmp/usr/share/man $(FILES)           >> debian/ghc.install
 	find debian/tmp/usr/lib/ghc $(FILES) ! $(PROF_FILE) >> debian/ghc.install
@@ -235,9 +189,6 @@ endif
 	# ghc-prof
 	find debian/tmp/usr/lib $(FILES) $(PROF_FILE) > debian/ghc-prof.install
 	echo debian/tmp/usr/share/lintian/overrides/ghc-prof >> debian/ghc-prof.install
-	# haddock
-	echo usr/bin/haddock				 > debian/ghc-haddock.install
-	find debian/tmp/usr/share/haddock $(FILES)	 >> debian/ghc-haddock.install
 	# ghc-doc
 ifeq (YES,$(BUILD_HADDOCK_DOCS))
 	mkdir -p debian/tmp/$(DEB_HOOGLE_TXT_DIR)
@@ -250,19 +201,10 @@ endif
 	sed -i s,^debian/tmp,, debian/*.install debian/*.links
 	rm -f debian/ghc.links
 	echo "/var/lib/ghc/package.conf.d /usr/lib/ghc/package.conf.d" >> debian/ghc.links
-	touch $@
 
-clean:
-	dh_testdir
-	dh_testroot
-	rm -f configure-stamp build-stamp install-stamp binary-arch-stamp binary-indep-stamp
-	rm -f configure
-
-	# Temporary, while the released tarball by accident contains the dph
-	# libraries
-	rm -rf libraries/dph libraries/primitive libraries/vector libraries/random
-
-	$(MAKE) distclean
+override_dh_auto_clean:
+	dh_auto_clean
+	rm -f mk/build.mk
 
 	rm -f debian/*.install
 	rm -f debian/*.1
@@ -272,7 +214,6 @@ clean:
 	rm -f mk/build.mk
 	rm -rf debian/testghc
 	rm -f ch01.html ch02.html index.html
-	rm -rf debian/haddock-build
 
 	# Hacks:
 	rm -f config.log
@@ -295,54 +236,18 @@ clean:
 	rm -f libraries/haskeline/a.out
 	rm -rf utils/ghctags/dist-install
 
-	dh_autoreconf_clean
-	dh_clean
+override_dh_compress:
+	dh_compress -X.haddock -X.txt
 
-binary-arch: binary-arch-stamp
-binary-arch-stamp: install-stamp
-	dh_testdir
-	dh_testroot
-	dh_installchangelogs -a
-	dh_installdocs -a
-	dh_installexamples -a
-	dh_install -a
-	dh_installmenu -a
-	dh_installman -a
-	dh_strip
-	dh_link -a
-	dh_compress -X.haddock -X.txt -a
-	dh_fixperms -a
+override_dh_installdeb:
 	sh debian/dh_haskell_provides
-	dh_installdeb -a
+	dh_installdeb
+
+override_dh_shlibdeps:
 	dh_shlibdeps -XlibHS
-	dh_gencontrol -a
-	dh_md5sums -a
-	dh_builddeb -a
-	touch $@
 
-# binary-indep and binary-arch both build everything, as otherwise
-# "dh_install --fail-missing" falls over
+# we do not want shlibs files there, neither postrm scripts
+override_dh_makeshlibs:
 
-# Build architecture independant packages using the common target.
-binary-indep: binary-indep-stamp
-binary-indep-stamp: install-stamp
-	dh_testdir
-	dh_testroot
-	dh_installchangelogs -i
-	dh_installdocs -i
-	dh_installexamples -i
-	dh_installdirs -i
-	dh_install -i
-	dh_installmenu -i
-	dh_installman -i
-	dh_link -i
-	dh_compress -X.haddock -X.txt -i
-	dh_fixperms -i
-	dh_installdeb -i
-	dh_gencontrol -i
-	dh_md5sums -i
-	dh_builddeb -i
-	touch $@
-
-binary: binary-indep binary-arch
-.PHONY: build install clean binary-indep binary-arch binary-common binary patch
+# we have ghc-testsuite for this, empty override
+override_dh_auto_test:

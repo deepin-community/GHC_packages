@@ -1,6 +1,7 @@
 #!/usr/bin/make -f
 
-DEB_ENABLE_TESTS = yes
+# doctests fail on too many architectures
+DEB_ENABLE_TESTS = no
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk

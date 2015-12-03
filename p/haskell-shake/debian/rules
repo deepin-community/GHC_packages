@@ -6,13 +6,17 @@ DEB_UPSTREAM_REPACKAGE_EXCLUDES := ./html/viz.js
 DEB_UPSTREAM_REPACKAGE_DELIMITER := +
 DEB_SETUP_GHC_CONFIGURE_ARGS := --datasubdir=/usr/share/shake
 
-# tests fail on powerpc, due to ghc’s #789458
-DEB_BUILD_ARCH     ?= $(shell dpkg-architecture -qDEB_BUILD_ARCH)
-ifeq (,$(filter $(DEB_BUILD_ARCH),powerpc))
-DEB_ENABLE_TESTS := $(shell test -e /usr/bin/ghci && echo yes)
-else
-DEB_ENABLE_TESTS := no
+ifeq (yes,$(shell test -e /usr/bin/ghci && echo yes))
+# https://github.com/haskell/cabal/issues/2398
+ifeq (yes,$(shell ghc --info | grep -q 'Support SMP.*YES' && echo yes))
+DEB_ENABLE_TESTS := yes
 endif
+endif
+
+# unicode problems in the testsuite
+check-ghc-stamp: export LANG := en_US.UTF-8
+check-ghc-stamp: export LC_ALL := C.UTF-8
+
 
 DEB_GHC_EXTRA_PACKAGES := libghc-shake-data (>= $(CABAL_VERSION))
 

@@ -1,0 +1,57 @@
+Description: fix 0 case.
+Origin:
+ https://github.com/vincenthz/cryptonite/commit/169570c9632a29c95432468016f294853bcd1ba2
+ https://github.com/vincenthz/cryptonite/commit/3af592e997e30e613eb04387c699aff7de87a746
+ https://github.com/vincenthz/cryptonite/commit/5f72788041b58c82e6b25c0c1e1294982eff7ed9
+
+
+Index: haskell-cryptonite/tests/Number.hs
+===================================================================
+--- haskell-cryptonite.orig/tests/Number.hs	2015-08-27 17:01:23.212094172 +0200
++++ haskell-cryptonite/tests/Number.hs	2015-08-27 17:01:46.104622646 +0200
+@@ -20,21 +20,21 @@
+     ]
+ 
+ tests = testGroup "number"
+-    [ testProperty "num-bits" $ \(Int0_2901 i) ->
++    [ testProperty "num-bits" $ \(Int1_2901 i) ->
+         and [ (numBits (2^i-1) == i)
+             , (numBits (2^i) == i+1)
+             , (numBits (2^i + (2^i-1)) == i+1)
+             ]
+     , testProperty "num-bits2" $ \(Positive i) ->
+         not (i `testBit` numBits i) && (i `testBit` (numBits i - 1))
+-    , testProperty "generate-param" $ \testDRG (Int0_2901 bits)  ->
++    , testProperty "generate-param" $ \testDRG (Int1_2901 bits)  ->
+         let r = withTestDRG testDRG $ generateParams bits (Just SetHighest) False
+          in r >= 0 && numBits r == bits && testBit r (bits-1)
+-    , testProperty "generate-param2" $ \testDRG (Int0_2901 m1bits) ->
++    , testProperty "generate-param2" $ \testDRG (Int1_2901 m1bits) ->
+         let bits = m1bits + 1 -- make sure minimum is 2
+             r = withTestDRG testDRG $ generateParams bits (Just SetTwoHighest) False
+          in r >= 0 && numBits r == bits && testBit r (bits-1) && testBit r (bits-2)
+-    , testProperty "generate-param-odd" $ \testDRG (Int0_2901 bits) ->
++    , testProperty "generate-param-odd" $ \testDRG (Int1_2901 bits) ->
+         let r = withTestDRG testDRG $ generateParams bits Nothing True
+          in r >= 0 && odd r
+     , testProperty "generate-range" $ \testDRG (Positive range) ->
+Index: haskell-cryptonite/tests/Utils.hs
+===================================================================
+--- haskell-cryptonite.orig/tests/Utils.hs	2015-07-25 09:52:36.000000000 +0200
++++ haskell-cryptonite/tests/Utils.hs	2015-08-27 17:01:43.276557340 +0200
+@@ -46,9 +46,15 @@
+ newtype Int0_2901 = Int0_2901 Int
+     deriving (Show,Eq,Ord)
+ 
++newtype Int1_2901 = Int1_2901 Int
++    deriving (Show,Eq,Ord)
++
+ instance Arbitrary Int0_2901 where
+     arbitrary = Int0_2901 `fmap` choose (0,2901)
+ 
++instance Arbitrary Int1_2901 where
++    arbitrary = Int1_2901 `fmap` choose (1,2901)
++
+ -- | a integer wrapper with a better range property
+ newtype QAInteger = QAInteger { getQAInteger :: Integer }
+     deriving (Show,Eq)

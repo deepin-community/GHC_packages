@@ -1,0 +1,69 @@
+Source: haskell-lambdabot-trusted
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.10),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-quickcheck2-dev (>= 2),
+ libghc-quickcheck2-prof (>= 2) | libghc-quickcheck1-prof (<< 2),
+ libghc-quickcheck-safe-dev (>= 0.1),
+ libghc-quickcheck-safe-prof,
+ libghc-oeis-dev (>= 0.3.1),
+ libghc-oeis-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-quickcheck2-doc (>= 2) | libghc-quickcheck1-doc (<< 2),
+ libghc-quickcheck-safe-doc,
+ libghc-oeis-doc,
+Standards-Version: 3.9.6
+Homepage: http://haskell.org/haskellwiki/Lambdabot
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-lambdabot-trusted
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-lambdabot-trusted
+X-Description: Lambdabot trusted code.
+ Lambdabot is an IRC bot written over several years by
+ those on the #haskell IRC channel.
+ .
+ This small package provides functions used by
+ the run command.
+
+Package: libghc-lambdabot-trusted-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-lambdabot-trusted-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-lambdabot-trusted-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

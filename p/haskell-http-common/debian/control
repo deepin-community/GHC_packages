@@ -1,0 +1,81 @@
+Source: haskell-http-common
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.10),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-base64-bytestring-dev,
+ libghc-base64-bytestring-prof,
+ libghc-blaze-builder-dev,
+ libghc-blaze-builder-prof,
+ libghc-case-insensitive-dev,
+ libghc-case-insensitive-prof,
+ libghc-mtl-dev,
+ libghc-mtl-prof,
+ libghc-network-dev,
+ libghc-network-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+ libghc-unordered-containers-dev,
+ libghc-unordered-containers-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-base64-bytestring-doc,
+ libghc-blaze-builder-doc,
+ libghc-case-insensitive-doc,
+ libghc-mtl-doc,
+ libghc-network-doc,
+ libghc-text-doc,
+ libghc-unordered-containers-doc,
+Standards-Version: 3.9.6
+Homepage: http://research.operationaldynamics.com/projects/http-streams/
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-http-common
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-http-common
+X-Description: Common types for HTTP clients and servers
+ Base types used by a variety of HTTP clients and servers. See http-streams
+ "Network.Http.Client" or pipes-http "Pipes.Http.Client" for full
+ documentation. You can import Network.Http.Types if you like, but both
+ http-streams and pipes-http re-export this package's types and functions.
+
+Package: libghc-http-common-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-http-common-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-http-common-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

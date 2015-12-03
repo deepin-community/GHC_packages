@@ -4,18 +4,39 @@ Uploaders: Clint Adams <clint@debian.org>
 Priority: extra
 Section: haskell
 Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.9),
+ haskell-devscripts (>= 0.10),
  cdbs,
  ghc,
  ghc-prof,
- libghc-hspec-dev,
+ libghc-quickcheck2-dev (>= 2.7),
+ libghc-quickcheck2-dev (<< 3),
+ libghc-quickcheck2-prof,
+ libghc-hspec-dev (>= 2),
+ libghc-hspec-dev (<< 3),
  libghc-hspec-prof,
+ libghc-hspec-core-dev (>= 2),
+ libghc-hspec-core-dev (<< 3),
+ libghc-hspec-core-prof,
+ libghc-random-dev,
+ libghc-random-prof,
  libghc-tasty-dev (>= 0.8),
+ libghc-tasty-dev (<< 1.0),
  libghc-tasty-prof,
+ libghc-tasty-quickcheck-dev (>= 0.3),
+ libghc-tasty-quickcheck-dev (<< 0.9),
+ libghc-tasty-quickcheck-prof,
+ libghc-tasty-smallcheck-dev (>= 0.1),
+ libghc-tasty-smallcheck-dev (<< 0.9),
+ libghc-tasty-smallcheck-prof,
 Build-Depends-Indep: ghc-doc,
+ libghc-quickcheck2-doc,
  libghc-hspec-doc,
+ libghc-hspec-core-doc,
+ libghc-random-doc,
  libghc-tasty-doc,
-Standards-Version: 3.9.5
+ libghc-tasty-quickcheck-doc,
+ libghc-tasty-smallcheck-doc,
+Standards-Version: 3.9.6
 Homepage: http://github.com/mitchellwrosen/tasty-hspec
 Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-tasty-hspec
 Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-tasty-hspec

@@ -1,0 +1,72 @@
+Source: haskell-retry
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.10),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-data-default-class-dev,
+ libghc-data-default-class-prof,
+ libghc-exceptions-dev (>= 0.5),
+ libghc-exceptions-dev (<< 0.9),
+ libghc-exceptions-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-data-default-class-doc,
+ libghc-exceptions-doc,
+Standards-Version: 3.9.6
+Homepage: http://github.com/Soostone/retry
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-retry
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-retry
+X-Description: Retry combinators for monadic actions that may fail
+ This package exposes combinators that can wrap arbitrary monadic actions. They
+ run the action and potentially retry running it with some configurable delay
+ for a configurable number of times.
+ .
+ The purpose is to make it easier to work with IO and especially network IO
+ actions that often experience temporary failure and warrant retrying of the
+ original action. For example, a database query may time out for a while, in
+ which case we should hang back for a bit and retry the query instead of simply
+ raising an exception.
+
+Package: libghc-retry-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-retry-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-retry-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

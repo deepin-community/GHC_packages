@@ -10,8 +10,8 @@ Date:   Wed Aug 12 11:43:34 2015 +0200
 
 Index: haskell-debian/Debian/Control/Text.hs
 ===================================================================
---- haskell-debian.orig/Debian/Control/Text.hs	2015-08-12 17:13:45.922235347 +0200
-+++ haskell-debian/Debian/Control/Text.hs	2015-08-12 17:14:06.478389653 +0200
+--- haskell-debian.orig/Debian/Control/Text.hs	2015-08-15 23:17:28.452021248 +0200
++++ haskell-debian/Debian/Control/Text.hs	2015-08-15 23:17:45.920411378 +0200
 @@ -29,7 +29,7 @@
  import qualified Data.ByteString.Char8 as B
  import Data.Char (toLower, chr)
@@ -26,7 +26,7 @@ Index: haskell-debian/Debian/Control/Text.hs
                hasFieldName name (Field (fieldName',_)) = T.pack name == T.map toLower fieldName'
                hasFieldName _ _ = False
 -    stripWS = T.reverse . T.strip . T.reverse . T.strip
-+    stripWS = T.dropAround (`elem` " \t")
++    stripWS = T.dropAround (`elem` [' ','\t'])
 +      -- T.strip would also strip newlines
      protectFieldText = protectFieldText'
      asString = T.unpack

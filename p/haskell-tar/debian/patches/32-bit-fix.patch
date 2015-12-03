@@ -1,0 +1,193 @@
+patch 524c5e47d185dd7a7ad45744d89d202ff5d04947
+Author: Joachim Breitner <mail@joachim-breitner.de>
+Date:   Thu Oct 29 13:22:58 CET 2015
+  * Introduce Enum32 type class
+  
+  to avoid converting via Enum’s fromEnum, which goes via Int, so for example it
+  cannot be used to convert Word32 into Word32.
+diff -rN -u old-tar/Codec/Archive/Tar/Index/IntTrie.hs new-tar/Codec/Archive/Tar/Index/IntTrie.hs
+--- old-tar/Codec/Archive/Tar/Index/IntTrie.hs	2015-10-29 15:40:28.313571854 +0100
++++ new-tar/Codec/Archive/Tar/Index/IntTrie.hs	2015-10-29 15:40:28.313571854 +0100
+@@ -9,6 +9,8 @@
+   lookup,
+   TrieLookup(..),
+ 
++  Enum32,
++
+ #ifdef TESTS
+   test1, test2, test3,
+   ValidPaths(..),
+@@ -27,6 +29,7 @@
+ import Data.Array.IArray  ((!))
+ import qualified Data.Bits as Bits
+ import Data.Word (Word32)
++import Data.Char (chr, ord)
+ 
+ import Data.List hiding (lookup)
+ import Data.Function (on)
+@@ -37,6 +40,25 @@
+ #endif
+ 
+ 
++-- | A type class for types that can be encoded in 32 bits. The usual 'Enum'
++-- class is insufficient, as @fromEnum :: Word32 -> Int@ fails on 32 bit architectures,
++-- as some Word32’s are larger than maxInt.
++class Enum32 a where
++    fromWord32 :: Word32 -> a
++    toWord32 :: a -> Word32
++
++instance Enum32 Word32 where
++    fromWord32 = id
++    toWord32 = id
++
++instance Enum32 Int where
++    fromWord32 = fromIntegral
++    toWord32 = fromIntegral
++
++instance Enum32 Char where
++    fromWord32 = chr . fromWord32
++    toWord32 = toWord32 . ord
++
+ -- | A compact mapping from sequences of small nats to nats.
+ --
+ newtype IntTrie k v = IntTrie (A.UArray Word32 Word32)
+@@ -179,14 +201,14 @@
+ -- Decoding the trie array form
+ --
+ 
+-completionsFrom :: (Enum k, Enum v) => IntTrie k v -> Word32 -> Completions k v
++completionsFrom :: (Enum32 k, Enum32 v) => IntTrie k v -> Word32 -> Completions k v
+ completionsFrom trie@(IntTrie arr) nodeOff =
+-    [ (word32ToEnum (untag key), next)
++    [ (fromWord32 (untag key), next)
+     | keyOff <- [keysStart..keysEnd]
+     , let key   = arr ! keyOff
+           entry = arr ! (keyOff + nodeSize)
+           next | isNode key = Completions (completionsFrom trie entry)
+-               | otherwise  = Entry (word32ToEnum entry)
++               | otherwise  = Entry (fromWord32 entry)
+     ]
+   where
+     nodeSize  = arr ! nodeOff
+@@ -203,7 +225,7 @@
+ -- | Build an 'IntTrie' from a bunch of (key, value) pairs, where the keys
+ -- are sequences.
+ --
+-construct :: (Ord k, Enum k, Enum v) => [([k], v)] -> IntTrie k v
++construct :: (Ord k, Enum32 k, Enum32 v) => [([k], v)] -> IntTrie k v
+ construct = IntTrie . mkArray . flattenTrie . mkTrie
+ 
+ mkArray :: [Word32] -> A.UArray Word32 Word32
+@@ -217,7 +239,7 @@
+ data TrieLookup  k v = Entry !v | Completions (Completions k v) deriving Show
+ type Completions k v = [(k, TrieLookup k v)]
+ 
+-lookup :: forall k v. (Enum k, Enum v) => IntTrie k v -> [k] -> Maybe (TrieLookup k v)
++lookup :: forall k v. (Enum32 k, Enum32 v) => IntTrie k v -> [k] -> Maybe (TrieLookup k v)
+ lookup trie@(IntTrie arr) = go 0
+   where
+     go :: Word32 -> [k] -> Maybe (TrieLookup k v)
+@@ -230,9 +252,9 @@
+         Nothing       -> Nothing
+         Just entryOff -> go (arr ! entryOff) ks
+       where
+-        k' = enumToWord32 k
++        k' = toWord32 k
+ 
+-    entry       entryOff = Entry (word32ToEnum (arr ! entryOff))
++    entry       entryOff = Entry (fromWord32 (arr ! entryOff))
+     completions nodeOff  = Completions (completionsFrom trie nodeOff)
+ 
+     search :: Word32 -> Word32 -> Maybe Word32
+@@ -252,13 +274,6 @@
+       where mid = (a + b) `div` 2
+ 
+ 
+-enumToWord32 :: Enum n => n -> Word32
+-enumToWord32 = fromIntegral . fromEnum
+-
+-word32ToEnum :: Enum n => Word32 -> n
+-word32ToEnum = toEnum . fromIntegral
+-
+-
+ -------------------------
+ -- Intermediate Trie type
+ --
+@@ -313,19 +328,19 @@
+             []    -> Leaf k0 v0
+             ksvs' -> Node k0 ksvs'
+ 
+-type Offset = Int
++type Offset = Word32
+ 
+ -- This is a breadth-first traversal. We keep a list of the tries that we are
+ -- to write out next. Each of these have an offset allocated to them at the
+ -- time we put them into the list. We keep a running offset so we know where
+ -- to allocate next.
+ --
+-flattenTrie :: (Enum k, Enum v) => Trie k v -> [Word32]
++flattenTrie :: (Enum32 k, Enum32 v) => Trie k v -> [Word32]
+ flattenTrie trie = go (queue [trie]) (size trie)
+   where
+-    size (Trie tns) = 1 + 2 * length tns
++    size (Trie tns) = fromIntegral $ 1 + 2 * length tns
+ 
+-    go :: (Enum k, Enum v) => Q (Trie k v) -> Offset -> [Word32]
++    go :: (Enum32 k, Enum32 v) => Q (Trie k v) -> Offset -> [Word32]
+     go todo !offset =
+       case dequeue todo of
+         Nothing                   -> []
+@@ -342,8 +357,8 @@
+       Leaf k v -> doNodes off            (leafKV k v  :kvs)    ts'  tns
+       Node k t -> doNodes (off + size t) (nodeKV k off:kvs) (t:ts') tns
+ 
+-    leafKV k v = (tagLeaf (enum2Word32 k), enum2Word32 v)
+-    nodeKV k o = (tagNode (enum2Word32 k), int2Word32  o)
++    leafKV k v = (tagLeaf (toWord32 k), toWord32 v)
++    nodeKV k o = (tagNode (toWord32 k), o)
+ 
+ data Q a = Q [a] [[a]]
+ 
+@@ -360,20 +375,13 @@
+                                x:xs -> Just (x, Q xs [])
+                                []   -> Nothing
+ 
+-int2Word32 :: Int -> Word32
+-int2Word32 = fromIntegral
+-
+-enum2Word32 :: Enum n => n -> Word32
+-enum2Word32 = int2Word32 . fromEnum
+-
+-
+ -------------------------
+ -- Correctness property
+ --
+ 
+ #ifdef TESTS
+ 
+-prop_lookup :: (Ord k, Enum k, Eq v, Enum v, Show k, Show v)
++prop_lookup :: (Ord k, Enum32 k, Eq v, Enum32 v, Show k, Show v)
+             => [([k], v)] -> Bool
+ prop_lookup paths =
+   flip all paths $ \(key, value) ->
+@@ -386,7 +394,7 @@
+   where
+     trie = construct paths
+ 
+-prop_completions :: forall k v. (Ord k, Enum k, Eq v, Enum v) => [([k], v)] -> Bool
++prop_completions :: forall k v. (Ord k, Enum32 k, Eq v, Enum32 v) => [([k], v)] -> Bool
+ prop_completions paths =
+     mkTrie paths == convertCompletions (completionsFrom (construct paths) 0)
+   where
+diff -rN -u old-tar/Codec/Archive/Tar/Index.hs new-tar/Codec/Archive/Tar/Index.hs
+--- old-tar/Codec/Archive/Tar/Index.hs	2015-10-29 15:40:28.313571854 +0100
++++ new-tar/Codec/Archive/Tar/Index.hs	2015-10-29 15:40:28.313571854 +0100
+@@ -154,7 +154,7 @@
+ 
+ 
+ newtype PathComponentId = PathComponentId Int
+-  deriving (Eq, Ord, Enum, Show, Typeable)
++  deriving (Eq, Ord, Enum, IntTrie.Enum32, Show, Typeable)
+ 
+ -- | An offset within a tar file. Use 'hReadEntry', 'hReadEntryHeader' or
+ -- 'hSeekEntryOffset'.
