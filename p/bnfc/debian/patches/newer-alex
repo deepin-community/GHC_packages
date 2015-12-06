@@ -1,0 +1,20 @@
+--- a/src/BNFC/Backend/Haskell/CFtoAlex3.hs
++++ b/src/BNFC/Backend/Haskell/CFtoAlex3.hs
+@@ -51,6 +51,7 @@
+   if byteStrings  then "import qualified Data.ByteString.Char8 as BS" else "",
+   "import qualified Data.Bits",
+   "import Data.Word (Word8)",
++  "import Data.Char (ord)",
+   "}",
+   ""
+   ]
+--- a/src/LexBNF.x
++++ b/src/LexBNF.x
+@@ -9,6 +9,7 @@
+ 
+ import qualified Data.Bits
+ import Data.Word (Word8)
++import Data.Char (ord)
+ }
+ 
+ 
