@@ -1,0 +1,28 @@
+Description: Add platform detection support for Renesas SH4
+ This patch adds platform detection support for Renesas
+ SH4 (SuperH) which is called "sh4" in Debian.
+ .
+
+Index: ghc/aclocal.m4
+===================================================================
+--- ghc.orig/aclocal.m4	2015-12-06 13:59:33.338092013 +0100
++++ ghc/aclocal.m4	2015-12-06 13:59:33.334091395 +0100
+@@ -209,7 +209,7 @@
+         mipsel)
+             test -z "[$]2" || eval "[$]2=ArchMipsel"
+             ;;
+-        hppa|hppa1_1|ia64|m68k|powerpc64le|rs6000|s390|s390x|sparc64|vax)
++        hppa|hppa1_1|ia64|m68k|powerpc64le|rs6000|s390|s390x|sh4|sparc64|vax)
+             test -z "[$]2" || eval "[$]2=ArchUnknown"
+             ;;
+         *)
+@@ -1979,6 +1979,9 @@
+   s390*)
+     $2="s390"
+     ;;
++  sh4)
++    $2="sh4"
++    ;;
+   sparc64*)
+     $2="sparc64"
+     ;;
