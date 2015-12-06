@@ -19,7 +19,7 @@ Haskell package foo is as follows:
     /p/                           -- root of all packaging
     /p/haskell-foo/               -- package name (Debian source package name)
     /p/haskell-foo/debian/        -- packaging directory
-    /p/haskell-foo/debain/control -- the usual files
+    /p/haskell-foo/debian/control -- the usual files
     ...
 
 In particular, /p/haskell-foo/ contains no files besides debian/. So what is
