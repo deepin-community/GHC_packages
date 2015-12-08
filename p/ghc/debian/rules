@@ -34,6 +34,12 @@ ProjectVersion=$(shell cat VERSION)
 
 GHC=$(firstword $(shell bash -c "type -p ghc"))
 EXTRA_CONFIGURE_FLAGS=--with-ghc="$(GHC)"
+ifeq (s390x,$(DEB_HOST_ARCH))
+  EXTRA_CONFIGURE_FLAGS += \
+	CONF_CC_OPTS_STAGE2=-fno-PIE \
+	CONF_GCC_LINKER_OPTS_STAGE2=-no-pie \
+	CONF_LD_LINKER_OPTS_STAGE2=-no-pie
+endif
 BUILD_HADDOCK_DOCS=YES
 DEB_HOOGLE_TXT_DIR = /usr/lib/ghc-doc/hoogle/
 
@@ -50,6 +56,10 @@ ifneq (,$(findstring $(DEB_HOST_ARCH), arm64 armel armhf))
 endif
 ifeq (armhf,$(DEB_HOST_ARCH))
 	echo "SRC_HC_OPTS += -D__ARM_PCS_VFP" >> mk/build.mk
+endif
+ifeq (s390x,$(DEB_HOST_ARCH))
+	echo "SRC_CC_OPTS += -fno-PIE" >> mk/build.mk
+	echo "SRC_LD_OPTS += -no-pie" >> mk/build.mk
 endif
 ifneq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
 #	echo "GhcStage1HcOpts += -DDEBUG" >> mk/build.mk
