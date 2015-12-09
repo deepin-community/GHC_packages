@@ -1,0 +1,72 @@
+Source: haskell-hierarchical-clustering
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.10),
+ cdbs,
+ ghc,
+ ghc-prof,
+Build-Depends-Indep: ghc-doc,
+Standards-Version: 3.9.6
+Homepage: http://hackage.haskell.org/package/hierarchical-clustering
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Git: git://git.debian.org/git/pkg-haskell/DHG_packages.git
+X-Description: Fast algorithms for single, average/UPGMA and complete linkage clustering.
+ This package provides a function to create a dendrogram from a
+ list of items and a distance function between them.  Initially
+ a singleton cluster is created for each item, and then new,
+ bigger clusters are created by merging the two clusters with
+ least distance between them.  The distance between two clusters
+ is calculated according to the linkage type.  The dendrogram
+ represents not only the clusters but also the order on which
+ they were created.
+ .
+ This package has many implementations with different
+ performance characteristics.  There are SLINK and CLINK
+ algorithm implementations that are optimal in both space and
+ time.  There are also naive implementations using a distance
+ matrix.  Using the dendrogram function from
+ Data.Clustering.Hierarchical automatically chooses the best
+ implementation we have.
+
+Package: libghc-hierarchical-clustering-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hierarchical-clustering-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hierarchical-clustering-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
