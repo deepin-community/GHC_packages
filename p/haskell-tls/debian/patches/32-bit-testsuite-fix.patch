@@ -1,0 +1,23 @@
+From 00b292df3e2434cde08d00ed13618a1f6b301e2a Mon Sep 17 00:00:00 2001
+From: Vincent Hanquez <vincent@snarc.org>
+Date: Sat, 12 Dec 2015 14:28:25 +0000
+Subject: [PATCH] [tests] Make sure we don't have any date outside the 32 bit
+ time_t range for 32 bit time_t architecture.
+
+---
+ core/Tests/Certificate.hs | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+Index: haskell-tls/Tests/Certificate.hs
+===================================================================
+--- haskell-tls.orig/Tests/Certificate.hs	2015-12-12 15:54:49.063639945 +0100
++++ haskell-tls/Tests/Certificate.hs	2015-12-12 15:54:57.963812039 +0100
+@@ -20,7 +20,7 @@
+ 
+ instance Arbitrary Date where
+     arbitrary = do
+-        y <- choose (1951, 2050)
++        y <- choose (1971, 2035)
+         m <- elements [ January .. December]
+         d <- choose (1, 30)
+         return $ normalizeDate $ Date y m d
