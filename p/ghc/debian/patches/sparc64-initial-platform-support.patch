@@ -1,0 +1,58 @@
+Description: Add initial platform support for sparc64
+ This patch adds initial platform support for sparc64 by
+ mapping sparc64 to "ArchSPARC64" instead of "ArchUnknown"
+ in aclocal.m4. Additionally, it adds "ArchSPARC64" to the
+ list of known platforms in compiler/utils/Platform.hs
+ and patches compiler/main/DriverPipeline.hs to explicitly
+ pass -no-relax to gcc. See upstream ticket #11211 and
+ Debian bug #807777.
+ .
+
+Index: ghc/aclocal.m4
+===================================================================
+--- ghc.orig/aclocal.m4	2015-12-13 20:19:52.493676232 +0100
++++ ghc/aclocal.m4	2015-12-13 20:19:52.485676048 +0100
+@@ -193,6 +193,10 @@
+         sparc)
+             test -z "[$]2" || eval "[$]2=ArchSPARC"
+             ;;
++        sparc64)
++            test -z "[$]2" || eval "[$]2=ArchSPARC64"
++            ;;
++
+         arm)
+             GET_ARM_ISA()
+             test -z "[$]2" || eval "[$]2=\"ArchARM {armISA = \$ARM_ISA, armISAExt = \$ARM_ISA_EXT, armABI = \$ARM_ABI}\""
+@@ -209,7 +213,7 @@
+         mipsel)
+             test -z "[$]2" || eval "[$]2=ArchMipsel"
+             ;;
+-        hppa|hppa1_1|ia64|m68k|powerpc64le|rs6000|s390|s390x|sh4|sparc64|vax)
++        hppa|hppa1_1|ia64|m68k|powerpc64le|rs6000|s390|s390x|sh4|vax)
+             test -z "[$]2" || eval "[$]2=ArchUnknown"
+             ;;
+         *)
+Index: ghc/compiler/main/DriverPipeline.hs
+===================================================================
+--- ghc.orig/compiler/main/DriverPipeline.hs	2015-12-13 20:19:52.493676232 +0100
++++ ghc/compiler/main/DriverPipeline.hs	2015-12-13 20:19:52.489676140 +0100
+@@ -2208,6 +2208,7 @@
+                         -- -r and --relax are incompatible for ld, so
+                         -- disable --relax explicitly.
+                      ++ (if platformArch (targetPlatform dflags) == ArchSPARC
++                         || platformArch (targetPlatform dflags) == ArchSPARC64
+                          && ldIsGnuLd
+                             then [SysTools.Option "-Wl,-no-relax"]
+                             else [])
+Index: ghc/compiler/utils/Platform.hs
+===================================================================
+--- ghc.orig/compiler/utils/Platform.hs	2015-12-13 20:19:52.493676232 +0100
++++ ghc/compiler/utils/Platform.hs	2015-12-13 20:19:52.489676140 +0100
+@@ -48,6 +48,7 @@
+         | ArchPPC
+         | ArchPPC_64
+         | ArchSPARC
++        | ArchSPARC64
+         | ArchARM
+           { armISA    :: ArmISA
+           , armISAExt :: [ArmISAExt]
