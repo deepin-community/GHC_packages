@@ -1,7 +1,13 @@
 #!/usr/bin/make -f
 
+DEB_BUILD_ARCH     ?= $(shell dpkg-architecture -qDEB_BUILD_ARCH)
+
 ifeq (0,$(shell ghc --info | grep 'Have interpreter.*YES' >/dev/null 2>&1; echo $$?))
+ifeq (,$(filter $(DEB_BUILD_ARCH),mips mipsel mips64el))
 	DEB_ENABLE_TESTS = yes
+else
+	DEB_ENABLE_TESTS = no
+endif
 else
 	DEB_ENABLE_TESTS = no
 endif
