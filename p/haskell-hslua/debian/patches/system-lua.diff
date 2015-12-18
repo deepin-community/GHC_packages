@@ -1,8 +1,6 @@
-Index: haskell-hslua/hslua.cabal
-===================================================================
---- haskell-hslua.orig/hslua.cabal	2015-08-15 23:30:14.160921481 +0200
-+++ haskell-hslua/hslua.cabal	2015-08-15 23:39:33.232545895 +0200
-@@ -30,7 +30,7 @@
+--- a/hslua.cabal
++++ b/hslua.cabal
+@@ -31,7 +31,7 @@
  
  flag system-lua
    description:          Use the system-wide Lua instead of the bundled copy
@@ -11,17 +9,25 @@ Index: haskell-hslua/hslua.cabal
  
  flag apicheck
    description:          Compile Lua with -DLUA_USE_APICHECK.
-@@ -46,11 +46,8 @@
-   hs-source-dirs:       src
+@@ -39,7 +39,7 @@
+ 
+ flag luajit
+   description:          Link with LuaJIT (should be used with -fsystem-lua)
+-  default:              False
++  default:              True
+ 
+ library
+   build-depends:        base == 4.*, bytestring >= 0.10.2.0 && < 0.11
+@@ -48,10 +48,9 @@
    ghc-options:          -Wall -O2
    if flag(system-lua)
--    if flag(luajit)
+     if flag(luajit)
 -      Extra-libraries:  luajit-5.1
--    else
++      Pkgconfig-depends:  lua5.1, luajit
+     else
 -      Extra-libraries:  lua
 -    includes:           lua.h
-+    Pkgconfig-depends:  lua5.1
-+    Pkgconfig-depends:  luajit
++      Pkgconfig-depends:  lua5.1
    else
      c-sources:          lua-5.1.5/lobject.c, lua-5.1.5/ltm.c, lua-5.1.5/ldblib.c,
                          lua-5.1.5/ldo.c, lua-5.1.5/lvm.c, lua-5.1.5/ltable.c,
