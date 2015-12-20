@@ -1,0 +1,13 @@
+Index: haskell-ed25519/tests/doctests.hs
+===================================================================
+--- haskell-ed25519.orig/tests/doctests.hs	2015-10-12 01:24:33.000000000 +0200
++++ haskell-ed25519/tests/doctests.hs	2015-12-20 23:49:38.840553383 +0100
+@@ -14,7 +14,7 @@
+ 
+ allSources :: IO [FilePath]
+ allSources = liftM2 (++) (getFiles ".hs" "src")
+-                         (getFiles ".o" "dist/build/src/cbits")
++                         (getFiles ".o" "dist-ghc/build/src/cbits")
+ 
+ getFiles :: String -> FilePath -> IO [FilePath]
+ getFiles ext root = filter (isSuffixOf ext) <$> go root
