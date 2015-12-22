@@ -14,6 +14,13 @@ DEB_ENABLE_TESTS = yes
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
 
+ifneq (,$(filter stage1,$(DEB_BUILD_PROFILES)))
+DEB_SETUP_GHC_CONFIGURE_ARGS := --with-alex=/bin/true
+
+cleanbuilddir/alex::
+	cp -a dist/build/alex/alex-tmp/*.hs src/
+endif
+
 clean::
 	[ ! -f doc/config.mk ] || $(MAKE) -C doc clean
 	# Remove these so setup clean doesn't remove the generated files
