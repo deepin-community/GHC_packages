@@ -13,6 +13,13 @@ include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
 include /usr/share/cdbs/1/rules/utils.mk
 
+ifneq (,$(filter stage1,$(DEB_BUILD_PROFILES)))
+DEB_SETUP_GHC_CONFIGURE_ARGS += --with-happy=/bin/true
+
+cleanbuilddir/happy::
+	cp -a dist/build/happy/happy-tmp/*.hs src/
+endif
+
 clean::
 	[ ! -f doc/config.mk ] || $(MAKE) -C doc clean
 
