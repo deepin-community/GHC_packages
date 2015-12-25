@@ -57,6 +57,9 @@ endif
 ifeq (armhf,$(DEB_HOST_ARCH))
 	echo "SRC_HC_OPTS += -D__ARM_PCS_VFP" >> mk/build.mk
 endif
+ifeq (armel,$(DEB_HOST_ARCH))
+	patch -p1 < debian/patches/armel-revert-ghci-fixes.patch
+endif
 ifeq (s390x,$(DEB_HOST_ARCH))
 	echo "SRC_CC_OPTS += -fno-PIE" >> mk/build.mk
 	echo "SRC_LD_OPTS += -no-pie" >> mk/build.mk
