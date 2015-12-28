@@ -1,0 +1,131 @@
+Source: haskell-cryptol
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-graphscc-dev (>= 1.0.4),
+ libghc-graphscc-prof,
+ libghc-quickcheck2-dev (>= 2.7),
+ libghc-quickcheck2-prof,
+ libghc-async-dev (>= 2.0),
+ libghc-async-prof,
+ libghc-base-compat-dev (>= 0.6),
+ libghc-base-compat-prof,
+ libghc-gitrev-dev (>= 1.0),
+ libghc-gitrev-prof,
+ libghc-heredoc-dev (>= 0.2),
+ libghc-heredoc-prof,
+ libghc-monadlib-dev (>= 3.7.2),
+ libghc-monadlib-prof,
+ libghc-old-time-dev (>= 1.1),
+ libghc-old-time-prof,
+ libghc-presburger-dev (>= 1.3),
+ libghc-presburger-prof,
+ libghc-random-dev (>= 1.0.1),
+ libghc-random-prof,
+ libghc-sbv-dev (>= 5.7),
+ libghc-sbv-prof,
+ libghc-smtlib-dev (>= 1.0.7),
+ libghc-smtlib-prof,
+ libghc-syb-dev (>= 0.4),
+ libghc-syb-prof,
+ libghc-text-dev (>= 1.1),
+ libghc-text-prof,
+ libghc-tf-random-dev (>= 0.5),
+ libghc-tf-random-prof,
+ libghc-utf8-string-dev (>= 0.3),
+ libghc-utf8-string-prof,
+ alex,
+ happy,
+ libghc-ansi-terminal-dev,
+ libghc-monadlib-dev,
+ libghc-random-dev,
+ libghc-sbv-dev,
+ libghc-tf-random-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-graphscc-doc,
+ libghc-quickcheck2-doc,
+ libghc-async-doc,
+ libghc-base-compat-doc,
+ libghc-gitrev-doc,
+ libghc-heredoc-doc,
+ libghc-monadlib-doc,
+ libghc-old-time-doc,
+ libghc-presburger-doc,
+ libghc-random-doc,
+ libghc-sbv-doc,
+ libghc-smtlib-doc,
+ libghc-syb-doc,
+ libghc-text-doc,
+ libghc-tf-random-doc,
+ libghc-utf8-string-doc,
+Standards-Version: 3.9.6
+Homepage: http://www.cryptol.net/
+Vcs-Git: git://git.debian.org/git/pkg-haskell/DHG_packages.git
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+X-Description: domain-specific language of cryptography
+ Cryptol is a domain-specific language for specifying cryptographic
+ algorithms. A Cryptol implementation of an algorithm resembles its
+ mathematical specification more closely than an implementation in
+ a general purpose language.
+
+Package: libghc-cryptol-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-cryptol-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-cryptol-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: cryptol
+Architecture: any
+Section: utils
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+ z3
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
