@@ -10,7 +10,7 @@ THREADED := $(if $(wildcard /usr/lib/*/libHSrts_thr.a),,-f-threaded)
 clean:
 	dh $@
 	[ ! -f ./setup ] || ./setup clean
-	rm -rf bustle-pcap dist setup Setup.hi Setup.o
+	rm -rf bustle-pcap dist setup Setup.hi Setup.o GetText.o GetText.hi
 
 override_dh_auto_configure:
 	ghc -package Cabal Setup.hs -o setup
