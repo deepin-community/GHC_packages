@@ -1,11 +1,9 @@
-Index: aeson-0.8.0.2/aeson.cabal
-===================================================================
---- aeson-0.8.0.2.orig/aeson.cabal	2014-12-23 13:51:58.479832676 +0100
-+++ aeson-0.8.0.2/aeson.cabal	2014-12-23 13:52:36.524513794 +0100
-@@ -84,6 +84,10 @@
+--- a/aeson.cabal
++++ b/aeson.cabal
+@@ -66,6 +66,10 @@
    description: build TH bits
    default: True
-
+ 
 +flag threaded
 +  description: build threaded
 +  default: True
@@ -13,10 +11,10 @@ Index: aeson-0.8.0.2/aeson.cabal
  library
    exposed-modules:
      Data.Aeson
-@@ -132,6 +136,10 @@
+@@ -117,6 +121,10 @@
+ 
    ghc-options: -O2 -Wall
-   cpp-options: -DGENERICS
-
+ 
 +  if flag(threaded)
 +    ghc-options: -threaded
 +

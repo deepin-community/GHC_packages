@@ -1,11 +1,9 @@
-Index: aeson-0.8.0.2/aeson.cabal
-===================================================================
---- aeson-0.8.0.2.orig/aeson.cabal	2014-12-23 13:51:42.483548266 +0100
-+++ aeson-0.8.0.2/aeson.cabal	2014-12-23 13:51:42.483548266 +0100
-@@ -80,6 +80,10 @@
+--- a/aeson.cabal
++++ b/aeson.cabal
+@@ -62,6 +62,10 @@
                 If true then depend on time < 1.5 together with old-locale.
    default: False
-
+ 
 +flag th
 +  description: build TH bits
 +  default: True
@@ -13,13 +11,13 @@ Index: aeson-0.8.0.2/aeson.cabal
  library
    exposed-modules:
      Data.Aeson
-@@ -87,7 +91,8 @@
-     Data.Aeson.Generic
+@@ -70,7 +74,8 @@
+     Data.Aeson.Internal.Time
      Data.Aeson.Parser
      Data.Aeson.Types
 -    Data.Aeson.TH
 +  if flag(th)
 +      exposed-modules: Data.Aeson.TH
-
+ 
    other-modules:
-     Data.Aeson.Encode.ByteString
+     Data.Aeson.Encode.Builder
