@@ -1,0 +1,110 @@
+Source: haskell-aeson-compat
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-aeson-dev (>= 0.7.0.6),
+ libghc-aeson-dev (<< 0.11),
+ libghc-aeson-prof (>= 0.7.0.6),
+ libghc-aeson-prof (<< 0.11),
+ libghc-attoparsec-dev (>= 0.12),
+ libghc-attoparsec-dev (<< 0.14),
+ libghc-attoparsec-prof (>= 0.12),
+ libghc-attoparsec-prof (<< 0.14),
+ libghc-exceptions-dev (>= 0.8),
+ libghc-exceptions-dev (<< 0.9),
+ libghc-exceptions-prof (>= 0.8),
+ libghc-exceptions-prof (<< 0.9),
+ libghc-hashable-dev (>= 1.2),
+ libghc-hashable-dev (<< 1.3),
+ libghc-hashable-prof (>= 1.2),
+ libghc-hashable-prof (<< 1.3),
+ libghc-scientific-dev (>= 0.3),
+ libghc-scientific-dev (<< 0.4),
+ libghc-scientific-prof (>= 0.3),
+ libghc-scientific-prof (<< 0.4),
+ libghc-text-dev (>= 1.2),
+ libghc-text-dev (<< 1.3),
+ libghc-text-prof (>= 1.2),
+ libghc-text-prof (<< 1.3),
+ libghc-unordered-containers-dev (>= 0.2),
+ libghc-unordered-containers-dev (<< 0.3),
+ libghc-unordered-containers-prof (>= 0.2),
+ libghc-unordered-containers-prof (<< 0.3),
+ libghc-vector-dev (>= 0.10),
+ libghc-vector-dev (<< 0.12),
+ libghc-vector-prof (>= 0.10),
+ libghc-vector-prof (<< 0.12),
+ libghc-quickcheck-instances-dev (>= 0.3),
+ libghc-quickcheck-instances-dev (<< 0.4),
+ libghc-tasty-dev (>= 0.10),
+ libghc-tasty-dev (<< 0.12),
+ libghc-tasty-hunit-dev (>= 0.9),
+ libghc-tasty-hunit-dev (<< 0.10),
+ libghc-tasty-quickcheck-dev (>= 0.8),
+ libghc-tasty-quickcheck-dev (<< 0.9),
+Build-Depends-Indep: ghc-doc,
+ libghc-aeson-doc,
+ libghc-attoparsec-doc,
+ libghc-exceptions-doc,
+ libghc-hashable-doc,
+ libghc-scientific-doc,
+ libghc-text-doc,
+ libghc-unordered-containers-doc,
+ libghc-vector-doc,
+Standards-Version: 3.9.6
+Homepage: https://github.com/phadej/aeson-compat#readme
+Vcs-Git: git://git.debian.org/git/pkg-haskell/DHG_packages.git
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+X-Description: Compatibility layer for aeson
+ Compatibility layer for aeson
+  * decode etc. work as in aeson >=0.9
+  * but it is generalised to work in any MonadThrow (that is extra)
+  * .:? works as in aeson <0.10
+  * .:! works as .:? in aeson ==0.10
+  * Orphan instances FromJSON Day and FromJSON LocalTime for aeson <0.10
+
+Package: libghc-aeson-compat-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-aeson-compat-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-aeson-compat-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
