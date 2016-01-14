@@ -50,6 +50,7 @@ override_dh_auto_configure:
 	dh_autoreconf perl -- boot
 	echo "SRC_HC_OPTS += -lffi -optl-pthread" >> mk/build.mk
 	echo "HADDOCK_DOCS := YES" >> mk/build.mk
+	echo "EXTRA_HADDOCK_OPTS += --mathjax=file:///usr/share/javascript/mathjax/MathJax.js" >> mk/build.mk
 	echo "XSLTPROC_OPTS += --nonet" >> mk/build.mk
 ifneq (,$(findstring $(DEB_HOST_ARCH), arm64 armel armhf))
 	echo "SRC_HC_OPTS     += -optl-B/usr/bin/ld.gold" >> mk/build.mk
