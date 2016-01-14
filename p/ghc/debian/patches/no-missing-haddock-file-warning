@@ -3,11 +3,11 @@ Description: Do not emit a warning if the .haddock file is missing
  without the -doc package.
 Author: Joachim Breitner <nomeata@debian.org>
 
-Index: ghc-7.10/utils/ghc-pkg/Main.hs
+Index: ghc/utils/ghc-pkg/Main.hs
 ===================================================================
---- ghc-7.10.orig/utils/ghc-pkg/Main.hs	2015-07-22 11:17:04.787751658 +0200
-+++ ghc-7.10/utils/ghc-pkg/Main.hs	2015-07-22 11:17:04.787751658 +0200
-@@ -1533,8 +1533,10 @@
+--- ghc.orig/utils/ghc-pkg/Main.hs	2016-01-14 16:19:29.426554736 +0100
++++ ghc/utils/ghc-pkg/Main.hs	2016-01-14 16:19:29.426554736 +0100
+@@ -1592,8 +1592,10 @@
    mapM_ (checkDir True  "library-dirs") (libraryDirs pkg)
    mapM_ (checkDir True  "include-dirs") (includeDirs pkg)
    mapM_ (checkDir True  "framework-dirs") (frameworkDirs pkg)

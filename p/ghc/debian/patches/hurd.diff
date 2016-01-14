@@ -1,17 +1,19 @@
 Provided by “Pino” via Samuel Thibault. Not yet pushed upstream.
 
-Index: ghc-7.10/aclocal.m4
+Index: ghc/aclocal.m4
 ===================================================================
---- ghc-7.10.orig/aclocal.m4	2015-06-15 09:26:58.080646221 +0200
-+++ ghc-7.10/aclocal.m4	2015-06-15 09:26:58.076646183 +0200
-@@ -271,12 +271,15 @@
+--- ghc.orig/aclocal.m4	2016-01-14 16:20:19.683572714 +0100
++++ ghc/aclocal.m4	2016-01-14 16:21:18.024754631 +0100
+@@ -277,7 +277,7 @@
          nto-qnx)
              test -z "[$]2" || eval "[$]2=OSQNXNTO"
              ;;
--        dragonfly|osf1|hpux|linuxaout|freebsd2|cygwin32|gnu|nextstep2|nextstep3|sunos4|ultrix|irix|aix)
-+        dragonfly|osf1|hpux|linuxaout|freebsd2|cygwin32|nextstep2|nextstep3|sunos4|ultrix|irix|aix)
+-        dragonfly|osf1|hpux|linuxaout|freebsd2|gnu|nextstep2|nextstep3|sunos4|ultrix|irix)
++        dragonfly|osf1|hpux|linuxaout|freebsd2|nextstep2|nextstep3|sunos4|ultrix|irix)
              test -z "[$]2" || eval "[$]2=OSUnknown"
              ;;
+         aix)
+@@ -286,6 +286,9 @@
          linux-android)
              test -z "[$]2" || eval "[$]2=OSAndroid"
              ;;
@@ -21,22 +23,22 @@ Index: ghc-7.10/aclocal.m4
          *)
              echo "Unknown OS '[$]1'"
              exit 1
-Index: ghc-7.10/compiler/utils/Platform.hs
+Index: ghc/compiler/utils/Platform.hs
 ===================================================================
---- ghc-7.10.orig/compiler/utils/Platform.hs	2015-06-15 09:26:58.080646221 +0200
-+++ ghc-7.10/compiler/utils/Platform.hs	2015-06-15 09:26:58.076646183 +0200
-@@ -83,6 +83,7 @@
-         | OSOsf3
+--- ghc.orig/compiler/utils/Platform.hs	2016-01-14 16:20:19.683572714 +0100
++++ ghc/compiler/utils/Platform.hs	2016-01-14 16:20:40.067985654 +0100
+@@ -88,6 +88,7 @@
          | OSQNXNTO
          | OSAndroid
+         | OSAIX
 +        | OSHurd
          deriving (Read, Show, Eq)
  
  -- | ARM Instruction Set Architecture, Extensions and ABI
-@@ -127,6 +128,7 @@
-                                 -- per comment below it's safe
+@@ -141,6 +142,7 @@
  osElfTarget OSQNXNTO    = False
  osElfTarget OSAndroid   = True
+ osElfTarget OSAIX       = False
 +osElfTarget OSHurd      = True
  osElfTarget OSUnknown   = False
   -- Defaulting to False is safe; it means don't rely on any

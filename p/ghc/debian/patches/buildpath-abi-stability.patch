@@ -1,10 +1,10 @@
 Forwarded to https://ghc.haskell.org/trac/ghc/ticket/10424
 
-Index: ghc-7.10.1/compiler/iface/MkIface.hs
+Index: ghc/compiler/iface/MkIface.hs
 ===================================================================
---- ghc-7.10.1.orig/compiler/iface/MkIface.hs	2015-05-17 20:34:02.808643844 +0200
-+++ ghc-7.10.1/compiler/iface/MkIface.hs	2015-05-17 20:34:02.804643799 +0200
-@@ -611,7 +611,7 @@
+--- ghc.orig/compiler/iface/MkIface.hs	2016-01-14 16:21:42.065241716 +0100
++++ ghc/compiler/iface/MkIface.hs	2016-01-14 16:21:42.061241634 +0100
+@@ -557,7 +557,7 @@
     iface_hash <- computeFingerprint putNameLiterally
                        (mod_hash,
                         ann_fn (mkVarOcc "module"),  -- See mkIfaceAnnCache
@@ -13,7 +13,7 @@ Index: ghc-7.10.1/compiler/iface/MkIface.hs
                         sorted_deps,
                         mi_hpc iface0)
  
-@@ -644,6 +644,9 @@
+@@ -590,6 +590,9 @@
      (non_orph_fis,   orph_fis)   = mkOrphMap ifFamInstOrph (mi_fam_insts iface0)
      fix_fn = mi_fix_fn iface0
      ann_fn = mkIfaceAnnCache (mi_anns iface0)
