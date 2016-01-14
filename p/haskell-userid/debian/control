@@ -1,0 +1,85 @@
+Source: haskell-userid
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-aeson-dev (>= 0.8),
+ libghc-aeson-dev (<< 0.11),
+ libghc-aeson-prof (>= 0.8),
+ libghc-aeson-prof (<< 0.11),
+ libghc-boomerang-dev (>= 1.4),
+ libghc-boomerang-dev (<< 1.5),
+ libghc-boomerang-prof (>= 1.4),
+ libghc-boomerang-prof (<< 1.5),
+ libghc-lens-dev (>= 4.9),
+ libghc-lens-dev (<< 4.14),
+ libghc-lens-prof (>= 4.9),
+ libghc-lens-prof (<< 4.14),
+ libghc-safecopy-dev (>= 0.8),
+ libghc-safecopy-dev (<< 0.10),
+ libghc-safecopy-prof (>= 0.8),
+ libghc-safecopy-prof (<< 0.10),
+ libghc-web-routes-dev (>= 0.27),
+ libghc-web-routes-dev (<< 0.28),
+ libghc-web-routes-prof (>= 0.27),
+ libghc-web-routes-prof (<< 0.28),
+ libghc-web-routes-th-dev (>= 0.22),
+ libghc-web-routes-th-dev (<< 0.23),
+ libghc-web-routes-th-prof (>= 0.22),
+ libghc-web-routes-th-prof (<< 0.23),
+Build-Depends-Indep: ghc-doc,
+ libghc-aeson-doc,
+ libghc-boomerang-doc,
+ libghc-lens-doc,
+ libghc-safecopy-doc,
+ libghc-web-routes-doc,
+ libghc-web-routes-th-doc,
+Standards-Version: 3.9.6
+Homepage: http://www.github.com/Happstack/userid
+X-Description: The UserId type and useful instances for web development
+ Includes instances for SafeCopy, Lens, Boomerang, PathInfo and more
+
+Package: libghc-userid-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-userid-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-userid-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
