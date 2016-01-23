@@ -188,11 +188,10 @@ X-Description: Wiki engine backed by a git or darcs filestore
 Package: gitit
 Architecture: any
 Section: web
-Depends: ${haskell:Extra-Depends},
+Depends:
  ${misc:Depends},
  ${shlibs:Depends},
  libghc-gitit-data (= ${source:Version}),
- libghc-filestore-data,
  git | darcs | mercurial,
 Recommends: mime-support,
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
@@ -203,7 +202,6 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-gitit-dev
 Architecture: any
 Depends: ${haskell:Depends},
- ${haskell:Extra-Depends},
  ${misc:Depends},
  ${shlibs:Depends},
  libghc-gitit-data (= ${source:Version}),
@@ -243,11 +241,13 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-gitit-data
 Architecture: all
 Depends: ${misc:Depends},
+ ${haskell:Extra-Depends},
 Recommends: ${haskell:Recommends},
 Suggests: ${haskell:Suggests},
 Breaks: gitit (<< 0.10.6.3+dfsg-1),
 Replaces: gitit (<< 0.10.6.3+dfsg-1),
-Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+Description: ${haskell:ShortDescription} - Data files
  ${haskell:LongDescription}
  .
- ${haskell:Blurb}
+ This package contains auxillary data files to be used with gitit or
+ libghc-gitit-dev.
