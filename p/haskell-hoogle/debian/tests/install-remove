@@ -2,7 +2,7 @@
 
 set -e
 
-apt-get -y --purge remove libghc-void-doc
+apt-get -y --purge remove libghc-void-doc || true
 ret="$(hoogle absurd)"
 test "$ret" = "No results found"
 
