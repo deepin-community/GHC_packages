@@ -5,6 +5,11 @@ ghc (7.10.3-7) UNRELEASED; urgency=medium
   * Tighten build-depends on ghc; this does not build against 7.6 any more, so
     let's use the 7.8 already in backports.
 
+  [ Colin Watson ]
+  * Run /usr/lib/ghc-doc/gen_contents_index from ghc-doc.postinst with HOME
+    set to a temporary directory, so that it doesn't pick up stray user
+    configuration and so that it works reliably in autopkgtests.
+
  -- Gianfranco Costamagna <locutusofborg@debian.org>  Thu, 28 Jan 2016 12:58:01 +0100
 
 ghc (7.10.3-6) unstable; urgency=medium
