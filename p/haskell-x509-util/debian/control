@@ -1,0 +1,36 @@
+Source: haskell-x509-util
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.10),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-asn1-encoding-dev,
+ libghc-asn1-types-dev (>= 0.3),
+ libghc-crypto-pubkey-dev,
+ libghc-crypto-pubkey-types-dev,
+ libghc-cryptohash-dev,
+ libghc-pem-dev,
+ libghc-x509-dev (>= 1.5.0),
+ libghc-x509-store-dev,
+ libghc-x509-system-dev,
+ libghc-x509-validation-dev (>= 1.5.0),
+Standards-Version: 3.9.6
+Homepage: http://github.com/vincenthz/hs-certificate
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-x509-util
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-x509-util
+
+Package: x509-util
+Architecture: any
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
+Description: utility for X.509 certificates and chains
+ Utility to parse, show, validate, sign and produce X.509 certificates
+ and chains.
