@@ -1,34 +1,22 @@
 #!/usr/bin/make -f
 
-include /usr/share/cdbs/1/class/makefile.mk
-include /usr/share/cdbs/1/rules/debhelper.mk
+DEB_CABAL_PACKAGE = frown
+DEB_DEFAULT_COMPILER = ghc
 
-DEB_COMPRESS_EXCLUDE    = .pdf
-DEB_MAKE_BUILD_TARGET   = frown man
-DEB_MAKE_INSTALL_TARGET = install PREFIX="$(DEB_DESTDIR)usr" doc="$(DEB_DESTDIR)usr/share/doc/frown-doc"
-DEB_MAKE_CLEAN_TARGET   = distclean
-# DEB_MAKE_CHECK_TARGET   = test
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/hlibrary.mk
+
+build/frown:: build-ghc-stamp
 
 clean::
-	dh_testdir
-	rm -f Manual/Manual.pdf Manual/Manual.ps Manual/Manual.dvi Manual/Manual.tex
-	rm -rf Manual/html Manual/Manual[0-9]*.png  Manual/*_motif.gif
+	make -C Manual clean
+	rm -rf Manual/html
 
-common-install-prehook-arch::
-	dh_testdir
-	mkdir -p debian/tmp/usr/bin
+build/frown-doc::
+	make -C Manual
 
-common-install-prehook-indep::
-	dh_testdir
-	mkdir -p debian/tmp/usr/bin
+binary-fixup/frown-doc::
+	chmod -R a-x debian/frown-doc/usr/share/doc/frown-doc/examples
+	chmod -R a+X debian/frown-doc/usr/share/doc/frown-doc/examples
 
-binary-post-install/frown::
-	dh_testdir
-	rm debian/frown/usr/share/doc/frown/README
 
-binary-post-install/frown-doc::
-	rm debian/frown-doc/usr/share/doc/frown-doc/README
-	rm debian/frown-doc/usr/share/doc/frown-doc/examples/manual/Sessions.lhs
-	rm debian/frown-doc/usr/share/doc/frown-doc/examples/manual/TestFrown.lhs
-
-.PHONY: update-debian-control
