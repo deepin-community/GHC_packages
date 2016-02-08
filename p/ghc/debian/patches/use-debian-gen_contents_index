@@ -1,8 +1,8 @@
 Index: ghc/ghc.mk
 ===================================================================
---- ghc.orig/ghc.mk	2016-01-14 16:17:38.580310120 +0100
-+++ ghc/ghc.mk	2016-01-14 16:19:06.634093119 +0100
-@@ -810,7 +810,6 @@
+--- ghc.orig/ghc.mk	2016-02-08 11:31:04.941151303 +0100
++++ ghc/ghc.mk	2016-02-08 11:31:04.937151211 +0100
+@@ -808,7 +808,6 @@
  # Build the Haddock contents and index
  ifeq "$(HADDOCK_DOCS)" "YES"
  libraries/dist-haddock/index.html: $(haddock_INPLACE) $(ALL_HADDOCK_FILES)
@@ -10,7 +10,7 @@ Index: ghc/ghc.mk
  ifeq "$(phase)" "final"
  $(eval $(call all-target,library_doc_index,libraries/dist-haddock/index.html))
  endif
-@@ -931,12 +930,8 @@
+@@ -929,12 +928,8 @@
  	$(INSTALL_DIR) "$(DESTDIR)$(docdir)/html"
  	$(INSTALL_DOC) $(INSTALL_OPTS) docs/index.html "$(DESTDIR)$(docdir)/html"
  ifneq "$(INSTALL_LIBRARY_DOCS)" ""
@@ -24,7 +24,7 @@ Index: ghc/ghc.mk
  endif
  ifneq "$(INSTALL_HTML_DOC_DIRS)" ""
  # We need to filter out the directories so install doesn't choke on them
-@@ -1051,7 +1046,6 @@
+@@ -1049,7 +1044,6 @@
      mk/project.mk \
      mk/install.mk.in \
      bindist.mk \
