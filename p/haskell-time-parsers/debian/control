@@ -1,0 +1,74 @@
+Source: haskell-time-parsers
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-parsers-dev (>= 0.12.2.1),
+ libghc-parsers-dev (<< 0.13),
+ libghc-parsers-prof,
+ libghc-attoparsec-dev (>= 0.12.1.6),
+ libghc-attoparsec-dev (<< 0.14),
+ libghc-bifunctors-dev (>= 4.2.1),
+ libghc-bifunctors-dev (<< 5.2),
+ libghc-parsec3-dev (>= 3.1.9),
+ libghc-parsec3-dev (<< 3.2),
+ libghc-parsers-dev (>= 0.12.3),
+ libghc-tasty-dev (>= 0.10.1.2),
+ libghc-tasty-dev (<< 0.12),
+ libghc-tasty-hunit-dev (>= 0.9.2),
+ libghc-tasty-hunit-dev (<< 0.10),
+ libghc-text-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-parsers-doc,
+Standards-Version: 3.9.7
+Homepage: https://github.com/phadej/time-parsers#readme
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-time-parsers
+Vcs-Git: git://git.debian.org/git/pkg-haskell/DHG_packages.git
+X-Description: parsers for types in the time library
+ Parsers for parsing dates and times: Day, LocalTime, TimeOfDay,
+ TimeZone, UTCTime, ZonedTime
+
+Package: libghc-time-parsers-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-time-parsers-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-time-parsers-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
