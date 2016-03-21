@@ -4,3 +4,7 @@ DEB_SETUP_GHC6_CONFIGURE_ARGS = --ghc-options="+RTS -V0 -RTS"
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
+
+
+# With gtk2hs-buildtools, haddock needs a built tree
+build-haddock-stamp: build-ghc-stamp
