@@ -1,0 +1,52 @@
+Source: haskell-hledger-ui
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-hunit-dev,
+ libghc-base-compat-dev (>= 0.8.1),
+ libghc-brick-dev (>= 0.2),
+ libghc-brick-dev (<< 0.5),
+ libghc-cmdargs-dev (>= 0.8),
+ libghc-data-default-dev,
+ libghc-hledger-dev (>= 0.27),
+ libghc-hledger-dev (<< 0.28),
+ libghc-hledger-lib-dev (>= 0.27),
+ libghc-hledger-lib-dev (<< 0.28),
+ libghc-lens-dev (>= 4.12.3),
+ libghc-lens-dev (<< 4.14),
+ libghc-pretty-show-dev (>= 1.6.4),
+ libghc-safe-dev (>= 0.2),
+ libghc-split-dev (>= 0.1),
+ libghc-split-dev (<< 0.3),
+ libghc-vector-dev,
+ libghc-vty-dev (>= 5.2),
+ libghc-vty-dev (<< 5.5),
+Standards-Version: 3.9.7
+Homepage: http://hledger.org
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-hledger-ui
+Vcs-Git: git://git.debian.org/git/pkg-haskell/DHG_packages.git
+X-Description: Curses-style user interface for the hledger accounting tool
+ This is hledger's curses-style interface.
+ It is simpler and more convenient for browsing data than the
+ command-line interface, but lighter and faster than hledger-web.
+
+Package: hledger-ui
+Architecture: any
+Section: utils
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
