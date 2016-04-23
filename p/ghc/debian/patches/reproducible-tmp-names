@@ -6,8 +6,8 @@ and assume that is going to be unique.
 
 Index: ghc/compiler/main/SysTools.hs
 ===================================================================
---- ghc.orig/compiler/main/SysTools.hs	2016-04-19 09:26:40.087170969 +0200
-+++ ghc/compiler/main/SysTools.hs	2016-04-19 09:26:40.087170969 +0200
+--- ghc.orig/compiler/main/SysTools.hs	2016-04-23 17:57:12.812255430 +0200
++++ ghc/compiler/main/SysTools.hs	2016-04-23 17:57:12.808255337 +0200
 @@ -65,6 +65,7 @@
  import Util
  import DynFlags
@@ -16,7 +16,7 @@ Index: ghc/compiler/main/SysTools.hs
  
  import LlvmCodeGen.Base (llvmVersionStr, supportedLlvmVersion)
  
-@@ -1150,8 +1151,8 @@
+@@ -1158,8 +1159,8 @@
      mapping <- readIORef dir_ref
      case Map.lookup tmp_dir mapping of
          Nothing -> do
@@ -27,7 +27,7 @@ Index: ghc/compiler/main/SysTools.hs
              mask_ $ mkTempDir prefix
          Just dir -> return dir
    where
-@@ -1525,6 +1526,13 @@
+@@ -1575,6 +1576,13 @@
  getProcessID = System.Posix.Internals.c_getpid >>= return . fromIntegral
  #endif
  
