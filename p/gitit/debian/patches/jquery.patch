@@ -18,7 +18,19 @@ Index: gitit/src/Network/Gitit/Layout.hs
                             _                  -> base' ++ "/js/" ++ x
  
 -      scripts  = ["jquery-1.2.6.min.js", "jquery-ui-combined-1.6rc2.min.js", "footnotes.js"] ++ pgScripts layout
-+      scripts  = ["jquery.js", "jquery.ui.core.js", "jquery.ui.draggable.js", "jquery.ui.droppable.js", "jquery.ui.tabs.js", "footnotes.js"] ++ pgScripts layout
++      scripts  = ["jquery.min.js", "jquery-ui.min.js", "footnotes.js"] ++ pgScripts layout
        scriptLink x = script ! [src (prefixedScript x),
          thetype "text/javascript"] << noHtml
        javascriptlinks = renderHtmlFragment $ concatHtml $ map scriptLink scripts
+Index: gitit/data/templates/page.st
+===================================================================
+--- gitit.orig/data/templates/page.st
++++ gitit/data/templates/page.st
+@@ -9,6 +9,7 @@
+     <link href="$base$/_feed$pageUrl$" type="application/atom+xml" rel="alternate" title="$wikititle$ - $pagetitle$" />
+     $endif$
+     <title>$wikititle$ - $pagetitle$</title>
++    <link href="$base$/css/jquery-ui.min.css" rel="stylesheet" media="print" type= "text/css" />
+     $if(printable)$
+     <link href="$base$/css/print.css" rel="stylesheet" media="all" type= "text/css" />
+     $else$
