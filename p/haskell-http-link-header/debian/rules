@@ -6,3 +6,8 @@ DEB_DEFAULT_COMPILER = ghc
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
+
+# cabal requires the global (i.e., before any subcommand) --config-file switch
+# to change where it writes its config.  That's not currently supported with
+# Dh_Haskell.sh, so just point it to a writable HOME for now.
+export HOME=$(CURDIR)/debian/cabalconfig
