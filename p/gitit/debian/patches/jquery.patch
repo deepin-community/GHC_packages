@@ -1,0 +1,24 @@
+Index: gitit/data/templates/expire.st
+===================================================================
+--- gitit.orig/data/templates/expire.st
++++ gitit/data/templates/expire.st
+@@ -1,5 +1,5 @@
+ $if(usecache)$
+-<script type="text/javascript" src="$base$/js/jquery.hotkeys-0.7.9.min.js"></script>
++<script type="text/javascript" src="$base$/js/jquery.hotkeys.js"></script>
+ <script type="text/javascript">
+ /* <![CDATA[ */
+      \$(document).bind("keydown", "ctrl+r", function() {
+Index: gitit/src/Network/Gitit/Layout.hs
+===================================================================
+--- gitit.orig/src/Network/Gitit/Layout.hs
++++ gitit/src/Network/Gitit/Layout.hs
+@@ -78,7 +78,7 @@ filledPageTemplate base' cfg layout html
+                            'h':'t':'t':'p':_  -> x
+                            _                  -> base' ++ "/js/" ++ x
+ 
+-      scripts  = ["jquery-1.2.6.min.js", "jquery-ui-combined-1.6rc2.min.js", "footnotes.js"] ++ pgScripts layout
++      scripts  = ["jquery.js", "jquery.ui.core.js", "jquery.ui.draggable.js", "jquery.ui.droppable.js", "jquery.ui.tabs.js", "footnotes.js"] ++ pgScripts layout
+       scriptLink x = script ! [src (prefixedScript x),
+         thetype "text/javascript"] << noHtml
+       javascriptlinks = renderHtmlFragment $ concatHtml $ map scriptLink scripts

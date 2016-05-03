@@ -1,0 +1,79 @@
+Source: haskell-double-conversion
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: James McCoy <jamessan@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libdouble-conversion-dev,
+ libghc-test-framework-dev,
+ libghc-test-framework-quickcheck2-dev,
+ libghc-text-dev (>= 0.11.0.8),
+ libghc-text-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-text-doc,
+Standards-Version: 3.9.8
+Homepage: https://github.com/bos/double-conversion
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-double-conversion
+Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
+X-Description: Fast conversion between double precision floating point and text
+ A library that performs fast, accurate conversion between double
+ precision floating point and text.
+ .
+ This library is implemented as bindings to the C++
+ @double-conversion@ library written by Florian Loitsch at Google:
+ <http://code.google.com/p/double-conversion/>.
+ .
+ The 'Text' versions of these functions are about 30 times faster
+ than the default 'show' implementation for the 'Double' type.
+ .
+ The 'ByteString' versions are /slower/ than the 'Text' versions;
+ roughly half the speed.  (This seems to be due to the cost of
+ allocating 'ByteString' values via @malloc@.)
+ .
+ As a final note, be aware that the @bytestring-show@ package is
+ about 50% slower than simply using 'show'.
+
+Package: libghc-double-conversion-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+ libdouble-conversion-dev
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-double-conversion-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-double-conversion-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
