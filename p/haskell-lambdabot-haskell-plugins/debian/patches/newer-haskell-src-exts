@@ -53,7 +53,7 @@
  ---- combine function binding and lambda
 -optimizeD (FunBind [Match locat fname pats1 Nothing (UnGuardedRhs (Lambda _ pats2 rhs)) (BDecls [])])
 -        =  FunBind [Match locat fname (pats1 ++ pats2) Nothing (UnGuardedRhs rhs) (BDecls [])]
-+optimizeD (FunBind [Match locat fname pats1 Nothing (UnGuardedRhs (Lambda _ pats2 rhs)) Nothing)
++optimizeD (FunBind [Match locat fname pats1 Nothing (UnGuardedRhs (Lambda _ pats2 rhs)) Nothing])
 +        =  FunBind [Match locat fname (pats1 ++ pats2) Nothing (UnGuardedRhs rhs) Nothing]
  optimizeD x = x
  
