@@ -1,0 +1,65 @@
+Description: Do not use $SHELL
+ as $SHELL is the user's preferred interactive shell. We do not want this to
+ leak into the wrapper scripts.
+Author: Joachim Breitner <nomeata@debian.org>
+
+--- ghc-7.10.3.orig/driver/ghci/ghc.mk
++++ ghc-7.10.3/driver/ghci/ghc.mk
+@@ -21,7 +21,7 @@ install_driver_ghci:
+ 	$(call INSTALL_DIR,"$(DESTDIR)$(bindir)")
+ 	$(call removeFiles,                                "$(WRAPPER)")
+ 	$(CREATE_SCRIPT)                                   "$(WRAPPER)"
+-	echo '#!$(SHELL)'                               >> "$(WRAPPER)"
++	echo '#!/bin/sh'                                >> "$(WRAPPER)"
+ 	echo 'exec "$(bindir)/ghc-$(ProjectVersion)" --interactive "$$@"' >> "$(WRAPPER)"
+ 	$(EXECUTABLE_FILE)                                 "$(WRAPPER)"
+ 	$(call removeFiles,"$(DESTDIR)$(bindir)/ghci")
+@@ -56,7 +56,7 @@ install_driver_ghcii: GHCII_SCRIPT_VERSI
+ install_driver_ghcii:
+ 	$(call INSTALL_DIR,$(DESTDIR)$(bindir))
+ 	$(call removeFiles,"$(GHCII_SCRIPT)")
+-	echo "#!$(SHELL)"                                  >> $(GHCII_SCRIPT)
++	echo "#!/bin/sh"                                        >> $(GHCII_SCRIPT)
+ 	echo 'exec "$$(dirname "$$0")"/ghc --interactive "$$@"' >> $(GHCII_SCRIPT)
+ 	$(EXECUTABLE_FILE) $(GHCII_SCRIPT)
+ 	cp $(GHCII_SCRIPT) $(GHCII_SCRIPT_VERSIONED)
+--- ghc-7.10.3.orig/rules/shell-wrapper.mk
++++ ghc-7.10.3/rules/shell-wrapper.mk
+@@ -36,7 +36,7 @@ $$(INPLACE_WRAPPER): $$($1_$2_SHELL_WRAP
+ endif
+ $$(INPLACE_WRAPPER): $$($1_$2_INPLACE)
+ 	$$(call removeFiles,                                                    $$@)
+-	echo '#!$$(SHELL)'                                                   >> $$@
++	echo '#!/bin/sh'                                                     >> $$@
+ 	echo 'executablename="$$(TOP)/$$<"'                                  >> $$@
+ 	echo 'datadir="$$(TOP)/$$(INPLACE_LIB)"'                             >> $$@
+ 	echo 'bindir="$$(TOP)/$$(INPLACE_BIN)"'                              >> $$@
+@@ -74,7 +74,7 @@ install_$1_$2_wrapper:
+ 	$$(call INSTALL_DIR,"$$(DESTDIR)$$(bindir)")
+ 	$$(call removeFiles,                                        "$$(WRAPPER)")
+ 	$$(CREATE_SCRIPT)                                           "$$(WRAPPER)"
+-	echo '#!$$(SHELL)'                                       >> "$$(WRAPPER)"
++	echo '#!/bin/sh'                                         >> "$$(WRAPPER)"
+ 	echo 'exedir="$$(ghclibexecdir)/bin"'                    >> "$$(WRAPPER)"
+ 	echo 'exeprog="$$($1_$2_PROG)"'                          >> "$$(WRAPPER)"
+ 	echo 'executablename="$$$$exedir/$$$$exeprog"'           >> "$$(WRAPPER)"
+@@ -99,7 +99,7 @@ BINDIST_EXTRAS += $$($1_$2_BINDIST_WRAPP
+ 
+ $$($1_$2_BINDIST_WRAPPER): $1/$2/build/tmp/$$($1_$2_PROG)
+ 	$$(call removeFiles,                                                  $$@)
+-	echo '#!$$(SHELL)'                                                 >> $$@
++	echo '#!/bin/sh'                                                    >> $$@
+ ifeq "$$(DYNAMIC_GHC_PROGRAMS)" "YES"
+ 	echo '$$(call prependLibraryPath,$$($1_$2_DEP_LIB_REL_DIRS_SEARCHPATH))' >> $$@
+ endif
+--- ghc-7.10.3.orig/utils/mkdirhier/ghc.mk
++++ ghc-7.10.3/utils/mkdirhier/ghc.mk
+@@ -15,7 +15,7 @@ $(MKDIRHIER) : utils/mkdirhier/mkdirhier
+ 	-mkdir $(INPLACE_BIN)
+ 	-mkdir $(INPLACE_LIB)
+ 	$(call removeFiles,$@)
+-	echo '#!$(SHELL)'  		 >> $@
++	echo '#!/bin/sh'		 >> $@
+ 	cat utils/mkdirhier/mkdirhier.sh >> $@
+ 	$(EXECUTABLE_FILE) $@
+ 

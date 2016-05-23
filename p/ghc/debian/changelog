@@ -6,9 +6,8 @@ ghc (7.10.3-8) unstable; urgency=medium
   * Convert `debian/copyright' to dep5 format
 
   [ Joachim Breitner ]
-  * In debian/rules, set SHELL to /bin/sh, as this variable is used to create
-    the shebang in the generated wrapper scripts, and we don't want /bin/bash
-    there just because whoever built the package is using that.
+  * Ensure that the shebang in the generated wrapper scripts use /bin/sh, and
+    not the value of SHELL of the current user.
 
  -- Joachim Breitner <nomeata@debian.org>  Mon, 23 May 2016 12:44:05 +0200
 
