@@ -1,10 +1,27 @@
-frown (0.6.2.3-2) UNRELEASED; urgency=medium
+frown (0.6.2.3-2) unstable; urgency=medium
 
+  [ Dmitry Bogatov ]
   * Use secure (https) uri in Vcs-Git field in 'debian/control'
   * Bump standards version to 3.9.8 (no changes needed)
   * Convert `debian/copyright' to dep5 format
 
- -- Dmitry Bogatov <KAction@gnu.org>  Tue, 10 May 2016 09:34:42 +0300
+  [ Ilias Tsitsimpis ]
+  * Propagate the changes from experimental (0.6.2.3-1) to unstable
+  * Drop the 04_manual-typos patch.
+    The above patch produces the wrong output by trying to add
+    backslashes where they are not needed.
+  * Disable dbgsym generation.
+    GHC cannot produce debugging symbols, so the dbgsym package ends
+    up being empty.
+  * Add patch 'fix-pdf-generation'.
+    Due to an error in the way Makefile produces the doc files, the
+    Manual.pdf file was not generated correctly. This has been fixed
+    by patching the Makefile.
+  * Update d/copyright file with missing copyright notices.
+    Some files under 'Examples/Haskell' directory are distributed under
+    the Glasgow Haskell Compiler License.
+
+ -- Ilias Tsitsimpis <i.tsitsimpis@gmail.com>  Sun, 22 May 2016 14:40:46 +0300
 
 frown (0.6.2.3-1) experimental; urgency=medium
 

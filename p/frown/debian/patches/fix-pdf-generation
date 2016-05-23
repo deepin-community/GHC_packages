@@ -1,0 +1,30 @@
+Description: Do not override the Manual.dvi file
+ When generating the html pages, the Manual.dvi file gets overwritten
+ meaning that the next time make will be run, the Manual.pdf file will
+ be generated again. In addition, since this dvi file has now been
+ produced using different flags for the lhs2Tex program, the result
+ is different from the expected one. Fix that by making the html
+ target depend on the Manual.dvi one and not rebuilting that file.
+Author: Ilias Tsitsimpis <i.tsitsimpis@gmail.com>
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+Index: b/Manual/Makefile
+===================================================================
+--- a/Manual/Makefile
++++ b/Manual/Makefile
+@@ -102,14 +102,7 @@ gv : $(file).ps
+ acro : $(file).pdf
+ 	/opt/Acrobat7/acroread $(file).pdf &
+ 
+-html: $(file).lhs $(file).fmt $(sessions)
+-	lhs2TeX --math $(file).lhs > $(file).tex
+-	latex $(file)
+-	bibtex $(file)
+-	latex $(file)
+-	latex $(file)
+-	latex $(file)
+-# the above commands are only used to produce a `.bbl' file
++html: $(file).lhs $(file).fmt $(file).dvi $(sessions)
+ 	lhs2TeX --tt -lhtml=True $(file).lhs > $(file).tex
+ 	hevea -fix $(file).tex
+ 	hevea -fix $(file).tex
