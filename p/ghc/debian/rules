@@ -18,6 +18,10 @@
 # ghc-cabal expects it to be available.
 export HOME = /homedoesnotexistatbuildtime
 
+# Set SHELL to /bin/sh. rules/shell-wrapper.mk uses this variable to set the
+# shebang in the generated wrapper scripts.
+export SHELL = /bin/sh
+
 # From /usr/share/doc/autotools-dev/examples/rules.gz:
 export DEB_HOST_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 export DEB_BUILD_GNU_TYPE ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
