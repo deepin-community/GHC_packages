@@ -1,0 +1,72 @@
+Source: haskell-http-media
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Justin Geibel <jtgeibel@gmail.com>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-case-insensitive-dev (>= 1.0),
+ libghc-case-insensitive-dev (<< 1.3),
+ libghc-case-insensitive-prof,
+ libghc-quickcheck2-dev (>= 2.6),
+ libghc-quickcheck2-dev (<< 2.9),
+ libghc-test-framework-dev (>= 0.8),
+ libghc-test-framework-dev (<< 0.9),
+ libghc-test-framework-quickcheck2-dev (>= 0.3),
+ libghc-test-framework-quickcheck2-dev (<< 0.4),
+Build-Depends-Indep: ghc-doc,
+ libghc-case-insensitive-doc,
+Standards-Version: 3.9.8
+Homepage: https://github.com/zmthy/http-media
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-http-media
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
+X-Description: processing HTTP Content-Type and Accept headers
+ This library is intended to be a comprehensive solution to parsing and
+ selecting quality-indexed values in HTTP headers. It is capable of parsing
+ both media types and language parameters from the Accept and Content header
+ families, and can be extended to match against other accept headers as well.
+ Selecting the appropriate header value is achieved by comparing a list of
+ server options against the quality-indexed values supplied by the client.
+
+Package: libghc-http-media-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-http-media-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-http-media-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

@@ -1,0 +1,24 @@
+#!/usr/bin/make -f
+
+DEB_CABAL_PACKAGE = frown
+DEB_DEFAULT_COMPILER = ghc
+
+# GHC cannot produce debugging symbols so the dbgsym package
+# ends up being empty, so disable generating it.
+DEB_DH_STRIP_ARGS := --no-automatic-dbgsym
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/hlibrary.mk
+
+build/frown:: build-ghc-stamp
+
+clean::
+	make -C Manual clean
+	rm -rf Manual/html
+
+build/frown-doc::
+	make -C Manual
+
+binary-fixup/frown-doc::
+	chmod -R a-x debian/frown-doc/usr/share/doc/frown-doc/examples
+	chmod -R a+X debian/frown-doc/usr/share/doc/frown-doc/examples

@@ -1,0 +1,20 @@
+Subject: delay >1sec between testing mtime
+From: Steven Chamberlain <steven@pyro.eu.org>
+Date: Mon, 22 Feb 2016 00:03:42 +0000
+
+Not all filesystems store mtime with sub-second precision.  So,
+delay for at least 1 second between sampling the test file's mtime.
+
+--- ./test/Test/Mockery/DirectorySpec.hs.orig	2015-08-08 03:50:38.000000000 +0100
++++ ./test/Test/Mockery/DirectorySpec.hs	2016-02-21 23:59:34.327640846 +0000
+@@ -35,8 +35,8 @@
+         before_ (writeFile name "bar") $ do
+           it "updates modification time" $ do
+             t0 <- getModificationTime name
+-            threadDelay 10000
+-            whenTravis (threadDelay 1000000)
++            threadDelay 1000000
++            whenTravis (threadDelay 10000000)
+             touch name
+             t1 <- getModificationTime name
+             t0 `shouldSatisfy` (< t1)

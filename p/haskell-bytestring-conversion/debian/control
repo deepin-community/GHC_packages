@@ -1,0 +1,74 @@
+Source: haskell-bytestring-conversion
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: James McCoy <jamessan@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-attoparsec-dev (>= 0.10),
+ libghc-attoparsec-dev (<< 1.0),
+ libghc-attoparsec-prof,
+ libghc-case-insensitive-dev (>= 1.2),
+ libghc-case-insensitive-dev (<< 2.0),
+ libghc-case-insensitive-prof,
+ libghc-double-conversion-dev (>= 2.0),
+ libghc-double-conversion-dev (<< 3.0),
+ libghc-double-conversion-prof,
+ libghc-text-dev (>= 0.11),
+ libghc-text-dev (<< 2.0),
+ libghc-text-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-attoparsec-doc,
+ libghc-case-insensitive-doc,
+ libghc-double-conversion-doc,
+ libghc-text-doc,
+Standards-Version: 3.9.8
+Homepage: https://github.com/twittner/bytestring-conversion/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-bytestring-conversion
+Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
+X-Description: Type-classes to convert values to and from ByteString.
+ Defines the type-classes 'ToByteString' and 'FromByteString'
+ to convert values to and from ByteString.
+
+Package: libghc-bytestring-conversion-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-bytestring-conversion-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-bytestring-conversion-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

@@ -1,59 +1,57 @@
 Source: xmonad
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>, Ryan Kavanagh <rak@debian.org>, Louis Bettens <louis@bettens.info>, Per Olofsson <pelle@debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>,
+           Ryan Kavanagh <rak@debian.org>,
+           Louis Bettens <louis@bettens.info>,
+           Per Olofsson <pelle@debian.org>,
+           Dmitry Bogatov <KAction@gnu.org>
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
- cdbs,
- ghc,
- ghc-prof,
- libx11-dev,
- libxinerama-dev,
- libghc-x11-dev (>= 1.5),
- libghc-x11-dev (<< 1.7),
- libghc-x11-prof,
- libghc-data-default-dev,
- libghc-data-default-prof,
- libghc-extensible-exceptions-dev,
- libghc-extensible-exceptions-prof,
- libghc-mtl-dev,
- libghc-mtl-prof,
- libghc-setlocale-dev,
- libghc-setlocale-prof,
- libghc-utf8-string-dev (>= 0.3),
- libghc-utf8-string-dev (<< 1.1),
- libghc-utf8-string-prof,
- libghc-pandoc-dev (>= 1.10),
- libghc-regex-posix-dev,
- pandoc-data,
- libghc-x11-dev,
+Build-Depends: cdbs,
+               debhelper (>= 9),
+               ghc,
+               ghc-prof,
+               haskell-devscripts (>= 0.10),
+               libghc-data-default-dev,
+               libghc-data-default-prof,
+               libghc-extensible-exceptions-dev,
+               libghc-extensible-exceptions-prof,
+               libghc-mtl-dev,
+               libghc-mtl-prof,
+               libghc-pandoc-dev (>= 1.10),
+               libghc-regex-posix-dev,
+               libghc-setlocale-dev,
+               libghc-setlocale-prof,
+               libghc-utf8-string-dev (<< 1.1),
+               libghc-utf8-string-dev (>= 0.3),
+               libghc-utf8-string-prof,
+               libghc-x11-dev (<< 1.7),
+               libghc-x11-dev (>= 1.5),
+               libghc-x11-prof,
+               libx11-dev,
+               libxinerama-dev,
+               pandoc-data
 Build-Depends-Indep: ghc-doc,
- libghc-x11-doc,
- libghc-data-default-doc,
- libghc-extensible-exceptions-doc,
- libghc-mtl-doc,
- libghc-setlocale-doc,
- libghc-utf8-string-doc,
-Standards-Version: 3.9.6
+                     libghc-data-default-doc,
+                     libghc-extensible-exceptions-doc,
+                     libghc-mtl-doc,
+                     libghc-setlocale-doc,
+                     libghc-utf8-string-doc,
+                     libghc-x11-doc
+Standards-Version: 3.9.8
 Homepage: http://xmonad.org
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
-Vcs-Git: git://git.debian.org/git/pkg-haskell/DHG_packages.git
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
 
 Package: xmonad
 Architecture: any
 Section: x11
-Depends: ${shlibs:Depends},
- ${misc:Depends},
- x11-utils,
-Recommends: libghc-xmonad-dev,
- libghc-xmonad-doc,
- xfonts-base,
-Suggests: dmenu,
- gnome-session-flashback,
-Conflicts: xmonad-rebuild,
-Provides: x-window-manager,
-Replaces: xmonad-rebuild,
+Depends: x11-utils, ${misc:Depends}, ${shlibs:Depends}
+Recommends: libghc-xmonad-dev, libghc-xmonad-doc, xfonts-base
+Suggests: dmenu, gnome-session-flashback
+Conflicts: xmonad-rebuild
+Provides: x-window-manager
+Replaces: xmonad-rebuild
 Description: Lightweight X11 window manager written in Haskell
  Xmonad is a minimalist tiling window manager for X, written in
  Haskell.  Windows are managed using automatic layout algorithms,
@@ -73,15 +71,14 @@ Description: Lightweight X11 window manager written in Haskell
 
 Package: libghc-xmonad-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
- ${misc:Depends},
- libx11-dev,
- libxinerama-dev,
-Recommends: ${haskell:Recommends},
- libghc-xmonad-contrib-dev,
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Depends: libx11-dev,
+         libxinerama-dev,
+         ${haskell:Depends},
+         ${misc:Depends},
+         ${shlibs:Depends}
+Recommends: libghc-xmonad-contrib-dev, ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: Lightweight X11 window manager${haskell:ShortBlurb}
  Xmonad is a minimalist tiling window manager for X, written in
  Haskell.  Windows are managed using automatic layout algorithms,
@@ -101,10 +98,9 @@ Description: Lightweight X11 window manager${haskell:ShortBlurb}
 
 Package: libghc-xmonad-prof
 Architecture: any
-Depends: ${haskell:Depends},
- ${misc:Depends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Depends: ${haskell:Depends}, ${misc:Depends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: Lightweight X11 window manager${haskell:ShortBlurb}
  Xmonad is a minimalist tiling window manager for X, written in
  Haskell.  Windows are managed using automatic layout algorithms,
@@ -125,12 +121,9 @@ Description: Lightweight X11 window manager${haskell:ShortBlurb}
 Package: libghc-xmonad-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
- libghc-xmonad-contrib-doc,
-Suggests: ${haskell:Suggests},
+Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Recommends: libghc-xmonad-contrib-doc, ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: Lightweight X11 window manager${haskell:ShortBlurb}
  Xmonad is a minimalist tiling window manager for X, written in
  Haskell.  Windows are managed using automatic layout algorithms,

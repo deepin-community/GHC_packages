@@ -10,7 +10,7 @@ Build-Depends: debhelper (>= 9),
  ghc-prof,
  pkg-config,
  liblua5.1-0-dev,
- libluajit-5.1-dev [!arm64 !ppc64el !s390x],
+ libluajit-5.1-dev [amd64 armel armhf i386 mips mipsel powerpc hurd-i386 kfreebsd-i386],
  libghc-hspec-dev,
  libghc-hspec-contrib-dev,
  libghc-hunit-dev,
@@ -18,10 +18,10 @@ Build-Depends: debhelper (>= 9),
  libghc-quickcheck2-dev (>= 2.7),
  libghc-quickcheck-instances-dev,
 Build-Depends-Indep: ghc-doc,
-Standards-Version: 3.9.6
+Standards-Version: 3.9.8
 Homepage: http://hackage.haskell.org/package/hslua
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
-Vcs-Git: git://git.debian.org/git/pkg-haskell/DHG_packages.git
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
 X-Description: Lua language interpreter embedding in Haskell
  The Scripting.Lua module is a wrapper of Lua language interpreter as
  described in www.lua.org.
@@ -32,7 +32,7 @@ Depends: ${haskell:Depends},
  ${shlibs:Depends},
  ${misc:Depends},
  liblua5.1-0-dev,
- libluajit-5.1-dev [!arm64 !ppc64el !s390x],
+ libluajit-5.1-dev [amd64 armel armhf i386 mips mipsel powerpc hurd-i386 kfreebsd-i386],
 Recommends: ${haskell:Recommends},
 Suggests: ${haskell:Suggests},
 Provides: ${haskell:Provides},

@@ -3,19 +3,20 @@ Section: haskell
 Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Andy Bailey <bailey@akamai.com>, Clint Adams <clint@debian.org>
-Standards-Version: 3.9.6
+Standards-Version: 3.9.8
 Build-Depends: debhelper (>= 9)
   , cdbs
   , haskell-devscripts (>= 0.10)
   , ghc
   , ghc-prof
+  , libinotify-dev [kfreebsd-any]
 Build-Depends-Indep: ghc-doc
 Homepage: http://hackage.haskell.org/package/hinotify
-Vcs-Git: git://git.debian.org/git/pkg-haskell/DHG_packages.git
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
 
 Package: libghc-hinotify-dev
-Architecture: linux-any
+Architecture: linux-any kfreebsd-any
 Depends: ${haskell:Depends}
   , ${shlibs:Depends}
   , ${misc:Depends}
@@ -32,7 +33,7 @@ Description: Haskell inotify library${haskell:ShortBlurb}
 
 
 Package: libghc-hinotify-prof
-Architecture: linux-any
+Architecture: linux-any kfreebsd-any
 Depends: ${haskell:Depends}
   , ${misc:Depends}
 Provides: ${haskell:Provides}

@@ -1,0 +1,33 @@
+--- a/cbits/hs-double-conversion.cc
++++ b/cbits/hs-double-conversion.cc
+@@ -1,4 +1,4 @@
+-#include "double-conversion.h"
++#include "double-conversion/double-conversion.h"
+ #include "hs-double-conversion.h"
+ #include <stdio.h>
+ 
+--- a/double-conversion.cabal
++++ b/double-conversion.cabal
+@@ -62,19 +62,12 @@
+ library
+   c-sources:
+     cbits/hs-double-conversion.cc
+-    double-conversion/src/bignum.cc
+-    double-conversion/src/bignum-dtoa.cc
+-    double-conversion/src/cached-powers.cc
+-    double-conversion/src/diy-fp.cc
+-    double-conversion/src/double-conversion.cc
+-    double-conversion/src/fast-dtoa.cc
+-    double-conversion/src/fixed-dtoa.cc
+-    double-conversion/src/strtod.cc
+ 
+-  extra-libraries: stdc++
++  extra-libraries:
++    stdc++
++    double-conversion
+ 
+   include-dirs:
+-    double-conversion/src
+     include
+ 
+   exposed-modules:

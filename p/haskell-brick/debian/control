@@ -1,0 +1,81 @@
+Source: haskell-brick
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-contravariant-dev,
+ libghc-contravariant-prof,
+ libghc-data-default-dev,
+ libghc-data-default-prof,
+ libghc-lens-dev,
+ libghc-lens-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+ libghc-text-zipper-dev (>= 0.2.1),
+ libghc-text-zipper-prof,
+ libghc-vector-dev,
+ libghc-vector-prof,
+ libghc-vty-dev (>= 5.3.1),
+ libghc-vty-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-contravariant-doc,
+ libghc-data-default-doc,
+ libghc-lens-doc,
+ libghc-text-doc,
+ libghc-text-zipper-doc,
+ libghc-vector-doc,
+ libghc-vty-doc,
+Standards-Version: 3.9.8
+Homepage: https://github.com/jtdaugherty/brick/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-brick
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
+X-Description: declarative terminal user interface library
+ Write terminal applications painlessly with brick! You write an
+ event handler and a drawing function and the library does the rest.
+ .
+ Brick is the successor to vty-ui.
+
+Package: libghc-brick-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-brick-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-brick-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

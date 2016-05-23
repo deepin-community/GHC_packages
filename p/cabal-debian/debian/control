@@ -3,51 +3,51 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Clint Adams <clint@debian.org>, Dmitry Bogatov <KAction@gnu.org>
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- cdbs,
- haskell-devscripts (>= 0.10),
- ghc,
- ghc-prof,
- libghc-bifunctors-dev,
- libghc-lens-dev,
- libghc-debian-dev (>> 3.87),
- libghc-diff-dev (>= 0.3.1),
- libghc-exceptions-dev,
- libghc-hsemail-dev,
- libghc-hunit-dev,
- libghc-memoize-dev (>= 0.7),
- libghc-mtl-dev,
- libghc-parsec3-dev,
- libghc-puremd5-dev,
- libghc-regex-tdfa-dev,
- libghc-set-extra-dev,
- libghc-syb-dev,
- libghc-text-dev,
- libghc-unixutils-dev (>= 1.53),
- libghc-utf8-string-dev,
- libghc-cabal-dev (>= 1.19),
- libghc-data-default-dev,
- libghc-network-uri-dev,
- libghc-newtype-generics-dev,
- libghc-optparse-applicative-dev (>= 0.11),
- libghc-optparse-applicative-dev (<< 0.12),
- libghc-ansi-wl-pprint-dev (>= 0.6),
- libghc-ansi-wl-pprint-dev (<< 0.7),
- libghc-prettyclass-dev,
-Standards-Version: 3.9.6
+Build-Depends: cdbs,
+               debhelper (>= 9),
+               ghc,
+               haskell-devscripts (>= 0.10),
+               libghc-ansi-wl-pprint-dev (<< 0.7),
+               libghc-ansi-wl-pprint-dev (>= 0.6),
+               libghc-bifunctors-dev,
+               libghc-cabal-dev (>= 1.19),
+               libghc-data-default-dev,
+               libghc-debian-dev (>= 3.89),
+               libghc-debian-dev (>> 3.87),
+               libghc-diff-dev (>= 0.3.1),
+               libghc-exceptions-dev,
+               libghc-hsemail-dev,
+               libghc-hunit-dev,
+               libghc-lens-dev,
+               libghc-memoize-dev (>= 0.7),
+               libghc-mtl-dev,
+               libghc-network-uri-dev,
+               libghc-newtype-generics-dev,
+               libghc-newtype-generics-dev (>= 0.4),
+               libghc-optparse-applicative-dev (>= 0.11),
+               libghc-parsec3-dev,
+               libghc-process-dev,
+               libghc-puremd5-dev,
+               libghc-regex-tdfa-dev,
+               libghc-set-extra-dev,
+               libghc-syb-dev,
+               libghc-text-dev,
+               libghc-unixutils-dev (>= 1.53),
+               libghc-utf8-string-dev
+Standards-Version: 3.9.8
 Homepage: https://github.com/ddssff/cabal-debian
-Vcs-Git: git://git.debian.org/git/pkg-haskell/DHG_packages.git
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
 
 Package: cabal-debian
 Architecture: any
 Section: utils
-Depends: ${shlibs:Depends},
- ${haskell:Depends},
- ${misc:Depends},
- debhelper (>= 9),
-Recommends: apt-file,
-Conflicts: haskell-debian-utils (<< 3.59),
+Depends: debhelper (>= 9),
+         ${haskell:Depends},
+         ${misc:Depends},
+         ${shlibs:Depends}
+Recommends: apt-file
+Conflicts: haskell-debian-utils (<< 3.59)
 Description: Create a debianization for a cabal package
  Tool for creating debianizations of Haskell packages based on the .cabal
  file.  If apt-file is installed it will use it to discover what is the

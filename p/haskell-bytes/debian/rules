@@ -2,5 +2,8 @@
 
 DEB_ENABLE_TESTS = yes
 
+# Fails on armel
+DEB_SETUP_GHC_CONFIGURE_ARGS += -f-test-doctests
+
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk

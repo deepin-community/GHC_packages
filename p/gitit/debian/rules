@@ -18,5 +18,10 @@ endif
 
 build/gitit:: $(MANPAGES)
 
+install/libghc-gitit-data::
+	dh_haskell_depends -plibghc-gitit-data # for haskell:Extra-Depends substvar
+
+
 binary-post-install/libghc-gitit-data::
-	dh_linktree -p$(cdbs_curpkg)
+	chmod +x debian/libghc-gitit-data/usr/share/gitit/data/post-update
+	dh_linktree -plibghc-gitit-data

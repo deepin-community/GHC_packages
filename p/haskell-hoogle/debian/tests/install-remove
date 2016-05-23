@@ -2,14 +2,14 @@
 
 set -e
 
-apt-get -y --purge remove libghc-void-doc
-ret="$(hoogle absurd)"
+apt-get -y --purge remove libghc-setlocale-doc
+ret="$(hoogle categoryToCInt)"
 test "$ret" = "No results found"
 
-apt-get -y install libghc-void-doc
-ret="$(hoogle absurd)"
-test "$ret" = "Data.Void absurd :: Void -> a"
+apt-get -y install libghc-setlocale-doc
+ret="$(hoogle categoryToCInt)"
+test "$ret" = "System.Locale.SetLocale categoryToCInt :: Category -> CInt"
 
-apt-get -y --purge remove libghc-void-doc
-ret="$(hoogle absurd)"
+apt-get -y --purge remove libghc-setlocale-doc
+ret="$(hoogle categoryToCInt)"
 test "$ret" = "No results found"

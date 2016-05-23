@@ -1,8 +1,19 @@
 #!/usr/bin/make -f
 
-ifneq (,$(filter $(DEB_BUILD_ARCH),arm64 ppc64el s390x))
+ifeq (,$(filter $(DEB_BUILD_ARCH),amd64 armel armhf i386 mips mipsel powerpc hurd-i386 kfreebsd-i386))
 DEB_SETUP_GHC_CONFIGURE_ARGS += --flags=-luajit
+else
+DEB_SETUP_GHC_CONFIGURE_ARGS += --flags=luajit
 endif
+
+# To avoid duplicating the architecture data from debian/control, check for
+# existence of luajit here. But this would do the wrong thing in a hypothetical
+# unclean environment. So we do duplicate :-(
+#ifeq (0,$(shell pkg-config --exists luajit; echo $$?))
+#DEB_SETUP_GHC_CONFIGURE_ARGS += --flags=luajit
+#else
+#DEB_SETUP_GHC_CONFIGURE_ARGS += --flags=-luajit
+#endif
 
 DEB_ENABLE_TESTS = yes
 

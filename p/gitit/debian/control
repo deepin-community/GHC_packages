@@ -4,17 +4,17 @@ Uploaders: Giovanni Mascellani <gio@debian.org>, Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
 Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.9),
- dh-linktree,
+ haskell-devscripts (>= 0.10.2.3),
  cdbs,
+ dh-linktree,
  xsltproc,
  pandoc,
  docbook-xsl,
- ghc,
- ghc-prof,
  libjs-jquery,
  libjs-jquery-ui,
  libjs-jquery-hotkeys,
+ ghc,
+ ghc-prof,
  libghc-configfile-dev (>= 1),
  libghc-configfile-dev (<< 1.2),
  libghc-configfile-prof,
@@ -28,7 +28,8 @@ Build-Depends: debhelper (>= 9),
  libghc-sha-dev (<< 1.7),
  libghc-sha-prof,
  libghc-aeson-dev (>= 0.7),
- libghc-aeson-dev (<< 0.10),
+ libghc-aeson-dev (<< 0.11),
+ libghc-aeson-dev,
  libghc-aeson-prof,
  libghc-base64-bytestring-dev (>= 0.1),
  libghc-base64-bytestring-dev (<< 1.1),
@@ -51,7 +52,8 @@ Build-Depends: debhelper (>= 9),
  libghc-highlighting-kate-dev (<< 0.7),
  libghc-highlighting-kate-prof,
  libghc-hoauth2-dev (>= 0.4.2),
- libghc-hoauth2-dev (<< 0.5),
+ libghc-hoauth2-dev (<< 0.6),
+ libghc-hoauth2-dev,
  libghc-hoauth2-prof,
  libghc-hslogger-dev (>= 1),
  libghc-hslogger-dev (<< 1.3),
@@ -77,10 +79,10 @@ Build-Depends: debhelper (>= 9),
  libghc-old-time-dev,
  libghc-old-time-prof,
  libghc-pandoc-dev (>= 1.12.4),
- libghc-pandoc-dev (<< 1.16),
+ libghc-pandoc-dev (<< 1.17),
  libghc-pandoc-prof,
  libghc-pandoc-types-dev (>= 1.12.3),
- libghc-pandoc-types-dev (<< 1.13),
+ libghc-pandoc-types-dev (<< 1.17),
  libghc-pandoc-types-prof,
  libghc-parsec3-dev,
  libghc-parsec3-prof,
@@ -119,6 +121,8 @@ Build-Depends: debhelper (>= 9),
  libghc-zlib-dev (>= 0.5),
  libghc-zlib-dev (<< 0.7),
  libghc-zlib-prof,
+ libghc-http-dev (>= 1:4000.0),
+ libghc-http-dev (<< 1:4000.4),
  libghc-http-dev,
  libghc-hslogger-dev,
  libghc-url-dev,
@@ -163,14 +167,14 @@ Build-Depends-Indep: ghc-doc,
  libghc-xml-doc,
  libghc-xss-sanitize-doc,
  libghc-zlib-doc,
-Standards-Version: 3.9.6
+Standards-Version: 3.9.8
 Homepage: http://gitit.net
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-gitit
-Vcs-Git: git://git.debian.org/git/pkg-haskell/DHG_packages.git
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
 X-Description: Wiki engine backed by a git or darcs filestore
  Gitit is a wiki backed by a git or darcs filestore. Pages and uploaded files
- can be modified either directly via the VCS’s command-line tools or through
- the wiki’s web interface. Pandoc is used for markup processing, so pages may
+ can be modified either directly via the VCS's command-line tools or through
+ the wiki's web interface. Pandoc is used for markup processing, so pages may
  be written in (extended) markdown, reStructuredText, LaTeX, HTML, or literate
  Haskell, and exported in ten different formats, including LaTeX, ConTeXt,
  DocBook, RTF, OpenOffice ODT, and MediaWiki markup.
@@ -192,7 +196,7 @@ X-Description: Wiki engine backed by a git or darcs filestore
 Package: gitit
 Architecture: any
 Section: web
-Depends: ${haskell:Extra-Depends},
+Depends:
  ${misc:Depends},
  ${shlibs:Depends},
  libghc-gitit-data (= ${source:Version}),
@@ -206,7 +210,6 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-gitit-dev
 Architecture: any
 Depends: ${haskell:Depends},
- ${haskell:Extra-Depends},
  ${misc:Depends},
  ${shlibs:Depends},
  libghc-gitit-data (= ${source:Version}),
@@ -246,11 +249,16 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-gitit-data
 Architecture: all
 Depends: ${misc:Depends},
+ ${haskell:Extra-Depends},
+ libjs-jquery,
+ libjs-jquery-ui,
+ libjs-jquery-hotkeys,
 Recommends: ${haskell:Recommends},
 Suggests: ${haskell:Suggests},
 Breaks: gitit (<< 0.10.6.3+dfsg-1),
 Replaces: gitit (<< 0.10.6.3+dfsg-1),
-Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+Description: ${haskell:ShortDescription} - Data files
  ${haskell:LongDescription}
  .
- ${haskell:Blurb}
+ This package contains auxillary data files to be used with gitit or
+ libghc-gitit-dev.

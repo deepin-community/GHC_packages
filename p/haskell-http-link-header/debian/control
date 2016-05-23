@@ -1,0 +1,77 @@
+Source: haskell-http-link-header
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: James McCoy <jamessan@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ cabal-install,
+ ghc,
+ ghc-prof,
+ libghc-attoparsec-dev,
+ libghc-attoparsec-prof,
+ libghc-bytestring-conversion-dev,
+ libghc-bytestring-conversion-prof,
+ libghc-errors-dev,
+ libghc-errors-prof,
+ libghc-hspec-dev,
+ libghc-hspec-attoparsec-dev,
+ libghc-network-uri-dev,
+ libghc-network-uri-prof,
+ libghc-quickcheck2-dev,
+ libghc-text-dev,
+ libghc-text-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-attoparsec-doc,
+ libghc-bytestring-conversion-doc,
+ libghc-errors-doc,
+ libghc-network-uri-doc,
+ libghc-text-doc,
+Standards-Version: 3.9.8
+Homepage: https://github.com/myfreeweb/http-link-header
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-http-link-header
+Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
+X-Description: parser/writer for RFC 5988's HTTP Link header
+ Library for parsing and writing the HTTP Link header as specified in RFC 5988
+ "Web Linking".
+
+Package: libghc-http-link-header-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-http-link-header-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-http-link-header-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

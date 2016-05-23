@@ -1,0 +1,141 @@
+Source: haskell-simple
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-aeson-dev,
+ libghc-aeson-prof,
+ libghc-base64-bytestring-dev,
+ libghc-base64-bytestring-prof,
+ libghc-blaze-builder-dev,
+ libghc-blaze-builder-prof,
+ libghc-bytestring-dev,
+ libghc-bytestring-prof,
+ libghc-directory-dev,
+ libghc-directory-prof,
+ libghc-filepath-dev,
+ libghc-filepath-prof,
+ libghc-http-types-dev,
+ libghc-http-types-prof,
+ libghc-mime-types-dev,
+ libghc-mime-types-prof,
+ libghc-monad-control-dev (>= 1.0.0.0),
+ libghc-monad-control-prof,
+ libghc-mtl-dev,
+ libghc-mtl-prof,
+ libghc-simple-templates-dev (>= 0.7.0),
+ libghc-simple-templates-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+ libghc-transformers-dev,
+ libghc-transformers-prof,
+ libghc-transformers-base-dev,
+ libghc-transformers-base-prof,
+ libghc-unordered-containers-dev,
+ libghc-unordered-containers-prof,
+ libghc-vector-dev,
+ libghc-vector-prof,
+ libghc-wai-dev (>= 3.0),
+ libghc-wai-prof,
+ libghc-wai-extra-dev,
+ libghc-wai-extra-prof,
+ libghc-attoparsec-dev,
+ libghc-cmdargs-dev,
+ libghc-process-dev,
+ libghc-setenv-dev,
+ libghc-hspec-dev,
+ libghc-hspec-contrib-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-aeson-doc,
+ libghc-base64-bytestring-doc,
+ libghc-blaze-builder-doc,
+ libghc-bytestring-doc,
+ libghc-directory-doc,
+ libghc-filepath-doc,
+ libghc-http-types-doc,
+ libghc-mime-types-doc,
+ libghc-monad-control-doc,
+ libghc-mtl-doc,
+ libghc-simple-templates-doc,
+ libghc-text-doc,
+ libghc-transformers-doc,
+ libghc-transformers-base-doc,
+ libghc-unordered-containers-doc,
+ libghc-vector-doc,
+ libghc-wai-doc,
+ libghc-wai-extra-doc,
+Standards-Version: 3.9.8
+Homepage: http://simple.cx
+Vcs-Browser: http://darcs.debian.org/cgi-bin/darcsweb.cgi?r=pkg-haskell/haskell-simple
+Vcs-Darcs: http://darcs.debian.org/pkg-haskell/haskell-simple
+X-Description: minimalist web framework for the WAI server interface
+ Simple is a "framework-less" web framework for Haskell web applications
+ based on the WAI server interface (f.ex. for use with the warp server).
+ Simple does not enforce a particular structure or paradigm for web
+ applications. Rather, Simple contains tools to help you create your own
+ patterns (or re-create existing ones). Simple is minimalist, providing a
+ lightweight base - the most basic Simple app is little more than a WAI
+ 'Application' with some routing logic. Everything else (f.ex. authentication,
+ controllers, persistence, caching, etc.) is provided in composable units, so
+ you can include only the ones you need in your app, and easily replace
+ them with your own components.
+
+Package: libghc-simple-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-simple-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-simple-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: simple
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+ libghc-simple-dev
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

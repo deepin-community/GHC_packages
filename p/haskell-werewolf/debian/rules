@@ -1,0 +1,15 @@
+#!/usr/bin/make -f
+
+DEB_CABAL_PACKAGE = werewolf
+DEB_DEFAULT_COMPILER = ghc
+
+ifeq (yes,$(shell test -e /usr/bin/ghci && echo yes))
+ifeq (yes,$(shell ghc --info | grep -q 'Support SMP.*YES' && echo yes))
+DEB_ENABLE_TESTS := yes
+endif
+endif
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/hlibrary.mk
+
+build/werewolf:: build-ghc-stamp

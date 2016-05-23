@@ -23,7 +23,10 @@ set -e
 case "$1" in
     triggered|configure)
 	if test -x /usr/bin/ghc-pkg; then /usr/bin/ghc-pkg recache --global; fi
-        /usr/lib/ghc-doc/gen_contents_index
+	tmpdir="$(mktemp -d)"
+	cleanup () { rmdir "$tmpdir"; }
+	trap cleanup EXIT
+	HOME="$tmpdir" /usr/lib/ghc-doc/gen_contents_index
 	;;
     abort-upgrade|abort-remove|abort-deconfigure)
 	;;

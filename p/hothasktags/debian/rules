@@ -15,3 +15,8 @@ override_dh_auto_clean:
 
 override_dh_auto_install:
 	dh_install dist/build/hothasktags/hothasktags usr/bin
+
+override_dh_strip:
+	# GHC cannot produce debugging symbols so the -dbgsym package
+	# ends up empty, so disable generating it
+	dh_strip --no-automatic-dbgsym

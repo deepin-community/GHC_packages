@@ -1,0 +1,79 @@
+--- a/lambdabot-core.cabal
++++ b/lambdabot-core.cabal
+@@ -67,12 +67,12 @@
+                         Lambdabot.Util.Serial
+                         Lambdabot.Util.Signals
+ 
+-  build-depends:        base                    >= 4.4 && < 5,
++  build-depends:        base                    >= 4.8 && < 5,
+                         binary                  >= 0.5,
+                         bytestring              >= 0.9,
+                         containers              >= 0.4,
+-                        dependent-map           == 0.1.*,
+-                        dependent-sum           == 0.2.*,
++                        dependent-map           == 0.2.*,
++                        dependent-sum           == 0.3.*,
+                         dependent-sum-template  >= 0.0.0.1,
+                         directory               >= 1.1,
+                         edit-distance           >= 0.2,
+--- a/src/Lambdabot/Monad.hs
++++ b/src/Lambdabot/Monad.hs
+@@ -55,6 +55,7 @@
+ import Control.Monad.State
+ import Control.Monad.Trans.Control
+ import qualified Data.Dependent.Map as D
++import Data.Functor.Identity (Identity(..))
+ import Data.IORef
+ import qualified Data.Map as M
+ import qualified Data.Set as S
+@@ -69,11 +70,11 @@
+ data IRCRState = IRCRState
+     { ircInitDoneMVar   :: MVar ()
+     , ircQuitMVar       :: MVar ()
+-    , ircConfig         :: D.DMap Config
++    , ircConfig         :: D.DMap Config Identity
+     }
+ 
+ -- | Default ro state
+-initRoState :: [D.DSum Config] -> IO IRCRState
++initRoState :: [D.DSum Config Identity] -> IO IRCRState
+ initRoState configuration = do
+     quitMVar     <- newEmptyMVar
+     initDoneMVar <- newEmptyMVar
+@@ -81,7 +82,7 @@
+     return IRCRState 
+         { ircQuitMVar       = quitMVar
+         , ircInitDoneMVar   = initDoneMVar
+-        , ircConfig         = D.fromListWithKey (flip . mergeConfig) configuration
++        , ircConfig         = D.fromListWithKey (liftA2 . flip . mergeConfig) configuration
+         }
+ 
+ reportInitDone :: MonadIO m => IRCRState -> m ()
+@@ -225,7 +226,7 @@
+         lift $ writeIORef ref x
+ 
+ instance MonadConfig LB where
+-    getConfig k = liftM (maybe (getConfigDefault k) id . D.lookup k) (lb (askLB ircConfig))
++    getConfig k = liftM (maybe (getConfigDefault k) id . fmap runIdentity . D.lookup k) (lb (askLB ircConfig))
+ 
+ instance MonadLogging LB where
+     getCurrentLogger = getConfig lbRootLoggerPath
+--- a/src/Lambdabot/Main.hs
++++ b/src/Lambdabot/Main.hs
+@@ -25,6 +25,7 @@
+ 
+ import Control.Exception.Lifted as E
+ import Data.Dependent.Sum
++import Data.Functor.Identity (Identity)
+ import Data.List
+ import Data.Typeable
+ import Data.Version
+@@ -63,7 +64,7 @@
+ -- Also, handle any fatal exceptions (such as non-recoverable signals),
+ -- (i.e. print a message and exit). Non-fatal exceptions should be dealt
+ -- with in the mainLoop or further down.
+-lambdabotMain :: LB () -> [DSum Config] -> IO ExitCode
++lambdabotMain :: LB () -> [DSum Config Identity] -> IO ExitCode
+ lambdabotMain initialise cfg = withSocketsDo . withIrcSignalCatch $ do
+     rost <- initRoState cfg
+     r <- try $ evalLB (do setupLogging
