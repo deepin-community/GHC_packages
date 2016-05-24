@@ -1,0 +1,67 @@
+Source: haskell-bytestring-handle
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-hunit-dev (>= 1.2),
+ libghc-hunit-dev (<< 1.4),
+ libghc-quickcheck2-dev (>= 2.1.2),
+ libghc-quickcheck2-dev (<< 2.9),
+ libghc-test-framework-dev (>= 0.2.0),
+ libghc-test-framework-dev (<< 0.9),
+ libghc-test-framework-hunit-dev (>= 0.2.0),
+ libghc-test-framework-hunit-dev (<< 0.4),
+ libghc-test-framework-quickcheck2-dev (>= 0.2.5),
+ libghc-test-framework-quickcheck2-dev (<< 0.4),
+Build-Depends-Indep: ghc-doc,
+Standards-Version: 3.9.8
+Homepage: http://hub.darcs.net/ganesh/bytestring-handle
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-bytestring-handle
+Vcs-Git: git://git.debian.org/git/pkg-haskell/DHG_packages.git
+X-Description: ByteString-backed Handles
+ These are two functions to treat ByteStrings as file handles.
+
+Package: libghc-bytestring-handle-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-bytestring-handle-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-bytestring-handle-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
