@@ -1,0 +1,21 @@
+Index: haskell-blogliterately/src/Text/BlogLiterately/Transform.hs
+===================================================================
+--- haskell-blogliterately.orig/src/Text/BlogLiterately/Transform.hs	2016-06-01 15:02:00.895700793 +0200
++++ haskell-blogliterately/src/Text/BlogLiterately/Transform.hs	2016-06-01 15:02:00.887700587 +0200
+@@ -520,7 +520,7 @@
+                    }
+     mathOption opt
+       | opt `isPrefixOf` "latexmathml" ||
+-        opt `isPrefixOf` "asciimathml" = LaTeXMathML (mathUrlMaybe opt)
++        opt `isPrefixOf` "asciimathml" = LaTeXMathML (mathUrl latexmathmlURL opt)
+       | opt `isPrefixOf` "mathml"      = MathML (mathUrlMaybe opt)
+       | opt `isPrefixOf` "mimetex"     =
+           WebTeX (mathUrl "/cgi-bin/mimetex.cgi?" opt)
+@@ -533,6 +533,7 @@
+     webTeXURL  = "http://chart.apis.google.com/chart?cht=tx&chl="
+     mathJaxURL = "http://cdn.mathjax.org/mathjax/latest/MathJax.js"
+                  ++ "?config=TeX-AMS-MML_HTMLorMML"
++    latexmathmlURL = "http://math.etsu.edu/LaTeXMathML/LaTeXMathML.js"
+ 
+     urlPart = drop 1 . dropWhile (/='=')
+ 
