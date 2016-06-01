@@ -32,6 +32,25 @@ Homepage: https://github.com/sol/hpack#readme
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-hpack
 Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
 X-Description: An alternative format for Haskell packages
+ hpack is a tool to create the usual Haskell packaging metadata, i.e. the
+ .cabal file, from a YAML description of the program, with some fields field in
+ by inferred defaults and other additional conveniences.
+
+Package: hpack
+Architecture: any
+Section: misc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ hpack is a tool to create the usual Haskell packaging metadata, i.e. the
+ .cabal file, from a YAML description of the program, with some fields field in
+ by inferred defaults and other additional conveniences.
+ .
+ ${haskell:Blurb}
 
 Package: libghc-hpack-dev
 Architecture: any
@@ -73,16 +92,3 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  .
  ${haskell:Blurb}
 
-Package: haskell-hpack-utils
-Architecture: any
-Section: misc
-Depends: ${haskell:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
-Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
- ${haskell:LongDescription}
- .
- ${haskell:Blurb}
