@@ -1,6 +1,8 @@
---- a/test/Doctests.hs
-+++ b/test/Doctests.hs
-@@ -20,14 +20,14 @@ main = do
+Index: haskell-servant/test/Doctests.hs
+===================================================================
+--- haskell-servant.orig/test/Doctests.hs	2016-06-01 10:24:35.430202851 +0200
++++ haskell-servant/test/Doctests.hs	2016-06-01 10:25:00.642707368 +0200
+@@ -20,14 +20,14 @@
  
  getCabalMacrosFile :: IO (Maybe FilePath)
  getCabalMacrosFile = do
@@ -8,7 +10,8 @@
 +  exists <- doesDirectoryExist "dist-ghc"
    if exists
      then do
-       contents <- getDirectoryContents "dist"
+-      contents <- getDirectoryContents "dist"
++      contents <- getDirectoryContents "dist-ghc"
        let rest = "build" </> "autogen" </> "cabal_macros.h"
        whenExists $ case filter ("dist-sandbox-" `isPrefixOf`) contents of
          [x] -> "dist" </> x </> rest
