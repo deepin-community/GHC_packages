@@ -3,5 +3,8 @@
 DEB_CABAL_PACKAGE = path-io
 DEB_DEFAULT_COMPILER = ghc
 
+# keep haddock from choking on non-ASCII characters
+export LC_ALL=C.UTF-8
+
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
