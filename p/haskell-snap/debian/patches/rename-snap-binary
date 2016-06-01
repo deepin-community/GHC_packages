@@ -4,11 +4,9 @@ Author: Joachim Breitner <nomeata@debian.org>
 Bug-Debian: http://bugs.debian.org/741503
 Forwarded: not-needed
 
-Index: snap-0.13.2.9/snap.cabal
-===================================================================
---- snap-0.13.2.9.orig/snap.cabal	2014-12-22 00:29:52.470018812 +0100
-+++ snap-0.13.2.9/snap.cabal	2014-12-22 00:29:52.466018732 +0100
-@@ -16,7 +16,7 @@
+--- a/snap.cabal
++++ b/snap.cabal
+@@ -16,7 +16,7 @@ description:
      @$ cabal install snap
      $ mkdir myproject
      $ cd myproject
@@ -17,20 +15,18 @@ Index: snap-0.13.2.9/snap.cabal
      .
      If you have trouble or any questions, see our FAQ page
      (<http://snapframework.com/faq>) or the documentation
-@@ -215,7 +215,7 @@
+@@ -216,7 +216,7 @@ Library
      ghc-options: -Wall -fwarn-tabs -funbox-strict-fields -O2
                   -fno-warn-orphans
-
+ 
 -Executable snap
 +Executable snap-framework
    hs-source-dirs: src
    main-is: Snap/Starter.hs
-
-Index: snap-0.13.2.9/src/Snap/Starter.hs
-===================================================================
---- snap-0.13.2.9.orig/src/Snap/Starter.hs	2014-12-22 00:29:52.470018812 +0100
-+++ snap-0.13.2.9/src/Snap/Starter.hs	2014-12-22 00:29:52.466018732 +0100
-@@ -30,7 +30,7 @@
+ 
+--- a/src/Snap/Starter.hs
++++ b/src/Snap/Starter.hs
+@@ -30,7 +30,7 @@ usage = unlines
      , ""
      , "Usage:"
      , ""
@@ -39,7 +35,7 @@ Index: snap-0.13.2.9/src/Snap/Starter.hs
      , ""
      , "    <action> can be one of:"
      , "      init - create a new project directory structure in the " ++
-@@ -48,7 +48,7 @@
+@@ -48,7 +48,7 @@ initUsage = unlines
      , ""
      , "Usage:"
      , ""
@@ -48,12 +44,10 @@ Index: snap-0.13.2.9/src/Snap/Starter.hs
      , ""
      , "    [type] can be one of:"
      , "      default   - A default project using snaplets and heist"
-Index: snap-0.13.2.9/test/suite/Snap/TestCommon.hs
-===================================================================
---- snap-0.13.2.9.orig/test/suite/Snap/TestCommon.hs	2014-12-22 00:29:52.470018812 +0100
-+++ snap-0.13.2.9/test/suite/Snap/TestCommon.hs	2014-12-22 00:29:52.466018732 +0100
-@@ -35,7 +35,7 @@
-
+--- a/test/suite/Snap/TestCommon.hs
++++ b/test/suite/Snap/TestCommon.hs
+@@ -35,7 +35,7 @@ import SafeCWD
+ 
  ------------------------------------------------------------------------------
  testGeneratedProject :: String  -- ^ project name and directory
 -                     -> String  -- ^ arguments to @snap init@
@@ -61,7 +55,7 @@ Index: snap-0.13.2.9/test/suite/Snap/TestCommon.hs
                       -> String  -- ^ arguments to @cabal install@
                       -> Int     -- ^ port to run http server on
                       -> IO ()   -- ^ action to run when the server goes up
-@@ -94,11 +94,11 @@
+@@ -94,11 +94,11 @@ testGeneratedProject projName snapInitAr
          findSnap = do
              home <- fromEnv "HOME" "."
              p1   <- gimmeIfExists $ snapRoot </> "dist" </> "build"
@@ -71,9 +65,9 @@ Index: snap-0.13.2.9/test/suite/Snap/TestCommon.hs
 +                                             </> "snap-framework" </> "snap-framework"
 +            p2   <- gimmeIfExists $ home </> ".cabal" </> "bin" </> "snap-framework"
 +            p3   <- findExecutable "snap-framework"
-
+ 
 -            return $ fromMaybe (error "couldn't find snap executable")
 +            return $ fromMaybe (error "couldn't find snap-framework executable")
                                 (getFirst $ mconcat $ map First [p1,p2,p3])
-
+ 
      --------------------------------------------------------------------------
