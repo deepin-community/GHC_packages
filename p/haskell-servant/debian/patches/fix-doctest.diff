@@ -1,15 +1,19 @@
 --- a/test/Doctests.hs
 +++ b/test/Doctests.hs
-@@ -20,10 +20,10 @@
+@@ -20,14 +20,14 @@ main = do
  
- getCabalMacrosFile :: IO FilePath
+ getCabalMacrosFile :: IO (Maybe FilePath)
  getCabalMacrosFile = do
--  contents <- getDirectoryContents "dist"
-+  contents <- getDirectoryContents "dist-ghc"
-   let rest = "build" </> "autogen" </> "cabal_macros.h"
-   return $ case filter ("dist-sandbox-" `isPrefixOf`) contents of
-     [x] -> "dist" </> x </> rest
--    [] -> "dist" </> rest
-+    [] -> "dist-ghc" </> rest
-     xs -> error $ "ran doctests with multiple dist/dist-sandbox-xxxxx's: \n"
-                 ++ show xs ++ "\nTry cabal clean"
+-  exists <- doesDirectoryExist "dist"
++  exists <- doesDirectoryExist "dist-ghc"
+   if exists
+     then do
+       contents <- getDirectoryContents "dist"
+       let rest = "build" </> "autogen" </> "cabal_macros.h"
+       whenExists $ case filter ("dist-sandbox-" `isPrefixOf`) contents of
+         [x] -> "dist" </> x </> rest
+-        [] -> "dist" </> rest
++        [] -> "dist-ghc" </> rest
+         xs -> error $ "ran doctests with multiple dist/dist-sandbox-xxxxx's: \n"
+                     ++ show xs ++ "\nTry cabal clean"
+     else return Nothing
