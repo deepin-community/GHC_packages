@@ -1,0 +1,67 @@
+Source: haskell-test-framework-th-prime
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-cpphs-dev (>= 0.2.1),
+ libghc-cpphs-prof,
+ libghc-src-exts-dev,
+ libghc-src-exts-prof,
+ libghc-test-framework-dev,
+ libghc-test-framework-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-cpphs-doc,
+ libghc-src-exts-doc,
+ libghc-test-framework-doc,
+Standards-Version: 3.9.8
+Homepage: http://hackage.haskell.org/package/test-framework-th-prime
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-test-framework-th-prime
+Vcs-Git: git://git.debian.org/git/pkg-haskell/DHG_packages.git
+X-Description: Template Haskell for test framework
+ Automatically generates a Test list for
+ HUnit, doctest and QuickCheck2.
+
+Package: libghc-test-framework-th-prime-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-test-framework-th-prime-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-test-framework-th-prime-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

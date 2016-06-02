@@ -1,0 +1,71 @@
+Source: haskell-monad-unlift
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-constraints-dev,
+ libghc-constraints-prof,
+ libghc-monad-control-dev (>= 1.0),
+ libghc-monad-control-dev (<< 1.1),
+ libghc-monad-control-prof,
+ libghc-transformers-base-dev,
+ libghc-transformers-base-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-constraints-doc,
+ libghc-monad-control-doc,
+ libghc-transformers-base-doc,
+Standards-Version: 3.9.6
+Homepage: https://github.com/fpco/monad-unlift
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-monad-unlift
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
+X-Description: Typeclasses for representing monad transformer unlifting
+ This package provides typeclasses for providing for unlifting of monad
+ transformers and stacks.
+ .
+ Note that concrete implementations of common transformers implementing these
+ type classes are provided by the monad-unlift-ref package.
+
+Package: libghc-monad-unlift-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-monad-unlift-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-monad-unlift-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

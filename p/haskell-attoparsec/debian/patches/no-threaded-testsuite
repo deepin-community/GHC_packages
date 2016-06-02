@@ -1,16 +1,14 @@
 Description:  Do not run test suite threaded, does not work on all arches.
 Author: Joachim Breitner <nomeata@debian.org>
 
-Index: attoparsec-0.12.1.2/attoparsec.cabal
-===================================================================
---- attoparsec-0.12.1.2.orig/attoparsec.cabal	2014-12-21 13:00:33.324344149 +0100
-+++ attoparsec-0.12.1.2/attoparsec.cabal	2014-12-21 13:00:33.324344149 +0100
-@@ -89,7 +89,7 @@
-                   QC.Text
-
+--- a/attoparsec.cabal
++++ b/attoparsec.cabal
+@@ -92,7 +92,7 @@ test-suite tests
+                   QC.Text.FastSet
+ 
    ghc-options:
 -    -Wall -threaded -rtsopts
 +    -Wall -rtsopts
-
+ 
    if flag(developer)
      ghc-options: -Werror

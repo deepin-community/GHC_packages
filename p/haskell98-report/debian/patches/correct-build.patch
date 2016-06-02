@@ -1,55 +1,49 @@
-Index: haskell98-report-20080907/ffi/Makefile
-===================================================================
---- haskell98-report-20080907.orig/ffi/Makefile	2013-06-22 21:34:52.604164891 +0200
-+++ haskell98-report-20080907/ffi/Makefile	2013-06-22 21:34:52.596164892 +0200
+--- a/ffi/Makefile
++++ b/ffi/Makefile
 @@ -1,9 +1,18 @@
 +
 +all: ffi.ps ffi.pdf
 +
  threads.ps: threads.tex
-	TEXINPUTS=../styles: latex threads.tex
-	dvips -f < threads.dvi > threads.ps
-
+ 	TEXINPUTS=../styles: latex threads.tex
+ 	dvips -f < threads.dvi > threads.ps
+ 
 +ffi.pdf: ffi.ps
 +	ps2pdf ffi.ps ffi.pdf
 +
  ffi.ps: ffi.tex
-	TEXINPUTS=../styles: latex ffi.tex
+ 	TEXINPUTS=../styles: latex ffi.tex
 +	bibtex ffi
 +	TEXINPUTS=../styles: latex ffi.tex
 +	TEXINPUTS=../styles: latex ffi.tex
-	dvips -f < ffi.dvi > ffi.ps
-
+ 	dvips -f < ffi.dvi > ffi.ps
+ 
  # Requires TeX4ht
-@@ -39,4 +48,4 @@
-
+@@ -39,4 +48,4 @@ ffi.html.tar.gz:
+ 
  .PHONY: clean
  clean:
 -	-rm -f *.aux *.log *.blg *.dvi *.bbl *.toc *.ps *.html *.css *.png *.4ct *.4tc *.idv *.xref tex4ht.fls
 +	-rm -f *.aux *.log *.blg *.dvi *.bbl *.toc *.ps *.html *.css *.png *.4ct *.4tc *.idv *.xref tex4ht.fls *.pdf
-Index: haskell98-report-20080907/hierarchical-modules/Makefile
-===================================================================
---- haskell98-report-20080907.orig/hierarchical-modules/Makefile	2013-06-22 21:34:52.604164891 +0200
-+++ haskell98-report-20080907/hierarchical-modules/Makefile	2013-06-22 21:34:52.596164892 +0200
-@@ -7,5 +7,6 @@
+--- a/hierarchical-modules/Makefile
++++ b/hierarchical-modules/Makefile
+@@ -7,5 +7,6 @@ hier.ps: hier.tex
  hier.pdf: hier.tex
-	TEXINPUTS=../styles: pdflatex $<
-
+ 	TEXINPUTS=../styles: pdflatex $<
+ 
 -clean :
 -	rm hier.ps hier.pdf
 +.PHONY: clean
 +clean:
 +	-rm -f *.aux *.log *.blg *.dvi *.bbl *.toc *.ps *.html *.css *.png *.4ct *.4tc *.idv *.xref tex4ht.fls *.pdf
-Index: haskell98-report-20080907/Makefile
-===================================================================
---- haskell98-report-20080907.orig/Makefile	2013-06-22 21:34:52.604164891 +0200
-+++ haskell98-report-20080907/Makefile	2013-06-22 21:34:52.596164892 +0200
+--- a/Makefile
++++ b/Makefile
 @@ -1,14 +1,21 @@
 -RELEASE_DIR = haskell98-revised
 +PREFIX = haskell98-revised
 +RELEASE_DIR = $(PREFIX)
  JFP_DIR = jfp-release
-
+ 
 +install:
 +	$(MAKE) -C tools
 +	$(MAKE) -C report install
@@ -60,38 +54,34 @@ Index: haskell98-report-20080907/Makefile
 +
  release:
 +	(cd tools; make)
-	(cd report; make release)
+ 	(cd report; make release)
 +	touch libraries/library.idx
-	(cd libraries; make release)
+ 	(cd libraries; make release)
 -	(cd jfp-release; make)
 -	cp h98-revised.html $(RELEASE_DIR)/index.html
 -	cp haskell98-bugs.html h98.gif $(RELEASE_DIR)
 -	gzip < jfp-release/h98-book.ps > $(RELEASE_DIR)/h98-book.ps.gz
 -	gzip < jfp-release/h98-book.pdf > $(RELEASE_DIR)/h98-book.pdf.gz
 +	cp report/h98-revised.html $(RELEASE_DIR)/index.html
-
+ 
  jfp:
-	-mkdir $(JFP_DIR)
-Index: haskell98-report-20080907/report/classes.eps
-===================================================================
---- haskell98-report-20080907.orig/report/classes.eps	2013-06-22 21:34:52.604164891 +0200
-+++ haskell98-report-20080907/report/classes.eps	2013-06-22 21:34:52.596164892 +0200
-@@ -826,7 +826,8 @@
+ 	-mkdir $(JFP_DIR)
+--- a/report/classes.eps
++++ b/report/classes.eps
+@@ -826,7 +826,8 @@ LH
  %%Trailer
- %%DocumentNeededResources:
+ %%DocumentNeededResources: 
  %%+ font Courier-Bold
 -%%+ font TimesNewRomanPSMT
 +% Don't include TrueType fonts, this make dvips(from texlive) happy
 +%%%+ font TimesNewRomanPSMT
- %%DocumentSuppliedResources:
+ %%DocumentSuppliedResources: 
  %%+ procset Pscript_WinNT_ErrorHandler 5.0 0
  %%+ procset Pscript_FatalError 5.0 0
-Index: haskell98-report-20080907/report/h98-revised.html
-===================================================================
---- haskell98-report-20080907.orig/report/h98-revised.html	2013-06-22 21:34:52.604164891 +0200
-+++ haskell98-report-20080907/report/h98-revised.html	2013-06-22 21:34:52.600164891 +0200
-@@ -28,13 +28,11 @@
- <p><li> The Haskell 98 Report (revised)
+--- a/report/h98-revised.html
++++ b/report/h98-revised.html
+@@ -28,13 +28,11 @@ The text and sources of the Report are n
+ <p><li> The Haskell 98 Report (revised) 
  <ul>
  <li> <a href="haskell98-report-html/index.html">HTML</a>
 -<li> <a href="haskell.ps.gz">Gzipped Postscript</a>
@@ -99,21 +89,19 @@ Index: haskell98-report-20080907/report/h98-revised.html
 +<li> <a href="../haskell98-report.ps.gz">Gzipped Postscript</a>
 +<li> <a href="../haskell98-report.pdf.gz">Gzipped PDF</a>
  <li> <a href="haskell98-revised-bugs.html">A complete list of all bugs</a> (found so far)
-
+ 
  </ul>
 -<p>
 -<li> <a href="haskell98-report-html.tar.gz">Gzipped tar bundle of the HTML sources</a> for local browsing.
-
+ 
  <p><li>
  <a href="haskell98-bugs.html">A complete list of all changes</a> made to both reports between the Jan 1999 publication
-Index: haskell98-report-20080907/report/Makefile
-===================================================================
---- haskell98-report-20080907.orig/report/Makefile	2013-06-22 21:34:52.604164891 +0200
-+++ haskell98-report-20080907/report/Makefile	2013-06-22 21:34:52.600164891 +0200
-@@ -40,7 +40,11 @@
- #	Files
+--- a/report/Makefile
++++ b/report/Makefile
+@@ -40,7 +40,11 @@ EXPAND = expand
+ #	Files 
  #########################################
-
+ 
 -RELEASE_DIR = ../haskell98-revised
 +PREFIX = ../haskell98-revised
 +RELEASE_DIR = $(PREFIX)
@@ -121,34 +109,34 @@ Index: haskell98-report-20080907/report/Makefile
 +PDF_DIR = $(RELEASE_DIR)
 +HTML_DIR = $(RELEASE_DIR)/html
  JFP_DIR = ../jfp-release
-
+ 
  PARTS =		preface-jfp.tex $(PARTS_NO_PREFACE)
-@@ -99,7 +103,7 @@
+@@ -99,7 +103,7 @@ haskell.tex: haskell.verb
  haskell.dvi:  haskell.tex ${PARTS} $(SYNTAX) ${PRELUDE}
-
+ 
  # I have no idea why run_tex is run twice.  SLPJ
 -html: index.html ${PARTS} ${SYNTAX} ${PRELUDE}
 +html: index.html haskell.dvi ${PARTS} ${SYNTAX} ${PRELUDE}
-	-mkdir haskell98-report-html
-	$(RUN_TEX)
-	$(RUN_TEX)
-@@ -108,8 +112,8 @@
-
+ 	-mkdir haskell98-report-html
+ 	$(RUN_TEX)
+ 	$(RUN_TEX)
+@@ -108,8 +112,8 @@ html: index.html ${PARTS} ${SYNTAX} ${PR
+ 
  haskell.dvi: haskell.tex haskell.ind ${PARTS} $(SYNTAX) ${PRELUDE}  ${CODE} ${HEADERS}
-
+ 
 +haskell.idx: haskell.tex ${PARTS} $(SYNTAX) ${PRELUDE}  ${CODE} ${HEADERS}
-
+ 
 -# remove this rule if you don't have "makeindex"
  haskell.ind: haskell.idx
-	$(MAKEINDEX) -i -t haskell.ilg < haskell.idx > haskell.ind
-
-@@ -117,8 +121,20 @@
-	dvips haskell.dvi -o haskell.ps
-
+ 	$(MAKEINDEX) -i -t haskell.ilg < haskell.idx > haskell.ind
+ 
+@@ -117,8 +121,20 @@ haskell.ps : haskell.dvi
+ 	dvips haskell.dvi -o haskell.ps
+ 
  # Can't use pdflatex because of eps inclusion
 +haskell.pdf : haskell.ps
 +	ps2pdf haskell.ps haskell.pdf
-
+ 
 -release: haskell.ps html
 +install: haskell.ps haskell.pdf html
 +	mkdir -p $(PS_DIR) $(PDF_DIR) $(HTML_DIR)
@@ -161,25 +149,25 @@ Index: haskell98-report-20080907/report/Makefile
 +
 +
 +release: haskell.ps html $(RELEASE_DIR)
-	ps2pdf haskell.ps
-	gzip < haskell.ps > $(RELEASE_DIR)/haskell.ps.gz
-	cp haskell.pdf $(RELEASE_DIR)/haskell.pdf
-@@ -128,6 +144,9 @@
-	cp haskell98-bugs.html h98.gif $(RELEASE_DIR)
-	cp haskell98-revised-bugs.html h98.gif $(RELEASE_DIR)
-
+ 	ps2pdf haskell.ps
+ 	gzip < haskell.ps > $(RELEASE_DIR)/haskell.ps.gz
+ 	cp haskell.pdf $(RELEASE_DIR)/haskell.pdf
+@@ -128,6 +144,9 @@ release: haskell.ps html
+ 	cp haskell98-bugs.html h98.gif $(RELEASE_DIR)
+ 	cp haskell98-revised-bugs.html h98.gif $(RELEASE_DIR)
+ 
 +$(RELEASE_DIR):
 +	mkdir $@
 +
  publish-pdf: report.pdf
-	gzip < report.pdf > y:Haskell/haskell98-report/report.pdf.gz
-
-@@ -140,18 +159,19 @@
-	$(RM) *~
-
+ 	gzip < report.pdf > y:Haskell/haskell98-report/report.pdf.gz
+ 
+@@ -140,18 +159,19 @@ veryclean: clean
+ 	$(RM) *~ 
+ 
  clean:
 +	$(RM) $(PRELUDE) reportrefs
-	$(RM) *.dvi *.log *.aux *.ilg *.blg *.toc ${PARTS} $(SYNTAX) \
+ 	$(RM) *.dvi *.log *.aux *.ilg *.blg *.toc ${PARTS} $(SYNTAX) \
 -		haskell.tex haskell.ps haskell.pdf *.o lex.yy.c haskell98-report-html/*
 -	cp haskell.ind haskell.ind.two-sided
 -	echo "Don't delete the Prelude*.tex files"
@@ -188,93 +176,87 @@ Index: haskell98-report-20080907/report/Makefile
 +	$(RM) -r haskell98-report-html/
 +	$(RM) lib-code/*.tex lib-hdrs/*.tex
 +	$(RM) haskell.idx
-
-
+ 
+ 
  #########################################
  #	Suffix rules
  #########################################
-
+ 
 -.SUFFIXES:	.hi .hs .verb .tex .dvi
 +.SUFFIXES:	.hi .hs .verb .tex .dvi .idx
-
+ 
  .verb.tex:
-	$(EXPAND) < $< | $(VERBATIM) | ../tools/subsection >$@
-@@ -168,7 +188,11 @@
-
+ 	$(EXPAND) < $< | $(VERBATIM) | ../tools/subsection >$@
+@@ -168,7 +188,11 @@ clean:
+ 
  .tex.dvi:
-	$(LATEX) $<
+ 	$(LATEX) $<
 +	$(LATEX) $<
 +	$(LATEX) $<
-
+ 
 +.tex.idx:
 +	$(LATEX) $<
-
+ 
  # -----------------------------------------------------------
  #			Out of date stuff
-Index: haskell98-report-20080907/tools/Makefile
-===================================================================
---- haskell98-report-20080907.orig/tools/Makefile	2013-06-22 21:34:52.604164891 +0200
-+++ haskell98-report-20080907/tools/Makefile	2013-06-22 21:36:26.900161025 +0200
-@@ -14,13 +14,16 @@
-
+--- a/tools/Makefile
++++ b/tools/Makefile
+@@ -14,13 +14,16 @@ LEX_OPTS = -t -8
+ 
  all : verbatim run_tex run_index
-
+ 
 +clean:
 +	rm -f *.hi *.o verbatim verbatim.c run_tex run_index
 +
  verbatim: verbatim.lex
-	$(LEX) $(LEX_OPTS) verbatim.lex > verbatim.c || ( rm -f verbatim.c && exit 1 )
-	$(CC) -c verbatim.c -o verbatim.o
-	$(CC) -o verbatim verbatim.o
-
+ 	$(LEX) $(LEX_OPTS) verbatim.lex > verbatim.c || ( rm -f verbatim.c && exit 1 )
+ 	$(CC) -c verbatim.c -o verbatim.o
+ 	$(CC) -o verbatim verbatim.o
+ 
  run_tex: tex.hs
 -	$(GHC) -o run_tex tex.hs -fglasgow-exts -H20m -package lang
 +	$(GHC) -o run_tex tex.hs -fglasgow-exts -H20m
-
+ 
  run_index: index.hs
-	$(GHC) -o run_index index.hs -fglasgow-exts -H20m
-Index: haskell98-report-20080907/tools/index.hs
-===================================================================
---- haskell98-report-20080907.orig/tools/index.hs	2013-06-22 21:34:52.604164891 +0200
-+++ haskell98-report-20080907/tools/index.hs	2013-06-22 21:44:53.500140256 +0200
+ 	$(GHC) -o run_index index.hs -fglasgow-exts -H20m
+--- a/tools/index.hs
++++ b/tools/index.hs
 @@ -6,8 +6,9 @@
-
+ 
  module Main where
-
+ 
 -import IO
 -import Char
 +import System.IO
 +import Data.Char
 +import Control.Exception(catch)
-
+ 
  main = do refs <- readRefFile "reportrefs"
            doFiles refs ["prelude-index"]
-@@ -20,7 +21,7 @@
+@@ -20,7 +21,7 @@ doFile r f = catch
                     ls <-readFile (f ++ ".idx")
                     let output = expandAllRefs r (lines ls)
                     writeFile ("haskell98-report-html/" ++ f ++ ".html") (unlines output))
 -               (\err -> putStr ("Error: " ++ show err ++ "\n"))
 +               (\err -> putStr ("Error: " ++ show (err::IOError) ++ "\n"))
-
+ 
  -- This sets up the parts of the state that need to be reset at the start of
  -- each file.
-@@ -129,7 +130,7 @@
+@@ -129,7 +130,7 @@ mangleType t = mangleName (case t of
  readRefFile :: String -> IO [(String, String)]
  readRefFile f = catch (do l <- readFile f
                            return (map parseKV (lines l)))
 -                      (\e -> do putStr ("Can't read ref file: " ++ f ++ "\n")
 +                      (\e -> do putStr ("Can't read ref file: " ++ f ++ ": " ++ show (e::IOError) ++ "\n")
                                  return [])
-
+ 
  parseKV l = let (k,l1) = span (/= '=') l
-Index: haskell98-report-20080907/tools/tex.hs
-===================================================================
---- haskell98-report-20080907.orig/tools/tex.hs	2013-06-22 21:34:52.604164891 +0200
-+++ haskell98-report-20080907/tools/tex.hs	2013-06-22 21:42:26.656146276 +0200
-@@ -78,11 +78,12 @@
-
+--- a/tools/tex.hs
++++ b/tools/tex.hs
+@@ -78,11 +78,12 @@ commands are supported but not all.
+ 
  module Main where
-
+ 
 -import Monad(foldM)
 -import IO hiding (bracket)
 -import Char(isSpace, isAlpha, isDigit)
@@ -282,65 +264,65 @@ Index: haskell98-report-20080907/tools/tex.hs
 +import System.IO
 +import Data.Char(isSpace, isAlpha, isDigit)
 +import Control.Exception(catch)
-
+ 
 -import IOExts(unsafePerformIO)  -- debugging only
 +import System.IO.Unsafe(unsafePerformIO)  -- debugging only
-
+ 
  data FontStyle = RM | IT | TT | Bold | Sym | UL
      deriving (Eq,Show)
-@@ -216,7 +217,7 @@
+@@ -216,7 +217,7 @@ writeRefFile s =
       "" -> return ()
       f  -> do putStr ("Writing reference file " ++ f ++ "\n")
                catch (writeFile f (concat (map fmtKV (newRefMap s))))
 -                    (\e -> do putStr ("Can't write ref file: " ++ f ++ "\n" ++ show e)
 +                    (\e -> do putStr ("Can't write ref file: " ++ f ++ "\n" ++ show (e::IOError))
                                return ())
-   where fmtKV (k,v) = k ++ "=" ++ v ++ "\n"
-
-@@ -233,7 +234,8 @@
-                   idx = htmlToString
+   where fmtKV (k,v) = k ++ "=" ++ v ++ "\n" 
+ 
+@@ -233,7 +234,8 @@ writeIndexFile s =
+                   idx = htmlToString 
                            (HProtect [HCmd cmd, HList "item" (HProtect hdrs)])
                catch (writeFile f idx)
 -                    (\e -> do putStr ("Can't write index file: " ++ f ++ "\n")
 +                    (\e -> do putStr ("Can't write index file: " ++ f ++ ": " ++
 +                                      show (e::IOError) ++ "\n")
                                return ())
-
-
-@@ -255,7 +257,7 @@
- parseConfig f = catch
-                   (do c <- readFile f
+ 
+ 
+@@ -255,7 +257,7 @@ parseConfig :: String -> IO IState
+ parseConfig f = catch 
+                   (do c <- readFile f 
                        foldM configLine initState (lines c))
 -                  (\e -> error ("Can't read configuration file " ++ f))
 +                  (\e -> error ("Can't read configuration file " ++ f ++ ": " ++ show (e::IOError)))
-
+ 
  configLine s l | "#" `starts` l = return s
                 | l == ""        = return s
-@@ -286,20 +288,20 @@
-						-- completely read, because we are
-						-- going to write to it at the end
+@@ -286,20 +288,20 @@ readRefFile f = catch (do l <- readFile
+ 						-- completely read, because we are
+ 						-- going to write to it at the end
                             return (map parseKV (lines l)))
 -                      (\e -> do putStr ("Can't read ref file: " ++ f ++ "\n")
 +                      (\e -> do putStr ("Can't read ref file: " ++ f ++ ": " ++ show (e::IOError) ++ "\n")
                                  return [])
-
+ 
  readAuxFile :: String -> IO [(String,String)]
  readAuxFile f = catch (do l <- readFile f
                            return (processAuxLines (lines l)))
 -                      (\e -> do putStr ("Can't read aux file: " ++ f ++ "\n")
-+                      (\e -> do putStr ("Can't read ref file: " ++ f ++ ": " ++ show (e::IOError) ++ "\n")
++                      (\e -> do putStr ("Can't read aux file: " ++ f ++ ": " ++ show (e::IOError) ++ "\n")
                                  return [])
-
+ 
  readAnchorFile :: String -> IO [String]
  readAnchorFile f = catch (do l <- readFile f
                               return (lines l))
                           (\e -> do putStr ("Can't read anchor file: "
--                                            ++ f ++ "\n")
+-                                            ++ f ++ "\n") 
 +                                            ++ f ++ ": " ++ show (e::IOError) ++ "\n")
                                     return [])
-
+ 
  -- Look for \newlabel{label}{value} in aux files.  Ignore all else.
-@@ -405,10 +407,10 @@
+@@ -405,10 +407,10 @@ processFile s f = let (file,ext) = parse
                            catch (do writeFile outFile (htmlToString html)
                                      return s'')
                                  (\e -> do putStr ("Write to " ++ outFile ++
@@ -351,21 +333,21 @@ Index: haskell98-report-20080907/tools/tex.hs
 -                                        " error " ++ (show e) ++ "\n")
 +                                        " error " ++ (show (e::IOError)) ++ "\n")
                                  return s')
-
+ 
  parseFileName f = let (re,rf) = span (/= '.') (reverse f) in
-@@ -1258,7 +1260,7 @@
+@@ -1258,7 +1260,7 @@ doInput s l ls = let (f,l',ls') = getSAr
                                                          then ".verb"
                                                          else ".tex"))
-                                return (lines l1))
+                                return (lines l1)) 
 -                         (\err -> do putStr ("Input error: " ++ show err)
 +                         (\err -> do putStr ("Input error: " ++ show (err::IOError))
                                       return [])
           doChar s "" (newLines ++ [l'] ++ ls')
-
-@@ -1266,7 +1268,7 @@
+ 
+@@ -1266,7 +1268,7 @@ doInputHS s l ls = let (f,l',ls') = getS
        do putStr ("Reading Haskell input " ++ f ++ ".hs\n")
           newLines <- catch (do l1 <- readFile (f ++ ".hs")
-                                return (lines l1))
+                                return (lines l1)) 
 -                         (\err -> do putStr ("Input error: " ++ show err)
 +                         (\err -> do putStr ("Input error: " ++ show (err::IOError))
                                       return [])

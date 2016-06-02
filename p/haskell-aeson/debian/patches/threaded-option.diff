@@ -1,6 +1,6 @@
 --- a/aeson.cabal
 +++ b/aeson.cabal
-@@ -66,6 +66,10 @@
+@@ -68,6 +68,10 @@ flag th
    description: build TH bits
    default: True
  
@@ -9,16 +9,16 @@
 +  default: True
 +
  library
-   exposed-modules:
-     Data.Aeson
-@@ -117,6 +121,10 @@
+   default-language: Haskell2010
  
-   ghc-options: -O2 -Wall
+@@ -132,6 +136,10 @@ library
+ 
+   include-dirs: include
  
 +  if flag(threaded)
 +    ghc-options: -threaded
 +
 +
  test-suite tests
+   default-language: Haskell2010
    type:           exitcode-stdio-1.0
-   hs-source-dirs: tests

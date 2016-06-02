@@ -1,0 +1,77 @@
+Source: haskell-twitter-types
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-aeson-dev (>= 0.3.2.2),
+ libghc-aeson-prof,
+ libghc-old-locale-dev,
+ libghc-old-locale-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+ libghc-unordered-containers-dev,
+ libghc-unordered-containers-prof,
+ libghc-hunit-dev,
+ libghc-quickcheck2-dev,
+ libghc-aeson-dev,
+ libghc-attoparsec-dev,
+ libghc-derive-dev,
+ libghc-test-framework-dev (>= 0.3.3),
+ libghc-test-framework-hunit-dev,
+ libghc-test-framework-quickcheck2-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-aeson-doc,
+ libghc-old-locale-doc,
+ libghc-text-doc,
+ libghc-unordered-containers-doc,
+Standards-Version: 3.9.8
+Homepage: https://github.com/himura/twitter-types
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-twitter-types
+Vcs-Git: git://git.debian.org/git/pkg-haskell/DHG_packages.git
+X-Description: Twitter JSON parser and types
+ Haskell types for interacting with the Twitter JSON API.
+
+Package: libghc-twitter-types-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-twitter-types-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-twitter-types-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

@@ -9,11 +9,9 @@ Description:    use editor(1) and pager(1) instead of specific editors/pagers.
  uncheck the "standard" tasksel task.
  .
  Not forwarded because editor(1) and pager(1) are Debian-specific.
-Index: darcs-2.10.0/src/Darcs/UI/External.hs
-===================================================================
---- darcs-2.10.0.orig/src/Darcs/UI/External.hs	2015-05-25 12:04:33.571791462 +0200
-+++ darcs-2.10.0/src/Darcs/UI/External.hs	2015-05-25 12:07:46.117213727 +0200
-@@ -438,6 +438,7 @@
+--- a/src/Darcs/UI/External.hs
++++ b/src/Darcs/UI/External.hs
+@@ -432,6 +432,7 @@ viewDocWith pr mode msg = do
                    Nothing -> return $ ExitFailure 127 -- No such command
                 -- TEMPORARY passing the -K option should be removed as soon as
                 -- we can use the delegate_ctrl_c feature in process
@@ -21,7 +19,7 @@ Index: darcs-2.10.0/src/Darcs/UI/External.hs
                 `ortryrunning` pipeDocToPager  "less" ["-RK"] pr mode msg
                 `ortryrunning` pipeDocToPager  "more" [] pr mode msg
  #ifdef WIN32
-@@ -518,19 +519,13 @@
+@@ -512,19 +513,13 @@ runEditor :: FilePath
  runEditor f = do
      ed <- getEditor
      execInteractive ed f
@@ -31,22 +29,20 @@ Index: darcs-2.10.0/src/Darcs/UI/External.hs
 -#ifdef WIN32
 -         `ortryrunning` execInteractive "edit" f
 -#endif
-
-
+ 
+ 
  getEditor :: IO String
  getEditor = getEnv "DARCS_EDITOR" `catchall`
               getEnv "DARCSEDITOR" `catchall`
               getEnv "VISUAL" `catchall`
 -             getEnv "EDITOR" `catchall` return "nano"
 +             getEnv "EDITOR" `catchall` return "editor"
-
+ 
  catchall :: IO a
           -> IO a
-Index: darcs-2.10.0/src/Darcs/UI/Commands/Help.hs
-===================================================================
---- darcs-2.10.0.orig/src/Darcs/UI/Commands/Help.hs	2015-05-25 12:04:33.575791492 +0200
-+++ darcs-2.10.0/src/Darcs/UI/Commands/Help.hs	2015-05-25 12:09:14.421858922 +0200
-@@ -399,15 +399,13 @@
+--- a/src/Darcs/UI/Commands/Help.hs
++++ b/src/Darcs/UI/Commands/Help.hs
+@@ -400,15 +400,13 @@ environmentHelpEditor = (["DARCS_EDITOR"
   "To edit a patch description of email comment, Darcs will invoke an",
   "external editor.  Your preferred editor can be set as any of the",
   "environment variables $DARCS_EDITOR, $DARCSEDITOR, $VISUAL or $EDITOR.",
@@ -54,13 +50,13 @@ Index: darcs-2.10.0/src/Darcs/UI/Commands/Help.hs
 - "found in your PATH, emacs, emacs -nw, nano and (on Windows) edit are",
 - "each tried in turn."])
 + "If none of these are set, editor(1) is used."])
-
+ 
  environmentHelpPager :: ([String], [String])
  environmentHelpPager = (["DARCS_PAGER", "PAGER"],[
-  "Darcs will sometimes invoke a pager if it deems output to be too long",
-  "to fit onscreen.  Darcs will use the pager specified by $DARCS_PAGER",
+  "Darcs will invoke a pager if the output of some command is longer",
+  "than 20 lines. Darcs will use the pager specified by $DARCS_PAGER",
 - "or $PAGER.  If neither are set, `less` will be used."])
 + "or $PAGER.  If neither are set, pager(1) will be used."])
-
+ 
  environmentHelpTimeout :: ([String], [String])
  environmentHelpTimeout = (["DARCS_CONNECTION_TIMEOUT"],[
