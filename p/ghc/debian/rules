@@ -30,11 +30,13 @@ export DEB_HOST_ARCH      ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
 #  confflags += --build $(DEB_BUILD_GNU_TYPE) --host $(DEB_HOST_GNU_TYPE)
 #endif
 
+pie_archs = amd64 ppc64el s390x
+
 ProjectVersion=$(shell cat VERSION)
 
 GHC=$(firstword $(shell bash -c "type -p ghc"))
 EXTRA_CONFIGURE_FLAGS=--with-ghc="$(GHC)"
-ifeq (s390x,$(DEB_HOST_ARCH))
+ifneq (,$(filter $(DEB_HOST_ARCH),$(pie_archs)))
   EXTRA_CONFIGURE_FLAGS += \
 	CONF_CC_OPTS_STAGE2=-fno-PIE \
 	CONF_GCC_LINKER_OPTS_STAGE2=-no-pie \
@@ -61,7 +63,7 @@ endif
 ifeq (armel,$(DEB_HOST_ARCH))
 	patch -p1 < debian/patches/armel-revert-ghci-fixes.patch
 endif
-ifeq (s390x,$(DEB_HOST_ARCH))
+ifneq (,$(filter $(DEB_HOST_ARCH),$(pie_archs)))
 	echo "SRC_CC_OPTS += -fno-PIE" >> mk/build.mk
 	echo "SRC_LD_OPTS += -no-pie" >> mk/build.mk
 endif
