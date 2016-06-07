@@ -1,0 +1,68 @@
+--- a/Mueval/Interpreter.hs
++++ b/Mueval/Interpreter.hs
+@@ -18,11 +18,12 @@
+ import           Data.List
+ 
+ import           Language.Haskell.Interpreter (eval, set, reset, setImportsQ, loadModules, liftIO,
+-                                     installedModulesInScope, languageExtensions,
+-                                     typeOf, setTopLevelModules, runInterpreter, glasgowExtensions,
++                                     installedModulesInScope, languageExtensions, availableExtensions,
++                                     typeOf, setTopLevelModules, runInterpreter,
+                                      OptionVal(..), Interpreter,
+                                      InterpreterError(..),GhcError(..),
+                                      Extension(UnknownExtension))
++import           Language.Haskell.Interpreter.Extension (asExtension)
+ import           Language.Haskell.Interpreter.Unsafe (unsafeSetGhcOption)
+ 
+ import           Mueval.ArgsParse (Options(..))
+@@ -177,3 +178,39 @@
+                 \(E.SomeException e) -> return . Exception . toStream . show $ e
+     where uncons [] = End
+           uncons (x:xs) = x `seq` Cons x (toStream xs)
++
++glasgowExtensions :: [Extension]
++glasgowExtensions = intersect availableExtensions exts612
++    where exts612 = map asExtension ["PrintExplicitForalls",
++                                     "ForeignFunctionInterface",
++                                     "UnliftedFFITypes",
++                                     "GADTs",
++                                     "ImplicitParams",
++                                     "ScopedTypeVariables",
++                                     "UnboxedTuples",
++                                     "TypeSynonymInstances",
++                                     "StandaloneDeriving",
++                                     "DeriveDataTypeable",
++                                     "FlexibleContexts",
++                                     "FlexibleInstances",
++                                     "ConstrainedClassMethods",
++                                     "MultiParamTypeClasses",
++                                     "FunctionalDependencies",
++                                     "MagicHash",
++                                     "PolymorphicComponents",
++                                     "ExistentialQuantification",
++                                     "UnicodeSyntax",
++                                     "PostfixOperators",
++                                     "PatternGuards",
++                                     "LiberalTypeSynonyms",
++                                     "ExplicitForAll",
++                                     "RankNTypes",
++                                     "ImpredicativeTypes",
++                                     "TypeOperators",
++                                     "RecursiveDo",
++                                     "DoRec",
++                                     "ParallelListComp",
++                                     "EmptyDataDecls",
++                                     "KindSignatures",
++                                     "GeneralizedNewtypeDeriving",
++                                     "TypeFamilies" ]
+--- a/mueval.cabal
++++ b/mueval.cabal
+@@ -32,7 +32,7 @@
+         exposed-modules:     Mueval.Parallel, Mueval.Context, Mueval.Interpreter,
+                              Mueval.ArgsParse, Mueval.Resources
+         build-depends:       base>=4 && < 5, containers, directory, mtl>2, filepath, unix, process,
+-                             hint>=0.3.1, show>=0.3, Cabal, extensible-exceptions, simple-reflect,
++                             hint>=0.5.0, show>=0.3, Cabal, extensible-exceptions, simple-reflect,
+                              QuickCheck
+         ghc-options:         -Wall -static
+ 
