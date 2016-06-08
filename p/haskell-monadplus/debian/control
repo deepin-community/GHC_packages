@@ -1,0 +1,63 @@
+Source: haskell-monadplus
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Sean Whitton <spwhitton@spwhitton.name>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-base-dev (>= 4),
+ libghc-base-dev (<< 5),
+ libghc-base-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-base-doc,
+Standards-Version: 3.9.6
+Homepage: http://hackage.haskell.org/package/monadplus
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-monadplus
+Vcs-Git: git://git.debian.org/git/pkg-haskell/DHG_packages.git
+X-Description: Haskell98 partial maps and filters over MonadPlus.
+ Filtering and folding over arbitrary `MonadPlus` instances.
+ This package generalizes many common stream operations such as
+ `filter`, `catMaybes` etc.
+
+Package: libghc-monadplus-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-monadplus-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-monadplus-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
