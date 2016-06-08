@@ -1,0 +1,14 @@
+#!/usr/bin/make -f
+DEB_BUILD_DEPENDENCIES = build-arch
+
+DEB_SETUP_GHC6_CONFIGURE_ARGS := --datadir='/usr/share' --datasubdir='libghc-agda-dev'
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/hlibrary.mk
+
+export LC_ALL=C.UTF-8
+
+install/libghc-agda-dev:: debian/tmp-inst-ghc
+	Agda_datadir=$(CURDIR)/debian/tmp-inst-ghc/usr/share/libghc-agda-dev \
+		debian/tmp-inst-ghc/usr/bin/agda \
+		$(CURDIR)/debian/tmp-inst-ghc/usr/share/libghc-agda-dev/lib/prim/Agda/Primitive.agda -v0

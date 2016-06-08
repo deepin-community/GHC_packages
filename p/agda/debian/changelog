@@ -1,0 +1,320 @@
+agda (2.5.1-1) UNRELEASED; urgency=medium
+
+  * Package new upstream version.
+  * Install Emacs mode with dh_elpa.
+  * Add myself as an uploader.
+
+ -- Sean Whitton <spwhitton@spwhitton.name>  Wed, 08 Jun 2016 20:58:23 +0900
+
+agda (2.4.2.5-1) unstable; urgency=medium
+
+  * [a116bca] Imported Upstream version 2.4.2.5
+  * [2c258f5] Update build-deps for new release
+  * [7d835fa] Remove patches which are applied upstream
+
+ -- Iain Lane <laney@debian.org>  Mon, 04 Jan 2016 12:56:33 +0000
+
+agda (2.4.2.2-4) unstable; urgency=medium
+
+  * [d59dba4] Revert modification of upstream source in
+    a4109c2c88ab582bbc3141cd9a87373c3509c97b. We're patches unapplied.
+  * [570458a] Cherry-pick upstream patch to build with cpphs 1.19 (Closes:
+    #793194)
+
+ -- Iain Lane <laney@debian.org>  Tue, 04 Aug 2015 14:46:23 +0100
+
+agda (2.4.2.2-3) unstable; urgency=medium
+
+  * Fix dependency on hashtables
+
+ -- Joachim Breitner <nomeata@debian.org>  Wed, 01 Jul 2015 19:26:22 +0200
+
+agda (2.4.2.2-2) unstable; urgency=medium
+
+  * [d5cf60f] Depend on ${shlibs:Depends}, to get libc (& maybe other) deps
+
+ -- Iain Lane <laney@debian.org>  Wed, 20 May 2015 13:08:33 +0100
+
+agda (2.4.2.2-1) unstable; urgency=medium
+
+  * New upstream release.
+  * [1d76e9e] Bump BDs in line with Agda.cabal
+  * [03480b1] Use ${source:Upstream-Version} substvar to generate the
+    Recommends
+  * [a164dc2] Drop patch, applied (in spirit) upstream.
+  * [9a45428] Drop Build-Depends{,-Indep} on packages now provided by ghc
+  * [87544db] debian/rules: Use LC_ALL=C.UTF-8 otherwise cpphs dies when
+    parsing the source
+
+ -- Iain Lane <laney@debian.org>  Wed, 20 May 2015 12:09:52 +0100
+
+agda (2.4.2-1) unstable; urgency=medium
+
+  * [6770868] Imported Upstream version 2.4.2
+  * [3d550e3] Add patch from Joachim to allow transformers 0.4 and mtl 2.3
+  * [38f0ec9] Add cpphs BD, requied by cabal file
+
+ -- Iain Lane <laney@debian.org>  Tue, 23 Sep 2014 09:58:31 +0100
+
+agda (2.4.0.2-2) unstable; urgency=medium
+
+  * [e33e7a9] Pregenerate the Primitive.agdai interface file in
+    libghc-agda-dev, since agda users typically can't write to that
+    directory.  Fixes agda-stdlib build.
+
+ -- Colin Watson <cjwatson@debian.org>  Mon, 11 Aug 2014 11:55:48 +0100
+
+agda (2.4.0.2-1) unstable; urgency=medium
+
+  * [6e140ac] Imported Upstream version 2.4.0.2
+  * [2049fc8] Update Build-Depends to match control
+  * [93dc4d4] Install the new primitives
+  * [e48f40f] Fix typo dev→doc
+
+ -- Iain Lane <laney@debian.org>  Tue, 05 Aug 2014 06:38:12 +0100
+
+agda (2.3.2.2-1) unstable; urgency=low
+
+  * [244f29d] Use new watch file template
+  * [16a3f05] Imported Upstream version 2.3.2.2
+  * [bdb8574] Update BDs to match cabal file
+  * [9bc56ee] debian/patches/support-alex-3.1: Remove patch applied upstream
+    in this release
+
+ -- Iain Lane <laney@debian.org>  Wed, 06 Nov 2013 09:59:36 +0000
+
+agda (2.3.2.1-2) unstable; urgency=low
+
+  * [da376f6] Update BDs per .cabal; extend hashable, remove packages provided
+    by ghc
+  * [e21e765] Cherry-pick from upstream: Suppoert Alex 3.1.x
+  * [2263659] Remove "dist" generated files accidently commited
+
+ -- Iain Lane <laney@debian.org>  Sat, 19 Oct 2013 11:58:05 +0100
+
+agda (2.3.2.1-1) unstable; urgency=low
+
+  * [8cfbabf] Imported Upstream version 2.3.2.1
+  * [74f34b0] Bump BD on mtl per .cabal file
+  * [a3bff17] Drop Debian patches now obsoleted by this upstream release
+
+ -- Iain Lane <laney@debian.org>  Sun, 16 Jun 2013 13:14:47 +0100
+
+agda (2.3.2-4) unstable; urgency=low
+
+  * [3d77fff] Build-Depend on ghc-ghci; we require this due to Template
+    Haskell
+
+ -- Iain Lane <laney@debian.org>  Wed, 12 Jun 2013 10:44:41 +0100
+
+agda (2.3.2-3) unstable; urgency=low
+
+  * Clean up build dependencies 
+
+ -- Joachim Breitner <nomeata@debian.org>  Wed, 29 May 2013 14:06:03 +0200
+
+agda (2.3.2-2) unstable; urgency=low
+
+  * Upload to unstable
+  * [0faee65] Use compat 9
+  * [02dba24] Standards Version → 3.9.4
+  * [bd2a43f] Use common substvars for description blurbs.
+  * [06ddb90] Remove obsolete DM-Upload-Allowed field
+
+ -- Iain Lane <laney@debian.org>  Mon, 27 May 2013 19:13:14 +0100
+
+agda (2.3.2-1) experimental; urgency=low
+
+  [ Kiwamu Okabe ]
+  * New patch: Extend haskell-src-exts dependency and fix type miss.
+
+  [ Iain Lane ]
+  * [dfbca48] Imported Upstream version 2.3.2
+  * [7746bcc] Remove all patches — all upstream.
+  * [2cdb691] Update build-deps to match control file
+  * [868ebf4] agda-mode no longer depends on haskell-mode or GHCi.
+    Remove dependency and update .el file accordingly
+  * [9e0ba22] Add agda-bin package here, as the separate package has been
+    removed
+  * [75a240f] agda-mode needs to depend on agda-bin
+  * [d290f95] Allow Quickcheck up to 2.7. Fix haskeline build-dep.
+  * [79190e6] Add missing geniplate and parallel BDs
+
+ -- Iain Lane <laney@debian.org>  Wed, 10 Apr 2013 11:46:43 +0100
+
+agda (2.3.0.1-2) unstable; urgency=low
+
+  * New patch: Extend mtl dependency 
+
+ -- Joachim Breitner <nomeata@debian.org>  Fri, 25 May 2012 22:58:34 +0200
+
+agda (2.3.0.1-1) unstable; urgency=low
+
+  * New upstream release, GHC-7.4.1 compatible (Closes: #663048) 
+
+ -- Joachim Breitner <nomeata@debian.org>  Mon, 12 Mar 2012 14:12:34 +0100
+
+agda (2.3.0-1) unstable; urgency=low
+
+  * [c0e4746] Imported Upstream version 2.3.0. New/changed features include:
+    + New more liberal syntax for mutually recursive definitions
+    + Pattern matching on lambdas
+    + New syntax for updating (some fields of) records
+    + Universe polymorphism is now enabled by default
+    + New type of hidden function argument: instance arguments
+    + Dependent irrelevant function types and records with irrelevant fields
+    + See http://wiki.portal.chalmers.se/agda/pmwiki.php?n=Main.Version-2-3-0
+      for a full list
+  * [369ed3a] Update BDs in line with cabal requirements in new upstream
+  * [3798aee] Remove all patches. They are all now upstream.
+
+ -- Iain Lane <laney@debian.org>  Wed, 23 Nov 2011 10:12:59 +0000
+
+agda (2.2.10-4) unstable; urgency=low
+
+  * [16d953e] Remove old left-around patches
+  * [af671fe] Explicitly add haskell-mode directory to load path.
+    Thanks to Joey Capper for discovering the bug.
+  * [6fa096d] Update to use my d.o email address
+  * [f228ca0] Add an alexGetByte function for alex-3.0 compatibility
+
+ -- Iain Lane <laney@debian.org>  Sat, 03 Sep 2011 23:11:17 +0100
+
+agda (2.2.10-3) unstable; urgency=low
+
+  * Extend haskell-src-exts dependency range to include 0.11.* 
+
+ -- Joachim Breitner <nomeata@debian.org>  Fri, 17 Jun 2011 10:38:21 +0200
+
+agda (2.2.10-2) unstable; urgency=low
+
+  * Adjust conflict on haskell-agda-doc to exclude the dummy package (Closes:
+    #629572)
+
+ -- Joachim Breitner <nomeata@debian.org>  Tue, 07 Jun 2011 23:57:04 +0200
+
+agda (2.2.10-1) unstable; urgency=low
+
+  * [60c4b8a] Imported Upstream version 2.2.10
+  * [81c6857] Add haskell-src-exts BD
+  * [d0ce959] Add QuickCheck BDs
+  * [5c875b0] Update short descriptions to reflect best practice
+  * [705223c] d/copyright: Update copyright years
+  * [ee8a4bc] GHC6 → GHC, for GHC 7 transition
+  * [12d4e49] Standards-Version bump to 3.9.2, no changes required
+  * [9244cc3] Add 'agda' meta package
+  * [c28c44c] Relax BD on src-exts
+  * [86be090] Backport upstream patch to add syb-0.3 compatibility
+  * [828c999] Lexer: Compatibility with the new GHC
+  * [db55ca5] Clean up some autogenerated files
+
+ -- Iain Lane <laney@ubuntu.com>  Thu, 19 May 2011 13:43:17 +0100
+
+agda (2.2.8-1) experimental; urgency=low
+
+  * [ec6cfda] Imported Upstream version 2.2.8
+  * [597149f] Update emacs loading script to explicitly load haskell-
+    ghci. If this is not present, then agda-mode will error out
+    indicating that haskell-ghci is not available.
+  * [b16f978] Standards-Version → 3.9.1, no changes required
+
+ -- Iain Lane <laney@ubuntu.com>  Sat, 11 Dec 2010 15:39:21 +0000
+
+agda (2.2.6-6) unstable; urgency=low
+
+  * Fix FTBFS by fixing zlib doc package name. (Closes: #577892)
+  * Convert to 3.0 (quilt)
+
+ -- Joachim Breitner <nomeata@debian.org>  Fri, 16 Apr 2010 11:43:24 +0200
+
+agda (2.2.6-5) unstable; urgency=low
+
+  * debian/control: Rename -doc package.
+
+ -- Marco Túlio Gontijo e Silva <marcot@debian.org>  Tue, 16 Mar 2010 10:15:20 -0300
+
+agda (2.2.6-4) unstable; urgency=low
+
+  * debian/control: Remove the profiling package. It is unfortunate that this
+    package is proving to be too big to build before exhausting the available
+    resources on some architectures. Not having it should allow agda to build
+    in many more places though, so this is a win.
+  * debian/control, debian/rules, debian/watcher.sh: Remove the ticker which
+    should no longer be necessary due to the above. (Closes: #572300)
+
+ -- Iain Lane <laney@ubuntu.com>  Sat, 27 Feb 2010 20:35:10 +0000
+
+agda (2.2.6-3) unstable; urgency=low
+
+  [ Iain Lane ]
+  * debian/rules, debian/watcher.sh: Add a ticker to the build to prevent
+    timeouts on some arches. This was taken from the GHC6 source package and
+    modified a bit to add some rudimentary locking. Previously the build was
+    timing out on some slow arches (armel, mips*) but does actually make
+    progress and complete when given enough time
+  * debian/control:
+    + Add field ${haskell:Provides} to -dev and -prof packages in preparation
+      the upcoming GHC6/haskell-devscripts uploads into unstable
+    + Standards-Version bump to 3.8.4, no changes required
+
+  [ Marco Túlio Gontijo e Silva ]
+  * debian/control: Remove unneeded Build-Depends: on libghc6-utf8-
+    string-*.
+  * debian/control: Bump version of haskell-devscripts on Build-Depends
+    to 0.7.  Remove versioned Build-Depends: of ghc6* and remove
+    hscolour and haddock from Build-Depends:.
+  * debian/control: Split Build-Depends in Buid-Depends-Indep:.
+  * debian/control: Use all haskell: variables.
+  * debian/watch: Use format that downloads current version and checks
+    for new versions.
+
+ -- Marco Túlio Gontijo e Silva <marcot@debian.org>  Sat, 20 Feb 2010 20:12:57 -0200
+
+agda (2.2.6-2) unstable; urgency=low
+
+  * debian/control: Set priority to extra per archive overrides
+  * debian/copyright: Update upstream source to a more generic location 
+  * debian/rules, debian/libghc6-agda-dev.install: Install Agda.css, needed
+    to generate HTML documentation.
+
+ -- Iain Lane <laney@ubuntu.com>  Sun, 10 Jan 2010 11:29:17 +0000
+
+agda (2.2.6-1) unstable; urgency=low
+
+  * New upstream release 2.2.6, for headlines please see:
+    http://wiki.portal.chalmers.se/agda/pmwiki.php?n=Main.Version-2-2-6
+  * debian/control
+    + Bump standards-version to 3.8.3, no changes
+    + Fix Vcs-Git to point to correct URL
+    + Update build-depends for new upstream release
+    + Undo arch/indep split per current pkg-haskell practice
+    + Add Homepage field
+  * debian/copyright: Fix encoding to UTF-8 (thanks Lintian) 
+  * debian/README.source: Remove, no repacking so not necessary any more 
+  * debian/50agda.el:
+    + Only load file if it exists, prevents a non-intrusive emacs warning
+      where 50agda.el is left on system when package is removed. 
+      (Closes: #559197). 
+    + Do not load file on XEmacs — agda-mode is not compatible with XEmacs.
+
+ -- Iain Lane <laney@ubuntu.com>  Tue, 05 Jan 2010 23:43:20 +0000
+
+agda (2.2.4+dfsg-1) unstable; urgency=low
+
+  * New upstream release 2.2.4.
+  * Repacked to fix a couple of DFSG problems, see debian/README.source for
+    more information.
+  * debian/copyright: Update, add missing copyright holders.
+  * debian/control: Move ghc6-doc, haddock to Build-Depends. Move -doc
+    packages to build-depends-indep.
+
+ -- Iain Lane <laney@ubuntu.com>  Mon, 20 Jul 2009 19:49:41 +0100
+
+agda (2.2.2-1) unstable; urgency=low
+
+  * Initial packaging (Closes: #522924)
+  * With thanks to Marco Túlio Gontijo e Silva and Joachim Breitner for
+    their helpful comments
+
+ -- Iain Lane <laney@ubuntu.com>  Wed, 20 May 2009 16:08:07 +0100
+
