@@ -83,7 +83,7 @@ Architecture: all
 Section: misc
 Depends:
  agda-bin,
- agda-mode,
+ elpa-agda2-mode,
  agda-stdlib,
  agda-stdlib-doc,
  libghc-agda-dev,
@@ -115,7 +115,7 @@ Recommends:
  libghc-agda-dev (>= ${source:Upstream-Version}),
  ${haskell:Recommends},
 Suggests:
- agda-mode,
+ elpa-agda2-mode,
  ${haskell:Suggests},
 Description: commandline interface to Agda
  Agda is a dependently typed functional programming language: It has inductive
@@ -134,18 +134,21 @@ Description: commandline interface to Agda
  Agda programs. The program can also generate hyperlinked, highlighted HTML
  files from Agda sources.
 
-Package: agda-mode
+Package: elpa-agda2-mode
+Section: editors
 Architecture: all
-Section: misc
-Depends:
+Depends: ${misc:Depends},
  agda-bin (<< ${source:Version}.1~),
  agda-bin (>= ${source:Version}),
- emacs | emacsen,
  libghc-agda-dev (<< ${source:Version}.1~),
  libghc-agda-dev (>= ${source:Version}),
  ${haskell:Depends},
- ${misc:Depends},
  ${shlibs:Depends},
+Built-Using: ${misc:Built-Using}
+Recommends: emacs (>= 46.0)
+Enhances: emacs, emacs24
+Breaks: agda-mode (<< 2.5.1)
+Provides: agda-mode
 Description: dependently typed functional programming language — emacs mode
  Agda is a dependently typed functional programming language: It has inductive
  families, which are like Haskell's GADTs, but they can be indexed by values and
@@ -162,6 +165,14 @@ Description: dependently typed functional programming language — emacs mode
  This package contains the emacs interactive development mode for Agda. This
  mode is the preferred way to write Agda code, and offers features such as
  iterative development, refinement, case analysis and so on.
+
+Package: agda-mode
+Architecture: all
+Section: misc
+Depends: ${misc:Depends}
+Description: transitional dummy package for elpa-agda2-mode
+ agda-mode has been ELPAfied.  See the elpa-agda2-mode package.  This
+ transitional package is safe to remove.
 
 Package: libghc-agda-dev
 Architecture: any
