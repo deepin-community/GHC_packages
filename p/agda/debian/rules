@@ -8,9 +8,9 @@ include /usr/share/cdbs/1/class/hlibrary.mk
 
 export LC_ALL=C.UTF-8
 
+builtins = $(CURDIR)/debian/tmp-inst-ghc/usr/share/libghc-agda-dev/lib/prim/Agda/Primitive.agda \
+	$(wildcard $(CURDIR)/debian/tmp-inst-ghc/usr/share/libghc-agda-dev/lib/prim/Agda/Builtin/*.agda)
 install/libghc-agda-dev:: debian/tmp-inst-ghc
-	builtins := $(CURDIR)/debian/tmp-inst-ghc/usr/share/libghc-agda-dev/lib/prim/Agda/Primitive.agda \
-		$(wildcard $(CURDIR)/debian/tmp-inst-ghc/usr/share/libghc-agda-dev/lib/prim/Agda/Builtin/*.agda)
 	$(foreach builtin,$(builtins),Agda_datadir=$(CURDIR)/debian/tmp-inst-ghc/usr/share/libghc-agda-dev \
 		debian/tmp-inst-ghc/usr/bin/agda $(builtin) -v0)
 
