@@ -1,0 +1,99 @@
+Source: xmonad-extras
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Lev Lamberov <dogsleg@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-x11-dev (>= 1.4.3),
+ libghc-x11-prof,
+ libghc-hint-dev (>= 0.3.3.3),
+ libghc-hint-dev (<< 0.5),
+ libghc-hint-prof,
+ libghc-mtl-dev,
+ libghc-mtl-prof,
+ libghc-network-dev,
+ libghc-network-prof,
+ libghc-old-locale-dev,
+ libghc-old-locale-prof,
+ libghc-old-time-dev,
+ libghc-old-time-prof,
+ libghc-parsec3-dev (>= 2),
+ libghc-parsec3-dev (<< 4),
+ libghc-parsec3-prof,
+ libghc-random-dev,
+ libghc-random-prof,
+ libghc-regex-posix-dev,
+ libghc-regex-posix-prof,
+ libghc-split-dev (>= 0.1),
+ libghc-split-dev (<< 0.3),
+ libghc-split-prof,
+ libghc-xmonad-dev (>= 0.10),
+ libghc-xmonad-dev (<< 0.13),
+ libghc-xmonad-prof,
+ libghc-xmonad-contrib-dev (>= 0.10),
+ libghc-xmonad-contrib-dev (<< 0.13),
+ libghc-xmonad-contrib-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-x11-doc,
+ libghc-hint-doc,
+ libghc-mtl-doc,
+ libghc-network-doc,
+ libghc-old-locale-doc,
+ libghc-old-time-doc,
+ libghc-parsec3-doc,
+ libghc-random-doc,
+ libghc-regex-posix-doc,
+ libghc-split-doc,
+ libghc-xmonad-doc,
+ libghc-xmonad-contrib-doc,
+Standards-Version: 3.9.8
+Homepage: http://projects.haskell.org/xmonad-extras
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-xmonad-extras
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
+X-Description: third party extensions for xmonad with wacky dependencies
+ Various modules for xmonad that cannot be added to xmonad-contrib
+ because of additional dependencies.
+
+Package: libghc-xmonad-extras-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-xmonad-extras-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-xmonad-extras-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
