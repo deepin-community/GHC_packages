@@ -1,23 +1,33 @@
-Source: haskell-open-browser
+Source: haskell-twitter-types-lens
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>
+Uploaders: Clint Adams <clint@debian.org>
 Priority: extra
 Section: haskell
 Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.9),
+ haskell-devscripts (>= 0.8),
  cdbs,
  ghc,
  ghc-prof,
+ libghc-lens-dev (>= 4.0),
+ libghc-lens-dev (<< 5),
+ libghc-lens-prof (>= 4.0),
+ libghc-lens-prof (<< 5),
+ libghc-text-dev,
+ libghc-text-prof,
+ libghc-twitter-types-dev (>= 0.7.2),
+ libghc-twitter-types-dev (<< 0.8),
+ libghc-twitter-types-prof (>= 0.7.2),
+ libghc-twitter-types-prof (<< 0.8),
 Build-Depends-Indep: ghc-doc,
-Standards-Version: 3.9.6
-Homepage: https://github.com/rightfold/open-browser
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-open-browser
-Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
-X-Description: Open a web browser from Haskell.
- This library provides a cross-platform way to open a web browser from Haskell
- code.
+ libghc-lens-doc,
+ libghc-text-doc,
+ libghc-twitter-types-doc,
+Standards-Version: 3.9.8
+Homepage: https://github.com/himura/twitter-types-lens
+X-Description: Twitter JSON types (lens powered)
+ Lenses for Twitter JSON API types.
 
-Package: libghc-open-browser-dev
+Package: libghc-twitter-types-lens-dev
 Architecture: any
 Depends: ${haskell:Depends},
  ${misc:Depends},
@@ -31,7 +41,7 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  .
  ${haskell:Blurb}
 
-Package: libghc-open-browser-prof
+Package: libghc-twitter-types-lens-prof
 Architecture: any
 Depends: ${haskell:Depends},
  ${misc:Depends},
@@ -44,7 +54,7 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  .
  ${haskell:Blurb}
 
-Package: libghc-open-browser-doc
+Package: libghc-twitter-types-lens-doc
 Architecture: all
 Section: doc
 Depends: ${haskell:Depends},

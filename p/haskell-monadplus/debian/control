@@ -1,6 +1,6 @@
-Source: haskell-open-browser
+Source: haskell-monadplus
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>
+Uploaders: Sean Whitton <spwhitton@spwhitton.name>
 Priority: extra
 Section: haskell
 Build-Depends: debhelper (>= 9),
@@ -9,15 +9,17 @@ Build-Depends: debhelper (>= 9),
  ghc,
  ghc-prof,
 Build-Depends-Indep: ghc-doc,
-Standards-Version: 3.9.6
-Homepage: https://github.com/rightfold/open-browser
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-open-browser
-Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
-X-Description: Open a web browser from Haskell.
- This library provides a cross-platform way to open a web browser from Haskell
- code.
+ libghc-base-doc,
+Standards-Version: 3.9.8
+Homepage: http://hackage.haskell.org/package/monadplus
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-monadplus
+Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
+X-Description: Haskell98 partial maps and filters over MonadPlus
+ Filtering and folding over arbitrary `MonadPlus` instances.
+ This package generalizes many common stream operations such as
+ `filter`, `catMaybes` etc.
 
-Package: libghc-open-browser-dev
+Package: libghc-monadplus-dev
 Architecture: any
 Depends: ${haskell:Depends},
  ${misc:Depends},
@@ -31,7 +33,7 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  .
  ${haskell:Blurb}
 
-Package: libghc-open-browser-prof
+Package: libghc-monadplus-prof
 Architecture: any
 Depends: ${haskell:Depends},
  ${misc:Depends},
@@ -44,7 +46,7 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  .
  ${haskell:Blurb}
 
-Package: libghc-open-browser-doc
+Package: libghc-monadplus-doc
 Architecture: all
 Section: doc
 Depends: ${haskell:Depends},
