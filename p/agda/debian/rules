@@ -16,3 +16,8 @@ install/libghc-agda-dev:: debian/tmp-inst-ghc
 
 install/elpa-agda2-mode::
 	dh_elpa
+
+override_dh_strip:
+	# GHC cannot produce debugging symbols so the -dbgsym package
+	# ends up empty, so disable generating it
+	dh_strip --no-automatic-dbgsym
