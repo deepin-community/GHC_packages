@@ -1,6 +1,12 @@
+Description: Remove bytestring-builder from Build-depends
+ This package is a no-op for Debian (and so, we do not ship it).
+Author: Joachim Breitner <nomeata@debian.org>
+Forwarded: not-needed, debian specific
+Index: b/conduit-extra.cabal
+===================================================================
 --- a/conduit-extra.cabal
 +++ b/conduit-extra.cabal
-@@ -71,8 +71,7 @@
+@@ -73,8 +73,7 @@ test-suite test
                     , async
                     , attoparsec
                     , blaze-builder
@@ -10,3 +16,11 @@
                     , exceptions
                     , process
                     , resourcet
+@@ -107,7 +106,6 @@ benchmark blaze
+                   , conduit-extra
+                   , criterion
+                   , bytestring
+-                  , bytestring-builder
+                   , transformers
+     main-is:        blaze.hs
+     ghc-options:    -Wall -O2 -rtsopts
