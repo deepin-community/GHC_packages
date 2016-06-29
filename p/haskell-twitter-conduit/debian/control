@@ -1,0 +1,124 @@
+Source: haskell-twitter-conduit
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-aeson-dev (>= 0.7.0.5),
+ libghc-aeson-prof,
+ libghc-attoparsec-dev (>= 0.10),
+ libghc-attoparsec-prof,
+ libghc-authenticate-oauth-dev (>= 1.3),
+ libghc-authenticate-oauth-prof,
+ libghc-conduit-dev (>= 1.1),
+ libghc-conduit-prof,
+ libghc-conduit-extra-dev (>= 1.1),
+ libghc-conduit-extra-prof,
+ libghc-data-default-dev (>= 0.3),
+ libghc-data-default-prof,
+ libghc-exceptions-dev (>= 0.5),
+ libghc-exceptions-prof,
+ libghc-http-client-dev (>= 0.3),
+ libghc-http-client-prof,
+ libghc-http-conduit-dev (>= 2.0),
+ libghc-http-conduit-dev (<< 2.2),
+ libghc-http-conduit-prof,
+ libghc-http-types-dev,
+ libghc-http-types-prof,
+ libghc-lens-dev (>= 4.4),
+ libghc-lens-prof,
+ libghc-lens-aeson-dev (>= 1),
+ libghc-lens-aeson-prof,
+ libghc-resourcet-dev (>= 1.0),
+ libghc-resourcet-prof,
+ libghc-text-dev (>= 0.11),
+ libghc-text-prof,
+ libghc-transformers-base-dev,
+ libghc-transformers-base-prof,
+ libghc-twitter-types-dev (>= 0.6),
+ libghc-twitter-types-prof,
+ libghc-twitter-types-lens-dev (>= 0.6),
+ libghc-twitter-types-lens-prof,
+ libghc-aeson-dev,
+ libghc-authenticate-oauth-dev,
+ libghc-bytestring-dev,
+ libghc-case-insensitive-dev,
+ libghc-conduit-dev,
+ libghc-data-default-dev,
+ libghc-doctest-dev,
+ libghc-hlint-dev (>= 1.7),
+ libghc-hspec-dev,
+ libghc-http-client-dev,
+ libghc-http-conduit-dev,
+ libghc-lens-dev,
+ libghc-network-uri-dev (>= 2.6),
+ libghc-resourcet-dev,
+ libghc-text-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-aeson-doc,
+ libghc-attoparsec-doc,
+ libghc-authenticate-oauth-doc,
+ libghc-conduit-doc,
+ libghc-conduit-extra-doc,
+ libghc-data-default-doc,
+ libghc-exceptions-doc,
+ libghc-http-client-doc,
+ libghc-http-conduit-doc,
+ libghc-http-types-doc,
+ libghc-lens-doc,
+ libghc-lens-aeson-doc,
+ libghc-resourcet-doc,
+ libghc-text-doc,
+ libghc-transformers-base-doc,
+ libghc-twitter-types-doc,
+ libghc-twitter-types-lens-doc,
+Standards-Version: 3.9.8
+Homepage: https://github.com/himura/twitter-conduit
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-twitter-conduit
+Vcs-Git: git://git.debian.org/git/pkg-haskell/DHG_packages.git
+X-Description: Twitter API package with conduits and streaming
+ This library provides a conduit-based interface to Twitter's APIs.
+
+Package: libghc-twitter-conduit-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-twitter-conduit-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-twitter-conduit-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

@@ -1,8 +1,16 @@
-gitit (0.12.1.1+dfsg-2) UNRELEASED; urgency=medium
+gitit (0.12.1.1+dfsg-2) unstable; urgency=medium
 
-  * Fix VCS fields
+  * Use dh_link instead of dh_linktree
+    dh_linktree imposes a strong dependency against libjs-jquery. Use dh_link
+    to create the symlinks and avoid continuous uploading of the package.
+  * Remove unused lintian override
+    The minified javascript code has been removed from the source package,
+    so there is no reason to override the source-is-missing lintian warning.
+  * Add description to the jquery patch
+  * Remove duplicate entries from the Build-Depends field
+  * Fix spelling error in libghc-gitit-data package description
 
- -- Gianfranco Costamagna <locutusofborg@debian.org>  Thu, 02 Jun 2016 19:12:11 +0200
+ -- Ilias Tsitsimpis <i.tsitsimpis@gmail.com>  Thu, 23 Jun 2016 12:59:05 +0300
 
 gitit (0.12.1.1+dfsg-1) unstable; urgency=medium
 

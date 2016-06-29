@@ -1,0 +1,10 @@
+#!/usr/bin/make -f
+
+DEB_ENABLE_TESTS = no # some tests require network access
+DEB_CABAL_PACKAGE = twitter-conduit
+DEB_DEFAULT_COMPILER = ghc
+
+export HASKELL_DIST_DIR = dist-ghc
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/hlibrary.mk

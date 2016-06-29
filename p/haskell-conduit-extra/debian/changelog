@@ -1,8 +1,18 @@
-haskell-conduit-extra (1.1.13.1-2) UNRELEASED; urgency=medium
+haskell-conduit-extra (1.1.13.1-2) unstable; urgency=medium
 
-  * Fix VCS fields
+  * Update d/copyright file
+    - Fix typo (s/Attoparsec.h/Attoparsec.hs/)
+    - Add myself under debian/* files
+  * Update the no-bytestring-builder patch
+    - Remove bytestring-builder package from benchmark's Build-depends
+    - Add description in DEP-3 format
+  * Add fix-alignment patch
+    Ensure that alignment constraints are fulfilled in all
+    architectures. This makes the code portable and fixes a FTBFS
+    for the armhf architecture.
+  * Remove duplicate entries from the Build-Depends field
 
- -- Gianfranco Costamagna <locutusofborg@debian.org>  Thu, 02 Jun 2016 19:12:20 +0200
+ -- Ilias Tsitsimpis <i.tsitsimpis@gmail.com>  Sat, 25 Jun 2016 12:19:47 +0300
 
 haskell-conduit-extra (1.1.13.1-1) unstable; urgency=medium
 

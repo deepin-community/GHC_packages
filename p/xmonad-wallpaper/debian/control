@@ -1,0 +1,75 @@
+Source: xmonad-wallpaper
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Lev Lamberov <dogsleg@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-magic-dev (>= 1.1),
+ libghc-magic-dev (<< 1.2),
+ libghc-magic-prof,
+ libghc-mtl-dev (>= 2.0),
+ libghc-mtl-dev (<< 2.3),
+ libghc-mtl-prof,
+ libghc-random-dev (>= 1.1),
+ libghc-random-dev (<< 1.2),
+ libghc-random-prof,
+ libghc-xmonad-dev (>= 0.12),
+ libghc-xmonad-dev (<< 0.13),
+ libghc-xmonad-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-magic-doc,
+ libghc-mtl-doc,
+ libghc-random-doc,
+ libghc-xmonad-doc,
+Standards-Version: 3.9.8
+Homepage: http://hackage.haskell.org/package/xmonad-wallpaper
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/xmonad-wallpaper
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
+X-Description: xmonad wallpaper extension
+ Designed for xmonad users who rely on feh to setup wallpaper. It allows user
+ to setup a random image as the wallpaper chosen from user specified image
+ directories.
+
+Package: libghc-xmonad-wallpaper-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-xmonad-wallpaper-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-xmonad-wallpaper-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
