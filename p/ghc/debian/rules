@@ -86,7 +86,7 @@ endif
 	# We also want to build the threaded profiling-enabled debug runtime,
 	# because it does no harm
 	echo 'GhcRTSWays += $$(if $$(findstring p, $$(GhcLibWays)),thr_debug_p,)' >> mk/build.mk
-	
+
 	# We can't do this with a configure flag in 6.8.1 as libdir is not
 	# defined at the point at which we := it
 	echo 'ghclibdir := $${libdir}/ghc' >> mk/build.mk
@@ -256,7 +256,7 @@ override_dh_compress:
 	dh_compress -X.haddock -X.txt
 
 override_dh_installdeb:
-	sh debian/dh_haskell_provides
+	dh_haskell_provides
 	dh_installdeb
 
 override_dh_shlibdeps:
