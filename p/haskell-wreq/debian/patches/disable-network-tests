@@ -1,0 +1,29 @@
+--- a/tests/UnitTests.hs
++++ b/tests/UnitTests.hs
+@@ -319,7 +319,7 @@
+     , testCase "put" $ basicPut verb site
+     , testCase "delete" $ basicDelete verb site
+     , testCase "404" $ throwsStatusCode verb site
+-    , testCase "headRedirect" $ headRedirect verb site
++--    , testCase "headRedirect" $ headRedirect verb site
+     , testCase "redirectOverflow" $ redirectOverflow verb site
+     , testCase "invalidURL" $ invalidURL verb site
+     , testCase "funkyScheme" $ funkyScheme verb site
+@@ -352,8 +352,6 @@
+ 
+ -- Tests that our local httpbin clone doesn't yet support.
+ httpbinTests verb = [testGroup "httpbin" [
+-    testGroup "http" $ httpbinTestsWith verb ("http://httpbin.org" <>)
+-  , testGroup "https" $ httpbinTestsWith verb ("https://httpbin.org" <>)
+   ]]
+ 
+ -- Tests that httpbin.org doesn't support.
+@@ -381,8 +379,6 @@
+   Session.withSession $ \s ->
+     flip E.finally (killThread tid) .
+     defaultMain $ tests <>
+-                  [ testGroup "plain" $ httpbinTests basic
+-                  , testGroup "session" $ httpbinTests (session s)] <>
+       case mserv of
+         Nothing -> []
+         Just binding -> [

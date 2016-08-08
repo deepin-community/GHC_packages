@@ -1,0 +1,147 @@
+Source: haskell-wreq
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-aeson-dev (>= 0.7.0.3),
+ libghc-aeson-prof,
+ libghc-attoparsec-dev (>= 0.11.1.0),
+ libghc-attoparsec-prof,
+ libghc-authenticate-oauth-dev (>= 1.5),
+ libghc-authenticate-oauth-dev (<< 1.6),
+ libghc-authenticate-oauth-prof,
+ libghc-base16-bytestring-dev,
+ libghc-base16-bytestring-prof,
+ libghc-byteable-dev,
+ libghc-byteable-prof,
+ libghc-case-insensitive-dev,
+ libghc-case-insensitive-prof,
+ libghc-cryptohash-dev,
+ libghc-cryptohash-prof,
+ libghc-exceptions-dev (>= 0.5),
+ libghc-exceptions-prof,
+ libghc-hashable-dev,
+ libghc-hashable-prof,
+ libghc-http-client-dev (>= 0.4.6),
+ libghc-http-client-prof,
+ libghc-http-client-tls-dev (>= 0.2),
+ libghc-http-client-tls-prof,
+ libghc-http-types-dev (>= 0.8),
+ libghc-http-types-prof,
+ libghc-lens-dev (>= 4.5),
+ libghc-lens-prof,
+ libghc-lens-aeson-dev,
+ libghc-lens-aeson-prof,
+ libghc-mime-types-dev,
+ libghc-mime-types-prof,
+ libghc-psqueues-dev (>= 0.2),
+ libghc-psqueues-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+ libghc-time-locale-compat-dev,
+ libghc-time-locale-compat-prof,
+ libghc-unordered-containers-dev,
+ libghc-unordered-containers-prof,
+ libghc-hunit-dev,
+ libghc-quickcheck2-dev (>= 2.7),
+ libghc-aeson-dev,
+ libghc-aeson-pretty-dev (>= 0.7.1),
+ libghc-base64-bytestring-dev,
+ libghc-doctest-dev,
+ libghc-http-client-dev,
+ libghc-http-types-dev,
+ libghc-lens-dev,
+ libghc-network-info-dev,
+ libghc-snap-core-dev,
+ libghc-snap-server-dev (>= 0.9.4.4),
+ libghc-temporary-dev,
+ libghc-test-framework-dev,
+ libghc-test-framework-hunit-dev,
+ libghc-test-framework-quickcheck2-dev,
+ libghc-unix-compat-dev,
+ libghc-uuid-dev,
+ libghc-vector-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-aeson-doc,
+ libghc-attoparsec-doc,
+ libghc-authenticate-oauth-doc,
+ libghc-base16-bytestring-doc,
+ libghc-byteable-doc,
+ libghc-case-insensitive-doc,
+ libghc-cryptohash-doc,
+ libghc-exceptions-doc,
+ libghc-hashable-doc,
+ libghc-http-client-doc,
+ libghc-http-client-tls-doc,
+ libghc-http-types-doc,
+ libghc-lens-doc,
+ libghc-lens-aeson-doc,
+ libghc-mime-types-doc,
+ libghc-psqueues-doc,
+ libghc-text-doc,
+ libghc-time-locale-compat-doc,
+ libghc-unordered-containers-doc,
+Standards-Version: 3.9.8
+Homepage: http://www.serpentine.com/wreq
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-wreq
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
+X-Description: easy-to-use HTTP client library
+ A web client library that is designed for ease of use.
+ .
+ Features include:
+  * Simple but powerful `lens`-based API
+  * A solid test suite, and built on reliable libraries like
+    http-client and lens
+  * Session handling includes connection keep-alive and pooling, and
+    cookie persistence
+  * Automatic response body decompression
+  * Powerful multipart form and file upload handling
+  * Support for JSON requests and responses, including navigation of
+    schema-less responses
+  * Basic and OAuth2 bearer authentication
+  * Early TLS support via the tls package
+
+Package: libghc-wreq-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-wreq-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-wreq-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
