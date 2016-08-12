@@ -4,3 +4,11 @@
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
+
+install/hopenpgp-tools:: hkt.1 hokey.1 hot.1
+
+%.1:
+	help2man -N -n "hopenpgp-tools" \
+		--version-string="$(shell dpkg-parsechangelog --show-field Version)" \
+		--include=debian/manpage-include \
+		-o $@ $(patsubst %.1,debian/hopenpgp-tools/usr/bin/%,$@)
