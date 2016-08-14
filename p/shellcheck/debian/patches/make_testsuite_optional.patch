@@ -1,6 +1,6 @@
 From: Helmut Grohne <helmut@subdivi.de>
 Subject: make TemplateHaskell usage optional
-Last-Update: 2014-10-23
+Last-Update: 2016-08-13
 
 The only use of TemplateHaskell in ShellCheck is for collecting QuickCheck
 properties. Unfortunately this means that the main ShellCheck modules do not
@@ -8,124 +8,177 @@ build on non-TH architectures. This patch removes the runTests symbol defined
 using TemplateHaskell on non-TH architectures by branching on the
 Debian-specific DEBIAN_NO_GHCI CPP macro (Thanks to Joachim Breitner).
 
-Index: ShellCheck-0.3.7/ShellCheck/Analytics.hs
+Index: shellcheck/ShellCheck/Analytics.hs
 ===================================================================
---- ShellCheck-0.3.7.orig/ShellCheck/Analytics.hs	2015-04-30 21:00:47.000000000 +0200
-+++ ShellCheck-0.3.7/ShellCheck/Analytics.hs	2015-04-30 21:03:09.000000000 +0200
-@@ -15,8 +15,16 @@
-     You should have received a copy of the GNU Affero General Public License
+--- shellcheck.orig/ShellCheck/Analytics.hs
++++ shellcheck/ShellCheck/Analytics.hs
+@@ -17,8 +17,16 @@
+     You should have received a copy of the GNU General Public License
      along with this program.  If not, see <http://www.gnu.org/licenses/>.
  -}
 -{-# LANGUAGE TemplateHaskell, FlexibleContexts #-}
--module ShellCheck.Analytics (AnalysisOptions(..), defaultAnalysisOptions, filterByAnnotation, runAnalytics, shellForExecutable, runTests) where
+-module ShellCheck.Analytics (runAnalytics, ShellCheck.Analytics.runTests) where
 +{-# LANGUAGE CPP #-}
 +{-# LANGUAGE FlexibleContexts #-}
 +#ifndef DEBIAN_NO_GHCI
 +{-# LANGUAGE TemplateHaskell #-}
 +#endif
-+module ShellCheck.Analytics (AnalysisOptions(..), defaultAnalysisOptions, filterByAnnotation, runAnalytics, shellForExecutable
++module ShellCheck.Analytics (runAnalytics
 +#ifndef DEBIAN_NO_GHCI
-+	, runTests
++        , ShellCheck.Analytics.runTests
 +#endif
-+	) where
-
- import Control.Arrow (first)
- import Control.Monad
-@@ -35,7 +43,9 @@
- import ShellCheck.Parser hiding (runTests)
- import ShellCheck.Regex
++        ) where
+ 
+ import ShellCheck.AST
+ import ShellCheck.ASTLib
+@@ -42,7 +50,9 @@
+ import Data.Ord
+ import Debug.Trace
  import qualified Data.Map as Map
 +#ifndef DEBIAN_NO_GHCI
  import Test.QuickCheck.All (forAllProperties)
 +#endif
  import Test.QuickCheck.Test (quickCheckWithResult, stdArgs, maxSuccess)
-
- data Parameters = Parameters {
-@@ -3312,5 +3322,7 @@
- checkMaskedReturns _ _ = return ()
-
-
+ 
+ -- Checks that are run on the AST root
+@@ -2790,5 +2800,7 @@
+             "]" -> "["
+             x -> x
+ 
 +#ifndef DEBIAN_NO_GHCI
  return []
  runTests =  $( [| $(forAllProperties) (quickCheckWithResult (stdArgs { maxSuccess = 1 }) ) |])
 +#endif
-Index: ShellCheck-0.3.7/ShellCheck/Parser.hs
+Index: shellcheck/ShellCheck/Parser.hs
 ===================================================================
---- ShellCheck-0.3.7.orig/ShellCheck/Parser.hs	2015-04-30 21:00:47.000000000 +0200
-+++ ShellCheck-0.3.7/ShellCheck/Parser.hs	2015-04-30 21:04:25.000000000 +0200
-@@ -15,8 +15,15 @@
-     You should have received a copy of the GNU Affero General Public License
+--- shellcheck.orig/ShellCheck/Parser.hs
++++ shellcheck/ShellCheck/Parser.hs
+@@ -17,8 +17,15 @@
+     yOU should have received a copy of the GNU General Public License
      along with this program.  If not, see <http://www.gnu.org/licenses/>.
  -}
 -{-# LANGUAGE NoMonomorphismRestriction, TemplateHaskell, FlexibleContexts #-}
--module ShellCheck.Parser (Note(..), Severity(..), parseShell, ParseResult(..), ParseNote(..), sortNotes, noteToParseNote, runTests, readScript) where
+-module ShellCheck.Parser (parseScript, runTests) where
 +{-# LANGUAGE CPP, NoMonomorphismRestriction, FlexibleContexts #-}
 +#ifndef DEBIAN_NO_GHCI
 +{-# LANGUAGE TemplateHaskell #-}
 +#endif
-+module ShellCheck.Parser (Note(..), Severity(..), parseShell, ParseResult(..), ParseNote(..), sortNotes, noteToParseNote
++module ShellCheck.Parser (parseScript
 +#ifndef DEBIAN_NO_GHCI
-+	, runTests
++        , runTests
 +#endif
-+	, readScript) where
-
++        ) where
+ 
  import ShellCheck.AST
- import ShellCheck.Data
-@@ -34,7 +41,9 @@
- import System.IO
- import Text.Parsec.Error
- import GHC.Exts (sortWith)
+ import ShellCheck.ASTLib
+@@ -45,7 +52,9 @@
+ import qualified Control.Monad.State as Ms
+ import qualified Data.Map as Map
+ 
 +#ifndef DEBIAN_NO_GHCI
  import Test.QuickCheck.All (quickCheckAll)
 +#endif
-
- backslash = char '\\'
- linefeed = optional carriageReturn >> char '\n'
-@@ -2164,6 +2173,8 @@
+ 
+ type SCBase m = Mr.ReaderT (SystemInterface m) (Ms.StateT SystemState m)
+ type SCParser m v = ParsecT String UserState (SCBase m) v
+@@ -2664,6 +2673,8 @@
  lt x = trace (show x) x
  ltt t = trace (show t)
-
+ 
 +#ifndef DEBIAN_NO_GHCI
  return []
  runTests = $quickCheckAll
 +#endif
-
-Index: ShellCheck-0.3.7/ShellCheck/Simple.hs
+ 
+Index: shellcheck/ShellCheck/AnalyzerLib.hs
 ===================================================================
---- ShellCheck-0.3.7.orig/ShellCheck/Simple.hs	2015-04-30 21:00:47.000000000 +0200
-+++ ShellCheck-0.3.7/ShellCheck/Simple.hs	2015-04-30 21:00:47.000000000 +0200
-@@ -15,15 +15,24 @@
-     You should have received a copy of the GNU Affero General Public License
+--- shellcheck.orig/ShellCheck/AnalyzerLib.hs
++++ shellcheck/ShellCheck/AnalyzerLib.hs
+@@ -17,7 +17,10 @@
+     You should have received a copy of the GNU General Public License
      along with this program.  If not, see <http://www.gnu.org/licenses/>.
  -}
 +{-# LANGUAGE CPP #-}
 +#ifndef DEBIAN_NO_GHCI
  {-# LANGUAGE TemplateHaskell #-}
--module ShellCheck.Simple (shellCheck, ShellCheckComment, scLine, scColumn, scSeverity, scCode, scMessage, runTests) where
 +#endif
-+module ShellCheck.Simple (shellCheck, ShellCheckComment, scLine, scColumn, scSeverity, scCode, scMessage
+ {-# LANGUAGE FlexibleContexts #-}
+ module ShellCheck.AnalyzerLib where
+ import ShellCheck.AST
+@@ -628,5 +631,7 @@
+     getCode (TokenComment _ (Comment _ c _)) = c
+ 
+ 
 +#ifndef DEBIAN_NO_GHCI
-+	, runTests
+ return [] 
+ runTests =  $( [| $(forAllProperties) (quickCheckWithResult (stdArgs { maxSuccess = 1 }) ) |])
 +#endif
-+	) where
-
- import Data.List
- import Data.Maybe
- import ShellCheck.Analytics hiding (runTests)
- import ShellCheck.Options
- import ShellCheck.Parser hiding (runTests)
+Index: shellcheck/ShellCheck/Checker.hs
+===================================================================
+--- shellcheck.orig/ShellCheck/Checker.hs
++++ shellcheck/ShellCheck/Checker.hs
+@@ -17,8 +17,15 @@
+     You should have received a copy of the GNU General Public License
+     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ -}
++{-# LANGUAGE CPP #-}
 +#ifndef DEBIAN_NO_GHCI
- import Test.QuickCheck.All (quickCheckAll)
+ {-# LANGUAGE TemplateHaskell #-}
+-module ShellCheck.Checker (checkScript, ShellCheck.Checker.runTests) where
 +#endif
- import Text.Parsec.Pos
-
- shellCheck :: AnalysisOptions -> String -> [ShellCheckComment]
-@@ -75,6 +84,7 @@
- prop_optionDisablesIssue2 =
-     null $ shellCheck (defaultAnalysisOptions { optionExcludes = [2148, 1037] }) "echo \"$10\""
-
++module ShellCheck.Checker (checkScript
++#ifndef DEBIAN_NO_GHCI
++        , ShellCheck.Checker.runTests
++#endif
++        ) where
+ 
+ import ShellCheck.Interface
+ import ShellCheck.Parser
+@@ -35,7 +42,9 @@
+ import Prelude hiding (readFile)
+ import Control.Monad
+ 
++#ifndef DEBIAN_NO_GHCI
+ import Test.QuickCheck.All
++#endif
+ 
+ tokenToPosition map (TokenComment id c) = fromMaybe fail $ do
+     position <- Map.lookup id map
+@@ -158,5 +167,7 @@
+                 [("foo", "source bar"), ("bar", "baz=3")]
+                 "#shellcheck source=foo\n. \"$1\"; echo \"$baz\""
+ 
 +#ifndef DEBIAN_NO_GHCI
  return []
  runTests = $quickCheckAll
--
++#endif
+Index: shellcheck/ShellCheck/Checks/Commands.hs
+===================================================================
+--- shellcheck.orig/ShellCheck/Checks/Commands.hs
++++ shellcheck/ShellCheck/Checks/Commands.hs
+@@ -17,12 +17,17 @@
+     You should have received a copy of the GNU General Public License
+     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ -}
++{-# LANGUAGE CPP #-}
++#ifndef DEBIAN_NO_GHCI
+ {-# LANGUAGE TemplateHaskell #-}
++#endif
+ {-# LANGUAGE FlexibleContexts #-}
+ 
+ -- This module contains checks that examine specific commands by name.
+ module ShellCheck.Checks.Commands (runChecks
++#ifndef DEBIAN_NO_GHCI
+     , ShellCheck.Checks.Commands.runTests
++#endif
+ ) where
+ 
+ import ShellCheck.AST
+@@ -556,5 +561,7 @@
+     checkArg _ = return ()
+ 
+ 
++#ifndef DEBIAN_NO_GHCI
+ return []
+ runTests =  $( [| $(forAllProperties) (quickCheckWithResult (stdArgs { maxSuccess = 1 }) ) |])
 +#endif
