@@ -1,11 +1,16 @@
 #!/usr/bin/make -f
 
+include /usr/share/dpkg/architecture.mk
 
 ifeq (yes,$(shell test -e /usr/bin/ghci && echo yes))
 # https://github.com/haskell/cabal/issues/2398
 ifeq (yes,$(shell ghc --info | grep -q 'Support SMP.*YES' && echo yes))
 DEB_ENABLE_TESTS = yes
 endif
+endif
+
+ifneq (,$(filter $(DEB_BUILD_ARCH),mips mipsel))
+DEB_SETUP_GHC_CONFIGURE_ARGS += --ghc-options="-optc--param -optcggc-min-expand=10"
 endif
 
 include /usr/share/cdbs/1/rules/debhelper.mk
