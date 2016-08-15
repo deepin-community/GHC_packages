@@ -1,0 +1,89 @@
+Source: haskell-hspec-wai
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-quickcheck2-dev,
+ libghc-quickcheck2-prof,
+ libghc-base-compat-dev,
+ libghc-base-compat-prof,
+ libghc-case-insensitive-dev,
+ libghc-case-insensitive-prof,
+ libghc-hspec-core-dev (>= 2),
+ libghc-hspec-core-dev (<< 3),
+ libghc-hspec-core-prof,
+ libghc-hspec-expectations-dev,
+ libghc-hspec-expectations-prof,
+ libghc-http-types-dev,
+ libghc-http-types-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+ libghc-wai-dev (>= 3),
+ libghc-wai-prof,
+ libghc-wai-extra-dev (>= 3),
+ libghc-wai-extra-prof,
+ libghc-with-location-dev (>= 0.1.0),
+ libghc-with-location-prof,
+ libghc-hspec-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-quickcheck2-doc,
+ libghc-base-compat-doc,
+ libghc-case-insensitive-doc,
+ libghc-hspec-core-doc,
+ libghc-hspec-expectations-doc,
+ libghc-http-types-doc,
+ libghc-text-doc,
+ libghc-wai-doc,
+ libghc-wai-extra-doc,
+ libghc-with-location-doc,
+Standards-Version: 3.9.8
+Homepage: https://github.com/hspec/hspec-wai#readme
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-hspec-wai
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
+X-Description: hspec support for testing WAI applications
+ Experimental Hspec support for testing WAI applications
+
+Package: libghc-hspec-wai-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hspec-wai-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hspec-wai-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
