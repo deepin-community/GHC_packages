@@ -1,0 +1,160 @@
+Source: haskell-servant-server
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-aeson-dev (>= 0.7),
+ libghc-aeson-dev (<< 0.12),
+ libghc-aeson-prof,
+ libghc-attoparsec-dev (>= 0.12),
+ libghc-attoparsec-dev (<< 0.14),
+ libghc-attoparsec-prof,
+ libghc-base-compat-dev (>= 0.9),
+ libghc-base-compat-prof,
+ libghc-base64-bytestring-dev (>= 1.0),
+ libghc-base64-bytestring-dev (<< 1.1),
+ libghc-base64-bytestring-prof,
+ libghc-http-api-data-dev (>= 0.1),
+ libghc-http-api-data-dev (<< 0.3),
+ libghc-http-api-data-prof,
+ libghc-http-types-dev (>= 0.8),
+ libghc-http-types-dev (<< 0.10),
+ libghc-http-types-prof,
+ libghc-mtl-dev (>= 2),
+ libghc-mtl-dev (<< 3),
+ libghc-mtl-prof,
+ libghc-network-dev (>= 2.6),
+ libghc-network-dev (<< 2.7),
+ libghc-network-prof,
+ libghc-network-uri-dev (>= 2.6),
+ libghc-network-uri-dev (<< 2.7),
+ libghc-network-uri-prof,
+ libghc-safe-dev (>= 0.3),
+ libghc-safe-dev (<< 0.4),
+ libghc-safe-prof,
+ libghc-servant-dev (>= 0.7),
+ libghc-servant-dev (<< 0.8),
+ libghc-servant-prof,
+ libghc-split-dev (>= 0.2),
+ libghc-split-dev (<< 0.3),
+ libghc-split-prof,
+ libghc-string-conversions-dev (>= 0.3),
+ libghc-string-conversions-dev (<< 0.5),
+ libghc-string-conversions-prof,
+ libghc-system-filepath-dev (>= 0.4),
+ libghc-system-filepath-dev (<< 0.5),
+ libghc-system-filepath-prof,
+ libghc-text-dev (>= 1.2),
+ libghc-text-dev (<< 1.3),
+ libghc-text-prof,
+ libghc-transformers-compat-dev (>= 0.4),
+ libghc-transformers-compat-prof,
+ libghc-wai-dev (>= 3.0),
+ libghc-wai-dev (<< 3.3),
+ libghc-wai-prof,
+ libghc-wai-app-static-dev (>= 3.1),
+ libghc-wai-app-static-dev (<< 3.2),
+ libghc-wai-app-static-prof,
+ libghc-warp-dev (>= 3.0),
+ libghc-warp-dev (<< 3.3),
+ libghc-warp-prof,
+ libghc-word8-dev (>= 0.1),
+ libghc-word8-dev (<< 0.2),
+ libghc-word8-prof,
+ libghc-aeson-dev,
+ libghc-servant-dev,
+ libghc-text-dev,
+ libghc-wai-dev,
+ libghc-warp-dev,
+ libghc-quickcheck2-dev,
+ libghc-base-compat-dev,
+ libghc-base64-bytestring-dev,
+ libghc-bytestring-conversion-dev,
+ libghc-doctest-dev,
+ libghc-exceptions-dev,
+ libghc-filemanip-dev,
+ libghc-hspec-dev (>= 2),
+ libghc-hspec-dev (<< 3),
+ libghc-hspec-wai-dev,
+ libghc-http-types-dev,
+ libghc-mtl-dev,
+ libghc-parsec3-dev,
+ libghc-safe-dev,
+ libghc-should-not-typecheck-dev (>= 2.1),
+ libghc-should-not-typecheck-dev (<< 2.2),
+ libghc-string-conversions-dev,
+ libghc-temporary-dev,
+ libghc-transformers-compat-dev,
+ libghc-wai-extra-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-aeson-doc,
+ libghc-attoparsec-doc,
+ libghc-base-compat-doc,
+ libghc-base64-bytestring-doc,
+ libghc-http-api-data-doc,
+ libghc-http-types-doc,
+ libghc-mtl-doc,
+ libghc-network-doc,
+ libghc-network-uri-doc,
+ libghc-safe-doc,
+ libghc-servant-doc,
+ libghc-split-doc,
+ libghc-string-conversions-doc,
+ libghc-system-filepath-doc,
+ libghc-text-doc,
+ libghc-transformers-compat-doc,
+ libghc-wai-doc,
+ libghc-wai-app-static-doc,
+ libghc-warp-doc,
+ libghc-word8-doc,
+Standards-Version: 3.9.8
+Homepage: http://haskell-servant.readthedocs.org/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-servant-server
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
+X-Description: combinators for defining webservices APIs and serving them
+ A family of combinators for defining web services APIs and serving them.
+
+Package: libghc-servant-server-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-servant-server-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-servant-server-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
