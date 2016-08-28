@@ -1,0 +1,91 @@
+Source: haskell-soap-tls
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-configurator-dev,
+ libghc-configurator-prof,
+ libghc-connection-dev (>= 0.2),
+ libghc-connection-prof,
+ libghc-data-default-dev,
+ libghc-data-default-prof,
+ libghc-http-client-dev (>= 0.2),
+ libghc-http-client-prof,
+ libghc-http-client-tls-dev (>= 0.2),
+ libghc-http-client-tls-prof,
+ libghc-soap-dev (>= 0.2.2),
+ libghc-soap-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+ libghc-tls-dev (>= 1.2),
+ libghc-tls-prof,
+ libghc-x509-dev,
+ libghc-x509-prof,
+ libghc-x509-store-dev,
+ libghc-x509-store-prof,
+ libghc-x509-validation-dev,
+ libghc-x509-validation-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-configurator-doc,
+ libghc-connection-doc,
+ libghc-data-default-doc,
+ libghc-http-client-doc,
+ libghc-http-client-tls-doc,
+ libghc-soap-doc,
+ libghc-text-doc,
+ libghc-tls-doc,
+ libghc-x509-doc,
+ libghc-x509-store-doc,
+ libghc-x509-validation-doc,
+Standards-Version: 3.9.8
+Homepage: https://bitbucket.org/dpwiz/haskell-soap
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-soap-tls
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
+X-Description: TLS-enabled SOAP transport (using tls package)
+ This enables HTTPS support for SOAP queries (using the soap and tls
+ packages).
+
+Package: libghc-soap-tls-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-soap-tls-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-soap-tls-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
