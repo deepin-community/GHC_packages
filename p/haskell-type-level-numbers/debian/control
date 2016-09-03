@@ -9,29 +9,18 @@ Build-Depends: debhelper (>= 9),
  ghc,
  ghc-prof,
 Build-Depends-Indep: ghc-doc,
-Standards-Version: 3.9.6
+Standards-Version: 3.9.8
 Homepage: http://hackage.haskell.org/package/type-level-numbers
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-type-level-numbers
 Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
-X-Description: Type level numbers implemented using type families.
- This is type level numbers implemented using type families. Natural
- numbers use binary encoding. With default context stack numbers up
- to 2^18-1 coudl be represented. Signed integer numbers use balanced ternary
- encoding.
+X-Description: library representing integers using Haskell type families
+ This library represents numbers in Haskell at the level of types.
+ This is achieved by means of type families.
  .
- Package is structured as folows:
+ Numbers up to 2^18-1 can be represented.
  .
- * [@TypeLevel.Number.Classes@] contain generic type families such as Add
- .
- * [@TypeLevel.Number.Nat@] natural numbers implemented using binary encoding
- .
- * [@TypeLevel.Number.Int@] signed integers implemented using balanced
- ternary encoding
- .
- * [@TypeLevel.Boolean@] type level booleans
- .
- So far comparison of numbers, subtraction and multiplication of
- numbers are supported.
+ In this version of the package, comparison of numbers, subtraction
+ and multiplication of numbers is supported.
 
 Package: libghc-type-level-numbers-dev
 Architecture: any
