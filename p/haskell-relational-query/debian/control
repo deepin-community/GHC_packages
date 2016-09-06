@@ -1,0 +1,86 @@
+Source: haskell-relational-query
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Kei Hibino <ex8k.hibino@gmail.com>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-dlist-dev,
+ libghc-dlist-prof,
+ libghc-names-th-dev,
+ libghc-names-th-prof,
+ libghc-persistable-record-dev (>= 0.3),
+ libghc-persistable-record-prof,
+ libghc-sql-words-dev (>= 0.1.4),
+ libghc-sql-words-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+ libghc-th-reify-compat-dev,
+ libghc-th-reify-compat-prof,
+ libghc-time-locale-compat-dev,
+ libghc-time-locale-compat-prof,
+ libghc-quickcheck-simple-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-dlist-doc,
+ libghc-names-th-doc,
+ libghc-persistable-record-doc,
+ libghc-sql-words-doc,
+ libghc-text-doc,
+ libghc-th-reify-compat-doc,
+ libghc-time-locale-compat-doc,
+Standards-Version: 3.9.8
+Homepage: http://khibino.github.io/haskell-relational-record/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-relational-query
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
+X-Description: Typeful, Modular, Relational, algebraic query engine
+ This package contiains typeful relation structure and
+ relational-algebraic query building DSL which can
+ translate into SQL query.
+ Supported query features are below:
+ - Type safe query building
+ - Restriction, Join, Aggregation
+ - Modularized relations
+ - Typed placeholders
+
+Package: libghc-relational-query-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-relational-query-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-relational-query-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
