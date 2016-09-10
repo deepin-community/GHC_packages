@@ -1,57 +1,69 @@
-Source: haskell-dependent-map
+Source: haskell-relational-schemas
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>
+Uploaders: Kei Hibino <ex8k.hibino@gmail.com>
 Priority: extra
 Section: haskell
 Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+ haskell-devscripts (>= 0.9),
  cdbs,
  ghc,
  ghc-prof,
- libghc-dependent-sum-dev (>= 0.3.2),
- libghc-dependent-sum-prof,
+ libghc-persistable-record-dev (>= 0.2),
+ libghc-persistable-record-prof,
+ libghc-relational-query-dev (>= 0.8),
+ libghc-relational-query-prof,
 Build-Depends-Indep: ghc-doc,
- libghc-dependent-sum-doc,
+ libghc-persistable-record-doc,
+ libghc-relational-query-doc,
 Standards-Version: 3.9.8
-Homepage: https://github.com/mokus0/dependent-map
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-dependent-map
+Homepage: http://khibino.github.io/haskell-relational-record/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-relational-schemas
 Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
-X-Description: Dependent finite maps
- This package provides a basic dependent sum type. The first component is a tag
- that specifies the type of the second.
+X-Description: RDBMSs' schema templates for relational-query
+ This package contains some RDBMSs' schema structure definitions.
+ Supported RDBMS schemas are below:
+ + IBM DB2
+ + PostgreSQL
+ + Microsoft SQLServer
+ + SQLite3
+ + Oracle
+ + MySQL
 
-Package: libghc-dependent-map-dev
+Package: libghc-relational-schemas-dev
 Architecture: any
 Depends: ${haskell:Depends},
+ ${misc:Depends},
  ${shlibs:Depends},
- ${misc:Depends},
 Recommends: ${haskell:Recommends},
 Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
 Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
-Package: libghc-dependent-map-prof
+Package: libghc-relational-schemas-prof
 Architecture: any
 Depends: ${haskell:Depends},
  ${misc:Depends},
 Recommends: ${haskell:Recommends},
 Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
 Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
-Package: libghc-dependent-map-doc
+Package: libghc-relational-schemas-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
- ${haskell:Depends},
+Depends: ${haskell:Depends},
+ ${misc:Depends},
 Recommends: ${haskell:Recommends},
 Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
