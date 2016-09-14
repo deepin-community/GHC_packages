@@ -15,34 +15,16 @@ Build-Depends: debhelper (>= 9),
 Build-Depends-Indep: ghc-doc,
  libghc-conduit-doc,
  libghc-entropy-doc,
-Standards-Version: 3.9.6
-Homepage: http://monoid.at/code
+Standards-Version: 3.9.8
+Homepage: http://monoid.at/
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-dice-entropy-conduit
 Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
-X-Description: Cryptographically secure n-sided dice via rejection sampling.
- This library uses rejection sampling to provide cryptographically secure
- @n@-sided dice rolls and random sampling (within a given range).
- The number of used random bits is close to the information-theoretic optimal
- bound.
- .
- /Usage:/
- .
- If we wanted to use the system-specific entropy source ('systemEntropy') to
- produce 10 dice rolls of a 6-sided dice (i.e. range [0,5]), we could write:
- .
- > > systemEntropy $$ diceRolls 6 =$= CL.take 10
- > [5,1,3,3,0,5,3,2,2,1]
- .
- The function 'testPerformance' yields the actual number of consumed random
- bits:
- .
- > > testPerformance 12 10000
- > Generated 10000 random samples in range [0,11]
- > Average number of bits used: 3.5904
- > Entropy lower bound on the number of required bits: 3.5849625007211565
- > Performance ratio: 1.0015167520658164
- .
- Feedback is welcome!
+X-Description: cryptographically secure n-sided dice rolls and random sampling
+ Haskll library providing cryptographically secure n-sided dice rolls,
+ and random sampling within a given range.  The technique of rejection
+ sampling is used to obtain the random data.  The number of random
+ bits used is close to the optimal bound, information-theoretically
+ speaking.
 
 Package: libghc-dice-entropy-conduit-dev
 Architecture: any
