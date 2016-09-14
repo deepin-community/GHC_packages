@@ -1,0 +1,88 @@
+Source: haskell-relational-query-hdbc
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Kei Hibino <ex8k.hibino@gmail.com>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-hdbc-dev (>= 2),
+ libghc-hdbc-prof,
+ libghc-hdbc-session-dev,
+ libghc-hdbc-session-prof,
+ libghc-convertible-dev,
+ libghc-convertible-prof,
+ libghc-dlist-dev,
+ libghc-dlist-prof,
+ libghc-names-th-dev,
+ libghc-names-th-prof,
+ libghc-persistable-record-dev (>= 0.4),
+ libghc-persistable-record-prof,
+ libghc-relational-query-dev (>= 0.8),
+ libghc-relational-query-prof,
+ libghc-relational-schemas-dev,
+ libghc-relational-schemas-prof,
+ libghc-th-data-compat-dev,
+ libghc-th-data-compat-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-hdbc-doc,
+ libghc-hdbc-session-doc,
+ libghc-convertible-doc,
+ libghc-dlist-doc,
+ libghc-names-th-doc,
+ libghc-persistable-record-doc,
+ libghc-relational-query-doc,
+ libghc-relational-schemas-doc,
+ libghc-th-data-compat-doc,
+Standards-Version: 3.9.8
+Homepage: http://khibino.github.io/haskell-relational-record/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-relational-query-hdbc
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
+X-Description: relational-query instance and typed interface for HDBC
+ This package contains the HDBC instance of relational-query and
+ the typed query interface for HDBC.
+ Generating Database table definitions and functions for
+ relational-query by reading table and index definitions
+ from Database system catalogs.
+
+Package: libghc-relational-query-hdbc-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-relational-query-hdbc-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-relational-query-hdbc-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
