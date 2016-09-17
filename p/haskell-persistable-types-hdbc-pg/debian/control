@@ -1,0 +1,74 @@
+Source: haskell-persistable-types-hdbc-pg
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Kei Hibino <ex8k.hibino@gmail.com>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-hdbc-dev,
+ libghc-hdbc-prof,
+ libghc-convertible-dev,
+ libghc-convertible-prof,
+ libghc-persistable-record-dev (>= 0.4),
+ libghc-persistable-record-prof,
+ libghc-relational-query-hdbc-dev,
+ libghc-relational-query-hdbc-prof,
+ libghc-text-postgresql-dev,
+ libghc-text-postgresql-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-hdbc-doc,
+ libghc-convertible-doc,
+ libghc-persistable-record-doc,
+ libghc-relational-query-hdbc-doc,
+ libghc-text-postgresql-doc,
+Standards-Version: 3.9.8
+Homepage: http://khibino.github.io/haskell-relational-record/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-persistable-types-hdbc-pg
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
+X-Description: Relational-Record instances of PostgreSQL extended types
+ This package contains HDBC Convertible instances and
+ Relational-Record persistable instances of PostgreSQL extended types
+ Supported extended types: inet, cidr
+
+Package: libghc-persistable-types-hdbc-pg-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-persistable-types-hdbc-pg-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-persistable-types-hdbc-pg-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
