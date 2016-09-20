@@ -1,0 +1,80 @@
+Source: haskell-relational-record
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Kei Hibino <ex8k.hibino@gmail.com>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-persistable-types-hdbc-pg-dev,
+ libghc-persistable-types-hdbc-pg-prof,
+ libghc-relational-query-dev (>= 0.3),
+ libghc-relational-query-prof,
+ libghc-relational-query-hdbc-dev,
+ libghc-relational-query-hdbc-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-persistable-types-hdbc-pg-doc,
+ libghc-relational-query-doc,
+ libghc-relational-query-hdbc-doc,
+Standards-Version: 3.9.8
+Homepage: http://khibino.github.io/haskell-relational-record/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-relational-record
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
+X-Description: Meta package of Relational Record
+ Meta package to install Relational Record quickly
+
+Package: haskell-relational-record
+Architecture: any
+Depends:
+ libghc-persistable-types-hdbc-pg-dev,
+ libghc-relational-query-dev (>= 0.3),
+ libghc-relational-query-hdbc-dev,
+ ${misc:Depends},
+Suggests:
+ haskell-relational-record-prof,
+ haskell-relational-record-doc,
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: haskell-relational-record-prof
+Architecture: any
+Depends:
+ libghc-persistable-types-hdbc-pg-prof,
+ libghc-relational-query-prof,
+ libghc-relational-query-hdbc-prof,
+ ${misc:Depends},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: haskell-relational-record-doc
+Architecture: all
+Section: doc
+Depends:
+ libghc-relational-record-doc,
+ ${misc:Depends},
+Recommends:
+ haskell-relational-record
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-relational-record-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: Documentation package of Haskell Relational Record
+ This package includes documentation package of Haskell Relational Record
+ library software stack.
+ .
+ ${haskell:Blurb}
