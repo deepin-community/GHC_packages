@@ -1,27 +1,28 @@
 Source: haskell-hmatrix-gsl
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Priority: extra
+Uploaders: Picca Frédéric-Emmanuel <picca@debian.org>
 Section: haskell
+Priority: extra
 Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.9),
- cdbs,
- ghc,
- ghc-prof,
- libghc-hmatrix-dev (>= 0.17),
- libghc-hmatrix-prof,
- libghc-random-dev,
- libghc-random-prof,
- libghc-vector-dev,
- libghc-vector-prof,
- libgsl-dev,
+               haskell-devscripts (>= 0.9),
+               cdbs,
+               ghc,
+               ghc-prof,
+               libghc-hmatrix-dev (>= 0.17),
+               libghc-hmatrix-prof,
+               libghc-random-dev,
+               libghc-random-prof,
+               libghc-vector-dev,
+               libghc-vector-prof,
+               libgsl-dev
 Build-Depends-Indep: ghc-doc,
- libghc-hmatrix-doc,
- libghc-random-doc,
- libghc-vector-doc,
-Standards-Version: 3.9.6
-Homepage: https://github.com/albertoruiz/hmatrix
+                     libghc-hmatrix-doc,
+                     libghc-random-doc,
+                     libghc-vector-doc
+Standards-Version: 3.9.8
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-hmatrix-gsl
 Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
+Homepage: https://github.com/albertoruiz/hmatrix
 X-Description: Numerical computation
  Purely functional interface to selected numerical computations,
  internally implemented using GSL.
@@ -29,12 +30,12 @@ X-Description: Numerical computation
 Package: libghc-hmatrix-gsl-dev
 Architecture: any
 Depends: ${haskell:Depends},
- ${misc:Depends},
- ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+         ${misc:Depends},
+         ${shlibs:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Conflicts: ${haskell:Conflicts}
+Provides: ${haskell:Provides}
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -43,11 +44,11 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-hmatrix-gsl-prof
 Architecture: any
 Depends: ${haskell:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+         ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Conflicts: ${haskell:Conflicts}
+Provides: ${haskell:Provides}
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -57,10 +58,10 @@ Package: libghc-hmatrix-gsl-doc
 Architecture: all
 Section: doc
 Depends: ${haskell:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
+         ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Conflicts: ${haskell:Conflicts}
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
