@@ -1,0 +1,29 @@
+Description:  use packCStringLen to avoid truncating the raw hash on the first NULL
+ Fixes https://github.com/ocharles/argon2/issues/3
+ .
+ hashEncoded' still uses packCString, because there the encoded string does
+ in fact end at NULL.
+From: Joey Hess <joeyh@joeyh.name>
+Date: Mon, 26 Sep 2016 10:48:55 -0400
+Forwarded: https://github.com/ocharles/argon2/pull/4
+
+---
+ src/Crypto/Argon2.hs | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/Crypto/Argon2.hs b/src/Crypto/Argon2.hs
+index 2ed8f18..1ed23fe 100644
+--- a/src/Crypto/Argon2.hs
++++ b/src/Crypto/Argon2.hs
+@@ -195,7 +195,7 @@ hash' options@HashOptions{..} password salt argon2i argon2d =
+                   out
+                   (fromIntegral outLen)
+      handleSuccessCode res options password salt
+-     BS.packCString out
++     BS.packCStringLen (out, outLen)
+   where argon2 = variant argon2i argon2d hashVariant
+ 
+ handleSuccessCode :: Int32
+-- 
+2.9.3
+

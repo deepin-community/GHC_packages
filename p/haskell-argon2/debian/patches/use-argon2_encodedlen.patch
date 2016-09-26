@@ -1,0 +1,66 @@
+Description: use argon2_encodedlen rather than re-implementing it
+ The haskell implementation has fallen out of sync with libargon2,
+ since v= was added to the prefix of the encoded hash.
+Author: Joey Hess <joeyh@joeyh.name>
+Date: Mon, 26 Sep 2016 13:26:28 -0400
+Forwarded: https://github.com/ocharles/argon2/pull/4
+
+---
+ src/Crypto/Argon2.hs      | 15 +++++++++------
+ src/Crypto/Argon2/FFI.hsc |  2 ++
+ 2 files changed, 11 insertions(+), 6 deletions(-)
+
+diff --git a/src/Crypto/Argon2.hs b/src/Crypto/Argon2.hs
+index 1ed23fe..1cea4f6 100644
+--- a/src/Crypto/Argon2.hs
++++ b/src/Crypto/Argon2.hs
+@@ -143,10 +143,12 @@ hashEncoded' :: HashOptions
+ hashEncoded' options@HashOptions{..} password salt argon2i argon2d =
+   do let saltLen = fromIntegral (BS.length salt)
+          passwordLen = fromIntegral (BS.length password)
+-         outLen =
+-           (BS.length salt * 4 + 32 * 4 +
+-            length ("$argon2x$m=,t=,p=$$" :: String) +
+-            3 * 3)
++     outLen <- fmap fromIntegral $ FFI.argon2_encodedlen
++                                              hashIterations
++                                              hashMemory
++                                              hashParallelism
++                                              saltLen
++                                              hashlen
+      out <- mallocBytes outLen
+      res <-
+        BS.useAsCString password $
+@@ -159,13 +161,14 @@ hashEncoded' options@HashOptions{..} password salt argon2i argon2d =
+                   password'
+                   passwordLen
+                   salt'
+-                  saltLen
+-                  64
++                  (fromIntegral saltLen)
++                  (fromIntegral hashlen)
+                   out
+                   (fromIntegral outLen)
+      handleSuccessCode res options password salt
+      fmap T.decodeUtf8 (BS.packCString out)
+   where argon2 = variant argon2i argon2d hashVariant
++        hashlen = 64
+ 
+ type Argon2Unencoded = Word32 -> Word32 -> Word32 -> CString -> CSize -> CString -> CSize -> CString -> CSize -> IO Int32
+ 
+diff --git a/src/Crypto/Argon2/FFI.hsc b/src/Crypto/Argon2/FFI.hsc
+index e9f334a..3b12938 100644
+--- a/src/Crypto/Argon2/FFI.hsc
++++ b/src/Crypto/Argon2/FFI.hsc
+@@ -21,6 +21,8 @@ foreign import ccall unsafe "argon2.h argon2i_verify" argon2i_verify :: CString
+ 
+ foreign import ccall unsafe "argon2.h argon2d_verify" argon2d_verify :: CString -> Ptr a -> CSize -> IO (#type int)
+ 
++foreign import ccall unsafe "argon2.h argon2_encodedlen" argon2_encodedlen :: (#type const uint32_t) -> (#type const uint32_t) -> (#type const uint32_t) -> (#type const uint32_t) -> (#type const uint32_t) -> IO CSize
++
+ pattern ARGON2_OK = (#const ARGON2_OK)
+ pattern ARGON2_OUTPUT_PTR_NULL = (#const ARGON2_OUTPUT_PTR_NULL)
+ pattern ARGON2_OUTPUT_TOO_SHORT = (#const ARGON2_OUTPUT_TOO_SHORT)
+-- 
+2.9.3
+
