@@ -8,17 +8,20 @@ Build-Depends: debhelper (>= 10),
  cdbs,
  ghc,
  ghc-prof,
+ libzxcvbn-dev,
 Build-Depends-Indep: ghc-doc,
-Standards-Version: 3.9.6
+Standards-Version: 3.9.8
 Homepage: http://hackage.haskell.org/package/zxcvbn-c
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-zxcvbn-c
 Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
-X-Description: Password strength estimation
- This is a Haskell binding to the C port of the zxcvbn
- password strength estimator, from <https://github.com/tsyrogit/zxcvbn-c>
+X-Description: Haskell bindings to password strength estimation library
+ This library provides Haskell bindings to a C/C++ implementation of
+ the zxcvbn password strength estimator.  It provides a function to
+ rate password strength, by comparing the password to several word
+ lists, including English first and last names.
  .
- An article on the reasons for zxcvbn is at
- <https://tech.dropox.com/2012/04/zxcvbn-realistic-password-strength-estimation>
+ An article discussing zxcvbn's purpose and method:
+ https://tech.dropox.com/2012/04/zxcvbn-realistic-password-strength-estimation
 
 Package: libghc-zxcvbn-c-dev
 Architecture: any
