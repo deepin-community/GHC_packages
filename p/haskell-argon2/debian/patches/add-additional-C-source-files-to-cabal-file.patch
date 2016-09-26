@@ -1,0 +1,50 @@
+Description: add additional C source files to cabal file
+ Fixes https://github.com/ocharles/argon2/issues/2
+ .
+ Note that three header files were added via extra-source-files, not via
+ c-sources. This was necessary to get the build to work, otherwise cabal
+ tries to compile those three files and fails.
+Author: Joey Hess <joeyh@joeyh.name>
+Date: Mon, 15 Aug 2016 15:14:38 -0400
+Forwarded: https://github.com/ocharles/argon2/pull/4
+
+---
+ argon2.cabal | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
+
+diff --git a/argon2.cabal b/argon2.cabal
+index 2878589..38f1bfc 100644
+--- a/argon2.cabal
++++ b/argon2.cabal
+@@ -12,6 +12,9 @@ maintainer:          ollie@ocharles.org.uk
+ build-type:          Simple
+ extra-source-files:  Changelog.md
+ cabal-version:       >=1.10
++extra-source-files: phc-winner-argon2/src/blake2/blake2.h
++                    phc-winner-argon2/src/blake2/blake2-impl.h
++                    phc-winner-argon2/src/blake2/blamka-round-ref.h
+ 
+ library
+   exposed-modules:     Crypto.Argon2.FFI
+@@ -20,14 +23,19 @@ library
+   hs-source-dirs:      src
+   default-language:    Haskell2010
+   c-sources: phc-winner-argon2/src/argon2.c
++             phc-winner-argon2/src/argon2.h
+              phc-winner-argon2/src/core.c
+              phc-winner-argon2/src/blake2/blake2b.c
+              phc-winner-argon2/src/thread.c
+              phc-winner-argon2/src/ref.c
+              phc-winner-argon2/src/encoding.c
++             phc-winner-argon2/src/encoding.h
++             phc-winner-argon2/src/core.h
++             phc-winner-argon2/src/thread.h
++             phc-winner-argon2/src/ref.h
+   include-dirs: phc-winner-argon2/src
+ 
+ test-suite tests
+   type: exitcode-stdio-1.0
+   main-is: Tests.hs
+-  build-depends: argon2, base >= 4.8 && <4.9, QuickCheck >= 2.0, tasty-quickcheck, tasty, bytestring, text
+\ No newline at end of file
++  build-depends: argon2, base >= 4.8 && <4.9, QuickCheck >= 2.0, tasty-quickcheck, tasty, bytestring, text
