@@ -1,0 +1,58 @@
+Source: haskell-token-bucket
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Sean Whitton <spwhitton@spwhitton.name>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+Build-Depends-Indep: ghc-doc,
+Standards-Version: 3.9.6
+Homepage: https://github.com/hvr/token-bucket
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-token-bucket
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
+X-Description: Rate limiter using lazy bucket algorithm
+ This implementation is heavily inspired by the one described in
+ <http://ksdlck.com/post/17418037348/rate-limiting-at-webscale-lazy-leaky-buckets "Rate Limiting at Webscale: Lazy Leaky Buckets">
+
+Package: libghc-token-bucket-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-token-bucket-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-token-bucket-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
