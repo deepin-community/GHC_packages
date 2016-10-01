@@ -60,9 +60,9 @@ endif
 ifeq (armel,$(DEB_HOST_ARCH))
 	patch -p1 < debian/patches/armel-revert-ghci-fixes.patch
 endif
-echo "SRC_HC_OPTS += -optc-fno-PIE -optl-no-pie" >> mk/build.mk
-echo "SRC_CC_OPTS += -fno-PIE" >> mk/build.mk
-echo "SRC_LD_OPTS += -no-pie" >> mk/build.mk
+	echo "SRC_HC_OPTS += -optc-fno-PIE -optl-no-pie" >> mk/build.mk
+	echo "SRC_CC_OPTS += -fno-PIE" >> mk/build.mk
+	echo "SRC_LD_OPTS += -no-pie" >> mk/build.mk
 ifneq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
 #	echo "GhcStage1HcOpts += -DDEBUG" >> mk/build.mk
 #	echo "GhcStage2HcOpts += -DDEBUG" >> mk/build.mk
