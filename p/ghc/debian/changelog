@@ -1,10 +1,16 @@
-ghc (7.10.3-10) UNRELEASED; urgency=medium
+ghc (7.10.3-10) unstable; urgency=medium
 
   [ Balint Reczey ]
   * Disable PIE to fix build when PIE is the default in gcc
     (change taken/revised from Ubuntu, Closes: #712228)
 
- -- Gianfranco Costamagna <locutusofborg@debian.org>  Tue, 27 Sep 2016 17:00:13 +0200
+  [ Clint Adams ]
+  * Backport upstream 563a4857abcee4a6e43c68323274309c58f42aa0 to use gcc's
+    SMP primitives instead of GHC's broken ones.
+  * Backport upstream 7053019e7b04842dd7364039381d8c4c069489a2 to add a
+    missing MO_WriteBarrier to emitPrimOp.
+
+ -- Clint Adams <clint@debian.org>  Wed, 05 Oct 2016 15:27:23 -0400
 
 ghc (7.10.3-9) unstable; urgency=medium
 
