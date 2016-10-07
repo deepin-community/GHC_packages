@@ -1,34 +1,37 @@
 Source: haskell-chart-cairo
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>
+Uploaders:
+ Joachim Breitner <nomeata@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-chart-dev (>= 1.6),
- libghc-chart-dev (<< 1.7),
- libghc-chart-prof,
+ haskell-devscripts (>= 0.10),
  libghc-cairo-dev (>= 0.9.11),
  libghc-cairo-prof,
- libghc-colour-dev (>= 2.2.1),
+ libghc-chart-dev (<< 1.9),
+ libghc-chart-dev (>= 1.8),
+ libghc-chart-prof,
  libghc-colour-dev (<< 2.4),
+ libghc-colour-dev (>= 2.2.1),
  libghc-colour-prof,
- libghc-data-default-class-dev (<< 0.1),
+ libghc-data-default-class-dev (<< 0.2),
  libghc-data-default-class-prof,
+ libghc-lens-dev (<< 4.15),
  libghc-lens-dev (>= 3.9),
- libghc-lens-dev (<< 4.14),
  libghc-lens-prof,
  libghc-mtl-dev,
  libghc-mtl-prof,
- libghc-operational-dev (>= 0.2.2),
  libghc-operational-dev (<< 0.3),
+ libghc-operational-dev (>= 0.2.2),
  libghc-operational-prof,
-Build-Depends-Indep: ghc-doc,
- libghc-chart-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-cairo-doc,
+ libghc-chart-doc,
  libghc-colour-doc,
  libghc-data-default-class-doc,
  libghc-lens-doc,
@@ -36,7 +39,7 @@ Build-Depends-Indep: ghc-doc,
  libghc-operational-doc,
 Standards-Version: 3.9.8
 Homepage: https://github.com/timbod7/haskell-chart/wiki
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-chart-cairo
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 X-Description: Cairo backend for Charts.
  Chart is a library for generating 2D Charts and Plots.
@@ -45,13 +48,18 @@ X-Description: Cairo backend for Charts.
 
 Package: libghc-chart-cairo-dev
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -59,12 +67,17 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-chart-cairo-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -73,11 +86,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-chart-cairo-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
