@@ -1,41 +1,46 @@
 Source: haskell-cryptol
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.9),
+Build-Depends:
+ alex,
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-graphscc-dev (>= 1.0.4),
- libghc-graphscc-prof,
- libghc-quickcheck2-dev (>= 2.7),
- libghc-quickcheck2-prof,
+ happy,
+ haskell-devscripts (>= 0.9),
+ libghc-ansi-terminal-dev,
  libghc-async-dev (>= 2.0),
  libghc-async-prof,
+ libghc-base-compat-dev,
  libghc-base-compat-dev (>= 0.6),
  libghc-base-compat-prof,
- libghc-deepseq-generics-dev (>= 0.1),
- libghc-deepseq-generics-dev (<< 0.2),
- libghc-deepseq-generics-prof,
- libghc-generic-trie-dev (>= 0.3.0.1),
- libghc-generic-trie-prof,
  libghc-gitrev-dev (>= 1.0),
  libghc-gitrev-prof,
+ libghc-graphscc-dev (>= 1.0.4),
+ libghc-graphscc-prof,
  libghc-heredoc-dev (>= 0.2),
  libghc-heredoc-prof,
+ libghc-monad-control-dev,
  libghc-monad-control-dev (>= 1.0),
  libghc-monad-control-prof,
+ libghc-monadlib-dev,
  libghc-monadlib-dev (>= 3.7.2),
  libghc-monadlib-prof,
  libghc-old-time-dev (>= 1.1),
  libghc-old-time-prof,
  libghc-presburger-dev (>= 1.3),
  libghc-presburger-prof,
+ libghc-quickcheck2-dev (>= 2.7),
+ libghc-quickcheck2-prof,
+ libghc-random-dev,
  libghc-random-dev (>= 1.0.1),
  libghc-random-prof,
- libghc-sbv-dev (>= 5.7),
+ libghc-sbv-dev,
+ libghc-sbv-dev (>= 5.12),
  libghc-sbv-prof,
  libghc-simple-smt-dev (>= 0.6.0),
  libghc-simple-smt-prof,
@@ -45,34 +50,25 @@ Build-Depends: debhelper (>= 9),
  libghc-syb-prof,
  libghc-text-dev (>= 1.1),
  libghc-text-prof,
+ libghc-tf-random-dev,
  libghc-tf-random-dev (>= 0.5),
  libghc-tf-random-prof,
  libghc-transformers-base-dev (>= 0.4),
  libghc-transformers-base-prof,
  libghc-utf8-string-dev (>= 0.3),
  libghc-utf8-string-prof,
- alex,
- happy,
- libghc-ansi-terminal-dev,
- libghc-base-compat-dev,
- libghc-monad-control-dev,
- libghc-monadlib-dev,
- libghc-random-dev,
- libghc-sbv-dev,
- libghc-tf-random-dev,
-Build-Depends-Indep: ghc-doc,
- libghc-graphscc-doc,
- libghc-quickcheck2-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-async-doc,
  libghc-base-compat-doc,
- libghc-deepseq-generics-doc,
- libghc-generic-trie-doc,
  libghc-gitrev-doc,
+ libghc-graphscc-doc,
  libghc-heredoc-doc,
  libghc-monad-control-doc,
  libghc-monadlib-doc,
  libghc-old-time-doc,
  libghc-presburger-doc,
+ libghc-quickcheck2-doc,
  libghc-random-doc,
  libghc-sbv-doc,
  libghc-simple-smt-doc,
@@ -85,7 +81,7 @@ Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.8
 Homepage: http://www.cryptol.net/
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-cryptol
 X-Description: domain-specific language of cryptography
  Cryptol is a domain-specific language for specifying cryptographic
  algorithms. A Cryptol implementation of an algorithm resembles its
@@ -94,13 +90,18 @@ X-Description: domain-specific language of cryptography
 
 Package: libghc-cryptol-dev
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -108,12 +109,17 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-cryptol-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -122,11 +128,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-cryptol-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -135,14 +145,19 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: cryptol
 Architecture: any
 Section: utils
-Depends: ${haskell:Depends},
+Depends:
+ z3,
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
- z3
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
