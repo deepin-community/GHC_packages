@@ -1,42 +1,59 @@
 Source: haskell-cabal-install
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Iain Lane <laney@debian.org>, Dmitry Bogatov <KAction@gnu.org>
+Uploaders:
+ Iain Lane <laney@debian.org>,
+ Dmitry Bogatov <KAction@gnu.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
- cdbs,
+Build-Depends:
  bash-completion (>= 1.0),
- ghc,
+ cdbs,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-cabal-dev (>= 1.22.2),
- libghc-cabal-dev (<< 1.23),
- libghc-http-dev (>= 1:4000.2.5),
+ haskell-devscripts (>= 0.10),
+ libghc-async-dev (<< 3),
+ libghc-async-dev (>= 2.0),
+ libghc-base16-bytestring-dev (<< 0.2),
+ libghc-base16-bytestring-dev (>= 0.1.1),
+ libghc-cryptohash-dev,
+ libghc-hackage-security-dev (<< 0.6),
+ libghc-hackage-security-dev (>= 0.5.1),
+ libghc-hashable-dev (<< 2),
+ libghc-hashable-dev (>= 1.0),
  libghc-http-dev (<< 1:4000.4),
- libghc-mtl-dev (>= 2.0),
+ libghc-http-dev (>= 1:4000.2.5),
  libghc-mtl-dev (<< 3),
+ libghc-mtl-dev (>= 2.0),
+ libghc-network-dev (<< 2.7),
  libghc-network-dev (>= 2.6),
+ libghc-network-uri-dev (<< 2.7),
  libghc-network-uri-dev (>= 2.6),
- libghc-random-dev (>= 1),
  libghc-random-dev (<< 1.2),
- libghc-stm-dev (>= 2.0),
+ libghc-random-dev (>= 1),
  libghc-stm-dev (<< 3),
- libghc-zlib-dev (>= 0.5.3),
+ libghc-stm-dev (>= 2.0),
+ libghc-tar-dev (<< 0.6),
+ libghc-tar-dev (>= 0.5.0.1),
  libghc-zlib-dev (<< 0.7),
+ libghc-zlib-dev (>= 0.5.3),
 Standards-Version: 3.9.8
 Homepage: http://www.haskell.org/cabal/
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-cabal-install
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: cabal-install
 Architecture: any
-Depends: ${shlibs:Depends},
+Depends:
+ ghc (>= 8),
  ${haskell:Depends},
  ${misc:Depends},
- ghc (>= 7.10) | libghc-cabal-dev (>= 1.22)
-Recommends: ${haskell:Recommends},
- ghc,
-Suggests: ${haskell:Suggests},
+ ${shlibs:Depends},
+Recommends:
+ ghc (>= 8),
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: command-line interface for Cabal and Hackage
  The 'cabal' command-line program simplifies the process of managing
  Haskell software by automating the fetching, configuration, compilation
