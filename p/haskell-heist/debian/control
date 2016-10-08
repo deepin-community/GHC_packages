@@ -1,81 +1,113 @@
 Source: haskell-heist
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-monadcatchio-transformers-dev (>= 0.2.1),
- libghc-monadcatchio-transformers-dev (<< 0.4),
- libghc-monadcatchio-transformers-prof,
- libghc-aeson-dev (>= 0.6),
+ haskell-devscripts (>= 0.10),
+ libghc-aeson-dev,
  libghc-aeson-dev (<< 0.12),
+ libghc-aeson-dev (>= 0.6),
  libghc-aeson-prof,
- libghc-attoparsec-dev (>= 0.10),
+ libghc-attoparsec-dev,
  libghc-attoparsec-dev (<< 0.14),
+ libghc-attoparsec-dev (>= 0.10),
  libghc-attoparsec-prof,
- libghc-blaze-builder-dev (>= 0.2),
+ libghc-blaze-builder-dev,
  libghc-blaze-builder-dev (<< 0.5),
+ libghc-blaze-builder-dev (>= 0.2),
  libghc-blaze-builder-prof,
- libghc-blaze-html-dev (>= 0.4),
+ libghc-blaze-html-dev,
  libghc-blaze-html-dev (<< 0.9),
+ libghc-blaze-html-dev (>= 0.4),
  libghc-blaze-html-prof,
- libghc-directory-tree-dev (>= 0.10),
+ libghc-criterion-dev (<< 1.2),
+ libghc-criterion-dev (>= 1.0),
+ libghc-directory-tree-dev,
  libghc-directory-tree-dev (<< 0.13),
+ libghc-directory-tree-dev (>= 0.10),
  libghc-directory-tree-prof,
+ libghc-dlist-dev,
+ libghc-dlist-dev (<< 0.9),
  libghc-dlist-dev (>= 0.5),
- libghc-dlist-dev (<< 0.8),
  libghc-dlist-prof,
- libghc-either-dev (>= 3.1),
- libghc-either-dev (<< 4.5),
- libghc-either-prof,
- libghc-hashable-dev (>= 1.1),
+ libghc-errors-dev,
+ libghc-hashable-dev,
  libghc-hashable-dev (<< 1.3),
+ libghc-hashable-dev (>= 1.1),
  libghc-hashable-prof,
- libghc-map-syntax-dev (>= 0.2),
+ libghc-hunit-dev,
+ libghc-lifted-base-dev,
+ libghc-lifted-base-dev (<< 0.3),
+ libghc-lifted-base-dev (>= 0.2),
+ libghc-lifted-base-prof,
+ libghc-map-syntax-dev,
  libghc-map-syntax-dev (<< 0.3),
+ libghc-map-syntax-dev (>= 0.2),
  libghc-map-syntax-prof,
- libghc-mtl-dev (>= 2.0),
+ libghc-monad-control-dev,
+ libghc-monad-control-dev (<< 1.1),
+ libghc-monad-control-dev (>= 0.3),
+ libghc-monad-control-prof,
+ libghc-mtl-dev,
  libghc-mtl-dev (<< 2.3),
+ libghc-mtl-dev (>= 2.0),
  libghc-mtl-prof,
- libghc-random-dev (>= 1.0.1.0),
+ libghc-random-dev,
  libghc-random-dev (<< 1.2),
+ libghc-random-dev (>= 1.0.1.0),
  libghc-random-prof,
- libghc-text-dev (>= 0.10),
+ libghc-statistics-dev (<< 0.14),
+ libghc-statistics-dev (>= 0.11),
+ libghc-test-framework-dev,
+ libghc-test-framework-hunit-dev,
+ libghc-text-dev,
  libghc-text-dev (<< 1.3),
+ libghc-text-dev (>= 0.10),
  libghc-text-prof,
- libghc-unordered-containers-dev (>= 0.1.4),
+ libghc-transformers-base-dev,
+ libghc-transformers-base-dev (<< 0.5),
+ libghc-transformers-base-dev (>= 0.4),
+ libghc-transformers-base-prof,
+ libghc-unordered-containers-dev,
  libghc-unordered-containers-dev (<< 0.3),
+ libghc-unordered-containers-dev (>= 0.1.4),
  libghc-unordered-containers-prof,
- libghc-vector-dev (>= 0.9),
+ libghc-vector-dev,
  libghc-vector-dev (<< 0.12),
+ libghc-vector-dev (>= 0.9),
  libghc-vector-prof,
- libghc-xmlhtml-dev (>= 0.2.3),
+ libghc-xmlhtml-dev,
  libghc-xmlhtml-dev (<< 0.3),
+ libghc-xmlhtml-dev (>= 0.2.3.5),
  libghc-xmlhtml-prof,
-Build-Depends-Indep: ghc-doc,
- libghc-monadcatchio-transformers-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-aeson-doc,
  libghc-attoparsec-doc,
  libghc-blaze-builder-doc,
  libghc-blaze-html-doc,
  libghc-directory-tree-doc,
  libghc-dlist-doc,
- libghc-either-doc,
  libghc-hashable-doc,
+ libghc-lifted-base-doc,
  libghc-map-syntax-doc,
+ libghc-monad-control-doc,
  libghc-mtl-doc,
  libghc-random-doc,
  libghc-text-doc,
+ libghc-transformers-base-doc,
  libghc-unordered-containers-doc,
  libghc-vector-doc,
  libghc-xmlhtml-doc,
 Standards-Version: 3.9.8
 Homepage: http://snapframework.com/
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-heist
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 X-Description: template system supporting both HTML5 and XML
  Heist is a powerful template system that supports both HTML5 and XML.
@@ -95,12 +127,16 @@ X-Description: template system supporting both HTML5 and XML
 
 Package: libghc-heist-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -108,11 +144,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-heist-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -121,10 +161,13 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-heist-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
