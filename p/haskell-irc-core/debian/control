@@ -1,64 +1,43 @@
 Source: haskell-irc-core
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-attoparsec-dev (>= 0.12.1.2),
+ haskell-devscripts (>= 0.10),
  libghc-attoparsec-dev (<< 0.14),
+ libghc-attoparsec-dev (>= 0.13),
  libghc-attoparsec-prof,
- libghc-base64-bytestring-dev (>= 1.0.0.1),
- libghc-base64-bytestring-dev (<< 1.1),
- libghc-base64-bytestring-prof,
- libghc-free-dev (>= 4.11),
- libghc-free-dev (<< 4.13),
- libghc-free-prof,
- libghc-lens-dev (>= 4.7),
- libghc-lens-dev (<< 4.15),
- libghc-lens-prof,
- libghc-regex-tdfa-dev (>= 1.2),
- libghc-regex-tdfa-dev (<< 1.3),
- libghc-regex-tdfa-prof,
- libghc-text-dev (>= 1.2.0.4),
+ libghc-hashable-dev (<< 1.3),
+ libghc-hashable-dev (>= 1.2),
+ libghc-hashable-prof,
+ libghc-hunit-dev (<< 1.4) <!notest>,
+ libghc-hunit-dev (>= 1.3) <!notest>,
+ libghc-memory-dev (<< 0.14),
+ libghc-memory-dev (>= 0.13),
+ libghc-memory-prof,
+ libghc-primitive-dev (<< 0.7),
+ libghc-primitive-dev (>= 0.6),
+ libghc-primitive-prof,
  libghc-text-dev (<< 1.3),
+ libghc-text-dev (>= 1.2),
  libghc-text-prof,
- libghc-config-value-dev (>= 0.4),
- libghc-config-value-dev (<< 0.5),
- libghc-connection-dev (>= 0.2.4),
- libghc-connection-dev (<< 0.3),
- libghc-data-default-class-dev (>= 0.0.1),
- libghc-data-default-class-dev (<< 0.2),
- libghc-haskell-lexer-dev (>= 1.0),
- libghc-haskell-lexer-dev (<< 1.1),
- libghc-network-dev (>= 2.6.0.2),
- libghc-network-dev (<< 2.7),
- libghc-split-dev (>= 0.2.2),
- libghc-split-dev (<< 0.3),
- libghc-stm-dev (>= 2.4.4),
- libghc-stm-dev (<< 2.5),
- libghc-tls-dev (>= 1.2.16),
- libghc-tls-dev (<< 1.4),
- libghc-vty-dev (>= 5.2.7),
- libghc-vty-dev (<< 5.6),
- libghc-x509-dev (>= 1.5.0.1),
- libghc-x509-dev (<< 1.7),
- libghc-x509-store-dev (>= 1.5.0),
- libghc-x509-store-dev (<< 1.7),
- libghc-x509-system-dev (>= 1.5.0),
- libghc-x509-system-dev (<< 1.7),
- libghc-x509-validation-dev (>= 1.5.1),
- libghc-x509-validation-dev (<< 1.7),
-Build-Depends-Indep: ghc-doc,
+ libghc-vector-dev (<< 0.12),
+ libghc-vector-dev (>= 0.11),
+ libghc-vector-prof,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-attoparsec-doc,
- libghc-base64-bytestring-doc,
- libghc-free-doc,
- libghc-lens-doc,
- libghc-regex-tdfa-doc,
+ libghc-hashable-doc,
+ libghc-memory-doc,
+ libghc-primitive-doc,
  libghc-text-doc,
+ libghc-vector-doc,
 Standards-Version: 3.9.8
 Homepage: https://github.com/glguy/irc-core
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-irc-core
@@ -85,12 +64,16 @@ X-Description: IRC connection library
 
 Package: libghc-irc-core-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -98,11 +81,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-irc-core-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -111,18 +98,14 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-irc-core-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
-
-Package: glirc
-Architecture: any
-Depends: ${shlibs:Depends},
- ${misc:Depends},
-Description: console-based IRC client
- glirc is a console IRC client based on the Haskell irc-core library.
