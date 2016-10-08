@@ -1,35 +1,38 @@
 Source: haskell-gtk3
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>
+Uploaders:
+ Joachim Breitner <nomeata@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-cairo-dev (>= 0.13.0.0),
+ gtk2hs-buildtools (>= 0.13.0.4),
+ haskell-devscripts (>= 0.10),
+ libghc-cairo-dev,
  libghc-cairo-dev (<< 0.14),
+ libghc-cairo-dev (>= 0.13.0.0),
  libghc-cairo-prof,
- libghc-gio-dev (>= 0.13.0),
  libghc-gio-dev (<< 0.14),
+ libghc-gio-dev (>= 0.13.0),
  libghc-gio-prof,
- libghc-glib-dev (>= 0.13.0.0),
  libghc-glib-dev (<< 0.14),
+ libghc-glib-dev (>= 0.13.0.0),
  libghc-glib-prof,
  libghc-mtl-dev,
  libghc-mtl-prof,
- libghc-pango-dev (>= 0.13.0.0),
  libghc-pango-dev (<< 0.14),
+ libghc-pango-dev (>= 0.13.0.0),
  libghc-pango-prof,
- libghc-text-dev (>= 0.11.0.6),
- libghc-text-dev (<< 1.3),
- libghc-text-prof,
- libghc-cairo-dev,
  libghc-text-dev,
+ libghc-text-dev (<< 1.3),
+ libghc-text-dev (>= 0.11.0.6),
+ libghc-text-prof,
  libgtk-3-dev,
- gtk2hs-buildtools (>= 0.13.0.4),
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-cairo-doc,
  libghc-gio-doc,
  libghc-glib-doc,
@@ -38,7 +41,7 @@ Build-Depends-Indep: ghc-doc,
  libghc-text-doc,
 Standards-Version: 3.9.8
 Homepage: http://projects.haskell.org/gtk2hs/
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-gtk3
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 X-Description: Binding to the Gtk+ graphical user interface library
  This is the core library of the Gtk2Hs suite of libraries for Haskell based on
@@ -47,13 +50,17 @@ X-Description: Binding to the Gtk+ graphical user interface library
 
 Package: libghc-gtk3-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
- ${misc:Depends},
+Depends:
  libgtk-3-dev,
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -61,11 +68,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-gtk3-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -74,10 +85,13 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-gtk3-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
