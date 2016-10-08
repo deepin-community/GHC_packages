@@ -1,30 +1,37 @@
 Source: haskell-hashmap
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-hashable-dev (>= 1.0),
  libghc-hashable-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-hashable-doc,
 Standards-Version: 3.9.8
 Homepage: http://git.auryn.cz/haskell/hashmap/
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
-Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-hashmap
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
 
 Package: libghc-hashmap-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: persistent containers Map and Set based on hashing${haskell:ShortBlurb}
  An implementation of persistent Map and Set containers based on hashing.
  The implementation is build on top of Data.IntMap.IntMap and
@@ -46,11 +53,15 @@ Description: persistent containers Map and Set based on hashing${haskell:ShortBl
 
 Package: libghc-hashmap-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: persistent containers Map and Set based on hashing${haskell:ShortBlurb}
  An implementation of persistent Map and Set containers based on hashing.
  The implementation is build on top of Data.IntMap.IntMap and
@@ -73,10 +84,13 @@ Description: persistent containers Map and Set based on hashing${haskell:ShortBl
 Package: libghc-hashmap-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: persistent containers Map and Set based on hashing${haskell:ShortBlurb}
  An implementation of persistent Map and Set containers based on hashing.
  The implementation is build on top of Data.IntMap.IntMap and
