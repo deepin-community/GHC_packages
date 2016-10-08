@@ -1,14 +1,16 @@
 Source: haskell-dav
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc (>= 7.8),
- ghc-prof,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-ghci,
+ ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-case-insensitive-dev (>= 0.4),
  libghc-case-insensitive-prof,
  libghc-either-dev (>= 4.3),
@@ -39,10 +41,11 @@ Build-Depends: debhelper (>= 9),
  libghc-utf8-string-prof,
  libghc-xml-conduit-dev (>= 1.0),
  libghc-xml-conduit-prof,
- libghc-xml-hamlet-dev (>= 0.4),
  libghc-xml-hamlet-dev (<< 0.5),
+ libghc-xml-hamlet-dev (>= 0.4),
  libghc-xml-hamlet-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-case-insensitive-doc,
  libghc-either-doc,
  libghc-exceptions-doc,
@@ -61,7 +64,7 @@ Build-Depends-Indep: ghc-doc,
  libghc-xml-hamlet-doc,
 Standards-Version: 3.9.8
 Homepage: http://floss.scru.org/hDAV
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-dav
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 X-Description: RFC 4918 WebDAV support
  This is a library for the Web Distributed Authoring and Versioning
@@ -71,21 +74,26 @@ X-Description: RFC 4918 WebDAV support
 Package: hdav
 Architecture: any
 Section: web
-Depends: ${shlibs:Depends},
+Depends:
  ${haskell:Depends},
  ${misc:Depends},
+ ${shlibs:Depends},
 Description: command-line WebDAV client
  hdav currently only supports copying a file and associated WebDAV
  properties from one URL to another.
 
 Package: libghc-dav-dev
 Architecture: any
-Depends: ${shlibs:Depends},
+Depends:
  ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -93,11 +101,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-dav-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -106,10 +118,13 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-dav-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
