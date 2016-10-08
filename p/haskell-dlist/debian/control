@@ -6,16 +6,20 @@ Section: haskell
 Build-Depends: debhelper (>= 9),
  haskell-devscripts (>= 0.10),
  cdbs,
- ghc,
+ ghc (>= 8),
  ghc-prof,
- libghc-cabal-dev,
  libghc-quickcheck2-dev (>= 2.7),
- libghc-quickcheck2-dev (<< 2.9),
+ libghc-quickcheck2-dev (<< 2.10),
 Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.8
 Homepage: https://github.com/spl/dlist
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-dlist
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
+X-Description: Haskell library for Differences lists
+ Differences lists: a list-like type supporting O(1) append.
+ This is particularly useful for efficient logging and pretty
+ printing, (e.g. with the Writer monad), where list append
+ quickly becomes too expensive.
 
 Package: libghc-dlist-dev
 Architecture: any
@@ -25,11 +29,8 @@ Depends: ${haskell:Depends},
 Recommends: ${haskell:Recommends},
 Suggests: ${haskell:Suggests},
 Provides: ${haskell:Provides},
-Description: Haskell library for Differences lists${haskell:ShortBlurb}
- Differences lists: a list-like type supporting O(1) append.
- This is particularly useful for efficient logging and pretty
- printing, (e.g. with the Writer monad), where list append
- quickly becomes too expensive.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
@@ -40,11 +41,8 @@ Depends: ${haskell:Depends},
 Recommends: ${haskell:Recommends},
 Suggests: ${haskell:Suggests},
 Provides: ${haskell:Provides},
-Description: Haskell library for Differences lists${haskell:ShortBlurb}
- Differences lists: a list-like type supporting O(1) append.
- This is particularly useful for efficient logging and pretty
- printing, (e.g. with the Writer monad), where list append
- quickly becomes too expensive.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
@@ -55,10 +53,7 @@ Depends: ${haskell:Depends},
  ${misc:Depends},
 Recommends: ${haskell:Recommends},
 Suggests: ${haskell:Suggests},
-Description: Haskell library for Differences lists${haskell:ShortBlurb}
- Differences lists: a list-like type supporting O(1) append.
- This is particularly useful for efficient logging and pretty
- printing, (e.g. with the Writer monad), where list append
- quickly becomes too expensive.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
