@@ -1,14 +1,16 @@
 Source: haskell-hint
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>
+Uploaders:
+ Joachim Breitner <nomeata@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
- ghc-prof,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-ghci,
+ ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-exceptions-dev,
  libghc-exceptions-prof,
  libghc-ghc-paths-dev,
@@ -17,7 +19,8 @@ Build-Depends: debhelper (>= 9),
  libghc-mtl-prof,
  libghc-random-dev,
  libghc-random-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-exceptions-doc,
  libghc-ghc-paths-doc,
  libghc-mtl-doc,
@@ -29,11 +32,14 @@ Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-hint-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: runtime Haskell interpreter (GHC API wrapper)${haskell:ShortBlurb}
  This library defines an Interpreter monad. It allows one to load Haskell
  modules, browse them, type-check and evaluate strings with Haskell expressions
@@ -46,10 +52,12 @@ Description: runtime Haskell interpreter (GHC API wrapper)${haskell:ShortBlurb}
 
 Package: libghc-hint-prof
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Provides:
+ ${haskell:Provides},
 Description: runtime Haskell interpreter (GHC API wrapper)${haskell:ShortBlurb}
  This library defines an Interpreter monad. It allows one to load Haskell
  modules, browse them, type-check and evaluate strings with Haskell expressions
@@ -63,10 +71,13 @@ Description: runtime Haskell interpreter (GHC API wrapper)${haskell:ShortBlurb}
 Package: libghc-hint-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: runtime Haskell interpreter (GHC API wrapper)${haskell:ShortBlurb}
  This library defines an Interpreter monad. It allows one to load Haskell
  modules, browse them, type-check and evaluate strings with Haskell expressions
