@@ -1,58 +1,67 @@
 Source: haskell-servant
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.9),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.9),
+ libghc-aeson-dev (<< 1.1),
  libghc-aeson-dev (>= 0.7),
  libghc-aeson-prof,
+ libghc-attoparsec-dev (<< 0.14),
  libghc-attoparsec-dev (>= 0.12),
  libghc-attoparsec-prof,
+ libghc-base-compat-dev (<< 0.10),
  libghc-base-compat-dev (>= 0.9),
  libghc-base-compat-prof,
- libghc-bytestring-conversion-dev (>= 0.3),
  libghc-bytestring-conversion-dev (<< 0.4),
+ libghc-bytestring-conversion-dev (>= 0.3),
  libghc-bytestring-conversion-prof,
+ libghc-case-insensitive-dev (<< 1.3),
  libghc-case-insensitive-dev (>= 1.2),
  libghc-case-insensitive-prof,
- libghc-http-api-data-dev (>= 0.1),
- libghc-http-api-data-dev (<< 0.3),
- libghc-http-api-data-prof,
- libghc-http-media-dev (>= 0.4),
- libghc-http-media-dev (<< 0.7),
- libghc-http-media-prof,
- libghc-http-types-dev (>= 0.8),
- libghc-http-types-dev (<< 0.10),
- libghc-http-types-prof,
- libghc-mmorph-dev (>= 1),
- libghc-mmorph-prof,
- libghc-mtl-dev (>= 2),
- libghc-mtl-dev (<< 3),
- libghc-mtl-prof,
- libghc-network-uri-dev (>= 2.6),
- libghc-network-uri-prof,
- libghc-string-conversions-dev (>= 0.3),
- libghc-string-conversions-dev (<< 0.5),
- libghc-string-conversions-prof,
- libghc-text-dev (>= 1),
- libghc-text-dev (<< 2),
- libghc-text-prof,
- libghc-vault-dev (>= 0.3),
- libghc-vault-dev (<< 0.4),
- libghc-vault-prof,
- libghc-quickcheck2-dev,
  libghc-doctest-dev,
  libghc-filemanip-dev,
- libghc-hspec-dev (>= 2),
  libghc-hspec-dev (<< 3),
+ libghc-hspec-dev (>= 2),
+ libghc-http-api-data-dev (<< 0.3),
+ libghc-http-api-data-dev (>= 0.1),
+ libghc-http-api-data-prof,
+ libghc-http-media-dev (<< 0.7),
+ libghc-http-media-dev (>= 0.4),
+ libghc-http-media-prof,
+ libghc-http-types-dev (<< 0.10),
+ libghc-http-types-dev (>= 0.8),
+ libghc-http-types-prof,
+ libghc-mmorph-dev (<< 1.1),
+ libghc-mmorph-dev (>= 1),
+ libghc-mmorph-prof,
+ libghc-mtl-dev (<< 2.3),
+ libghc-mtl-dev (>= 2.0),
+ libghc-mtl-prof,
+ libghc-network-uri-dev (<< 2.7),
+ libghc-network-uri-dev (>= 2.6),
+ libghc-network-uri-prof,
  libghc-quickcheck-instances-dev,
+ libghc-quickcheck2-dev,
  libghc-string-conversions-dev,
+ libghc-string-conversions-dev (<< 0.5),
+ libghc-string-conversions-dev (>= 0.3),
+ libghc-string-conversions-prof,
+ libghc-text-dev (<< 1.3),
+ libghc-text-dev (>= 1),
+ libghc-text-prof,
  libghc-url-dev,
-Build-Depends-Indep: ghc-doc,
+ libghc-vault-dev (<< 0.4),
+ libghc-vault-dev (>= 0.3),
+ libghc-vault-prof,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-aeson-doc,
  libghc-attoparsec-doc,
  libghc-base-compat-doc,
@@ -76,13 +85,18 @@ X-Description: family of combinators for defining webservices APIs
 
 Package: libghc-servant-dev
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -90,12 +104,17 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-servant-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -104,11 +123,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-servant-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
