@@ -1,35 +1,42 @@
 Source: haskell-css-text
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-attoparsec-dev (>= 0.10.2.0),
  libghc-attoparsec-prof,
+ libghc-hspec-dev (>= 1.3),
+ libghc-quickcheck2-dev,
  libghc-text-dev (>= 0.11),
  libghc-text-prof,
- libghc-quickcheck2-dev,
- libghc-hspec-dev (>= 1.3),
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-attoparsec-doc,
  libghc-text-doc,
 Standards-Version: 3.9.8
 Homepage: http://www.yesodweb.com/
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-css-text
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-css-text-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: CSS parser and renderer${haskell:ShortBlurb}
  It is a CSS parser and renderer.
  .
@@ -37,11 +44,15 @@ Description: CSS parser and renderer${haskell:ShortBlurb}
 
 Package: libghc-css-text-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: CSS parser and renderer${haskell:ShortBlurb}
  It is a CSS parser and renderer.
  .
@@ -50,10 +61,13 @@ Description: CSS parser and renderer${haskell:ShortBlurb}
 Package: libghc-css-text-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: CSS parser and renderer${haskell:ShortBlurb}
  It is a CSS parser and renderer.
  .
