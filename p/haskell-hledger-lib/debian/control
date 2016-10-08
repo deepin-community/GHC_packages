@@ -1,26 +1,28 @@
 Source: haskell-hledger-lib
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-decimal-dev,
- libghc-decimal-prof,
- libghc-hunit-dev,
- libghc-hunit-prof,
+ haskell-devscripts (>= 0.10),
  libghc-base-compat-dev (>= 0.8.1),
  libghc-base-compat-prof,
  libghc-blaze-markup-dev (>= 0.5.1),
  libghc-blaze-markup-prof,
- libghc-cmdargs-dev (>= 0.10),
  libghc-cmdargs-dev (<< 0.11),
+ libghc-cmdargs-dev (>= 0.10),
  libghc-cmdargs-prof,
  libghc-csv-dev,
  libghc-csv-prof,
+ libghc-decimal-dev,
+ libghc-decimal-prof,
+ libghc-hunit-dev,
+ libghc-hunit-prof,
  libghc-mtl-dev (>= 2.2.1),
  libghc-mtl-prof,
  libghc-old-time-dev,
@@ -33,21 +35,22 @@ Build-Depends: debhelper (>= 9),
  libghc-regex-tdfa-prof,
  libghc-safe-dev (>= 0.2),
  libghc-safe-prof,
- libghc-split-dev (>= 0.1),
  libghc-split-dev (<< 0.3),
+ libghc-split-dev (>= 0.1),
  libghc-split-prof,
  libghc-uglymemo-dev,
  libghc-uglymemo-prof,
- libghc-utf8-string-dev (>= 0.3.5),
  libghc-utf8-string-dev (<< 1.1),
+ libghc-utf8-string-dev (>= 0.3.5),
  libghc-utf8-string-prof,
-Build-Depends-Indep: ghc-doc,
- libghc-decimal-doc,
- libghc-hunit-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-base-compat-doc,
  libghc-blaze-markup-doc,
  libghc-cmdargs-doc,
  libghc-csv-doc,
+ libghc-decimal-doc,
+ libghc-hunit-doc,
  libghc-mtl-doc,
  libghc-old-time-doc,
  libghc-parsec3-doc,
@@ -59,17 +62,21 @@ Build-Depends-Indep: ghc-doc,
  libghc-utf8-string-doc,
 Standards-Version: 3.9.8
 Homepage: http://hledger.org
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-hledger-lib
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-hledger-lib-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: core data types, parsers and utilities for the hledger accounting tool${haskell:ShortBlurb}
  hledger is a haskell port and friendly fork of John Wiegley's ledger
  accounting tool. This package provides core data types, parsers and
@@ -81,11 +88,15 @@ Description: core data types, parsers and utilities for the hledger accounting t
 
 Package: libghc-hledger-lib-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: core data types, parsers and utilities for hledger${haskell:ShortBlurb}
  hledger is a haskell port and friendly fork of John Wiegley's ledger
  accounting tool. This package provides core data types, parsers and
@@ -98,10 +109,13 @@ Description: core data types, parsers and utilities for hledger${haskell:ShortBl
 Package: libghc-hledger-lib-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: core data types, parsers and utilities for hledger${haskell:ShortBlurb}
  hledger is a haskell port and friendly fork of John Wiegley's ledger
  accounting tool. This package provides core data types, parsers and
