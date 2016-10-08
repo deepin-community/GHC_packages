@@ -1,22 +1,33 @@
 Source: haskell-recursion-schemes
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.9),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.9),
+ libghc-bifunctors-dev (<< 6),
+ libghc-bifunctors-dev (>= 4),
+ libghc-bifunctors-prof,
+ libghc-comonad-dev (<< 6),
  libghc-comonad-dev (>= 4),
- libghc-comonad-dev (<< 5),
  libghc-comonad-prof,
- libghc-free-dev (>= 4),
  libghc-free-dev (<< 5),
+ libghc-free-dev (>= 4),
  libghc-free-prof,
-Build-Depends-Indep: ghc-doc,
+ libghc-transformers-compat-dev (<< 1),
+ libghc-transformers-compat-dev (>= 0.3),
+ libghc-transformers-compat-prof,
+Build-Depends-Indep:
+ ghc-doc,
+ libghc-bifunctors-doc,
  libghc-comonad-doc,
  libghc-free-doc,
+ libghc-transformers-compat-doc,
 Standards-Version: 3.9.8
 Homepage: http://github.com/ekmett/recursion-schemes/
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-recursion-schemes
@@ -28,13 +39,18 @@ X-Description: generalized bananas, lenses and barbed wire
 
 Package: libghc-recursion-schemes-dev
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -42,12 +58,17 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-recursion-schemes-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -56,11 +77,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-recursion-schemes-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
