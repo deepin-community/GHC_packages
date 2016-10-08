@@ -1,13 +1,15 @@
 Source: haskell-wai-logger
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-blaze-builder-dev,
  libghc-blaze-builder-prof,
  libghc-byteorder-dev,
@@ -24,7 +26,8 @@ Build-Depends: debhelper (>= 9),
  libghc-unix-time-prof,
  libghc-wai-dev (>= 2.0.0),
  libghc-wai-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-blaze-builder-doc,
  libghc-byteorder-doc,
  libghc-case-insensitive-doc,
@@ -35,17 +38,21 @@ Build-Depends-Indep: ghc-doc,
  libghc-wai-doc,
 Standards-Version: 3.9.8
 Homepage: http://hackage.haskell.org/package/wai-logger
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-wai-logger
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-wai-logger-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: logging system for WAI${haskell:ShortBlurb}
  This is a logging system for WAI application.
  .
@@ -53,11 +60,15 @@ Description: logging system for WAI${haskell:ShortBlurb}
 
 Package: libghc-wai-logger-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: logging system for WAI${haskell:ShortBlurb}
  This is a logging system for WAI application.
  .
@@ -66,10 +77,13 @@ Description: logging system for WAI${haskell:ShortBlurb}
 Package: libghc-wai-logger-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: logging system for WAI${haskell:ShortBlurb}
  This is a logging system for WAI application.
  .
