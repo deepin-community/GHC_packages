@@ -1,15 +1,15 @@
 Source: haskell-sbv
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.9),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-quickcheck2-dev,
- libghc-quickcheck2-prof,
+ haskell-devscripts (>= 0.9),
  libghc-async-dev,
  libghc-async-prof,
  libghc-base-compat-dev (>= 0.6),
@@ -18,28 +18,31 @@ Build-Depends: debhelper (>= 9),
  libghc-cracknum-prof,
  libghc-data-binary-ieee754-dev,
  libghc-data-binary-ieee754-prof,
+ libghc-hunit-dev,
  libghc-mtl-dev,
  libghc-mtl-prof,
  libghc-old-time-dev,
  libghc-old-time-prof,
+ libghc-quickcheck2-dev,
+ libghc-quickcheck2-prof,
  libghc-random-dev,
  libghc-random-prof,
  libghc-syb-dev,
  libghc-syb-prof,
- libghc-hunit-dev,
-Build-Depends-Indep: ghc-doc,
- libghc-quickcheck2-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-async-doc,
  libghc-base-compat-doc,
  libghc-cracknum-doc,
  libghc-data-binary-ieee754-doc,
  libghc-mtl-doc,
  libghc-old-time-doc,
+ libghc-quickcheck2-doc,
  libghc-random-doc,
  libghc-syb-doc,
 Standards-Version: 3.9.8
 Homepage: http://leventerkok.github.com/sbv/
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-sbv
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 X-Description: symbolic Haskell theorem prover using SMT solving
  Express properties about Haskell programs and automatically prove them
@@ -47,13 +50,18 @@ X-Description: symbolic Haskell theorem prover using SMT solving
 
 Package: libghc-sbv-dev
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -61,12 +69,17 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-sbv-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -75,11 +88,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-sbv-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
