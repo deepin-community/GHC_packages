@@ -1,46 +1,49 @@
 Source: haskell-persistent-template
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
- ghc-prof,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-ghci,
- libghc-aeson-dev (>= 0.7),
- libghc-aeson-dev (<< 0.12),
- libghc-aeson-prof,
- libghc-aeson-compat-dev (>= 0.3.0.0),
+ ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-aeson-compat-dev (<< 0.4),
+ libghc-aeson-compat-dev (>= 0.3.2.0),
  libghc-aeson-compat-prof,
- libghc-http-api-data-dev (>= 0.2),
+ libghc-aeson-dev (<< 0.12),
+ libghc-aeson-dev (>= 0.7),
+ libghc-aeson-prof,
+ libghc-hspec-dev (>= 1.3),
  libghc-http-api-data-dev (<< 0.3),
+ libghc-http-api-data-dev (>= 0.2),
  libghc-http-api-data-prof,
- libghc-monad-control-dev (>= 0.2),
  libghc-monad-control-dev (<< 1.1),
+ libghc-monad-control-dev (>= 0.2),
  libghc-monad-control-prof,
  libghc-monad-logger-dev,
  libghc-monad-logger-prof,
  libghc-path-pieces-dev,
  libghc-path-pieces-prof,
- libghc-persistent-dev (>= 2.2.2),
+ libghc-persistent-dev,
  libghc-persistent-dev (<< 3),
+ libghc-persistent-dev (>= 2.5),
  libghc-persistent-prof,
+ libghc-quickcheck2-dev,
  libghc-tagged-dev,
  libghc-tagged-prof,
+ libghc-text-dev,
  libghc-text-dev (>= 0.5),
  libghc-text-prof,
  libghc-unordered-containers-dev,
  libghc-unordered-containers-prof,
- libghc-quickcheck2-dev,
- libghc-hspec-dev (>= 1.3),
- libghc-persistent-dev,
- libghc-text-dev,
-Build-Depends-Indep: ghc-doc,
- libghc-aeson-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-aeson-compat-doc,
+ libghc-aeson-doc,
  libghc-http-api-data-doc,
  libghc-monad-control-doc,
  libghc-monad-logger-doc,
@@ -51,17 +54,21 @@ Build-Depends-Indep: ghc-doc,
  libghc-unordered-containers-doc,
 Standards-Version: 3.9.8
 Homepage: http://www.yesodweb.com/book/persistent
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-persistent-template
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-persistent-template-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: type-safe, non-relational, multi-backend persistence${haskell:ShortBlurb}
  This library provides just the general interface and helper functions.
  You must use a specific backend in order to make this useful.
@@ -70,11 +77,15 @@ Description: type-safe, non-relational, multi-backend persistence${haskell:Short
 
 Package: libghc-persistent-template-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: type-safe, non-relational, multi-backend persistence${haskell:ShortBlurb}
  This library provides just the general interface and helper functions.
  You must use a specific backend in order to make this useful.
@@ -84,10 +95,13 @@ Description: type-safe, non-relational, multi-backend persistence${haskell:Short
 Package: libghc-persistent-template-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: type-safe, non-relational, multi-backend persistence${haskell:ShortBlurb}
  This library provides just the general interface and helper functions.
  You must use a specific backend in order to make this useful.
