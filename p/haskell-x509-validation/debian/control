@@ -1,18 +1,20 @@
 Source: haskell-x509-validation
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-asn1-encoding-dev (>= 0.9),
+ haskell-devscripts (>= 0.10),
  libghc-asn1-encoding-dev (<< 0.10),
+ libghc-asn1-encoding-dev (>= 0.9),
  libghc-asn1-encoding-prof,
- libghc-asn1-types-dev (>= 0.3),
  libghc-asn1-types-dev (<< 0.4),
+ libghc-asn1-types-dev (>= 0.3),
  libghc-asn1-types-prof,
  libghc-byteable-dev,
  libghc-byteable-prof,
@@ -26,16 +28,17 @@ Build-Depends: debhelper (>= 9),
  libghc-memory-prof,
  libghc-mtl-dev,
  libghc-mtl-prof,
- libghc-pem-dev (>= 0.1),
  libghc-pem-dev (<< 0.3),
+ libghc-pem-dev (>= 0.1),
  libghc-pem-prof,
- libghc-x509-dev (>= 1.6.2),
  libghc-x509-dev (<< 1.7),
+ libghc-x509-dev (>= 1.6.2),
  libghc-x509-prof,
- libghc-x509-store-dev (>= 1.6),
  libghc-x509-store-dev (<< 1.7),
+ libghc-x509-store-dev (>= 1.6),
  libghc-x509-store-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-asn1-encoding-doc,
  libghc-asn1-types-doc,
  libghc-byteable-doc,
@@ -49,7 +52,7 @@ Build-Depends-Indep: ghc-doc,
  libghc-x509-store-doc,
 Standards-Version: 3.9.8
 Homepage: http://github.com/vincenthz/hs-certificate
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-x509-validation
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 X-Description: X.509 certificate and CRL validation
  X.509 certificate/CRL checks and validations routines, following
@@ -57,12 +60,16 @@ X-Description: X.509 certificate and CRL validation
 
 Package: libghc-x509-validation-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -70,11 +77,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-x509-validation-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -83,10 +94,13 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-x509-validation-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
