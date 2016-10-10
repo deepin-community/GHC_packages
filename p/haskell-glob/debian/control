@@ -1,29 +1,32 @@
 Source: haskell-glob
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>
+Uploaders:
+ Joachim Breitner <nomeata@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-dlist-dev (>= 0.4),
+ haskell-devscripts (>= 0.10),
  libghc-dlist-dev (<< 0.9),
+ libghc-dlist-dev (>= 0.4),
  libghc-dlist-prof,
- libghc-semigroups-dev (>= 0.18),
  libghc-semigroups-dev (<< 0.19),
+ libghc-semigroups-dev (>= 0.18),
  libghc-semigroups-prof,
- libghc-transformers-compat-dev (>= 0.3),
  libghc-transformers-compat-dev (<< 0.6),
+ libghc-transformers-compat-dev (>= 0.3),
  libghc-transformers-compat-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-dlist-doc,
  libghc-semigroups-doc,
  libghc-transformers-compat-doc,
 Standards-Version: 3.9.8
 Homepage: http://iki.fi/matti.niemenmaa/glob/
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-glob
 Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
 X-Description: library matching glob patterns against file paths
  This package contians a haskell library for globbing: matching patterns
@@ -31,12 +34,16 @@ X-Description: library matching glob patterns against file paths
 
 Package: libghc-glob-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -44,11 +51,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-glob-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -57,10 +68,13 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-glob-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
