@@ -1,32 +1,35 @@
 Source: haskell-x509-system
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-mtl-dev,
  libghc-mtl-prof,
- libghc-pem-dev (>= 0.1),
  libghc-pem-dev (<< 0.3),
+ libghc-pem-dev (>= 0.1),
  libghc-pem-prof,
- libghc-x509-dev (>= 1.6),
  libghc-x509-dev (<< 1.7),
+ libghc-x509-dev (>= 1.6),
  libghc-x509-prof,
- libghc-x509-store-dev (>= 1.6),
  libghc-x509-store-dev (<< 1.7),
+ libghc-x509-store-dev (>= 1.6.2),
  libghc-x509-store-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-mtl-doc,
  libghc-pem-doc,
  libghc-x509-doc,
  libghc-x509-store-doc,
 Standards-Version: 3.9.8
 Homepage: http://github.com/vincenthz/hs-certificate
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-x509-system
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 X-Description: per-operating-system X.509 accessors and storage
  This is meant to be a portable way of finding and accessing
@@ -34,12 +37,16 @@ X-Description: per-operating-system X.509 accessors and storage
 
 Package: libghc-x509-system-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -47,11 +54,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-x509-system-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -60,10 +71,13 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-x509-system-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
