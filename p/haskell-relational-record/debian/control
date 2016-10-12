@@ -28,13 +28,22 @@ X-Description: metapackage of Relational Record
 Package: haskell-relational-record
 Architecture: any
 Depends:
+  haskell-relational-record-dev,
+  haskell-relational-record-prof,
+  haskell-relational-record-doc,
+ ${misc:Depends},
+Description: ${haskell:ShortDescription}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: haskell-relational-record-dev
+Architecture: any
+Depends:
  libghc-persistable-types-hdbc-pg-dev,
  libghc-relational-query-dev (>= 0.3),
  libghc-relational-query-hdbc-dev,
  ${misc:Depends},
-Suggests:
- haskell-relational-record-prof,
- haskell-relational-record-doc,
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -59,7 +68,7 @@ Depends:
  libghc-relational-record-doc,
  ${misc:Depends},
 Recommends:
- haskell-relational-record
+ haskell-relational-record-dev
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
