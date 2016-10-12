@@ -1,0 +1,82 @@
+Source: haskell-mono-traversable-instances
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-comonad-dev (>= 3.0.3),
+ libghc-comonad-prof,
+ libghc-dlist-dev (>= 0.6),
+ libghc-dlist-dev (<< 1.0),
+ libghc-dlist-prof,
+ libghc-dlist-instances-dev (>= 0.1),
+ libghc-dlist-instances-dev (<< 0.2),
+ libghc-dlist-instances-prof,
+ libghc-mono-traversable-dev (>= 1.0),
+ libghc-mono-traversable-dev (<< 1.1),
+ libghc-mono-traversable-prof,
+ libghc-semigroupoids-dev (>= 3.0),
+ libghc-semigroupoids-prof,
+ libghc-semigroups-dev,
+ libghc-semigroups-prof,
+ libghc-vector-instances-dev,
+ libghc-vector-instances-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-comonad-doc,
+ libghc-dlist-doc,
+ libghc-dlist-instances-doc,
+ libghc-mono-traversable-doc,
+ libghc-semigroupoids-doc,
+ libghc-semigroups-doc,
+ libghc-vector-instances-doc,
+Standards-Version: 3.9.8
+Homepage: https://github.com/snoyberg/mono-traversable
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-mono-traversable-instances
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
+X-Description: extra typeclass instances for mono-traversable
+ Extra typeclass instances for mono-traversable, such as for DList,
+ Comonad, Tree, etc.
+
+Package: libghc-mono-traversable-instances-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-mono-traversable-instances-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-mono-traversable-instances-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
