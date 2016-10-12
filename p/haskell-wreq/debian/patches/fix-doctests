@@ -1,0 +1,23 @@
+--- a/tests/DocTests.hs
++++ b/tests/DocTests.hs
+@@ -41,7 +41,7 @@
+ 
+ getDistDir :: IO FilePath
+ getDistDir = do
+-  names <- getDirectoryContents "dist"
++  names <- getDirectoryContents "dist-ghc"
+   return $ case filter ("dist-sandbox-" `isPrefixOf`) names of
+-             (d:_) -> "dist/" ++ d
+-             _     -> "dist"
++             (d:_) -> "dist-ghc/" ++ d
++             _     -> "dist-ghc"
+--- a/wreq.cabal
++++ b/wreq.cabal
+@@ -216,6 +216,7 @@
+   if !flag(doctest)
+     buildable: False
+   else
++    buildable: False
+     build-depends:
+       base >= 4.5 && < 5,
+       directory,

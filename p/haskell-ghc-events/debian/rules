@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 
-DEB_BUILD_DEPENDENCIES = build-arch
+#DEB_BUILD_DEPENDENCIES = build-arch
 # DEB_ENABLE_TESTS = yes
 
 # Work around bug in "Setup haddock", which does not find the header file at
@@ -8,6 +8,7 @@ DEB_BUILD_DEPENDENCIES = build-arch
 build/libghc-ghc-events-doc:: dist-ghc/build/EventLogFormat.h
 
 dist-ghc/build/EventLogFormat.h: GHC/RTS/EventLogFormat.h
+	mkdir -p $$(dirname $@)
 	cp $< $@
 
 include /usr/share/cdbs/1/rules/debhelper.mk

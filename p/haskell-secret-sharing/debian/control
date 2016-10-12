@@ -1,0 +1,76 @@
+Source: haskell-secret-sharing
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Sean Whitton <spwhitton@spwhitton.name>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-dice-entropy-conduit-dev (>= 1.0.0.0),
+ libghc-dice-entropy-conduit-prof,
+ libghc-finite-field-dev (>= 0.8.0),
+ libghc-finite-field-prof,
+ libghc-polynomial-dev (>= 0.7.1),
+ libghc-polynomial-prof,
+ libghc-vector-dev (>= 0.10.11.0),
+ libghc-vector-prof,
+ libghc-test-framework-dev (>= 0.4.1),
+ libghc-test-framework-quickcheck2-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-dice-entropy-conduit-doc,
+ libghc-finite-field-doc,
+ libghc-polynomial-doc,
+ libghc-vector-doc,
+Standards-Version: 3.9.8
+Homepage: http://monoid.at/#Code
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-secret-sharing
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
+X-Description: (m, n)-threshold secret sharing scheme
+ This library implements the secret sharing method described by Adi
+ Shamir, "How to Share a Secret", Communications of the ACM 22 (11):
+ 612–613, 1979.
+ .
+ Given a bytestring and integers n and m, produces n strings, any m of
+ which are sufficient to reconstruct the original bytestring.
+
+Package: libghc-secret-sharing-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-secret-sharing-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-secret-sharing-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

@@ -1,0 +1,42 @@
+Source: carettah
+Priority: extra
+Section: haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Kiwamu Okabe <kiwamu@debian.or.jp>
+         , Louis Bettens <louis@bettens.info>
+Build-Depends: debhelper (>= 9),
+               haskell-devscripts (>= 0.8.19),
+               cdbs,
+               ghc,
+               ghc-prof,
+               libghc-cairo-dev,
+               libghc-cairo-prof,
+               libghc-gtk-dev,
+               libghc-gtk-prof,
+               libghc-mtl-dev,
+               libghc-mtl-prof,
+               libghc-pandoc-dev,
+               libghc-pandoc-prof,
+               libghc-pango-dev,
+               libghc-pango-prof,
+               libghc-hcwiid-dev,
+               libghc-hcwiid-prof,
+               libghc-highlighting-kate-dev,
+               libghc-highlighting-kate-prof,
+               libcwiid-dev
+Standards-Version: 3.9.8
+Homepage: https://github.com/master-q/carettah
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/carettah
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
+
+Package: carettah
+Architecture: any
+Section: misc
+Depends: ${shlibs:Depends}, ${haskell:Depends}, ${misc:Depends}, fonts-noto-cjk
+Description: presentation tool that renders Markdown
+ A presentation tool, Carettah generates new presentation boilerplate
+ and displays it when invoked like `carettah -n markdown.md`.  You can
+ then edit the Markdown and hit 'r' to re-render.
+ It can be controlled by keyboard or Wiimote.
+ .
+ It's a clone of the rabbit package, written in Haskell.

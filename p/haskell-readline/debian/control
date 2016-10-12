@@ -1,0 +1,60 @@
+Source: haskell-readline
+Section: haskell
+Priority: extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>, Sean Whitton <spwhitton@spwhitton.name>
+Build-Depends: debhelper (>= 10)
+  , cdbs
+  , haskell-devscripts (>= 0.9)
+  , ghc
+  , ghc-prof
+  , libreadline6-dev
+  , libncurses5-dev
+  , dh-autoreconf
+Build-Depends-Indep: ghc-doc
+Standards-Version: 3.9.8
+Homepage: http://hackage.haskell.org/package/readline
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-readline
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
+X-Description: Haskell bindings to GNU readline library
+ This package provides Haskell bindings to the GNU readline library.
+ See https://directory.fsf.org/wiki/Readline for more information on
+ GNU readline.
+
+Package: libghc-readline-dev
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${shlibs:Depends}
+  , ${misc:Depends}
+  , libreadline6-dev
+  , libncurses5-dev
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-readline-prof
+Architecture: any
+Depends: ${haskell:Depends}
+  , ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-readline-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${haskell:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

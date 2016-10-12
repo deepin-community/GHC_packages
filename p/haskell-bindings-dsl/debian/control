@@ -3,25 +3,17 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Clint Adams <clint@debian.org>
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts (>= 0.9),
  cdbs,
  ghc,
  ghc-prof,
+Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.8
 Homepage: https://github.com/jwiegley/bindings-dsl/wiki
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
-Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
-
-Package: libghc-bindings-dsl-dev
-Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
-Description: FFI domain specific language, on top of hsc2hs${haskell:ShortBlurb}
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-bindings-dsl
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
+X-Description: FFI domain specific language, on top of hsc2hs
  This is a set of macros to be used when writing Haskell FFI. They were
  designed to be able to fully describe C interfaces, so that hsc2hs can
  extract from them all Haskell code needed to mimic such interfaces. All
@@ -32,5 +24,42 @@ Description: FFI domain specific language, on top of hsc2hs${haskell:ShortBlurb}
  .
  This package contains no Haskell code, only C header files designed
  for hsc2hs.
+
+Package: libghc-bindings-dsl-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-bindings-dsl-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-bindings-dsl-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}

@@ -1,0 +1,89 @@
+Source: haskell-binary-parsers
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-bytestring-lexing-dev (>= 0.5),
+ libghc-bytestring-lexing-dev (<< 0.6),
+ libghc-bytestring-lexing-prof,
+ libghc-scientific-dev (>> 0.3),
+ libghc-scientific-prof,
+ libghc-quickcheck2-dev (>= 2.7),
+ libghc-attoparsec-dev,
+ libghc-bytestring-lexing-dev,
+ libghc-fail-dev (>= 4.9),
+ libghc-fail-dev (<< 4.10),
+ libghc-quickcheck-instances-dev (>= 0.3),
+ libghc-quickcheck-unicode-dev,
+ libghc-scientific-dev,
+ libghc-semigroups-dev (>= 0.16.1),
+ libghc-semigroups-dev (<< 0.19),
+ libghc-tasty-dev (>= 0.11),
+ libghc-tasty-hunit-dev (>= 0.8),
+ libghc-tasty-quickcheck-dev (>= 0.8),
+ libghc-text-dev,
+ libghc-unordered-containers-dev,
+ libghc-vector-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-bytestring-lexing-doc,
+ libghc-scientific-doc,
+Standards-Version: 3.9.8
+Homepage: https://github.com/winterland1989/binary-parsers
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-binary-parsers
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
+X-Description: parsec-/attoparsec-style parsing combinators
+ This package extends binary with parsec/attoparsec style parsing
+ combinators. It's useful when you want to deal with various binary
+ format, and it's very fast. You can now write more complex Binary
+ instances using comprehensive combinators, with serialisation
+ packages like blaze-texual.
+ .
+ Binary's Get monad is designed to perform best on non-backtracking
+ cases, but it still provides fast backtracking support via
+ Alternative instance, it's overall an excellent alternative to
+ attoparsec if you only deal with ByteString.
+
+Package: libghc-binary-parsers-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-binary-parsers-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-binary-parsers-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

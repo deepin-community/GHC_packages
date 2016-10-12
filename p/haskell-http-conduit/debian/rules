@@ -1,6 +1,10 @@
 #!/usr/bin/make -f
 
-DEB_ENABLE_TESTS = yes
+ifeq (,$(filter $(DEB_BUILD_ARCH),armhf))
+ DEB_ENABLE_TESTS = yes
+else
+DEB_ENABLE_TESTS = no
+endif
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk

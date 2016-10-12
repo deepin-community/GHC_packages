@@ -1,0 +1,114 @@
+Source: haskell-servant-client
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Sean Whitton <spwhitton@spwhitton.name>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-aeson-dev,
+ libghc-aeson-prof,
+ libghc-attoparsec-dev,
+ libghc-attoparsec-prof,
+ libghc-base64-bytestring-dev,
+ libghc-base64-bytestring-prof,
+ libghc-exceptions-dev,
+ libghc-exceptions-prof,
+ libghc-http-api-data-dev (>= 0.1),
+ libghc-http-api-data-dev (<< 0.3),
+ libghc-http-api-data-prof,
+ libghc-http-client-dev,
+ libghc-http-client-prof,
+ libghc-http-client-tls-dev,
+ libghc-http-client-tls-prof,
+ libghc-http-media-dev,
+ libghc-http-media-prof,
+ libghc-http-types-dev,
+ libghc-http-types-prof,
+ libghc-network-uri-dev (>= 2.6),
+ libghc-network-uri-prof,
+ libghc-safe-dev,
+ libghc-safe-prof,
+ libghc-servant-dev (>= 0.7),
+ libghc-servant-dev (<< 0.8),
+ libghc-servant-prof,
+ libghc-string-conversions-dev,
+ libghc-string-conversions-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+ libghc-transformers-compat-dev,
+ libghc-transformers-compat-prof,
+ libghc-servant-server-dev (>= 0.7) <!nocheck>,
+ libghc-servant-server-dev (<< 0.8) <!nocheck>,
+ libghc-hspec-dev (>= 2) <!nocheck>,
+ libghc-hspec-dev (<< 3) <!nocheck>,
+ libghc-hunit-dev <!nocheck>,
+ libghc-quickcheck2-dev (>= 2.7) <!nocheck>,
+Build-Depends-Indep: ghc-doc,
+ libghc-aeson-doc,
+ libghc-attoparsec-doc,
+ libghc-base64-bytestring-doc,
+ libghc-exceptions-doc,
+ libghc-http-api-data-doc,
+ libghc-http-client-doc,
+ libghc-http-client-tls-doc,
+ libghc-http-media-doc,
+ libghc-http-types-doc,
+ libghc-network-uri-doc,
+ libghc-safe-doc,
+ libghc-servant-doc,
+ libghc-string-conversions-doc,
+ libghc-text-doc,
+ libghc-transformers-compat-doc,
+Standards-Version: 3.9.8
+Homepage: http://haskell-servant.readthedocs.org/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-servant-client
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
+X-Description: library for writing clients for servant webservices
+ This library automatically derives functions for writing clients for
+ webservices produced using the servant library.
+ .
+ See http://haskell-servant.readthedocs.org/en/stable/tutorial/Client.html
+ for a tutorial.
+
+Package: libghc-servant-client-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-servant-client-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-servant-client-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

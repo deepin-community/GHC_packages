@@ -1,0 +1,69 @@
+Source: haskell-dice-entropy-conduit
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Sean Whitton <spwhitton@spwhitton.name>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-conduit-dev (>= 1.1.7),
+ libghc-conduit-prof,
+ libghc-entropy-dev (>= 0.3.2),
+ libghc-entropy-prof,
+ libghc-test-framework-dev,
+ libghc-test-framework-quickcheck2-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-conduit-doc,
+ libghc-entropy-doc,
+Standards-Version: 3.9.8
+Homepage: http://monoid.at/#Code
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-dice-entropy-conduit
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
+X-Description: secure n-sided dice rolls and random sampling
+ Haskll library providing cryptographically secure n-sided dice rolls,
+ and random sampling within a given range.  The technique of rejection
+ sampling is used to obtain the random data.  The number of random
+ bits used is close to the optimal bound, information-theoretically
+ speaking.
+
+Package: libghc-dice-entropy-conduit-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-dice-entropy-conduit-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-dice-entropy-conduit-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

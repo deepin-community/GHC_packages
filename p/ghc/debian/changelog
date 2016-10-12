@@ -94,6 +94,16 @@ ghc (8.0.0.20160111-1) experimental; urgency=medium
 
  -- Joachim Breitner <nomeata@debian.org>  Thu, 14 Jan 2016 16:16:37 +0100
 
+ghc (7.10.3-10) unstable; urgency=medium
+
+  [ Clint Adams ]
+  * Backport upstream 563a4857abcee4a6e43c68323274309c58f42aa0 to use gcc's
+    SMP primitives instead of GHC's broken ones.
+  * Backport upstream 7053019e7b04842dd7364039381d8c4c069489a2 to add a
+    missing MO_WriteBarrier to emitPrimOp.
+
+ -- Clint Adams <clint@debian.org>  Wed, 05 Oct 2016 15:27:23 -0400
+
 ghc (7.10.3-9) unstable; urgency=medium
 
   * Improve debian/watch file.

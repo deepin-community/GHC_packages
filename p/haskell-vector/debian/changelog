@@ -1,13 +1,41 @@
-haskell-vector (0.11.0.0-2) UNRELEASED; urgency=medium
+haskell-vector (0.11.0.0-6) UNRELEASED; urgency=medium
+
+  * Rebuild disabling arm64 and ppc64el testsuites
+    - it fails on some Ubuntu virtual sbuild environments.
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Fri, 12 Aug 2016 17:09:40 +0200
+
+haskell-vector (0.11.0.0-5) unstable; urgency=high
+
+  * Also disable testsuite on kfreebsd-i386 and s390x.
+
+ -- Clint Adams <clint@debian.org>  Mon, 08 Aug 2016 10:14:42 -0400
+
+haskell-vector (0.11.0.0-4) unstable; urgency=medium
+
+  * Disable testsuite on armel/armhf/mips/mipsel/mips64el
+    instead.
+
+ -- Clint Adams <clint@debian.org>  Fri, 05 Aug 2016 13:14:14 -0400
+
+haskell-vector (0.11.0.0-3) unstable; urgency=medium
+
+  * Try to cope with low-memory issues on
+    armel/armhf/mips/mipsel/mips64el.
+
+ -- Clint Adams <clint@debian.org>  Thu, 04 Aug 2016 15:28:13 -0400
+
+haskell-vector (0.11.0.0-2) unstable; urgency=medium
 
   [ Dmitry Bogatov ]
   * Use secure (https) uri in Vcs-Git field in 'debian/control'
   * Bump standards version to 3.9.8 (no changes needed)
 
-  [ Gianfranco Costamagna ]
-  * Fix VCS fields
+  [ Clint Adams ]
+  * Patch for newer base/ghc-prim.
+  * Re-enable testsuite.
 
- -- Dmitry Bogatov <KAction@gnu.org>  Tue, 10 May 2016 09:36:26 +0300
+ -- Clint Adams <clint@debian.org>  Thu, 28 Jul 2016 13:01:59 -0400
 
 haskell-vector (0.11.0.0-1) unstable; urgency=medium
 

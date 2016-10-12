@@ -1,0 +1,113 @@
+Source: haskell-hackage-security
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-base16-bytestring-dev (>= 0.1.1),
+ libghc-base16-bytestring-dev (<< 0.2),
+ libghc-base16-bytestring-prof,
+ libghc-base64-bytestring-dev (>= 1.0),
+ libghc-base64-bytestring-dev (<< 1.1),
+ libghc-base64-bytestring-prof,
+ libghc-cryptohash-dev,
+ libghc-cryptohash-prof,
+ libghc-ed25519-dev (>= 0.0),
+ libghc-ed25519-dev (<< 0.1),
+ libghc-ed25519-prof,
+ libghc-mtl-dev (>= 2.2),
+ libghc-mtl-dev (<< 2.3),
+ libghc-mtl-prof,
+ libghc-network-dev (>= 2.6),
+ libghc-network-dev (<< 2.7),
+ libghc-network-prof,
+ libghc-network-uri-dev (>= 2.6),
+ libghc-network-uri-dev (<< 2.7),
+ libghc-network-uri-prof,
+ libghc-parsec3-dev (>= 3.1),
+ libghc-parsec3-dev (<< 3.2),
+ libghc-parsec3-prof,
+ libghc-tar-dev (>= 0.5),
+ libghc-tar-dev (<< 0.6),
+ libghc-tar-prof,
+ libghc-zlib-dev (>= 0.5),
+ libghc-zlib-dev (<< 0.7),
+ libghc-zlib-prof,
+ libghc-hunit-dev <!nocheck>,
+ libghc-quickcheck2-dev <!nocheck>,
+ libghc-network-uri-dev <!nocheck>,
+ libghc-tar-dev <!nocheck>,
+ libghc-tasty-dev <!nocheck>,
+ libghc-tasty-hunit-dev <!nocheck>,
+ libghc-tasty-quickcheck-dev <!nocheck>,
+ libghc-temporary-dev <!nocheck>,
+ libghc-zlib-dev <!nocheck>,
+Build-Depends-Indep: ghc-doc,
+ libghc-base16-bytestring-doc,
+ libghc-base64-bytestring-doc,
+ libghc-cryptohash-doc,
+ libghc-ed25519-doc,
+ libghc-mtl-doc,
+ libghc-network-doc,
+ libghc-network-uri-doc,
+ libghc-parsec3-doc,
+ libghc-tar-doc,
+ libghc-zlib-doc,
+Standards-Version: 3.9.8
+Homepage: https://github.com/well-typed/hackage-security
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-hackage-security
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
+X-Description: Hackage security library
+ The Hackage security library provides both server and client utilities
+ for securing the Hackage package server.  It is based on The Update
+ Framework, a set of recommendations developed by security researchers
+ at various universities in the US as well as developers on the Tor
+ project.
+ .
+ The current implementation supports only index signing,
+ thereby enabling untrusted mirrors. It does not yet provide
+ facilities for author package signing.
+
+Package: libghc-hackage-security-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hackage-security-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hackage-security-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

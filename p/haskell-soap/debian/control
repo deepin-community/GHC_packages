@@ -1,0 +1,104 @@
+Source: haskell-soap
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-conduit-dev,
+ libghc-conduit-prof,
+ libghc-configurator-dev,
+ libghc-configurator-prof,
+ libghc-data-default-dev,
+ libghc-data-default-prof,
+ libghc-exceptions-dev,
+ libghc-exceptions-prof,
+ libghc-http-client-dev (>= 0.2),
+ libghc-http-client-prof,
+ libghc-http-types-dev,
+ libghc-http-types-prof,
+ libghc-iconv-dev,
+ libghc-iconv-prof,
+ libghc-mtl-dev,
+ libghc-mtl-prof,
+ libghc-resourcet-dev,
+ libghc-resourcet-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+ libghc-unordered-containers-dev,
+ libghc-unordered-containers-prof,
+ libghc-xml-conduit-dev,
+ libghc-xml-conduit-prof,
+ libghc-xml-conduit-writer-dev,
+ libghc-xml-conduit-writer-prof,
+ libghc-xml-types-dev,
+ libghc-xml-types-prof,
+ libghc-hunit-dev,
+ libghc-hspec-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-conduit-doc,
+ libghc-configurator-doc,
+ libghc-data-default-doc,
+ libghc-exceptions-doc,
+ libghc-http-client-doc,
+ libghc-http-types-doc,
+ libghc-iconv-doc,
+ libghc-mtl-doc,
+ libghc-resourcet-doc,
+ libghc-text-doc,
+ libghc-unordered-containers-doc,
+ libghc-xml-conduit-doc,
+ libghc-xml-conduit-writer-doc,
+ libghc-xml-types-doc,
+Standards-Version: 3.9.8
+Homepage: https://bitbucket.org/dpwiz/haskell-soap
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-soap
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
+X-Description: SOAP client library
+ Tools to build SOAP clients using xml-conduit.
+ .
+ Note: to invoke HTTPS services you need to initialize a transport
+ from soap-tls.
+
+Package: libghc-soap-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-soap-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-soap-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

@@ -1,0 +1,40 @@
+From: Ben Gamari <bgamari.foss@gmail.com>
+Date: Tue, 30 Aug 2016 21:08:05 +0000 (-0400)
+Subject: StgCmmPrim: Add missing MO_WriteBarrier
+X-Git-Url: https://git.haskell.org/ghc.git/commitdiff_plain/7053019e7b04842dd7364039381d8c4c069489a2
+
+StgCmmPrim: Add missing MO_WriteBarrier
+
+Test Plan: Good question
+
+Reviewers: austin, trommler, simonmar, rrnewton
+
+Reviewed By: simonmar
+
+Subscribers: RyanGlScott, thomie
+
+Differential Revision: https://phabricator.haskell.org/D2495
+
+GHC Trac Issues: #12469
+
+(cherry picked from commit d40d6df74a9fca382a84709ac9bc862897fbec18)
+---
+
+diff --git a/compiler/codeGen/StgCmmPrim.hs b/compiler/codeGen/StgCmmPrim.hs
+index 5d3b94f..3cb9f83 100644
+--- a/compiler/codeGen/StgCmmPrim.hs
++++ b/compiler/codeGen/StgCmmPrim.hs
+@@ -310,8 +310,11 @@ emitPrimOp _ [res] GetCurrentCCSOp [_dummy_arg]
+ emitPrimOp dflags [res] ReadMutVarOp [mutv]
+    = emitAssign (CmmLocal res) (cmmLoadIndexW dflags mutv (fixedHdrSizeW dflags) (gcWord dflags))
+ 
+-emitPrimOp dflags [] WriteMutVarOp [mutv,var]
+-   = do emitStore (cmmOffsetW dflags mutv (fixedHdrSizeW dflags)) var
++emitPrimOp dflags res@[] WriteMutVarOp [mutv,var]
++   = do -- Without this write barrier, other CPUs may see this pointer before
++        -- the writes for the closure it points to have occurred.
++        emitPrimCall res MO_WriteBarrier []
++        emitStore (cmmOffsetW dflags mutv (fixedHdrSizeW dflags)) var
+         emitCCall
+                 [{-no results-}]
+                 (CmmLit (CmmLabel mkDirty_MUT_VAR_Label))

@@ -1,0 +1,66 @@
+Source: haskell-expiring-cache-map
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-hashable-dev (>= 1.0.1.1),
+ libghc-hashable-prof,
+ libghc-unordered-containers-dev (>= 0.2.0.0),
+ libghc-unordered-containers-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-hashable-doc,
+ libghc-unordered-containers-doc,
+Standards-Version: 3.9.8
+Homepage: https://github.com/elblake/expiring-cache-map
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-expiring-cache-map
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
+X-Description: general-purpose simple caching
+ A simple general purpose shared state cache map with automatic expiration
+ of values, for caching the results of accessing a resource such as reading
+ a file. With variations for Ord and Hashable keys using "Data.Map.Strict"
+ and "Data.HashMap.Strict", respectively.
+
+Package: libghc-expiring-cache-map-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-expiring-cache-map-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-expiring-cache-map-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
