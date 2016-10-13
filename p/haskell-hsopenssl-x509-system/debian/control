@@ -1,0 +1,67 @@
+Source: haskell-hsopenssl-x509-system
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc (>= 8),
+ ghc-prof,
+ libghc-hsopenssl-dev (>= 0.11),
+ libghc-hsopenssl-dev (<< 0.12),
+ libghc-hsopenssl-prof (>= 0.11),
+ libghc-hsopenssl-prof (<< 0.12),
+Build-Depends-Indep: ghc-doc,
+ libghc-hsopenssl-doc,
+Standards-Version: 3.9.8
+Homepage: https://github.com/redneb/HsOpenSSL-x509-system
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-hsopenssl-x509-system
+Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
+X-Description: use system's native CA certificate store with HsOpenSSL
+ A cross-platform library that tries to find a (reasonable) CA certificate
+ bundle that can be used with HsOpenSSL to verify the certificates of
+ remote peers.
+ .
+ This package is for HsOpenSSL what x509-system is for the tls package.
+ Additionally, it borrows some ideas from x509-system.
+
+Package: libghc-hsopenssl-x509-system-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hsopenssl-x509-system-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hsopenssl-x509-system-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
