@@ -6,14 +6,15 @@ Section: haskell
 Build-Depends: debhelper (>= 9),
  haskell-devscripts (>= 0.10),
  cdbs,
- ghc,
+ ghc (>= 8),
  ghc-prof,
- ghc-ghci,
 Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.8
 Homepage: http://github.com/nkpart/cabal-file-th
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-cabal-file-th
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
+X-Description: TH expressions for reading fields from a project's cabal file
+ Template Haskell expressions for reading fields from a project's cabal file.
 
 Package: libghc-cabal-file-th-dev
 Architecture: any
@@ -23,8 +24,8 @@ Depends: ${haskell:Depends},
 Recommends: ${haskell:Recommends},
 Suggests: ${haskell:Suggests},
 Provides: ${haskell:Provides},
-Description: TH expressions for reading fields from a project's cabal file${haskell:ShortBlurb}
- Template Haskell expressions for reading fields from a project's cabal file.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
@@ -35,8 +36,8 @@ Depends: ${haskell:Depends},
 Recommends: ${haskell:Recommends},
 Suggests: ${haskell:Suggests},
 Provides: ${haskell:Provides},
-Description: TH expressions for reading fields from a project's cabal file${haskell:ShortBlurb}
- Template Haskell expressions for reading fields from a project's cabal file.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
@@ -47,7 +48,7 @@ Depends: ${misc:Depends},
  ${haskell:Depends},
 Recommends: ${haskell:Recommends},
 Suggests: ${haskell:Suggests},
-Description: TH expressions for reading fields from a project's cabal file${haskell:ShortBlurb}
- Template Haskell expressions for reading fields from a project's cabal file.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
