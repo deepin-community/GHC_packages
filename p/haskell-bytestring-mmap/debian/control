@@ -6,13 +6,18 @@ Section: haskell
 Build-Depends: debhelper (>= 9),
  haskell-devscripts (>= 0.10),
  cdbs,
- ghc,
+ ghc (>= 8),
  ghc-prof,
 Build-Depends-Indep: ghc-doc,
 Standards-Version: 3.9.8
 Homepage: http://code.haskell.org/~dons/code/bytestring-mmap/
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-bytestring-mmap
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
+X-Description: mmap support for strict ByteStrings
+ This library provides a wrapper to mmap(2), allowing files or
+ devices to be lazily loaded into memory as strict or lazy
+ ByteStrings, using the virtual memory subsystem to do on-demand
+ loading.
 
 Package: libghc-bytestring-mmap-dev
 Architecture: any
@@ -22,13 +27,10 @@ Depends: ${shlibs:Depends},
 Recommends: ${haskell:Recommends},
 Suggests: ${haskell:Suggests},
 Provides: ${haskell:Provides},
-Description: mmap support for strict ByteStrings
- This library provides a wrapper to mmap(2), allowing files or
- devices to be lazily loaded into memory as strict or lazy
- ByteStrings, using the virtual memory subsystem to do on-demand
- loading.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
- This package contains the normal library files.
+ ${haskell:Blurb}
 
 Package: libghc-bytestring-mmap-prof
 Architecture: any
@@ -37,13 +39,10 @@ Depends: ${haskell:Depends},
 Recommends: ${haskell:Recommends},
 Suggests: ${haskell:Suggests},
 Provides: ${haskell:Provides},
-Description: mmap support for strict ByteStrings; profiling libraries
- This library provides a wrapper to mmap(2), allowing files or
- devices to be lazily loaded into memory as strict or lazy
- ByteStrings, using the virtual memory subsystem to do on-demand
- loading.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
- This package contains the libraries compiled with profiling enabled.
+ ${haskell:Blurb}
 
 Package: libghc-bytestring-mmap-doc
 Architecture: all
@@ -52,10 +51,7 @@ Depends: ${haskell:Depends},
  ${misc:Depends},
 Recommends: ${haskell:Recommends},
 Suggests: ${haskell:Suggests},
-Description: mmap support for strict ByteStrings; documentation
- This library provides a wrapper to mmap(2), allowing files or
- devices to be lazily loaded into memory as strict or lazy
- ByteStrings, using the virtual memory subsystem to do on-demand
- loading.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
- This package contains the documentation files.
+ ${haskell:Blurb}
