@@ -1,0 +1,79 @@
+Source: haskell-hookup
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc (>= 8),
+ ghc-prof,
+ libghc-hsopenssl-dev (>= 0.11.2.3),
+ libghc-hsopenssl-dev (<< 0.12),
+ libghc-hsopenssl-prof (>= 0.11.2.3),
+ libghc-hsopenssl-prof (<< 0.12),
+ libghc-hsopenssl-x509-system-dev (>= 0.1),
+ libghc-hsopenssl-x509-system-dev (<< 0.2),
+ libghc-hsopenssl-x509-system-prof (>= 0.1),
+ libghc-hsopenssl-x509-system-prof (<< 0.2),
+ libghc-network-dev (>= 2.6),
+ libghc-network-dev (<< 2.7),
+ libghc-network-prof (>= 2.6),
+ libghc-network-prof (<< 2.7),
+ libghc-socks-dev (>= 0.5),
+ libghc-socks-dev (<< 0.6),
+ libghc-socks-prof (>= 0.5),
+ libghc-socks-prof (<< 0.6),
+ libssl-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-hsopenssl-doc,
+ libghc-hsopenssl-x509-system-doc,
+ libghc-network-doc,
+ libghc-socks-doc,
+Standards-Version: 3.9.8
+Homepage: https://github.com/glguy/irc-core
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-hookup
+Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
+X-Description: abstraction over network connections with SOCKS5 and TLS
+ This package provides an abstraction for communicating with line-oriented
+ network services while abstracting over the use of SOCKS5 and TLS (via OpenSSL)
+
+Package: libghc-hookup-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hookup-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hookup-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
