@@ -3,25 +3,24 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Clint Adams <clint@debian.org>
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
-Build-Depends-Indep: ghc-doc,
+ haskell-devscripts (>= 0.10),
+Build-Depends-Indep: ghc-doc
 Standards-Version: 3.9.8
 Homepage: http://github.com/willdonnelly/xdg-basedir
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-xdg-basedir
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-xdg-basedir-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: basic implementation of the XDG Base Directory specification${haskell:ShortBlurb}
  This should be a very straightforward implementation of the XDG Base
  Directory spec.
@@ -30,11 +29,10 @@ Description: basic implementation of the XDG Base Directory specification${haske
 
 Package: libghc-xdg-basedir-prof
 Architecture: any
-Depends: ${haskell:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: basic implementation of the XDG Base Directory spec${haskell:ShortBlurb}
  This should be a very straightforward implementation of the XDG Base
  Directory spec.
@@ -44,10 +42,9 @@ Description: basic implementation of the XDG Base Directory spec${haskell:ShortB
 Package: libghc-xdg-basedir-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
- ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: basic implementation of the XDG Base Directory specification${haskell:ShortBlurb}
  This should be a very straightforward implementation of the XDG Base
  Directory spec.
