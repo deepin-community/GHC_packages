@@ -4,14 +4,12 @@ Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: John Millikin <jmillikin@gmail.com>
 Build-Depends:
-    cdbs
-  , debhelper (>= 9)
-  , haskell-devscripts (>= 0.10)
-  , ghc
-  , ghc-prof
-Build-Depends-Indep:
-    ghc-doc
-  , haddock
+ cdbs,
+ debhelper (>= 9),
+ ghc (>= 8),
+ ghc-prof,
+ haskell-devscripts (>= 0.10),
+Build-Depends-Indep: ghc-doc, haddock
 Standards-Version: 3.9.8
 Homepage: https://john-millikin.com/software/knob/
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
@@ -19,10 +17,7 @@ Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-knob-dev
 Architecture: any
-Depends:
-    ${haskell:Depends}
-  , ${misc:Depends}
-  , ${shlibs:Depends}
+Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
@@ -34,9 +29,7 @@ Description: Haskell library for memory-backed handles${haskell:ShortBlurb}
 
 Package: libghc-knob-prof
 Architecture: any
-Depends:
-    ${haskell:Depends}
-  , ${misc:Depends}
+Depends: ${haskell:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Provides: ${haskell:Provides}
@@ -49,9 +42,7 @@ Description: Haskell library for memory-backed handles${haskell:ShortBlurb}
 Package: libghc-knob-doc
 Section: doc
 Architecture: all
-Depends:
-    ${haskell:Depends}
-  , ${misc:Depends}
+Depends: ${haskell:Depends}, ${misc:Depends}
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Description: Haskell library for memory-backed handles${haskell:ShortBlurb}
