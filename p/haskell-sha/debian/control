@@ -3,25 +3,24 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Giovanni Mascellani <gio@debian.org>
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
-Build-Depends-Indep: ghc-doc,
+ haskell-devscripts (>= 0.10),
+Build-Depends-Indep: ghc-doc
 Standards-Version: 3.9.8
 Homepage: http://hackage.haskell.org/package/SHA
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-sha
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-sha-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${misc:Depends},
- ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: Haskell SHA suite of message digest functions${haskell:ShortBlurb}
  This library implements the SHA suite of message digest functions,
  according to NIST FIPS 180-2 (with the SHA-224 addendum), as well
@@ -36,11 +35,10 @@ Description: Haskell SHA suite of message digest functions${haskell:ShortBlurb}
 
 Package: libghc-sha-prof
 Architecture: any
-Depends: ${haskell:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: Haskell SHA suite of message digest functions${haskell:ShortBlurb}
  This library implements the SHA suite of message digest functions,
  according to NIST FIPS 180-2 (with the SHA-224 addendum), as well
@@ -56,10 +54,9 @@ Description: Haskell SHA suite of message digest functions${haskell:ShortBlurb}
 Package: libghc-sha-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: Haskell SHA suite of message digest functions${haskell:ShortBlurb}
  This library implements the SHA suite of message digest functions,
  according to NIST FIPS 180-2 (with the SHA-224 addendum), as well
