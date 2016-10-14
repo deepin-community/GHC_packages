@@ -3,26 +3,25 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Masayuki Hatta <mhatta@debian.org>
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
- ghc-prof,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-ghci,
-Build-Depends-Indep: ghc-doc,
+ ghc-prof,
+ haskell-devscripts (>= 0.10),
+Build-Depends-Indep: ghc-doc
 Standards-Version: 3.9.8
 Homepage: http://hackage.haskell.org/package/pointedlist
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-pointedlist
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-pointedlist-dev
 Architecture: any
-Depends: ${shlibs:Depends},
- ${haskell:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: zipper-like comonad which works as a list, tracking a position${haskell:ShortBlurb}
  This Haskell library provides PointedList, which tracks the position in a
  non-empty list which works similarly to a zipper. A current item is always
@@ -33,11 +32,10 @@ Description: zipper-like comonad which works as a list, tracking a position${has
 
 Package: libghc-pointedlist-prof
 Architecture: any
-Depends: ${haskell:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: zipper-like comonad which works as a list, tracking a position${haskell:ShortBlurb}
  This Haskell library provides PointedList, which tracks the position in a
  non-empty list which works similarly to a zipper. A current item is always
@@ -49,10 +47,9 @@ Description: zipper-like comonad which works as a list, tracking a position${has
 Package: libghc-pointedlist-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: zipper-like comonad which works as a list, tracking a position.${haskell:ShortBlurb}
  This Haskell library provides PointedList, which tracks the position in a
  non-empty list which works similarly to a zipper. A current item is always
