@@ -3,29 +3,28 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Clint Adams <clint@debian.org>
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-bindings-dsl-dev (>= 1.0.15),
+ haskell-devscripts (>= 0.10),
  libghc-bindings-dsl-dev (<< 1.1),
+ libghc-bindings-dsl-dev (>= 1.0.15),
  libsane-dev,
  pkg-config,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep: ghc-doc
 Standards-Version: 3.9.8
 Homepage: http://floss.scru.org/bindings-sane
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-bindings-sane
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-bindings-sane-dev
 Architecture: any
-Depends: ${shlibs:Depends},
- ${haskell:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: FFI bindings to libsane
  These are Haskell bindings to the SANE API (version 1.0)
  .
@@ -33,11 +32,10 @@ Description: FFI bindings to libsane
 
 Package: libghc-bindings-sane-prof
 Architecture: any
-Depends: ${haskell:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: FFI bindings to libsane
  These are Haskell bindings to the SANE API (version 1.0)
  .
@@ -46,10 +44,9 @@ Description: FFI bindings to libsane
 Package: libghc-bindings-sane-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: FFI bindings to libsane
  These are Haskell bindings to the SANE API (version 1.0)
  .
