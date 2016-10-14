@@ -3,30 +3,32 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Clint Adams <clint@debian.org>
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-base-orphans-dev (>= 0.4),
+ haskell-devscripts (>= 0.10),
  libghc-base-orphans-dev (<< 0.6),
+ libghc-base-orphans-dev (>= 0.4),
  libghc-base-orphans-prof,
- libghc-bifunctors-dev (>= 5.2),
  libghc-bifunctors-dev (<< 6),
+ libghc-bifunctors-dev (>= 5.2),
  libghc-bifunctors-prof,
- libghc-comonad-dev (>= 4),
  libghc-comonad-dev (<< 6),
+ libghc-comonad-dev (>= 4),
  libghc-comonad-prof,
- libghc-contravariant-dev (>= 1),
  libghc-contravariant-dev (<< 2),
+ libghc-contravariant-dev (>= 1),
  libghc-contravariant-prof,
- libghc-distributive-dev (>= 0.4.4),
  libghc-distributive-dev (<< 1),
+ libghc-distributive-dev (>= 0.4.4),
  libghc-distributive-prof,
- libghc-tagged-dev (>= 0.4.4),
  libghc-tagged-dev (<< 1),
+ libghc-tagged-dev (>= 0.4.4),
  libghc-tagged-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-base-orphans-doc,
  libghc-bifunctors-doc,
  libghc-comonad-doc,
@@ -35,17 +37,15 @@ Build-Depends-Indep: ghc-doc,
  libghc-tagged-doc,
 Standards-Version: 3.9.8
 Homepage: http://github.com/ekmett/profunctors/
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-profunctors
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-profunctors-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: Haskell 98 Profunctors${haskell:ShortBlurb}
  Profunctors are a generalization of relations and also of bimodules.
  They are related to the notion of correspondences.
@@ -54,11 +54,10 @@ Description: Haskell 98 Profunctors${haskell:ShortBlurb}
 
 Package: libghc-profunctors-prof
 Architecture: any
-Depends: ${haskell:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: Haskell 98 Profunctors${haskell:ShortBlurb}
  Profunctors are a generalization of relations and also of bimodules.
  They are related to the notion of correspondences.
@@ -68,10 +67,9 @@ Description: Haskell 98 Profunctors${haskell:ShortBlurb}
 Package: libghc-profunctors-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
- ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: Haskell 98 Profunctors${haskell:ShortBlurb}
  Profunctors are a generalization of relations and also of bimodules.
  They are related to the notion of correspondences.
