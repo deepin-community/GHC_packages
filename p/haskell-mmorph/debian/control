@@ -3,20 +3,19 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Clint Adams <clint@debian.org>
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-mtl-dev (>= 2.0.1),
+ haskell-devscripts (>= 0.10),
  libghc-mtl-dev (<< 2.3),
+ libghc-mtl-dev (>= 2.0.1),
  libghc-mtl-prof,
- libghc-transformers-compat-dev (>= 0.3),
  libghc-transformers-compat-dev (<< 0.6),
+ libghc-transformers-compat-dev (>= 0.3),
  libghc-transformers-compat-prof,
-Build-Depends-Indep: ghc-doc,
- libghc-mtl-doc,
- libghc-transformers-compat-doc,
+Build-Depends-Indep: ghc-doc, libghc-mtl-doc, libghc-transformers-compat-doc
 Standards-Version: 3.9.8
 Homepage: http://hackage.haskell.org/package/mmorph
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-mmorph
@@ -24,12 +23,10 @@ Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-mmorph-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: monad morphisms${haskell:ShortBlurb}
  This library provides monad morphism utilities, most commonly used
  for manipulating monad transformer stacks.
@@ -38,11 +35,10 @@ Description: monad morphisms${haskell:ShortBlurb}
 
 Package: libghc-mmorph-prof
 Architecture: any
-Depends: ${haskell:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: monad morphisms${haskell:ShortBlurb}
  This library provides monad morphism utilities, most commonly used
  for manipulating monad transformer stacks.
@@ -52,10 +48,9 @@ Description: monad morphisms${haskell:ShortBlurb}
 Package: libghc-mmorph-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
- ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: monad morphisms${haskell:ShortBlurb}
  This library provides monad morphism utilities, most commonly used
  for manipulating monad transformer stacks.
