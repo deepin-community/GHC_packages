@@ -3,27 +3,25 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Joachim Breitner <nomeata@debian.org>
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libpcre3-dev,
  pkg-config (>=0.9.0),
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep: ghc-doc
 Standards-Version: 3.9.8
 Homepage: https://github.com/Daniel-Diaz/pcre-light
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-pcre-light
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-pcre-light-dev
 Architecture: any
-Depends: libpcre3-dev,
- ${haskell:Depends},
- ${shlibs:Depends},
- ${misc:Depends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Depends: libpcre3-dev, ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: Haskell library for Perl 5-compatible regular expressions${haskell:ShortBlurb}
  The PCRE library is a set of functions that implement regular expression
  pattern matching using the same syntax and semantics as Perl 5.  The library
@@ -33,9 +31,8 @@ Description: Haskell library for Perl 5-compatible regular expressions${haskell:
 
 Package: libghc-pcre-light-prof
 Architecture: any
-Depends: ${haskell:Depends},
- ${misc:Depends},
-Provides: ${haskell:Provides},
+Depends: ${haskell:Depends}, ${misc:Depends}
+Provides: ${haskell:Provides}
 Description: pcre-light library with profiling enabled${haskell:ShortBlurb}
  The PCRE library is a set of functions that implement regular expression
  pattern matching using the same syntax and semantics as Perl 5.  The library
@@ -46,13 +43,12 @@ Description: pcre-light library with profiling enabled${haskell:ShortBlurb}
 Package: libghc-pcre-light-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: haskell-pcre-light-doc (<< 0.3.1.1-2),
-Provides: haskell-pcre-light-doc,
-Replaces: haskell-pcre-light-doc (<< 0.3.1.1-2),
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Conflicts: haskell-pcre-light-doc (<< 0.3.1.1-2)
+Provides: haskell-pcre-light-doc
+Replaces: haskell-pcre-light-doc (<< 0.3.1.1-2)
 Description: library documentation for pcre-light${haskell:ShortBlurb}
  The PCRE library is a set of functions that implement regular expression
  pattern matching using the same syntax and semantics as Perl 5.  The library
