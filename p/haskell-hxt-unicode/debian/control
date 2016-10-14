@@ -3,29 +3,27 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: TANIGUCHI Takaki <takaki@debian.org>
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-hxt-charproperties-dev (>= 9),
+ haskell-devscripts (>= 0.10),
  libghc-hxt-charproperties-dev (<< 10),
+ libghc-hxt-charproperties-dev (>= 9),
  libghc-hxt-charproperties-prof,
-Build-Depends-Indep: ghc-doc,
- libghc-hxt-charproperties-doc,
+Build-Depends-Indep: ghc-doc, libghc-hxt-charproperties-doc
 Standards-Version: 3.9.8
 Homepage: https://github.com/UweSchmidt/hxt
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-hxt-unicode
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-hxt-unicode-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: Unicode en-/decoding functions${haskell:ShortBlurb}
  This is a part of Haskell XML Toolbox.
  .
@@ -38,12 +36,10 @@ Description: Unicode en-/decoding functions${haskell:ShortBlurb}
 
 Package: libghc-hxt-unicode-prof
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: Unicode en-/decoding functions${haskell:ShortBlurb}
  This is a part of Haskell XML Toolbox.
  .
@@ -57,12 +53,10 @@ Description: Unicode en-/decoding functions${haskell:ShortBlurb}
 Package: libghc-hxt-unicode-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: Unicode en-/decoding functions${haskell:ShortBlurb}
  This is a part of Haskell XML Toolbox.
  .
