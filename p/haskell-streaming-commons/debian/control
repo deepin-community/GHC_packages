@@ -3,18 +3,22 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Clint Adams <clint@debian.org>
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-async-dev,
  libghc-async-prof,
- libghc-blaze-builder-dev (>= 0.3),
+ libghc-blaze-builder-dev,
  libghc-blaze-builder-dev (<< 0.5),
+ libghc-blaze-builder-dev (>= 0.3),
  libghc-blaze-builder-prof,
+ libghc-hspec-dev (>= 1.8),
  libghc-network-dev (>= 2.4.0.0),
  libghc-network-prof,
+ libghc-quickcheck2-dev,
  libghc-random-dev,
  libghc-random-prof,
  libghc-stm-dev,
@@ -23,10 +27,8 @@ Build-Depends: debhelper (>= 9),
  libghc-text-prof,
  libghc-zlib-dev,
  libghc-zlib-prof,
- libghc-quickcheck2-dev,
- libghc-blaze-builder-dev,
- libghc-hspec-dev (>= 1.8),
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-async-doc,
  libghc-blaze-builder-doc,
  libghc-network-doc,
@@ -36,7 +38,7 @@ Build-Depends-Indep: ghc-doc,
  libghc-zlib-doc,
 Standards-Version: 3.9.8
 Homepage: https://github.com/fpco/streaming-commons
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-streaming-commons
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 X-Description: common lower-level functions for various streaming data libraries
  Provides low-dependency functionality commonly needed by various
@@ -44,12 +46,10 @@ X-Description: common lower-level functions for various streaming data libraries
 
 Package: libghc-streaming-commons-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -57,11 +57,10 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-streaming-commons-prof
 Architecture: any
-Depends: ${haskell:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -70,10 +69,9 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-streaming-commons-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
- ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
