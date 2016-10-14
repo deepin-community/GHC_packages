@@ -3,28 +3,26 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Clint Adams <clint@debian.org>
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-newtype-generics-dev (>= 0.4),
  libghc-newtype-generics-prof,
-Build-Depends-Indep: ghc-doc,
- libghc-newtype-generics-doc,
+Build-Depends-Indep: ghc-doc, libghc-newtype-generics-doc
 Standards-Version: 3.9.8
 Homepage: http://haskell.org/haskellwiki/MemoTrie
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-memotrie
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-memotrie-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: trie-based memo functions${haskell:ShortBlurb}
  MemoTrie provides a basis for memoized functions over some domains,
  using tries.
@@ -33,11 +31,10 @@ Description: trie-based memo functions${haskell:ShortBlurb}
 
 Package: libghc-memotrie-prof
 Architecture: any
-Depends: ${haskell:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: trie-based memo functions${haskell:ShortBlurb}
  MemoTrie provides a basis for memoized functions over some domains,
  using tries.
@@ -47,10 +44,9 @@ Description: trie-based memo functions${haskell:ShortBlurb}
 Package: libghc-memotrie-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
- ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: trie-based memo functions${haskell:ShortBlurb}
  MemoTrie provides a basis for memoized functions over some domains,
  using tries.
