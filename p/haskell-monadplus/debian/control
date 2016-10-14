@@ -3,16 +3,16 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Sean Whitton <spwhitton@spwhitton.name>
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.9),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
-Build-Depends-Indep: ghc-doc,
- libghc-base-doc,
+ haskell-devscripts (>= 0.9),
+Build-Depends-Indep: ghc-doc, libghc-base-doc
 Standards-Version: 3.9.8
 Homepage: http://hackage.haskell.org/package/monadplus
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-monadplus
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/haskell-monadplus
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 X-Description: Haskell98 partial maps and filters over MonadPlus
  Filtering and folding over arbitrary `MonadPlus` instances.
@@ -21,13 +21,11 @@ X-Description: Haskell98 partial maps and filters over MonadPlus
 
 Package: libghc-monadplus-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${misc:Depends},
- ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Conflicts: ${haskell:Conflicts}
+Provides: ${haskell:Provides}
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -35,12 +33,11 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-monadplus-prof
 Architecture: any
-Depends: ${haskell:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Conflicts: ${haskell:Conflicts}
+Provides: ${haskell:Provides}
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -49,11 +46,10 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-monadplus-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Conflicts: ${haskell:Conflicts}
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
