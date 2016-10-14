@@ -3,37 +3,37 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Clint Adams <clint@debian.org>
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-safe-dev (>= 0.3.3),
+ haskell-devscripts (>= 0.10),
  libghc-safe-dev (<< 0.4),
+ libghc-safe-dev (>= 0.3.3),
  libghc-safe-prof,
- libghc-transformers-compat-dev (>= 0.4),
  libghc-transformers-compat-dev (<< 0.6),
+ libghc-transformers-compat-dev (>= 0.4),
  libghc-transformers-compat-prof,
- libghc-unexceptionalio-dev (>= 0.3),
  libghc-unexceptionalio-dev (<< 0.4),
+ libghc-unexceptionalio-dev (>= 0.3),
  libghc-unexceptionalio-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-safe-doc,
  libghc-transformers-compat-doc,
  libghc-unexceptionalio-doc,
 Standards-Version: 3.9.8
 Homepage: http://hackage.haskell.org/package/errors
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-errors
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-errors-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: simplified error handling${haskell:ShortBlurb}
  This library encourages an error-handling style that directly uses the
  type system, rather than out-of-band exceptions.
@@ -42,11 +42,10 @@ Description: simplified error handling${haskell:ShortBlurb}
 
 Package: libghc-errors-prof
 Architecture: any
-Depends: ${haskell:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: simplified error handling${haskell:ShortBlurb}
  This library encourages an error-handling style that directly uses the
  type system, rather than out-of-band exceptions.
@@ -56,10 +55,9 @@ Description: simplified error handling${haskell:ShortBlurb}
 Package: libghc-errors-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
- ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: simplified error handling${haskell:ShortBlurb}
  This library encourages an error-handling style that directly uses the
  type system, rather than out-of-band exceptions.
