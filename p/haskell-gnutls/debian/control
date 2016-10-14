@@ -3,32 +3,33 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Clint Adams <clint@debian.org>
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-monads-tf-dev (>= 0.1),
+ haskell-devscripts (>= 0.10),
  libghc-monads-tf-dev (<< 0.2),
+ libghc-monads-tf-dev (>= 0.1),
  libghc-monads-tf-prof,
- pkg-config,
  libgnutls28-dev | libgnutls-dev,
-Build-Depends-Indep: ghc-doc,
- libghc-monads-tf-doc,
+ pkg-config,
+Build-Depends-Indep: ghc-doc, libghc-monads-tf-doc
 Standards-Version: 3.9.8
 Homepage: https://john-millikin.com/software/haskell-gnutls/
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-gnutls
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-gnutls-dev
 Architecture: any
-Depends: ${shlibs:Depends},
+Depends:
+ libgnutls28-dev | libgnutls-dev,
  ${haskell:Depends},
  ${misc:Depends},
- libgnutls28-dev | libgnutls-dev,
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: bindings for GNU TLS
  This library provides Haskell bindings for gnutls.
  .
@@ -36,11 +37,10 @@ Description: bindings for GNU TLS
 
 Package: libghc-gnutls-prof
 Architecture: any
-Depends: ${haskell:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: bindings for GNU TLS; profiling libraries
  This library provides Haskell bindings for gnutls.
  .
@@ -49,10 +49,9 @@ Description: bindings for GNU TLS; profiling libraries
 Package: libghc-gnutls-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: bindings for GNU TLS; documentation
  This library provides Haskell bindings for gnutls.
  .
