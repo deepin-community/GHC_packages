@@ -3,28 +3,26 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Kiwamu Okabe <kiwamu@debian.or.jp>
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-syb-dev (>= 0.1.0),
  libghc-syb-prof,
-Build-Depends-Indep: ghc-doc,
- libghc-syb-doc,
+Build-Depends-Indep: ghc-doc, libghc-syb-doc
 Standards-Version: 3.9.8
 Homepage: http://github.com/nominolo/ghc-syb
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-ghc-syb-utils
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-ghc-syb-utils-dev
 Architecture: any
-Depends: ${shlibs:Depends},
- ${haskell:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: Scrap Your Boilerplate utilities for the GHC API
  Common utilities for the Ghc Api, either based on Data/Typeable or
  for use with Data.Generics over Ghc Api types.
@@ -33,11 +31,10 @@ Description: Scrap Your Boilerplate utilities for the GHC API
 
 Package: libghc-ghc-syb-utils-prof
 Architecture: any
-Depends: ${haskell:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: Scrap Your Boilerplate utilities for the GHC API; profiling libraries
  Common utilities for the Ghc Api, either based on Data/Typeable or
  for use with Data.Generics over Ghc Api types.
@@ -47,10 +44,9 @@ Description: Scrap Your Boilerplate utilities for the GHC API; profiling librari
 Package: libghc-ghc-syb-utils-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: Scrap Your Boilerplate utilities for the GHC API; documentation
  Common utilities for the Ghc Api, either based on Data/Typeable or
  for use with Data.Generics over Ghc Api types.
