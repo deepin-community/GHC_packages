@@ -3,41 +3,43 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Iulian Udrea <iulian@linux.com>
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-bifunctors-dev (>= 4),
+ haskell-devscripts (>= 0.10),
  libghc-bifunctors-dev (<< 6),
+ libghc-bifunctors-dev (>= 4),
  libghc-bifunctors-prof,
- libghc-comonad-dev (>= 4),
  libghc-comonad-dev (<< 6),
+ libghc-comonad-dev (>= 4),
  libghc-comonad-prof,
  libghc-distributive-dev (>= 0.2.1),
  libghc-distributive-prof,
- libghc-exceptions-dev (>= 0.6),
  libghc-exceptions-dev (<< 0.9),
+ libghc-exceptions-dev (>= 0.6),
  libghc-exceptions-prof,
- libghc-mtl-dev (>= 2.0.1.0),
  libghc-mtl-dev (<< 2.3),
+ libghc-mtl-dev (>= 2.0.1.0),
  libghc-mtl-prof,
- libghc-prelude-extras-dev (>= 0.4),
  libghc-prelude-extras-dev (<< 1),
+ libghc-prelude-extras-dev (>= 0.4),
  libghc-prelude-extras-prof,
- libghc-profunctors-dev (>= 4),
  libghc-profunctors-dev (<< 6),
+ libghc-profunctors-dev (>= 4),
  libghc-profunctors-prof,
- libghc-semigroupoids-dev (>= 4),
  libghc-semigroupoids-dev (<< 6),
+ libghc-semigroupoids-dev (>= 4),
  libghc-semigroupoids-prof,
- libghc-semigroups-dev (>= 0.8.3.1),
  libghc-semigroups-dev (<< 1),
+ libghc-semigroups-dev (>= 0.8.3.1),
  libghc-semigroups-prof,
- libghc-transformers-compat-dev (>= 0.3),
  libghc-transformers-compat-dev (<< 1),
+ libghc-transformers-compat-dev (>= 0.3),
  libghc-transformers-compat-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-bifunctors-doc,
  libghc-comonad-doc,
  libghc-distributive-doc,
@@ -55,12 +57,10 @@ Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-free-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: Monads for free${haskell:ShortBlurb}
  Free monads are useful for many tree-like structures and domain specific
  languages.
@@ -78,11 +78,10 @@ Description: Monads for free${haskell:ShortBlurb}
 
 Package: libghc-free-prof
 Architecture: any
-Depends: ${haskell:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: Monads for free${haskell:ShortBlurb}
  Free monads are useful for many tree-like structures and domain specific
  languages.
@@ -101,10 +100,9 @@ Description: Monads for free${haskell:ShortBlurb}
 Package: libghc-free-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
- ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: Monads for free${haskell:ShortBlurb}
  Free monads are useful for many tree-like structures and domain specific
  languages.
