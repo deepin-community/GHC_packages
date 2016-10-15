@@ -1,31 +1,38 @@
 Source: haskell-threads
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>
+Uploaders:
+ Joachim Breitner <nomeata@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-stm-dev (>= 2.1),
+ haskell-devscripts (>= 0.10),
  libghc-stm-dev (<< 2.5),
+ libghc-stm-dev (>= 2.1),
  libghc-stm-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-stm-doc,
 Standards-Version: 3.9.8
 Homepage: https://github.com/basvandijk/threads
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-threads
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-threads-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Fork threads and wait for their result${haskell:ShortBlurb}
  This package provides functions to fork threads and wait for their result,
  whether it's an exception or a normal value.
@@ -37,11 +44,15 @@ Description: Fork threads and wait for their result${haskell:ShortBlurb}
 
 Package: libghc-threads-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Fork threads and wait for their result${haskell:ShortBlurb}
  This package provides functions to fork threads and wait for their result,
  whether it's an exception or a normal value.
@@ -54,10 +65,13 @@ Description: Fork threads and wait for their result${haskell:ShortBlurb}
 Package: libghc-threads-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: Fork threads and wait for their result${haskell:ShortBlurb}
  This package provides functions to fork threads and wait for their result,
  whether it's an exception or a normal value.
