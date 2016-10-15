@@ -1,26 +1,29 @@
 Source: hslogger
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: John Goerzen <jgoerzen@complete.org>
+Uploaders:
+ John Goerzen <jgoerzen@complete.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-mtl-dev,
  libghc-mtl-prof,
  libghc-network-dev,
  libghc-network-prof,
  libghc-old-locale-dev,
  libghc-old-locale-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-mtl-doc,
  libghc-network-doc,
  libghc-old-locale-doc,
 Standards-Version: 3.9.8
 Homepage: http://software.complete.org/hslogger
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/hslogger
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 X-Description: logging framework for Haskell
  hslogger is a logging framework for Haskell, roughly similar to
@@ -35,12 +38,16 @@ X-Description: logging framework for Haskell
 
 Package: libghc-hslogger-dev
 Architecture: any
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
+ ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -48,11 +55,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-hslogger-prof
 Architecture: any
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -61,13 +72,19 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-hslogger-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: hslogger-doc,
-Provides: hslogger-doc,
-Replaces: hslogger-doc,
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ hslogger-doc,
+Provides:
+ hslogger-doc,
+Replaces:
+ hslogger-doc,
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
