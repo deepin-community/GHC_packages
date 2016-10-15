@@ -3,29 +3,27 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Iain Lane <laney@debian.org>
 Priority: optional
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-network-dev,
  libghc-network-prof,
  libpcap0.8-dev,
-Build-Depends-Indep: ghc-doc,
- libghc-network-doc,
+Build-Depends-Indep: ghc-doc, libghc-network-doc
 Standards-Version: 3.9.8
 Homepage: https://github.com/bos/pcap
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-pcap
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-pcap-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${misc:Depends},
- ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: Haskell wrapper around the C libpcap library${haskell:ShortBlurb}
  This library provides Haskell bindings for most of the libpcap API as of
  libpcap version 0.9.7. The bindings are divided into a very efficient
@@ -36,11 +34,10 @@ Description: Haskell wrapper around the C libpcap library${haskell:ShortBlurb}
 
 Package: libghc-pcap-prof
 Architecture: any
-Depends: ${haskell:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: Haskell wrapper around the C libpcap library${haskell:ShortBlurb}
  This library provides Haskell bindings for most of the libpcap API as of
  libpcap version 0.9.7. The bindings are divided into a very efficient
@@ -52,10 +49,9 @@ Description: Haskell wrapper around the C libpcap library${haskell:ShortBlurb}
 Package: libghc-pcap-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: Haskell wrapper around the C libpcap library${haskell:ShortBlurb}
  This library provides Haskell bindings for most of the libpcap API as of
  libpcap version 0.9.7. The bindings are divided into a very efficient
