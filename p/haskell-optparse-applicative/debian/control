@@ -3,33 +3,33 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Clint Adams <clint@debian.org>
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-ansi-wl-pprint-dev (>= 0.6.6),
+ haskell-devscripts (>= 0.10),
  libghc-ansi-wl-pprint-dev (<< 0.7),
+ libghc-ansi-wl-pprint-dev (>= 0.6.6),
  libghc-ansi-wl-pprint-prof,
- libghc-transformers-compat-dev (>= 0.3),
  libghc-transformers-compat-dev (<< 0.6),
+ libghc-transformers-compat-dev (>= 0.3),
  libghc-transformers-compat-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-ansi-wl-pprint-doc,
  libghc-transformers-compat-doc,
 Standards-Version: 3.9.8
 Homepage: https://github.com/pcapriotti/optparse-applicative
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-optparse-applicative
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-optparse-applicative-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: utilities and combinators for parsing command-line options${haskell:ShortBlurb}
  This is a library for constructing command-line option parsers in the
  applicative style.
@@ -38,11 +38,10 @@ Description: utilities and combinators for parsing command-line options${haskell
 
 Package: libghc-optparse-applicative-prof
 Architecture: any
-Depends: ${haskell:Depends},
- ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
 Description: utilities and combinators for parsing command-line options${haskell:ShortBlurb}
  This is a library for constructing command-line option parsers in the
  applicative style.
@@ -52,10 +51,9 @@ Description: utilities and combinators for parsing command-line options${haskell
 Package: libghc-optparse-applicative-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
- ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+Depends: ${haskell:Depends}, ${misc:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
 Description: utilities and combinators for parsing command-line options${haskell:ShortBlurb}
  This is a library for constructing command-line option parsers in the
  applicative style.
