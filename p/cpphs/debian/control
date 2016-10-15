@@ -1,33 +1,38 @@
 Source: cpphs
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>
+Uploaders:
+ Joachim Breitner <nomeata@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-old-locale-dev,
  libghc-old-locale-prof,
  libghc-old-time-dev,
  libghc-old-time-prof,
  libghc-polyparse-dev (>= 1.9),
  libghc-polyparse-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-old-locale-doc,
  libghc-old-time-doc,
  libghc-polyparse-doc,
 Standards-Version: 3.9.8
 Homepage: http://projects.haskell.org/cpphs/
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/cpphs
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: cpphs
 Architecture: any
-Depends: ${shlibs:Depends},
+Depends:
  ${misc:Depends},
-Suggests: ghc | hugs,
+ ${shlibs:Depends},
+Suggests:
+ ghc | hugs,
 Description: Simplified cpp-a-like preprocessor for Haskell
  The C pre-processor has been widely used in Haskell source code. It
  enables conditional compilation for different compilers, different
@@ -43,34 +48,46 @@ Description: Simplified cpp-a-like preprocessor for Haskell
 
 Package: libghc-cpphs-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: cpphs-library for haskell
  This package provides some of the features of cpphs as a haskell library.
 
 Package: libghc-cpphs-prof
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: cpphs-library for haskell; profiling libraries
  This package provides some of the features of cpphs as a haskell library.
 
 Package: libghc-cpphs-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: haskell-cpphs-doc (<< 1.11-2),
-Provides: haskell-cpphs-doc,
-Replaces: haskell-cpphs-doc (<< 1.11-2),
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ haskell-cpphs-doc (<< 1.11-2),
+Provides:
+ haskell-cpphs-doc,
+Replaces:
+ haskell-cpphs-doc (<< 1.11-2),
 Description: cpphs-library for haskell; documentation
  This package provides some of the features of cpphs as a haskell library.
   .
