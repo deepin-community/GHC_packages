@@ -1,31 +1,38 @@
 Source: haskell-url
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Giovanni Mascellani <gio@debian.org>
+Uploaders:
+ Giovanni Mascellani <gio@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-utf8-string-dev (>= 0.3.4),
+ haskell-devscripts (>= 0.10),
  libghc-utf8-string-dev (<< 2),
+ libghc-utf8-string-dev (>= 0.3.4),
  libghc-utf8-string-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-utf8-string-doc,
 Standards-Version: 3.9.8
 Homepage: http://www.haskell.org/haskellwiki/Url
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-url
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-url-dev
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Haskell library for working with URLs${haskell:ShortBlurb}
  This library provides simple tools to parse and build URL strings.
  .
@@ -33,11 +40,15 @@ Description: Haskell library for working with URLs${haskell:ShortBlurb}
 
 Package: libghc-url-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Haskell library for working with URLs${haskell:ShortBlurb}
  This library provides simple tools to parse and build URL strings.
  .
@@ -46,10 +57,13 @@ Description: Haskell library for working with URLs${haskell:ShortBlurb}
 Package: libghc-url-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: Haskell library for working with URLs${haskell:ShortBlurb}
  This library provides simple tools to parse and build URL strings.
  .
