@@ -1,21 +1,24 @@
 Source: haskell-applicative-quoters
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Kristoffer H Rose <krisrose@debian.org>
+Uploaders:
+ Kristoffer H Rose <krisrose@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-src-meta-dev (>= 0.2),
+ haskell-devscripts (>= 0.10),
  libghc-src-meta-dev (<< 1),
+ libghc-src-meta-dev (>= 0.2),
  libghc-src-meta-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-src-meta-doc,
 Standards-Version: 3.9.8
 Homepage: http://hackage.haskell.org/package/applicative-quoters
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-applicative-quoters
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 X-Description: Quasiquoters for idiom brackets and an applicative do-notation
  Quasiquoters taken from Matt Morrow's haskell-src-meta to implement
@@ -24,13 +27,18 @@ X-Description: Quasiquoters for idiom brackets and an applicative do-notation
 
 Package: libghc-applicative-quoters-dev
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -38,12 +46,17 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-applicative-quoters-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -52,11 +65,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-applicative-quoters-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
