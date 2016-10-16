@@ -1,35 +1,42 @@
 Source: c2hs
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Arjan Oosting <arjan@debian.org>, Erik de Castro Lopo <erikd@mega-nerd.com>
+Uploaders:
+ Arjan Oosting <arjan@debian.org>,
+ Erik de Castro Lopo <erikd@mega-nerd.com>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- dpkg-dev (>= 1.14),
- cdbs,
- ghc,
- haskell-devscripts (>= 0.10),
+Build-Depends:
  alex,
- happy,
- libghc-dlist-dev,
- libghc-language-c-dev (>= 0.5),
- libghc-language-c-dev (<< 0.6),
+ cdbs,
+ debhelper (>= 9),
  docbook,
  docbook-xsl,
- xsltproc,
+ dpkg-dev (>= 1.14),
+ ghc (>= 8),
+ happy,
+ haskell-devscripts (>= 0.10),
+ libghc-dlist-dev,
+ libghc-language-c-dev (<< 0.6),
+ libghc-language-c-dev (>= 0.5),
  libxml2-utils,
-Build-Conflicts: libghc-wash-dev,
+ xsltproc,
+Build-Conflicts:
+ libghc-wash-dev,
 Standards-Version: 3.9.8
 Homepage: http://hackage.haskell.org/package/c2hs
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/c2hs
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: c2hs
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: C->Haskell Interface Generator
  C->Haskell is an interface generator that simplifies the development
  of Haskell bindings to C libraries.  The tool processes existing C
@@ -48,10 +55,13 @@ Description: C->Haskell Interface Generator
 Package: c2hs-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: C->Haskell Interface Generator -- Documentation package
  C->Haskell is an interface generator that simplifies the development
  of Haskell bindings to C libraries.  The tool processes existing C
