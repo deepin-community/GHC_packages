@@ -1,33 +1,40 @@
 Source: haskell-stringprep
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>
+Uploaders:
+ Joachim Breitner <nomeata@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-text-dev (>= 0.9),
- libghc-text-prof,
  libghc-text-icu-dev (>= 0.6),
  libghc-text-icu-prof,
-Build-Depends-Indep: ghc-doc,
+ libghc-text-prof,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-text-doc,
  libghc-text-icu-doc,
 Standards-Version: 3.9.8
 Homepage: http://hackage.haskell.org/package/stringprep
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-stringprep
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-stringprep-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Implements the "StringPrep" algorithm${haskell:ShortBlurb}
  RFC 3454 describes a framework for preparing Unicode text strings in order to
  increase the likelihood that string input and string comparison work in ways
@@ -39,11 +46,15 @@ Description: Implements the "StringPrep" algorithm${haskell:ShortBlurb}
 
 Package: libghc-stringprep-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Implements the "StringPrep" algorithm${haskell:ShortBlurb}
  RFC 3454 describes a framework for preparing Unicode text strings in order to
  increase the likelihood that string input and string comparison work in ways
@@ -56,10 +67,13 @@ Description: Implements the "StringPrep" algorithm${haskell:ShortBlurb}
 Package: libghc-stringprep-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: Implements the "StringPrep" algorithm${haskell:ShortBlurb}
  RFC 3454 describes a framework for preparing Unicode text strings in order to
  increase the likelihood that string input and string comparison work in ways
