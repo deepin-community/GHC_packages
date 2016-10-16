@@ -1,14 +1,15 @@
 Source: haskell-file-location
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- ghc-ghci,
+ haskell-devscripts (>= 0.10),
  libghc-hunit-dev,
  libghc-hunit-prof,
  libghc-lifted-base-dev,
@@ -16,23 +17,28 @@ Build-Depends: debhelper (>= 9),
  libghc-th-orphans-dev (>= 0.9),
  libghc-th-orphans-prof,
  shelltestrunner,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-hunit-doc,
  libghc-lifted-base-doc,
  libghc-th-orphans-doc,
 Standards-Version: 3.9.8
 Homepage: https://github.com/gregwebs/FileLocation.hs
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-file-location
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-file-location-dev
 Architecture: any
-Depends: ${shlibs:Depends},
+Depends:
  ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: common functions that show file location information${haskell:ShortBlurb}
  Common debugging/error/exception functions that give file location information
  in the style of
@@ -43,11 +49,15 @@ Description: common functions that show file location information${haskell:Short
 
 Package: libghc-file-location-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: common functions that show file location information${haskell:ShortBlurb}
  Common debugging/error/exception functions that give file location information
  in the style of
@@ -59,10 +69,13 @@ Description: common functions that show file location information${haskell:Short
 Package: libghc-file-location-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: common functions that show file location information${haskell:ShortBlurb}
  Common debugging/error/exception functions that give file location information
  in the style of
