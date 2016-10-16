@@ -1,28 +1,31 @@
 Source: haskell-lambdabot-trusted
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Alexandre Delanoë <anoe@debian.org>
+Uploaders:
+ Alexandre Delanoë <anoe@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-quickcheck2-dev (>= 2),
- libghc-quickcheck2-prof (>= 2) | libghc-quickcheck1-prof (<< 2),
- libghc-quickcheck-safe-dev (>= 0.1),
- libghc-quickcheck-safe-prof,
+ haskell-devscripts (>= 0.10),
  libghc-oeis-dev (>= 0.3.1),
  libghc-oeis-prof,
-Build-Depends-Indep: ghc-doc,
- libghc-quickcheck2-doc (>= 2) | libghc-quickcheck1-doc (<< 2),
- libghc-quickcheck-safe-doc,
+ libghc-quickcheck-safe-dev (>= 0.1),
+ libghc-quickcheck-safe-prof,
+ libghc-quickcheck2-dev (>= 2),
+ libghc-quickcheck2-prof (>= 2),
+Build-Depends-Indep:
+ ghc-doc,
  libghc-oeis-doc,
+ libghc-quickcheck-safe-doc,
+ libghc-quickcheck2-doc (>= 2),
 Standards-Version: 3.9.8
 Homepage: http://haskell.org/haskellwiki/Lambdabot
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-lambdabot-trusted
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
-X-Description: Lambdabot trusted code.
+X-Description: Lambdabot trusted code
  Lambdabot is an IRC bot written over several years by
  those on the #haskell IRC channel.
  .
@@ -31,13 +34,18 @@ X-Description: Lambdabot trusted code.
 
 Package: libghc-lambdabot-trusted-dev
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -45,12 +53,17 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-lambdabot-trusted-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -59,11 +72,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-lambdabot-trusted-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
