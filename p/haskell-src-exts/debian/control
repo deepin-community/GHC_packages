@@ -1,30 +1,36 @@
 Source: haskell-src-exts
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>
+Uploaders:
+ Joachim Breitner <nomeata@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
  happy (>= 1.17),
+ haskell-devscripts (>= 0.10),
  libghc-cpphs-dev (>= 1.3),
  libghc-cpphs-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-cpphs-doc,
 Standards-Version: 3.9.8
 Homepage: https://github.com/haskell-suite/haskell-src-exts
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-src-exts
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-src-exts-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Haskell-Source with eXtensions library for GHC${haskell:ShortBlurb}
  haskell-src-exts (HSX, haskell-source with extensions) is an extension of the
  standard haskell-src package, and handles most common syntactic extensions to
@@ -40,11 +46,14 @@ Description: Haskell-Source with eXtensions library for GHC${haskell:ShortBlurb}
 
 Package: libghc-src-exts-prof
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Haskell-Source with eXtensions library for GHC${haskell:ShortBlurb}
  haskell-src-exts (HSX, haskell-source with extensions) is an extension of the
  standard haskell-src package, and handles most common syntactic extensions to
@@ -61,13 +70,19 @@ Description: Haskell-Source with eXtensions library for GHC${haskell:ShortBlurb}
 Package: libghc-src-exts-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: haskell-src-exts-doc (<< 1.8.2-2),
-Provides: haskell-src-exts-doc,
-Replaces: haskell-src-exts-doc (<< 1.8.2-2),
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ haskell-src-exts-doc (<< 1.8.2-2),
+Provides:
+ haskell-src-exts-doc,
+Replaces:
+ haskell-src-exts-doc (<< 1.8.2-2),
 Description: API documentation of the haskell-src-exts library${haskell:ShortBlurb}
  haskell-src-exts (HSX, haskell-source with extensions) is an extension of the
  standard haskell-src package, and handles most common syntactic extensions to
