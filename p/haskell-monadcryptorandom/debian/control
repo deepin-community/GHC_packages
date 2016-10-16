@@ -1,36 +1,43 @@
 Source: haskell-monadcryptorandom
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-crypto-api-dev (>= 0.2),
  libghc-crypto-api-prof,
  libghc-mtl-dev (>= 2.2.1),
  libghc-mtl-prof,
  libghc-tagged-dev (>= 0.2),
  libghc-tagged-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-crypto-api-doc,
  libghc-mtl-doc,
  libghc-tagged-doc,
 Standards-Version: 3.9.8
 Homepage: https://github.com/TomMD/monadcryptorandom
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-monadcryptorandom
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-monadcryptorandom-dev
 Architecture: any
-Depends: ${shlibs:Depends},
+Depends:
  ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: monad for using CryptoRandomGen
  A monad for using CryptoRandomGen.
  .
@@ -38,11 +45,15 @@ Description: monad for using CryptoRandomGen
 
 Package: libghc-monadcryptorandom-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: monad for using CryptoRandomGen; profiling libraries
  A monad for using CryptoRandomGen.
  .
@@ -51,10 +62,13 @@ Description: monad for using CryptoRandomGen; profiling libraries
 Package: libghc-monadcryptorandom-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: monad for using CryptoRandomGen; documentation
  A monad for using CryptoRandomGen.
  .
