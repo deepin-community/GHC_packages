@@ -1,26 +1,30 @@
 Source: darcs-monitor
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>
+Uploaders:
+ Joachim Breitner <nomeata@debian.org>,
 Priority: optional
 Section: vcs
-Build-Depends: debhelper (>= 9),
+Build-Depends:
  cdbs,
+ debhelper (>= 9),
+ ghc (>= 8),
  haskell-devscripts (>= 0.10),
- ghc,
- libghc-mtl-dev,
- libghc-haxml-dev (>= 1:1.25),
  libghc-haxml-dev (<< 1:1.26),
+ libghc-haxml-dev (>= 1:1.25),
+ libghc-mtl-dev,
 Standards-Version: 3.9.8
 Homepage: http://wiki.darcs.net/RelatedSoftware/DarcsMonitor
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/darcs-monitor
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: darcs-monitor
 Architecture: any
-Depends: ${shlibs:Depends},
- ${misc:Depends},
+Depends:
  darcs (>= 1.0.0rc2-1),
-Recommends: exim4 | mail-transport-agent,
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends:
+ exim4 | mail-transport-agent,
 Description: Darcs add-on that sends mail about newly pushed changes
  It is often desirable to send mail about new changes to software to
  a mailing list as soon as they are committed to a version control
