@@ -1,24 +1,27 @@
 Source: haskell-finite-field
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Sean Whitton <spwhitton@spwhitton.name>
+Uploaders:
+ Sean Whitton <spwhitton@spwhitton.name>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.9),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.9),
  libghc-hashable-dev,
  libghc-hashable-prof,
- libghc-type-level-numbers-dev (>= 0.1.1.0),
- libghc-type-level-numbers-dev (<< 0.2.0.0),
- libghc-type-level-numbers-prof,
  libghc-primes-dev,
  libghc-test-framework-dev,
- libghc-test-framework-th-dev,
  libghc-test-framework-hunit-dev,
  libghc-test-framework-quickcheck2-dev,
-Build-Depends-Indep: ghc-doc,
+ libghc-test-framework-th-dev,
+ libghc-type-level-numbers-dev (<< 0.2.0.0),
+ libghc-type-level-numbers-dev (>= 0.1.1.0),
+ libghc-type-level-numbers-prof,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-hashable-doc,
  libghc-type-level-numbers-doc,
 Standards-Version: 3.9.8
@@ -34,13 +37,18 @@ X-Description: implementation of finite fields for Haskell
 
 Package: libghc-finite-field-dev
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -48,12 +56,17 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-finite-field-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -62,11 +75,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-finite-field-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
