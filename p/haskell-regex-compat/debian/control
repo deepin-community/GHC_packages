@@ -1,32 +1,38 @@
 Source: haskell-regex-compat
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>
+Uploaders:
+ Joachim Breitner <nomeata@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-regex-base-dev (>= 0.93),
  libghc-regex-base-prof,
  libghc-regex-posix-dev (>= 0.95.1),
  libghc-regex-posix-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-regex-base-doc,
  libghc-regex-posix-doc,
 Standards-Version: 3.9.8
 Homepage: http://sourceforge.net/projects/lazy-regex
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-regex-compat
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-regex-compat-dev
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: GHC library providing old Text.Regex interface
  A library providing the old Text.Regex interface to the POSIX regular
  expression backend.
@@ -35,10 +41,12 @@ Description: GHC library providing old Text.Regex interface
 
 Package: libghc-regex-compat-prof
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Provides:
+ ${haskell:Provides},
 Description: GHC profiling library providing old Text.Regex interface
  A library providing the old Text.Regex interface to the POSIX regular
  expression backend.
@@ -49,13 +57,19 @@ Description: GHC profiling library providing old Text.Regex interface
 Package: libghc-regex-compat-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: haskell-regex-compat-doc (<< 0.92-5),
-Provides: haskell-regex-compat-doc,
-Replaces: haskell-regex-compat-doc (<< 0.92-5),
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ haskell-regex-compat-doc (<< 0.92-5),
+Provides:
+ haskell-regex-compat-doc,
+Replaces:
+ haskell-regex-compat-doc (<< 0.92-5),
 Description: API documentation for regex-compat Haskell library
  A library containing a POSIX regular expression backend conforming to
  the interface API of regex-base.
