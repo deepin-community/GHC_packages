@@ -1,17 +1,19 @@
 Source: missingh
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: John Goerzen <jgoerzen@complete.org>
+Uploaders:
+ John Goerzen <jgoerzen@complete.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-hunit-dev,
- libghc-hunit-prof,
+ haskell-devscripts (>= 0.10),
  libghc-hslogger-dev,
  libghc-hslogger-prof,
+ libghc-hunit-dev,
+ libghc-hunit-prof,
  libghc-mtl-dev,
  libghc-mtl-prof,
  libghc-network-dev,
@@ -26,9 +28,10 @@ Build-Depends: debhelper (>= 9),
  libghc-random-prof,
  libghc-regex-compat-dev,
  libghc-regex-compat-prof,
-Build-Depends-Indep: ghc-doc,
- libghc-hunit-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-hslogger-doc,
+ libghc-hunit-doc,
  libghc-mtl-doc,
  libghc-network-doc,
  libghc-old-locale-doc,
@@ -38,17 +41,21 @@ Build-Depends-Indep: ghc-doc,
  libghc-regex-compat-doc,
 Standards-Version: 3.9.8
 Homepage: http://software.complete.org/missingh
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/missingh
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-missingh-dev
 Architecture: any
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
+ ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Library of utility functions for Haskell
  MissingH is a library of all sorts of utility functions for
  Haskell programmers.  It is written in pure Haskell and thus should
@@ -63,12 +70,16 @@ Description: Library of utility functions for Haskell
 
 Package: libghc-missingh-prof
 Architecture: any
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
+ ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Library of utility functions for Haskell, profiling libraries
  MissingH is a library of all sorts of utility functions for
  Haskell programmers.  It is written in pure Haskell and thus should
@@ -86,13 +97,19 @@ Description: Library of utility functions for Haskell, profiling libraries
 Package: libghc-missingh-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Breaks: missingh-doc (<< 1.1.0.3-2),
-Provides: missingh-doc,
-Replaces: missingh-doc (<< 1.1.0.3-2),
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Breaks:
+ missingh-doc (<< 1.1.0.3-2),
+Provides:
+ missingh-doc,
+Replaces:
+ missingh-doc (<< 1.1.0.3-2),
 Description: Documentation for Haskell utility library
  MissingH is a library of all sorts of utility functions for
  Haskell programmers.  It is written in pure Haskell and thus should
