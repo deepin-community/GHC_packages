@@ -1,33 +1,36 @@
 Source: haskell-juicypixels
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>
+Uploaders:
+ Joachim Breitner <nomeata@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-mtl-dev (>= 1.1),
+ haskell-devscripts (>= 0.10),
  libghc-mtl-dev (<< 2.3),
+ libghc-mtl-dev (>= 1.1),
  libghc-mtl-prof,
- libghc-primitive-dev (>= 0.4),
  libghc-primitive-dev (<< 0.7),
+ libghc-primitive-dev (>= 0.4),
  libghc-primitive-prof,
- libghc-vector-dev (>= 0.10),
  libghc-vector-dev (<< 0.12),
+ libghc-vector-dev (>= 0.10),
  libghc-vector-prof,
- libghc-zlib-dev (>= 0.5.3.1),
  libghc-zlib-dev (<< 0.7),
+ libghc-zlib-dev (>= 0.5.3.1),
  libghc-zlib-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-mtl-doc,
  libghc-primitive-doc,
  libghc-vector-doc,
  libghc-zlib-doc,
 Standards-Version: 3.9.8
 Homepage: https://github.com/Twinside/Juicy.Pixels
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-juicypixels
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 X-Description: Haskell picture loading and serialization library
  This library allows the developer to load and store images in PNG, Bitmap,
@@ -35,12 +38,16 @@ X-Description: Haskell picture loading and serialization library
 
 Package: libghc-juicypixels-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -48,11 +55,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-juicypixels-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -61,10 +72,13 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-juicypixels-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
