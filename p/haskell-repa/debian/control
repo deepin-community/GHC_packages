@@ -1,36 +1,42 @@
 Source: haskell-repa
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Denis Laxalde <denis@laxalde.org>
+Uploaders:
+ Denis Laxalde <denis@laxalde.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- ghc-ghci,
- libghc-quickcheck2-dev (>= 2.8),
+ haskell-devscripts (>= 0.10),
  libghc-quickcheck2-dev (<< 2.9),
+ libghc-quickcheck2-dev (>= 2.8),
  libghc-quickcheck2-prof,
- libghc-vector-dev (>= 0.11),
  libghc-vector-dev (<< 0.12),
+ libghc-vector-dev (>= 0.11),
  libghc-vector-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-quickcheck2-doc,
  libghc-vector-doc,
 Standards-Version: 3.9.8
 Homepage: http://repa.ouroborus.net
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-repa
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-repa-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Regular parallel arrays for Haskell${haskell:ShortBlurb}
  Repa provides high performance, regular, multi-dimensional, shape polymorphic
  parallel arrays. All numeric data is stored unboxed. Functions written with
@@ -41,11 +47,15 @@ Description: Regular parallel arrays for Haskell${haskell:ShortBlurb}
 
 Package: libghc-repa-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Regular parallel arrays for Haskell${haskell:ShortBlurb}
  Repa provides high performance, regular, multi-dimensional, shape polymorphic
  parallel arrays. All numeric data is stored unboxed. Functions written with
@@ -57,10 +67,13 @@ Description: Regular parallel arrays for Haskell${haskell:ShortBlurb}
 Package: libghc-repa-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: Regular parallel arrays for Haskell${haskell:ShortBlurb}
  Repa provides high performance, regular, multi-dimensional, shape polymorphic
  parallel arrays. All numeric data is stored unboxed. Functions written with
