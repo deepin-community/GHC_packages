@@ -1,38 +1,45 @@
 Source: haskell-pem
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-base64-bytestring-dev (>= 1.0.0),
  libghc-base64-bytestring-prof,
+ libghc-hunit-dev,
  libghc-mtl-dev,
  libghc-mtl-prof,
- libghc-hunit-dev,
  libghc-quickcheck2-dev (>= 2.4.0.1),
  libghc-test-framework-dev (>= 0.3.3),
  libghc-test-framework-hunit-dev,
  libghc-test-framework-quickcheck2-dev,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-base64-bytestring-doc,
  libghc-mtl-doc,
 Standards-Version: 3.9.8
 Homepage: http://github.com/vincenthz/hs-pem
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-pem
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-pem-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Privacy Enhanced Mail (PEM) format reader and writer${haskell:ShortBlurb}
  It is for reading and writing PEM (Privacy Enhanced Mail; see
  RFCs 1421 through 1424) structures.
@@ -41,11 +48,15 @@ Description: Privacy Enhanced Mail (PEM) format reader and writer${haskell:Short
 
 Package: libghc-pem-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Privacy Enhanced Mail (PEM) format reader and writer${haskell:ShortBlurb}
  It is for reading and writing PEM (Privacy Enhanced Mail; see
  RFCs 1421 through 1424) structures.
@@ -55,10 +66,13 @@ Description: Privacy Enhanced Mail (PEM) format reader and writer${haskell:Short
 Package: libghc-pem-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: Privacy Enhanced Mail (PEM) format reader and writer${haskell:ShortBlurb}
  It is for reading and writing PEM (Privacy Enhanced Mail; see
  RFCs 1421 through 1424) structures.
