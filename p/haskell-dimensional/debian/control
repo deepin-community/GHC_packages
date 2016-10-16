@@ -1,22 +1,25 @@
 Source: haskell-dimensional
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Iulian Udrea <iulian@linux.com>
+Uploaders:
+ Iulian Udrea <iulian@linux.com>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-exact-pi-dev (>= 0.2.1.1),
+ haskell-devscripts (>= 0.10),
  libghc-exact-pi-dev (<< 0.5),
+ libghc-exact-pi-dev (>= 0.2.1.1),
  libghc-exact-pi-prof,
- libghc-numtype-dk-dev (>= 0.5),
  libghc-numtype-dk-dev (<< 1.1),
+ libghc-numtype-dk-dev (>= 0.5),
  libghc-numtype-dk-prof,
  libghc-vector-dev (>= 0.10),
  libghc-vector-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-exact-pi-doc,
  libghc-numtype-dk-doc,
  libghc-vector-doc,
@@ -27,12 +30,16 @@ Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-dimensional-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: statically checked physical dimensions${haskell:ShortBlurb}
  Dimensional is a library providing data types for performing arithmetic
  with physical quantities and units. Information about the physical
@@ -48,11 +55,15 @@ Description: statically checked physical dimensions${haskell:ShortBlurb}
 
 Package: libghc-dimensional-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: statically checked physical dimensions${haskell:ShortBlurb}
  Dimensional is a library providing data types for performing arithmetic
  with physical quantities and units. Information about the physical
@@ -69,10 +80,13 @@ Description: statically checked physical dimensions${haskell:ShortBlurb}
 Package: libghc-dimensional-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: statically checked physical dimensions${haskell:ShortBlurb}
  Dimensional is a library providing data types for performing arithmetic
  with physical quantities and units. Information about the physical
