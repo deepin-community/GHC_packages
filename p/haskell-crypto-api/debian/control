@@ -1,36 +1,43 @@
 Source: haskell-crypto-api
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-cereal-dev (>= 0.2),
  libghc-cereal-prof,
  libghc-entropy-dev,
  libghc-entropy-prof,
  libghc-tagged-dev (>= 0.1),
  libghc-tagged-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-cereal-doc,
  libghc-entropy-doc,
  libghc-tagged-doc,
 Standards-Version: 3.9.8
 Homepage: https://github.com/TomMD/crypto-api
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-crypto-api
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-crypto-api-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: generic interface for cryptographic operations${haskell:ShortBlurb}
  A generic interface for cryptographic operations, platform independent
  quality RNG, property tests and known-answer tests (KATs) for common
@@ -45,11 +52,15 @@ Description: generic interface for cryptographic operations${haskell:ShortBlurb}
 
 Package: libghc-crypto-api-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: generic interface for cryptographic operations${haskell:ShortBlurb}
  A generic interface for cryptographic operations, platform independent
  quality RNG, property tests and known-answer tests (KATs) for common
@@ -65,10 +76,13 @@ Description: generic interface for cryptographic operations${haskell:ShortBlurb}
 Package: libghc-crypto-api-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: generic interface for cryptographic operations${haskell:ShortBlurb}
  A generic interface for cryptographic operations, platform independent
  quality RNG, property tests and known-answer tests (KATs) for common
