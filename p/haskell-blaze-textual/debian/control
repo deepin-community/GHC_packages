@@ -1,13 +1,15 @@
 Source: haskell-blaze-textual
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-blaze-builder-dev (>= 0.2.1.4),
  libghc-blaze-builder-prof,
  libghc-old-locale-dev,
@@ -16,24 +18,29 @@ Build-Depends: debhelper (>= 9),
  libghc-text-prof,
  libghc-vector-dev,
  libghc-vector-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-blaze-builder-doc,
  libghc-old-locale-doc,
  libghc-text-doc,
  libghc-vector-doc,
 Standards-Version: 3.9.8
 Homepage: http://github.com/bos/blaze-textual
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-blaze-textual
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-blaze-textual-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Fast rendering of common datatypes${haskell:ShortBlurb}
  It is a library for efficiently rendering Haskell datatypes to
  bytestrings.
@@ -42,11 +49,15 @@ Description: Fast rendering of common datatypes${haskell:ShortBlurb}
 
 Package: libghc-blaze-textual-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Fast rendering of common datatypes${haskell:ShortBlurb}
  It is a library for efficiently rendering Haskell datatypes to
  bytestrings.
@@ -56,10 +67,13 @@ Description: Fast rendering of common datatypes${haskell:ShortBlurb}
 Package: libghc-blaze-textual-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: Fast rendering of common datatypes${haskell:ShortBlurb}
  It is a library for efficiently rendering Haskell datatypes to
  bytestrings.
