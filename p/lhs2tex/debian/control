@@ -1,27 +1,29 @@
 Source: lhs2tex
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Arjan Oosting <arjan@debian.org>, Erik de Castro Lopo <erikd@mega-nerd.com>
+Uploaders:
+ Arjan Oosting <arjan@debian.org>,
+ Erik de Castro Lopo <erikd@mega-nerd.com>,
 Priority: optional
 Section: haskell
-Build-Depends: autotools-dev,
+Build-Depends:
+ autotools-dev,
  debhelper (>= 9),
  ghc (>= 7.6),
  libghc-regex-compat-dev,
  tex-common,
 Standards-Version: 3.9.8
 Homepage: http://people.cs.uu.nl/andres/lhs2tex/
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/lhs2tex
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: lhs2tex
 Architecture: any
 Multi-Arch: foreign
-Depends: ${shlibs:Depends},
- ${misc:Depends},
- texlive-latex-base,
- texlive-latex-base,
+Depends:
  texlive-latex-base,
  texlive-math-extra,
+ ${misc:Depends},
+ ${shlibs:Depends},
 Description: Generates LaTeX code from literate Haskell sources
  lhs2TeX includes the following features:
  .
