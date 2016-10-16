@@ -1,43 +1,50 @@
 Source: haskell-equivalence
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>
+Uploaders:
+ Joachim Breitner <nomeata@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-stmonadtrans-dev,
- libghc-stmonadtrans-prof,
+ haskell-devscripts (>= 0.10),
  libghc-mtl-dev (>= 2.0.1),
  libghc-mtl-prof,
- libghc-transformers-compat-dev (>= 0.3),
- libghc-transformers-compat-prof,
  libghc-quickcheck2-dev (>= 2),
+ libghc-stmonadtrans-dev,
+ libghc-stmonadtrans-prof,
  libghc-test-framework-dev,
  libghc-test-framework-quickcheck2-dev,
-Build-Depends-Indep: ghc-doc,
- libghc-stmonadtrans-doc,
+ libghc-transformers-compat-dev (>= 0.3),
+ libghc-transformers-compat-prof,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-mtl-doc,
+ libghc-stmonadtrans-doc,
  libghc-transformers-compat-doc,
 Standards-Version: 3.9.8
 Homepage: https://bitbucket.org/paba/equivalence/
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-equivalence
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
-X-Description: Maintaining an equivalence relation
+X-Description: maintaining an equivalence relation
   This is a Haskell implementation of Tarjan's Union-Find algorithm (Robert E.
   Tarjan. "Efficiency of a Good But Not Linear Set Union Algorithm", JACM
   22(2), 1975) in order to maintain an equivalence relation.
 
 Package: libghc-equivalence-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -45,11 +52,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-equivalence-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -58,10 +69,13 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-equivalence-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
