@@ -1,27 +1,30 @@
 Source: haskell-hxt-http
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: TANIGUCHI Takaki <takaki@debian.org>
+Uploaders:
+ TANIGUCHI Takaki <takaki@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-http-dev (>= 1:4000),
+ haskell-devscripts (>= 0.10),
  libghc-http-dev (<< 1:5000),
+ libghc-http-dev (>= 1:4000),
  libghc-http-prof,
- libghc-hxt-dev (>= 9.1),
  libghc-hxt-dev (<< 10),
+ libghc-hxt-dev (>= 9.1),
  libghc-hxt-prof,
  libghc-network-dev (>= 2.6),
  libghc-network-prof,
  libghc-network-uri-dev (>= 2.6),
  libghc-network-uri-prof,
- libghc-parsec3-dev (>= 2.1),
  libghc-parsec3-dev (<< 4),
+ libghc-parsec3-dev (>= 2.1),
  libghc-parsec3-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-http-doc,
  libghc-hxt-doc,
  libghc-network-doc,
@@ -29,17 +32,21 @@ Build-Depends-Indep: ghc-doc,
  libghc-parsec3-doc,
 Standards-Version: 3.9.8
 Homepage: https://github.com/UweSchmidt/hxt
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-hxt-http
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-hxt-http-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Interface to native Haskell HTTP package HTTP${haskell:ShortBlurb}
  This is a part of Haskell XML Toolbox.
  .
@@ -51,12 +58,16 @@ Description: Interface to native Haskell HTTP package HTTP${haskell:ShortBlurb}
 
 Package: libghc-hxt-http-prof
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Interface to native Haskell HTTP package HTTP${haskell:ShortBlurb}
  This is a part of Haskell XML Toolbox.
  .
@@ -69,12 +80,16 @@ Description: Interface to native Haskell HTTP package HTTP${haskell:ShortBlurb}
 Package: libghc-hxt-http-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Interface to native Haskell HTTP package HTTP${haskell:ShortBlurb}
  This is a part of Haskell XML Toolbox.
  .
