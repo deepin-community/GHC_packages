@@ -1,29 +1,33 @@
 Source: haskell-glut
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>, Dmitry Bogatov <KAction@gnu.org>
+Uploaders:
+ Joachim Breitner <nomeata@debian.org>,
+ Dmitry Bogatov <KAction@gnu.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
- ghc-prof,
- libghc-opengl-dev (>= 2.12),
- libghc-opengl-dev (<< 3.1),
- libghc-opengl-prof,
+ debhelper (>= 9),
  freeglut3-dev,
+ ghc (>= 8),
+ ghc-prof,
+ haskell-devscripts (>= 0.10),
+ libghc-opengl-dev (<< 3.1),
+ libghc-opengl-dev (>= 2.12),
+ libghc-opengl-prof,
+ libghc-openglraw-dev (<< 3.3),
+ libghc-openglraw-dev (>= 1.0),
+ libghc-random-dev (<< 1.2),
+ libghc-random-dev (>= 1.0),
+ libghc-statevar-dev (<< 1.2),
+ libghc-statevar-dev (>= 1.1),
+ libghc-statevar-prof,
  libice-dev,
  libsm-dev,
  libxi-dev,
  libxmu-dev,
- libghc-statevar-dev (>= 1.1),
- libghc-statevar-dev (<< 1.2),
- libghc-statevar-prof,
- libghc-openglraw-dev (>= 1.0),
- libghc-openglraw-dev (<< 3.3),
- libghc-random-dev (>= 1.0),
- libghc-random-dev (<< 1.2),
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-opengl-doc,
  libghc-statevar-doc,
 Standards-Version: 3.9.8
@@ -33,16 +37,19 @@ Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-glut-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
- ${misc:Depends},
+Depends:
  freeglut3-dev,
  libice-dev,
  libsm-dev,
  libxi-dev,
  libxmu-dev,
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Haskell GLUT binding for GHC
  This package provides a library for the Haskell programming language.
  .
@@ -53,9 +60,11 @@ Description: Haskell GLUT binding for GHC
 
 Package: libghc-glut-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Provides: ${haskell:Provides},
+Provides:
+ ${haskell:Provides},
 Description: Haskell GLUT binding for GHC; profiling libraries
  This package provides a library for the Haskell programming language,
  compiled for profiling.
@@ -68,10 +77,13 @@ Description: Haskell GLUT binding for GHC; profiling libraries
 Package: libghc-glut-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: Haskell GLUT binding for GHC; documentation
  This package provides the documentation for a library for the Haskell
  programming language.
