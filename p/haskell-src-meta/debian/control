@@ -1,30 +1,33 @@
 Source: haskell-src-meta
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
- ghc-prof,
- libghc-src-exts-dev (>= 1.16),
- libghc-src-exts-dev (<< 1.18),
- libghc-src-exts-prof,
- libghc-syb-dev (>= 0.1),
- libghc-syb-dev (<< 0.7),
- libghc-syb-prof,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-ghci,
- libghc-th-orphans-dev (>= 0.9.1),
+ ghc-prof,
+ haskell-devscripts (>= 0.10),
+ libghc-src-exts-dev (<< 1.18),
+ libghc-src-exts-dev (>= 1.16),
+ libghc-src-exts-prof,
+ libghc-syb-dev (<< 0.7),
+ libghc-syb-dev (>= 0.1),
+ libghc-syb-prof,
  libghc-th-orphans-dev (<< 0.14),
+ libghc-th-orphans-dev (>= 0.9.1),
  libghc-th-orphans-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-src-exts-doc,
  libghc-syb-doc,
  libghc-th-orphans-doc,
 Standards-Version: 3.9.8
 Homepage: http://hackage.haskell.org/package/haskell-src-meta
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-src-meta
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 X-Description: parse source to Template Haskell abstract syntax
  The translation from haskell-src-exts abstract syntax to Template Haskell
@@ -32,12 +35,16 @@ X-Description: parse source to Template Haskell abstract syntax
 
 Package: libghc-src-meta-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -45,11 +52,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-src-meta-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -58,10 +69,13 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-src-meta-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
