@@ -1,40 +1,43 @@
 Source: haskell-diagrams-core
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>
+Uploaders:
+ Joachim Breitner <nomeata@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-adjunctions-dev (>= 4.0),
+ haskell-devscripts (>= 0.10),
  libghc-adjunctions-dev (<< 5.0),
+ libghc-adjunctions-dev (>= 4.0),
  libghc-adjunctions-prof,
- libghc-distributive-dev (>= 0.2.2),
  libghc-distributive-dev (<< 1.0),
+ libghc-distributive-dev (>= 0.2.2),
  libghc-distributive-prof,
- libghc-dual-tree-dev (>= 0.2),
  libghc-dual-tree-dev (<< 0.3),
+ libghc-dual-tree-dev (>= 0.2),
  libghc-dual-tree-prof,
- libghc-lens-dev (>= 4.0),
  libghc-lens-dev (<< 4.15),
+ libghc-lens-dev (>= 4.0),
  libghc-lens-prof,
- libghc-linear-dev (>= 1.11.3),
  libghc-linear-dev (<< 1.21),
+ libghc-linear-dev (>= 1.11.3),
  libghc-linear-prof,
- libghc-monoid-extras-dev (>= 0.3),
  libghc-monoid-extras-dev (<< 0.5),
+ libghc-monoid-extras-dev (>= 0.3),
  libghc-monoid-extras-prof,
  libghc-mtl-dev,
  libghc-mtl-prof,
- libghc-semigroups-dev (>= 0.8.4),
  libghc-semigroups-dev (<< 0.19),
+ libghc-semigroups-dev (>= 0.8.4),
  libghc-semigroups-prof,
- libghc-unordered-containers-dev (>= 0.2),
  libghc-unordered-containers-dev (<< 0.3),
+ libghc-unordered-containers-dev (>= 0.2),
  libghc-unordered-containers-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-adjunctions-doc,
  libghc-distributive-doc,
  libghc-dual-tree-doc,
@@ -46,18 +49,22 @@ Build-Depends-Indep: ghc-doc,
  libghc-unordered-containers-doc,
 Standards-Version: 3.9.8
 Homepage: http://projects.haskell.org/diagrams
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-diagrams-core
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-diagrams-core-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
  libghc-diagrams-dev,
-Provides: ${haskell:Provides},
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Core libraries for diagrams EDSL${haskell:ShortBlurb}
  The core modules underlying diagrams, an embedded domain-specific language for
  compositional, declarative drawing.
@@ -66,12 +73,16 @@ Description: Core libraries for diagrams EDSL${haskell:ShortBlurb}
 
 Package: libghc-diagrams-core-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
  libghc-diagrams-prof,
-Provides: ${haskell:Provides},
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Core libraries for diagrams EDSL${haskell:ShortBlurb}
  The core modules underlying diagrams, an embedded domain-specific language for
  compositional, declarative drawing.
@@ -81,11 +92,14 @@ Description: Core libraries for diagrams EDSL${haskell:ShortBlurb}
 Package: libghc-diagrams-core-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
  libghc-diagrams-doc,
+ ${haskell:Suggests},
 Description: Core libraries for diagrams EDSL${haskell:ShortBlurb}
  The core modules underlying diagrams, an embedded domain-specific language for
  compositional, declarative drawing.
