@@ -1,13 +1,16 @@
 Source: haskell-acid-state
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Giovanni Mascellani <gio@debian.org>, Clint Adams <clint@debian.org>
+Uploaders:
+ Giovanni Mascellani <gio@debian.org>,
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-cereal-dev (>= 0.4.1.0),
  libghc-cereal-prof,
  libghc-extensible-exceptions-dev,
@@ -20,7 +23,8 @@ Build-Depends: debhelper (>= 9),
  libghc-safecopy-prof,
  libghc-stm-dev (>= 2.4),
  libghc-stm-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-cereal-doc,
  libghc-extensible-exceptions-doc,
  libghc-mtl-doc,
@@ -29,17 +33,21 @@ Build-Depends-Indep: ghc-doc,
  libghc-stm-doc,
 Standards-Version: 3.9.8
 Homepage: http://acid-state.seize.it/
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-acid-state
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-acid-state-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Haskell database library with ACID guarantees - GHC libraries${haskell:ShortBlurb}
  AcidState is a Haskell library to store serializable Haskell
  structures, guaranteeing that transactions support the ACID
@@ -58,11 +66,15 @@ Description: Haskell database library with ACID guarantees - GHC libraries${hask
 
 Package: libghc-acid-state-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Haskell database library with ACID guarantees - GHC profiling libraries${haskell:ShortBlurb}
  AcidState is a Haskell library to store serializable Haskell
  structures, guaranteeing that transactions support the ACID
@@ -82,10 +94,13 @@ Description: Haskell database library with ACID guarantees - GHC profiling libra
 Package: libghc-acid-state-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: Haskell database library with ACID guarantees - documentation${haskell:ShortBlurb}
  AcidState is a Haskell library to store serializable Haskell
  structures, guaranteeing that transactions support the ACID
