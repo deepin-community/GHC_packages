@@ -1,31 +1,38 @@
 Source: haskell-numbers
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-quickcheck2-dev (>= 2),
+ haskell-devscripts (>= 0.10),
  libghc-quickcheck2-dev (<< 3),
+ libghc-quickcheck2-dev (>= 2),
  libghc-test-framework-dev (>= 0.6),
  libghc-test-framework-quickcheck2-dev (>= 0.2),
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
 Standards-Version: 3.9.8
 Homepage: https://github.com/jwiegley/numbers#readme
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-numbers
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-numbers-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Various number types${haskell:ShortBlurb}
  It contains instances of the numerical classes for a variety of
  different numbers: (computable) real numbers, arbitrary precision fixed
@@ -36,11 +43,15 @@ Description: Various number types${haskell:ShortBlurb}
 
 Package: libghc-numbers-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Various number types${haskell:ShortBlurb}
  It contains instances of the numerical classes for a variety of
  different numbers: (computable) real numbers, arbitrary precision fixed
@@ -52,10 +63,13 @@ Description: Various number types${haskell:ShortBlurb}
 Package: libghc-numbers-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: Various number types${haskell:ShortBlurb}
  It contains instances of the numerical classes for a variety of
  different numbers: (computable) real numbers, arbitrary precision fixed
