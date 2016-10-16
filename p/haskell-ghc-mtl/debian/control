@@ -1,36 +1,43 @@
 Source: haskell-ghc-mtl
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>
+Uploaders:
+ Joachim Breitner <nomeata@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-exceptions-dev (>= 0.6),
  libghc-exceptions-prof,
  libghc-extensible-exceptions-dev,
  libghc-extensible-exceptions-prof,
  libghc-mtl-dev,
  libghc-mtl-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-exceptions-doc,
  libghc-extensible-exceptions-doc,
  libghc-mtl-doc,
 Standards-Version: 3.9.8
 Homepage: http://hub.darcs.net/jcpetruzza/ghc-mtl
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-ghc-mtl
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-ghc-mtl-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: an mtl compatible version of the Ghc-Api monads${haskell:ShortBlurb}
  Provides an mtl compatible version of the GhcT monad-transformer defined in
  the GHC-API since version 6.10.1.
@@ -39,12 +46,16 @@ Description: an mtl compatible version of the Ghc-Api monads${haskell:ShortBlurb
 
 Package: libghc-ghc-mtl-prof
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: an mtl compatible version of the Ghc-Api monads${haskell:ShortBlurb}
  Provides an mtl compatible version of the GhcT monad-transformer defined in
  the GHC-API since version 6.10.1.
@@ -54,10 +65,13 @@ Description: an mtl compatible version of the Ghc-Api monads${haskell:ShortBlurb
 Package: libghc-ghc-mtl-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: an mtl compatible version of the Ghc-Api monads${haskell:ShortBlurb}
  Provides an mtl compatible version of the GhcT monad-transformer defined in
  the GHC-API since version 6.10.1.
