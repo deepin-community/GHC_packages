@@ -1,14 +1,16 @@
 Source: frown
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>
+Uploaders:
+ Joachim Breitner <nomeata@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
- lhs2tex,
+ debhelper (>= 9),
+ ghc (>= 8),
+ haskell-devscripts (>= 0.10),
  hevea,
+ lhs2tex,
  texlive-generic-recommended,
  texlive-latex-extra,
 Standards-Version: 3.9.8
@@ -49,11 +51,19 @@ X-Description: LALR(k) parser generator
 Package: frown
 Architecture: any
 Section: misc
-Depends: ${shlibs:Depends}, ${haskell:Depends}, ${misc:Depends},
-Recommends: ${haskell:Recommends}, frown-doc (= ${source:Version})
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends:
+ frown-doc (= ${source:Version}),
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Multi-Arch: foreign
 Description: ${haskell:ShortDescription}
  ${haskell:LongDescription}
@@ -61,7 +71,10 @@ Description: ${haskell:ShortDescription}
 Package: frown-doc
 Architecture: all
 Section: doc
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Suggests: doc-base
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+Suggests:
+ doc-base,
 Description: ${haskell:ShortDescription} -- documentation
  ${haskell:LongDescription}
