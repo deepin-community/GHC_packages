@@ -1,13 +1,16 @@
 Source: haskell-hastache
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>, Iulian Udrea <iulian@physics.org>
+Uploaders:
+ Joachim Breitner <nomeata@debian.org>,
+ Iulian Udrea <iulian@physics.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-blaze-builder-dev,
  libghc-blaze-builder-prof,
  libghc-ieee754-dev,
@@ -18,7 +21,8 @@ Build-Depends: debhelper (>= 9),
  libghc-syb-prof,
  libghc-text-dev,
  libghc-text-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-blaze-builder-doc,
  libghc-ieee754-doc,
  libghc-mtl-doc,
@@ -26,17 +30,21 @@ Build-Depends-Indep: ghc-doc,
  libghc-text-doc,
 Standards-Version: 3.9.8
 Homepage: http://github.com/lymar/hastache
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-hastache
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-hastache-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Haskell implementation of Mustache templates${haskell:ShortBlurb}
  This library provides a Haskell implementation of Mustache templates
  (<http://mustache.github.com/>).
@@ -45,11 +53,15 @@ Description: Haskell implementation of Mustache templates${haskell:ShortBlurb}
 
 Package: libghc-hastache-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Haskell implementation of Mustache templates${haskell:ShortBlurb}
  This library provides a Haskell implementation of Mustache templates
  (<http://mustache.github.com/>).
@@ -59,10 +71,13 @@ Description: Haskell implementation of Mustache templates${haskell:ShortBlurb}
 Package: libghc-hastache-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: Haskell implementation of Mustache templates${haskell:ShortBlurb}
  This library provides a Haskell implementation of Mustache templates
  (<http://mustache.github.com/>).
