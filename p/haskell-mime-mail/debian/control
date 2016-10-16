@@ -1,40 +1,47 @@
 Source: haskell-mime-mail
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-base64-bytestring-dev (>= 0.1),
  libghc-base64-bytestring-prof,
- libghc-blaze-builder-dev (>= 0.2.1),
  libghc-blaze-builder-dev (<< 0.5),
+ libghc-blaze-builder-dev (>= 0.2.1),
  libghc-blaze-builder-prof,
  libghc-random-dev (>= 1.0),
  libghc-random-prof,
  libghc-text-dev (>= 0.7),
  libghc-text-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-base64-bytestring-doc,
  libghc-blaze-builder-doc,
  libghc-random-doc,
  libghc-text-doc,
 Standards-Version: 3.9.8
 Homepage: http://github.com/snoyberg/mime-mail
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-mime-mail
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-mime-mail-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Library to compose MIME email messages${haskell:ShortBlurb}
  It provides some high-level datatypes for declaring MIME email
  messages, functions for automatically composing these into
@@ -46,11 +53,15 @@ Description: Library to compose MIME email messages${haskell:ShortBlurb}
 
 Package: libghc-mime-mail-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Library to compose MIME email messages${haskell:ShortBlurb}
  It provides some high-level datatypes for declaring MIME email
  messages, functions for automatically composing these into
@@ -63,10 +74,13 @@ Description: Library to compose MIME email messages${haskell:ShortBlurb}
 Package: libghc-mime-mail-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: Library to compose MIME email messages${haskell:ShortBlurb}
  It provides some high-level datatypes for declaring MIME email
  messages, functions for automatically composing these into
