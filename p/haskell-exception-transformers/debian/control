@@ -1,41 +1,48 @@
 Source: haskell-exception-transformers
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-stm-dev (>= 2.1),
- libghc-stm-dev (<< 2.5),
- libghc-stm-prof,
- libghc-transformers-compat-dev (>= 0.3),
- libghc-transformers-compat-dev (<< 0.6),
- libghc-transformers-compat-prof,
- libghc-hunit-dev (>= 1.2),
+ haskell-devscripts (>= 0.10),
  libghc-hunit-dev (<< 1.4),
- libghc-test-framework-dev (>= 0.8),
+ libghc-hunit-dev (>= 1.2),
+ libghc-stm-dev (<< 2.5),
+ libghc-stm-dev (>= 2.1),
+ libghc-stm-prof,
  libghc-test-framework-dev (<< 0.9),
- libghc-test-framework-hunit-dev (>= 0.3),
+ libghc-test-framework-dev (>= 0.8),
  libghc-test-framework-hunit-dev (<< 0.4),
-Build-Depends-Indep: ghc-doc,
+ libghc-test-framework-hunit-dev (>= 0.3),
+ libghc-transformers-compat-dev (<< 0.6),
+ libghc-transformers-compat-dev (>= 0.3),
+ libghc-transformers-compat-prof,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-stm-doc,
  libghc-transformers-compat-doc,
 Standards-Version: 3.9.8
 Homepage: http://hackage.haskell.org/package/exception-transformers
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-exception-transformers
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-exception-transformers-dev
 Architecture: any
-Depends: ${shlibs:Depends},
+Depends:
  ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: type classes and monads for unchecked extensible exceptions
  This package provides type classes, a monad and a monad
  transformer that support unchecked extensible exceptions as
@@ -46,11 +53,15 @@ Description: type classes and monads for unchecked extensible exceptions
 
 Package: libghc-exception-transformers-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: type classes and monads for unchecked extensible exceptions; profiling libs
  This package provides type classes, a monad and a monad
  transformer that support unchecked extensible exceptions as
@@ -62,10 +73,13 @@ Description: type classes and monads for unchecked extensible exceptions; profil
 Package: libghc-exception-transformers-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: type classes and monads for unchecked extensible exceptions; documentation
  This package provides type classes, a monad and a monad
  transformer that support unchecked extensible exceptions as
