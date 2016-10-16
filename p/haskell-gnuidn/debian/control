@@ -1,23 +1,26 @@
 Source: haskell-gnuidn
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
+ c2hs,
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
+ libghc-chell-dev (<< 0.5),
+ libghc-chell-dev (>= 0.4),
+ libghc-chell-quickcheck-dev (<< 0.3),
+ libghc-chell-quickcheck-dev (>= 0.2),
+ libghc-quickcheck2-dev (>= 2.4),
  libghc-text-dev,
  libghc-text-prof,
- c2hs,
  libidn11-dev,
-# libghc-quickcheck2-dev (>= 2.4),
-# libghc-chell-dev (>= 0.4),
-# libghc-chell-dev (<< 0.5),
-# libghc-chell-quickcheck-dev (>= 0.2),
-# libghc-chell-quickcheck-dev (<< 0.3),
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-text-doc,
 Standards-Version: 3.9.8
 Homepage: https://john-millikin.com/software/haskell-gnuidn/
@@ -29,14 +32,19 @@ X-Description: bindings for GNU IDN
 
 Package: libghc-gnuidn-dev
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ libidn11-dev,
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
- libidn11-dev,
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -44,12 +52,17 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-gnuidn-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -58,11 +71,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-gnuidn-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
