@@ -1,33 +1,39 @@
 Source: haskell-stream
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>
+Uploaders:
+ Joachim Breitner <nomeata@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-quickcheck2-dev (>= 2.0),
- libghc-quickcheck2-prof,
+ haskell-devscripts (>= 0.10),
  libghc-lazysmallcheck-dev (>= 0.3),
  libghc-lazysmallcheck-prof,
-Build-Depends-Indep: ghc-doc,
- libghc-quickcheck2-doc,
+ libghc-quickcheck2-dev (>= 2.0),
+ libghc-quickcheck2-prof,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-lazysmallcheck-doc,
+ libghc-quickcheck2-doc,
 Standards-Version: 3.9.8
 Homepage: http://hackage.haskell.org/package/Stream
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-stream
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-stream-dev
 Architecture: any
 Section: haskell
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Haskell stream (infinite list) library for GHC${haskell:ShortBlurb}
  Provides functions, analogous to those from Data.List, to create and
  manipulate infinite lists.
@@ -37,9 +43,11 @@ Description: Haskell stream (infinite list) library for GHC${haskell:ShortBlurb}
 Package: libghc-stream-prof
 Architecture: any
 Section: haskell
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Provides: ${haskell:Provides},
+Provides:
+ ${haskell:Provides},
 Description: Haskell stream (infinite list) library for GHC${haskell:ShortBlurb}
  Provides functions, analogous to those from Data.List, to create and
  manipulate infinite lists.
@@ -49,10 +57,13 @@ Description: Haskell stream (infinite list) library for GHC${haskell:ShortBlurb}
 Package: libghc-stream-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: Haskell stream (infinite list) library for GHC${haskell:ShortBlurb}
  Provides functions, analogous to those from Data.List, to create and
  manipulate infinite lists.
