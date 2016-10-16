@@ -1,28 +1,32 @@
 Source: haskell-pretty-show
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>
+Uploaders:
+ Erik de Castro Lopo <erikd@mega-nerd.com>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
  happy,
- libghc-haskell-lexer-dev (>= 1),
+ haskell-devscripts (>= 0.10),
  libghc-haskell-lexer-dev (<< 2),
+ libghc-haskell-lexer-dev (>= 1),
  libghc-haskell-lexer-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-haskell-lexer-doc,
 Standards-Version: 3.9.8
 Homepage: http://wiki.github.com/yav/pretty-show
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-pretty-show
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: ppsh
 Architecture: any
-Depends: ${shlibs:Depends},
+Depends:
  ${misc:Depends},
+ ${shlibs:Depends},
 Description: Program to parse and pretty print arbitrary Haskell Show output
  The ppsh program takes the output of an arbitrary Haskell Show output on
  stdin and pretty prints it to stdout. It uses the library provided in the
@@ -31,12 +35,16 @@ Description: Program to parse and pretty print arbitrary Haskell Show output
 
 Package: libghc-pretty-show-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: A Haskell library for pretty printing data structures${haskell:ShortBlurb}
  A library that can parse derived Show instances into a generic data structure
  which can then be pretty printed. For complex data structures, the pretty
@@ -46,12 +54,16 @@ Description: A Haskell library for pretty printing data structures${haskell:Shor
 
 Package: libghc-pretty-show-prof
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Profiling libraries for pretty printing Haskell data structures${haskell:ShortBlurb}
  A library that can parse derived Show instances into a generic data structure
  which can then be pretty printed. For complex data structures, the pretty
@@ -62,10 +74,13 @@ Description: Profiling libraries for pretty printing Haskell data structures${ha
 Package: libghc-pretty-show-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: Documentation for Haskell pretty printing library${haskell:ShortBlurb}
  A library that can parse derived Show instances into a generic data structure
  which can then be pretty printed. For complex data structures, the pretty
