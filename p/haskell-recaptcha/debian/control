@@ -1,37 +1,44 @@
 Source: haskell-recaptcha
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Giovanni Mascellani <gio@debian.org>
+Uploaders:
+ Giovanni Mascellani <gio@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-http-dev (>= 1:3001.1.4),
  libghc-http-prof,
  libghc-network-dev (>= 2.6),
  libghc-network-prof,
- libghc-network-uri-dev (>= 2.6),
  libghc-network-uri-dev (<< 2.7),
+ libghc-network-uri-dev (>= 2.6),
  libghc-network-uri-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-http-doc,
  libghc-network-doc,
  libghc-network-uri-doc,
 Standards-Version: 3.9.8
 Homepage: http://github.com/jgm/recaptcha/tree/master
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-recaptcha
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-recaptcha-dev
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Haskell interface to reCAPTCHA service${haskell:ShortBlurb}
  reCAPTCHA (http://recaptcha.net/) is a service that provides captchas
  for preventing automated spam in web applications, using the data people
@@ -42,11 +49,15 @@ Description: Haskell interface to reCAPTCHA service${haskell:ShortBlurb}
 
 Package: libghc-recaptcha-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Haskell interface to reCAPTCHA service${haskell:ShortBlurb}
  reCAPTCHA (http://recaptcha.net/) is a service that provides captchas
  for preventing automated spam in web applications, using the data people
@@ -58,10 +69,13 @@ Description: Haskell interface to reCAPTCHA service${haskell:ShortBlurb}
 Package: libghc-recaptcha-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: Haskell interface to reCAPTCHA service${haskell:ShortBlurb}
  reCAPTCHA (http://recaptcha.net/) is a service that provides captchas
  for preventing automated spam in web applications, using the data people
