@@ -1,36 +1,43 @@
 Source: haskell-uri
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joey Hess <joeyh@debian.org>
+Uploaders:
+ Joey Hess <joeyh@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-parsec3-dev (>= 3.0),
  libghc-parsec3-prof,
  libghc-safe-dev,
  libghc-safe-prof,
  libghc-utf8-string-dev,
  libghc-utf8-string-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-parsec3-doc,
  libghc-safe-doc,
  libghc-utf8-string-doc,
 Standards-Version: 3.9.8
 Homepage: http://gitorious.org/uri
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-uri
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-uri-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Haskell Text.URI library${haskell:ShortBlurb}
  This is a Haskell library for working with URIs, including parsing,
  rendering, merging, escaping
@@ -39,11 +46,15 @@ Description: Haskell Text.URI library${haskell:ShortBlurb}
 
 Package: libghc-uri-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Haskell Text.URI library${haskell:ShortBlurb}
  This is a Haskell library for working with URIs, including parsing,
  rendering, merging, escaping
@@ -53,10 +64,13 @@ Description: Haskell Text.URI library${haskell:ShortBlurb}
 Package: libghc-uri-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: Haskell Text.URI library${haskell:ShortBlurb}
  This is a Haskell library for working with URIs, including parsing,
  rendering, merging, escaping
