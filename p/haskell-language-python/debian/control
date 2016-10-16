@@ -1,40 +1,47 @@
 Source: haskell-language-python
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>
+Uploaders:
+ Joachim Breitner <nomeata@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
- cdbs,
- ghc,
- ghc-prof,
- libghc-monads-tf-dev (>= 0.1),
- libghc-monads-tf-dev (<< 0.2),
- libghc-monads-tf-prof,
- libghc-utf8-string-dev (>= 1),
- libghc-utf8-string-dev (<< 2),
- libghc-utf8-string-prof,
+Build-Depends:
  alex,
+ cdbs,
+ debhelper (>= 9),
+ ghc (>= 8),
+ ghc-prof,
  happy,
-Build-Depends-Indep: ghc-doc,
+ haskell-devscripts (>= 0.10),
+ libghc-monads-tf-dev (<< 0.2),
+ libghc-monads-tf-dev (>= 0.1),
+ libghc-monads-tf-prof,
+ libghc-utf8-string-dev (<< 2),
+ libghc-utf8-string-dev (>= 1),
+ libghc-utf8-string-prof,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-monads-tf-doc,
  libghc-utf8-string-doc,
 Standards-Version: 3.9.8
 Homepage: http://github.com/bjpop/language-python
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-language-python
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
-X-Description: Parsing and pretty printing of Python code.
+X-Description: parsing and pretty printing of Python code
  language-python is a Haskell library for lexical analysis, parsing and pretty
  printing Python code. It supports versions 2.x and 3.x of Python.
 
 Package: libghc-language-python-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -42,11 +49,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-language-python-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -55,10 +66,13 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-language-python-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
