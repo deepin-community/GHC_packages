@@ -1,37 +1,44 @@
 Source: haskell-hashtables
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Iain Lane <laney@debian.org>
+Uploaders:
+ Iain Lane <laney@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-hashable-dev,
  libghc-hashable-prof,
  libghc-primitive-dev,
  libghc-primitive-prof,
- libghc-vector-dev (>= 0.7),
  libghc-vector-dev (<< 0.12),
+ libghc-vector-dev (>= 0.7),
  libghc-vector-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-hashable-doc,
  libghc-primitive-doc,
  libghc-vector-doc,
 Standards-Version: 3.9.8
 Homepage: http://github.com/gregorycollins/hashtables
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-hashtables
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-hashtables-dev
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: mutable hash tables${haskell:ShortBlurb}
  This package provides a couple of different implementations of mutable hash
  tables in the ST monad, as well as a typeclass abstracting their common
@@ -54,12 +61,16 @@ Description: mutable hash tables${haskell:ShortBlurb}
 
 Package: libghc-hashtables-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: mutable hash tables -- profiling libraries${haskell:ShortBlurb}
  This package provides a couple of different implementations of mutable hash
  tables in the ST monad, as well as a typeclass abstracting their common
@@ -83,12 +94,16 @@ Description: mutable hash tables -- profiling libraries${haskell:ShortBlurb}
 Package: libghc-hashtables-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: mutable hash tables -- documentation${haskell:ShortBlurb}
  This package provides a couple of different implementations of mutable hash
  tables in the ST monad, as well as a typeclass abstracting their common
