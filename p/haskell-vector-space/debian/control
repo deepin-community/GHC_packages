@@ -1,36 +1,44 @@
 Source: haskell-vector-space
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>, Iulian Udrea <iulian@physics.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
+ Iulian Udrea <iulian@physics.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-boolean-dev (>= 0.1.0),
  libghc-boolean-prof,
  libghc-memotrie-dev (>= 0.5),
  libghc-memotrie-prof,
  libghc-numinstances-dev (>= 1.0),
  libghc-numinstances-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-boolean-doc,
  libghc-memotrie-doc,
  libghc-numinstances-doc,
 Standards-Version: 3.9.8
 Homepage: http://hackage.haskell.org/package/vector-space
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-vector-space
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-vector-space-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Vector & affine spaces, linear maps, and derivatives library${haskell:ShortBlurb}
  vector-space provides classes and generic operations for vector spaces
  and affine spaces. It also defines a type of infinite towers of generalized
@@ -41,11 +49,15 @@ Description: Vector & affine spaces, linear maps, and derivatives library${haske
 
 Package: libghc-vector-space-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Vector & affine spaces, linear maps, and derivatives library${haskell:ShortBlurb}
  vector-space provides classes and generic operations for vector spaces
  and affine spaces. It also defines a type of infinite towers of generalized
@@ -57,10 +69,13 @@ Description: Vector & affine spaces, linear maps, and derivatives library${haske
 Package: libghc-vector-space-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: Vector & affine spaces, linear maps, and derivatives library${haskell:ShortBlurb}
  vector-space provides classes and generic operations for vector spaces
  and affine spaces. It also defines a type of infinite towers of generalized
