@@ -1,34 +1,37 @@
 Source: haskell-hxt
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: TANIGUCHI Takaki <takaki@debian.org>
+Uploaders:
+ TANIGUCHI Takaki <takaki@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-hunit-dev (>= 1.2),
+ haskell-devscripts (>= 0.10),
  libghc-hunit-dev (<< 2),
+ libghc-hunit-dev (>= 1.2),
  libghc-hunit-prof,
- libghc-hxt-charproperties-dev (>= 9.1),
  libghc-hxt-charproperties-dev (<< 10),
+ libghc-hxt-charproperties-dev (>= 9.1),
  libghc-hxt-charproperties-prof,
- libghc-hxt-regex-xmlschema-dev (>= 9.2),
  libghc-hxt-regex-xmlschema-dev (<< 10),
+ libghc-hxt-regex-xmlschema-dev (>= 9.2),
  libghc-hxt-regex-xmlschema-prof,
- libghc-hxt-unicode-dev (>= 9.0.1),
  libghc-hxt-unicode-dev (<< 10),
+ libghc-hxt-unicode-dev (>= 9.0.1),
  libghc-hxt-unicode-prof,
- libghc-mtl-dev (>= 2.0.1),
  libghc-mtl-dev (<< 3),
+ libghc-mtl-dev (>= 2.0.1),
  libghc-mtl-prof,
  libghc-network-uri-dev (>= 2.6),
  libghc-network-uri-prof,
- libghc-parsec3-dev (>= 2.1),
  libghc-parsec3-dev (<< 4),
+ libghc-parsec3-dev (>= 2.1),
  libghc-parsec3-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-hunit-doc,
  libghc-hxt-charproperties-doc,
  libghc-hxt-regex-xmlschema-doc,
@@ -40,7 +43,7 @@ Standards-Version: 3.9.8
 Homepage: https://github.com/UweSchmidt/hxt
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-hxt
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
-X-Description: A collection of tools for processing XML with Haskell.
+X-Description: collection of tools for processing XML with Haskell
  The Haskell XML Toolbox bases on the ideas of HaXml and HXML, but introduces a
  more general approach for processing XML with Haskell.  The Haskell XML
  Toolbox uses a generic data model for representing XML documents, including
@@ -58,13 +61,18 @@ X-Description: A collection of tools for processing XML with Haskell.
 
 Package: libghc-hxt-dev
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -72,12 +80,17 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-hxt-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -86,11 +99,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-hxt-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
