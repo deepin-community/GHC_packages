@@ -1,19 +1,22 @@
 Source: haskell-relational-query
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Kei Hibino <ex8k.hibino@gmail.com>
+Uploaders:
+ Kei Hibino <ex8k.hibino@gmail.com>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.9),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.9),
  libghc-dlist-dev,
  libghc-dlist-prof,
  libghc-names-th-dev,
  libghc-names-th-prof,
  libghc-persistable-record-dev (>= 0.3),
  libghc-persistable-record-prof,
+ libghc-quickcheck-simple-dev,
  libghc-sql-words-dev (>= 0.1.4),
  libghc-sql-words-prof,
  libghc-text-dev,
@@ -22,8 +25,8 @@ Build-Depends: debhelper (>= 9),
  libghc-th-reify-compat-prof,
  libghc-time-locale-compat-dev,
  libghc-time-locale-compat-prof,
- libghc-quickcheck-simple-dev,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-dlist-doc,
  libghc-names-th-doc,
  libghc-persistable-record-doc,
@@ -47,13 +50,18 @@ X-Description: Typeful, Modular, Relational, algebraic query engine
 
 Package: libghc-relational-query-dev
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -61,12 +69,17 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-relational-query-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -75,11 +88,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-relational-query-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
