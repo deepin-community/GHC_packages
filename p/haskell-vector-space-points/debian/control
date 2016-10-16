@@ -1,31 +1,38 @@
 Source: haskell-vector-space-points
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>
+Uploaders:
+ Joachim Breitner <nomeata@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-vector-space-dev (>= 0.7),
+ haskell-devscripts (>= 0.10),
  libghc-vector-space-dev (<< 0.11),
+ libghc-vector-space-dev (>= 0.7),
  libghc-vector-space-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-vector-space-doc,
 Standards-Version: 3.9.8
 Homepage: http://hackage.haskell.org/package/vector-space-points
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-vector-space-points
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-vector-space-points-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: A type for points in a vector space${haskell:ShortBlurb}
  A type for points, as distinct from vectors, built on top of Data.AffineSpace.
  .
@@ -33,11 +40,15 @@ Description: A type for points in a vector space${haskell:ShortBlurb}
 
 Package: libghc-vector-space-points-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: A type for points in a vector space${haskell:ShortBlurb}
  A type for points, as distinct from vectors, built on top of Data.AffineSpace.
  .
@@ -46,10 +57,13 @@ Description: A type for points in a vector space${haskell:ShortBlurb}
 Package: libghc-vector-space-points-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: A type for points in a vector space${haskell:ShortBlurb}
  A type for points, as distinct from vectors, built on top of Data.AffineSpace.
  .
