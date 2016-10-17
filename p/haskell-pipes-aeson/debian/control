@@ -1,53 +1,60 @@
 Source: haskell-pipes-aeson
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-aeson-dev (>= 0.6.1),
+ haskell-devscripts (>= 0.10),
  libghc-aeson-dev (<< 1.1),
+ libghc-aeson-dev (>= 0.6.1),
  libghc-aeson-prof,
- libghc-attoparsec-dev (>= 0.10),
  libghc-attoparsec-dev (<< 0.14),
+ libghc-attoparsec-dev (>= 0.10),
  libghc-attoparsec-prof,
- libghc-pipes-dev (>= 4.1),
- libghc-pipes-dev (<< 4.3),
- libghc-pipes-prof,
- libghc-pipes-attoparsec-dev (>= 0.5),
  libghc-pipes-attoparsec-dev (<< 0.6),
+ libghc-pipes-attoparsec-dev (>= 0.5),
  libghc-pipes-attoparsec-prof,
- libghc-pipes-bytestring-dev (>= 2.0),
  libghc-pipes-bytestring-dev (<< 2.2),
+ libghc-pipes-bytestring-dev (>= 2.0),
  libghc-pipes-bytestring-prof,
- libghc-pipes-parse-dev (>= 3.0.1),
+ libghc-pipes-dev (<< 4.3),
+ libghc-pipes-dev (>= 4.1),
  libghc-pipes-parse-dev (<< 3.1),
+ libghc-pipes-parse-dev (>= 3.0.1),
  libghc-pipes-parse-prof,
-Build-Depends-Indep: ghc-doc,
+ libghc-pipes-prof,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-aeson-doc,
  libghc-attoparsec-doc,
- libghc-pipes-doc,
  libghc-pipes-attoparsec-doc,
  libghc-pipes-bytestring-doc,
+ libghc-pipes-doc,
  libghc-pipes-parse-doc,
 Standards-Version: 3.9.8
 Homepage: https://github.com/k0001/pipes-aeson
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-pipes-aeson
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 X-Description: encode and decode JSON streams using Aeson and Pipes
  Utilities to encode and decode Pipes streams of JSON.
 
 Package: libghc-pipes-aeson-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -55,11 +62,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-pipes-aeson-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -68,10 +79,13 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-pipes-aeson-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
