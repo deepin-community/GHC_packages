@@ -1,28 +1,35 @@
 Source: haskell-word8
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-hspec-dev,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
 Standards-Version: 3.9.8
 Homepage: http://hackage.haskell.org/package/word8
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-word8
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-word8-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Char-like utility functions for Word8s to be used with ByteStrings${haskell:ShortBlurb}
  This is a Word8 library to be used with Data.ByteString. All function
  assumes that Word8 is encoded in Latin-1 (ISO-8859-1). All utility
@@ -33,11 +40,15 @@ Description: Char-like utility functions for Word8s to be used with ByteStrings$
 
 Package: libghc-word8-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: functions for Word8s to be used with ByteStrings${haskell:ShortBlurb}
  This is a Word8 library to be used with Data.ByteString. All function
  assumes that Word8 is encoded in Latin-1 (ISO-8859-1). All utility
@@ -49,10 +60,13 @@ Description: functions for Word8s to be used with ByteStrings${haskell:ShortBlur
 Package: libghc-word8-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: functions for Word8s to be used with ByteStrings${haskell:ShortBlurb}
  This is a Word8 library to be used with Data.ByteString. All function
  assumes that Word8 is encoded in Latin-1 (ISO-8859-1). All utility
