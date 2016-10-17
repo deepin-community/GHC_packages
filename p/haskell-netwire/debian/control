@@ -1,39 +1,46 @@
 Source: haskell-netwire
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-parallel-dev (>= 3.2),
+ haskell-devscripts (>= 0.10),
  libghc-parallel-dev (<< 4),
+ libghc-parallel-dev (>= 3.2),
  libghc-parallel-prof,
- libghc-random-dev (>= 1.0),
  libghc-random-dev (<< 2),
+ libghc-random-dev (>= 1.0),
  libghc-random-prof,
- libghc-semigroups-dev (>= 0.9),
  libghc-semigroups-dev (<< 1),
+ libghc-semigroups-dev (>= 0.9),
  libghc-semigroups-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-parallel-doc,
  libghc-random-doc,
  libghc-semigroups-doc,
 Standards-Version: 3.9.8
 Homepage: http://hackage.haskell.org/package/netwire
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-netwire
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-netwire-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: flexible wire arrows for FRP${haskell:ShortBlurb}
  It provides efficient and flexible wire arrows for functional reactive
  programming and other forms of locally stateful programming.
@@ -42,11 +49,15 @@ Description: flexible wire arrows for FRP${haskell:ShortBlurb}
 
 Package: libghc-netwire-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: flexible wire arrows for FRP${haskell:ShortBlurb}
  It provides efficient and flexible wire arrows for functional reactive
  programming and other forms of locally stateful programming.
@@ -56,10 +67,13 @@ Description: flexible wire arrows for FRP${haskell:ShortBlurb}
 Package: libghc-netwire-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: flexible wire arrows for FRP${haskell:ShortBlurb}
  It provides efficient and flexible wire arrows for functional reactive
  programming and other forms of locally stateful programming.
