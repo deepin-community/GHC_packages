@@ -1,22 +1,20 @@
 Source: haskell-lambdabot-core
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Alexandre Delanoë <anoe@debian.org>
+Uploaders:
+ Alexandre Delanoë <anoe@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-http-dev (>= 1:4000),
- libghc-http-prof,
- libghc-safesemaphore-dev (>= 0.9),
- libghc-safesemaphore-prof,
- libghc-dependent-map-dev (>= 0.2),
+ haskell-devscripts (>= 0.10),
  libghc-dependent-map-dev (<< 0.3),
+ libghc-dependent-map-dev (>= 0.2),
  libghc-dependent-map-prof,
- libghc-dependent-sum-dev (>= 0.3),
  libghc-dependent-sum-dev (<< 0.4),
+ libghc-dependent-sum-dev (>= 0.3),
  libghc-dependent-sum-prof,
  libghc-dependent-sum-template-dev (>= 0.0.0.1),
  libghc-dependent-sum-template-prof,
@@ -24,6 +22,8 @@ Build-Depends: debhelper (>= 9),
  libghc-edit-distance-prof,
  libghc-hslogger-dev (>= 1.2.1),
  libghc-hslogger-prof,
+ libghc-http-dev (>= 1:4000),
+ libghc-http-prof,
  libghc-lifted-base-dev (>= 0.2),
  libghc-lifted-base-prof,
  libghc-monad-control-dev (>= 1.0),
@@ -35,13 +35,15 @@ Build-Depends: debhelper (>= 9),
  libghc-parsec3-dev,
  libghc-parsec3-prof,
  libghc-random-dev (>= 1),
- libghc-random-prof,
  libghc-random-fu-dev (>= 0.2),
  libghc-random-fu-prof,
+ libghc-random-prof,
  libghc-random-source-dev (>= 0.3),
  libghc-random-source-prof,
  libghc-regex-tdfa-dev (>= 1.1),
  libghc-regex-tdfa-prof,
+ libghc-safesemaphore-dev (>= 0.9),
+ libghc-safesemaphore-prof,
  libghc-split-dev (>= 0.2),
  libghc-split-prof,
  libghc-transformers-base-dev (>= 0.4),
@@ -50,14 +52,14 @@ Build-Depends: debhelper (>= 9),
  libghc-utf8-string-prof,
  libghc-zlib-dev (>= 0.5),
  libghc-zlib-prof,
-Build-Depends-Indep: ghc-doc,
- libghc-http-doc,
- libghc-safesemaphore-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-dependent-map-doc,
  libghc-dependent-sum-doc,
  libghc-dependent-sum-template-doc,
  libghc-edit-distance-doc,
  libghc-hslogger-doc,
+ libghc-http-doc,
  libghc-lifted-base-doc,
  libghc-monad-control-doc,
  libghc-mtl-doc,
@@ -67,13 +69,14 @@ Build-Depends-Indep: ghc-doc,
  libghc-random-fu-doc,
  libghc-random-source-doc,
  libghc-regex-tdfa-doc,
+ libghc-safesemaphore-doc,
  libghc-split-doc,
  libghc-transformers-base-doc,
  libghc-utf8-string-doc,
  libghc-zlib-doc,
 Standards-Version: 3.9.8
 Homepage: http://haskell.org/haskellwiki/Lambdabot
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-lambdabot-core
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 X-Description: Lambdabot core functionality
  Lambdabot is an IRC bot written over several years by
@@ -84,13 +87,18 @@ X-Description: Lambdabot core functionality
 
 Package: libghc-lambdabot-core-dev
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -98,12 +106,17 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-lambdabot-core-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -112,11 +125,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-lambdabot-core-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
