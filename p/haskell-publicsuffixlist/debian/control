@@ -1,26 +1,30 @@
 Source: haskell-publicsuffixlist
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-cereal-dev,
  libghc-cereal-prof,
- libghc-conduit-dev (>= 1.0.0),
  libghc-conduit-dev (<< 2.0.0),
- libghc-conduit-prof,
+ libghc-conduit-dev (>= 1.0.0),
  libghc-conduit-extra-dev,
  libghc-conduit-extra-prof,
+ libghc-conduit-prof,
  libghc-data-default-dev,
  libghc-data-default-prof,
  libghc-exceptions-dev,
  libghc-exceptions-prof,
- libghc-idna-dev (>= 0.1.2),
+ libghc-hunit-dev,
  libghc-idna-dev (<< 1.0),
+ libghc-idna-dev (>= 0.1.1),
+ libghc-idna-dev (>= 0.1.2),
  libghc-idna-prof,
  libghc-resourcet-dev,
  libghc-resourcet-prof,
@@ -28,9 +32,8 @@ Build-Depends: debhelper (>= 9),
  libghc-text-prof,
  libghc-utf8-string-dev,
  libghc-utf8-string-prof,
- libghc-hunit-dev,
- libghc-idna-dev (>= 0.1.1),
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-cereal-doc,
  libghc-conduit-doc,
  libghc-conduit-extra-doc,
@@ -42,18 +45,22 @@ Build-Depends-Indep: ghc-doc,
  libghc-utf8-string-doc,
 Standards-Version: 3.9.8
 Homepage: https://github.com/litherum/publicsuffixlist
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-publicsuffixlist
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-publicsuffixlist-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
- ${misc:Depends},
+Depends:
  publicsuffix,
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: routines for testing whether something is a "public suffix"${haskell:ShortBlurb}
  publicsuffix answers the question "Is a given string a domain suffix?".
  .
@@ -61,11 +68,15 @@ Description: routines for testing whether something is a "public suffix"${haskel
 
 Package: libghc-publicsuffixlist-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: routines for testing whether something is a "public suffix"${haskell:ShortBlurb}
  publicsuffix answers the question "Is a given string a domain suffix?".
  .
@@ -74,10 +85,13 @@ Description: routines for testing whether something is a "public suffix"${haskel
 Package: libghc-publicsuffixlist-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: routines for testing whether something is a "public suffix"${haskell:ShortBlurb}
  publicsuffix answers the question "Is a given string a domain suffix?".
  .
