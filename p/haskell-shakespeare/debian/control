@@ -1,14 +1,15 @@
 Source: haskell-shakespeare
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- ghc-ghci,
+ haskell-devscripts (>= 0.10),
  libghc-aeson-dev,
  libghc-aeson-prof,
  libghc-blaze-html-dev,
@@ -17,8 +18,8 @@ Build-Depends: debhelper (>= 9),
  libghc-blaze-markup-prof,
  libghc-exceptions-dev,
  libghc-exceptions-prof,
- libghc-parsec3-dev (>= 2),
  libghc-parsec3-dev (<< 4),
+ libghc-parsec3-dev (>= 2),
  libghc-parsec3-prof,
  libghc-scientific-dev (>= 0.3.0.0),
  libghc-scientific-prof,
@@ -28,7 +29,8 @@ Build-Depends: debhelper (>= 9),
  libghc-unordered-containers-prof,
  libghc-vector-dev,
  libghc-vector-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-aeson-doc,
  libghc-blaze-html-doc,
  libghc-blaze-markup-doc,
@@ -40,17 +42,21 @@ Build-Depends-Indep: ghc-doc,
  libghc-vector-doc,
 Standards-Version: 3.9.8
 Homepage: http://www.yesodweb.com/book/shakespearean-templates
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-shakespeare
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-shakespeare-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: toolkit for making compile-time interpolated templates${haskell:ShortBlurb}
  Shakespeare is a template family for type-safe, efficient templates
  with simple variable interpolation . Shakespeare templates can be
@@ -61,11 +67,15 @@ Description: toolkit for making compile-time interpolated templates${haskell:Sho
 
 Package: libghc-shakespeare-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: toolkit for making compile-time interpolated templates${haskell:ShortBlurb}
  Shakespeare is a template family for type-safe, efficient templates
  with simple variable interpolation . Shakespeare templates can be
@@ -77,10 +87,13 @@ Description: toolkit for making compile-time interpolated templates${haskell:Sho
 Package: libghc-shakespeare-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: toolkit for making compile-time interpolated templates${haskell:ShortBlurb}
  Shakespeare is a template family for type-safe, efficient templates
  with simple variable interpolation . Shakespeare templates can be
