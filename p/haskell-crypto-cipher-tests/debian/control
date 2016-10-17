@@ -1,49 +1,52 @@
 Source: haskell-crypto-cipher-tests
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>
+Uploaders:
+ Joachim Breitner <nomeata@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
+ libghc-byteable-dev,
+ libghc-byteable-dev (<< 0.2),
+ libghc-byteable-dev (>= 0.1.1),
+ libghc-byteable-prof,
+ libghc-crypto-cipher-types-dev,
+ libghc-crypto-cipher-types-dev (<< 0.1),
+ libghc-crypto-cipher-types-dev (>= 0.0.8),
+ libghc-crypto-cipher-types-prof,
  libghc-hunit-dev,
  libghc-hunit-prof,
- libghc-quickcheck2-dev (>= 2),
- libghc-quickcheck2-prof,
- libghc-byteable-dev (>= 0.1.1),
- libghc-byteable-dev (<< 0.2),
- libghc-byteable-prof,
- libghc-crypto-cipher-types-dev (>= 0.0.8),
- libghc-crypto-cipher-types-dev (<< 0.1),
- libghc-crypto-cipher-types-prof,
  libghc-mtl-dev,
  libghc-mtl-prof,
- libghc-securemem-dev (>= 0.1.1),
+ libghc-quickcheck2-dev (>= 2),
+ libghc-quickcheck2-prof,
  libghc-securemem-dev (<< 0.2),
+ libghc-securemem-dev (>= 0.1.1),
  libghc-securemem-prof,
  libghc-test-framework-dev,
- libghc-test-framework-prof,
  libghc-test-framework-hunit-dev,
  libghc-test-framework-hunit-prof,
+ libghc-test-framework-prof,
  libghc-test-framework-quickcheck2-dev,
  libghc-test-framework-quickcheck2-prof,
- libghc-byteable-dev,
- libghc-crypto-cipher-types-dev,
-Build-Depends-Indep: ghc-doc,
- libghc-hunit-doc,
- libghc-quickcheck2-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-byteable-doc,
  libghc-crypto-cipher-types-doc,
+ libghc-hunit-doc,
  libghc-mtl-doc,
+ libghc-quickcheck2-doc,
  libghc-securemem-doc,
  libghc-test-framework-doc,
  libghc-test-framework-hunit-doc,
  libghc-test-framework-quickcheck2-doc,
 Standards-Version: 3.9.8
 Homepage: http://github.com/vincenthz/hs-crypto-cipher
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-crypto-cipher-tests
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 X-Description: Generic cryptography cipher tests
  This libraries contains generic tests for cryptographic ciphers, and is used
@@ -52,12 +55,16 @@ X-Description: Generic cryptography cipher tests
 
 Package: libghc-crypto-cipher-tests-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -65,11 +72,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-crypto-cipher-tests-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -78,10 +89,13 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-crypto-cipher-tests-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
