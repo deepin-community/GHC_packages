@@ -1,37 +1,43 @@
 Source: haskell-ixset
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Giovanni Mascellani <gio@debian.org>
+Uploaders:
+ Giovanni Mascellani <gio@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-safecopy-dev,
  libghc-safecopy-prof,
- ghc-ghci,
  libghc-syb-dev,
  libghc-syb-prof,
  libghc-syb-with-class-dev (>= 0.6.1),
  libghc-syb-with-class-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-safecopy-doc,
  libghc-syb-doc,
  libghc-syb-with-class-doc,
 Standards-Version: 3.9.8
 Homepage: http://happstack.com
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-ixset
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-ixset-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Haskell implementation of queryable sets - GHC libraries${haskell:ShortBlurb}
  IxSet is a Haskell efficient implementation of queryable sets: it
  makes you able to define complex data types and index them on some of
@@ -42,11 +48,15 @@ Description: Haskell implementation of queryable sets - GHC libraries${haskell:S
 
 Package: libghc-ixset-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Haskell implementation of queryable sets - GHC profiling libraries${haskell:ShortBlurb}
  IxSet is a Haskell efficient implementation of queryable sets: it
  makes you able to define complex data types and index them on some of
@@ -58,10 +68,13 @@ Description: Haskell implementation of queryable sets - GHC profiling libraries$
 Package: libghc-ixset-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: Haskell implementation of queryable sets - documentation${haskell:ShortBlurb}
  IxSet is a Haskell efficient implementation of queryable sets: it
  makes you able to define complex data types and index them on some of
