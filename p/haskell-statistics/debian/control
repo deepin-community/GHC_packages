@@ -1,13 +1,15 @@
 Source: haskell-statistics
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>
+Uploaders:
+ Joachim Breitner <nomeata@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-aeson-dev (>= 0.6.0.0),
  libghc-aeson-prof,
  libghc-erf-dev,
@@ -20,35 +22,40 @@ Build-Depends: debhelper (>= 9),
  libghc-mwc-random-prof,
  libghc-primitive-dev (>= 0.3),
  libghc-primitive-prof,
- libghc-vector-dev (>= 0.10),
- libghc-vector-prof,
  libghc-vector-algorithms-dev (>= 0.4),
  libghc-vector-algorithms-prof,
  libghc-vector-binary-instances-dev (>= 0.2.1),
  libghc-vector-binary-instances-prof,
-Build-Depends-Indep: ghc-doc,
+ libghc-vector-dev (>= 0.10),
+ libghc-vector-prof,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-aeson-doc,
  libghc-erf-doc,
  libghc-math-functions-doc,
  libghc-monad-par-doc,
  libghc-mwc-random-doc,
  libghc-primitive-doc,
- libghc-vector-doc,
  libghc-vector-algorithms-doc,
  libghc-vector-binary-instances-doc,
+ libghc-vector-doc,
 Standards-Version: 3.9.8
 Homepage: https://github.com/bos/statistics
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-statistics
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-statistics-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: A library of statistical types, data, and functions${haskell:ShortBlurb}
  This library provides a number of common functions and types useful
  in statistics.  Our focus is on high performance, numerical
@@ -70,12 +77,16 @@ Description: A library of statistical types, data, and functions${haskell:ShortB
 
 Package: libghc-statistics-prof
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: A library of statistical types, data, and functions${haskell:ShortBlurb}
  This library provides a number of common functions and types useful
  in statistics.  Our focus is on high performance, numerical
@@ -98,10 +109,13 @@ Description: A library of statistical types, data, and functions${haskell:ShortB
 Package: libghc-statistics-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: A library of statistical types, data, and functions${haskell:ShortBlurb}
  This library provides a number of common functions and types useful
  in statistics.  Our focus is on high performance, numerical
