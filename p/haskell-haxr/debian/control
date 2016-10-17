@@ -1,27 +1,29 @@
 Source: haskell-haxr
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: TANIGUCHI Takaki <takaki@debian.org>
+Uploaders:
+ TANIGUCHI Takaki <takaki@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
- ghc-prof,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-ghci,
- libghc-haxml-dev (>= 1:1.22),
- libghc-haxml-dev (<< 1:1.26),
- libghc-haxml-prof,
- libghc-hsopenssl-dev,
- libghc-hsopenssl-prof,
- libghc-base-compat-dev (>= 0.8),
+ ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-base-compat-dev (<< 0.10),
+ libghc-base-compat-dev (>= 0.8),
  libghc-base-compat-prof,
  libghc-base64-bytestring-dev,
  libghc-base64-bytestring-prof,
- libghc-blaze-builder-dev (>= 0.2),
  libghc-blaze-builder-dev (<< 0.5),
+ libghc-blaze-builder-dev (>= 0.2),
  libghc-blaze-builder-prof,
+ libghc-haxml-dev (<< 1:1.26),
+ libghc-haxml-dev (>= 1:1.22),
+ libghc-haxml-prof,
+ libghc-hsopenssl-dev,
+ libghc-hsopenssl-prof,
  libghc-http-streams-dev,
  libghc-http-streams-prof,
  libghc-http-types-dev,
@@ -30,8 +32,8 @@ Build-Depends: debhelper (>= 9),
  libghc-io-streams-prof,
  libghc-mtl-dev (>= 2.2.1),
  libghc-mtl-prof,
- libghc-network-dev (>= 2.6),
  libghc-network-dev (<< 2.7),
+ libghc-network-dev (>= 2.6),
  libghc-network-prof,
  libghc-network-uri-dev (>= 2.6),
  libghc-network-uri-prof,
@@ -43,12 +45,13 @@ Build-Depends: debhelper (>= 9),
  libghc-text-prof,
  libghc-utf8-string-dev,
  libghc-utf8-string-prof,
-Build-Depends-Indep: ghc-doc,
- libghc-haxml-doc,
- libghc-hsopenssl-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-base-compat-doc,
  libghc-base64-bytestring-doc,
  libghc-blaze-builder-doc,
+ libghc-haxml-doc,
+ libghc-hsopenssl-doc,
  libghc-http-streams-doc,
  libghc-http-types-doc,
  libghc-io-streams-doc,
@@ -61,17 +64,21 @@ Build-Depends-Indep: ghc-doc,
  libghc-utf8-string-doc,
 Standards-Version: 3.9.8
 Homepage: http://www.haskell.org/haskellwiki/HaXR
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-haxr
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-haxr-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: XML-RPC client and server library for Haskell
  HaXR is a library for writing XML-RPC client and server applications in
  Haskell.
@@ -84,11 +91,15 @@ Description: XML-RPC client and server library for Haskell
 
 Package: libghc-haxr-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: XML-RPC client and server library for Haskell; profiling library
  HaXR is a library for writing XML-RPC client and server applications in
  Haskell.
@@ -102,11 +113,15 @@ Description: XML-RPC client and server library for Haskell; profiling library
 Package: libghc-haxr-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: XML-RPC client and server library for Haskell; documentation
  HaXR is a library for writing XML-RPC client and server applications in
  Haskell.
