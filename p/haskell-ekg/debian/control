@@ -1,20 +1,23 @@
 Source: haskell-ekg
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Iustin Pop <iustin@debian.org>, Louis Bettens <louis@bettens.info>
+Uploaders:
+ Iustin Pop <iustin@debian.org>,
+ Louis Bettens <louis@bettens.info>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-aeson-dev (<< 1.1),
  libghc-aeson-prof,
- libghc-ekg-core-dev (>= 0.1),
  libghc-ekg-core-dev (<< 0.2),
+ libghc-ekg-core-dev (>= 0.1),
  libghc-ekg-core-prof,
- libghc-ekg-json-dev (>= 0.1),
  libghc-ekg-json-dev (<< 0.2),
+ libghc-ekg-json-dev (>= 0.1),
  libghc-ekg-json-prof,
  libghc-network-dev (<< 2.7),
  libghc-network-prof,
@@ -26,7 +29,8 @@ Build-Depends: debhelper (>= 9),
  libghc-text-prof,
  libghc-unordered-containers-dev (<< 0.3),
  libghc-unordered-containers-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-aeson-doc,
  libghc-ekg-core-doc,
  libghc-ekg-json-doc,
@@ -37,18 +41,22 @@ Build-Depends-Indep: ghc-doc,
  libghc-unordered-containers-doc,
 Standards-Version: 3.9.8
 Homepage: https://github.com/tibbe/ekg
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-ekg
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-ekg-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
- ${misc:Depends},
+Depends:
  libghc-ekg-data (= ${source:Version}),
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: remote monitoring of Haskell processes over HTTP${haskell:ShortBlurb}
  The ekg library lets you remotely monitor a running (Haskell) process
  over HTTP. It provides a simple way to integrate a monitoring server
@@ -58,11 +66,15 @@ Description: remote monitoring of Haskell processes over HTTP${haskell:ShortBlur
 
 Package: libghc-ekg-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: remote monitoring of Haskell processes over HTTP${haskell:ShortBlurb}
  The ekg library lets you remotely monitor a running (Haskell) process
  over HTTP. It provides a simple way to integrate a monitoring server
@@ -73,10 +85,13 @@ Description: remote monitoring of Haskell processes over HTTP${haskell:ShortBlur
 Package: libghc-ekg-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: remote monitoring of Haskell processes over HTTP${haskell:ShortBlurb}
  The ekg library lets you remotely monitor a running (Haskell) process
  over HTTP. It provides a simple way to integrate a monitoring server
@@ -86,10 +101,13 @@ Description: remote monitoring of Haskell processes over HTTP${haskell:ShortBlur
 
 Package: libghc-ekg-data
 Architecture: all
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: remote monitoring of Haskell processes over HTTP - common files
  The ekg library lets you remotely monitor a running (Haskell) process
  over HTTP. It provides a simple way to integrate a monitoring server
