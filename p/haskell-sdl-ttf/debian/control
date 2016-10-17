@@ -1,43 +1,48 @@
 Source: haskell-sdl-ttf
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Miriam Ruiz <little_miry@yahoo.es>
+Uploaders:
+ Miriam Ruiz <little_miry@yahoo.es>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
- cdbs,
- ghc,
- ghc-prof,
- libgl1-mesa-dev | libgl-dev,
- libglu1-mesa-dev | libglu-dev,
- libx11-dev,
+Build-Depends:
  alex,
  c2hs,
+ cdbs,
  cpphs,
- pkg-config,
- libsdl1.2-dev,
- libsdl-ttf2.0-dev,
+ debhelper (>= 9),
+ ghc (>= 8),
+ ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-sdl-dev,
  libghc-sdl-prof,
-Build-Depends-Indep: ghc-doc,
+ libgl1-mesa-dev | libgl-dev,
+ libglu1-mesa-dev | libglu-dev,
+ libsdl-ttf2.0-dev,
+ libsdl1.2-dev,
+ libx11-dev,
+ pkg-config,
+Build-Depends-Indep:
+ ghc-doc,
 Standards-Version: 3.9.8
 Homepage: http://hackage.haskell.org/package/SDL-ttf
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-sdl-ttf
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-sdl-ttf-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
- ${misc:Depends},
+Depends:
+ libghc-sdl-dev,
  libgl1-mesa-dev | libgl-dev,
  libglu1-mesa-dev | libglu-dev,
- libx11-dev,
- libsdl1.2-dev,
  libsdl-ttf2.0-dev,
- libghc-sdl-dev,
-Suggests: libghc-sdl-ttf-prof,
+ libsdl1.2-dev,
+ libx11-dev,
+ ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Suggests:
  libghc-sdl-ttf-doc,
+ libghc-sdl-ttf-prof,
 Description: Haskell SDL TTF binding for GHC
  This package provides the SDL TTF library bindings for the Haskell
  programming language. SDL TTF allows you to use TrueType fonts in SDL
@@ -45,12 +50,14 @@ Description: Haskell SDL TTF binding for GHC
 
 Package: libghc-sdl-ttf-prof
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
- ${misc:Depends},
- libghc-sdl-ttf-dev (= ${binary:Version}),
+Depends:
  libghc-sdl-prof,
-Suggests: libghc-sdl-ttf-doc,
+ libghc-sdl-ttf-dev (= ${binary:Version}),
+ ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Suggests:
+ libghc-sdl-ttf-doc,
 Description: Haskell SDL TTF binding for GHC - profiling libraries
  This package provides the SDL TTF library bindings for the Haskell
  programming language, compiled for profiling. SDL TTF allows you
@@ -59,11 +66,14 @@ Description: Haskell SDL TTF binding for GHC - profiling libraries
 Package: libghc-sdl-ttf-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ghc-doc,
-Suggests: libghc-sdl-ttf-dev,
+ ${shlibs:Depends},
+Recommends:
+ ghc-doc,
+Suggests:
+ libghc-sdl-ttf-dev,
  libghc-sdl-ttf-prof,
 Description: Haskell SDL TTF binding for GHC - documentation
  This package provides the documentation for the SDL TTF library bindings
