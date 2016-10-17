@@ -1,33 +1,36 @@
 Source: haskell-xss-sanitize
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Giovanni Mascellani <gio@debian.org>
+Uploaders:
+ Giovanni Mascellani <gio@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-attoparsec-dev (>= 0.10.0.3),
+ haskell-devscripts (>= 0.10),
  libghc-attoparsec-dev (<< 1),
+ libghc-attoparsec-dev (>= 0.10.0.3),
  libghc-attoparsec-prof,
- libghc-css-text-dev (>= 0.1.1),
  libghc-css-text-dev (<< 0.2),
+ libghc-css-text-dev (>= 0.1.1),
  libghc-css-text-prof,
+ libghc-hspec-dev (>= 1.3),
+ libghc-hunit-dev (>= 1.2),
  libghc-network-uri-dev (>= 2.6),
  libghc-network-uri-prof,
- libghc-tagsoup-dev (>= 0.12.2),
  libghc-tagsoup-dev (<< 1),
+ libghc-tagsoup-dev (>= 0.12.2),
  libghc-tagsoup-prof,
- libghc-text-dev (>= 0.11),
  libghc-text-dev (<< 2),
+ libghc-text-dev (>= 0.11),
  libghc-text-prof,
- libghc-utf8-string-dev (>= 0.3),
  libghc-utf8-string-dev (<< 1.1),
+ libghc-utf8-string-dev (>= 0.3),
  libghc-utf8-string-prof,
- libghc-hunit-dev (>= 1.2),
- libghc-hspec-dev (>= 1.3),
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-attoparsec-doc,
  libghc-css-text-doc,
  libghc-network-uri-doc,
@@ -36,17 +39,21 @@ Build-Depends-Indep: ghc-doc,
  libghc-utf8-string-doc,
 Standards-Version: 3.9.8
 Homepage: http://github.com/yesodweb/haskell-xss-sanitize
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-xss-sanitize
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-xss-sanitize-dev
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Library to sanitize HTML and prevent XSS attacks${haskell:ShortBlurb}
  This library is able to parse strings that contain HTML code and check
  for the presence of potentially malicious tags that could trigger XSS
@@ -60,11 +67,15 @@ Description: Library to sanitize HTML and prevent XSS attacks${haskell:ShortBlur
 
 Package: libghc-xss-sanitize-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Library to sanitize HTML and prevent XSS attacks${haskell:ShortBlurb}
  This library is able to parse strings that contain HTML code and check
  for the presence of potentially malicious tags that could trigger XSS
@@ -79,10 +90,13 @@ Description: Library to sanitize HTML and prevent XSS attacks${haskell:ShortBlur
 Package: libghc-xss-sanitize-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: Library to sanitize HTML and prevent XSS attacks${haskell:ShortBlurb}
  This library is able to parse strings that contain HTML code and check
  for the presence of potentially malicious tags that could trigger XSS
