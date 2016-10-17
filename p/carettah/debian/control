@@ -2,28 +2,30 @@ Source: carettah
 Priority: extra
 Section: haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Kiwamu Okabe <kiwamu@debian.or.jp>
-         , Louis Bettens <louis@bettens.info>
-Build-Depends: debhelper (>= 9),
-               haskell-devscripts (>= 0.8.19),
-               cdbs,
-               ghc,
-               ghc-prof,
-               libghc-cairo-dev,
-               libghc-cairo-prof,
-               libghc-gtk-dev,
-               libghc-gtk-prof,
-               libghc-mtl-dev,
-               libghc-mtl-prof,
-               libghc-pandoc-dev,
-               libghc-pandoc-prof,
-               libghc-pango-dev,
-               libghc-pango-prof,
-               libghc-hcwiid-dev,
-               libghc-hcwiid-prof,
-               libghc-highlighting-kate-dev,
-               libghc-highlighting-kate-prof,
-               libcwiid-dev
+Uploaders:
+ Kiwamu Okabe <kiwamu@debian.or.jp>,
+ Louis Bettens <louis@bettens.info>,
+Build-Depends:
+ cdbs,
+ debhelper (>= 9),
+ ghc (>= 8),
+ ghc-prof,
+ haskell-devscripts (>= 0.8.19),
+ libcwiid-dev,
+ libghc-cairo-dev,
+ libghc-cairo-prof,
+ libghc-gtk-dev,
+ libghc-gtk-prof,
+ libghc-hcwiid-dev,
+ libghc-hcwiid-prof,
+ libghc-highlighting-kate-dev,
+ libghc-highlighting-kate-prof,
+ libghc-mtl-dev,
+ libghc-mtl-prof,
+ libghc-pandoc-dev,
+ libghc-pandoc-prof,
+ libghc-pango-dev,
+ libghc-pango-prof,
 Standards-Version: 3.9.8
 Homepage: https://github.com/master-q/carettah
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/carettah
@@ -32,7 +34,11 @@ Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
 Package: carettah
 Architecture: any
 Section: misc
-Depends: ${shlibs:Depends}, ${haskell:Depends}, ${misc:Depends}, fonts-noto-cjk
+Depends:
+ fonts-noto-cjk,
+ ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
 Description: presentation tool that renders Markdown
  A presentation tool, Carettah generates new presentation boilerplate
  and displays it when invoked like `carettah -n markdown.md`.  You can
