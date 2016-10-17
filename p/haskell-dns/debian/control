@@ -1,19 +1,21 @@
 Source: haskell-dns
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joey Hess <joeyh@debian.org>
+Uploaders:
+ Joey Hess <joeyh@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-attoparsec-dev,
  libghc-attoparsec-prof,
  libghc-conduit-dev (>= 1.1),
- libghc-conduit-prof,
  libghc-conduit-extra-dev (>= 1.1),
  libghc-conduit-extra-prof,
+ libghc-conduit-prof,
  libghc-iproute-dev (>= 1.3.2),
  libghc-iproute-prof,
  libghc-mtl-dev,
@@ -24,10 +26,11 @@ Build-Depends: debhelper (>= 9),
  libghc-random-prof,
  libghc-resourcet-dev,
  libghc-resourcet-prof,
- libghc-safe-dev (>= 0.3),
  libghc-safe-dev (<< 0.4),
+ libghc-safe-dev (>= 0.3),
  libghc-safe-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-attoparsec-doc,
  libghc-conduit-doc,
  libghc-conduit-extra-doc,
@@ -39,7 +42,7 @@ Build-Depends-Indep: ghc-doc,
  libghc-safe-doc,
 Standards-Version: 3.9.8
 Homepage: http://hackage.haskell.org/package/dns
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-dns
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 X-Description: pure Haskell DNS library
  A thread-safe DNS library for both clients and servers
@@ -47,12 +50,16 @@ X-Description: pure Haskell DNS library
 
 Package: libghc-dns-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -60,11 +67,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-dns-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -73,10 +84,13 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-dns-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
