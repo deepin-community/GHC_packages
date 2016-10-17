@@ -1,39 +1,42 @@
 Source: haskell-yi-language
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Marcel Fourne <debian@marcelfourne.de>
+Uploaders:
+ Marcel Fourne <debian@marcelfourne.de>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
- cdbs,
- ghc,
- ghc-prof,
+Build-Depends:
  alex (>= 3.0.3),
+ cdbs,
+ debhelper (>= 9),
+ ghc (>= 8),
+ ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-data-default-dev,
  libghc-data-default-prof,
  libghc-hashable-dev (>= 1.1.2.5),
  libghc-hashable-prof,
+ libghc-hspec-dev,
  libghc-microlens-platform-dev,
  libghc-microlens-platform-prof,
  libghc-oo-prototypes-dev,
  libghc-oo-prototypes-prof,
  libghc-pointedlist-dev (>= 0.5),
  libghc-pointedlist-prof,
- libghc-regex-base-dev (>= 0.93),
+ libghc-quickcheck2-dev (<< 3),
+ libghc-quickcheck2-dev (>= 2),
  libghc-regex-base-dev (<< 0.94),
+ libghc-regex-base-dev (>= 0.93),
  libghc-regex-base-prof,
- libghc-regex-tdfa-dev (>= 1.1),
  libghc-regex-tdfa-dev (<< 1.3),
+ libghc-regex-tdfa-dev (>= 1.1),
  libghc-regex-tdfa-prof,
  libghc-transformers-base-dev,
  libghc-transformers-base-prof,
- libghc-unordered-containers-dev (>= 0.1.3),
  libghc-unordered-containers-dev (<< 0.3),
+ libghc-unordered-containers-dev (>= 0.1.3),
  libghc-unordered-containers-prof,
- libghc-quickcheck2-dev (>= 2),
- libghc-quickcheck2-dev (<< 3),
- libghc-hspec-dev,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-data-default-doc,
  libghc-hashable-doc,
  libghc-microlens-platform-doc,
@@ -45,21 +48,26 @@ Build-Depends-Indep: ghc-doc,
  libghc-unordered-containers-doc,
 Standards-Version: 3.9.8
 Homepage: https://github.com/yi-editor/yi-language
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-yi-language
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
-X-Description: Collection of language-related Yi libraries.
+X-Description: collection of language-related Yi libraries.
  This is a Haskell library providing a collection of language-related Yi
  libraries: lexers, scanners…
 
 Package: libghc-yi-language-dev
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -67,12 +75,17 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-yi-language-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -81,11 +94,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-yi-language-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
