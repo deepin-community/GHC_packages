@@ -1,27 +1,30 @@
 Source: haskell-jmacro
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-aeson-dev (>= 0.5),
  libghc-aeson-prof,
- libghc-src-exts-dev,
- libghc-src-exts-prof,
- libghc-src-meta-dev,
- libghc-src-meta-prof,
  libghc-mtl-dev (>> 1.1),
  libghc-mtl-prof,
+ libghc-parseargs-dev,
  libghc-parsec3-dev (>> 3.0),
  libghc-parsec3-prof,
  libghc-regex-posix-dev (>> 0.9),
  libghc-regex-posix-prof,
  libghc-safe-dev (>= 0.2),
  libghc-safe-prof,
+ libghc-src-exts-dev,
+ libghc-src-exts-prof,
+ libghc-src-meta-dev,
+ libghc-src-meta-prof,
  libghc-syb-dev,
  libghc-syb-prof,
  libghc-text-dev,
@@ -32,15 +35,15 @@ Build-Depends: debhelper (>= 9),
  libghc-vector-prof,
  libghc-wl-pprint-text-dev,
  libghc-wl-pprint-text-prof,
- libghc-parseargs-dev,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-aeson-doc,
- libghc-src-exts-doc,
- libghc-src-meta-doc,
  libghc-mtl-doc,
  libghc-parsec3-doc,
  libghc-regex-posix-doc,
  libghc-safe-doc,
+ libghc-src-exts-doc,
+ libghc-src-meta-doc,
  libghc-syb-doc,
  libghc-text-doc,
  libghc-unordered-containers-doc,
@@ -48,7 +51,7 @@ Build-Depends-Indep: ghc-doc,
  libghc-wl-pprint-text-doc,
 Standards-Version: 3.9.8
 Homepage: http://hackage.haskell.org/package/jmacro
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-jmacro
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 X-Description: library for programmatic generation of JavaScript
  jmacro is a QuasiQuotation library for programmatic generation of
@@ -58,25 +61,33 @@ X-Description: library for programmatic generation of JavaScript
 
 Package: jmacro
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: libghc-jmacro-dev,
-Suggests: libghc-jmacro-doc,
+ ${shlibs:Depends},
+Recommends:
+ libghc-jmacro-dev,
+Suggests:
+ libghc-jmacro-doc,
  libghc-jmacro-prof,
-Provides: ${haskell:Provides},
+Provides:
+ ${haskell:Provides},
 Description: utility for jmacro JavaScript generation library
  jmacro is a QuasiQuotation library for programmatic generation of
  JavaScript code in Haskell.  This contains the 'jmacro' binary.
 
 Package: libghc-jmacro-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -84,11 +95,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-jmacro-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -97,10 +112,13 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-jmacro-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
