@@ -1,59 +1,62 @@
 Source: haskell-linear
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>
+Uploaders:
+ Joachim Breitner <nomeata@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-adjunctions-dev (>= 4),
+ haskell-devscripts (>= 0.10),
  libghc-adjunctions-dev (<< 5),
+ libghc-adjunctions-dev (>= 4),
  libghc-adjunctions-prof,
- libghc-base-orphans-dev (>= 0.5),
  libghc-base-orphans-dev (<< 1),
+ libghc-base-orphans-dev (>= 0.5),
  libghc-base-orphans-prof,
- libghc-bytes-dev (>= 0.15),
  libghc-bytes-dev (<< 1),
+ libghc-bytes-dev (>= 0.15),
  libghc-bytes-prof,
- libghc-cereal-dev (>= 0.4.1.1),
  libghc-cereal-dev (<< 0.6),
+ libghc-cereal-dev (>= 0.4.1.1),
  libghc-cereal-prof,
- libghc-distributive-dev (>= 0.2.2),
  libghc-distributive-dev (<< 1),
+ libghc-distributive-dev (>= 0.2.2),
  libghc-distributive-prof,
- libghc-hashable-dev (>= 1.1),
  libghc-hashable-dev (<< 1.3),
+ libghc-hashable-dev (>= 1.1),
  libghc-hashable-prof,
- libghc-lens-dev (>= 4),
  libghc-lens-dev (<< 5),
+ libghc-lens-dev (>= 4),
  libghc-lens-prof,
- libghc-reflection-dev (>= 1.3.2),
  libghc-reflection-dev (<< 3),
+ libghc-reflection-dev (>= 1.3.2),
  libghc-reflection-prof,
- libghc-semigroupoids-dev (>= 3),
  libghc-semigroupoids-dev (<< 6),
+ libghc-semigroupoids-dev (>= 3),
  libghc-semigroupoids-prof,
- libghc-semigroups-dev (>= 0.9),
  libghc-semigroups-dev (<< 1),
+ libghc-semigroups-dev (>= 0.9),
  libghc-semigroups-prof,
- libghc-tagged-dev (>= 0.4.4),
  libghc-tagged-dev (<< 1),
+ libghc-tagged-dev (>= 0.4.4),
  libghc-tagged-prof,
- libghc-transformers-compat-dev (>= 0.4),
  libghc-transformers-compat-dev (<< 1),
+ libghc-transformers-compat-dev (>= 0.4),
  libghc-transformers-compat-prof,
- libghc-unordered-containers-dev (>= 0.2.3),
  libghc-unordered-containers-dev (<< 0.3),
+ libghc-unordered-containers-dev (>= 0.2.3),
  libghc-unordered-containers-prof,
- libghc-vector-dev (>= 0.10),
  libghc-vector-dev (<< 0.12),
+ libghc-vector-dev (>= 0.10),
  libghc-vector-prof,
- libghc-void-dev (>= 0.6),
  libghc-void-dev (<< 1),
+ libghc-void-dev (>= 0.6),
  libghc-void-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-adjunctions-doc,
  libghc-base-orphans-doc,
  libghc-bytes-doc,
@@ -71,20 +74,25 @@ Build-Depends-Indep: ghc-doc,
  libghc-void-doc,
 Standards-Version: 3.9.8
 Homepage: http://github.com/ekmett/linear/
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-linear
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 X-Description: Linear Algebra
  Types and combinators for linear algebra on free vector spaces
 
 Package: libghc-linear-dev
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -92,12 +100,17 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-linear-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -106,11 +119,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-linear-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
