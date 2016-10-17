@@ -1,13 +1,15 @@
 Source: haskell-yesod-newsfeed
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-blaze-html-dev (>= 0.5),
  libghc-blaze-html-prof,
  libghc-blaze-markup-dev (>= 0.5.1),
@@ -18,10 +20,11 @@ Build-Depends: debhelper (>= 9),
  libghc-text-prof,
  libghc-xml-conduit-dev (>= 1.0),
  libghc-xml-conduit-prof,
- libghc-yesod-core-dev (>= 1.4),
  libghc-yesod-core-dev (<< 1.5),
+ libghc-yesod-core-dev (>= 1.4),
  libghc-yesod-core-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-blaze-html-doc,
  libghc-blaze-markup-doc,
  libghc-shakespeare-doc,
@@ -30,17 +33,21 @@ Build-Depends-Indep: ghc-doc,
  libghc-yesod-core-doc,
 Standards-Version: 3.9.8
 Homepage: http://www.yesodweb.com/
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-yesod-newsfeed
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-yesod-newsfeed-dev
 Architecture: any
-Depends: ${shlibs:Depends},
+Depends:
  ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: helper functions and data types for producing newsfeeds${haskell:ShortBlurb}
  Helper functions and data types for producing newsfeeds (Atom and RSS).
  .
@@ -48,11 +55,15 @@ Description: helper functions and data types for producing newsfeeds${haskell:Sh
 
 Package: libghc-yesod-newsfeed-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: helper functions and data types for producing newsfeeds${haskell:ShortBlurb}
  Helper functions and data types for producing newsfeeds (Atom and RSS).
  .
@@ -61,10 +72,13 @@ Description: helper functions and data types for producing newsfeeds${haskell:Sh
 Package: libghc-yesod-newsfeed-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: helper functions and data types for producing newsfeeds${haskell:ShortBlurb}
  Helper functions and data types for producing newsfeeds (Atom and RSS).
  .
