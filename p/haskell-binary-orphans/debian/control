@@ -1,71 +1,74 @@
 Source: haskell-binary-orphans
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Dmitry Bogatov <KAction@gnu.org>
+Uploaders:
+ Dmitry Bogatov <KAction@gnu.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.9),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-aeson-dev (>= 0.7.0.6),
+ haskell-devscripts (>= 0.9),
  libghc-aeson-dev (<< 1.1),
+ libghc-aeson-dev (>= 0.7.0.6),
  libghc-aeson-prof,
- libghc-case-insensitive-dev (>= 1.2.0.4),
  libghc-case-insensitive-dev (<< 1.2.1),
+ libghc-case-insensitive-dev (>= 1.2.0.4),
  libghc-case-insensitive-prof,
- libghc-hashable-dev (>= 1.2.3.3),
  libghc-hashable-dev (<< 1.3),
+ libghc-hashable-dev (>= 1.2.3.3),
  libghc-hashable-prof,
- libghc-scientific-dev (>= 0.3.3.8),
- libghc-scientific-dev (<< 0.4),
- libghc-scientific-prof,
- libghc-semigroups-dev (>= 0.16.2.2),
- libghc-semigroups-dev (<< 0.18.3),
- libghc-semigroups-prof,
- libghc-tagged-dev (>= 0.7.3),
- libghc-tagged-dev (<< 0.8.6),
- libghc-tagged-prof,
- libghc-text-dev (>= 1.2.0.6),
- libghc-text-dev (<< 1.3),
- libghc-text-prof,
- libghc-text-binary-dev (>= 0.1.0),
- libghc-text-binary-dev (<< 0.3),
- libghc-text-binary-prof,
- libghc-unordered-containers-dev (>= 0.2.5.1),
- libghc-unordered-containers-dev (<< 0.3),
- libghc-unordered-containers-prof,
- libghc-vector-dev (>= 0.10.12.3),
- libghc-vector-dev (<< 0.12),
- libghc-vector-prof,
- libghc-vector-binary-instances-dev (>= 0.2.1.0),
- libghc-vector-binary-instances-dev (<< 0.3),
- libghc-vector-binary-instances-prof,
- libghc-quickcheck2-dev (>= 2.7),
- libghc-quickcheck2-dev (<< 2.9.3),
- libghc-quickcheck-instances-dev (>= 0.3.11),
  libghc-quickcheck-instances-dev (<< 0.3.13),
- libghc-tasty-dev (>= 0.10.1.2),
+ libghc-quickcheck-instances-dev (>= 0.3.11),
+ libghc-quickcheck2-dev (<< 2.9.3),
+ libghc-quickcheck2-dev (>= 2.7),
+ libghc-scientific-dev (<< 0.4),
+ libghc-scientific-dev (>= 0.3.3.8),
+ libghc-scientific-prof,
+ libghc-semigroups-dev (<< 0.18.3),
+ libghc-semigroups-dev (>= 0.16.2.2),
+ libghc-semigroups-prof,
+ libghc-tagged-dev (<< 0.8.6),
+ libghc-tagged-dev (>= 0.7.3),
+ libghc-tagged-prof,
  libghc-tasty-dev (<< 0.12),
- libghc-tasty-quickcheck-dev (>= 0.8.3.2),
+ libghc-tasty-dev (>= 0.10.1.2),
  libghc-tasty-quickcheck-dev (<< 0.9),
-Build-Depends-Indep: ghc-doc,
+ libghc-tasty-quickcheck-dev (>= 0.8.3.2),
+ libghc-text-binary-dev (<< 0.3),
+ libghc-text-binary-dev (>= 0.1.0),
+ libghc-text-binary-prof,
+ libghc-text-dev (<< 1.3),
+ libghc-text-dev (>= 1.2.0.6),
+ libghc-text-prof,
+ libghc-unordered-containers-dev (<< 0.3),
+ libghc-unordered-containers-dev (>= 0.2.5.1),
+ libghc-unordered-containers-prof,
+ libghc-vector-binary-instances-dev (<< 0.3),
+ libghc-vector-binary-instances-dev (>= 0.2.1.0),
+ libghc-vector-binary-instances-prof,
+ libghc-vector-dev (<< 0.12),
+ libghc-vector-dev (>= 0.10.12.3),
+ libghc-vector-prof,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-aeson-doc,
  libghc-case-insensitive-doc,
  libghc-hashable-doc,
  libghc-scientific-doc,
  libghc-semigroups-doc,
  libghc-tagged-doc,
- libghc-text-doc,
  libghc-text-binary-doc,
+ libghc-text-doc,
  libghc-unordered-containers-doc,
- libghc-vector-doc,
  libghc-vector-binary-instances-doc,
+ libghc-vector-doc,
 Standards-Version: 3.9.8
 Homepage: https://github.com/phadej/binary-orphans#readme
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-binary-orphans
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
-X-Description: Orphan instances for binary
+X-Description: orphan instances for binary
  `binary-orphans` defines orphan instances for types in some popular packages,
  in particular:
  .
@@ -78,13 +81,18 @@ X-Description: Orphan instances for binary
 
 Package: libghc-binary-orphans-dev
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -92,12 +100,17 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-binary-orphans-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -106,11 +119,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-binary-orphans-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
