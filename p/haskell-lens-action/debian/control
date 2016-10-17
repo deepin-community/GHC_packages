@@ -1,35 +1,38 @@
 Source: haskell-lens-action
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>
+Uploaders:
+ Joachim Breitner <nomeata@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-comonad-dev (>= 4),
+ haskell-devscripts (>= 0.10),
  libghc-comonad-dev (<< 5),
+ libghc-comonad-dev (>= 4),
  libghc-comonad-prof,
- libghc-contravariant-dev (>= 1.2.1),
  libghc-contravariant-dev (<< 2),
+ libghc-contravariant-dev (>= 1.2.1),
  libghc-contravariant-prof,
- libghc-lens-dev (>= 4.7),
  libghc-lens-dev (<< 5),
+ libghc-lens-dev (>= 4.7),
  libghc-lens-prof,
- libghc-mtl-dev (>= 2.0.1),
  libghc-mtl-dev (<< 2.3),
+ libghc-mtl-dev (>= 2.0.1),
  libghc-mtl-prof,
- libghc-profunctors-dev (>= 4),
  libghc-profunctors-dev (<< 6),
+ libghc-profunctors-dev (>= 4),
  libghc-profunctors-prof,
- libghc-semigroupoids-dev (>= 4),
  libghc-semigroupoids-dev (<< 6),
+ libghc-semigroupoids-dev (>= 4),
  libghc-semigroupoids-prof,
- libghc-semigroups-dev (>= 0.8.4),
  libghc-semigroups-dev (<< 1),
+ libghc-semigroups-dev (>= 0.8.4),
  libghc-semigroups-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-comonad-doc,
  libghc-contravariant-doc,
  libghc-lens-doc,
@@ -39,7 +42,7 @@ Build-Depends-Indep: ghc-doc,
  libghc-semigroups-doc,
 Standards-Version: 3.9.8
 Homepage: http://github.com/ekmett/lens-action/
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-lens-action
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 X-Description: Monadic Getters and Folds
  This package contains combinators and types for working with
@@ -48,13 +51,18 @@ X-Description: Monadic Getters and Folds
 
 Package: libghc-lens-action-dev
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -62,12 +70,17 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-lens-action-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -76,11 +89,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-lens-action-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
