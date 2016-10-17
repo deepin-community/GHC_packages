@@ -1,17 +1,22 @@
 Source: haskell-texmath
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Giovanni Mascellani <gio@debian.org>, Kiwamu Okabe <kiwamu@debian.or.jp>, Louis Bettens <louis@bettens.info>
+Uploaders:
+ Giovanni Mascellani <gio@debian.org>,
+ Kiwamu Okabe <kiwamu@debian.or.jp>,
+ Louis Bettens <louis@bettens.info>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-mtl-dev,
  libghc-mtl-prof,
- libghc-pandoc-types-dev (>= 1.12.3.3),
+ libghc-network-uri-dev (>= 2.6),
  libghc-pandoc-types-dev (<< 1.17),
+ libghc-pandoc-types-dev (>= 1.12.3.3),
  libghc-pandoc-types-prof,
  libghc-parsec3-dev (>= 3),
  libghc-parsec3-prof,
@@ -19,8 +24,8 @@ Build-Depends: debhelper (>= 9),
  libghc-syb-prof,
  libghc-xml-dev,
  libghc-xml-prof,
- libghc-network-uri-dev (>= 2.6),
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-mtl-doc,
  libghc-pandoc-types-doc,
  libghc-parsec3-doc,
@@ -28,17 +33,21 @@ Build-Depends-Indep: ghc-doc,
  libghc-xml-doc,
 Standards-Version: 3.9.8
 Homepage: http://github.com/jgm/texmath
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-texmath
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-texmath-dev
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Haskell library to convert LaTeX to MathML${haskell:ShortBlurb}
  The texmath Haskell library provides functions to convert LaTeX math
  formulas to presentation MathML. It supports basic LaTeX and AMS
@@ -48,11 +57,15 @@ Description: Haskell library to convert LaTeX to MathML${haskell:ShortBlurb}
 
 Package: libghc-texmath-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Haskell library to convert LaTeX to MathML${haskell:ShortBlurb}
  The texmath Haskell library provides functions to convert LaTeX math
  formulas to presentation MathML. It supports basic LaTeX and AMS
@@ -63,10 +76,13 @@ Description: Haskell library to convert LaTeX to MathML${haskell:ShortBlurb}
 Package: libghc-texmath-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: Haskell library to convert LaTeX to MathML${haskell:ShortBlurb}
  The texmath Haskell library provides functions to convert LaTeX math
  formulas to presentation MathML. It supports basic LaTeX and AMS
