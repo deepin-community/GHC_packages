@@ -1,53 +1,56 @@
 Source: haskell-either
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-monadrandom-dev (>= 0.1),
- libghc-monadrandom-dev (<< 0.5),
- libghc-monadrandom-prof,
- libghc-bifunctors-dev (>= 4),
+ haskell-devscripts (>= 0.10),
  libghc-bifunctors-dev (<< 6),
+ libghc-bifunctors-dev (>= 4),
  libghc-bifunctors-prof,
- libghc-exceptions-dev (>= 0.5),
  libghc-exceptions-dev (<< 0.9),
+ libghc-exceptions-dev (>= 0.5),
  libghc-exceptions-prof,
- libghc-free-dev (>= 4.9),
  libghc-free-dev (<< 5),
+ libghc-free-dev (>= 4.9),
  libghc-free-prof,
- libghc-mmorph-dev (>= 1.0.0),
  libghc-mmorph-dev (<< 1.1),
+ libghc-mmorph-dev (>= 1.0.0),
  libghc-mmorph-prof,
- libghc-monad-control-dev (>= 0.3.2),
  libghc-monad-control-dev (<< 1.1),
+ libghc-monad-control-dev (>= 0.3.2),
  libghc-monad-control-prof,
- libghc-mtl-dev (>= 2.0),
+ libghc-monadrandom-dev (<< 0.5),
+ libghc-monadrandom-dev (>= 0.1),
+ libghc-monadrandom-prof,
  libghc-mtl-dev (<< 2.3),
+ libghc-mtl-dev (>= 2.0),
  libghc-mtl-prof,
- libghc-profunctors-dev (>= 4),
  libghc-profunctors-dev (<< 6),
+ libghc-profunctors-dev (>= 4),
  libghc-profunctors-prof,
- libghc-semigroupoids-dev (>= 4),
  libghc-semigroupoids-dev (<< 6),
+ libghc-semigroupoids-dev (>= 4),
  libghc-semigroupoids-prof,
- libghc-semigroups-dev (>= 0.8.3.1),
  libghc-semigroups-dev (<< 1),
+ libghc-semigroups-dev (>= 0.8.3.1),
  libghc-semigroups-prof,
- libghc-transformers-base-dev (>= 0.4),
  libghc-transformers-base-dev (<< 0.5),
+ libghc-transformers-base-dev (>= 0.4),
  libghc-transformers-base-prof,
-Build-Depends-Indep: ghc-doc,
- libghc-monadrandom-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-bifunctors-doc,
  libghc-exceptions-doc,
  libghc-free-doc,
  libghc-mmorph-doc,
  libghc-monad-control-doc,
+ libghc-monadrandom-doc,
  libghc-mtl-doc,
  libghc-profunctors-doc,
  libghc-semigroupoids-doc,
@@ -55,17 +58,21 @@ Build-Depends-Indep: ghc-doc,
  libghc-transformers-base-doc,
 Standards-Version: 3.9.8
 Homepage: http://github.com/ekmett/either/
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-either
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-either-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Either monad transformer${haskell:ShortBlurb}
  This library provides a minimalist Either monad transformer, EitherT.
  EitherT is a version of ErrorT that does not require a spurious Error
@@ -75,11 +82,15 @@ Description: Either monad transformer${haskell:ShortBlurb}
 
 Package: libghc-either-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Either monad transformer${haskell:ShortBlurb}
  This library provides a minimalist Either monad transformer, EitherT.
  EitherT is a version of ErrorT that does not require a spurious Error
@@ -90,10 +101,13 @@ Description: Either monad transformer${haskell:ShortBlurb}
 Package: libghc-either-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: Either monad transformer${haskell:ShortBlurb}
  This library provides a minimalist Either monad transformer, EitherT.
  EitherT is a version of ErrorT that does not require a spurious Error
