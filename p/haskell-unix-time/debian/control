@@ -1,34 +1,41 @@
 Source: haskell-unix-time
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-old-time-dev,
- libghc-old-time-prof,
- libghc-quickcheck2-dev,
+ haskell-devscripts (>= 0.10),
  libghc-doctest-dev (>= 0.9.3),
  libghc-hspec-dev (>= 1.5),
  libghc-old-locale-dev,
-Build-Depends-Indep: ghc-doc,
+ libghc-old-time-dev,
+ libghc-old-time-prof,
+ libghc-quickcheck2-dev,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-old-time-doc,
 Standards-Version: 3.9.8
 Homepage: http://hackage.haskell.org/package/unix-time
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-unix-time
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-unix-time-dev
 Architecture: any
-Depends: ${shlibs:Depends},
+Depends:
  ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Unix time parser/formatter and utilities${haskell:ShortBlurb}
  Fast parser/formatter/utilities for Unix time
  .
@@ -39,11 +46,15 @@ Description: Unix time parser/formatter and utilities${haskell:ShortBlurb}
 
 Package: libghc-unix-time-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Unix time parser/formatter and utilities${haskell:ShortBlurb}
  Fast parser/formatter/utilities for Unix time
  .
@@ -55,10 +66,13 @@ Description: Unix time parser/formatter and utilities${haskell:ShortBlurb}
 Package: libghc-unix-time-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: Unix time parser/formatter and utilities${haskell:ShortBlurb}
  Fast parser/formatter/utilities for Unix time
  .
