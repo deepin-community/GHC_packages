@@ -1,13 +1,16 @@
 Source: haskell-unixutils
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Erik de Castro Lopo <erikd@mega-nerd.com>, Dmitry Bogatov <KAction@gnu.org>
+Uploaders:
+ Erik de Castro Lopo <erikd@mega-nerd.com>,
+ Dmitry Bogatov <KAction@gnu.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-exceptions-dev,
  libghc-exceptions-prof,
  libghc-mtl-dev,
@@ -20,7 +23,8 @@ Build-Depends: debhelper (>= 9),
  libghc-regex-tdfa-prof,
  libghc-zlib-dev,
  libghc-zlib-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-exceptions-doc,
  libghc-mtl-doc,
  libghc-process-extras-doc,
@@ -29,7 +33,7 @@ Build-Depends-Indep: ghc-doc,
  libghc-zlib-doc,
 Standards-Version: 3.9.8
 Homepage: https://github.com/seereason/haskell-unixutils.git
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-unixutils
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 X-Description: interface between Haskell and Unix-like operating systems
  Unixutils is a collection of useful and mildly useful functions that
@@ -38,12 +42,16 @@ X-Description: interface between Haskell and Unix-like operating systems
 
 Package: libghc-unixutils-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -51,12 +59,16 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-unixutils-prof
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -65,10 +77,13 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-unixutils-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
