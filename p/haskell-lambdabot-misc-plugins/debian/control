@@ -1,19 +1,19 @@
 Source: haskell-lambdabot-misc-plugins
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Alexandre Delanoë <anoe@debian.org>
+Uploaders:
+ Alexandre Delanoë <anoe@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-safesemaphore-dev (>= 0.9),
- libghc-safesemaphore-prof,
+ haskell-devscripts (>= 0.10),
  libghc-hstatsd-dev (>= 0.1),
  libghc-hstatsd-prof,
- libghc-lambdabot-core-dev (>= 5.0.1),
  libghc-lambdabot-core-dev (<< 5.1),
+ libghc-lambdabot-core-dev (>= 5.0.1),
  libghc-lambdabot-core-prof,
  libghc-lifted-base-dev (>= 0.2),
  libghc-lifted-base-prof,
@@ -26,27 +26,29 @@ Build-Depends: debhelper (>= 9),
  libghc-parsec3-dev,
  libghc-parsec3-prof,
  libghc-random-dev (>= 1),
- libghc-random-prof,
  libghc-random-fu-dev (>= 0.2),
  libghc-random-fu-prof,
+ libghc-random-prof,
  libghc-random-source-dev (>= 0.3),
  libghc-random-source-prof,
  libghc-regex-tdfa-dev (>= 1.1),
  libghc-regex-tdfa-prof,
+ libghc-safesemaphore-dev (>= 0.9),
+ libghc-safesemaphore-prof,
  libghc-split-dev (>= 0.2),
  libghc-split-prof,
  libghc-tagsoup-dev (>= 0.12),
  libghc-tagsoup-prof,
- libghc-transformers-dev,
- libghc-transformers-prof,
  libghc-transformers-base-dev (>= 0.4),
  libghc-transformers-base-prof,
+ libghc-transformers-dev,
+ libghc-transformers-prof,
  libghc-utf8-string-dev (>= 0.3),
  libghc-utf8-string-prof,
  libghc-zlib-dev (>= 0.5),
  libghc-zlib-prof,
-Build-Depends-Indep: ghc-doc,
- libghc-safesemaphore-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-hstatsd-doc,
  libghc-lambdabot-core-doc,
  libghc-lifted-base-doc,
@@ -58,15 +60,16 @@ Build-Depends-Indep: ghc-doc,
  libghc-random-fu-doc,
  libghc-random-source-doc,
  libghc-regex-tdfa-doc,
+ libghc-safesemaphore-doc,
  libghc-split-doc,
  libghc-tagsoup-doc,
- libghc-transformers-doc,
  libghc-transformers-base-doc,
+ libghc-transformers-doc,
  libghc-utf8-string-doc,
  libghc-zlib-doc,
 Standards-Version: 3.9.8
 Homepage: http://haskell.org/haskellwiki/Lambdabot
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-lambdabot-misc-plugins
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 X-Description: Lambdabot miscellaneous plugins
  Lambdabot is an IRC bot written over several years by
@@ -88,13 +91,18 @@ X-Description: Lambdabot miscellaneous plugins
 
 Package: libghc-lambdabot-misc-plugins-dev
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -102,12 +110,17 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-lambdabot-misc-plugins-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -116,11 +129,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-lambdabot-misc-plugins-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
