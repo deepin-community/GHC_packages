@@ -1,14 +1,16 @@
 Source: haskell-yesod-static
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>, Clint Adams <clint@debian.org>
+Uploaders:
+ Joachim Breitner <nomeata@debian.org>,
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- ghc-ghci,
+ haskell-devscripts (>= 0.10),
  libghc-async-dev,
  libghc-async-prof,
  libghc-attoparsec-dev (>= 0.10),
@@ -20,19 +22,19 @@ Build-Depends: debhelper (>= 9),
  libghc-byteable-dev (>= 0.1),
  libghc-byteable-prof,
  libghc-conduit-dev (>= 0.5),
- libghc-conduit-prof,
  libghc-conduit-extra-dev,
  libghc-conduit-extra-prof,
- libghc-cryptohash-dev (>= 0.11),
- libghc-cryptohash-prof,
+ libghc-conduit-prof,
  libghc-cryptohash-conduit-dev (>= 0.1),
  libghc-cryptohash-conduit-prof,
+ libghc-cryptohash-dev (>= 0.11),
+ libghc-cryptohash-prof,
  libghc-css-text-dev (>= 0.1.2),
  libghc-css-text-prof,
  libghc-data-default-dev,
  libghc-data-default-prof,
- libghc-file-embed-dev (>= 0.0.4.1),
  libghc-file-embed-dev (<< 0.5),
+ libghc-file-embed-dev (>= 0.0.4.1),
  libghc-file-embed-prof,
  libghc-hashable-dev (>= 1.1),
  libghc-hashable-prof,
@@ -50,14 +52,15 @@ Build-Depends: debhelper (>= 9),
  libghc-unix-compat-prof,
  libghc-unordered-containers-dev (>= 0.2),
  libghc-unordered-containers-prof,
- libghc-wai-dev (>= 1.3),
- libghc-wai-prof,
  libghc-wai-app-static-dev (>= 3.1),
  libghc-wai-app-static-prof,
- libghc-yesod-core-dev (>= 1.4),
+ libghc-wai-dev (>= 1.3),
+ libghc-wai-prof,
  libghc-yesod-core-dev (<< 1.5),
+ libghc-yesod-core-dev (>= 1.4),
  libghc-yesod-core-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-async-doc,
  libghc-attoparsec-doc,
  libghc-base64-bytestring-doc,
@@ -65,8 +68,8 @@ Build-Depends-Indep: ghc-doc,
  libghc-byteable-doc,
  libghc-conduit-doc,
  libghc-conduit-extra-doc,
- libghc-cryptohash-doc,
  libghc-cryptohash-conduit-doc,
+ libghc-cryptohash-doc,
  libghc-css-text-doc,
  libghc-data-default-doc,
  libghc-file-embed-doc,
@@ -78,22 +81,26 @@ Build-Depends-Indep: ghc-doc,
  libghc-text-doc,
  libghc-unix-compat-doc,
  libghc-unordered-containers-doc,
- libghc-wai-doc,
  libghc-wai-app-static-doc,
+ libghc-wai-doc,
  libghc-yesod-core-doc,
 Standards-Version: 3.9.8
 Homepage: http://www.yesodweb.com/
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-yesod-static
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-yesod-static-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Static file serving subsite for Yesod Web Framework.${haskell:ShortBlurb}
  Yesod is a framework designed to foster creation of RESTful web
  application that have strong compile-time guarantees of correctness.
@@ -107,11 +114,15 @@ Description: Static file serving subsite for Yesod Web Framework.${haskell:Short
 
 Package: libghc-yesod-static-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Static file serving subsite for Yesod Web Framework${haskell:ShortBlurb}
  Yesod is a framework designed to foster creation of RESTful web
  application that have strong compile-time guarantees of correctness.
@@ -126,10 +137,13 @@ Description: Static file serving subsite for Yesod Web Framework${haskell:ShortB
 Package: libghc-yesod-static-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: Static file serving subsite for Yesod Web Framework${haskell:ShortBlurb}
  Yesod is a framework designed to foster creation of RESTful web
  application that have strong compile-time guarantees of correctness.
