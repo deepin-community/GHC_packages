@@ -1,20 +1,23 @@
 Source: haskell-relational-record
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Kei Hibino <ex8k.hibino@gmail.com>
+Uploaders:
+ Kei Hibino <ex8k.hibino@gmail.com>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 10),
- haskell-devscripts (>= 0.9),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 10),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.9),
  libghc-persistable-types-hdbc-pg-dev,
  libghc-persistable-types-hdbc-pg-prof,
  libghc-relational-query-dev (>= 0.3),
- libghc-relational-query-prof,
  libghc-relational-query-hdbc-dev,
  libghc-relational-query-hdbc-prof,
-Build-Depends-Indep: ghc-doc,
+ libghc-relational-query-prof,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-persistable-types-hdbc-pg-doc,
  libghc-relational-query-doc,
  libghc-relational-query-hdbc-doc,
@@ -28,9 +31,9 @@ X-Description: metapackage of Relational Record
 Package: haskell-relational-record
 Architecture: any
 Depends:
-  haskell-relational-record-dev,
-  haskell-relational-record-prof,
-  haskell-relational-record-doc,
+ haskell-relational-record-dev,
+ haskell-relational-record-doc,
+ haskell-relational-record-prof,
  ${misc:Depends},
 Description: ${haskell:ShortDescription}
  ${haskell:LongDescription}
@@ -53,8 +56,8 @@ Package: haskell-relational-record-prof
 Architecture: any
 Depends:
  libghc-persistable-types-hdbc-pg-prof,
- libghc-relational-query-prof,
  libghc-relational-query-hdbc-prof,
+ libghc-relational-query-prof,
  ${misc:Depends},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
@@ -68,7 +71,7 @@ Depends:
  libghc-relational-record-doc,
  ${misc:Depends},
 Recommends:
- haskell-relational-record-dev
+ haskell-relational-record-dev,
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -77,11 +80,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-relational-record-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
 Description: Documentation package of Haskell Relational Record
  This package includes documentation package of Haskell Relational Record
  library software stack.
