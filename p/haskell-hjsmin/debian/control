@@ -1,38 +1,45 @@
 Source: haskell-hjsmin
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-blaze-builder-dev (>= 0.2),
  libghc-blaze-builder-prof,
- libghc-language-javascript-dev (>= 0.6),
  libghc-language-javascript-dev (<< 0.7),
+ libghc-language-javascript-dev (>= 0.6),
  libghc-language-javascript-prof,
+ libghc-optparse-applicative-dev (>= 0.7),
  libghc-text-dev (>= 0.8),
  libghc-text-prof,
- libghc-optparse-applicative-dev (>= 0.7),
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-blaze-builder-doc,
  libghc-language-javascript-doc,
  libghc-text-doc,
 Standards-Version: 3.9.8
 Homepage: http://github.com/erikd/hjsmin
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-hjsmin
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-hjsmin-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: JavaScript minifier${haskell:ShortBlurb}
  It reduces the size of JavaScript files by stripping out extraneous
  whitespace and other syntactic elements, without changing the
@@ -42,11 +49,15 @@ Description: JavaScript minifier${haskell:ShortBlurb}
 
 Package: libghc-hjsmin-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: JavaScript minifier${haskell:ShortBlurb}
  It reduces the size of JavaScript files by stripping out extraneous
  whitespace and other syntactic elements, without changing the
@@ -57,10 +68,13 @@ Description: JavaScript minifier${haskell:ShortBlurb}
 Package: libghc-hjsmin-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: JavaScript minifier${haskell:ShortBlurb}
  It reduces the size of JavaScript files by stripping out extraneous
  whitespace and other syntactic elements, without changing the
