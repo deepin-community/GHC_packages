@@ -1,13 +1,15 @@
 Source: hlint
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>
+Uploaders:
+ Joachim Breitner <nomeata@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-ansi-terminal-dev (>= 0.6.2),
  libghc-ansi-terminal-prof,
  libghc-cmdargs-dev (>= 0.10),
@@ -16,46 +18,53 @@ Build-Depends: debhelper (>= 9),
  libghc-cpphs-prof,
  libghc-extra-dev (>= 1.4.9),
  libghc-extra-prof,
- libghc-src-exts-dev (>= 1.17),
- libghc-src-exts-dev (<< 1.18),
- libghc-src-exts-prof,
  libghc-hscolour-dev (>= 1.21),
  libghc-hscolour-prof,
  libghc-refact-dev (>= 0.3),
  libghc-refact-prof,
+ libghc-src-exts-dev (<< 1.18),
+ libghc-src-exts-dev (>= 1.17),
+ libghc-src-exts-prof,
  libghc-uniplate-dev (>= 1.5),
  libghc-uniplate-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-ansi-terminal-doc,
  libghc-cmdargs-doc,
  libghc-cpphs-doc,
  libghc-extra-doc,
- libghc-src-exts-doc,
  libghc-hscolour-doc,
  libghc-refact-doc,
+ libghc-src-exts-doc,
  libghc-uniplate-doc,
 Standards-Version: 3.9.8
 Homepage: http://community.haskell.org/~ndm/hlint/
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/hlint
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: hlint
 Architecture: any
-Depends: ${shlibs:Depends},
+Depends:
  ${misc:Depends},
-Recommends: ghc,
+ ${shlibs:Depends},
+Recommends:
+ ghc (>= 8),
 Description: Haskell source code suggestions
  HLint gives suggestions on how to improve your source code. It can either
  print them directly, or generate a colored HTML output.
 
 Package: libghc-hlint-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Haskell source code suggestions${haskell:ShortBlurb}
  HLint gives suggestions on how to improve your source code. It can either
  print them directly, or generate a colored HTML output.
@@ -67,11 +76,15 @@ Description: Haskell source code suggestions${haskell:ShortBlurb}
 
 Package: libghc-hlint-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Haskell source code suggestions${haskell:ShortBlurb}
  HLint gives suggestions on how to improve your source code. It can either
  print them directly, or generate a colored HTML output.
@@ -84,10 +97,13 @@ Description: Haskell source code suggestions${haskell:ShortBlurb}
 Package: libghc-hlint-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: Haskell source code suggestions${haskell:ShortBlurb}
  HLint gives suggestions on how to improve your source code. It can either
  print them directly, or generate a colored HTML output.
