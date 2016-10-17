@@ -1,30 +1,37 @@
 Source: haskell-yesod-default
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-yesod-core-dev (>= 1.2),
  libghc-yesod-core-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-yesod-core-doc,
 Standards-Version: 3.9.8
 Homepage: http://www.yesodweb.com/
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-yesod-default
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-yesod-default-dev
 Architecture: any
-Depends: ${shlibs:Depends},
+Depends:
  ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: default config and main functions for your Yesod application
  This is a temporary shim to make things easier for git-annex.
  It serves no other purpose.
@@ -33,11 +40,15 @@ Description: default config and main functions for your Yesod application
 
 Package: libghc-yesod-default-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: default config/main functions for your Yesod application; profiling libraries
  This is a temporary shim to make things easier for git-annex.
  It serves no other purpose.
@@ -47,10 +58,13 @@ Description: default config/main functions for your Yesod application; profiling
 Package: libghc-yesod-default-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: default config and main functions for your Yesod application; documentation
  This is a temporary shim to make things easier for git-annex.
  It serves no other purpose.
