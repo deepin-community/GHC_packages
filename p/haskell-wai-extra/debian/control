@@ -1,47 +1,57 @@
 Source: haskell-wai-extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-aeson-dev,
  libghc-aeson-prof,
  libghc-ansi-terminal-dev,
  libghc-ansi-terminal-prof,
  libghc-base64-bytestring-dev,
  libghc-base64-bytestring-prof,
- libghc-blaze-builder-dev (>= 0.2.1.4),
+ libghc-blaze-builder-dev,
  libghc-blaze-builder-dev (<< 0.5),
+ libghc-blaze-builder-dev (>= 0.2.1.4),
  libghc-blaze-builder-prof,
+ libghc-case-insensitive-dev,
  libghc-case-insensitive-dev (>= 0.2),
  libghc-case-insensitive-prof,
  libghc-cookie-dev,
  libghc-cookie-prof,
  libghc-data-default-class-dev,
  libghc-data-default-class-prof,
- libghc-fast-logger-dev (>= 2.4.5),
+ libghc-fast-logger-dev,
  libghc-fast-logger-dev (<< 2.5),
+ libghc-fast-logger-dev (>= 2.4.5),
  libghc-fast-logger-prof,
+ libghc-hspec-dev (>= 1.3),
+ libghc-http-types-dev,
  libghc-http-types-dev (>= 0.7),
  libghc-http-types-prof,
+ libghc-hunit-dev,
  libghc-iproute-dev,
  libghc-iproute-prof,
  libghc-lifted-base-dev (>= 0.1.2),
  libghc-lifted-base-prof,
  libghc-network-dev (>= 2.6.1.0),
  libghc-network-prof,
- libghc-resourcet-dev (>= 0.4.6),
+ libghc-resourcet-dev,
  libghc-resourcet-dev (<< 1.2),
+ libghc-resourcet-dev (>= 0.4.6),
  libghc-resourcet-prof,
  libghc-streaming-commons-dev,
  libghc-streaming-commons-prof,
- libghc-stringsearch-dev (>= 0.3),
  libghc-stringsearch-dev (<< 0.4),
+ libghc-stringsearch-dev (>= 0.3),
  libghc-stringsearch-prof,
+ libghc-text-dev,
  libghc-text-dev (>= 0.7),
  libghc-text-prof,
  libghc-unix-compat-dev,
@@ -50,26 +60,19 @@ Build-Depends: debhelper (>= 9),
  libghc-vault-prof,
  libghc-void-dev (>= 0.5),
  libghc-void-prof,
- libghc-wai-dev (>= 3.0.3.0),
+ libghc-wai-dev,
  libghc-wai-dev (<< 3.3),
- libghc-wai-prof,
- libghc-wai-logger-dev (>= 2.2.6),
+ libghc-wai-dev (>= 3.0.3.0),
  libghc-wai-logger-dev (<< 2.4),
+ libghc-wai-logger-dev (>= 2.2.6),
  libghc-wai-logger-prof,
+ libghc-wai-prof,
  libghc-word8-dev,
  libghc-word8-prof,
  libghc-zlib-dev,
  libghc-zlib-prof,
- libghc-hunit-dev,
- libghc-blaze-builder-dev,
- libghc-case-insensitive-dev,
- libghc-fast-logger-dev,
- libghc-hspec-dev (>= 1.3),
- libghc-http-types-dev,
- libghc-resourcet-dev,
- libghc-text-dev,
- libghc-wai-dev,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-aeson-doc,
  libghc-ansi-terminal-doc,
  libghc-base64-bytestring-doc,
@@ -95,17 +98,21 @@ Build-Depends-Indep: ghc-doc,
  libghc-zlib-doc,
 Standards-Version: 3.9.8
 Homepage: http://github.com/yesodweb/wai
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-wai-extra
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-wai-extra-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: some basic WAI handlers and middleware${haskell:ShortBlurb}
  wai is a common protocol for communication between web aplications and web
  servers.
@@ -117,11 +124,15 @@ Description: some basic WAI handlers and middleware${haskell:ShortBlurb}
 
 Package: libghc-wai-extra-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: some basic WAI handlers and middleware${haskell:ShortBlurb}
  wai is a common protocol for communication between web aplications and web
  servers.
@@ -134,10 +145,13 @@ Description: some basic WAI handlers and middleware${haskell:ShortBlurb}
 Package: libghc-wai-extra-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: some basic WAI handlers and middleware${haskell:ShortBlurb}
  wai is a common protocol for communication between web aplications and web
  servers.
