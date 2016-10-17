@@ -1,23 +1,26 @@
 Source: haskell-http-media
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Justin Geibel <jtgeibel@gmail.com>
+Uploaders:
+ Justin Geibel <jtgeibel@gmail.com>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.9),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-case-insensitive-dev (>= 1.0),
+ haskell-devscripts (>= 0.9),
  libghc-case-insensitive-dev (<< 1.3),
+ libghc-case-insensitive-dev (>= 1.0),
  libghc-case-insensitive-prof,
- libghc-quickcheck2-dev (>= 2.6),
  libghc-quickcheck2-dev (<< 2.10),
- libghc-test-framework-dev (>= 0.8),
+ libghc-quickcheck2-dev (>= 2.6),
  libghc-test-framework-dev (<< 0.9),
- libghc-test-framework-quickcheck2-dev (>= 0.3),
+ libghc-test-framework-dev (>= 0.8),
  libghc-test-framework-quickcheck2-dev (<< 0.4),
-Build-Depends-Indep: ghc-doc,
+ libghc-test-framework-quickcheck2-dev (>= 0.3),
+Build-Depends-Indep:
+ ghc-doc,
  libghc-case-insensitive-doc,
 Standards-Version: 3.9.8
 Homepage: https://github.com/zmthy/http-media
@@ -33,13 +36,18 @@ X-Description: processing HTTP Content-Type and Accept headers
 
 Package: libghc-http-media-dev
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -47,12 +55,17 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-http-media-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -61,11 +74,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-http-media-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
