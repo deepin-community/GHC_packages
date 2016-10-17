@@ -1,26 +1,29 @@
 Source: haskell-persistable-types-hdbc-pg
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Kei Hibino <ex8k.hibino@gmail.com>
+Uploaders:
+ Kei Hibino <ex8k.hibino@gmail.com>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.9),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-hdbc-dev,
- libghc-hdbc-prof,
+ haskell-devscripts (>= 0.9),
  libghc-convertible-dev,
  libghc-convertible-prof,
+ libghc-hdbc-dev,
+ libghc-hdbc-prof,
  libghc-persistable-record-dev (>= 0.4),
  libghc-persistable-record-prof,
  libghc-relational-query-hdbc-dev,
  libghc-relational-query-hdbc-prof,
  libghc-text-postgresql-dev,
  libghc-text-postgresql-prof,
-Build-Depends-Indep: ghc-doc,
- libghc-hdbc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-convertible-doc,
+ libghc-hdbc-doc,
  libghc-persistable-record-doc,
  libghc-relational-query-hdbc-doc,
  libghc-text-postgresql-doc,
@@ -35,13 +38,18 @@ X-Description: Relational-Record instances of PostgreSQL extended types
 
 Package: libghc-persistable-types-hdbc-pg-dev
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -49,12 +57,17 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-persistable-types-hdbc-pg-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -63,11 +76,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-persistable-types-hdbc-pg-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
