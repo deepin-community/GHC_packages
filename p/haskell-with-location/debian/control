@@ -1,15 +1,18 @@
 Source: haskell-with-location
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.9),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.9),
  libghc-hspec-dev,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
 Standards-Version: 3.9.8
 Homepage: https://github.com/sol/with-location#readme
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-with-location
@@ -20,13 +23,18 @@ X-Description: ImplicitParams-based source locations
 
 Package: libghc-with-location-dev
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -34,12 +42,17 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-with-location-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -48,11 +61,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-with-location-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
