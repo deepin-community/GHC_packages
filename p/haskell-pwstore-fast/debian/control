@@ -1,13 +1,15 @@
 Source: haskell-pwstore-fast
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-base64-bytestring-dev (>= 0.1),
  libghc-base64-bytestring-prof,
  libghc-byteable-dev (>= 0.1),
@@ -16,24 +18,29 @@ Build-Depends: debhelper (>= 9),
  libghc-cryptohash-prof,
  libghc-random-dev (>= 1),
  libghc-random-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-base64-bytestring-doc,
  libghc-byteable-doc,
  libghc-cryptohash-doc,
  libghc-random-doc,
 Standards-Version: 3.9.8
 Homepage: https://github.com/PeterScott/pwstore
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-pwstore-fast
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-pwstore-fast-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: secure password storage${haskell:ShortBlurb}
  To store passwords securely, they should be salted, then hashed with a
  slow hash function. This library uses PBKDF1-SHA256, and handles all
@@ -46,11 +53,15 @@ Description: secure password storage${haskell:ShortBlurb}
 
 Package: libghc-pwstore-fast-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: secure password storage${haskell:ShortBlurb}
  To store passwords securely, they should be salted, then hashed with a
  slow hash function. This library uses PBKDF1-SHA256, and handles all
@@ -64,10 +75,13 @@ Description: secure password storage${haskell:ShortBlurb}
 Package: libghc-pwstore-fast-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: secure password storage${haskell:ShortBlurb}
  To store passwords securely, they should be salted, then hashed with a
  slow hash function. This library uses PBKDF1-SHA256, and handles all
