@@ -1,40 +1,43 @@
 Source: haskell-uuid
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-cryptonite-dev,
  libghc-cryptonite-prof,
+ libghc-hunit-dev (<< 1.4),
+ libghc-hunit-dev (>= 1.2),
  libghc-memory-dev,
  libghc-memory-prof,
- libghc-network-info-dev (>= 0.2),
  libghc-network-info-dev (<< 0.3),
+ libghc-network-info-dev (>= 0.2),
  libghc-network-info-prof,
- libghc-random-dev (>= 1.0.1),
- libghc-random-dev (<< 1.2),
- libghc-random-prof,
- libghc-text-dev (>= 1),
- libghc-text-dev (<< 1.3),
- libghc-text-prof,
- libghc-uuid-types-dev (>= 1.0.2),
- libghc-uuid-types-dev (<< 2),
- libghc-uuid-types-prof,
- libghc-hunit-dev (>= 1.2),
- libghc-hunit-dev (<< 1.4),
- libghc-quickcheck2-dev (>= 2.4),
  libghc-quickcheck2-dev (<< 2.9),
- libghc-tasty-dev (>= 0.10),
+ libghc-quickcheck2-dev (>= 2.4),
+ libghc-random-dev (<< 1.2),
+ libghc-random-dev (>= 1.0.1),
+ libghc-random-prof,
  libghc-tasty-dev (<< 0.12),
- libghc-tasty-hunit-dev (>= 0.9),
+ libghc-tasty-dev (>= 0.10),
  libghc-tasty-hunit-dev (<< 0.10),
- libghc-tasty-quickcheck-dev (>= 0.8),
+ libghc-tasty-hunit-dev (>= 0.9),
  libghc-tasty-quickcheck-dev (<< 0.9),
-Build-Depends-Indep: ghc-doc,
+ libghc-tasty-quickcheck-dev (>= 0.8),
+ libghc-text-dev (<< 1.3),
+ libghc-text-dev (>= 1),
+ libghc-text-prof,
+ libghc-uuid-types-dev (<< 2),
+ libghc-uuid-types-dev (>= 1.0.2),
+ libghc-uuid-types-prof,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-cryptonite-doc,
  libghc-memory-doc,
  libghc-network-info-doc,
@@ -43,17 +46,21 @@ Build-Depends-Indep: ghc-doc,
  libghc-uuid-types-doc,
 Standards-Version: 3.9.8
 Homepage: https://github.com/aslatter/uuid
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-uuid
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-uuid-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: create, compare, parse and print Universally Unique Identifiers${haskell:ShortBlurb}
  This library is useful for creating, comparing, parsing and printing
  Universally Unique Identifiers. See http://en.wikipedia.org/wiki/UUID
@@ -63,11 +70,15 @@ Description: create, compare, parse and print Universally Unique Identifiers${ha
 
 Package: libghc-uuid-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: create, compare, parse and print UUIDs${haskell:ShortBlurb}
  This library is useful for creating, comparing, parsing and printing
  Universally Unique Identifiers. See http://en.wikipedia.org/wiki/UUID
@@ -78,10 +89,13 @@ Description: create, compare, parse and print UUIDs${haskell:ShortBlurb}
 Package: libghc-uuid-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: create, compare, parse and print UUIDs${haskell:ShortBlurb}
  This library is useful for creating, comparing, parsing and printing
  Universally Unique Identifiers. See http://en.wikipedia.org/wiki/UUID
