@@ -1,28 +1,31 @@
 Source: hothasktags
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Sean Whitton <spwhitton@spwhitton.name>
+Uploaders:
+ Sean Whitton <spwhitton@spwhitton.name>,
 Priority: optional
 Section: devel
-Build-Depends: debhelper (>= 9),
- ghc,
- libghc-glob-dev,
- libghc-cpphs-dev (>= 1.11),
+Build-Depends:
+ debhelper (>= 9),
+ ghc (>= 8),
  libghc-cpphs-dev (<< 1.21),
+ libghc-cpphs-dev (>= 1.11),
  libghc-filemanip-dev,
  libghc-filepath-dev,
- libghc-src-exts-dev (>= 1.17),
- libghc-src-exts-dev (<< 1.18),
+ libghc-glob-dev,
  libghc-optparse-applicative-dev,
  libghc-split-dev,
+ libghc-src-exts-dev (<< 1.18),
+ libghc-src-exts-dev (>= 1.17),
 Standards-Version: 3.9.8
 Homepage: http://github.com/luqui/hothasktags
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/hothasktags
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: hothasktags
 Architecture: any
-Depends: ${shlibs:Depends},
+Depends:
  ${misc:Depends},
+ ${shlibs:Depends},
 Description: Haskell ctags generator
  hothasktags generates ctags files for Haskell, with knowledge of
  import lists and qualified imports. It provides a smart go-to-definition
