@@ -1,13 +1,15 @@
 Source: haskell-soap
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.9),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.9),
  libghc-conduit-dev,
  libghc-conduit-prof,
  libghc-configurator-dev,
@@ -16,10 +18,12 @@ Build-Depends: debhelper (>= 9),
  libghc-data-default-prof,
  libghc-exceptions-dev,
  libghc-exceptions-prof,
+ libghc-hspec-dev,
  libghc-http-client-dev (>= 0.2),
  libghc-http-client-prof,
  libghc-http-types-dev,
  libghc-http-types-prof,
+ libghc-hunit-dev,
  libghc-iconv-dev,
  libghc-iconv-prof,
  libghc-mtl-dev,
@@ -36,9 +40,8 @@ Build-Depends: debhelper (>= 9),
  libghc-xml-conduit-writer-prof,
  libghc-xml-types-dev,
  libghc-xml-types-prof,
- libghc-hunit-dev,
- libghc-hspec-dev,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-conduit-doc,
  libghc-configurator-doc,
  libghc-data-default-doc,
@@ -65,13 +68,18 @@ X-Description: SOAP client library
 
 Package: libghc-soap-dev
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -79,12 +87,17 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-soap-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -93,11 +106,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-soap-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
