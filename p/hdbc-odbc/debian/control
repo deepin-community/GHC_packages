@@ -1,43 +1,50 @@
 Source: hdbc-odbc
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: John Goerzen <jgoerzen@complete.org>
+Uploaders:
+ John Goerzen <jgoerzen@complete.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- ghc,
- ghc-prof,
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
  cpphs,
+ debhelper (>= 9),
+ ghc (>= 8),
+ ghc-prof,
+ haskell-devscripts (>= 0.10),
+ libghc-convertible-dev,
+ libghc-convertible-prof,
  libghc-hdbc-dev (>= 2.2.0-2),
  libghc-hdbc-prof (>= 2.2.0-2),
- unixodbc-dev (>= 2.2.11),
- libghc-mtl-dev,
  libghc-hunit-dev,
- libghc-time-dev,
- libghc-convertible-dev,
- libghc-mtl-prof,
  libghc-hunit-prof,
+ libghc-mtl-dev,
+ libghc-mtl-prof,
+ libghc-time-dev,
  libghc-time-prof,
- libghc-convertible-prof,
-Build-Depends-Indep: libghc-hdbc-doc,
- libghc-mtl-doc,
- libghc-hunit-doc,
- libghc-time-doc,
+ unixodbc-dev (>= 2.2.11),
+Build-Depends-Indep:
  libghc-convertible-doc,
+ libghc-hdbc-doc,
+ libghc-hunit-doc,
+ libghc-mtl-doc,
+ libghc-time-doc,
 Standards-Version: 3.9.8
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/hdbc-odbc
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-hdbc-odbc-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
- ${misc:Depends},
+Depends:
  unixodbc-dev (>= 2.2.11),
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: unixODBC HDBC (Haskell Database Connectivity) Driver for GHC
  HDBC provides an abstraction layer between Haskell programs and SQL
  relational databases. This lets you write database code once, in
@@ -48,12 +55,16 @@ Description: unixODBC HDBC (Haskell Database Connectivity) Driver for GHC
 
 Package: libghc-hdbc-odbc-prof
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: unixODBC Haskell Database Connectivity Driver; profiling libraries
  HDBC provides an abstraction layer between Haskell programs and SQL
  relational databases. This lets you write database code once, in
@@ -66,14 +77,20 @@ Description: unixODBC Haskell Database Connectivity Driver; profiling libraries
 Package: libghc-hdbc-odbc-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: haskell-hdbc-odbc-doc (<< 2.2.3.0-2),
-Provides: haskell-hdbc-odbc-doc,
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ haskell-hdbc-odbc-doc (<< 2.2.3.0-2),
+Provides:
+ haskell-hdbc-odbc-doc,
  ${haskell:Provides},
-Replaces: haskell-hdbc-odbc-doc (<< 2.2.3.0-2),
+Replaces:
+ haskell-hdbc-odbc-doc (<< 2.2.3.0-2),
 Description: unixODBC HDBC (Haskell Database Connectivity) Documentation
  HDBC provides an abstraction layer between Haskell programs and SQL
  relational databases. This lets you write database code once, in
