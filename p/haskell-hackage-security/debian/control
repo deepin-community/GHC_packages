@@ -1,52 +1,55 @@
 Source: haskell-hackage-security
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 10),
- haskell-devscripts (>= 0.9),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 10),
+ ghc (>= 8),
  ghc-prof,
- libghc-base16-bytestring-dev (>= 0.1.1),
+ haskell-devscripts (>= 0.9),
  libghc-base16-bytestring-dev (<< 0.2),
+ libghc-base16-bytestring-dev (>= 0.1.1),
  libghc-base16-bytestring-prof,
- libghc-base64-bytestring-dev (>= 1.0),
  libghc-base64-bytestring-dev (<< 1.1),
+ libghc-base64-bytestring-dev (>= 1.0),
  libghc-base64-bytestring-prof,
  libghc-cryptohash-dev,
  libghc-cryptohash-prof,
- libghc-ed25519-dev (>= 0.0),
  libghc-ed25519-dev (<< 0.1),
+ libghc-ed25519-dev (>= 0.0),
  libghc-ed25519-prof,
- libghc-mtl-dev (>= 2.2),
- libghc-mtl-dev (<< 2.3),
- libghc-mtl-prof,
- libghc-network-dev (>= 2.6),
- libghc-network-dev (<< 2.7),
- libghc-network-prof,
- libghc-network-uri-dev (>= 2.6),
- libghc-network-uri-dev (<< 2.7),
- libghc-network-uri-prof,
- libghc-parsec3-dev (>= 3.1),
- libghc-parsec3-dev (<< 3.2),
- libghc-parsec3-prof,
- libghc-tar-dev (>= 0.5),
- libghc-tar-dev (<< 0.6),
- libghc-tar-prof,
- libghc-zlib-dev (>= 0.5),
- libghc-zlib-dev (<< 0.7),
- libghc-zlib-prof,
  libghc-hunit-dev <!nocheck>,
- libghc-quickcheck2-dev <!nocheck>,
+ libghc-mtl-dev (<< 2.3),
+ libghc-mtl-dev (>= 2.2),
+ libghc-mtl-prof,
+ libghc-network-dev (<< 2.7),
+ libghc-network-dev (>= 2.6),
+ libghc-network-prof,
+ libghc-network-uri-dev (<< 2.7),
+ libghc-network-uri-dev (>= 2.6),
  libghc-network-uri-dev <!nocheck>,
+ libghc-network-uri-prof,
+ libghc-parsec3-dev (<< 3.2),
+ libghc-parsec3-dev (>= 3.1),
+ libghc-parsec3-prof,
+ libghc-quickcheck2-dev <!nocheck>,
+ libghc-tar-dev (<< 0.6),
+ libghc-tar-dev (>= 0.5),
  libghc-tar-dev <!nocheck>,
+ libghc-tar-prof,
  libghc-tasty-dev <!nocheck>,
  libghc-tasty-hunit-dev <!nocheck>,
  libghc-tasty-quickcheck-dev <!nocheck>,
  libghc-temporary-dev <!nocheck>,
+ libghc-zlib-dev (<< 0.7),
+ libghc-zlib-dev (>= 0.5),
  libghc-zlib-dev <!nocheck>,
-Build-Depends-Indep: ghc-doc,
+ libghc-zlib-prof,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-base16-bytestring-doc,
  libghc-base64-bytestring-doc,
  libghc-cryptohash-doc,
@@ -74,13 +77,18 @@ X-Description: Hackage security library
 
 Package: libghc-hackage-security-dev
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -88,12 +96,17 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-hackage-security-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -102,11 +115,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-hackage-security-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
