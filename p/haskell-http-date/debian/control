@@ -1,30 +1,38 @@
 Source: haskell-http-date
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Iulian Udrea <iulian@linux.com>, Clint Adams <clint@debian.org>
+Uploaders:
+ Iulian Udrea <iulian@linux.com>,
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-attoparsec-dev,
  libghc-attoparsec-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-attoparsec-doc,
 Standards-Version: 3.9.8
 Homepage: http://hackage.haskell.org/package/http-date
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-http-date
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-http-date-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: HTTP Date parser/formatter${haskell:ShortBlurb}
  Fast parser and formatter for HTTP Date.
  .
@@ -32,11 +40,15 @@ Description: HTTP Date parser/formatter${haskell:ShortBlurb}
 
 Package: libghc-http-date-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: HTTP Date parser/formatter${haskell:ShortBlurb}
  Fast parser and formatter for HTTP Date.
  .
@@ -45,10 +57,13 @@ Description: HTTP Date parser/formatter${haskell:ShortBlurb}
 Package: libghc-http-date-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: HTTP Date parser/formatter${haskell:ShortBlurb}
  Fast parser and formatter for HTTP Date.
  .
