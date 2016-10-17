@@ -1,26 +1,29 @@
 Source: haskell-hslua
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- pkg-config,
+ haskell-devscripts (>= 0.10),
+ libghc-hspec-contrib-dev,
+ libghc-hspec-dev,
+ libghc-hunit-dev,
+ libghc-quickcheck-instances-dev,
+ libghc-quickcheck2-dev (>= 2.7),
+ libghc-text-dev,
  liblua5.1-0-dev,
  libluajit-5.1-dev [amd64 armel armhf i386 mips mipsel powerpc hurd-i386 kfreebsd-i386],
- libghc-hspec-dev,
- libghc-hspec-contrib-dev,
- libghc-hunit-dev,
- libghc-text-dev,
- libghc-quickcheck2-dev (>= 2.7),
- libghc-quickcheck-instances-dev,
-Build-Depends-Indep: ghc-doc,
+ pkg-config,
+Build-Depends-Indep:
+ ghc-doc,
 Standards-Version: 3.9.8
 Homepage: http://hackage.haskell.org/package/hslua
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-hslua
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 X-Description: Lua language interpreter embedding in Haskell
  The Scripting.Lua module is a wrapper of Lua language interpreter as
@@ -28,14 +31,18 @@ X-Description: Lua language interpreter embedding in Haskell
 
 Package: libghc-hslua-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
- ${misc:Depends},
+Depends:
  liblua5.1-0-dev,
  libluajit-5.1-dev [amd64 armel armhf i386 mips mipsel powerpc hurd-i386 kfreebsd-i386],
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -43,11 +50,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-hslua-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -56,10 +67,13 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-hslua-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
