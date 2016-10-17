@@ -1,25 +1,31 @@
 Source: haskell-network-conduit-tls
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Christopher Reichert <creichert07@gmail.com>
+Uploaders:
+ Christopher Reichert <creichert07@gmail.com>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
+ libghc-conduit-dev,
  libghc-conduit-dev (>= 1.1),
- libghc-conduit-prof,
+ libghc-conduit-extra-dev,
  libghc-conduit-extra-dev (>= 1.1),
  libghc-conduit-extra-prof,
+ libghc-conduit-prof,
  libghc-connection-dev,
  libghc-connection-prof,
  libghc-cprng-aes-dev,
  libghc-cprng-aes-prof,
  libghc-data-default-dev,
  libghc-data-default-prof,
+ libghc-hunit-dev,
  libghc-monad-control-dev,
  libghc-monad-control-prof,
+ libghc-mtl-dev,
  libghc-network-dev,
  libghc-network-prof,
  libghc-streaming-commons-dev,
@@ -28,11 +34,8 @@ Build-Depends: debhelper (>= 9),
  libghc-tls-prof,
  libghc-transformers-base-dev,
  libghc-transformers-base-prof,
- libghc-hunit-dev,
- libghc-conduit-dev,
- libghc-conduit-extra-dev,
- libghc-mtl-dev,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-conduit-doc,
  libghc-conduit-extra-doc,
  libghc-connection-doc,
@@ -45,19 +48,23 @@ Build-Depends-Indep: ghc-doc,
  libghc-transformers-base-doc,
 Standards-Version: 3.9.8
 Homepage: https://github.com/snoyberg/conduit
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-network-conduit-tls
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
-X-Description: Create TLS-aware network code with conduits
+X-Description: create TLS-aware network code with conduits
   Uses the tls package for a pure-Haskell implementation.
 
 Package: libghc-network-conduit-tls-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -65,11 +72,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-network-conduit-tls-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -78,10 +89,13 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-network-conduit-tls-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
