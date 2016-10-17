@@ -1,34 +1,37 @@
 Source: haskell-nonce
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Christopher Reichert <creichert07@gmail.com>
+Uploaders:
+ Christopher Reichert <creichert07@gmail.com>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-base64-bytestring-dev (>= 1.0),
+ haskell-devscripts (>= 0.10),
  libghc-base64-bytestring-dev (<< 1.1),
+ libghc-base64-bytestring-dev (>= 1.0),
  libghc-base64-bytestring-prof,
- libghc-cprng-aes-dev (>= 0.5),
  libghc-cprng-aes-dev (<< 0.7),
+ libghc-cprng-aes-dev (>= 0.5),
  libghc-cprng-aes-prof,
- libghc-crypto-random-dev (>= 0.0),
  libghc-crypto-random-dev (<< 0.1),
+ libghc-crypto-random-dev (>= 0.0),
  libghc-crypto-random-prof,
  libghc-text-dev (>= 0.9),
  libghc-text-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-base64-bytestring-doc,
  libghc-cprng-aes-doc,
  libghc-crypto-random-doc,
  libghc-text-doc,
 Standards-Version: 3.9.8
 Homepage: https://github.com/prowdsponsor/nonce
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-nonce
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
-X-Description: Generate cryptographic nonces.
+X-Description: generate cryptographic nonces
  According to the Wikipedia, a nonce is an arbitrary number used
  only once in a cryptographic communication.  This package
  contain helper functions for generating nonces.
@@ -40,13 +43,18 @@ X-Description: Generate cryptographic nonces.
 
 Package: libghc-nonce-dev
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
   ${haskell:LongDescription}
   .
@@ -54,12 +62,17 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-nonce-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
   ${haskell:LongDescription}
   .
@@ -68,11 +81,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-nonce-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
   ${haskell:LongDescription}
   .
