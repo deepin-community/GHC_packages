@@ -1,43 +1,50 @@
 Source: haskell-rsa
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-sha-dev (>= 1.6.4.1),
- libghc-sha-dev (<< 2.0),
- libghc-sha-prof,
- libghc-crypto-api-dev (>= 0.10),
+ haskell-devscripts (>= 0.10),
  libghc-crypto-api-dev (<< 0.14),
+ libghc-crypto-api-dev (>= 0.10),
  libghc-crypto-api-prof,
- libghc-crypto-pubkey-types-dev (>= 0.2),
  libghc-crypto-pubkey-types-dev (<< 0.6),
+ libghc-crypto-pubkey-types-dev (>= 0.2),
  libghc-crypto-pubkey-types-prof,
- libghc-puremd5-dev (>= 2.1),
  libghc-puremd5-dev (<< 2.3),
+ libghc-puremd5-dev (>= 2.1),
  libghc-puremd5-prof,
-Build-Depends-Indep: ghc-doc,
- libghc-sha-doc,
+ libghc-sha-dev (<< 2.0),
+ libghc-sha-dev (>= 1.6.4.1),
+ libghc-sha-prof,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-crypto-api-doc,
  libghc-crypto-pubkey-types-doc,
  libghc-puremd5-doc,
+ libghc-sha-doc,
 Standards-Version: 3.9.8
 Homepage: http://hackage.haskell.org/package/RSA
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-rsa
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-rsa-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: implementation of RSA, using the padding schemes of PKCS#1 v2.1.${haskell:ShortBlurb}
  This library implements the RSA encryption and signature algorithms for
  arbitrarily-sized ByteStrings. While the implementations work, they are not
@@ -49,11 +56,15 @@ Description: implementation of RSA, using the padding schemes of PKCS#1 v2.1.${h
 
 Package: libghc-rsa-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: implementation of RSA, using padding schemes of PKCS#1${haskell:ShortBlurb}
  This library implements the RSA encryption and signature algorithms for
  arbitrarily-sized ByteStrings. While the implementations work, they are not
@@ -66,10 +77,13 @@ Description: implementation of RSA, using padding schemes of PKCS#1${haskell:Sho
 Package: libghc-rsa-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: implementation of RSA, using padding schemes of PKCS#1 v2.1.${haskell:ShortBlurb}
  This library implements the RSA encryption and signature algorithms for
  arbitrarily-sized ByteStrings. While the implementations work, they are not
