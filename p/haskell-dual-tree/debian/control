@@ -1,39 +1,46 @@
 Source: haskell-dual-tree
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>
+Uploaders:
+ Joachim Breitner <nomeata@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-monoid-extras-dev (>= 0.2),
+ haskell-devscripts (>= 0.10),
  libghc-monoid-extras-dev (<< 0.5),
+ libghc-monoid-extras-dev (>= 0.2),
  libghc-monoid-extras-prof,
- libghc-newtype-dev (>= 0.2),
  libghc-newtype-dev (<< 0.3),
+ libghc-newtype-dev (>= 0.2),
  libghc-newtype-prof,
- libghc-semigroups-dev (>= 0.8),
  libghc-semigroups-dev (<< 0.19),
+ libghc-semigroups-dev (>= 0.8),
  libghc-semigroups-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-monoid-extras-doc,
  libghc-newtype-doc,
  libghc-semigroups-doc,
 Standards-Version: 3.9.8
 Homepage: http://hackage.haskell.org/package/dual-tree
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-dual-tree
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-dual-tree-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Rose trees with cached and accumulating monoidal annotations${haskell:ShortBlurb}
  Rose (n-ary) trees with both upwards- (i.e. cached) and downwards-traveling
  (i.e. accumulating) monoidal annotations.
@@ -46,11 +53,15 @@ Description: Rose trees with cached and accumulating monoidal annotations${haske
 
 Package: libghc-dual-tree-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Rose trees with cached and accumulating monoidal annotations${haskell:ShortBlurb}
  Rose (n-ary) trees with both upwards- (i.e. cached) and downwards-traveling
  (i.e. accumulating) monoidal annotations.
@@ -64,10 +75,13 @@ Description: Rose trees with cached and accumulating monoidal annotations${haske
 Package: libghc-dual-tree-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: Rose trees with cached and accumulating monoidal annotations${haskell:ShortBlurb}
  Rose (n-ary) trees with both upwards- (i.e. cached) and downwards-traveling
  (i.e. accumulating) monoidal annotations.
