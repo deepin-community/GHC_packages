@@ -2,71 +2,78 @@ Source: haskell-log-domain
 Section: haskell
 Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.10)
-  , ghc
-  , ghc-prof
-  , libghc-bytes-dev (>= 0.7)
-  , libghc-bytes-dev (<< 1)
-  , libghc-bytes-prof
-  , libghc-cereal-dev (>= 0.3.5)
-  , libghc-cereal-dev (<< 0.6)
-  , libghc-cereal-prof
-  , libghc-comonad-dev (>= 4)
-  , libghc-comonad-dev (<< 6)
-  , libghc-comonad-prof
-  , libghc-distributive-dev (>= 0.3)
-  , libghc-distributive-dev (<< 1)
-  , libghc-distributive-prof
-  , libghc-generic-deriving-dev
-  , libghc-generic-deriving-prof
-  , libghc-hashable-dev (>= 1.1.2.3)
-  , libghc-hashable-dev (<< 1.3)
-  , libghc-hashable-prof
-  , libghc-hashable-extras-dev (>= 0.2)
-  , libghc-hashable-extras-dev (<< 1)
-  , libghc-hashable-extras-prof
-  , libghc-safecopy-dev (>= 0.8.1)
-  , libghc-safecopy-dev (<< 0.10)
-  , libghc-safecopy-prof
-  , libghc-semigroupoids-dev (>= 4)
-  , libghc-semigroupoids-dev (<< 6)
-  , libghc-semigroupoids-prof
-  , libghc-semigroups-dev (>= 0.8.4)
-  , libghc-semigroups-dev (<< 1)
-  , libghc-semigroups-prof
-  , libghc-vector-dev (>= 0.9)
-  , libghc-vector-dev (<< 0.12)
-  , libghc-vector-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-bytes-doc
-  , libghc-cereal-doc
-  , libghc-comonad-doc
-  , libghc-distributive-doc
-  , libghc-generic-deriving-doc
-  , libghc-hashable-doc
-  , libghc-hashable-extras-doc
-  , libghc-safecopy-doc
-  , libghc-semigroupoids-doc
-  , libghc-semigroups-doc
-  , libghc-vector-doc
+Uploaders:
+ Clint Adams <clint@debian.org>,
+Build-Depends:
+ cdbs,
+ debhelper (>= 9),
+ ghc (>= 8),
+ ghc-prof,
+ haskell-devscripts (>= 0.10),
+ libghc-bytes-dev (<< 1),
+ libghc-bytes-dev (>= 0.7),
+ libghc-bytes-prof,
+ libghc-cereal-dev (<< 0.6),
+ libghc-cereal-dev (>= 0.3.5),
+ libghc-cereal-prof,
+ libghc-comonad-dev (<< 6),
+ libghc-comonad-dev (>= 4),
+ libghc-comonad-prof,
+ libghc-distributive-dev (<< 1),
+ libghc-distributive-dev (>= 0.3),
+ libghc-distributive-prof,
+ libghc-generic-deriving-dev,
+ libghc-generic-deriving-prof,
+ libghc-hashable-dev (<< 1.3),
+ libghc-hashable-dev (>= 1.1.2.3),
+ libghc-hashable-extras-dev (<< 1),
+ libghc-hashable-extras-dev (>= 0.2),
+ libghc-hashable-extras-prof,
+ libghc-hashable-prof,
+ libghc-safecopy-dev (<< 0.10),
+ libghc-safecopy-dev (>= 0.8.1),
+ libghc-safecopy-prof,
+ libghc-semigroupoids-dev (<< 6),
+ libghc-semigroupoids-dev (>= 4),
+ libghc-semigroupoids-prof,
+ libghc-semigroups-dev (<< 1),
+ libghc-semigroups-dev (>= 0.8.4),
+ libghc-semigroups-prof,
+ libghc-vector-dev (<< 0.12),
+ libghc-vector-dev (>= 0.9),
+ libghc-vector-prof,
+Build-Depends-Indep:
+ ghc-doc,
+ libghc-bytes-doc,
+ libghc-cereal-doc,
+ libghc-comonad-doc,
+ libghc-distributive-doc,
+ libghc-generic-deriving-doc,
+ libghc-hashable-doc,
+ libghc-hashable-extras-doc,
+ libghc-safecopy-doc,
+ libghc-semigroupoids-doc,
+ libghc-semigroups-doc,
+ libghc-vector-doc,
 Standards-Version: 3.9.8
 Homepage: http://hackage.haskell.org/package/log-domain
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-log-domain
 X-Description: Log-domain arithmetic
  This package provides log-domain floats, doubles and complex numbers.
 
 Package: libghc-log-domain-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -74,11 +81,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-log-domain-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -87,9 +98,13 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-log-domain-doc
 Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
