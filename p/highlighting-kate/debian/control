@@ -1,27 +1,31 @@
 Source: highlighting-kate
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>, Kiwamu Okabe <kiwamu@debian.or.jp>
+Uploaders:
+ Joachim Breitner <nomeata@debian.org>,
+ Kiwamu Okabe <kiwamu@debian.or.jp>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-blaze-html-dev (>= 0.4.2),
+ haskell-devscripts (>= 0.10),
  libghc-blaze-html-dev (<< 0.9),
+ libghc-blaze-html-dev (>= 0.4.2),
  libghc-blaze-html-prof,
+ libghc-diff-dev,
  libghc-mtl-dev,
  libghc-mtl-prof,
  libghc-parsec3-dev,
  libghc-parsec3-prof,
- libghc-pcre-light-dev (>= 0.4),
  libghc-pcre-light-dev (<< 0.5),
+ libghc-pcre-light-dev (>= 0.4),
  libghc-pcre-light-prof,
  libghc-utf8-string-dev,
  libghc-utf8-string-prof,
- libghc-diff-dev,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-blaze-html-doc,
  libghc-mtl-doc,
  libghc-parsec3-doc,
@@ -29,17 +33,21 @@ Build-Depends-Indep: ghc-doc,
  libghc-utf8-string-doc,
 Standards-Version: 3.9.8
 Homepage: http://github.com/jgm/highlighting-kate
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/highlighting-kate
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-highlighting-kate-dev
 Architecture: any
-Depends: ${misc:Depends},
- ${shlibs:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: syntax highlighting library based on Kate syntax descriptions${haskell:ShortBlurb}
  Highlighting-kate is a syntax highlighting library with support for over
  50 languages. The syntax parsers are automatically generated from Kate syntax
@@ -58,12 +66,16 @@ Description: syntax highlighting library based on Kate syntax descriptions${hask
 
 Package: libghc-highlighting-kate-prof
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: highlighting-kate library with profiling enabled${haskell:ShortBlurb}
  Highlighting-kate is a syntax highlighting library with support for over
  50 languages. The syntax parsers are automatically generated from Kate syntax
@@ -83,10 +95,13 @@ Description: highlighting-kate library with profiling enabled${haskell:ShortBlur
 Package: libghc-highlighting-kate-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: library documentation for highlighting-kate${haskell:ShortBlurb}
  Highlighting-kate is a syntax highlighting library with support for over
  50 languages. The syntax parsers are automatically generated from Kate syntax
