@@ -1,15 +1,18 @@
 Source: haskell-clientsession
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-base64-bytestring-dev (>= 0.1.1.1),
  libghc-base64-bytestring-prof,
+ libghc-cereal-dev,
  libghc-cereal-dev (>= 0.3),
  libghc-cereal-prof,
  libghc-cipher-aes-dev (>= 0.1.7),
@@ -22,18 +25,18 @@ Build-Depends: debhelper (>= 9),
  libghc-crypto-random-prof,
  libghc-entropy-dev (>= 0.2.1),
  libghc-entropy-prof,
+ libghc-hspec-dev (>= 1.3),
+ libghc-hunit-dev,
+ libghc-quickcheck2-dev (>= 2),
  libghc-setenv-dev,
  libghc-setenv-prof,
- libghc-skein-dev (>= 1.0),
  libghc-skein-dev (<< 1.1),
+ libghc-skein-dev (>= 1.0),
  libghc-skein-prof,
  libghc-tagged-dev (>= 0.1),
  libghc-tagged-prof,
- libghc-hunit-dev,
- libghc-quickcheck2-dev (>= 2),
- libghc-cereal-dev,
- libghc-hspec-dev (>= 1.3),
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-base64-bytestring-doc,
  libghc-cereal-doc,
  libghc-cipher-aes-doc,
@@ -46,17 +49,21 @@ Build-Depends-Indep: ghc-doc,
  libghc-tagged-doc,
 Standards-Version: 3.9.8
 Homepage: http://github.com/yesodweb/clientsession/tree/master
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-clientsession
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-clientsession-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: library for web session data in cookies${haskell:ShortBlurb}
  Achieves security through AES encryption and MD5 hashing. Uses base64
  encoding to avoid any issues with characters.
@@ -65,11 +72,15 @@ Description: library for web session data in cookies${haskell:ShortBlurb}
 
 Package: libghc-clientsession-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: library for web session data in cookies${haskell:ShortBlurb}
  Achieves security through AES encryption and MD5 hashing. Uses base64
  encoding to avoid any issues with characters.
@@ -79,10 +90,13 @@ Description: library for web session data in cookies${haskell:ShortBlurb}
 Package: libghc-clientsession-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: library for web session data in cookies${haskell:ShortBlurb}
  Achieves security through AES encryption and MD5 hashing. Uses base64
  encoding to avoid any issues with characters.
