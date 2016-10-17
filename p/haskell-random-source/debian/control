@@ -2,44 +2,47 @@ Source: haskell-random-source
 Section: haskell
 Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
-Build-Depends: debhelper (>= 9)
-  , cdbs
-  , haskell-devscripts (>= 0.10)
-  , ghc
-  , ghc-prof
-  , libghc-flexible-defaults-dev (>= 0.0.0.2)
-  , libghc-flexible-defaults-prof
-  , libghc-mersenne-random-pure64-dev
-  , libghc-mersenne-random-pure64-prof
-  , libghc-mtl-dev (>= 1)
-  , libghc-mtl-dev (<< 3)
-  , libghc-mtl-prof
-  , libghc-mwc-random-dev
-  , libghc-mwc-random-prof
-  , libghc-random-dev
-  , libghc-random-prof
-  , libghc-stateref-dev (>= 0.3)
-  , libghc-stateref-dev (<< 0.4)
-  , libghc-stateref-prof
-  , libghc-syb-dev
-  , libghc-syb-prof
-  , ghc-ghci
-  , libghc-th-extras-dev
-  , libghc-th-extras-prof
-Build-Depends-Indep: ghc-doc
-  , libghc-flexible-defaults-doc
-  , libghc-mersenne-random-pure64-doc
-  , libghc-mtl-doc
-  , libghc-mwc-random-doc
-  , libghc-random-doc
-  , libghc-stateref-doc
-  , libghc-syb-doc
-  , libghc-th-extras-doc
+Uploaders:
+ Clint Adams <clint@debian.org>,
+Build-Depends:
+ cdbs,
+ debhelper (>= 9),
+ ghc (>= 8),
+ ghc-ghci,
+ ghc-prof,
+ haskell-devscripts (>= 0.10),
+ libghc-flexible-defaults-dev (>= 0.0.0.2),
+ libghc-flexible-defaults-prof,
+ libghc-mersenne-random-pure64-dev,
+ libghc-mersenne-random-pure64-prof,
+ libghc-mtl-dev (<< 3),
+ libghc-mtl-dev (>= 1),
+ libghc-mtl-prof,
+ libghc-mwc-random-dev,
+ libghc-mwc-random-prof,
+ libghc-random-dev,
+ libghc-random-prof,
+ libghc-stateref-dev (<< 0.4),
+ libghc-stateref-dev (>= 0.3),
+ libghc-stateref-prof,
+ libghc-syb-dev,
+ libghc-syb-prof,
+ libghc-th-extras-dev,
+ libghc-th-extras-prof,
+Build-Depends-Indep:
+ ghc-doc,
+ libghc-flexible-defaults-doc,
+ libghc-mersenne-random-pure64-doc,
+ libghc-mtl-doc,
+ libghc-mwc-random-doc,
+ libghc-random-doc,
+ libghc-stateref-doc,
+ libghc-syb-doc,
+ libghc-th-extras-doc,
 Standards-Version: 3.9.8
 Homepage: http://hackage.haskell.org/package/random-source
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-random-source
 X-Description: generic basis for random number generators
  Random number generation based on entropy sources able to produce a
  small but well-defined set of primitive variates. Also includes
@@ -49,12 +52,16 @@ X-Description: generic basis for random number generators
 
 Package: libghc-random-source-dev
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${shlibs:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -62,11 +69,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-random-source-prof
 Architecture: any
-Depends: ${haskell:Depends}
-  , ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Provides: ${haskell:Provides}
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -75,9 +86,13 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-random-source-doc
 Section: doc
 Architecture: all
-Depends: ${misc:Depends}, ${haskell:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
