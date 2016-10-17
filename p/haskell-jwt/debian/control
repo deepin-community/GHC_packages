@@ -1,51 +1,54 @@
 Source: haskell-jwt
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>
+Uploaders:
+ Joachim Breitner <nomeata@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
+ libghc-aeson-dev,
  libghc-aeson-dev (>= 0.7),
  libghc-aeson-prof,
+ libghc-cryptonite-dev,
  libghc-cryptonite-dev (>= 0.6),
  libghc-cryptonite-prof,
+ libghc-data-default-dev,
  libghc-data-default-dev (>= 0.5),
  libghc-data-default-prof,
+ libghc-doctest-dev (>= 0.9.11),
+ libghc-http-types-dev,
  libghc-http-types-dev (>= 0.8),
  libghc-http-types-prof,
+ libghc-hunit-dev,
+ libghc-lens-aeson-dev,
+ libghc-lens-dev,
+ libghc-memory-dev,
  libghc-memory-dev (>= 0.8),
  libghc-memory-prof,
  libghc-network-uri-dev,
  libghc-network-uri-prof,
+ libghc-quickcheck2-dev (>= 2.4.0.1),
  libghc-scientific-dev (>= 0.2),
  libghc-scientific-prof,
  libghc-semigroups-dev (>= 0.15.4),
  libghc-semigroups-prof,
- libghc-text-dev (>= 0.11),
- libghc-text-prof,
- libghc-unordered-containers-dev (>= 0.2),
- libghc-unordered-containers-prof,
- libghc-vector-dev (>= 0.7.1),
- libghc-vector-prof,
- libghc-hunit-dev,
- libghc-quickcheck2-dev (>= 2.4.0.1),
- libghc-aeson-dev,
- libghc-cryptonite-dev,
- libghc-data-default-dev,
- libghc-doctest-dev (>= 0.9.11),
- libghc-http-types-dev,
- libghc-lens-dev,
- libghc-lens-aeson-dev,
- libghc-memory-dev,
  libghc-tasty-dev (>= 0.7),
  libghc-tasty-hunit-dev (>= 0.4),
  libghc-tasty-quickcheck-dev (>= 0.3),
  libghc-tasty-th-dev (>= 0.1),
+ libghc-text-dev (>= 0.11),
+ libghc-text-prof,
  libghc-unordered-containers-dev,
-Build-Depends-Indep: ghc-doc,
+ libghc-unordered-containers-dev (>= 0.2),
+ libghc-unordered-containers-prof,
+ libghc-vector-dev (>= 0.7.1),
+ libghc-vector-prof,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-aeson-doc,
  libghc-cryptonite-doc,
  libghc-data-default-doc,
@@ -59,7 +62,7 @@ Build-Depends-Indep: ghc-doc,
  libghc-vector-doc,
 Standards-Version: 3.9.8
 Homepage: https://bitbucket.org/ssaasen/haskell-jwt
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-jwt
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 X-Description: JSON Web Token (JWT) decoding and encoding
  JSON Web Token (JWT) is a compact URL-safe means of representing claims to be transferred between two parties.
@@ -68,13 +71,18 @@ X-Description: JSON Web Token (JWT) decoding and encoding
 
 Package: libghc-jwt-dev
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -82,12 +90,17 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-jwt-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -96,11 +109,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-jwt-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
