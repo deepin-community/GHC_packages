@@ -1,13 +1,15 @@
 Source: haskell-http-reverse-proxy
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-async-dev,
  libghc-async-prof,
  libghc-blaze-builder-dev (>= 0.3),
@@ -15,9 +17,9 @@ Build-Depends: debhelper (>= 9),
  libghc-case-insensitive-dev (>= 0.4),
  libghc-case-insensitive-prof,
  libghc-conduit-dev (>= 1.1),
- libghc-conduit-prof,
  libghc-conduit-extra-dev,
  libghc-conduit-extra-prof,
+ libghc-conduit-prof,
  libghc-data-default-class-dev,
  libghc-data-default-class-prof,
  libghc-http-client-dev (>= 0.3),
@@ -37,12 +39,13 @@ Build-Depends: debhelper (>= 9),
  libghc-text-dev (>= 0.11),
  libghc-text-prof,
  libghc-wai-dev (>= 3.0),
- libghc-wai-prof,
  libghc-wai-logger-dev,
  libghc-wai-logger-prof,
+ libghc-wai-prof,
  libghc-word8-dev (>= 0.0),
  libghc-word8-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-async-doc,
  libghc-blaze-builder-doc,
  libghc-case-insensitive-doc,
@@ -62,17 +65,21 @@ Build-Depends-Indep: ghc-doc,
  libghc-word8-doc,
 Standards-Version: 3.9.8
 Homepage: https://github.com/fpco/http-reverse-proxy
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-http-reverse-proxy
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-http-reverse-proxy-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: reverse-proxy HTTP requests, either over raw sockets or with WAI${haskell:ShortBlurb}
  http-reverse-proxy provides a simple means of reverse-proxying HTTP
  requests. The raw approach uses the same technique as leveraged by
@@ -83,11 +90,15 @@ Description: reverse-proxy HTTP requests, either over raw sockets or with WAI${h
 
 Package: libghc-http-reverse-proxy-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: reverse-proxy HTTP requests, over raw sockets or with WAI${haskell:ShortBlurb}
  http-reverse-proxy provides a simple means of reverse-proxying HTTP
  requests. The raw approach uses the same technique as leveraged by
@@ -99,10 +110,13 @@ Description: reverse-proxy HTTP requests, over raw sockets or with WAI${haskell:
 Package: libghc-http-reverse-proxy-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: reverse-proxy HTTP requests, over raw sockets or with WAI${haskell:ShortBlurb}
  http-reverse-proxy provides a simple means of reverse-proxying HTTP
  requests. The raw approach uses the same technique as leveraged by
