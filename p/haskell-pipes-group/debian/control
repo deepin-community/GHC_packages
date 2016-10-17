@@ -1,29 +1,32 @@
 Source: haskell-pipes-group
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-free-dev (>= 3.2),
+ haskell-devscripts (>= 0.10),
  libghc-free-dev (<< 5),
+ libghc-free-dev (>= 3.2),
  libghc-free-prof,
- libghc-pipes-dev (>= 4.0),
  libghc-pipes-dev (<< 4.3),
- libghc-pipes-prof,
- libghc-pipes-parse-dev (>= 3.0.0),
+ libghc-pipes-dev (>= 4.0),
  libghc-pipes-parse-dev (<< 3.1),
+ libghc-pipes-parse-dev (>= 3.0.0),
  libghc-pipes-parse-prof,
-Build-Depends-Indep: ghc-doc,
+ libghc-pipes-prof,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-free-doc,
  libghc-pipes-doc,
  libghc-pipes-parse-doc,
 Standards-Version: 3.9.8
 Homepage: http://hackage.haskell.org/package/pipes-group
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-pipes-group
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 X-Description: group streams into substreams
  pipes-group uses FreeT and lenses to group streams into sub-streams.
@@ -33,12 +36,16 @@ X-Description: group streams into substreams
 
 Package: libghc-pipes-group-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -46,11 +53,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-pipes-group-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -59,10 +70,13 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-pipes-group-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
