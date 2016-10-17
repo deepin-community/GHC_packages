@@ -1,31 +1,34 @@
 Source: haskell-yesod-persistent
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-blaze-builder-dev,
  libghc-blaze-builder-prof,
  libghc-conduit-dev,
  libghc-conduit-prof,
- libghc-persistent-dev (>= 2.1),
  libghc-persistent-dev (<< 2.7),
+ libghc-persistent-dev (>= 2.1),
  libghc-persistent-prof,
- libghc-persistent-template-dev (>= 2.1),
  libghc-persistent-template-dev (<< 2.7),
+ libghc-persistent-template-dev (>= 2.1),
  libghc-persistent-template-prof,
  libghc-resource-pool-dev,
  libghc-resource-pool-prof,
  libghc-resourcet-dev (>= 0.4.5),
  libghc-resourcet-prof,
- libghc-yesod-core-dev (>= 1.4.0),
  libghc-yesod-core-dev (<< 1.5),
+ libghc-yesod-core-dev (>= 1.4.0),
  libghc-yesod-core-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-blaze-builder-doc,
  libghc-conduit-doc,
  libghc-persistent-doc,
@@ -35,17 +38,21 @@ Build-Depends-Indep: ghc-doc,
  libghc-yesod-core-doc,
 Standards-Version: 3.9.8
 Homepage: http://www.yesodweb.com/
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-yesod-persistent
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-yesod-persistent-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: framework for type-safe, RESTful web applications${haskell:ShortBlurb}
  Yesod is a framework designed to foster creation of RESTful web
  application that have strong compile-time guarantees of correctness.
@@ -56,11 +63,15 @@ Description: framework for type-safe, RESTful web applications${haskell:ShortBlu
 
 Package: libghc-yesod-persistent-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: framework for type-safe, RESTful web applications${haskell:ShortBlurb}
  Yesod is a framework designed to foster creation of RESTful web
  application that have strong compile-time guarantees of correctness.
@@ -72,10 +83,13 @@ Description: framework for type-safe, RESTful web applications${haskell:ShortBlu
 Package: libghc-yesod-persistent-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: framework for type-safe, RESTful web applications${haskell:ShortBlurb}
  Yesod is a framework designed to foster creation of RESTful web
  application that have strong compile-time guarantees of correctness.
