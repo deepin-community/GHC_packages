@@ -1,12 +1,17 @@
 Source: haskell-hopenpgp-tools
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
+ alex,
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
+ happy,
+ haskell-devscripts (>= 0.10),
+ help2man,
  libghc-aeson-dev,
  libghc-ansi-wl-pprint-dev (>= 0.6.7),
  libghc-attoparsec-dev (>= 0.10.0.0),
@@ -19,8 +24,8 @@ Build-Depends: debhelper (>= 9),
  libghc-errors-dev,
  libghc-fgl-dev,
  libghc-graphviz-dev,
- libghc-hopenpgp-dev (>= 2.5),
  libghc-hopenpgp-dev (<< 3),
+ libghc-hopenpgp-dev (>= 2.5),
  libghc-http-client-dev,
  libghc-http-client-tls-dev,
  libghc-http-types-dev,
@@ -36,22 +41,23 @@ Build-Depends: debhelper (>= 9),
  libghc-wl-pprint-extras-dev,
  libghc-wl-pprint-terminfo-dev,
  libghc-yaml-dev,
- alex,
- happy,
- help2man,
 Standards-Version: 3.9.8
 Homepage: http://floss.scru.org/hopenpgp-tools
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-hopenpgp-tools
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: hopenpgp-tools
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: hOpenPGP-based command-line tools
  These utilities, hot, hokey, and hkt, are works in progress.  They
  provide some OpenPGP-related functionality.
