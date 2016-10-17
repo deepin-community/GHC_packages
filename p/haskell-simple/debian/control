@@ -1,25 +1,31 @@
 Source: haskell-simple
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.9),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.9),
  libghc-aeson-dev,
  libghc-aeson-prof,
+ libghc-attoparsec-dev,
  libghc-base64-bytestring-dev,
  libghc-base64-bytestring-prof,
  libghc-blaze-builder-dev,
  libghc-blaze-builder-prof,
  libghc-bytestring-dev,
  libghc-bytestring-prof,
+ libghc-cmdargs-dev,
  libghc-directory-dev,
  libghc-directory-prof,
  libghc-filepath-dev,
  libghc-filepath-prof,
+ libghc-hspec-contrib-dev,
+ libghc-hspec-dev,
  libghc-http-types-dev,
  libghc-http-types-prof,
  libghc-mime-types-dev,
@@ -28,29 +34,26 @@ Build-Depends: debhelper (>= 9),
  libghc-monad-control-prof,
  libghc-mtl-dev,
  libghc-mtl-prof,
+ libghc-process-dev,
+ libghc-setenv-dev,
  libghc-simple-templates-dev (>= 0.7.0),
  libghc-simple-templates-prof,
  libghc-text-dev,
  libghc-text-prof,
- libghc-transformers-dev,
- libghc-transformers-prof,
  libghc-transformers-base-dev,
  libghc-transformers-base-prof,
+ libghc-transformers-dev,
+ libghc-transformers-prof,
  libghc-unordered-containers-dev,
  libghc-unordered-containers-prof,
  libghc-vector-dev,
  libghc-vector-prof,
  libghc-wai-dev (>= 3.0),
- libghc-wai-prof,
  libghc-wai-extra-dev,
  libghc-wai-extra-prof,
- libghc-attoparsec-dev,
- libghc-cmdargs-dev,
- libghc-process-dev,
- libghc-setenv-dev,
- libghc-hspec-dev,
- libghc-hspec-contrib-dev,
-Build-Depends-Indep: ghc-doc,
+ libghc-wai-prof,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-aeson-doc,
  libghc-base64-bytestring-doc,
  libghc-blaze-builder-doc,
@@ -63,15 +66,15 @@ Build-Depends-Indep: ghc-doc,
  libghc-mtl-doc,
  libghc-simple-templates-doc,
  libghc-text-doc,
- libghc-transformers-doc,
  libghc-transformers-base-doc,
+ libghc-transformers-doc,
  libghc-unordered-containers-doc,
  libghc-vector-doc,
  libghc-wai-doc,
  libghc-wai-extra-doc,
 Standards-Version: 3.9.8
 Homepage: http://simple.cx
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-simple
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 X-Description: minimalist web framework for the WAI server interface
  Simple is a "framework-less" web framework for Haskell web applications
@@ -87,13 +90,18 @@ X-Description: minimalist web framework for the WAI server interface
 
 Package: libghc-simple-dev
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -101,12 +109,17 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-simple-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -115,11 +128,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-simple-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -127,14 +144,19 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: simple
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
- libghc-simple-dev
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ libghc-simple-dev,
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
