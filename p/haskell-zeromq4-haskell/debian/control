@@ -1,18 +1,20 @@
 Source: haskell-zeromq4-haskell
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-async-dev (>= 2.0),
+ haskell-devscripts (>= 0.10),
  libghc-async-dev (<< 3.0),
+ libghc-async-dev (>= 2.0),
  libghc-async-prof,
- libghc-exceptions-dev (>= 0.6),
  libghc-exceptions-dev (<< 1.0),
+ libghc-exceptions-dev (>= 0.6),
  libghc-exceptions-prof,
  libghc-monad-control-dev (>= 1.0),
  libghc-monad-control-prof,
@@ -22,7 +24,8 @@ Build-Depends: debhelper (>= 9),
  libghc-transformers-base-prof,
  libzmq3-dev (>= 4),
  pkg-config,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-async-doc,
  libghc-exceptions-doc,
  libghc-monad-control-doc,
@@ -43,13 +46,17 @@ X-Description: bindings to ZeroMQ 4.x
 
 Package: libghc-zeromq4-haskell-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
- ${misc:Depends},
+Depends:
  libzmq3-dev (>= 4),
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -57,11 +64,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-zeromq4-haskell-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -70,10 +81,13 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-zeromq4-haskell-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
