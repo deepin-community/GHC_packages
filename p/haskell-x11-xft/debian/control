@@ -1,34 +1,40 @@
 Source: haskell-x11-xft
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>
+Uploaders:
+ Joachim Breitner <nomeata@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-x11-dev (>= 1.2.1),
- libghc-x11-prof,
+ haskell-devscripts (>= 0.10),
  libghc-utf8-string-dev (>= 0.1),
  libghc-utf8-string-prof,
+ libghc-x11-dev (>= 1.2.1),
+ libghc-x11-prof,
  libxft-dev,
-Build-Depends-Indep: ghc-doc,
- libghc-x11-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-utf8-string-doc,
+ libghc-x11-doc,
 Standards-Version: 3.9.8
 Homepage: http://hackage.haskell.org/package/X11-xft
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-x11-xft
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-x11-xft-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
- ${misc:Depends},
+Depends:
  libxft-dev,
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Haskell Xft binding for GHC${haskell:ShortBlurb}
  This library is a binding to the Xft library.
  .
@@ -41,9 +47,11 @@ Description: Haskell Xft binding for GHC${haskell:ShortBlurb}
 
 Package: libghc-x11-xft-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Provides: ${haskell:Provides},
+Provides:
+ ${haskell:Provides},
 Description: Haskell Xft binding for GHC${haskell:ShortBlurb}
  This library is a binding to the Xft library.
  .
@@ -57,10 +65,13 @@ Description: Haskell Xft binding for GHC${haskell:ShortBlurb}
 Package: libghc-x11-xft-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: Haskell Xft binding for GHC${haskell:ShortBlurb}
  This library is a binding to the Xft library.
  .
