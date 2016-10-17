@@ -1,29 +1,32 @@
 Source: haskell-gtk-traymanager
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Louis Bettens <louis@bettens.info>
+Uploaders:
+ Louis Bettens <louis@bettens.info>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-glib-dev (>= 0.12.1),
+ haskell-devscripts (>= 0.10),
  libghc-glib-dev (<< 0.15),
+ libghc-glib-dev (>= 0.12.1),
  libghc-glib-prof,
- libghc-gtk-dev (>= 0.12.1),
  libghc-gtk-dev (<< 0.15),
+ libghc-gtk-dev (>= 0.12.1),
  libghc-gtk-prof,
- libx11-dev,
  libgtk2.0-dev,
-Build-Depends-Indep: ghc-doc,
+ libx11-dev,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-glib-doc,
  libghc-gtk-doc,
 Standards-Version: 3.9.8
 Homepage: http://github.com/travitch/gtk-traymanager
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-gtk-traymanager
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
-X-Description: Bindings for eggtraymanager (GTK+)
+X-Description: bindings for eggtraymanager (GTK+)
  This package provides a wrapper around the prolific eggtraymanager code. Note
  that it is *NOT* itself a system tray widget, though it is a very convenient
  utility for implementing one.
@@ -32,14 +35,18 @@ X-Description: Bindings for eggtraymanager (GTK+)
 
 Package: libghc-gtk-traymanager-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
- ${misc:Depends},
- libx11-dev,
+Depends:
  libgtk2.0-dev,
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ libx11-dev,
+ ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -47,11 +54,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-gtk-traymanager-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -60,10 +71,13 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-gtk-traymanager-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
