@@ -1,39 +1,46 @@
 Source: haskell-sdl
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Miriam Ruiz <little_miry@yahoo.es>
+Uploaders:
+ Miriam Ruiz <little_miry@yahoo.es>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
- cdbs,
- ghc,
- ghc-prof,
- libgl1-mesa-dev | libgl-dev,
- libglu1-mesa-dev | libglu-dev,
- libx11-dev,
+Build-Depends:
  alex,
  c2hs,
+ cdbs,
  cpphs,
- pkg-config,
+ debhelper (>= 9),
+ ghc (>= 8),
+ ghc-prof,
+ haskell-devscripts (>= 0.10),
+ libgl1-mesa-dev | libgl-dev,
+ libglu1-mesa-dev | libglu-dev,
  libsdl1.2-dev,
-Build-Depends-Indep: ghc-doc,
+ libx11-dev,
+ pkg-config,
+Build-Depends-Indep:
+ ghc-doc,
 Standards-Version: 3.9.8
 Homepage: http://hackage.haskell.org/package/SDL
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-sdl
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-sdl-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
- ${misc:Depends},
+Depends:
  libgl1-mesa-dev | libgl-dev,
  libglu1-mesa-dev | libglu-dev,
- libx11-dev,
  libsdl1.2-dev,
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ libx11-dev,
+ ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Haskell SDL binding for GHC
  This package provides the SDL library bindings for the Haskell programming
  language. SDL is a library that allows programs portable low level access
@@ -41,12 +48,16 @@ Description: Haskell SDL binding for GHC
 
 Package: libghc-sdl-prof
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: Haskell SDL binding for GHC - profiling libraries
  This package provides the SDL library bindings for the Haskell programming
  language, compiled for profiling. SDL is a library that allows programs
@@ -56,10 +67,13 @@ Description: Haskell SDL binding for GHC - profiling libraries
 Package: libghc-sdl-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: Haskell SDL binding for GHC - documentation
  This package provides the documentation for the SDL library bindings for
  the Haskell programming language. SDL is a library that allows programs
