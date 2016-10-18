@@ -1,23 +1,26 @@
 Source: haskell-mutable-containers
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>
+Uploaders:
+ Joachim Breitner <nomeata@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
+ libghc-hspec-dev,
  libghc-mono-traversable-dev,
  libghc-mono-traversable-prof,
+ libghc-primitive-dev,
  libghc-primitive-dev (>= 0.5.2.1),
  libghc-primitive-prof,
+ libghc-quickcheck2-dev,
  libghc-vector-dev,
  libghc-vector-prof,
- libghc-quickcheck2-dev,
- libghc-hspec-dev,
- libghc-primitive-dev,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-mono-traversable-doc,
  libghc-primitive-doc,
  libghc-vector-doc,
@@ -25,7 +28,7 @@ Standards-Version: 3.9.8
 Homepage: https://github.com/fpco/mutable-containers
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-mutable-containers
 Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
-X-Description: Abstactions and concrete implementations of mutable containers
+X-Description: abstactions and concrete implementations of mutable containers
  One of Haskell's strengths is immutable data structures. These structures make
  it easier to reason about code, simplify concurrency and parallelism, and in
  some cases can improve performance by allowing sharing. However, there are
@@ -36,13 +39,18 @@ X-Description: Abstactions and concrete implementations of mutable containers
 
 Package: libghc-mutable-containers-dev
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -50,12 +58,17 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-mutable-containers-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -64,11 +77,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-mutable-containers-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
