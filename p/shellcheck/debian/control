@@ -1,34 +1,31 @@
 Source: shellcheck
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders:
- Helmut Grohne <helmut@subdivi.de>,
+Uploaders: Helmut Grohne <helmut@subdivi.de>
 Priority: extra
 Section: devel
-Build-Depends:
+Build-Depends: debhelper (>= 9),
  cdbs,
- debhelper (>= 9),
- ghc (>= 8),
  haskell-devscripts (>= 0.10),
+ ghc,
  libghc-containers-dev,
  libghc-directory-dev,
  libghc-json-dev,
  libghc-mtl-dev (>= 2.2.1),
  libghc-parsec3-dev,
- libghc-process-dev,
- libghc-quickcheck2-dev (>= 2.7.4),
  libghc-regex-tdfa-dev,
+ libghc-quickcheck2-dev (>= 2.7.4),
+ libghc-process-dev,
  pandoc,
 Standards-Version: 3.9.8
 Homepage: http://hackage.haskell.org/package/ShellCheck
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/shellcheck
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: shellcheck
 Architecture: any
 Multi-Arch: foreign
-Depends:
+Depends: ${shlibs:Depends},
  ${misc:Depends},
- ${shlibs:Depends},
 Description: lint tool for shell scripts
  The goals of ShellCheck are:
  .
