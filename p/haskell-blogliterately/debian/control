@@ -1,83 +1,86 @@
 Source: haskell-blogliterately
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Dmitry Bogatov <KAction@gnu.org>
+Uploaders:
+ Dmitry Bogatov <KAction@gnu.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9.0),
- pandoc,
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9.0),
+ ghc (>= 8),
  ghc-prof,
- libghc-http-dev (>= 1:4000.3),
- libghc-http-dev (<< 1:4000.4),
- libghc-http-prof,
- libghc-haxml-dev (>= 1:1.22),
- libghc-haxml-dev (<< 1:1.26),
- libghc-haxml-prof,
- libghc-blaze-html-dev (>= 0.5),
+ haskell-devscripts (>= 0.10),
  libghc-blaze-html-dev (<< 0.9),
+ libghc-blaze-html-dev (>= 0.5),
  libghc-blaze-html-prof,
  libghc-bool-extras-dev,
  libghc-bool-extras-prof,
- libghc-cmdargs-dev (>= 0.9.5),
  libghc-cmdargs-dev (<< 0.11),
+ libghc-cmdargs-dev (>= 0.9.5),
  libghc-cmdargs-prof,
- libghc-data-default-dev (>= 0.5),
  libghc-data-default-dev (<< 0.8),
+ libghc-data-default-dev (>= 0.5),
  libghc-data-default-prof,
- libghc-haxr-dev (>= 3000.11),
+ libghc-haxml-dev (<< 1:1.26),
+ libghc-haxml-dev (>= 1:1.22),
+ libghc-haxml-prof,
  libghc-haxr-dev (<< 3000.12),
+ libghc-haxr-dev (>= 3000.11),
  libghc-haxr-prof,
- libghc-highlighting-kate-dev (>= 0.5),
  libghc-highlighting-kate-dev (<< 0.7),
+ libghc-highlighting-kate-dev (>= 0.5),
  libghc-highlighting-kate-prof,
- libghc-hscolour-dev (>= 1.20),
  libghc-hscolour-dev (<< 1.25),
+ libghc-hscolour-dev (>= 1.20),
  libghc-hscolour-prof,
- libghc-lens-dev (>= 3.8),
+ libghc-http-dev (<< 1:4000.4),
+ libghc-http-dev (>= 1:4000.3),
+ libghc-http-prof,
  libghc-lens-dev (<< 4.15),
+ libghc-lens-dev (>= 3.8),
  libghc-lens-prof,
  libghc-mtl-dev,
  libghc-mtl-prof,
- libghc-pandoc-dev (>= 1.14),
- libghc-pandoc-dev (<< 1.18),
- libghc-pandoc-prof,
- libghc-pandoc-citeproc-dev (>= 0.1.2),
  libghc-pandoc-citeproc-dev (<< 0.11),
+ libghc-pandoc-citeproc-dev (>= 0.1.2),
  libghc-pandoc-citeproc-prof,
- libghc-pandoc-types-dev (>= 1.16),
+ libghc-pandoc-dev (<< 1.18),
+ libghc-pandoc-dev (>= 1.14),
+ libghc-pandoc-prof,
  libghc-pandoc-types-dev (<< 1.17),
+ libghc-pandoc-types-dev (>= 1.16),
  libghc-pandoc-types-prof,
- libghc-parsec3-dev (>= 3),
  libghc-parsec3-dev (<< 3.2),
+ libghc-parsec3-dev (>= 3),
  libghc-parsec3-prof,
- libghc-split-dev (>= 0.1.4),
  libghc-split-dev (<< 0.3),
+ libghc-split-dev (>= 0.1.4),
  libghc-split-prof,
- libghc-strict-dev (>= 0.3),
  libghc-strict-dev (<< 0.4),
+ libghc-strict-dev (>= 0.3),
  libghc-strict-prof,
- libghc-tagsoup-dev (>= 0.13.4),
  libghc-tagsoup-dev (<< 0.15),
+ libghc-tagsoup-dev (>= 0.13.4),
  libghc-tagsoup-prof,
- libghc-temporary-dev (>= 1.1),
  libghc-temporary-dev (<< 1.3),
+ libghc-temporary-dev (>= 1.1),
  libghc-temporary-prof,
-Build-Depends-Indep: ghc-doc,
- libghc-http-doc,
- libghc-haxml-doc,
+ pandoc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-blaze-html-doc,
  libghc-bool-extras-doc,
  libghc-cmdargs-doc,
  libghc-data-default-doc,
+ libghc-haxml-doc,
  libghc-haxr-doc,
  libghc-highlighting-kate-doc,
  libghc-hscolour-doc,
+ libghc-http-doc,
  libghc-lens-doc,
  libghc-mtl-doc,
- libghc-pandoc-doc,
  libghc-pandoc-citeproc-doc,
+ libghc-pandoc-doc,
  libghc-pandoc-types-doc,
  libghc-parsec3-doc,
  libghc-split-doc,
@@ -86,7 +89,7 @@ Build-Depends-Indep: ghc-doc,
  libghc-temporary-doc,
 Standards-Version: 3.9.8
 Homepage: http://byorgey.wordpress.com/blogliterately/
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-blogliterately
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 X-Description: Tool for posting articles to blogs (internals)
  This package provides development internals of BlogLiterately tool,
@@ -103,14 +106,20 @@ X-Description: Tool for posting articles to blogs (internals)
 
 Package: libghc-blogliterately-dev
 Architecture: any
-Depends: ${shlibs:Depends},
+Depends:
  ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
-Replaces: ${haskell:Replaces},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
+Replaces:
+ ${haskell:Replaces},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -118,14 +127,20 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-blogliterately-prof
 Architecture: any
-Depends: ${shlibs:Depends},
+Depends:
  ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
-Replaces: ${haskell:Replaces},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
+Replaces:
+ ${haskell:Replaces},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -134,14 +149,20 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-blogliterately-doc
 Architecture: all
 Section: doc
-Depends: ${shlibs:Depends},
+Depends:
  ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
-Replaces: ${haskell:Replaces},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
+Replaces:
+ ${haskell:Replaces},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -150,14 +171,20 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: blogliterately
 Architecture: any
 Section: web
-Depends: ${shlibs:Depends},
+Depends:
  ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
-Replaces: ${haskell:Replaces},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
+Replaces:
+ ${haskell:Replaces},
 Description: Tool for posting Haskelly articles to blogs
  This package provides BlogLiterately executable, which allows you to
  write blog posts in Markdown format, then use it to do syntax
