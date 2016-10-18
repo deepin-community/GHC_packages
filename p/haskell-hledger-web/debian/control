@@ -1,32 +1,34 @@
 Source: haskell-hledger-web
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-ghci,
- libghc-hunit-dev,
+ haskell-devscripts (>= 0.10),
  libghc-base-compat-dev (>= 0.8.1),
  libghc-blaze-html-dev,
  libghc-blaze-markup-dev,
  libghc-clientsession-dev,
- libghc-cmdargs-dev (>= 0.10),
  libghc-cmdargs-dev (<< 0.11),
+ libghc-cmdargs-dev (>= 0.10),
  libghc-conduit-extra-dev (>= 1.1),
  libghc-data-default-dev,
  libghc-hjsmin-dev,
  libghc-hjsmin-prof,
- libghc-hledger-dev (>= 0.27),
  libghc-hledger-dev (<< 0.28),
- libghc-hledger-prof,
- libghc-hledger-lib-dev (>= 0.27),
+ libghc-hledger-dev (>= 0.27),
  libghc-hledger-lib-dev (<< 0.28),
+ libghc-hledger-lib-dev (>= 0.27),
  libghc-hledger-lib-prof,
+ libghc-hledger-prof,
  libghc-http-client-dev,
  libghc-http-conduit-dev,
+ libghc-hunit-dev,
  libghc-json-dev,
  libghc-parsec3-dev (>= 3),
  libghc-safe-dev (>= 0.2),
@@ -37,9 +39,9 @@ Build-Depends: debhelper (>= 9),
  libghc-wai-handler-launch-dev (>= 1.3),
  libghc-warp-dev,
  libghc-yaml-dev,
- libghc-yesod-dev (>= 1.4),
- libghc-yesod-dev (<< 1.5),
  libghc-yesod-core-dev,
+ libghc-yesod-dev (<< 1.5),
+ libghc-yesod-dev (>= 1.4),
  libghc-yesod-form-dev,
  libghc-yesod-static-dev,
  libghc-yesod-static-prof,
@@ -51,12 +53,16 @@ Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: hledger-web
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: web interface for the hledger accounting tool
  hledger is a haskell port and friendly fork of John Wiegley's ledger
  accounting tool. This package provides a web interface as an alternative
