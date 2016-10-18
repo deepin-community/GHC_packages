@@ -1,19 +1,21 @@
 Source: haskell-gitlib
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-base16-bytestring-dev (>= 0.1.1.5),
  libghc-base16-bytestring-prof,
- libghc-conduit-dev (>= 1.1.0),
- libghc-conduit-prof,
  libghc-conduit-combinators-dev (>= 1),
  libghc-conduit-combinators-prof,
+ libghc-conduit-dev (>= 1.1.0),
+ libghc-conduit-prof,
  libghc-exceptions-dev (>= 0.5),
  libghc-exceptions-prof,
  libghc-hashable-dev (>= 1.1.2.5),
@@ -36,10 +38,11 @@ Build-Depends: debhelper (>= 9),
  libghc-text-prof,
  libghc-unordered-containers-dev (>= 0.2.3.0),
  libghc-unordered-containers-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-base16-bytestring-doc,
- libghc-conduit-doc,
  libghc-conduit-combinators-doc,
+ libghc-conduit-doc,
  libghc-exceptions-doc,
  libghc-hashable-doc,
  libghc-lifted-async-doc,
@@ -53,7 +56,7 @@ Build-Depends-Indep: ghc-doc,
  libghc-unordered-containers-doc,
 Standards-Version: 3.9.8
 Homepage: http://hackage.haskell.org/package/gitlib
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-gitlib
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 X-Description: API library for working with Git repositories
  gitlib is a high-level, lazy and conduit-aware set of abstractions
@@ -69,12 +72,16 @@ X-Description: API library for working with Git repositories
 
 Package: libghc-gitlib-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -82,11 +89,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-gitlib-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -95,10 +106,13 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-gitlib-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
