@@ -1,24 +1,21 @@
 Source: xmonad-contrib
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>, Ryan Kavanagh <rak@debian.org>, Per Olofsson <pelle@debian.org>
+Uploaders:
+ Joachim Breitner <nomeata@debian.org>,
+ Ryan Kavanagh <rak@debian.org>,
+ Per Olofsson <pelle@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libx11-dev,
- libxinerama-dev,
- libghc-x11-dev (>= 1.6.1),
- libghc-x11-dev (<< 1.7),
- libghc-x11-prof,
- libghc-x11-xft-dev (>= 0.2),
- libghc-x11-xft-prof,
+ haskell-devscripts (>= 0.10),
  libghc-extensible-exceptions-dev,
  libghc-extensible-exceptions-prof,
- libghc-mtl-dev (>= 1),
  libghc-mtl-dev (<< 3),
+ libghc-mtl-dev (>= 1),
  libghc-mtl-prof,
  libghc-old-locale-dev,
  libghc-old-locale-prof,
@@ -28,34 +25,48 @@ Build-Depends: debhelper (>= 9),
  libghc-random-prof,
  libghc-utf8-string-dev,
  libghc-utf8-string-prof,
- libghc-xmonad-dev (>= 0.12),
+ libghc-x11-dev (<< 1.7),
+ libghc-x11-dev (>= 1.6.1),
+ libghc-x11-prof,
+ libghc-x11-xft-dev (>= 0.2),
+ libghc-x11-xft-prof,
  libghc-xmonad-dev (<< 0.13),
+ libghc-xmonad-dev (>= 0.12),
  libghc-xmonad-prof,
-Build-Depends-Indep: ghc-doc,
- libghc-x11-doc,
- libghc-x11-xft-doc,
+ libx11-dev,
+ libxinerama-dev,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-extensible-exceptions-doc,
  libghc-mtl-doc,
  libghc-random-doc,
  libghc-utf8-string-doc,
+ libghc-x11-doc,
+ libghc-x11-xft-doc,
  libghc-xmonad-doc,
 Standards-Version: 3.9.8
 Homepage: http://xmonad.org/
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/xmonad-contrib
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-xmonad-contrib-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
- ${misc:Depends},
+Depends:
  libx11-dev,
  libxinerama-dev,
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: xmonadcontrib,
-Provides: ${haskell:Provides},
-Replaces: xmonadcontrib,
+ ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ xmonadcontrib,
+Provides:
+ ${haskell:Provides},
+Replaces:
+ xmonadcontrib,
 Description: Extensions to xmonad
  This is a huge extensions library for xmonad, providing alternative
  layout algorithms, key bindings, extended operations, and much more.
@@ -76,9 +87,11 @@ Description: Extensions to xmonad
 
 Package: libghc-xmonad-contrib-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Provides: ${haskell:Provides},
+Provides:
+ ${haskell:Provides},
 Description: Extensions to xmonad; profiling libraries
  This is a huge extensions library for xmonad, providing alternative
  layout algorithms, key bindings, extended operations, and much more.
@@ -100,10 +113,13 @@ Description: Extensions to xmonad; profiling libraries
 Package: libghc-xmonad-contrib-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: Extensions to xmonad; documentation
  This is a huge extensions library for xmonad, providing alternative
  layout algorithms, key bindings, extended operations, and much more.
