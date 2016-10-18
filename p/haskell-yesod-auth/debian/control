@@ -1,14 +1,16 @@
 Source: haskell-yesod-auth
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
- ghc-prof,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-ghci,
+ ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-aeson-dev (>= 0.7),
  libghc-aeson-prof,
  libghc-authenticate-dev (>= 1.3),
@@ -26,9 +28,9 @@ Build-Depends: debhelper (>= 9),
  libghc-byteable-dev,
  libghc-byteable-prof,
  libghc-conduit-dev,
- libghc-conduit-prof,
  libghc-conduit-extra-dev,
  libghc-conduit-extra-prof,
+ libghc-conduit-prof,
  libghc-cryptohash-dev,
  libghc-cryptohash-prof,
  libghc-data-default-dev,
@@ -49,14 +51,14 @@ Build-Depends: debhelper (>= 9),
  libghc-mime-mail-prof,
  libghc-network-uri-dev (>= 2.6),
  libghc-network-uri-prof,
- libghc-nonce-dev (>= 1.0.2),
  libghc-nonce-dev (<< 1.1),
+ libghc-nonce-dev (>= 1.0.2),
  libghc-nonce-prof,
- libghc-persistent-dev (>= 2.1),
  libghc-persistent-dev (<< 2.7),
+ libghc-persistent-dev (>= 2.1),
  libghc-persistent-prof,
- libghc-persistent-template-dev (>= 2.1),
  libghc-persistent-template-dev (<< 2.7),
+ libghc-persistent-template-dev (>= 2.1),
  libghc-persistent-template-prof,
  libghc-random-dev (>= 1.0.0.2),
  libghc-random-prof,
@@ -72,15 +74,16 @@ Build-Depends: debhelper (>= 9),
  libghc-unordered-containers-prof,
  libghc-wai-dev (>= 1.4),
  libghc-wai-prof,
- libghc-yesod-core-dev (>= 1.4.20),
  libghc-yesod-core-dev (<< 1.5),
+ libghc-yesod-core-dev (>= 1.4.20),
  libghc-yesod-core-prof,
- libghc-yesod-form-dev (>= 1.4),
  libghc-yesod-form-dev (<< 1.5),
+ libghc-yesod-form-dev (>= 1.4),
  libghc-yesod-form-prof,
  libghc-yesod-persistent-dev (>= 1.4),
  libghc-yesod-persistent-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-aeson-doc,
  libghc-authenticate-doc,
  libghc-base16-bytestring-doc,
@@ -116,17 +119,21 @@ Build-Depends-Indep: ghc-doc,
  libghc-yesod-persistent-doc,
 Standards-Version: 3.9.8
 Homepage: http://www.yesodweb.com/
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-yesod-auth
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-yesod-auth-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: authentication for Yesod${haskell:ShortBlurb}
  yesod-auth is the authentication component of Yesod.
  .
@@ -134,11 +141,15 @@ Description: authentication for Yesod${haskell:ShortBlurb}
 
 Package: libghc-yesod-auth-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: authentication for Yesod${haskell:ShortBlurb}
  yesod-auth is the authentication component of Yesod.
  .
@@ -147,10 +158,13 @@ Description: authentication for Yesod${haskell:ShortBlurb}
 Package: libghc-yesod-auth-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: authentication for Yesod${haskell:ShortBlurb}
  yesod-auth is the authentication component of Yesod.
  .
