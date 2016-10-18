@@ -1,15 +1,15 @@
 Source: haskell-yesod-test
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-hunit-dev (>= 1.2),
- libghc-hunit-prof,
+ haskell-devscripts (>= 0.10),
  libghc-attoparsec-dev (>= 0.10),
  libghc-attoparsec-prof,
  libghc-blaze-builder-dev,
@@ -22,13 +22,20 @@ Build-Depends: debhelper (>= 9),
  libghc-case-insensitive-prof,
  libghc-cookie-dev,
  libghc-cookie-prof,
- libghc-hspec-core-dev (>= 2),
  libghc-hspec-core-dev (<< 3),
+ libghc-hspec-core-dev (>= 2),
  libghc-hspec-core-prof,
+ libghc-hspec-dev,
+ libghc-html-conduit-dev,
  libghc-html-conduit-dev (>= 0.1),
  libghc-html-conduit-prof,
+ libghc-http-types-dev,
  libghc-http-types-dev (>= 0.7),
  libghc-http-types-prof,
+ libghc-hunit-dev,
+ libghc-hunit-dev (>= 1.2),
+ libghc-hunit-prof,
+ libghc-lifted-base-dev,
  libghc-monad-control-dev,
  libghc-monad-control-prof,
  libghc-network-dev (>= 2.2),
@@ -39,27 +46,22 @@ Build-Depends: debhelper (>= 9),
  libghc-pretty-show-prof,
  libghc-text-dev,
  libghc-text-prof,
+ libghc-wai-dev,
  libghc-wai-dev (>= 3.0),
- libghc-wai-prof,
  libghc-wai-extra-dev,
  libghc-wai-extra-prof,
+ libghc-wai-prof,
+ libghc-xml-conduit-dev,
  libghc-xml-conduit-dev (>= 1.0),
  libghc-xml-conduit-prof,
  libghc-xml-types-dev (>= 0.3),
  libghc-xml-types-prof,
+ libghc-yesod-core-dev,
  libghc-yesod-core-dev (>= 1.4.14),
  libghc-yesod-core-prof,
- libghc-hunit-dev,
- libghc-hspec-dev,
- libghc-html-conduit-dev,
- libghc-http-types-dev,
- libghc-lifted-base-dev,
- libghc-wai-dev,
- libghc-xml-conduit-dev,
- libghc-yesod-core-dev,
  libghc-yesod-form-dev,
-Build-Depends-Indep: ghc-doc,
- libghc-hunit-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-attoparsec-doc,
  libghc-blaze-builder-doc,
  libghc-blaze-html-doc,
@@ -69,6 +71,7 @@ Build-Depends-Indep: ghc-doc,
  libghc-hspec-core-doc,
  libghc-html-conduit-doc,
  libghc-http-types-doc,
+ libghc-hunit-doc,
  libghc-monad-control-doc,
  libghc-network-doc,
  libghc-persistent-doc,
@@ -81,17 +84,21 @@ Build-Depends-Indep: ghc-doc,
  libghc-yesod-core-doc,
 Standards-Version: 3.9.8
 Homepage: http://www.yesodweb.com
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-yesod-test
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-yesod-test-dev
 Architecture: any
-Depends: ${shlibs:Depends},
+Depends:
  ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: integration testing for WAI/Yesod applications
  Behavior-oriented integration testing for Yesod applications.
  .
@@ -99,11 +106,15 @@ Description: integration testing for WAI/Yesod applications
 
 Package: libghc-yesod-test-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: integration testing for WAI/Yesod applications; profiling libraries
  Behavior-oriented integration testing for Yesod applications.
  .
@@ -112,10 +123,13 @@ Description: integration testing for WAI/Yesod applications; profiling libraries
 Package: libghc-yesod-test-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: integration testing for WAI/Yesod applications; documentation
  Behavior-oriented integration testing for Yesod applications.
  .
