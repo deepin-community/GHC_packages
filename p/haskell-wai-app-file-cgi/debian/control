@@ -1,13 +1,15 @@
 Source: haskell-wai-app-file-cgi
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.10),
  libghc-attoparsec-dev (>= 0.10.0.0),
  libghc-attoparsec-prof,
  libghc-blaze-builder-dev,
@@ -17,9 +19,9 @@ Build-Depends: debhelper (>= 9),
  libghc-case-insensitive-dev,
  libghc-case-insensitive-prof,
  libghc-conduit-dev (>= 1.1),
- libghc-conduit-prof,
  libghc-conduit-extra-dev,
  libghc-conduit-extra-prof,
+ libghc-conduit-prof,
  libghc-data-default-class-dev,
  libghc-data-default-class-prof,
  libghc-http-client-dev (>= 0.3),
@@ -44,17 +46,18 @@ Build-Depends: debhelper (>= 9),
  libghc-static-hash-prof,
  libghc-text-dev,
  libghc-text-prof,
- libghc-wai-dev (>= 3.2),
- libghc-wai-dev (<< 3.3),
- libghc-wai-prof,
  libghc-wai-conduit-dev,
  libghc-wai-conduit-prof,
- libghc-warp-dev (>= 3.2),
+ libghc-wai-dev (<< 3.3),
+ libghc-wai-dev (>= 3.2),
+ libghc-wai-prof,
  libghc-warp-dev (<< 3.3),
+ libghc-warp-dev (>= 3.2),
  libghc-warp-prof,
  libghc-word8-dev,
  libghc-word8-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-attoparsec-doc,
  libghc-blaze-builder-doc,
  libghc-blaze-html-doc,
@@ -73,23 +76,27 @@ Build-Depends-Indep: ghc-doc,
  libghc-sockaddr-doc,
  libghc-static-hash-doc,
  libghc-text-doc,
- libghc-wai-doc,
  libghc-wai-conduit-doc,
+ libghc-wai-doc,
  libghc-warp-doc,
  libghc-word8-doc,
 Standards-Version: 3.9.8
 Homepage: http://www.mew.org/~kazu/proj/mighttpd/
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-wai-app-file-cgi
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-wai-app-file-cgi-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: file/CGI app of WAI${haskell:ShortBlurb}
  This WAI application handles static files and executes CGI scripts.
  .
@@ -97,11 +104,15 @@ Description: file/CGI app of WAI${haskell:ShortBlurb}
 
 Package: libghc-wai-app-file-cgi-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: file/CGI app of WAI${haskell:ShortBlurb}
  This WAI application handles static files and executes CGI scripts.
  .
@@ -110,10 +121,13 @@ Description: file/CGI app of WAI${haskell:ShortBlurb}
 Package: libghc-wai-app-file-cgi-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: file/CGI app of WAI${haskell:ShortBlurb}
  This WAI application handles static files and executes CGI scripts.
  .
