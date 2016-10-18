@@ -1,23 +1,25 @@
 Source: haskell-musicbrainz
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-http-dev (>= 1:4000.0),
- libghc-http-prof,
+ haskell-devscripts (>= 0.10),
  libghc-aeson-dev (>= 0.6.1),
  libghc-aeson-prof,
  libghc-conduit-dev (>= 1.0.0),
- libghc-conduit-prof,
  libghc-conduit-extra-dev (>= 1.0.0),
  libghc-conduit-extra-prof,
+ libghc-conduit-prof,
  libghc-http-conduit-dev (>= 1.8.8),
  libghc-http-conduit-prof,
+ libghc-http-dev (>= 1:4000.0),
+ libghc-http-prof,
  libghc-http-types-dev (>= 0.6),
  libghc-http-types-prof,
  libghc-monad-control-dev (>= 0.3),
@@ -34,12 +36,13 @@ Build-Depends: debhelper (>= 9),
  libghc-xml-conduit-prof,
  libghc-xml-types-dev (>= 0.3),
  libghc-xml-types-prof,
-Build-Depends-Indep: ghc-doc,
- libghc-http-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-aeson-doc,
  libghc-conduit-doc,
  libghc-conduit-extra-doc,
  libghc-http-conduit-doc,
+ libghc-http-doc,
  libghc-http-types-doc,
  libghc-monad-control-doc,
  libghc-resourcet-doc,
@@ -50,19 +53,23 @@ Build-Depends-Indep: ghc-doc,
  libghc-xml-types-doc,
 Standards-Version: 3.9.8
 Homepage: http://floss.scru.org/hMusicBrainz
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-musicbrainz
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 X-Description: interface to MusicBrainz XML2/JSON web services
  Web service client functions for both MusicBrainz XML2 and JSON APIs.
 
 Package: libghc-musicbrainz-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -70,11 +77,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-musicbrainz-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -83,10 +94,13 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-musicbrainz-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
