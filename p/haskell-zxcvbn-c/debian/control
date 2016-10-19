@@ -1,15 +1,18 @@
 Source: haskell-zxcvbn-c
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Sean Whitton <spwhitton@spwhitton.name>
+Uploaders:
+ Sean Whitton <spwhitton@spwhitton.name>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 10),
- haskell-devscripts (>= 0.9),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 10),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.9),
  libzxcvbn-dev,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
 Standards-Version: 3.9.8
 Homepage: http://hackage.haskell.org/package/zxcvbn-c
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-zxcvbn-c
@@ -25,14 +28,19 @@ X-Description: Haskell bindings to password strength estimation library
 
 Package: libghc-zxcvbn-c-dev
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ libzxcvbn-dev,
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
- libzxcvbn-dev,
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -40,12 +48,17 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-zxcvbn-c-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -54,11 +67,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-zxcvbn-c-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
