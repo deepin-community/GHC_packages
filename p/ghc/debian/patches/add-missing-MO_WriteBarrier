@@ -20,11 +20,9 @@ GHC Trac Issues: #12469
 (cherry picked from commit d40d6df74a9fca382a84709ac9bc862897fbec18)
 ---
 
-diff --git a/compiler/codeGen/StgCmmPrim.hs b/compiler/codeGen/StgCmmPrim.hs
-index 5d3b94f..3cb9f83 100644
 --- a/compiler/codeGen/StgCmmPrim.hs
 +++ b/compiler/codeGen/StgCmmPrim.hs
-@@ -310,8 +310,11 @@ emitPrimOp _ [res] GetCurrentCCSOp [_dummy_arg]
+@@ -310,8 +310,11 @@
  emitPrimOp dflags [res] ReadMutVarOp [mutv]
     = emitAssign (CmmLocal res) (cmmLoadIndexW dflags mutv (fixedHdrSizeW dflags) (gcWord dflags))
  
