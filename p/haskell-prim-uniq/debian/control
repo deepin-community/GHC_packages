@@ -1,0 +1,65 @@
+Source: haskell-prim-uniq
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-dependent-sum-dev,
+ libghc-dependent-sum-prof,
+ libghc-primitive-dev,
+ libghc-primitive-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-dependent-sum-doc,
+ libghc-primitive-doc,
+Standards-Version: 3.9.8
+Homepage: https://github.com/mokus0/prim-uniq
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-prim-uniq
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
+X-Description: opaque unique identifiers in primitive state monads
+ Opaque unique identifiers in primitive state monads
+ and a GADT-like type using them as witnesses of type
+ equality.
+
+Package: libghc-prim-uniq-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-prim-uniq-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-prim-uniq-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
