@@ -1,0 +1,23 @@
+From: Dean4Devil, https://github.com/Dean4Devil
+Forwarded: https://github.com/mokus0/polynomial/pull/9
+
+diff --git a/src/Data/VectorSpace/WrappedNum.hs b/src/Data/VectorSpace/WrappedNum.hs
+index d7df2aa..271a4fb 100644
+--- a/src/Data/VectorSpace/WrappedNum.hs
++++ b/src/Data/VectorSpace/WrappedNum.hs
+@@ -1,5 +1,6 @@
+ {-# LANGUAGE TemplateHaskell, TypeFamilies, MultiParamTypeClasses, FlexibleInstances, FlexibleContexts #-}
+ {-# LANGUAGE GeneralizedNewtypeDeriving #-}
++{-# LANGUAGE RankNTypes #-}
+ module Data.VectorSpace.WrappedNum
+   (WrappedNum(..)) where
+ 
+@@ -19,7 +20,7 @@ newtype WrappedNum a = WrapNum { unwrapNum :: a }
+         , Floating, RealFloat)
+ 
+ derivingUnbox "Wrapped"
+-    [t| (U.Unbox a) => WrappedNum a -> a |] [| unwrapNum |] [| \ a -> WrapNum a |]
++    [t| forall a. (U.Unbox a) => WrappedNum a -> a |] [| unwrapNum |] [| \ a -> WrapNum a |]
+ 
+ instance Num a => AdditiveGroup (WrappedNum a) where
+     zeroV = 0
