@@ -1,4 +1,8 @@
 #!/usr/bin/make -f
 
-%:
-	dh $@ --with haskell --buildsystem=haskell
+DEB_ENABLE_TESTS = yes
+DEB_CABAL_PACKAGE = these
+DEB_DEFAULT_COMPILER = ghc
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/hlibrary.mk
