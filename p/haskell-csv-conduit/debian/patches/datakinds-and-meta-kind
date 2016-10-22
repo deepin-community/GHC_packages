@@ -1,0 +1,20 @@
+--- a/src/Data/CSV/Conduit/Conversion.hs
++++ b/src/Data/CSV/Conduit/Conversion.hs
+@@ -2,7 +2,7 @@
+              Rank2Types #-}
+ #ifdef GENERICS
+ {-# LANGUAGE DefaultSignatures, TypeOperators, KindSignatures, FlexibleContexts,
+-             MultiParamTypeClasses, UndecidableInstances, ScopedTypeVariables #-}
++             MultiParamTypeClasses, UndecidableInstances, ScopedTypeVariables, DataKinds #-}
+ #endif
+ 
+ -----------------------------------------------------------------------------
+@@ -856,7 +856,7 @@
+ instance FromField a => GFromRecordProd (K1 i a) Record where
+     gparseRecordProd n = (n + 1, \v -> K1 <$> parseField (V.unsafeIndex v n))
+ 
+-data Proxy s (f :: * -> *) a = Proxy
++data Proxy (s :: Meta) (f :: * -> *) a = Proxy
+ 
+ instance (FromField a, Selector s) => GFromRecordProd (M1 S s (K1 i a)) NamedRecord where
+     gparseRecordProd n = (n + 1, \v -> (M1 . K1) <$> v .: name)
