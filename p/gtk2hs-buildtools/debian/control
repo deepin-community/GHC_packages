@@ -25,6 +25,8 @@ Standards-Version: 3.9.8
 Homepage: http://projects.haskell.org/gtk2hs/
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/gtk2hs-buildtools
 Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
+X-Description: gtk2hs-buildtools libraries
+ These are modules used by programs build with gtk2hs-buildtools.
 
 Package: gtk2hs-buildtools
 Architecture: any
@@ -38,3 +40,52 @@ Description: Tools to build the Gtk2Hs suite of User Interface libraries
  mirrors the C type hierarchy of GObjects found in glib, and a generator for
  signal declarations that are used to call back from C to Haskell. These tools
  are not needed to actually run Gtk2Hs programs.
+
+Package: libghc-gtk2hs-buildtools-dev
+Architecture: any
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-gtk2hs-buildtools-prof
+Architecture: any
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-gtk2hs-buildtools-doc
+Architecture: all
+Section: doc
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
