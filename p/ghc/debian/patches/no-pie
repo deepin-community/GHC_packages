@@ -1,0 +1,26 @@
+Description: Pass -no-pie along with -Wl,-r
+ GHC uncoditionally passes `-Wl,-r' to gcc in `compiler/main/DriverPipeline.hs'.
+ This fails in cases where PIE is enabled by default with the following error:
+ .
+   /usr/bin/ld: -r and -pie may not be used together
+ .
+ Fix the above error by passing `-no-pie' along with `-Wl,-r' to the compiler.
+Author: Ilias Tsitsimpis <i.tsitsimpis@gmail.com>
+Bug: https://ghc.haskell.org/trac/ghc/ticket/11834
+Bug-Debian: https://bugs.debian.org/712228
+Forwarded: no
+
+Index: b/compiler/main/DriverPipeline.hs
+===================================================================
+--- a/compiler/main/DriverPipeline.hs
++++ b/compiler/main/DriverPipeline.hs
+@@ -2145,7 +2145,8 @@ joinObjectFiles dflags o_files output_fn
+       osInfo = platformOS (targetPlatform dflags)
+       ld_r args cc = SysTools.runLink dflags ([
+                        SysTools.Option "-nostdlib",
+-                       SysTools.Option "-Wl,-r"
++                       SysTools.Option "-Wl,-r",
++                       SysTools.Option "-no-pie"
+                      ]
+                      ++ (if any (cc ==) [Clang, AppleClang, AppleClang51]
+                           then []
