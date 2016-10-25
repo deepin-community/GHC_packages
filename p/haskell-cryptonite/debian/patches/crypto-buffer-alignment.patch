@@ -1,0 +1,51 @@
+Author: Steve Langasek <steve.langasek@ubuntu.com>
+Description: fix alignment of memory blocks used by SHA3
+ SHA3 works in 64-bit chunks, but the incoming data pointer can be at any
+ address.  Copy our data to an aligned address, to avoid SIGBUS on certain
+ platforms.
+ .
+ This is not the only alignment issue in the code, but it is the one that
+ manifests as SIGBUS on the most architectures.
+
+Index: haskell-cryptonite-0.20/cbits/cryptonite_sha3.c
+===================================================================
+--- haskell-cryptonite-0.20.orig/cbits/cryptonite_sha3.c
++++ haskell-cryptonite-0.20/cbits/cryptonite_sha3.c
+@@ -23,6 +23,7 @@
+  */
+ 
+ #include <stdint.h>
++#include <stdlib.h>
+ #include <string.h>
+ #include "cryptonite_bitfn.h"
+ #include "cryptonite_sha3.h"
+@@ -107,6 +108,7 @@ void cryptonite_sha3_init(struct sha3_ct
+ void cryptonite_sha3_update(struct sha3_ctx *ctx, const uint8_t *data, uint32_t len)
+ {
+ 	uint32_t to_fill;
++	uint64_t *data_aligned = NULL;
+ 
+ 	to_fill = ctx->bufsz - ctx->bufindex;
+ 
+@@ -124,6 +126,13 @@ void cryptonite_sha3_update(struct sha3_
+ 		ctx->bufindex = 0;
+ 	}
+ 
++	/* fix up alignment if necessary */
++	if (len && (unsigned long) data & 7) {
++		data_aligned = malloc(len);
++		memcpy(data_aligned, data, len);
++		data = (uint8_t *) data_aligned;
++	}
++
+ 	/* process as much ctx->bufsz-block */
+ 	for (; len >= ctx->bufsz; len -= ctx->bufsz, data += ctx->bufsz)
+ 		sha3_do_chunk(ctx->state, (uint64_t *) data, ctx->bufsz / 8);
+@@ -133,6 +142,7 @@ void cryptonite_sha3_update(struct sha3_
+ 		memcpy(ctx->buf + ctx->bufindex, data, len);
+ 		ctx->bufindex += len;
+ 	}
++	free(data_aligned);
+ }
+ 
+ void cryptonite_sha3_finalize(struct sha3_ctx *ctx, uint32_t hashlen, uint8_t *out)
