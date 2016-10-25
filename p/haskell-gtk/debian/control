@@ -9,8 +9,11 @@ Build-Depends:
  debhelper (>= 9),
  ghc (>= 8),
  ghc-prof,
- gtk2hs-buildtools (>= 0.13.0.4),
- haskell-devscripts (>= 0.10),
+ gtk2hs-buildtools (>= 0.13.2.0),
+ libghc-gtk2hs-buildtools-dev (>= 0.13.2.0),
+ libghc-gtk2hs-buildtools-dev (<< 0.14),
+ libghc-gtk2hs-buildtools-prof,
+ haskell-devscripts (>= 0.13),
  libghc-cairo-dev (<< 0.14),
  libghc-cairo-dev (>= 0.13.0.0),
  libghc-cairo-prof,
@@ -31,6 +34,7 @@ Build-Depends:
  libgtk2.0-dev,
 Build-Depends-Indep:
  ghc-doc,
+ libghc-gtk2hs-buildtools-doc,
  libghc-cairo-doc,
  libghc-gio-doc,
  libghc-glib-doc,
@@ -55,7 +59,7 @@ Suggests:
  ${haskell:Suggests},
 Provides:
  ${haskell:Provides},
-Description: Binding to the Gtk+ graphical user interface library${haskell:ShortBlurb}
+Description: binding to the Gtk+ graphical user interface library${haskell:ShortBlurb}
  This is the core library of the Gtk2Hs suite of libraries for Haskell based on
  Gtk+. Gtk+ is an extensive and mature multi-platform toolkit for creating
  graphical user interfaces.

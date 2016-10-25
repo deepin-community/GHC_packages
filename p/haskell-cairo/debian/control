@@ -10,8 +10,11 @@ Build-Depends:
  emscripten,
  ghc (>= 8),
  ghc-prof,
- gtk2hs-buildtools (>= 0.13.0.3),
- haskell-devscripts (>= 0.10),
+ gtk2hs-buildtools (>= 0.13.2.0),
+ libghc-gtk2hs-buildtools-dev (>= 0.13.2.0),
+ libghc-gtk2hs-buildtools-dev (<< 0.14),
+ libghc-gtk2hs-buildtools-prof,
+ haskell-devscripts (>= 0.13),
  libcairo2-dev,
  libghc-mtl-dev,
  libghc-mtl-prof,
@@ -23,6 +26,7 @@ Build-Depends:
  libghc-utf8-string-prof,
 Build-Depends-Indep:
  ghc-doc,
+ libghc-gtk2hs-buildtools-doc,
  libghc-mtl-doc,
  libghc-text-doc,
  libghc-utf8-string-doc,
@@ -44,7 +48,7 @@ Suggests:
  ${haskell:Suggests},
 Provides:
  ${haskell:Provides},
-Description: Binding to the Cairo library${haskell:ShortBlurb}
+Description: binding to the Cairo library${haskell:ShortBlurb}
  Cairo is a library to render high quality vector graphics. There exist various
  backends that allows rendering to Gtk windows, PDF, PS, PNG and SVG documents,
  amongst others.

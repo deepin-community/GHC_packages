@@ -9,8 +9,11 @@ Build-Depends:
  debhelper (>= 9),
  ghc (>= 8),
  ghc-prof,
- gtk2hs-buildtools (>= 0.13.0.3),
- haskell-devscripts (>= 0.10),
+ gtk2hs-buildtools (>= 0.13.2.0),
+ libghc-gtk2hs-buildtools-dev (>= 0.13.2.0),
+ libghc-gtk2hs-buildtools-dev (<< 0.14),
+ libghc-gtk2hs-buildtools-prof,
+ haskell-devscripts (>= 0.13),
  libghc-glib-dev (<< 0.14),
  libghc-glib-dev (>= 0.13.0.0),
  libghc-glib-prof,
@@ -19,6 +22,7 @@ Build-Depends:
  libglib2.0-dev,
 Build-Depends-Indep:
  ghc-doc,
+ libghc-gtk2hs-buildtools-doc,
  libghc-glib-doc,
  libghc-mtl-doc,
 Standards-Version: 3.9.8
@@ -38,7 +42,7 @@ Suggests:
  ${haskell:Suggests},
 Provides:
  ${haskell:Provides},
-Description: Binding to the GIO${haskell:ShortBlurb}
+Description: binding to the GIO${haskell:ShortBlurb}
  GIO is striving to provide a modern, easy-to-use VFS API that sits at the
  right level in the library stack. The goal is to overcome the shortcomings of
  GnomeVFS and provide an API that is so good that developers prefer it over raw

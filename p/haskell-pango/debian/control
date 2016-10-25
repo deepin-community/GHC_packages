@@ -10,8 +10,11 @@ Build-Depends:
  emscripten,
  ghc (>= 8),
  ghc-prof,
- gtk2hs-buildtools (>= 0.13.0.3),
- haskell-devscripts (>= 0.10),
+ gtk2hs-buildtools (>= 0.13.2.0),
+ libghc-gtk2hs-buildtools-dev (>= 0.13.2.0),
+ libghc-gtk2hs-buildtools-dev (<< 0.14),
+ libghc-gtk2hs-buildtools-prof,
+ haskell-devscripts (>= 0.13),
  libghc-cairo-dev (<< 0.14),
  libghc-cairo-dev (>= 0.13.0.0),
  libghc-cairo-prof,
@@ -26,6 +29,7 @@ Build-Depends:
  libpango1.0-dev,
 Build-Depends-Indep:
  ghc-doc,
+ libghc-gtk2hs-buildtools-doc,
  libghc-cairo-doc,
  libghc-glib-doc,
  libghc-mtl-doc,
@@ -48,7 +52,7 @@ Suggests:
  ${haskell:Suggests},
 Provides:
  ${haskell:Provides},
-Description: Binding to the Pango text rendering engine${haskell:ShortBlurb}
+Description: binding to the Pango text rendering engine${haskell:ShortBlurb}
  This package provides a wrapper around the Pango C library that allows
  high-quality rendering of Unicode text. It can be used either with Cairo to
  output text in PDF, PS or other documents or with Gtk+ to display text
