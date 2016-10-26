@@ -1,11 +1,9 @@
 --- a/compiler/main/DynFlags.hs
 +++ b/compiler/main/DynFlags.hs
-@@ -3629,16 +3629,7 @@ defaultFlags settings
-     where platform = sTargetPlatform settings
- 
+@@ -3631,14 +3631,8 @@
  default_PIC :: Platform -> [GeneralFlag]
--default_PIC platform =
--  case (platformOS platform, platformArch platform) of
+ default_PIC platform =
+   case (platformOS platform, platformArch platform) of
 -    (OSDarwin, ArchX86_64) -> [Opt_PIC]
 -    (OSOpenBSD, ArchX86_64) -> [Opt_PIC] -- Due to PIE support in
 -                                         -- OpenBSD since 5.3 release
@@ -14,7 +12,8 @@
 -                                         -- #10597 for more
 -                                         -- information.
 -    _                      -> []
-+default_PIC platform = [Opt_PIC]
++    (OSLinux, ArchPPC)     -> []
++    _                      -> [Opt_PIC]
  
  -- General flags that are switched on/off when other general flags are switched
  -- on
