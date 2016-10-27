@@ -7,8 +7,8 @@ HOOGLE_RESDIR := debian/hoogle/usr/share/hoogle/resources
 FILES_HOOGLE := debian/files_hoogle
 
 binary-fixup/hoogle::
-	sed -i -e "s/res\//hoogle\/res\//g" $(HOOGLE_RESDIR)/template.html
-	sed -i -e "s/action=\"\.\"/action=\"\.\/hoogle\"/g" $(HOOGLE_RESDIR)/template.html
+	#sed -i -e "s/res\//hoogle\/res\//g" $(HOOGLE_RESDIR)/template.html
+	#sed -i -e "s/action=\"\.\"/action=\"\.\/hoogle\"/g" $(HOOGLE_RESDIR)/template.html
 	install $(FILES_HOOGLE)/update-hoogle debian/hoogle/usr/sbin/
 
 clean::
