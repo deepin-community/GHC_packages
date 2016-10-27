@@ -1,0 +1,64 @@
+Description: Generate docs from multiple sources
+ Patch generate command to accept the `--local' flag more than once, hence
+ enabling Hoogle to generate docs for more than one packages at same database.
+Author: Ilias Tsitsimpis <i.tsitsimpis@gmail.com>
+Forwarded: no
+
+Index: b/src/Action/CmdLine.hs
+===================================================================
+--- a/src/Action/CmdLine.hs
++++ b/src/Action/CmdLine.hs
+@@ -35,7 +35,7 @@ data CmdLine
+         ,database :: FilePath
+         ,insecure :: Bool
+         ,include :: [String]
+-        ,local_ :: Maybe FilePath
++        ,local_ :: [Maybe FilePath]
+         ,debug :: Bool
+         ,language :: Language
+         }
+Index: b/src/Action/Generate.hs
+===================================================================
+--- a/src/Action/Generate.hs
++++ b/src/Action/Generate.hs
+@@ -126,9 +126,9 @@ readHaskellOnline timing settings downlo
+     return (cbl, want, source)
+ 
+ 
+-readHaskellDir :: Timing -> FilePath -> IO (Map.Map String Package, Set.Set String, Source IO (String, URL, LStr))
+-readHaskellDir timing dir = do
+-    packages <- map (takeBaseName &&& id) . filter ((==) ".txt" . takeExtension) <$> listFiles dir
++readHaskellDirs :: Timing -> [FilePath] -> IO (Map.Map String Package, Set.Set String, Source IO (String, URL, LStr))
++readHaskellDirs timing dirs = do
++    packages <- map (takeBaseName &&& id) . filter ((==) ".txt" . takeExtension) <$> concat <$> mapM listFiles dirs
+     let source = forM_ packages $ \(name, file) -> do
+             src <- liftIO $ strReadFile file
+             yield (name, hackagePackageURL name, lstrFromChunks [src])
+@@ -171,10 +171,10 @@ actionGenerate g@Generate{..} = withTimi
+     download <- return $ downloadInput timing insecure download (takeDirectory database)
+     settings <- loadSettings
+     (cbl, want, source) <- case language of
+-        Haskell | Just "" <- local_ -> readHaskellGhcpkg timing settings
+-                | Just dir <- local_ -> readHaskellDir timing dir
+-                | otherwise -> readHaskellOnline timing settings download
+-        Frege | isJust local_ -> errorIO "No support for local Frege databases"
++        Haskell | [Just ""] <- local_ -> readHaskellGhcpkg timing settings
++                | [] <- local_ -> readHaskellOnline timing settings download
++                | otherwise -> readHaskellDirs timing (fromJust <$> local_)
++        Frege | null local_ -> errorIO "No support for local Frege databases"
+               | otherwise -> readFregeOnline timing download
+     let (cblErrs, popularity) = packagePopularity cbl
+     want <- return $ if include /= [] then Set.fromList include else want
+Index: b/src/Action/Test.hs
+===================================================================
+--- a/src/Action/Test.hs
++++ b/src/Action/Test.hs
+@@ -28,7 +28,7 @@ actionTest Test{..} = withBuffering stdo
+     putStrLn ""
+ 
+     putStrLn "Sample database tests"
+-    actionGenerate defaultGenerate{database=sample, local_=Just "misc/sample-data"}
++    actionGenerate defaultGenerate{database=sample, local_=[Just "misc/sample-data"]}
+     action_search_test True sample
+     action_server_test True sample
+     putStrLn ""
