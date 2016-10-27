@@ -1,38 +1,45 @@
 Source: haskell-attoparsec-enumerator
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders:
+ Clint Adams <clint@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts (>= 0.10),
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 9),
+ ghc (>= 8),
  ghc-prof,
- libghc-attoparsec-dev (>= 0.10),
+ haskell-devscripts (>= 0.10),
  libghc-attoparsec-dev (<< 0.14),
+ libghc-attoparsec-dev (>= 0.10),
  libghc-attoparsec-prof,
- libghc-enumerator-dev (>= 0.4),
  libghc-enumerator-dev (<< 0.5),
+ libghc-enumerator-dev (>= 0.4),
  libghc-enumerator-prof,
  libghc-text-dev,
  libghc-text-prof,
-Build-Depends-Indep: ghc-doc,
+Build-Depends-Indep:
+ ghc-doc,
  libghc-attoparsec-doc,
  libghc-enumerator-doc,
  libghc-text-doc,
 Standards-Version: 3.9.8
 Homepage: https://john-millikin.com/software/attoparsec-enumerator/
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-attoparsec-enumerator
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 
 Package: libghc-attoparsec-enumerator-dev
 Architecture: any
-Depends: ${haskell:Depends},
- ${shlibs:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: convert an Attoparsec parser into an iteratee${haskell:ShortBlurb}
  It allows an Attoparsec parser to receive input incrementally from
  an enumerator.  This could be used for parsing large files or
@@ -42,11 +49,15 @@ Description: convert an Attoparsec parser into an iteratee${haskell:ShortBlurb}
 
 Package: libghc-attoparsec-enumerator-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Provides:
+ ${haskell:Provides},
 Description: convert an Attoparsec parser into an iteratee${haskell:ShortBlurb}
  The library allows an Attoparsec parser to receive input incrementally from
  an enumerator.  This could be used for parsing large files or
@@ -57,10 +68,13 @@ Description: convert an Attoparsec parser into an iteratee${haskell:ShortBlurb}
 Package: libghc-attoparsec-enumerator-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends},
+Depends:
  ${haskell:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
+ ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
 Description: convert an Attoparsec parser into an iteratee${haskell:ShortBlurb}
  The library allows an Attoparsec parser to receive input incrementally from
  an enumerator.  This could be used for parsing large files or
