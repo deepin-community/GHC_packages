@@ -1,12 +1,5 @@
 #!/bin/sh
 
-readlinks() {
-  for i in $*; do
-    readlink -f $i
-  done
-}
-
-SHIPPED_DIR=/usr/share/hoogle/predownload
 DATABASE_DIR=/var/lib/hoogle/databases
 HOOGLE=/usr/bin/hoogle
 
@@ -14,21 +7,15 @@ HOOGLE=/usr/bin/hoogle
 rm -rf $DATABASE_DIR/*
 
 # convert
-echo -n "Converting databases."
+echo -n "Converting databases..."
 TXTFILES_SYM=`find /usr/lib/ghc-doc/hoogle/ -name "*.txt"`
-TXTFILES=`readlinks $TXTFILES_SYM`
-for i in $TXTFILES; do
-  if [ -r "$i" ]; then
-    echo -n "."
-    $HOOGLE convert $i $DATABASE_DIR/`basename $i`.hoo --addlocation >/dev/null 2>&1
-  fi
+LOCALS=""
+for i in $TXTFILES_SYM; do
+    TXTFILE=$(readlink -f $i)
+    if [ -r "$TXTFILE" ]; then
+        LOCALS="$LOCALS --local=$(dirname $TXTFILE)"
+    fi
 done
-# convert the pre-shipped keyword file (no addlocation here!)
-$HOOGLE convert $SHIPPED_DIR/keyword.txt $DATABASE_DIR/keyword.txt.hoo >/dev/null 2>&1
-echo " done"
 
-# combine, removing first default.hoo (if by any chance the above
-# commands generated one)
-rm -f $DATABASE_DIR/default.hoo
-find $DATABASE_DIR -name \*.hoo -print0 | \
-  xargs -0 -- hoogle combine -o $DATABASE_DIR/default.hoo
+$HOOGLE generate --database=$DATABASE_DIR/default.hoo $LOCALS > /dev/null 2>&1
+echo " done"
