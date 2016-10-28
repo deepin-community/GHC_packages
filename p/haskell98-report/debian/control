@@ -2,21 +2,30 @@ Source: haskell98-report
 Section: doc
 Priority: optional
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Marco Túlio Gontijo e Silva <marcot@debian.org>
+Uploaders:
+ Marco Túlio Gontijo e Silva <marcot@debian.org>,
 Standards-Version: 3.9.8
-Build-Depends: debhelper (>= 7.0.50~)
-Build-Depends-Indep: ghc (>= 6.6), flex-old,
- texlive-fonts-recommended, texlive-latex-recommended, ghostscript,
- texlive-latex-extra
+Build-Depends:
+ debhelper (>= 7.0.50~),
+Build-Depends-Indep:
+ flex-old,
+ ghc (>= 8.0),
+ ghostscript,
+ texlive-fonts-recommended,
+ texlive-latex-extra,
+ texlive-latex-recommended,
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
 Homepage: http://darcs.haskell.org/haskell98-report/
 
 Package: haskell98-report
 Architecture: all
-Depends: ${misc:Depends}
-Suggests: lynx | www-browser
-Conflicts: haskell-doc (<= 19991028-3)
+Depends:
+ ${misc:Depends},
+Suggests:
+ lynx | www-browser,
+Conflicts:
+ haskell-doc (<= 19991028-3),
 Description: The Haskell 98 Language and Libraries Revised Report & addenda
  Haskell is a non-strict, pure functional general-purpose programming
  language.  This package contains its definition in HTML, PS and PDF
