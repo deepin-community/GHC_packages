@@ -5,7 +5,7 @@
  import Control.Monad.IO.Class (liftIO)
  import Data.Aeson (Value(..), eitherDecode, object, toJSON)
 -import Data.Aeson.Encode.Pretty (Config(..), encodePretty')
-+import Data.Aeson.Encode.Pretty (Config(..), defConfig, encodePretty')
++import Data.Aeson.Encode.Pretty (Config(..), Indent(Spaces), defConfig, encodePretty')
  import Data.ByteString.Char8 (pack)
  import Data.CaseInsensitive (original)
  import Data.Maybe (catMaybes, fromMaybe)
@@ -14,7 +14,27 @@
  writeJSON obj = do
    modifyResponse $ setContentType "application/json"
 -  writeLBS . (<> "\n") . encodePretty' (Config 2 compare) . object $ obj
-+  writeLBS . (<> "\n") . encodePretty' defConfig { confIndent = 2, confCompare = compare } . object $ obj
++  writeLBS . (<> "\n") . encodePretty' defConfig { confIndent = Spaces 2, confCompare = compare } . object $ obj
  
  respond act = do
    req <- getRequest
+--- a/wreq.cabal
++++ b/wreq.cabal
+@@ -135,7 +135,7 @@
+   else
+     build-depends:
+       aeson >= 0.7,
+-      aeson-pretty >= 0.7.1,
++      aeson-pretty >= 0.8.0,
+       base >= 4.5 && < 5,
+       base64-bytestring,
+       bytestring,
+@@ -178,7 +178,7 @@
+     HUnit,
+     QuickCheck >= 2.7,
+     aeson,
+-    aeson-pretty >= 0.7.1,
++    aeson-pretty >= 0.8.0,
+     base >= 4.5 && < 5,
+     base64-bytestring,
+     bytestring,
