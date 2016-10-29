@@ -10,6 +10,6 @@ build/gtk2hs-buildtools:: build-ghc-stamp
 install/gtk2hs-buildtools::
 	$(DEB_SETUP_BIN_NAME) copy --builddir=dist-ghc \
 		--destdir=debian/gtk2hs-buildtools/
-	rm -r debian/gtk2hs-buildtools/usr/lib/haskell-packages
-	rm -r debian/gtk2hs-buildtools/usr/lib/ghc-doc
-	rm -r debian/gtk2hs-buildtools/usr/share/doc/*ghc*
+	rm -rf debian/gtk2hs-buildtools/usr/lib/haskell-packages
+	rm -rf debian/gtk2hs-buildtools/usr/lib/ghc-doc
+	rm -rf debian/gtk2hs-buildtools/usr/share/doc/*ghc*
