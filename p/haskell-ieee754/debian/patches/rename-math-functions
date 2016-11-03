@@ -1,0 +1,69 @@
+--- a/Numeric/IEEE.hs
++++ b/Numeric/IEEE.hs
+@@ -240,16 +240,16 @@
+ foreign import ccall unsafe "feqrelf"
+     c_feqrelf :: Float -> Float -> Int
+ 
+-foreign import ccall unsafe "nextup"
++foreign import ccall unsafe "hsi7_nextup"
+     c_nextup :: Double -> Double
+ 
+-foreign import ccall unsafe "nextupf"
++foreign import ccall unsafe "hsi7_nextupf"
+     c_nextupf :: Float -> Float
+ 
+-foreign import ccall unsafe "nextdown"
++foreign import ccall unsafe "hsi7_nextdown"
+     c_nextdown :: Double -> Double
+ 
+-foreign import ccall unsafe "nextdownf"
++foreign import ccall unsafe "hsi7_nextdownf"
+     c_nextdownf :: Float -> Float
+ 
+ foreign import ccall unsafe "ieeemean"
+--- a/cbits/double.c
++++ b/cbits/double.c
+@@ -41,7 +41,7 @@
+ 
+ /* ported from tango/math/IEEE.d */
+ double
+-nextup (double x)
++hsi7_nextup (double x)
+ {
+     union double_t ps = { x };
+ 
+@@ -64,9 +64,9 @@
+ 
+ /* ported from tango/math/IEEE.d */
+ double
+-nextdown (double x)
++hsi7_nextdown (double x)
+ {
+-    return -nextup(-x);
++    return -hsi7_nextup(-x);
+ }
+ 
+ /* ported from tango/math/IEEE.d */
+--- a/cbits/float.c
++++ b/cbits/float.c
+@@ -42,7 +42,7 @@
+ 
+ /* ported from tango/math/IEEE.d */
+ float
+-nextupf (float x)
++hsi7_nextupf (float x)
+ {
+     union float_t ps = { x };
+ 
+@@ -65,9 +65,9 @@
+ 
+ /* ported from tango/math/IEEE.d */
+ float
+-nextdownf (float x)
++hsi7_nextdownf (float x)
+ {
+-    return -nextupf(-x);
++    return -hsi7_nextupf(-x);
+ }
+ 
+ /* ported from tango/math/IEEE.d */
