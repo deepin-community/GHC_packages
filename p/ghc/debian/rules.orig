@@ -38,10 +38,6 @@ EXTRA_CONFIGURE_FLAGS=--with-ghc="$(GHC)"
 BUILD_HADDOCK_DOCS=YES
 DEB_HOOGLE_TXT_DIR = /usr/lib/ghc-doc/hoogle/
 
-ifeq (x32,$(DEB_HOST_ARCH))
-  EXTRA_CONFIGURE_FLAGS += --enable-unregisterised
-endif
-
 %:
 	dh $@ --parallel --with autotools-dev
 
@@ -62,9 +58,6 @@ ifeq (armel,$(DEB_HOST_ARCH))
 endif
 ifneq (,$(findstring $(DEB_HOST_ARCH), mips mipsel))
 	echo "SRC_HC_OPTS     += -optc--param -optcggc-min-expand=10" >> mk/build.mk
-endif
-ifeq (x32,$(DEB_HOST_ARCH))
-	echo "INTEGER_LIBRARY = integer-simple" >> mk/build.mk
 endif
 ifneq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
 #	echo "GhcStage1HcOpts += -DDEBUG" >> mk/build.mk
