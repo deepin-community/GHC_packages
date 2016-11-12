@@ -1,0 +1,11 @@
+--- a/src/System/ZMQ4/Internal/Base.hsc
++++ b/src/System/ZMQ4/Internal/Base.hsc
+@@ -61,8 +61,6 @@
+ type ZMQSocket  = Ptr ()
+ type ZMQPollPtr = Ptr ZMQPoll
+ 
+-#let alignment t = "%lu", (unsigned long)offsetof(struct {char x__; t (y__); }, y__)
+-
+ -----------------------------------------------------------------------------
+ -- Socket Types
+ 
