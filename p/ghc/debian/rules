@@ -119,7 +119,9 @@ override_dh_auto_build:
 	inplace/bin/ghc-stage2 debian/testghc/foo.hs -o debian/testghc/foo -O2
 	[ "$$(debian/testghc/foo)" = "Foo" ]
 	rm debian/testghc/*
-	inplace/bin/ghc-stage2 --info
+	@printf "====BEGIN GHC INFO OUTPUT====\n"
+	@inplace/bin/ghc-stage2 --info
+	@printf "====END GHC INFO OUTPUT====\n"
 
 FILES = \( -type f -o -type l \)
 PROF_FILE = \( -name "*.p_*" -o -name "lib*_p.a" \)
