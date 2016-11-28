@@ -1,0 +1,22 @@
+Description: Fixed ghc lib dir lookup via stack for system installed ghc
+Author: Tomas Janousek <tomi@nomi.cz>
+Origin: upstream, https://github.com/hdevtools/hdevtools/commit/a436699b8587a
+Bug-Debian: https://bugs.debian.org/846023
+
+Index: b/src/Stack.hs
+===================================================================
+--- a/src/Stack.hs
++++ b/src/Stack.hs
+@@ -52,7 +52,11 @@ getStackGhcBinDir :: FilePath -> IO (May
+ getStackGhcBinDir = fmap (fmap trim) . execStackInPath "path --compiler-bin"
+ 
+ getStackGhcLibDir :: FilePath -> IO (Maybe FilePath)
+-getStackGhcLibDir = fmap (fmap takeDirectory) . execStackInPath "path --global-pkg-db"
++getStackGhcLibDir p = do
++    ghc <- (trim <$>) <$> execStackInPath "path --compiler-exe" p
++    case ghc of
++        Just exe -> (trim <$>) <$> execInPath (exe ++ " --print-libdir") p
++        Nothing -> return Nothing
+ 
+ getStackDist :: FilePath -> IO (Maybe FilePath)
+ getStackDist p = (trim <$>) <$> execStackInPath "path --dist-dir" p
