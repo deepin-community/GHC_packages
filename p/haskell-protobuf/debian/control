@@ -1,0 +1,85 @@
+Source: haskell-protobuf
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Sean Whitton <spwhitton@spwhitton.name>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-base-orphans-dev (>= 0.5),
+ libghc-base-orphans-prof,
+ libghc-cereal-dev (>= 0.3),
+ libghc-cereal-prof,
+ libghc-data-binary-ieee754-dev (>= 0.4),
+ libghc-data-binary-ieee754-prof,
+ libghc-mtl-dev (>= 2),
+ libghc-mtl-dev (<< 3),
+ libghc-mtl-prof,
+ libghc-text-dev (>= 0.10),
+ libghc-text-prof,
+ libghc-unordered-containers-dev (>= 0.2),
+ libghc-unordered-containers-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-base-orphans-doc,
+ libghc-cereal-doc,
+ libghc-data-binary-ieee754-doc,
+ libghc-mtl-doc,
+ libghc-text-doc,
+ libghc-unordered-containers-doc,
+Standards-Version: 3.9.6
+Homepage: https://github.com/alphaHeavy/protobuf
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-protobuf
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
+X-Description: Google Protocol Buffers via GHC.Generics
+ Google Protocol Buffers via GHC.Generics.
+ .
+ Protocol Buffers are a way of encoding structured data in an efficient yet extensible format.
+ Google uses Protocol Buffers for almost all of its internal RPC protocols and file formats.
+ .
+ This library supports a useful subset of Google Protocol Buffers message specifications
+ in a Haskell. No preprocessor or additional build steps are required for message encoding and decoding.
+ .
+ Record specifications are built by defining records with specially defined fields that
+ capture most of the Protocol Buffers specification language.
+
+Package: libghc-protobuf-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-protobuf-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-protobuf-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
