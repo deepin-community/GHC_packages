@@ -16,6 +16,7 @@ repository.
 Also, our work is maintaining the debian/ directory, so we decided to track
 only that, and _not_ upstream sources. Therefore, the directory structure for a
 Haskell package foo is as follows:
+
     /p/                           -- root of all packaging
     /p/haskell-foo/               -- package name (Debian source package name)
     /p/haskell-foo/debian/        -- packaging directory
@@ -41,12 +42,14 @@ Packages are in one of three states:
 
  * `UNRELEASED` in `debian/changelog`:
 
-   Changes (compared to the version in the archive) present, package not ready for upload.
+   Changes (compared to the version in the archive) present, package not ready
+   for upload.
 
 
  * `unstable` in `debian/changelog`, no corresponding git tag:
 
-   Changes (compared to the version in the archive) present, package ready for upload.
+   Changes (compared to the version in the archive) present, package ready for
+   upload.
 
 
  * `unstable` in `debian/changelog`, corresponding tag present
@@ -65,7 +68,12 @@ In the full debian version, `:` and `~` are replaced by `_`.
 Debian Haskell Tools
 --------------------
 
-We provide tools for a number of repeated tasks, such as tagging, upgrading, knowing what to build and what to upgrade, etc. They are provided in the `pkg-haskell-tools` package, available in sid, or at ssh://git.debian.org/git/pkg-haskell/pkg-haskell-tools.git (git://anonscm.debian.org/pkg-haskell/pkg-haskell-tools.git for non-Debian-developers).
+We provide tools for a number of repeated tasks, such as tagging, upgrading,
+knowing what to build and what to upgrade, etc. They are provided in the
+`pkg-haskell-tools` package, available in sid, or at
+ssh://git.debian.org/git/pkg-haskell/pkg-haskell-tools.git
+(git://anonscm.debian.org/pkg-haskell/pkg-haskell-tools.git for
+non-Debian-developers).
 
 All tools are under the `dht` prefix, and it has a manpage (man dht) or at
 <file:///usr/share/doc/pkg-haskell-tools/dht.html>.
@@ -77,9 +85,9 @@ Useful general tools
  * `origtargz`:
 
    In order to download and extract upstream sources in one go, simply run
-   `origtargz` inside the `haskell-foo/` directory. You can also run this command
-   after you increased the version number in `debian/changelog`, and it will
-   clean out `haskell-foo` before.
+   `origtargz` inside the `haskell-foo/` directory. You can also run this
+   command after you increased the version number in `debian/changelog`, and it
+   will clean out `haskell-foo` before.
 
  * `git clean -d -x -n`:
 
