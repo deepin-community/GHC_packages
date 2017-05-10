@@ -1,0 +1,71 @@
+Source: haskell-foundation
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-quickcheck2-dev,
+ libghc-mtl-dev,
+ libghc-tasty-dev,
+ libghc-tasty-hunit-dev,
+ libghc-tasty-quickcheck-dev,
+Build-Depends-Indep: ghc-doc,
+Standards-Version: 3.9.8
+Homepage: https://github.com/haskell-foundation/foundation
+X-Description: alternative prelude with batteries and no dependencies
+ A custom prelude with no dependencies apart from base.
+ .
+ This package has the following goals:
+  * provide a base like sets of modules that provide a consistent set
+    of features and bugfixes across multiple versions of GHC (unlike base).
+  * provide a better and more efficient prelude than base's prelude.
+  * be self-sufficient: no external dependencies apart from base.
+  * provide better data-types: packed unicode string by default, arrays.
+  * Better numerical classes that better represent mathematical thing
+    (No more all-in-one Num).
+  * Better I/O system with less Lazy IO
+  * Usual partial functions distinguished through type system
+
+Package: libghc-foundation-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-foundation-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-foundation-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
