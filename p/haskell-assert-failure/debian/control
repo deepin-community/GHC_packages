@@ -1,0 +1,66 @@
+Source: haskell-assert-failure
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-pretty-show-dev (>= 1.6),
+ libghc-pretty-show-dev (<< 2),
+ libghc-pretty-show-prof,
+ libghc-text-dev (>= 0.11.2.3),
+ libghc-text-dev (<< 2),
+ libghc-text-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-pretty-show-doc,
+ libghc-text-doc,
+Standards-Version: 3.9.8
+Homepage: https://github.com/Mikolaj/assert-failure
+X-Description: syntactic sugar improving 'assert' and 'error'
+ This library contains syntactic sugar that improves
+ the usability of 'assert' and 'error'.
+ This is actually a bunch of hacks wrapping the original
+ 'assert' function.
+
+Package: libghc-assert-failure-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-assert-failure-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-assert-failure-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
