@@ -1,0 +1,70 @@
+Source: haskell-hsini
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-mtl-dev (>= 2.2),
+ libghc-mtl-dev (<< 2.3),
+ libghc-mtl-prof,
+ libghc-parsec3-dev (>= 3.1),
+ libghc-parsec3-dev (<< 3.2),
+ libghc-parsec3-prof,
+ libghc-hunit-dev,
+ libghc-quickcheck2-dev,
+ libghc-mtl-dev,
+ libghc-parsec3-dev,
+ libghc-tasty-dev,
+ libghc-tasty-hunit-dev,
+ libghc-tasty-quickcheck-dev,
+ libghc-tasty-th-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-mtl-doc,
+ libghc-parsec3-doc,
+Standards-Version: 3.9.8
+X-Description: user configuration files (INI) parser
+ Parser for and types which represent an INI configuration file.
+
+Package: libghc-hsini-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hsini-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hsini-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
