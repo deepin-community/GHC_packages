@@ -1,0 +1,71 @@
+Source: haskell-minimorph
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+ libghc-hunit-dev,
+ libghc-test-framework-dev,
+ libghc-test-framework-hunit-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-text-doc,
+Standards-Version: 3.9.8
+Homepage: https://github.com/Mikolaj/minimorph
+X-Description: English-spelling functions with an emphasis on simplicity
+ A set of simplistic functions capturing the more regular
+ parts of English spelling (for generation, not parsing).
+ You will need to complement this with some account for
+ irregular nouns/verbs. This package is not meant to provide
+ anything resembling a full account of English morphology
+ (something like Functional Morphology or sequor could be
+ better suited). The main goal is to provide something cheap
+ and cheerful with no learning curve, that you can use until
+ your application calls for more robustness.
+ .
+ See miniutter for a simple use case.
+
+Package: libghc-minimorph-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-minimorph-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-minimorph-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
