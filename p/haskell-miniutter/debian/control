@@ -1,0 +1,79 @@
+Source: haskell-miniutter
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-minimorph-dev (>= 0.1.6),
+ libghc-minimorph-dev (<< 1),
+ libghc-minimorph-prof (>= 0.1.6),
+ libghc-minimorph-prof (<< 1),
+ libghc-text-dev (>= 0.11.2.3),
+ libghc-text-dev (<< 2),
+ libghc-text-prof (>= 0.11.2.3),
+ libghc-text-prof (<< 2),
+ libghc-hunit-dev (>= 1.2),
+ libghc-hunit-dev (<< 2),
+ libghc-test-framework-dev (>= 0.6),
+ libghc-test-framework-dev (<< 1),
+ libghc-test-framework-hunit-dev (>= 0.2),
+ libghc-test-framework-hunit-dev (<< 1),
+Build-Depends-Indep: ghc-doc,
+ libghc-minimorph-doc,
+ libghc-text-doc,
+Standards-Version: 3.9.8
+Homepage: https://github.com/Mikolaj/miniutter
+X-Description: simple English clause creation from arbitrary words
+ This library helps in generating simple present tense
+ English sentences from short, parameterized descriptions.
+ In a typical use, the structure of a clause is fixed,
+ but the particular words to be used vary in arbitrary ways.
+ The main goal of the library is to minimize the API
+ complexity and the code size of programs that use it.
+ The library doesn't attempt to ban incorrect English sentences,
+ but just make the creation of the simple correct ones easy
+ and predictable.
+
+Package: libghc-miniutter-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-miniutter-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-miniutter-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
