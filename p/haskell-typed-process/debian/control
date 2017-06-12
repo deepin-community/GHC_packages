@@ -1,0 +1,85 @@
+Source: haskell-typed-process
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-async-dev,
+ libghc-async-prof,
+ libghc-conduit-dev,
+ libghc-conduit-prof,
+ libghc-conduit-extra-dev,
+ libghc-conduit-extra-prof,
+ libghc-exceptions-dev,
+ libghc-exceptions-prof,
+ libghc-stm-dev,
+ libghc-stm-prof,
+ libghc-base64-bytestring-dev,
+ libghc-hspec-dev,
+ libghc-http-conduit-dev (>= 2.1.10),
+ libghc-temporary-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-async-doc,
+ libghc-conduit-doc,
+ libghc-conduit-extra-doc,
+ libghc-exceptions-doc,
+ libghc-stm-doc,
+Standards-Version: 3.9.8
+Homepage: https://github.com/fpco/typed-process#readme
+X-Description: run external processes, with strong typing of streams
+ This library provides the ability to launch and interact with
+ external processes. It wraps around the process library, and intends
+ to improve upon it by:
+ .
+  * Using type variables to represent the standard streams, making
+    them easier to manipulate
+  * Use proper concurrency (e.g., the async library) in place of the
+    weird lazy I/O tricks for such things as consuming output streams
+  * Allow for more complex concurrency by providing STM-based functions
+  * Using binary I/O correctly
+  * Providing a more composable API, designed to be easy to use for
+    both simple and complex use cases
+
+Package: libghc-typed-process-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-typed-process-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-typed-process-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
