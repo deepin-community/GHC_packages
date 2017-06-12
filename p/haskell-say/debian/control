@@ -1,0 +1,69 @@
+Source: haskell-say
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-text-dev (>= 1.2),
+ libghc-text-prof (>= 1.2),
+ libghc-hspec-dev,
+ libghc-temporary-dev,
+ libghc-text-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-text-doc,
+Standards-Version: 3.9.8
+Homepage: https://github.com/fpco/say#readme
+X-Description: send textual messages to a Handle in a thread-friendly way
+ When writing a line to a Handle,
+ .
+  * Properly handle character encoding settings on the Handle
+  * For reasonably sized messages, ensure that the entire message
+    is written in one chunk to avoid interleaving data with other threads
+  * This includes the trailing newline character
+  * Avoid unnecessary memory allocations and copies
+  * Minimize locking
+  * Provide a simple API
+
+Package: libghc-say-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-say-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-say-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
