@@ -1,12 +1,12 @@
 --- a/cereal.cabal
 +++ b/cereal.cabal
-@@ -32,9 +32,6 @@ library
-                                 base >= 4.4 && < 5, containers, array,
+@@ -39,9 +39,6 @@
+         build-depends:          base >= 4.4 && < 5, containers, array,
                                  ghc-prim >= 0.2
  
 -        if !impl(ghc >= 8.0)
 -          build-depends:        fail == 4.9.*
 -
-         hs-source-dirs:         src
- 
-         exposed-modules:        Data.Serialize,
+         if flag(bytestring-builder)
+           build-depends:        bytestring >= 0.9    && < 0.10.4,
+                                 bytestring-builder >= 0.10.4 && < 1
