@@ -1,10 +1,10 @@
 --- a/lib/Network/Http/Inconvenience.hs
 +++ b/lib/Network/Http/Inconvenience.hs
-@@ -73,9 +73,7 @@
+@@ -76,9 +76,7 @@
  import Network.Http.RequestBuilder
  import Network.Http.Types
  
--#if defined __LINUX__
+-#if defined __LINUX__ || defined __FREEBSD__
  import System.Directory (doesDirectoryExist)
 -#endif
  
