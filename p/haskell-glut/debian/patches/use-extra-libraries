@@ -1,8 +1,6 @@
-Index: haskell-glut/GLUT.cabal
-===================================================================
---- haskell-glut.orig/GLUT.cabal	2016-05-12 12:47:38.000000000 -0400
-+++ haskell-glut/GLUT.cabal	2017-05-06 16:55:16.164611101 -0400
-@@ -103,6 +103,7 @@
+--- a/GLUT.cabal
++++ b/GLUT.cabal
+@@ -104,6 +104,7 @@
    else
      cpp-options: "-DCALLCONV=ccall"
      cc-options: "-DUSE_DLSYM"
@@ -10,16 +8,14 @@ Index: haskell-glut/GLUT.cabal
  
  executable BOGLGP01-OnYourOwn1
    if !flag(BuildExamples)
-Index: haskell-glut/cbits/HsGLUT.c
-===================================================================
---- haskell-glut.orig/cbits/HsGLUT.c	2016-05-12 12:47:38.000000000 -0400
-+++ haskell-glut/cbits/HsGLUT.c	2017-05-06 16:56:30.898637798 -0400
-@@ -66,7 +66,7 @@
-       handle = dlopen("/System/Library/Frameworks/GLUT.framework/GLUT", RTLD_LAZY | RTLD_GLOBAL);
-     }
+--- a/cbits/HsGLUT.c
++++ b/cbits/HsGLUT.c
+@@ -57,7 +57,7 @@
+   /* If the public path failed, try the system framework path. */
+   "/System/Library/Frameworks/GLUT.framework/GLUT"
  #else
--    handle = dlopen("libglut.so", RTLD_LAZY | RTLD_GLOBAL);
-+    handle = dlopen(NULL, RTLD_LAZY | RTLD_GLOBAL);
+-  "libglut.so", "libglut.so.3"
++  NULL
  #endif
-   }
+ };
  
