@@ -1,6 +1,6 @@
 --- a/test/Network/HTTP/ClientSpec.hs
 +++ b/test/Network/HTTP/ClientSpec.hs
-@@ -12,38 +12,4 @@ main :: IO ()
+@@ -12,48 +12,4 @@
  main = hspec spec
  
  spec :: Spec
@@ -27,16 +27,26 @@
 -            res <- httpLbs req man
 -            responseStatus res `shouldBe` status405
 -
--    it "managerModifyRequest" $ do
+-    describe "managerModifyRequest" $ do
+-
+-      it "can set port to 80" $ do
 -        let modify req = return req { port = 80 }
 -            settings = defaultManagerSettings { managerModifyRequest = modify }
 -        withManager settings $ \man -> do
 -            res <- httpLbs "http://httpbin.org:1234" man
 -            responseStatus res `shouldBe` status200
 -
--    it "managerModifyRequestCheckStatus" $ do
+-      it "can set 'checkStatus' to throw StatusCodeException" $ do
 -        let modify req = return req { checkStatus = \s hs cj -> Just $ toException $ StatusCodeException s hs cj }
 -            settings = defaultManagerSettings { managerModifyRequest = modify }
 -        withManager settings $ \man ->
 -            httpLbs "http://httpbin.org" man `shouldThrow` anyException
+-
+-      it "can set redirectCount to 0 to prevent following redirects" $ do
+-        let modify req = return req { redirectCount = 0 }
+-            settings = defaultManagerSettings { managerModifyRequest = modify }
+-        man <- newManager settings
+-        httpLbs "http://httpbin.org/redirect-to?url=foo" man `shouldThrow` ( \ (StatusCodeException s _  _) -> s == found302)
+-
+-
 +spec = return ()
