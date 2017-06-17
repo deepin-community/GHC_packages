@@ -8,7 +8,7 @@
  
 --- a/double-conversion.cabal
 +++ b/double-conversion.cabal
-@@ -62,19 +62,12 @@
+@@ -62,14 +62,6 @@
  library
    c-sources:
      cbits/hs-double-conversion.cc
@@ -21,10 +21,14 @@
 -    double-conversion/src/fixed-dtoa.cc
 -    double-conversion/src/strtod.cc
  
--  extra-libraries: stdc++
-+  extra-libraries:
-+    stdc++
-+    double-conversion
+   if os(windows)
+     if arch(x86_64)
+@@ -80,10 +72,9 @@
+     if os(darwin)
+       extra-libraries: c++
+     else
+-      extra-libraries: stdc++
++      extra-libraries: stdc++ double-conversion
  
    include-dirs:
 -    double-conversion/src
