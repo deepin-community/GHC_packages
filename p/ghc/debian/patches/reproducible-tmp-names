@@ -4,10 +4,10 @@ up in the resulting binary (in the debug section), but not the directory.
 Instead of using the process id, create a hash from the command line arguments,
 and assume that is going to be unique.
 
-Index: ghc/compiler/main/SysTools.hs
+Index: ghc-8.0.2/compiler/main/SysTools.hs
 ===================================================================
---- ghc.orig/compiler/main/SysTools.hs	2016-04-23 17:57:12.812255430 +0200
-+++ ghc/compiler/main/SysTools.hs	2016-04-23 17:57:12.808255337 +0200
+--- ghc-8.0.2.orig/compiler/main/SysTools.hs
++++ ghc-8.0.2/compiler/main/SysTools.hs
 @@ -65,6 +65,7 @@
  import Util
  import DynFlags
@@ -16,7 +16,7 @@ Index: ghc/compiler/main/SysTools.hs
  
  import LlvmCodeGen.Base (llvmVersionStr, supportedLlvmVersion)
  
-@@ -1158,8 +1159,8 @@
+@@ -1145,8 +1146,8 @@
      mapping <- readIORef dir_ref
      case Map.lookup tmp_dir mapping of
          Nothing -> do
@@ -27,7 +27,7 @@ Index: ghc/compiler/main/SysTools.hs
              mask_ $ mkTempDir prefix
          Just dir -> return dir
    where
-@@ -1575,6 +1576,13 @@
+@@ -1562,6 +1563,13 @@
  getProcessID = System.Posix.Internals.c_getpid >>= return . fromIntegral
  #endif
  

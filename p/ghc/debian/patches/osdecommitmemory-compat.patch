@@ -5,9 +5,11 @@ Bug: https://ghc.haskell.org/trac/ghc/ticket/12865
 Bug-Debian: https://bugs.debian.org/847677
 ---
 This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
---- a/rts/posix/OSMem.c
-+++ b/rts/posix/OSMem.c
-@@ -506,11 +506,24 @@ void osDecommitMemory(void *at, W_ size)
+Index: ghc-8.0.2/rts/posix/OSMem.c
+===================================================================
+--- ghc-8.0.2.orig/rts/posix/OSMem.c
++++ ghc-8.0.2/rts/posix/OSMem.c
+@@ -522,11 +522,24 @@
  
  #ifdef MADV_FREE
      // Try MADV_FREE first, FreeBSD has both and MADV_DONTNEED
