@@ -1,0 +1,66 @@
+Description: Disable FPU code on powerpspe
+ powerpcspe CPUs don't have an FPU, so the FPU PPC assembly
+ code has to be disabled on this architecture.
+ See: https://ghc.haskell.org/trac/ghc/ticket/12075
+ .
+
+--- ghc-8.0.1.orig/aclocal.m4
++++ ghc-8.0.1/aclocal.m4
+@@ -185,6 +185,7 @@ AC_DEFUN([FPTOOLS_SET_HASKELL_PLATFORM_V
+             test -z "[$]2" || eval "[$]2=ArchX86_64"
+             ;;
+         powerpc)
++            FP_CHECK_FOR_SOFT_FLOAT_POWERPC()
+             test -z "[$]2" || eval "[$]2=ArchPPC"
+             ;;
+         powerpc64)
+@@ -458,6 +459,25 @@ AC_DEFUN([GET_ARM_ISA],
+         AC_SUBST(ARM_ISA)
+ ])
+ 
++# CHECK_FOR_SOFT_FLOAT_POWERPC
++# ----------------------------------
++# Check whether we have hardware floating point support. See #12075
++AC_DEFUN([FP_CHECK_FOR_SOFT_FLOAT_POWERPC],
++[
++  AC_COMPILE_IFELSE(
++    [AC_LANG_PROGRAM(
++    [],
++    [#if defined(__NO_FPRS__)
++     softfloat
++     #else
++     return 0;
++     #endif
++    ])],
++    [value=NO],
++    [value=YES])
++
++  AC_DEFINE(powerpc_HOST_ARCH_SOFT_FLOAT, $value, [soft-float PowerPC])
++])
+ 
+ # FP_SETTINGS
+ # ----------------------------------
+--- ghc-8.0.1.orig/mk/project.mk.in
++++ ghc-8.0.1/mk/project.mk.in
+@@ -162,3 +162,6 @@ GHC_LLVM_AFFECTED_BY_9439 = @GHC_LLVM_AF
+ ifeq "$(TargetArch_CPP)" "arm"
+ ARM_ISA=@ARM_ISA@
+ endif
++ifeq "$(TargetArch_CPP)" "powerpc"
++POWERPC_SOFT_FLOAT=@powerpc_HOST_ARCH_SOFT_FLOAT@
++endif
+--- ghc-8.0.1.orig/rts/ghc.mk
++++ ghc-8.0.1/rts/ghc.mk
+@@ -55,9 +55,12 @@ rts_S_SRCS += rts/AdjustorAsm.S
+ endif
+ # this matches substrings of powerpc64le, including "powerpc" and "powerpc64"
+ ifneq "$(findstring $(TargetArch_CPP), powerpc64le)" ""
++# and this matches soft-float PPC (#12075)
++ifneq "$(POWERPC_NO_FPRS)" "YES"
+ rts_S_SRCS += rts/StgCRunAsm.S
+ endif
+ endif
++endif
+ 
+ ifeq "$(GhcUnregisterised)" "YES"
+ GENAPPLY_OPTS = -u

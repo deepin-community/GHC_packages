@@ -38,7 +38,7 @@ EXTRA_CONFIGURE_FLAGS=--with-ghc="$(GHC)"
 BUILD_HADDOCK_DOCS=YES
 DEB_HOOGLE_TXT_DIR = /usr/lib/ghc-doc/hoogle/
 
-ifeq (x32,$(DEB_HOST_ARCH))
+ifneq (,$(findstring $(DEB_HOST_ARCH), powerpcspe x32))
   EXTRA_CONFIGURE_FLAGS += --enable-unregisterised
 endif
 
