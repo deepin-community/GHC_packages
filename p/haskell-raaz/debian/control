@@ -7,6 +7,7 @@ Section: haskell
 Build-Depends:
  cdbs,
  debhelper (>= 10),
+ dpkg-dev (>= 1.17.14),
  ghc (>= 8),
  ghc-prof,
  haskell-devscripts (>= 0.13),
@@ -77,6 +78,24 @@ Section: doc
 Depends:
  ${haskell:Depends},
  ${misc:Depends},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: haskell-raaz-utils
+Architecture: any
+Section: utils
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
 Recommends:
  ${haskell:Recommends},
 Suggests:
