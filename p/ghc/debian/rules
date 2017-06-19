@@ -43,7 +43,7 @@ ifeq (x32,$(DEB_HOST_ARCH))
 endif
 
 %:
-	dh $@ --parallel --with autotools-dev
+	dh $@
 
 override_dh_auto_configure:
 	dh_autoreconf perl -- boot
