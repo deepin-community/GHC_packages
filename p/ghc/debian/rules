@@ -45,8 +45,10 @@ endif
 %:
 	dh $@
 
-override_dh_auto_configure:
+override_dh_autoreconf:
 	dh_autoreconf perl -- boot
+
+override_dh_auto_configure:
 	echo "SRC_HC_OPTS += -lffi -optl-pthread" >> mk/build.mk
 	echo "HADDOCK_DOCS := YES" >> mk/build.mk
 	echo "EXTRA_HADDOCK_OPTS += --mathjax=file:///usr/share/javascript/mathjax/MathJax.js" >> mk/build.mk
