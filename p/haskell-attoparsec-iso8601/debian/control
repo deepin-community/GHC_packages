@@ -1,0 +1,66 @@
+Source: haskell-attoparsec-iso8601
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-attoparsec-dev (>= 0.13.0.1),
+ libghc-attoparsec-prof (>= 0.13.0.1),
+ libghc-base-compat-dev (>= 0.9.1),
+ libghc-base-compat-dev (<< 0.10),
+ libghc-base-compat-prof (>= 0.9.1),
+ libghc-base-compat-prof (<< 0.10),
+ libghc-text-dev (>= 1.1.1.0),
+ libghc-text-prof (>= 1.1.1.0),
+Build-Depends-Indep: ghc-doc,
+ libghc-attoparsec-doc,
+ libghc-base-compat-doc,
+ libghc-text-doc,
+Standards-Version: 4.0.0
+Homepage: https://github.com/bos/aeson
+X-Description: parsing of ISO 8601 dates
+ Parsing of ISO 8601 dates, originally from aeson.
+
+Package: libghc-attoparsec-iso8601-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-attoparsec-iso8601-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-attoparsec-iso8601-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
