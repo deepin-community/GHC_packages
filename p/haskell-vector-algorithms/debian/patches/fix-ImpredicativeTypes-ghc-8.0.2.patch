@@ -1,0 +1,97 @@
+Origin: http://hub.darcs.net/RyanGlScott/vector-algorithms/patch/891942190c7c59f6634d6a4be061da37f9668e94
+
+--- haskell-vector-algorithms-0.7.0.1.orig/tests/properties/Tests.hs
++++ haskell-vector-algorithms-0.7.0.1/tests/properties/Tests.hs
+@@ -1,4 +1,4 @@
+-{-# LANGUAGE ImpredicativeTypes, RankNTypes, TypeOperators, FlexibleContexts #-}
++{-# LANGUAGE RankNTypes, TypeOperators, FlexibleContexts #-}
+ 
+ module Main (main) where
+ 
+@@ -37,36 +37,41 @@ type Algo      e r = forall s mv. MVecto
+ type SizeAlgo  e r = forall s mv. MVector mv e => mv s e -> Int -> ST s r
+ type BoundAlgo e r = forall s mv. MVector mv e => mv s e -> Int -> Int -> ST s r
+ 
++-- Shims to work around the fact that GHC doesn't support impredicative
++-- polymorphism properly.
++newtype WrappedAlgo     e r = WrapAlgo     (Algo      e r)
++newtype WrappedSizeAlgo e r = WrapSizeAlgo (SizeAlgo  e r)
++
+ args = stdArgs
+        { maxSuccess = 1000
+        , maxDiscardRatio = 2
+        }
+ 
+-check_Int_sort = forM_ algos $ \(name,algo) ->
++check_Int_sort = forM_ algos $ \(name,WrapAlgo algo) ->
+   quickCheckWith args (label name . prop_fullsort algo)
+  where
+- algos :: [(String, Algo Int ())]
+- algos = [ ("introsort", INT.sort)
+-         , ("insertion sort", INS.sort)
+-         , ("merge sort", M.sort)
+-         , ("heapsort", H.sort)
+-         , ("timsort", T.sort)
++ algos :: [(String, WrappedAlgo Int ())]
++ algos = [ ("introsort", WrapAlgo INT.sort)
++         , ("insertion sort", WrapAlgo INS.sort)
++         , ("merge sort", WrapAlgo M.sort)
++         , ("heapsort", WrapAlgo H.sort)
++         , ("timsort", WrapAlgo T.sort)
+          ]
+ 
+-check_Int_partialsort = forM_ algos $ \(name,algo) ->
++check_Int_partialsort = forM_ algos $ \(name,WrapSizeAlgo algo) ->
+   quickCheckWith args (label name . prop_partialsort algo)
+  where
+- algos :: [(String, SizeAlgo Int ())]
+- algos = [ ("intro-partialsort", INT.partialSort)
+-         , ("heap partialsort", H.partialSort)
++ algos :: [(String, WrappedSizeAlgo Int ())]
++ algos = [ ("intro-partialsort", WrapSizeAlgo INT.partialSort)
++         , ("heap partialsort", WrapSizeAlgo H.partialSort)
+          ]
+ 
+-check_Int_select = forM_ algos $ \(name,algo) ->
++check_Int_select = forM_ algos $ \(name,WrapSizeAlgo algo) ->
+   quickCheckWith args (label name . prop_select algo)
+  where
+- algos :: [(String, SizeAlgo Int ())]
+- algos = [ ("intro-select", INT.select)
+-         , ("heap select", H.select)
++ algos :: [(String, WrappedSizeAlgo Int ())]
++ algos = [ ("intro-select", WrapSizeAlgo INT.select)
++         , ("heap select", WrapSizeAlgo H.select)
+          ]
+ 
+ check_radix_sorts = do
+@@ -117,14 +122,14 @@ check_optimal = do qc . label "size 2" $
+ 
+ check_permutation = do
+   qc $ label "introsort"    . prop_permutation (INT.sort :: Algo Int ())
+-  qc $ label "intropartial" . prop_sized (const . prop_permutation)
++  qc $ label "intropartial" . prop_sized (\x _ -> prop_permutation x)
+                                          (INT.partialSort :: SizeAlgo Int ())
+-  qc $ label "introselect"  . prop_sized (const . prop_permutation)
++  qc $ label "introselect"  . prop_sized (\x _ -> prop_permutation x)
+                                          (INT.select :: SizeAlgo Int ())
+   qc $ label "heapsort"     . prop_permutation (H.sort :: Algo Int ())
+-  qc $ label "heappartial"  . prop_sized (const . prop_permutation)
++  qc $ label "heappartial"  . prop_sized (\x _ -> prop_permutation x)
+                                          (H.partialSort :: SizeAlgo Int ())
+-  qc $ label "heapselect"   . prop_sized (const . prop_permutation)
++  qc $ label "heapselect"   . prop_sized (\x _ -> prop_permutation x)
+                                          (H.select :: SizeAlgo Int ())
+   qc $ label "mergesort"    . prop_permutation (M.sort :: Algo Int    ())
+   qc $ label "timsort"      . prop_permutation (T.sort :: Algo Int    ())
+--- haskell-vector-algorithms-0.7.0.1.orig/vector-algorithms.cabal
++++ haskell-vector-algorithms-0.7.0.1/vector-algorithms.cabal
+@@ -44,7 +44,7 @@ library
+   hs-source-dirs: src
+ 
+   build-depends: base >= 4.5 && < 5,
+-                 vector >= 0.6 && < 0.12,
++                 vector >= 0.6 && < 0.13,
+                  primitive >=0.3 && <0.7,
+                  bytestring >= 0.9 && < 1.0
+ 
