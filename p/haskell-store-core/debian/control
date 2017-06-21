@@ -1,0 +1,65 @@
+Source: haskell-store-core
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-primitive-dev (>= 0.6),
+ libghc-primitive-dev (<< 1.0),
+ libghc-primitive-prof (>= 0.6),
+ libghc-primitive-prof (<< 1.0),
+ libghc-text-dev (>= 1.2.0.4),
+ libghc-text-dev (<< 2.0),
+ libghc-text-prof (>= 1.2.0.4),
+ libghc-text-prof (<< 2.0),
+Build-Depends-Indep: ghc-doc,
+ libghc-primitive-doc,
+ libghc-text-doc,
+Standards-Version: 4.0.0
+Homepage: https://github.com/fpco/store#readme
+X-Description: fast and lightweight binary serialization
+ This is a lightweight core used by the store package.
+
+Package: libghc-store-core-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-store-core-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-store-core-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
