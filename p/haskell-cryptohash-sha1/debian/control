@@ -1,0 +1,73 @@
+Source: haskell-cryptohash-sha1
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-sha-dev (>= 1.6.4),
+ libghc-sha-dev (<< 1.7),
+ libghc-base16-bytestring-dev (>= 0.1.1),
+ libghc-base16-bytestring-dev (<< 0.2),
+ libghc-tasty-dev (>= 0.11),
+ libghc-tasty-dev (<< 0.12),
+ libghc-tasty-hunit-dev (>= 0.9),
+ libghc-tasty-hunit-dev (<< 0.10),
+ libghc-tasty-quickcheck-dev (>= 0.8),
+ libghc-tasty-quickcheck-dev (<< 0.9),
+Build-Depends-Indep: ghc-doc,
+Standards-Version: 4.0.0
+Homepage: https://github.com/hvr/cryptohash-sha1
+X-Description: fast, pure and practical SHA-1 implementation
+ A practical incremental and one-pass, pure API to the SHA-1 hash
+ algorithm (including HMAC spuport) with performance close to the
+ fastest implementations available in other languages.
+ .
+ The implementation is made in C with a haskell FFI wrapper that hides
+ the C implementation.
+ .
+ NOTE: This package has been forked off cryptohash 0.11.7 because
+ cryptohash has been deprecated.
+
+Package: libghc-cryptohash-sha1-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-cryptohash-sha1-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-cryptohash-sha1-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
