@@ -13,3 +13,5 @@ include /usr/share/cdbs/1/class/hlibrary.mk
 # to change where it writes its config.  That's not currently supported with
 # Dh_Haskell.sh, so just point it to a writable HOME for now.
 export HOME=$(CURDIR)/debian/cabalconfig
+
+check-ghc-stamp: export LC_ALL := C.UTF-8
