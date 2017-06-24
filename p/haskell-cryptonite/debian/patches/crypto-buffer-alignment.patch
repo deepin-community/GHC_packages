@@ -1,0 +1,25 @@
+Description: actually use the aligned buffer when required
+ Upstream implemented a fix for issue 108, but didn't actually use the
+ aligned buffer in place of the unaligned data.  This worked fine everywhere
+ except our armhf buildds, since other archs don't actually raise SIGBUS on
+ unaligned access.
+Author: Steve Langasek <steve.langasek@ubuntu.com>
+Bug-Upstream: https://github.com/haskell-crypto/cryptonite/issues/108
+Bug-Debian: https://bugs.debian.org/841983
+Forwarded-Upstream: yes
+
+Index: haskell-cryptonite-0.21/cbits/cryptonite_sha3.c
+===================================================================
+--- haskell-cryptonite-0.21.orig/cbits/cryptonite_sha3.c
++++ haskell-cryptonite-0.21/cbits/cryptonite_sha3.c
+@@ -129,8 +129,8 @@ void cryptonite_sha3_update(struct sha3_
+ 		uint64_t tramp[200 - 2 * (224 / 8)];
+ 		ASSERT_ALIGNMENT(tramp, 8);
+ 		for (; len >= ctx->bufsz; len -= ctx->bufsz, data += ctx->bufsz) {
+-			memcpy(tramp, data, ctx->bufsz / 8);
+-			sha3_do_chunk(ctx->state, (uint64_t *) data, ctx->bufsz / 8);
++			memcpy(tramp, data, ctx->bufsz);
++			sha3_do_chunk(ctx->state, tramp, ctx->bufsz / 8);
+ 		}
+ 	} else {
+ 		/* process as much ctx->bufsz-block */
