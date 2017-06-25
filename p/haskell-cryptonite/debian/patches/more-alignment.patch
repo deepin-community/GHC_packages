@@ -1,0 +1,1099 @@
+Description: Fix more cases of unaligned memory accesses
+Author: James Clarke <jrtc27@jrtc27.com>
+Forwarded: https://github.com/haskell-crypto/cryptonite/pull/175
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+--- a/cbits/cryptonite_align.h
++++ b/cbits/cryptonite_align.h
+@@ -34,18 +34,124 @@
+ #define need_alignment(p,n) IS_ALIGNED(p,n)
+ #endif
+ 
++static inline uint32_t load_be32_aligned(const uint8_t *p)
++{
++	return be32_to_cpu(*((uint32_t *) p));
++}
++
++static inline uint64_t load_be64_aligned(const uint8_t *p)
++{
++	return be64_to_cpu(*((uint64_t *) p));
++}
++
++static inline void store_be32_aligned(uint8_t *p, uint32_t val)
++{
++	*((uint32_t *) p) = cpu_to_be32(val);
++}
++
++static inline void store_be64_aligned(uint8_t *p, uint64_t val)
++{
++	*((uint64_t *) p) = cpu_to_be64(val);
++}
++
+ static inline uint32_t load_le32_aligned(const uint8_t *p)
+ {
+-	return le32_to_cpu(*((uint32_t *) p));		
++	return le32_to_cpu(*((uint32_t *) p));
++}
++
++static inline uint64_t load_le64_aligned(const uint8_t *p)
++{
++	return le64_to_cpu(*((uint64_t *) p));
++}
++
++static inline void store_le32_aligned(uint8_t *p, uint32_t val)
++{
++	*((uint32_t *) p) = cpu_to_le32(val);
++}
++
++static inline void store_le64_aligned(uint8_t *p, uint64_t val)
++{
++	*((uint64_t *) p) = cpu_to_le64(val);
+ }
+ 
+ #ifdef UNALIGNED_ACCESS_OK
+-#define load_le32(a) load_le32_aligned(a)
++
++#define load_be32(p) load_be32_aligned(p)
++#define load_be64(p) load_be64_aligned(p)
++
++#define store_be32(p, v) store_be32_aligned((p), (v))
++#define store_be64(p, v) store_be64_aligned((p), (v))
++
++#define load_le32(p) load_le32_aligned(p)
++#define load_le64(p) load_le64_aligned(p)
++
++#define store_le32(p, v) store_le32_aligned((p), (v))
++#define store_le64(p, v) store_le64_aligned((p), (v))
++
+ #else
++
++static inline uint32_t load_be32(const uint8_t *p)
++{
++	return ((uint32_t)p[0] << 24) | ((uint32_t)p[1] << 16) | ((uint32_t)p[2] <<  8) | ((uint32_t)p[3]);
++}
++
++static inline uint64_t load_be64(const uint8_t *p)
++{
++	return ((uint64_t)p[0] << 56) | ((uint64_t)p[1] << 48) | ((uint64_t)p[2] << 40) | ((uint64_t)p[3] << 32) |
++	       ((uint64_t)p[4] << 24) | ((uint64_t)p[5] << 16) | ((uint64_t)p[6] <<  8) | ((uint64_t)p[7]);
++}
++
++static inline void store_be32(uint8_t *p, uint32_t val)
++{
++	p[0] = (val >> 24);
++	p[1] = (val >> 16) & 0xFF;
++	p[2] = (val >>  8) & 0xFF;
++	p[3] = (val      ) & 0xFF;
++}
++
++static inline void store_be64(uint8_t *p, uint64_t val)
++{
++	p[0] = (val >> 56);
++	p[1] = (val >> 48) & 0xFF;
++	p[2] = (val >> 40) & 0xFF;
++	p[3] = (val >> 32) & 0xFF;
++	p[4] = (val >> 24) & 0xFF;
++	p[5] = (val >> 16) & 0xFF;
++	p[6] = (val >>  8) & 0xFF;
++	p[7] = (val      ) & 0xFF;
++}
++
+ static inline uint32_t load_le32(const uint8_t *p)
+ {
+ 	return ((uint32_t)p[0]) | ((uint32_t)p[1] <<  8) | ((uint32_t)p[2] << 16) | ((uint32_t)p[3] << 24);
+ }
++
++static inline uint64_t load_le64(const uint8_t *p)
++{
++	return ((uint64_t)p[0]) | ((uint64_t)p[1] <<  8) | ((uint64_t)p[2] << 16) | ((uint64_t)p[3] << 24) |
++	       ((uint64_t)p[4] << 32) | ((uint64_t)p[5] << 40) | ((uint64_t)p[6] << 48) | ((uint64_t)p[7] << 56);
++}
++
++static inline void store_le32(uint8_t *p, uint32_t val)
++{
++	p[0] = (val      ) & 0xFF;
++	p[1] = (val >>  8) & 0xFF;
++	p[2] = (val >> 16) & 0xFF;
++	p[3] = (val >> 24);
++}
++
++static inline void store_le64(uint8_t *p, uint64_t val)
++{
++	p[0] = (val      ) & 0xFF;
++	p[1] = (val >>  8) & 0xFF;
++	p[2] = (val >> 16) & 0xFF;
++	p[3] = (val >> 24) & 0xFF;
++	p[4] = (val >> 32) & 0xFF;
++	p[5] = (val >> 40) & 0xFF;
++	p[6] = (val >> 48) & 0xFF;
++	p[7] = (val >> 56);
++}
++
+ #endif
+ 
+ #endif
+--- a/cbits/cryptonite_poly1305.c
++++ b/cbits/cryptonite_poly1305.c
+@@ -37,11 +37,7 @@
+ #include <string.h>
+ #include "cryptonite_poly1305.h"
+ #include "cryptonite_bitfn.h"
+-
+-static inline uint32_t load32(uint8_t *p)
+-{
+-	return (le32_to_cpu(*((uint32_t *) p)));
+-}
++#include "cryptonite_align.h"
+ 
+ static void poly1305_do_chunk(poly1305_ctx *ctx, uint8_t *data, int blocks, int final)
+ {
+@@ -61,11 +57,11 @@
+ 	s1 = r1 * 5; s2 = r2 * 5; s3 = r3 * 5; s4 = r4 * 5;
+ 
+ 	while (blocks--) {
+-		h0 += (load32(data+ 0)     ) & 0x3ffffff;
+-		h1 += (load32(data+ 3) >> 2) & 0x3ffffff;
+-		h2 += (load32(data+ 6) >> 4) & 0x3ffffff;
+-		h3 += (load32(data+ 9) >> 6) & 0x3ffffff;
+-		h4 += (load32(data+12) >> 8) | hibit;
++		h0 += (load_le32(data+ 0)     ) & 0x3ffffff;
++		h1 += (load_le32(data+ 3) >> 2) & 0x3ffffff;
++		h2 += (load_le32(data+ 6) >> 4) & 0x3ffffff;
++		h3 += (load_le32(data+ 9) >> 6) & 0x3ffffff;
++		h4 += (load_le32(data+12) >> 8) | hibit;
+ 
+ 		d0 = ((uint64_t)h0 * r0) + ((uint64_t)h1 * s4) + ((uint64_t)h2 * s3) + ((uint64_t)h3 * s2) + ((uint64_t)h4 * s1);
+ 		d1 = ((uint64_t)h0 * r1) + ((uint64_t)h1 * r0) + ((uint64_t)h2 * s4) + ((uint64_t)h3 * s3) + ((uint64_t)h4 * s2);
+@@ -94,16 +90,16 @@
+ 
+ 	memset(ctx, 0, sizeof(poly1305_ctx));
+ 
+-	ctx->r[0] = (load32(&k[ 0])     ) & 0x3ffffff;
+-	ctx->r[1] = (load32(&k[ 3]) >> 2) & 0x3ffff03;
+-	ctx->r[2] = (load32(&k[ 6]) >> 4) & 0x3ffc0ff;
+-	ctx->r[3] = (load32(&k[ 9]) >> 6) & 0x3f03fff;
+-	ctx->r[4] = (load32(&k[12]) >> 8) & 0x00fffff;
+-
+-	ctx->pad[0] = load32(&k[16]);
+-	ctx->pad[1] = load32(&k[20]);
+-	ctx->pad[2] = load32(&k[24]);
+-	ctx->pad[3] = load32(&k[28]);
++	ctx->r[0] = (load_le32(&k[ 0])     ) & 0x3ffffff;
++	ctx->r[1] = (load_le32(&k[ 3]) >> 2) & 0x3ffff03;
++	ctx->r[2] = (load_le32(&k[ 6]) >> 4) & 0x3ffc0ff;
++	ctx->r[3] = (load_le32(&k[ 9]) >> 6) & 0x3f03fff;
++	ctx->r[4] = (load_le32(&k[12]) >> 8) & 0x00fffff;
++
++	ctx->pad[0] = load_le32(&k[16]);
++	ctx->pad[1] = load_le32(&k[20]);
++	ctx->pad[2] = load_le32(&k[24]);
++	ctx->pad[3] = load_le32(&k[28]);
+ 
+ 	ctx->index = 0;
+ }
+--- a/cbits/cryptonite_aes.c
++++ b/cbits/cryptonite_aes.c
+@@ -370,7 +370,7 @@
+ 		cryptonite_gf_mul(&gcm->iv, &gcm->h);
+ 	}
+ 
+-	block128_copy(&gcm->civ, &gcm->iv);
++	block128_copy_aligned(&gcm->civ, &gcm->iv);
+ }
+ 
+ void cryptonite_aes_gcm_aad(aes_gcm *gcm, uint8_t *input, uint32_t length)
+@@ -399,7 +399,7 @@
+ 	gcm_ghash_add(gcm, &lblock);
+ 
+ 	cryptonite_aes_encrypt_block(&lblock, key, &gcm->iv);
+-	block128_xor(&gcm->tag, &lblock);
++	block128_xor_aligned(&gcm->tag, &lblock);
+ 
+ 	for (i = 0; i < 16; i++) {
+ 		tag[i] = gcm->tag.b[i];
+@@ -464,7 +464,7 @@
+ 	memcpy(stretch, ktop.b, 16);
+ 
+ 	memcpy(tmp.b, ktop.b + 1, 8);
+-	block128_xor(&tmp, &ktop);
++	block128_xor_aligned(&tmp, &ktop);
+ 	memcpy(stretch + 16, tmp.b, 8);
+ 
+ 	/* initialize the encryption offset from stretch */
+@@ -490,22 +490,22 @@
+ 
+ 	for (i=1; i<= length/16; i++, input=input+16) {
+ 		ocb_get_L_i(&tmp, ocb->li, i);
+-		block128_xor(&ocb->offset_aad, &tmp);
++		block128_xor_aligned(&ocb->offset_aad, &tmp);
+ 
+ 		block128_vxor(&tmp, &ocb->offset_aad, (block128 *) input);
+ 		cryptonite_aes_encrypt_block(&tmp, key, &tmp);
+-		block128_xor(&ocb->sum_aad, &tmp);
++		block128_xor_aligned(&ocb->sum_aad, &tmp);
+ 	}
+ 
+ 	length = length % 16; /* Bytes in final block */
+ 	if (length > 0) {
+-		block128_xor(&ocb->offset_aad, &ocb->lstar);
++		block128_xor_aligned(&ocb->offset_aad, &ocb->lstar);
+ 		block128_zero(&tmp);
+ 		block128_copy_bytes(&tmp, input, length);
+ 		tmp.b[length] = 0x80;
+-		block128_xor(&tmp, &ocb->offset_aad);
++		block128_xor_aligned(&tmp, &ocb->offset_aad);
+ 		cryptonite_aes_encrypt_block(&tmp, key, &tmp);
+-		block128_xor(&ocb->sum_aad, &tmp);
++		block128_xor_aligned(&ocb->sum_aad, &tmp);
+ 	}
+ }
+ 
+@@ -513,8 +513,8 @@
+ {
+ 	block128 tmp;
+ 
+-	block128_vxor(&tmp, &ocb->sum_enc, &ocb->offset_enc);
+-	block128_xor(&tmp, &ocb->ldollar);
++	block128_vxor_aligned(&tmp, &ocb->sum_enc, &ocb->offset_enc);
++	block128_xor_aligned(&tmp, &ocb->ldollar);
+ 	cryptonite_aes_encrypt_block((block128 *) tag, key, &tmp);
+ 	block128_xor((block128 *) tag, &ocb->sum_aad);
+ }
+@@ -699,7 +699,7 @@
+ 	for (i = 1; i <= length/16; i++, input += 16, output += 16) {
+ 		/* Offset_i = Offset_{i-1} xor L_{ntz(i)} */
+ 		ocb_get_L_i(&tmp, ocb->li, i);
+-		block128_xor(&ocb->offset_enc, &tmp);
++		block128_xor_aligned(&ocb->offset_enc, &tmp);
+ 
+ 		block128_vxor(&tmp, &ocb->offset_enc, (block128 *) input);
+ 		if (encrypt) {
+@@ -716,24 +716,24 @@
+ 	/* process the last partial block if any */
+ 	length = length % 16;
+ 	if (length > 0) {
+-		block128_xor(&ocb->offset_enc, &ocb->lstar);
++		block128_xor_aligned(&ocb->offset_enc, &ocb->lstar);
+ 		cryptonite_aes_encrypt_block(&pad, key, &ocb->offset_enc);
+ 
+ 		if (encrypt) {
+ 			block128_zero(&tmp);
+ 			block128_copy_bytes(&tmp, input, length);
+ 			tmp.b[length] = 0x80;
+-			block128_xor(&ocb->sum_enc, &tmp);
+-			block128_xor(&pad, &tmp);
++			block128_xor_aligned(&ocb->sum_enc, &tmp);
++			block128_xor_aligned(&pad, &tmp);
+ 			memcpy(output, pad.b, length);
+ 			output += length;
+ 		} else {
+-			block128_copy(&tmp, &pad);
++			block128_copy_aligned(&tmp, &pad);
+ 			block128_copy_bytes(&tmp, input, length);
+-			block128_xor(&tmp, &pad);
++			block128_xor_aligned(&tmp, &pad);
+ 			tmp.b[length] = 0x80;
+ 			memcpy(output, tmp.b, length);
+-			block128_xor(&ocb->sum_enc, &tmp);
++			block128_xor_aligned(&ocb->sum_enc, &tmp);
+ 			input += length;
+ 		}
+ 	}
+--- a/cbits/cryptonite_keccak.c
++++ b/cbits/cryptonite_keccak.c
+@@ -25,6 +25,7 @@
+ #include <stdint.h>
+ #include <string.h>
+ #include "cryptonite_bitfn.h"
++#include "cryptonite_align.h"
+ #include "cryptonite_keccak.h"
+ 
+ #define KECCAK_NB_ROUNDS 24
+@@ -124,9 +125,18 @@
+ 		ctx->bufindex = 0;
+ 	}
+ 
+-	/* process as much ctx->bufsz-block */
+-	for (; len >= ctx->bufsz; len -= ctx->bufsz, data += ctx->bufsz)
+-		keccak_do_chunk(ctx->state, (uint64_t *) data, ctx->bufsz / 8);
++	if (need_alignment(data, 8)) {
++		uint64_t tramp[200 - 2 * (224 / 8)];
++		ASSERT_ALIGNMENT(tramp, 8);
++		for (; len >= ctx->bufsz; len -= ctx->bufsz, data += ctx->bufsz) {
++			memcpy(tramp, data, ctx->bufsz);
++			keccak_do_chunk(ctx->state, tramp, ctx->bufsz / 8);
++		}
++	} else {
++		/* process as much ctx->bufsz-block */
++		for (; len >= ctx->bufsz; len -= ctx->bufsz, data += ctx->bufsz)
++			keccak_do_chunk(ctx->state, (uint64_t *) data, ctx->bufsz / 8);
++	}
+ 
+ 	/* append data into buf */
+ 	if (len) {
+--- a/cbits/cryptonite_md4.c
++++ b/cbits/cryptonite_md4.c
+@@ -25,6 +25,7 @@
+ #include <string.h>
+ #include <stdio.h>
+ #include "cryptonite_bitfn.h"
++#include "cryptonite_align.h"
+ #include "cryptonite_md4.h"
+ 
+ void cryptonite_md4_init(struct md4_ctx *ctx)
+@@ -130,9 +131,18 @@
+ 		index = 0;
+ 	}
+ 
+-	/* process as much 64-block as possible */
+-	for (; len >= 64; len -= 64, data += 64)
+-		md4_do_chunk(ctx, (uint32_t *) data);
++	if (need_alignment(data, 4)) {
++		uint32_t tramp[16];
++		ASSERT_ALIGNMENT(tramp, 4);
++		for (; len >= 64; len -= 64, data += 64) {
++			memcpy(tramp, data, 64);
++			md4_do_chunk(ctx, tramp);
++		}
++	} else {
++		/* process as much 64-block as possible */
++		for (; len >= 64; len -= 64, data += 64)
++			md4_do_chunk(ctx, (uint32_t *) data);
++	}
+ 
+ 	/* append data into buf */
+ 	if (len)
+@@ -157,5 +167,8 @@
+ 	cryptonite_md4_update(ctx, (uint8_t *) &bits, sizeof(bits));
+ 
+ 	/* output hash */
+-	le32_to_cpu_array((uint32_t *) out, ctx->h, 4);
++	store_le32(out   , ctx->h[0]);
++	store_le32(out+ 4, ctx->h[1]);
++	store_le32(out+ 8, ctx->h[2]);
++	store_le32(out+12, ctx->h[3]);
+ }
+--- a/cbits/cryptonite_md5.c
++++ b/cbits/cryptonite_md5.c
+@@ -25,6 +25,7 @@
+ #include <string.h>
+ #include <stdio.h>
+ #include "cryptonite_bitfn.h"
++#include "cryptonite_align.h"
+ #include "cryptonite_md5.h"
+ 
+ void cryptonite_md5_init(struct md5_ctx *ctx)
+@@ -143,9 +144,18 @@
+ 		index = 0;
+ 	}
+ 
+-	/* process as much 64-block as possible */
+-	for (; len >= 64; len -= 64, data += 64)
+-		md5_do_chunk(ctx, (uint32_t *) data);
++	if (need_alignment(data, 4)) {
++		uint32_t tramp[16];
++		ASSERT_ALIGNMENT(tramp, 4);
++		for (; len >= 64; len -= 64, data += 64) {
++			memcpy(tramp, data, 64);
++			md5_do_chunk(ctx, tramp);
++		}
++	} else {
++		/* process as much 64-block as possible */
++		for (; len >= 64; len -= 64, data += 64)
++			md5_do_chunk(ctx, (uint32_t *) data);
++	}
+ 
+ 	/* append data into buf */
+ 	if (len)
+@@ -157,7 +167,6 @@
+ 	static uint8_t padding[64] = { 0x80, };
+ 	uint64_t bits;
+ 	uint32_t index, padlen;
+-	uint32_t *p = (uint32_t *) out;
+ 
+ 	/* add padding and update data with it */
+ 	bits = cpu_to_le64(ctx->sz << 3);
+@@ -171,8 +180,8 @@
+ 	cryptonite_md5_update(ctx, (uint8_t *) &bits, sizeof(bits));
+ 
+ 	/* output hash */
+-	p[0] = cpu_to_le32(ctx->h[0]);
+-	p[1] = cpu_to_le32(ctx->h[1]);
+-	p[2] = cpu_to_le32(ctx->h[2]);
+-	p[3] = cpu_to_le32(ctx->h[3]);
++	store_le32(out   , ctx->h[0]);
++	store_le32(out+ 4, ctx->h[1]);
++	store_le32(out+ 8, ctx->h[2]);
++	store_le32(out+12, ctx->h[3]);
+ }
+--- a/cbits/cryptonite_ripemd.c
++++ b/cbits/cryptonite_ripemd.c
+@@ -24,6 +24,7 @@
+ 
+ #include "cryptonite_ripemd.h"
+ #include "cryptonite_bitfn.h"
++#include "cryptonite_align.h"
+ #include <string.h>
+ 
+ void cryptonite_ripemd160_init(struct ripemd160_ctx *ctx)
+@@ -265,9 +266,20 @@
+ 		index = 0;
+ 	}
+ 
+-	for (; len >= 64; len -= 64, data += 64)
+-		ripemd160_do_chunk(ctx, (uint32_t *) data);
++	if (need_alignment(data, 4)) {
++		uint32_t tramp[16];
++		ASSERT_ALIGNMENT(tramp, 4);
++		for (; len >= 64; len -= 64, data += 64) {
++			memcpy(tramp, data, 64);
++			ripemd160_do_chunk(ctx, tramp);
++		}
++	} else {
++		/* process as much 64-block as possible */
++		for (; len >= 64; len -= 64, data += 64)
++			ripemd160_do_chunk(ctx, (uint32_t *) data);
++	}
+ 
++	/* append data into buf */
+ 	if (len)
+ 		memcpy(ctx->buf + index, data, len);
+ }
+@@ -277,7 +289,6 @@
+ 	static uint8_t padding[64] = { 0x80, };
+ 	uint64_t bits;
+ 	uint32_t index, padlen;
+-	uint32_t *p = (uint32_t *) out;
+ 
+ 	/* add padding and update data with it */
+ 	bits = cpu_to_le64(ctx->sz << 3);
+@@ -291,9 +302,9 @@
+ 	cryptonite_ripemd160_update(ctx, (uint8_t *) &bits, sizeof(bits));
+ 
+ 	/* output digest */
+-	p[0] = cpu_to_le32(ctx->h[0]);
+-	p[1] = cpu_to_le32(ctx->h[1]);
+-	p[2] = cpu_to_le32(ctx->h[2]);
+-	p[3] = cpu_to_le32(ctx->h[3]);
+-	p[4] = cpu_to_le32(ctx->h[4]);
++	store_le32(out   , ctx->h[0]);
++	store_le32(out+ 4, ctx->h[1]);
++	store_le32(out+ 8, ctx->h[2]);
++	store_le32(out+12, ctx->h[3]);
++	store_le32(out+16, ctx->h[4]);
+ }
+--- a/cbits/cryptonite_salsa.c
++++ b/cbits/cryptonite_salsa.c
+@@ -33,6 +33,7 @@
+ #include <stdio.h>
+ #include "cryptonite_salsa.h"
+ #include "cryptonite_bitfn.h"
++#include "cryptonite_align.h"
+ 
+ static const uint8_t sigma[16] = "expand 32-byte k";
+ static const uint8_t tau[16] = "expand 16-byte k";
+@@ -58,11 +59,6 @@
+ 		QR (x15,x12,x13,x14); \
+ 	}
+ 
+-static inline uint32_t load32(const uint8_t *p)
+-{
+-	return le32_to_cpu(*((uint32_t *) p));
+-}
+-
+ static void salsa_core(int rounds, block *out, const cryptonite_salsa_state *in)
+ {
+ 	uint32_t x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15;
+@@ -126,34 +122,34 @@
+ 	const uint8_t *constants = (keylen == 32) ? sigma : tau;
+ 	int i;
+ 
+-	st->d[0] = load32(constants + 0);
+-	st->d[5] = load32(constants + 4);
+-	st->d[10] = load32(constants + 8);
+-	st->d[15] = load32(constants + 12);
+-
+-	st->d[1] = load32(key + 0);
+-	st->d[2] = load32(key + 4);
+-	st->d[3] = load32(key + 8);
+-	st->d[4] = load32(key + 12);
++	st->d[0] = load_le32_aligned(constants + 0);
++	st->d[5] = load_le32_aligned(constants + 4);
++	st->d[10] = load_le32_aligned(constants + 8);
++	st->d[15] = load_le32_aligned(constants + 12);
++
++	st->d[1] = load_le32(key + 0);
++	st->d[2] = load_le32(key + 4);
++	st->d[3] = load_le32(key + 8);
++	st->d[4] = load_le32(key + 12);
+ 	/* we repeat the key on 128 bits */
+ 	if (keylen == 32)
+ 		key += 16;
+-	st->d[11] = load32(key + 0);
+-	st->d[12] = load32(key + 4);
+-	st->d[13] = load32(key + 8);
+-	st->d[14] = load32(key + 12);
++	st->d[11] = load_le32(key + 0);
++	st->d[12] = load_le32(key + 4);
++	st->d[13] = load_le32(key + 8);
++	st->d[14] = load_le32(key + 12);
+ 
+ 	st->d[9] = 0;
+ 	switch (ivlen) {
+ 	case 8:
+-		st->d[6] = load32(iv + 0);
+-		st->d[7] = load32(iv + 4);
++		st->d[6] = load_le32(iv + 0);
++		st->d[7] = load_le32(iv + 4);
+ 		st->d[8] = 0;
+ 		break;
+ 	case 12:
+-		st->d[6] = load32(iv + 0);
+-		st->d[7] = load32(iv + 4);
+-		st->d[8] = load32(iv + 8);
++		st->d[6] = load_le32(iv + 0);
++		st->d[7] = load_le32(iv + 4);
++		st->d[8] = load_le32(iv + 8);
+ 	default:
+ 		return;
+ 	}
+--- a/cbits/cryptonite_scrypt.c
++++ b/cbits/cryptonite_scrypt.c
+@@ -27,6 +27,7 @@
+ #include <stdint.h>
+ #include <string.h>
+ #include "cryptonite_bitfn.h"
++#include "cryptonite_align.h"
+ #include "cryptonite_salsa.h"
+ 
+ static void blockmix_salsa8(uint32_t *in, uint32_t *out, uint32_t *X, const uint32_t r)
+@@ -49,16 +50,6 @@
+ 	return B[(2*r-1) * 16] | (uint64_t)B[(2*r-1) * 16 + 1] << 32;
+ }
+ 
+-static inline uint32_t load32(const uint8_t *p)
+-{
+-	return le32_to_cpu(*((uint32_t *) p));
+-}
+-
+-static inline void store32(const uint8_t *p, uint32_t val)
+-{
+-	*((uint32_t *) p) = cpu_to_le32(val);
+-}
+-
+ void cryptonite_scrypt_smix(uint8_t *B, const uint32_t r, const uint64_t N, uint32_t *V, uint32_t *XY)
+ {
+ 	uint32_t *X = XY;
+@@ -69,7 +60,7 @@
+ 	const int r32 = 32*r;
+ 
+ 	for (k = 0; k < r32; k++)
+-		X[k] = load32(&B[4 * k]);
++		X[k] = load_le32_aligned(&B[4 * k]);
+ 	for (i = 0; i < N; i += 2) {
+ 		array_copy32(&V[i * r32], X, r32);
+ 		blockmix_salsa8(X, Y, Z, r);
+@@ -86,5 +77,5 @@
+ 		blockmix_salsa8(Y, X, Z, r);
+ 	}
+ 	for (k = 0; k < r32; k++)
+-		store32(&B[4*k], X[k]);
++		store_le32_aligned(&B[4*k], X[k]);
+ }
+--- a/cbits/cryptonite_sha1.c
++++ b/cbits/cryptonite_sha1.c
+@@ -25,6 +25,7 @@
+ #include <string.h>
+ #include "cryptonite_sha1.h"
+ #include "cryptonite_bitfn.h"
++#include "cryptonite_align.h"
+ 
+ void cryptonite_sha1_init(struct sha1_ctx *ctx)
+ {
+@@ -173,9 +174,18 @@
+ 		index = 0;
+ 	}
+ 
+-	/* process as much 64-block as possible */
+-	for (; len >= 64; len -= 64, data += 64)
+-		sha1_do_chunk(ctx, (uint32_t *) data);
++	if (need_alignment(data, 4)) {
++		uint32_t tramp[16];
++		ASSERT_ALIGNMENT(tramp, 4);
++		for (; len >= 64; len -= 64, data += 64) {
++			memcpy(tramp, data, 64);
++			sha1_do_chunk(ctx, tramp);
++		}
++	} else {
++		/* process as much 64-block as possible */
++		for (; len >= 64; len -= 64, data += 64)
++			sha1_do_chunk(ctx, (uint32_t *) data);
++	}
+ 
+ 	/* append data into buf */
+ 	if (len)
+@@ -187,7 +197,6 @@
+ 	static uint8_t padding[64] = { 0x80, };
+ 	uint64_t bits;
+ 	uint32_t index, padlen;
+-	uint32_t *p = (uint32_t *) out;
+ 
+ 	/* add padding and update data with it */
+ 	bits = cpu_to_be64(ctx->sz << 3);
+@@ -201,9 +210,9 @@
+ 	cryptonite_sha1_update(ctx, (uint8_t *) &bits, sizeof(bits));
+ 
+ 	/* output hash */
+-	p[0] = cpu_to_be32(ctx->h[0]);
+-	p[1] = cpu_to_be32(ctx->h[1]);
+-	p[2] = cpu_to_be32(ctx->h[2]);
+-	p[3] = cpu_to_be32(ctx->h[3]);
+-	p[4] = cpu_to_be32(ctx->h[4]);
++	store_be32(out   , ctx->h[0]);
++	store_be32(out+ 4, ctx->h[1]);
++	store_be32(out+ 8, ctx->h[2]);
++	store_be32(out+12, ctx->h[3]);
++	store_be32(out+16, ctx->h[4]);
+ }
+--- a/cbits/cryptonite_sha256.c
++++ b/cbits/cryptonite_sha256.c
+@@ -25,6 +25,7 @@
+ #include <string.h>
+ #include "cryptonite_sha256.h"
+ #include "cryptonite_bitfn.h"
++#include "cryptonite_align.h"
+ 
+ void cryptonite_sha224_init(struct sha224_ctx *ctx)
+ {
+@@ -134,9 +135,18 @@
+ 		index = 0;
+ 	}
+ 
+-	/* process as much 64-block as possible */
+-	for (; len >= 64; len -= 64, data += 64)
+-		sha256_do_chunk(ctx, (uint32_t *) data);
++	if (need_alignment(data, 4)) {
++		uint32_t tramp[16];
++		ASSERT_ALIGNMENT(tramp, 4);
++		for (; len >= 64; len -= 64, data += 64) {
++			memcpy(tramp, data, 64);
++			sha256_do_chunk(ctx, tramp);
++		}
++	} else {
++		/* process as much 64-block as possible */
++		for (; len >= 64; len -= 64, data += 64)
++			sha256_do_chunk(ctx, (uint32_t *) data);
++	}
+ 
+ 	/* append data into buf */
+ 	if (len)
+@@ -156,7 +166,6 @@
+ 	static uint8_t padding[64] = { 0x80, };
+ 	uint64_t bits;
+ 	uint32_t i, index, padlen;
+-	uint32_t *p = (uint32_t *) out;
+ 
+ 	/* cpu -> big endian */
+ 	bits = cpu_to_be64(ctx->sz << 3);
+@@ -171,5 +180,5 @@
+ 
+ 	/* store to digest */
+ 	for (i = 0; i < 8; i++)
+-		p[i] = cpu_to_be32(ctx->h[i]);
++		store_be32(out+4*i, ctx->h[i]);
+ }
+--- a/cbits/cryptonite_skein256.c
++++ b/cbits/cryptonite_skein256.c
+@@ -26,6 +26,7 @@
+ #include "cryptonite_skein.h"
+ #include "cryptonite_skein256.h"
+ #include "cryptonite_bitfn.h"
++#include "cryptonite_align.h"
+ 
+ static const uint8_t K256_0[2] = { 14, 16, };
+ static const uint8_t K256_1[2] = { 52, 57, };
+@@ -143,9 +144,18 @@
+ 		ctx->bufindex = 0;
+ 	}
+ 
+-	/* process as much 32-block as possible except the last one in case we finalize */
+-	for (; len > 32; len -= 32, data += 32)
+-		skein256_do_chunk(ctx, (uint64_t *) data, 32);
++	if (need_alignment(data, 8)) {
++		uint64_t tramp[4];
++		ASSERT_ALIGNMENT(tramp, 8);
++		for (; len > 32; len -= 32, data += 32) {
++			memcpy(tramp, data, 32);
++			skein256_do_chunk(ctx, tramp, 32);
++		}
++	} else {
++		/* process as much 32-block as possible except the last one in case we finalize */
++		for (; len > 32; len -= 32, data += 32)
++			skein256_do_chunk(ctx, (uint64_t *) data, 32);
++	}
+ 
+ 	/* append data into buf */
+ 	if (len) {
+--- a/cbits/cryptonite_skein512.c
++++ b/cbits/cryptonite_skein512.c
+@@ -26,6 +26,7 @@
+ #include "cryptonite_skein.h"
+ #include "cryptonite_skein512.h"
+ #include "cryptonite_bitfn.h"
++#include "cryptonite_align.h"
+ 
+ static const uint8_t K512_0[4] = { 46, 36, 19, 37, };
+ static const uint8_t K512_1[4] = { 33, 27, 14, 42, };
+@@ -161,9 +162,18 @@
+ 		ctx->bufindex = 0;
+ 	}
+ 
+-	/* process as much 64-block as possible except the last one in case we finalize */
+-	for (; len > 64; len -= 64, data += 64)
+-		skein512_do_chunk(ctx, (uint64_t *) data, 64);
++	if (need_alignment(data, 8)) {
++		uint64_t tramp[8];
++		ASSERT_ALIGNMENT(tramp, 8);
++		for (; len > 64; len -= 64, data += 64) {
++			memcpy(tramp, data, 64);
++			skein512_do_chunk(ctx, tramp, 64);
++		}
++	} else {
++		/* process as much 64-block as possible except the last one in case we finalize */
++		for (; len > 64; len -= 64, data += 64)
++			skein512_do_chunk(ctx, (uint64_t *) data, 64);
++	}
+ 
+ 	/* append data into buf */
+ 	if (len) {
+--- a/cbits/cryptonite_tiger.c
++++ b/cbits/cryptonite_tiger.c
+@@ -25,6 +25,7 @@
+ #include <string.h>
+ #include "cryptonite_tiger.h"
+ #include "cryptonite_bitfn.h"
++#include "cryptonite_align.h"
+ 
+ static const uint64_t t1[256] = {
+ 	0x02aab17cf7e90c5eULL,0xac424b03e243a8ecULL,0x72cd5be30dd5fcd3ULL,0x6d019b93f6f97f3aULL,
+@@ -381,9 +382,18 @@
+ 		index = 0;
+ 	}
+ 
+-	/* process as much 64-block as possible */
+-	for (; len >= 64; len -= 64, data += 64)
+-		tiger_do_chunk(ctx, (uint64_t *) data);
++	if (need_alignment(data, 8)) {
++		uint64_t tramp[8];
++		ASSERT_ALIGNMENT(tramp, 8);
++		for (; len >= 64; len -= 64, data += 64) {
++			memcpy(tramp, data, 64);
++			tiger_do_chunk(ctx, tramp);
++		}
++	} else {
++		/* process as much 64-block as possible */
++		for (; len >= 64; len -= 64, data += 64)
++			tiger_do_chunk(ctx, (uint64_t *) data);
++	}
+ 
+ 	/* append data into buf */
+ 	if (len)
+@@ -395,7 +405,6 @@
+ 	static uint8_t padding[64] = { 0x01, };
+ 	uint64_t bits;
+ 	uint32_t index, padlen;
+-	uint64_t *p = (uint64_t *) out;
+ 
+ 	/* add padding and update data with it */
+ 	bits = cpu_to_le64(ctx->sz << 3);
+@@ -409,7 +418,7 @@
+ 	cryptonite_tiger_update(ctx, (uint8_t *) &bits, sizeof(bits));
+ 
+ 	/* output hash */
+-	p[0] = cpu_to_le64(ctx->h[0]);
+-	p[1] = cpu_to_le64(ctx->h[1]);
+-	p[2] = cpu_to_le64(ctx->h[2]);
++	store_le64(out   , ctx->h[0]);
++	store_le64(out+ 8, ctx->h[1]);
++	store_le64(out+16, ctx->h[2]);
+ }
+--- a/cbits/cryptonite_xsalsa.c
++++ b/cbits/cryptonite_xsalsa.c
+@@ -30,13 +30,9 @@
+ #include <stdint.h>
+ #include <string.h>
+ #include "cryptonite_xsalsa.h"
++#include "cryptonite_align.h"
+ #include "cryptonite_bitfn.h"
+ 
+-static inline uint32_t load32(const uint8_t *p)
+-{
+-  return le32_to_cpu(*((uint32_t *) p));
+-}
+-
+ /* XSalsa20 algorithm as described in https://cr.yp.to/snuffle/xsalsa-20081128.pdf */
+ void cryptonite_xsalsa_init(cryptonite_salsa_context *ctx, uint8_t nb_rounds,
+                             uint32_t keylen, const uint8_t *key,
+@@ -51,8 +47,8 @@
+        (x6, x7, x8, x9) is the first 128 bits of a 192-bit nonce
+   */
+   cryptonite_salsa_init_core(&ctx->st, keylen, key, 8, iv);
+-  ctx->st.d[ 8] = load32(iv + 8);
+-  ctx->st.d[ 9] = load32(iv + 12);
++  ctx->st.d[ 8] = load_le32(iv + 8);
++  ctx->st.d[ 9] = load_le32(iv + 12);
+ 
+   /* Compute (z0, z1, . . . , z15) = doubleround ^(r/2) (x0, x1, . . . , x15) */
+   block hSalsa;
+@@ -73,8 +69,8 @@
+   ctx->st.d[12] = hSalsa.d[ 7] - ctx->st.d[ 7];
+   ctx->st.d[13] = hSalsa.d[ 8] - ctx->st.d[ 8];
+   ctx->st.d[14] = hSalsa.d[ 9] - ctx->st.d[ 9];
+-  ctx->st.d[ 6] = load32(iv + 16);
+-  ctx->st.d[ 7] = load32(iv + 20);
++  ctx->st.d[ 6] = load_le32(iv + 16);
++  ctx->st.d[ 7] = load_le32(iv + 20);
+   ctx->st.d[ 8] = 0;
+   ctx->st.d[ 9] = 0;
+-}
+\ No newline at end of file
++}
+--- a/cbits/aes/block128.h
++++ b/cbits/aes/block128.h
+@@ -32,6 +32,7 @@
+ #define BLOCK128_H
+ 
+ #include <cryptonite_bitfn.h>
++#include <cryptonite_align.h>
+ 
+ typedef union {
+        uint64_t q[2];
+@@ -40,38 +41,71 @@
+        uint8_t  b[16];
+ } block128;
+ 
+-static inline void block128_copy_bytes(block128 *block, uint8_t *src, uint32_t len)
++static inline void block128_copy_bytes(block128 *block, const uint8_t *src, uint32_t len)
+ {
+ 	int i;
+ 	for (i = 0; i < len; i++) block->b[i] = src[i];
+ }
+ 
+-static inline void block128_copy(block128 *d, const block128 *s)
++static inline void block128_copy_aligned(block128 *d, const block128 *s)
+ {
+ 	d->q[0] = s->q[0]; d->q[1] = s->q[1];
+ }
+ 
++static inline void block128_copy(block128 *d, const block128 *s)
++{
++	if (need_alignment(d, 8) || need_alignment(s, 8)) {
++		block128_copy_bytes(d, (const uint8_t *) s, 16);
++	} else {
++		block128_copy_aligned(d, s);
++	}
++}
++
+ static inline void block128_zero(block128 *d)
+ {
+ 	d->q[0] = 0; d->q[1] = 0;
+ }
+ 
+-static inline void block128_xor(block128 *d, const block128 *s)
++static inline void block128_xor_bytes(block128 *block, const uint8_t *src, uint32_t len)
++{
++	int i;
++	for (i = 0; i < len; i++) block->b[i] ^= src[i];
++}
++
++static inline void block128_xor_aligned(block128 *d, const block128 *s)
+ {
+ 	d->q[0] ^= s->q[0];
+ 	d->q[1] ^= s->q[1];
+ }
+ 
+-static inline void block128_vxor(block128 *d, const block128 *s1, const block128 *s2)
++static inline void block128_xor(block128 *d, const block128 *s)
++{
++	if (need_alignment(d, 8) || need_alignment(s, 8)) {
++		block128_xor_bytes(d, (const uint8_t *) s, 16);
++	} else {
++		block128_xor_aligned(d, s);
++	}
++}
++
++static inline void block128_vxor_bytes(block128 *block, const uint8_t *src1, const uint8_t *src2, uint32_t len)
++{
++	int i;
++	for (i = 0; i < len; i++) block->b[i] = src1[i] ^ src2[i];
++}
++
++static inline void block128_vxor_aligned(block128 *d, const block128 *s1, const block128 *s2)
+ {
+ 	d->q[0] = s1->q[0] ^ s2->q[0];
+ 	d->q[1] = s1->q[1] ^ s2->q[1];
+ }
+ 
+-static inline void block128_xor_bytes(block128 *block, uint8_t *src, uint32_t len)
++static inline void block128_vxor(block128 *d, const block128 *s1, const block128 *s2)
+ {
+-	int i;
+-	for (i = 0; i < len; i++) block->b[i] ^= src[i];
++	if (need_alignment(d, 8) || need_alignment(s1, 8) || need_alignment(s2, 8)) {
++		block128_vxor_bytes(d, (const uint8_t *) s1, (const uint8_t *) s2, 16);
++	} else {
++		block128_vxor_aligned(d, s1, s2);
++	}
+ }
+ 
+ static inline void block128_inc_be(block128 *b)
+--- a/cbits/aes/generic.c
++++ b/cbits/aes/generic.c
+@@ -324,21 +324,22 @@
+ static void aes_main(aes_key *key, uint8_t *state)
+ {
+ 	int i = 0;
+-	uint8_t rk[16];
++	uint32_t rk[4];
++	uint8_t *rkptr = (uint8_t *) rk;
+ 
+-	create_round_key(key->data, rk);
+-	add_round_key(state, rk);
++	create_round_key(key->data, rkptr);
++	add_round_key(state, rkptr);
+ 
+ 	for (i = 1; i < key->nbr; i++) {
+-		create_round_key(key->data + 16 * i, rk);
++		create_round_key(key->data + 16 * i, rkptr);
+ 		shift_rows(state);
+ 		mix_columns(state);
+-		add_round_key(state, rk);
++		add_round_key(state, rkptr);
+ 	}
+ 
+-	create_round_key(key->data + 16 * key->nbr, rk);
++	create_round_key(key->data + 16 * key->nbr, rkptr);
+ 	shift_rows(state);
+-	add_round_key(state, rk);
++	add_round_key(state, rkptr);
+ }
+ 
+ static void shift_rows_inv(uint8_t *state)
+@@ -374,21 +375,22 @@
+ static void aes_main_inv(aes_key *key, uint8_t *state)
+ {
+ 	int i = 0;
+-	uint8_t rk[16];
++	uint32_t rk[4];
++	uint8_t *rkptr = (uint8_t *) rk;
+ 
+-	create_round_key(key->data + 16 * key->nbr, rk);
+-	add_round_key(state, rk);
++	create_round_key(key->data + 16 * key->nbr, rkptr);
++	add_round_key(state, rkptr);
+ 
+ 	for (i = key->nbr - 1; i > 0; i--) {
+-		create_round_key(key->data + 16 * i, rk);
++		create_round_key(key->data + 16 * i, rkptr);
+ 		shift_rows_inv(state);
+-		add_round_key(state, rk);
++		add_round_key(state, rkptr);
+ 		mix_columns_inv(state);
+ 	}
+ 
+-	create_round_key(key->data, rk);
++	create_round_key(key->data, rkptr);
+ 	shift_rows_inv(state);
+-	add_round_key(state, rk);
++	add_round_key(state, rkptr);
+ }
+ 
+ /* Set the block values, for the block:
+@@ -405,26 +407,28 @@
+ 
+ void cryptonite_aes_generic_encrypt_block(aes_block *output, aes_key *key, aes_block *input)
+ {
+-	uint8_t block[16];
+-	uint8_t *iptr, *optr;
++	uint32_t block[4];
++	uint8_t *iptr, *optr, *bptr;
+ 
+ 	iptr = (uint8_t *) input;
+ 	optr = (uint8_t *) output;
+-	swap_block(block, iptr);
+-	aes_main(key, block);
+-	swap_block(optr, block);
++	bptr = (uint8_t *) block;
++	swap_block(bptr, iptr);
++	aes_main(key, bptr);
++	swap_block(optr, bptr);
+ }
+ 
+ void cryptonite_aes_generic_decrypt_block(aes_block *output, aes_key *key, aes_block *input)
+ {
+-	uint8_t block[16];
+-	uint8_t *iptr, *optr;
++	uint32_t block[4];
++	uint8_t *iptr, *optr, *bptr;
+ 
+ 	iptr = (uint8_t *) input;
+ 	optr = (uint8_t *) output;
+-	swap_block(block, iptr);
+-	aes_main_inv(key, block);
+-	swap_block(optr, block);
++	bptr = (uint8_t *) block;
++	swap_block(bptr, iptr);
++	aes_main_inv(key, bptr);
++	swap_block(optr, bptr);
+ }
+ 
+ void cryptonite_aes_generic_init(aes_key *key, uint8_t *origkey, uint8_t size)
+--- a/cbits/cryptonite_sha512.c
++++ b/cbits/cryptonite_sha512.c
+@@ -24,6 +24,7 @@
+ 
+ #include <string.h>
+ #include "cryptonite_bitfn.h"
++#include "cryptonite_align.h"
+ #include "cryptonite_sha512.h"
+ 
+ void cryptonite_sha384_init(struct sha512_ctx *ctx)
+@@ -153,9 +154,18 @@
+ 		index = 0;
+ 	}
+ 
+-	/* process as much 128-block as possible */
+-	for (; len >= 128; len -= 128, data += 128)
+-		sha512_do_chunk(ctx, (uint64_t *) data);
++	if (need_alignment(data, 8)) {
++		uint64_t tramp[16];
++		ASSERT_ALIGNMENT(tramp, 8);
++		for (; len >= 128; len -= 128, data += 128) {
++			memcpy(tramp, data, 128);
++			sha512_do_chunk(ctx, tramp);
++		}
++	} else {
++		/* process as much 128-block as possible */
++		for (; len >= 128; len -= 128, data += 128)
++			sha512_do_chunk(ctx, (uint64_t *) data);
++	}
+ 
+ 	/* append data into buf */
+ 	if (len)
+@@ -175,7 +185,6 @@
+ 	static uint8_t padding[128] = { 0x80, };
+ 	uint32_t i, index, padlen;
+ 	uint64_t bits[2];
+-	uint64_t *p = (uint64_t *) out;
+ 
+ 	/* cpu -> big endian */
+ 	bits[0] = cpu_to_be64((ctx->sz[1] << 3 | ctx->sz[0] >> 61));
+@@ -191,7 +200,7 @@
+ 
+ 	/* store to digest */
+ 	for (i = 0; i < 8; i++)
+-		p[i] = cpu_to_be64(ctx->h[i]);
++		store_be64(out+8*i, ctx->h[i]);
+ }
+ 
+ #include <stdio.h>
