@@ -1,0 +1,344 @@
+Description: Fix many cases of unaligned memory accesses
+Author: James Clarke <jrtc27@jrtc27.com>
+Forwarded: https://github.com/vincenthz/hs-cryptohash/pull/44/files
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+--- /dev/null
++++ b/cbits/align.h
+@@ -0,0 +1,157 @@
++#ifndef ALIGN_H
++#define ALIGN_H
++
++#include "bitfn.h"
++
++#if (defined(__i386__))
++# define UNALIGNED_ACCESS_OK
++#elif defined(__x86_64__)
++# define UNALIGNED_ACCESS_OK
++#else
++# define UNALIGNED_ACCESS_FAULT
++#endif
++
++/* n need to be power of 2.
++ * IS_ALIGNED(p,8) */
++#define IS_ALIGNED(p,alignment) (((uintptr_t) (p)) & ((alignment)-1))
++
++#ifdef WITH_ASSERT_ALIGNMENT
++#include <stdio.h>
++#include <stdlib.h>
++#include <inttypes.h>
++# define ASSERT_ALIGNMENT(up, alignment) \
++	do { if (IS_ALIGNED(up, alignment)) \
++	{ printf("ALIGNMENT-ASSERT-FAILURE: %s:%d: ptr=%p alignment=%d\n", __FILE__, __LINE__, (void *) up, (alignment)); \
++	  exit(99); \
++	}; } while (0)
++#else
++# define ASSERT_ALIGNMENT(p, n) do {} while (0)
++#endif
++
++#ifdef UNALIGNED_ACCESS_OK
++#define need_alignment(p,n) (0)
++#else
++#define need_alignment(p,n) IS_ALIGNED(p,n)
++#endif
++
++static inline uint32_t load_be32_aligned(const uint8_t *p)
++{
++	return be32_to_cpu(*((uint32_t *) p));
++}
++
++static inline uint64_t load_be64_aligned(const uint8_t *p)
++{
++	return be64_to_cpu(*((uint64_t *) p));
++}
++
++static inline void store_be32_aligned(uint8_t *p, uint32_t val)
++{
++	*((uint32_t *) p) = cpu_to_be32(val);
++}
++
++static inline void store_be64_aligned(uint8_t *p, uint64_t val)
++{
++	*((uint64_t *) p) = cpu_to_be64(val);
++}
++
++static inline uint32_t load_le32_aligned(const uint8_t *p)
++{
++	return le32_to_cpu(*((uint32_t *) p));
++}
++
++static inline uint64_t load_le64_aligned(const uint8_t *p)
++{
++	return le64_to_cpu(*((uint64_t *) p));
++}
++
++static inline void store_le32_aligned(uint8_t *p, uint32_t val)
++{
++	*((uint32_t *) p) = cpu_to_le32(val);
++}
++
++static inline void store_le64_aligned(uint8_t *p, uint64_t val)
++{
++	*((uint64_t *) p) = cpu_to_le64(val);
++}
++
++#ifdef UNALIGNED_ACCESS_OK
++
++#define load_be32(p) load_be32_aligned(p)
++#define load_be64(p) load_be64_aligned(p)
++
++#define store_be32(p, v) store_be32_aligned((p), (v))
++#define store_be64(p, v) store_be64_aligned((p), (v))
++
++#define load_le32(p) load_le32_aligned(p)
++#define load_le64(p) load_le64_aligned(p)
++
++#define store_le32(p, v) store_le32_aligned((p), (v))
++#define store_le64(p, v) store_le64_aligned((p), (v))
++
++#else
++
++static inline uint32_t load_be32(const uint8_t *p)
++{
++	return ((uint32_t)p[0] << 24) | ((uint32_t)p[1] << 16) | ((uint32_t)p[2] <<  8) | ((uint32_t)p[3]);
++}
++
++static inline uint64_t load_be64(const uint8_t *p)
++{
++	return ((uint64_t)p[0] << 56) | ((uint64_t)p[1] << 48) | ((uint64_t)p[2] << 40) | ((uint64_t)p[3] << 32) |
++	       ((uint64_t)p[4] << 24) | ((uint64_t)p[5] << 16) | ((uint64_t)p[6] <<  8) | ((uint64_t)p[7]);
++}
++
++static inline void store_be32(uint8_t *p, uint32_t val)
++{
++	p[0] = (val >> 24);
++	p[1] = (val >> 16) & 0xFF;
++	p[2] = (val >>  8) & 0xFF;
++	p[3] = (val      ) & 0xFF;
++}
++
++static inline void store_be64(uint8_t *p, uint64_t val)
++{
++	p[0] = (val >> 56);
++	p[1] = (val >> 48) & 0xFF;
++	p[2] = (val >> 40) & 0xFF;
++	p[3] = (val >> 32) & 0xFF;
++	p[4] = (val >> 24) & 0xFF;
++	p[5] = (val >> 16) & 0xFF;
++	p[6] = (val >>  8) & 0xFF;
++	p[7] = (val      ) & 0xFF;
++}
++
++static inline uint32_t load_le32(const uint8_t *p)
++{
++	return ((uint32_t)p[0]) | ((uint32_t)p[1] <<  8) | ((uint32_t)p[2] << 16) | ((uint32_t)p[3] << 24);
++}
++
++static inline uint64_t load_le64(const uint8_t *p)
++{
++	return ((uint64_t)p[0]) | ((uint64_t)p[1] <<  8) | ((uint64_t)p[2] << 16) | ((uint64_t)p[3] << 24) |
++	       ((uint64_t)p[4] << 32) | ((uint64_t)p[5] << 40) | ((uint64_t)p[6] << 48) | ((uint64_t)p[7] << 56);
++}
++
++static inline void store_le32(uint8_t *p, uint32_t val)
++{
++	p[0] = (val      ) & 0xFF;
++	p[1] = (val >>  8) & 0xFF;
++	p[2] = (val >> 16) & 0xFF;
++	p[3] = (val >> 24);
++}
++
++static inline void store_le64(uint8_t *p, uint64_t val)
++{
++	p[0] = (val      ) & 0xFF;
++	p[1] = (val >>  8) & 0xFF;
++	p[2] = (val >> 16) & 0xFF;
++	p[3] = (val >> 24) & 0xFF;
++	p[4] = (val >> 32) & 0xFF;
++	p[5] = (val >> 40) & 0xFF;
++	p[6] = (val >> 48) & 0xFF;
++	p[7] = (val >> 56);
++}
++
++#endif
++
++#endif
+--- a/cbits/sha3.c
++++ b/cbits/sha3.c
+@@ -25,6 +25,7 @@
+ #include <stdint.h>
+ #include <string.h>
+ #include "bitfn.h"
++#include "align.h"
+ #include "sha3.h"
+
+ #define KECCAK_NB_ROUNDS 24
+@@ -101,7 +102,7 @@ void cryptohash_sha3_init(struct sha3_ct
+ {
+ 	memset(ctx, 0, sizeof(*ctx));
+ 	ctx->hashlen = hashlen / 8;
+-	ctx->bufsz = 200 - 2 * ctx->hashlen;
++	ctx->bufsz = SHA3_BUF_SIZE(hashlen);
+ }
+
+ void cryptohash_sha3_update(struct sha3_ctx *ctx, uint8_t *data, uint32_t len)
+@@ -124,9 +125,18 @@ void cryptohash_sha3_update(struct sha3_
+ 		ctx->bufindex = 0;
+ 	}
+
+-	/* process as much ctx->bufsz-block */
+-	for (; len >= ctx->bufsz; len -= ctx->bufsz, data += ctx->bufsz)
+-		sha3_do_chunk(ctx->state, (uint64_t *) data, ctx->bufsz / 8);
++	if (need_alignment(data, 8)) {
++		uint64_t tramp[SHA3_BUF_SIZE_MAX/8];
++		ASSERT_ALIGNMENT(tramp, 8);
++		for (; len >= ctx->bufsz; len -= ctx->bufsz, data += ctx->bufsz) {
++			memcpy(tramp, data, ctx->bufsz);
++			sha3_do_chunk(ctx->state, tramp, ctx->bufsz / 8);
++		}
++	} else {
++		/* process as much ctx->bufsz-block */
++		for (; len >= ctx->bufsz; len -= ctx->bufsz, data += ctx->bufsz)
++			sha3_do_chunk(ctx->state, (uint64_t *) data, ctx->bufsz / 8);
++	}
+
+ 	/* append data into buf */
+ 	if (len) {
+--- a/cbits/sha3.h
++++ b/cbits/sha3.h
+@@ -37,6 +37,22 @@ struct sha3_ctx
+ };
+
+ #define SHA3_CTX_SIZE		sizeof(struct sha3_ctx)
++#define SHA3_CTX_BUF_MAX_SIZE   (SHA3_CTX_SIZE + SHA3_BUF_SIZE_MAX)
++#define SHA3_BITSIZE_MIN   	128
++#define SHA3_BITSIZE_MAX    	512
++
++#define SHA3_BUF_SIZE(bitsize)  (200 - 2 * ((bitsize) / 8))
++
++#define SHA3_BUF_SIZE_MIN       SHA3_BUF_SIZE(SHA3_BITSIZE_MAX)
++#define SHA3_BUF_SIZE_MAX       SHA3_BUF_SIZE(SHA3_BITSIZE_MIN)
++
++/*
++ * buffer size:
++ *
++ * 128 bits (shake 128 bits) => 200 - 2 * (128 / 8) = 200 - 2*16 = 200 - 32  = 168 bytes
++ * 224 bits (SHA3 224 bits)  => 200 - 2 * (224 / 8) = 200 - 2*28 = 200 - 56  = 144 bytes
++ * 512 bits (SHA3 512 bits)  => 200 - 2 * (512 / 8) = 200 - 2*64 = 200 - 128 = 72 bytes
++ */
+
+ void cryptohash_sha3_init(struct sha3_ctx *ctx, uint32_t hashlen);
+ void cryptohash_sha3_update(struct sha3_ctx *ctx, uint8_t *data, uint32_t len);
+--- a/cbits/sha512.c
++++ b/cbits/sha512.c
+@@ -24,6 +24,7 @@
+
+ #include <string.h>
+ #include "bitfn.h"
++#include "align.h"
+ #include "sha512.h"
+
+ void cryptohash_sha384_init(struct sha512_ctx *ctx)
+@@ -153,9 +154,18 @@ void cryptohash_sha512_update(struct sha
+ 		index = 0;
+ 	}
+
+-	/* process as much 128-block as possible */
+-	for (; len >= 128; len -= 128, data += 128)
+-		sha512_do_chunk(ctx, (uint64_t *) data);
++	if (need_alignment(data, 8)) {
++		uint64_t tramp[16];
++		ASSERT_ALIGNMENT(tramp, 8);
++		for (; len >= 128; len -= 128, data += 128) {
++			memcpy(tramp, data, 128);
++			sha512_do_chunk(ctx, tramp);
++		}
++	} else {
++		/* process as much 128-block as possible */
++		for (; len >= 128; len -= 128, data += 128)
++			sha512_do_chunk(ctx, (uint64_t *) data);
++	}
+
+ 	/* append data into buf */
+ 	if (len)
+@@ -175,7 +185,6 @@ void cryptohash_sha512_finalize(struct s
+ 	static uint8_t padding[128] = { 0x80, };
+ 	uint32_t i, index, padlen;
+ 	uint64_t bits[2];
+-	uint64_t *p = (uint64_t *) out;
+
+ 	/* cpu -> big endian */
+ 	bits[0] = cpu_to_be64((ctx->sz[1] << 3 | ctx->sz[0] >> 61));
+@@ -191,7 +200,7 @@ void cryptohash_sha512_finalize(struct s
+
+ 	/* store to digest */
+ 	for (i = 0; i < 8; i++)
+-		p[i] = cpu_to_be64(ctx->h[i]);
++		store_be64(out+8*i, ctx->h[i]);
+ }
+
+ #include <stdio.h>
+--- a/cbits/skein256.c
++++ b/cbits/skein256.c
+@@ -26,6 +26,7 @@
+ #include "skein.h"
+ #include "skein256.h"
+ #include "bitfn.h"
++#include "align.h"
+
+ static const uint8_t K256_0[2] = { 14, 16, };
+ static const uint8_t K256_1[2] = { 52, 57, };
+@@ -144,9 +145,18 @@ void cryptohash_skein256_update(struct s
+ 		ctx->bufindex = 0;
+ 	}
+
+-	/* process as much 32-block as possible except the last one in case we finalize */
+-	for (; len > 32; len -= 32, data += 32)
+-		skein256_do_chunk(ctx, (uint64_t *) data, 32);
++	if (need_alignment(data, 8)) {
++		uint64_t tramp[4];
++		ASSERT_ALIGNMENT(tramp, 8);
++		for (; len > 32; len -= 32, data += 32) {
++			memcpy(tramp, data, 32);
++			skein256_do_chunk(ctx, tramp, 32);
++		}
++	} else {
++		/* process as much 32-block as possible except the last one in case we finalize */
++		for (; len > 32; len -= 32, data += 32)
++			skein256_do_chunk(ctx, (uint64_t *) data, 32);
++	}
+
+ 	/* append data into buf */
+ 	if (len) {
+--- a/cbits/skein512.c
++++ b/cbits/skein512.c
+@@ -26,6 +26,7 @@
+ #include "skein.h"
+ #include "skein512.h"
+ #include "bitfn.h"
++#include "align.h"
+
+ static const uint8_t K512_0[4] = { 46, 36, 19, 37, };
+ static const uint8_t K512_1[4] = { 33, 27, 14, 42, };
+@@ -162,9 +163,18 @@ void cryptohash_skein512_update(struct s
+ 		ctx->bufindex = 0;
+ 	}
+
+-	/* process as much 64-block as possible except the last one in case we finalize */
+-	for (; len > 64; len -= 64, data += 64)
+-		skein512_do_chunk(ctx, (uint64_t *) data, 64);
++	if (need_alignment(data, 8)) {
++		uint64_t tramp[8];
++		ASSERT_ALIGNMENT(tramp, 8);
++		for (; len > 64; len -= 64, data += 64) {
++			memcpy(tramp, data, 64);
++			skein512_do_chunk(ctx, tramp, 64);
++		}
++	} else {
++		/* process as much 64-block as possible except the last one in case we finalize */
++		for (; len > 64; len -= 64, data += 64)
++			skein512_do_chunk(ctx, (uint64_t *) data, 64);
++	}
+
+ 	/* append data into buf */
+ 	if (len) {
