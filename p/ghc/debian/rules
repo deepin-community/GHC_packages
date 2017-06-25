@@ -110,6 +110,9 @@ endif
 
 override_dh_auto_build:
 	dh_auto_build
+
+override_dh_auto_test:
+ifeq ($(filter nocheck,$(DEB_BUILD_OPTIONS)),)
 	# Do some very simple tests that the compiler actually works
 	rm -rf debian/testghc
 	mkdir debian/testghc
@@ -124,6 +127,7 @@ override_dh_auto_build:
 	@printf "====BEGIN GHC INFO OUTPUT====\n"
 	@inplace/bin/ghc-stage2 --info
 	@printf "====END GHC INFO OUTPUT====\n"
+endif
 
 FILES = \( -type f -o -type l \)
 PROF_FILE = \( -name "*.p_*" -o -name "lib*_p.a" \)
