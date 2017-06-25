@@ -22,20 +22,20 @@ export HOME = /homedoesnotexistatbuildtime
 export DEB_HOST_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 export DEB_BUILD_GNU_TYPE ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
 export DEB_HOST_ARCH      ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
-
-# We're cross-building if DEB_BUILD_GNU_TYPE != DEB_HOST_GNU_TYPE
-ifneq ($(DEB_BUILD_GNU_TYPE), $(DEB_HOST_GNU_TYPE))
-  confflags += --target $(DEB_HOST_GNU_TYPE) --enable-unregisterised
-  BUILD_HADDOCK_DOCS=NO
-else
-  BUILD_HADDOCK_DOCS=YES
-endif
+# Commented out for now.  The build scripts don't recognise i486 as an
+# architecture and cross compiling isn't supported anyway.
+#ifeq ($(DEB_BUILD_GNU_TYPE), $(DEB_HOST_GNU_TYPE))
+#  confflags += --build $(DEB_HOST_GNU_TYPE)
+#else
+#  confflags += --build $(DEB_BUILD_GNU_TYPE) --host $(DEB_HOST_GNU_TYPE)
+#endif
 
 ProjectVersion=$(shell cat VERSION)
 
 GHC=$(firstword $(shell bash -c "type -p ghc"))
 EXTRA_CONFIGURE_FLAGS=--with-ghc="$(GHC)"
 
+BUILD_HADDOCK_DOCS=YES
 DEB_HOOGLE_TXT_DIR = /usr/lib/ghc-doc/hoogle/
 
 ifneq (,$(findstring $(DEB_HOST_ARCH), powerpcspe x32))
@@ -50,13 +50,9 @@ override_dh_autoreconf:
 
 override_dh_auto_configure:
 	echo "SRC_HC_OPTS += -lffi -optl-pthread" >> mk/build.mk
-ifeq (YES,$(BUILD_HADDOCK_DOCS))
 	echo "HADDOCK_DOCS := YES" >> mk/build.mk
 	echo "EXTRA_HADDOCK_OPTS += --mathjax=file:///usr/share/javascript/mathjax/MathJax.js" >> mk/build.mk
 	echo "XSLTPROC_OPTS += --nonet" >> mk/build.mk
-else
-	echo "HADDOCK_DOCS := NO" >> mk/build.mk
-endif
 ifneq (,$(findstring $(DEB_HOST_ARCH), arm64 armel armhf))
 	echo "SRC_HC_OPTS     += -optl-B/usr/bin/ld.gold" >> mk/build.mk
 endif
@@ -104,8 +100,6 @@ endif
 	echo 'dvidir  := $$(docdir)'                   >> mk/build.mk
 	echo 'pdfdir  := $$(docdir)'                   >> mk/build.mk
 	echo 'psdir   := $$(docdir)'                   >> mk/build.mk
-	echo 'STRIP_CMD = $(DEB_HOST_GNU_TYPE)-strip'  >> mk/build.mk
-	echo 'RANLIB_CMD = $(DEB_HOST_GNU_TYPE)-ranlib'>> mk/build.mk
 	# We want verbose builds
 	echo 'V=1'                                     >> mk/build.mk
 	./configure $(confflags) --prefix=/usr \
@@ -187,8 +181,9 @@ ifeq (YES,$(BUILD_HADDOCK_DOCS))
 	    mkdir debian/tmp/usr/lib/ghc-doc/haddock/ghc/`basename $$f` ; \
 	    mv $$f/*.haddock debian/tmp/usr/lib/ghc-doc/haddock/ghc/`basename $$f` ; done
 	cd debian/tmp/usr/share/doc/ghc-doc/html/libraries/; ln -s ghc-$(ProjectVersion) ghc
-
 	install -Dm 644 debian/index.html debian/tmp/usr/share/doc/ghc-doc/index.html
+endif
+
 	# manpages
 	rm -f debian/*.1
 	echo ".so man1/ghc.1" > debian/ghc-$(ProjectVersion).1
@@ -204,13 +199,14 @@ ifeq (YES,$(BUILD_HADDOCK_DOCS))
 	echo debian/*.1 > debian/ghc.manpages
 	cp debian/haddock.man debian/haddock.1
 	echo debian/haddock.1 >> debian/ghc.manpages
-endif
+
 	# ####################
 	# Now all the files are sorted, create the package filelists
 
 	# ghc
 	find debian/tmp/usr/bin $(FILES)                  > debian/ghc.install
 #	find debian/tmp/usr/share/ghc* $(FILES)          >> debian/ghc.install
+	find debian/tmp/usr/share/man $(FILES)           >> debian/ghc.install
 	find debian/tmp/usr/lib/ghc $(FILES) ! $(PROF_FILE) >> debian/ghc.install
 	find debian/tmp/var				 >> debian/ghc.install
 	echo debian/tmp/usr/share/lintian/overrides/ghc >> debian/ghc.install
@@ -219,14 +215,13 @@ endif
 	echo debian/tmp/usr/share/lintian/overrides/ghc-prof >> debian/ghc-prof.install
 	# ghc-doc
 ifeq (YES,$(BUILD_HADDOCK_DOCS))
-	find debian/tmp/usr/share/man $(FILES)          >> debian/ghc.install
 	mkdir -p debian/tmp/$(DEB_HOOGLE_TXT_DIR)
 	find debian/tmp/usr/share/doc/ghc-doc/html/libraries/*/ -name "*.txt" \
 		-printf "%p $(DEB_HOOGLE_TXT_DIR)/%f\n" >> debian/ghc-doc.links
 	find debian/tmp/usr/share/doc/ghc-doc $(FILES) > debian/ghc-doc.install
 	find debian/tmp/usr/lib/ghc-doc $(FILES)      >> debian/ghc-doc.install
-	sed -i s,^debian/tmp,, debian/*.install debian/*.links
 endif
+	sed -i s,^debian/tmp,, debian/*.install debian/*.links
 	rm -f debian/ghc.links
 	echo "/var/lib/ghc/package.conf.d /usr/lib/ghc/package.conf.d" >> debian/ghc.links
 
