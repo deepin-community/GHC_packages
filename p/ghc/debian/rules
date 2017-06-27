@@ -38,7 +38,7 @@ EXTRA_CONFIGURE_FLAGS=--with-ghc="$(GHC)"
 BUILD_HADDOCK_DOCS=YES
 DEB_HOOGLE_TXT_DIR = /usr/lib/ghc-doc/hoogle/
 
-ifneq (,$(findstring $(DEB_HOST_ARCH), powerpcspe x32))
+ifneq (,$(filter powerpcspe x32, $(DEB_HOST_ARCH)))
   EXTRA_CONFIGURE_FLAGS += --enable-unregisterised
 endif
 
@@ -53,7 +53,7 @@ override_dh_auto_configure:
 	echo "HADDOCK_DOCS := YES" >> mk/build.mk
 	echo "EXTRA_HADDOCK_OPTS += --mathjax=file:///usr/share/javascript/mathjax/MathJax.js" >> mk/build.mk
 	echo "XSLTPROC_OPTS += --nonet" >> mk/build.mk
-ifneq (,$(findstring $(DEB_HOST_ARCH), arm64 armel armhf))
+ifneq (,$(filter arm64 armel armhf, $(DEB_HOST_ARCH)))
 	echo "SRC_HC_OPTS     += -optl-B/usr/bin/ld.gold" >> mk/build.mk
 endif
 ifeq (armhf,$(DEB_HOST_ARCH))
@@ -62,13 +62,13 @@ endif
 ifeq (armel,$(DEB_HOST_ARCH))
 	patch -p1 < debian/patches/armel-revert-ghci-fixes.patch
 endif
-ifneq (,$(findstring $(DEB_HOST_ARCH), mips mipsel))
+ifneq (,$(filter mips mipsel, $(DEB_HOST_ARCH)))
 	echo "SRC_HC_OPTS     += -optc--param -optcggc-min-expand=10" >> mk/build.mk
 endif
 ifeq (x32,$(DEB_HOST_ARCH))
 	echo "INTEGER_LIBRARY = integer-simple" >> mk/build.mk
 endif
-ifneq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
+ifneq (,$(filter nostrip, $(DEB_BUILD_OPTIONS)))
 #	echo "GhcStage1HcOpts += -DDEBUG" >> mk/build.mk
 #	echo "GhcStage2HcOpts += -DDEBUG" >> mk/build.mk
 	echo "SRC_HC_OPTS   += -H32m -O0" >> mk/build.mk
@@ -77,7 +77,7 @@ ifneq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
 	echo "SplitObjs     = NO" >> mk/build.mk
 	echo "STRIP         = :" >> mk/build.mk
 endif
-ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+ifneq (,$(filter noopt, $(DEB_BUILD_OPTIONS)))
 	echo "SRC_HC_OPTS   += -H32m -O0" >> mk/build.mk
 	echo "GhcHcOpts     += -O0" >> mk/build.mk
 	# This breaks the build - to be investigated:
@@ -86,7 +86,7 @@ ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
 endif
 	# We also want to build the threaded profiling-enabled debug runtime,
 	# because it does no harm
-	echo 'GhcRTSWays += $$(if $$(findstring p, $$(GhcLibWays)),thr_debug_p,)' >> mk/build.mk
+	echo 'GhcRTSWays += $$(if $$(filter p, $$(GhcLibWays)),thr_debug_p,)' >> mk/build.mk
 
 	# We can't do this with a configure flag in 6.8.1 as libdir is not
 	# defined at the point at which we := it
