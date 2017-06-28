@@ -1,0 +1,45 @@
+--- a/debian.cabal
++++ b/debian.cabal
+@@ -24,6 +24,10 @@
+  Description: pretty-1.1.2 includes the Text.PrettyPrint.HughesPJClass module from prettyclass
+  Default: True
+ 
++flag threaded
++  description: build threaded
++  default: True
++
+ Library
+  Hs-Source-Dirs: .
+  Build-Depends:
+@@ -107,14 +111,18 @@
+  Hs-Source-Dirs: utils
+  Main-is: FakeChanges.hs
+  Build-Depends: base, debian, directory, filepath
+- ghc-options: -threaded -W -O2
++ ghc-options: -W -O2
++ if flag(threaded)
++   ghc-options: -threaded
+  Extensions:           ExistentialQuantification CPP
+ 
+ Executable debian-report
+  Hs-Source-Dirs: utils
+  Main-is: Report.hs
+  Build-Depends: base, debian, HaXml, unix
+- ghc-options: -threaded -W -O2
++ ghc-options: -W -O2
++ if flag(threaded)
++   ghc-options: -threaded
+  C-Sources:           cbits/gwinsz.c
+  Include-Dirs:        cbits
+  Install-Includes:    gwinsz.h
+@@ -125,7 +133,9 @@
+  Hs-Source-Dirs: utils
+  Main-is: AptGetBuildDeps.hs
+  Build-Depends: base, debian, process
+- ghc-options: -threaded -W -O2
++ ghc-options: -W -O2
++ if flag(threaded)
++   ghc-options: -threaded
+  Extensions:           ExistentialQuantification CPP
+ 
+ Test-Suite debian-tests
