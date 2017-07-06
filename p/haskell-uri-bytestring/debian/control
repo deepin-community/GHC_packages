@@ -1,0 +1,81 @@
+Source: haskell-uri-bytestring
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-attoparsec-dev (>= 0.12),
+ libghc-attoparsec-dev (<< 0.14),
+ libghc-attoparsec-prof (>= 0.12),
+ libghc-attoparsec-prof (<< 0.14),
+ libghc-blaze-builder-dev (>= 0.3.0.0),
+ libghc-blaze-builder-dev (<< 0.5),
+ libghc-blaze-builder-prof (>= 0.3.0.0),
+ libghc-blaze-builder-prof (<< 0.5),
+ libghc-th-lift-instances-dev (>= 0.1.8),
+ libghc-th-lift-instances-dev (<< 0.2),
+ libghc-th-lift-instances-prof (>= 0.1.8),
+ libghc-th-lift-instances-prof (<< 0.2),
+ libghc-hunit-dev,
+ libghc-quickcheck2-dev,
+ libghc-attoparsec-dev,
+ libghc-base-compat-dev (>= 0.7.0),
+ libghc-blaze-builder-dev,
+ libghc-generics-sop-dev (>= 0.2),
+ libghc-quickcheck-instances-dev,
+ libghc-semigroups-dev,
+ libghc-tasty-dev,
+ libghc-tasty-hunit-dev,
+ libghc-tasty-quickcheck-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-attoparsec-doc,
+ libghc-blaze-builder-doc,
+ libghc-th-lift-instances-doc,
+Standards-Version: 4.0.0
+Homepage: https://github.com/Soostone/uri-bytestring
+X-Description: Haskell URI parsing as ByteStrings
+ uri-bytestring aims to be an RFC3986 compliant URI parser that uses efficient ByteStrings for parsing and representing the URI data.
+
+Package: libghc-uri-bytestring-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-uri-bytestring-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-uri-bytestring-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
