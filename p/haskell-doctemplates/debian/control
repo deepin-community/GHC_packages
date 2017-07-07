@@ -1,0 +1,82 @@
+Source: haskell-doctemplates
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-aeson-dev,
+ libghc-aeson-prof,
+ libghc-blaze-html-dev,
+ libghc-blaze-html-prof,
+ libghc-blaze-markup-dev,
+ libghc-blaze-markup-prof,
+ libghc-parsec3-dev,
+ libghc-parsec3-prof,
+ libghc-scientific-dev,
+ libghc-scientific-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+ libghc-unordered-containers-dev,
+ libghc-unordered-containers-prof,
+ libghc-vector-dev,
+ libghc-vector-prof,
+ libghc-hspec-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-aeson-doc,
+ libghc-blaze-html-doc,
+ libghc-blaze-markup-doc,
+ libghc-parsec3-doc,
+ libghc-scientific-doc,
+ libghc-text-doc,
+ libghc-unordered-containers-doc,
+ libghc-vector-doc,
+Standards-Version: 4.0.0
+Homepage: https://github.com/jgm/doctemplates#readme
+X-Description: Pandoc-style document templates
+ This is the templating system used by pandoc. It was formerly be a
+ module in pandoc. It has been split off to make it easier to use
+ independently.
+
+Package: libghc-doctemplates-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-doctemplates-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-doctemplates-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
