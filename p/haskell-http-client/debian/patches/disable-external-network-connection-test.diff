@@ -1,52 +1,87 @@
 --- a/test/Network/HTTP/ClientSpec.hs
 +++ b/test/Network/HTTP/ClientSpec.hs
-@@ -12,48 +12,4 @@
+@@ -15,83 +15,4 @@
  main = hspec spec
  
  spec :: Spec
 -spec = describe "Client" $ do
 -    it "works" $ withSocketsDo $ do
--        req <- parseUrl "http://httpbin.org/"
+-        req <- parseUrlThrow "http://httpbin.org/"
 -        man <- newManager defaultManagerSettings
 -        res <- httpLbs req man
 -        responseStatus res `shouldBe` status200
 -
 -    describe "method in URL" $ do
 -        it "success" $ withSocketsDo $ do
--            req <- parseUrl "POST http://httpbin.org/post"
+-            req <- parseUrlThrow "POST http://httpbin.org/post"
 -            man <- newManager defaultManagerSettings
 -            res <- httpLbs req man
 -            responseStatus res `shouldBe` status200
 -
 -        it "failure" $ withSocketsDo $ do
--            req' <- parseUrl "PUT http://httpbin.org/post"
--            let req = req'
--                    { checkStatus = \_ _ _ -> Nothing
--                    }
+-            req <- parseRequest "PUT http://httpbin.org/post"
 -            man <- newManager defaultManagerSettings
 -            res <- httpLbs req man
 -            responseStatus res `shouldBe` status405
 -
--    describe "managerModifyRequest" $ do
+-    describe "redirects" $ do
+-        it "follows redirects" $ do
+-            req <- parseRequest "http://httpbin.org/redirect-to?url=http://httpbin.org"
+-            man <- newManager defaultManagerSettings
+-            res <- httpLbs req man
+-            responseStatus res `shouldBe` status200
 -
--      it "can set port to 80" $ do
--        let modify req = return req { port = 80 }
--            settings = defaultManagerSettings { managerModifyRequest = modify }
--        withManager settings $ \man -> do
+-        it "allows to disable redirect following" $ do
+-            req <- (\ r -> r{ redirectCount = 0 }) <$>
+-              parseRequest "http://httpbin.org/redirect-to?url=http://httpbin.org"
+-            man <- newManager defaultManagerSettings
+-            res <- httpLbs req man
+-            responseStatus res `shouldBe` found302
+-
+-    context "managerModifyResponse" $ do
+-      it "allows to modify the response status code" $ do
+-        let modify :: Response BodyReader -> IO (Response BodyReader)
+-            modify res = do
+-              return res {
+-                responseStatus = (responseStatus res) {
+-                  statusCode = 201
+-                }
+-              }
+-            settings = defaultManagerSettings { managerModifyResponse = modify }
+-        man <- newManager settings
+-        res <- httpLbs "http://httpbin.org" man
+-        (statusCode.responseStatus) res `shouldBe` 201
+-
+-      it "modifies the response body" $ do
+-        let modify :: Response BodyReader -> IO (Response BodyReader)
+-            modify res = do
+-              reader <- constBodyReader [BS.pack "modified response body"]
+-              return res {
+-                responseBody = reader
+-              }
+-            settings = defaultManagerSettings { managerModifyResponse = modify }
+-        man <- newManager settings
+-        res <- httpLbs "http://httpbin.org" man
+-        responseBody res `shouldBe` "modified response body"
+-
+-    context "managerModifyRequest" $ do
+-        it "port" $ do
+-            let modify req = return req { port = 80 }
+-                settings = defaultManagerSettings { managerModifyRequest = modify }
+-            man <- newManager settings
 -            res <- httpLbs "http://httpbin.org:1234" man
 -            responseStatus res `shouldBe` status200
 -
--      it "can set 'checkStatus' to throw StatusCodeException" $ do
--        let modify req = return req { checkStatus = \s hs cj -> Just $ toException $ StatusCodeException s hs cj }
--            settings = defaultManagerSettings { managerModifyRequest = modify }
--        withManager settings $ \man ->
+-        it "checkResponse" $ do
+-            let modify req = return req { checkResponse = \_ _ -> error "some exception" }
+-                settings = defaultManagerSettings { managerModifyRequest = modify }
+-            man <- newManager settings
 -            httpLbs "http://httpbin.org" man `shouldThrow` anyException
 -
--      it "can set redirectCount to 0 to prevent following redirects" $ do
--        let modify req = return req { redirectCount = 0 }
--            settings = defaultManagerSettings { managerModifyRequest = modify }
--        man <- newManager settings
--        httpLbs "http://httpbin.org/redirect-to?url=foo" man `shouldThrow` ( \ (StatusCodeException s _  _) -> s == found302)
--
--
+-        it "redirectCount" $ do
+-            let modify req = return req { redirectCount = 0 }
+-                settings = defaultManagerSettings { managerModifyRequest = modify }
+-            man <- newManager settings
+-            response <- httpLbs "http://httpbin.org/redirect-to?url=foo" man
+-            responseStatus response `shouldBe` found302
 +spec = return ()
