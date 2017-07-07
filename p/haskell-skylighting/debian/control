@@ -1,0 +1,107 @@
+Source: haskell-skylighting
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-aeson-dev,
+ libghc-aeson-prof,
+ libghc-blaze-html-dev (>= 0.5),
+ libghc-blaze-html-prof (>= 0.5),
+ libghc-case-insensitive-dev,
+ libghc-case-insensitive-prof,
+ libghc-hxt-dev,
+ libghc-hxt-prof,
+ libghc-mtl-dev,
+ libghc-mtl-prof,
+ libghc-regex-pcre-dev,
+ libghc-regex-pcre-prof,
+ libghc-safe-dev,
+ libghc-safe-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+ libghc-utf8-string-dev,
+ libghc-utf8-string-prof,
+ libghc-diff-dev,
+ libghc-hunit-dev,
+ libghc-pretty-show-dev,
+ libghc-random-dev,
+ libghc-tasty-dev,
+ libghc-tasty-golden-dev,
+ libghc-tasty-hunit-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-aeson-doc,
+ libghc-blaze-html-doc,
+ libghc-case-insensitive-doc,
+ libghc-hxt-doc,
+ libghc-mtl-doc,
+ libghc-regex-pcre-doc,
+ libghc-safe-doc,
+ libghc-text-doc,
+ libghc-utf8-string-doc,
+Standards-Version: 4.0.0
+Homepage: https://github.com/jgm/skylighting
+X-Description: syntax highlighting library
+ Skylighting is a syntax highlighting library with
+ support for over one hundred languages.  It derives
+ its tokenizers from XML syntax definitions used
+ by KDE's KSyntaxHighlighting framework, so any
+ syntax supported by that framework can be added.
+ An optional command-line program is provided.
+ Skylighting is intended to be the successor to
+ highlighting-kate.
+
+Package: libghc-skylighting-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-skylighting-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-skylighting-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: skylighting
+Architecture: any
+Section: devel
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+Description: syntax highlighting tool
+ ${haskell:LongDescription}
+ .
+ This is a command-line tool that can output HTML and LaTeX.
