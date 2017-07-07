@@ -1,0 +1,67 @@
+Source: haskell-xmlgen
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-blaze-builder-dev (>= 0.3),
+ libghc-blaze-builder-prof (>= 0.3),
+ libghc-mtl-dev (>= 2.0),
+ libghc-mtl-prof (>= 2.0),
+ libghc-text-dev (>= 0.10),
+ libghc-text-prof (>= 0.10),
+ libghc-hunit-dev (>= 1.2),
+ libghc-quickcheck2-dev (>= 2.5),
+ libghc-hxt-dev (>= 9.3),
+ libghc-hxt-dev (<< 9.4),
+Build-Depends-Indep: ghc-doc,
+ libghc-blaze-builder-doc,
+ libghc-mtl-doc,
+ libghc-text-doc,
+Standards-Version: 4.0.0
+X-Description: fast XML generation library
+ Library for high-performance XML generation.
+
+Package: libghc-xmlgen-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-xmlgen-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-xmlgen-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

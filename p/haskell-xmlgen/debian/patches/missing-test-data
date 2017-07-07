@@ -1,0 +1,56 @@
+--- /dev/null
++++ b/test/1.xml
+@@ -0,0 +1,7 @@
++<?xml version="1.0"?>
++<__foo:foo xmlns:__foo="urn:__foo" xmlns:_foo="urn:_foo" _foo:key="value" _foo:key2="value">
++  <foo:bar xmlns:foo="urn:foo" _foo:key="value">BAR</foo:bar>
++  <foo:bar xmlns:foo="urn:foo">
++    <___foo:spam xmlns:___foo="urn:bar"><egg/>this is spam!</___foo:spam>
++  </foo:bar>
++</__foo:foo>
+--- /dev/null
++++ b/test/2.xml
+@@ -0,0 +1,11 @@
++<?xml version="1.0"?>
++<foo key="value" key2="value2">
++  <bar/>
++  <spam key="value"/>
++  <egg>ham</egg>
++  <foo:bar xmlns:foo="http://www.example.com"/>
++  <foo:spam xmlns:foo="http://www.example.com" foo:key="value"/>
++  <foo:egg xmlns:foo="http://www.example.com">
++    <ham/>
++  </foo:egg>
++</foo>
+--- /dev/null
++++ b/test/3.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
++<foo key="val&quot;'&amp;&lt;&gt;ue">&lt;&amp;;'</foo>
+--- /dev/null
++++ b/test/4.xml
+@@ -0,0 +1,6 @@
++<?xml version="1.0"?>
++<x xmlns="http://URI" xmlns:_="http://URI" _:a="in URI" b="in no ns" c="in default ns">
++  <y xmlns="" _:a="in URI" b="in no ns" c="in default ns">
++    <_:z _:a="in URI" b="in no ns" c="in default ns"/>
++  </y>
++</x>
+--- /dev/null
++++ b/test/5.xml
+@@ -0,0 +1,5 @@
++<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
++<people>
++  <person age="32">Stefan</person>
++  <person age="4">Judith</person>
++</people>
+--- /dev/null
++++ b/test/xhtml.xml
+@@ -0,0 +1,7 @@
++<?xml version="1.0"?>
++<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
++  <head>
++    <title>Test</title>
++  </head>
++  <body foo="1"/>
++</html>
