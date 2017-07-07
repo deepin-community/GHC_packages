@@ -1,0 +1,22 @@
+The API for this changed in pandoc 1.19, which we do not have yet.
+
+--- a/util/GenerateManpage.hs
++++ b/util/GenerateManpage.hs
+@@ -79,7 +79,7 @@
+     Right template <- getDefaultTemplate Nothing "man"
+     writeFile "./man/xmonad.1"
+         . (manHeader ++)
+-        . writeMan def{ writerTemplate = Just template }
++        . writeMan def{ writerTemplate = template }
+         $ parsed
+     putStrLn "Documentation created: man/xmonad.1"
+ 
+@@ -92,7 +92,7 @@
+                              "<p>Section: xmonad manual (1)<br/>"++
+                              "Updated: "++releaseDate++"</p>"++
+                              "<hr/>")]
+-            , writerTemplate = Just template
++            , writerTemplate = template
+             , writerTableOfContents = True }
+         $ parsed
+     putStrLn "Documentation created: man/xmonad.1.html"
