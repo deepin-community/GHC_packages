@@ -5,7 +5,6 @@ Uploaders:
 Priority: extra
 Section: haskell
 Build-Depends:
- alex (>= 3.0.3),
  cdbs,
  debhelper (>= 9),
  ghc (>= 8),
@@ -35,8 +34,11 @@ Build-Depends:
  libghc-unordered-containers-dev (<< 0.3),
  libghc-unordered-containers-dev (>= 0.1.3),
  libghc-unordered-containers-prof,
-Build-Depends-Indep:
- ghc-doc,
+ alex,
+ libghc-tasty-dev,
+ libghc-tasty-hspec-dev,
+ libghc-tasty-quickcheck-dev,
+Build-Depends-Indep: ghc-doc,
  libghc-data-default-doc,
  libghc-hashable-doc,
  libghc-microlens-platform-doc,
@@ -46,8 +48,8 @@ Build-Depends-Indep:
  libghc-regex-tdfa-doc,
  libghc-transformers-base-doc,
  libghc-unordered-containers-doc,
-Standards-Version: 3.9.8
-Homepage: https://github.com/yi-editor/yi-language
+Standards-Version: 4.0.0
+Homepage: https://github.com/yi-editor/yi#readme
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-yi-language
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
 X-Description: collection of language-related Yi libraries.
