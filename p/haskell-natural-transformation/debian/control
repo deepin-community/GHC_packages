@@ -1,0 +1,66 @@
+Source: haskell-natural-transformation
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-quickcheck-instances-dev (>= 0.1) <!nocheck>,
+ libghc-quickcheck-instances-dev (<< 0.4) <!nocheck>,
+ libghc-tasty-dev (>= 0.8) <!nocheck>,
+ libghc-tasty-dev (<< 0.12) <!nocheck>,
+ libghc-tasty-quickcheck-dev (>= 0.8) <!nocheck>,
+ libghc-tasty-quickcheck-dev (<< 0.9) <!nocheck>,
+Build-Depends-Indep: ghc-doc,
+Standards-Version: 4.0.0
+Homepage: https://github.com/ku-fpg/natural-transformation
+X-Description: natural transformations
+ A natural transformation transforms a container f a into another
+ container g a. Natural transformations act as functor morphisms
+ in category theory.
+ .
+ Technically, f and g should be functors, any correctly-shaped
+ structure is allowed.
+
+Package: libghc-natural-transformation-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-natural-transformation-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-natural-transformation-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
