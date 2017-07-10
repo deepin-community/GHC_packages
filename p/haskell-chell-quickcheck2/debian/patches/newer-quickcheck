@@ -9,3 +9,17 @@
      , random
  
    exposed-modules:
+--- a/lib/Test/Chell/QuickCheck.hs
++++ b/lib/Test/Chell/QuickCheck.hs
+@@ -100,10 +100,4 @@
+ roundTo n m = (n `div` m) * m
+ 
+ maxDiscardedTests :: QuickCheck.Testable prop => QuickCheck.Args -> prop -> Int
+-#if MIN_VERSION_QuickCheck(2,5,0)
+-maxDiscardedTests args p = if QuickCheck.exhaustive p
+-	then QuickCheck.maxDiscardRatio args
+-	else QuickCheck.maxDiscardRatio args * QuickCheck.maxSuccess args
+-#else
+-maxDiscardedTests args _ = QuickCheck.maxDiscard args
+-#endif
++maxDiscardedTests args _ = QuickCheck.maxDiscardRatio args
