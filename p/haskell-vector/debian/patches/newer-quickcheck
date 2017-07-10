@@ -9,3 +9,18 @@
                   transformers >= 0.2.0.0
  
    default-extensions: CPP,
+--- a/tests/Utilities.hs
++++ b/tests/Utilities.hs
+@@ -51,12 +51,6 @@
+ instance CoArbitrary a => CoArbitrary (S.Bundle v a) where
+     coarbitrary = coarbitrary . S.toList
+ 
+-instance Arbitrary a => Arbitrary (Identity a) where
+-    arbitrary = fmap Identity arbitrary
+-
+-instance CoArbitrary a => CoArbitrary (Identity a) where
+-    coarbitrary = coarbitrary . runIdentity
+-
+ instance Arbitrary a => Arbitrary (Writer a ()) where
+     arbitrary = fmap (writer . ((,) ())) arbitrary
+ 
