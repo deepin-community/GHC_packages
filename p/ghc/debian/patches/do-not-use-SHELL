@@ -3,10 +3,8 @@ Description: Do not use $SHELL
  leak into the wrapper scripts.
 Author: Joachim Breitner <nomeata@debian.org>
 
-Index: ghc/driver/ghci/ghc.mk
-===================================================================
---- ghc.orig/driver/ghci/ghc.mk	2016-07-07 12:40:40.690866042 +0200
-+++ ghc/driver/ghci/ghc.mk	2016-07-07 12:40:40.686863966 +0200
+--- a/driver/ghci/ghc.mk
++++ b/driver/ghci/ghc.mk
 @@ -21,7 +21,7 @@
  	$(INSTALL_DIR) "$(DESTDIR)$(bindir)"
  	$(call removeFiles,                                "$(WRAPPER)")
@@ -25,10 +23,8 @@ Index: ghc/driver/ghci/ghc.mk
  	echo 'exec "$$(dirname "$$0")"/ghc --interactive "$$@"' >> $(GHCII_SCRIPT)
  	$(EXECUTABLE_FILE) $(GHCII_SCRIPT)
  	cp $(GHCII_SCRIPT) $(GHCII_SCRIPT_VERSIONED)
-Index: ghc/rules/shell-wrapper.mk
-===================================================================
---- ghc.orig/rules/shell-wrapper.mk	2016-07-07 12:40:40.690866042 +0200
-+++ ghc/rules/shell-wrapper.mk	2016-07-07 12:40:40.686863966 +0200
+--- a/rules/shell-wrapper.mk
++++ b/rules/shell-wrapper.mk
 @@ -41,7 +41,7 @@
  endif
  $$($1_$2_INPLACE_WRAPPER): $$($1_$2_INPLACE)
@@ -56,10 +52,8 @@ Index: ghc/rules/shell-wrapper.mk
  ifeq "$$(DYNAMIC_GHC_PROGRAMS)" "YES"
  	echo '$$(call prependLibraryPath,$$($1_$2_DEP_LIB_REL_DIRS_SEARCHPATH))' >> $$@
  endif
-Index: ghc/utils/mkdirhier/ghc.mk
-===================================================================
---- ghc.orig/utils/mkdirhier/ghc.mk	2016-07-07 12:40:40.690866042 +0200
-+++ ghc/utils/mkdirhier/ghc.mk	2016-07-07 12:40:40.686863966 +0200
+--- a/utils/mkdirhier/ghc.mk
++++ b/utils/mkdirhier/ghc.mk
 @@ -14,7 +14,7 @@
  	mkdir -p $(INPLACE_BIN)
  	mkdir -p $(INPLACE_LIB)
