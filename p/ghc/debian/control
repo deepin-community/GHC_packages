@@ -3,7 +3,7 @@ Section: haskell
 Priority: extra
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Joachim Breitner <nomeata@debian.org>, Clint Adams <clint@debian.org>
-Standards-Version: 3.9.8
+Standards-Version: 4.0.0
 Build-Depends:
   debhelper (>= 10),
   haskell-devscripts-minimal,
@@ -12,7 +12,7 @@ Build-Depends:
   pkg-config,
   ghc (>= 7.8),
   libgmp-dev,
-  llvm-3.7 [arm64 armel armhf],
+  llvm-3.9 [arm64 armel armhf],
   libffi-dev,
   binutils [arm64 armel armhf],
   libncurses5-dev,
@@ -31,7 +31,7 @@ Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/
 Package: ghc
 Architecture: any
 Depends:
-  llvm-3.7 [arm64 armel armhf],
+  llvm-3.9 [arm64 armel armhf],
   gcc,
   libgmp-dev,
   libffi-dev,
@@ -53,7 +53,7 @@ Provides:
 Replaces: ghc6 (<< 7), ghc-dynamic (<< 7.8), ghc-haddock (<< 7.10)
 Conflicts: ghc6 (<< 7), ghc-dynamic (<< 7.8), libghc-cabal-dev (<< 1.24.2.1), ${conflicting-devs}
 Breaks: cabal-install (<< 1.22), haskell-devscripts (<< 0.8.13), ghc-doc (<< 7.10), ghc-haddock (<< 7.10)
-Suggests: perl, ghc-prof, ghc-doc, haskell-doc, llvm-3.7
+Suggests: perl, ghc-prof, ghc-doc, haskell-doc, llvm-3.9
 Description: The Glasgow Haskell Compilation system
  The Glorious Glasgow Haskell Compilation system (GHC) is a compiler for
  Haskell.
