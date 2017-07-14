@@ -1,0 +1,66 @@
+Source: haskell-src-exts-simple
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-src-exts-dev (>= 1.18),
+ libghc-src-exts-dev (<< 1.19),
+ libghc-src-exts-prof (>= 1.18),
+ libghc-src-exts-prof (<< 1.19),
+Build-Depends-Indep: ghc-doc,
+ libghc-src-exts-doc,
+Standards-Version: 4.0.0
+Homepage: https://github.com/int-e/haskell-src-exts-simple
+X-Description: simplified view on the haskell-src-exts AST
+ This package provides a shim for haskell-src-exts (HSE), exposing the
+ same AST but without annotations, using ghc's pattern synonyms.
+ .
+ This package is useful for synthesizing and manipulating HSE ASTs that
+ don't carry source location information. It may also aid in porting
+ packages from haskell-src-exts 1.17 to 1.18, but it is not a drop-in
+ replacement for the old annotation-free AST.
+
+Package: libghc-src-exts-simple-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-src-exts-simple-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-src-exts-simple-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
