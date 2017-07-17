@@ -1,0 +1,99 @@
+Source: haskell-tidal
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-colour-dev,
+ libghc-colour-prof,
+ libghc-hashable-dev,
+ libghc-hashable-prof,
+ libghc-hmt-dev,
+ libghc-hmt-prof,
+ libghc-hosc-dev (>> 0.13),
+ libghc-hosc-prof (>> 0.13),
+ libghc-mersenne-random-pure64-dev,
+ libghc-mersenne-random-pure64-prof,
+ libghc-mtl-dev (>= 2.1),
+ libghc-mtl-prof (>= 2.1),
+ libghc-parsec3-dev,
+ libghc-parsec3-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+ libghc-websockets-dev (>> 0.8),
+ libghc-websockets-prof (>> 0.8),
+Build-Depends-Indep: ghc-doc,
+ libghc-colour-doc,
+ libghc-hashable-doc,
+ libghc-hmt-doc,
+ libghc-hosc-doc,
+ libghc-mersenne-random-pure64-doc,
+ libghc-mtl-doc,
+ libghc-parsec3-doc,
+ libghc-text-doc,
+ libghc-websockets-doc,
+Standards-Version: 4.0.0
+Homepage: http://tidal.lurk.org/
+X-Description: pattern language for improvised music
+ TidalCycles (or Tidal for short) is a domain-specific language for
+ live coding patterns.  It allows you to make musical patterns with
+ text, describing sequences and ways of transforming and combining
+ them, exploring complex interactions between simple parts.
+ .
+ Tidal allows you to express music with very flexible timing, providing
+ a little language for describing patterns as step sequences (which
+ can be polyphonic and polymetric), some generators of continuous
+ patterns (e.g. sinewaves, sawtooths) and a wide range of pattern
+ transformations.
+ .
+ Tidal is highly composable in that pattern transformations can be
+ easily combined together, allowing you to quickly create complex
+ patterns from simple ingredients.
+ .
+ Tidal does not make sound itself, but is designed for use with the
+ SuperDirt synth, and can control other synths over Open Sound Control
+ or MIDI.
+
+Package: libghc-tidal-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-tidal-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-tidal-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
