@@ -11,13 +11,19 @@
  library
    default-language: Haskell2010
  
-@@ -79,7 +83,8 @@
+@@ -79,12 +83,14 @@
      Data.Aeson.Parser
      Data.Aeson.Text
      Data.Aeson.Types
 -    Data.Aeson.TH
-+  if flag(th)
-+      exposed-modules: Data.Aeson.TH
  
      Data.Aeson.Encoding.Internal
      Data.Aeson.Internal
+     Data.Aeson.Internal.Time
+ 
++  if flag(th)
++      exposed-modules: Data.Aeson.TH
++
+   -- Deprecated modules
+   exposed-modules:
+     Data.Aeson.Encode
