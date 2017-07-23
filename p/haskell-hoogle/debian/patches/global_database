@@ -8,17 +8,16 @@ Index: b/src/Action/CmdLine.hs
 ===================================================================
 --- a/src/Action/CmdLine.hs
 +++ b/src/Action/CmdLine.hs
-@@ -71,9 +71,17 @@ getCmdLine args = do
+@@ -80,8 +80,16 @@ getCmdLine args = do
      args <- withArgs args $ cmdArgsRun cmdLineMode
  
      -- fill in the default database
 +    -- If a database has not been given, and the default does not exist,
 +    -- and this is not a generate command, fallback to the Debian database.
      args <- if database args /= "" then return args else do
-         dir <- getAppUserDataDirectory "hoogle"
--        return $ args{database=dir </> "default-" ++ lower (show $ language args) ++ "-" ++ showVersion version ++ ".hoo"}
-+        let db = dir </> "default-" ++ lower (show $ language args) ++ "-    " ++ showVersion version ++ ".hoo"
-+            debdb = "/var/lib/hoogle/databases/default.hoo"
+-        db <- defaultDatabaseLang $ language args; return args{database=db}
++        db <- defaultDatabaseLang $ language args
++        let debdb = "/var/lib/hoogle/databases/default.hoo"
 +        db_exists <- doesFileExist db
 +        case args of
 +          Generate{..} -> return $ args{database=db}
