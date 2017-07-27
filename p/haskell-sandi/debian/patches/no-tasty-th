@@ -1,0 +1,274 @@
+--- a/sandi.cabal
++++ b/sandi.cabal
+@@ -71,8 +71,7 @@
+         HUnit,
+         tasty,
+         tasty-hunit,
+-        tasty-quickcheck,
+-        tasty-th
++        tasty-quickcheck
+     main-is: Main.hs
+     other-modules:
+         Codec.Binary.Base16Test
+--- a/test-src/Codec/Binary/Base16Test.hs
++++ b/test-src/Codec/Binary/Base16Test.hs
+@@ -1,4 +1,3 @@
+-{-# LANGUAGE TemplateHaskell #-}
+ -- Copyright: (c) Magnus Therning, 2013
+ -- License: BSD3, found in the LICENSE file
+ 
+@@ -12,7 +11,6 @@
+ import Data.Word (Word8)
+ 
+ import Test.Tasty
+-import Test.Tasty.TH
+ import Test.Tasty.HUnit
+ import Test.Tasty.QuickCheck
+ 
+@@ -45,4 +43,9 @@
+ prop_b16_encdec ws = BS.pack ws == fromRight (B16.decode $ B16.encode $ BS.pack ws)
+ 
+ tests :: TestTree
+-tests = $(testGroupGenerator)
++tests = testGroup
++      "Codec.Binary.Base16Test"
++      [testProperty "b16 encdec" prop_b16_encdec,
++       testCase "b16 enc foobar" case_b16_enc_foobar,
++       testCase "b16 dec foobar" case_b16_dec_foobar,
++       testCase "b16 dec failure" case_b16_dec_failure]
+--- a/test-src/Codec/Binary/Base32HexTest.hs
++++ b/test-src/Codec/Binary/Base32HexTest.hs
+@@ -1,4 +1,3 @@
+-{-# LANGUAGE TemplateHaskell #-}
+ -- Copyright: (c) Magnus Therning, 2013
+ -- License: BSD3, found in the LICENSE file
+ 
+@@ -12,7 +11,6 @@
+ import Data.Word (Word8)
+ 
+ import Test.Tasty
+-import Test.Tasty.TH
+ import Test.Tasty.HUnit
+ import Test.Tasty.QuickCheck
+ 
+@@ -49,4 +47,9 @@
+ prop_encdec ws = BS.pack ws == fromRight (B32H.decode $ B32H.encode $ BS.pack ws)
+ 
+ tests :: TestTree
+-tests = $(testGroupGenerator)
++tests = testGroup
++      "Codec.Binary.Base32HexTest"
++      [testProperty "encdec" prop_encdec,
++       testCase "enc foobar" case_enc_foobar,
++       testCase "dec foobar" case_dec_foobar,
++       testCase "dec failures" case_dec_failures]
+--- a/test-src/Codec/Binary/Base32Test.hs
++++ b/test-src/Codec/Binary/Base32Test.hs
+@@ -1,4 +1,3 @@
+-{-# LANGUAGE TemplateHaskell #-}
+ -- Copyright: (c) Magnus Therning, 2013
+ -- License: BSD3, found in the LICENSE file
+ 
+@@ -12,7 +11,6 @@
+ import Data.Word (Word8)
+ 
+ import Test.Tasty
+-import Test.Tasty.TH
+ import Test.Tasty.HUnit
+ import Test.Tasty.QuickCheck
+ 
+@@ -49,4 +47,9 @@
+ prop_encdec ws = BS.pack ws == fromRight (B32.decode $ B32.encode $ BS.pack ws)
+ 
+ tests :: TestTree
+-tests = $(testGroupGenerator)
++tests = testGroup
++      "Codec.Binary.Base32Test"
++      [testProperty "encdec" prop_encdec,
++       testCase "enc foobar" case_enc_foobar,
++       testCase "dec foobar" case_dec_foobar,
++       testCase "dec failures" case_dec_failures]
+--- a/test-src/Codec/Binary/Base64Test.hs
++++ b/test-src/Codec/Binary/Base64Test.hs
+@@ -1,4 +1,3 @@
+-{-# LANGUAGE TemplateHaskell #-}
+ -- Copyright: (c) Magnus Therning, 2013
+ -- License: BSD3, found in the LICENSE file
+ 
+@@ -12,7 +11,6 @@
+ import Data.Word (Word8)
+ 
+ import Test.Tasty
+-import Test.Tasty.TH
+ import Test.Tasty.HUnit
+ import Test.Tasty.QuickCheck
+ 
+@@ -50,4 +48,10 @@
+ prop_encdec ws = BS.pack ws == fromRight (B64.decode $ B64.encode $ BS.pack ws)
+ 
+ tests :: TestTree
+-tests = $(testGroupGenerator)
++tests = testGroup
++      "Codec.Binary.Base64Test"
++      [testProperty "encdec" prop_encdec,
++       testCase "enc foobar" case_enc_foobar,
++       testCase "enc specials" case_enc_specials,
++       testCase "dec foobar" case_dec_foobar,
++       testCase "dec specials" case_dec_specials]
+--- a/test-src/Codec/Binary/Base64UrlTest.hs
++++ b/test-src/Codec/Binary/Base64UrlTest.hs
+@@ -1,4 +1,3 @@
+-{-# LANGUAGE TemplateHaskell #-}
+ -- Copyright: (c) Magnus Therning, 2013
+ -- License: BSD3, found in the LICENSE file
+ 
+@@ -12,7 +11,6 @@
+ import Data.Word (Word8)
+ 
+ import Test.Tasty
+-import Test.Tasty.TH
+ import Test.Tasty.HUnit
+ import Test.Tasty.QuickCheck
+ 
+@@ -50,4 +48,10 @@
+ prop_encdec ws = BS.pack ws == fromRight (B64U.decode $ B64U.encode $ BS.pack ws)
+ 
+ tests :: TestTree
+-tests = $(testGroupGenerator)
++tests = testGroup
++      "Codec.Binary.Base64UrlTest"
++      [testProperty "encdec" prop_encdec,
++       testCase "enc foobar" case_enc_foobar,
++       testCase "enc specials" case_enc_specials,
++       testCase "dec foobar" case_dec_foobar,
++       testCase "dec specials" case_dec_specials]
+--- a/test-src/Codec/Binary/Base85Test.hs
++++ b/test-src/Codec/Binary/Base85Test.hs
+@@ -1,4 +1,3 @@
+-{-# LANGUAGE TemplateHaskell #-}
+ -- Copyright: (c) Magnus Therning, 2013
+ -- License: BSD3, found in the LICENSE file
+ 
+@@ -12,7 +11,6 @@
+ import Data.Word (Word8)
+ 
+ import Test.Tasty
+-import Test.Tasty.TH
+ import Test.Tasty.HUnit
+ import Test.Tasty.QuickCheck
+ 
+@@ -59,4 +57,10 @@
+ prop_encdec ws = BS.pack ws == fromRight (B85.decode $ B85.encode $ BS.pack ws)
+ 
+ tests :: TestTree
+-tests = $(testGroupGenerator)
++tests = testGroup
++      "Codec.Binary.Base85Test"
++      [testProperty "encdec" prop_encdec,
++       testCase "enc foobar" case_enc_foobar,
++       testCase "enc specials" case_enc_specials,
++       testCase "dec foobar" case_dec_foobar,
++       testCase "dec specials" case_dec_specials]
+--- a/test-src/Codec/Binary/QuotedPrintableTest.hs
++++ b/test-src/Codec/Binary/QuotedPrintableTest.hs
+@@ -1,4 +1,3 @@
+-{-# LANGUAGE TemplateHaskell #-}
+ -- Copyright: (c) Magnus Therning, 2013-2015
+ -- License: BSD3, found in the LICENSE file
+ 
+@@ -12,7 +11,6 @@
+ import Data.Word (Word8)
+ 
+ import Test.Tasty
+-import Test.Tasty.TH
+ import Test.Tasty.HUnit
+ import Test.Tasty.QuickCheck
+ 
+@@ -48,4 +46,9 @@
+ prop_encdec ws = BS.pack ws == fromRight (QP.decode $ QP.encode $ BS.pack ws)
+ 
+ tests :: TestTree
+-tests = $(testGroupGenerator)
++tests = testGroup
++      "Codec.Binary.QuotedPrintableTest"
++      [testProperty "encdec" prop_encdec,
++       testCase "enc foobar" case_enc_foobar,
++       testCase "enc splitting" case_enc_splitting,
++       testCase "dec foobar" case_dec_foobar]
+--- a/test-src/Codec/Binary/UuTest.hs
++++ b/test-src/Codec/Binary/UuTest.hs
+@@ -1,4 +1,3 @@
+-{-# LANGUAGE TemplateHaskell #-}
+ -- Copyright: (c) Magnus Therning, 2013
+ -- License: BSD3, found in the LICENSE file
+ 
+@@ -12,7 +11,6 @@
+ import Data.Word (Word8)
+ 
+ import Test.Tasty
+-import Test.Tasty.TH
+ import Test.Tasty.HUnit
+ import Test.Tasty.QuickCheck
+ 
+@@ -40,4 +38,8 @@
+ prop_encdec ws = BS.pack ws == fromRight (Uu.decode $ Uu.encode $ BS.pack ws)
+ 
+ tests :: TestTree
+-tests = $(testGroupGenerator)
++tests = testGroup
++      "Codec.Binary.UuTest"
++      [testProperty "encdec" prop_encdec,
++       testCase "enc foobar" case_enc_foobar,
++       testCase "dec foobar" case_dec_foobar]
+--- a/test-src/Codec/Binary/XxTest.hs
++++ b/test-src/Codec/Binary/XxTest.hs
+@@ -1,4 +1,3 @@
+-{-# LANGUAGE TemplateHaskell #-}
+ -- Copyright: (c) Magnus Therning, 2013
+ -- License: BSD3, found in the LICENSE file
+ 
+@@ -12,7 +11,6 @@
+ import Data.Word (Word8)
+ 
+ import Test.Tasty
+-import Test.Tasty.TH
+ import Test.Tasty.HUnit
+ import Test.Tasty.QuickCheck
+ 
+@@ -40,4 +38,8 @@
+ prop_encdec ws = BS.pack ws == fromRight (Xx.decode $ Xx.encode $ BS.pack ws)
+ 
+ tests :: TestTree
+-tests = $(testGroupGenerator)
++tests = testGroup
++      "Codec.Binary.XxTest"
++      [testProperty "encdec" prop_encdec,
++       testCase "enc foobar" case_enc_foobar,
++       testCase "dec foobar" case_dec_foobar]
+--- a/test-src/Codec/Binary/YencTest.hs
++++ b/test-src/Codec/Binary/YencTest.hs
+@@ -1,4 +1,3 @@
+-{-# LANGUAGE TemplateHaskell #-}
+ -- Copyright: (c) Magnus Therning, 2013
+ -- License: BSD3, found in the LICENSE file
+ 
+@@ -12,7 +11,6 @@
+ import Data.Word (Word8)
+ 
+ import Test.Tasty
+-import Test.Tasty.TH
+ import Test.Tasty.QuickCheck
+ import Test.Tasty.HUnit
+ 
+@@ -56,4 +54,10 @@
+ prop_encdec ws = BS.pack ws == fromRight (Y.decode $ Y.encode $ BS.pack ws)
+ 
+ tests :: TestTree
+-tests = $(testGroupGenerator)
++tests = testGroup
++      "Codec.Binary.YencTest"
++      [testProperty "encdec" prop_encdec,
++       testCase "enc foobar" case_enc_foobar,
++       testCase "enc specials" case_enc_specials,
++       testCase "dec foobar" case_dec_foobar,
++       testCase "dec specials" case_dec_specials]
