@@ -8,6 +8,4 @@ include /usr/share/cdbs/1/class/hlibrary.mk
 build/yi:: build-ghc-stamp
 binary-fixup/yi::
 	install -m 755 -s -D dist-ghc/build/yi/yi debian/yi/usr/bin/yi || true
-	install -m 755 -s -D dist-ghc/build/parserTest/parserTest debian/yi/usr/bin/parserTest || true
 	install -m 644 -D debian/*.desktop debian/yi/usr/share/applications || true
-	cp -R debian/tmp-inst-ghc/usr/share/yi debian/yi/usr/share

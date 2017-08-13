@@ -1,0 +1,94 @@
+Source: haskell-yi-frontend-pango
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-glib-dev (>= 0.13),
+ libghc-glib-dev (<< 0.14),
+ libghc-glib-prof,
+ libghc-gtk-dev (>= 0.13),
+ libghc-gtk-dev (<< 0.15),
+ libghc-gtk-prof,
+ libghc-microlens-platform-dev,
+ libghc-microlens-platform-prof,
+ libghc-mtl-dev,
+ libghc-mtl-prof,
+ libghc-oo-prototypes-dev,
+ libghc-oo-prototypes-prof,
+ libghc-pango-dev (>= 0.13),
+ libghc-pango-dev (<< 0.14),
+ libghc-pango-prof,
+ libghc-pointedlist-dev,
+ libghc-pointedlist-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+ libghc-transformers-base-dev,
+ libghc-transformers-base-prof,
+ libghc-yi-core-dev,
+ libghc-yi-core-prof,
+ libghc-yi-language-dev,
+ libghc-yi-language-prof,
+ libghc-yi-rope-dev,
+ libghc-yi-rope-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-glib-doc,
+ libghc-gtk-doc,
+ libghc-microlens-platform-doc,
+ libghc-mtl-doc,
+ libghc-oo-prototypes-doc,
+ libghc-pango-doc,
+ libghc-pointedlist-doc,
+ libghc-text-doc,
+ libghc-transformers-base-doc,
+ libghc-yi-core-doc,
+ libghc-yi-language-doc,
+ libghc-yi-rope-doc,
+Standards-Version: 3.9.6
+Homepage: https://github.com/yi-editor/yi#readme
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-yi-frontend-pango
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
+X-Description: Pango frontend for Yi editor
+
+Package: libghc-yi-frontend-pango-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-yi-frontend-pango-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-yi-frontend-pango-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
