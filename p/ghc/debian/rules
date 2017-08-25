@@ -53,7 +53,7 @@ override_dh_auto_configure:
 	echo "HADDOCK_DOCS := YES" >> mk/build.mk
 	echo "EXTRA_HADDOCK_OPTS += --mathjax=file:///usr/share/javascript/mathjax/MathJax.js" >> mk/build.mk
 	echo "XSLTPROC_OPTS += --nonet" >> mk/build.mk
-ifneq (,$(filter arm64 armel armhf, $(DEB_HOST_ARCH)))
+ifneq (,$(filter armel armhf, $(DEB_HOST_ARCH)))
 	echo "SRC_HC_OPTS     += -optl-B/usr/bin/ld.gold" >> mk/build.mk
 endif
 ifeq (armhf,$(DEB_HOST_ARCH))

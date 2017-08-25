@@ -1,0 +1,14 @@
+--- a/aclocal.m4
++++ b/aclocal.m4
+@@ -591,10 +591,7 @@
+         ;;
+ 
+     aarch64*linux*)
+-        # On aarch64/linux and aarch64/android, tell gcc to link using the
+-        # gold linker.
+-        # Forcing LD to be ld.gold is done in FIND_LD m4 macro.
+-        $3="$$3 -fuse-ld=gold -Wl,-z,noexecstack"
++        # gold is an abomination
+         $4="$$4 -z noexecstack"
+         ;;
+ 
