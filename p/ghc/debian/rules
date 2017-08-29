@@ -22,20 +22,20 @@ export HOME = /homedoesnotexistatbuildtime
 export DEB_HOST_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 export DEB_BUILD_GNU_TYPE ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
 export DEB_HOST_ARCH      ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
-# Commented out for now.  The build scripts don't recognise i486 as an
-# architecture and cross compiling isn't supported anyway.
-#ifeq ($(DEB_BUILD_GNU_TYPE), $(DEB_HOST_GNU_TYPE))
-#  confflags += --build $(DEB_HOST_GNU_TYPE)
-#else
-#  confflags += --build $(DEB_BUILD_GNU_TYPE) --host $(DEB_HOST_GNU_TYPE)
-#endif
+
+# We're cross-building if DEB_BUILD_GNU_TYPE != DEB_HOST_GNU_TYPE
+ifneq ($(DEB_BUILD_GNU_TYPE), $(DEB_HOST_GNU_TYPE))
+  confflags += --target $(DEB_HOST_GNU_TYPE) --enable-unregisterised
+  BUILD_CROSS=YES
+else
+  BUILD_CROSS=NO
+endif
 
 ProjectVersion=$(shell cat VERSION)
 
 GHC=$(firstword $(shell bash -c "type -p ghc"))
 EXTRA_CONFIGURE_FLAGS=--with-ghc="$(GHC)"
 
-BUILD_HADDOCK_DOCS=YES
 DEB_HOOGLE_TXT_DIR = /usr/lib/ghc-doc/hoogle/
 
 ifneq (,$(filter powerpcspe x32, $(DEB_HOST_ARCH)))
@@ -53,9 +53,20 @@ endif
 
 override_dh_auto_configure:
 	echo "SRC_HC_OPTS += -lffi -optl-pthread" >> mk/build.mk
+ifeq (NO,$(BUILD_CROSS))
 	echo "HADDOCK_DOCS := YES" >> mk/build.mk
 	echo "EXTRA_HADDOCK_OPTS += --mathjax=file:///usr/share/javascript/mathjax/MathJax.js" >> mk/build.mk
 	echo "XSLTPROC_OPTS += --nonet" >> mk/build.mk
+else
+	echo "SRC_HC_OPTS += -O0 -H64m" >> mk/build.mk
+	echo "GhcStage1HcOpts = -O" >> mk/build.mk
+	echo "GhcStage2HcOpts = -O0" >> mk/build.mk
+	echo "GhcLibHcOpts = -O" >> mk/build.mk
+	echo "SplitObjs = NO" >> mk/build.mk
+	echo "HADDOCK_DOCS := NO" >> mk/build.mk
+	echo "BUILD_SPHINX_HTML := NO" >> mk/build.mk
+	echo "BUILD_SPHINX_PDF := NO" >> mk/build.mk
+endif
 ifneq (,$(filter armel armhf, $(DEB_HOST_ARCH)))
 	echo "SRC_HC_OPTS     += -optl-B/usr/bin/ld.gold" >> mk/build.mk
 endif
@@ -103,6 +114,8 @@ endif
 	echo 'dvidir  := $$(docdir)'                   >> mk/build.mk
 	echo 'pdfdir  := $$(docdir)'                   >> mk/build.mk
 	echo 'psdir   := $$(docdir)'                   >> mk/build.mk
+	echo 'STRIP_CMD = $(DEB_HOST_GNU_TYPE)-strip'  >> mk/build.mk
+	echo 'RANLIB_CMD = $(DEB_HOST_GNU_TYPE)-ranlib'>> mk/build.mk
 	# We want verbose builds
 	echo 'V=1'                                     >> mk/build.mk
 	./configure $(confflags) --prefix=/usr \
@@ -169,12 +182,11 @@ override_dh_auto_install:
 	# Check if we have a ghci binary
 	if test -e debian/tmp/usr/bin/ghci-$(ProjectVersion); then \
 	    echo 'ghci=ghc-ghci' >> debian/ghc.substvars ; fi
-
+ifeq (NO,$(BUILD_CROSS))
 	# Add haddock substvars
 	echo "haddock:Depends=haddock-interface-$$(debian/tmp/usr/lib/ghc/bin/haddock --interface-version)" >> debian/ghc-doc.substvars
 	echo "haddock:Provides=haddock-interface-$$(debian/tmp/usr/lib/ghc/bin/haddock --interface-version)" >> debian/ghc.substvars
-
-ifeq (YES,$(BUILD_HADDOCK_DOCS))
+	find debian/tmp/usr/share/man $(FILES)           >> debian/ghc.install
 	mkdir -p debian/tmp/usr/lib/ghc-doc
 	cp debian/gen_contents_index debian/tmp/usr/lib/ghc-doc/
 	chmod +x debian/tmp/usr/lib/ghc-doc/gen_contents_index
@@ -184,9 +196,8 @@ ifeq (YES,$(BUILD_HADDOCK_DOCS))
 	    mkdir debian/tmp/usr/lib/ghc-doc/haddock/ghc/`basename $$f` ; \
 	    mv $$f/*.haddock debian/tmp/usr/lib/ghc-doc/haddock/ghc/`basename $$f` ; done
 	cd debian/tmp/usr/share/doc/ghc-doc/html/libraries/; ln -s ghc-$(ProjectVersion) ghc
-	install -Dm 644 debian/index.html debian/tmp/usr/share/doc/ghc-doc/index.html
-endif
 
+	install -Dm 644 debian/index.html debian/tmp/usr/share/doc/ghc-doc/index.html
 	# manpages
 	rm -f debian/*.1
 	echo ".so man1/ghc.1" > debian/ghc-$(ProjectVersion).1
@@ -202,14 +213,13 @@ endif
 	echo debian/*.1 > debian/ghc.manpages
 	cp debian/haddock.man debian/haddock.1
 	echo debian/haddock.1 >> debian/ghc.manpages
-
+endif
 	# ####################
 	# Now all the files are sorted, create the package filelists
 
 	# ghc
 	find debian/tmp/usr/bin $(FILES)                  > debian/ghc.install
 #	find debian/tmp/usr/share/ghc* $(FILES)          >> debian/ghc.install
-	find debian/tmp/usr/share/man $(FILES)           >> debian/ghc.install
 	find debian/tmp/usr/lib/ghc $(FILES) ! $(PROF_FILE) >> debian/ghc.install
 	find debian/tmp/var				 >> debian/ghc.install
 	echo debian/tmp/usr/share/lintian/overrides/ghc >> debian/ghc.install
@@ -217,14 +227,14 @@ endif
 	find debian/tmp/usr/lib $(FILES) $(PROF_FILE) > debian/ghc-prof.install
 	echo debian/tmp/usr/share/lintian/overrides/ghc-prof >> debian/ghc-prof.install
 	# ghc-doc
-ifeq (YES,$(BUILD_HADDOCK_DOCS))
+ifeq (NO,$(BUILD_CROSS))
 	mkdir -p debian/tmp/$(DEB_HOOGLE_TXT_DIR)
 	find debian/tmp/usr/share/doc/ghc-doc/html/libraries/*/ -name "*.txt" \
 		-printf "%p $(DEB_HOOGLE_TXT_DIR)/%f\n" >> debian/ghc-doc.links
 	find debian/tmp/usr/share/doc/ghc-doc $(FILES) > debian/ghc-doc.install
 	find debian/tmp/usr/lib/ghc-doc $(FILES)      >> debian/ghc-doc.install
-endif
 	sed -i s,^debian/tmp,, debian/*.install debian/*.links
+endif
 	rm -f debian/ghc.links
 	echo "/var/lib/ghc/package.conf.d /usr/lib/ghc/package.conf.d" >> debian/ghc.links
 

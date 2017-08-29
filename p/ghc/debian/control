@@ -6,17 +6,17 @@ Uploaders: Joachim Breitner <nomeata@debian.org>, Clint Adams <clint@debian.org>
 Standards-Version: 3.9.8
 Build-Depends:
   debhelper (>= 10),
-  haskell-devscripts-minimal,
+  haskell-devscripts-minimal <!cross>,
   devscripts,
   grep-dctrl,
   pkg-config,
-  ghc (>= 7.8),
+  ghc:native (>= 7.8),
   libgmp-dev,
   llvm-3.7 [arm64 armel armhf],
   libffi-dev,
   binutils [arm64 armel armhf],
   libncurses5-dev,
-  python-sphinx,
+  python-sphinx <!cross>,
   dpkg-dev (>= 1.16.1.1)
 Build-Depends-Indep:
   hscolour,
