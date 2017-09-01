@@ -46,9 +46,6 @@ endif
 	dh $@
 
 override_dh_autoreconf:
-ifeq (arm64,$(DEB_HOST_ARCH))
-	patch -p1 < debian/patches/arm64-no-gold
-endif
 	dh_autoreconf perl -- boot
 
 override_dh_auto_configure:
