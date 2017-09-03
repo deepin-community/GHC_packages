@@ -1,6 +1,6 @@
 --- a/sandi.cabal
 +++ b/sandi.cabal
-@@ -71,8 +71,7 @@
+@@ -71,8 +71,7 @@ test-suite sandi-tests
          HUnit,
          tasty,
          tasty-hunit,
@@ -17,7 +17,7 @@
  -- Copyright: (c) Magnus Therning, 2013
  -- License: BSD3, found in the LICENSE file
  
-@@ -12,7 +11,6 @@
+@@ -12,7 +11,6 @@ import qualified Data.ByteString.Char8 a
  import Data.Word (Word8)
  
  import Test.Tasty
@@ -25,7 +25,7 @@
  import Test.Tasty.HUnit
  import Test.Tasty.QuickCheck
  
-@@ -45,4 +43,9 @@
+@@ -45,4 +43,9 @@ prop_b16_encdec :: [Word8] -> Bool
  prop_b16_encdec ws = BS.pack ws == fromRight (B16.decode $ B16.encode $ BS.pack ws)
  
  tests :: TestTree
@@ -43,7 +43,7 @@
  -- Copyright: (c) Magnus Therning, 2013
  -- License: BSD3, found in the LICENSE file
  
-@@ -12,7 +11,6 @@
+@@ -12,7 +11,6 @@ import qualified Data.ByteString.Char8 a
  import Data.Word (Word8)
  
  import Test.Tasty
@@ -51,7 +51,7 @@
  import Test.Tasty.HUnit
  import Test.Tasty.QuickCheck
  
-@@ -49,4 +47,9 @@
+@@ -49,4 +47,9 @@ prop_encdec :: [Word8] -> Bool
  prop_encdec ws = BS.pack ws == fromRight (B32H.decode $ B32H.encode $ BS.pack ws)
  
  tests :: TestTree
@@ -69,7 +69,7 @@
  -- Copyright: (c) Magnus Therning, 2013
  -- License: BSD3, found in the LICENSE file
  
-@@ -12,7 +11,6 @@
+@@ -12,7 +11,6 @@ import qualified Data.ByteString.Char8 a
  import Data.Word (Word8)
  
  import Test.Tasty
@@ -77,7 +77,7 @@
  import Test.Tasty.HUnit
  import Test.Tasty.QuickCheck
  
-@@ -49,4 +47,9 @@
+@@ -49,4 +47,9 @@ prop_encdec :: [Word8] -> Bool
  prop_encdec ws = BS.pack ws == fromRight (B32.decode $ B32.encode $ BS.pack ws)
  
  tests :: TestTree
@@ -95,7 +95,7 @@
  -- Copyright: (c) Magnus Therning, 2013
  -- License: BSD3, found in the LICENSE file
  
-@@ -12,7 +11,6 @@
+@@ -12,7 +11,6 @@ import qualified Data.ByteString.Char8 a
  import Data.Word (Word8)
  
  import Test.Tasty
@@ -103,7 +103,7 @@
  import Test.Tasty.HUnit
  import Test.Tasty.QuickCheck
  
-@@ -50,4 +48,10 @@
+@@ -50,4 +48,10 @@ prop_encdec :: [Word8] -> Bool
  prop_encdec ws = BS.pack ws == fromRight (B64.decode $ B64.encode $ BS.pack ws)
  
  tests :: TestTree
@@ -122,7 +122,7 @@
  -- Copyright: (c) Magnus Therning, 2013
  -- License: BSD3, found in the LICENSE file
  
-@@ -12,7 +11,6 @@
+@@ -12,7 +11,6 @@ import qualified Data.ByteString.Char8 a
  import Data.Word (Word8)
  
  import Test.Tasty
@@ -130,7 +130,7 @@
  import Test.Tasty.HUnit
  import Test.Tasty.QuickCheck
  
-@@ -50,4 +48,10 @@
+@@ -50,4 +48,10 @@ prop_encdec :: [Word8] -> Bool
  prop_encdec ws = BS.pack ws == fromRight (B64U.decode $ B64U.encode $ BS.pack ws)
  
  tests :: TestTree
@@ -149,7 +149,7 @@
  -- Copyright: (c) Magnus Therning, 2013
  -- License: BSD3, found in the LICENSE file
  
-@@ -12,7 +11,6 @@
+@@ -12,7 +11,6 @@ import qualified Data.ByteString.Char8 a
  import Data.Word (Word8)
  
  import Test.Tasty
@@ -157,7 +157,7 @@
  import Test.Tasty.HUnit
  import Test.Tasty.QuickCheck
  
-@@ -59,4 +57,10 @@
+@@ -59,4 +57,10 @@ prop_encdec :: [Word8] -> Bool
  prop_encdec ws = BS.pack ws == fromRight (B85.decode $ B85.encode $ BS.pack ws)
  
  tests :: TestTree
@@ -176,7 +176,7 @@
  -- Copyright: (c) Magnus Therning, 2013-2015
  -- License: BSD3, found in the LICENSE file
  
-@@ -12,7 +11,6 @@
+@@ -12,7 +11,6 @@ import qualified Data.ByteString.Char8 a
  import Data.Word (Word8)
  
  import Test.Tasty
@@ -184,7 +184,7 @@
  import Test.Tasty.HUnit
  import Test.Tasty.QuickCheck
  
-@@ -48,4 +46,9 @@
+@@ -48,4 +46,9 @@ prop_encdec :: [Word8] -> Bool
  prop_encdec ws = BS.pack ws == fromRight (QP.decode $ QP.encode $ BS.pack ws)
  
  tests :: TestTree
@@ -202,7 +202,7 @@
  -- Copyright: (c) Magnus Therning, 2013
  -- License: BSD3, found in the LICENSE file
  
-@@ -12,7 +11,6 @@
+@@ -12,7 +11,6 @@ import qualified Data.ByteString.Char8 a
  import Data.Word (Word8)
  
  import Test.Tasty
@@ -210,7 +210,7 @@
  import Test.Tasty.HUnit
  import Test.Tasty.QuickCheck
  
-@@ -40,4 +38,8 @@
+@@ -40,4 +38,8 @@ prop_encdec :: [Word8] -> Bool
  prop_encdec ws = BS.pack ws == fromRight (Uu.decode $ Uu.encode $ BS.pack ws)
  
  tests :: TestTree
@@ -227,7 +227,7 @@
  -- Copyright: (c) Magnus Therning, 2013
  -- License: BSD3, found in the LICENSE file
  
-@@ -12,7 +11,6 @@
+@@ -12,7 +11,6 @@ import qualified Data.ByteString.Char8 a
  import Data.Word (Word8)
  
  import Test.Tasty
@@ -235,7 +235,7 @@
  import Test.Tasty.HUnit
  import Test.Tasty.QuickCheck
  
-@@ -40,4 +38,8 @@
+@@ -40,4 +38,8 @@ prop_encdec :: [Word8] -> Bool
  prop_encdec ws = BS.pack ws == fromRight (Xx.decode $ Xx.encode $ BS.pack ws)
  
  tests :: TestTree
@@ -252,7 +252,7 @@
  -- Copyright: (c) Magnus Therning, 2013
  -- License: BSD3, found in the LICENSE file
  
-@@ -12,7 +11,6 @@
+@@ -12,7 +11,6 @@ import qualified Data.ByteString.Char8 a
  import Data.Word (Word8)
  
  import Test.Tasty
@@ -260,7 +260,7 @@
  import Test.Tasty.QuickCheck
  import Test.Tasty.HUnit
  
-@@ -56,4 +54,10 @@
+@@ -56,4 +54,10 @@ prop_encdec :: [Word8] -> Bool
  prop_encdec ws = BS.pack ws == fromRight (Y.decode $ Y.encode $ BS.pack ws)
  
  tests :: TestTree
