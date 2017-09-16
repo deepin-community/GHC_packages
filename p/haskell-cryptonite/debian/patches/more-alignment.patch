@@ -5,7 +5,7 @@ Forwarded: https://github.com/haskell-crypto/cryptonite/pull/175
 This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
 --- a/cbits/cryptonite_align.h
 +++ b/cbits/cryptonite_align.h
-@@ -34,9 +34,34 @@
+@@ -34,9 +34,24 @@
  #define need_alignment(p,n) IS_ALIGNED(p,n)
  #endif
  
@@ -24,16 +24,6 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
 +	return le64_to_cpu(*((uint64_t *) p));
 +}
 +
-+static inline void store_be32_aligned(uint8_t *p, uint32_t val)
-+{
-+	*((uint32_t *) p) = cpu_to_be32(val);
-+}
-+
-+static inline void store_be64_aligned(uint8_t *p, uint64_t val)
-+{
-+	*((uint64_t *) p) = cpu_to_be64(val);
-+}
-+
  static inline uint32_t load_le32_aligned(const uint8_t *p)
  {
 -	return le32_to_cpu(*((uint32_t *) p));		
@@ -41,7 +31,7 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
  }
  
  static inline void store_le32_aligned(uint8_t *dst, const uint32_t v)
-@@ -60,12 +85,83 @@ static inline void store_be64_aligned(ui
+@@ -60,12 +75,83 @@ static inline void store_be64_aligned(ui
  }
  
  #ifdef UNALIGNED_ACCESS_OK
