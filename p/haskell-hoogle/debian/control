@@ -5,24 +5,28 @@ Uploaders:
  Iustin Pop <iustin@debian.org>,
 Priority: extra
 Section: haskell
-Build-Depends:
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.9),
  cdbs,
- debhelper (>= 9),
- ghc (>= 8),
+ ghc,
  ghc-prof,
- haskell-devscripts (>= 0.13),
- libghc-aeson-dev (>= 0.6.1),
+ libghc-quickcheck2-dev,
+ libghc-quickcheck2-prof,
+ libghc-aeson-dev,
  libghc-aeson-prof,
- libghc-cmdargs-dev (>= 0.7),
+ libghc-cmdargs-dev,
  libghc-cmdargs-prof,
  libghc-conduit-dev,
+ libghc-conduit-prof,
  libghc-conduit-extra-dev,
  libghc-conduit-extra-prof,
- libghc-conduit-prof,
  libghc-connection-dev,
  libghc-connection-prof,
  libghc-extra-dev (>= 1.4),
  libghc-extra-prof,
+ libghc-src-exts-dev (>= 1.18),
+ libghc-src-exts-dev (<< 1.20),
+ libghc-src-exts-prof,
  libghc-http-conduit-dev,
  libghc-http-conduit-prof,
  libghc-http-types-dev,
@@ -33,21 +37,16 @@ Build-Depends:
  libghc-js-jquery-prof,
  libghc-mmap-dev,
  libghc-mmap-prof,
- libghc-network-dev,
+ libghc-network-dev (>= 2.6),
  libghc-network-prof,
- libghc-network-uri-dev,
+ libghc-network-uri-dev (>= 2.6),
  libghc-network-uri-prof,
  libghc-old-locale-dev,
  libghc-old-locale-prof,
- libghc-quickcheck2-dev,
- libghc-quickcheck2-prof,
+ libghc-process-extras-dev,
+ libghc-process-extras-prof,
  libghc-resourcet-dev,
  libghc-resourcet-prof,
- libghc-shake-dev (>= 0.14),
- libghc-src-exts-dev (<< 1.18),
- libghc-src-exts-dev (>= 1.16),
- libghc-src-exts-prof,
- libghc-tagsoup-dev (>= 0.11),
  libghc-tar-dev,
  libghc-tar-prof,
  libghc-text-dev,
@@ -59,23 +58,24 @@ Build-Depends:
  libghc-vector-dev,
  libghc-vector-prof,
  libghc-wai-dev,
+ libghc-wai-prof,
  libghc-wai-logger-dev,
  libghc-wai-logger-prof,
- libghc-wai-prof,
  libghc-warp-dev,
  libghc-warp-prof,
  libghc-warp-tls-dev,
  libghc-warp-tls-prof,
  libghc-zlib-dev,
  libghc-zlib-prof,
-Build-Depends-Indep:
- ghc-doc,
+Build-Depends-Indep: ghc-doc,
+ libghc-quickcheck2-doc,
  libghc-aeson-doc,
  libghc-cmdargs-doc,
  libghc-conduit-doc,
  libghc-conduit-extra-doc,
  libghc-connection-doc,
  libghc-extra-doc,
+ libghc-src-exts-doc,
  libghc-http-conduit-doc,
  libghc-http-types-doc,
  libghc-js-flot-doc,
@@ -84,9 +84,8 @@ Build-Depends-Indep:
  libghc-network-doc,
  libghc-network-uri-doc,
  libghc-old-locale-doc,
- libghc-quickcheck2-doc,
+ libghc-process-extras-doc,
  libghc-resourcet-doc,
- libghc-src-exts-doc,
  libghc-tar-doc,
  libghc-text-doc,
  libghc-uniplate-doc,
@@ -97,23 +96,19 @@ Build-Depends-Indep:
  libghc-warp-doc,
  libghc-warp-tls-doc,
  libghc-zlib-doc,
-Standards-Version: 3.9.8
-Homepage: http://www.haskell.org/hoogle/
+Standards-Version: 4.0.0
+Homepage: http://hoogle.haskell.org/
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-hoogle
 Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
 
 Package: libghc-hoogle-dev
 Architecture: any
-Depends:
- ${haskell:Depends},
+Depends: ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends:
- ${haskell:Recommends},
-Suggests:
- ${haskell:Suggests},
-Provides:
- ${haskell:Provides},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell API Search
  Hoogle is a Haskell API search engine, which allows you to
  search many standard Haskell libraries by either function name,
@@ -123,15 +118,11 @@ Description: Haskell API Search
 
 Package: libghc-hoogle-prof
 Architecture: any
-Depends:
- ${haskell:Depends},
+Depends: ${haskell:Depends},
  ${misc:Depends},
-Recommends:
- ${haskell:Recommends},
-Suggests:
- ${haskell:Suggests},
-Provides:
- ${haskell:Provides},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell API Search; profiling libraries
  Hoogle is a Haskell API search engine, which allows you to
  search many standard Haskell libraries by either function name,
@@ -142,13 +133,10 @@ Description: Haskell API Search; profiling libraries
 Package: libghc-hoogle-doc
 Architecture: all
 Section: doc
-Depends:
- ${haskell:Depends},
+Depends: ${haskell:Depends},
  ${misc:Depends},
-Recommends:
- ${haskell:Recommends},
-Suggests:
- ${haskell:Suggests},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Haskell API Search; documentation
  Hoogle is a Haskell API search engine, which allows you to
  search many standard Haskell libraries by either function name,
@@ -159,8 +147,7 @@ Description: Haskell API Search; documentation
 Package: hoogle
 Architecture: any
 Section: misc
-Depends:
- ghc-doc,
+Depends: ghc-doc,
  libjs-jquery,
  libjs-chosen (>= 0.9.15),
  libjs-jquery-cookie,

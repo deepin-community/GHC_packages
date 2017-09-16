@@ -10,7 +10,9 @@ Build-Depends:
  ghc (>= 8),
  ghc-prof,
  haskell-devscripts (>= 0.13),
- libghc-aeson-dev (>= 0.8),
+ libghc-glob-dev,
+ libghc-glob-prof,
+ libghc-aeson-dev (>= 0.11),
  libghc-aeson-prof,
  libghc-aeson-qq-dev,
  libghc-base-compat-dev (>= 0.8),
@@ -29,15 +31,22 @@ Build-Depends:
  libghc-unordered-containers-prof,
  libghc-yaml-dev,
  libghc-yaml-prof,
-Build-Depends-Indep:
- ghc-doc,
+ libghc-quickcheck2-dev,
+ libghc-aeson-qq-dev,
+ libghc-hspec-dev (>= 2),
+ libghc-hspec-dev (<< 3),
+ libghc-interpolate-dev,
+ libghc-mockery-dev (>= 0.3),
+ libghc-temporary-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-glob-doc,
  libghc-aeson-doc,
  libghc-base-compat-doc,
  libghc-glob-doc,
  libghc-text-doc,
  libghc-unordered-containers-doc,
  libghc-yaml-doc,
-Standards-Version: 3.9.8
+Standards-Version: 4.0.0
 Homepage: https://github.com/sol/hpack#readme
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-hpack
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git

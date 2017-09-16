@@ -1,0 +1,74 @@
+Source: haskell-wai-http2-extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-auto-update-dev (>= 0.1.3),
+ libghc-auto-update-dev (<< 0.2),
+ libghc-auto-update-prof (>= 0.1.3),
+ libghc-auto-update-prof (<< 0.2),
+ libghc-http-types-dev,
+ libghc-http-types-prof,
+ libghc-wai-dev,
+ libghc-wai-prof,
+ libghc-warp-dev,
+ libghc-warp-prof,
+ libghc-word8-dev,
+ libghc-word8-prof,
+ libghc-doctest-dev (>= 0.10.1) <!nocheck>,
+Build-Depends-Indep: ghc-doc,
+ libghc-auto-update-doc,
+ libghc-http-types-doc,
+ libghc-wai-doc,
+ libghc-warp-doc,
+ libghc-word8-doc,
+Standards-Version: 4.0.0
+Homepage: http://github.com/yesodweb/wai
+X-Description: WAI utilities for HTTP/2
+ WAI utilities for HTTP/2, such as middleware for a server push
+ learning dependency based on the Referer header.
+
+Package: libghc-wai-http2-extra-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-wai-http2-extra-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-wai-http2-extra-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

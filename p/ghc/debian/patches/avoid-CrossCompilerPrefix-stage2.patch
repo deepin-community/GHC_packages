@@ -1,0 +1,31 @@
+Description: Don't use cross-compile prefix for stage2 cross-builds
+Origin: http://git.haskell.org/ghc.git/commitdiff/f2685df3b10e13f142736f28835e9064334bc143
+Note: Can be dropped for 8.2.0
+Last-Update: 2017-08-02
+
+--- ghc-8.0.2.orig/mk/config.mk.in
++++ ghc-8.0.2/mk/config.mk.in
+@@ -518,11 +518,6 @@ SUPPORTS_THIS_UNIT_ID = @SUPPORTS_THIS_U
+ 
+ WhatGccIsCalled       = @WhatGccIsCalled@
+ GccVersion            = @GccVersion@
+-ifeq "$(phase)" "0"
+-CrossCompilePrefix    =
+-else
+-CrossCompilePrefix    = @CrossCompilePrefix@
+-endif
+ # TargetPlatformFull retains the string passed to configure so we have it in
+ # the necessary format to pass to libffi's configure.
+ TargetPlatformFull    = @TargetPlatformFull@
+@@ -557,6 +552,11 @@ CrossCompiling        = @CrossCompiling@
+ # See Note [Stage1Only vs stage=1]
+ Stage1Only = NO
+ 
++# Installed tools prefix:
++#    we add prefix to crosscompiler GHC only (ghc-stage1),
++#    not cross-built GHC (not ghc-stage2).
++CrossCompilePrefix    = $(if $(filter YES,$(Stage1Only)),@CrossCompilePrefix@,)
++
+ # Install stage 2 by default, or stage 1 in the cross compiler
+ # case. Can be changed to 3
+ INSTALL_GHC_STAGE= $(if $(filter YES,$(Stage1Only)),1,2)

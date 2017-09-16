@@ -2,10 +2,8 @@ Description: Use libjs-jquery instead of embedded code
  Patch gitit to use the javascript linked from the libjs-jquery package,
  instead of the embedded one.
 Author: Giovanni Mascellani <gio@debian.org>
-Index: gitit/data/templates/expire.st
-===================================================================
---- gitit.orig/data/templates/expire.st
-+++ gitit/data/templates/expire.st
+--- a/data/templates/expire.st
++++ b/data/templates/expire.st
 @@ -1,5 +1,5 @@
  $if(usecache)$
 -<script type="text/javascript" src="$base$/js/jquery.hotkeys-0.7.9.min.js"></script>
@@ -13,11 +11,9 @@ Index: gitit/data/templates/expire.st
  <script type="text/javascript">
  /* <![CDATA[ */
       \$(document).bind("keydown", "ctrl+r", function() {
-Index: gitit/src/Network/Gitit/Layout.hs
-===================================================================
---- gitit.orig/src/Network/Gitit/Layout.hs
-+++ gitit/src/Network/Gitit/Layout.hs
-@@ -78,7 +78,7 @@ filledPageTemplate base' cfg layout html
+--- a/src/Network/Gitit/Layout.hs
++++ b/src/Network/Gitit/Layout.hs
+@@ -78,7 +78,7 @@
                             'h':'t':'t':'p':_  -> x
                             _                  -> base' ++ "/js/" ++ x
  
@@ -26,10 +22,8 @@ Index: gitit/src/Network/Gitit/Layout.hs
        scriptLink x = script ! [src (prefixedScript x),
          thetype "text/javascript"] << noHtml
        javascriptlinks = renderHtmlFragment $ concatHtml $ map scriptLink scripts
-Index: gitit/data/templates/page.st
-===================================================================
---- gitit.orig/data/templates/page.st
-+++ gitit/data/templates/page.st
+--- a/data/templates/page.st
++++ b/data/templates/page.st
 @@ -9,6 +9,7 @@
      <link href="$base$/_feed$pageUrl$" type="application/atom+xml" rel="alternate" title="$wikititle$ - $pagetitle$" />
      $endif$

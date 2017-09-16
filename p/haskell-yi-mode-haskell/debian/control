@@ -1,0 +1,74 @@
+Source: haskell-yi-mode-haskell
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-data-default-dev,
+ libghc-data-default-prof,
+ libghc-microlens-platform-dev,
+ libghc-microlens-platform-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+ libghc-yi-core-dev,
+ libghc-yi-core-prof,
+ libghc-yi-language-dev,
+ libghc-yi-language-prof,
+ libghc-yi-rope-dev,
+ libghc-yi-rope-prof,
+ alex,
+Build-Depends-Indep: ghc-doc,
+ libghc-data-default-doc,
+ libghc-microlens-platform-doc,
+ libghc-text-doc,
+ libghc-yi-core-doc,
+ libghc-yi-language-doc,
+ libghc-yi-rope-doc,
+Standards-Version: 4.0.1
+Homepage: https://github.com/yi-editor/yi#readme
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-yi-mode-haskell
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
+X-Description: Yi editor haskell mode
+
+Package: libghc-yi-mode-haskell-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-yi-mode-haskell-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-yi-mode-haskell-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

@@ -1,0 +1,29 @@
+--- a/snap.cabal
++++ b/snap.cabal
+@@ -255,7 +255,6 @@
+     test-framework             >= 0.8.0.3  && < 0.9,
+     test-framework-hunit       >= 0.3.0.1  && < 0.4,
+     test-framework-quickcheck2 >= 0.3.0.3  && < 0.4,
+-    test-framework-smallcheck  >= 0.2      && < 0.3,
+     text,
+     time,
+     transformers,
+--- a/test/suite/Snap/Snaplet/Internal/Tests.hs
++++ b/test/suite/Snap/Snaplet/Internal/Tests.hs
+@@ -16,7 +16,6 @@
+ import           System.Directory                    (getCurrentDirectory)
+ import           Test.Framework                      (Test, testGroup)
+ import           Test.Framework.Providers.HUnit      (testCase)
+-import           Test.Framework.Providers.SmallCheck (testProperty)
+ import           Test.HUnit                          hiding (Test, path)
+ import           Test.SmallCheck                     ((==>))
+ ------------------------------------------------------------------------------
+@@ -124,7 +123,7 @@
+ tests :: Test
+ tests = testGroup "Snap.Snaplet.Internal"
+     [ testCase "initializer tests" initTest
+-    , testProperty "buildPath generates no double slashes" doubleSlashes
++--    , testProperty "buildPath generates no double slashes" doubleSlashes
+     ]
+ 
+ --doubleSlashes :: Monad m => [String] -> Property m

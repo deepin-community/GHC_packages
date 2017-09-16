@@ -1,8 +1,8 @@
 --- a/debian.cabal
 +++ b/debian.cabal
-@@ -24,6 +24,10 @@
-  Description: pretty-1.1.2 includes the Text.PrettyPrint.HughesPJClass module from prettyclass
+@@ -25,6 +25,10 @@
   Default: True
+  Manual: True
  
 +flag threaded
 +  description: build threaded
@@ -11,7 +11,7 @@
  Library
   Hs-Source-Dirs: .
   Build-Depends:
-@@ -107,14 +111,18 @@
+@@ -109,14 +113,18 @@
   Hs-Source-Dirs: utils
   Main-is: FakeChanges.hs
   Build-Depends: base, debian, directory, filepath
@@ -32,7 +32,7 @@
   C-Sources:           cbits/gwinsz.c
   Include-Dirs:        cbits
   Install-Includes:    gwinsz.h
-@@ -125,7 +133,9 @@
+@@ -127,7 +135,9 @@
   Hs-Source-Dirs: utils
   Main-is: AptGetBuildDeps.hs
   Build-Depends: base, debian, process

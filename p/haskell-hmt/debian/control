@@ -1,0 +1,89 @@
+Source: haskell-hmt
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: extra
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-colour-dev,
+ libghc-colour-prof,
+ libghc-data-ordlist-dev,
+ libghc-data-ordlist-prof,
+ libghc-lazy-csv-dev,
+ libghc-lazy-csv-prof,
+ libghc-logict-dev,
+ libghc-logict-prof,
+ libghc-multiset-comb-dev,
+ libghc-multiset-comb-prof,
+ libghc-parsec3-dev,
+ libghc-parsec3-prof,
+ libghc-permutation-dev,
+ libghc-permutation-prof,
+ libghc-primes-dev,
+ libghc-primes-prof,
+ libghc-safe-dev,
+ libghc-safe-prof,
+ libghc-split-dev,
+ libghc-split-prof,
+ libghc-utf8-string-dev,
+ libghc-utf8-string-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-colour-doc,
+ libghc-data-ordlist-doc,
+ libghc-lazy-csv-doc,
+ libghc-logict-doc,
+ libghc-multiset-comb-doc,
+ libghc-parsec3-doc,
+ libghc-permutation-doc,
+ libghc-primes-doc,
+ libghc-safe-doc,
+ libghc-split-doc,
+ libghc-utf8-string-doc,
+Standards-Version: 4.0.0
+Homepage: http://rd.slavepianos.org/t/hmt
+X-Description: Haskell Music Theory
+ Music theory operations in Haskell, primarily focused on 'set
+ theory' and 'common music notation'.
+
+Package: libghc-hmt-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hmt-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hmt-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
