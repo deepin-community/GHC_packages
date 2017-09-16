@@ -2,10 +2,8 @@ Description: Build unlit and hp2ps twice
 Author: Thomas Miedema <thomasmiedema@gmail.com>
         John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
 
-Index: ghc-8.0.1/utils/ghc-pkg/ghc.mk
-===================================================================
---- ghc-8.0.1.orig/utils/ghc-pkg/ghc.mk
-+++ ghc-8.0.1/utils/ghc-pkg/ghc.mk
+--- a/utils/ghc-pkg/ghc.mk
++++ b/utils/ghc-pkg/ghc.mk
 @@ -27,7 +27,7 @@ utils/ghc-pkg_PACKAGE = ghc-pkg
  # Note [Why build certain utils twice?]
  #
@@ -27,22 +25,22 @@ Index: ghc-8.0.1/utils/ghc-pkg/ghc.mk
  # Therefore we build fresh copies, using the stage1 compiler, and install them
  # when you run 'make install'. They are not used for any other purpose.
  
-Index: ghc-8.0.1/utils/hp2ps/ghc.mk
-===================================================================
---- ghc-8.0.1.orig/utils/hp2ps/ghc.mk
-+++ ghc-8.0.1/utils/hp2ps/ghc.mk
-@@ -17,10 +17,23 @@ utils/hp2ps_dist_C_SRCS          = AreaB
+--- a/utils/hp2ps/ghc.mk
++++ b/utils/hp2ps/ghc.mk
+@@ -17,7 +17,7 @@ utils/hp2ps_dist_C_SRCS          = AreaB
                                     Utilities.c
  utils/hp2ps_dist_EXTRA_LIBRARIES = m
- utils/hp2ps_dist_PROGNAME        = $(CrossCompilePrefix)hp2ps
+ utils/hp2ps_dist_PROGNAME        = hp2ps
 -utils/hp2ps_dist_INSTALL         = YES
 +utils/hp2ps_dist_INSTALL         = NO
  utils/hp2ps_dist_INSTALL_INPLACE = YES
- 
+ utils/hp2ps_dist_SHELL_WRAPPER              = YES
+ utils/hp2ps_dist_INSTALL_SHELL_WRAPPER_NAME = hp2ps
+@@ -25,3 +25,17 @@ utils/hp2ps_dist_INSTALL_SHELL_WRAPPER_N
  utils/hp2ps_CC_OPTS += $(addprefix -I,$(GHC_INCLUDE_DIRS))
  
  $(eval $(call build-prog,utils/hp2ps,dist,0))
- 
++
 +utils/hp2ps_dist-install_C_SRCS  = AreaBelow.c Curves.c Error.c Main.c \
 +                                   Reorder.c TopTwenty.c AuxFile.c Deviation.c \
 +                                   HpFile.c Marks.c Scale.c TraceElement.c \
@@ -56,10 +54,8 @@ Index: ghc-8.0.1/utils/hp2ps/ghc.mk
 +
 +# See Note [Why build certain utils twice?].
 +$(eval $(call build-prog,utils/hp2ps,dist-install,1))
-Index: ghc-8.0.1/utils/unlit/ghc.mk
-===================================================================
---- ghc-8.0.1.orig/utils/unlit/ghc.mk
-+++ ghc-8.0.1/utils/unlit/ghc.mk
+--- a/utils/unlit/ghc.mk
++++ b/utils/unlit/ghc.mk
 @@ -13,8 +13,16 @@
  utils/unlit_dist_C_SRCS  = unlit.c
  utils/unlit_dist_PROGNAME = unlit

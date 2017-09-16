@@ -3,11 +3,11 @@ Origin: http://git.haskell.org/ghc.git/commitdiff/f2685df3b10e13f142736f28835e90
 Note: Can be dropped for 8.2.0
 Last-Update: 2017-08-02
 
---- ghc-8.0.2.orig/mk/config.mk.in
-+++ ghc-8.0.2/mk/config.mk.in
-@@ -518,11 +518,6 @@ SUPPORTS_THIS_UNIT_ID = @SUPPORTS_THIS_U
+--- a/mk/config.mk.in
++++ b/mk/config.mk.in
+@@ -530,11 +530,6 @@ SUPPORTS_THIS_UNIT_ID = @SUPPORTS_THIS_U
+ # needs to know which gcc you're using in order to perform its tests.
  
- WhatGccIsCalled       = @WhatGccIsCalled@
  GccVersion            = @GccVersion@
 -ifeq "$(phase)" "0"
 -CrossCompilePrefix    =
@@ -17,7 +17,7 @@ Last-Update: 2017-08-02
  # TargetPlatformFull retains the string passed to configure so we have it in
  # the necessary format to pass to libffi's configure.
  TargetPlatformFull    = @TargetPlatformFull@
-@@ -557,6 +552,11 @@ CrossCompiling        = @CrossCompiling@
+@@ -571,6 +566,11 @@ CrossCompiling        = @CrossCompiling@
  # See Note [Stage1Only vs stage=1]
  Stage1Only = NO
  
