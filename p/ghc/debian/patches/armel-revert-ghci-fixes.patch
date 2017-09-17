@@ -9,9 +9,9 @@ Description: Revert ghci ARM improvements (ticket #10375) on armel
  armel with the help of debian/rules.
  .
 
---- ghc-7.10.3.orig/aclocal.m4
-+++ ghc-7.10.3/aclocal.m4
-@@ -577,18 +577,10 @@ AC_DEFUN([FPTOOLS_SET_C_LD_FLAGS],
+--- ghc-8.2.1.orig/aclocal.m4	2017-09-17 10:46:45.000000000 +0200
++++ ghc-8.2.1/aclocal.m4	2017-09-17 11:57:40.681870101 +0200
+@@ -621,16 +621,8 @@ AC_DEFUN([FPTOOLS_SET_C_LD_FLAGS],
          $3="$$3 -D_HPUX_SOURCE"
          $5="$$5 -D_HPUX_SOURCE"
          ;;
@@ -20,23 +20,19 @@ Description: Revert ghci ARM improvements (ticket #10375) on armel
 -        # instructions (ie not Thumb) and to link using the gold linker.
 -        # Forcing LD to be ld.gold is done in FIND_LD m4 macro.
 -        $2="$$2 -marm"
--        $3="$$3 -fuse-ld=gold -Wl,-z,noexecstack"
+-        $3="$$3 -Wl,-z,noexecstack"
 -        $4="$$4 -z noexecstack"
 -        ;;
 -
 -    aarch64*linux*)
--        # On aarch64/linux and aarch64/android, tell gcc to link using the
--        # gold linker.
-+    arm*linux*       | \
-+    aarch64*linux*   )
-+        # On arm/linux, aarch64/linux, arm/android and aarch64/android, tell
-+        # gcc to link using the gold linker.
-         # Forcing LD to be ld.gold is done in FIND_LD m4 macro.
-         $3="$$3 -fuse-ld=gold -Wl,-z,noexecstack"
++    arm*linux*		| \
++    aarch64*linux*	)
+         $3="$$3 -Wl,-z,noexecstack"
          $4="$$4 -z noexecstack"
+         ;;
 --- ghc-7.10.3.orig/libraries/ghci/GHCi/InfoTable.hsc
 +++ ghc-7.10.3/libraries/ghci/GHCi/InfoTable.hsc
-@@ -184,17 +184,17 @@ mkJumpToAddr dflags a = case platformArc
+@@ -245,17 +245,17 @@ mkJumpToAddr dflags a = case platformArc
                   , fromIntegral ((w64 `shiftR` 32) .&. 0x0000FFFF) ]
  
      ArchARM { } ->
