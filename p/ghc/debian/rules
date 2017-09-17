@@ -64,7 +64,7 @@ else
 	echo "BUILD_SPHINX_HTML := NO" >> mk/build.mk
 	echo "BUILD_SPHINX_PDF := NO" >> mk/build.mk
 endif
-ifneq (,$(filter armel armhf, $(DEB_HOST_ARCH)))
+ifneq (,$(filter arm64 armel armhf, $(DEB_HOST_ARCH)))
 	echo "SRC_HC_OPTS     += -optl-B/usr/bin/ld.gold" >> mk/build.mk
 endif
 ifeq (armhf,$(DEB_HOST_ARCH))
@@ -193,8 +193,8 @@ ifeq (NO,$(BUILD_CROSS))
 	    mkdir debian/tmp/usr/lib/ghc-doc/haddock/ghc/`basename $$f` ; \
 	    mv $$f/*.haddock debian/tmp/usr/lib/ghc-doc/haddock/ghc/`basename $$f` ; done
 	cd debian/tmp/usr/share/doc/ghc-doc/html/libraries/; ln -s ghc-$(ProjectVersion) ghc
-
 	install -Dm 644 debian/index.html debian/tmp/usr/share/doc/ghc-doc/index.html
+
 	# manpages
 	rm -f debian/*.1
 	echo ".so man1/ghc.1" > debian/ghc-$(ProjectVersion).1
