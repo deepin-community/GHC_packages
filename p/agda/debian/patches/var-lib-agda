@@ -1,0 +1,28 @@
+See https://github.com/agda/agda/issues/2804
+
+Index: agda/src/full/Agda/Interaction/Library.hs
+===================================================================
+--- agda.orig/src/full/Agda/Interaction/Library.hs	2017-10-13 21:58:48.432139892 -0400
++++ agda/src/full/Agda/Interaction/Library.hs	2017-10-13 22:39:44.970695744 -0400
+@@ -215,13 +215,20 @@
+   -> LibM [AgdaLibFile] -- ^ Content of library files.  (Might have empty @LibName@s.)
+ getInstalledLibraries overrideLibFile = mkLibM [] $ do
+     file <- lift $ getLibrariesFile overrideLibFile
+-    ifNotM (lift $ doesFileExist file) (return []) $ {-else-} do
++    userlibs <- ifNotM (lift $ doesFileExist file) (return []) $ {-else-} do
+       ls    <- lift $ stripCommentLines <$> readFile file
+       files <- lift $ sequence [ (i, ) <$> expandEnvironmentVariables s | (i, s) <- ls ]
+       parseLibFiles (Just file) files
++
++    systemlibs <- ifNotM (lift $ doesDirectoryExist systemLibDir) (return []) $ do
++      files <- lift $ filter isLibFile <$> listDirectory systemLibDir
++      parseLibFiles Nothing $ zip [1..] $ map (systemLibDir </>) files
++    return $ userlibs ++ systemlibs
+   `catchIO` \ e -> do
+     tell [ OtherError $ unlines ["Failed to read installed libraries.", show e] ]
+     return []
++  where systemLibDir = "/var/lib/agda"
++        isLibFile fn = takeExtension fn == ".agda-lib" && not ("." `List.isPrefixOf` fn)
+ 
+ -- | Parse the given library files.
+ --
