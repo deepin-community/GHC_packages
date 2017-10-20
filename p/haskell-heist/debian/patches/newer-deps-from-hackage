@@ -1,6 +1,8 @@
+Index: b/heist.cabal
+===================================================================
 --- a/heist.cabal
 +++ b/heist.cabal
-@@ -151,14 +151,14 @@
+@@ -151,14 +151,14 @@ Library
      Heist.Interpreted.Internal
  
    build-depends:
@@ -18,7 +20,7 @@
      directory-tree             >= 0.10    && < 0.13,
      dlist                      >= 0.5     && < 0.9,
      filepath                   >= 1.3     && < 1.5,
-@@ -167,10 +167,10 @@
+@@ -167,14 +167,14 @@ Library
      map-syntax                 >= 0.2     && < 0.3,
      monad-control              >= 0.3     && < 1.1,
      mtl                        >= 2.0     && < 2.3,
@@ -31,7 +33,12 @@
      transformers               >= 0.3     && < 0.6,
      transformers-base          >= 0.4     && < 0.5,
      unordered-containers       >= 0.1.4   && < 0.3,
-@@ -207,8 +207,8 @@
+-    vector                     >= 0.9     && < 0.12,
++    vector                     >= 0.9     && < 0.13,
+     xmlhtml                    >= 0.2.3.5 && < 0.3
+ 
+   if impl(ghc >= 6.12.0)
+@@ -207,8 +207,8 @@ Test-suite testsuite
  
    build-depends:
      HUnit                      >= 1.2      && < 2,
@@ -42,7 +49,7 @@
      test-framework             >= 0.4      && < 0.9,
      test-framework-hunit       >= 0.2.7    && < 0.4,
      test-framework-quickcheck2 >= 0.2.12.1 && < 0.4,
-@@ -248,7 +248,7 @@
+@@ -248,7 +248,7 @@ Benchmark benchmark
  
    build-depends:
      HUnit,
@@ -51,7 +58,7 @@
      test-framework,
      test-framework-hunit,
  
-@@ -272,7 +272,7 @@
+@@ -272,7 +272,7 @@ Benchmark benchmark
      mtl,
      process,
      random,
