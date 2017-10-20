@@ -1,0 +1,36 @@
+From: Kazu Yamamoto <kazu@iij.ad.jp>
+Subject: [PATCH] using extensionEncode.
+Origin: upstream, https://github.com/vincenthz/hs-tls/commit/3d4490a801be5
+Bug-Debian: https://bugs.debian.org/877299
+
+Index: b/Tests/Certificate.hs
+===================================================================
+--- a/Tests/Certificate.hs
++++ b/Tests/Certificate.hs
+@@ -14,8 +14,6 @@ import qualified Data.ByteString as B
+ 
+ import PubKey
+ 
+-testExtensionEncode critical ext = ExtensionRaw (extOID ext) critical (extEncode ext)
+-
+ arbitraryDN = return $ DistinguishedName []
+ 
+ instance Arbitrary Date where
+@@ -56,7 +54,7 @@ arbitraryCertificate pubKey = do
+             , certValidity     = validity
+             , certPubKey       = pubKey
+             , certExtensions   = Extensions $ Just
+-                [ testExtensionEncode True $ ExtKeyUsage [KeyUsage_digitalSignature,KeyUsage_keyEncipherment,KeyUsage_keyCertSign]
++                [ extensionEncode True $ ExtKeyUsage [KeyUsage_digitalSignature,KeyUsage_keyEncipherment,KeyUsage_keyCertSign]
+                 ]
+             }
+ 
+@@ -70,7 +68,7 @@ simpleCertificate pubKey =
+         , certValidity     = (time1, time2)
+         , certPubKey       = pubKey
+         , certExtensions   = Extensions $ Just
+-                [ testExtensionEncode True $ ExtKeyUsage [KeyUsage_digitalSignature,KeyUsage_keyEncipherment]
++                [ extensionEncode True $ ExtKeyUsage [KeyUsage_digitalSignature,KeyUsage_keyEncipherment]
+                 ]
+         }
+   where time1 = DateTime (Date 1999 January 1) (TimeOfDay 0 0 0 0)
