@@ -1,0 +1,40 @@
+Description: Use SSE2 for floating-point operations on i386
+Author: Ilias Tsitsimpis <iliastsi@debian.org>
+Forwarded: https://github.com/haskell/vector/pull/187
+Bug: https://github.com/haskell/vector/issues/186
+Bug-Debian: https://bugs.debian.org/875396
+
+diff --git a/vector.cabal b/vector.cabal
+index 326454c..7e34029 100644
+--- a/vector.cabal
++++ b/vector.cabal
+@@ -153,6 +153,9 @@ Library
+ 
+   Ghc-Options: -O2 -Wall
+ 
++  if arch(i386)
++    Ghc-Options: -msse2
++
+   if !flag(Wall)
+     Ghc-Options: -fno-warn-orphans
+ 
+@@ -206,6 +209,9 @@ test-suite vector-tests-O0
+   Ghc-Options: -O0
+   Ghc-Options: -Wall
+ 
++  if arch(i386)
++    Ghc-Options: -msse2
++
+   if !flag(Wall)
+     Ghc-Options: -fno-warn-orphans -fno-warn-missing-signatures
+     if impl(ghc >= 8.0) && impl( ghc < 8.1)
+@@ -243,6 +249,9 @@ test-suite vector-tests-O2
+ 
+   Ghc-Options: -O2 -Wall
+ 
++  if arch(i386)
++    Ghc-Options: -msse2
++
+   if !flag(Wall)
+     Ghc-Options: -fno-warn-orphans -fno-warn-missing-signatures
+     if impl(ghc >= 8.0) && impl(ghc < 8.1)
