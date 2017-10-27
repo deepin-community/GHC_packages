@@ -1,0 +1,74 @@
+Source: haskell-here
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Ilias Tsitsimpis <iliastsi@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-src-meta-dev (>= 0.6),
+ libghc-src-meta-dev (<< 0.9),
+ libghc-src-meta-prof,
+ libghc-mtl-dev (>= 2.1),
+ libghc-mtl-dev (<< 2.3),
+ libghc-mtl-prof,
+ libghc-parsec3-dev (>= 3.1),
+ libghc-parsec3-dev (<< 3.2),
+ libghc-parsec3-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-src-meta-doc,
+ libghc-mtl-doc,
+ libghc-parsec3-doc,
+Standards-Version: 4.1.1
+Homepage: https://github.com/tmhedberg/here
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-here
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
+X-Description: Here documents and interpolated strings via quasiquotation
+ This library adds support for multi-line string literals (a.k.a. "here docs")
+ and string interpolation to Haskell via GHC's QuasiQuotes extension. The
+ quoted expressions behave like string literals in the source code; that is,
+ they produce values of type String, or, with the OverloadedStrings language
+ extension enabled, values of type IsString a => a.
+
+
+Package: libghc-here-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-here-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-here-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
