@@ -1,0 +1,17 @@
+Description: Increase timeout for tests
+Author: Ilias Tsitsimpis <iliastsi@debian.org>
+---
+
+Index: b/Tests/Tests.hs
+===================================================================
+--- a/Tests/Tests.hs
++++ b/Tests/Tests.hs
+@@ -51,7 +51,7 @@ runTLSPipe params tlsServer tlsClient =
+     d <- B.pack <$> pick (someWords8 256)
+     run $ writeChan startQueue d
+     -- receive it
+-    dres <- run $ timeout 10000000 $ readChan resultQueue
++    dres <- run $ timeout 600000000 $ readChan resultQueue
+     -- check if it equal
+     Just d `assertEq` dres
+     return ()
