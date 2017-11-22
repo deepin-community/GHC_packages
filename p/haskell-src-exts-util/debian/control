@@ -1,0 +1,69 @@
+Source: haskell-src-exts-util
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-data-default-dev,
+ libghc-data-default-prof,
+ libghc-src-exts-dev,
+ libghc-src-exts-prof,
+ libghc-uniplate-dev,
+ libghc-uniplate-prof,
+ cabal-install,
+Build-Depends-Indep: ghc-doc,
+ libghc-data-default-doc,
+ libghc-src-exts-doc,
+ libghc-uniplate-doc,
+Standards-Version: 4.1.1
+Homepage: https://github.com/pepeiborra/haskell-src-exts-util
+X-Description: helper functions for working with haskell-src-exts trees
+ A small suite of helper functions for working with haskell-src-exts:
+  * Free variables
+  * Bound variables
+  * Minimal (approximate) rebracketing of AST values such that
+    prettyprint roundtrips.
+
+Package: libghc-src-exts-util-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-src-exts-util-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-src-exts-util-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
