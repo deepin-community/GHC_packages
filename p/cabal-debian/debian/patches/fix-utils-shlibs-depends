@@ -1,10 +1,8 @@
-Index: cabal-debian-4.35.6/src/Debian/Debianize/Finalize.hs
-===================================================================
---- cabal-debian-4.35.6.orig/src/Debian/Debianize/Finalize.hs
-+++ cabal-debian-4.35.6/src/Debian/Debianize/Finalize.hs
-@@ -411,6 +411,8 @@ binaryPackageRelations b typ = zoom A.de
-     when (typ == B.Development) $ do
-       B.depends %= (edds ++)
+--- a/src/Debian/Debianize/Finalize.hs
++++ b/src/Debian/Debianize/Finalize.hs
+@@ -432,6 +432,8 @@
+       B.depends %= (anyrel "${shlibs:Depends}" : )
+     when (typ == B.Utilities) $
        B.depends %= (anyrel "${shlibs:Depends}" : )
 +    when (typ == B.Utilities) $
 +      B.depends %= (anyrel "${shlibs:Depends}" : )

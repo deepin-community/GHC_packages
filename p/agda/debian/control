@@ -3,7 +3,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders:
  Iain Lane <laney@debian.org>,
  Kiwamu Okabe <kiwamu@debian.or.jp>
-Priority: extra
+Priority: optional
 Section: haskell
 Build-Depends:
  alex,
@@ -14,6 +14,17 @@ Build-Depends:
  ghc (>= 8),
  happy,
  haskell-devscripts (>= 0.13),
+ ghc-prof,
+ libghc-edison-core-dev (>= 1.3.1.1),
+ libghc-edison-core-dev (<< 1.3.2),
+ libghc-edison-core-prof,
+ libghc-async-dev (>= 2.0.2),
+ libghc-async-dev (<< 2.2),
+ libghc-async-prof,
+ libghc-blaze-html-dev (>= 0.8),
+ libghc-blaze-html-dev (<< 0.10),
+ libghc-blaze-html-prof,
+ libghc-boxes-dev (>= 0.1.3),
  libghc-boxes-dev (<< 0.2),
  libghc-boxes-dev (>= 0.1.3),
  libghc-data-hash-dev (<< 0.3),
@@ -21,7 +32,8 @@ Build-Depends:
  libghc-edison-core-dev (<< 1.3.2),
  libghc-edison-core-dev (>= 1.3.1.1),
  libghc-edit-distance-dev (<< 0.3),
- libghc-edit-distance-dev (>= 0.2.1.2),
+ libghc-edit-distance-prof,
+ libghc-equivalence-dev (>= 0.3.2),
  libghc-equivalence-dev (<< 0.4),
  libghc-equivalence-dev (>= 0.2.5),
  libghc-filemanip-dev (<< 0.4),
@@ -35,27 +47,46 @@ Build-Depends:
  libghc-hashtables-dev,
  libghc-ieee754-dev (<< 0.9),
  libghc-ieee754-dev (>= 0.7.8),
- libghc-monadplus-dev (<< 1.5),
+ libghc-ieee754-dev (<< 0.9),
+ libghc-ieee754-prof,
  libghc-monadplus-dev (>= 1.4),
+ libghc-monadplus-dev (<< 1.5),
+ libghc-monadplus-prof,
+ libghc-mtl-dev (>= 2.2.1),
+ libghc-mtl-dev (<< 2.3),
+ libghc-mtl-prof,
+ libghc-murmur-hash-dev (>= 0.1),
  libghc-murmur-hash-dev (<< 0.2),
  libghc-murmur-hash-dev (>= 0.1),
  libghc-mtl-dev,
  libghc-parallel-dev (<< 3.3),
  libghc-parallel-dev (>= 3.2.0.4),
  libghc-regex-tdfa-dev (<< 1.3),
- libghc-regex-tdfa-dev (>= 1.2.2),
- libghc-strict-dev (<< 0.4),
+ libghc-regex-tdfa-prof,
+ libghc-stm-dev (>= 2.4.4),
+ libghc-stm-dev (<< 2.5),
+ libghc-stm-prof,
  libghc-strict-dev (>= 0.3.2),
- libghc-transformers-compat-dev (<< 0.6),
- libghc-transformers-compat-dev (>= 0.3.3.3),
- libghc-transformers-dev,
- libghc-unordered-containers-dev (<< 0.3),
+ libghc-strict-dev (<< 0.4),
+ libghc-strict-prof,
+ libghc-text-dev (>= 0.11.3.1),
+ libghc-text-dev (<< 1.3),
+ libghc-text-prof,
  libghc-unordered-containers-dev (>= 0.2.5.0),
- libghc-zlib-dev (<< 0.7),
+ libghc-unordered-containers-dev (<< 0.3),
+ libghc-unordered-containers-prof,
+ libghc-uri-encode-dev (>= 1.5.0.4),
+ libghc-uri-encode-dev (<< 1.6),
+ libghc-uri-encode-prof,
  libghc-zlib-dev (>= 0.4.0.1),
- libncurses5-dev,
-Build-Depends-Indep:
- ghc-doc,
+ libghc-zlib-dev (<< 0.7),
+ libghc-zlib-prof,
+ alex,
+ happy,
+Build-Depends-Indep: ghc-doc,
+ libghc-edison-core-doc,
+ libghc-async-doc,
+ libghc-blaze-html-doc,
  libghc-boxes-doc,
  libghc-data-hash-doc,
  libghc-edison-core-doc,
@@ -71,12 +102,13 @@ Build-Depends-Indep:
  libghc-murmur-hash-doc,
  libghc-parallel-doc,
  libghc-regex-tdfa-doc,
+ libghc-stm-doc,
  libghc-strict-doc,
- libghc-transformers-compat-doc,
- libghc-transformers-doc,
+ libghc-text-doc,
  libghc-unordered-containers-doc,
+ libghc-uri-encode-doc,
  libghc-zlib-doc,
-Standards-Version: 4.0.0
+Standards-Version: 4.1.1
 Homepage: http://wiki.portal.chalmers.se/agda/
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/agda
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
@@ -177,7 +209,6 @@ Description: dependently typed functional programming language — emacs mode
 
 Package: agda-mode
 Architecture: all
-Priority: extra
 Section: oldlibs
 Depends:
  ${misc:Depends},

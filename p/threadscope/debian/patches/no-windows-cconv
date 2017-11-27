@@ -1,0 +1,24 @@
+Description: Do not include windows_cconv.h on non mingw32 systems
+ Do not include windows_cconv.h on non windows systems, or else build
+ fails with `#error Unknown mingw32 arch` on architectures other than
+ i386 or x86_64.
+Author: Ilias Tsitsimpis <iliastsi@debian.org>
+Forwarded: https://github.com/haskell/ThreadScope/pull/79
+Bug-Debian: https://bugs.debian.org/876525
+
+Index: b/GUI/GtkExtras.hs
+===================================================================
+--- a/GUI/GtkExtras.hs
++++ b/GUI/GtkExtras.hs
+@@ -18,9 +18,10 @@ import Control.Concurrent.MVar
+ #if !(mingw32_HOST_OS || mingw32_TARGET_OS)
+ import System.Glib.GError
+ import Control.Monad
+-#endif
+ 
++#else
+ #include "windows_cconv.h"
++#endif
+ 
+ waitGUI :: IO ()
+ waitGUI = do

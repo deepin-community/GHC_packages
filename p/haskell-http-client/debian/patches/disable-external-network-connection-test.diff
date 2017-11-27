@@ -1,24 +1,24 @@
 --- a/test/Network/HTTP/ClientSpec.hs
 +++ b/test/Network/HTTP/ClientSpec.hs
-@@ -15,83 +15,4 @@
+@@ -14,83 +14,4 @@ main :: IO ()
  main = hspec spec
  
  spec :: Spec
 -spec = describe "Client" $ do
--    it "works" $ withSocketsDo $ do
+-    it "works" $ do
 -        req <- parseUrlThrow "http://httpbin.org/"
 -        man <- newManager defaultManagerSettings
 -        res <- httpLbs req man
 -        responseStatus res `shouldBe` status200
 -
 -    describe "method in URL" $ do
--        it "success" $ withSocketsDo $ do
+-        it "success" $ do
 -            req <- parseUrlThrow "POST http://httpbin.org/post"
 -            man <- newManager defaultManagerSettings
 -            res <- httpLbs req man
 -            responseStatus res `shouldBe` status200
 -
--        it "failure" $ withSocketsDo $ do
+-        it "failure" $ do
 -            req <- parseRequest "PUT http://httpbin.org/post"
 -            man <- newManager defaultManagerSettings
 -            res <- httpLbs req man

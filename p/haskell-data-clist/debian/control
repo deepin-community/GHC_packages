@@ -1,0 +1,65 @@
+Source: haskell-data-clist
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Ilias Tsitsimpis <iliastsi@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-quickcheck2-dev (>= 2.4),
+ libghc-quickcheck2-dev (<< 2.11),
+ libghc-quickcheck2-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-quickcheck2-doc,
+Standards-Version: 4.1.1
+Homepage: https://github.com/sw17ch/data-clist
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-data-clist
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
+X-Description: Simple functional ring type
+ Simple functional bidirectional ring type in Haskell.
+ .
+ Given that the ring terminiology clashes with certain
+ mathematical branches, we're using the term CList or
+ CircularList instead.
+
+Package: libghc-data-clist-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-data-clist-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-data-clist-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

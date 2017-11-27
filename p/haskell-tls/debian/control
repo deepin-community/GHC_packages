@@ -2,7 +2,7 @@ Source: haskell-tls
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders:
  Clint Adams <clint@debian.org>,
-Priority: extra
+Priority: optional
 Section: haskell
 Build-Depends:
  cdbs,
@@ -53,10 +53,22 @@ Build-Depends-Indep:
  libghc-x509-doc,
  libghc-x509-store-doc,
  libghc-x509-validation-doc,
-Standards-Version: 4.0.0
+Standards-Version: 4.1.1
 Homepage: http://github.com/vincenthz/hs-tls
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-tls
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
+X-Description: native Haskell implementation of TLS/SSL protocol
+ Native Haskell TLS and SSL protocol implementation for server and
+ client.
+ .
+ This provides a high-level implementation of a sensitive security
+ protocol, eliminating a common set of security issues through the use
+ of the advanced type system, high level constructions and common
+ Haskell features.
+ .
+ It currently implements the SSL3.0, TLS1.0, TLS1.1 and TLS1.2
+ protocols, and supports RSA and Ephemeral (Elliptic curve and
+ regular) Diffie Hellman key exchanges, and many extensions.
 
 Package: libghc-tls-dev
 Architecture: any
@@ -70,15 +82,8 @@ Suggests:
  ${haskell:Suggests},
 Provides:
  ${haskell:Provides},
-Description: native Haskell implementation of TLS/SSL protocol${haskell:ShortBlurb}
- It is a native TLS protocol implementation, focusing on purity and more
- type-checking.
- .
- Currently implements the SSL3.0, TLS1.0 and TLS1.1 protocol. Not yet
- properly secure and missing some features. Do not yet use as replacement
- to more mature implementations.
- .
- Only RSA supported as Key exchange for now.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
@@ -93,15 +98,8 @@ Suggests:
  ${haskell:Suggests},
 Provides:
  ${haskell:Provides},
-Description: native Haskell implementation of TLS/SSL protocol${haskell:ShortBlurb}
- It is a native TLS protocol implementation, focusing on purity and more
- type-checking.
- .
- Currently implements the SSL3.0, TLS1.0 and TLS1.1 protocol. Not yet
- properly secure and missing some features. Do not yet use as replacement
- to more mature implementations.
- .
- Only RSA supported as Key exchange for now.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
@@ -115,14 +113,7 @@ Recommends:
  ${haskell:Recommends},
 Suggests:
  ${haskell:Suggests},
-Description: native Haskell implementation of TLS/SSL protocol${haskell:ShortBlurb}
- It is a native TLS protocol implementation, focusing on purity and more
- type-checking.
- .
- Currently implements the SSL3.0, TLS1.0 and TLS1.1 protocol. Not yet
- properly secure and missing some features. Do not yet use as replacement
- to more mature implementations.
- .
- Only RSA supported as Key exchange for now.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}

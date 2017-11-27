@@ -2,7 +2,7 @@ Source: haskell-xml-hamlet
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders:
  Clint Adams <clint@debian.org>,
-Priority: extra
+Priority: optional
 Section: haskell
 Build-Depends:
  cdbs,
@@ -13,19 +13,15 @@ Build-Depends:
  haskell-devscripts (>= 0.13),
  libghc-hspec-dev (>= 1.3),
  libghc-hunit-dev,
- libghc-parsec3-dev,
  libghc-parsec3-dev (<< 3.2),
  libghc-parsec3-dev (>= 2.0),
  libghc-parsec3-prof,
- libghc-shakespeare-dev,
  libghc-shakespeare-dev (<< 2.2),
  libghc-shakespeare-dev (>= 1.0),
  libghc-shakespeare-prof,
- libghc-text-dev,
  libghc-text-dev (>= 0.10),
  libghc-text-prof,
  libghc-xml-conduit-dev,
- libghc-xml-conduit-dev (<< 1.5),
  libghc-xml-conduit-dev (>= 1.0),
  libghc-xml-conduit-prof,
 Build-Depends-Indep:
@@ -34,10 +30,13 @@ Build-Depends-Indep:
  libghc-shakespeare-doc,
  libghc-text-doc,
  libghc-xml-conduit-doc,
-Standards-Version: 3.9.8
+Standards-Version: 4.1.1
 Homepage: http://www.yesodweb.com/
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-xml-hamlet
 Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
+X-Description: Hamlet-style quasiquoter for XML content
+ This library provides a type-safe tool for generating XML code. It works
+ via Quasi-Quoting, and generates extremely efficient output code.
 
 Package: libghc-xml-hamlet-dev
 Architecture: any
@@ -51,10 +50,10 @@ Suggests:
  ${haskell:Suggests},
 Provides:
  ${haskell:Provides},
-Description: Hamlet-style quasiquoter for XML content
- Hamlet-style quasiquoter for XML content.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
- This package contains the normal library files.
+ ${haskell:Blurb}
 
 Package: libghc-xml-hamlet-prof
 Architecture: any
@@ -67,10 +66,10 @@ Suggests:
  ${haskell:Suggests},
 Provides:
  ${haskell:Provides},
-Description: Hamlet-style quasiquoter for XML content; profiling libraries
- Hamlet-style quasiquoter for XML content.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
- This package contains the libraries compiled with profiling enabled.
+ ${haskell:Blurb}
 
 Package: libghc-xml-hamlet-doc
 Architecture: all
@@ -82,7 +81,7 @@ Recommends:
  ${haskell:Recommends},
 Suggests:
  ${haskell:Suggests},
-Description: Hamlet-style quasiquoter for XML content; documentation
- Hamlet-style quasiquoter for XML content.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
- This package contains the documentation files.
+ ${haskell:Blurb}

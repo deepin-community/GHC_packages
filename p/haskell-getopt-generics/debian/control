@@ -1,0 +1,76 @@
+Source: haskell-getopt-generics
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-base-compat-dev (>= 0.8),
+ libghc-base-compat-prof (>= 0.8),
+ libghc-base-orphans-dev,
+ libghc-base-orphans-prof,
+ libghc-generics-sop-dev (>= 0.1),
+ libghc-generics-sop-dev (<< 0.4),
+ libghc-generics-sop-prof (>= 0.1),
+ libghc-generics-sop-prof (<< 0.4),
+ libghc-tagged-dev,
+ libghc-tagged-prof,
+ libghc-quickcheck2-dev,
+ libghc-hspec-dev (>= 2.1.8),
+ libghc-safe-dev,
+ libghc-silently-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-base-compat-doc,
+ libghc-base-orphans-doc,
+ libghc-generics-sop-doc,
+ libghc-tagged-doc,
+Standards-Version: 4.1.1
+Homepage: https://github.com/soenkehahn/getopt-generics#readme
+X-Description: create command line interfaces with ease
+ withCli converts an IO operation into a program with a proper CLI.
+ Retrieves command line arguments through withArgs. main (the given IO
+ operation) can have arbitrarily many parameters provided all
+ parameters have instances for HasArguments.
+
+Package: libghc-getopt-generics-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-getopt-generics-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-getopt-generics-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
