@@ -1,0 +1,65 @@
+Source: haskell-hspec-smallcheck
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-hspec-core-dev (>= 2.4),
+ libghc-hspec-core-prof (>= 2.4),
+ libghc-smallcheck-dev (>= 1.0),
+ libghc-smallcheck-prof (>= 1.0),
+ libghc-quickcheck2-dev,
+ libghc-hspec-dev,
+ libghc-hspec-core-dev,
+ libghc-smallcheck-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-hspec-core-doc,
+ libghc-smallcheck-doc,
+Standards-Version: 4.1.1
+Homepage: http://hspec.github.io/
+X-Description: SmallCheck support for the Hspec testing framework
+ SmallCheck support for the Hspec testing framework
+
+Package: libghc-hspec-smallcheck-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hspec-smallcheck-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hspec-smallcheck-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
