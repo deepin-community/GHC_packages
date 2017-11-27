@@ -1,0 +1,88 @@
+Source: haskell-smtp-mail
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders:
+ Mike Gabriel <sunweaver@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-base16-bytestring-dev,
+ libghc-base16-bytestring-prof,
+ libghc-base64-bytestring-dev,
+ libghc-base64-bytestring-prof,
+ libghc-cryptohash-dev,
+ libghc-cryptohash-prof,
+ libghc-mime-mail-dev,
+ libghc-mime-mail-prof,
+ libghc-network-dev,
+ libghc-network-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-base16-bytestring-doc,
+ libghc-base64-bytestring-doc,
+ libghc-cryptohash-doc,
+ libghc-mime-mail-doc,
+ libghc-network-doc,
+ libghc-text-doc,
+Standards-Version: 4.1.1
+Homepage: http://github.com/jhickner/smtp-mail
+X-Description: Simple email sending via SMTP
+
+Package: libghc-smtp-mail-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ Simple SMTP client implementation for Haskell applications.
+ .
+ SMTP with and without authentication are supported, also sending
+ of attachments.
+ .
+ Optionally, mails can also be handed over to sendmail.
+ .
+ ${haskell:Blurb}
+
+Package: libghc-smtp-mail-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ Simple SMTP client implementation for Haskell applications.
+ .
+ SMTP with and without authentication are supported, also sending
+ of attachments.
+ .
+ Optionally, mails can also be handed over to sendmail.
+ .
+ ${haskell:Blurb}
+
+Package: libghc-smtp-mail-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ Simple SMTP client implementation for Haskell applications.
+ .
+ SMTP with and without authentication are supported, also sending
+ of attachments.
+ .
+ Optionally, mails can also be handed over to sendmail.
+ .
+ ${haskell:Blurb}
