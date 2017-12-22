@@ -1,0 +1,74 @@
+Source: haskell-storable-tuple
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-base-orphans-dev (>= 0.5),
+ libghc-base-orphans-dev (<< 1),
+ libghc-base-orphans-prof (>= 0.5),
+ libghc-base-orphans-prof (<< 1),
+ libghc-storable-record-dev (>= 0.0.1),
+ libghc-storable-record-dev (<< 0.1),
+ libghc-storable-record-prof (>= 0.0.1),
+ libghc-storable-record-prof (<< 0.1),
+ libghc-utility-ht-dev (>= 0.0.1),
+ libghc-utility-ht-dev (<< 0.1),
+ libghc-utility-ht-prof (>= 0.0.1),
+ libghc-utility-ht-prof (<< 0.1),
+Build-Depends-Indep: ghc-doc,
+ libghc-base-orphans-doc,
+ libghc-storable-record-doc,
+ libghc-utility-ht-doc,
+Standards-Version: 4.1.2
+Homepage: http://code.haskell.org/~thielema/storable-tuple/
+X-Description: Storable instance for pairs and triples
+ Provides a Storable instance for pair and triple
+ which should be binary compatible with C99 and C++.
+ The only purpose of this package is to provide a standard location
+ for this instance so that other packages needing this instance
+ can play nicely together.
+
+Package: libghc-storable-tuple-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-storable-tuple-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-storable-tuple-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
