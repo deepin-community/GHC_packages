@@ -6,6 +6,8 @@ Section: haskell
 Build-Depends: debhelper (>= 9),
  haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
  cdbs,
+ dh-exec,
+ help2man,
  ghc,
  ghc-prof,
  libghc-ansi-terminal-dev,
@@ -75,10 +77,11 @@ Section: doc
 Depends: ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
- ${shlibs:Depends},
+ git,
 Recommends: ${haskell:Recommends},
 Suggests: ${haskell:Suggests},
 Conflicts: ${haskell:Conflicts},
+ tldr-py (<< 0.7.0-2~),
 Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}

@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+
+if [ "$1" = "configure" ] ; then
+    update-alternatives \
+        --install /usr/bin/tldr tldr /usr/bin/tldr-hs 10 \
+        --slave /usr/share/man/man1/tldr.1.gz tldr.1.gz /usr/share/man/man1/tldr-hs.1.gz
+fi
+
+#DEBHELPER#
