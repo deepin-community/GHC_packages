@@ -1,0 +1,39 @@
+Description: mk/config.mk.in: lower -O2 optimization down to -O1 on UNREG
+Author: Sergei Trofimovich <slyfox@gentoo.org>
+Origin: upstream, http://git.haskell.org/ghc.git/commitdiff/432a1f18327a50d7b2bbdbe6b004473fe1b0b0b9
+Last-Update: 2018-02-17
+
+--- ghc-8.0.2.orig/mk/config.mk.in
++++ ghc-8.0.2/mk/config.mk.in
+@@ -70,15 +70,6 @@ GhcStage1HcOpts=
+ GhcStage2HcOpts=-O2
+ GhcStage3HcOpts=-O2
+ 
+-# Disable -O2 optimization. Otherwise amount of generated C code
+-# makes things very slow to compile (~5 minutes on core-i7 for 'compiler/hsSyn/HsExpr.lhs')
+-# and sometimes not compile at all (powerpc64 overflows something
+-# on 'compiler/hsSyn/HsExpr.lhs').
+-ifeq "$(GhcUnregisterised)" "YES"
+-GhcStage1HcOpts=
+-GhcStage2HcOpts=
+-GhcStage3HcOpts=
+-endif
+ 
+ # Note [Stage number in build variables].
+ #
+@@ -892,3 +883,15 @@ GMP_LIB_DIRS = @GMP_LIB_DIRS@
+ 
+ CURSES_INCLUDE_DIRS = @CURSES_INCLUDE_DIRS@
+ CURSES_LIB_DIRS = @CURSES_LIB_DIRS@
++
++# Disable -O2 optimization. Otherwise amount of generated C code
++# makes things very slow to compile (~5 minutes on core-i7 for 'compiler/hsSyn/HsExpr.lhs')
++# and sometimes not compile at all (powerpc64 overflows something
++# on 'compiler/hsSyn/HsExpr.lhs').
++ifeq "$(GhcUnregisterised)" "YES"
++GhcStage1HcOpts=
++GhcStage2HcOpts=
++GhcStage3HcOpts=
++
++GhcLibHcOpts=
++endif
