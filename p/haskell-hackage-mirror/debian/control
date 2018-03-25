@@ -1,0 +1,142 @@
+Source: haskell-hackage-mirror
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-aws-dev (>= 0.11),
+ libghc-aws-prof (>= 0.11),
+ libghc-cereal-dev,
+ libghc-cereal-prof,
+ libghc-conduit-dev,
+ libghc-conduit-prof,
+ libghc-conduit-extra-dev,
+ libghc-conduit-extra-prof,
+ libghc-cryptohash-dev,
+ libghc-cryptohash-prof,
+ libghc-data-default-dev,
+ libghc-data-default-prof,
+ libghc-exceptions-dev,
+ libghc-exceptions-prof,
+ libghc-fast-logger-dev,
+ libghc-fast-logger-prof,
+ libghc-http-conduit-dev,
+ libghc-http-conduit-prof,
+ libghc-lifted-async-dev,
+ libghc-lifted-async-prof,
+ libghc-lifted-base-dev,
+ libghc-lifted-base-prof,
+ libghc-mmorph-dev,
+ libghc-mmorph-prof,
+ libghc-monad-control-dev,
+ libghc-monad-control-prof,
+ libghc-monad-logger-dev,
+ libghc-monad-logger-prof,
+ libghc-old-locale-dev,
+ libghc-old-locale-prof,
+ libghc-resourcet-dev,
+ libghc-resourcet-prof,
+ libghc-retry-dev,
+ libghc-retry-prof,
+ libghc-shakespeare-dev,
+ libghc-shakespeare-prof,
+ libghc-stm-dev,
+ libghc-stm-prof,
+ libghc-tar-dev,
+ libghc-tar-prof,
+ libghc-temporary-dev,
+ libghc-temporary-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+ libghc-thyme-dev,
+ libghc-thyme-prof,
+ libghc-unordered-containers-dev,
+ libghc-unordered-containers-prof,
+ libghc-optparse-applicative-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-aws-doc,
+ libghc-cereal-doc,
+ libghc-conduit-doc,
+ libghc-conduit-extra-doc,
+ libghc-cryptohash-doc,
+ libghc-data-default-doc,
+ libghc-exceptions-doc,
+ libghc-fast-logger-doc,
+ libghc-http-conduit-doc,
+ libghc-lifted-async-doc,
+ libghc-lifted-base-doc,
+ libghc-mmorph-doc,
+ libghc-monad-control-doc,
+ libghc-monad-logger-doc,
+ libghc-old-locale-doc,
+ libghc-resourcet-doc,
+ libghc-retry-doc,
+ libghc-shakespeare-doc,
+ libghc-stm-doc,
+ libghc-tar-doc,
+ libghc-temporary-doc,
+ libghc-text-doc,
+ libghc-thyme-doc,
+ libghc-unordered-containers-doc,
+Standards-Version: 4.1.3
+Homepage: http://fpcomplete.com
+X-Description: simple mirroring utility for Hackage
+ hackage-mirror allows you to mirror all of Hackage to your own S3 bucket.
+
+Package: libghc-hackage-mirror-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hackage-mirror-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hackage-mirror-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: hackage-mirror
+Architecture: any
+Section: web
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ hackage-mirror allows you to mirror all of Hackage to your own S3 bucket.
