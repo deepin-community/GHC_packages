@@ -21,10 +21,17 @@ Standards-Version: 3.9.6
 Homepage: https://github.com/hvr/text-short
 Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-text-short
 Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git/
-X-Description: Memory-efficient representation of Unicode text strings
- This package provides the 'ShortText' type which is suitable for keeping many short strings in memory. This is similiar to how 'ShortByteString' relates to 'ByteString'.
+X-Description: memory-efficient representation of Unicode text strings
+ This Haskell library provides the 'ShortText' type which is suitable
+ for keeping many short strings in memory. This is similiar to the
+ relationship between 'ShortByteString' and 'ByteString'.
  .
- The main difference between 'Text' and 'ShortText' is that 'ShortText' uses UTF-8 instead of UTF-16 internally and also doesn't support zero-copy slicing (thereby saving 2 words). Consequently, the memory footprint of a (boxed) 'ShortText' value is 4 words (2 words when unboxed) plus the length of the UTF-8 encoded payload.
+ The main differences between 'Text' and 'ShortText' is that
+ 'ShortText' uses UTF-8 instead of UTF-16 internally and 'ShortText'
+ doesn't support zero-copy slicing (thereby saving 2 words).
+ Consequently, the memory footprint of a (boxed) 'ShortText' value is 4
+ words (2 words when unboxed) plus the length of the UTF-8 encoded
+ payload.
 
 Package: libghc-text-short-dev
 Architecture: any
