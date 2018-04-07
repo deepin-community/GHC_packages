@@ -14,9 +14,9 @@ This fixes #574.
 
 --- a/utils/haddock/haddock-api/src/Haddock/Interface/Rename.hs
 +++ b/utils/haddock/haddock-api/src/Haddock/Interface/Rename.hs
-@@ -263,10 +263,21 @@ renameType t = case t of
+@@ -264,10 +264,21 @@
    HsCoreTy a              -> pure (HsCoreTy a)
-   HsExplicitListTy  a b   -> HsExplicitListTy  a <$> mapM renameLType b
+   HsExplicitListTy i a b  -> HsExplicitListTy i a <$> mapM renameLType b
    HsExplicitTupleTy a b   -> HsExplicitTupleTy a <$> mapM renameLType b
 -  HsSpliceTy _ _          -> error "renameType: HsSpliceTy"
 +  HsSpliceTy s _          -> renameHsSpliceTy s
