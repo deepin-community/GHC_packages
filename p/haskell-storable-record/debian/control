@@ -1,0 +1,64 @@
+Source: haskell-storable-record
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-utility-ht-dev (>= 0.0.1),
+ libghc-utility-ht-dev (<< 0.1),
+ libghc-utility-ht-prof (>= 0.0.1),
+ libghc-utility-ht-prof (<< 0.1),
+Build-Depends-Indep: ghc-doc,
+ libghc-utility-ht-doc,
+Standards-Version: 4.1.2
+Homepage: http://code.haskell.org/~thielema/storable-record/
+X-Description: elegant definition of Storable instances for records
+ With this package you can build a Storable instance of a record type
+ from Storable instances of its elements in an elegant way.
+ It does not do any magic, just a bit arithmetic to compute the right
+ offsets that would be otherwise done manually or by a preprocessor
+ like C2HS.
+
+Package: libghc-storable-record-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-storable-record-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-storable-record-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

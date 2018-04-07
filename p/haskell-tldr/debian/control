@@ -1,0 +1,89 @@
+Source: haskell-tldr
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ dh-exec,
+ help2man,
+ ghc,
+ ghc-prof,
+ libghc-ansi-terminal-dev,
+ libghc-ansi-terminal-prof,
+ libghc-cmark-dev,
+ libghc-cmark-prof,
+ libghc-text-dev,
+ libghc-text-prof,
+ libghc-optparse-applicative-dev,
+ libghc-semigroups-dev,
+ libghc-shell-conduit-dev (>> 4.6.1-1),
+Build-Depends-Indep: ghc-doc,
+ libghc-ansi-terminal-doc,
+ libghc-cmark-doc,
+ libghc-text-doc,
+Standards-Version: 4.1.3
+Homepage: https://github.com/psibi/tldr-hs#readme
+X-Description: Haskell tldr client
+ Haskell tldr client with support for updating and viewing tldr pages.
+ .
+ The TLDR pages are a community effort to simplify the beloved man
+ pages with practical examples.  See https://tldr.sh/
+
+Package: libghc-tldr-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-tldr-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-tldr-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: tldr
+Architecture: any
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+ git,
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+ tldr-py (<< 0.7.0-2~),
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

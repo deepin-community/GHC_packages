@@ -1,0 +1,65 @@
+Source: haskell-regex-tdfa-text
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-regex-base-dev,
+ libghc-regex-base-prof,
+ libghc-regex-tdfa-dev (>= 1.1.1),
+ libghc-regex-tdfa-prof (>= 1.1.1),
+ libghc-text-dev,
+ libghc-text-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-regex-base-doc,
+ libghc-regex-tdfa-doc,
+ libghc-text-doc,
+Standards-Version: 4.1.3
+X-Description: Text interface for regex-tdfa
+ This provides a Text interface for regex-tdfa.
+ .
+ This should be part of regex-tdfa package, but is not.
+
+Package: libghc-regex-tdfa-text-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-regex-tdfa-text-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-regex-tdfa-text-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

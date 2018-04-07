@@ -1,6 +1,9 @@
 #!/usr/bin/make -f
 
-DEB_ENABLE_TESTS = yes
+ifneq (armhf,$(DEB_HOST_ARCH))
+	DEB_ENABLE_TESTS = yes
+endif
+
 DEB_SETUP_BIN_NAME = debian/hlibrary.setup
 DEB_CABAL_PACKAGE = th-utilities
 DEB_DEFAULT_COMPILER = ghc

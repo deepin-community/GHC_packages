@@ -1,15 +1,14 @@
 Source: xmonad-extras
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders:
- Lev Lamberov <dogsleg@debian.org>,
+ Lev Lamberov <dogsleg@debian.org>
 Priority: optional
 Section: haskell
-Build-Depends:
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.9),
  cdbs,
- debhelper (>= 9),
- ghc (>= 8),
+ ghc,
  ghc-prof,
- haskell-devscripts (>= 0.13),
  libghc-x11-dev (>= 1.4.3),
  libghc-x11-prof,
  libghc-alsa-mixer-dev (>= 0.2),
@@ -36,34 +35,29 @@ Build-Depends-Indep: ghc-doc,
  libghc-x11-doc,
  libghc-alsa-mixer-doc,
  libghc-hint-doc,
+ libghc-libmpd-doc,
  libghc-mtl-doc,
  libghc-network-doc,
  libghc-regex-posix-doc,
  libghc-xmonad-doc,
  libghc-xmonad-contrib-doc,
- libghc-xmonad-doc,
-Standards-Version: 4.1.1
+Standards-Version: 4.1.3
 Homepage: https://github.com/xmonad/xmonad-extras
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/xmonad-extras
-Vcs-Git: https://anonscm.debian.org/git/pkg-haskell/DHG_packages.git
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/xmonad-extras
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git
 X-Description: third party extensions for xmonad with wacky dependencies
  Various modules for xmonad that cannot be added to xmonad-contrib
  because of additional dependencies.
 
 Package: libghc-xmonad-extras-dev
 Architecture: any
-Depends:
- ${haskell:Depends},
+Depends: ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends:
- ${haskell:Recommends},
-Suggests:
- ${haskell:Suggests},
-Conflicts:
- ${haskell:Conflicts},
-Provides:
- ${haskell:Provides},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -71,17 +65,12 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-xmonad-extras-prof
 Architecture: any
-Depends:
- ${haskell:Depends},
+Depends: ${haskell:Depends},
  ${misc:Depends},
-Recommends:
- ${haskell:Recommends},
-Suggests:
- ${haskell:Suggests},
-Conflicts:
- ${haskell:Conflicts},
-Provides:
- ${haskell:Provides},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -90,15 +79,11 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-xmonad-extras-doc
 Architecture: all
 Section: doc
-Depends:
- ${haskell:Depends},
+Depends: ${haskell:Depends},
  ${misc:Depends},
-Recommends:
- ${haskell:Recommends},
-Suggests:
- ${haskell:Suggests},
-Conflicts:
- ${haskell:Conflicts},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .

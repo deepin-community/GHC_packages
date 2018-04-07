@@ -1,0 +1,30 @@
+Description: Disable hack in Setup.hs which overrides $libexec
+ In Debian We install $libexec stuff straight in /usr/lib but for
+ distribution via Hackage/cabal-install it makes a lot of sense to
+ namespace $libexec executables to allow multiple instances of a package
+ to be installed, hence the original hack. This is not necesarry for
+ Debian so just remove it.
+ .
+ The current development version of cabal-helper (0.8) gets rid of
+ this hack for Cabal>=2.0 by using the new `scope` field. This will
+ most likely break the current *.install file.
+ .
+ Once Cabal-2.0 is in debian Dh_haskell.sh should probably add
+ --libexecsubdir='' to `configure_recipe` to fix that.
+Author: Daniel Groeber <dm@dxld.at>
+Bug-Debian: https://bugs.debian.org/878112
+
+--- haskell-cabal-helper-0.7.3.0.orig/Setup.hs
++++ haskell-cabal-helper-0.7.3.0/Setup.hs
+@@ -28,9 +28,9 @@ import System.Directory (renameFile)
+
+ main :: IO ()
+ main = defaultMainWithHooks $ simpleUserHooks {
+-   instHook = inst,
+-   copyHook = copy,
+-   buildHook = \pd lbi hooks flags -> (buildHook simpleUserHooks) pd (patchLibexecdir lbi) hooks flags,
++--   instHook = inst,
++--   copyHook = copy,
++--   buildHook = \pd lbi hooks flags -> (buildHook simpleUserHooks) pd (patchLibexecdir lbi) hooks flags,
+    hookedPrograms = [ simpleProgram "cabal" ]
+  }
