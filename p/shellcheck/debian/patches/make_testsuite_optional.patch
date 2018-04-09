@@ -32,16 +32,16 @@ Debian-specific DEBIAN_NO_GHCI CPP macro (Thanks to Joachim Breitner).
 @@ -42,7 +50,9 @@
  import Data.Ord
  import Debug.Trace
- import qualified Data.Map as Map
+ import qualified Data.Map.Strict as Map
 +#ifndef DEBIAN_NO_GHCI
  import Test.QuickCheck.All (forAllProperties)
 +#endif
  import Test.QuickCheck.Test (quickCheckWithResult, stdArgs, maxSuccess)
  
  -- Checks that are run on the AST root
-@@ -2737,5 +2747,7 @@
-             warn id 2205 "(..) is a subshell. Did you mean [ .. ], a test expression?"
- 
+@@ -2891,5 +2901,7 @@
+             then [x]
+             else concatMap recursiveSequences list
  
 +#ifndef DEBIAN_NO_GHCI
  return []
@@ -50,7 +50,7 @@ Debian-specific DEBIAN_NO_GHCI CPP macro (Thanks to Joachim Breitner).
 --- a/ShellCheck/Parser.hs
 +++ b/ShellCheck/Parser.hs
 @@ -17,8 +17,15 @@
-     yOU should have received a copy of the GNU General Public License
+     You should have received a copy of the GNU General Public License
      along with this program.  If not, see <http://www.gnu.org/licenses/>.
  -}
 -{-# LANGUAGE NoMonomorphismRestriction, TemplateHaskell, FlexibleContexts #-}
@@ -75,11 +75,11 @@ Debian-specific DEBIAN_NO_GHCI CPP macro (Thanks to Joachim Breitner).
  import Test.QuickCheck.All (quickCheckAll)
 +#endif
  
- type SCBase m = Mr.ReaderT (SystemInterface m) (Ms.StateT SystemState m)
+ type SCBase m = Mr.ReaderT (Environment m) (Ms.StateT SystemState m)
  type SCParser m v = ParsecT String UserState (SCBase m) v
-@@ -2835,6 +2844,8 @@
- lt x = trace (show x) x
- ltt t = trace (show t)
+@@ -2987,6 +2996,8 @@
+     }
+ 
  
 +#ifndef DEBIAN_NO_GHCI
  return []
@@ -128,7 +128,7 @@ Debian-specific DEBIAN_NO_GHCI CPP macro (Thanks to Joachim Breitner).
  
  tokenToPosition map (TokenComment id c) = fromMaybe fail $ do
      position <- Map.lookup id map
-@@ -178,5 +187,7 @@
+@@ -194,5 +203,7 @@
  prop_filewideAnnotation8 = null $
      check "# Disable $? warning\n#shellcheck disable=SC2181\n# Disable quoting warning\n#shellcheck disable=2086\ntrue\n[ $? == 0 ] && echo $1"
  
@@ -149,9 +149,9 @@ Debian-specific DEBIAN_NO_GHCI CPP macro (Thanks to Joachim Breitner).
  {-# LANGUAGE FlexibleContexts #-}
  
  -- This module contains checks that examine specific commands by name.
-@@ -681,5 +684,7 @@
- checkDeprecatedFgrep = CommandCheck (Basename "fgrep") $
-     \t -> info (getId t) 2197 "fgrep is non-standard and deprecated. Use grep -F instead."
+@@ -850,5 +853,7 @@
+     f t = whenShell [Bash,Ksh] $ do
+         style (getId t) 2219 $ "Instead of 'let expr', prefer (( expr )) ."
  
 +#ifndef DEBIAN_NO_GHCI
  return []
