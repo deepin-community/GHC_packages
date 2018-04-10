@@ -70,9 +70,9 @@ endif
 ifeq (armhf,$(DEB_HOST_ARCH))
 	echo "SRC_HC_OPTS += -D__ARM_PCS_VFP" >> mk/build.mk
 endif
-ifeq (armel,$(DEB_HOST_ARCH))
-	patch -p1 < debian/patches/armel-revert-ghci-fixes.patch
-endif
+#ifeq (armel,$(DEB_HOST_ARCH))
+#	patch -p1 < debian/patches/armel-revert-ghci-fixes.patch
+#endif
 ifneq (,$(filter mips mipsel, $(DEB_HOST_ARCH)))
 	echo "SRC_HC_OPTS     += -optc--param -optcggc-min-expand=10" >> mk/build.mk
 endif
