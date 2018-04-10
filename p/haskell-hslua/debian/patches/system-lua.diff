@@ -1,33 +1,38 @@
 --- a/hslua.cabal
 +++ b/hslua.cabal
-@@ -31,7 +31,7 @@
+@@ -35,7 +35,7 @@
  
  flag system-lua
-   description:          Use the system-wide Lua instead of the bundled copy
+   description:          Use the system-wide Lua instead of the bundled copy.
 -  default:              False
 +  default:              True
  
  flag apicheck
    description:          Compile Lua with -DLUA_USE_APICHECK.
-@@ -39,7 +39,7 @@
+@@ -59,7 +59,7 @@
  
  flag luajit
-   description:          Link with LuaJIT (should be used with -fsystem-lua)
+   description:          Link with LuaJIT.  This implies flag system-lua as well.
+-  default:              False
++  default:              True
+ 
+ flag lua501
+   description:          Build against lua 5.1.
+@@ -71,7 +71,7 @@
+ 
+ flag use-pkgconfig
+   description:          Build using pkg-config to discover library and include paths. This is only used with system-lua and luajit.
 -  default:              False
 +  default:              True
  
  library
-   build-depends:        base == 4.*, bytestring >= 0.10.2.0 && < 0.11
-@@ -48,10 +48,9 @@
-   ghc-options:          -Wall -O2
-   if flag(system-lua)
+   build-depends:        base       >= 4.7    && < 5
+@@ -104,7 +104,7 @@
+     include-dirs:       safer-api
      if flag(luajit)
--      Extra-libraries:  luajit-5.1
-+      Pkgconfig-depends:  lua5.1, luajit
+       if flag(use-pkgconfig)
+-        pkgconfig-depends: luajit
++        pkgconfig-depends: luajit, lua5.1
+       else
+         Extra-libraries:  luajit-5.1
      else
--      Extra-libraries:  lua
--    includes:           lua.h
-+      Pkgconfig-depends:  lua5.1
-   else
-     c-sources:          lua-5.1.5/lobject.c, lua-5.1.5/ltm.c, lua-5.1.5/ldblib.c,
-                         lua-5.1.5/ldo.c, lua-5.1.5/lvm.c, lua-5.1.5/ltable.c,

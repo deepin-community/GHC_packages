@@ -5,12 +5,10 @@ Uploaders:
 Priority: optional
 Section: haskell
 Build-Depends:
- alex,
  cdbs,
  debhelper (>= 9),
  ghc (>= 8),
  ghc-prof,
- happy,
  haskell-devscripts (>= 0.13),
  libghc-ansi-terminal-dev,
  libghc-async-dev (>= 2.0),
@@ -30,6 +28,8 @@ Build-Depends:
  libghc-monadlib-dev,
  libghc-monadlib-dev (>= 3.7.2),
  libghc-monadlib-prof,
+ libghc-mtl-dev (>= 2.2.1),
+ libghc-mtl-prof,
  libghc-old-time-dev (>= 1.1),
  libghc-old-time-prof,
  libghc-presburger-dev (>= 1.3),
@@ -39,10 +39,9 @@ Build-Depends:
  libghc-random-dev,
  libghc-random-dev (>= 1.0.1),
  libghc-random-prof,
- libghc-sbv-dev,
- libghc-sbv-dev (>= 5.12),
+ libghc-sbv-dev (>= 7.0),
  libghc-sbv-prof,
- libghc-simple-smt-dev (>= 0.6.0),
+ libghc-simple-smt-dev (>= 0.7.0),
  libghc-simple-smt-prof,
  libghc-smtlib-dev (>= 1.0.7),
  libghc-smtlib-prof,
@@ -57,8 +56,17 @@ Build-Depends:
  libghc-transformers-base-prof,
  libghc-utf8-string-dev (>= 0.3),
  libghc-utf8-string-prof,
-Build-Depends-Indep:
- ghc-doc,
+ alex,
+ happy,
+ libghc-ansi-terminal-dev,
+ libghc-base-compat-dev,
+ libghc-monad-control-dev,
+ libghc-monadlib-dev,
+ libghc-random-dev,
+ libghc-tf-random-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-graphscc-doc,
+ libghc-quickcheck2-doc,
  libghc-async-doc,
  libghc-base-compat-doc,
  libghc-gitrev-doc,
@@ -66,6 +74,7 @@ Build-Depends-Indep:
  libghc-heredoc-doc,
  libghc-monad-control-doc,
  libghc-monadlib-doc,
+ libghc-mtl-doc,
  libghc-old-time-doc,
  libghc-presburger-doc,
  libghc-quickcheck2-doc,
@@ -78,7 +87,7 @@ Build-Depends-Indep:
  libghc-tf-random-doc,
  libghc-transformers-base-doc,
  libghc-utf8-string-doc,
-Standards-Version: 4.1.1
+Standards-Version: 4.1.4
 Homepage: http://www.cryptol.net/
 Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git
 Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-cryptol

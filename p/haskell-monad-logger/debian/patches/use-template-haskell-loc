@@ -2,7 +2,7 @@ Author: Joachim Breitner <nomeata@debian.org>
 
 --- a/Control/Monad/Logger.hs
 +++ b/Control/Monad/Logger.hs
-@@ -96,6 +96,8 @@ module Control.Monad.Logger
+@@ -102,6 +102,8 @@
  
  #if WITH_TEMPLATE_HASKELL
  import Language.Haskell.TH.Syntax (Lift (lift), Q, Exp, Loc (..), qLocation)
@@ -10,8 +10,8 @@ Author: Joachim Breitner <nomeata@debian.org>
 +import Language.Haskell.TH.Syntax (Loc (..))
  #endif
  
- import Data.Monoid (Monoid)
-@@ -188,16 +190,6 @@ instance Lift LogLevel where
+ import Data.Functor ((<$>))
+@@ -182,16 +184,6 @@
      lift LevelError = [|LevelError|]
      lift (LevelOther x) = [|LevelOther $ pack $(lift $ unpack x)|]
  
@@ -30,10 +30,10 @@ Author: Joachim Breitner <nomeata@debian.org>
  -- | A @Monad@ which has the ability to log messages in some manner.
 --- a/monad-logger.cabal
 +++ b/monad-logger.cabal
-@@ -44,13 +44,11 @@ library
-                      , bytestring
-                      , blaze-builder
-                      , exceptions
+@@ -44,13 +44,11 @@
+                      , bytestring          >= 0.10.2
+                      , exceptions          >= 0.6       && < 0.11
+                      , unliftio-core
 +                     , template-haskell
  
    if impl(ghc >= 8.0.1)
