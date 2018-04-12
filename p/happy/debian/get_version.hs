@@ -7,7 +7,7 @@ import Distribution.PackageDescription
 import Distribution.PackageDescription.Parse ( readPackageDescription )
 import Distribution.Simple.Utils
 import Distribution.Verbosity
-import Distribution.Version
+import Distribution.Version hiding ( showVersion )
 
 main :: IO ()
 main = do Right fp <- findPackageDesc "."
