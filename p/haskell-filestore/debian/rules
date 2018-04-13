@@ -1,5 +1,7 @@
 #!/usr/bin/make -f
 
+DEB_ENABLE_TESTS = yes
+
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
 
@@ -7,3 +9,5 @@ DEB_GHC_EXTRA_PACKAGES := libghc-filestore-data (>= $(CABAL_VERSION))
 
 install/libghc-filestore-data:: debian/tmp-inst-ghc
 	mv debian/tmp-inst-ghc/usr/share/filestore debian/libghc-filestore-data/usr/share
+
+check-ghc-stamp: export LC_ALL := C.UTF-8
