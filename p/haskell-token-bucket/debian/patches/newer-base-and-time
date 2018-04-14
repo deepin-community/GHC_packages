@@ -1,5 +1,3 @@
-Forwarded: https://github.com/hvr/token-bucket/pull/5
-
 --- a/token-bucket.cabal
 +++ b/token-bucket.cabal
 @@ -27,19 +27,19 @@ flag use-cbits
@@ -7,14 +5,14 @@ Forwarded: https://github.com/hvr/token-bucket/pull/5
  library
    default-language:    Haskell2010
 -  build-depends:       base >=4.6 && <4.9
-+  build-depends:       base >=4.6 && <4.10
++  build-depends:       base >=4.6 && <4.12
    hs-source-dirs:      src
    if flag(use-cbits)
      cpp-options:       -DUSE_CBITS
      c-sources:         cbits/get_posix_time.c
    else
 -    build-depends:     time >=1.4 && <1.6
-+    build-depends:     time >=1.4 && <1.7
++    build-depends:     time >=1.4 && <1.9
    ghc-options: -Wall
    exposed-modules:     Control.Concurrent.TokenBucket
  
@@ -22,6 +20,6 @@ Forwarded: https://github.com/hvr/token-bucket/pull/5
    default-language:    Haskell2010
    type:                exitcode-stdio-1.0
 -  build-depends:       base >=4.6 && <4.9, time >=1.4 && <1.6, token-bucket
-+  build-depends:       base >=4.6 && <4.10, time >=1.4 && <1.7, token-bucket
++  build-depends:       base >=4.6 && <4.12, time >=1.4 && <1.9, token-bucket
    main-is:             test-tb.hs
    ghc-options:         -Wall -threaded -rtsopts
