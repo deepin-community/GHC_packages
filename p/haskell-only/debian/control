@@ -1,0 +1,34 @@
+Source: haskell-only
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-parsec3-dev,
+ libghc-regex-compat-dev,
+Standards-Version: 4.1.4
+X-Description: grep-like tool for filtering on words or lines
+ The 'only' command-line tool lets you search based
+ on word patterns or line patterns like never before! Not only can
+ you search with 'only -l patt' but you can select the n-th match
+ with '-l n/patt/' and the next 3 lines with '-l /patt/0:3'.
+
+Package: only
+Architecture: any
+Section: utils
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
