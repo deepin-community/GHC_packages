@@ -28,17 +28,10 @@ Build-Depends-Indep: ghc-doc,
  libghc-unordered-containers-doc,
 Standards-Version: 4.1.4
 Homepage: https://github.com/aisamanra/config-ini
-X-Description: A library for simple INI-based configuration files.
- The @config-ini@ library is a set of small monadic languages
+X-Description: simple INI-based configuration files
+ The config-ini library is a set of small monadic languages
  for writing simple configuration languages with convenient,
  human-readable error messages.
- .
- > parseConfig :: IniParser (Text, Int, Bool)
- > parseConfig = section "NETWORK" $ do
- >   user <- field        "user"
- >   port <- fieldOf      "port" number
- >   enc  <- fieldFlagDef "encryption" True
- >   return (user, port, enc)
 
 Package: libghc-config-ini-dev
 Architecture: any
