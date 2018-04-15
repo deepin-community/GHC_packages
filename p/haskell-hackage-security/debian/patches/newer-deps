@@ -17,3 +17,21 @@
  
    hs-source-dirs:      tests
    default-language:    Haskell2010
+--- a/tests/TestSuite/JSON.hs
++++ b/tests/TestSuite/JSON.hs
+@@ -46,12 +46,13 @@
+       [ (1, pure JSNull)
+       , (1, JSBool   <$> arbitrary)
+       , (2, JSNum    <$> arbitrary)
+-      , (2, JSString <$> arbitrary)
++      , (2, JSString . getASCIIString <$> arbitrary)
+       , (3, JSArray                <$> resize (sz `div` 2) arbitrary)
+-      , (3, JSObject . noDupFields <$> resize (sz `div` 2) arbitrary)
++      , (3, JSObject . noDupFields . asciify <$> resize (sz `div` 2) arbitrary)
+       ]
+     where
+       noDupFields = nubBy (\(x,_) (y,_) -> x==y)
++      asciify = map (\(x,y) -> (getASCIIString x, y))
+ 
+   shrink JSNull        = []
+   shrink (JSBool    _) = []
