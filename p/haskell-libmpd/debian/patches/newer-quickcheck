@@ -1,0 +1,11 @@
+--- a/tests/Arbitrary.hs
++++ b/tests/Arbitrary.hs
+@@ -46,7 +46,7 @@
+ 
+ -- MPD fields can't contain newlines and the parser skips initial spaces.
+ field :: Gen String
+-field = (filter (/= '\n') . dropWhile isSpace) <$> arbitrary
++field = (filter (/= '\n') . dropWhile isSpace) <$> arbitraryPrintableChar
+ 
+ fieldBS :: Gen ByteString
+ fieldBS = UTF8.fromString <$> field
