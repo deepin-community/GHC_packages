@@ -1,0 +1,77 @@
+Source: haskell-genvalidity
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-quickcheck2-dev (>= 2.7),
+ libghc-quickcheck2-dev (<< 2.12),
+ libghc-quickcheck2-prof (>= 2.7),
+ libghc-quickcheck2-prof (<< 2.12),
+ libghc-validity-dev (>= 0.4.0.3),
+ libghc-validity-dev (<< 0.5),
+ libghc-validity-prof (>= 0.4.0.3),
+ libghc-validity-prof (<< 0.5),
+ libghc-quickcheck2-dev,
+ libghc-hspec-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-quickcheck2-doc,
+ libghc-validity-doc,
+Standards-Version: 4.1.4
+Homepage: https://github.com/NorfairKing/validity#readme
+X-Description: testing utilities for the validity library
+ Note: There are companion instance packages for this library:
+  * genvalidity-aeson
+  * genvalidity-bytestring
+  * genvalidity-containers
+  * genvalidity-path
+  * genvalidity-scientific
+  * genvalidity-text
+  * genvalidity-time
+  * genvalidity-unordered-containers
+  * genvalidity-uuid
+  * genvalidity-vector
+
+Package: libghc-genvalidity-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-genvalidity-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-genvalidity-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
