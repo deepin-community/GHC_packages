@@ -11,7 +11,7 @@ Description:    use editor(1) and pager(1) instead of specific editors/pagers.
  Not forwarded because editor(1) and pager(1) are Debian-specific.
 --- a/src/Darcs/UI/External.hs
 +++ b/src/Darcs/UI/External.hs
-@@ -432,6 +432,7 @@ viewDocWith pr mode msg = do
+@@ -432,6 +432,7 @@
                    Nothing -> return $ ExitFailure 127 -- No such command
                 -- TEMPORARY passing the -K option should be removed as soon as
                 -- we can use the delegate_ctrl_c feature in process
@@ -19,7 +19,7 @@ Description:    use editor(1) and pager(1) instead of specific editors/pagers.
                 `ortryrunning` pipeDocToPager  "less" ["-RK"] pr mode msg
                 `ortryrunning` pipeDocToPager  "more" [] pr mode msg
  #ifdef WIN32
-@@ -512,19 +513,13 @@ runEditor :: FilePath
+@@ -512,19 +513,13 @@
  runEditor f = do
      ed <- getEditor
      execInteractive ed f
@@ -42,7 +42,7 @@ Description:    use editor(1) and pager(1) instead of specific editors/pagers.
           -> IO a
 --- a/src/Darcs/UI/Commands/Help.hs
 +++ b/src/Darcs/UI/Commands/Help.hs
-@@ -400,15 +400,13 @@ environmentHelpEditor = (["DARCS_EDITOR"
+@@ -399,15 +399,13 @@
   "To edit a patch description of email comment, Darcs will invoke an",
   "external editor.  Your preferred editor can be set as any of the",
   "environment variables $DARCS_EDITOR, $DARCSEDITOR, $VISUAL or $EDITOR.",

@@ -1,14 +1,12 @@
-Index: darcs/Setup.lhs
-===================================================================
---- darcs.orig/Setup.lhs	2015-07-09 18:48:56.000000000 +0200
-+++ darcs/Setup.lhs	2015-07-15 19:07:44.318794915 +0200
+--- a/Setup.lhs
++++ b/Setup.lhs
 @@ -1,5 +1,4 @@
  \begin{code}
 -{-# LANGUAGE TemplateHaskell #-}
  -- copyright (c) 2008 Duncan Coutts
  -- portions copyright (c) 2008 David Roundy
  -- portions copyright (c) 2007-2009 Judah Jacobson
-@@ -81,17 +80,20 @@
+@@ -78,17 +77,20 @@
  catchAny f h = Exception.catch f (\e -> h (e :: Exception.SomeException))
  
  {- Template Haskell hackery for replHook while we want to support Cabal < 1.18 -}
@@ -30,7 +28,7 @@ Index: darcs/Setup.lhs
  addReplHook =
    $(if cabalVersion >= Version [1,18,0] []
          then
-@@ -101,6 +103,8 @@
+@@ -98,6 +100,8 @@
                 lamE [varP hooks] (recUpdE (varE hooks) [return (replHook, app)])
          else [| \hooks -> hooks |]
     )
