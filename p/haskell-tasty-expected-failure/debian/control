@@ -1,0 +1,80 @@
+Source: haskell-tasty-expected-failure
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-tagged-dev (>= 0.7),
+ libghc-tagged-dev (<< 0.9),
+ libghc-tagged-prof (>= 0.7),
+ libghc-tagged-prof (<< 0.9),
+ libghc-tasty-dev (>= 0.11),
+ libghc-tasty-prof (>= 0.11),
+Build-Depends-Indep: ghc-doc,
+ libghc-tagged-doc,
+ libghc-tasty-doc,
+Standards-Version: 4.1.4
+Homepage: https://github.com/nomeata/tasty-expected-failure
+X-Description: mark tasty tests as failure-expected
+ With the function 'expectFail' in the provided module
+ Test.Tasty.ExpectedFailure, you can mark that you expect
+ test cases to fail, and not to pass.
+ .
+ This can for example be used for test-driven development: Create the
+ tests, mark them with 'Test.Tasty.ExpectedFailure.expectFail', and
+ you can still push to the main branch, without your continuous
+ integration branch failing.
+ .
+ Once someone implements the feature or fixes the bug (maybe
+ unknowingly), the test suite will tell him so, due to the now
+ unexpectedly passing test, and he can remove the
+ 'Test.Tasty.ExpectedFailure.expectFail' marker.
+ .
+ The module also provides 'Test.Tasty.ExpectedFailure.ignoreTest' to
+ avoid running a test. Both functions are implemented via the more
+ general 'Test.Tasty.ExpectedFailure.wrapTest', which is also
+ provided.
+
+Package: libghc-tasty-expected-failure-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-tasty-expected-failure-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-tasty-expected-failure-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
