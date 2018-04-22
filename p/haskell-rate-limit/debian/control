@@ -1,0 +1,68 @@
+Source: haskell-rate-limit
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-stm-dev (>= 2.4),
+ libghc-stm-dev (<< 2.5),
+ libghc-stm-prof (>= 2.4),
+ libghc-stm-prof (<< 2.5),
+ libghc-time-units-dev (>= 1.0),
+ libghc-time-units-dev (<< 2.0),
+ libghc-time-units-prof (>= 1.0),
+ libghc-time-units-prof (<< 2.0),
+Build-Depends-Indep: ghc-doc,
+ libghc-stm-doc,
+ libghc-time-units-doc,
+Standards-Version: 4.1.4
+Homepage: https://github.com/acw/rate-limit
+X-Description: rate-limiting IO actions
+ In many cases, it is useful, necessary, or simply nice to limit how
+ frequently you perform some action. For example, you may want to limit
+ how often your program makes a request of some web site. This library
+ is intended as a general-purpose mechanism for rate-limiting IO actions.
+
+Package: libghc-rate-limit-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-rate-limit-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-rate-limit-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
