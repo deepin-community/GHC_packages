@@ -17,8 +17,14 @@
  
  releaseDate = "31 December 2012"
  
-@@ -71,21 +72,23 @@
-     let manHeader = unwords [".TH xmonad 1","\""++releaseDate++"\"",releaseName,"\"xmonad manual\""]
+@@ -68,31 +69,35 @@
+     keybindings <- (intercalate "\n\n" . map markdownDefn . allBindings)
+                     `liftM` readFile "./src/XMonad/Config.hs"
+ 
+-    let manHeader = unwords [".TH xmonad 1","\""++releaseDate++"\"",releaseName,"\"xmonad manual\""]
++    let manHeader = T.pack .
++                    unwords
++                    $ [".TH xmonad 1","\""++releaseDate++"\"",releaseName,"\"xmonad manual\""]
  
      Right parsed <- readMarkdown def
 +        . T.pack
@@ -28,22 +34,32 @@
          <$> readFile "./man/xmonad.1.markdown"
  
 -    Right template <- getDefaultTemplate Nothing "man"
-+    Right template <- runPure getDefaultTemplate "man"
++    let Right mantemplate = runPure getDefaultTemplate "man"
++        Right htmltemplate = runPure getDefaultTemplate "html"
++
      writeFile "./man/xmonad.1"
-+        . T.unpack
-         . (manHeader ++)
-         . writeMan def{ writerTemplate = Just template }
+-        . (manHeader ++)
+-        . writeMan def{ writerTemplate = Just template }
++        . T.append manHeader
++        . writeMan def{ writerTemplate = Just mantemplate }
          $ parsed
      putStrLn "Documentation created: man/xmonad.1"
  
 -    Right template <- getDefaultTemplate Nothing "html"
-+    Right template <- runPure getDefaultTemplate "html"
      writeFile "./man/xmonad.1.html"
 -        . writeHtmlString def
 +        . writeHtml5String def
              { writerVariables =
                          [("include-before"
                              ,"<h1>"++releaseName++"</h1>"++
+                              "<p>Section: xmonad manual (1)<br/>"++
+                              "Updated: "++releaseDate++"</p>"++
+                              "<hr/>")]
+-            , writerTemplate = Just template
++            , writerTemplate = Just htmltemplate
+             , writerTableOfContents = True }
+         $ parsed
+     putStrLn "Documentation created: man/xmonad.1.html"
 --- a/xmonad.cabal
 +++ b/xmonad.cabal
 @@ -113,7 +113,7 @@
@@ -51,7 +67,7 @@
          build-depends: base,
                         Cabal,
 -                       pandoc,
-+                       pandoc >= 2.1,
++                       pandoc >= 2,
                         pretty,
                         regex-posix
      else
