@@ -19,7 +19,7 @@
  
  releaseDate = "31 December 2012"
  
-@@ -68,31 +71,32 @@
+@@ -68,31 +71,34 @@
      keybindings <- (intercalate "\n\n" . map markdownDefn . allBindings)
                      `liftM` readFile "./src/XMonad/Config.hs"
  
@@ -55,13 +55,15 @@
 +                    unwords
 +                    $ [".TH xmonad 1","\""++releaseDate++"\"",releaseName,"\"xmonad manual\""]
 +
++    markdownSource <- readFile "./man/xmonad.1.markdown"
++
 +    runIOorExplode $ do
 +        parsed <- readMarkdown def
 +            . T.pack
 +            . unlines
 +            . replace "___KEYBINDINGS___" keybindings
 +            . lines
-+            <$> liftIO (readFile "./man/xmonad.1.markdown")
++            $ markdownSource
 +
 +        manTemplate <- getDefaultTemplate "man"
 +        manBody <- writeMan def { writerTemplate = Just manTemplate } parsed
