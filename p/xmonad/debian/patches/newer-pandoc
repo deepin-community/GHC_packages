@@ -1,15 +1,16 @@
 --- a/util/GenerateManpage.hs
 +++ b/util/GenerateManpage.hs
-@@ -27,6 +27,8 @@
+@@ -27,6 +27,9 @@
  import Text.Regex.Posix
  import Data.Char
  import Data.List
-+import qualified Data.Text as T
 +import Control.Monad.IO.Class (liftIO)
++import qualified Data.Text as T
++import qualified Data.Text.IO as TIO
  
  import Distribution.PackageDescription.Parse
  import Distribution.Verbosity
-@@ -35,7 +37,7 @@
+@@ -35,7 +38,7 @@
  import Text.PrettyPrint.HughesPJ
  import Distribution.Text
  
@@ -18,7 +19,7 @@
  
  releaseDate = "31 December 2012"
  
-@@ -68,31 +70,32 @@
+@@ -68,31 +71,32 @@
      keybindings <- (intercalate "\n\n" . map markdownDefn . allBindings)
                      `liftM` readFile "./src/XMonad/Config.hs"
  
@@ -60,16 +61,16 @@
 +            . unlines
 +            . replace "___KEYBINDINGS___" keybindings
 +            . lines
-+            <$> readFile "./man/xmonad.1.markdown"
++            <$> liftIO (readFile "./man/xmonad.1.markdown")
 +
 +        manTemplate <- getDefaultTemplate "man"
 +        manBody <- writeMan def { writerTemplate = Just manTemplate } parsed
-+        liftIO $ writeFile "./man/xmonad.1" $ T.append manHeader manBody
++        liftIO $ TIO.writeFile "./man/xmonad.1" $ T.append manHeader manBody
 +        liftIO $ putStrLn "Documentation created: man/xmonad.1"
 +
 +        htmltemplate <- getDefaultTemplate "html"
 +        htmlBody <- writeHtml5String def
-+                { writerVariables = map T.pack
++                { writerVariables =
 +                            [("include-before"
 +                                ,"<h1>"++releaseName++"</h1>"++
 +                                 "<p>Section: xmonad manual (1)<br/>"++
@@ -77,7 +78,7 @@
 +                                 "<hr/>")]
 +                , writerTemplate = Just htmltemplate
 +                , writerTableOfContents = True } parsed
-+        liftIO $ writeFile "./man/xmonad.1.html" htmlBody
++        liftIO $ TIO.writeFile "./man/xmonad.1.html" htmlBody
 +        liftIO $ putStrLn "Documentation created: man/xmonad.1.html"
 --- a/xmonad.cabal
 +++ b/xmonad.cabal
