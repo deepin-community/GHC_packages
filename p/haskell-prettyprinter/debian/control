@@ -1,0 +1,73 @@
+Source: haskell-prettyprinter
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-text-dev (>= 1.2),
+ libghc-text-prof (>= 1.2),
+ libghc-text-dev,
+# libghc-doctest-dev (>= 0.9),
+# libghc-pgp-wordlist-dev (>= 0.1),
+# libghc-tasty-dev (>= 0.10),
+# libghc-tasty-hunit-dev (>= 0.9),
+# libghc-tasty-quickcheck-dev (>= 0.8),
+Build-Depends-Indep: ghc-doc,
+ libghc-text-doc,
+Standards-Version: 4.1.4
+Homepage: https://github.com/quchen/prettyprinter
+X-Description: modern, easy-to-use, extensible prettyprinter
+ Haskell, more specifically Hackage, has a zoo of Wadler/Leijen based
+ prettyprinters already. Each of them addresses a different concern
+ with the classic wl-pprint package. This package solves all these
+ issues, and then some:
+  * Text instead of String
+  * No name clashes
+  * Annotation support
+  * Extensible backends
+  * Performance
+  * Open implementation
+
+Package: libghc-prettyprinter-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-prettyprinter-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-prettyprinter-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
