@@ -1,20 +1,11 @@
 --- a/tests/Arbitrary.hs
 +++ b/tests/Arbitrary.hs
-@@ -13,7 +13,7 @@
-     , positive, field
-     ) where
- 
--import           Control.Applicative ((<$>), (<*>))
-+import           Control.Applicative ((<$>), (<*>), some)
- import           Control.Monad (liftM2, liftM3, replicateM)
- import           Data.Char (isSpace)
- import           Data.List (intersperse)
 @@ -46,7 +46,7 @@
  
  -- MPD fields can't contain newlines and the parser skips initial spaces.
  field :: Gen String
 -field = (filter (/= '\n') . dropWhile isSpace) <$> arbitrary
-+field = (filter (/= '\n') . dropWhile isSpace) <$> some arbitraryPrintableChar
++field = (filter (/= '\n') . dropWhile isSpace) . getPrintableString <$> (arbitrary :: Gen PrintableString)
  
  fieldBS :: Gen ByteString
  fieldBS = UTF8.fromString <$> field
