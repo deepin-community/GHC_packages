@@ -1,0 +1,22 @@
+--- a/jwt.cabal
++++ b/jwt.cabal
+@@ -28,6 +28,10 @@
+     type: git
+     location: https://ssaasen@bitbucket.org/ssaasen/haskell-jwt.git
+ 
++flag test-doctests
++  description: enable doctests
++  default: True
++
+ library
+   exposed-modules:     Web.JWT
+   other-modules:       Data.Text.Extended, Data.ByteString.Extended
+@@ -99,6 +103,8 @@
+   type:                exitcode-stdio-1.0
+   main-is:             doctests.hs
+   ghc-options:         -threaded
++  if !flag(test-doctests)
++    buildable: False
+   build-depends:       base < 5 && >= 4.4
+                      , jwt
+                      , doctest     >= 0.9.11
