@@ -6,6 +6,10 @@ DEB_CABAL_PACKAGE = lambdahack
 DEB_DEFAULT_COMPILER = ghc
 DEB_SETUP_GHC_CONFIGURE_ARGS += --flags=vty
 
+ifneq (,$(filter $(DEB_BUILD_ARCH),armel armhf))
+    DEB_SETUP_GHC_CONFIGURE_ARGS += --ghc-options="-O0"
+endif
+
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
 
