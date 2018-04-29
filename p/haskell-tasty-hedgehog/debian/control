@@ -1,0 +1,73 @@
+Source: haskell-tasty-hedgehog
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-hedgehog-dev (>= 0.5),
+ libghc-hedgehog-dev (<< 0.6),
+ libghc-hedgehog-prof (>= 0.5),
+ libghc-hedgehog-prof (<< 0.6),
+ libghc-tagged-dev (>= 0.8),
+ libghc-tagged-dev (<< 0.9),
+ libghc-tagged-prof (>= 0.8),
+ libghc-tagged-prof (<< 0.9),
+ libghc-tasty-dev (>= 0.11),
+ libghc-tasty-dev (<< 1.1),
+ libghc-tasty-prof (>= 0.11),
+ libghc-tasty-prof (<< 1.1),
+ libghc-tasty-expected-failure-dev (>= 0.11),
+ libghc-tasty-expected-failure-dev (<< 0.12),
+Build-Depends-Indep: ghc-doc,
+ libghc-hedgehog-doc,
+ libghc-tagged-doc,
+ libghc-tasty-doc,
+Standards-Version: 4.1.4
+Homepage: https://github.com/qfpl/tasty-hedghog
+X-Description: hedgehog-tasty integration
+ Integrates the hedgehog testing library with the tasty testing
+ framework.
+
+Package: libghc-tasty-hedgehog-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-tasty-hedgehog-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-tasty-hedgehog-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
