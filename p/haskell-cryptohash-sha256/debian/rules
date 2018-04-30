@@ -4,11 +4,7 @@ DEB_SETUP_BIN_NAME = debian/hlibrary.setup
 DEB_CABAL_PACKAGE = cryptohash-sha256
 DEB_DEFAULT_COMPILER = ghc
 
-ifneq (,$(filter $(DEB_BUILD_ARCH),mips mipsel))
-    DEB_ENABLE_TESTS = no
-else
-    DEB_ENABLE_TESTS = yes
-endif
+DEB_ENABLE_TESTS = yes
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
