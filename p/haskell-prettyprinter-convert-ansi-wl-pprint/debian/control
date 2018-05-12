@@ -1,0 +1,80 @@
+Source: haskell-prettyprinter-convert-ansi-wl-pprint
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-ansi-terminal-dev,
+ libghc-ansi-terminal-prof,
+ libghc-ansi-wl-pprint-dev (>= 0.6.8),
+ libghc-ansi-wl-pprint-prof (>= 0.6.8),
+ libghc-prettyprinter-dev (>= 1),
+ libghc-prettyprinter-prof (>= 1),
+ libghc-prettyprinter-ansi-terminal-dev (>= 1.1.1),
+ libghc-prettyprinter-ansi-terminal-prof (>= 1.1.1),
+ libghc-text-dev (>= 1.2),
+ libghc-text-prof (>= 1.2),
+ libghc-doctest-dev (>= 0.9),
+Build-Depends-Indep: ghc-doc,
+ libghc-ansi-terminal-doc,
+ libghc-ansi-wl-pprint-doc,
+ libghc-prettyprinter-doc,
+ libghc-prettyprinter-ansi-terminal-doc,
+ libghc-text-doc,
+Standards-Version: 4.1.4
+Homepage: https://github.com/quchen/prettyprinter
+X-Description: convert documents between ansi-wl-pprint and prettyprinter
+ This package defines a converter from the old ansi-wl-pprint document
+ type to the new prettyprinter one. Its purpose is making packages
+ that only generate ansi-wl-pprint data available to the prettyprinter
+ ecosystem.
+ .
+ Note the difference to the prettyprinter-compat-ansi-wl-pprint
+ package, which does not convert any data, and instead provides an API
+ that mimics ansi-wl-pprint, while secretly being prettyprinter-based
+ behind the curtains. This package on the other hand does a proper
+ conversion.
+
+Package: libghc-prettyprinter-convert-ansi-wl-pprint-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-prettyprinter-convert-ansi-wl-pprint-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-prettyprinter-convert-ansi-wl-pprint-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
