@@ -1,0 +1,25 @@
+From 904fbe1f964436dc525cb0ac2d85587977534cea Mon Sep 17 00:00:00 2001
+From: YoEight <yo.eight@gmail.com>
+Date: Wed, 16 May 2018 17:05:37 +0200
+Subject: [PATCH 2/3] Fix tests compilation
+
+---
+ tests/Main.hs | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/tests/Main.hs b/tests/Main.hs
+index a6b1b01..569a90f 100644
+--- a/tests/Main.hs
++++ b/tests/Main.hs
+@@ -13,7 +13,7 @@
+ {-# OPTIONS_GHC -fno-warn-orphans #-}
+ 
+ import Test.QuickCheck
+-import Test.QuickCheck.Property
++import Test.QuickCheck.Property hiding (testCase)
+ import Test.Tasty
+ import Test.Tasty.HUnit
+ import Test.Tasty.QuickCheck
+-- 
+2.17.0
+
