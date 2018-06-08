@@ -1,0 +1,30 @@
+--- a/tasty-hedgehog.cabal
++++ b/tasty-hedgehog.cabal
+@@ -20,10 +20,10 @@
+ 
+ library
+   exposed-modules:     Test.Tasty.Hedgehog
+-  build-depends:       base >= 4.8 && <4.11
++  build-depends:       base >= 4.8 && <4.12
+                      , tagged >= 0.8 && < 0.9
+-                     , tasty >= 0.11 && < 1.1
+-                     , hedgehog >= 0.5 && < 0.6
++                     , tasty >= 0.11 && < 1.2
++                     , hedgehog >= 0.5 && < 0.7
+   hs-source-dirs:      src
+   ghc-options:         -Wall
+   default-language:    Haskell2010
+@@ -32,10 +32,10 @@
+   type:                exitcode-stdio-1.0
+   main-is:             Main.hs
+   hs-source-dirs:      test
+-  build-depends:       base >= 4.8 && <4.11
+-                     , tasty >= 0.11 && < 1.1
++  build-depends:       base >= 4.8 && <4.12
++                     , tasty >= 0.11 && < 1.2
+                      , tasty-expected-failure >= 0.11 && < 0.12
+-                     , hedgehog >= 0.5 && < 0.6
++                     , hedgehog >= 0.5 && < 0.7
+                      , tasty-hedgehog
+   ghc-options:         -Wall
+   default-language:    Haskell2010
