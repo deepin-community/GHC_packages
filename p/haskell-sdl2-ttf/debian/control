@@ -1,0 +1,65 @@
+Source: haskell-sdl2-ttf
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-sdl2-dev (>= 2.2),
+ libghc-sdl2-prof,
+ libghc-text-dev (>= 1.1.0.0),
+ libghc-text-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-sdl2-doc,
+ libghc-text-doc,
+Standards-Version: 4.1.4
+Homepage: http://hackage.haskell.org/package/sdl2-ttf
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-sdl2-ttf
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-sdl2-ttf]
+X-Description: Bindings to SDL2_ttf
+ Haskell bindings to SDL2_ttf C++ library http://www.libsdl.org/projects/SDL_ttf/.
+
+Package: libghc-sdl2-ttf-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+ libsdl2-ttf-dev,
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-sdl2-ttf-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-sdl2-ttf-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
