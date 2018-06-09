@@ -21,10 +21,15 @@ Build-Depends-Indep: ghc-doc,
 Standards-Version: 4.1.4
 Homepage: https://github.com/Mikolaj/assert-failure
 X-Description: syntactic sugar improving 'assert' and 'error'
- This library contains syntactic sugar that improves
- the usability of 'assert' and 'error'.
- This is actually a bunch of hacks wrapping the original
- 'assert' function.
+ This library contains syntactic sugar that makes it easier
+ to write simple contracts with 'assert' and 'error'
+ and report the values that violate contracts.
+ The original 'assert' function is here re-exported for convenience.
+ .
+ Note that for most of these functions to have any effect, assertions
+ need to be enabled, e.g., by including in .cabal file the following line:
+ .
+ ghc-options: -fno-ignore-asserts
 
 Package: libghc-assert-failure-dev
 Architecture: any
