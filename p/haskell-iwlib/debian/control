@@ -1,0 +1,48 @@
+Source: haskell-iwlib
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders:
+ Aggelos Avgerinos <evaggelos.avgerinos@gmail.com>,
+Priority: optional
+Build-Depends: debhelper (>= 10),
+               haskell-devscripts (>= 0.13),
+               cdbs,
+               ghc (>= 8),
+               ghc-prof,
+               libiw-dev,
+Build-Depends-indep: ghc-doc
+Standards-Version: 4.1.4
+Section: haskell
+Homepage: https://github.com/jaor/iwlib
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-iwlib
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-iwlib]
+X-Description: binding to the iw library
+ This package provides a thin wrapper over the iw C library,
+ providing access to wireless card information in supported systems.
+
+Package: libghc-iw-dev
+Architecture: any
+Depends: libiw-dev, ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+
+Package: libghc-iw-prof
+Architecture: any
+Depends: libiw-dev, ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+
+Package: libghc-iw-doc
+Architecture: all
+Section: doc
+Depends: libiw-dev, ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Recommends: ${haskell:Recommends}
+Suggests: ${haskell:Suggests}
+Provides: ${haskell:Provides}
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
