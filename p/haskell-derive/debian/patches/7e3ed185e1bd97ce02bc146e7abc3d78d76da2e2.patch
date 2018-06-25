@@ -1,0 +1,138 @@
+## Description: add some description
+## Origin/Author: add some origin or author
+## Bug: bug URL
+From 7e3ed185e1bd97ce02bc146e7abc3d78d76da2e2 Mon Sep 17 00:00:00 2001
+From: Igor Pashev <pashev.igor@gmail.com>
+Date: Fri, 15 Jun 2018 21:31:43 +0200
+Subject: [PATCH] Rewrite for haskell-src-exts == 1.20.*
+
+Ref. "Deriving Strategies"
+at https://github.com/haskell-suite/haskell-src-exts/commit/e478378fab3cde02cd0d88898caac021423973f3
+---
+ derive.cabal                      |  2 +-
+ src/Data/Derive/DSL/HSE.hs        |  4 ++--
+ src/Data/Derive/UniplateDirect.hs |  4 ++--
+ src/Derive/Derivation.hs          | 10 ++++++----
+ src/Derive/Test.hs                |  2 +-
+ src/Language/Haskell/Convert.hs   |  4 ++--
+ 6 files changed, 14 insertions(+), 12 deletions(-)
+
+diff --git a/derive.cabal b/derive.cabal
+index 011c030..951b836 100644
+--- a/derive.cabal
++++ b/derive.cabal
+@@ -38,7 +38,7 @@ library
+         base == 4.*,
+         filepath, syb, template-haskell, containers, pretty,
+         directory, process, bytestring,
+-        haskell-src-exts >= 1.18 && < 1.20,
++        haskell-src-exts == 1.20.*,
+         transformers >= 0.2,
+         uniplate >= 1.5 && < 1.7
+ 
+diff --git a/src/Data/Derive/DSL/HSE.hs b/src/Data/Derive/DSL/HSE.hs
+index 28f8fbf..0acd170 100644
+--- a/src/Data/Derive/DSL/HSE.hs
++++ b/src/Data/Derive/DSL/HSE.hs
+@@ -23,7 +23,7 @@ list = Input "List" 1 [Ctor "Nil" 0 0, Ctor "Cons" 1 2]
+ 
+ -- data Sample a = First | Second a a | Third a
+ sample :: Input
+-sample = DataDecl () (DataType ()) Nothing (DHApp () (DHead () $ name "Sample") (tyVarBind "a")) ctrs Nothing
++sample = DataDecl () (DataType ()) Nothing (DHApp () (DHead () $ name "Sample") (tyVarBind "a")) ctrs []
+     where
+         ctrs = [ctr "First" 0, ctr "Second" 2, ctr "Third" 1]
+         ctr s i = QualConDecl () Nothing Nothing $ ConDecl () (name s) $ replicate i $ tyVar "a"
+@@ -90,7 +90,7 @@ fromOutput (OList xs) = res
+           f [] = fromConstr $ readCon dat "[]"
+           f (x:xs) = fromConstrB (g x (f xs `asTypeOf` res)) $ readCon dat "(:)"
+           dat = dataTypeOf res
+-          
++
+           g :: (Data a, Data b) => Output -> a -> b
+           g x xs = r2 where r2 = if typeOf r2 == typeOf xs then coerce xs else fromOutput x
+ 
+diff --git a/src/Data/Derive/UniplateDirect.hs b/src/Data/Derive/UniplateDirect.hs
+index fb152ba..215aeeb 100644
+--- a/src/Data/Derive/UniplateDirect.hs
++++ b/src/Data/Derive/UniplateDirect.hs
+@@ -224,10 +224,10 @@ knownCtors = map (fromParseResult . fmap clearAnn . parseDecl)
+ 
+ listCtor = DataDecl ()  (DataType ()) Nothing (DHApp () (DHead () $ Ident () "[]") (UnkindedVar () $ Ident () "a"))
+     [QualConDecl () Nothing Nothing $ ConDecl () (Ident () "[]") []
+-    ,QualConDecl () Nothing Nothing $ ConDecl () (Ident () "(:)") [tyVar "a", TyList () $ tyVar "a"]] Nothing
++    ,QualConDecl () Nothing Nothing $ ConDecl () (Ident () "(:)") [tyVar "a", TyList () $ tyVar "a"]] []
+ 
+ tupleDefn :: Int -> Decl ()
+-tupleDefn n = DataDecl () (DataType ()) Nothing dhead [QualConDecl () Nothing Nothing $ ConDecl () (Ident () s) (map tyVar vars)] Nothing
++tupleDefn n = DataDecl () (DataType ()) Nothing dhead [QualConDecl () Nothing Nothing $ ConDecl () (Ident () s) (map tyVar vars)] []
+     where s = "(" ++ replicate (n - 1) ',' ++ ")"
+           vars = ['v':show i | i <- [1..n]]
+           dhead = foldr (flip (DHApp ())) (DHead () $ Ident () s) (map (UnkindedVar () . Ident ()) vars)
+diff --git a/src/Derive/Derivation.hs b/src/Derive/Derivation.hs
+index fd4dad7..6807ee1 100644
+--- a/src/Derive/Derivation.hs
++++ b/src/Derive/Derivation.hs
+@@ -31,15 +31,17 @@ wantDeriveAnnotation real mine = moduleDerives mine \\ moduleDerives real
+ 
+ 
+ moduleDerives :: Module () -> [Type ()]
+-moduleDerives = concatMap f . moduleDecls 
++moduleDerives = concatMap f . moduleDecls
+     where
+         f (DataDecl _ _ _ (fromDeclHead -> (name, vars)) _ deriv) = g name vars deriv
+         f (GDataDecl _ _ _ (fromDeclHead -> (name, vars)) _ _ deriv) = g name vars deriv
+-        f (DerivDecl _ _ (fromIParen -> IRule _ _ _ (fromInstHead -> (name, args)))) = [TyCon () name `tyApps` args]
++        f (DerivDecl _ _ _ (fromIParen -> IRule _ _ _ (fromInstHead -> (name, args)))) = [TyCon () name `tyApps` args]
+         f _ = []
+ 
+-        g name vars deriv = [TyCon () a `tyApps` (b:bs) | IRule _ _ _ (fromInstHead -> (a,bs)) <- map fromIParen $ maybe [] (\(Deriving _ xs) -> xs) deriv]
++        g name vars deriv = [TyCon () a `tyApps` (b:bs) | IRule _ _ _ (fromInstHead -> (a,bs)) <- map fromIParen $ f deriv]
+             where b = TyCon () (UnQual () name) `tyApps` map (tyVar . prettyPrint) vars
++                  f [Deriving _ _ xs] = xs
++                  f _ = []
+ 
+ 
+ ---------------------------------------------------------------------
+@@ -85,7 +87,7 @@ writeDerive :: FilePath -> ModuleName () -> [Flag] -> [String] -> IO ()
+ writeDerive file modu flags xs = do
+     -- force the output first, ensure that we don't crash half way through
+     () <- length (concat xs) `seq` return ()
+-    
++
+     let append = Append `elem` flags
+     let output = [x | Output x <- flags]
+ 
+diff --git a/src/Derive/Test.hs b/src/Derive/Test.hs
+index 794f71d..e8bf2c0 100644
+--- a/src/Derive/Test.hs
++++ b/src/Derive/Test.hs
+@@ -34,7 +34,7 @@ listType = DataDecl () (DataType ()) Nothing (DHApp () (DHead () (Ident () "[]")
+     ,QualConDecl () Nothing Nothing (ConDecl () (Ident () "Cons")
+         [TyVar () (Ident () "a")
+         ,TyApp () (TyCon () (UnQual () (Ident () "List"))) (TyVar () (Ident () "a"))])]
+-    Nothing
++    []
+ 
+ 
+ -- test each derivation
+diff --git a/src/Language/Haskell/Convert.hs b/src/Language/Haskell/Convert.hs
+index 3724555..6438669 100644
+--- a/src/Language/Haskell/Convert.hs
++++ b/src/Language/Haskell/Convert.hs
+@@ -44,13 +44,13 @@ instance Convert TH.Dec (HS.Decl ()) where
+         NewtypeD cxt n vs _ con ds -> f (NewType ()) cxt n vs [con] ds
+         where
+             f :: DataOrNew () -> Cxt -> TH.Name -> [TyVarBndr] -> [Con] -> unused -> HS.Decl ()
+-            f t cxt n vs con _ = DataDecl () t (Just $ c cxt) (dh (c n) (c vs)) (c con) Nothing
++            f t cxt n vs con _ = DataDecl () t (Just $ c cxt) (dh (c n) (c vs)) (c con) []
+ #else
+         DataD cxt n vs con ds -> f (DataType ()) cxt n vs con ds
+         NewtypeD cxt n vs con ds -> f (NewType ()) cxt n vs [con] ds
+         where
+             f :: DataOrNew () -> Cxt -> TH.Name -> [TyVarBndr] -> [Con] -> [TH.Name] -> HS.Decl ()
+-            f t cxt n vs con ds = DataDecl () t (Just $ c cxt) (dh (c n) (c vs)) (c con) Nothing
++            f t cxt n vs con ds = DataDecl () t (Just $ c cxt) (dh (c n) (c vs)) (c con) []
+ #endif
+ 
+             dh name [] = DHead () name
