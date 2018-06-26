@@ -1,13 +1,14 @@
 Source: haskell-servant-client-core
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Gianfranco Costamagna <locutusofborg@debian.org>
-Priority: extra
+Priority: optional
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts-minimal | haskell-devscripts (>= 0.9),
+Rules-Requires-Root: no
+Build-Depends:
  cdbs,
- ghc,
+ debhelper (>= 10),
+ ghc (>= 8),
  ghc-prof,
+ haskell-devscripts (>= 0.13),
  libghc-base-compat-dev (>= 0.9.3),
  libghc-base-compat-dev (<< 0.11),
  libghc-base-compat-prof,
@@ -44,6 +45,10 @@ Build-Depends: debhelper (>= 9),
  libghc-text-dev (>= 1.2.3.0),
  libghc-text-dev (<< 1.3),
  libghc-text-prof,
+ libghc-quickcheck2-dev (>= 2.10.1),
+ libghc-quickcheck2-dev (<< 2.12),
+ libghc-hspec-dev (>= 2.4.4),
+ libghc-hspec-dev (<< 2.6),
 Build-Depends-Indep: ghc-doc,
  libghc-base-compat-doc,
  libghc-base64-bytestring-doc,
@@ -57,23 +62,28 @@ Build-Depends-Indep: ghc-doc,
  libghc-safe-doc,
  libghc-servant-doc,
  libghc-text-doc,
-Standards-Version: 3.9.6
+Standards-Version: 4.1.4
 Homepage: http://haskell-servant.readthedocs.org/
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-servant-client-core
-Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-servant-client-core
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-servant-client-core]
 X-Description: Core functionality and class for client function generation for servant APIs
  This library provides backend-agnostic generation of client functions. For
  more information, see the README.
 
 Package: libghc-servant-client-core-dev
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -81,12 +91,17 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-servant-client-core-prof
 Architecture: any
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
-Provides: ${haskell:Provides},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
+Provides:
+ ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -95,11 +110,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-servant-client-core-doc
 Architecture: all
 Section: doc
-Depends: ${haskell:Depends},
+Depends:
+ ${haskell:Depends},
  ${misc:Depends},
-Recommends: ${haskell:Recommends},
-Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
+Recommends:
+ ${haskell:Recommends},
+Suggests:
+ ${haskell:Suggests},
+Conflicts:
+ ${haskell:Conflicts},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
