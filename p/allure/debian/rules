@@ -5,6 +5,10 @@ DEB_SETUP_BIN_NAME = debian/hlibrary.setup
 DEB_CABAL_PACKAGE = allure
 DEB_DEFAULT_COMPILER = ghc
 
+ifneq (,$(filter $(DEB_BUILD_ARCH),armel armhf mips mipsel sparc64 mips64el hppa))
+    DEB_SETUP_GHC_CONFIGURE_ARGS += --ghc-options="-O0"
+endif
+
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
 
