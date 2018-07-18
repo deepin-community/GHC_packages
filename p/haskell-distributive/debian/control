@@ -3,12 +3,13 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Iulian Udrea <iulian@linux.com>
 Priority: optional
 Section: haskell
+Rules-Requires-Root: no
 Build-Depends: debhelper (>= 9),
  haskell-devscripts (>= 0.13),
  cdbs,
  ghc (>= 8),
  ghc-prof,
- libghc-base-orphans-dev (>= 0.5),
+ libghc-base-orphans-dev (>= 0.5.2),
  libghc-base-orphans-dev (<< 1),
  libghc-base-orphans-prof,
  libghc-tagged-dev (>= 0.7),
@@ -18,7 +19,7 @@ Build-Depends: debhelper (>= 9),
  libghc-transformers-compat-dev (<< 1),
  libghc-transformers-compat-prof,
  libghc-doctest-dev (>= 0.11.1),
- libghc-doctest-dev (<< 0.13),
+ libghc-doctest-dev (<< 0.16),
  libghc-generic-deriving-dev (>= 1.11),
  libghc-generic-deriving-dev (<< 2),
  libghc-hspec-dev (>= 2),
@@ -29,7 +30,7 @@ Build-Depends-Indep: ghc-doc,
 Standards-Version: 4.1.4
 Homepage: http://github.com/ekmett/distributive/
 Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-distributive
-Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-distributive]
 X-Description: distributive functors
  This package provides a type class for distributive functors. These are the
  dual to traversable functors.

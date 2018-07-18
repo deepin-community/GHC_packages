@@ -1,7 +1,6 @@
 
 module Main (main) where
 
-import Data.Version ( showVersion )
 import Distribution.Package
 import Distribution.PackageDescription
 import Distribution.PackageDescription.Parse ( readPackageDescription )

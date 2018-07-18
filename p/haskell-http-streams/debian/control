@@ -4,12 +4,15 @@ Uploaders:
  Joachim Breitner <nomeata@debian.org>,
 Priority: optional
 Section: haskell
+Rules-Requires-Root: no
 Build-Depends:
  cdbs,
  debhelper (>= 9),
+ haskell-devscripts (>= 0.13),
  ghc (>= 8),
  ghc-prof,
- haskell-devscripts (>= 0.13),
+ libghc-hsopenssl-dev (>= 0.11.2),
+ libghc-hsopenssl-prof,
  libghc-aeson-dev,
  libghc-aeson-prof,
  libghc-attoparsec-dev,
@@ -57,9 +60,9 @@ Build-Depends-Indep:
  libghc-text-doc,
  libghc-unordered-containers-doc,
 Standards-Version: 4.1.4
-Homepage: http://github.com/afcowie/http-streams/
+Homepage: https://github.com/afcowie/http-streams/
 Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-http-streams
-Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-http-streams]
 X-Description: An HTTP client using io-streams
  This package provides an HTTP client, using the Snap Framework's 'io-streams'
  library to hande the streaming IO. The API is optimized for ease of use for

@@ -1,0 +1,76 @@
+Source: haskell-genvalidity-property
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-quickcheck2-dev,
+ libghc-quickcheck2-prof,
+ libghc-genvalidity-dev (>= 0.4),
+ libghc-genvalidity-dev (<< 0.5),
+ libghc-genvalidity-prof (>= 0.4),
+ libghc-genvalidity-prof (<< 0.5),
+ libghc-hspec-dev (>= 2.1),
+ libghc-hspec-dev (<< 2.5),
+ libghc-hspec-prof (>= 2.1),
+ libghc-hspec-prof (<< 2.5),
+ libghc-validity-dev (>= 0.4),
+ libghc-validity-dev (<< 0.5),
+ libghc-validity-prof (>= 0.4),
+ libghc-validity-prof (<< 0.5),
+ libghc-doctest-dev (>= 0.9),
+ libghc-doctest-dev (<< 0.14),
+Build-Depends-Indep: ghc-doc,
+ libghc-quickcheck2-doc,
+ libghc-genvalidity-doc,
+ libghc-hspec-doc,
+ libghc-validity-doc,
+Standards-Version: 4.1.4
+Homepage: https://github.com/NorfairKing/validity#readme
+X-Description: standard properties for functions on Validity types
+ Properties of functions, operations, and relations.
+
+Package: libghc-genvalidity-property-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-genvalidity-property-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-genvalidity-property-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

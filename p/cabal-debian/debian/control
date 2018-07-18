@@ -5,14 +5,20 @@ Uploaders:
  Dmitry Bogatov <KAction@gnu.org>,
 Priority: optional
 Section: haskell
-Build-Depends:
- cdbs,
- debhelper (>= 10),
- ghc (>= 8),
- ghc-prof,
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
  haskell-devscripts (>= 0.13),
- libghc-ansi-wl-pprint-dev (<< 0.7),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-diff-dev (>= 0.3.1),
+ libghc-diff-prof,
+ libghc-hunit-dev,
+ libghc-hunit-prof,
+ libghc-unixutils-dev (>= 1.53),
+ libghc-unixutils-prof,
  libghc-ansi-wl-pprint-dev (>= 0.6),
+ libghc-ansi-wl-pprint-dev (<< 0.7),
  libghc-ansi-wl-pprint-prof,
  libghc-bifunctors-dev,
  libghc-bifunctors-prof,
@@ -20,14 +26,10 @@ Build-Depends:
  libghc-data-default-prof,
  libghc-debian-dev (>= 3.91),
  libghc-debian-prof,
- libghc-diff-dev (>= 0.3.1),
- libghc-diff-prof,
  libghc-exceptions-dev,
  libghc-exceptions-prof,
  libghc-hsemail-dev,
  libghc-hsemail-prof,
- libghc-hunit-dev,
- libghc-hunit-prof,
  libghc-lens-dev,
  libghc-lens-prof,
  libghc-memoize-dev (>= 0.7),
@@ -52,27 +54,21 @@ Build-Depends:
  libghc-syb-prof,
  libghc-text-dev,
  libghc-text-prof,
- libghc-unixutils-dev (>= 1.53),
- libghc-unixutils-prof,
  libghc-utf8-string-dev,
  libghc-utf8-string-prof,
 Standards-Version: 4.1.4
 Homepage: https://github.com/ddssff/cabal-debian
-Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/cabal-debian]
 Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/cabal-debian
 
 Package: cabal-debian
 Architecture: any
 Section: utils
 Depends:
- debhelper (>= 9),
  ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends:
- apt-file,
-Conflicts:
- haskell-debian-utils (<< 3.59),
+Recommends: apt-file,
 Description: Create a debianization for a cabal package
  Tool for creating debianizations of Haskell packages based on the .cabal
  file.  If apt-file is installed it will use it to discover what is the

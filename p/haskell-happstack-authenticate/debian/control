@@ -4,6 +4,7 @@ Uploaders:
  Clint Adams <clint@debian.org>,
 Priority: optional
 Section: haskell
+Rules-Requires-Root: no
 Build-Depends:
  cdbs,
  debhelper (>= 9),
@@ -27,8 +28,8 @@ Build-Depends:
  libghc-data-default-dev (<< 0.8),
  libghc-data-default-dev (>= 0.5),
  libghc-data-default-prof,
- libghc-email-validate-dev (<< 2.4),
  libghc-email-validate-dev (>= 2.1),
+ libghc-email-validate-dev (<< 2.4),
  libghc-email-validate-prof,
  libghc-happstack-hsp-dev (<< 7.4),
  libghc-happstack-hsp-dev (>= 7.3),
@@ -36,8 +37,8 @@ Build-Depends:
  libghc-happstack-jmacro-dev (<< 7.1),
  libghc-happstack-jmacro-dev (>= 7.0),
  libghc-happstack-jmacro-prof,
- libghc-happstack-server-dev (<< 7.5),
  libghc-happstack-server-dev (>= 6.0),
+ libghc-happstack-server-dev (<< 7.6),
  libghc-happstack-server-prof,
  libghc-hsp-dev (<< 0.11),
  libghc-hsp-dev (>= 0.10),
@@ -48,14 +49,14 @@ Build-Depends:
  libghc-hsx2hs-dev (<< 0.15),
  libghc-hsx2hs-dev (>= 0.13),
  libghc-hsx2hs-prof,
- libghc-http-conduit-dev (<< 2.3),
- libghc-http-conduit-dev (>= 1.4),
+ libghc-http-conduit-dev (>= 2.1.0),
+ libghc-http-conduit-dev (<< 2.4),
  libghc-http-conduit-prof,
- libghc-http-types-dev (<< 0.10),
  libghc-http-types-dev (>= 0.6),
+ libghc-http-types-dev (<< 0.13),
  libghc-http-types-prof,
- libghc-ixset-typed-dev (<< 0.4),
  libghc-ixset-typed-dev (>= 0.3),
+ libghc-ixset-typed-dev (<< 0.5),
  libghc-ixset-typed-prof,
  libghc-jmacro-dev (<< 0.7),
  libghc-jmacro-dev (>= 0.6.11),
@@ -64,7 +65,7 @@ Build-Depends:
  libghc-jwt-dev (>= 0.3),
  libghc-jwt-prof,
  libghc-lens-dev (>= 4.2),
- libghc-lens-dev (<< 4.16),
+ libghc-lens-dev (<< 4.17),
  libghc-lens-prof,
  libghc-mime-mail-dev (<< 0.5),
  libghc-mime-mail-dev (>= 0.4),
@@ -145,7 +146,7 @@ Build-Depends-Indep:
 Standards-Version: 4.1.4
 Homepage: http://www.happstack.com/
 Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-happstack-authenticate
-Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-happstack-authenticate]
 X-Description: Happstack authentication library
  A themeable web authentication library with support for
  username+password and OpenID.

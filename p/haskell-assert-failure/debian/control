@@ -1,8 +1,9 @@
 Source: haskell-assert-failure
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders: Clint Adams <clint@debian.org>, Mikolaj Konarski <mikolaj.konarski@funktory.com>
 Priority: optional
 Section: haskell
+Rules-Requires-Root: no
 Build-Depends: debhelper (>= 10),
  haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
  cdbs,
@@ -19,11 +20,18 @@ Build-Depends-Indep: ghc-doc,
  libghc-text-doc,
 Standards-Version: 4.1.4
 Homepage: https://github.com/Mikolaj/assert-failure
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-assert-failure
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-assert-failure]
 X-Description: syntactic sugar improving 'assert' and 'error'
- This library contains syntactic sugar that improves
- the usability of 'assert' and 'error'.
- This is actually a bunch of hacks wrapping the original
- 'assert' function.
+ This library contains syntactic sugar that makes it easier
+ to write simple contracts with 'assert' and 'error'
+ and report the values that violate contracts.
+ The original 'assert' function is here re-exported for convenience.
+ .
+ Note that for most of these functions to have any effect, assertions
+ need to be enabled, e.g., by including in .cabal file the following line:
+ .
+ ghc-options: -fno-ignore-asserts
 
 Package: libghc-assert-failure-dev
 Architecture: any

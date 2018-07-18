@@ -1,0 +1,22 @@
+--- a/attoparsec.cabal
++++ b/attoparsec.cabal
+@@ -127,7 +127,7 @@
+     base >= 4 && < 5,
+     bytestring,
+     deepseq >= 1.1,
+-    QuickCheck >= 2.7 && < 2.10,
++    QuickCheck >= 2.7 && < 2.12,
+     quickcheck-unicode,
+     scientific,
+     tasty >= 0.11,
+--- a/tests/QC/ByteString.hs
++++ b/tests/QC/ByteString.hs
+@@ -164,7 +164,7 @@
+     , testProperty "peekWord8" peekWord8
+     , testProperty "peekWord8'" peekWord8'
+     , testProperty "satisfy" satisfy
+-    , testProperty "satisfyWith" satisfyWith
++    , testProperty "satisfyWith" (forAll arbitraryASCIIChar satisfyWith)
+     , testProperty "scan" scan
+     , testProperty "skip" skip
+     , testProperty "skipWhile" skipWhile

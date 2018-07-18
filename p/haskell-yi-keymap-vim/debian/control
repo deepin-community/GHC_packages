@@ -1,9 +1,11 @@
 Source: haskell-yi-keymap-vim
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
 Priority: optional
 Section: haskell
+Rules-Requires-Root: no
 Build-Depends: debhelper (>= 10),
- haskell-devscripts-minimal | haskell-devscripts (>= 0.9),
+ haskell-devscripts (>= 0.9),
  cdbs,
  ghc,
  ghc-prof,
@@ -23,19 +25,17 @@ Build-Depends: debhelper (>= 10),
  libghc-pointedlist-prof,
  libghc-safe-dev,
  libghc-safe-prof,
- libghc-semigroups-dev,
- libghc-semigroups-prof,
  libghc-text-dev,
  libghc-text-prof,
  libghc-transformers-base-dev,
  libghc-transformers-base-prof,
  libghc-unordered-containers-dev,
  libghc-unordered-containers-prof,
- libghc-yi-core-dev,
+ libghc-yi-core-dev (>= 0.17),
  libghc-yi-core-prof,
- libghc-yi-language-dev,
+ libghc-yi-language-dev (>= 0.17),
  libghc-yi-language-prof,
- libghc-yi-rope-dev,
+ libghc-yi-rope-dev (>= 0.10),
  libghc-yi-rope-prof,
 Build-Depends-Indep: ghc-doc,
  libghc-hclip-doc,
@@ -46,7 +46,6 @@ Build-Depends-Indep: ghc-doc,
  libghc-oo-prototypes-doc,
  libghc-pointedlist-doc,
  libghc-safe-doc,
- libghc-semigroups-doc,
  libghc-text-doc,
  libghc-transformers-base-doc,
  libghc-unordered-containers-doc,
@@ -56,8 +55,9 @@ Build-Depends-Indep: ghc-doc,
 Standards-Version: 4.1.4
 Homepage: https://github.com/yi-editor/yi#readme
 Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-yi-keymap-vim
-Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-yi-keymap-vim]
 X-Description: Vim keymap for Yi editor
+ VIm key bindings for the Yi editor.
 
 Package: libghc-yi-keymap-vim-dev
 Architecture: any

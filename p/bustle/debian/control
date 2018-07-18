@@ -1,0 +1,56 @@
+Source: bustle
+Section: devel
+Priority: optional
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Héctor Orón Martínez <zumbi@debian.org>, Iain Lane <laney@debian.org>
+         , Louis Bettens <louis@bettens.info>
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 7.0.50)
+ , ghc (>= 6.10)
+ , pkg-config
+ , libdbus-1-dev
+ , libglib2.0-dev (>= 2.26)
+ , libghc-mtl-dev
+ , libghc-cairo-dev
+ , libghc-gtk3-dev (>= 0.13.7)
+ , libghc-parsec3-dev
+ , libpcap0.8-dev
+ , libghc-dbus-dev
+ , libghc-pcap-dev
+ , libghc-hgettext-dev
+ , help2man
+ , intltool
+Standards-Version: 4.1.4
+Homepage: http://willthompson.co.uk/bustle/
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/bustle
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/bustle]
+
+Package: bustle
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Recommends: bustle-pcap
+Suggests: graphviz
+Description: D-Bus activity visualiser
+ Bustle is a tool to chart and provide timing information of D-Bus
+ calls for profiling and debugging purposes. It is intended to replace
+ reading the cryptic output of dbus-monitor.
+ .
+ Calls are displayed using Message Sequence Charts, a succinct way of
+ representing entities and interactions over time. It can also output
+ data in Graphviz format.
+ .
+ This package contains the graphical visualizer for traces generated
+ with the bustle-pcap tool in the bustle-pcap package.
+
+Package: bustle-pcap
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Breaks: bustle (<< 0.4.7-3~)
+Replaces: bustle (<< 0.5.4-1~)
+Description: D-Bus traffic capture tool for the pcap format
+ Bustle is a tool to chart and provide timing information of D-Bus
+ calls for profiling and debugging purposes. It is intended to replace
+ reading the cryptic output of dbus-monitor.
+ .
+ This package contains the capture tool which will capture the D-Bus
+ traffic into a pcap file that can be visualized using Bustle.

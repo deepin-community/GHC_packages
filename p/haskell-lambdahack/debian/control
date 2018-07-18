@@ -1,14 +1,14 @@
 Source: haskell-lambdahack
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Clint Adams <clint@debian.org>
+Uploaders: Clint Adams <clint@debian.org>, Mikolaj Konarski <mikolaj.konarski@funktory.com>
 Priority: optional
 Section: haskell
+Rules-Requires-Root: no
 Build-Depends: debhelper (>= 10),
- haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ haskell-devscripts (>= 0.8),
  cdbs,
  ghc,
  ghc-prof,
- libgtk2.0-dev,
  libghc-assert-failure-dev (>= 0.1.2),
  libghc-assert-failure-dev (<< 0.2),
  libghc-assert-failure-prof,
@@ -16,8 +16,8 @@ Build-Depends: debhelper (>= 10),
  libghc-async-prof,
  libghc-base-compat-dev (>= 0.8.0),
  libghc-base-compat-prof,
- libghc-enummapset-th-dev (>= 0.6.0.0),
- libghc-enummapset-th-prof,
+ libghc-enummapset-dev (>= 0.5.2.2),
+ libghc-enummapset-prof,
  libghc-hashable-dev (>= 1.1.2.5),
  libghc-hashable-prof,
  libghc-hsini-dev (>= 0.2),
@@ -52,7 +52,7 @@ Build-Depends-Indep: ghc-doc,
  libghc-assert-failure-doc,
  libghc-async-doc,
  libghc-base-compat-doc,
- libghc-enummapset-th-doc,
+ libghc-enummapset-doc,
  libghc-hashable-doc,
  libghc-hsini-doc,
  libghc-keys-doc,
@@ -69,29 +69,21 @@ Build-Depends-Indep: ghc-doc,
  libghc-vector-binary-instances-doc,
  libghc-zlib-doc,
 Standards-Version: 4.1.4
-Homepage: https://lambdahack.github.io
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git/tree/p/haskell-lambdahack
-Vcs-Git: https://anonscm.debian.org/cgit/pkg-haskell/DHG_packages.git
-X-Description: game engine library for roguelike dungeon crawlers
- LambdaHack is a game engine library for roguelike games
- of arbitrary theme, size and complexity,
- packaged together with a small example dungeon crawler.
+Homepage: https://github.com/LambdaHack/LambdaHack
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-lambdahack
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-lambdahack]
+X-Description: tactical squad ASCII roguelike dungeon crawler game engine
+ LambdaHack is a Haskell game engine library for ASCII roguelike
+ games of arbitrary theme, size and complexity, with optional
+ tactical squad combat. It's packaged together with a sample
+ dungeon crawler in fantasy setting that can be tried out
+ as a native binary or in the browser at http://lambdahack.github.io.
  .
- When completed, the engine will let you specify content
- to be procedurally generated, define the AI behaviour
- on top of the generic content-independent rules
- and compile a ready-to-play game binary, using either
- the supplied or a custom-made main loop.
- Several frontends are available (GTK+ is the default)
- and many other generic engine components are easily overridden,
- but the fundamental source of flexibility lies
- in the strict and type-safe separation of code from the content
- and of clients (human and AI-controlled) from the server.
  Please see the changelog file for recent improvements
- and the issue tracker for short-term plans. Long term vision
- revolves around procedural content generation and includes
- in-game content creation, auto-balancing and persistent
- content modification based on player behaviour.
+ and the issue tracker for short-term plans. Long term goals
+ include multiplayer tactical squad combat, in-game content
+ creation, auto-balancing and persistent content modification
+ based on player behaviour. Contributions are welcome.
 
 Package: libghc-lambdahack-dev
 Architecture: any
@@ -138,6 +130,7 @@ Architecture: any
 Section: games
 Depends: ${haskell:Depends},
  ${misc:Depends},
+ ${shlibs:Depends},
 Recommends: ${haskell:Recommends},
 Suggests: ${haskell:Suggests},
 Conflicts: ${haskell:Conflicts},

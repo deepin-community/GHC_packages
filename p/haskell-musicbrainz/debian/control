@@ -4,6 +4,7 @@ Uploaders:
  Clint Adams <clint@debian.org>,
 Priority: optional
 Section: haskell
+Rules-Requires-Root: no
 Build-Depends:
  cdbs,
  debhelper (>= 9),
@@ -12,10 +13,10 @@ Build-Depends:
  haskell-devscripts (>= 0.13),
  libghc-aeson-dev (>= 0.6.1),
  libghc-aeson-prof,
- libghc-conduit-dev (>= 1.0.0),
+ libghc-conduit-dev (>= 1.2.8),
+ libghc-conduit-prof,
  libghc-conduit-extra-dev (>= 1.0.0),
  libghc-conduit-extra-prof,
- libghc-conduit-prof,
  libghc-http-conduit-dev (>= 1.8.8),
  libghc-http-conduit-prof,
  libghc-http-dev (>= 1:4000.0),
@@ -30,6 +31,8 @@ Build-Depends:
  libghc-text-prof,
  libghc-time-locale-compat-dev,
  libghc-time-locale-compat-prof,
+ libghc-unliftio-core-dev,
+ libghc-unliftio-core-prof,
  libghc-vector-dev (>= 0.9),
  libghc-vector-prof,
  libghc-xml-conduit-dev (>= 1.5),
@@ -48,13 +51,14 @@ Build-Depends-Indep:
  libghc-resourcet-doc,
  libghc-text-doc,
  libghc-time-locale-compat-doc,
+ libghc-unliftio-core-doc,
  libghc-vector-doc,
  libghc-xml-conduit-doc,
  libghc-xml-types-doc,
 Standards-Version: 4.1.4
 Homepage: http://floss.scru.org/hMusicBrainz
 Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-musicbrainz
-Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-musicbrainz]
 X-Description: interface to MusicBrainz XML2/JSON web services
  Web service client functions for both MusicBrainz XML2 and JSON APIs.
 

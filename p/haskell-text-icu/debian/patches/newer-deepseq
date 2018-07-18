@@ -1,0 +1,12 @@
+--- a/tests/QuickCheckUtils.hs
++++ b/tests/QuickCheckUtils.hs
+@@ -11,9 +11,6 @@
+ import qualified Data.Text as T
+ import qualified Data.Text.ICU as I
+ 
+-instance NFData Ordering where
+-    rnf !_  = ()
+-
+ instance Arbitrary T.Text where
+     arbitrary = T.pack `fmap` arbitrary
+     shrink = map T.pack . shrink . T.unpack

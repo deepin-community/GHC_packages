@@ -4,6 +4,7 @@ Uploaders:
  Miriam Ruiz <little_miry@yahoo.es>,
 Priority: optional
 Section: haskell
+Rules-Requires-Root: no
 Build-Depends:
  alex,
  c2hs,
@@ -15,28 +16,19 @@ Build-Depends:
  haskell-devscripts (>= 0.13),
  libghc-sdl-dev,
  libghc-sdl-prof,
- libgl1-mesa-dev | libgl-dev,
- libglu1-mesa-dev | libglu-dev,
- libsdl-mixer1.2-dev,
- libsdl1.2-dev,
- libx11-dev,
  pkg-config,
-Build-Depends-Indep:
- ghc-doc,
-Standards-Version: 4.1.4
+ libsdl-mixer1.2-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-sdl-doc,
+Standards-Version: 4.1.5
 Homepage: http://hackage.haskell.org/package/SDL-mixer
 Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-sdl-mixer
-Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-sdl-mixer]
 
 Package: libghc-sdl-mixer-dev
 Architecture: any
 Depends:
- libghc-sdl-dev,
- libgl1-mesa-dev | libgl-dev,
- libglu1-mesa-dev | libglu-dev,
  libsdl-mixer1.2-dev,
- libsdl1.2-dev,
- libx11-dev,
  ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},

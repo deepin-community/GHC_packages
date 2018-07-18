@@ -4,6 +4,7 @@ Uploaders:
  Christopher Reichert <creichert07@gmail.com>,
 Priority: optional
 Section: haskell
+Rules-Requires-Root: no
 Build-Depends:
  cdbs,
  debhelper (>= 9),
@@ -20,12 +21,16 @@ Build-Depends:
  libghc-cryptohash-prof,
  libghc-http-client-dev (>= 0.2.2.2),
  libghc-http-client-prof,
+ libghc-http-client-tls-dev (>= 0.2.4),
+ libghc-http-client-tls-prof,
  libghc-http-conduit-dev (>= 2.1),
  libghc-http-conduit-prof,
  libghc-http-types-dev (>= 0.6.8),
  libghc-http-types-prof,
  libghc-mime-mail-dev (>= 0.3),
  libghc-mime-mail-prof,
+ libghc-old-locale-dev,
+ libghc-old-locale-prof,
  libghc-text-dev,
  libghc-text-prof,
  libghc-xml-conduit-dev,
@@ -39,16 +44,18 @@ Build-Depends-Indep:
  libghc-conduit-doc,
  libghc-cryptohash-doc,
  libghc-http-client-doc,
+ libghc-http-client-tls-doc,
  libghc-http-conduit-doc,
  libghc-http-types-doc,
  libghc-mime-mail-doc,
+ libghc-old-locale-doc,
  libghc-text-doc,
  libghc-xml-conduit-doc,
  libghc-xml-types-doc,
 Standards-Version: 4.1.4
 Homepage: http://github.com/snoyberg/mime-mail
 Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-mime-mail-ses
-Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-mime-mail-ses]
 X-Description: send mime-mail messages via Amazon SES
   Amazon SES support for mime-mail messages.
 

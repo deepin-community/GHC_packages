@@ -1,6 +1,9 @@
 #!/usr/bin/make -f
 
 DEB_BUILD_DEPENDENCIES = build-arch
+ifneq (,$(filter $(DEB_BUILD_ARCH),mips mipsel))
+    DEB_SETUP_GHC_CONFIGURE_ARGS = --ghc-options="-O0 -optc--param -optcggc-min-expand=10"
+endif
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk

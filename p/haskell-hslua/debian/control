@@ -4,17 +4,17 @@ Uploaders:
  Clint Adams <clint@debian.org>,
 Priority: optional
 Section: haskell
+Rules-Requires-Root: no
 Build-Depends:
  cdbs,
  debhelper (>= 9),
  ghc (>= 8),
  ghc-prof,
  haskell-devscripts (>= 0.13),
- liblua5.1-0-dev,
- libluajit-5.1-dev [amd64 armel armhf i386 mips mipsel powerpc hurd-i386 kfreebsd-i386],
+ liblua5.1-dev,
  pkg-config,
  libghc-exceptions-dev (>= 0.8),
- libghc-exceptions-dev (<< 0.10),
+ libghc-exceptions-dev (<< 0.11),
  libghc-exceptions-prof,
  libghc-mtl-dev (>= 2.2),
  libghc-mtl-dev (<< 2.3),
@@ -30,13 +30,12 @@ Build-Depends:
  libghc-tasty-quickcheck-dev,
 Build-Depends-Indep: ghc-doc,
  libghc-exceptions-doc,
- libghc-fail-doc,
  libghc-mtl-doc,
  libghc-text-doc,
 Standards-Version: 4.1.4
 Homepage: http://hackage.haskell.org/package/hslua
 Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-hslua
-Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-hslua]
 X-Description: Lua language interpreter embedding in Haskell
  The Scripting.Lua module is a wrapper of Lua language interpreter as
  described in www.lua.org.
@@ -44,8 +43,7 @@ X-Description: Lua language interpreter embedding in Haskell
 Package: libghc-hslua-dev
 Architecture: any
 Depends:
- liblua5.1-0-dev,
- libluajit-5.1-dev [amd64 armel armhf i386 mips mipsel powerpc hurd-i386 kfreebsd-i386],
+ liblua5.1-dev,
  ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},

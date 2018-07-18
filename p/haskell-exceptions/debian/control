@@ -3,6 +3,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Clint Adams <clint@debian.org>, Dmitry Bogatov <KAction@gnu.org>
 Priority: optional
 Section: haskell
+Rules-Requires-Root: no
 Build-Depends:
  cdbs,
  debhelper (>= 9),
@@ -14,7 +15,7 @@ Build-Depends:
  libghc-mtl-dev (>= 2.0),
  libghc-mtl-prof,
  libghc-quickcheck2-dev (>= 2.5),
- libghc-quickcheck2-dev (<< 2.10),
+ libghc-quickcheck2-dev (<< 2.12),
  libghc-stm-dev,
  libghc-stm-dev (<< 3),
  libghc-stm-dev (>= 2.2),
@@ -24,7 +25,7 @@ Build-Depends:
  libghc-test-framework-quickcheck2-dev (>= 0.3),
  libghc-test-framework-quickcheck2-dev (<< 0.4),
  libghc-transformers-compat-dev (>= 0.3),
- libghc-transformers-compat-dev (<< 0.6),
+ libghc-transformers-compat-dev (<< 0.7),
  libghc-transformers-compat-prof,
 Build-Depends-Indep:
  ghc-doc,
@@ -34,7 +35,7 @@ Build-Depends-Indep:
 Standards-Version: 4.1.4
 Homepage: http://github.com/ekmett/exceptions/
 Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-exceptions
-Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-exceptions]
 X-Description: extensible optionally-pure exceptions
  This library supports monads that can throw extensible exceptions.
  The exceptions are the very same from Control.Exception, and the

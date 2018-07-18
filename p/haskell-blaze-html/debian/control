@@ -1,10 +1,8 @@
 Source: haskell-blaze-html
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders:
- Giovanni Mascellani <gio@debian.org>,
- Clint Adams <clint@debian.org>,
 Priority: optional
 Section: haskell
+Rules-Requires-Root: no
 Build-Depends:
  cdbs,
  debhelper (>= 9),
@@ -21,10 +19,12 @@ Build-Depends:
  libghc-text-dev (<< 1.3),
  libghc-text-prof,
  libghc-hunit-dev (>= 1.2),
- libghc-hunit-dev (<< 1.6),
+ libghc-hunit-dev (<< 1.7),
+ libghc-hunit-prof,
  libghc-quickcheck2-dev (>= 2.4),
- libghc-quickcheck2-dev (<< 2.10),
- libghc-quickcheck2-dev (>= 2.4),
+ libghc-quickcheck2-dev (<< 2.12),
+ libghc-quickcheck2-prof,
+ libghc-test-framework-dev (>= 0.4),
  libghc-test-framework-dev (<< 0.9),
  libghc-test-framework-dev (>= 0.4),
  libghc-test-framework-hunit-dev (<< 0.4),
@@ -42,7 +42,7 @@ Build-Depends-Indep:
 Standards-Version: 4.1.4
 Homepage: http://jaspervdj.be/blaze
 Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-blaze-html
-Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-blaze-html]
 
 Package: libghc-blaze-html-dev
 Architecture: any

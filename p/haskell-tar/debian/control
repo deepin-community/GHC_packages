@@ -3,17 +3,22 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Joachim Breitner <nomeata@debian.org>
 Priority: optional
 Section: haskell
+Rules-Requires-Root: no
 Build-Depends:
  cdbs,
  debhelper (>= 9),
  ghc (>= 8),
  ghc-prof,
  haskell-devscripts (>= 0.13),
+ libghc-bytestring-handle-dev,
+ libghc-quickcheck2-dev,
+ libghc-tasty-dev (>= 0.10),
+ libghc-tasty-quickcheck-dev (>= 0.8),
 Build-Depends-Indep: ghc-doc
 Standards-Version: 4.1.4
 Homepage: http://hackage.haskell.org/package/tar
 Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-tar
-Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-tar]
 
 Package: libghc-tar-dev
 Architecture: any

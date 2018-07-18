@@ -4,6 +4,7 @@ Uploaders:
  Clint Adams <clint@debian.org>,
 Priority: optional
 Section: haskell
+Rules-Requires-Root: no
 Build-Depends:
  cdbs,
  debhelper (>= 9),
@@ -13,8 +14,8 @@ Build-Depends:
  haskell-devscripts (>= 0.13),
  libghc-case-insensitive-dev (>= 0.4),
  libghc-case-insensitive-prof,
- libghc-either-dev (>= 4.3),
- libghc-either-prof,
+ libghc-data-default-dev,
+ libghc-data-default-prof,
  libghc-exceptions-dev,
  libghc-exceptions-prof,
  libghc-http-client-dev (>= 0.2),
@@ -46,7 +47,7 @@ Build-Depends:
 Build-Depends-Indep:
  ghc-doc,
  libghc-case-insensitive-doc,
- libghc-either-doc,
+ libghc-data-default-doc,
  libghc-exceptions-doc,
  libghc-http-client-doc,
  libghc-http-client-tls-doc,
@@ -64,7 +65,7 @@ Build-Depends-Indep:
 Standards-Version: 4.1.4
 Homepage: http://floss.scru.org/hDAV
 Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-dav
-Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-dav]
 X-Description: RFC 4918 WebDAV support
  This is a library for the Web Distributed Authoring and Versioning
  (WebDAV) extensions to HTTP.  At present it supports a very small

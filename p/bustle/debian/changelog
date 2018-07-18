@@ -1,0 +1,181 @@
+bustle (0.6.2-1) unstable; urgency=medium
+
+  * Set Rules-Requires-Root to no.
+  * Switch Vcs-* fields to salsa.
+  * New upstream version.
+    - Fixes FTBFS. closes: #897511.
+
+ -- Clint Adams <clint@debian.org>  Mon, 07 May 2018 21:28:29 -0400
+
+bustle (0.5.4-1) unstable; urgency=medium
+
+  * New upstream version 0.5.4
+  * debian/watch: improve regex and use https url
+  * move bustle-pcap man file into bustle-pcap package. (Closes: #783689)
+  * debian/patches:
+    - drop 0002-Use-g_thread_try_new-rather-than-g_thread_create.patch
+      (upstreamed)
+    - add 0001-bustle-pcap-stop-leaking-so-much-in-parse_arguments.patch
+      (taken from upstream)
+  * debian/bustle.install: avoid redundant copyright files
+  * debian/compat: bump to version 9
+  * debian/control: Update my uploader name
+  * debian/control: bump standards version. No changes
+  * debian/control: update bustle-pcap replaces due to manpage move.
+
+ -- Héctor Orón Martínez <zumbi@debian.org>  Sun, 11 Dec 2016 23:57:16 +0100
+
+bustle (0.5.2-1) unstable; urgency=medium
+
+  * New upstream release
+  * Fixes FTBFS: Bustle/Loader/OldSkool.hs:122:23: Ambiguous occurrence `<*>'
+    (Closes: #808017)
+  * d/watch: update for new URL.
+
+ -- Héctor Orón Martínez <zumbi@debian.org>  Fri, 08 Jan 2016 13:12:52 +0100
+
+bustle (0.4.8-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Joachim Breitner <nomeata@debian.org>  Fri, 22 May 2015 09:47:01 +0200
+
+bustle (0.4.7-3) unstable; urgency=medium
+
+  [ Ted Gould ]
+  * d/control: Split out bustle-pcap into its own binary package. (Closes:
+    #772148)
+
+  [ Iain Lane ]
+  * Add Breaks/Replaces for file move.
+
+ -- Ted Gould <ted@gould.cx>  Wed, 21 Jan 2015 17:37:02 +0000
+
+bustle (0.4.7-2) unstable; urgency=medium
+
+  * d/control: really build depend on intltool
+
+ -- Hector Oron <zumbi@debian.org>  Wed, 24 Sep 2014 02:01:59 +0200
+
+bustle (0.4.7-1) unstable; urgency=medium
+
+  * New upstream release.
+  * d/control: bump standards version
+  * d/control: build depend on haskell gettext
+  * d/control: build depend on intltool
+  * d/patches/use-system-usr-prefix.patch: refresh
+
+ -- Hector Oron <zumbi@debian.org>  Wed, 24 Sep 2014 00:11:06 +0200
+
+bustle (0.4.2-2) unstable; urgency=low
+
+  * /usr/share/bustle-0.4.2 -> /usr/share/bustle
+
+ -- Louis Bettens <louis@bettens.info>  Wed, 31 Jul 2013 17:30:43 +0200
+
+bustle (0.4.2-1) unstable; urgency=low
+
+  * [10d8853] Imported Upstream version 0.4.2
+    - The Makefile now respects the `DESTDIR` variable.
+    - No more deprecation warnings about `g_thread_create()`!
+    - We explicitly check for GLib ≥ 2.26.
+  * [118bcd9] debian/watch: Update to match upstream URL scheme
+  * [bd39b44] d/control: Check for glib-2.26 per upstream
+  * [ffc40ed] d/rules: Pass -threaded if we don't have the threaded runtime available
+  * [9a6ba27] Remove 0001-Makesfile-respect-DESTDIR.patch, applied upstream
+    and refresh 0002-Use-g_thread_try_new-rather-than-g_thread_create.patch
+
+ -- Iain Lane <iain.lane@canonical.com>  Mon, 19 Nov 2012 11:10:26 +0000
+
+bustle (0.4.1-1) unstable; urgency=low
+
+  * New upstream release.
+    (Closes: #693215)
+  * Drop build dep on deprecated haskell-dbus-core.
+  * Build depend on haskell-pcap-dev.
+  * Add build-dep-indep on help2man.
+  * Drop bustle strict dependency on bustle-dbus-monitor.
+  * Don't use the libghc6* dummy packages but depend on the real ones.
+  * Don't link the haskell98 package.
+  * Added myself to debian/copyright and debian/control
+
+ -- Hector Oron <zumbi@debian.org>  Wed, 14 Nov 2012 12:20:58 +0100
+
+bustle (0.2.5-1) unstable; urgency=low
+
+  * New upstream release.
+  * Update debian/copyright.
+
+ -- Chris Lamb <lamby@debian.org>  Tue, 28 Jun 2011 19:43:42 +0100
+
+bustle (0.2.4-1) unstable; urgency=low
+
+  * New upstream release (Closes: #630979)
+  * Add Homepage field. (Closes: #630978)
+  * Bump Standards-Version to 3.9.2.
+
+ -- Chris Lamb <lamby@debian.org>  Sun, 19 Jun 2011 13:45:10 +0100
+
+bustle (0.2.3-1) unstable; urgency=low
+
+  * New upstream release.
+  * Update Vcs-{Git,Browser}.
+  * Bump Standards-Version to 3.9.1.
+
+ -- Chris Lamb <lamby@debian.org>  Sat, 26 Feb 2011 23:18:51 +0000
+
+bustle (0.2.2-1) unstable; urgency=low
+
+  * New upstream release (Closes: #587132)
+    - Add libghc6-glade-dev to Build-Depends.
+  * Move to dpkg v3 source format.
+  * Bump Standards-Version to 3.8.4.
+
+ -- Chris Lamb <lamby@debian.org>  Wed, 30 Jun 2010 14:31:43 +0100
+
+bustle (0.2.1-1) unstable; urgency=low
+
+  * New upstream release.
+  * Bump Standards-Version to 3.8.3.
+  * Remove extra LICENSE file installed to /usr/share/bustle-$VER.
+
+ -- Chris Lamb <lamby@debian.org>  Fri, 04 Dec 2009 21:02:14 +0000
+
+bustle (0.2.0-2) unstable; urgency=low
+
+  * Update Build-Depends to use Parsec 3. (Closes: #534091)
+  * Bump Standards-Version to 3.8.2.
+
+ -- Chris Lamb <lamby@debian.org>  Thu, 25 Jun 2009 12:28:54 +0100
+
+bustle (0.2.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * Update debian/watch.
+  * Add Suggests: on graphviz and add update long description to reflect
+    new 'dot' output.
+  * debian/patches:
+    - Drop 01-bustle-gdk-events.diff - merged upstream.
+    - Drop 02-bustle-ambiguous-exception.diff - different fix made upstream.
+  * Remove quilt patch machinery as we have no local patches.
+  * Bump Standards-Version to 3.8.1.
+  * Add manpages for bustle-{count,dot,time}.1.
+
+ -- Chris Lamb <lamby@debian.org>  Mon, 06 Apr 2009 00:08:14 +0100
+
+bustle (0.1-2) unstable; urgency=low
+
+  * Don't call runhaskell; GHCI isn't available on all archs (Closes: #517706)
+  * Add patches for GHC 6.10 compatibility. (Closes: #518746)
+    - Bump Build-Depends to ghc6 (>= 6.10)
+  * Move to more "minimal" debian/rules file.
+    - Bump Build-Depends on debhelper to 7.0.50 for this feature.
+  * Update Git repository locations.
+
+ -- Chris Lamb <lamby@debian.org>  Sun, 08 Mar 2009 04:03:30 +0000
+
+bustle (0.1-1) unstable; urgency=low
+
+  * Initial release. (Closes: #511111)
+
+ -- Chris Lamb <lamby@debian.org>  Thu, 08 Jan 2009 00:03:25 +0000

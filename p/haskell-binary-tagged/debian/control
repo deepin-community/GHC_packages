@@ -4,6 +4,7 @@ Uploaders:
  Dmitry Bogatov <KAction@gnu.org>,
 Priority: optional
 Section: haskell
+Rules-Requires-Root: no
 Build-Depends:
  cdbs,
  debhelper (>= 9),
@@ -16,7 +17,7 @@ Build-Depends:
  libghc-sha-dev (<< 1.7),
  libghc-sha-prof,
  libghc-aeson-dev (>= 0.8),
- libghc-aeson-dev (<< 1.3),
+ libghc-aeson-dev (<< 1.4),
  libghc-aeson-prof,
  libghc-base16-bytestring-dev (>= 0.1.1.6),
  libghc-base16-bytestring-dev (<< 0.2),
@@ -27,18 +28,11 @@ Build-Depends:
  libghc-hashable-dev (<< 1.3),
  libghc-hashable-dev (>= 1.2),
  libghc-hashable-prof,
- libghc-quickcheck-instances-dev,
- libghc-scientific-dev (<< 0.4),
  libghc-scientific-dev (>= 0.3),
+ libghc-scientific-dev (<< 0.4),
  libghc-scientific-prof,
- libghc-semigroups-dev (<< 0.19),
- libghc-semigroups-dev (>= 0.16),
- libghc-semigroups-prof,
- libghc-sha-dev (<< 1.7),
- libghc-sha-dev (>= 1.6),
- libghc-sha-prof,
- libghc-tagged-dev (<< 0.9),
  libghc-tagged-dev (>= 0.7),
+ libghc-tagged-dev (<< 0.9),
  libghc-tagged-prof,
  libghc-tasty-dev,
  libghc-tasty-quickcheck-dev,
@@ -51,15 +45,28 @@ Build-Depends:
  libghc-vector-dev (>= 0.10),
  libghc-vector-dev (<< 0.13),
  libghc-vector-prof,
-Build-Depends-Indep:
- ghc-doc,
+ libghc-sha-dev,
+ libghc-aeson-dev,
+ libghc-base16-bytestring-dev,
+ libghc-bifunctors-dev,
+ libghc-binary-orphans-dev,
+ libghc-generics-sop-dev,
+ libghc-hashable-dev,
+ libghc-quickcheck-instances-dev,
+ libghc-scientific-dev,
+ libghc-tagged-dev,
+ libghc-tasty-dev,
+ libghc-tasty-quickcheck-dev,
+ libghc-text-dev,
+ libghc-unordered-containers-dev,
+ libghc-vector-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-sha-doc,
  libghc-aeson-doc,
  libghc-base16-bytestring-doc,
  libghc-generics-sop-doc,
  libghc-hashable-doc,
  libghc-scientific-doc,
- libghc-semigroups-doc,
- libghc-sha-doc,
  libghc-tagged-doc,
  libghc-text-doc,
  libghc-unordered-containers-doc,
@@ -67,8 +74,8 @@ Build-Depends-Indep:
 Standards-Version: 4.1.4
 Homepage: https://github.com/phadej/binary-tagged#readme
 Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-binary-tagged
-Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git
-X-Description: Tagged binary serialisation.
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-binary-tagged]
+X-Description: tagged binary serialisation
  Structurally tag binary serialisation stream. Library allows serialise and
  deserialise record values with a structure tag, so if structure of record changes
  between serialization and deserialisation, deserialisation will fail early.

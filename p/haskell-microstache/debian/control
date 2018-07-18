@@ -1,0 +1,89 @@
+Source: haskell-microstache
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-aeson-dev (>= 0.11),
+ libghc-aeson-dev (<< 1.4),
+ libghc-aeson-prof (>= 0.11),
+ libghc-aeson-prof (<< 1.3),
+ libghc-parsec3-dev (>= 3.1.11),
+ libghc-parsec3-dev (<< 6.0),
+ libghc-parsec3-prof (>= 3.1.11),
+ libghc-parsec3-prof (<< 6.0),
+ libghc-text-dev (>= 1.2),
+ libghc-text-dev (<< 1.3),
+ libghc-text-prof (>= 1.2),
+ libghc-text-prof (<< 1.3),
+ libghc-unordered-containers-dev (>= 0.2.5),
+ libghc-unordered-containers-dev (<< 0.3),
+ libghc-unordered-containers-prof (>= 0.2.5),
+ libghc-unordered-containers-prof (<< 0.3),
+ libghc-vector-dev (>= 0.11),
+ libghc-vector-dev (<< 0.13),
+ libghc-vector-prof (>= 0.11),
+ libghc-vector-prof (<< 0.13),
+ libghc-aeson-dev,
+ libghc-hspec-dev (>= 2.0),
+ libghc-hspec-dev (<< 3.0),
+ libghc-parsec3-dev,
+ libghc-text-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-aeson-doc,
+ libghc-parsec3-doc,
+ libghc-text-doc,
+ libghc-unordered-containers-doc,
+ libghc-vector-doc,
+Standards-Version: 4.1.4
+Homepage: https://github.com/phadej/microstache
+X-Description: alternative Mustache templates
+ Mustache templates for Haskell.
+ .
+ Based on the stache library, which uses megaparsec,
+ This library uses parsec, thus the name: microstache.
+
+Package: libghc-microstache-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-microstache-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-microstache-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

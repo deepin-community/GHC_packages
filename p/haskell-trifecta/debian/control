@@ -4,14 +4,15 @@ Uploaders:
  Clint Adams <clint@debian.org>,
 Priority: optional
 Section: haskell
+Rules-Requires-Root: no
 Build-Depends:
  cdbs,
  debhelper (>= 9),
  ghc (>= 8),
  ghc-prof,
  haskell-devscripts (>= 0.13),
- libghc-ansi-terminal-dev (<< 0.7),
  libghc-ansi-terminal-dev (>= 0.6),
+ libghc-ansi-terminal-dev (<< 0.9),
  libghc-ansi-terminal-prof,
  libghc-ansi-wl-pprint-dev (<< 0.7),
  libghc-ansi-wl-pprint-dev (>= 0.6.6),
@@ -31,7 +32,6 @@ Build-Depends:
  libghc-comonad-dev (<< 6),
  libghc-comonad-dev (>= 4),
  libghc-comonad-prof,
- libghc-doctest-dev (>= 0.9.1),
  libghc-fingertree-dev (<< 0.2),
  libghc-fingertree-dev (>= 0.1),
  libghc-fingertree-prof,
@@ -66,8 +66,10 @@ Build-Depends:
  libghc-utf8-string-prof,
  libghc-quickcheck2-dev,
  libghc-doctest-dev (>= 0.11.1),
- libghc-doctest-dev (<< 0.14),
+ libghc-doctest-dev (<< 0.16),
  libghc-parsers-dev,
+ libghc-cabal-doctest-dev (>= 1),
+ libghc-cabal-doctest-dev (<< 1.1),
 Build-Depends-Indep: ghc-doc,
  libghc-ansi-terminal-doc,
  libghc-ansi-wl-pprint-doc,
@@ -89,7 +91,7 @@ Build-Depends-Indep: ghc-doc,
 Standards-Version: 4.1.4
 Homepage: http://github.com/ekmett/trifecta/
 Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-trifecta
-Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-trifecta]
 X-Description: modern parser combinator library with convenient diagnostics
  A modern parser combinator library with slicing and Clang-style
  colored diagnostics.

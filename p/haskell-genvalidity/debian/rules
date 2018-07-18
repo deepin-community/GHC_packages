@@ -1,0 +1,13 @@
+#!/usr/bin/make -f
+
+DEB_ENABLE_TESTS = yes
+DEB_SETUP_BIN_NAME = debian/hlibrary.setup
+DEB_CABAL_PACKAGE = genvalidity
+DEB_DEFAULT_COMPILER = ghc
+
+ifeq (no,$(shell ghc --info | grep -q 'Support SMP.*NO' && echo no))
+       DEB_SETUP_GHC_CONFIGURE_ARGS += -f-smp
+endif
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/hlibrary.mk

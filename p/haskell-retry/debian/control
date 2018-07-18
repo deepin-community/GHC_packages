@@ -4,6 +4,7 @@ Uploaders:
  Joachim Breitner <nomeata@debian.org>,
 Priority: optional
 Section: haskell
+Rules-Requires-Root: no
 Build-Depends:
  cdbs,
  debhelper (>= 9),
@@ -18,15 +19,20 @@ Build-Depends:
  libghc-random-dev (<< 1.2),
  libghc-random-dev (>= 1),
  libghc-random-prof,
+ libghc-hunit-dev,
+ libghc-tasty-dev,
+ libghc-tasty-hunit-dev,
+ libghc-tasty-hedgehog-dev,
+ libghc-hedgehog-dev,
 Build-Depends-Indep:
  ghc-doc,
  libghc-data-default-class-doc,
  libghc-exceptions-doc,
  libghc-random-doc,
 Standards-Version: 4.1.4
-Homepage: http://github.com/Soostone/retry
+Homepage: https://github.com/Soostone/retry
 Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-retry
-Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-retry]
 X-Description: Retry combinators for monadic actions that may fail
  This package exposes combinators that can wrap arbitrary monadic actions. They
  run the action and potentially retry running it with some configurable delay

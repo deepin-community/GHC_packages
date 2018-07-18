@@ -1,0 +1,137 @@
+From: Sergey Vinokurov <serg.foo@gmail.com>
+Subject: Fix unused import warnings and simultaneously fix ghc 8.2.1 build
+Origin: upstream, https://github.com/bjpop/language-python/commit/416a0981a6c0185d5a
+Bug-Debian: https://bugs.debian.org/895609
+
+Index: b/language-python.cabal
+===================================================================
+--- a/language-python.cabal
++++ b/language-python.cabal
+@@ -13,10 +13,11 @@ maintainer:          florbitous@gmail.co
+ homepage:            http://github.com/bjpop/language-python 
+ build-type:          Simple
+ stability:           experimental
+-extra-source-files:  src/Language/Python/Version3/Parser/Parser.y 
+-                     src/Language/Python/Version3/Parser/Lexer.x 
+-                     src/Language/Python/Version2/Parser/Parser.y 
+-                     src/Language/Python/Version2/Parser/Lexer.x 
++extra-source-files:  src/Language/Python/Version3/Parser/Parser.y
++                     src/Language/Python/Version3/Parser/Lexer.x
++                     src/Language/Python/Version2/Parser/Parser.y
++                     src/Language/Python/Version2/Parser/Lexer.x
++tested-with: GHC ==7.8.4, GHC ==7.10.3, GHC ==8.0.2, GHC ==8.2.1
+ 
+ source-repository head
+    type: git
+Index: b/src/Language/Python/Common.hs
+===================================================================
+--- a/src/Language/Python/Common.hs
++++ b/src/Language/Python/Common.hs
+@@ -33,8 +33,8 @@ module Language.Python.Common (
+ import Language.Python.Common.Pretty 
+ import Language.Python.Common.Token 
+ import Language.Python.Common.AST 
+-import Language.Python.Common.PrettyAST 
+-import Language.Python.Common.PrettyToken 
++import Language.Python.Common.PrettyAST ()
++import Language.Python.Common.PrettyToken ()
+ import Language.Python.Common.SrcLocation 
+-import Language.Python.Common.PrettyParseError 
++import Language.Python.Common.PrettyParseError ()
+ import Language.Python.Common.ParseError
+Index: b/src/Language/Python/Common/LexerUtils.hs
+===================================================================
+--- a/src/Language/Python/Common/LexerUtils.hs
++++ b/src/Language/Python/Common/LexerUtils.hs
+@@ -16,11 +16,8 @@ module Language.Python.Common.LexerUtils
+ import Control.Monad (liftM)
+ import Control.Monad.Error.Class (throwError)
+ import Data.List (foldl')
+-import Data.Map as Map hiding (null, map, foldl')
+ import Data.Word (Word8)
+-import Data.Char (ord)
+-import Numeric (readHex, readOct)
+-import Language.Python.Common.Token as Token 
++import Language.Python.Common.Token as Token
+ import Language.Python.Common.ParserMonad hiding (location)
+ import Language.Python.Common.SrcLocation 
+ import Codec.Binary.UTF8.String as UTF8 (encode)
+Index: b/src/Language/Python/Common/ParseError.hs
+===================================================================
+--- a/src/Language/Python/Common/ParseError.hs
++++ b/src/Language/Python/Common/ParseError.hs
+@@ -12,7 +12,6 @@
+ 
+ module Language.Python.Common.ParseError ( ParseError (..) ) where
+ 
+-import Language.Python.Common.Pretty
+ import Language.Python.Common.SrcLocation (SrcLocation)
+ import Language.Python.Common.Token (Token)
+ import Control.Monad.Error.Class
+Index: b/src/Language/Python/Common/ParserMonad.hs
+===================================================================
+--- a/src/Language/Python/Common/ParserMonad.hs
++++ b/src/Language/Python/Common/ParserMonad.hs
+@@ -52,9 +52,6 @@ import Control.Applicative ((<$>))
+ import Control.Monad.State.Class
+ import Control.Monad.State.Strict as State
+ import Control.Monad.Error as Error
+-import Control.Monad.Error.Class
+-import Control.Monad.Identity as Identity
+-import Control.Monad.Trans as Trans
+ import Language.Python.Common.Pretty
+ 
+ internalError :: String -> P a 
+Index: b/src/Language/Python/Common/Token.hs
+===================================================================
+--- a/src/Language/Python/Common/Token.hs
++++ b/src/Language/Python/Common/Token.hs
+@@ -25,7 +25,7 @@ module Language.Python.Common.Token (
+    ) where
+ 
+ import Language.Python.Common.Pretty
+-import Language.Python.Common.SrcLocation (SrcSpan (..), SrcLocation (..), Span(getSpan))
++import Language.Python.Common.SrcLocation (SrcSpan (..), Span(getSpan))
+ import Data.Data
+ 
+ -- | Lexical tokens.
+Index: b/src/Language/Python/Version2/Parser.hs
+===================================================================
+--- a/src/Language/Python/Version2/Parser.hs
++++ b/src/Language/Python/Version2/Parser.hs
+@@ -35,7 +35,7 @@ import Language.Python.Version2.Parser.L
+ import Language.Python.Common.AST (ModuleSpan, StatementSpan, ExprSpan)
+ import Language.Python.Common.Token (Token)
+ import Language.Python.Common.SrcLocation (initialSrcLocation)
+-import Language.Python.Common.ParserMonad (execParser, execParserKeepComments, ParseError, initialState)
++import Language.Python.Common.ParserMonad (execParserKeepComments, ParseError, initialState)
+ 
+ -- | Parse a whole Python source file. Return comments in addition to the parsed module.
+ parseModule :: String -- ^ The input stream (python module source code). 
+Index: b/src/Language/Python/Version2/Parser/Lexer.x
+===================================================================
+--- a/src/Language/Python/Version2/Parser/Lexer.x
++++ b/src/Language/Python/Version2/Parser/Lexer.x
+@@ -20,9 +20,6 @@ import Language.Python.Common.ParserMona
+ import Language.Python.Common.SrcLocation
+ import Language.Python.Common.LexerUtils
+ import qualified Data.Map as Map
+-import Control.Monad (liftM)
+-import Data.List (foldl')
+-import Numeric (readHex, readOct)
+ }
+ 
+ -- character sets
+Index: b/src/Language/Python/Version3/Parser.hs
+===================================================================
+--- a/src/Language/Python/Version3/Parser.hs
++++ b/src/Language/Python/Version3/Parser.hs
+@@ -35,7 +35,7 @@ import Language.Python.Version3.Parser.L
+ import Language.Python.Common.AST (ModuleSpan, StatementSpan, ExprSpan)
+ import Language.Python.Common.Token (Token)
+ import Language.Python.Common.SrcLocation (initialSrcLocation)
+-import Language.Python.Common.ParserMonad (execParser, execParserKeepComments, ParseError, initialState)
++import Language.Python.Common.ParserMonad (execParserKeepComments, ParseError, initialState)
+ 
+ -- | Parse a whole Python source file. Return comments in addition to the parsed module.
+ parseModule :: String -- ^ The input stream (python module source code). 
