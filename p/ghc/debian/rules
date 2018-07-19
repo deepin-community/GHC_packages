@@ -126,9 +126,7 @@ endif
 	echo 'V=1'                                     >> mk/build.mk
 	./configure $(confflags) --prefix=/usr \
 		$(EXTRA_CONFIGURE_FLAGS) \
-		--with-system-libffi \
-		--with-llc=llc-6.0 \
-		--with-opt=opt-6.0
+		--with-system-libffi
 
 override_dh_auto_build:
 	dh_auto_build
