@@ -127,7 +127,7 @@ endif
 	echo 'V=1'                                     >> mk/build.mk
 	dh_auto_configure -- \
 		$(EXTRA_CONFIGURE_FLAGS) \
-		--with-system-libffi
+		--with-system-libffi --libdir=/usr/lib
 
 override_dh_auto_build:
 	dh_auto_build
