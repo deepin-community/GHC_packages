@@ -1,0 +1,62 @@
+Description: Resolve timing issue in the test
+  Creating the TokenBucket far away from the actual tests means that
+  the TokenBucket can accumulate a partial token before the start time
+  for the first test is taken. After the first requested token
+  exhausts the burst size it doesn't take the full time that would
+  usually be required before the second token can be allocated. Most
+  of the time this doesn't seem to be a problem, but on some
+  architectures (armhf, mipsel) it seems to cause semi-consistent test
+  failurses. Strictly speaking the same problem still exists with this
+  patch, as the TokenBucket is still created before the start time of
+  the test is taken, but with the current layout this inaccuracy
+  usually balances out with the time added at the end, because the end
+  time of the test is taken slightly after the last token is
+  allocated.
+  This also fixes that the test was overly lenient for all but the
+  first test. All test are run with n+1 iterations to account for the
+  initial burst token contained in the freshly created bucket, but
+  only the first test gets to actually allocate that token. All others
+  have to wait for a new token to be generated.
+  This patch has not been forwarded to upstream yet, because at the
+  time of writing it, I did not have access to my GitHub account. One
+  I have I will (hopefully) forward it in a timely manner.
+Bug: https://github.com/haskell-hvr/token-bucket/issues/3
+Bug-Debian: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=867858
+Forwarded: no
+Author: Sven Bartscher <kritzefitz@debian.org>
+--- a/test-tb.hs
++++ b/test-tb.hs
+@@ -31,23 +31,22 @@
+ main = runInUnboundThread $ do
+     putStrLn "testing tocket-bucket..."
+
+-    !tb <- newTokenBucket
+-
+     replicateM_ 3 $ do
+-        check tb 10 10.0
+-        check tb 20 20.0
+-        check tb 50 50.0
+-        check tb 100 100.0
+-        check tb 200 200.0
+-        check tb 500 500.0
+-        check tb 1000 1000.0
++        check 10 10.0
++        check 20 20.0
++        check 50 50.0
++        check 100 100.0
++        check 200 200.0
++        check 500 500.0
++        check 1000 1000.0
+         putStrLn "============================================="
+ 
+   where
+-    check :: TokenBucket -> Int -> Double -> IO ()
+-    check tb n rate = do
++    check :: Int -> Double -> IO ()
++    check n rate = do
+         -- threadDelay 100000
+         putStrLn $ "running "++show n++"+1 iterations with "++show rate++" Hz rate-limit..."
++        !tb <- newTokenBucket
+         dt <- timeIO_ (replicateM_ (n+1) $ (tokenBucketWait tb 1 (toInvRate rate)))
+         let rate' = fromIntegral n/dt
+         unless (rate' <= rate) $ do

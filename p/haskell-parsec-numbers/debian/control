@@ -1,0 +1,61 @@
+Source: haskell-parsec-numbers
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Aggelos Avgerinos <evaggelos.avgerinos@gmail.com>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-parsec3-dev,
+ libghc-parsec3-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-parsec3-doc,
+Standards-Version: 4.2.1
+Homepage: http://hackage.haskell.org/package/parsec-numbers
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/cabal-debian/debian
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-parsec-numbers]
+X-Description: Utilities for parsing numbers from strings
+ parsec-numbers provides the number parsers without the need to
+ use a large (and unportable) token parser
+
+Package: libghc-parsec-numbers-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-parsec-numbers-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-parsec-numbers-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
