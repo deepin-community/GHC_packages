@@ -1,10 +1,10 @@
 Provided by “Pino” via Samuel Thibault. Not yet pushed upstream.
 
-Index: ghc-8.4.1/aclocal.m4
+Index: b/aclocal.m4
 ===================================================================
---- ghc-8.4.1.orig/aclocal.m4
-+++ ghc-8.4.1/aclocal.m4
-@@ -272,12 +272,15 @@
+--- a/aclocal.m4
++++ b/aclocal.m4
+@@ -272,12 +272,15 @@ AC_DEFUN([FPTOOLS_SET_HASKELL_PLATFORM_V
          nto-qnx)
              test -z "[$]2" || eval "[$]2=OSQNXNTO"
              ;;
@@ -21,11 +21,11 @@ Index: ghc-8.4.1/aclocal.m4
          *)
              echo "Unknown OS '[$]1'"
              exit 1
-Index: ghc-8.4.1/compiler/utils/Platform.hs
+Index: b/compiler/utils/Platform.hs
 ===================================================================
---- ghc-8.4.1.orig/compiler/utils/Platform.hs
-+++ ghc-8.4.1/compiler/utils/Platform.hs
-@@ -87,6 +87,7 @@
+--- a/compiler/utils/Platform.hs
++++ b/compiler/utils/Platform.hs
+@@ -87,6 +87,7 @@ data OS
          | OSHaiku
          | OSQNXNTO
          | OSAIX
@@ -33,7 +33,7 @@ Index: ghc-8.4.1/compiler/utils/Platform.hs
          deriving (Read, Show, Eq)
  
  -- | ARM Instruction Set Architecture, Extensions and ABI
-@@ -136,6 +137,7 @@
+@@ -136,6 +137,7 @@ osElfTarget OSKFreeBSD  = True
  osElfTarget OSHaiku     = True
  osElfTarget OSQNXNTO    = False
  osElfTarget OSAIX       = False
