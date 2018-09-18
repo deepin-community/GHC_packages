@@ -49,7 +49,8 @@ endif
 # NOTE: This should probably be removed, and revert back to using ld.gold,
 # once #901947 has been fixed.
 # Do the same for powerpcspe, due to https://bugs.debian.org/904915
-ifneq (,$(filter mips mipsel powerpcspe, $(DEB_HOST_ARCH)))
+# Do the same for sparc64, due to https://bugs.debian.org/908998
+ifneq (,$(filter mips mipsel powerpcspe sparc64, $(DEB_HOST_ARCH)))
   EXTRA_CONFIGURE_FLAGS += --disable-ld-override
 endif
 
