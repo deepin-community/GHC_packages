@@ -23,9 +23,10 @@ export DEB_HOST_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 export DEB_BUILD_GNU_TYPE ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
 export DEB_HOST_ARCH      ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
 
+EXTRA_CONFIGURE_FLAGS += --target $(DEB_HOST_GNU_TYPE)
 # We're cross-building if DEB_BUILD_GNU_TYPE != DEB_HOST_GNU_TYPE
 ifneq ($(DEB_BUILD_GNU_TYPE), $(DEB_HOST_GNU_TYPE))
-  confflags += --target $(DEB_HOST_GNU_TYPE) --enable-unregisterised
+  EXTRA_CONFIGURE_FLAGS += --enable-unregisterised
   BUILD_CROSS=YES
 else
   BUILD_CROSS=NO
@@ -34,7 +35,7 @@ endif
 ProjectVersion=$(shell cat VERSION)
 
 GHC=$(firstword $(shell bash -c "type -p ghc"))
-EXTRA_CONFIGURE_FLAGS=--with-ghc="$(GHC)"
+EXTRA_CONFIGURE_FLAGS +=--with-ghc="$(GHC)"
 
 DEB_HOOGLE_TXT_DIR = /usr/lib/ghc-doc/hoogle/
 
@@ -48,7 +49,8 @@ endif
 # NOTE: This should probably be removed, and revert back to using ld.gold,
 # once #901947 has been fixed.
 # Do the same for powerpcspe, due to https://bugs.debian.org/904915
-ifneq (,$(filter mips mipsel powerpcspe, $(DEB_HOST_ARCH)))
+# Do the same for sparc64, due to https://bugs.debian.org/908998
+ifneq (,$(filter mips mipsel powerpcspe sparc64, $(DEB_HOST_ARCH)))
   EXTRA_CONFIGURE_FLAGS += --disable-ld-override
 endif
 
@@ -79,9 +81,6 @@ ifneq (,$(filter arm64 armel armhf, $(DEB_HOST_ARCH)))
 endif
 ifeq (armhf,$(DEB_HOST_ARCH))
 	echo "SRC_HC_OPTS += -D__ARM_PCS_VFP" >> mk/build.mk
-endif
-ifeq (armel,$(DEB_HOST_ARCH))
-	patch -p1 < debian/patches/armel-revert-ghci-fixes.patch
 endif
 ifneq (,$(filter mips mipsel, $(DEB_HOST_ARCH)))
 	echo "SRC_HC_OPTS     += -optc--param -optcggc-min-expand=10" >> mk/build.mk
@@ -125,11 +124,9 @@ endif
 	echo 'RANLIB_CMD = $(DEB_HOST_GNU_TYPE)-ranlib'>> mk/build.mk
 	# We want verbose builds
 	echo 'V=1'                                     >> mk/build.mk
-	./configure $(confflags) --prefix=/usr \
+	dh_auto_configure -- \
 		$(EXTRA_CONFIGURE_FLAGS) \
-		--with-system-libffi \
-		--with-llc=llc-3.9 \
-		--with-opt=opt-3.9
+		--with-system-libffi --libdir=/usr/lib
 
 override_dh_auto_build:
 	dh_auto_build

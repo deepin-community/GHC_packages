@@ -1,8 +1,10 @@
 Forwarded to https://ghc.haskell.org/trac/ghc/ticket/10424
 
+Index: b/compiler/iface/MkIface.hs
+===================================================================
 --- a/compiler/iface/MkIface.hs
 +++ b/compiler/iface/MkIface.hs
-@@ -681,7 +681,7 @@ addFingerprints hsc_env mb_old_fingerpri
+@@ -689,7 +689,7 @@ addFingerprints hsc_env mb_old_fingerpri
     iface_hash <- computeFingerprint putNameLiterally
                        (mod_hash,
                         ann_fn (mkVarOcc "module"),  -- See mkIfaceAnnCache
@@ -11,7 +13,7 @@ Forwarded to https://ghc.haskell.org/trac/ghc/ticket/10424
                         sorted_deps,
                         mi_hpc iface0)
  
-@@ -714,6 +714,9 @@ addFingerprints hsc_env mb_old_fingerpri
+@@ -724,6 +724,9 @@ addFingerprints hsc_env mb_old_fingerpri
      (non_orph_fis,   orph_fis)   = mkOrphMap ifFamInstOrph (mi_fam_insts iface0)
      fix_fn = mi_fix_fn iface0
      ann_fn = mkIfaceAnnCache (mi_anns iface0)

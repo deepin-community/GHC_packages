@@ -1,68 +1,74 @@
-Description: Revert ghci ARM improvements (ticket #10375) on armel
- This patch reverts a change which improved ghci on ARM (see
- ghc ticket #10375). While the change fixed ghci on armhf, it
- actually resulted in the ghc package FTBFS on armel since the
- changes introduced made ghc incompatible with this architecture
- (ticket #11058). As a temporary workaround, we revert this particular
- change when ghc is built on armel. For this reason, this patch
- is not applied using the series file but only selectively on
- armel with the help of debian/rules.
- .
-
---- ghc-8.2.1.orig/aclocal.m4	2017-09-17 10:46:45.000000000 +0200
-+++ ghc-8.2.1/aclocal.m4	2017-09-17 11:57:40.681870101 +0200
-@@ -621,16 +621,8 @@ AC_DEFUN([FPTOOLS_SET_C_LD_FLAGS],
-         $3="$$3 -D_HPUX_SOURCE"
-         $5="$$5 -D_HPUX_SOURCE"
-         ;;
--    arm*linux*)
--        # On arm/linux and arm/android, tell gcc to generate Arm
--        # instructions (ie not Thumb) and to link using the gold linker.
--        # Forcing LD to be ld.gold is done in FIND_LD m4 macro.
--        $2="$$2 -marm"
--        $3="$$3 -Wl,-z,noexecstack"
--        $4="$$4 -z noexecstack"
--        ;;
--
--    aarch64*linux*)
-+    arm*linux*		| \
-+    aarch64*linux*	)
-         $3="$$3 -Wl,-z,noexecstack"
-         $4="$$4 -z noexecstack"
-         ;;
---- ghc-7.10.3.orig/libraries/ghci/GHCi/InfoTable.hsc
-+++ ghc-7.10.3/libraries/ghci/GHCi/InfoTable.hsc
-@@ -245,17 +245,17 @@ mkJumpToAddr dflags a = case platformArc
-                  , fromIntegral ((w64 `shiftR` 32) .&. 0x0000FFFF) ]
- 
-     ArchARM { } ->
--        -- Generates Arm sequence,
-+        -- Generates Thumb sequence,
-         --      ldr r1, [pc, #0]
-         --      bx r1
-         --
-         -- which looks like:
-         --     00000000 <.addr-0x8>:
--        --     0:       00109fe5    ldr    r1, [pc]      ; 8 <.addr>
--        --     4:       11ff2fe1    bx     r1
-+        --     0:       4900        ldr    r1, [pc]      ; 8 <.addr>
-+        --     4:       4708        bx     r1
-         let w32 = fromIntegral (funPtrToInt a) :: Word32
--        in Left [ 0x00, 0x10, 0x9f, 0xe5
--                , 0x11, 0xff, 0x2f, 0xe1
-+        in Left [ 0x49, 0x00
-+                , 0x47, 0x08
-                 , byte0 w32, byte1 w32, byte2 w32, byte3 w32]
- 
-     ArchARM64 { } ->
---- ghc-7.10.3.orig/compiler/llvmGen/LlvmCodeGen/Ppr.hs
-+++ ghc-7.10.3/compiler/llvmGen/LlvmCodeGen/Ppr.hs
-@@ -52,7 +52,7 @@ moduleLayout = sdocWithPlatform $ \platform ->
-         $+$ text "target triple = \"x86_64-linux-gnu\""
-     Platform { platformArch = ArchARM {}, platformOS = OSLinux } ->
-         text "target datalayout = \"e-p:32:32:32-i1:8:8-i8:8:8-i16:16:16-i32:32:32-i64:64:64-f32:32:32-f64:64:64-v64:64:64-v128:64:128-a0:0:64-n32\""
--        $+$ text "target triple = \"armv6-unknown-linux-gnueabihf\""
-+        $+$ text "target triple = \"arm-unknown-linux-gnueabi\""
-     Platform { platformArch = ArchARM {}, platformOS = OSAndroid } ->
-         text "target datalayout = \"e-p:32:32:32-i1:8:8-i8:8:8-i16:16:16-i32:32:32-i64:64:64-f32:32:32-f64:64:64-v64:64:64-v128:64:128-a0:0:64-n32\""
-         $+$ text "target triple = \"arm-unknown-linux-androideabi\""
+Description: with new ghc 8.4.3, the armel situation seems to have improved,
+ apply this patch unconditionally.
+#Description: Revert ghci ARM improvements (ticket #10375) on armel
+# This patch reverts a change which improved ghci on ARM (see
+# ghc ticket #10375). While the change fixed ghci on armhf, it
+# actually resulted in the ghc package FTBFS on armel since the
+# changes introduced made ghc incompatible with this architecture
+# (ticket #11058). As a temporary workaround, we revert this particular
+# change when ghc is built on armel. For this reason, this patch
+# is not applied using the series file but only selectively on
+# armel with the help of debian/rules.
+# .
+#
+#Index: ghc-8.4.1/aclocal.m4
+#===================================================================
+#--- ghc-8.4.1.orig/aclocal.m4
+#+++ ghc-8.4.1/aclocal.m4
+#@@ -651,15 +651,8 @@
+#         $3="$$3 -D_HPUX_SOURCE"
+#         $5="$$5 -D_HPUX_SOURCE"
+#         ;;
+#-    arm*linux*)
+#-        # On arm/linux and arm/android, tell gcc to generate Arm
+#-        # instructions (ie not Thumb).
+#-        $2="$$2 -marm"
+#-        $3="$$3 -Wl,-z,noexecstack"
+#-        $4="$$4 -z noexecstack"
+#-        ;;
+#-
+#-    aarch64*linux*)
+#+    arm*linux*		| \
+#+    aarch64*linux*	)
+#         $3="$$3 -Wl,-z,noexecstack"
+#         $4="$$4 -z noexecstack"
+#         ;;
+#Index: ghc-8.4.1/libraries/ghci/GHCi/InfoTable.hsc
+#===================================================================
+#--- ghc-8.4.1.orig/libraries/ghci/GHCi/InfoTable.hsc
+#+++ ghc-8.4.1/libraries/ghci/GHCi/InfoTable.hsc
+#@@ -245,17 +245,17 @@
+#                  , fromIntegral ((w64 `shiftR` 32) .&. 0x0000FFFF) ]
+# 
+#     ArchARM { } ->
+#-        -- Generates Arm sequence,
+#+        -- Generates Thumb sequence,
+#         --      ldr r1, [pc, #0]
+#         --      bx r1
+#         --
+#         -- which looks like:
+#         --     00000000 <.addr-0x8>:
+#-        --     0:       00109fe5    ldr    r1, [pc]      ; 8 <.addr>
+#-        --     4:       11ff2fe1    bx     r1
+#+        --     0:       4900        ldr    r1, [pc]      ; 8 <.addr>
+#+        --     4:       4708        bx     r1
+#         let w32 = fromIntegral (funPtrToInt a) :: Word32
+#-        in Left [ 0x00, 0x10, 0x9f, 0xe5
+#-                , 0x11, 0xff, 0x2f, 0xe1
+#+        in Left [ 0x49, 0x00
+#+                , 0x47, 0x08
+#                 , byte0 w32, byte1 w32, byte2 w32, byte3 w32]
+# 
+#     ArchARM64 { } ->
+Index: b/llvm-targets
+===================================================================
+--- a/llvm-targets
++++ b/llvm-targets
+@@ -3,6 +3,7 @@
+ ,("x86_64-unknown-windows", ("e-m:w-i64:64-f80:128-n8:16:32:64-S128", "x86-64", ""))
+ ,("arm-unknown-linux-gnueabihf", ("e-m:e-p:32:32-i64:64-v128:64:128-a:0:32-n32-S64", "arm1176jzf-s", "+strict-align"))
+ ,("armv6-unknown-linux-gnueabihf", ("e-m:e-p:32:32-i64:64-v128:64:128-a:0:32-n32-S64", "arm1136jf-s", "+strict-align"))
++,("arm-unknown-linux-gnueabi", ("e-m:e-p:32:32-i64:64-v128:64:128-a:0:32-n32-S64", "arm1136jf-s", "+strict-align"))
+ ,("armv6l-unknown-linux-gnueabihf", ("e-m:e-p:32:32-i64:64-v128:64:128-a:0:32-n32-S64", "arm1176jzf-s", "+strict-align"))
+ ,("armv7-unknown-linux-gnueabihf", ("e-m:e-p:32:32-i64:64-v128:64:128-a:0:32-n32-S64", "generic", ""))
+ ,("armv7a-unknown-linux-gnueabi", ("e-m:e-p:32:32-i64:64-v128:64:128-a:0:32-n32-S64", "generic", ""))

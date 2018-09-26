@@ -1,3 +1,102 @@
+ghc (8.4.3+dfsg1-1) experimental; urgency=medium
+
+  * Backport upstream commit 18cb44dfae3f.
+    This fixes upstream bug #15213 (32 bit Haddock runs out of memory
+    compiling 32 bit GHC).
+  * Remove DFSG incompatible file (Closes: #870683).
+
+ -- Ilias Tsitsimpis <iliastsi@debian.org>  Fri, 21 Sep 2018 23:05:59 +0300
+
+ghc (8.4.3-7) experimental; urgency=medium
+
+  * Backport upstream commit ec9aacf3eb2 (add -latomic to ghc-prim)
+  * Use system's default ld (ld.bfd) on sparc64, instead of ld.gold
+    (Closes: #908998)
+
+ -- Ilias Tsitsimpis <iliastsi@debian.org>  Tue, 18 Sep 2018 14:30:06 +0300
+
+ghc (8.4.3-6) experimental; urgency=medium
+
+  [ Gianfranco Costamagna ]
+  * Try to fix armel build
+
+  [ John Paul Adrian Glaubitz ]
+  * ghc: disable ld override on powerpcspe too
+
+  [ Ilias Tsitsimpis ]
+  * Allow unregisterised ghc-8.2 to build newer GHC
+  * Bump to Standards-Version 4.2.1
+
+ -- Ilias Tsitsimpis <iliastsi@debian.org>  Fri, 14 Sep 2018 14:32:12 +0300
+
+ghc (8.4.3-5) experimental; urgency=medium
+
+  * Switch to dh_auto_configure, making the correct triplet
+    being passed to the build system, with also --target flag
+    (this should hopefully make the configure more robust, and
+    stop failing now that armhf runs on arm64 systems)
+    - thanks waldi, jcristay for the help
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Fri, 20 Jul 2018 13:52:19 +0200
+
+ghc (8.4.3-4) experimental; urgency=medium
+
+  * merge with unstable 8.2.2-6
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Fri, 20 Jul 2018 00:24:43 +0200
+
+ghc (8.4.3-3) experimental; urgency=medium
+
+  * Switch configure.ac to search for llvm 6.0
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Thu, 19 Jul 2018 12:16:02 +0200
+
+ghc (8.4.3-2) experimental; urgency=medium
+
+  [ Gianfranco Costamagna ]
+  * Remove old and non-applied anymore powerpcspe-disable-FPU-code.patch.
+    (Closes: #900817)
+  * Switch to llvm 6.0 (Closes: #850915)
+
+  [ Clint Adams ]
+  * Merge in 8.2.2-5.
+
+ -- Clint Adams <clint@debian.org>  Wed, 18 Jul 2018 19:12:59 -0400
+
+ghc (8.4.3-1) experimental; urgency=medium
+
+  * New upstream version.
+  * Apply upstream patch to build on armhf.
+
+ -- Clint Adams <clint@debian.org>  Wed, 30 May 2018 18:34:37 -0400
+
+ghc (8.4.2-1) experimental; urgency=medium
+
+  * New upstream release
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Mon, 23 Apr 2018 10:28:43 +0200
+
+ghc (8.4.1-2) experimental; urgency=medium
+
+  * Refresh armel patch, but do not apply it, to see
+    if upstream changes are enough to make it build again
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Tue, 10 Apr 2018 08:58:07 +0200
+
+ghc (8.4.1-1) experimental; urgency=medium
+
+  * New upstream release, patch refresh
+  * Bump std-version to 4.1.4, no changes required
+  * d/{rules,control}: switch to llvm 5.0 on arm*
+  * Drop patches included in new upstream release:
+    - reproducible-tmp-names
+    - do-not-use-SHELL
+    - build-unlit-and-hp2ps-twice.patch
+    - fix-hssplicety.patch
+    - lower-optimization-for-unreg.patch
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Mon, 09 Apr 2018 15:54:00 +0200
+
 ghc (8.2.2-6) unstable; urgency=medium
 
   * debian/patches/{risc-support,e175aaf6918bb2b497b83618dc4c270a0d231a1c}.patch

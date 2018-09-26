@@ -24,9 +24,11 @@ Description: driver: skip -Bsymbolic on unregisterised targets
  .
  This change disables '-Bsymbolic' for unregisterised targets.
 
+Index: b/compiler/main/SysTools.hs
+===================================================================
 --- a/compiler/main/SysTools.hs
 +++ b/compiler/main/SysTools.hs
-@@ -1741,9 +1741,12 @@
+@@ -534,9 +534,12 @@ linkDynLib dflags0 o_files dep_packages
              -------------------------------------------------------------------
  
              let output_fn = case o_file of { Just s -> s; Nothing -> "a.out"; }
@@ -41,7 +43,7 @@ Description: driver: skip -Bsymbolic on unregisterised targets
  
              runLink dflags (
                      map Option verbFlags
-@@ -1800,3 +1803,27 @@
+@@ -593,3 +596,27 @@ getFrameworkOpts dflags platform
      -- reverse because they're added in reverse order from the cmd line:
      framework_opts = concat [ ["-framework", fw]
                              | fw <- reverse frameworks ]

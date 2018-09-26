@@ -39,11 +39,11 @@ Subscribers: rwbarton, thomie, carter
 Differential Revision: https://phabricator.haskell.org/D4982
 ---
 
-Index: ghc-8.2.2/rts/posix/OSMem.c
+Index: b/rts/posix/OSMem.c
 ===================================================================
---- ghc-8.2.2.orig/rts/posix/OSMem.c
-+++ ghc-8.2.2/rts/posix/OSMem.c
-@@ -422,6 +422,8 @@
+--- a/rts/posix/OSMem.c
++++ b/rts/posix/OSMem.c
+@@ -435,6 +435,8 @@ osTryReserveHeapMemory (W_ len, void *hi
      void *base, *top;
      void *start, *end;
  
@@ -52,7 +52,7 @@ Index: ghc-8.2.2/rts/posix/OSMem.c
      /* We try to allocate len + MBLOCK_SIZE,
         because we need memory which is MBLOCK_SIZE aligned,
         and then we discard what we don't need */
-@@ -489,6 +491,8 @@
+@@ -502,6 +504,8 @@ void *osReserveHeapMemory(void *startAdd
  
      attempt = 0;
      while (1) {

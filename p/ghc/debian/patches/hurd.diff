@@ -1,8 +1,10 @@
 Provided by “Pino” via Samuel Thibault. Not yet pushed upstream.
 
+Index: b/aclocal.m4
+===================================================================
 --- a/aclocal.m4
 +++ b/aclocal.m4
-@@ -274,7 +274,7 @@ AC_DEFUN([FPTOOLS_SET_HASKELL_PLATFORM_V
+@@ -272,12 +272,15 @@ AC_DEFUN([FPTOOLS_SET_HASKELL_PLATFORM_V
          nto-qnx)
              test -z "[$]2" || eval "[$]2=OSQNXNTO"
              ;;
@@ -11,9 +13,7 @@ Provided by “Pino” via Samuel Thibault. Not yet pushed upstream.
              test -z "[$]2" || eval "[$]2=OSUnknown"
              ;;
          aix)
-@@ -283,6 +283,9 @@ AC_DEFUN([FPTOOLS_SET_HASKELL_PLATFORM_V
-         linux-android)
-             test -z "[$]2" || eval "[$]2=OSAndroid"
+             test -z "[$]2" || eval "[$]2=OSAIX"
              ;;
 +        gnu)
 +            test -z "[$]2" || eval "[$]2=OSHurd"
@@ -21,19 +21,21 @@ Provided by “Pino” via Samuel Thibault. Not yet pushed upstream.
          *)
              echo "Unknown OS '[$]1'"
              exit 1
+Index: b/compiler/utils/Platform.hs
+===================================================================
 --- a/compiler/utils/Platform.hs
 +++ b/compiler/utils/Platform.hs
-@@ -88,6 +88,7 @@ data OS
+@@ -87,6 +87,7 @@ data OS
+         | OSHaiku
          | OSQNXNTO
-         | OSAndroid
          | OSAIX
 +        | OSHurd
          deriving (Read, Show, Eq)
  
  -- | ARM Instruction Set Architecture, Extensions and ABI
-@@ -139,6 +140,7 @@ osElfTarget OSHaiku     = True
+@@ -136,6 +137,7 @@ osElfTarget OSKFreeBSD  = True
+ osElfTarget OSHaiku     = True
  osElfTarget OSQNXNTO    = False
- osElfTarget OSAndroid   = True
  osElfTarget OSAIX       = False
 +osElfTarget OSHurd      = True
  osElfTarget OSUnknown   = False
