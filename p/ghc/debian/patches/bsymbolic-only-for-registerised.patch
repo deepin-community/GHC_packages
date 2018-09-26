@@ -28,7 +28,7 @@ Index: b/compiler/main/SysTools.hs
 ===================================================================
 --- a/compiler/main/SysTools.hs
 +++ b/compiler/main/SysTools.hs
-@@ -534,9 +534,12 @@ linkDynLib dflags0 o_files dep_packages
+@@ -548,9 +548,12 @@ linkDynLib dflags0 o_files dep_packages
              -------------------------------------------------------------------
  
              let output_fn = case o_file of { Just s -> s; Nothing -> "a.out"; }
@@ -43,7 +43,7 @@ Index: b/compiler/main/SysTools.hs
  
              runLink dflags (
                      map Option verbFlags
-@@ -593,3 +596,27 @@ getFrameworkOpts dflags platform
+@@ -607,3 +610,27 @@ getFrameworkOpts dflags platform
      -- reverse because they're added in reverse order from the cmd line:
      framework_opts = concat [ ["-framework", fw]
                              | fw <- reverse frameworks ]
