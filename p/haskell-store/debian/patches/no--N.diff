@@ -1,29 +1,31 @@
+Index: b/store.cabal
+===================================================================
 --- a/store.cabal
 +++ b/store.cabal
-@@ -99,7 +99,7 @@
-   main-is: Spec.hs
+@@ -102,7 +102,7 @@ test-suite store-test
+       System.IO.ByteBufferSpec
    hs-source-dirs:
        test
 -  ghc-options: -Wall -fwarn-tabs -fwarn-incomplete-uni-patterns -fwarn-incomplete-record-updates -O2 -threaded -rtsopts -with-rtsopts=-N
 +  ghc-options: -Wall -fwarn-tabs -fwarn-incomplete-uni-patterns -fwarn-incomplete-record-updates -O2 -threaded -rtsopts
    build-depends:
-       base >=4.7 && <5
-     , store-core >=0.4 && <0.5
-@@ -157,7 +157,7 @@
+       array >=0.5.0.0
+     , async >=2.0.2
+@@ -154,7 +154,7 @@ test-suite store-weigh
    main-is: Allocations.hs
    hs-source-dirs:
        test
 -  ghc-options: -Wall -fwarn-tabs -fwarn-incomplete-uni-patterns -fwarn-incomplete-record-updates -O2 -threaded -rtsopts -with-rtsopts=-N -with-rtsopts=-T -O2
 +  ghc-options: -Wall -fwarn-tabs -fwarn-incomplete-uni-patterns -fwarn-incomplete-record-updates -O2 -threaded -rtsopts -with-rtsopts=-T -O2
    build-depends:
-       base >=4.7 && <5
-     , store-core >=0.4 && <0.5
-@@ -215,7 +215,7 @@
-   main-is: Bench.hs
+       array >=0.5.0.0
+     , async >=2.0.2
+@@ -213,7 +213,7 @@ benchmark store-bench
+       Paths_store
    hs-source-dirs:
        bench
 -  ghc-options: -Wall -fwarn-tabs -fwarn-incomplete-uni-patterns -fwarn-incomplete-record-updates -O2 -threaded -rtsopts -with-rtsopts=-N1 -with-rtsopts=-s -with-rtsopts=-qg
 +  ghc-options: -Wall -fwarn-tabs -fwarn-incomplete-uni-patterns -fwarn-incomplete-record-updates -O2 -threaded -rtsopts -with-rtsopts=-s -with-rtsopts=-qg
    build-depends:
-       base >=4.7 && <5
-     , store-core >=0.4 && <0.5
+       array >=0.5.0.0
+     , async >=2.0.2
