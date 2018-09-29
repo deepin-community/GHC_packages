@@ -3,9 +3,11 @@ Description: fix include paths
  for in bibutils/
 Author: Joachim Breitner <nomeata@debian.org>
 
+Index: b/src/Text/Bibutils.hsc
+===================================================================
 --- a/src/Text/Bibutils.hsc
 +++ b/src/Text/Bibutils.hsc
-@@ -402,7 +402,7 @@
+@@ -431,7 +431,7 @@ newtype BiblioOut = BiblioOut { unBiblio
  
  newtype FormatOpt = FormatOpt { unFormatOpt :: CInt }
  
@@ -14,7 +16,7 @@ Author: Joachim Breitner <nomeata@debian.org>
  
  #{enum FormatOpt, FormatOpt
   , bibout_finalcomma = BIBL_FORMAT_BIBOUT_FINALCOMMA
-@@ -437,8 +437,8 @@
+@@ -482,8 +482,8 @@ combineRawOpts = Raw . foldr ((.|.) . un
  combineFormatOpts :: [FormatOpt] -> FormatOpt
  combineFormatOpts = FormatOpt . foldr ((.|.) . unFormatOpt) 0
  
