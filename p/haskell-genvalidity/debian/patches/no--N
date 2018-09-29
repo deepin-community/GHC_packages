@@ -1,7 +1,9 @@
+Index: b/genvalidity.cabal
+===================================================================
 --- a/genvalidity.cabal
 +++ b/genvalidity.cabal
-@@ -59,12 +59,19 @@
-       Paths_genvalidity
+@@ -60,6 +60,10 @@ library
+     ghc-options: -Wno-redundant-constraints
    default-language: Haskell2010
  
 +flag smp
@@ -11,6 +13,8 @@
  test-suite genvalidity-test
    type: exitcode-stdio-1.0
    main-is: Spec.hs
+@@ -69,7 +73,10 @@ test-suite genvalidity-test
+       Paths_genvalidity
    hs-source-dirs:
        test
 -  ghc-options: -threaded -rtsopts -with-rtsopts=-N -Wall -fno-warn-name-shadowing
