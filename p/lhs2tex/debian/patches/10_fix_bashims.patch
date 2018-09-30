@@ -5,27 +5,27 @@
 ## DP: Fix a bashism in the examples of lhs2TeX
 
 @DPATCH@
-Index: lhs2tex-1.15/Examples/lhs2TeXpre
+Index: b/Examples/lhs2TeXpre
 ===================================================================
---- lhs2tex-1.15.orig/Examples/lhs2TeXpre	2009-12-18 13:21:18.000000000 +0100
-+++ lhs2tex-1.15/Examples/lhs2TeXpre	2010-03-25 12:16:23.000000000 +0100
+--- a/Examples/lhs2TeXpre
++++ b/Examples/lhs2TeXpre
 @@ -5,7 +5,7 @@
-
+ 
  LHSHOME=..
-
+ 
 -if [ "$1" == "$2" ]; then
 +if [ "$1" = "$2" ]; then
    cp "$2" "$3"
  else
    if grep -q "^%include" "$1"; then
-Index: lhs2tex-1.15/doc/lhs2TeXpre
+Index: b/doc/lhs2TeXpre
 ===================================================================
---- lhs2tex-1.15.orig/doc/lhs2TeXpre	2009-12-18 13:21:18.000000000 +0100
-+++ lhs2tex-1.15/doc/lhs2TeXpre	2010-03-25 12:16:23.000000000 +0100
+--- a/doc/lhs2TeXpre
++++ b/doc/lhs2TeXpre
 @@ -5,7 +5,7 @@
-
+ 
  LHSHOME=..
-
+ 
 -if [ "$1" == "$2" ]; then
 +if [ "$1" = "$2" ]; then
    cp "$2" "$3"
