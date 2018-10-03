@@ -1,0 +1,22 @@
+From 510701ef19eec22b0e4f6ddbd21f175c2c229227 Mon Sep 17 00:00:00 2001
+From: Undefined3102 <Undefined3102@gmail.com>
+Date: Sat, 28 Jul 2018 12:11:17 +0000
+Subject: [PATCH] hiding (<>) from Prelude
+
+---
+ src/UU/PPrint.hs | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/UU/PPrint.hs b/src/UU/PPrint.hs
+index f7d02ab..0d7d92e 100644
+--- a/src/UU/PPrint.hs
++++ b/src/UU/PPrint.hs
+@@ -60,7 +60,7 @@ module UU.PPrint
+ import System.IO      (Handle,hPutStr,hPutChar,stdout)
+ 
+ #if __GLASGOW_HASKELL__ >= 710
+-import Prelude hiding ((<$>))
++import Prelude hiding ((<$>),(<>))
+ #endif
+ 
+ infixr 5 </>,<//>,<$>,<$$>
