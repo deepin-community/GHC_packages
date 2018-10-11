@@ -1,0 +1,15 @@
+Index: b/src/Text/Bibutils.hsc
+===================================================================
+--- a/src/Text/Bibutils.hsc
++++ b/src/Text/Bibutils.hsc
+@@ -418,6 +418,10 @@ newtype BiblioIn  = BiblioIn  { unBiblio
+ newtype BiblioOut = BiblioOut { unBiblioOut :: CInt }
+     deriving ( Eq )
+ 
++#ifndef BIBL_NBIBOUT
++#define BIBL_NBIBOUT (BIBL_FIRSTOUT+7)
++#endif
++
+ #{enum BiblioOut, BiblioOut
+  , mods_out     = BIBL_MODSOUT
+  , bibtex_out   = BIBL_BIBTEXOUT
