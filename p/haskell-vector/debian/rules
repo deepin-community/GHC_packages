@@ -1,8 +1,12 @@
 #!/usr/bin/make -f
 
-ifeq (,$(filter $(DEB_BUILD_ARCH),mips mipsel mips64el armel armhf))
+ifeq (,$(filter $(DEB_BUILD_ARCH),mips mipsel mips64el armel armhf i386 riscv64 alpha hurd-i386 x32))
 DEB_ENABLE_TESTS = yes
 else
+# Tests on i386, riscv64, alpha, hurd-i386 and x32 currently fail to
+# build with out-of-memory error.
+# This has been reported as a GHC bug here:
+# https://ghc.haskell.org/trac/ghc/ticket/13535
 DEB_ENABLE_TESTS = no
 endif
 
