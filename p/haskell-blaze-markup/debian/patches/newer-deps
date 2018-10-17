@@ -1,0 +1,38 @@
+From 57af819ead3b4e4570887b0e9134787b88c1e673 Mon Sep 17 00:00:00 2001
+From: Dan Burton <danburton.email@gmail.com>
+Date: Tue, 25 Sep 2018 07:26:12 -0700
+Subject: [PATCH] Relax constraints on base, containers, and tasty for ghc 8.6
+
+---
+ blaze-markup.cabal | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+Index: b/blaze-markup.cabal
+===================================================================
+--- a/blaze-markup.cabal
++++ b/blaze-markup.cabal
+@@ -36,7 +36,7 @@ Library
+     Text.Blaze.Renderer.Utf8
+ 
+   Build-depends:
+-    base          >= 4    && < 4.12,
++    base          >= 4    && < 4.13,
+     blaze-builder >= 0.3  && < 0.5,
+     text          >= 0.10 && < 1.3,
+     bytestring    >= 0.9  && < 0.11
+@@ -60,12 +60,12 @@ Test-suite blaze-markup-tests
+   Build-depends:
+     HUnit            >= 1.2  && < 1.7,
+     QuickCheck       >= 2.7  && < 2.12,
+-    containers       >= 0.3  && < 0.6,
+-    tasty            >= 1.0  && < 1.1,
++    containers       >= 0.3  && < 0.7,
++    tasty            >= 1.0  && < 1.2,
+     tasty-hunit      >= 0.10 && < 0.11,
+     tasty-quickcheck >= 0.10 && < 0.11,
+     -- Copied from regular dependencies...
+-    base          >= 4    && < 4.12,
++    base          >= 4    && < 4.13,
+     blaze-builder >= 0.3  && < 0.5,
+     text          >= 0.10 && < 1.3,
+     bytestring    >= 0.9  && < 0.11
