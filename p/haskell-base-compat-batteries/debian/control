@@ -1,0 +1,77 @@
+Source: haskell-base-compat-batteries
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Ilias Tsitsimpis <iliastsi@debian.org>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-base-compat-dev (>= 0.10.1),
+ libghc-base-compat-dev (<< 0.11),
+ libghc-base-compat-prof,
+ libghc-quickcheck2-dev,
+ libghc-quickcheck2-prof,
+ libghc-hspec-dev (>= 1.8),
+ libghc-hspec-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-base-compat-doc,
+Standards-Version: 4.2.1
+Homepage: https://hackage.haskell.org/package/base-compat-batteries
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-base-compat-batteries
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-base-compat-batteries]
+X-Description: base-compat with extra batteries
+ Provides functions available in later versions of base to a wider
+ range of compilers, without requiring you to use CPP pragmas
+ in your code.
+ .
+ This package provides the same API as the base-compat library,
+ but depends on compatibility packages (such as semigroups) to offer
+ a wider support window than base-compat, which has no dependencies.
+ Most of the modules in this library have the same names as in
+ base-compat to make it easier to switch between the two. There also
+ exist versions of each module with the suffix .Repl.Batteries, which
+ are distinct from anything in base-compat, to allow for easier
+ use in GHCi.
+
+Package: libghc-base-compat-batteries-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-base-compat-batteries-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-base-compat-batteries-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
