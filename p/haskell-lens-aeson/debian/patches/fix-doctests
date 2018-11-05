@@ -1,0 +1,30 @@
+From 1d5059f57c31ce3c13d43049b61da19d4b40917e Mon Sep 17 00:00:00 2001
+From: Eric Mertens <emertens@gmail.com>
+Date: Sun, 4 Nov 2018 16:42:33 -0800
+Subject: [PATCH] Make doctests deterministic
+
+Fixes #30
+---
+ src/Data/Aeson/Lens.hs | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+Index: b/src/Data/Aeson/Lens.hs
+===================================================================
+--- a/src/Data/Aeson/Lens.hs
++++ b/src/Data/Aeson/Lens.hs
+@@ -328,11 +328,11 @@ key i = _Object . ix i
+ 
+ -- | An indexed Traversal into Object properties
+ --
+--- >>> "{\"a\": 4, \"b\": 7}" ^@.. members
+--- [("a",Number 4.0),("b",Number 7.0)]
++-- >>> Data.List.sort ("{\"a\": 4, \"b\": 7}" ^@.. members . _Number)
++-- [("a",4.0),("b",7.0)]
+ --
+--- >>> "{\"a\": 4, \"b\": 7}" & members . _Number *~ 10
+--- "{\"a\":40,\"b\":70}"
++-- >>> "{\"a\": 4}" & members . _Number *~ 10
++-- "{\"a\":40}"
+ members :: AsValue t => IndexedTraversal' Text t Value
+ members = _Object . itraversed
+ {-# INLINE members #-}
