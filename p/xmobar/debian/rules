@@ -23,7 +23,7 @@ endif
 	dh $@
 
 override_dh_auto_configure:
-	ghc --make Setup.*hs -o setup-ghc
+	ghc --make setup.*hs -o setup-ghc
 	./setup-ghc configure --ghc --prefix=/usr $(CONFIGURE_OPTS)
 
 override_dh_auto_build:
