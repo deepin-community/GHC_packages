@@ -2,8 +2,7 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
-DEB_HOST_ARCH := $(shell dpkg-architecture -qDEB_HOST_ARCH)
-DEB_HOST_ARCH_OS := $(shell dpkg-architecture -qDEB_HOST_ARCH_OS)
+include /usr/share/dpkg/architecture.mk
 
 CONFIGURE_OPTS = --ghc-options="-optl -Wl,-z,relro -optl -Wl,-z,now -optl -Wl,--as-needed"
 
