@@ -1,0 +1,53 @@
+Description: Replace CInt with Int on s390x
+ haskell-libxml-sax does not work properly on s390x (64-bit big endian) causing
+ haskell-dbus to FTBFS.
+ .
+ This has been reported as a GHC bug:
+   https://ghc.haskell.org/trac/ghc/ticket/15933
+ .
+ As a work-around, replace CInt with Int for callbacks on s390x, which allows
+ haskell-dbus to build on s390x.
+Author: Ilias Tsitsimpis <iliastsi@debian.org>
+Bug: https://ghc.haskell.org/trac/ghc/ticket/15933
+Bug-Debian: https://bugs.debian.org/913187
+
+Index: b/lib/Text/XML/LibXML/SAX.hs
+===================================================================
+--- a/lib/Text/XML/LibXML/SAX.hs
++++ b/lib/Text/XML/LibXML/SAX.hs
+@@ -249,7 +249,11 @@ parsedBeginElement = callback wrap_begin
+ 	getcb_startElementNs
+ 	setcb_startElementNs
+ 
++#if defined(s390x_HOST_ARCH) || defined(ppc64_HOST_ARCH) || defined(sparc64_HOST_ARCH) || defined(x32_HOST_ARCH)
++type StartElementNsSAX2Func = (Ptr Context -> CString -> CString -> CString -> Int -> Ptr CString -> Int -> Int -> Ptr CString -> IO ())
++#else
+ type StartElementNsSAX2Func = (Ptr Context -> CString -> CString -> CString -> CInt -> Ptr CString -> CInt -> CInt -> Ptr CString -> IO ())
++#endif
+ 
+ wrap_beginElement :: Parser m -> (X.Name -> [(X.Name, [X.Content])] -> m Bool) -> IO (FunPtr StartElementNsSAX2Func)
+ wrap_beginElement p io =
+@@ -273,7 +277,11 @@ foreign import ccall unsafe "hslibxml-sh
+ foreign import ccall "wrapper"
+ 	newcb_startElementNs :: StartElementNsSAX2Func -> IO (FunPtr StartElementNsSAX2Func)
+ 
++#if defined(s390x_HOST_ARCH) || defined(ppc64_HOST_ARCH) || defined(sparc64_HOST_ARCH) || defined(x32_HOST_ARCH)
++peekAttributes :: Bool -> Ptr CString -> Int -> IO [(X.Name, [X.Content])]
++#else
+ peekAttributes :: Bool -> Ptr CString -> CInt -> IO [(X.Name, [X.Content])]
++#endif
+ peekAttributes hasRefCB ptr = loop 0 where
+ 	loop _      0 = return []
+ 	loop offset n = do
+@@ -375,7 +383,11 @@ parsedWhitespace = callback wrap_charact
+ 	getcb_ignorableWhitespace
+ 	setcb_ignorableWhitespace
+ 
++#if defined(s390x_HOST_ARCH) || defined(ppc64_HOST_ARCH) || defined(sparc64_HOST_ARCH) || defined(x32_HOST_ARCH)
++type CharactersSAXFunc = (Ptr Context -> CString -> Int -> IO ())
++#else
+ type CharactersSAXFunc = (Ptr Context -> CString -> CInt -> IO ())
++#endif
+ 
+ wrap_characters :: Parser m -> (T.Text -> m Bool) -> IO (FunPtr CharactersSAXFunc)
+ wrap_characters p io =
