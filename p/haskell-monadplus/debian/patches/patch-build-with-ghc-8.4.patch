@@ -1,0 +1,14 @@
+Index: haskell-monadplus/src/Control/Monad/Plus.hs
+===================================================================
+--- haskell-monadplus.orig/src/Control/Monad/Plus.hs
++++ haskell-monadplus/src/Control/Monad/Plus.hs
+@@ -253,6 +253,9 @@ instance Alternative (Partial r) where
+     empty = Partial (const Nothing)
+     Partial f <|> Partial g = Partial $ \x -> f x <|> g x
+ 
++instance Semigroup (Partial a b) where
++  (<>) = mappend
++
+ instance Monoid (Partial a b) where
+     mempty  = mzero
+     mappend = mplus

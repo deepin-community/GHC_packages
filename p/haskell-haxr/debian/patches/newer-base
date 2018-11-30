@@ -1,0 +1,27 @@
+--- a/Network/XmlRpc/Pretty.hs
++++ b/Network/XmlRpc/Pretty.hs
+@@ -9,7 +9,7 @@
+ module Network.XmlRpc.Pretty (document, content, element, 
+                               doctypedecl, prolog, cp) where
+ 
+-import Prelude hiding (maybe, elem, concat, null, head)
++import Prelude hiding (maybe, elem, concat, null, head, (<>))
+ import qualified Prelude as P
+ import Data.ByteString.Lazy.Char8 (ByteString(), elem, empty)
+ import qualified Data.ByteString.Lazy.UTF8 as BU
+@@ -21,7 +21,7 @@
+ import qualified GHC.Exts as Ext
+ 
+ -- |A 'Builder' with a recognizable empty value.
+-newtype MBuilder = MBuilder { unMB :: Maybe Builder } deriving Monoid
++newtype MBuilder = MBuilder { unMB :: Maybe Builder } deriving (Monoid, Semigroup)
+ 
+ -- |'Maybe' eliminator specialized for 'MBuilder'.
+ maybe :: (t -> MBuilder) -> Maybe t -> MBuilder
+@@ -338,4 +338,4 @@
+ containsDoubleQuote :: [EV] -> Bool
+ containsDoubleQuote evs = any csq evs
+     where csq (EVString s) = '"' `elem` BU.fromString s
+-          csq _            = False
+\ No newline at end of file
++          csq _            = False

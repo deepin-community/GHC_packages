@@ -1,0 +1,107 @@
+Source: haskell-shelly
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Ilias Tsitsimpis <iliastsi@debian.org>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc (>= 8.4.3),
+ ghc-prof,
+ libghc-async-dev,
+ libghc-async-prof,
+ libghc-enclosed-exceptions-dev,
+ libghc-enclosed-exceptions-prof,
+ libghc-exceptions-dev (>= 0.6),
+ libghc-exceptions-prof,
+ libghc-lifted-async-dev,
+ libghc-lifted-async-prof,
+ libghc-lifted-base-dev,
+ libghc-lifted-base-prof,
+ libghc-monad-control-dev (>= 0.3.2),
+ libghc-monad-control-dev (<< 1.1),
+ libghc-monad-control-prof,
+ libghc-system-fileio-dev (<< 0.4),
+ libghc-system-fileio-prof,
+ libghc-system-filepath-dev (>= 0.4.7),
+ libghc-system-filepath-dev (<< 0.5),
+ libghc-system-filepath-prof,
+ libghc-transformers-base-dev,
+ libghc-transformers-base-prof,
+ libghc-unix-compat-dev (<< 0.6),
+ libghc-unix-compat-prof,
+ libghc-hunit-dev (>= 1.2),
+ libghc-hunit-prof,
+ libghc-exceptions-dev,
+ libghc-hspec-dev (>= 2.0),
+ libghc-hspec-prof,
+ libghc-hspec-contrib-dev,
+ libghc-hspec-contrib-prof,
+ libghc-monad-control-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-async-doc,
+ libghc-enclosed-exceptions-doc,
+ libghc-exceptions-doc,
+ libghc-lifted-async-doc,
+ libghc-lifted-base-doc,
+ libghc-monad-control-doc,
+ libghc-system-fileio-doc,
+ libghc-system-filepath-doc,
+ libghc-transformers-base-doc,
+ libghc-unix-compat-doc,
+Standards-Version: 4.2.1
+Homepage: https://github.com/yesodweb/Shelly.hs
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-shelly
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-shelly]
+X-Description: shell-like (systems) programming in Haskell
+ Shelly provides convenient systems programming in Haskell,
+ similar in spirit to POSIX shells. Shelly:
+ .
+  * is aimed at convenience and getting things done rather than
+    being a demonstration of elegance
+  * has detailed and useful error messages
+  * maintains its own environment, making it thread-safe
+  * is modern, using Text and system-filepath/system-fileio
+ .
+ Shelly is originally forked from the Shellish package.
+
+Package: libghc-shelly-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-shelly-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-shelly-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

@@ -9,3 +9,10 @@ DEB_ENABLE_TESTS := yes
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
+
+# Avoid haddock bug with ppHsc2hs by first running cabal build, which does the
+# preprocessing of the .hsc files correctly. Then haddock doesn't choke on the
+# preprocessing, and builds the docs for the library component.
+# For more information, see:
+# https://github.com/haskell/cabal/issues/4215#issuecomment-273486201
+build-haddock-stamp: build-ghc-stamp

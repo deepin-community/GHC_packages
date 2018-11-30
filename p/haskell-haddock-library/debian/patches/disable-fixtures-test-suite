@@ -1,0 +1,16 @@
+Description: Disable fixtures test-suite
+ It requires tree-diff which is not packaged yet.
+Author: Ilias Tsitsimpis <iliastsi@debian.org>
+
+Index: b/haddock-library.cabal
+===================================================================
+--- a/haddock-library.cabal
++++ b/haddock-library.cabal
+@@ -92,6 +92,7 @@ test-suite spec
+     hspec-discover:hspec-discover ^>= 2.4.4
+ 
+ test-suite fixtures
++  buildable: False
+   type:             exitcode-stdio-1.0
+   default-language: Haskell2010
+   main-is:          Fixtures.hs

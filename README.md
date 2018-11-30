@@ -71,9 +71,9 @@ Debian Haskell Tools
 We provide tools for a number of repeated tasks, such as tagging, upgrading,
 knowing what to build and what to upgrade, etc. They are provided in the
 `pkg-haskell-tools` package, available in sid, or at
-ssh://git.debian.org/git/pkg-haskell/pkg-haskell-tools.git
-(git://anonscm.debian.org/pkg-haskell/pkg-haskell-tools.git for
-non-Debian-developers).
+git@salsa.debian.org:haskell-team/pkg-haskell-tools.git
+(git://salsa.debian.org/haskell-team/pkg-haskell-tools.git for
+read-only access).
 
 All tools are under the `dht` prefix, and it has a manpage (man dht) or at
 <file:///usr/share/doc/pkg-haskell-tools/dht.html>.

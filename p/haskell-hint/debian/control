@@ -7,25 +7,26 @@ Section: haskell
 Rules-Requires-Root: no
 Build-Depends:
  cdbs,
- debhelper (>= 9),
- ghc (>= 8),
+ debhelper (>= 10),
+ ghc (>= 8.4.3),
  ghc-ghci,
  ghc-prof,
  haskell-devscripts (>= 0.13),
- libghc-exceptions-dev,
+ libghc-exceptions-dev (>= 0.10),
+ libghc-exceptions-dev (<< 0.11),
  libghc-exceptions-prof,
  libghc-ghc-paths-dev,
  libghc-ghc-paths-prof,
- libghc-mtl-dev,
- libghc-mtl-prof,
  libghc-random-dev,
  libghc-random-prof,
+ libghc-temporary-dev,
+ libghc-temporary-prof,
 Build-Depends-Indep:
  ghc-doc,
  libghc-exceptions-doc,
  libghc-ghc-paths-doc,
- libghc-mtl-doc,
  libghc-random-doc,
+ libghc-temporary-doc,
 Standards-Version: 4.1.4
 Homepage: https://github.com/mvdan/hint
 Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-hint
@@ -45,7 +46,7 @@ Description: runtime Haskell interpreter (GHC API wrapper)${haskell:ShortBlurb}
  This library defines an Interpreter monad. It allows one to load Haskell
  modules, browse them, type-check and evaluate strings with Haskell expressions
  and even coerce them into values. The library is thread-safe and type-safe
- (even the coercion of expressions to values). It is, esentially, a huge subset
+ (even the coercion of expressions to values). It is, essentially, a huge subset
  of the GHC API wrapped in a simpler API. Works with GHC.10.x and 6.8.x (this
  version was not tested with GHC.6).
  .

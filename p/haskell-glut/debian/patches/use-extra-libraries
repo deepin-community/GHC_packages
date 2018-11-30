@@ -1,6 +1,8 @@
+Index: b/GLUT.cabal
+===================================================================
 --- a/GLUT.cabal
 +++ b/GLUT.cabal
-@@ -104,6 +104,7 @@
+@@ -106,6 +106,7 @@ library
    else
      cpp-options: "-DCALLCONV=ccall"
      cc-options: "-DUSE_DLSYM"
@@ -8,9 +10,11 @@
  
  executable BOGLGP01-OnYourOwn1
    if !flag(BuildExamples)
+Index: b/cbits/HsGLUT.c
+===================================================================
 --- a/cbits/HsGLUT.c
 +++ b/cbits/HsGLUT.c
-@@ -57,7 +57,7 @@
+@@ -57,7 +57,7 @@ static const char* libNames[] = {
    /* If the public path failed, try the system framework path. */
    "/System/Library/Frameworks/GLUT.framework/GLUT"
  #else

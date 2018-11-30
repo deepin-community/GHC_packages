@@ -1,0 +1,33 @@
+From 256c06dd7ddcd60018d0b02a06f991413fe2d80b Mon Sep 17 00:00:00 2001
+From: Michael Snoyman <michael@snoyman.com>
+Date: Sun, 30 Sep 2018 13:56:46 +0300
+Subject: [PATCH] Use Int64 instead of Int #158
+
+---
+ ChangeLog.md          | 1 +
+ test/Data/YamlSpec.hs | 5 +++--
+ 2 files changed, 4 insertions(+), 2 deletions(-)
+
+Index: b/test/Data/YamlSpec.hs
+===================================================================
+--- a/test/Data/YamlSpec.hs
++++ b/test/Data/YamlSpec.hs
+@@ -9,6 +9,7 @@ module Data.YamlSpec (main, spec) where
+ 
+ import qualified Text.Libyaml as Y
+ import qualified Data.ByteString.Char8 as B8
++import Data.Int (Int64)
+ 
+ import Test.HUnit hiding (Test, path)
+ 
+@@ -190,8 +191,8 @@ spec = do
+       go "0o123" (83 :: Int)
+       go "0xC" (12 :: Int)
+       go "0xc" (12 :: Int)
+-      go "0xdeadBEEF" (3735928559 :: Int)
+-      go "0xDEADBEEF" (3735928559 :: Int)
++      go "0xdeadBEEF" (3735928559 :: Int64)
++      go "0xDEADBEEF" (3735928559 :: Int64)
+       go "1.23015e+3" (1230.15 :: Scientific)
+       go "12.3015e+02" (1230.15 :: Scientific)
+       go "1230.15" (1230.15 :: Scientific)

@@ -5,22 +5,23 @@
 open PKG, 'inplace/bin/ghc-pkg list --simple-output |'
     or die "ghc-pkg list failed: $!";
 
-my @ignored = ('ghc', 'mtl', 'utf8-string', 'rts', 'stm', 'parallel');
+my @ignored = ('ghc', 'rts');
 my %ignored;
 $ignored{$_}++ for @ignored;
-
-my @no_conflict = ('cabal');
-my %no_conflict;
-$no_conflict{$_}++ for @no_conflict;
+my %pkgver;
+my %renamed;
+$renamed{"parsec"} = "parsec3";
 
 my @pkgs;
 while (<PKG>) {
     y/A-Z/a-z/;
     my $pkgstring = $_;
-    LOOP: while ($pkgstring =~ m,([^ ]*?)-\d.*? ?,g) {
+    LOOP: while ($pkgstring =~ m,([^ ]*?)-(\d[\d.]*) ?,g) {
 	my $pkg = $1;
 	next if exists $ignored{$pkg};
-	push @pkgs, $1;
+	$pkg = $renamed{$pkg} if exists $renamed{$pkg};
+	$pkgver{$pkg} = $2;
+	push @pkgs, $pkg;
     }
 }
 close PKG;
@@ -28,14 +29,13 @@ close PKG;
 my $buf;
 open DEV, '>debian/ghc.substvars';
 $buf = "provided-devs=";
-foreach (sort @pkgs) {$buf .= "libghc-$_-dev, ";}
+foreach (sort @pkgs) {$buf .= "libghc-$_-dev (= $pkgver{$_}), ";}
 $buf =~ s#(.*), #$1#;
 print DEV $buf."\n";
 
 $buf = "conflicting-devs=";
 foreach (sort @pkgs) {
-	next if $no_conflict{$_};
-	$buf .= "libghc-$_-dev, ";
+	$buf .= "libghc-$_-dev (<< $pkgver{$_}+), ";
 }
 $buf =~ s#(.*), #$1#;
 print DEV $buf."\n";
@@ -44,7 +44,7 @@ close DEV;
 open PROF, '>debian/ghc-prof.substvars';
 print PROF 'provided-profs=';
 $buf = "";
-foreach (@pkgs) {$buf .= "libghc-$_-prof, ";}
+foreach (@pkgs) {$buf .= "libghc-$_-prof (= $pkgver{$_}), ";}
 $buf =~ s#(.*), #$1#;
 print PROF $buf."\n";
 close PROF;
@@ -52,7 +52,7 @@ close PROF;
 open DOC, '>debian/ghc-doc.substvars';
 print DOC 'provided-docs=';
 $buf = "";
-foreach (@pkgs) {$buf .= "libghc-$_-doc, ";}
+foreach (@pkgs) {$buf .= "libghc-$_-doc (= $pkgver{$_}), ";}
 $buf =~ s#(.*), #$1#;
 print DOC $buf."\n";
 close DOC;

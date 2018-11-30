@@ -1,0 +1,18 @@
+Description: Do not build executable
+ Do not build/ship the haskell-mustache binary since we only need the mustache
+ package for its library components (as a dependency for stack).
+ We can always ship the haskell-mustache binary later on.
+Author: Ilias Tsitsimpis <iliastsi@debian.org>
+
+Index: b/mustache.cabal
+===================================================================
+--- a/mustache.cabal
++++ b/mustache.cabal
+@@ -71,6 +71,7 @@ library
+ 
+ executable haskell-mustache
+   main-is: Main.hs
++  buildable: False
+   hs-source-dirs:
+       app
+   ghc-options: -threaded -Wall

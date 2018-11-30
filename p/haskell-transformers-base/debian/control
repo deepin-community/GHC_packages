@@ -6,15 +6,17 @@ Section: haskell
 Rules-Requires-Root: no
 Build-Depends:
  cdbs,
- debhelper (>= 9),
- ghc (>= 8),
+ debhelper (>= 10),
+ ghc (>= 8.4.3),
  ghc-prof,
  haskell-devscripts (>= 0.13),
- libghc-stm-dev (>= 2.3),
- libghc-stm-prof,
- libghc-transformers-compat-dev (>= 0.2),
+ libghc-base-orphans-dev (>= 0.3),
+ libghc-base-orphans-prof,
+ libghc-transformers-compat-dev (>= 0.6.1),
  libghc-transformers-compat-prof,
-Build-Depends-Indep: ghc-doc, libghc-stm-doc, libghc-transformers-compat-doc
+Build-Depends-Indep: ghc-doc,
+ libghc-base-orphans-doc,
+ libghc-transformers-compat-doc,
 Standards-Version: 4.1.4
 Homepage: https://github.com/mvv/transformers-base
 Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-transformers-base
