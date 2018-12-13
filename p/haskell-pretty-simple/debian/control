@@ -1,0 +1,80 @@
+Source: haskell-pretty-simple
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-ansi-terminal-dev (>= 0.6),
+ libghc-ansi-terminal-prof (>= 0.6),
+ libghc-aeson-dev,
+ libghc-aeson-prof,
+ libghc-glob-dev,
+ libghc-glob-prof,
+ libghc-doctest-dev,
+ libghc-doctest-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-ansi-terminal-doc,
+Standards-Version: 4.2.1
+Homepage: https://github.com/cdepillabout/pretty-simple
+X-Description: pretty printer for data types with a 'Show' instance
+ Features:
+  * Easy-to-read
+   - Complex data types are simple to understand.
+  * Color
+   - Prints in color using ANSI escape codes.
+   - It is possible to print without color by using the pPrintNoColor
+     function
+  * Rainbow Parentheses
+   - Easy to understand deeply nested data types
+  * Configurable Indentation
+   - Amount of indentation is configurable with the pPrintOpt function
+  * Fast
+   - No problem pretty-printing data types thousands of lines long
+  * Works with any data type with a Show instance
+   - Some common Haskell data types have a Show instance that produces
+     non-valid Haskell code. pretty-simple will pretty-print even these
+     data types
+
+Package: libghc-pretty-simple-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-pretty-simple-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-pretty-simple-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

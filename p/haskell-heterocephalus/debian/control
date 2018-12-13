@@ -1,0 +1,80 @@
+Source: haskell-heterocephalus
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-blaze-html-dev (>= 0.8),
+ libghc-blaze-html-dev (<< 0.10),
+ libghc-blaze-html-prof (>= 0.8),
+ libghc-blaze-html-prof (<< 0.10),
+ libghc-blaze-markup-dev (>= 0.7),
+ libghc-blaze-markup-dev (<< 0.9),
+ libghc-blaze-markup-prof (>= 0.7),
+ libghc-blaze-markup-prof (<< 0.9),
+ libghc-dlist-dev (>= 0.7.1.1),
+ libghc-dlist-prof (>= 0.7.1.1),
+ libghc-shakespeare-dev (>= 2.0),
+ libghc-shakespeare-dev (<< 2.1),
+ libghc-shakespeare-prof (>= 2.0),
+ libghc-shakespeare-prof (<< 2.1),
+ libghc-glob-dev,
+ libghc-glob-prof,
+ libghc-doctest-dev (>= 0.10),
+ libghc-doctest-prof (>= 0.10),
+Build-Depends-Indep: ghc-doc,
+ libghc-blaze-html-doc,
+ libghc-blaze-markup-doc,
+ libghc-dlist-doc,
+ libghc-shakespeare-doc,
+Standards-Version: 4.2.1
+Homepage: https://github.com/arowM/heterocephalus#readme
+X-Description: type-safe template engine for popular front-end tools
+ Heterocephalus is intended for use with another feature-rich template
+ engine, such as pug, slim, or haml, and provides a way to interpolate
+ server side variables into a precompiled template file with forall,
+ if, and case statements.
+
+Package: libghc-heterocephalus-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-heterocephalus-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-heterocephalus-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

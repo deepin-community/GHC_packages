@@ -1,0 +1,63 @@
+Source: haskell-from-sum
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-glob-dev,
+ libghc-glob-prof,
+ libghc-doctest-dev,
+ libghc-doctest-prof,
+Build-Depends-Indep: ghc-doc,
+Standards-Version: 4.2.1
+Homepage: https://github.com/cdepillabout/from-sum
+X-Description: canonical fromMaybeM and fromEitherM functions
+ Various "from" functions for Either and Maybe, including fromEitherM,
+ fromEitherOrM, fromEitherM_, fromEitherOrM_, fromMaybeM,
+ fromMaybeOrM, fromMaybeM_, fromMaybeOrM_, fromEitherMM,
+ fromEitherOrMM, fromMaybeMM, fromMaybeOrMM, fromEither, fromEitherOr,
+ fromMaybe, fromMaybeOr, collapseEither, and collapseExceptT.
+
+Package: libghc-from-sum-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-from-sum-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-from-sum-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

@@ -1,0 +1,72 @@
+Source: haskell-singletons
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Sean Whitton <spwhitton@spwhitton.name>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-mtl-dev (>= 2.2.1),
+ libghc-mtl-prof,
+ libghc-syb-dev (>= 0.4),
+ libghc-syb-prof,
+ libghc-text-dev (>= 1.2),
+ libghc-text-prof,
+ libghc-th-desugar-dev (>= 1.8),
+ libghc-th-desugar-dev (<< 1.9),
+ libghc-th-desugar-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-mtl-doc,
+ libghc-syb-doc,
+ libghc-text-doc,
+ libghc-th-desugar-doc,
+Standards-Version: 4.2.1
+Homepage: https://www.github.com/goldfirere/singletons
+X-Description: Haskell framework for generating singleton types
+ This library generates singleton types, promoted functions, and singleton
+ functions using Template Haskell. It is useful for programmers who wish
+ to use dependently typed programming techniques. The library was originally
+ presented in /Dependently Typed Programming with Singletons/, published
+ at the Haskell Symposium, 2012.
+
+Package: libghc-singletons-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-singletons-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-singletons-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
