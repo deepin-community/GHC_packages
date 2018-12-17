@@ -9,6 +9,10 @@ DEB_ENABLE_TESTS := yes
 endif
 endif
 
+ifneq (,$(filter $(DEB_BUILD_ARCH),armhf))
+DEB_ENABLE_TESTS := no
+endif
+
 # unicode problems in the testsuite
 check-ghc-stamp: export LC_ALL := C.UTF-8
 
