@@ -1,0 +1,18 @@
+--- a/gi-pango.cabal
++++ b/gi-pango.cabal
+@@ -28,15 +28,9 @@
+       build-depends: base >= 4.7 && <5,
+                      haskell-gi-base == 0.21.*,
+                      haskell-gi == 0.21.*,
+-                     haskell-gi-overloading < 1.1,
+                      gi-gobject == 2.0.*,
+                      gi-glib == 2.0.*,
+                      bytestring >= 0.10 && < 1,
+                      containers >= 0.5 && < 1,
+                      text >= 1.0 && < 2,
+                      transformers >= 0.4 && < 1
+-
+-      -- Disable overloading when compiling under GHC 8.2.x
+-      -- see https://ghc.haskell.org/trac/ghc/ticket/14382
+-      if impl(ghc == 8.2.*)
+-              build-depends: haskell-gi-overloading == 0.0
