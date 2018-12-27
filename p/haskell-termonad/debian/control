@@ -1,0 +1,132 @@
+Source: haskell-termonad
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-quickcheck2-dev,
+ libghc-quickcheck2-prof,
+ libghc-classy-prelude-dev,
+ libghc-classy-prelude-prof,
+ libghc-colour-dev,
+ libghc-colour-prof,
+ libghc-constraints-dev,
+ libghc-constraints-prof,
+ libghc-data-default-dev,
+ libghc-data-default-prof,
+ libghc-dyre-dev,
+ libghc-dyre-prof,
+ libghc-gi-gdk-dev,
+ libghc-gi-gdk-prof,
+ libghc-gi-gio-dev,
+ libghc-gi-gio-prof,
+ libghc-gi-glib-dev,
+ libghc-gi-glib-prof,
+ libghc-gi-gtk-dev,
+ libghc-gi-gtk-prof,
+ libghc-gi-pango-dev,
+ libghc-gi-pango-prof,
+ libghc-gi-vte-dev,
+ libghc-gi-vte-prof,
+ libghc-haskell-gi-base-dev,
+ libghc-haskell-gi-base-prof,
+ libghc-lens-dev,
+ libghc-lens-prof,
+ libghc-pretty-simple-dev,
+ libghc-pretty-simple-prof,
+ libghc-xml-conduit-dev,
+ libghc-xml-conduit-prof,
+ libghc-xml-html-qq-dev,
+ libghc-xml-html-qq-prof,
+ libghc-doctest-dev,
+ libghc-doctest-prof,
+ libghc-hedgehog-dev,
+ libghc-hedgehog-prof,
+ libghc-tasty-dev,
+ libghc-tasty-prof,
+ libghc-tasty-hedgehog-dev,
+ libghc-tasty-hedgehog-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-quickcheck2-doc,
+ libghc-classy-prelude-doc,
+ libghc-colour-doc,
+ libghc-constraints-doc,
+ libghc-data-default-doc,
+ libghc-dyre-doc,
+ libghc-gi-gdk-doc,
+ libghc-gi-gio-doc,
+ libghc-gi-glib-doc,
+ libghc-gi-gtk-doc,
+ libghc-gi-pango-doc,
+ libghc-gi-vte-doc,
+ libghc-haskell-gi-base-doc,
+ libghc-lens-doc,
+ libghc-pretty-simple-doc,
+ libghc-xml-conduit-doc,
+ libghc-xml-html-qq-doc,
+Standards-Version: 4.3.0
+Homepage: https://github.com/cdepillabout/termonad
+X-Description: terminal emulator configurable in Haskell
+ Termonad is a terminal emulator configurable in Haskell. It is
+ extremely customizable and provides hooks to modify the default
+ behavior. It can be thought of as the "XMonad" of terminal
+ emulators.
+
+Package: libghc-termonad-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-termonad-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-termonad-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: termonad
+Architecture: any
+Section: x11
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
