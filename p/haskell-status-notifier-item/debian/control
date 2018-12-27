@@ -1,0 +1,99 @@
+Source: haskell-status-notifier-item
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-dbus-dev (>= 1.0.0),
+ libghc-dbus-dev (<< 2.0.0),
+ libghc-dbus-prof (>= 1.0.0),
+ libghc-dbus-prof (<< 2.0.0),
+ libghc-hslogger-dev,
+ libghc-hslogger-prof,
+ libghc-lens-dev,
+ libghc-lens-prof,
+ libghc-network-dev,
+ libghc-network-prof,
+ libghc-spool-dev (>= 0.1),
+ libghc-spool-dev (<< 1.0),
+ libghc-spool-prof (>= 0.1),
+ libghc-spool-prof (<< 1.0),
+ libghc-vector-dev,
+ libghc-vector-prof,
+ libghc-dbus-hslogger-dev (>= 0.1.0.1),
+ libghc-dbus-hslogger-dev (<< 0.2.0.0),
+ libghc-dbus-hslogger-prof (>= 0.1.0.1),
+ libghc-dbus-hslogger-prof (<< 0.2.0.0),
+ libghc-optparse-applicative-dev,
+ libghc-optparse-applicative-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-dbus-doc,
+ libghc-hslogger-doc,
+ libghc-lens-doc,
+ libghc-network-doc,
+ libghc-spool-doc,
+ libghc-vector-doc,
+Standards-Version: 4.3.0
+Homepage: https://github.com/IvanMalison/status-notifier-item#readme
+X-Description: StatusNotifierItem/libappindicator dbus implementation
+ A Haskell implementation of the StatusNotifierItem protocol
+ (https://www.freedesktop.org/wiki/Specifications/StatusNotifierItem/).
+
+Package: libghc-status-notifier-item-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-status-notifier-item-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-status-notifier-item-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: haskell-status-notifier-item-utils
+Architecture: any
+Section: misc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
