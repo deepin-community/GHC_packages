@@ -7,7 +7,7 @@ echo -n "Waiting for the X server to become ready"
 for i in $(seq 1 30); do
 	echo "."
 	xprop -root >/dev/null 2>&1 && break
-	if [ i -eq 30 ]; then
+	if [ $i -eq 30 ]; then
 		echo "Failed!"
 		exit 1
 	fi
