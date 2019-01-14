@@ -4,7 +4,15 @@
 
 include /usr/share/dpkg/architecture.mk
 
-CONFIGURE_OPTS = --ghc-options="-optl -Wl,-z,relro -optl -Wl,-z,now -optl -Wl,--as-needed"
+GHC_OPTIONS = -optl -Wl,-z,relro -optl -Wl,-z,now -optl -Wl,--as-needed
+
+# Work-around a bug in GHC on 64-bit unregistered platforms.
+# https://ghc.haskell.org/trac/ghc/ticket/15853
+ifneq (,$(filter $(DEB_BUILD_ARCH),mips64el s390x alpha ia64 riscv64 sparc64))
+     GHC_OPTIONS += -O0
+endif
+
+CONFIGURE_OPTS = --ghc-options="$(GHC_OPTIONS)"
 
 ifeq ($(DEB_HOST_ARCH_OS),linux)
     CONFIGURE_OPTS += --flags="with_xft with_inotify with_iwlib with_mpris with_dbus with_xpm with_uvmeter with_conduit"
