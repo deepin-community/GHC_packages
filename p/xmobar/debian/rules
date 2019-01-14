@@ -6,14 +6,8 @@ include /usr/share/dpkg/architecture.mk
 
 CONFIGURE_OPTS = --ghc-options="-optl -Wl,-z,relro -optl -Wl,-z,now -optl -Wl,--as-needed"
 
-ifneq ($(DEB_HOST_ARCH), arm64)
-    WITH_CONDUIT="with_conduit"
-else
-    WITH_CONDUIT=""
-endif
-
 ifeq ($(DEB_HOST_ARCH_OS),linux)
-    CONFIGURE_OPTS += --flags="with_xft with_inotify with_iwlib with_mpris with_dbus with_xpm with_uvmeter $(WITH_CONDUIT)"
+    CONFIGURE_OPTS += --flags="with_xft with_inotify with_iwlib with_mpris with_dbus with_xpm with_uvmeter with_conduit"
 else
     CONFIGURE_OPTS += --flags="with_xft with_xpm"
 endif
