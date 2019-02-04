@@ -1,0 +1,65 @@
+Source: haskell-cborg
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-half-dev (>= 0.2.2.3),
+ libghc-half-dev (<< 0.4),
+ libghc-half-prof (>= 0.2.2.3),
+ libghc-half-prof (<< 0.4),
+ libghc-primitive-dev (>= 0.5),
+ libghc-primitive-dev (<< 0.7),
+ libghc-primitive-prof (>= 0.5),
+ libghc-primitive-prof (<< 0.7),
+Build-Depends-Indep: ghc-doc,
+ libghc-half-doc,
+ libghc-primitive-doc,
+Standards-Version: 4.3.0
+X-Description: Concise Binary Object Representation
+ This package provides an efficient implementation of the Concise
+ Binary Object Representation (CBOR), as specified by RFC 7049.
+
+Package: libghc-cborg-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-cborg-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-cborg-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
