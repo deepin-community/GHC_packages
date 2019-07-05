@@ -1,0 +1,60 @@
+name:                type-errors
+version:             0.2.0.0
+github:              "isovector/type-errors"
+license:             BSD3
+author:              "Sandy Maguire"
+maintainer:          "sandy@sandymaguire.me"
+copyright:           "2019 Sandy Maguire"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+synopsis:            Tools for writing better type errors
+category:            Type
+
+description:         Please see the README on GitHub at <https://github.com/isovector/type-errors#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- first-class-families >= 0.5.0.0
+- template-haskell
+- th-abstraction
+- syb
+
+library:
+  source-dirs: src
+
+ghc-options:
+  - -Wall
+
+default-extensions:
+  - ConstraintKinds
+  - DataKinds
+  - FlexibleContexts
+  - LambdaCase
+  - PolyKinds
+  - ScopedTypeVariables
+  - TemplateHaskellQuotes
+  - TypeApplications
+  - TypeFamilies
+  - TypeOperators
+  - UndecidableInstances
+
+when:
+  - condition: impl(ghc < 8.6)
+    default-extensions:
+      - TypeInType
+
+tests:
+  test:
+    main:                Main.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - type-errors
+    - doctest >= 0.16.0.1 && < 0.17
+
