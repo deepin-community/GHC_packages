@@ -43,7 +43,7 @@ Index: b/rts/posix/OSMem.c
 ===================================================================
 --- a/rts/posix/OSMem.c
 +++ b/rts/posix/OSMem.c
-@@ -435,6 +435,8 @@ osTryReserveHeapMemory (W_ len, void *hi
+@@ -476,6 +476,8 @@ osTryReserveHeapMemory (W_ len, void *hi
      void *base, *top;
      void *start, *end;
  
@@ -52,7 +52,7 @@ Index: b/rts/posix/OSMem.c
      /* We try to allocate len + MBLOCK_SIZE,
         because we need memory which is MBLOCK_SIZE aligned,
         and then we discard what we don't need */
-@@ -502,6 +504,8 @@ void *osReserveHeapMemory(void *startAdd
+@@ -552,6 +554,8 @@ void *osReserveHeapMemory(void *startAdd
  
      attempt = 0;
      while (1) {

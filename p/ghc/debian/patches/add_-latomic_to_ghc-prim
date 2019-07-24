@@ -1,128 +1,54 @@
-commit ec9aacf3eb2975fd302609163aaef429962ecd87
-Author: Moritz Angermann <moritz.angermann@gmail.com>
-Date:   Thu Feb 8 16:07:07 2018 +0800
+commit ce3897ffd6e7c8b8f36b8e920168bac8c7f836ae
+Author: Ilias Tsitsimpis <iliastsi@debian.org>
+Date:   Tue Sep 18 17:45:17 2018 +0200
 
-    adds -latomic to. ghc-prim
+    Fix check whether GCC supports __atomic_ builtins
     
-    Reviewers: bgamari, hvr
+    Summary:
+    C11 atomics are never used because:
+    
+    * The program used for checking whether GCC supports
+    __atomic_ builtins fails with the following error:
+    
+    ```
+      error: size mismatch in argument 2 of `__atomic_load`
+       int test(int *x) { int y; __atomic_load(&x, &y, __ATOMIC_SEQ_CST); return x; }
+    ```
+    
+    * There is a typo when checking if CONF_GCC_SUPPORTS__ATOMICS equals YES,
+    resulting in PRIM_CFLAGS and PRIM_EXTRA_LIBRARIES never being set.
+    
+    Reviewers: bgamari
     
     Reviewed By: bgamari
     
-    Subscribers: erikd, hvr, rwbarton, thomie, carter
+    Subscribers: rwbarton, erikd, carter
     
-    Differential Revision: https://phabricator.haskell.org/D4378
+    Differential Revision: https://phabricator.haskell.org/D5154
 
-    iliastsi: The original patch fails to correctly detect and use C11
-    atomics, so I modified it based on https://phabricator.haskell.org/D5154.
-
-Index: b/aclocal.m4
-===================================================================
---- a/aclocal.m4
-+++ b/aclocal.m4
-@@ -1284,24 +1284,6 @@ AC_SUBST(GccIsClang)
- rm -f conftest.txt
- ])
- 
--# FP_GCC_SUPPORTS__ATOMICS
--# ------------------------
--# Does gcc support the __atomic_* family of builtins?
--AC_DEFUN([FP_GCC_SUPPORTS__ATOMICS],
--[
--   AC_REQUIRE([AC_PROG_CC])
--   AC_MSG_CHECKING([whether GCC supports __atomic_ builtins])
--   echo 'int test(int *x) { int y; __atomic_load(&x, &y, __ATOMIC_SEQ_CST); return x; }' > conftest.c
--   if $CC -c conftest.c > /dev/null 2>&1; then
--       CONF_GCC_SUPPORTS__ATOMICS=YES
--       AC_MSG_RESULT([yes])
--   else
--       CONF_GCC_SUPPORTS__ATOMICS=NO
--       AC_MSG_RESULT([no])
--   fi
--   rm -f conftest.c conftest.o
--])
--
- # FP_GCC_SUPPORTS_NO_PIE
- # ----------------------
- # Does gcc support the -no-pie option? If so we should pass it to gcc when
-Index: b/configure.ac
-===================================================================
---- a/configure.ac
-+++ b/configure.ac
-@@ -714,11 +714,6 @@ FP_GCC_VERSION
- dnl ** See whether gcc supports -no-pie
- FP_GCC_SUPPORTS_NO_PIE
- 
--dnl ** Used to determine how to compile ghc-prim's atomics.c, used by
--dnl    unregisterised, Sparc, and PPC backends.
--FP_GCC_SUPPORTS__ATOMICS
--AC_DEFINE([HAVE_C11_ATOMICS], [$CONF_GCC_SUPPORTS__ATOMICS], [Does GCC support __atomic primitives?])
--
- FP_GCC_EXTRA_FLAGS
- 
- dnl ** look to see if we have a C compiler using an llvm back end.
-Index: b/libraries/ghc-prim/Setup.hs
-===================================================================
---- a/libraries/ghc-prim/Setup.hs
-+++ b/libraries/ghc-prim/Setup.hs
-@@ -18,7 +18,7 @@ import System.Exit
- import System.Directory
- 
- main :: IO ()
--main = do let hooks = simpleUserHooks {
-+main = do let hooks = autoconfUserHooks {
-                   regHook = addPrimModule
-                           $ regHook simpleUserHooks,
-                   buildHook = build_primitive_sources
 Index: b/libraries/ghc-prim/aclocal.m4
 ===================================================================
---- /dev/null
+--- a/libraries/ghc-prim/aclocal.m4
 +++ b/libraries/ghc-prim/aclocal.m4
-@@ -0,0 +1,17 @@
-+# FP_GCC_SUPPORTS__ATOMICS
-+# ------------------------
-+# Does gcc support the __atomic_* family of builtins?
-+AC_DEFUN([FP_GCC_SUPPORTS__ATOMICS],
-+[
-+   AC_REQUIRE([AC_PROG_CC])
-+   AC_MSG_CHECKING([whether GCC supports __atomic_ builtins])
+@@ -5,7 +5,7 @@ AC_DEFUN([FP_GCC_SUPPORTS__ATOMICS],
+ [
+    AC_REQUIRE([AC_PROG_CC])
+    AC_MSG_CHECKING([whether GCC supports __atomic_ builtins])
+-   echo 'int test(int *x) { int y; __atomic_load(&x, &y, __ATOMIC_SEQ_CST); return x; }' > conftest.c
 +   echo 'int test(int *x) { int y; __atomic_load(x, &y, __ATOMIC_SEQ_CST); return y; }' > conftest.c
-+   if $CC -c conftest.c > /dev/null 2>&1; then
-+       CONF_GCC_SUPPORTS__ATOMICS=YES
-+       AC_MSG_RESULT([yes])
-+   else
-+       CONF_GCC_SUPPORTS__ATOMICS=NO
-+       AC_MSG_RESULT([no])
-+   fi
-+   rm -f conftest.c conftest.o
-+])
+    if $CC -c conftest.c > /dev/null 2>&1; then
+        CONF_GCC_SUPPORTS__ATOMICS=YES
+        AC_MSG_RESULT([yes])
 Index: b/libraries/ghc-prim/configure.ac
 ===================================================================
---- /dev/null
+--- a/libraries/ghc-prim/configure.ac
 +++ b/libraries/ghc-prim/configure.ac
-@@ -0,0 +1,18 @@
-+AC_INIT([ghc-prim package], [2.1], [glasgow-haskell-bugs@haskell.org], [ghc-prim])
-+
-+AC_CONFIG_SRCDIR([ghc-prim.cabal])
-+
-+# -------------------------------------------------------------------------
-+dnl ** Used to determine how to compile ghc-prim's atomics.c, used by
-+dnl    unregisterised, Sparc, and PPC backends.
-+FP_GCC_SUPPORTS__ATOMICS
-+AC_DEFINE([HAVE_C11_ATOMICS], [$CONF_GCC_SUPPORTS__ATOMICS], [Does GCC support __atomic primitives?])
-+
+@@ -8,7 +8,7 @@ dnl    unregisterised, Sparc, and PPC ba
+ FP_GCC_SUPPORTS__ATOMICS
+ AC_DEFINE([HAVE_C11_ATOMICS], [$CONF_GCC_SUPPORTS__ATOMICS], [Does GCC support __atomic primitives?])
+ 
+-if test "x$CONF_GCC_SUPPORTS__ATOMICS" = YES
 +if test "$CONF_GCC_SUPPORTS__ATOMICS" = "YES"
-+then PRIM_CFLAGS=-DHAVE_C11_ATOMICS
-+     PRIM_EXTRA_LIBRARIES=atomic
-+fi
-+AC_SUBST([PRIM_CFLAGS])
-+AC_SUBST([PRIM_EXTRA_LIBRARIES])
-+AC_CONFIG_FILES([ghc-prim.buildinfo])
-+AC_OUTPUT
-Index: b/libraries/ghc-prim/ghc-prim.buildinfo.in
-===================================================================
---- /dev/null
-+++ b/libraries/ghc-prim/ghc-prim.buildinfo.in
-@@ -0,0 +1,2 @@
-+cc-options: @PRIM_CFLAGS@
-+extra-libraries: @PRIM_EXTRA_LIBRARIES@
-\ No newline at end of file
+ then PRIM_CFLAGS=-DHAVE_C11_ATOMICS
+      PRIM_EXTRA_LIBRARIES=atomic
+ fi
