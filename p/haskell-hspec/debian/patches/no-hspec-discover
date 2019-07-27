@@ -2,23 +2,13 @@ Do not depend on hspec-discover (the haskell library), as that is empty
 anyways. We ensure that the hspec-discover binary is available via
 control/debian.
 
-Index: b/hspec.cabal
-===================================================================
 --- a/hspec.cabal
 +++ b/hspec.cabal
-@@ -50,7 +50,6 @@ library
+@@ -47,7 +47,6 @@
+       QuickCheck >=2.12
      , base ==4.*
-     , call-stack
-     , hspec-core ==2.5.5
--    , hspec-discover ==2.5.5
+     , hspec-core ==2.6.1
+-    , hspec-discover ==2.6.1
      , hspec-expectations ==0.8.2.*
-     , transformers >=0.2.2.0
    exposed-modules:
-@@ -78,7 +77,6 @@ test-suite spec
-     , directory
-     , hspec
-     , hspec-core ==2.5.5
--    , hspec-discover ==2.5.5
-     , hspec-expectations ==0.8.2.*
-     , hspec-meta >=2.3.2
-     , stringbuilder
+       Test.Hspec
