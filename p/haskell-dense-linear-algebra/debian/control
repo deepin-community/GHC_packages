@@ -1,0 +1,77 @@
+Source: haskell-dense-linear-algebra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.15),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-math-functions-dev (>= 0.1.7),
+ libghc-math-functions-prof (>= 0.1.7),
+ libghc-primitive-dev (>= 0.3),
+ libghc-primitive-prof (>= 0.3),
+ libghc-vector-dev (>= 0.10),
+ libghc-vector-prof (>= 0.10),
+ libghc-vector-algorithms-dev (>= 0.4),
+ libghc-vector-algorithms-prof (>= 0.4),
+ libghc-vector-binary-instances-dev (>= 0.2.1),
+ libghc-vector-binary-instances-prof (>= 0.2.1),
+ libghc-vector-th-unbox-dev,
+ libghc-vector-th-unbox-prof,
+ libghc-quickcheck2-dev,
+ libghc-quickcheck2-prof,
+ libghc-hspec-dev,
+ libghc-hspec-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-math-functions-doc,
+ libghc-primitive-doc,
+ libghc-vector-doc,
+ libghc-vector-algorithms-doc,
+ libghc-vector-binary-instances-doc,
+ libghc-vector-th-unbox-doc,
+Standards-Version: 4.4.0
+X-Description: pure Haskell implementation of linear algebra
+ This library is a simple and incomplete collection of linear-algebra
+ related modules split out from the statistics library.
+
+Package: libghc-dense-linear-algebra-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-dense-linear-algebra-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-dense-linear-algebra-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
