@@ -3,7 +3,7 @@ Backported from upstream commit
 
 --- a/Network/HTTP/Client/Headers.hs
 +++ b/Network/HTTP/Client/Headers.hs
-@@ -84,13 +84,20 @@ parseStatusHeaders conn timeout' cont
+@@ -89,14 +89,21 @@
          if S.null line
              then return $ front []
              else do
@@ -29,3 +29,4 @@ Backported from upstream commit
 +            else return (Just (CI.mk $! strip key, strip $! S.drop 1 bs2))
  
      strip = S.dropWhile (== charSpace) . fst . S.spanEnd (== charSpace)
+ 
