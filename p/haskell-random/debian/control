@@ -4,17 +4,21 @@ Uploaders: Joachim Breiter <nomeata@debian.org>
 Priority: optional
 Section: haskell
 Rules-Requires-Root: no
-Build-Depends: debhelper (>= 10),
+Build-Depends: debhelper-compat (= 12),
  haskell-devscripts (>= 0.13),
  cdbs,
  ghc (>= 8),
  ghc-prof,
 Build-Depends-Indep: ghc-doc,
-Standards-Version: 4.1.4
-Homepage: http://hackage.haskell.org/package/random
+Standards-Version: 4.4.0
+Homepage: https://hackage.haskell.org/package/random
 Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-random
 Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-random]
-
+X-Description: random number generator for Haskell
+ This package provides a basic random number generation library, including
+ the ability to split random number generators.
+ .
+ ${haskell:Blurb}
 Package: libghc-random-dev
 Architecture: any
 Depends: ${haskell:Depends},
@@ -23,11 +27,11 @@ Depends: ${haskell:Depends},
 Recommends: ${haskell:Recommends},
 Suggests: ${haskell:Suggests},
 Provides: ${haskell:Provides},
-Description: Random number generator for Haskell${haskell:ShortBlurb}
- This package provides a basic random number generation library, including
- the ability to split random number generators.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
+
 
 Package: libghc-random-prof
 Architecture: any
@@ -36,9 +40,8 @@ Depends: ${haskell:Depends},
 Recommends: ${haskell:Recommends},
 Suggests: ${haskell:Suggests},
 Provides: ${haskell:Provides},
-Description: Random number generator for Haskell${haskell:ShortBlurb}
- This package provides a basic random number generation library, including
- the ability to split random number generators.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
 
@@ -49,8 +52,7 @@ Depends: ${misc:Depends},
  ${haskell:Depends},
 Recommends: ${haskell:Recommends},
 Suggests: ${haskell:Suggests},
-Description: Random number generator for Haskell${haskell:ShortBlurb}
- This package provides a basic random number generation library, including
- the ability to split random number generators.
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
  .
  ${haskell:Blurb}
