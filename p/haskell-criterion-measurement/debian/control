@@ -1,0 +1,66 @@
+Source: haskell-criterion-measurement
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-aeson-dev (>= 0.8),
+ libghc-aeson-prof (>= 0.8),
+ libghc-base-compat-dev (>= 0.9),
+ libghc-base-compat-prof (>= 0.9),
+ libghc-vector-dev (>= 0.7.1),
+ libghc-vector-prof (>= 0.7.1),
+Build-Depends-Indep: ghc-doc,
+ libghc-aeson-doc,
+ libghc-base-compat-doc,
+ libghc-vector-doc,
+Standards-Version: 4.4.0
+Homepage: https://github.com/bos/criterion
+X-Description: Criterion measurement functionality and associated types
+ Measurement-related functionality extracted from Criterion, with
+ minimal dependencies. The rationale for this is to enable alternative
+ analysis front-ends.
+
+Package: libghc-criterion-measurement-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-criterion-measurement-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-criterion-measurement-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
