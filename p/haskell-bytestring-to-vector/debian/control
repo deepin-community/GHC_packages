@@ -1,0 +1,70 @@
+Source: haskell-bytestring-to-vector
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-vector-dev,
+ libghc-vector-prof,
+ libghc-quickcheck2-dev,
+ libghc-quickcheck2-prof,
+ libghc-byteorder-dev,
+ libghc-byteorder-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-vector-doc,
+Standards-Version: 4.4.0
+Homepage: https://github.com/sheyll/bytestring-to-vector
+X-Description: convert ByteString<->Vector.Storable without copying
+ This library allows conversion between the types from Data.ByteString
+ and Data.Vector.Storable without copying the underlying data.  This
+ is useful, for example, when ByteString IO produces or consumes
+ vectors of numbers in native byte order.
+ .
+ The conversion relies on the fact that ByteString and Vector use their
+ respective ForeignPtr's in compatible ways.
+ .
+ This library is a fork of spool.
+
+Package: libghc-bytestring-to-vector-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-bytestring-to-vector-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-bytestring-to-vector-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
