@@ -22,6 +22,7 @@ export HOME = /homedoesnotexistatbuildtime
 export DEB_HOST_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 export DEB_BUILD_GNU_TYPE ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
 export DEB_HOST_ARCH      ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
+export DEB_TARGET_ARCH_ENDIAN	?= $(shell dpkg-architecture -qDEB_TARGET_ARCH_ENDIAN)
 
 # We're cross-building if DEB_BUILD_GNU_TYPE != DEB_HOST_GNU_TYPE
 ifneq ($(DEB_BUILD_GNU_TYPE), $(DEB_HOST_GNU_TYPE))
@@ -81,6 +82,9 @@ ifneq (,$(filter arm64 armel armhf, $(DEB_HOST_ARCH)))
 endif
 ifeq (armhf,$(DEB_HOST_ARCH))
 	echo "SRC_HC_OPTS += -D__ARM_PCS_VFP" >> mk/build.mk
+endif
+ifeq (big, $(DEB_TARGET_ARCH_ENDIAN))
+	patch -p1 < debian/patches/Disable-unboxed-arrays.patch
 endif
 ifneq (,$(filter mips mipsel, $(DEB_HOST_ARCH)))
 	echo "SRC_HC_OPTS     += -optc--param -optcggc-min-expand=10" >> mk/build.mk
