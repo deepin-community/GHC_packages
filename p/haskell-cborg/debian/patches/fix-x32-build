@@ -1,0 +1,13 @@
+https://github.com/well-typed/cborg/commit/bd923f78bb0a2ba3fb1593a4c9267fe4eafe95cd
+
+--- a/src/Codec/CBOR/Magic.hs
++++ b/src/Codec/CBOR/Magic.hs
+@@ -104,7 +104,7 @@
+ 
+ import qualified Numeric.Half as Half
+ 
+-#if !defined(HAVE_BYTESWAP_PRIMOPS) || !defined(MEM_UNALIGNED_OPS)
++#if !defined(HAVE_BYTESWAP_PRIMOPS) || !defined(MEM_UNALIGNED_OPS) || !defined(OPTIMIZE_GMP)
+ import           Data.Bits ((.|.), unsafeShiftL)
+ #endif
+ 
