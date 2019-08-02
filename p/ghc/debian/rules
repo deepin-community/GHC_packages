@@ -55,7 +55,7 @@ ifneq (,$(filter mips mipsel powerpc powerpcspe sparc64, $(DEB_HOST_ARCH)))
   EXTRA_CONFIGURE_FLAGS += --disable-ld-override
 endif
 
-ifeq (s390x,$(DEB_HOST_ARCH))
+ifneq (,$(filter mips mipsel mips64el s390x, $(DEB_HOST_ARCH)))
   export DEB_BUILD_OPTIONS=parallel=2
 endif
 
