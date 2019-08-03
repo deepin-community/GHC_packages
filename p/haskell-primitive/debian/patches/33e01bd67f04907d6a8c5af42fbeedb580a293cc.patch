@@ -1,0 +1,51 @@
+From 33e01bd67f04907d6a8c5af42fbeedb580a293cc Mon Sep 17 00:00:00 2001
+From: Ryan Scott <ryan.gl.scott@gmail.com>
+Date: Tue, 10 Jul 2018 13:06:54 -0400
+Subject: [PATCH] Allow base-4.12
+
+Fixes #179.
+---
+ bench/primitive-benchmarks.cabal | 2 +-
+ primitive.cabal                  | 2 +-
+ test/primitive-tests.cabal       | 4 ++--
+ 3 files changed, 4 insertions(+), 4 deletions(-)
+
+#diff --git a/bench/primitive-benchmarks.cabal b/bench/primitive-benchmarks.cabal
+#index 51e49d6..43846ed 100644
+#--- a/bench/primitive-benchmarks.cabal
+#+++ b/bench/primitive-benchmarks.cabal
+#@@ -43,7 +43,7 @@ benchmark bench
+#     PrimArray.Compare
+#     PrimArray.Traverse
+#   build-depends:
+#-      base >= 4.8 && < 4.12
+#+      base >= 4.8 && < 4.13
+#     , primitive
+#     , deepseq
+#     , ghc-prim
+Index: haskell-primitive-0.6.4.0/primitive.cabal
+===================================================================
+--- haskell-primitive-0.6.4.0.orig/primitive.cabal
++++ haskell-primitive-0.6.4.0/primitive.cabal
+@@ -53,7 +53,7 @@
+         Data.Primitive.Internal.Compat
+         Data.Primitive.Internal.Operations
+ 
+-  Build-Depends: base >= 4.5 && < 4.12
++  Build-Depends: base >= 4.5 && < 4.13
+                , ghc-prim >= 0.2 && < 0.6
+                , transformers >= 0.2 && < 0.6
+ 
+Index: haskell-primitive-0.6.4.0/test/primitive-tests.cabal
+===================================================================
+--- haskell-primitive-0.6.4.0.orig/test/primitive-tests.cabal
++++ haskell-primitive-0.6.4.0/test/primitive-tests.cabal
+@@ -28,7 +28,7 @@
+   hs-source-dirs: .
+   main-is: main.hs
+   type: exitcode-stdio-1.0
+-  build-depends: base >= 4.5 && < 4.12
++  build-depends: base >= 4.5 && < 4.13
+                , ghc-prim
+                , primitive
+                , QuickCheck
