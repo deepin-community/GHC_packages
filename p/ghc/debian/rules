@@ -93,6 +93,9 @@ endif
 ifneq (,$(filter mips mipsel, $(DEB_HOST_ARCH)))
 	echo "SRC_HC_OPTS     += -optc--param -optcggc-min-expand=10" >> mk/build.mk
 endif
+ifneq (,$(filter mips64el, $(DEB_HOST_ARCH)))
+	echo "SRC_HC_OPTS     += -optc-mxgot" >> mk/build.mk
+endif
 ifeq (x32,$(DEB_HOST_ARCH))
 	echo "INTEGER_LIBRARY = integer-simple" >> mk/build.mk
 endif
