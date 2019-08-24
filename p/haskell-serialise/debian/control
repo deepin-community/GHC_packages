@@ -1,0 +1,116 @@
+Source: haskell-serialise
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-cborg-dev (>= 0.2),
+ libghc-cborg-dev (<< 0.3),
+ libghc-cborg-prof (>= 0.2),
+ libghc-cborg-prof (<< 0.3),
+ libghc-half-dev (>= 0.2.2.3),
+ libghc-half-dev (<< 0.4),
+ libghc-half-prof (>= 0.2.2.3),
+ libghc-half-prof (<< 0.4),
+ libghc-hashable-dev (>= 1.2),
+ libghc-hashable-dev (<< 2.0),
+ libghc-hashable-prof (>= 1.2),
+ libghc-hashable-prof (<< 2.0),
+ libghc-primitive-dev (>= 0.5),
+ libghc-primitive-dev (<< 0.7),
+ libghc-primitive-prof (>= 0.5),
+ libghc-primitive-prof (<< 0.7),
+ libghc-unordered-containers-dev (>= 0.2),
+ libghc-unordered-containers-dev (<< 0.3),
+ libghc-unordered-containers-prof (>= 0.2),
+ libghc-unordered-containers-prof (<< 0.3),
+ libghc-vector-dev (>= 0.10),
+ libghc-vector-dev (<< 0.13),
+ libghc-vector-prof (>= 0.10),
+ libghc-vector-prof (<< 0.13),
+ libghc-quickcheck2-dev (>= 2.9),
+ libghc-quickcheck2-dev (<< 2.13),
+ libghc-quickcheck2-prof (>= 2.9),
+ libghc-quickcheck2-prof (<< 2.13),
+ libghc-cborg-dev,
+ libghc-cborg-prof,
+ libghc-quickcheck-instances-dev (>= 0.3.12),
+ libghc-quickcheck-instances-dev (<< 0.4),
+ libghc-quickcheck-instances-prof (>= 0.3.12),
+ libghc-quickcheck-instances-prof (<< 0.4),
+ libghc-tasty-dev (>= 0.11),
+ libghc-tasty-dev (<< 1.2),
+ libghc-tasty-prof (>= 0.11),
+ libghc-tasty-prof (<< 1.2),
+ libghc-tasty-hunit-dev (>= 0.9),
+ libghc-tasty-hunit-dev (<< 0.11),
+ libghc-tasty-hunit-prof (>= 0.9),
+ libghc-tasty-hunit-prof (<< 0.11),
+ libghc-tasty-quickcheck-dev (>= 0.8),
+ libghc-tasty-quickcheck-dev (<< 0.11),
+ libghc-tasty-quickcheck-prof (>= 0.8),
+ libghc-tasty-quickcheck-prof (<< 0.11),
+Build-Depends-Indep: ghc-doc,
+ libghc-cborg-doc,
+ libghc-half-doc,
+ libghc-hashable-doc,
+ libghc-primitive-doc,
+ libghc-unordered-containers-doc,
+ libghc-vector-doc,
+Standards-Version: 4.4.0
+Homepage: https://github.com/well-typed/cborg
+X-Description: binary serialisation library for Haskell values
+ This package (formerly binary-serialise-cbor) provides pure, efficient
+ serialization of Haskell values directly into ByteStrings for storage or
+ transmission purposes. By providing a set of typeclass instances, you can
+ also serialise any custom data type you have as well.
+ .
+ The underlying binary format used is the 'Concise Binary Object
+ Representation', or CBOR, specified in RFC 7049. As a result,
+ serialised Haskell values have implicit structure outside of the
+ Haskell program itself, meaning they can be inspected or analyzed
+ without custom tools.
+
+Package: libghc-serialise-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-serialise-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-serialise-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
