@@ -1,27 +1,30 @@
-Index: b/ed25519.cabal
-===================================================================
---- a/ed25519.cabal
-+++ b/ed25519.cabal
+--- haskell-ed25519-0.0.5.0.orig/ed25519.cabal
++++ haskell-ed25519-0.0.5.0/ed25519.cabal
 @@ -97,7 +97,7 @@ test-suite properties
      build-depends:
        base        >= 4   && < 5,
        bytestring  >= 0.9 && < 0.11,
 -      QuickCheck  >= 2.4 && < 2.9,
-+      QuickCheck  >= 2.4 && < 2.12,
++      QuickCheck  >= 2.4 && < 2.13,
        ed25519
  
  --
-Index: b/tests/properties.hs
-===================================================================
---- a/tests/properties.hs
-+++ b/tests/properties.hs
-@@ -86,7 +86,9 @@ tests ntests =
+--- haskell-ed25519-0.0.5.0.orig/tests/properties.hs
++++ haskell-ed25519-0.0.5.0/tests/properties.hs
+@@ -84,9 +84,16 @@ tests ntests =
+     wrap prop = do
+       r <- quickCheckWithResult stdArgs{maxSuccess=ntests} prop
        case r of
++#if MIN_VERSION_QuickCheck(2,12,0)
++        Success n _ _ _ _ _     -> return (True, n)
++        GaveUp  n _ _ _ _ _     -> return (True, n)
++#else
          Success n _ _           -> return (True, n)
          GaveUp  n _ _           -> return (True, n)
 -#if MIN_VERSION_QuickCheck(2,7,0)
-+#if MIN_VERSION_QuickCheck(2,11,0)
-+        Failure n _ _ _ _ _ _ _ _ _ _ -> return (False, n)
++#endif
++#if MIN_VERSION_QuickCheck(2,12,0)
++        Failure n _ _ _ _ _ _ _ _ _ _ _ _ -> return (False, n)
 +#elif MIN_VERSION_QuickCheck(2,7,0)
          Failure n _ _ _ _ _ _ _ _ _ -> return (False, n)
  #elif MIN_VERSION_QuickCheck(2,6,0)
