@@ -1,0 +1,26 @@
+From 03fbed3c0cd40a469a7da4c6f15f89f89f4f34b1 Mon Sep 17 00:00:00 2001
+From: "Trevor L. McDonell" <tmcdonell@cse.unsw.edu.au>
+Date: Sun, 7 Oct 2018 14:42:26 +0200
+Subject: [PATCH] gloss: relax dependency bounds
+
+---
+ gloss/gloss.cabal | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gloss/gloss.cabal b/gloss/gloss.cabal
+index e670f53..d9531c8 100644
+--- a/gloss.cabal
++++ b/gloss.cabal
+@@ -42,10 +42,10 @@ Flag ExplicitBackend
+ 
+ Library
+   Build-Depends:
+-          base                          >= 4.8 && < 4.12
++          base                          >= 4.8 && < 4.13
+         , bmp                           == 1.2.*
+         , bytestring                    == 0.10.*
+-        , containers                    == 0.5.*
++        , containers                    >= 0.5 && < 0.7
+         , ghc-prim
+         , gloss-rendering               == 1.13.*
+         , GLUT                          == 2.7.*
