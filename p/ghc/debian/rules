@@ -56,11 +56,7 @@ ifneq (,$(filter mips mipsel powerpc powerpcspe sparc64, $(DEB_HOST_ARCH)))
 endif
 
 %:
-ifneq (,$(filter s390x, $(DEB_HOST_ARCH)))
-	dh $@ --max-parallel=2
-else
 	dh $@
-endif
 
 
 override_dh_autoreconf:
@@ -91,7 +87,7 @@ endif
 ifeq (big, $(DEB_TARGET_ARCH_ENDIAN))
 	patch -p1 < debian/patches/Disable-unboxed-arrays.patch
 endif
-ifneq (,$(filter mips mipsel, $(DEB_HOST_ARCH)))
+ifneq (,$(filter mips mipsel mips64el s390x, $(DEB_HOST_ARCH)))
 	echo "SRC_HC_OPTS     += -optc--param -optcggc-min-expand=10" >> mk/build.mk
 endif
 ifneq (,$(filter mips64el, $(DEB_HOST_ARCH)))
