@@ -1,0 +1,50 @@
+--- a/test/URI/ByteString/Arbitrary.hs
++++ b/test/URI/ByteString/Arbitrary.hs
+@@ -23,28 +23,6 @@
+ -------------------------------------------------------------------------------
+ 
+ 
+--- this workaround can go away when
+--- <https://github.com/nick8325/quickcheck/pull/40> is merged.
+-sopArbitrary
+-  :: ( SOP.SListI (SOP.GCode b)
+-     , Generic b
+-     , SOP.GTo b
+-     , SOP.AllF SOP.SListI (SOP.GCode b)
+-     , SOP.AllF (SOP.All Arbitrary) (SOP.GCode b)
+-     )
+-  => Gen b
+-sopArbitrary = fmap SOP.gto sopArbitrary'
+-
+-
+-sopArbitrary'
+-  :: (SOP.SListI xs, SOP.AllF (SOP.All Arbitrary) xs, SOP.AllF SOP.SListI xs)
+-  => Gen (SOP.SOP SOP.I xs)
+-sopArbitrary' = oneof (map SOP.hsequence $ SOP.apInjs_POP $ SOP.hcpure p arbitrary)
+-  where
+-    p :: Proxy Arbitrary
+-    p = Proxy
+-
+-
+ instance Arbitrary UserInfo where
+   arbitrary = UserInfo <$> arbitrary
+                        <*> arbitrary
+@@ -103,10 +81,16 @@
+ 
+ 
+ instance Arbitrary SchemaError where
+-  arbitrary = sopArbitrary
++  arbitrary = elements [NonAlphaLeading, InvalidChars, MissingColon]
+   shrink = genericShrink
+ 
+ 
+ instance Arbitrary URIParseError where
+-  arbitrary = sopArbitrary
++  arbitrary = elements [ MalformedUserInfo
++                       , MalformedQuery
++                       , MalformedFragment
++                       , MalformedHost
++                       , MalformedPort
++                       , MalformedPath
++                       ]
+   shrink = genericShrink
