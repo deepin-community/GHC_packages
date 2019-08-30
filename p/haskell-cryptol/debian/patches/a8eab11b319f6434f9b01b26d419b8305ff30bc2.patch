@@ -1,0 +1,281 @@
+## Description: add some description
+## Origin/Author: add some origin or author
+## Bug: bug URL
+From a8eab11b319f6434f9b01b26d419b8305ff30bc2 Mon Sep 17 00:00:00 2001
+From: Iavor Diatchki <iavor.diatchki@gmail.com>
+Date: Mon, 8 Oct 2018 13:50:25 -0700
+Subject: [PATCH] Changes to avoid irrefutable patterns.
+
+This is to make things build with GHC 8.6, which requires a MonadFail
+instance.
+
+Pretty much all of these should end up being `panic`, so perhaps we should
+rewrite more of them to call `panic` (instead of using lazy patterns)
+---
+ src/Cryptol/ModuleSystem/Renamer.hs          | 15 +++++--
+ src/Cryptol/Prims/Eval.hs                    |  2 +-
+ src/Cryptol/REPL/Command.hs                  | 26 ++++++------
+ src/Cryptol/REPL/Monad.hs                    | 42 +++++++++++++++++---
+ src/Cryptol/Transform/Specialize.hs          |  2 +-
+ src/Cryptol/TypeCheck/CheckModuleInstance.hs |  2 +-
+ src/Cryptol/TypeCheck/Infer.hs               |  2 +-
+ 7 files changed, 65 insertions(+), 26 deletions(-)
+
+Index: haskell-cryptol-2.6.0/src/Cryptol/ModuleSystem/Renamer.hs
+===================================================================
+--- haskell-cryptol-2.6.0.orig/src/Cryptol/ModuleSystem/Renamer.hs
++++ haskell-cryptol-2.6.0/src/Cryptol/ModuleSystem/Renamer.hs
+@@ -442,7 +442,7 @@
+     DBind b           -> DBind         <$> rename b
+ 
+     -- XXX we probably shouldn't see these at this point...
+-    DPatBind pat e    -> do (pe,[pat']) <- renamePats [pat]
++    DPatBind pat e    -> do (pe,pat') <- renamePat pat
+                             shadowNames pe (DPatBind pat' <$> rename e)
+ 
+     DType syn         -> DType         <$> rename syn
+@@ -902,8 +902,8 @@
+ renameMatch :: Match PName -> RenameM (NamingEnv,Match Name)
+ 
+ renameMatch (Match p e) =
+-  do (pe,[p']) <- renamePats [p]
+-     e'        <- rename e
++  do (pe,p') <- renamePat p
++     e'      <- rename e
+      return (pe,Match p' e')
+ 
+ renameMatch (MatchLet b) =
+@@ -913,6 +913,15 @@
+      return (be,MatchLet b')
+ 
+ -- | Rename patterns, and collect the new environment that they introduce.
++renamePat :: Pattern PName -> RenameM (NamingEnv, Pattern Name)
++renamePat p =
++  do pe <- patternEnv p
++     p' <- shadowNames pe (rename p)
++     return (pe, p')
++
++
++
++-- | Rename patterns, and collect the new environment that they introduce.
+ renamePats :: [Pattern PName] -> RenameM (NamingEnv,[Pattern Name])
+ renamePats  = loop
+   where
+Index: haskell-cryptol-2.6.0/src/Cryptol/Prims/Eval.hs
+===================================================================
+--- haskell-cryptol-2.6.0.orig/src/Cryptol/Prims/Eval.hs
++++ haskell-cryptol-2.6.0/src/Cryptol/Prims/Eval.hs
+@@ -926,7 +926,7 @@
+   lam  $ \ val ->
+     case (parts, each) of
+        (Nat p, Nat e) | isTBit a -> do
+-          VWord _ val' <- val
++          ~(VWord _ val') <- val
+           return $ VSeq p $ IndexSeqMap $ \i -> do
+             return $ VWord e (extractWordVal e ((p-i-1)*e) <$> val')
+        (Inf, Nat e) | isTBit a -> do
+Index: haskell-cryptol-2.6.0/src/Cryptol/REPL/Command.hs
+===================================================================
+--- haskell-cryptol-2.6.0.orig/src/Cryptol/REPL/Command.hs
++++ haskell-cryptol-2.6.0/src/Cryptol/REPL/Command.hs
+@@ -249,9 +249,9 @@
+ -- Get the setting we should use for displaying values.
+ getPPValOpts :: REPL E.PPOpts
+ getPPValOpts =
+-  do EnvNum base      <- getUser "base"
+-     EnvBool ascii    <- getUser "ascii"
+-     EnvNum infLength <- getUser "infLength"
++  do base      <- getKnownUser "base"
++     ascii     <- getKnownUser "ascii"
++     infLength <- getKnownUser "infLength"
+      return E.PPOpts { E.useBase      = base
+                      , E.useAscii     = ascii
+                      , E.useInfLength = infLength
+@@ -315,7 +315,7 @@
+ qcCmd qcMode str =
+   do expr <- replParseExpr str
+      (val,ty) <- replEvalExpr expr
+-     EnvNum testNum <- getUser "tests"
++     testNum <- getKnownUser "tests"
+      case testableType ty of
+        Just (Just sz,tys,vss) | qcMode == QCExhaust || sz <= toInteger testNum -> do
+             rPutStrLn "Using exhaustive testing."
+@@ -511,10 +511,10 @@
+ cmdProveSat isSat str = do
+   let cexStr | isSat = "satisfying assignment"
+              | otherwise = "counterexample"
+-  EnvString proverName <- getUser "prover"
+-  EnvString fileName <- getUser "smtfile"
++  proverName <- getKnownUser "prover"
++  fileName   <- getKnownUser "smtfile"
+   let mfile = if fileName == "-" then Nothing else Just fileName
+-  case proverName of
++  case proverName :: String of
+     "offline" -> do
+       result <- offlineProveSat isSat str mfile
+       case result of
+@@ -571,8 +571,8 @@
+                -> String -> Maybe FilePath
+                -> REPL (Maybe SBV.Solver,Symbolic.ProverResult,ProverStats)
+ onlineProveSat isSat str mfile = do
+-  EnvString proverName <- getUser "prover"
+-  EnvBool verbose <- getUser "debug"
++  proverName <- getKnownUser "prover"
++  verbose <- getKnownUser "debug"
+   satNum <- getUserSatNum
+   parseExpr <- replParseExpr str
+   (_, expr, schema) <- replCheckExpr parseExpr
+@@ -594,7 +594,7 @@
+ 
+ offlineProveSat :: Bool -> String -> Maybe FilePath -> REPL (Either String String)
+ offlineProveSat isSat str mfile = do
+-  EnvBool verbose <- getUser "debug"
++  verbose <- getKnownUser "debug"
+   parseExpr <- replParseExpr str
+   (_, expr, schema) <- replCheckExpr parseExpr
+   decls <- fmap M.deDecls getDynEnv
+@@ -1121,8 +1121,8 @@
+ 
+ moduleCmdResult :: M.ModuleRes a -> REPL a
+ moduleCmdResult (res,ws0) = do
+-  EnvBool warnDefaulting <- getUser "warnDefaulting"
+-  EnvBool warnShadowing  <- getUser "warnShadowing"
++  warnDefaulting <- getKnownUser "warnDefaulting"
++  warnShadowing  <- getKnownUser "warnShadowing"
+   -- XXX: let's generalize this pattern
+   let isDefaultWarn (T.DefaultingTo _ _) = True
+       isDefaultWarn _ = False
+@@ -1207,7 +1207,7 @@
+     case ts of
+       [] -> return ()
+       _  ->
+-        do EnvBool warnDefaulting <- getUser "warnDefaulting"
++        do warnDefaulting <- getKnownUser "warnDefaulting"
+            when warnDefaulting $
+              do rPutStrLn "Showing a specific instance of polymorphic result:"
+                 mapM_ warnDefault ts
+Index: haskell-cryptol-2.6.0/src/Cryptol/REPL/Monad.hs
+===================================================================
+--- haskell-cryptol-2.6.0.orig/src/Cryptol/REPL/Monad.hs
++++ haskell-cryptol-2.6.0/src/Cryptol/REPL/Monad.hs
+@@ -13,6 +13,7 @@
+ {-# LANGUAGE RecordWildCards #-}
+ {-# LANGUAGE TypeFamilies #-}
+ {-# LANGUAGE ViewPatterns #-}
++{-# LANGUAGE FlexibleInstances #-}
+ 
+ module Cryptol.REPL.Monad (
+     -- * REPL Monad
+@@ -56,7 +57,7 @@
+     -- ** Config Options
+   , EnvVal(..)
+   , OptionDescr(..)
+-  , setUser, getUser, tryGetUser
++  , setUser, getUser, getKnownUser, tryGetUser
+   , userOptions
+   , getUserSatNum
+   , getUserShowProverStats
+@@ -650,10 +651,38 @@
+     Just ev -> return ev
+     Nothing -> panic "[REPL] getUser" ["option `" ++ name ++ "` does not exist"]
+ 
++getKnownUser :: IsEnvVal a => String -> REPL a
++getKnownUser x = fromEnvVal <$> getUser x
++
++class IsEnvVal a where
++  fromEnvVal :: EnvVal -> a
++
++instance IsEnvVal Bool where
++  fromEnvVal x = case x of
++                   EnvBool b -> b
++                   _         -> badIsEnv "Bool"
++
++instance IsEnvVal Int where
++  fromEnvVal x = case x of
++                   EnvNum b -> b
++                   _         -> badIsEnv "Num"
++
++instance IsEnvVal (String,[String]) where
++  fromEnvVal x = case x of
++                   EnvProg b bs -> (b,bs)
++                   _            -> badIsEnv "Prog"
++
++instance IsEnvVal String where
++  fromEnvVal x = case x of
++                   EnvString b -> b
++                   _           -> badIsEnv "String"
++
++badIsEnv :: String -> a
++badIsEnv x = panic "fromEnvVal" [ "[REPL] Expected a `" ++ x ++ "` value." ]
++
++
+ getUserShowProverStats :: REPL Bool
+-getUserShowProverStats =
+-  do EnvBool yes <- getUser "prover-stats"
+-     return yes
++getUserShowProverStats = getKnownUser "prover-stats"
+ 
+ -- Environment Options ---------------------------------------------------------
+ 
+@@ -789,7 +818,7 @@
+ 
+ getUserSatNum :: REPL SatNum
+ getUserSatNum = do
+-  EnvString s <- getUser "satNum"
++  s <- getKnownUser "satNum"
+   case s of
+     "all"                     -> return AllSat
+     _ | Just n <- readMaybe s -> return (SomeSat n)
+@@ -800,7 +829,7 @@
+ 
+ whenDebug :: REPL () -> REPL ()
+ whenDebug m = do
+-  EnvBool b <- getUser "debug"
++  b <- getKnownUser "debug"
+   when b m
+ 
+ -- Smoke Testing ---------------------------------------------------------------
+@@ -830,3 +859,4 @@
+   case mPath of
+     Nothing -> return (Just Z3NotFound)
+     Just _  -> return Nothing
++
+Index: haskell-cryptol-2.6.0/src/Cryptol/Transform/Specialize.hs
+===================================================================
+--- haskell-cryptol-2.6.0.orig/src/Cryptol/Transform/Specialize.hs
++++ haskell-cryptol-2.6.0/src/Cryptol/Transform/Specialize.hs
+@@ -126,7 +126,7 @@
+   -- Then reassemble the DeclGroups.
+   let splitDecl :: Decl -> SpecM [Decl]
+       splitDecl d = do
+-        Just (_, tm) <- Map.lookup (dName d) <$> getSpecCache
++        ~(Just (_, tm)) <- Map.lookup (dName d) <$> getSpecCache
+         return (catMaybes $ map (snd . snd) $ toListTM tm)
+   let splitDeclGroup :: DeclGroup -> SpecM [DeclGroup]
+       splitDeclGroup (Recursive ds) = do
+Index: haskell-cryptol-2.6.0/src/Cryptol/TypeCheck/CheckModuleInstance.hs
+===================================================================
+--- haskell-cryptol-2.6.0.orig/src/Cryptol/TypeCheck/CheckModuleInstance.hs
++++ haskell-cryptol-2.6.0/src/Cryptol/TypeCheck/CheckModuleInstance.hs
+@@ -162,7 +162,7 @@
+                    InferM Expr {- ^ Expression to use for param definition -}
+ 
+ makeValParamDef x sDef pDef =
+-  withVar x sDef $ do DExpr e <- dDefinition <$> checkSigB bnd (pDef,[])
++  withVar x sDef $ do ~(DExpr e) <- dDefinition <$> checkSigB bnd (pDef,[])
+                       return e
+   where
+   bnd = P.Bind { P.bName      = loc x
+Index: haskell-cryptol-2.6.0/src/Cryptol/TypeCheck/Infer.hs
+===================================================================
+--- haskell-cryptol-2.6.0.orig/src/Cryptol/TypeCheck/Infer.hs
++++ haskell-cryptol-2.6.0/src/Cryptol/TypeCheck/Infer.hs
+@@ -921,7 +921,7 @@
+               bs1
+ 
+   checkBinds decls (AcyclicSCC c : more) =
+-    do [b] <- inferBinds isTopLevel False [c]
++    do ~[b] <- inferBinds isTopLevel False [c]
+        withVar (dName b) (dSignature b) $
+          checkBinds (NonRecursive b : decls) more
+ 

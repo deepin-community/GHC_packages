@@ -1,0 +1,31 @@
+## Description: add some description
+## Origin/Author: add some origin or author
+## Bug: bug URL
+From 634c5a03e757663bf86d1ffad1ce2c6086d4483f Mon Sep 17 00:00:00 2001
+From: Brian Huffman <huffman@galois.com>
+Date: Mon, 17 Sep 2018 09:46:00 -0700
+Subject: [PATCH] Suppress REPL instantiation messages when warnDefaulting =
+ off.
+
+Fixes #543.
+---
+ src/Cryptol/REPL/Command.hs | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+Index: haskell-cryptol-2.6.0/src/Cryptol/REPL/Command.hs
+===================================================================
+--- haskell-cryptol-2.6.0.orig/src/Cryptol/REPL/Command.hs
++++ haskell-cryptol-2.6.0/src/Cryptol/REPL/Command.hs
+@@ -1207,8 +1207,10 @@
+     case ts of
+       [] -> return ()
+       _  ->
+-        do rPutStrLn "Showing a specific instance of polymorphic result:"
+-           mapM_ warnDefault ts
++        do EnvBool warnDefaulting <- getUser "warnDefaulting"
++           when warnDefaulting $
++             do rPutStrLn "Showing a specific instance of polymorphic result:"
++                mapM_ warnDefault ts
+ 
+   warnDefault (x,t) =
+     rPrint ("  *" <+> nest 2  ("Using" <+> quotes (pp t) <+> "for" <+>
