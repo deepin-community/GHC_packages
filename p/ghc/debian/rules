@@ -78,9 +78,6 @@ else
 	echo "BUILD_SPHINX_HTML := NO" >> mk/build.mk
 	echo "BUILD_SPHINX_PDF := NO" >> mk/build.mk
 endif
-ifneq (,$(filter arm64 armel armhf, $(DEB_HOST_ARCH)))
-	echo "SRC_HC_OPTS     += -optl-B/usr/bin/ld.gold" >> mk/build.mk
-endif
 ifeq (armhf,$(DEB_HOST_ARCH))
 	echo "SRC_HC_OPTS += -D__ARM_PCS_VFP" >> mk/build.mk
 endif
