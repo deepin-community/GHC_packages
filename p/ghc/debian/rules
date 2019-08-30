@@ -85,6 +85,7 @@ ifeq (armhf,$(DEB_HOST_ARCH))
 	echo "SRC_HC_OPTS += -D__ARM_PCS_VFP" >> mk/build.mk
 endif
 ifeq (big, $(DEB_TARGET_ARCH_ENDIAN))
+	# See https://gitlab.haskell.org/ghc/ghc/issues/16998
 	patch -p1 < debian/patches/Disable-unboxed-arrays.patch
 endif
 ifneq (,$(filter mips mipsel mips64el s390x, $(DEB_HOST_ARCH)))
@@ -111,6 +112,13 @@ ifneq (,$(filter noopt, $(DEB_BUILD_OPTIONS)))
 	# This breaks the build - to be investigated:
 	# echo "GhcLibHcOpts  += -O0" >> mk/build.mk
 	echo "GhcRtsCcOpts  += -O0" >> mk/build.mk
+endif
+ifneq (,$(filter mipsel hppa x32, $(DEB_HOST_ARCH)))
+	# Virtual memory exhausted when trying to build unregisterised compiler on
+	# 32-bit targets. Disable optimizations for compiler/hsSyn/HsInstances.hs.
+	# See https://bugs.debian.org/933968
+	# See https://gitlab.haskell.org/ghc/ghc/issues/17048
+	echo "compiler/hsSyn/HsInstances_HC_OPTS += -O0" >> mk/build.mk
 endif
 	# We also want to build the threaded profiling-enabled debug runtime,
 	# because it does no harm
