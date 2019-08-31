@@ -1,8 +1,6 @@
-Index: b/binary-orphans.cabal
-===================================================================
 --- a/binary-orphans.cabal
 +++ b/binary-orphans.cabal
-@@ -9,9 +9,16 @@ author:         Oleg Grenrus <oleg.grenr
+@@ -9,9 +9,16 @@
  maintainer:     Oleg Grenrus <oleg.grenrus@iki.fi>
  license:        BSD3
  license-file:   LICENSE
@@ -20,7 +18,7 @@ Index: b/binary-orphans.cabal
  
  extra-source-files:
      CHANGELOG.md
-@@ -26,13 +33,13 @@ library
+@@ -26,13 +33,13 @@
        src
    ghc-options: -Wall -fno-warn-orphans
    build-depends:
@@ -38,7 +36,7 @@ Index: b/binary-orphans.cabal
      , text                     >=1.2.0.6   && <1.3
      , time                     >=1.4.0.1   && <1.9
      , unordered-containers     >=0.2.5.1   && <0.3
-@@ -41,7 +48,7 @@ library
+@@ -41,7 +48,7 @@
      , vector-binary-instances  >=0.2.1.0 && <0.3
    if !impl(ghc >= 8.0)
      build-depends:
@@ -47,7 +45,7 @@ Index: b/binary-orphans.cabal
    if !impl(ghc >= 7.10)
      build-depends:
          void                     >=0.7       && <0.8
-@@ -69,15 +76,15 @@ test-suite binary-orphans-test
+@@ -69,15 +76,15 @@
      , unordered-containers
      , vector
      , binary-orphans
@@ -56,7 +54,7 @@ Index: b/binary-orphans.cabal
      , quickcheck-instances >=0.3.16   && <0.4
 -    , tasty                >=0.10.1.2 && <0.12
 -    , tasty-quickcheck     >=0.8.3.2  && <0.10
-+    , tasty                >=0.10.1.2 && <1.2
++    , tasty                >=0.10.1.2 && <1.3
 +    , tasty-quickcheck     >=0.8.3.2  && <0.11
    if !impl(ghc >= 8.0)
      build-depends:
