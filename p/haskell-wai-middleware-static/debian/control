@@ -1,0 +1,96 @@
+Source: haskell-wai-middleware-static
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-cryptonite-dev (>= 0.10),
+ libghc-cryptonite-dev (<< 1.0),
+ libghc-cryptonite-prof (>= 0.10),
+ libghc-cryptonite-prof (<< 1.0),
+ libghc-expiring-cache-map-dev (>= 0.0.5),
+ libghc-expiring-cache-map-dev (<< 0.1),
+ libghc-expiring-cache-map-prof (>= 0.0.5),
+ libghc-expiring-cache-map-prof (<< 0.1),
+ libghc-http-types-dev (>= 0.8.2),
+ libghc-http-types-dev (<< 0.13),
+ libghc-http-types-prof (>= 0.8.2),
+ libghc-http-types-prof (<< 0.13),
+ libghc-memory-dev (>= 0.10),
+ libghc-memory-dev (<< 1.0),
+ libghc-memory-prof (>= 0.10),
+ libghc-memory-prof (<< 1.0),
+ libghc-mime-types-dev (>= 0.1.0.3),
+ libghc-mime-types-dev (<< 0.2),
+ libghc-mime-types-prof (>= 0.1.0.3),
+ libghc-mime-types-prof (<< 0.2),
+ libghc-old-locale-dev (>= 1.0),
+ libghc-old-locale-dev (<< 1.1),
+ libghc-old-locale-prof (>= 1.0),
+ libghc-old-locale-prof (<< 1.1),
+ libghc-semigroups-dev (>= 0.18),
+ libghc-semigroups-dev (<< 1),
+ libghc-semigroups-prof (>= 0.18),
+ libghc-semigroups-prof (<< 1),
+ libghc-wai-dev (>= 3.0.0),
+ libghc-wai-dev (<< 3.3),
+ libghc-wai-prof (>= 3.0.0),
+ libghc-wai-prof (<< 3.3),
+Build-Depends-Indep: ghc-doc,
+ libghc-cryptonite-doc,
+ libghc-expiring-cache-map-doc,
+ libghc-http-types-doc,
+ libghc-memory-doc,
+ libghc-mime-types-doc,
+ libghc-old-locale-doc,
+ libghc-semigroups-doc,
+ libghc-wai-doc,
+Standards-Version: 4.4.0
+Homepage: https://github.com/scotty-web/wai-middleware-static
+X-Description: WAI middleware that serves requests to static files.
+ WAI middleware that intercepts requests to static files and serves them
+ if they exist.
+
+Package: libghc-wai-middleware-static-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-wai-middleware-static-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-wai-middleware-static-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
