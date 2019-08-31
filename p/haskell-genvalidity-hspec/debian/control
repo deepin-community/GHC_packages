@@ -1,0 +1,87 @@
+Source: haskell-genvalidity-hspec
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-quickcheck2-dev,
+ libghc-quickcheck2-prof,
+ libghc-genvalidity-dev (>= 0.5),
+ libghc-genvalidity-prof (>= 0.5),
+ libghc-genvalidity-property-dev (>= 0.2),
+ libghc-genvalidity-property-prof (>= 0.2),
+ libghc-hspec-dev,
+ libghc-hspec-prof,
+ libghc-hspec-core-dev,
+ libghc-hspec-core-prof,
+ libghc-validity-dev (>= 0.5),
+ libghc-validity-prof (>= 0.5),
+ libghc-doctest-dev,
+ libghc-doctest-prof,
+ libghc-genvalidity-dev (>= 0.7),
+ libghc-genvalidity-prof (>= 0.7),
+ libghc-genvalidity-property-dev (>= 0.3),
+ libghc-genvalidity-property-prof (>= 0.3),
+ libghc-validity-dev (>= 0.9),
+ libghc-validity-prof (>= 0.9),
+Build-Depends-Indep: ghc-doc,
+ libghc-quickcheck2-doc,
+ libghc-genvalidity-doc,
+ libghc-genvalidity-property-doc,
+ libghc-hspec-doc,
+ libghc-hspec-core-doc,
+ libghc-validity-doc,
+Standards-Version: 4.4.0
+Homepage: https://github.com/NorfairKing/validity#readme
+X-Description: standard specs for GenValidity instances
+ Spec functions including:
+  - genValidSpec
+  - eqSpecOnValid
+  - ordSpecOnValid
+  - producesValidsOnValids
+  - forAllValid
+  - shouldBeValid
+
+Package: libghc-genvalidity-hspec-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-genvalidity-hspec-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-genvalidity-hspec-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
