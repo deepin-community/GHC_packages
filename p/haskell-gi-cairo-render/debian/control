@@ -1,0 +1,69 @@
+Source: haskell-gi-cairo-render
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ c2hs (>= 0.28),
+ libghc-haskell-gi-base-dev (>= 0.21.0),
+ libghc-haskell-gi-base-dev (<< 0.22),
+ libghc-haskell-gi-base-prof (>= 0.21.0),
+ libghc-utf8-string-dev (>= 0.2),
+ libghc-utf8-string-dev (<< 1.1),
+ libghc-utf8-string-prof (>= 0.2),
+ pkg-config,
+ libcairo-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-haskell-gi-base-doc,
+ libghc-utf8-string-doc,
+Standards-Version: 4.4.0
+Homepage: https://github.com/cohomology/gi-cairo-render
+X-Description: GI friendly Binding to the Cairo library.
+ Cairo is a library to render high quality vector graphics. There
+ exist various backends that allows rendering to Gtk windows, PDF,
+ PS, PNG and SVG documents, amongst others.
+
+Package: libghc-gi-cairo-render-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+ libcairo-dev,
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-gi-cairo-render-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-gi-cairo-render-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
