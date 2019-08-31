@@ -11,16 +11,18 @@ Build-Depends:
  ghc (>= 8.4.3),
  ghc-prof,
  haskell-devscripts (>= 0.13),
- libghc-hstatsd-dev (>= 0.1),
- libghc-hstatsd-prof,
- libghc-lambdabot-core-dev (<< 5.2),
- libghc-lambdabot-core-dev (>= 5.1),
+ libghc-safesemaphore-dev (>= 0.9),
+ libghc-safesemaphore-prof,
+ libghc-lambdabot-core-dev (>= 5.2),
+ libghc-lambdabot-core-dev (<< 5.3),
  libghc-lambdabot-core-prof,
  libghc-lifted-base-dev (>= 0.2),
  libghc-lifted-base-prof,
- libghc-network-dev (>= 2.6),
+ libghc-network-dev (>= 2.7),
+ libghc-network-dev (<< 3.2),
  libghc-network-prof,
  libghc-network-uri-dev (>= 2.6),
+ libghc-network-uri-dev (<< 2.7),
  libghc-network-uri-prof,
  libghc-random-dev (>= 1),
  libghc-random-prof,
@@ -44,9 +46,8 @@ Build-Depends:
  libghc-utf8-string-prof,
  libghc-zlib-dev (>= 0.5),
  libghc-zlib-prof,
-Build-Depends-Indep:
- ghc-doc,
- libghc-hstatsd-doc,
+Build-Depends-Indep: ghc-doc,
+ libghc-safesemaphore-doc,
  libghc-lambdabot-core-doc,
  libghc-lifted-base-doc,
  libghc-network-doc,
@@ -62,7 +63,7 @@ Build-Depends-Indep:
  libghc-transformers-doc,
  libghc-utf8-string-doc,
  libghc-zlib-doc,
-Standards-Version: 4.1.4
+Standards-Version: 4.4.0
 Homepage: https://wiki.haskell.org/Lambdabot
 Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-lambdabot-misc-plugins
 Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-lambdabot-misc-plugins]
