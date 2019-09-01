@@ -1,0 +1,76 @@
+Source: haskell-topograph
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-base-compat-dev (>= 0.10.5),
+ libghc-base-compat-dev (<< 0.11),
+ libghc-base-compat-prof (>= 0.10.5),
+ libghc-base-compat-prof (<< 0.11),
+ libghc-base-orphans-dev (>= 0.8),
+ libghc-base-orphans-dev (<< 0.9),
+ libghc-base-orphans-prof (>= 0.8),
+ libghc-base-orphans-prof (<< 0.9),
+ libghc-vector-dev (>= 0.12),
+ libghc-vector-dev (<< 0.13),
+ libghc-vector-prof (>= 0.12),
+ libghc-vector-prof (<< 0.13),
+Build-Depends-Indep: ghc-doc,
+ libghc-base-compat-doc,
+ libghc-base-orphans-doc,
+ libghc-vector-doc,
+Standards-Version: 4.4.0
+Homepage: https://github.com/phadej/topograph
+X-Description: directed acyclic graphs.
+ Directed acyclic graphs can be sorted topographically.
+ Existence of topographic ordering allows writing many graph
+ algorithms efficiently.  Many graphs, including most
+ dependency graphs, are acyclic.
+ .
+ There are some algorithms built in: dfs, transpose, transitive
+ closure, transitive reduction, etc.
+
+Package: libghc-topograph-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-topograph-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-topograph-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
