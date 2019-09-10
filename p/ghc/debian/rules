@@ -35,8 +35,7 @@ endif
 
 ProjectVersion=$(shell cat VERSION)
 
-GHC=$(firstword $(shell bash -c "type -p ghc"))
-EXTRA_CONFIGURE_FLAGS +=--with-ghc="$(GHC)"
+export GHC=$(firstword $(shell bash -c "type -p ghc"))
 
 DEB_HOOGLE_TXT_DIR = /usr/lib/ghc-doc/hoogle/
 
