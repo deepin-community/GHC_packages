@@ -117,7 +117,7 @@ ifneq (,$(filter noopt, $(DEB_BUILD_OPTIONS)))
 	# echo "GhcLibHcOpts  += -O0" >> mk/build.mk
 	echo "GhcRtsCcOpts  += -O0" >> mk/build.mk
 endif
-ifneq (,$(filter m68k mipsel hppa sh4 x32, $(DEB_HOST_ARCH)))
+ifneq (,$(filter alpha m68k mipsel hppa sh4 x32, $(DEB_HOST_ARCH)))
 	# Virtual memory exhausted when trying to build unregisterised compiler on
 	# 32-bit targets. Disable optimizations for compiler/hsSyn/HsInstances.hs.
 	# See https://bugs.debian.org/933968
