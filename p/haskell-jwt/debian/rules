@@ -5,10 +5,5 @@ DEB_ENABLE_TESTS = yes
 DEB_CABAL_PACKAGE = jwt
 DEB_DEFAULT_COMPILER = ghc
 
-# doctests fail on armel due to #839840
-ifeq (armel,$(DEB_HOST_ARCH))
-	DEB_SETUP_GHC_CONFIGURE_ARGS += -f-test-doctests
-endif
-
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
