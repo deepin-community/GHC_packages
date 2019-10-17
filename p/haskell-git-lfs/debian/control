@@ -1,0 +1,79 @@
+Source: haskell-git-lfs
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Sean Whitton <spwhitton@spwhitton.name>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-aeson-dev (>= 1.3),
+ libghc-aeson-dev (<= 1.5),
+ libghc-aeson-prof,
+ libghc-case-insensitive-dev (>= 1.2),
+ libghc-case-insensitive-dev (<= 1.3),
+ libghc-case-insensitive-prof,
+ libghc-http-client-dev (>= 0.5),
+ libghc-http-client-dev (<= 0.7),
+ libghc-http-client-prof,
+ libghc-http-types-dev (>= 0.7),
+ libghc-http-types-dev (<= 0.13),
+ libghc-http-types-prof,
+ libghc-network-uri-dev (>= 2.6),
+ libghc-network-uri-dev (<= 2.7),
+ libghc-network-uri-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-aeson-doc,
+ libghc-case-insensitive-doc,
+ libghc-http-client-doc,
+ libghc-http-types-doc,
+ libghc-network-uri-doc,
+Standards-Version: 4.4.1
+Homepage: https://hackage.haskell.org/package/git-lfs
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-git-lfs
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git
+X-Description: git-lfs protocol for Haskell
+ An implementation of the git-lfs protocol for the Haskell programming language.
+ .
+ git-lfs can be used to store large files in git.
+
+Package: libghc-git-lfs-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-git-lfs-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-git-lfs-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
