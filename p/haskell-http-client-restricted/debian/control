@@ -1,0 +1,85 @@
+Source: haskell-http-client-restricted
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Sean Whitton <spwhitton@spwhitton.name>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 9),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.9),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-connection-dev (>= 0.2.5),
+ libghc-connection-prof,
+ libghc-data-default-dev,
+ libghc-data-default-prof,
+ libghc-http-client-dev (>= 0.4.31),
+ libghc-http-client-dev (<< 0.6),
+ libghc-http-client-prof,
+ libghc-http-client-tls-dev (>= 0.3.2),
+ libghc-http-client-tls-dev (<< 0.4),
+ libghc-http-client-tls-prof,
+ libghc-network-dev,
+ libghc-network-prof,
+ libghc-utf8-string-dev,
+ libghc-utf8-string-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-connection-doc,
+ libghc-data-default-doc,
+ libghc-http-client-doc,
+ libghc-http-client-tls-doc,
+ libghc-network-doc,
+ libghc-utf8-string-doc,
+Standards-Version: 4.4.1
+Homepage: https://hackage.haskell.org/package/http-client-restricted
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-http-client-restricted
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git
+X-Description: restrict the servers that Haskell's http-client will use
+ Addition to the http-client and http-client-tls Haskell
+ libraries, that restricts the HTTP servers that can be used.
+ .
+ This is useful when a security policy needs to, e.g., prevent connections to
+ HTTP servers on localhost or a local network, or only allow connections
+ to a specific HTTP server.
+ .
+ It handles restricting redirects as well as the initial HTTP connection,
+ and it also guards against DNS poisoning attacks.
+
+Package: libghc-http-client-restricted-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-http-client-restricted-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-http-client-restricted-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
