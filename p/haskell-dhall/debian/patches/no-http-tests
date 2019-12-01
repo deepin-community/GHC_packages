@@ -1,0 +1,248 @@
+--- a/tests/Format.hs
++++ b/tests/Format.hs
+@@ -70,10 +70,6 @@
+             "importAccess"
+         , should
+             Unicode
+-            "handle formatting sha256 imports correctly"
+-            "sha256Printing"
+-        , should
+-            Unicode
+             "handle formatting of Import suffix correctly"
+             "importSuffix"
+         , should
+--- a/tests/Lint.hs
++++ b/tests/Lint.hs
+@@ -19,9 +19,7 @@
+ lintTests :: TestTree
+ lintTests =
+     Test.Tasty.testGroup "format tests"
+-        [ should
+-            "correctly handle multi-let expressions"
+-            "success/multilet"
++        [
+         ]
+ 
+ should :: Text -> Text -> TestTree
+--- a/tests/Parser.hs
++++ b/tests/Parser.hs
+@@ -78,9 +78,6 @@
+             "path termination"
+             "./tests/parser/success/pathTermination"
+         , shouldParse
+-            "urls"
+-            "./tests/parser/success/urls"
+-        , shouldParse
+             "environmentVariables"
+             "./tests/parser/success/environmentVariables"
+         , shouldParse
+@@ -140,18 +137,12 @@
+         , shouldParse
+             "collections with type annotations containing imports"
+             "./tests/parser/success/collectionImportType"
+-        , shouldParse
+-            "a parenthesized custom header import"
+-            "./tests/parser/success/parenthesizeUsing"
+         , shouldNotParse
+             "accessing a field of an import without parentheses"
+             "./tests/parser/failure/importAccess.dhall"
+         , shouldParse
+             "Sort"
+             "./tests/parser/success/sort"
+-        , shouldParse
+-            "quoted path components"
+-            "./tests/parser/success/quotedPaths"
+         , shouldNotParse
+             "positive double out of bounds"
+             "./tests/parser/failure/doubleBoundsPos.dhall"
+--- a/tests/Regression.hs
++++ b/tests/Regression.hs
+@@ -36,7 +36,6 @@
+         , issue164
+         , issue201
+         , issue209
+-        , issue216
+         , issue253
+         , parsing0
+         , typeChecking0
+--- a/tests/TypeCheck.hs
++++ b/tests/TypeCheck.hs
+@@ -67,17 +67,7 @@
+ preludeExamples :: TestTree
+ preludeExamples =
+     Test.Tasty.testGroup "Prelude examples"
+-        [ should "Monoid" "./success/prelude/Monoid/00"
+-        , should "Monoid" "./success/prelude/Monoid/01"
+-        , should "Monoid" "./success/prelude/Monoid/02"
+-        , should "Monoid" "./success/prelude/Monoid/03"
+-        , should "Monoid" "./success/prelude/Monoid/04"
+-        , should "Monoid" "./success/prelude/Monoid/05"
+-        , should "Monoid" "./success/prelude/Monoid/06"
+-        , should "Monoid" "./success/prelude/Monoid/07"
+-        , should "Monoid" "./success/prelude/Monoid/08"
+-        , should "Monoid" "./success/prelude/Monoid/09"
+-        , should "Monoid" "./success/prelude/Monoid/10"
++        [
+         ]
+ 
+ accessTypeChecks :: TestTree
+--- a/src/Dhall/Tutorial.hs
++++ b/src/Dhall/Tutorial.hs
+@@ -437,12 +437,12 @@
+ --
+ -- ... and you can reference that expression either directly:
+ --
+--- >>> input auto "https://raw.githubusercontent.com/dhall-lang/dhall-haskell/18e4e9a18dc53271146df3ccf5b4177c3552236b/examples/True" :: IO Bool
++-- > input auto "https://raw.githubusercontent.com/dhall-lang/dhall-haskell/18e4e9a18dc53271146df3ccf5b4177c3552236b/examples/True" :: IO Bool
+ -- True
+ -- 
+ -- ... or inside of a larger expression:
+ --
+--- >>> input auto "False == https://raw.githubusercontent.com/dhall-lang/dhall-haskell/18e4e9a18dc53271146df3ccf5b4177c3552236b/examples/True" :: IO Bool
++-- > input auto "False == https://raw.githubusercontent.com/dhall-lang/dhall-haskell/18e4e9a18dc53271146df3ccf5b4177c3552236b/examples/True" :: IO Bool
+ -- False
+ --
+ -- You're not limited to hosting Dhall expressions on GitHub.  You can host a
+--- a/tests/Normalization.hs
++++ b/tests/Normalization.hs
+@@ -31,7 +31,6 @@
+         , conversions
+         , shouldNormalize "Optional build/fold fusion" "success/simple/optionalBuildFold"
+         , customization
+-        , shouldNormalize "a remote-systems.conf builder" "success/remoteSystems"
+         , shouldNormalize "multi-line strings correctly" "success/simple/multiLine"
+         , shouldNormalize "the // operator and sort the fields" "success/simple/sortOperator"
+         ]
+@@ -50,131 +49,7 @@
+ preludeExamples :: TestTree
+ preludeExamples =
+     testGroup "Prelude examples"
+-        [ shouldNormalize "Bool/and" "./success/prelude/Bool/and/0"
+-        , shouldNormalize "Bool/and" "./success/prelude/Bool/and/1"
+-        , shouldNormalize "Bool/build" "./success/prelude/Bool/build/0"
+-        , shouldNormalize "Bool/build" "./success/prelude/Bool/build/1"
+-        , shouldNormalize "Bool/even" "./success/prelude/Bool/even/0"
+-        , shouldNormalize "Bool/even" "./success/prelude/Bool/even/1"
+-        , shouldNormalize "Bool/even" "./success/prelude/Bool/even/2"
+-        , shouldNormalize "Bool/even" "./success/prelude/Bool/even/3"
+-        , shouldNormalize "Bool/fold" "./success/prelude/Bool/fold/0"
+-        , shouldNormalize "Bool/fold" "./success/prelude/Bool/fold/1"
+-        , shouldNormalize "Bool/not" "./success/prelude/Bool/not/0"
+-        , shouldNormalize "Bool/not" "./success/prelude/Bool/not/1"
+-        , shouldNormalize "Bool/odd" "./success/prelude/Bool/odd/0"
+-        , shouldNormalize "Bool/odd" "./success/prelude/Bool/odd/1"
+-        , shouldNormalize "Bool/odd" "./success/prelude/Bool/odd/2"
+-        , shouldNormalize "Bool/odd" "./success/prelude/Bool/odd/3"
+-        , shouldNormalize "Bool/or" "./success/prelude/Bool/or/0"
+-        , shouldNormalize "Bool/or" "./success/prelude/Bool/or/1"
+-        , shouldNormalize "Bool/show" "./success/prelude/Bool/show/0"
+-        , shouldNormalize "Bool/show" "./success/prelude/Bool/show/1"
+-        , shouldNormalize "Double/show" "./success/prelude/Double/show/0"
+-        , shouldNormalize "Double/show" "./success/prelude/Double/show/1"
+-        , shouldNormalize "Integer/show" "./success/prelude/Integer/show/0"
+-        , shouldNormalize "Integer/show" "./success/prelude/Integer/show/1"
+-        , shouldNormalize "Integer/toDouble" "./success/prelude/Integer/toDouble/0"
+-        , shouldNormalize "Integer/toDouble" "./success/prelude/Integer/toDouble/1"
+-        , shouldNormalize "List/all" "./success/prelude/List/all/0"
+-        , shouldNormalize "List/all" "./success/prelude/List/all/1"
+-        , shouldNormalize "List/any" "./success/prelude/List/any/0"
+-        , shouldNormalize "List/any" "./success/prelude/List/any/1"
+-        , shouldNormalize "List/build" "./success/prelude/List/build/0"
+-        , shouldNormalize "List/build" "./success/prelude/List/build/1"
+-        , shouldNormalize "List/concat" "./success/prelude/List/concat/0"
+-        , shouldNormalize "List/concat" "./success/prelude/List/concat/1"
+-        , shouldNormalize "List/concatMap" "./success/prelude/List/concatMap/0"
+-        , shouldNormalize "List/concatMap" "./success/prelude/List/concatMap/1"
+-        , shouldNormalize "List/filter" "./success/prelude/List/filter/0"
+-        , shouldNormalize "List/filter" "./success/prelude/List/filter/1"
+-        , shouldNormalize "List/fold" "./success/prelude/List/fold/0"
+-        , shouldNormalize "List/fold" "./success/prelude/List/fold/1"
+-        , shouldNormalize "List/fold" "./success/prelude/List/fold/2"
+-        , shouldNormalize "List/generate" "./success/prelude/List/generate/0"
+-        , shouldNormalize "List/generate" "./success/prelude/List/generate/1"
+-        , shouldNormalize "List/head" "./success/prelude/List/head/0"
+-        , shouldNormalize "List/head" "./success/prelude/List/head/1"
+-        , shouldNormalize "List/indexed" "./success/prelude/List/indexed/0"
+-        , shouldNormalize "List/indexed" "./success/prelude/List/indexed/1"
+-        , shouldNormalize "List/iterate" "./success/prelude/List/iterate/0"
+-        , shouldNormalize "List/iterate" "./success/prelude/List/iterate/1"
+-        , shouldNormalize "List/last" "./success/prelude/List/last/0"
+-        , shouldNormalize "List/last" "./success/prelude/List/last/1"
+-        , shouldNormalize "List/length" "./success/prelude/List/length/0"
+-        , shouldNormalize "List/length" "./success/prelude/List/length/1"
+-        , shouldNormalize "List/map" "./success/prelude/List/map/0"
+-        , shouldNormalize "List/map" "./success/prelude/List/map/1"
+-        , shouldNormalize "List/null" "./success/prelude/List/null/0"
+-        , shouldNormalize "List/null" "./success/prelude/List/null/1"
+-        , shouldNormalize "List/replicate" "./success/prelude/List/replicate/0"
+-        , shouldNormalize "List/replicate" "./success/prelude/List/replicate/1"
+-        , shouldNormalize "List/reverse" "./success/prelude/List/reverse/0"
+-        , shouldNormalize "List/reverse" "./success/prelude/List/reverse/1"
+-        , shouldNormalize "List/shifted" "./success/prelude/List/shifted/0"
+-        , shouldNormalize "List/shifted" "./success/prelude/List/shifted/1"
+-        , shouldNormalize "List/unzip" "./success/prelude/List/unzip/0"
+-        , shouldNormalize "List/unzip" "./success/prelude/List/unzip/1"
+-        , shouldNormalize "Natural/build" "./success/prelude/Natural/build/0"
+-        , shouldNormalize "Natural/build" "./success/prelude/Natural/build/1"
+-        , shouldNormalize "Natural/enumerate" "./success/prelude/Natural/enumerate/0"
+-        , shouldNormalize "Natural/enumerate" "./success/prelude/Natural/enumerate/1"
+-        , shouldNormalize "Natural/even" "./success/prelude/Natural/even/0"
+-        , shouldNormalize "Natural/even" "./success/prelude/Natural/even/1"
+-        , shouldNormalize "Natural/fold" "./success/prelude/Natural/fold/0"
+-        , shouldNormalize "Natural/fold" "./success/prelude/Natural/fold/1"
+-        , shouldNormalize "Natural/fold" "./success/prelude/Natural/fold/2"
+-        , shouldNormalize "Natural/isZero" "./success/prelude/Natural/isZero/0"
+-        , shouldNormalize "Natural/isZero" "./success/prelude/Natural/isZero/1"
+-        , shouldNormalize "Natural/odd" "./success/prelude/Natural/odd/0"
+-        , shouldNormalize "Natural/odd" "./success/prelude/Natural/odd/1"
+-        , shouldNormalize "Natural/product" "./success/prelude/Natural/product/0"
+-        , shouldNormalize "Natural/product" "./success/prelude/Natural/product/1"
+-        , shouldNormalize "Natural/show" "./success/prelude/Natural/show/0"
+-        , shouldNormalize "Natural/show" "./success/prelude/Natural/show/1"
+-        , shouldNormalize "Natural/sum" "./success/prelude/Natural/sum/0"
+-        , shouldNormalize "Natural/sum" "./success/prelude/Natural/sum/1"
+-        , shouldNormalize "Natural/toDouble" "./success/prelude/Natural/toDouble/0"
+-        , shouldNormalize "Natural/toDouble" "./success/prelude/Natural/toDouble/1"
+-        , shouldNormalize "Natural/toInteger" "./success/prelude/Natural/toInteger/0"
+-        , shouldNormalize "Natural/toInteger" "./success/prelude/Natural/toInteger/1"
+-        , shouldNormalize "Optional/all" "./success/prelude/Optional/all/0"
+-        , shouldNormalize "Optional/all" "./success/prelude/Optional/all/1"
+-        , shouldNormalize "Optional/any" "./success/prelude/Optional/any/0"
+-        , shouldNormalize "Optional/any" "./success/prelude/Optional/any/1"
+-        , shouldNormalize "Optional/build" "./success/prelude/Optional/build/0"
+-        , shouldNormalize "Optional/build" "./success/prelude/Optional/build/1"
+-        , shouldNormalize "Optional/concat" "./success/prelude/Optional/concat/0"
+-        , shouldNormalize "Optional/concat" "./success/prelude/Optional/concat/1"
+-        , shouldNormalize "Optional/concat" "./success/prelude/Optional/concat/2"
+-        , shouldNormalize "Optional/filter" "./success/prelude/Optional/filter/0"
+-        , shouldNormalize "Optional/filter" "./success/prelude/Optional/filter/1"
+-        , shouldNormalize "Optional/fold" "./success/prelude/Optional/fold/0"
+-        , shouldNormalize "Optional/fold" "./success/prelude/Optional/fold/1"
+-        , shouldNormalize "Optional/head" "./success/prelude/Optional/head/0"
+-        , shouldNormalize "Optional/head" "./success/prelude/Optional/head/1"
+-        , shouldNormalize "Optional/head" "./success/prelude/Optional/head/2"
+-        , shouldNormalize "Optional/last" "./success/prelude/Optional/last/0"
+-        , shouldNormalize "Optional/last" "./success/prelude/Optional/last/1"
+-        , shouldNormalize "Optional/last" "./success/prelude/Optional/last/2"
+-        , shouldNormalize "Optional/length" "./success/prelude/Optional/length/0"
+-        , shouldNormalize "Optional/length" "./success/prelude/Optional/length/1"
+-        , shouldNormalize "Optional/map" "./success/prelude/Optional/map/0"
+-        , shouldNormalize "Optional/map" "./success/prelude/Optional/map/1"
+-        , shouldNormalize "Optional/null" "./success/prelude/Optional/null/0"
+-        , shouldNormalize "Optional/null" "./success/prelude/Optional/null/1"
+-        , shouldNormalize "Optional/toList" "./success/prelude/Optional/toList/0"
+-        , shouldNormalize "Optional/toList" "./success/prelude/Optional/toList/1"
+-        , shouldNormalize "Optional/unzip" "./success/prelude/Optional/unzip/0"
+-        , shouldNormalize "Optional/unzip" "./success/prelude/Optional/unzip/1"
+-        , shouldNormalize "Text/concat" "./success/prelude/Text/concat/0"
+-        , shouldNormalize "Text/concat" "./success/prelude/Text/concat/1"
+-        , shouldNormalize "Text/concatMap" "./success/prelude/Text/concatMap/0"
+-        , shouldNormalize "Text/concatMap" "./success/prelude/Text/concatMap/1"
+-        , shouldNormalize "Text/concatMapSep" "./success/prelude/Text/concatMapSep/0"
+-        , shouldNormalize "Text/concatMapSep" "./success/prelude/Text/concatMapSep/1"
+-        , shouldNormalize "Text/concatSep" "./success/prelude/Text/concatSep/0"
+-        , shouldNormalize "Text/concatSep" "./success/prelude/Text/concatSep/1"
++        [
+         ]
+ 
+ simplifications :: TestTree
