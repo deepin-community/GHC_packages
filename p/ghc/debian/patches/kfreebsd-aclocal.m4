@@ -6,7 +6,7 @@ Index: ghc-8.8.1+dfsg1/aclocal.m4
 ===================================================================
 --- ghc-8.8.1+dfsg1.orig/aclocal.m4
 +++ ghc-8.8.1+dfsg1/aclocal.m4
-@@ -2045,7 +2045,7 @@
+@@ -2048,7 +2048,7 @@
          $3="openbsd"
          ;;
        # As far as I'm aware, none of these have relevant variants
@@ -15,7 +15,7 @@ Index: ghc-8.8.1+dfsg1/aclocal.m4
          $3="$1"
          ;;
        msys)
-@@ -2065,6 +2065,9 @@
+@@ -2068,6 +2068,9 @@
                  #      i686-gentoo-freebsd8.2
          $3="freebsd"
          ;;
