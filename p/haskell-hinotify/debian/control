@@ -3,7 +3,7 @@ Section: haskell
 Priority: optional
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
 Uploaders: Andy Bailey <bailey@akamai.com>, Clint Adams <clint@debian.org>
-Standards-Version: 4.1.4
+Standards-Version: 4.4.1
 Rules-Requires-Root: no
 Build-Depends: debhelper (>= 10),
  cdbs,
@@ -11,8 +11,8 @@ Build-Depends: debhelper (>= 10),
  ghc (>= 8.0),
  ghc-prof,
  libinotify-dev [kfreebsd-any],
- libghc-async-dev (>= 1.0),
- libghc-async-dev (<< 2.3),
+ libghc-async-dev (>= 2),
+ libghc-async-dev (<< 3),
  libghc-async-prof,
 Build-Depends-Indep: ghc-doc,
  libghc-async-doc,
@@ -66,4 +66,3 @@ Description: Haskell inotify library${haskell:ShortBlurb}
  is accessed or modified.
  .
  ${haskell:Blurb}
-

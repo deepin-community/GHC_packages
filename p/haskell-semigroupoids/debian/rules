@@ -3,6 +3,9 @@
 ifneq (armel,$(DEB_HOST_ARCH))
 DEB_ENABLE_TESTS = yes
 endif
+ifeq (s390x,$(DEB_HOST_ARCH))
+DEB_ENABLE_TESTS = no
+endif
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk

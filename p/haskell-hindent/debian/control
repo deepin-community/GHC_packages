@@ -1,0 +1,100 @@
+Source: haskell-hindent
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-exceptions-dev,
+ libghc-exceptions-prof,
+ libghc-src-exts-dev (>= 1.20),
+ libghc-src-exts-prof (>= 1.20),
+ libghc-monad-loops-dev,
+ libghc-monad-loops-prof,
+ libghc-utf8-string-dev,
+ libghc-utf8-string-prof,
+ libghc-yaml-dev,
+ libghc-yaml-prof,
+ libghc-src-exts-dev,
+ libghc-src-exts-prof,
+ libghc-optparse-applicative-dev,
+ libghc-optparse-applicative-prof,
+ libghc-path-dev,
+ libghc-path-prof,
+ libghc-path-io-dev,
+ libghc-path-io-prof,
+ libghc-unix-compat-dev,
+ libghc-unix-compat-prof,
+ libghc-diff-dev,
+ libghc-diff-prof,
+ libghc-hspec-dev,
+ libghc-hspec-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-exceptions-doc,
+ libghc-src-exts-doc,
+ libghc-monad-loops-doc,
+ libghc-utf8-string-doc,
+ libghc-yaml-doc,
+Standards-Version: 4.4.1
+Homepage: https://github.com/commercialhaskell/hindent
+X-Description: Extensible Haskell pretty printer
+ hindent reindents Haskell source in the style of
+ Johan Tibell.
+
+Package: libghc-hindent-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hindent-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hindent-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: hindent
+Architecture: any
+Section: misc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

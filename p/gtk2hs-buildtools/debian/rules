@@ -5,6 +5,13 @@ include /usr/share/cdbs/1/class/hlibrary.mk
 
 DEB_SETUP_GHC_CONFIGURE_ARGS = --datasubdir=gtk2hs-buildtools
 
+# Build with -O0 on ppc64el to work-around a GHC bug
+# see https://bugs.debian.org/942585
+# and https://gitlab.haskell.org/ghc/ghc/issues/17203
+ifneq (,$(filter $(DEB_BUILD_ARCH),ppc64el ppc64))
+	DEB_SETUP_GHC_CONFIGURE_ARGS += --ghc-options="-O0"
+endif
+
 build/gtk2hs-buildtools:: build-ghc-stamp
 
 install/gtk2hs-buildtools::

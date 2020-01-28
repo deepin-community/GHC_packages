@@ -1,0 +1,16 @@
+Description: Don't build test executables with RTS -N
+Author: Ilias Tsitsimpis <iliastsi@debian.org>
+
+Index: b/genvalidity-hspec.cabal
+===================================================================
+--- a/genvalidity-hspec.cabal
++++ b/genvalidity-hspec.cabal
+@@ -102,7 +102,7 @@ test-suite genvalidity-hspec-test
+       Paths_genvalidity_hspec
+   hs-source-dirs:
+       test/
+-  ghc-options: -threaded -rtsopts -with-rtsopts=-N -Wall
++  ghc-options: -threaded -Wall
+   build-depends:
+       QuickCheck
+     , base
