@@ -1,0 +1,94 @@
+Source: haskell-tasty-discover
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-glob-dev (>= 0.8),
+ libghc-glob-dev (<< 1.0),
+ libghc-glob-prof (>= 0.8),
+ libghc-glob-prof (<< 1.0),
+ libghc-hedgehog-dev,
+ libghc-hedgehog-prof,
+ libghc-tasty-dev,
+ libghc-tasty-prof,
+ libghc-tasty-hedgehog-dev,
+ libghc-tasty-hedgehog-prof,
+ libghc-tasty-hspec-dev,
+ libghc-tasty-hspec-prof,
+ libghc-tasty-hunit-dev,
+ libghc-tasty-hunit-prof,
+ libghc-tasty-quickcheck-dev,
+ libghc-tasty-quickcheck-prof,
+ libghc-tasty-smallcheck-dev,
+ libghc-tasty-smallcheck-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-glob-doc,
+Standards-Version: 4.5.0
+Homepage: http://git.coop/lwm/tasty-discover
+X-Description: Test discovery for the tasty framework.
+ Automatic test discovery and runner for the tasty framework.
+ Prefix your test case names and tasty-discover will discover, collect
+ and run them. All popular test libraries are covered. Configure once
+ and then just write your tests. Avoid forgetting to add test modules
+ to your Cabal/Hpack files. Tasty ingredients are included along with
+ various configuration options for different use cases.
+
+Package: libghc-tasty-discover-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-tasty-discover-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-tasty-discover-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: tasty-discover
+Architecture: any
+Section: misc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
