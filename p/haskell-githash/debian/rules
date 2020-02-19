@@ -9,8 +9,10 @@ include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
 
 clean::
-	if ! test -d .git; then \
+	if ! test -d .git && ! echo "${DEB_BUILD_PROFILES}" | grep -q nocheck; then \
 	git init; \
+	git config --local user.email "nobody@foo.test"; \
+	git config --local user.name "Foo Bar"; \
 	git add README.md; \
 	git commit -m "this is terrible"; \
 	fi
