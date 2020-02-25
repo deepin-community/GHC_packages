@@ -91,7 +91,7 @@ ifeq (big, $(DEB_TARGET_ARCH_ENDIAN))
 	# See https://gitlab.haskell.org/ghc/ghc/issues/16998
 	patch -p1 < debian/patches/Disable-unboxed-arrays.patch
 endif
-ifneq (,$(filter mips mipsel mips64el s390x, $(DEB_HOST_ARCH)))
+ifneq (,$(filter mips mipsel s390x, $(DEB_HOST_ARCH)))
 	echo "SRC_HC_OPTS     += -optc--param -optcggc-min-expand=10" >> mk/build.mk
 endif
 ifneq (,$(filter mips64el, $(DEB_HOST_ARCH)))
