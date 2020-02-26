@@ -3,20 +3,18 @@ Description: add missing test suite dependencies
 Forwarded: peter.robinson@monoid.at
 
 ---
---- haskell-secret-sharing-1.0.0.3.orig/secret-sharing.cabal
-+++ haskell-secret-sharing-1.0.0.3/secret-sharing.cabal
-@@ -60,7 +60,13 @@ test-suite Main
-   build-depends:   base >= 4 && < 5,
+--- a/secret-sharing.cabal
++++ b/secret-sharing.cabal
+@@ -65,6 +65,11 @@ test-suite Main
                     QuickCheck >= 2.4,
+                    secret-sharing,
                     test-framework >= 0.4.1,
 -                   test-framework-quickcheck2
 +                   test-framework-quickcheck2,
-+                   polynomial,
 +                   bytestring,
 +                   vector,
 +                   binary,
 +                   finite-field,
 +                   dice-entropy-conduit
-   hs-source-dirs:  src, tests
+   hs-source-dirs:  tests
    main-is:         Tests.hs
- 

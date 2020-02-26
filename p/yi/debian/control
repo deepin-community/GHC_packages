@@ -6,21 +6,31 @@ Priority: optional
 Section: haskell
 Rules-Requires-Root: no
 Build-Depends:
- alex (>= 3.0.3),
  cdbs,
  debhelper (>= 10),
  ghc (>= 8.4.3),
- haskell-devscripts (>= 0.13),
+ ghc-prof,
+ haskell-devscripts-minimal (>= 0.13) | haskell-devscripts (>= 0.13),
  libghc-microlens-platform-dev (>= 0.3.4.0),
+ libghc-microlens-platform-prof,
  libghc-optparse-applicative-dev (>= 0.13.0.0),
+ libghc-optparse-applicative-prof,
  libghc-yi-core-dev (>= 0.18),
+ libghc-yi-core-prof,
  libghc-yi-frontend-vty-dev (>= 0.18),
+ libghc-yi-frontend-vty-prof,
  libghc-yi-keymap-emacs-dev (>= 0.18),
+ libghc-yi-keymap-emacs-prof,
  libghc-yi-keymap-vim-dev (>= 0.18),
+ libghc-yi-keymap-vim-prof,
  libghc-yi-misc-modes-dev (>= 0.18),
+ libghc-yi-misc-modes-prof,
  libghc-yi-mode-haskell-dev (>= 0.18),
+ libghc-yi-mode-haskell-prof,
  libghc-yi-mode-javascript-dev (>= 0.18),
+ libghc-yi-mode-javascript-prof,
  libghc-yi-rope-dev (>= 0.10),
+ libghc-yi-rope-prof,
 Standards-Version: 4.1.4
 Homepage: https://github.com/yi-editor/yi#readme
 Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/yi
@@ -30,10 +40,13 @@ Package: yi
 Architecture: any
 Section: editors
 Depends:
- libghc-yi-frontend-pango-dev,
  ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
+Recommends: libghc-yi-misc-modes-dev,
+            libghc-yi-mode-haskell-dev,
+            libghc-yi-keymap-emacs-dev | libghc-yi-keymap-vim-dev,
+            libghc-yi-frontend-vty-dev | libghc-yi-frontend-pango-dev
 Description: Haskell-Scriptable Editor
  Yi is a text editor written in Haskell and extensible in Haskell.  The goal
  of the Yi project is to provide a flexible, powerful, and correct editor
