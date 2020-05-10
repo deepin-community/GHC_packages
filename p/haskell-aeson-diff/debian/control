@@ -1,0 +1,94 @@
+Source: haskell-aeson-diff
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Félix Sipma <felix+debian@gueux.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-aeson-dev,
+ libghc-aeson-prof,
+ libghc-edit-distance-vector-dev,
+ libghc-edit-distance-vector-prof,
+ libghc-hashable-dev,
+ libghc-hashable-prof,
+ libghc-scientific-dev,
+ libghc-scientific-prof,
+ libghc-unordered-containers-dev,
+ libghc-unordered-containers-prof,
+ libghc-vector-dev,
+ libghc-vector-prof,
+ libghc-optparse-applicative-dev,
+ libghc-optparse-applicative-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-aeson-doc,
+ libghc-edit-distance-vector-doc,
+ libghc-hashable-doc,
+ libghc-scientific-doc,
+ libghc-unordered-containers-doc,
+ libghc-vector-doc,
+Standards-Version: 4.4.0
+Homepage: https://github.com/thsutton/aeson-diff
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-aeson-diff
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git
+X-Description: Extract and apply patches to JSON documents.
+ This is a small library for working with changes to JSON documents. It
+ includes a library and two command-line executables in the style of the
+ diff(1) and patch(1) commands available on many systems.
+
+Package: libghc-aeson-diff-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-aeson-diff-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-aeson-diff-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: haskell-aeson-diff-utils
+Architecture: any
+Section: misc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

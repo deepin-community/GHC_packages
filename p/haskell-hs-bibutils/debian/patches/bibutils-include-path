@@ -3,11 +3,11 @@ Description: fix include paths
  for in bibutils/
 Author: Joachim Breitner <nomeata@debian.org>
 
-Index: b/src/Text/Bibutils.hsc
+Index: haskell-hs-bibutils/src/Text/Bibutils.hsc
 ===================================================================
---- a/src/Text/Bibutils.hsc
-+++ b/src/Text/Bibutils.hsc
-@@ -431,7 +431,7 @@ newtype BiblioOut = BiblioOut { unBiblio
+--- haskell-hs-bibutils.orig/src/Text/Bibutils.hsc	2020-04-28 08:57:58.480087322 +0200
++++ haskell-hs-bibutils/src/Text/Bibutils.hsc	2020-04-28 08:57:58.480087322 +0200
+@@ -431,7 +431,7 @@
  
  newtype FormatOpt = FormatOpt { unFormatOpt :: CInt }
  
@@ -16,7 +16,7 @@ Index: b/src/Text/Bibutils.hsc
  
  #{enum FormatOpt, FormatOpt
   , bibout_finalcomma = BIBL_FORMAT_BIBOUT_FINALCOMMA
-@@ -482,8 +482,8 @@ combineRawOpts = Raw . foldr ((.|.) . un
+@@ -482,8 +482,8 @@
  combineFormatOpts :: [FormatOpt] -> FormatOpt
  combineFormatOpts = FormatOpt . foldr ((.|.) . unFormatOpt) 0
  
