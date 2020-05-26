@@ -1,3 +1,42 @@
+ghc (8.8.3-1~exp2) experimental; urgency=medium
+
+  * Patch to remove hs_atomic{read,write}64 from non-64bit systems.
+    This fixes compilation on mipsel and powerpc.
+
+ -- Ilias Tsitsimpis <iliastsi@debian.org>  Sun, 01 Mar 2020 19:01:10 +0200
+
+ghc (8.8.3-1~exp1) experimental; urgency=medium
+
+  * New upstream release
+  * Do not pass ggc-min-expand=10 on mips64el
+  * Remove unnecessary build-dependency on alex
+  * Replace python-sphinx build-dependency with python3-sphinx
+    (Closes: #943097)
+  * Allow unregisterised ghc-8.6 to build newer GHC
+  * Fix wrong installation of ghc-<version> manpages
+  * Bump compat level to 12
+  * Use the debhelper-compat build-dependency and remove d/compat
+  * Update to llvm-9 (Closes: #912788)
+
+ -- Ilias Tsitsimpis <iliastsi@debian.org>  Fri, 28 Feb 2020 10:56:27 +0200
+
+ghc (8.8.2-1~exp1) experimental; urgency=medium
+
+  * New upstream release
+  * Upload to experimental.
+  * Bump std-version to 4.5.0, no changes required
+  * Drop the dfsg code, the current version doesn't bundle anymore that
+    library
+  * Apply changes from 8.8.1+dfsg1+is+8.6.5+dfsg1-2
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Tue, 28 Jan 2020 08:58:32 +0100
+
+ghc (8.8.1+dfsg2-1~exp1) experimental; urgency=medium
+
+  * That one was for experimental, reupload as dfsg2 to bump version
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Thu, 12 Sep 2019 08:18:56 +0200
+
 ghc (8.8.1+dfsg1+is+8.6.5+dfsg1-3) unstable; urgency=medium
 
   * Switch to python3-sphinx; Closes: #943097
@@ -22,6 +61,44 @@ ghc (8.8.1+dfsg1+is+8.6.5+dfsg1-1) unstable; urgency=medium
     - use 8.6.5 repacked tarball to fix the issue
 
  -- Gianfranco Costamagna <locutusofborg@debian.org>  Thu, 12 Sep 2019 08:25:57 +0200
+
+ghc (8.8.1+dfsg1-1~exp4) unstable; urgency=medium
+
+  * Probably llvm-7 is the last working version that can be used in arm
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Wed, 11 Sep 2019 12:04:25 +0200
+
+ghc (8.8.1+dfsg1-1~exp3) experimental; urgency=medium
+
+  * Stick with llvm-8, because llvm-9 seems to be not able to make the build
+    finish correctly (error during the compile of a test program in ghc
+    testsuite)
+  * Comment patch fix-build-using-unregisterized-v8.4: we are using 8.6.5
+    to bootstrap 8.8.1
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Wed, 11 Sep 2019 08:55:51 +0200
+
+ghc (8.8.1+dfsg1-1~exp2) experimental; urgency=medium
+
+  * Followup upstream change in ghc configure script to fix a configure error
+  * Depend on alex
+  * Refresh s390x patch
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Tue, 10 Sep 2019 17:37:37 +0200
+
+ghc (8.8.1+dfsg1-1~exp1) experimental; urgency=medium
+
+  * New upstream release, patch refresh
+  * Drop upstream patches:
+    - bsymbolic-only-for-registerised.patch
+    - e175aaf6918bb2b497b83618dc4c270a0d231a1c.patch
+    - add_-latomic_to_ghc-prim 
+    - risc-support.patch
+    - PprC-Add-support-for-adjacent-floats
+    - powerpc-fix-64-bit-comparision.patch
+  * Switch to default llvm version
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Tue, 10 Sep 2019 12:53:10 +0200
 
 ghc (8.6.5+dfsg1-4) unstable; urgency=medium
 
