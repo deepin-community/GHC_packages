@@ -9,6 +9,9 @@ Build-Depends: debhelper (>= 10),
  cdbs,
  ghc,
  ghc-prof,
+ libghc-cabal-dev (>= 1.10) | ghc,
+ libghc-cabal-dev (<< 3.1) | ghc,
+ libghc-cabal-prof | ghc-prof,
 Build-Depends-Indep: ghc-doc,
 Standards-Version: 4.1.4
 Homepage: https://github.com/phadej/cabal-doctest
