@@ -2,15 +2,13 @@ Description: Disable language-specifications testsuite
  Disable language-specifications testsuite which requires network access.
 Author: Ilias Tsitsimpis <iliastsi@debian.org>
 
-Index: b/mustache.cabal
-===================================================================
 --- a/mustache.cabal
 +++ b/mustache.cabal
-@@ -89,6 +89,7 @@ executable haskell-mustache
+@@ -92,6 +92,7 @@
  test-suite language-specifications
    type: exitcode-stdio-1.0
    main-is: Language.hs
 +  buildable: False
+   other-modules:
+       Paths_mustache
    hs-source-dirs:
-       test/integration
-   build-depends:
