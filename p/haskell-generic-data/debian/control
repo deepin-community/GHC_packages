@@ -1,0 +1,71 @@
+Source: haskell-generic-data
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-base-orphans-dev (>= 0.8),
+ libghc-base-orphans-prof (>= 0.8),
+ libghc-contravariant-dev,
+ libghc-contravariant-prof,
+ libghc-show-combinators-dev,
+ libghc-show-combinators-prof,
+ libghc-generic-lens-dev (>= 1.1.0.0),
+ libghc-generic-lens-prof (>= 1.1.0.0),
+ libghc-tasty-dev,
+ libghc-tasty-prof,
+ libghc-tasty-hunit-dev,
+ libghc-tasty-hunit-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-base-orphans-doc,
+ libghc-contravariant-doc,
+ libghc-show-combinators-doc,
+Standards-Version: 4.5.0
+Homepage: https://github.com/Lysxia/generic-data#readme
+X-Description: deriving instances with GHC.Generics and related utils
+ Generic implementations of standard type classes.
+ Operations on generic representations to help using GHC.Generics.
+
+Package: libghc-generic-data-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-generic-data-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-generic-data-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
