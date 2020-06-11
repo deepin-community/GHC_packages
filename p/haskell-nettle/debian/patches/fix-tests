@@ -1,0 +1,45 @@
+--- a/src/Tests/HexUtils.hs
++++ b/src/Tests/HexUtils.hs
+@@ -19,7 +19,7 @@
+ import qualified Data.ByteString as B
+ import qualified Data.Array.IArray as A
+ 
+-readHex' :: Monad m => String -> m [Word8]
++readHex' :: MonadFail m => String -> m [Word8]
+ readHex' [] = return []
+ readHex' (' ':xs) = readHex' xs
+ readHex' (a:' ':xs) = readHex' $ a:xs
+--- a/src/Tests/VectorsHMAC.hs
++++ b/src/Tests/VectorsHMAC.hs
+@@ -171,5 +171,5 @@
+ 
+ findHmacTestVectors :: Monad m => String -> m [(B.ByteString, B.ByteString, String)]
+ findHmacTestVectors key = case filter ((key == ) . fst) hmacTestVectors of
+-	[] -> fail $ "unknown HMAC: " ++ key
++	[] -> error $ "unknown HMAC: " ++ key
+ 	l -> return $ concatMap snd l
+--- a/src/Tests/Ciphers.hs
++++ b/src/Tests/Ciphers.hs
+@@ -23,11 +23,11 @@
+ genByteString len = liftM B.pack $ vectorOf len (choose (0,255))
+ 
+ runEither :: (Monad m, Show e) => Either e x -> m x
+-runEither (Left e) = fail $ show e
++runEither (Left e) = error $ show e
+ runEither (Right x) = return x
+ 
+ runMaybe :: (Monad m) => Maybe x -> m x
+-runMaybe Nothing = fail "got nothing"
++runMaybe Nothing = error "got nothing"
+ runMaybe (Just x) = return x
+ 
+ genKey' :: KeySizeSpecifier -> Gen B.ByteString
+--- a/src/Tests/VectorsHash.hs
++++ b/src/Tests/VectorsHash.hs
+@@ -1199,5 +1199,5 @@
+ 
+ findHashTestVectors :: Monad m => String -> m [(B.ByteString, String)]
+ findHashTestVectors key = case filter ((key == ) . fst) hashTestVectors of
+-	[] -> fail $ "unknown Hash: " ++ key
++	[] -> error $ "unknown Hash: " ++ key
+ 	l -> return $ concatMap snd l
