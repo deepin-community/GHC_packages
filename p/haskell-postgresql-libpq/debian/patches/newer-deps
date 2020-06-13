@@ -1,0 +1,20 @@
+--- a/postgresql-libpq.cabal
++++ b/postgresql-libpq.cabal
+@@ -37,7 +37,7 @@
+ 
+ Custom-setup
+   setup-depends:
+-    base >= 4.3 && <5, Cabal >= 1.10 && <2.5
++    base >= 4.3 && <5, Cabal >= 1.10 && <3.3
+ 
+ -- If true,  use pkg-config,  otherwise use the pg_config based build
+ -- configuration
+@@ -51,7 +51,7 @@
+   include-dirs:        cbits
+   Exposed-modules:     Database.PostgreSQL.LibPQ
+                        Database.PostgreSQL.LibPQ.Internal
+-  Build-depends:       base       >=4.3     && <4.13
++  Build-depends:       base       >=4.3     && <4.15
+                      , bytestring >=0.9.1.0 && <0.11
+ 
+   if !os(windows)
