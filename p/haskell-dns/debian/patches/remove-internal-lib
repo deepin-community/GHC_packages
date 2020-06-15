@@ -1,0 +1,89 @@
+Description: Remove 'dns-internal' internal library
+ Our haskell-devscripts cannot handle Haskell packages with more than one
+ libraries. Remove the 'dns-internal' internal library and move its sources
+ under other-modules.
+Author: Ilias Tsitsimpis <iliastsi@debian.org>
+
+Index: haskell-dns/dns.cabal
+===================================================================
+--- haskell-dns.orig/dns.cabal	2020-06-15 14:55:56.561218309 +0300
++++ haskell-dns/dns.cabal	2020-06-15 14:56:03.774217730 +0300
+@@ -20,40 +20,6 @@
+                       , GHC == 8.6.5
+                       , GHC == 8.8.1
+ 
+-Library dns-internal
+-  Default-Language:     Haskell2010
+-  GHC-Options:          -Wall
+-  Hs-Source-Dirs:       internal
+-  Exposed-Modules:      Network.DNS.Imports
+-                        Network.DNS.Types.Internal
+-                        Network.DNS.Types.Resolver
+-                        Network.DNS.Resolver.Internal
+-                        Network.DNS.Decode.Parsers
+-                        Network.DNS.Decode.Internal
+-                        Network.DNS.Encode.Builders
+-                        Network.DNS.Encode.Internal
+-                        Network.DNS.StateBinary
+-                        Network.DNS.Memo
+-                        Network.DNS.Base32Hex
+-  Build-Depends:        base
+-                      , array
+-                      , async
+-                      , attoparsec
+-                      , auto-update
+-                      , base16-bytestring
+-                      , base64-bytestring
+-                      , bytestring
+-                      , containers
+-                      , cryptonite
+-                      , hourglass
+-                      , iproute
+-                      , mtl
+-                      , network
+-                      , psqueues
+-  if os(windows)
+-    C-Sources:        cbits/dns.c
+-    Extra-Libraries:  iphlpapi
+-
+ Library
+   Default-Language:     Haskell2010
+   GHC-Options:          -Wall
+@@ -67,8 +33,19 @@
+                         Network.DNS.Encode
+                         Network.DNS.IO
+   Other-Modules:        Network.DNS.Transport
+-  Build-Depends:        dns-internal
+-                      , base >= 4 && < 5
++                        Network.DNS.Imports
++                        Network.DNS.Types.Internal
++                        Network.DNS.Types.Resolver
++                        Network.DNS.Resolver.Internal
++                        Network.DNS.Decode.Parsers
++                        Network.DNS.Decode.Internal
++                        Network.DNS.Encode.Builders
++                        Network.DNS.Encode.Internal
++                        Network.DNS.StateBinary
++                        Network.DNS.Memo
++                        Network.DNS.Base32Hex
++  Hs-Source-Dirs:       . internal
++  Build-Depends:        base >= 4 && < 5
+                       , array
+                       , async
+                       , attoparsec
+@@ -93,7 +70,6 @@
+   Other-Modules:        LookupSpec
+                         IOSpec
+   Build-Depends:        dns
+-                      , dns-internal
+                       , base
+                       , hspec
+                       , network
+@@ -108,7 +84,6 @@
+                         DecodeSpec
+                         RoundTripSpec
+   Build-Depends:        dns
+-                      , dns-internal
+                       , QuickCheck >= 2.9
+                       , base
+                       , bytestring
