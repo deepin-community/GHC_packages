@@ -1,0 +1,15 @@
+Description: Use 'dist-ghc' as builddir
+ Use 'dist-ghc' as builddir when running tests, instead of 'dist-newstyle'
+Author: Ilias Tsitsimpis <iliastsi@debian.org>
+
+--- a/test/test-cli.hs
++++ b/test/test-cli.hs
+@@ -18,7 +18,7 @@
+   IO.hSetBuffering IO.stderr LineBuffering
+ 
+   cwd <- getCurrentDirectory
+-  topdir <- canonicalizePath $ cwd </> "dist-newstyle"
++  topdir <- canonicalizePath $ cwd </> "dist-ghc"
+ 
+   -- Set an environment variable for all the exectuables we want to test.
+   setExecutableEnvVar "HJSMIN" topdir "hjsmin"
