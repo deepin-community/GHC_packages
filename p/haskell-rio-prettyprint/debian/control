@@ -1,0 +1,76 @@
+Source: haskell-rio-prettyprint
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Ilias Tsitsimpis <iliastsi@debian.org>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-aeson-dev,
+ libghc-aeson-prof,
+ libghc-annotated-wl-pprint-dev,
+ libghc-annotated-wl-pprint-prof,
+ libghc-ansi-terminal-dev,
+ libghc-ansi-terminal-prof,
+ libghc-colour-dev,
+ libghc-colour-prof,
+ libghc-path-dev,
+ libghc-path-prof,
+ libghc-rio-dev,
+ libghc-rio-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-aeson-doc,
+ libghc-annotated-wl-pprint-doc,
+ libghc-ansi-terminal-doc,
+ libghc-colour-doc,
+ libghc-path-doc,
+ libghc-rio-doc,
+Standards-Version: 4.5.0
+Homepage: https://github.com/commercialhaskell/rio-prettyprint
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-rio-prettyprint
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-rio-prettyprint]
+X-Description: Pretty-printing for RIO
+ This Haskell library combines RIO's log capabilities with pretty printing.
+
+Package: libghc-rio-prettyprint-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-rio-prettyprint-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-rio-prettyprint-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
