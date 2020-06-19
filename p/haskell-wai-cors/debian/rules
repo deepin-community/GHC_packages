@@ -1,0 +1,9 @@
+#!/usr/bin/make -f
+
+DEB_ENABLE_TESTS = no # requires phantomjs which has been removed from Debian
+DEB_SETUP_BIN_NAME = debian/hlibrary.setup
+DEB_CABAL_PACKAGE = wai-cors
+DEB_DEFAULT_COMPILER = ghc
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/hlibrary.mk
