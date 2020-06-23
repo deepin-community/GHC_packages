@@ -1,0 +1,46 @@
+--- a/tests/Main.hs
++++ b/tests/Main.hs
+@@ -205,7 +205,7 @@
+ arbitraryField :: forall r . Int -> (forall a . (Monoid a, GEncode (K1 R a), GDecode (K1 R a), Eq a, Show a) => a -> Gen r) -> Gen r
+ arbitraryField i f =
+   case someNatVal (fromIntegral i) of
+-    Nothing -> fail $ "someNatVal failed for " ++ show i
++    Nothing -> errorWithoutStackTrace $ "someNatVal failed for " ++ show i
+     Just (SomeNat (n :: Proxy n)) -> do
+       flavor <- choose (1, 3)
+       case flavor :: Int of
+@@ -304,7 +304,7 @@
+         decodeWire field
+   case runGet dec bs of
+     Right val' -> return $ val == val'
+-    Left err   -> fail err
++    Left err   -> errorWithoutStackTrace err
+ 
+ prop_generic :: Gen Property
+ prop_generic = do
+@@ -317,14 +317,14 @@
+   let bs = runPut $ encodeLengthPrefixedMessage (msg :: HashMap Tag [WireField])
+   case runGet decodeLengthPrefixedMessage bs of
+     Right msg' -> return $ counterexample "foo" $ msg == msg'
+-    Left err   -> fail err
++    Left err   -> errorWithoutStackTrace err
+ 
+ prop_roundtrip_msg :: (Eq a, Encode a, Decode a) => a -> Gen Property
+ prop_roundtrip_msg msg = do
+   let bs = runPut $ encodeMessage msg
+   case runGet decodeMessage bs of
+     Right msg' -> return . property $ msg == msg'
+-    Left err   -> fail err
++    Left err   -> errorWithoutStackTrace err
+ 
+ prop_varint_prefixed_bytestring :: Gen Property
+ prop_varint_prefixed_bytestring = do
+@@ -336,7 +336,7 @@
+   let bs = runPut (put val)
+   case runGet get bs of
+     Right val' -> return $ val === val'
+-    Left err   -> fail err
++    Left err   -> errorWithoutStackTrace err
+ 
+ prop_encode_fail :: Encode a => a -> Gen Prop
+ prop_encode_fail msg = unProperty $ ioProperty $ do
