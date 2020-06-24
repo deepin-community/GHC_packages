@@ -1,0 +1,76 @@
+Source: haskell-tar-conduit
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Ilias Tsitsimpis <iliastsi@debian.org>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-conduit-dev,
+ libghc-conduit-prof,
+ libghc-conduit-combinators-dev (>= 1.0.8.1),
+ libghc-conduit-combinators-prof,
+ libghc-safe-exceptions-dev,
+ libghc-safe-exceptions-prof,
+ libghc-quickcheck2-dev,
+ libghc-quickcheck2-prof,
+ libghc-conduit-extra-dev,
+ libghc-conduit-extra-prof,
+ libghc-hspec-dev,
+ libghc-hspec-prof,
+ libghc-weigh-dev,
+ libghc-weigh-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-conduit-doc,
+ libghc-conduit-combinators-doc,
+ libghc-safe-exceptions-doc,
+Standards-Version: 4.5.0
+Homepage: https://github.com/snoyberg/tar-conduit#readme
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-tar-conduit
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-tar-conduit]
+X-Description: Conduit based tar extraction mechanism
+ This Haskell package provides methods to extract and create tar files using
+ conduit for streaming.
+
+Package: libghc-tar-conduit-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-tar-conduit-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-tar-conduit-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
