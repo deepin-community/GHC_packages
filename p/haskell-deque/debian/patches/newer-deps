@@ -1,0 +1,27 @@
+--- a/library/Deque/Lazy.hs
++++ b/library/Deque/Lazy.hs
+@@ -204,7 +204,6 @@
+ instance Monad Deque where
+   return = pure
+   m >>= f = fromList (toList m >>= toList . f)
+-  fail = const mempty
+ 
+ instance Alternative Deque where
+   empty = mempty
+@@ -223,4 +222,4 @@
+   type Item (Deque a) = a
+   fromList = Deque []
+   toList (Deque snocList consList) = consList <> List.reverse snocList
+-  
+\ No newline at end of file
++  
+--- a/library/Deque/Strict.hs
++++ b/library/Deque/Strict.hs
+@@ -216,7 +216,6 @@
+ instance Monad Deque where
+   return = pure
+   m >>= f = fromList (toList m >>= toList . f)
+-  fail = const mempty
+ 
+ instance Alternative Deque where
+   empty = mempty
