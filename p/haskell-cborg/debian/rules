@@ -4,12 +4,7 @@ DEB_SETUP_BIN_NAME = debian/hlibrary.setup
 DEB_CABAL_PACKAGE = cborg
 DEB_DEFAULT_COMPILER = ghc
 
-ifneq (,$(filter amd64 arm64 i386 ppc64el, $(DEB_HOST_ARCH)))
-	DEB_ENABLE_TESTS = yes
-else
-	DEB_ENABLE_TESTS = no
-endif
-
+DEB_ENABLE_TESTS = yes
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
