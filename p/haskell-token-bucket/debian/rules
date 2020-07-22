@@ -1,8 +1,12 @@
 #!/usr/bin/make -f
 
+include /usr/share/dpkg/default.mk
+
 DEB_CABAL_PACKAGE = token-bucket
 DEB_DEFAULT_COMPILER = ghc
+ifneq ($(DEB_HOST_ARCH),riscv64)
 DEB_ENABLE_TESTS = yes
+endif
 DEB_INSTALL_CHANGELOGS_ALL = changelog.md
 
 include /usr/share/cdbs/1/rules/debhelper.mk
