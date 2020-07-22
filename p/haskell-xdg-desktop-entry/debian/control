@@ -1,0 +1,66 @@
+Source: haskell-xdg-desktop-entry
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-configfile-dev,
+ libghc-configfile-prof,
+ libghc-either-dev,
+ libghc-either-prof,
+ libghc-multimap-dev,
+ libghc-multimap-prof,
+ libghc-safe-dev,
+ libghc-safe-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-configfile-doc,
+ libghc-either-doc,
+ libghc-multimap-doc,
+ libghc-safe-doc,
+Standards-Version: 4.5.0
+X-Description: parse files conforming to the XDG desktop entry spec
+ Parser for version 1.2 of the freedesktop "Desktop Entry specification"
+
+Package: libghc-xdg-desktop-entry-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-xdg-desktop-entry-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-xdg-desktop-entry-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

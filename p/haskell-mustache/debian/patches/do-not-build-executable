@@ -4,15 +4,13 @@ Description: Do not build executable
  We can always ship the haskell-mustache binary later on.
 Author: Ilias Tsitsimpis <iliastsi@debian.org>
 
-Index: b/mustache.cabal
-===================================================================
 --- a/mustache.cabal
 +++ b/mustache.cabal
-@@ -71,6 +71,7 @@ library
+@@ -72,6 +72,7 @@
  
  executable haskell-mustache
    main-is: Main.hs
 +  buildable: False
+   other-modules:
+       Paths_mustache
    hs-source-dirs:
-       app
-   ghc-options: -threaded -Wall

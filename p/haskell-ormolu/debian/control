@@ -1,0 +1,101 @@
+Source: haskell-ormolu
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-dlist-dev (>= 0.8),
+ libghc-dlist-dev (<< 0.9),
+ libghc-dlist-prof (>= 0.8),
+ libghc-exceptions-dev (>= 0.6),
+ libghc-exceptions-dev (<< 0.11),
+ libghc-exceptions-prof (>= 0.6),
+ libghc-ghc-lib-parser-dev (>= 8.8.1),
+ libghc-ghc-lib-parser-dev (<< 8.9),
+ libghc-ghc-lib-parser-prof (>= 8.8.1),
+ libghc-syb-dev (>= 0.7),
+ libghc-syb-dev (<< 0.8),
+ libghc-syb-prof (>= 0.7),
+ libghc-gitrev-dev (>= 1.3),
+ libghc-gitrev-dev (<< 1.4),
+ libghc-gitrev-prof (>= 1.3),
+ libghc-optparse-applicative-dev (>= 0.14),
+ libghc-optparse-applicative-dev (<< 0.16),
+ libghc-optparse-applicative-prof (>= 0.14),
+ libghc-hspec-dev (>= 2.0),
+ libghc-hspec-dev (<< 3.0),
+ libghc-hspec-prof (>= 2.0),
+ libghc-path-dev (>= 0.6),
+ libghc-path-dev (<< 0.8),
+ libghc-path-prof (>= 0.6),
+ libghc-path-io-dev (>= 1.4.2),
+ libghc-path-io-dev (<< 2.0),
+ libghc-path-io-prof (>= 1.4.2),
+Build-Depends-Indep: ghc-doc,
+ libghc-dlist-doc,
+ libghc-exceptions-doc,
+ libghc-ghc-lib-parser-doc,
+ libghc-syb-doc,
+Standards-Version: 4.5.0
+Homepage: https://github.com/tweag/ormolu
+X-Description: formatter for Haskell source code
+ A formatter for Haskell source code.
+
+Package: libghc-ormolu-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-ormolu-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-ormolu-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: ormolu
+Architecture: any
+Section: devel
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

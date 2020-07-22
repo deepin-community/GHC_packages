@@ -1,0 +1,62 @@
+Source: haskell-unsafe
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+Build-Depends-Indep: ghc-doc,
+Standards-Version: 4.5.0
+Homepage: http://code.haskell.org/~thielema/unsafe/
+X-Description: unified interface to unsafe functions
+ SafeHaskell introduced the notion of safe and unsafe modules.
+ In order to make as many as possible modules "safe",
+ the well-known unsafe functions were moved to distinguished modules.
+ This makes it hard to write packages that work
+ with both old and new versions of GHC.
+ This package provides a single module, System.Unsafe,
+ that exports the unsafe functions from the base package.
+ It provides them in a style ready for qualification.
+
+Package: libghc-unsafe-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-unsafe-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-unsafe-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

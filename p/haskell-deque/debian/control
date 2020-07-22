@@ -1,0 +1,64 @@
+Source: haskell-deque
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-hashable-dev (>= 1.2),
+ libghc-hashable-dev (<< 2),
+ libghc-hashable-prof,
+ libghc-strict-list-dev (>= 0.1.5),
+ libghc-strict-list-dev (<< 0.2),
+ libghc-strict-list-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-hashable-doc,
+ libghc-strict-list-doc,
+Standards-Version: 4.5.0
+Homepage: https://github.com/nikita-volkov/deque
+X-Description: double-ended queues
+ Strict and lazy implementations of Double-Ended Queue (aka Dequeue
+ or Deque) based on head-tail linked list.
+
+Package: libghc-deque-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-deque-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-deque-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

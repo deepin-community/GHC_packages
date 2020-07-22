@@ -1,0 +1,78 @@
+Source: haskell-generic-lens
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-profunctors-dev (>= 5.0),
+ libghc-profunctors-dev (<< 6.0),
+ libghc-profunctors-prof (>= 5.0),
+ libghc-profunctors-prof (<< 6.0),
+ libghc-tagged-dev (>= 0.8),
+ libghc-tagged-dev (<< 1),
+ libghc-tagged-prof (>= 0.8),
+ libghc-tagged-prof (<< 1),
+ libghc-hunit-dev,
+ libghc-hunit-prof,
+ libghc-doctest-dev,
+ libghc-doctest-prof,
+ libghc-inspection-testing-dev (>= 0.2),
+ libghc-inspection-testing-prof (>= 0.2),
+ libghc-lens-dev,
+ libghc-lens-prof,
+ libghc-profunctors-dev,
+ libghc-profunctors-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-profunctors-doc,
+ libghc-tagged-doc,
+Standards-Version: 4.5.0
+Homepage: https://github.com/kcsongor/generic-lens
+X-Description: generically derive traversals, lenses and prisms
+ This library uses GHC.Generics to derive efficient optics
+ (traversals, lenses and prisms) for algebraic data types in a
+ type-directed way, with a focus on good type inference and error
+ messages when possible.
+
+Package: libghc-generic-lens-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-generic-lens-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-generic-lens-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

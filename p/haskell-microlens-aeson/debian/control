@@ -1,0 +1,87 @@
+Source: haskell-microlens-aeson
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Ilias Tsitsimpis <iliastsi@debian.org>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts (>= 0.16),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-aeson-dev (>= 0.7),
+ libghc-aeson-prof,
+ libghc-attoparsec-dev (>= 0.10),
+ libghc-attoparsec-prof,
+ libghc-hashable-dev,
+ libghc-hashable-prof,
+ libghc-microlens-dev (>= 0.3),
+ libghc-microlens-prof,
+ libghc-scientific-dev (>= 0.3.2),
+ libghc-scientific-prof,
+ libghc-unordered-containers-dev (>= 0.2.3),
+ libghc-unordered-containers-prof,
+ libghc-vector-dev (>= 0.9),
+ libghc-vector-prof,
+ libghc-tasty-dev (>= 0.10.1.2),
+ libghc-tasty-prof,
+ libghc-tasty-hunit-dev (>= 0.9.2),
+ libghc-tasty-hunit-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-aeson-doc,
+ libghc-attoparsec-doc,
+ libghc-hashable-doc,
+ libghc-microlens-doc,
+ libghc-scientific-doc,
+ libghc-unordered-containers-doc,
+ libghc-vector-doc,
+Standards-Version: 4.5.0
+Homepage: https://github.com/fosskers/microlens-aeson/
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-microlens-aeson
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-microlens-aeson]
+X-Description: Law-abiding lenses for Aeson, using microlens
+ This Haskell library provides Traversals for the `Aeson` library's `Value`
+ type, while obeying the `Traversal` laws.
+ .
+ `microlens-aeson` is derived from `lens-aeson`, but is based upon `microlens`
+ to reduce the amount of dependencies involved.
+
+Package: libghc-microlens-aeson-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-microlens-aeson-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-microlens-aeson-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

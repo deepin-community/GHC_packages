@@ -1,0 +1,76 @@
+Source: haskell-multistate
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-monad-control-dev (>= 1.0),
+ libghc-monad-control-dev (<< 1.1),
+ libghc-monad-control-prof (>= 1.0),
+ libghc-monad-control-prof (<< 1.1),
+ libghc-tagged-dev (>= 0.7),
+ libghc-tagged-dev (<< 0.9),
+ libghc-tagged-prof (>= 0.7),
+ libghc-tagged-prof (<< 0.9),
+ libghc-transformers-base-dev (<< 0.5),
+ libghc-transformers-base-prof (<< 0.5),
+ libghc-hspec-dev (>= 2),
+ libghc-hspec-prof (>= 2),
+Build-Depends-Indep: ghc-doc,
+ libghc-monad-control-doc,
+ libghc-tagged-doc,
+ libghc-transformers-base-doc,
+Standards-Version: 4.5.0
+Homepage: https://github.com/lspitzner/multistate
+X-Description: equivalent of multiple RWST in the same stack
+ When using multiple Read/Write/State transformers in the same monad
+ stack, it becomes necessary to lift the operations in order to affect
+ a specific transformer.
+ Using heterogeneous lists (and all kinds of GHC extensions magic),
+ this package provides transformers that remove that necessity:
+ MultiReaderT/MultiWriterT/MultiStateT/MultiRWST can contain a
+ heterogeneous list of values.
+
+Package: libghc-multistate-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-multistate-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-multistate-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

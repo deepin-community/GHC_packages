@@ -1,6 +1,7 @@
 Source: haskell-dependent-sum
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Joachim Breitner <nomeata@debian.org>
+Uploaders: Joachim Breitner <nomeata@debian.org>,
+           Clint Adams <clint@debian.org>,
 Priority: optional
 Section: haskell
 Rules-Requires-Root: no
@@ -9,9 +10,17 @@ Build-Depends: debhelper (>= 10),
  cdbs,
  ghc (>= 8),
  ghc-prof,
+ libghc-constraints-extras-dev (>= 0.2),
+ libghc-constraints-extras-dev (<< 0.4),
+ libghc-constraints-extras-prof,
+ libghc-some-dev (>= 1.0.1),
+ libghc-some-dev (<< 1.0.2),
+ libghc-some-prof,
 Build-Depends-Indep: ghc-doc,
-Standards-Version: 4.1.4
-Homepage: https://github.com/mokus0/dependent-sum
+ libghc-constraints-extras-doc,
+ libghc-some-doc,
+Standards-Version: 4.5.0
+Homepage: https://github.com/obsidiansystems/dependent-sum
 Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-dependent-sum
 Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-dependent-sum]
 X-Description: Dependent sum type

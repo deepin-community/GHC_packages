@@ -1,0 +1,68 @@
+Source: haskell-ipynb
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Antoine Latter <aslatter@gmail.com>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-aeson-dev,
+ libghc-aeson-prof,
+ libghc-base64-bytestring-dev,
+ libghc-base64-bytestring-prof,
+ libghc-unordered-containers-dev,
+ libghc-unordered-containers-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-aeson-doc,
+ libghc-base64-bytestring-doc,
+ libghc-unordered-containers-doc,
+Standards-Version: 4.5.0
+Homepage: https://hackage.haskell.org/package/ipynb
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-ipynb
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git
+X-Description: Data structure for working with Jupyter notebooks (ipynb).
+ ipynb defines a data structure for representing Jupyter
+ notebooks, along with ToJSON and FromJSON instances
+ for conversion to and from JSON .ipynb files.
+
+Package: libghc-ipynb-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-ipynb-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-ipynb-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

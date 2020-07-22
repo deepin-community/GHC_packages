@@ -1,0 +1,26 @@
+From a38bb631c74ff33c80ebe7d5bac7121b786b9f10 Mon Sep 17 00:00:00 2001
+From: Felix Yan <felixonmars@archlinux.org>
+Date: Thu, 9 Jan 2020 05:07:21 +0800
+Subject: [PATCH] Fix compatibility with GHC 8.8+
+
+---
+ src/Data/Integer/SAT.hs | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+--- a/src/Data/Integer/SAT.hs
++++ b/src/Data/Integer/SAT.hs
+@@ -709,11 +709,13 @@
+ 
+ instance Monad Answer where
+   return a           = One a
+-  fail _             = None
+   None >>= _         = None
+   One a >>= k        = k a
+   Choice m1 m2 >>= k = mplus (m1 >>= k) (m2 >>= k)
+ 
++instance MonadFail Answer where
++  fail _             = None
++
+ instance Alternative Answer where
+   empty = mzero
+   (<|>) = mplus

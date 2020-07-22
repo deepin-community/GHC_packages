@@ -1,6 +1,12 @@
 #!/usr/bin/make -f
 
 DEB_ENABLE_TESTS = yes
+# The testsuite fails to compile with `ghc: out of memory` error when
+# compiling `test/Data/StoreSpec.hs` on armel and armhf.
+ifneq (,$(filter armel armhf, $(DEB_HOST_ARCH)))
+	DEB_ENABLE_TESTS = no
+endif
+
 DEB_SETUP_BIN_NAME = debian/hlibrary.setup
 DEB_CABAL_PACKAGE = store
 DEB_DEFAULT_COMPILER = ghc

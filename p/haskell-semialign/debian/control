@@ -1,0 +1,91 @@
+Source: haskell-semialign
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Ilias Tsitsimpis <iliastsi@debian.org>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts (>= 0.16),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-base-compat-dev (>= 0.10.5),
+ libghc-base-compat-dev (<< 0.12),
+ libghc-base-compat-prof,
+ libghc-hashable-dev (>= 1.2.7.0),
+ libghc-hashable-dev (<< 1.4),
+ libghc-hashable-prof,
+ libghc-semigroupoids-dev (>= 5.3.2),
+ libghc-semigroupoids-dev (<< 5.4),
+ libghc-semigroupoids-prof,
+ libghc-tagged-dev (>= 0.8.6),
+ libghc-tagged-dev (<< 0.9),
+ libghc-tagged-prof,
+ libghc-these-dev (>= 1),
+ libghc-these-dev (<< 1.1),
+ libghc-these-prof,
+ libghc-unordered-containers-dev (>= 0.2.8.0),
+ libghc-unordered-containers-dev (<< 0.3),
+ libghc-unordered-containers-prof,
+ libghc-vector-dev (>= 0.12.0.2),
+ libghc-vector-dev (<< 0.13),
+ libghc-vector-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-base-compat-doc,
+ libghc-hashable-doc,
+ libghc-semigroupoids-doc,
+ libghc-tagged-doc,
+ libghc-these-doc,
+ libghc-unordered-containers-doc,
+ libghc-vector-doc,
+Standards-Version: 4.5.0
+Homepage: https://github.com/isomorphism/these
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-semialign
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-semialign]
+X-Description: Align and Zip type-classes from the common Semialign ancestor
+ This Haskell library implements the 'Semialign' class, which represents a
+ generalized notion of "zipping with padding" that combines structures without
+ truncating to the size of the smaller input.
+ .
+ It turns out that the 'zip' operation fits well the 'Semialign' class,
+ forming a lattice-like structure.
+
+Package: libghc-semialign-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-semialign-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-semialign-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

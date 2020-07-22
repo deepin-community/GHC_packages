@@ -1,6 +1,6 @@
 --- a/http2.cabal
 +++ b/http2.cabal
-@@ -90,15 +90,6 @@
+@@ -111,17 +111,6 @@
  
  ----------------------------------------------------------------
  
@@ -12,6 +12,8 @@
 -  Main-Is:              doctests.hs
 -  Build-Depends:        base >= 4 && < 5
 -                      , doctest >= 0.9.3
+-  if impl(ghc >= 8)
+-      Default-Extensions:  Strict StrictData
 -
  Test-Suite spec
    Type:                 exitcode-stdio-1.0

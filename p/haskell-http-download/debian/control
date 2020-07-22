@@ -1,0 +1,107 @@
+Source: haskell-http-download
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Ilias Tsitsimpis <iliastsi@debian.org>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-base64-bytestring-dev,
+ libghc-base64-bytestring-prof,
+ libghc-conduit-dev,
+ libghc-conduit-prof,
+ libghc-conduit-extra-dev,
+ libghc-conduit-extra-prof,
+ libghc-cryptonite-dev,
+ libghc-cryptonite-prof,
+ libghc-cryptonite-conduit-dev,
+ libghc-cryptonite-conduit-prof,
+ libghc-exceptions-dev,
+ libghc-exceptions-prof,
+ libghc-http-client-dev,
+ libghc-http-client-prof,
+ libghc-http-conduit-dev,
+ libghc-http-conduit-prof,
+ libghc-http-types-dev,
+ libghc-http-types-prof,
+ libghc-memory-dev,
+ libghc-memory-prof,
+ libghc-path-dev,
+ libghc-path-prof,
+ libghc-path-io-dev,
+ libghc-path-io-prof,
+ libghc-retry-dev,
+ libghc-retry-prof,
+ libghc-rio-dev,
+ libghc-rio-prof,
+ libghc-rio-prettyprint-dev,
+ libghc-rio-prettyprint-prof,
+ libghc-hspec-dev,
+ libghc-hspec-prof,
+ libghc-hspec-discover-dev,
+ libghc-hspec-discover-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-base64-bytestring-doc,
+ libghc-conduit-doc,
+ libghc-conduit-extra-doc,
+ libghc-cryptonite-doc,
+ libghc-cryptonite-conduit-doc,
+ libghc-exceptions-doc,
+ libghc-http-client-doc,
+ libghc-http-conduit-doc,
+ libghc-http-types-doc,
+ libghc-memory-doc,
+ libghc-path-doc,
+ libghc-path-io-doc,
+ libghc-retry-doc,
+ libghc-rio-doc,
+ libghc-rio-prettyprint-doc,
+Standards-Version: 4.5.0
+Homepage: https://github.com/commercialhaskell/http-download#readme
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-http-download
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-http-download]
+X-Description: Verified downloads with retries
+ Higher level HTTP download APIs including verification of content and retries.
+
+Package: libghc-http-download-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-http-download-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-http-download-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

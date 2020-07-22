@@ -3,6 +3,7 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders:
  Iain Lane <laney@debian.org>,
  Ilias Tsitsimpis <iliastsi@debian.org>,
+ Clint Adams <clint@debian.org>,
 Priority: optional
 Section: haskell
 Rules-Requires-Root: no
@@ -15,9 +16,9 @@ Build-Depends:
  ghc-prof,
  libghc-http-dev (>= 1:4000.1.5),
  libghc-http-dev (<< 1:4000.4),
- libghc-async-dev (>= 2.0),
- libghc-async-dev (<< 3),
- libghc-async-dev (>= 2.0),
+ libghc-async-dev (<< 2.3),
+ libghc-async-prof,
+ libghc-base16-bytestring-dev (>= 0.1.1),
  libghc-base16-bytestring-dev (<< 0.2),
  libghc-cryptohash-sha256-dev (>= 0.11),
  libghc-cryptohash-sha256-dev (<< 0.12),
@@ -26,11 +27,13 @@ Build-Depends:
  libghc-edit-distance-dev (>= 0.2.2),
  libghc-edit-distance-dev (<< 0.3),
  libghc-hackage-security-dev (>= 0.5.2.2),
- libghc-hackage-security-dev (<< 0.6),
- libghc-hashable-dev (<< 2),
+ libghc-hackage-security-dev (<< 0.7),
+ libghc-hackage-security-prof,
+ libghc-hashable-dev (>= 1.0),
+ libghc-hashable-dev (<< 1.4),
  libghc-hashable-prof,
  libghc-network-dev (>= 2.6),
- libghc-network-dev (<< 2.9),
+ libghc-network-dev (<< 3.2),
  libghc-network-prof,
  libghc-network-uri-dev (>= 2.6.0.2),
  libghc-network-uri-dev (<< 2.7),
@@ -41,13 +44,10 @@ Build-Depends:
  libghc-tar-dev (>= 0.5.0.3),
  libghc-tar-dev (<< 0.6),
  libghc-tar-prof,
- libghc-zip-archive-dev (>= 0.3.2.5),
- libghc-zip-archive-dev (<< 0.5),
- libghc-zip-archive-prof,
  libghc-zlib-dev (>= 0.5.3),
  libghc-zlib-dev (<< 0.7),
  libghc-zlib-prof,
-Standards-Version: 4.4.0
+Standards-Version: 4.5.0
 Homepage: https://www.haskell.org/cabal/
 Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-cabal-install
 Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-cabal-install]

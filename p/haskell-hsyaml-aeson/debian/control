@@ -1,0 +1,82 @@
+Source: haskell-hsyaml-aeson
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Ilias Tsitsimpis <iliastsi@debian.org>,
+           Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-hsyaml-dev (>= 0.2.0),
+ libghc-hsyaml-dev (<< 0.3),
+ libghc-hsyaml-prof,
+ libghc-aeson-dev (>= 1.4.0.0),
+ libghc-aeson-dev (<< 1.5),
+ libghc-aeson-prof,
+ libghc-scientific-dev (>= 0.3.6.2),
+ libghc-scientific-dev (<< 0.4),
+ libghc-scientific-prof,
+ libghc-unordered-containers-dev (>= 0.2),
+ libghc-unordered-containers-dev (<< 0.3),
+ libghc-unordered-containers-prof,
+ libghc-vector-dev (>= 0.12.0.2),
+ libghc-vector-dev (<< 0.13),
+ libghc-vector-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-hsyaml-doc,
+ libghc-aeson-doc,
+ libghc-scientific-doc,
+ libghc-unordered-containers-doc,
+ libghc-vector-doc,
+Standards-Version: 4.5.0
+Homepage: https://hackage.haskell.org/package/HsYAML-aeson
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-hsyaml-aeson
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-hsyaml-aeson]
+X-Description: JSON to YAML Adapter
+ This Haskell module provides a compatibility layer atop HsYAML which allows
+ decoding YAML documents in the more limited JSON data-model while also
+ providing convenience by reusing aeson's 'FromJSON' instances for decoding
+ the YAML data into native Haskell data types.
+
+Package: libghc-hsyaml-aeson-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hsyaml-aeson-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hsyaml-aeson-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

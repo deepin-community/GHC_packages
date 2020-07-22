@@ -1,6 +1,6 @@
 --- a/esqueleto.cabal
 +++ b/esqueleto.cabal
-@@ -62,70 +62,6 @@
+@@ -67,79 +67,6 @@
      ghc-options: -Wall
    default-language: Haskell2010
  
@@ -15,22 +15,25 @@
 -  ghc-options: -Wall
 -  build-depends:
 -      base >=4.8 && <5.0
+-    , attoparsec
 -    , blaze-html
 -    , bytestring
 -    , conduit >=1.3
 -    , containers
 -    , esqueleto
+-    , exceptions
 -    , hspec
 -    , monad-logger
+-    , mtl
 -    , mysql
 -    , mysql-simple
--    , persistent >=2.8.0 && <2.10
+-    , persistent >=2.8.0 && <2.11
 -    , persistent-mysql
 -    , persistent-template
 -    , resourcet >=1.2
 -    , tagged >=0.2
 -    , text >=0.11 && <1.3
--    , time >=1.5.0.1 && <=1.8.0.2
+-    , time 
 -    , transformers >=0.2
 -    , unliftio
 -    , unordered-containers >=0.2
@@ -41,31 +44,37 @@
 -  main-is: PostgreSQL/Test.hs
 -  other-modules:
 -      Common.Test
+-      PostgreSQL.MigrateJSON
 -      Paths_esqueleto
 -  hs-source-dirs:
 -      test
 -  ghc-options: -Wall
 -  build-depends:
 -      base >=4.8 && <5.0
+-    , aeson
+-    , attoparsec
 -    , blaze-html
 -    , bytestring
 -    , conduit >=1.3
 -    , containers
 -    , esqueleto
+-    , exceptions
 -    , hspec
 -    , monad-logger
--    , persistent >=2.8.0 && <2.10
--    , persistent-postgresql
+-    , mtl
+-    , persistent >=2.10.0 && <2.11
+-    , persistent-postgresql >= 2.10.0 && <2.11
 -    , persistent-template
 -    , postgresql-libpq
 -    , postgresql-simple
 -    , resourcet >=1.2
 -    , tagged >=0.2
 -    , text >=0.11 && <1.3
--    , time >=1.5.0.1 && <=1.8.0.2
+-    , time 
 -    , transformers >=0.2
 -    , unliftio
 -    , unordered-containers >=0.2
+-    , vector
 -  default-language: Haskell2010
 -
  test-suite sqlite

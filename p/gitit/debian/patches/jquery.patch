@@ -2,6 +2,8 @@ Description: Use libjs-jquery instead of embedded code
  Patch gitit to use the javascript linked from the libjs-jquery package,
  instead of the embedded one.
 Author: Giovanni Mascellani <gio@debian.org>
+Index: b/data/templates/expire.st
+===================================================================
 --- a/data/templates/expire.st
 +++ b/data/templates/expire.st
 @@ -1,5 +1,5 @@
@@ -11,9 +13,11 @@ Author: Giovanni Mascellani <gio@debian.org>
  <script type="text/javascript">
  /* <![CDATA[ */
       \$(document).bind("keydown", "ctrl+r", function() {
+Index: b/src/Network/Gitit/Layout.hs
+===================================================================
 --- a/src/Network/Gitit/Layout.hs
 +++ b/src/Network/Gitit/Layout.hs
-@@ -78,7 +78,7 @@
+@@ -78,7 +78,7 @@ filledPageTemplate base' cfg layout html
                             'h':'t':'t':'p':_  -> x
                             _                  -> base' ++ "/js/" ++ x
  
@@ -22,6 +26,8 @@ Author: Giovanni Mascellani <gio@debian.org>
        scriptLink x = script ! [src (prefixedScript x),
          thetype "text/javascript"] << noHtml
        javascriptlinks = renderHtmlFragment $ concatHtml $ map scriptLink scripts
+Index: b/data/templates/page.st
+===================================================================
 --- a/data/templates/page.st
 +++ b/data/templates/page.st
 @@ -9,6 +9,7 @@

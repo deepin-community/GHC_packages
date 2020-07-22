@@ -1,0 +1,82 @@
+Source: haskell-inline-c
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-ansi-wl-pprint-dev (>= 0.6.8),
+ libghc-ansi-wl-pprint-prof (>= 0.6.8),
+ libghc-hashable-dev,
+ libghc-hashable-prof,
+ libghc-parsers-dev,
+ libghc-parsers-prof,
+ libghc-unordered-containers-dev,
+ libghc-unordered-containers-prof,
+ libghc-vector-dev,
+ libghc-vector-prof,
+ libghc-quickcheck2-dev,
+ libghc-quickcheck2-prof,
+ libghc-ansi-wl-pprint-dev,
+ libghc-ansi-wl-pprint-prof,
+ libghc-hspec-dev (>= 2),
+ libghc-hspec-prof (>= 2),
+ libghc-raw-strings-qq-dev,
+ libghc-raw-strings-qq-prof,
+ libghc-regex-posix-dev,
+ libghc-regex-posix-prof,
+ libghc-split-dev,
+ libghc-split-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-ansi-wl-pprint-doc,
+ libghc-hashable-doc,
+ libghc-parsers-doc,
+ libghc-unordered-containers-doc,
+ libghc-vector-doc,
+Standards-Version: 4.5.0
+X-Description: inline C code without FFI in Haskell source
+ Write Haskell source files including C code inline. No FFI
+ required.
+
+Package: libghc-inline-c-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-inline-c-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-inline-c-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
