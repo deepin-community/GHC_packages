@@ -1,0 +1,14 @@
+Description: Disable doctests
+ Disable doctests since they fail on too many architectures, with what seems to
+ be a GHC bug.
+
+--- a/rank2classes.cabal
++++ b/rank2classes.cabal
+@@ -48,6 +48,7 @@
+ 
+ test-suite doctests
+   type:                exitcode-stdio-1.0
++  buildable: false
+   hs-source-dirs:      test
+   default-language:    Haskell2010
+   main-is:             Doctest.hs
