@@ -1,8 +1,10 @@
 See https://github.com/agda/agda/issues/2804
 
+Index: b/src/full/Agda/Interaction/Library.hs
+===================================================================
 --- a/src/full/Agda/Interaction/Library.hs
 +++ b/src/full/Agda/Interaction/Library.hs
-@@ -267,13 +267,19 @@
+@@ -280,13 +280,19 @@ getInstalledLibraries
    -> LibM [AgdaLibFile] -- ^ Content of library files.  (Might have empty @LibName@s.)
  getInstalledLibraries overrideLibFile = mkLibM [] $ do
      file <- lift $ getLibrariesFile overrideLibFile
@@ -10,7 +12,7 @@ See https://github.com/agda/agda/issues/2804
 +    userlibs <- if not (lfExists file) then return [] else do
        ls    <- lift $ stripCommentLines <$> readFile (lfPath file)
        files <- lift $ sequence [ (i, ) <$> expandEnvironmentVariables s | (i, s) <- ls ]
-       parseLibFiles (Just file) $ List.nubBy ((==) `on` snd) files
+       parseLibFiles (Just file) $ nubOn snd files
 +    systemlibs <- ifNotM (lift $ doesDirectoryExist systemLibDir) (return []) $ do
 +      files <- lift $ filter isLibFile <$> listDirectory systemLibDir
 +      parseLibFiles Nothing $ zip [1..] $ map (systemLibDir </>) files
