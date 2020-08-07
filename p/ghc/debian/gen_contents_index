@@ -17,6 +17,7 @@ if (-e '/usr/bin/ghc-pkg') {
 }
 
 exec ('haddock', '--gen-index', '--gen-contents',
+      '--mathjax', 'file:///usr/share/javascript/mathjax/MathJax.js',
       '-o', '/usr/share/doc/ghc-doc/html/libraries/',
       '-t'. 'Haskell Hierarchical Libraries',
       '-p', '/usr/share/doc/ghc-doc/html/libraries/prologue.txt',
