@@ -1,0 +1,67 @@
+Source: haskell-generic-lens-core
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Ilias Tsitsimpis <iliastsi@debian.org>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-indexed-profunctors-dev (>= 0.1),
+ libghc-indexed-profunctors-dev (<< 1.0),
+ libghc-indexed-profunctors-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-indexed-profunctors-doc,
+Standards-Version: 4.5.0
+Homepage: https://github.com/kcsongor/generic-lens
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-generic-lens-core
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-generic-lens-core]
+X-Description: Generically derive traversals, lenses and prisms
+ This library uses GHC.Generics to derive efficient optics (traversals, lenses
+ and prisms) for algebraic data types in a type-directed way, with a focus on
+ good type inference and error messages when possible.
+ .
+ This package is the shared internal logic of the 'generic-lens' and
+ 'generic-optics' libraries.
+
+Package: libghc-generic-lens-core-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-generic-lens-core-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-generic-lens-core-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
