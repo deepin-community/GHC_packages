@@ -1,0 +1,11 @@
+--- a/lib/Network/Http/Connection.hs
++++ b/lib/Network/Http/Connection.hs
+@@ -189,7 +189,7 @@
+     }
+   where
+     hints = defaultHints {
+-        addrFlags = [AI_ADDRCONFIG, AI_NUMERICSERV],
++        addrFlags = [AI_NUMERICSERV],
+         addrSocketType = Stream
+     }
+     h2' = if p == 80
