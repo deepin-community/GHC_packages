@@ -6,14 +6,32 @@ ghc (8.10.1-1~exp1) experimental; urgency=medium
 
  -- Gianfranco Costamagna <locutusofborg@debian.org>  Wed, 27 May 2020 17:46:58 +0200
 
-ghc (8.8.3-2) UNRELEASED; urgency=medium
+ghc (8.8.4-1) unstable; urgency=medium
+
+  * New upstream release
+  * Fix gen_contents_index to use ghc-pkg to parse the package database
+    (Closes: #966069)
+  * Use locally-installed MathJax.js when generating library docs
+    (Closes: #890627)
+  * Patch Haddock to remove hard-coded googleapis font URL (Closes: #963690)
+  * Backport upstream patch to fix FFI on unregisterised big endian machines
+
+ -- Ilias Tsitsimpis <iliastsi@debian.org>  Tue, 11 Aug 2020 17:12:43 +0300
+
+ghc (8.8.3-3) unstable; urgency=medium
+
+  * Reupload due to bad debian/rules merge
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Fri, 31 Jul 2020 17:48:26 +0200
+
+ghc (8.8.3-2) unstable; urgency=medium
 
   * Cherry-pick Ubuntu patches
   * Also limit parallel building to 2 on arm64, because Ubuntu fails
     with ENOMEM with parallel=4
   * Fix ByteOrder on s390x.
 
- -- Gianfranco Costamagna <locutusofborg@debian.org>  Thu, 28 May 2020 13:45:02 +0200
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Thu, 30 Jul 2020 16:34:22 +0200
 
 ghc (8.8.3-1) unstable; urgency=medium
 

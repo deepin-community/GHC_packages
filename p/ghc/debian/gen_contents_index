@@ -11,12 +11,13 @@ exit 0 unless (-d "/usr/share/doc/ghc-doc/html/libraries/" and -r "/usr/share/do
 
 # Add everything from the global Cabal registry to index.
 if (-e '/usr/bin/ghc-pkg') {
-    open CABAL, 'ghc-pkg dump --global |' or warn "ghc-pkg dump failed: $!";
+    open CABAL, "/usr/bin/ghc-pkg --global --simple-output field '*' name,version,haddock-interfaces,haddock-html |" or warn "ghc-pkg dump failed: $!";
     addInfo (\*CABAL, \%pkgs, \@ifaces);
     close CABAL;
 }
 
 exec ('haddock', '--gen-index', '--gen-contents',
+      '--mathjax', 'file:///usr/share/javascript/mathjax/MathJax.js',
       '-o', '/usr/share/doc/ghc-doc/html/libraries/',
       '-t'. 'Haskell Hierarchical Libraries',
       '-p', '/usr/share/doc/ghc-doc/html/libraries/prologue.txt',
@@ -24,22 +25,14 @@ exec ('haddock', '--gen-index', '--gen-contents',
 
 sub addInfo {
     my $fh = shift;
-    my %dat;
     while (<$fh>) {
-	if (/^name: (.*)/) {
-	    $dat{pkg} = $1;
-	} elsif (/^version: (.*)/) {
-	    $dat{ver} = $1;
-	} elsif (/^haddock-interfaces: (.*)/) {
-	    $dat{ifaces} = $1;
-	} elsif (/^haddock-html: (.*)/) {
-	    $dat{html} = $1;
-	} elsif (/^---/) {
-	    process(\%dat, @_);
-	    %dat = ();
-	}
+        my %dat;
+        chomp ($dat{pkg} = $_);
+        chomp ($dat{ver} = <$fh>);
+        chomp ($dat{ifaces} = <$fh>);
+        chomp ($dat{html} = <$fh>);
+        process(\%dat, @_);
     }
-    process(\%dat, @_);
 }
 
 sub process {
@@ -51,13 +44,13 @@ sub process {
     my $p = $$dat{pkg}.'-'.$$dat{ver};
     return undef if (exists $$pkgs{$p});
     if ($$dat{html} =~ m,^/usr/share/doc/ghc-doc/html/libraries/(.*),) {
-	$path = $1;
+        $path = $1;
     } elsif ($$dat{html} =~ m,^/usr/share/doc/([^/]*-doc/html/.*),) {
-	$path = "../../../$1";
+        $path = "../../../$1";
     }
 
     if (defined $path && -r $$dat{ifaces}) {
-	$$pkgs{$p} = 1;
-	push @ifaces, "--read-interface=$path,$$dat{ifaces}";
+        $$pkgs{$p} = 1;
+        push @ifaces, "--read-interface=$path,$$dat{ifaces}";
     }
 }
