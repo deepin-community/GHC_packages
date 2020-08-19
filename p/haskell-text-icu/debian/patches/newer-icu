@@ -1,6 +1,17 @@
 --- a/Data/Text/ICU/Char.hsc
 +++ b/Data/Text/ICU/Char.hsc
-@@ -357,6 +357,66 @@
+@@ -129,6 +129,10 @@
+   | PopDirectionalFormat
+   | DirNonSpacingMark
+   | BoundaryNeutral
++  | FirstStrongIsolate
++  | LeftToRightIsolate
++  | RightToLeftIsolate
++  | PopDirectionalIsolate
+   deriving (Eq, Enum, Show, Typeable)
+ 
+ instance NFData Direction where
+@@ -357,6 +361,94 @@
    | SoraSompeng
    | SundaneseSupplement
    | Takri
@@ -63,7 +74,35 @@
 +  | Nushu
 +  | Soyombo
 +  | SyriacSupplement
-+  | ZanzabarSquare
++  | ZanabazarSquare
++  | ChessSymbols
++  | Dogra
++  | GeorgianExtended
++  | GunjalaGondi
++  | HanifiRohingya
++  | IndicSiyaqNumbers
++  | Makasar
++  | MayanNumerals
++  | Medefaidrin
++  | OldSogdian
++  | Sogdian
++  | EgyptianHieroglyphFormatControls
++  | Elymaic
++  | Nandinagari
++  | NyiakengPuachueHmong
++  | OttomanSiyaqNumbers
++  | SmallKanaExtension
++  | SymbolsAndPictographsExtendedA
++  | TamilSupplement
++  | Wancho
++  | Chorasmian
++  | CjkUnifiedIdeographsExtensionG
++  | DivesAkuru
++  | KhitanSmallScript
++  | LisuSupplement
++  | SymbolsForLegacyComputing
++  | TangutSupplement
++  | Yezidi
    deriving (Eq, Enum, Bounded, Show, Typeable)
  
  instance NFData BlockCode where
