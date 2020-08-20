@@ -1,6 +1,6 @@
 --- a/generic-data.cabal
 +++ b/generic-data.cabal
-@@ -103,20 +103,6 @@
+@@ -108,19 +108,6 @@
    default-language: Haskell2010
    type: exitcode-stdio-1.0
  
@@ -14,10 +14,9 @@
 -    generic-lens >= 1.1.0.0,
 -    one-liner >= 1.0,
 -    base
--  ghc-options: -Wall
+-  ghc-options: -Wall -threaded
 -  default-language: Haskell2010
 -  type: exitcode-stdio-1.0
--
- benchmark bench
+ 
+ test-suite generic-data-doctest
    hs-source-dirs: test
-   main-is: bench.hs
