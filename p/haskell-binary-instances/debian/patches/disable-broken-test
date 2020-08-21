@@ -1,0 +1,18 @@
+Description: Disable broken test
+ The "CI Text" is known to fail due to a deficiency in the text library[1].
+ Please re-enable this test once text has been fixed.
+ .
+ [1] https://github.com/haskell/text/issues/277
+Bug: https://github.com/phadej/binary-instances/issues/7
+
+--- a/test/Tests.hs
++++ b/test/Tests.hs
+@@ -49,7 +49,7 @@
+     , roundtripProperty (undefined :: Time.TimeZone)
+     , roundtripProperty (undefined :: Time.UTCTime)
+     -- case-insensitive & text
+-    , roundtripProperty (undefined :: (CI Text))
++    --, roundtripProperty (undefined :: (CI Text))
+     -- semigroups / monoids
+     , roundtripProperty (undefined :: (Sum Int))
+     -- tagged
