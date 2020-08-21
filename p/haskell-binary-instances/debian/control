@@ -1,0 +1,144 @@
+Source: haskell-binary-instances
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-aeson-dev (>= 0.7.0.6),
+ libghc-aeson-dev (<< 1.5),
+ libghc-aeson-prof (>= 0.7.0.6),
+ libghc-aeson-prof (<< 1.5),
+ libghc-binary-orphans-dev (>= 1.0.1),
+ libghc-binary-orphans-dev (<< 1.1),
+ libghc-binary-orphans-prof (>= 1.0.1),
+ libghc-binary-orphans-prof (<< 1.1),
+ libghc-case-insensitive-dev (>= 1.2.0.4),
+ libghc-case-insensitive-dev (<< 1.2.2),
+ libghc-case-insensitive-prof (>= 1.2.0.4),
+ libghc-case-insensitive-prof (<< 1.2.2),
+ libghc-hashable-dev (>= 1.2.3.3),
+ libghc-hashable-dev (<< 1.4),
+ libghc-hashable-prof (>= 1.2.3.3),
+ libghc-hashable-prof (<< 1.4),
+ libghc-scientific-dev (>= 0.3.3.8),
+ libghc-scientific-dev (<< 0.4),
+ libghc-scientific-prof (>= 0.3.3.8),
+ libghc-scientific-prof (<< 0.4),
+ libghc-tagged-dev (>= 0.7.3),
+ libghc-tagged-dev (<< 0.8.7),
+ libghc-tagged-prof (>= 0.7.3),
+ libghc-tagged-prof (<< 0.8.7),
+ libghc-text-binary-dev (>= 0.2.1.1),
+ libghc-text-binary-dev (<< 0.3),
+ libghc-text-binary-prof (>= 0.2.1.1),
+ libghc-text-binary-prof (<< 0.3),
+ libghc-time-compat-dev (>= 1.9.2.2),
+ libghc-time-compat-dev (<< 1.10),
+ libghc-time-compat-prof (>= 1.9.2.2),
+ libghc-time-compat-prof (<< 1.10),
+ libghc-unordered-containers-dev (>= 0.2.5.1),
+ libghc-unordered-containers-dev (<< 0.3),
+ libghc-unordered-containers-prof (>= 0.2.5.1),
+ libghc-unordered-containers-prof (<< 0.3),
+ libghc-vector-dev (>= 0.10.12.3),
+ libghc-vector-dev (<< 0.13),
+ libghc-vector-prof (>= 0.10.12.3),
+ libghc-vector-prof (<< 0.13),
+ libghc-vector-binary-instances-dev (>= 0.2.1.0),
+ libghc-vector-binary-instances-dev (<< 0.3),
+ libghc-vector-binary-instances-prof (>= 0.2.1.0),
+ libghc-vector-binary-instances-prof (<< 0.3),
+ libghc-quickcheck2-dev (>= 2.13.1),
+ libghc-quickcheck2-dev (<< 2.14),
+ libghc-quickcheck2-prof (>= 2.13.1),
+ libghc-quickcheck2-prof (<< 2.14),
+ libghc-aeson-dev,
+ libghc-aeson-prof,
+ libghc-case-insensitive-dev,
+ libghc-case-insensitive-prof,
+ libghc-hashable-dev,
+ libghc-hashable-prof,
+ libghc-quickcheck-instances-dev (>= 0.3.21),
+ libghc-quickcheck-instances-dev (<< 0.4),
+ libghc-quickcheck-instances-prof (>= 0.3.21),
+ libghc-quickcheck-instances-prof (<< 0.4),
+ libghc-scientific-dev,
+ libghc-scientific-prof,
+ libghc-tagged-dev,
+ libghc-tagged-prof,
+ libghc-tasty-dev (>= 0.10.1.2),
+ libghc-tasty-dev (<< 1.3),
+ libghc-tasty-prof (>= 0.10.1.2),
+ libghc-tasty-prof (<< 1.3),
+ libghc-tasty-quickcheck-dev (>= 0.8.3.2),
+ libghc-tasty-quickcheck-dev (<< 0.11),
+ libghc-tasty-quickcheck-prof (>= 0.8.3.2),
+ libghc-tasty-quickcheck-prof (<< 0.11),
+ libghc-time-compat-dev,
+ libghc-time-compat-prof,
+ libghc-unordered-containers-dev,
+ libghc-unordered-containers-prof,
+ libghc-vector-dev,
+ libghc-vector-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-aeson-doc,
+ libghc-binary-orphans-doc,
+ libghc-case-insensitive-doc,
+ libghc-hashable-doc,
+ libghc-scientific-doc,
+ libghc-tagged-doc,
+ libghc-text-binary-doc,
+ libghc-time-compat-doc,
+ libghc-unordered-containers-doc,
+ libghc-vector-doc,
+ libghc-vector-binary-instances-doc,
+Standards-Version: 4.5.0
+Homepage: https://github.com/phadej/binary-instances#readme
+X-Description: orphan instances for binary
+ This library defines orphan Binary instances for types in some
+ popular packages: aeson, case-insensitive, hashable, scientific,
+ tagged, text, time, unordered-containers, and vector.
+
+Package: libghc-binary-instances-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-binary-instances-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-binary-instances-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

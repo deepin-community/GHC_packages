@@ -8,7 +8,7 @@ Build-Depends:
  cdbs,
  cpphs (>= 1.20.2),
  debhelper (>= 10),
- dh-elpa,
+ dh-elpa (>= 1.16),
  ghc (>= 8.4.3),
  happy,
  haskell-devscripts (>= 0.13),
@@ -85,8 +85,8 @@ Build-Depends-Indep: ghc-doc,
  libghc-unordered-containers-doc,
  libghc-uri-encode-doc,
  libghc-zlib-doc,
-Standards-Version: 4.4.0
-Homepage: http://wiki.portal.chalmers.se/agda/
+Standards-Version: 4.5.0
+Homepage: https://wiki.portal.chalmers.se/agda/
 Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/agda
 Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/agda]
 
@@ -122,9 +122,9 @@ Depends:
  ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends:
  libghc-agda-dev (<< ${source:Upstream-Version}+~),
  libghc-agda-dev (>= ${source:Upstream-Version}),
+Recommends:
  ${haskell:Recommends},
 Suggests:
  elpa-agda2-mode,
@@ -163,10 +163,6 @@ Recommends:
 Enhances:
  emacs,
  emacs24,
-Breaks:
- agda-mode (<< 2.5.1),
-Provides:
- agda-mode,
 Description: dependently typed functional programming language — emacs mode
  Agda is a dependently typed functional programming language: It has inductive
  families, which are like Haskell's GADTs, but they can be indexed by values and
@@ -183,15 +179,6 @@ Description: dependently typed functional programming language — emacs mode
  This package contains the emacs interactive development mode for Agda. This
  mode is the preferred way to write Agda code, and offers features such as
  iterative development, refinement, case analysis and so on.
-
-Package: agda-mode
-Architecture: all
-Section: oldlibs
-Depends:
- ${misc:Depends},
-Description: transitional dummy package for elpa-agda2-mode
- agda-mode has been ELPAfied.  See the elpa-agda2-mode package.  This
- transitional package is safe to remove.
 
 Package: libghc-agda-dev
 Architecture: any

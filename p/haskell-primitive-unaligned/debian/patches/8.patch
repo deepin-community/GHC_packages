@@ -1,0 +1,23 @@
+From 52fb6acf3b988cb0f433e34cadd1108437a8136e Mon Sep 17 00:00:00 2001
+From: Gianfranco Costamagna <costamagnagianfranco@yahoo.it>
+Date: Thu, 30 Jul 2020 16:14:45 +0200
+Subject: [PATCH] Support ppc64 architecture in cabal file
+
+Debian calls it ppc64 instead of powerpc64
+---
+ primitive-unaligned.cabal | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/primitive-unaligned.cabal b/primitive-unaligned.cabal
+index ab17a4b..c3ed14f 100644
+--- a/primitive-unaligned.cabal
++++ b/primitive-unaligned.cabal
+@@ -22,7 +22,7 @@ library
+     , base >=4.12.0.0 && <5
+     , primitive >=0.6.4 && <0.8
+   hs-source-dirs: src
+-  if arch(aarch64) || arch(alpha) || arch(ia64) || arch(powerpc64) || arch(powerpc64le) || arch(riscv64) || arch(s390x) || arch(sparc64) || arch(x86_64) || arch(mips64el)
++  if arch(aarch64) || arch(alpha) || arch(ia64) || arch(ppc64) || arch(powerpc64) || arch(powerpc64le) || arch(riscv64) || arch(s390x) || arch(sparc64) || arch(x86_64) || arch(mips64el)
+     hs-source-dirs: src-64
+   if arch(arm) || arch(hppa) || arch(hppa1_1) || arch(i386) || arch(m68k) || arch(mips) || arch(mipseb) || arch(mipsel) || arch(nios2) || arch(powerpc) || arch(riscv32) || arch(rs6000) || arch(s390) || arch(sh4) || arch(sparc) || arch(vax)
+     hs-source-dirs: src-32

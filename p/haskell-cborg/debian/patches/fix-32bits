@@ -1,0 +1,18 @@
+Description: Fix FTBFS on 32-bit systems
+Author: Ilias Tsitsimpis <iliastsi@debian.org>
+Bug: https://github.com/well-typed/cborg/issues/244
+Bug-Debian: https://bugs.debian.org/964844
+
+Index: b/src/Codec/CBOR/FlatTerm.hs
+===================================================================
+--- a/src/Codec/CBOR/FlatTerm.hs
++++ b/src/Codec/CBOR/FlatTerm.hs
+@@ -250,7 +250,7 @@ decodeTermToken = do
+ 
+       TypeTag          -> do !x <- decodeTag
+                              return $! TkTag (fromIntegral x)
+-      TypeTag64        -> do !x <- decodeTag
++      TypeTag64        -> do !x <- decodeTag64
+                              return $! TkTag (fromIntegral x)
+ 
+       TypeBool    -> do !x <- decodeBool

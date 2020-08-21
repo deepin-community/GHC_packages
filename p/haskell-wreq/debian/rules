@@ -7,5 +7,11 @@ DEB_DEFAULT_COMPILER = ghc
 # Disable doctests since they require network access
 DEB_SETUP_GHC_CONFIGURE_ARGS += -f-doctest
 
+# Disable tests on s390x. They fail randomly with:
+# InternalException Network.Socket.recvBuf: resource vanished (Connection reset by peer)
+ifneq (,$(filter s390x, $(DEB_HOST_ARCH)))
+	DEB_ENABLE_TESTS = no
+endif
+
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk

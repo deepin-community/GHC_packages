@@ -1,0 +1,22 @@
+--- a/Network/HTTP/Client/Restricted.hs
++++ b/Network/HTTP/Client/Restricted.hs
+@@ -173,8 +173,7 @@
+ 			proto <- getProtocolNumber "tcp"
+ 			let serv = show (proxyPort p)
+ 			let hints = defaultHints
+-				{ addrFlags = [AI_ADDRCONFIG]
+-				, addrProtocol = proto
++				{ addrProtocol = proto
+ 				, addrSocketType = Stream
+ 				}
+ 			let h = BU.toString $ proxyHost p
+@@ -250,8 +249,7 @@
+ 		proto <- getProtocolNumber "tcp"
+ 		let serv = show p
+ 		let hints = defaultHints
+-			{ addrFlags = [AI_ADDRCONFIG]
+-			, addrProtocol = proto
++			{ addrProtocol = proto
+ 			, addrSocketType = Stream
+ 			}
+ 		addrs <- getAddrInfo (Just hints) (Just h) (Just serv)

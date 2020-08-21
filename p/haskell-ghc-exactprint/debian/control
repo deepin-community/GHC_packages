@@ -1,0 +1,84 @@
+Source: haskell-ghc-exactprint
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-free-dev (>= 4.12),
+ libghc-free-prof (>= 4.12),
+ libghc-ghc-paths-dev (>= 0.1),
+ libghc-ghc-paths-prof (>= 0.1),
+ libghc-syb-dev (>= 0.5),
+ libghc-syb-prof (>= 0.5),
+ libghc-diff-dev,
+ libghc-diff-prof,
+ libghc-hunit-dev (>= 1.2),
+ libghc-hunit-prof (>= 1.2),
+ libghc-filemanip-dev (>= 0.3),
+ libghc-filemanip-prof (>= 0.3),
+ libghc-silently-dev (>= 1.2),
+ libghc-silently-prof (>= 1.2),
+Build-Depends-Indep: ghc-doc,
+ libghc-free-doc,
+ libghc-ghc-paths-doc,
+ libghc-syb-doc,
+Standards-Version: 4.5.0
+X-Description: ExactPrint for GHC
+ Using the API Annotations available from GHC 7.10.2, this
+ library provides a means to round trip any code that can
+ be compiled by GHC, currently excluding lhs files.
+ .
+ It does this with a phased approach:
+  * Delta - converts GHC API Annotations into relative
+    offsets, indexed by SrcSpan
+  * Transform - functions to facilitate changes to
+    the AST, adjusting the annotations generated in the
+    Delta phase to suit the changes.
+  * Print - converts an AST and its annotations to
+    properly formatted source text.
+  * Pretty - adds annotations to an AST (fragment) so that
+    the output can be parsed back to the same AST.
+
+Package: libghc-ghc-exactprint-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-ghc-exactprint-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-ghc-exactprint-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

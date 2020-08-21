@@ -1,0 +1,110 @@
+Source: haskell-butcher
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-bifunctors-dev (<< 5.6),
+ libghc-bifunctors-prof (<< 5.6),
+ libghc-deque-dev (>= 0.3),
+ libghc-deque-dev (<< 0.5),
+ libghc-deque-prof (>= 0.3),
+ libghc-deque-prof (<< 0.5),
+ libghc-extra-dev (<< 1.8),
+ libghc-extra-prof (<< 1.8),
+ libghc-free-dev (<< 5.2),
+ libghc-free-prof (<< 5.2),
+ libghc-microlens-dev (<< 0.5),
+ libghc-microlens-prof (<< 0.5),
+ libghc-microlens-th-dev (<< 0.5),
+ libghc-microlens-th-prof (<< 0.5),
+ libghc-multistate-dev (>= 0.7),
+ libghc-multistate-dev (<< 0.9),
+ libghc-multistate-prof (>= 0.7),
+ libghc-multistate-prof (<< 0.9),
+ libghc-unsafe-dev (<< 0.1),
+ libghc-unsafe-prof (<< 0.1),
+ libghc-void-dev (<< 0.8),
+ libghc-void-prof (<< 0.8),
+ libghc-deque-dev,
+ libghc-deque-prof,
+ libghc-extra-dev,
+ libghc-extra-prof,
+ libghc-free-dev,
+ libghc-free-prof,
+ libghc-hspec-dev,
+ libghc-hspec-prof,
+ libghc-microlens-dev,
+ libghc-microlens-prof,
+ libghc-microlens-th-dev,
+ libghc-microlens-th-prof,
+ libghc-multistate-dev,
+ libghc-multistate-prof,
+ libghc-unsafe-dev,
+ libghc-unsafe-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-bifunctors-doc,
+ libghc-deque-doc,
+ libghc-extra-doc,
+ libghc-free-doc,
+ libghc-microlens-doc,
+ libghc-microlens-th-doc,
+ libghc-multistate-doc,
+ libghc-unsafe-doc,
+ libghc-void-doc,
+Standards-Version: 4.5.0
+Homepage: https://github.com/lspitzner/butcher/
+X-Description: chop a command/program invocation into pieces
+ Similar to the optparse-applicative package, but less features, more
+ flexibility and more evil.  The main differences are:
+ .
+  * Provides a pure interface by default
+  * Exposes an evil monadic interface, which allows for much nicer
+    binding of command part results to some variable name.
+  * The monadic interface allows much clearer definitions of
+    command parses with (nested) subcommands. No pesky sum-types are
+    necessary.
+
+Package: libghc-butcher-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-butcher-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-butcher-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
