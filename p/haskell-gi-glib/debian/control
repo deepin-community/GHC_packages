@@ -3,16 +3,17 @@ Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.or
 Uploaders: Clint Adams <clint@debian.org>
 Priority: optional
 Section: haskell
-Build-Depends: debhelper (>= 9),
- haskell-devscripts-minimal | haskell-devscripts (>= 0.8),
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts (>= 0.13),
  cdbs,
  ghc,
  ghc-prof,
- libghc-haskell-gi-dev (>= 0.23.0),
- libghc-haskell-gi-dev (<< 0.24),
+ libghc-haskell-gi-dev (>= 0.24.0),
+ libghc-haskell-gi-dev (<< 0.25),
  libghc-haskell-gi-prof,
- libghc-haskell-gi-base-dev (>= 0.23),
- libghc-haskell-gi-base-dev (<< 0.24),
+ libghc-haskell-gi-base-dev (>= 0.24),
+ libghc-haskell-gi-base-dev (<< 0.25),
  libghc-haskell-gi-base-prof,
  pkg-config,
  libglib2.0-dev,
@@ -30,6 +31,7 @@ Architecture: any
 Depends: ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
+ libglib2.0-dev,
 Recommends: ${haskell:Recommends},
 Suggests: ${haskell:Suggests},
 Conflicts: ${haskell:Conflicts},
