@@ -18,7 +18,7 @@ DEB_SETUP_GHC_CONFIGURE_ARGS = --ghc-options="+RTS -V0 -RTS"
 #  -- Dejan Latinovic <Dejan.Latinovic@imgtec.com>
 DEB_BUILD_ARCH     ?= $(shell dpkg-architecture -qDEB_BUILD_ARCH)
 
-ifneq (,$(filter $(DEB_BUILD_ARCH),mips mipsel hppa))
+ifneq (,$(filter $(DEB_BUILD_ARCH),armhf mips mipsel hppa m68k))
        DEB_SETUP_GHC_CONFIGURE_ARGS += --ghc-options="-O0 -optc--param -optcggc-min-expand=10"
 endif
 
