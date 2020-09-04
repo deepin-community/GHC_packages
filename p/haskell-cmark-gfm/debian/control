@@ -11,8 +11,11 @@ Build-Depends: debhelper (>= 10),
  ghc-prof,
  libghc-hunit-dev (>= 1.2),
  libghc-hunit-dev (<< 1.7),
+ libcmark-gfm-dev (>= 0.29.0.gfm.0-6),
+ libcmark-gfm-extensions-dev (>= 0.29.0.gfm.0-6),
+ pkg-config,
 Build-Depends-Indep: ghc-doc,
-Standards-Version: 4.1.4
+Standards-Version: 4.5.0
 Homepage: https://github.com/kivikakk/cmark-gfm-hs
 X-Description: fast, accurate GitHub Flavored Markdown parser and renderer
  This package provides Haskell bindings for libcmark-gfm, the reference
@@ -24,6 +27,8 @@ Architecture: any
 Depends: ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
+ libcmark-gfm-dev,
+ libcmark-gfm-extensions-dev,
 Recommends: ${haskell:Recommends},
 Suggests: ${haskell:Suggests},
 Conflicts: ${haskell:Conflicts},
