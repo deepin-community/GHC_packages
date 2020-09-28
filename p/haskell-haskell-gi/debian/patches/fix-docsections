@@ -1,0 +1,22 @@
+From 0b988bb20764024b06fdaa9a515cc7e92eda89c3 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?I=C3=B1aki=20Garc=C3=ADa=20Etxebarria?=
+ <1238558+garetxe@users.noreply.github.com>
+Date: Thu, 24 Sep 2020 19:00:58 +0100
+Subject: [PATCH] Accept (but ignore for the moment) docsections
+
+---
+ lib/Data/GI/CodeGen/API.hs | 1 +
+ 1 file changed, 1 insertion(+)
+
+Index: b/lib/Data/GI/CodeGen/API.hs
+===================================================================
+--- a/lib/Data/GI/CodeGen/API.hs
++++ b/lib/Data/GI/CodeGen/API.hs
+@@ -198,6 +198,7 @@ parseNSElement aliases ns@GIRNamespace{.
+           "class" -> parse APIObject parseObject
+           "interface" -> parse APIInterface parseInterface
+           "boxed" -> ns -- Unsupported
++          "docsection" -> ns -- Ignored for now, see https://github.com/haskell-gi/haskell-gi/issues/318
+           n -> error . T.unpack $ "Unknown GIR element \"" <> n <> "\" when processing namespace \"" <> nsName <> "\", aborting."
+     where parse :: (a -> API) -> Parser (Name, a) -> GIRNamespace
+           parse wrapper parser =
