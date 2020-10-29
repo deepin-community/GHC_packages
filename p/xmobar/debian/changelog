@@ -1,0 +1,324 @@
+xmobar (0.36-1) unstable; urgency=medium
+
+  * New upstream version 0.36
+  * d/copyright: bump years
+  * d/rules: replace with_conduit w/ with_weather
+
+ -- Apollon Oikonomopoulos <apoikos@debian.org>  Wed, 28 Oct 2020 13:41:25 +0200
+
+xmobar (0.33-1) unstable; urgency=medium
+
+  * New upstream version
+  * Bump Standards-Version to 4.5.0; no changes needed
+  * Bump dh compat to 12
+    + Use debhelper-compat instead of d/compat
+
+ -- Apollon Oikonomopoulos <apoikos@debian.org>  Thu, 19 Mar 2020 22:40:33 +0200
+
+xmobar (0.29.4-2) unstable; urgency=medium
+
+  * autopkgtests: fix typo in test
+  * Use http-conduit on arm64; this also fixes FTBFS on arm64 due to runaway
+    quotes in d/rules.
+  * Fix FTBFS using 64-bit unregistered GHC
+
+ -- Apollon Oikonomopoulos <apoikos@debian.org>  Tue, 15 Jan 2019 01:28:54 +0200
+
+xmobar (0.29.4-1) unstable; urgency=medium
+
+  * New upstream version 0.29.4 (closes: #914242)
+    - Refresh patches
+    - B-D on libghc-extensible-exceptions-dev
+  * d/copyright: adjust years and add Aggelos.
+  * d/copyright: reflect upstream path changes for the new library layout.
+  * Remove d/docs; superseded by d/xmobar.docs.
+  * Update location of upstream examples.
+  * Add autopkgtests: use Xvfb to run an xmobar instance with the default
+    config, check that it renders the window and obtain a screenshot as an
+    artifact.
+  * Bump Standards-Version to 4.3.0; no changes needed.
+
+ -- Apollon Oikonomopoulos <apoikos@debian.org>  Mon, 14 Jan 2019 21:22:54 +0200
+
+xmobar (0.28.1-1) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * d/copyright: Use https protocol in Format field
+  * d/changelog: Remove trailing whitespaces
+  * d/control: Set Vcs-* to salsa.debian.org
+  * d/watch: Use https protocol
+
+  [ Aggelos Avgerinos ]
+  * New upstream version 0.28.1 (closes: #910115)
+  * d/control: Wrap and sort multiline fields
+  * docs: news.md has been moved to changelog.md
+  * d/control: Bump standards version to 4.2.1; no changes needed
+  * Bump compat to 11 and B-D on debhelper (>= 11); no changes needed
+  * d/control: Add self to uploaders
+  * d/control: Add libghc-iwlib-dev to B-D; this used to be part of xmobar
+  * d/control: Add libghc-parsec-numbers-dev to B-D; this used to be part of
+    xmobar
+  * d/rules: Conditionally set architecture variables; dpkg-buildpackage
+    presets them
+
+ -- Aggelos Avgerinos <evaggelos.avgerinos@gmail.com>  Wed, 14 Nov 2018 09:31:11 +0200
+
+xmobar (0.24.5-1) unstable; urgency=medium
+
+  * New upstream version
+  * d/copyright: bump years
+  * Bump Standards to 4.0.0; no changes needed
+  * Bump compat to 10 and B-D on debhelper (>= 10)
+
+ -- Apollon Oikonomopoulos <apoikos@debian.org>  Fri, 23 Jun 2017 11:29:57 +0300
+
+xmobar (0.24.3-2) unstable; urgency=medium
+
+  * Disable conduit on arm64; it is currently uninstallable on arm64.
+
+ -- Apollon Oikonomopoulos <apoikos@debian.org>  Tue, 13 Sep 2016 13:44:37 +0300
+
+xmobar (0.24.3-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Apollon Oikonomopoulos <apoikos@debian.org>  Wed, 07 Sep 2016 15:20:53 +0300
+
+xmobar (0.24.2-1) unstable; urgency=medium
+
+  * New upstream release (closes: #835547)
+
+ -- Apollon Oikonomopoulos <apoikos@debian.org>  Sat, 03 Sep 2016 00:15:44 +0300
+
+xmobar (0.24-1) unstable; urgency=medium
+
+  * New upstream release
+  * Enable uvmeter and conduit
+    + B-D on libghc-http-conduit-dev
+  * Bump Standards to 3.9.8; no changes needed
+  * Pass -z now to ld (bindnow)
+  * Override a lintian error about RPATH in /usr/bin/xmobar: this is just GHC
+    supporting shared libraries.
+  * d/control: use HTTPS in Vcs-*
+  * d/copyright:
+    + adjust years
+    + add data for new files
+
+ -- Apollon Oikonomopoulos <apoikos@debian.org>  Wed, 27 Jul 2016 10:15:26 +0300
+
+xmobar (0.23.1-2) unstable; urgency=medium
+
+  * Upload to unstable.
+
+ -- Apollon Oikonomopoulos <apoikos@debian.org>  Wed, 29 Apr 2015 12:23:06 +0300
+
+xmobar (0.23.1-1) experimental; urgency=medium
+
+  * Upload to experimental
+  * New upstream release
+
+ -- Apollon Oikonomopoulos <apoikos@debian.org>  Wed, 15 Apr 2015 12:35:22 +0300
+
+xmobar (0.23-1) experimental; urgency=medium
+
+  * Upload to experimental
+  * New upstream release
+    + Drop d/patches/build-with-mtl-2.1 (merged upstream)
+    + Refresh pathces
+  * d/copyright: adjust copyright years for 2015
+
+ -- Apollon Oikonomopoulos <apoikos@debian.org>  Thu, 09 Apr 2015 15:38:31 +0300
+
+xmobar (0.22-1) unstable; urgency=medium
+
+  * New upstream version; see /usr/share/doc/xmobar/news.md.gz.
+    + New features:
+      o New MarqueePipeReader plugin.
+      o Network monitor has now adaptive units (`-S` is used now to switch
+        them on).
+      o Weather now offers dewPointC and dewPointF instead of dewPoint, and
+        the new windCardinal, windAzimuth, windMph and windKnots variables.
+      o Strings in the configuration file can now span multiple lines using
+        Haskell-style multiline script.
+      o New borderWidth option to set xmobar's border width.
+      o Support for multiple Xft fonts.
+      o Icon patterns for several monitors, that allow you to specify a
+        collection of icons to use for successive integer variable values,
+    + Bugfixes:
+      o More CPU-efficient implementation of the Locks plugin.
+      o Do not colorize total disk size in DiskU.
+      o Avoid zombies on click actions.
+  * Bump standards to 3.9.6; no changes needed.
+  * d/copyright: update with new plugin information.
+  * New patch, build-with-mtl-2.1, to allow building against mtl 2.1.
+  * Enable XPM icon support and Build-Depend on libxpm-dev.
+
+ -- Apollon Oikonomopoulos <apoikos@debian.org>  Sat, 11 Oct 2014 09:42:14 +0300
+
+xmobar (0.21-1) unstable; urgency=medium
+
+  * New upstream version, see /usr/share/doc/xmobar/news.md.gz.
+    + New features:
+      o Vertical bar indicators using unicode available for most monitors.
+      o CoreTemp: support for Linux 3.15.
+      o New CatInt monitor, displaying integer values read from a file.
+      o New <raw> tag for safer input parsing.
+      o New UnsafeXMonadLog monitor and their xproperty counterparts,
+        UnsafeXPropertyLog and UnsafeNamedXPropertyLog.
+    + Bugfixes:
+      o Network now reports status for PPP connections.
+      o Fix erratic values for very long running Cpu monitors.
+  * d/control: add Vcs-* fields.
+  * d/copyright: update copyright information
+  * xmobar.1: update author's copyright
+
+ -- Apollon Oikonomopoulos <apoikos@debian.org>  Wed, 02 Jul 2014 10:10:51 +0300
+
+xmobar (0.20.1-1) unstable; urgency=medium
+
+  * New upstream bugfix release
+    + Fixes placement on some multi-head setups, that was broken in 0.20.
+
+ -- Apollon Oikonomopoulos <apoikos@debian.org>  Fri, 14 Mar 2014 09:48:41 +0200
+
+xmobar (0.20-1) unstable; urgency=medium
+
+  * New upstream version (see news.md for changes).
+  * Drop XDG config dir patch, merged upstream.
+  * The weather plugin now uses libghc-http-dev. Build-depend on
+    libghc-http-dev and stop Recommending curl.
+
+ -- Apollon Oikonomopoulos <apoikos@debian.org>  Mon, 10 Mar 2014 21:22:03 +0200
+
+xmobar (0.19-2) unstable; urgency=low
+
+  * Really use $XDG_CONFIG_HOME/xmobar/xmobarrc if it exists (closes: #728205)
+  * Pass -z,relro to the linker (fixes the hardening-no-relro lintian warning)
+  * Pass --as-needed to the linker (avoid useless dependency on libxext6)
+
+ -- Apollon Oikonomopoulos <apoikos@gmail.com>  Tue, 29 Oct 2013 16:36:57 +0200
+
+xmobar (0.19-1) unstable; urgency=low
+
+  * New upstream version
+  * Bump standards-version to 3.9.5
+    + No changes needed
+  * debian/rules: use the dh sequencer
+
+ -- Apollon Oikonomopoulos <apoikos@gmail.com>  Mon, 28 Oct 2013 10:25:43 +0200
+
+xmobar (0.18-2) unstable; urgency=low
+
+  * Disable MPRIS & DBus plugins on non-linux platforms. They require
+    haskell-dbus which currently works only on Linux. This should fix FTBFS on
+    kfreebsd and hurd. (Closes: #718440)
+  * Simplify and update README.Debian
+
+ -- Apollon Oikonomopoulos <apoikos@gmail.com>  Thu, 01 Aug 2013 02:56:39 +0300
+
+xmobar (0.18-1) unstable; urgency=low
+
+  * New upstream version
+  * Convert debian/copyright format to version 1.0
+  * Build-Depend on libghc-regex-compat
+  * Update the watch file to use github
+
+ -- Apollon Oikonomopoulos <apoikos@gmail.com>  Fri, 14 Jun 2013 10:40:25 +0300
+
+xmobar (0.17-1) unstable; urgency=low
+
+  * New upstream version (Closes: #703328)
+
+ -- Apollon Oikonomopoulos <apoikos@gmail.com>  Thu, 23 May 2013 18:41:34 +0300
+
+xmobar (0.16-1) experimental; urgency=low
+
+  * Imported Upstream version 0.16
+  * Drop debian/patches
+  * Update build-depends and enable MPRIS & DBus plugins
+  * Bump standards version to 3.9.4 and compat to 9
+  * Update manpage
+  * Fix typo in src/Parsers.hs (lintian warning)
+
+ -- Apollon Oikonomopoulos <apoikos@gmail.com>  Thu, 14 Mar 2013 16:58:14 +0200
+
+xmobar (0.14-4) unstable; urgency=low
+
+  * Backport upstream commit 0b1132, fixing coretemp information parsing
+    (Closes: #693025)
+  * Fix manpage typos
+
+ -- Apollon Oikonomopoulos <apoikos@gmail.com>  Wed, 21 Nov 2012 22:13:55 +0200
+
+xmobar (0.14-3) unstable; urgency=low
+
+  * Backport upstream commit daf28d, fixing FTBFS with STM 2.3 (Closes: #674317)
+  * Fix wrong location of battery status file in manpage (Closes: #660168)
+
+ -- Apollon Oikonomopoulos <apoikos@gmail.com>  Thu, 24 May 2012 14:55:45 +0300
+
+xmobar (0.14-2) unstable; urgency=low
+
+  * Backport upstream commit 0964f33. Fixes FTBFS on all non-x86/amd64 arches.
+    (Closes: #654618)
+
+ -- Apollon Oikonomopoulos <apoikos@gmail.com>  Sun, 15 Jan 2012 10:50:56 +0200
+
+xmobar (0.14-1) unstable; urgency=low
+
+  * New upstream version (Closes: #649222, #652630)
+
+ -- Apollon Oikonomopoulos <apoikos@gmail.com>  Tue, 20 Dec 2011 09:24:10 +0200
+
+xmobar (0.13-2) unstable; urgency=low
+
+  * Disable Mail, MBox and Wireless plugins on non-Linux architectures
+
+ -- Apollon Oikonomopoulos <apoikos@gmail.com>  Tue, 19 Jul 2011 12:08:39 +0300
+
+xmobar (0.13-1) unstable; urgency=low
+
+  * New upstream release
+    - Drop swap ratio patch, fixed upstream
+  * Enable the inotify functionality (Closes: #607817)
+  * Update homepage URL (Closes: #610038)
+  * Enable the wireless plugin and build-depend on libiw-dev
+  * Update the manpage (Closes: #610046)
+
+ -- Apollon Oikonomopoulos <apoikos@gmail.com>  Fri, 15 Jul 2011 15:46:01 +0300
+
+xmobar (0.11-2) unstable; urgency=low
+
+  * Fixed swap plugin's usedratio (Closes: #582155)
+
+ -- Apollon Oikonomopoulos <apoikos@gmail.com>  Wed, 19 May 2010 07:05:13 +0300
+
+xmobar (0.11-1) unstable; urgency=low
+
+  * New upstream version: monitor plugin improvements and new options regarding
+    plugin output padding and numeric result representation
+
+ -- Apollon Oikonomopoulos <apoikos@gmail.com>  Mon, 17 May 2010 14:40:37 +0300
+
+xmobar (0.10~20100212-1) unstable; urgency=low
+
+  * Import upstream darcs tree (Closes: #571414, #571464, #544096)
+  * Switch to dpkg-source 3.0 (quilt) format
+  * Bumped standards version to 3.8.4
+  * Cleaned up debian/rules
+
+ -- Apollon Oikonomopoulos <apoikos@gmail.com>  Wed, 14 Apr 2010 10:57:40 +0300
+
+xmobar (0.9.2-2) unstable; urgency=low
+
+  * Imported patches from upstream to resolve high X CPU usage with xft + utf-8
+    See http://code.google.com/p/xmobar/issues/detail?id=11
+  * Added quilt build-depends for patch management
+
+ -- Apollon Oikonomopoulos <apoikos@gmail.com>  Thu, 26 Nov 2009 01:08:42 +0200
+
+xmobar (0.9.2-1) unstable; urgency=low
+
+  * Initial release (Closes: #501693)
+
+ -- Apollon Oikonomopoulos <apoikos@gmail.com>  Fri, 12 Jun 2009 10:36:22 +0300
