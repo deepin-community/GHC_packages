@@ -6,21 +6,21 @@ Forwarded: no, Debian specific
 
 --- a/src/Action/CmdLine.hs
 +++ b/src/Action/CmdLine.hs
-@@ -80,8 +80,16 @@ getCmdLine args = do
+@@ -86,8 +86,16 @@
      args <- withArgs args $ cmdArgsRun cmdLineMode
  
      -- fill in the default database
 +    -- If a database has not been given, and the default does not exist,
 +    -- and this is not a generate command, fallback to the Debian database.
-     args <- if database args /= "" then return args else do
--        db <- defaultDatabaseLang $ language args; return args{database=db}
+     args <- if database args /= "" then pure args else do
+-        db <- defaultDatabaseLang $ language args; pure args{database=db}
 +        db <- defaultDatabaseLang $ language args
 +        let debdb = "/var/lib/hoogle/databases/default.hoo"
 +        db_exists <- doesFileExist db
 +        case args of
-+          Generate{..} -> return $ args{database=db}
-+          _ | db_exists -> return $ args{database=db}
-+          _ -> return $ args{database=debdb}
++          Generate{..} -> pure $ args{database=db}
++          _ | db_exists -> pure $ args{database=db}
++          _ -> pure $ args{database=debdb}
  
      -- fix up people using Hoogle 4 instructions
      args <- case args of

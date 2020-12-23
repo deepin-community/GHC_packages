@@ -14,10 +14,4 @@ include /usr/share/cdbs/1/class/hlibrary.mk
 # Dh_Haskell.sh, so just point it to a writable HOME for now.
 export HOME=$(CURDIR)/debian/cabalconfig
 
-# workaround to prevent some random failures on power while waiting for :
-# https://ghc.haskell.org/trac/ghc/ticket/12537
-ifneq (,$(findstring $(DEB_HOST_ARCH), powerpc ppc64 ppc64el))
-DEB_SETUP_GHC_CONFIGURE_ARGS += --ghc-options="-j1"
-endif
-
 check-ghc-stamp: export LC_ALL := C.UTF-8

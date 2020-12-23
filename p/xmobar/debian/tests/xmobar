@@ -1,0 +1,39 @@
+#!/bin/sh
+
+set -e
+
+echo -n "Waiting for the X server to become ready"
+
+for i in $(seq 1 30); do
+	echo "."
+	xprop -root >/dev/null 2>&1 && break
+	if [ $i -eq 30 ]; then
+		echo "Failed!"
+		exit 1
+	fi
+	sleep 1
+done
+echo
+
+xmobar /usr/share/doc/xmobar/examples/xmobar.config &
+xmobar_pid=$!
+
+echo -n "Looking for the xmobar window"
+
+for i in $(seq 1 30); do
+	echo "."
+	xprop -name xmobar && break
+	if [ $i -eq 30 ]; then
+		echo "Not found"
+		exit 1
+	fi
+	sleep 1
+done
+
+if [ -n "$AUTOPKGTEST_ARTIFACTS" ]; then
+	echo "Saving screenshot as artifact"
+	xwd -name xmobar -out "${AUTOPKGTEST_ARTIFACTS}/xmobar.xwd"
+fi
+
+echo "Killing xmobar"
+kill $xmobar_pid
