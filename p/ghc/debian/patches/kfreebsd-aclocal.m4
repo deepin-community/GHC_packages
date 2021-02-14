@@ -6,7 +6,7 @@ Index: ghc-8.10.2/aclocal.m4
 ===================================================================
 --- ghc-8.10.2.orig/aclocal.m4
 +++ ghc-8.10.2/aclocal.m4
-@@ -2104,7 +2104,7 @@
+@@ -2107,7 +2107,7 @@
          $3="openbsd"
          ;;
        # As far as I'm aware, none of these have relevant variants
@@ -15,7 +15,7 @@ Index: ghc-8.10.2/aclocal.m4
          $3="$1"
          ;;
        msys)
-@@ -2124,6 +2124,9 @@
+@@ -2127,6 +2127,9 @@
                  #      i686-gentoo-freebsd8.2
          $3="freebsd"
          ;;
