@@ -17,5 +17,5 @@ include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
 
 common-build-arch::
-	pandoc -s -t man shellcheck.1.md -o shellcheck.1
+	pandoc -s -f markdown-smart -t man shellcheck.1.md -o shellcheck.1
 common-binary-arch:: check-ghc-stamp
