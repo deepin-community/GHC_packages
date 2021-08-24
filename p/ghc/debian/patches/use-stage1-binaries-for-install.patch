@@ -7,11 +7,9 @@ Description: Use the stage1 binaries for install
 Author: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
 Last-Update: 2017-01-29
 
-Index: ghc-8.10.1/ghc.mk
-===================================================================
---- ghc-8.10.1.orig/ghc.mk
-+++ ghc-8.10.1/ghc.mk
-@@ -943,8 +943,12 @@
+--- a/ghc.mk
++++ b/ghc.mk
+@@ -955,8 +955,12 @@ else # CrossCompiling
  # Install packages in the right order, so that ghc-pkg doesn't complain.
  # Also, install ghc-pkg first.
  ifeq "$(Windows_Host)" "NO"

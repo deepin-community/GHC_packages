@@ -2,11 +2,9 @@ Description: Remove hard-coded googleapis font URL
 Bug: https://github.com/haskell/haddock/issues/1211
 Bug-Debian: https://bugs.debian.org/963690
 
-Index: b/utils/haddock/haddock-api/src/Haddock/Backends/Xhtml.hs
-===================================================================
 --- a/utils/haddock/haddock-api/src/Haddock/Backends/Xhtml.hs
 +++ b/utils/haddock/haddock-api/src/Haddock/Backends/Xhtml.hs
-@@ -127,13 +127,13 @@ headHtml docTitle themes mathjax_url =
+@@ -126,13 +126,13 @@ headHtml docTitle themes mathjax_url =
      , thetitle << docTitle
      , styleSheet themes
      , thelink ! [ rel "stylesheet", thetype "text/css", href quickJumpCssFile] << noHtml

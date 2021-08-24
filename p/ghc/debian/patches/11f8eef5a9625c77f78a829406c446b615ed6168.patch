@@ -9,11 +9,9 @@ Subject: [PATCH] fixup! Fix endian handling w.r.t. CPP macro WORDS_BIGENDIAN
  testsuite/tests/codeGen/should_run/T7600.hs    | 2 +-
  3 files changed, 3 insertions(+), 3 deletions(-)
 
-Index: ghc-8.10.1/libraries/base/GHC/ByteOrder.hs
-===================================================================
---- ghc-8.10.1.orig/libraries/base/GHC/ByteOrder.hs
-+++ ghc-8.10.1/libraries/base/GHC/ByteOrder.hs
-@@ -21,7 +21,7 @@
+--- a/libraries/base/GHC/ByteOrder.hs
++++ b/libraries/base/GHC/ByteOrder.hs
+@@ -21,7 +21,7 @@ module GHC.ByteOrder where
  #include <ghcautoconf.h>
  
  -- Required for WORDS_BIGENDIAN
@@ -22,11 +20,9 @@ Index: ghc-8.10.1/libraries/base/GHC/ByteOrder.hs
  
  -- | Byte ordering.
  data ByteOrder
-Index: ghc-8.10.1/libraries/base/GHC/IO/Encoding/CodePage/API.hs
-===================================================================
---- ghc-8.10.1.orig/libraries/base/GHC/IO/Encoding/CodePage/API.hs
-+++ ghc-8.10.1/libraries/base/GHC/IO/Encoding/CodePage/API.hs
-@@ -11,7 +11,7 @@
+--- a/libraries/base/GHC/IO/Encoding/CodePage/API.hs
++++ b/libraries/base/GHC/IO/Encoding/CodePage/API.hs
+@@ -11,7 +11,7 @@ module GHC.IO.Encoding.CodePage.API (
  #include <ghcautoconf.h>
  
  -- Required for WORDS_BIGENDIAN
