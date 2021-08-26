@@ -39,7 +39,7 @@ export GHC=$(firstword $(shell bash -c "type -p ghc"))
 
 DEB_HOOGLE_TXT_DIR = /usr/lib/ghc-doc/hoogle/
 
-ifneq (,$(filter powerpcspe x32, $(DEB_HOST_ARCH)))
+ifneq (,$(filter powerpcspe x32 s390x, $(DEB_HOST_ARCH)))
   EXTRA_CONFIGURE_FLAGS += --enable-unregisterised
 endif
 
@@ -90,6 +90,10 @@ endif
 ifeq (big, $(DEB_TARGET_ARCH_ENDIAN))
 	# See https://gitlab.haskell.org/ghc/ghc/issues/16998
 	patch -p1 < debian/patches/Disable-unboxed-arrays.patch
+endif
+ifneq (,$(filter powerpcspe x32 s390x, $(DEB_HOST_ARCH)))
+	# From Fedora
+	patch -p1 < debian/patches/ghc-warnings.mk-CC-Wall.patch
 endif
 ifneq (,$(filter mips mipsel s390x, $(DEB_HOST_ARCH)))
 	echo "SRC_HC_OPTS     += -optc--param -optcggc-min-expand=10" >> mk/build.mk
