@@ -173,7 +173,8 @@ FILES = \( -type f -o -type l \)
 PROF_FILE = \( -name "*.p_*" -o -name "lib*_p.a" \)
 
 override_dh_auto_install:
-	dh_auto_install
+	# See https://bugs.debian.org/944493 for why we use --no-parallel.
+	dh_auto_install --no-parallel
 
 	# Delete all the library LICENSE files
 	rm -f debian/tmp/usr/share/doc/ghc-doc/html/libraries/*/LICENSE
