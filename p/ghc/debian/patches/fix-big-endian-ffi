@@ -12,11 +12,11 @@ target type.
 Fixes #15933
 ---
 
-Index: ghc-8.10.1/compiler/deSugar/DsForeign.hs
+Index: b/compiler/deSugar/DsForeign.hs
 ===================================================================
---- ghc-8.10.1.orig/compiler/deSugar/DsForeign.hs
-+++ ghc-8.10.1/compiler/deSugar/DsForeign.hs
-@@ -523,20 +523,43 @@
+--- a/compiler/deSugar/DsForeign.hs
++++ b/compiler/deSugar/DsForeign.hs
+@@ -532,20 +532,43 @@ mkFExportCBits dflags c_nm maybe_target
           -- use that instead.  I hope the two coincide --SDM
      )
   where
@@ -49,12 +49,12 @@ Index: ghc-8.10.1/compiler/deSugar/DsForeign.hs
 +    | ty_con `hasKey` int8TyConKey = True
 +    | ty_con `hasKey` int16TyConKey = True
 +    | ty_con `hasKey` int32TyConKey
-+    , platformWordSize platform > 4
++    , platformWordSizeInBytes platform > 4
 +    = True
 +    | ty_con `hasKey` word8TyConKey = True
 +    | ty_con `hasKey` word16TyConKey = True
 +    | ty_con `hasKey` word32TyConKey
-+    , platformWordSize platform > 4
++    , platformWordSizeInBytes platform > 4
 +    = True
 +    | otherwise = False
 +
