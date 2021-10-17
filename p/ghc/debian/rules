@@ -100,7 +100,7 @@ ifneq (,$(filter mips mipsel s390x, $(DEB_HOST_ARCH)))
 endif
 ifneq (,$(filter mips64el, $(DEB_HOST_ARCH)))
 	# Pass -mxgot to fix relocation linker errors
-	echo "compiler/hsSyn/HsInstances_HC_OPTS += -optc-mxgot" >> mk/build.mk
+	echo "compiler/GHC/Hs/Instances_HC_OPTS += -optc-mxgot" >> mk/build.mk
 endif
 ifeq (x32,$(DEB_HOST_ARCH))
 	echo "INTEGER_LIBRARY = integer-simple" >> mk/build.mk
@@ -123,10 +123,10 @@ ifneq (,$(filter noopt, $(DEB_BUILD_OPTIONS)))
 endif
 ifneq (,$(filter alpha m68k mipsel hppa sh4 x32, $(DEB_HOST_ARCH)))
 	# Virtual memory exhausted when trying to build unregisterised compiler on
-	# 32-bit targets. Disable optimizations for compiler/hsSyn/HsInstances.hs.
+	# 32-bit targets. Disable optimizations for compiler/GHC/Hs/Instances.hs.
 	# See https://bugs.debian.org/933968
 	# See https://gitlab.haskell.org/ghc/ghc/issues/17048
-	echo "compiler/hsSyn/HsInstances_HC_OPTS += -O0" >> mk/build.mk
+	echo "compiler/GHC/Hs/Instances_HC_OPTS += -O0" >> mk/build.mk
 endif
 	# We also want to build the threaded profiling-enabled debug runtime,
 	# because it does no harm
