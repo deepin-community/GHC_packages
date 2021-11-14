@@ -2,6 +2,8 @@
 
 include /usr/share/dpkg/architecture.mk
 
+DEB_CABAL_PACKAGE = ShellCheck
+
 ifeq (yes,$(shell test -e /usr/bin/ghci && echo yes))
 # https://github.com/haskell/cabal/issues/2398
 ifeq (yes,$(shell ghc --info | grep -q 'Support SMP.*YES' && echo yes))
