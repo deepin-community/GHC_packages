@@ -1,0 +1,99 @@
+Source: haskell-doctest-parallel
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Scott Talbert <swt@techie.net>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-glob-dev,
+ libghc-glob-prof,
+ libghc-base-compat-dev (>= 0.7.0),
+ libghc-base-compat-prof,
+ libghc-code-page-dev (>= 0.1),
+ libghc-code-page-prof,
+ libghc-exceptions-dev,
+ libghc-exceptions-prof,
+ libghc-ghc-paths-dev (>= 0.1.0.9),
+ libghc-ghc-paths-prof,
+ libghc-syb-dev (>= 0.3),
+ libghc-syb-prof,
+ libghc-unordered-containers-dev,
+ libghc-unordered-containers-prof,
+ libghc-hunit-dev,
+ libghc-hunit-prof,
+ libghc-quickcheck2-dev (>= 2.13.1),
+ libghc-quickcheck2-prof,
+ libghc-hspec-dev (>= 2.3.0),
+ libghc-hspec-prof,
+ libghc-hspec-core-dev (>= 2.3.0),
+ libghc-hspec-core-prof,
+ libghc-mockery-dev,
+ libghc-mockery-prof,
+ libghc-setenv-dev,
+ libghc-setenv-prof,
+ libghc-silently-dev (>= 1.2.4),
+ libghc-silently-prof,
+ libghc-stringbuilder-dev (>= 0.4),
+ libghc-stringbuilder-prof,
+ hspec-discover,
+Build-Depends-Indep: ghc-doc,
+ libghc-glob-doc,
+ libghc-base-compat-doc,
+ libghc-code-page-doc,
+ libghc-exceptions-doc,
+ libghc-ghc-paths-doc,
+ libghc-syb-doc,
+ libghc-unordered-containers-doc,
+Standards-Version: 4.6.0
+Homepage: https://github.com/martijnbastiaan/doctest-parallel#readme
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-doctest-parallel
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git
+X-Description: Test interactive Haskell examples
+ The doctest program checks examples in source code comments.  It is modeled
+ after doctest for Python (https://docs.python.org/3/library/doctest.html).
+ .
+ Documentation is at
+ https://github.com/martijnbastiaan/doctest-parallel#readme.
+
+Package: libghc-doctest-parallel-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-doctest-parallel-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-doctest-parallel-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
