@@ -1,0 +1,90 @@
+Source: haskell-commonmark
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Robert Greener <rob@robgreener.com>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-quickcheck2-dev,
+ libghc-quickcheck2-prof,
+ libghc-tasty-dev,
+ libghc-tasty-prof,
+ libghc-tasty-hunit-dev,
+ libghc-tasty-hunit-prof,
+ libghc-tasty-quickcheck-dev,
+ libghc-tasty-quickcheck-prof,
+Build-Depends-Indep: ghc-doc,
+Standards-Version: 4.5.1
+Homepage: https://github.com/jgm/commonmark-hs
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-commonmark
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git
+Rules-Requires-Root: no
+X-Description: Pure Haskell commonmark parser
+ This library provides the core data types and functions
+ for parsing commonmark (<https://spec.commonmark.org>).
+ The parser is fully commonmark-compliant and passes the test
+ suite.  It is designed to be customizable and easily extensible.
+ To customize the output, create an AST, or support a new output
+ format, one need only define some new typeclass instances.
+ It is also easy to add new syntax elements or modify existing ones.
+ .
+ Accurate information about source positions is available
+ for all block and inline elements.  Thus the library can be
+ used to create an accurate syntax highlighter or
+ an editor with live preview.
+ .
+ The parser has been designed for robust performance
+ even in pathological cases that tend to cause stack overflows or
+ exponential slowdowns in other parsers, with parsing speed that
+ varies linearly with input length.
+ .
+ Related packages:
+ .
+   - commonmark-extensions (which defines a number of syntax extensions)
+   - commonmark-pandoc (which allows using this parser to create a Pandoc
+     structure)
+   - commonmark-cli (a command-line tool for converting and
+     syntax-highlighting commonmark documents)
+
+Package: libghc-commonmark-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-commonmark-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-commonmark-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
