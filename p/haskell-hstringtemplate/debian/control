@@ -5,24 +5,29 @@ Uploaders:
 Priority: optional
 Section: haskell
 Rules-Requires-Root: no
-Build-Depends:
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
  cdbs,
- debhelper (>= 10),
- ghc (>= 8.4.3),
+ ghc,
  ghc-prof,
- haskell-devscripts (>= 0.13),
- libghc-blaze-builder-dev,
+ libghc-blaze-builder-dev (<< 0.5),
  libghc-blaze-builder-prof,
- libghc-old-locale-dev,
+ libghc-old-locale-dev (<< 1.1),
  libghc-old-locale-prof,
  libghc-semigroups-dev (>= 0.16),
+ libghc-semigroups-dev (<< 0.20),
  libghc-semigroups-prof,
- libghc-syb-dev,
+ libghc-syb-dev (<< 0.8),
  libghc-syb-prof,
- libghc-void-dev,
+ libghc-void-dev (<< 0.8),
  libghc-void-prof,
-Build-Depends-Indep:
- ghc-doc,
+ libghc-hunit-dev (>= 1.5),
+ libghc-hunit-prof,
+ libghc-quickcheck2-dev (>= 2.13),
+ libghc-quickcheck2-prof,
+ libghc-random-dev (>= 1.0),
+ libghc-random-prof,
+Build-Depends-Indep: ghc-doc,
  libghc-blaze-builder-doc,
  libghc-old-locale-doc,
  libghc-semigroups-doc,
@@ -35,16 +40,12 @@ Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-hstri
 
 Package: libghc-hstringtemplate-dev
 Architecture: any
-Depends:
- ${haskell:Depends},
+Depends: ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends:
- ${haskell:Recommends},
-Suggests:
- ${haskell:Suggests},
-Provides:
- ${haskell:Provides},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell port of the Java library StringTemplate${haskell:ShortBlurb}
  This is a Haskell template engine. Its API is mainly inspired to that of
  the Java library StringTemplate, but it is implemented in a "Haskellish"
@@ -59,15 +60,11 @@ Description: Haskell port of the Java library StringTemplate${haskell:ShortBlurb
 
 Package: libghc-hstringtemplate-prof
 Architecture: any
-Depends:
- ${haskell:Depends},
+Depends: ${haskell:Depends},
  ${misc:Depends},
-Recommends:
- ${haskell:Recommends},
-Suggests:
- ${haskell:Suggests},
-Provides:
- ${haskell:Provides},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: Haskell port of the Java library StringTemplate${haskell:ShortBlurb}
  This is a Haskell template engine. Its API is mainly inspired to that of
  the Java library StringTemplate, but it is implemented in a "Haskellish"
@@ -83,13 +80,10 @@ Description: Haskell port of the Java library StringTemplate${haskell:ShortBlurb
 Package: libghc-hstringtemplate-doc
 Architecture: all
 Section: doc
-Depends:
- ${haskell:Depends},
+Depends: ${haskell:Depends},
  ${misc:Depends},
-Recommends:
- ${haskell:Recommends},
-Suggests:
- ${haskell:Suggests},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: Haskell port of the Java library StringTemplate${haskell:ShortBlurb}
  This is a Haskell template engine. Its API is mainly inspired to that of
  the Java library StringTemplate, but it is implemented in a "Haskellish"
