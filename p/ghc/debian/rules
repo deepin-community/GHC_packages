@@ -75,10 +75,14 @@ override_dh_autoreconf:
 override_dh_auto_configure:
 	echo "SRC_HC_OPTS += -lffi -optl-pthread" >> mk/build.mk
 ifeq (NO,$(BUILD_CROSS))
+	echo "CrossCompiling := NO" >> mk/build.mk
+	echo "Stage1Only := NO" >> mk/build.mk
 	echo "HADDOCK_DOCS := YES" >> mk/build.mk
 	echo "EXTRA_HADDOCK_OPTS += --mathjax=file:///usr/share/javascript/mathjax/MathJax.js" >> mk/build.mk
 	echo "XSLTPROC_OPTS += --nonet" >> mk/build.mk
 else
+	echo "CrossCompiling := YES" >> mk/build.mk
+	echo "Stage1Only := NO" >> mk/build.mk
 	echo "SRC_HC_OPTS += -O0 -H64m" >> mk/build.mk
 	echo "GhcStage1HcOpts = -O" >> mk/build.mk
 	echo "GhcStage2HcOpts = -O0" >> mk/build.mk

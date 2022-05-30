@@ -15,7 +15,7 @@ Index: b/configure.ac
 ===================================================================
 --- a/configure.ac
 +++ b/configure.ac
-@@ -1230,12 +1230,11 @@ AC_LINK_IFELSE([
+@@ -1286,12 +1286,11 @@ AC_LINK_IFELSE([
    AC_MSG_RESULT(no)
  )
  
@@ -29,7 +29,7 @@ Index: b/configure.ac
      ],
      [
          _save_LIBS=$LIBS
-@@ -1243,18 +1242,46 @@ AC_LINK_IFELSE([AC_LANG_PROGRAM([[unsign
+@@ -1299,18 +1298,46 @@ AC_LINK_IFELSE([AC_LANG_PROGRAM([[unsign
          AC_LINK_IFELSE([AC_LANG_PROGRAM([[unsigned char a;]], [[__atomic_fetch_or(&a, 1, __ATOMIC_RELAXED);]])],
              [
                  AC_MSG_RESULT(yes)

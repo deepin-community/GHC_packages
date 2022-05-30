@@ -13,7 +13,7 @@ Index: b/configure.ac
 ===================================================================
 --- a/configure.ac
 +++ b/configure.ac
-@@ -1230,6 +1230,32 @@ AC_LINK_IFELSE([
+@@ -1286,6 +1286,32 @@ AC_LINK_IFELSE([
    AC_MSG_RESULT(no)
  )
  
@@ -64,7 +64,7 @@ Index: b/rts/rts.cabal.in
 ===================================================================
 --- a/rts/rts.cabal.in
 +++ b/rts/rts.cabal.in
-@@ -18,6 +18,8 @@ flag libbfd
+@@ -20,6 +20,8 @@ flag libbfd
    default: @CabalHaveLibbfd@
  flag mingwex
    default: @CabalMingwex@
@@ -73,7 +73,7 @@ Index: b/rts/rts.cabal.in
  flag libdw
    default: @CabalHaveLibdw@
  flag libnuma
-@@ -111,6 +113,9 @@ library
+@@ -126,6 +128,9 @@ library
      if flag(need-pthread)
         -- for pthread_getthreadid_np, pthread_create, ...
         extra-libraries: pthread
