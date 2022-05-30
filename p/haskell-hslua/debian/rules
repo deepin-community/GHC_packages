@@ -2,6 +2,10 @@
 
 # DEB_SETUP_GHC_CONFIGURE_ARGS += --flags="system-lua pkg-config"
 
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+DPKG_EXPORT_BUILDFLAGS = 1
+include /usr/share/dpkg/buildflags.mk
+
 DEB_ENABLE_TESTS = yes
 
 include /usr/share/cdbs/1/rules/debhelper.mk

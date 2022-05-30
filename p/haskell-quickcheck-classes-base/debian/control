@@ -1,0 +1,77 @@
+Source: haskell-quickcheck-classes-base
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Scott Talbert <swt@techie.net>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-quickcheck2-dev (>= 2.10.0),
+ libghc-quickcheck2-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-quickcheck2-doc,
+Standards-Version: 4.6.0
+Homepage: https://github.com/andrewthad/quickcheck-classes#readme
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-quickcheck-classes-base
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git
+X-Description: QuickCheck common typeclasses from `base`
+ This libary is a minimal variant of `quickcheck-classes` that
+ only provides laws for typeclasses from `base`. The main purpose
+ of splitting this out is so that `primitive` can depend on
+ `quickcheck-classes-base` in its test suite, avoiding the circular
+ dependency that arises if `quickcheck-classes` is used instead.
+ .
+ This library provides QuickCheck properties to ensure
+ that typeclass instances adhere to the set of laws that
+ they are supposed to. There are other libraries that do
+ similar things, such as `genvalidity-hspec` and `checkers`.
+ This library differs from other solutions by not introducing
+ any new typeclasses that the user needs to learn.
+ .
+ /Note:/ on GHC < 8.5, this library uses the higher-kinded typeclasses
+ ('Data.Functor.Classes.Show1', 'Data.Functor.Classes.Eq1',
+ 'Data.Functor.Classes.Ord1', etc.),
+ but on GHC >= 8.5, it uses `-XQuantifiedConstraints` to express these
+ constraints more cleanly.
+
+Package: libghc-quickcheck-classes-base-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-quickcheck-classes-base-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-quickcheck-classes-base-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

@@ -9,16 +9,15 @@ Uploaders:
 Priority: optional
 Section: haskell
 Rules-Requires-Root: no
-Build-Depends:
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
  cdbs,
- debhelper (>= 10),
  docbook-xsl,
- ghc (>= 8.4.3),
+ ghc,
  ghc-prof,
- haskell-devscripts (>= 0.10.2.3),
  libghc-configfile-dev (>= 1),
  libghc-configfile-prof,
- libghc-hstringtemplate-dev (>= 0.6),
+ libghc-hstringtemplate-dev (>= 0.8.8),
  libghc-hstringtemplate-dev (<< 0.9),
  libghc-hstringtemplate-prof,
  libghc-http-dev (>= 1:4000.0),
@@ -26,7 +25,7 @@ Build-Depends:
  libghc-sha-dev (>> 1),
  libghc-sha-prof,
  libghc-aeson-dev (>= 0.7),
- libghc-aeson-dev (<< 1.5),
+ libghc-aeson-dev (<< 2.1),
  libghc-aeson-prof,
  libghc-base64-bytestring-dev (>= 0.1),
  libghc-base64-bytestring-prof,
@@ -38,15 +37,16 @@ Build-Depends:
  libghc-feed-dev (>= 1.0),
  libghc-feed-dev (<< 1.4),
  libghc-feed-prof,
- libghc-filestore-dev (>= 0.6.4),
+ libghc-filestore-dev (>= 0.6.5),
  libghc-filestore-dev (<< 0.7),
- libghc-filestore-dev (>= 0.6),
  libghc-filestore-prof,
+ libghc-ghc-paths-dev,
+ libghc-ghc-paths-prof,
  libghc-happstack-server-dev (>= 7.5),
- libghc-happstack-server-dev (<< 7.7),
+ libghc-happstack-server-dev (<< 7.8),
  libghc-happstack-server-prof,
  libghc-hoauth2-dev (>= 1.3.0),
- libghc-hoauth2-dev (<< 1.15),
+ libghc-hoauth2-dev (<< 1.17),
  libghc-hoauth2-prof,
  libghc-hslogger-dev (>= 1),
  libghc-hslogger-prof,
@@ -72,10 +72,10 @@ Build-Depends:
  libghc-old-time-dev,
  libghc-old-time-prof,
  libghc-pandoc-dev (>= 2.9),
- libghc-pandoc-dev (<< 2.10),
+ libghc-pandoc-dev (<< 2.17),
  libghc-pandoc-prof,
  libghc-pandoc-types-dev (>= 1.20),
- libghc-pandoc-types-dev (<< 1.21),
+ libghc-pandoc-types-dev (<< 1.23),
  libghc-pandoc-types-prof,
  libghc-random-dev,
  libghc-random-prof,
@@ -84,7 +84,7 @@ Build-Depends:
  libghc-safe-dev,
  libghc-safe-prof,
  libghc-skylighting-dev (>= 0.8.2.3),
- libghc-skylighting-dev (<< 0.9),
+ libghc-skylighting-dev (<< 0.13),
  libghc-skylighting-prof,
  libghc-split-dev,
  libghc-split-prof,
@@ -93,15 +93,17 @@ Build-Depends:
  libghc-tagsoup-dev (>= 0.13),
  libghc-tagsoup-dev (<< 0.15),
  libghc-tagsoup-prof,
+ libghc-temporary-dev,
+ libghc-temporary-prof,
  libghc-uri-bytestring-dev (>= 0.2.3.3),
  libghc-uri-bytestring-prof,
  libghc-url-dev (>= 2.1),
  libghc-url-prof,
- libghc-utf8-string-dev (<< 1.1),
  libghc-utf8-string-dev (>= 0.3),
+ libghc-utf8-string-dev (<< 1.1),
  libghc-utf8-string-prof,
- libghc-uuid-dev (<< 1.4),
  libghc-uuid-dev (>= 1.3),
+ libghc-uuid-dev (<< 1.4),
  libghc-uuid-prof,
  libghc-xml-dev (>= 1.3.5),
  libghc-xml-prof,
@@ -113,16 +115,23 @@ Build-Depends:
  libghc-xss-sanitize-dev (>= 0.3),
  libghc-xss-sanitize-dev (<< 0.4),
  libghc-xss-sanitize-prof,
- libghc-zlib-dev (<< 0.7),
  libghc-zlib-dev (>= 0.5),
+ libghc-zlib-dev (<< 0.7),
  libghc-zlib-prof,
+ libghc-http-dev,
+ libghc-hslogger-dev,
+ libghc-url-dev,
+ libghc-utf8-string-dev,
  libjs-jquery,
  libjs-jquery-hotkeys,
  libjs-jquery-ui,
  pandoc,
  xsltproc,
-Build-Depends-Indep:
- ghc-doc,
+Build-Depends-Indep: ghc-doc,
+ libghc-configfile-doc,
+ libghc-hstringtemplate-doc,
+ libghc-http-doc,
+ libghc-sha-doc,
  libghc-aeson-doc,
  libghc-base64-bytestring-doc,
  libghc-blaze-html-doc,
@@ -133,10 +142,8 @@ Build-Depends-Indep:
  libghc-happstack-server-doc,
  libghc-hoauth2-doc,
  libghc-hslogger-doc,
- libghc-hstringtemplate-doc,
  libghc-http-client-tls-doc,
  libghc-http-conduit-doc,
- libghc-http-doc,
  libghc-json-doc,
  libghc-network-doc,
  libghc-network-bsd-doc,
@@ -152,6 +159,7 @@ Build-Depends-Indep:
  libghc-split-doc,
  libghc-syb-doc,
  libghc-tagsoup-doc,
+ libghc-temporary-doc,
  libghc-uri-bytestring-doc,
  libghc-url-doc,
  libghc-utf8-string-doc,
@@ -190,13 +198,11 @@ X-Description: Wiki engine backed by a git or darcs filestore
 Package: gitit
 Architecture: any
 Section: web
-Depends:
- git | darcs | mercurial,
+Depends: git | darcs | mercurial,
  libghc-gitit-data (= ${source:Version}),
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends:
- mime-support,
+Recommends: media-types,
  libghc-filestore-data,
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
@@ -205,17 +211,13 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-gitit-dev
 Architecture: any
-Depends:
- libghc-gitit-data (= ${source:Version}),
+Depends: libghc-gitit-data (= ${source:Version}),
  ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends:
- ${haskell:Recommends},
-Suggests:
- ${haskell:Suggests},
-Provides:
- ${haskell:Provides},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -223,16 +225,12 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-gitit-prof
 Architecture: any
-Depends:
- ${haskell:Depends},
+Depends: ${haskell:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends:
- ${haskell:Recommends},
-Suggests:
- ${haskell:Suggests},
-Provides:
- ${haskell:Provides},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -241,13 +239,10 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 Package: libghc-gitit-doc
 Architecture: all
 Section: doc
-Depends:
- ${haskell:Depends},
+Depends: ${haskell:Depends},
  ${misc:Depends},
-Recommends:
- ${haskell:Recommends},
-Suggests:
- ${haskell:Suggests},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
@@ -255,20 +250,15 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
 
 Package: libghc-gitit-data
 Architecture: all
-Depends:
- libjs-jquery,
+Depends: libjs-jquery,
  libjs-jquery-hotkeys,
  libjs-jquery-ui,
  ${haskell:Extra-Depends},
  ${misc:Depends},
-Recommends:
- ${haskell:Recommends},
-Suggests:
- ${haskell:Suggests},
-Breaks:
- gitit (<< 0.10.6.3+dfsg-1),
-Replaces:
- gitit (<< 0.10.6.3+dfsg-1),
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Breaks: gitit (<< 0.10.6.3+dfsg-1),
+Replaces: gitit (<< 0.10.6.3+dfsg-1),
 Description: ${haskell:ShortDescription} - Data files
  ${haskell:LongDescription}
  .

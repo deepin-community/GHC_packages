@@ -1,0 +1,101 @@
+Source: haskell-ghc-typelits-knownnat
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Scott Talbert <swt@techie.net>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-ghc-tcplugins-extra-dev (>= 0.3.1),
+ libghc-ghc-tcplugins-extra-prof,
+ libghc-ghc-typelits-natnormalise-dev (>= 0.7.1),
+ libghc-ghc-typelits-natnormalise-dev (<< 0.8),
+ libghc-ghc-typelits-natnormalise-prof,
+ libghc-tasty-dev (>= 0.10),
+ libghc-tasty-prof,
+ libghc-tasty-hunit-dev (>= 0.9),
+ libghc-tasty-hunit-prof,
+ libghc-tasty-quickcheck-dev (>= 0.8),
+ libghc-tasty-quickcheck-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-ghc-tcplugins-extra-doc,
+ libghc-ghc-typelits-natnormalise-doc,
+Standards-Version: 4.6.0
+Homepage: https://clash-lang.org/
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-ghc-typelits-knownnat
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git
+X-Description: Derive KnownNat constraints from other KnownNat constraints
+ A type checker plugin for GHC that can derive "complex" KnownNat
+ constraints from other simple/variable KnownNat constraints. i.e. without
+ this plugin, you must have both a KnownNat n and a KnownNat (n+2)
+ constraint in the type signature of the following function:
+ .
+ f :: forall n . (KnownNat n, KnownNat (n+2)) => Proxy n -> Integer
+ f _ = natVal (Proxy :: Proxy n) + natVal (Proxy :: Proxy (n+2))
+ .
+ Using the plugin you can omit the KnownNat (n+2) constraint:
+ .
+ f :: forall n . KnownNat n => Proxy n -> Integer
+ f _ = natVal (Proxy :: Proxy n) + natVal (Proxy :: Proxy (n+2))
+ .
+ The plugin can derive KnownNat constraints for types consisting of:
+ .
+  * Type variables, when there is a corresponding KnownNat constraint
+ .
+  * Type-level naturals
+ .
+  * Applications of the arithmetic expression: +,-,*,^
+ .
+  * Type functions, when there is either:
+ .
+ 1. a matching given KnownNat constraint; or
+ .
+ 2. a corresponding KnownNat<N> instance for the type function
+ .
+ To use the plugin, add the
+ .
+ OPTIONS_GHC -fplugin GHC.TypeLits.KnownNat.Solver
+ .
+ Pragma to the header of your file.
+
+Package: libghc-ghc-typelits-knownnat-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-ghc-typelits-knownnat-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-ghc-typelits-knownnat-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

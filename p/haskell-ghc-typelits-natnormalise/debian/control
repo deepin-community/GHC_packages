@@ -1,0 +1,90 @@
+Source: haskell-ghc-typelits-natnormalise
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Scott Talbert <swt@techie.net>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-ghc-tcplugins-extra-dev (>= 0.3.1),
+ libghc-ghc-tcplugins-extra-prof,
+ libghc-tasty-dev (>= 0.10),
+ libghc-tasty-prof,
+ libghc-tasty-hunit-dev (>= 0.9),
+ libghc-tasty-hunit-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-ghc-tcplugins-extra-doc,
+Standards-Version: 4.6.0
+Homepage: https://www.clash-lang.org/
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-ghc-typelits-natnormalise
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git
+X-Description: GHC typechecker plugin for types of kind GHC.TypeLits.Nat
+ A type checker plugin for GHC that can solve equalities and inequalities
+ of types of kind @Nat@, where these types are either:
+ .
+   * Type-level naturals
+ .
+   * Type variables
+ .
+   * Applications of the arithmetic expressions (+,-,*,^).
+ .
+ It solves these equalities by normalising them to sort-of SOP
+ (Sum-of-Products) form, and then perform a simple syntactic equality.
+ .
+ For example, this solver can prove the equality between:
+ .
+ (x + 2)^(y + 2)
+ .
+ and
+ .
+ 4*x*(2 + x)^y + 4*(2 + x)^y + (2 + x)^y*x^2
+ .
+ Because the latter is actually the SOP normal form of the former.
+ .
+ To use the plugin, add the
+ .
+ OPTIONS_GHC -fplugin GHC.TypeLits.Normalise
+ .
+ Pragma to the header of your file.
+
+Package: libghc-ghc-typelits-natnormalise-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-ghc-typelits-natnormalise-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-ghc-typelits-natnormalise-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
