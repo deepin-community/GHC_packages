@@ -1,3 +1,79 @@
+ghc (9.0.2-1~exp1) experimental; urgency=medium
+
+  [ Gianfranco Costamagna ]
+  * Revert last change on mipsel, didn't fix the failure
+
+  [ Ilias Tsitsimpis ]
+  * New upstream release.
+  * Refresh patches.
+
+ -- Ilias Tsitsimpis <iliastsi@debian.org>  Fri, 03 Jun 2022 11:25:00 +0300
+
+ghc (8.10.7-1~exp2) experimental; urgency=medium
+
+  * Lower parallelism builds to 2 on mipsel
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Fri, 21 Jan 2022 11:20:56 +0100
+
+ghc (8.10.7-1~exp1) experimental; urgency=medium
+
+  * New upstream release.
+  * Add upstream GPG key used to sign the tarballs.
+  * Drop patches applied upstream.
+  * Refresh and re-enable 'fix-big-endian-ffi' patch.
+  * Fix compilation on armel.
+  * Fix linker relocation errors on mips64el.
+  * Switch to unregistered build on i386 to avoid a baseline violation.
+    Thanks to Adrian Bunk for the patch.
+
+ -- Ilias Tsitsimpis <iliastsi@debian.org>  Sun, 24 Oct 2021 15:03:50 +0300
+
+ghc (8.10.6-1~exp4) experimental; urgency=medium
+
+  * Drop some patches now upstream.
+  * Add a patch from Fedora to avoid too much logs on s390x.
+  * Enable unregisterised builds on s390x
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Thu, 26 Aug 2021 12:00:34 +0200
+
+ghc (8.10.4-1~exp1) experimental; urgency=medium
+
+  * New upstream release.
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Sun, 14 Feb 2021 11:02:03 +0100
+
+ghc (8.10.3-1~exp1) experimental; urgency=medium
+
+  * New upstream release.
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Thu, 24 Dec 2020 23:10:52 +0100
+
+ghc (8.10.2-1~exp3) experimental; urgency=medium
+
+  * Upload to experimental with changes from 8.8.4-2
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Wed, 23 Dec 2020 23:20:54 +0100
+
+ghc (8.10.2-1~exp2) experimental; urgency=medium
+
+  * Drop FFI patch, makes the package FTBFS everywhere
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Wed, 19 Aug 2020 21:32:42 +0200
+
+ghc (8.10.2-1~exp1) experimental; urgency=medium
+
+  * New upstream release.
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Tue, 18 Aug 2020 15:11:31 +0200
+
+ghc (8.10.1-1~exp1) experimental; urgency=medium
+
+  * New upstream release
+  * Drop llvm-9 patch: upstream
+  * Also reduce parallel builds on arm64
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Wed, 27 May 2020 17:46:58 +0200
+
 ghc (8.8.4-3) unstable; urgency=medium
 
   * Disable parallel install to fix races with missing directories

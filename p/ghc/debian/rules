@@ -39,7 +39,11 @@ export GHC=$(firstword $(shell bash -c "type -p ghc"))
 
 DEB_HOOGLE_TXT_DIR = /usr/lib/ghc-doc/hoogle/
 
-ifneq (,$(filter powerpcspe x32, $(DEB_HOST_ARCH)))
+ifneq (,$(filter i386 powerpcspe x32 s390x, $(DEB_HOST_ARCH)))
+  # From GHC 8.10 and later, native code generator support for legacy x87
+  # floating point coprocessor has been removed. GHC now only support floating
+  # point via SSE2. This causes a baseline violation on Debian for i386 where
+  # there is no SSE support. Fallback to unregisterised builds on i386.
   EXTRA_CONFIGURE_FLAGS += --enable-unregisterised
 endif
 
@@ -71,10 +75,14 @@ override_dh_autoreconf:
 override_dh_auto_configure:
 	echo "SRC_HC_OPTS += -lffi -optl-pthread" >> mk/build.mk
 ifeq (NO,$(BUILD_CROSS))
+	echo "CrossCompiling := NO" >> mk/build.mk
+	echo "Stage1Only := NO" >> mk/build.mk
 	echo "HADDOCK_DOCS := YES" >> mk/build.mk
 	echo "EXTRA_HADDOCK_OPTS += --mathjax=file:///usr/share/javascript/mathjax/MathJax.js" >> mk/build.mk
 	echo "XSLTPROC_OPTS += --nonet" >> mk/build.mk
 else
+	echo "CrossCompiling := YES" >> mk/build.mk
+	echo "Stage1Only := NO" >> mk/build.mk
 	echo "SRC_HC_OPTS += -O0 -H64m" >> mk/build.mk
 	echo "GhcStage1HcOpts = -O" >> mk/build.mk
 	echo "GhcStage2HcOpts = -O0" >> mk/build.mk
@@ -91,12 +99,16 @@ ifeq (big, $(DEB_TARGET_ARCH_ENDIAN))
 	# See https://gitlab.haskell.org/ghc/ghc/issues/16998
 	patch -p1 < debian/patches/Disable-unboxed-arrays.patch
 endif
-ifneq (,$(filter mips mipsel s390x, $(DEB_HOST_ARCH)))
+ifneq (,$(filter powerpcspe x32 s390x, $(DEB_HOST_ARCH)))
+	# From Fedora
+	patch -p1 < debian/patches/ghc-warnings.mk-CC-Wall.patch
+endif
+ifneq (,$(filter i386 mips mipsel s390x, $(DEB_HOST_ARCH)))
 	echo "SRC_HC_OPTS     += -optc--param -optcggc-min-expand=10" >> mk/build.mk
 endif
 ifneq (,$(filter mips64el, $(DEB_HOST_ARCH)))
 	# Pass -mxgot to fix relocation linker errors
-	echo "compiler/hsSyn/HsInstances_HC_OPTS += -optc-mxgot" >> mk/build.mk
+	echo "compiler/GHC/Hs/Instances_HC_OPTS += -optc-mxgot" >> mk/build.mk
 endif
 ifeq (x32,$(DEB_HOST_ARCH))
 	echo "INTEGER_LIBRARY = integer-simple" >> mk/build.mk
@@ -117,12 +129,12 @@ ifneq (,$(filter noopt, $(DEB_BUILD_OPTIONS)))
 	# echo "GhcLibHcOpts  += -O0" >> mk/build.mk
 	echo "GhcRtsCcOpts  += -O0" >> mk/build.mk
 endif
-ifneq (,$(filter alpha m68k mipsel hppa sh4 x32, $(DEB_HOST_ARCH)))
+ifneq (,$(filter alpha i386 m68k mipsel hppa sh4 x32, $(DEB_HOST_ARCH)))
 	# Virtual memory exhausted when trying to build unregisterised compiler on
-	# 32-bit targets. Disable optimizations for compiler/hsSyn/HsInstances.hs.
+	# 32-bit targets. Disable optimizations for compiler/GHC/Hs/Instances.hs.
 	# See https://bugs.debian.org/933968
 	# See https://gitlab.haskell.org/ghc/ghc/issues/17048
-	echo "compiler/hsSyn/HsInstances_HC_OPTS += -O0" >> mk/build.mk
+	echo "compiler/GHC/Hs/Instances_HC_OPTS += -O0" >> mk/build.mk
 endif
 	# We also want to build the threaded profiling-enabled debug runtime,
 	# because it does no harm
