@@ -1,0 +1,71 @@
+Source: haskell-commonmark-pandoc
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Robert Greener <rob@robgreener.com>,
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-commonmark-dev (>= 0.1),
+ libghc-commonmark-dev (<< 0.2),
+ libghc-commonmark-prof,
+ libghc-commonmark-extensions-dev (>= 0.2),
+ libghc-commonmark-extensions-dev (<< 0.3),
+ libghc-commonmark-extensions-prof,
+ libghc-pandoc-types-dev (>= 1.21),
+ libghc-pandoc-types-dev (<< 1.23),
+ libghc-pandoc-types-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-commonmark-doc,
+ libghc-commonmark-extensions-doc,
+ libghc-pandoc-types-doc,
+Standards-Version: 4.6.0.1
+Homepage: https://github.com/jgm/commonmark-hs
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-commonmark-pandoc
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git
+X-Description: Bridge between commonmark and pandoc AST
+ This library provides typeclasses for rendering
+ commonmark to Pandoc types.
+
+Package: libghc-commonmark-pandoc-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-commonmark-pandoc-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-commonmark-pandoc-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
