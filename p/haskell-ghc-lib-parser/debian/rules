@@ -4,5 +4,10 @@ DEB_SETUP_BIN_NAME = debian/hlibrary.setup
 DEB_CABAL_PACKAGE = ghc-lib-parser
 DEB_DEFAULT_COMPILER = ghc
 
+DEB_BUILD_ARCH ?= $(shell dpkg-architecture -qDEB_BUILD_ARCH)
+ifneq (,$(filter $(DEB_BUILD_ARCH),arm64 armhf armel))
+       DEB_SETUP_GHC_CONFIGURE_ARGS += --ghc-options="-O0 -optc--param -optcggc-min-expand=10"
+endif
+
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
