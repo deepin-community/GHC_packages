@@ -1,6 +1,6 @@
 --- a/bz2.cabal
 +++ b/bz2.cabal
-@@ -39,14 +39,7 @@
+@@ -43,14 +43,7 @@ flag with-bzlib
  library
      exposed-modules:  Codec.Compression.BZip
      cc-options:       -O3
@@ -16,7 +16,7 @@
  
      hs-source-dirs:   src
      other-modules:
-@@ -59,8 +52,6 @@
+@@ -63,8 +56,6 @@ library
  
      default-language: Haskell2010
      other-extensions: DeriveDataTypeable TupleSections
@@ -24,7 +24,7 @@
 -    install-includes: cbits/bzlib.h
      ghc-options:      -Wall
      build-depends:
-         base >=4.4 && <5,
+         base >=4.7 && <5,
 --- a/cbits/blocksort.c
 +++ b/cbits/blocksort.c
 @@ -1,1094 +0,0 @@
