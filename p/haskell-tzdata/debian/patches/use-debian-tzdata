@@ -1,0 +1,36 @@
+Use tzdata from the tzdata debian package
+
+Index: haskell-tzdata/Data/Time/Zones/Files.hs
+===================================================================
+--- haskell-tzdata.orig/Data/Time/Zones/Files.hs
++++ haskell-tzdata/Data/Time/Zones/Files.hs
+@@ -10,13 +10,10 @@ module Data.Time.Zones.Files (
+   timeZonePathFromDB,
+   ) where
+ 
+-import Paths_tzdata
+-
+ -- | Return the file path corresponding to a time zone location.
+ --
+ -- Note: doesn't check whether the location is valid (ie. the returned
+ -- path might not exist).
+ timeZonePathFromDB :: String -> IO FilePath
+ timeZonePathFromDB tzName =
+-  -- TODO(klao): this probably won't work on Windows.
+-  getDataFileName $ tzName ++ ".zone"
++  return ("/usr/share/zoneinfo/" ++ tzName)
+Index: haskell-tzdata/tzdata.cabal
+===================================================================
+--- haskell-tzdata.orig/tzdata.cabal
++++ haskell-tzdata/tzdata.cabal
+@@ -33,10 +33,6 @@ Description:
+   facilities to /use/ the data shipped here. (The @tz@ package
+   automatically installs this package.)
+ 
+-Data-Dir: tzdata
+--- We have to explicitly list all the directories because of Cabal's limitations.
+-Data-Files: *.tab *.zone Chile/*.zone Etc/*.zone Canada/*.zone Indian/*.zone Africa/*.zone Asia/*.zone Antarctica/*.zone Europe/*.zone America/*.zone America/Kentucky/*.zone America/North_Dakota/*.zone America/Argentina/*.zone America/Indiana/*.zone Mexico/*.zone Brazil/*.zone Atlantic/*.zone Arctic/*.zone Australia/*.zone Pacific/*.zone US/*.zone
+-
+ Extra-Source-Files:
+   README.md
+   Data/Time/Zones/DB.hs.template
