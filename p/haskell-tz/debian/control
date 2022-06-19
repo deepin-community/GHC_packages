@@ -1,0 +1,87 @@
+Source: haskell-tz
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Robert Greener <rob@robgreener.com>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-data-default-dev (>= 0.5),
+ libghc-data-default-dev (<< 0.8),
+ libghc-data-default-prof,
+ libghc-tzdata-dev (>= 0.1),
+ libghc-tzdata-dev (<< 0.3),
+ libghc-tzdata-prof,
+ libghc-vector-dev (>= 0.9),
+ libghc-vector-dev (<< 0.13),
+ libghc-vector-prof,
+ libghc-hunit-dev (>= 1.2),
+ libghc-hunit-dev (<< 1.7),
+ libghc-hunit-prof,
+ libghc-quickcheck2-dev (>= 2.4),
+ libghc-quickcheck2-dev (<< 3),
+ libghc-quickcheck2-prof,
+ libghc-tasty-dev,
+ libghc-tasty-prof,
+ libghc-tasty-hunit-dev,
+ libghc-tasty-hunit-prof,
+ libghc-tasty-quickcheck-dev,
+ libghc-tasty-quickcheck-prof,
+ libghc-tasty-th-dev,
+ libghc-tasty-th-prof,
+ libghc-tzdata-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-data-default-doc,
+ libghc-tzdata-doc,
+ libghc-vector-doc,
+Standards-Version: 4.6.0.1
+Homepage: https://github.com/ysangkok/haskell-tz
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-tz
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-tz]
+X-Description: Efficient time zone handling
+ The goal of this package is to provide a library that can read time
+ zone info files (aka. Olson files), and does time zone conversions
+ in a /pure/ and /efficient/ way.
+
+Package: libghc-tz-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-tz-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-tz-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
