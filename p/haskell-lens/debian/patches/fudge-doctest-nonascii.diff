@@ -1,15 +1,15 @@
 --- a/src/Data/Complex/Lens.hs
 +++ b/src/Data/Complex/Lens.hs
-@@ -46,7 +46,7 @@ import Control.Applicative
- 
- -- $setup
+@@ -43,7 +43,7 @@ import Data.Complex
+ -- >>> import Control.Lens
+ -- >>> import Data.Complex
  -- >>> import Debug.SimpleReflect
 --- >>> let { a ≈ b = abs (a - b) < 1e-6; infix 4 ≈ }
 +-- >>> let { a ~~ b = abs (a - b) < 1e-6; infix 4 ~~ }
  
  -- | Access the 'realPart' of a 'Complex' number.
  --
-@@ -120,7 +120,7 @@ _magnitude f c = setMag <$> f r
+@@ -117,7 +117,7 @@ _magnitude f c = setMag <$> f r
  
  -- | Access the 'phase' of a 'Complex' number.
  --
@@ -18,7 +18,7 @@
  -- True
  --
  -- This isn't /quite/ a legal 'Lens'. Notably the
-@@ -142,7 +142,7 @@ _phase f c = setPhase <$> f theta
+@@ -139,7 +139,7 @@ _phase f c = setPhase <$> f theta
  -- >>> (2.0 :+ 3.0) & _conjugate . _imagPart -~ 1
  -- 2.0 :+ 4.0
  --
