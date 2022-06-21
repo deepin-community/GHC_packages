@@ -1,0 +1,26 @@
+From ddd2591c5ca395e39ea36855e5b7e0a3464b7ad8 Mon Sep 17 00:00:00 2001
+From: Ben Gamari <ben@smart-cactus.org>
+Date: Fri, 29 Apr 2022 12:51:26 -0400
+Subject: [PATCH] Update supported LLVM versions
+
+Pull forward minimum version to match 9.2.
+
+(cherry picked from commit c26faa54c5fbe902ccb74e79d87e3fa705e270d1)
+---
+ configure.ac                     | 2 +-
+ docs/users_guide/9.4.1-notes.rst | 6 ++++++
+ 2 files changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/configure.ac b/configure.ac
+index f0d3160d1f7..0fd6442d51b 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -555,7 +555,7 @@ AC_SUBST(InstallNameToolCmd)
+ # tools we are looking for. In the past, GHC supported a number of
+ # versions of LLVM simultaneously, but that stopped working around
+ # 3.5/3.6 release of LLVM.
+-LlvmMinVersion=9  # inclusive
++LlvmMinVersion=10  # inclusive
+ LlvmMaxVersion=14 # not inclusive
+ AC_SUBST([LlvmMinVersion])
+ AC_SUBST([LlvmMaxVersion])
