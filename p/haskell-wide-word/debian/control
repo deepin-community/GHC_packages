@@ -1,0 +1,66 @@
+Source: haskell-wide-word
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-primitive-dev (>= 0.6.4.0),
+ libghc-primitive-dev (<< 0.8),
+ libghc-primitive-prof (>= 0.6.4.0),
+ libghc-primitive-prof (<< 0.8),
+Build-Depends-Indep: ghc-doc,
+ libghc-primitive-doc,
+Standards-Version: 4.6.1
+Homepage: https://github.com/erikd/wide-word
+X-Description: data types for large but fixed width signed and unsigned integers
+ A library to provide data types for large (ie > 64 bits) but fixed width signed
+ and unsigned integers with the usual typeclass instances to allow them to be used
+ interchangeably with `Word64`.
+ .
+ The types and operations are coded to be as fast as possible using strictness
+ annotations, `INLINEABLE` pragmas and unboxed values and operations where
+ appropriate.
+
+Package: libghc-wide-word-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-wide-word-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-wide-word-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
