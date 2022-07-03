@@ -1,0 +1,61 @@
+Index: b/ghc.mk
+===================================================================
+--- a/ghc.mk
++++ b/ghc.mk
+@@ -802,7 +802,7 @@ endif
+ ifeq "$(HADDOCK_DOCS)" "YES"
+ libraries/dist-haddock/index.html: $(haddock_INPLACE) $(ALL_HADDOCK_FILES)
+ ifeq "$(phase)" "final"
+-$(eval $(call all-target,library_doc_index,libraries/dist-haddock/index.html))
++docs: libraries/dist-haddock/index.html
+ endif
+ INSTALL_LIBRARY_DOCS += libraries/dist-haddock/*
+ endif
+@@ -844,9 +844,9 @@ libraries/ghc-prim/dist-install/build/au
+ 
+ install: install_libs install_packages install_libexecs \
+          install_bins install_libexec_scripts
+-ifeq "$(HADDOCK_DOCS)" "YES"
+-install: install_docs
+-endif
++# ifeq "$(HADDOCK_DOCS)" "YES"
++# install: install_docs
++# endif
+ 
+ define installLibsTo
+ # $1 = libraries to install
+Index: b/rules/haddock.mk
+===================================================================
+--- a/rules/haddock.mk
++++ b/rules/haddock.mk
+@@ -34,7 +34,7 @@ endif
+ haddock: html_$1
+ 
+ ifeq "$$(HADDOCK_DOCS)" "YES"
+-$(call all-target,$1_$2_haddock,html_$1)
++docs: html_$1
+ endif
+ 
+ .PHONY: html_$1
+Index: b/rules/sphinx.mk
+===================================================================
+--- a/rules/sphinx.mk
++++ b/rules/sphinx.mk
+@@ -30,7 +30,7 @@ $(call all-target,$1,)
+ .PHONY: html_$1
+ ifeq "$$(phase)" "final"
+ ifeq "$$(BUILD_SPHINX_HTML)" "YES"
+-$(call all-target,$1,html_$1)
++docs: html_$1
+ INSTALL_HTML_DOC_DIRS += $1/build-html/$2
+ endif
+ endif
+@@ -47,7 +47,7 @@ endif
+ .PHONY: pdf_$1
+ ifeq "$$(phase)" "final"
+ ifeq "$$(BUILD_SPHINX_PDF)" "YES"
+-$(call all-target,$1,pdf_$1)
++docs: pdf_$1
+ INSTALL_DOCS += $1/$2.pdf
+ endif
+ endif

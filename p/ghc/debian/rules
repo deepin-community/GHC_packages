@@ -68,7 +68,6 @@ else
 	dh $@
 endif
 
-
 override_dh_autoreconf:
 	dh_autoreconf perl -- boot
 
@@ -160,8 +159,9 @@ endif
 		$(EXTRA_CONFIGURE_FLAGS) \
 		--with-system-libffi --libdir=/usr/lib
 
-override_dh_auto_build:
-	dh_auto_build
+override_dh_auto_build-indep:
+	# Building docs needs a full build
+	dh_auto_build -i -- all docs
 
 override_dh_auto_test:
 ifeq ($(filter nocheck,$(DEB_BUILD_OPTIONS)),)
@@ -184,12 +184,9 @@ endif
 FILES = \( -type f -o -type l \)
 PROF_FILE = \( -name "*.p_*" -o -name "lib*_p.a" \)
 
-override_dh_auto_install:
+override_dh_auto_install-arch:
 	# See https://bugs.debian.org/944493 for why we use --no-parallel.
 	dh_auto_install --no-parallel
-
-	# Delete all the library LICENSE files
-	rm -f debian/tmp/usr/share/doc/ghc-doc/html/libraries/*/LICENSE
 
 	# Remove the haddock.t files, they really should not be in the released
 	# package (upstream #10410)
@@ -221,18 +218,8 @@ override_dh_auto_install:
 	    echo 'ghci=ghc-ghci' >> debian/ghc.substvars ; fi
 ifeq (NO,$(BUILD_CROSS))
 	# Add haddock substvars
-	echo "haddock:Depends=haddock-interface-$$(debian/tmp/usr/lib/ghc/bin/haddock --interface-version)" >> debian/ghc-doc.substvars
 	echo "haddock:Provides=haddock-interface-$$(debian/tmp/usr/lib/ghc/bin/haddock --interface-version)" >> debian/ghc.substvars
-	mkdir -p debian/tmp/usr/lib/ghc-doc
-	cp debian/gen_contents_index debian/tmp/usr/lib/ghc-doc/
-	chmod +x debian/tmp/usr/lib/ghc-doc/gen_contents_index
-	mkdir debian/tmp/usr/lib/ghc-doc/haddock
-	mkdir debian/tmp/usr/lib/ghc-doc/haddock/ghc/
-	for f in `find debian/tmp/usr/share/doc/ghc-doc/html/libraries/ -maxdepth 1 -mindepth 1 -type d`; do \
-	    mkdir debian/tmp/usr/lib/ghc-doc/haddock/ghc/`basename $$f` ; \
-	    mv $$f/*.haddock debian/tmp/usr/lib/ghc-doc/haddock/ghc/`basename $$f` ; done
-	cd debian/tmp/usr/share/doc/ghc-doc/html/libraries/; ln -s ghc-$(ProjectVersion) ghc
-	install -Dm 644 debian/index.html debian/tmp/usr/share/doc/ghc-doc/index.html
+endif
 
 	# manpages
 	echo ".so man1/ghc.1" > debian/tmp/usr/share/man/man1/ghc-$(ProjectVersion).1
@@ -246,7 +233,6 @@ ifeq (NO,$(BUILD_CROSS))
 
 	cp debian/haddock.man debian/tmp/usr/share/man/man1/haddock.1
 	find debian/tmp/usr/share/man $(FILES)           >> debian/ghc.install
-endif
 	# ####################
 	# Now all the files are sorted, create the package filelists
 
@@ -256,20 +242,41 @@ endif
 	find debian/tmp/usr/lib/ghc $(FILES) ! $(PROF_FILE) >> debian/ghc.install
 	find debian/tmp/var				 >> debian/ghc.install
 	echo debian/tmp/usr/share/lintian/overrides/ghc >> debian/ghc.install
+	rm -f debian/ghc.links
+	echo "/var/lib/ghc/package.conf.d /usr/lib/ghc/package.conf.d" >> debian/ghc.links
 	# ghc-prof
 	find debian/tmp/usr/lib $(FILES) $(PROF_FILE) > debian/ghc-prof.install
 	echo debian/tmp/usr/share/lintian/overrides/ghc-prof >> debian/ghc-prof.install
+
+	sed -i s,^debian/tmp,, debian/*.install debian/*.links
+
+override_dh_auto_install-indep:
+	dh_auto_install --no-parallel -- install_docs
+
+	# Delete all the library LICENSE files
+	rm -f debian/tmp/usr/share/doc/ghc-doc/html/libraries/*/LICENSE
+
+	# Add haddock substvars
+	echo "haddock:Depends=haddock-interface-$$(debian/tmp/usr/lib/ghc/bin/haddock --interface-version)" >> debian/ghc-doc.substvars
+	mkdir -p debian/tmp/usr/lib/ghc-doc
+	cp debian/gen_contents_index debian/tmp/usr/lib/ghc-doc/
+	chmod +x debian/tmp/usr/lib/ghc-doc/gen_contents_index
+	mkdir debian/tmp/usr/lib/ghc-doc/haddock
+	mkdir debian/tmp/usr/lib/ghc-doc/haddock/ghc/
+	for f in `find debian/tmp/usr/share/doc/ghc-doc/html/libraries/ -maxdepth 1 -mindepth 1 -type d`; do \
+	    mkdir debian/tmp/usr/lib/ghc-doc/haddock/ghc/`basename $$f` ; \
+	    mv $$f/*.haddock debian/tmp/usr/lib/ghc-doc/haddock/ghc/`basename $$f` ; done
+	cd debian/tmp/usr/share/doc/ghc-doc/html/libraries/; ln -s ghc-$(ProjectVersion) ghc
+	install -Dm 644 debian/index.html debian/tmp/usr/share/doc/ghc-doc/index.html
+
 	# ghc-doc
-ifeq (NO,$(BUILD_CROSS))
 	mkdir -p debian/tmp/$(DEB_HOOGLE_TXT_DIR)
 	find debian/tmp/usr/share/doc/ghc-doc/html/libraries/*/ -name "*.txt" \
 		-printf "%p $(DEB_HOOGLE_TXT_DIR)/%f\n" >> debian/ghc-doc.links
 	find debian/tmp/usr/share/doc/ghc-doc $(FILES) > debian/ghc-doc.install
 	find debian/tmp/usr/lib/ghc-doc $(FILES)      >> debian/ghc-doc.install
+
 	sed -i s,^debian/tmp,, debian/*.install debian/*.links
-endif
-	rm -f debian/ghc.links
-	echo "/var/lib/ghc/package.conf.d /usr/lib/ghc/package.conf.d" >> debian/ghc.links
 
 override_dh_auto_clean:
 	dh_auto_clean
