@@ -13,9 +13,12 @@ Build-Depends:
  haskell-devscripts (>= 0.13),
  libghc-syb-dev,
  libghc-syb-prof,
-Build-Depends-Indep:
- ghc-doc,
+ libghc-th-abstraction-dev (>= 0.4.3),
+ libghc-th-abstraction-dev (<< 0.5),
+ libghc-th-abstraction-prof,
+Build-Depends-Indep: ghc-doc,
  libghc-syb-doc,
+ libghc-th-abstraction-doc,
 Standards-Version: 4.6.1
 Homepage: https://github.com/DanielSchuessler/th-expand-syns
 Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-th-expand-syns
@@ -38,9 +41,9 @@ Conflicts:
 Provides:
  ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
-  ${haskell:LongDescription}
-  .
-  ${haskell:Blurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
 
 Package: libghc-th-expand-syns-prof
 Architecture: any
@@ -56,9 +59,9 @@ Conflicts:
 Provides:
  ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
-  ${haskell:LongDescription}
-  .
-  ${haskell:Blurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
 
 Package: libghc-th-expand-syns-doc
 Architecture: all
@@ -73,6 +76,6 @@ Suggests:
 Conflicts:
  ${haskell:Conflicts},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
-  ${haskell:LongDescription}
-  .
-  ${haskell:Blurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
