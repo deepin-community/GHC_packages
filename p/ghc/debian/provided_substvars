@@ -27,7 +27,7 @@ while (<PKG>) {
 close PKG;
 
 my $buf;
-open DEV, '>debian/ghc.substvars';
+open DEV, '>>debian/ghc.substvars';
 $buf = "provided-devs=";
 foreach (sort @pkgs) {$buf .= "libghc-$_-dev (= $pkgver{$_}), ";}
 $buf =~ s#(.*), #$1#;
@@ -41,7 +41,7 @@ $buf =~ s#(.*), #$1#;
 print DEV $buf."\n";
 close DEV;
 
-open PROF, '>debian/ghc-prof.substvars';
+open PROF, '>>debian/ghc-prof.substvars';
 print PROF 'provided-profs=';
 $buf = "";
 foreach (@pkgs) {$buf .= "libghc-$_-prof (= $pkgver{$_}), ";}
@@ -49,7 +49,7 @@ $buf =~ s#(.*), #$1#;
 print PROF $buf."\n";
 close PROF;
 
-open DOC, '>debian/ghc-doc.substvars';
+open DOC, '>>debian/ghc-doc.substvars';
 print DOC 'provided-docs=';
 $buf = "";
 foreach (@pkgs) {$buf .= "libghc-$_-doc (= $pkgver{$_}), ";}

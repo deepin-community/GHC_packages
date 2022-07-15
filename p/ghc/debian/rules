@@ -199,27 +199,20 @@ override_dh_auto_install-arch:
 	echo "ghc-prof binary: extra-license-file `cd debian/tmp && echo usr/lib/ghc/Cabal-*/Distribution/License.p_hi`" >> debian/tmp/usr/share/lintian/overrides/ghc-prof
 
 	# Sort out the package.conf files
-	mkdir -p debian/tmp/var/lib/ghc
-	# Old directories for symlink-workaround. Remove once all libraries use new path
-	mv debian/tmp/usr/lib/ghc/package.conf.d \
-	   debian/tmp/var/lib/ghc/
-	rm debian/tmp/var/lib/ghc/package.conf.d/package.cache
-	chmod +x debian/provided_substvars
-	debian/provided_substvars
+	if ! test -d debian/tmp/var/lib/ghc/package.conf.d ; then \
+		mkdir -p debian/tmp/var/lib/ghc ;\
+		mv debian/tmp/usr/lib/ghc/package.conf.d debian/tmp/var/lib/ghc/ ;\
+		rm debian/tmp/var/lib/ghc/package.conf.d/package.cache ;\
+	fi
+	rm -rf debian/tmp/usr/lib/ghc/package.conf.d
+
+	# Modify the ghc-doc path in package conf files
 	sed -ri 's,/usr/share/doc/ghc-doc/html/libraries/(.*)\.haddock,/usr/lib/ghc-doc/haddock/ghc/\1.haddock,' debian/tmp/var/lib/ghc/package.conf.d/*.conf
 
 	# Sort out the binaries
 	if inplace/bin/ghc-stage2 --info | grep '"Have interpreter","NO"'; then \
 	    cd debian/tmp/usr/bin ;rm -f ghci* runghc* runhaskell*; \
 	fi
-
-	# Check if we have a ghci binary
-	if test -e debian/tmp/usr/bin/ghci-$(ProjectVersion); then \
-	    echo 'ghci=ghc-ghci' >> debian/ghc.substvars ; fi
-ifeq (NO,$(BUILD_CROSS))
-	# Add haddock substvars
-	echo "haddock:Provides=haddock-interface-$$(debian/tmp/usr/lib/ghc/bin/haddock --interface-version)" >> debian/ghc.substvars
-endif
 
 	# manpages
 	echo ".so man1/ghc.1" > debian/tmp/usr/share/man/man1/ghc-$(ProjectVersion).1
@@ -243,6 +236,7 @@ endif
 	find debian/tmp/var				 >> debian/ghc.install
 	echo debian/tmp/usr/share/lintian/overrides/ghc >> debian/ghc.install
 	rm -f debian/ghc.links
+	# Old directories for symlink-workaround. Remove once all libraries use new path
 	echo "/var/lib/ghc/package.conf.d /usr/lib/ghc/package.conf.d" >> debian/ghc.links
 	# ghc-prof
 	find debian/tmp/usr/lib $(FILES) $(PROF_FILE) > debian/ghc-prof.install
@@ -251,13 +245,23 @@ endif
 	sed -i s,^debian/tmp,, debian/*.install debian/*.links
 
 override_dh_auto_install-indep:
-	dh_auto_install --no-parallel -- install_docs
+	# We need to run the 'install' target as well here,
+	# so we install package.conf files and generate 'Provides' from them.
+	dh_auto_install --no-parallel -- install install_docs
 
 	# Delete all the library LICENSE files
 	rm -f debian/tmp/usr/share/doc/ghc-doc/html/libraries/*/LICENSE
 
-	# Add haddock substvars
-	echo "haddock:Depends=haddock-interface-$$(debian/tmp/usr/lib/ghc/bin/haddock --interface-version)" >> debian/ghc-doc.substvars
+	# Sort out the package.conf files
+	# We need this in order to run dh_haskell_provides afterwards
+	if ! test -d debian/tmp/var/lib/ghc/package.conf.d ; then \
+		mkdir -p debian/tmp/var/lib/ghc ;\
+		mv debian/tmp/usr/lib/ghc/package.conf.d debian/tmp/var/lib/ghc/ ;\
+		rm debian/tmp/var/lib/ghc/package.conf.d/package.cache ;\
+	fi
+	rm -rf debian/tmp/usr/lib/ghc/package.conf.d
+
+	# Install haddock files
 	mkdir -p debian/tmp/usr/lib/ghc-doc
 	cp debian/gen_contents_index debian/tmp/usr/lib/ghc-doc/
 	chmod +x debian/tmp/usr/lib/ghc-doc/gen_contents_index
@@ -316,18 +320,26 @@ override_dh_auto_clean:
 override_dh_compress:
 	dh_compress -X.haddock -X.txt
 
-override_dh_installdeb:
+override_dh_gencontrol:
+	# Generate substvars
+	chmod +x debian/provided_substvars
+	debian/provided_substvars
+	# Check if we have a ghci binary
+	if test -e debian/tmp/usr/bin/ghci-$(ProjectVersion); then \
+	    echo 'ghci=ghc-ghci' >> debian/ghc.substvars ; fi
+	# Add haddock substvars
+ifeq (NO,$(BUILD_CROSS))
+	echo "haddock:Provides=haddock-interface-$$(debian/tmp/usr/lib/ghc/bin/haddock --interface-version)" >> debian/ghc.substvars
+	echo "haddock:Depends=haddock-interface-$$(debian/tmp/usr/lib/ghc/bin/haddock --interface-version)" >> debian/ghc-doc.substvars
+endif
 	dh_haskell_provides
-	dh_installdeb
+	dh_gencontrol
 
 override_dh_shlibdeps:
 	dh_shlibdeps -XlibHS
 
 # we do not want shlibs files there, neither postrm scripts
 override_dh_makeshlibs:
-
-# we have ghc-testsuite for this, empty override
-override_dh_auto_test:
 
 #GHC has no meaningful debugging symbols, so we don't ship a -dbgsym
 #package.
