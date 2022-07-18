@@ -1,0 +1,40 @@
+Index: b/topograph.cabal
+===================================================================
+--- a/topograph.cabal
++++ b/topograph.cabal
+@@ -1,6 +1,7 @@
+ cabal-version:   2.2
+ name:            topograph
+ version:         1.0.0.1
++x-revision:      4
+ synopsis:        Directed acyclic graphs.
+ category:        Data, Graph
+ description:
+@@ -35,8 +36,10 @@ tested-with:
+    || ==8.2.2
+    || ==8.4.4
+    || ==8.6.5
+-   || ==8.8.3
+-   || ==8.10.1
++   || ==8.8.4
++   || ==8.10.4
++   || ==9.0.1
++   || ==9.2.1
+ 
+ source-repository head
+   type:     git
+@@ -45,11 +48,11 @@ source-repository head
+ library
+   exposed-modules:  Topograph
+   build-depends:
+-    , base          >=4.6     && <4.15
+-    , base-compat   ^>=0.10.5 || ^>=0.11.0
++    , base          >=4.6     && <4.17
++    , base-compat   ^>=0.10.5 || ^>=0.11.0 || ^>=0.12.0
+     , base-orphans  ^>=0.8
+     , containers    ^>=0.5.0.0 || ^>=0.6.0.1
+-    , vector        ^>=0.12
++    , vector        ^>=0.12 || ^>=0.13
+ 
+   other-extensions:
+     RankNTypes
