@@ -1,9 +1,8 @@
 #!/usr/bin/make -f
 
-DEB_ENABLE_TESTS = yes
-DEB_SETUP_BIN_NAME = debian/hlibrary.setup
-DEB_CABAL_PACKAGE = hsini
-DEB_DEFAULT_COMPILER = ghc
+# Testsuite fails to compile with GHC 9.0.2
+# (see https://github.com/magthe/hsini/issues/24)
+DEB_ENABLE_TESTS = no
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
