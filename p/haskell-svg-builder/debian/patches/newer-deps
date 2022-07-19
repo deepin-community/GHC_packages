@@ -1,23 +1,36 @@
+Index: b/svg-builder.cabal
+===================================================================
 --- a/svg-builder.cabal
 +++ b/svg-builder.cabal
 @@ -1,5 +1,6 @@
  name:                svg-builder
  version:             0.1.1
-+x-revision: 2
++x-revision: 5
  synopsis:            DSL for building SVG.
  description:         Fast, easy to write SVG.
  homepage:            https://github.com/diagrams/svg-builder.git
-@@ -24,13 +25,13 @@
+@@ -12,6 +13,8 @@ category:            Graphics
+ build-type:          Simple
+ extra-source-files:  README.md
+ cabal-version:       >=1.10
++tested-with:         GHC ==8.4.4 || ==8.6.5 || ==8.8.4 || ==8.10.4 || ==9.0.1 || ==9.2.1
++
+ 
+ source-repository head
+   type:     git
+@@ -24,13 +27,13 @@ library
                         Graphics.Svg.Path,
                         Graphics.Svg.Elements,
                         Graphics.Svg.Attributes
 -  build-depends:       base                  >= 4.5   && < 4.12,
-+  build-depends:       base                  >= 4.5   && < 4.14,
++  build-depends:       base                  >= 4.5   && < 4.17,
                         blaze-builder         >= 0.4   && < 0.5,
-                        bytestring            >= 0.10  && < 0.11,
+-                       bytestring            >= 0.10  && < 0.11,
 -                       hashable              >= 1.1   && < 1.3,
-+                       hashable              >= 1.1   && < 1.4,
-                        text                  >= 0.11  && < 1.3,
+-                       text                  >= 0.11  && < 1.3,
++                       bytestring            >= 0.10  && < 0.12,
++                       hashable              >= 1.1   && < 1.5,
++                       text                  >= 0.11  && < 2.1,
                         unordered-containers  >= 0.2 && < 0.3
    if !impl(ghc >= 8.0)
 -    build-depends:     semigroups            >= 0.16.1 && < 0.19
