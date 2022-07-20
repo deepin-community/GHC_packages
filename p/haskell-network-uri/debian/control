@@ -7,13 +7,16 @@ Priority: optional
 Section: haskell
 Rules-Requires-Root: no
 Build-Depends:
+ haskell-devscripts (>= 0.13),
  cdbs,
  debhelper (>= 10),
  ghc (>= 8.4.3),
  ghc-prof,
- haskell-devscripts (>= 0.13),
-Build-Depends-Indep:
- ghc-doc,
+ libghc-th-compat-dev (>= 0.1.1),
+ libghc-th-compat-dev (<< 1.0),
+ libghc-th-compat-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-th-compat-doc,
 Standards-Version: 4.6.1
 Homepage: https://github.com/haskell/network-uri
 Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-network-uri
