@@ -1,6 +1,6 @@
 --- a/safe-exceptions.cabal
 +++ b/safe-exceptions.cabal
-@@ -13,6 +13,10 @@
+@@ -13,6 +13,10 @@ build-type:          Simple
  extra-source-files:  README.md ChangeLog.md COOKBOOK.md
  cabal-version:       >=1.10
  
@@ -11,9 +11,9 @@
  library
    hs-source-dirs:      src
    exposed-modules:     Control.Exception.Safe
-@@ -31,7 +35,8 @@
-                      , hspec
+@@ -32,7 +36,8 @@ test-suite safe-exceptions-test
                       , safe-exceptions
+                      , transformers
                       , void
 -  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
 +  if !flag(tests-single-threaded)
