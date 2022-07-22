@@ -6,22 +6,8 @@ export LC_ALL=C.UTF-8
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
 
-man/xmonad.1:
-	ghc util/GenerateManpage.hs
-	util/GenerateManpage
-
-build/xmonad:: man/xmonad.1
-
-build/libghc-xmonad-doc:: man/xmonad.1
-
 install/xmonad::
 	# Since compat level 10, the manpage is mandatory for dh_installwm.
 	# Run dh_installman before dh_installwm.
 	dh_installman
 	dh_installwm
-
-clean::
-	rm -f man/xmonad.1 man/xmonad.1.html
-	rm -f util/GenerateManpage \
-	    util/GenerateManpage.o \
-	    util/GenerateManpage.hi
