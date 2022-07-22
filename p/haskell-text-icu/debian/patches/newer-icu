@@ -1,6 +1,8 @@
+Index: b/Data/Text/ICU/Char.hsc
+===================================================================
 --- a/Data/Text/ICU/Char.hsc
 +++ b/Data/Text/ICU/Char.hsc
-@@ -129,6 +129,10 @@
+@@ -131,6 +131,10 @@ data Direction =
    | PopDirectionalFormat
    | DirNonSpacingMark
    | BoundaryNeutral
@@ -11,52 +13,13 @@
    deriving (Eq, Enum, Show, Typeable)
  
  instance NFData Direction where
-@@ -357,6 +361,94 @@
-   | SoraSompeng
-   | SundaneseSupplement
-   | Takri
-+  | BassaVah
-+  | CaucasianAlbanian
-+  | CopticEpactNumbers
-+  | CombiningDiacriticalMarksExtended
-+  | Duployan
-+  | Elbasan
-+  | GeometricShapesExtended
-+  | Grantha
-+  | Khojki
-+  | Khudawadi
-+  | LatinExtendedE
-+  | LinearA
-+  | Mahajani
-+  | Manichaean
-+  | MendeKikakui
-+  | Modi
-+  | Mro
-+  | MyanmarExtendedB
-+  | Nabataean
-+  | OldNorthArabian
-+  | OldPermic
-+  | OrnamentalDingbats
-+  | PahawhHmong
-+  | Palmyrene
-+  | PauCinHau
-+  | PsalterPahlavi
-+  | ShorthandFormatControls
-+  | Siddham
-+  | SinhalaArchaicNumbers
-+  | SupplementalArrowsC
-+  | Tirhuta
-+  | WarangCiti
-+  | Ahom
-+  | AnatolianHieroglyphs
-+  | CherokeeSupplement
-+  | CJKUnifiedIdeographsExtensionE
-+  | EarlyDynasticCuneiform
-+  | Hatran
-+  | Multani
-+  | OldHungarian
-+  | SupplementalSymbolsAndPictographs
-+  | SuttonSignwriting
+@@ -401,6 +405,83 @@ data BlockCode =
+   | OldHungarian
+   | SupplementalSymbolsAndPictographs
+   | SuttonSignwriting
++
++    -- New blocks in Unicode 9.0 (ICU 58)
++
 +  | Adlam
 +  | Bhaiksuki
 +  | CyrillicExtendedC
@@ -68,13 +31,19 @@
 +  | Osage
 +  | Tangut
 +  | TangutComponents
-+  | CJKUnifiedIdeographsExtensionF
++
++    -- New blocks in Unicode 10.0 (ICU 60)
++
++  | CjkUnifiedIdeographsExtensionF
 +  | KanaExtendedA
 +  | MasaramGondi
 +  | Nushu
 +  | Soyombo
 +  | SyriacSupplement
 +  | ZanabazarSquare
++
++    -- New blocks in Unicode 11.0 (ICU 62)
++
 +  | ChessSymbols
 +  | Dogra
 +  | GeorgianExtended
@@ -86,6 +55,9 @@
 +  | Medefaidrin
 +  | OldSogdian
 +  | Sogdian
++
++    -- New blocks in Unicode 12.0 (ICU 64)
++
 +  | EgyptianHieroglyphFormatControls
 +  | Elymaic
 +  | Nandinagari
@@ -95,6 +67,9 @@
 +  | SymbolsAndPictographsExtendedA
 +  | TamilSupplement
 +  | Wancho
++
++    -- New blocks in Unicode 13.0 (ICU 66)
++
 +  | Chorasmian
 +  | CjkUnifiedIdeographsExtensionG
 +  | DivesAkuru
@@ -103,6 +78,22 @@
 +  | SymbolsForLegacyComputing
 +  | TangutSupplement
 +  | Yezidi
++
++    -- New blocks in Unicode 14.0 (ICU 70)
++
++  | ArabicExtendedB
++  | CyproMinoan
++  | EthiopicExtendedB
++  | KanaExtendedB
++  | LatinExtendedF
++  | LatinExtendedG
++  | OldUyghur
++  | Tangsa
++  | Toto
++  | UnifiedCanadianAboriginalSyllabicsExtendedA
++  | Vithkuqi
++  | ZnamennyMusicalNotation
++
    deriving (Eq, Enum, Bounded, Show, Typeable)
  
  instance NFData BlockCode where
