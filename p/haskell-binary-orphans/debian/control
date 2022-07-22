@@ -6,11 +6,14 @@ Priority: optional
 Section: haskell
 Rules-Requires-Root: no
 Build-Depends:
+ haskell-devscripts (>= 0.13),
  cdbs,
  debhelper (>= 10),
  ghc (>= 8.4.3),
  ghc-prof,
- haskell-devscripts (>= 0.13),
+ libghc-onetuple-dev (>= 0.3),
+ libghc-onetuple-dev (<< 0.4),
+ libghc-onetuple-prof,
  libghc-quickcheck2-dev (>= 2.13.1),
  libghc-quickcheck2-dev (<< 2.15),
  libghc-quickcheck2-prof,
@@ -21,12 +24,13 @@ Build-Depends:
  libghc-tagged-dev (<< 0.8.7),
  libghc-tagged-prof,
  libghc-tasty-dev (>= 0.10.1.2),
- libghc-tasty-dev (<< 1.3),
+ libghc-tasty-dev (<< 1.5),
  libghc-tasty-prof,
  libghc-tasty-quickcheck-dev (>= 0.8.3.2),
  libghc-tasty-quickcheck-dev (<< 0.11),
  libghc-tasty-quickcheck-prof,
 Build-Depends-Indep: ghc-doc,
+ libghc-onetuple-doc,
 Standards-Version: 4.6.1
 Homepage: https://hackage.haskell.org/package/binary-orphans
 Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-binary-orphans
