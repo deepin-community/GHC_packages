@@ -1,10 +1,9 @@
 #!/usr/bin/make -f
 
-# test suite runs OOM on kfreebsd-i386
 DEB_BUILD_ARCH     ?= $(shell dpkg-architecture -qDEB_BUILD_ARCH)
-ifeq (,$(filter $(DEB_BUILD_ARCH),kfreebsd-i386))
 DEB_ENABLE_TESTS = yes
-else
+ifneq (,$(filter $(DEB_BUILD_ARCH),kfreebsd-i386))
+# test suite runs OOM on kfreebsd-i386
 DEB_ENABLE_TESTS = no
 endif
 
