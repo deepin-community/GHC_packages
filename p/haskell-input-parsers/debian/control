@@ -1,0 +1,71 @@
+Source: haskell-input-parsers
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Ilias Tsitsimpis <iliastsi@debian.org>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-attoparsec-dev (>= 0.12.1.4),
+ libghc-attoparsec-dev (<< 0.15),
+ libghc-attoparsec-prof,
+ libghc-monoid-subclasses-dev (>= 1.0),
+ libghc-monoid-subclasses-dev (<< 1.2),
+ libghc-monoid-subclasses-prof,
+ libghc-parsers-dev (>= 0.12),
+ libghc-parsers-dev (<< 0.13),
+ libghc-parsers-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-attoparsec-doc,
+ libghc-monoid-subclasses-doc,
+ libghc-parsers-doc,
+Standards-Version: 4.6.1
+Homepage: https://hackage.haskell.org/package/input-parsers
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-input-parsers
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git
+X-Description: Extension of the parsers library
+ Extended version of the parsers library, with the additional classes providing
+ more capable and efficient methods.
+
+Package: libghc-input-parsers-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-input-parsers-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-input-parsers-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
