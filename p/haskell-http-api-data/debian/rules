@@ -3,10 +3,9 @@
 DEB_CABAL_PACKAGE = http-api-data
 DEB_DEFAULT_COMPILER = ghc
 
+DEB_ENABLE_TESTS = yes
 ifneq (,$(filter hppa m68k powerpc ppc64 sparc64 s390x, $(DEB_HOST_ARCH)))
 	DEB_ENABLE_TESTS = no
-else
-	DEB_ENABLE_TESTS = yes
 endif
 
 include /usr/share/cdbs/1/rules/debhelper.mk
