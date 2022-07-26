@@ -3,11 +3,7 @@
 DEB_CABAL_PACKAGE = lens-aeson
 DEB_DEFAULT_COMPILER = ghc
 
-ifeq (s390x,$(DEB_HOST_ARCH))
-	DEB_ENABLE_TESTS = no
-else
-	DEB_ENABLE_TESTS = yes
-endif
+DEB_ENABLE_TESTS = yes
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
