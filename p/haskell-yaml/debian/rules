@@ -1,6 +1,7 @@
 #!/usr/bin/make -f
 
-DEB_SETUP_GHC_CONFIGURE_ARGS := --flags="-no-exe"
+# See https://bugs.debian.org/951490
+DEB_SETUP_GHC_CONFIGURE_ARGS := --flags="no-exe"
 
 # The test suite requires template haskell
 ifeq (0,$(shell ghc --info | grep 'Have interpreter.*YES' >/dev/null 2>&1; echo $$?))
