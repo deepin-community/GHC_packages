@@ -1,0 +1,100 @@
+Source: haskell-bitwise
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Scott Talbert <swt@techie.net>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-quickcheck2-dev (>= 2.4),
+ libghc-quickcheck2-dev (<< 2.15),
+Build-Depends-Indep: ghc-doc,
+Standards-Version: 4.6.1
+Homepage: https://code.mathr.co.uk/bitwise
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-bitwise
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-bitwise]
+X-Description: fast multi-dimensional unboxed bit packed Bool arrays
+ Unboxed multidimensional bit packed Bool arrays with fast aggregate
+ operations based on lifting Bool operations to bitwise operations.
+ .
+ There are many other bit packed structures out there, but none met
+ all of these requirements:
+ .
+ (1) unboxed bit packed Bool array,
+ .
+ (2) multi-dimensional indexing,
+ .
+ (3) fast (de)serialization, or interoperable with foreign code,
+ .
+ (4) fast aggregate operations (fold, map, zip).
+ .
+ Quick tour of the bitwise library:
+ .
+ [Data.Bits.Bitwise] Lift boolean operations on 'Bool' to bitwise
+ operations on 'Data.Bits.Bits'.
+ .
+ [Data.Array.BitArray] Immutable bit arrays.
+ .
+ [Data.Array.BitArray.ST] Mutable bit arrays in 'Control.Monad.ST.ST'.
+ .
+ [Data.Array.BitArray.IO] Mutable bit arrays in 'IO'.
+ .
+ [Data.Array.BitArray.ByteString] (De)serialization.
+ .
+ [Codec.Image.PBM] Portable bitmap monochrome 2D image format.
+ .
+ Very rough performance benchmarks:
+ .
+ * immutable random access single bit reads:
+ @BitArray ix@ is about 40% slower than @UArray ix Bool@,
+ .
+ * 'Control.Monad.ST.ST' mutable random access single bit reads:
+ @STBitArray s ix@ is about the same as @STUArray s ix Bool@,
+ .
+ * immutable map @Bool -> Bool@:
+ @BitArray ix@ is about 85x faster than @UArray ix Bool@,
+ .
+ * immutable zipWith @Bool -> Bool -> Bool@:
+ @BitArray ix@ is about 1300x faster than @UArray ix Bool@.
+
+Package: libghc-bitwise-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-bitwise-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-bitwise-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
