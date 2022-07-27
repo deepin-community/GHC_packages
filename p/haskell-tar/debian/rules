@@ -1,11 +1,8 @@
 #!/usr/bin/make -f
 
 DEB_BUILD_DEPENDENCIES = build-arch
-ifeq (four,$(shell ghc --info | grep -q 'target word size.*"4"' && echo four))
-	DEB_ENABLE_TESTS = no
-else
-	DEB_ENABLE_TESTS = yes
-endif
+# Disable tests, which rely on broken bytestring-handle
+DEB_ENABLE_TESTS = no
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
