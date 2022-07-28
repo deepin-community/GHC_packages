@@ -1,0 +1,11 @@
+--- a/Control/Concurrent/ReadWriteLock/Test.hs
++++ b/Control/Concurrent/ReadWriteLock/Test.hs
+@@ -97,7 +97,7 @@ test2 = assert $ within (10 * a_moment)
+           RWLock.acquireRead rwl
+ 
+ stressTest :: Assertion
+-stressTest = assert $ within (500 * a_moment) $ do
++stressTest = assert $ within (1000 * a_moment) $ do
+   lock <- RWLock.new
+ 
+   let randomDelay hi = randomRIO (0, hi) >>= threadDelay

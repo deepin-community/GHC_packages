@@ -1,0 +1,94 @@
+Source: haskell-concurrent-extra
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Scott Talbert <swt@techie.net>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-unbounded-delays-dev (>= 0.1),
+ libghc-unbounded-delays-prof,
+ libghc-hunit-dev (>= 1.2.2),
+ libghc-hunit-prof,
+ libghc-async-dev (>= 2.0),
+ libghc-async-prof,
+ libghc-random-dev (>= 1.0),
+ libghc-random-prof,
+ libghc-test-framework-dev (>= 0.2.4),
+ libghc-test-framework-prof,
+ libghc-test-framework-hunit-dev (>= 0.2.4),
+ libghc-test-framework-hunit-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-unbounded-delays-doc,
+Standards-Version: 4.6.1
+Homepage: https://github.com/basvandijk/concurrent-extra
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-concurrent-extra
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-concurrent-extra]
+X-Description: Extra concurrency primitives
+ The @concurrent-extra@ package offers among other things the
+ following selection of synchronisation primitives:
+ .
+  * @Broadcast@: Wake multiple threads by broadcasting a value.
+ .
+  * @Event@: Wake multiple threads by signalling an event.
+ .
+  * @Lock@: Enforce exclusive access to a resource. Also known as a
+ binary semaphore or mutex. The package additionally provides an
+ alternative that works in the @STM@ monad.
+ .
+  * @RLock@: A lock which can be acquired multiple times by the same
+ thread. Also known as a reentrant mutex.
+ .
+  * @ReadWriteLock@: Multiple-reader, single-writer locks. Used to
+ protect shared resources which may be concurrently read, but only
+ sequentially written.
+ .
+  * @ReadWriteVar@: Concurrent read, sequential write variables.
+ .
+ Please consult the API documentation of the individual modules for
+ more detailed information.
+ .
+ This package was inspired by the concurrency libraries of Java and
+ Python.
+
+Package: libghc-concurrent-extra-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-concurrent-extra-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-concurrent-extra-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
