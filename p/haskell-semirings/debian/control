@@ -1,0 +1,85 @@
+Source: haskell-semirings
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Scott Talbert <swt@techie.net>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-base-compat-batteries-dev,
+ libghc-base-compat-batteries-prof,
+ libghc-hashable-dev (>= 1.1),
+ libghc-hashable-dev (<< 1.4),
+ libghc-hashable-prof,
+ libghc-unordered-containers-dev (>= 0.2),
+ libghc-unordered-containers-dev (<< 0.3),
+ libghc-unordered-containers-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-base-compat-batteries-doc,
+ libghc-hashable-doc,
+ libghc-unordered-containers-doc,
+Standards-Version: 4.6.1
+Homepage: https://github.com/chessai/semirings
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-semirings
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-semirings]
+X-Description: two monoids as one, in holy haskimony
+ Haskellers are usually familiar with monoids and semigroups. A monoid has an
+ appending operation `<>` (or `mappend`), and an identity element, `mempty`.
+ A semigroup has an appending `<>` operation, but does not require a `mempty`
+ element.
+ .
+ A Semiring has two appending operations, `plus` and `times`, and two
+ respective identity elements, `zero` and `one`.
+ .
+ More formally, a Semiring R is a set equipped with two binary relations `+`
+ and `*`, such that:
+ .
+ (R,+) is a commutative monoid with identity element 0,
+ .
+ (R,*) is a monoid with identity element 1,
+ .
+ (*) left and right distributes over addition, and
+ .
+ multiplication by '0' annihilates R.
+
+Package: libghc-semirings-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-semirings-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-semirings-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
