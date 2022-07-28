@@ -1,8 +1,5 @@
 #!/usr/bin/make -f
 
-# Require old quickcheck
-# DEB_ENABLE_TESTS = yes
-
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
 
@@ -10,3 +7,9 @@ build/cabal-install:: build-ghc-stamp
 
 binary-post-install/cabal-install::
 	dh_bash-completion
+
+cabal.1:
+	./dist-ghc/build/cabal/cabal --help
+	help2man -N -o $@ ./dist-ghc/build/cabal/cabal
+
+install/cabal-install:: cabal.1
