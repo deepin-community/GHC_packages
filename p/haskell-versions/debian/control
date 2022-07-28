@@ -1,0 +1,93 @@
+Source: haskell-versions
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Scott Talbert <swt@techie.net>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-hashable-dev (>= 1.2),
+ libghc-hashable-prof,
+ libghc-megaparsec-dev (>= 7),
+ libghc-megaparsec-prof,
+ libghc-parser-combinators-dev (>= 1.0),
+ libghc-parser-combinators-prof,
+ libghc-quickcheck2-dev (>= 2.9),
+ libghc-quickcheck2-prof,
+ libghc-microlens-dev (>= 0.4),
+ libghc-microlens-prof,
+ libghc-tasty-dev (>= 0.10.1.2),
+ libghc-tasty-prof,
+ libghc-tasty-hunit-dev (>= 0.9.2),
+ libghc-tasty-hunit-prof,
+ libghc-tasty-quickcheck-dev (>= 0.8),
+ libghc-tasty-quickcheck-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-hashable-doc,
+ libghc-megaparsec-doc,
+ libghc-parser-combinators-doc,
+Standards-Version: 4.6.1
+Homepage: https://github.com/fosskers/versions
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-versions
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-versions]
+X-Description: Types and parsers for software version numbers.
+ A library for parsing and comparing software version numbers. We like to give
+ version numbers to our software in a myriad of ways. Some ways follow strict
+ guidelines for incrementing and comparison. Some follow conventional wisdom
+ and are generally self-consistent. Some are just plain asinine. This library
+ provides a means of parsing and comparing /any/ style of versioning, be it a
+ nice Semantic Version like this:
+ .
+ > 1.2.3-r1+git123
+ .
+  ...or a monstrosity like this:
+ .
+ > 2:10.2+0.0093r3+1-1
+ .
+ Please switch to <http://semver.org Semantic Versioning> if you aren't
+ currently using it. It provides consistency in version incrementing and has
+ the best constraints on comparisons.
+ .
+ This library implements version @2.0.0@ of the SemVer spec.
+
+Package: libghc-versions-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-versions-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-versions-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
