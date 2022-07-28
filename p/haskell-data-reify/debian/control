@@ -1,0 +1,82 @@
+Source: haskell-data-reify
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Scott Talbert <swt@techie.net>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-hashable-dev,
+ libghc-hashable-prof,
+ libghc-unordered-containers-dev,
+ libghc-unordered-containers-prof,
+ libghc-base-compat-dev (>= 0.11),
+ libghc-base-compat-dev (<< 0.12),
+ libghc-base-compat-prof,
+ libghc-hspec-dev (>= 2),
+ libghc-hspec-dev (<< 3),
+ libghc-hspec-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-hashable-doc,
+ libghc-unordered-containers-doc,
+Standards-Version: 4.6.1
+Homepage: http://ku-fpg.github.io/software/data-reify/
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-data-reify
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-data-reify]
+X-Description: Reify a recursive data structure into an explicit graph.
+ 'data-reify' provided the ability to turn recursive structures into explicit
+ graphs.  Many (implicitly or explicitly) recursive data structure can be given
+ this ability, via a type class instance. This gives an alternative to using
+ 'Ref' for observable sharing.
+ .
+ Observable sharing in general is unsafe, so we use the IO monad to bound this
+ effect, but can be used safely even with 'unsafePerformIO' if some simple
+ conditions are met.  Typically this package will be used to tie the knot with
+ DSL's that depend of observable sharing, like Lava.
+ .
+ Providing an instance for 'MuRef' is the mechanism for allowing a structure to
+ be reified into a graph, and several examples of this are provided.
+ .
+ &#169; 2009 Andy Gill; BSD3 license.
+
+Package: libghc-data-reify-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-data-reify-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-data-reify-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
