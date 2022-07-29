@@ -5,7 +5,7 @@
    main-is: properties.hs
    default-language: Haskell2010
 -  ghc-options: -w -threaded -rtsopts -with-rtsopts=-N
-+  if arch(arm) || arch(mips) || arch(s390x)
++  if arch(arm) || arch(mips) || arch(s390x) || arch(i386)
 +    ghc-options: -w -threaded -rtsopts
 +  else
 +    ghc-options: -w -threaded -rtsopts -with-rtsopts=-N
