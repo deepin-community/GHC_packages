@@ -1,6 +1,6 @@
 --- a/Network/HTTP/Client/Restricted.hs
 +++ b/Network/HTTP/Client/Restricted.hs
-@@ -173,8 +173,7 @@
+@@ -178,8 +178,7 @@ restrictProxy cfg base = do
  			proto <- getProtocolNumber "tcp"
  			let serv = show (proxyPort p)
  			let hints = defaultHints
@@ -10,7 +10,7 @@
  				, addrSocketType = Stream
  				}
  			let h = BU.toString $ proxyHost p
-@@ -250,8 +249,7 @@
+@@ -255,8 +254,7 @@ getConnection cfg tls mcontext = do
  		proto <- getProtocolNumber "tcp"
  		let serv = show p
  		let hints = defaultHints
@@ -19,4 +19,4 @@
 +			{ addrProtocol = proto
  			, addrSocketType = Stream
  			}
- 		addrs <- getAddrInfo (Just hints) (Just h) (Just serv)
+ 		addrs <- getAddrInfo (Just hints) (Just hstripped) (Just serv)
