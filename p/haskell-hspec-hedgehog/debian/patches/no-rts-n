@@ -1,0 +1,14 @@
+--- a/hspec-hedgehog.cabal
++++ b/hspec-hedgehog.cabal
+@@ -41,7 +41,10 @@ test-suite hspec-hedgehog-test
+       Spec.hs
+   hs-source-dirs:
+       test
+-  ghc-options: -threaded -rtsopts -with-rtsopts=-N
++  if arch(arm) || arch(mips) || arch(s390x) || arch(i386)
++    ghc-options: -threaded -rtsopts
++  else
++    ghc-options: -threaded -rtsopts -with-rtsopts=-N
+   build-depends:
+       base          >= 4.7   && < 5
+     , hspec-hedgehog
