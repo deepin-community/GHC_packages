@@ -1,0 +1,14 @@
+--- a/lift-type.cabal
++++ b/lift-type.cabal
+@@ -34,7 +34,10 @@ test-suite lift-type-test
+   main-is: Spec.hs
+   hs-source-dirs:
+       test
+-  ghc-options: -threaded -rtsopts -with-rtsopts=-N
++  if arch(arm) || arch(mips) || arch(s390x) || arch(i386)
++    ghc-options: -threaded -rtsopts
++  else
++    ghc-options: -threaded -rtsopts -with-rtsopts=-N
+   build-depends:
+       base >=4.7 && <5
+     , lift-type
