@@ -11,9 +11,12 @@ Build-Depends:
  haskell-devscripts (>= 0.13),
  ghc (>= 8.4.3),
  ghc-prof,
- libghc-aeson-dev (>= 1.3.0.0),
- libghc-aeson-dev (<< 1.6),
+ libghc-aeson-dev (>= 2.0),
+ libghc-aeson-dev (<< 2.1),
  libghc-aeson-prof,
+ libghc-data-default-dev (>= 0.7),
+ libghc-data-default-dev (<< 0.8),
+ libghc-data-default-prof,
  libghc-exceptions-dev (>= 0.8.3),
  libghc-exceptions-dev (<< 0.11),
  libghc-exceptions-prof,
@@ -26,13 +29,7 @@ Build-Depends:
  libghc-microlens-dev (>= 0.4.0),
  libghc-microlens-dev (<< 0.5),
  libghc-microlens-prof,
- libghc-wai-dev (<< 3.3),
- libghc-wai-dev (>= 3.2),
- libghc-warp-dev (<< 3.4),
- libghc-warp-dev (>= 3.2),
- libghc-unordered-containers-dev (>= 0.2.5),
- libghc-unordered-containers-prof,
- libghc-uri-bytestring-dev (>= 0.2.3.1),
+ libghc-uri-bytestring-dev (>= 0.2.3),
  libghc-uri-bytestring-dev (<< 0.4),
  libghc-uri-bytestring-prof,
  libghc-uri-bytestring-aeson-dev (>= 0.1),
@@ -40,11 +37,11 @@ Build-Depends:
  libghc-uri-bytestring-aeson-prof,
 Build-Depends-Indep: ghc-doc,
  libghc-aeson-doc,
+ libghc-data-default-doc,
  libghc-exceptions-doc,
  libghc-http-conduit-doc,
  libghc-http-types-doc,
  libghc-microlens-doc,
- libghc-unordered-containers-doc,
  libghc-uri-bytestring-doc,
  libghc-uri-bytestring-aeson-doc,
 Standards-Version: 4.6.1
@@ -75,9 +72,9 @@ Conflicts:
 Provides:
  ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
-  ${haskell:LongDescription}
-  .
-  ${haskell:Blurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
 
 Package: libghc-hoauth2-prof
 Architecture: any
@@ -93,9 +90,9 @@ Conflicts:
 Provides:
  ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
-  ${haskell:LongDescription}
-  .
-  ${haskell:Blurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
 
 Package: libghc-hoauth2-doc
 Architecture: all
@@ -110,6 +107,6 @@ Suggests:
 Conflicts:
  ${haskell:Conflicts},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
-  ${haskell:LongDescription}
-  .
-  ${haskell:Blurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
