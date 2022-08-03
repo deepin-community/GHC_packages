@@ -1,82 +1,49 @@
+Index: b/test/Spec.hs
+===================================================================
+--- a/test/Spec.hs
++++ b/test/Spec.hs
+@@ -4,7 +4,7 @@ import Test.Hspec
+ import Test.Hspec.Core.Spec
+ 
+ import qualified SQLite.Test as SQLite
+-import qualified MySQL.Test as MySQL
++-- import qualified MySQL.Test as MySQL
+ import qualified PostgreSQL.Test as Postgres
+ 
+ main :: IO ()
+@@ -15,8 +15,8 @@ spec = do
+     parallel $ describe "Esqueleto" $ do
+         describe "SQLite" $ do
+             sequential $ SQLite.spec
+-        describe "MySQL" $ do
+-            sequential $ MySQL.spec
+-        describe "Postgresql" $ do
+-            sequential $ Postgres.spec
++        -- describe "MySQL" $ do
++        --     sequential $ MySQL.spec
++        -- describe "Postgresql" $ do
++        --     sequential $ Postgres.spec
+ 
+Index: b/esqueleto.cabal
+===================================================================
 --- a/esqueleto.cabal
 +++ b/esqueleto.cabal
-@@ -67,79 +67,6 @@
-     ghc-options: -Wall
-   default-language: Haskell2010
- 
--test-suite mysql
--  type: exitcode-stdio-1.0
--  main-is: MySQL/Test.hs
--  other-modules:
--      Common.Test
--      Paths_esqueleto
--  hs-source-dirs:
--      test
--  ghc-options: -Wall
--  build-depends:
--      base >=4.8 && <5.0
--    , attoparsec
--    , blaze-html
--    , bytestring
--    , conduit >=1.3
--    , containers
--    , esqueleto
--    , exceptions
--    , hspec
--    , monad-logger
--    , mtl
--    , mysql
--    , mysql-simple
--    , persistent >=2.8.0 && <2.11
--    , persistent-mysql
--    , persistent-template
--    , resourcet >=1.2
--    , tagged >=0.2
--    , text >=0.11 && <1.3
--    , time 
--    , transformers >=0.2
--    , unliftio
--    , unordered-containers >=0.2
--  default-language: Haskell2010
--
--test-suite postgresql
--  type: exitcode-stdio-1.0
--  main-is: PostgreSQL/Test.hs
--  other-modules:
--      Common.Test
--      PostgreSQL.MigrateJSON
--      Paths_esqueleto
--  hs-source-dirs:
--      test
--  ghc-options: -Wall
--  build-depends:
--      base >=4.8 && <5.0
--    , aeson
--    , attoparsec
--    , blaze-html
--    , bytestring
--    , conduit >=1.3
--    , containers
--    , esqueleto
--    , exceptions
--    , hspec
--    , monad-logger
--    , mtl
--    , persistent >=2.10.0 && <2.11
--    , persistent-postgresql >= 2.10.0 && <2.11
--    , persistent-template
--    , postgresql-libpq
--    , postgresql-simple
--    , resourcet >=1.2
--    , tagged >=0.2
--    , text >=0.11 && <1.3
--    , time 
--    , transformers >=0.2
--    , unliftio
--    , unordered-containers >=0.2
--    , vector
--  default-language: Haskell2010
--
- test-suite sqlite
-   type: exitcode-stdio-1.0
-   main-is: SQLite/Test.hs
+@@ -91,7 +91,6 @@ test-suite specs
+         PostgreSQL.MigrateJSON
+         SQLite.Test
+         PostgreSQL.Test
+-        MySQL.Test
+     default-extensions:
+         RankNTypes
+     hs-source-dirs:
+@@ -111,10 +110,7 @@ test-suite specs
+       , hspec-core
+       , monad-logger
+       , mtl
+-      , mysql
+-      , mysql-simple
+       , persistent
+-      , persistent-mysql
+       , persistent-postgresql
+       , persistent-sqlite
+       , postgresql-simple
