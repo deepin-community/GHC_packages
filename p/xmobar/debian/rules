@@ -1,41 +1,20 @@
 #!/usr/bin/make -f
-# Uncomment this to turn on verbose mode.
-#export DH_VERBOSE=1
 
-include /usr/share/dpkg/architecture.mk
-
-GHC_OPTIONS = -optl -Wl,-z,relro -optl -Wl,-z,now -optl -Wl,--as-needed
+DEB_ENABLE_TESTS = yes
 
 # Work-around a bug in GHC on 64-bit unregistered platforms.
 # https://ghc.haskell.org/trac/ghc/ticket/15853
 ifneq (,$(filter $(DEB_BUILD_ARCH),mips64el s390x alpha ia64 riscv64 sparc64))
-     GHC_OPTIONS += -O0
+	DEB_SETUP_GHC_CONFIGURE_ARGS += --ghc-options="-O0"
 endif
-
-CONFIGURE_OPTS = --ghc-options="$(GHC_OPTIONS)"
 
 ifeq ($(DEB_HOST_ARCH_OS),linux)
-    CONFIGURE_OPTS += --flags="with_xft with_inotify with_iwlib with_mpris with_dbus with_xpm with_uvmeter with_weather with_alsa"
+    DEB_SETUP_GHC_CONFIGURE_ARGS += --flags="with_xft with_inotify with_iwlib with_mpris with_dbus with_xpm with_uvmeter with_weather with_alsa"
 else
-    CONFIGURE_OPTS += --flags="with_xft with_xpm"
+    DEB_SETUP_GHC_CONFIGURE_ARGS += --flags="with_xft with_xpm"
 endif
 
-%:
-	dh $@
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/hlibrary.mk
 
-override_dh_auto_configure:
-	ghc --make setup.*hs -o setup-ghc
-	./setup-ghc configure --ghc --prefix=/usr $(CONFIGURE_OPTS)
-
-override_dh_auto_build:
-	./setup-ghc build
-
-override_dh_auto_install:
-	./setup-ghc copy --destdir=debian/tmp/
-
-override_dh_auto_clean:
-	-./setup-ghc clean
-	-rm -f Setup.o Setup.hi setup-ghc
-
-.PHONY: override_dh_auto_configure override_dh_auto_build \
-        override_dh_auto_install override_dh_auto_clean
+build/xmobar:: build-ghc-stamp check-ghc-stamp

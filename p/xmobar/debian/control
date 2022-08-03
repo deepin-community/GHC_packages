@@ -1,38 +1,54 @@
 Source: xmobar
-Section: x11
-Priority: optional
 Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
-Uploaders: Apollon Oikonomopoulos <apoikos@debian.org>,
-           Aggelos Avgerinos <evaggelos.avgerinos@gmail.com>,
+Uploaders:
+ Apollon Oikonomopoulos <apoikos@debian.org>,
+ Aggelos Avgerinos <evaggelos.avgerinos@gmail.com>,
+Priority: optional
+Section: x11
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ libghc-x11-dev (>= 1.6.1),
+ libghc-aeson-dev (>= 1.4.7.1),
+ libghc-async-dev,
+ libghc-extensible-exceptions-dev (>= 0.1),
+ libghc-extensible-exceptions-dev (<< 0.2),
+ libghc-http-client-tls-dev,
+ libghc-http-conduit-dev,
+ libghc-http-types-dev,
+ libghc-old-locale-dev,
+ libghc-parsec-numbers-dev (>= 0.1.0),
+ libghc-regex-compat-dev,
+ libghc-utf8-string-dev (>= 0.3),
+ libghc-utf8-string-dev (<< 1.1),
+ libxrandr-dev,
+ libxrender-dev,
+ libghc-hspec-dev (>= 2),
+ libghc-hspec-dev (<< 3),
+ libghc-temporary-dev,
+ libghc-alsa-core-dev (>= 0.5),
+ libghc-alsa-mixer-dev (>= 0.3),
+ libghc-x11-xft-dev (>= 0.2),
+ libghc-dbus-dev [linux-any],
+ libghc-hinotify-dev [linux-any],
+ libghc-iwlib-dev (>= 0.1.0) [linux-any],
+ libiw-dev [linux-any],
+ libxpm-dev,
 Standards-Version: 4.6.1
-Build-Depends: debhelper-compat (=12),
-               ghc,
-               libghc-alsa-core-dev (>= 0.5),
-               libghc-alsa-mixer-dev (>= 0.3),
-               libghc-dbus-dev [linux-any],
-               libghc-extensible-exceptions-dev,
-               libghc-hinotify-dev [linux-any],
-               libghc-http-conduit-dev,
-               libghc-http-dev (>= 1:4000),
-               libghc-iwlib-dev (>= 0.1.0) [linux-any],
-               libghc-mtl-dev,
-               libghc-parsec-numbers-dev,
-               libghc-parsec3-dev,
-               libghc-regex-compat-dev,
-               libghc-stm-dev (>= 2.3),
-               libghc-x11-dev (>= 1.6.0),
-               libghc-x11-xft-dev (>= 0.2),
-               libiw-dev [linux-any],
-               libxpm-dev,
-Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/xmobar
-Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/xmobar]
-Homepage: http://projects.haskell.org/xmobar/
+Homepage: https://codeberg.org/xmobar/xmobar
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-xmobar
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git
 
 Package: xmobar
 Architecture: any
-Depends: ${misc:Depends},
-         ${shlibs:Depends},
-Suggests: xmonad,
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests}, xmonad,
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
 Description: lightweight status bar for X11 window managers
  xmobar is a lightweight text-based status bar for X11 desktops written in
  Haskell and designed to work with (but not limited to) xmonad. It has a
