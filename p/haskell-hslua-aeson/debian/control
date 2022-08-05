@@ -1,0 +1,97 @@
+Source: haskell-hslua-aeson
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Scott Talbert <swt@techie.net>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-aeson-dev (>= 1.5),
+ libghc-aeson-dev (<< 2.1),
+ libghc-aeson-prof,
+ libghc-hashable-dev (>= 1.2),
+ libghc-hashable-dev (<< 1.5),
+ libghc-hashable-prof,
+ libghc-hslua-core-dev (>= 2.0),
+ libghc-hslua-core-dev (<< 2.2),
+ libghc-hslua-core-prof,
+ libghc-hslua-marshalling-dev (>= 2.1),
+ libghc-hslua-marshalling-dev (<< 2.2),
+ libghc-hslua-marshalling-prof,
+ libghc-quickcheck2-dev,
+ libghc-quickcheck2-prof,
+ libghc-quickcheck-instances-dev,
+ libghc-quickcheck-instances-prof,
+ libghc-scientific-dev (>= 0.3),
+ libghc-scientific-dev (<< 0.4),
+ libghc-scientific-prof,
+ libghc-tasty-dev (>= 0.11),
+ libghc-tasty-prof,
+ libghc-tasty-quickcheck-dev (>= 0.8),
+ libghc-tasty-quickcheck-prof,
+ libghc-unordered-containers-dev (>= 0.2),
+ libghc-unordered-containers-dev (<< 0.3),
+ libghc-unordered-containers-prof,
+ libghc-vector-dev (>= 0.7),
+ libghc-vector-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-aeson-doc,
+ libghc-hashable-doc,
+ libghc-hslua-core-doc,
+ libghc-hslua-marshalling-doc,
+ libghc-quickcheck2-doc,
+ libghc-quickcheck-instances-doc,
+ libghc-scientific-doc,
+ libghc-tasty-doc,
+ libghc-tasty-quickcheck-doc,
+ libghc-unordered-containers-doc,
+ libghc-vector-doc,
+Standards-Version: 4.6.1
+Homepage: https://hslua.org/
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-hslua-aeson
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-hslua-aeson]
+X-Description: Allow aeson data types to be used with Lua.
+ This package provides instances to push and receive any
+ datatype encodable as JSON to and from the Lua stack.
+
+Package: libghc-hslua-aeson-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hslua-aeson-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hslua-aeson-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
