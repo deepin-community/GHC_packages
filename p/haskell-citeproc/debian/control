@@ -1,0 +1,102 @@
+Source: haskell-citeproc
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Ilias Tsitsimpis <iliastsi@debian.org>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-aeson-dev,
+ libghc-aeson-prof,
+ libghc-attoparsec-dev,
+ libghc-attoparsec-prof,
+ libghc-case-insensitive-dev (>= 1.2),
+ libghc-case-insensitive-dev (<< 1.3),
+ libghc-case-insensitive-prof,
+ libghc-data-default-dev,
+ libghc-data-default-prof,
+ libghc-file-embed-dev,
+ libghc-file-embed-prof,
+ libghc-pandoc-types-dev (>= 1.22),
+ libghc-pandoc-types-dev (<< 1.23),
+ libghc-pandoc-types-prof,
+ libghc-safe-dev,
+ libghc-safe-prof,
+ libghc-scientific-dev,
+ libghc-scientific-prof,
+ libghc-unicode-collation-dev (>= 0.1.3),
+ libghc-unicode-collation-dev (<< 0.2),
+ libghc-unicode-collation-prof,
+ libghc-uniplate-dev,
+ libghc-uniplate-prof,
+ libghc-vector-dev,
+ libghc-vector-prof,
+ libghc-xml-conduit-dev,
+ libghc-xml-conduit-prof,
+ libghc-diff-dev (>= 0.4),
+ libghc-diff-prof,
+ libghc-timeit-dev,
+ libghc-timeit-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-aeson-doc,
+ libghc-attoparsec-doc,
+ libghc-case-insensitive-doc,
+ libghc-data-default-doc,
+ libghc-file-embed-doc,
+ libghc-pandoc-types-doc,
+ libghc-safe-doc,
+ libghc-scientific-doc,
+ libghc-unicode-collation-doc,
+ libghc-uniplate-doc,
+ libghc-vector-doc,
+ libghc-xml-conduit-doc,
+Standards-Version: 4.6.1
+Homepage: https://hackage.haskell.org/package/citeproc
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-citeproc
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git
+X-Description: Generates citations and bibliography from CSL styles
+ citeproc parses CSL style files and uses them to generate a list of formatted
+ citations and bibliography entries.
+
+Package: libghc-citeproc-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-citeproc-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-citeproc-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
