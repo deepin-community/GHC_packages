@@ -4,17 +4,20 @@ Index: b/src/full/Agda/Interaction/Library.hs
 ===================================================================
 --- a/src/full/Agda/Interaction/Library.hs
 +++ b/src/full/Agda/Interaction/Library.hs
-@@ -280,13 +280,19 @@ getInstalledLibraries
+@@ -300,16 +300,22 @@ getInstalledLibraries
    -> LibM [AgdaLibFile] -- ^ Content of library files.  (Might have empty @LibName@s.)
  getInstalledLibraries overrideLibFile = mkLibM [] $ do
-     file <- lift $ getLibrariesFile overrideLibFile
--    if not (lfExists file) then return [] else do
-+    userlibs <- if not (lfExists file) then return [] else do
-       ls    <- lift $ stripCommentLines <$> readFile (lfPath file)
-       files <- lift $ sequence [ (i, ) <$> expandEnvironmentVariables s | (i, s) <- ls ]
-       parseLibFiles (Just file) $ nubOn snd files
-+    systemlibs <- ifNotM (lift $ doesDirectoryExist systemLibDir) (return []) $ do
-+      files <- lift $ filter isLibFile <$> listDirectory systemLibDir
+     filem <- liftIO $ runExceptT $ getLibrariesFile overrideLibFile
+-    case filem of
++    userlibs <- case filem of
+       Left err -> raiseErrors' [OtherError err] >> return []
+       Right file -> do
+         if not (lfExists file) then return [] else do
+           ls    <- liftIO $ stripCommentLines <$> UTF8.readFile (lfPath file)
+           files <- liftIO $ sequence [ (i, ) <$> expandEnvironmentVariables s | (i, s) <- ls ]
+           parseLibFiles (Just file) $ nubOn snd files
++    systemlibs <- ifNotM (liftIO $ doesDirectoryExist systemLibDir) (return []) $ do
++      files <- liftIO $ filter isLibFile <$> listDirectory systemLibDir
 +      parseLibFiles Nothing $ zip [1..] $ map (systemLibDir </>) files
 +    return $ userlibs ++ systemlibs
    `catchIO` \ e -> do
