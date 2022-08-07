@@ -1,0 +1,80 @@
+Source: haskell-hslua-module-path
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Scott Talbert <swt@techie.net>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-hslua-core-dev (>= 2.1),
+ libghc-hslua-core-dev (<< 2.3),
+ libghc-hslua-core-prof,
+ libghc-hslua-marshalling-dev (>= 2.1),
+ libghc-hslua-marshalling-dev (<< 2.3),
+ libghc-hslua-marshalling-prof,
+ libghc-hslua-packaging-dev (>= 2.1),
+ libghc-hslua-packaging-dev (<< 2.3),
+ libghc-hslua-packaging-prof,
+ libghc-tasty-dev,
+ libghc-tasty-prof,
+ libghc-tasty-hunit-dev,
+ libghc-tasty-hunit-prof,
+ libghc-tasty-lua-dev (>= 1.0),
+ libghc-tasty-lua-dev (<< 1.1),
+ libghc-tasty-lua-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-hslua-core-doc,
+ libghc-hslua-marshalling-doc,
+ libghc-hslua-packaging-doc,
+ libghc-tasty-doc,
+ libghc-tasty-hunit-doc,
+ libghc-tasty-lua-doc,
+Standards-Version: 4.6.1
+Homepage: https://hslua.org/
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-hslua-module-path
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-hslua-module-path]
+X-Description: Lua module to work with file paths.
+ Lua module to work with file paths in a platform
+ independent way.
+
+Package: libghc-hslua-module-path-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hslua-module-path-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hslua-module-path-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
