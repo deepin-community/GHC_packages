@@ -1,9 +1,9 @@
 #!/usr/bin/make -f
 
+# Disable tests, since they require doctest >= 20
+DEB_ENABLE_TESTS = no
 ifeq (s390x,$(DEB_HOST_ARCH))
 	DEB_ENABLE_TESTS = no
-else
-	DEB_ENABLE_TESTS = yes
 endif
 
 DEB_CABAL_PACKAGE = jwt
