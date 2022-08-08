@@ -1,0 +1,70 @@
+Source: haskell-lpeg
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Scott Talbert <swt@techie.net>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-lua-dev (>= 2.1),
+ libghc-lua-dev (<< 2.3),
+ libghc-lua-prof,
+ libghc-tasty-dev (>= 0.11),
+ libghc-tasty-prof,
+ libghc-tasty-hunit-dev (>= 0.9),
+ libghc-tasty-hunit-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-lua-doc,
+ libghc-tasty-doc,
+ libghc-tasty-hunit-doc,
+Standards-Version: 4.6.1
+Homepage: https://hslua.org/
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-lpeg
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-lpeg]
+X-Description: LPeg – Parsing Expression Grammars For Lua
+ This package contains the C sources of LPeg, as well
+ as some tiny Haskell helper to load the package.
+ .
+ <http://www.inf.puc-rio.br/~roberto/lpeg/>
+
+Package: libghc-lpeg-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-lpeg-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-lpeg-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
