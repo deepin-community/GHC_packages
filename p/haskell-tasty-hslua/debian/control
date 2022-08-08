@@ -1,0 +1,68 @@
+Source: haskell-tasty-hslua
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Scott Talbert <swt@techie.net>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-hslua-core-dev (>= 2.0),
+ libghc-hslua-core-dev (<< 2.3),
+ libghc-hslua-core-prof,
+ libghc-tasty-dev (>= 0.11),
+ libghc-tasty-prof,
+ libghc-tasty-hunit-dev (>= 0.9),
+ libghc-tasty-hunit-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-hslua-core-doc,
+ libghc-tasty-doc,
+ libghc-tasty-hunit-doc,
+Standards-Version: 4.6.1
+Homepage: https://hslua.org/
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-tasty-hslua
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-tasty-hslua]
+X-Description: Tasty helpers to test HsLua.
+ Various tasty helpers and utilities to test HsLua
+ oparations. Built on top of tasty-hunit.
+
+Package: libghc-tasty-hslua-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-tasty-hslua-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-tasty-hslua-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
