@@ -1,0 +1,99 @@
+Source: haskell-pandoc-lua-marshal
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Scott Talbert <swt@techie.net>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-hslua-dev (>= 2.1),
+ libghc-hslua-dev (<< 2.3),
+ libghc-hslua-prof,
+ libghc-hslua-marshalling-dev (>= 2.1),
+ libghc-hslua-marshalling-dev (<< 2.3),
+ libghc-hslua-marshalling-prof,
+ libghc-lua-dev (>= 2.1),
+ libghc-lua-dev (<< 2.3),
+ libghc-lua-prof,
+ libghc-pandoc-types-dev (>= 1.22.1),
+ libghc-pandoc-types-dev (<< 1.23),
+ libghc-pandoc-types-prof,
+ libghc-safe-dev (>= 0.3),
+ libghc-safe-dev (<< 0.4),
+ libghc-safe-prof,
+ libghc-tasty-dev (>= 0.11),
+ libghc-tasty-prof,
+ libghc-tasty-hunit-dev (>= 0.9),
+ libghc-tasty-hunit-prof,
+ libghc-tasty-lua-dev (>= 1.0),
+ libghc-tasty-lua-prof,
+ libghc-tasty-quickcheck-dev (>= 0.8),
+ libghc-tasty-quickcheck-dev (<< 0.11),
+ libghc-tasty-quickcheck-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-hslua-doc,
+ libghc-hslua-marshalling-doc,
+ libghc-lua-doc,
+ libghc-pandoc-types-doc,
+ libghc-safe-doc,
+ libghc-tasty-doc,
+ libghc-tasty-hunit-doc,
+ libghc-tasty-lua-doc,
+ libghc-tasty-quickcheck-doc,
+Standards-Version: 4.6.1
+Homepage: https://github.com/pandoc/pandoc-lua-marshal
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-pandoc-lua-marshal
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-pandoc-lua-marshal]
+X-Description: Use pandoc types in Lua
+ This package provides functions to marshal and unmarshal
+ pandoc document types to and from Lua.
+ .
+ The values of most types are pushed to pandoc as "userdata"
+ objects that wrap a stable pointer to the Haskell value;
+ these objects come with methods to access and modify their
+ properties.
+ .
+ Sequences are pushed as normal Lua tables, but are
+ augmented with convenience functions.
+
+Package: libghc-pandoc-lua-marshal-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-pandoc-lua-marshal-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-pandoc-lua-marshal-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
