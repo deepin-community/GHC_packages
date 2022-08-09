@@ -1,8 +1,6 @@
 #!/usr/bin/make -f
 
-DEB_ENABLE_TESTS = yes
-DEB_CABAL_PACKAGE = wreq
-DEB_DEFAULT_COMPILER = ghc
+DEB_ENABLE_TESTS = no # Depends on broken snap-server
 
 # Disable doctests since they require network access
 DEB_SETUP_GHC_CONFIGURE_ARGS += -f-doctest
