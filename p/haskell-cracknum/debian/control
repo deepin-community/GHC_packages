@@ -9,15 +9,10 @@ Build-Depends:
  cdbs,
  debhelper (>= 10),
  ghc (>= 8),
- ghc-prof,
  libghc-libbf-dev,
- libghc-libbf-prof,
  libghc-sbv-dev (>= 8.14),
- libghc-sbv-prof,
  libghc-tasty-dev,
- libghc-tasty-prof,
  libghc-tasty-golden-dev,
- libghc-tasty-golden-prof,
 Standards-Version: 4.6.1
 Homepage: https://github.com/LeventErkok/CrackNum
 Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-cracknum
@@ -27,46 +22,14 @@ X-Description: crack various integer, floating-point data formats
  Double-precision values; along with various integer types:
  Signed/Unsigned, 8, 16, 32, 64 bits.
 
-Package: libghc-cracknum-dev
-Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Conflicts: ${haskell:Conflicts}
-Provides: ${haskell:Provides}
-Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
- ${haskell:LongDescription}
- .
- ${haskell:Blurb}
-
-Package: libghc-cracknum-prof
-Architecture: any
-Depends: ${haskell:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Conflicts: ${haskell:Conflicts}
-Provides: ${haskell:Provides}
-Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
- ${haskell:LongDescription}
- .
- ${haskell:Blurb}
-
-Package: libghc-cracknum-doc
-Architecture: all
-Section: doc
-Depends: ${haskell:Depends}, ${misc:Depends}
-Recommends: ${haskell:Recommends}
-Suggests: ${haskell:Suggests}
-Conflicts: ${haskell:Conflicts}
-Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
- ${haskell:LongDescription}
- .
- ${haskell:Blurb}
-
 Package: haskell-cracknum-utils
 Architecture: any
 Section: misc
-Depends: ${haskell:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Depends:
+ ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+ z3,
 Recommends: ${haskell:Recommends}
 Suggests: ${haskell:Suggests}
 Conflicts: ${haskell:Conflicts}
