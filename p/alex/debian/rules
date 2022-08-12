@@ -46,3 +46,7 @@ build/alex:: build-ghc-stamp
 install/alex:: debian/tmp-inst-ghc
 	dh_installdirs usr/share/doc/alex/html
 	cp -a doc/alex/* `pwd`/debian/`dh_listpackages`/usr/share/doc/alex/html
+
+# Set the path for the alex binary, used by
+# tests/Makefile to run tests.
+check-ghc-stamp: export ALEX = ../dist-ghc/build/alex/alex
