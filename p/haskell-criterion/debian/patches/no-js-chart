@@ -1,0 +1,44 @@
+--- a/Criterion/EmbeddedData.hs
++++ b/Criterion/EmbeddedData.hs
+@@ -20,10 +20,9 @@ module Criterion.EmbeddedData
+ import Data.ByteString (ByteString)
+ import Data.FileEmbed (embedDir, embedFile)
+ import Language.Haskell.TH.Syntax (runIO)
+-import qualified Language.Javascript.Chart as Chart
+ 
+ dataFiles :: [(FilePath, ByteString)]
+ dataFiles = $(embedDir "templates")
+ 
+ chartContents :: ByteString
+-chartContents = $(embedFile =<< runIO (Chart.file Chart.Chart))
++chartContents = $(embedFile "/usr/share/javascript/chart.js/Chart.js")
+--- a/Criterion/Report.hs
++++ b/Criterion/Report.hs
+@@ -66,8 +66,6 @@ import qualified Data.Vector.Unboxed as
+ import Criterion.EmbeddedData (dataFiles, chartContents)
+ import qualified Data.ByteString.Lazy as BL
+ import qualified Data.Text.Encoding as TE
+-#else
+-import qualified Language.Javascript.Chart as Chart
+ #endif
+ 
+ #if MIN_VERSION_aeson(2,0,0)
+@@ -181,7 +179,7 @@ formatReport reports templateName = do
+ #if defined(EMBED)
+     chartFileContents        = pure $ TE.decodeUtf8 chartContents
+ #else
+-    chartFileContents        = T.readFile =<< Chart.file Chart.Chart
++    chartFileContents        = T.readFile "/usr/share/javascript/chart.js/Chart.js"
+ #endif
+ 
+     readDataFile :: FilePath -> IO T.Text
+--- a/criterion.cabal
++++ b/criterion.cabal
+@@ -101,7 +101,6 @@ library
+     filepath,
+     Glob >= 0.7.2,
+     microstache >= 1.0.1 && < 1.1,
+-    js-chart >= 2.9.4 && < 3,
+     mtl >= 2,
+     mwc-random >= 0.8.0.3,
+     -- TODO: Depend on optparse-applicative-0.17 as the minimum (see #258)
