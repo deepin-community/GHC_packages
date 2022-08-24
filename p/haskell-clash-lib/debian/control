@@ -1,0 +1,243 @@
+Source: haskell-clash-lib
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Scott Talbert <swt@techie.net>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-aeson-dev (>= 0.6.2.0),
+ libghc-aeson-dev (<< 2.1),
+ libghc-aeson-prof,
+ libghc-aeson-pretty-dev (>= 0.8),
+ libghc-aeson-pretty-dev (<< 0.9),
+ libghc-aeson-pretty-prof,
+ libghc-ansi-terminal-dev (>= 0.8.0.0),
+ libghc-ansi-terminal-dev (<< 0.12),
+ libghc-ansi-terminal-prof,
+ libghc-async-dev (>= 2.2.0),
+ libghc-async-dev (<< 2.3),
+ libghc-async-prof,
+ libghc-attoparsec-dev (>= 0.10.4.0),
+ libghc-attoparsec-dev (<< 0.15),
+ libghc-attoparsec-prof,
+ libghc-base16-bytestring-dev (>= 0.1.1),
+ libghc-base16-bytestring-dev (<< 1.1),
+ libghc-base16-bytestring-prof,
+ libghc-clash-prelude-dev (>= 1.6.3),
+ libghc-clash-prelude-dev (<< 1.6.4),
+ libghc-clash-prelude-prof,
+ libghc-concurrent-supply-dev (>= 0.1.7),
+ libghc-concurrent-supply-dev (<< 0.2),
+ libghc-concurrent-supply-prof,
+ libghc-cryptohash-sha256-dev (>= 0.11),
+ libghc-cryptohash-sha256-dev (<< 0.12),
+ libghc-cryptohash-sha256-prof,
+ libghc-data-binary-ieee754-dev (>= 0.4.4),
+ libghc-data-binary-ieee754-dev (<< 0.6),
+ libghc-data-binary-ieee754-prof,
+ libghc-data-default-dev (>= 0.7),
+ libghc-data-default-dev (<< 0.8),
+ libghc-data-default-prof,
+ libghc-dlist-dev (>= 0.8),
+ libghc-dlist-dev (<< 1.1),
+ libghc-dlist-prof,
+ libghc-extra-dev (>= 1.6.17),
+ libghc-extra-dev (<< 1.8),
+ libghc-extra-prof,
+ libghc-hashable-dev (>= 1.2.1.0),
+ libghc-hashable-dev (<< 1.5),
+ libghc-hashable-prof,
+ libghc-src-meta-dev (>= 0.8),
+ libghc-src-meta-dev (<< 0.9),
+ libghc-src-meta-prof,
+ libghc-hint-dev (>= 0.7),
+ libghc-hint-dev (<< 0.10),
+ libghc-hint-prof,
+ libghc-interpolate-dev (>= 0.2.0),
+ libghc-interpolate-dev (<< 1.0),
+ libghc-interpolate-prof,
+ libghc-lens-dev (>= 4.10),
+ libghc-lens-dev (<< 5.1.0),
+ libghc-lens-prof,
+ libghc-ordered-containers-dev (>= 0.2),
+ libghc-ordered-containers-dev (<< 0.3),
+ libghc-ordered-containers-prof,
+ libghc-pretty-show-dev (>= 1.9),
+ libghc-pretty-show-dev (<< 2.0),
+ libghc-pretty-show-prof,
+ libghc-prettyprinter-dev (>= 1.2.0.1),
+ libghc-prettyprinter-dev (<< 1.8),
+ libghc-prettyprinter-prof,
+ libghc-primitive-dev (>= 0.5.0.1),
+ libghc-primitive-dev (<< 1.0),
+ libghc-primitive-prof,
+ libghc-quickcheck-text-dev,
+ libghc-quickcheck-text-prof,
+ libghc-tasty-dev (>= 1.2),
+ libghc-tasty-dev (<< 1.5),
+ libghc-tasty-prof,
+ libghc-tasty-hunit-dev,
+ libghc-tasty-hunit-prof,
+ libghc-tasty-quickcheck-dev,
+ libghc-tasty-quickcheck-prof,
+ libghc-temporary-dev (>= 1.2.1),
+ libghc-temporary-dev (<< 1.4),
+ libghc-temporary-prof,
+ libghc-terminal-size-dev (>= 0.3),
+ libghc-terminal-size-dev (<< 0.4),
+ libghc-terminal-size-prof,
+ libghc-trifecta-dev (>= 1.7.1.1),
+ libghc-trifecta-dev (<< 2.2),
+ libghc-trifecta-prof,
+ libghc-unordered-containers-dev (>= 0.2.3.3),
+ libghc-unordered-containers-dev (<< 0.3),
+ libghc-unordered-containers-prof,
+ libghc-vector-dev (>= 0.11),
+ libghc-vector-dev (<< 1.0),
+ libghc-vector-prof,
+ libghc-vector-binary-instances-dev (>= 0.2.3.5),
+ libghc-vector-binary-instances-dev (<< 0.3),
+ libghc-vector-binary-instances-prof,
+ libghc-yaml-dev (>= 0.11),
+ libghc-yaml-dev (<< 0.12),
+ libghc-yaml-prof,
+ libghc-glob-dev,
+ libghc-glob-prof,
+ libghc-aeson-dev,
+ libghc-stringsearch-dev,
+ libghc-stringsearch-prof,
+ libghc-yaml-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-aeson-doc,
+ libghc-aeson-pretty-doc,
+ libghc-ansi-terminal-doc,
+ libghc-async-doc,
+ libghc-attoparsec-doc,
+ libghc-base16-bytestring-doc,
+ libghc-clash-prelude-doc,
+ libghc-concurrent-supply-doc,
+ libghc-cryptohash-sha256-doc,
+ libghc-data-binary-ieee754-doc,
+ libghc-data-default-doc,
+ libghc-dlist-doc,
+ libghc-extra-doc,
+ libghc-hashable-doc,
+ libghc-src-meta-doc,
+ libghc-hint-doc,
+ libghc-interpolate-doc,
+ libghc-lens-doc,
+ libghc-ordered-containers-doc,
+ libghc-pretty-show-doc,
+ libghc-prettyprinter-doc,
+ libghc-primitive-doc,
+ libghc-quickcheck-text-doc,
+ libghc-tasty-doc,
+ libghc-tasty-hunit-doc,
+ libghc-tasty-quickcheck-doc,
+ libghc-temporary-doc,
+ libghc-terminal-size-doc,
+ libghc-trifecta-doc,
+ libghc-unordered-containers-doc,
+ libghc-vector-doc,
+ libghc-vector-binary-instances-doc,
+ libghc-yaml-doc,
+Standards-Version: 4.6.1
+Homepage: https://clash-lang.org/
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-clash-lib
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-clash-lib]
+X-Description: Functional hardware description language - library
+ Clash is a functional hardware description language that borrows both its
+ syntax and semantics from the functional programming language Haskell. The
+ Clash compiler transforms these high-level descriptions to low-level
+ synthesizable VHDL, Verilog, or SystemVerilog.
+ .
+ Features of Clash:
+ .
+  * Strongly typed, but with a very high degree of type inference, enabling both
+ safe and fast prototyping using concise descriptions.
+ .
+  * Interactive REPL: load your designs in an interpreter and easily test all
+ your component without needing to setup a test bench.
+ .
+  * Higher-order functions, with type inference, result in designs that are
+ fully parametric by default.
+ .
+  * Synchronous sequential circuit design based on streams of values, called
+ @Signal@s, lead to natural descriptions of feedback loops.
+ .
+  * Support for multiple clock domains, with type safe clock domain crossing.
+ .
+ This package provides:
+ .
+  * The CoreHW internal language: SystemF + Letrec + Case-decomposition
+ .
+  * The normalisation process that brings CoreHW in a normal form that can be
+ converted to a netlist
+ .
+  * Blackbox/Primitive Handling
+ .
+ Front-ends (for: parsing, typecheck, etc.) are provided by separate packages:
+ .
+  * <https://hackage.haskell.org/package/clash-ghc GHC/Haskell Frontend>
+ .
+  * <https://github.com/christiaanb/Idris-dev Idris Frontend>
+ .
+ Prelude library: <https://hackage.haskell.org/package/clash-prelude>
+
+Package: libghc-clash-lib-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-clash-lib-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-clash-lib-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: haskell-clash-lib-utils
+Architecture: any
+Section: misc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
