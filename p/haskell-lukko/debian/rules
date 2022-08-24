@@ -1,9 +1,12 @@
 #!/usr/bin/make -f
 
 DEB_ENABLE_TESTS = yes
-DEB_SETUP_BIN_NAME = debian/hlibrary.setup
-DEB_CABAL_PACKAGE = lukko
-DEB_DEFAULT_COMPILER = ghc
+
+ifneq ("$(DEB_HOST_ARCH_BITS)","64")
+	# Disable OFD locking, which works only on 64-bit platforms
+	# see https://github.com/haskellari/lukko/issues/15
+	DEB_SETUP_GHC_CONFIGURE_ARGS += -f-ofd-locking
+endif
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
