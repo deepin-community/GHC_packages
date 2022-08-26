@@ -1,0 +1,102 @@
+Description: upstream PR to fix build with GHC 9.0
+Author: Marcel Fourné <debian@marcelfourne.de>
+Origin: other, https://github.com/yi-editor/yi/pull/1127
+Bug: https://github.com/yi-editor/yi/issues/1125
+Forwarded: https://github.com/yi-editor/yi/pull/1127
+Last-Update: 2022-08-25
+
+--- haskell-yi-core-0.19.2.orig/src/Yi/Buffer/Misc.hs
++++ haskell-yi-core-0.19.2/src/Yi/Buffer/Misc.hs
+@@ -1127,7 +1127,7 @@ savingExcursionB f = do
+     moveTo =<< use (markPointA m)
+     return res
+ 
+-markPointA :: Mark -> Lens' FBuffer Point
++markPointA :: forall f . Functor f => Mark -> (Point -> f Point) -> (FBuffer -> f FBuffer)
+ markPointA mark = lens getter setter where
+   getter b = markPoint $ getMarkValueRaw mark b
+   setter b pos = modifyMarkRaw mark (\v -> v {markPoint = pos}) b
+--- haskell-yi-core-0.19.2.orig/src/Yi/Eval.hs
++++ haskell-yi-core-0.19.2/src/Yi/Eval.hs
+@@ -121,28 +121,6 @@ infixl 1 <&>
+ a <&> f = f <$> a
+ -- TODO: should we be sticking Text here?
+ 
+--- | Runs the action, as written by the user.
+---
+--- The behaviour of this function can be customised by modifying the
+--- 'Evaluator' variable.
+-execEditorAction :: String -> YiM ()
+-execEditorAction = runHook execEditorActionImpl
+-
+--- | Lists the action names in scope, for use by 'execEditorAction',
+--- and 'help' index.
+---
+--- The behaviour of this function can be customised by modifying the
+--- 'Evaluator' variable.
+-getAllNamesInScope :: YiM [String]
+-getAllNamesInScope = runHook getAllNamesInScopeImpl
+-
+--- | Describes the named action in scope, for use by 'help'.
+---
+--- The behaviour of this function can be customised by modifying the
+--- 'Evaluator' variable.
+-describeNamedAction :: String -> YiM String
+-describeNamedAction = runHook describeNamedActionImpl
+-
+ -- | Config variable for customising the behaviour of
+ -- 'execEditorAction' and 'getAllNamesInScope'.
+ --
+@@ -157,11 +135,6 @@ data Evaluator = Evaluator
+     -- ^ describe named action (or at least its type.), simplest implementation is at least @return@.
+   } deriving (Typeable)
+ 
+--- | The evaluator to use for 'execEditorAction' and
+--- 'getAllNamesInScope'.
+-evaluator :: Field Evaluator
+-evaluator = customVariable
+-
+ -- * Evaluator based on GHCi
+ -- | Cached variable for getAllNamesInScopeImpl
+ newtype NamesCache = NamesCache [String] deriving (Typeable, Binary)
+@@ -413,3 +386,29 @@ instance Default Evaluator where
+ #endif
+ 
+ instance YiConfigVariable Evaluator
++-- | Runs the action, as written by the user.
++--
++-- The behaviour of this function can be customised by modifying the
++-- 'Evaluator' variable.
++execEditorAction :: String -> YiM ()
++execEditorAction = runHook execEditorActionImpl
++
++-- | Lists the action names in scope, for use by 'execEditorAction',
++-- and 'help' index.
++--
++-- The behaviour of this function can be customised by modifying the
++-- 'Evaluator' variable.
++getAllNamesInScope :: YiM [String]
++getAllNamesInScope = runHook getAllNamesInScopeImpl
++
++-- | Describes the named action in scope, for use by 'help'.
++--
++-- The behaviour of this function can be customised by modifying the
++-- 'Evaluator' variable.
++describeNamedAction :: String -> YiM String
++describeNamedAction = runHook describeNamedActionImpl
++
++-- | The evaluator to use for 'execEditorAction' and
++-- 'getAllNamesInScope'.
++evaluator :: Field Evaluator
++evaluator = customVariable
+--- haskell-yi-core-0.19.2.orig/src/Yi/Syntax/Layout.hs
++++ haskell-yi-core-0.19.2/src/Yi/Syntax/Layout.hs
+@@ -70,7 +70,7 @@ layoutHandler isSpecial parens isIgnored
+ 
+           parse :: IState t -> [(AlexState lexState, Tok t)] -> [(State t lexState, Tok t)]
+           parse iSt@(IState levels doOpen lastLine)
+-                toks@((aSt, tok @ Tok {tokPosn = Posn _nextOfs line col}) : tokss)
++                toks@((aSt, tok@Tok {tokPosn = Posn _nextOfs line col}) : tokss)
+ 
+             -- ignore this token
+             | isIgnored tok
