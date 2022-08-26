@@ -1,9 +1,10 @@
 #!/usr/bin/make -f
 
 DEB_ENABLE_TESTS = yes
-DEB_SETUP_BIN_NAME = debian/hlibrary.setup
-DEB_CABAL_PACKAGE = foundation
-DEB_DEFAULT_COMPILER = ghc
+# Testsuite fails on armel, see https://bugs.debian.org/1017539
+ifneq (,$(filter armel, $(DEB_HOST_ARCH)))
+	DEB_ENABLE_TESTS = no
+endif
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
