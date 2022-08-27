@@ -1,0 +1,23 @@
+Description: add Wayland support
+Slightly adapted patch from upstream pull request
+
+Origin: other, https://github.com/jetho/Hclip/pull/8/commits/394afc48ae57e9bf86c79670ef315dfe6911bf61
+Bug: https://github.com/jetho/Hclip/issues/7
+Forwarded: not-needed
+Last-Update: 2022-08-27
+
+--- haskell-hclip-3.0.0.4.orig/System/Hclip.hs
++++ haskell-hclip-3.0.0.4/System/Hclip.hs
+@@ -152,9 +152,11 @@ execute Windows (SetClipboard s) =
+ 
+ -- | Determine the correct Linux command.
+ resolveLinuxApp :: Command a -> IO String
+-resolveLinuxApp cmd = decode cmd <$> chooseFirstApp ["xsel", "xclip"] 
++resolveLinuxApp cmd = decode cmd <$> chooseFirstApp ["wl-copy", "xsel", "xclip"] 
+     where
+         decode :: Command a -> String -> String
++        decode GetClipboard     "wl-copy" = "wl-paste --no-newline"
++        decode (SetClipboard _) "wl-copy" = "wl-copy"
+         decode GetClipboard     "xsel"  = "xsel -b -o"
+         decode (SetClipboard _) "xsel"  = "xsel -b -i"
+         decode GetClipboard     "xclip" = "xclip -selection c -o"
