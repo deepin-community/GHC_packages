@@ -9,7 +9,7 @@
  synopsis:            Rate limiter using lazy bucket algorithm
  homepage:            https://github.com/hvr/token-bucket
  bug-reports:         https://github.com/hvr/token-bucket/issues
-@@ -9,10 +12,12 @@
+@@ -9,10 +12,12 @@ author:              Herbert Valerio Rie
  maintainer:          hvr@gnu.org
  category:            Concurrency
  build-type:          Simple
@@ -25,12 +25,12 @@
  
  extra-source-files:    changelog.md
  
-@@ -27,19 +32,21 @@
+@@ -27,19 +32,21 @@ flag use-cbits
  
  library
    default-language:    Haskell2010
 -  build-depends:       base >=4.6 && <4.9
-+  build-depends:       base >=4.6 && <4.14
++  build-depends:       base >=4.6 && <5
    hs-source-dirs:      src
    if flag(use-cbits)
      cpp-options:       -DUSE_CBITS
