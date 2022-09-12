@@ -1,0 +1,91 @@
+Source: haskell-copilot-language
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Scott Talbert <swt@techie.net>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-copilot-core-dev (>= 3.10),
+ libghc-copilot-core-dev (<< 3.11),
+ libghc-copilot-core-prof,
+ libghc-copilot-theorem-dev (>= 3.10),
+ libghc-copilot-theorem-dev (<< 3.11),
+ libghc-copilot-theorem-prof,
+ libghc-data-reify-dev (>= 0.6),
+ libghc-data-reify-dev (<< 0.7),
+ libghc-data-reify-prof,
+ libghc-hunit-dev,
+ libghc-hunit-prof,
+ libghc-quickcheck2-dev,
+ libghc-quickcheck2-prof,
+ libghc-test-framework-dev,
+ libghc-test-framework-prof,
+ libghc-test-framework-hunit-dev,
+ libghc-test-framework-hunit-prof,
+ libghc-test-framework-quickcheck2-dev,
+ libghc-test-framework-quickcheck2-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-copilot-core-doc,
+ libghc-copilot-theorem-doc,
+ libghc-data-reify-doc,
+ libghc-hunit-doc,
+ libghc-quickcheck2-doc,
+ libghc-test-framework-doc,
+ libghc-test-framework-hunit-doc,
+ libghc-test-framework-quickcheck2-doc,
+Standards-Version: 4.6.1
+Homepage: https://copilot-language.github.io
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-copilot-language
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-copilot-language]
+X-Description: DSL for monitoring hard real-time distributed systems.
+ The concrete syntax for Copilot.
+ .
+ Copilot is a stream (i.e., infinite lists) domain-specific language (DSL) in
+ Haskell that compiles into embedded C.  Copilot contains an interpreter,
+ multiple back-end compilers, and other verification tools.
+ .
+ A tutorial, examples, and other information are available at
+ <https://copilot-language.github.io>.
+
+Package: libghc-copilot-language-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-copilot-language-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-copilot-language-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
