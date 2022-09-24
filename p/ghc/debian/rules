@@ -39,7 +39,7 @@ export GHC=$(firstword $(shell bash -c "type -p ghc"))
 
 DEB_HOOGLE_TXT_DIR = /usr/lib/ghc-doc/hoogle/
 
-ifneq (,$(filter armhf i386 powerpcspe x32 s390x, $(DEB_HOST_ARCH)))
+ifneq (,$(filter i386 powerpcspe x32 s390x, $(DEB_HOST_ARCH)))
   # From GHC 8.10 and later, native code generator support for legacy x87
   # floating point coprocessor has been removed. GHC now only support floating
   # point via SSE2. This causes a baseline violation on Debian for i386 where
