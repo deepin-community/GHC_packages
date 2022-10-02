@@ -1,0 +1,65 @@
+Source: haskell-language-glsl
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Hilko Bengen <bengen@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-prettyclass-dev,
+ libghc-prettyclass-prof,
+ libghc-hunit-dev,
+ libghc-hunit-prof,
+ libghc-test-framework-dev,
+ libghc-test-framework-prof,
+ libghc-test-framework-hunit-dev,
+ libghc-test-framework-hunit-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-prettyclass-doc,
+Standards-Version: 4.6.1
+X-Description: GLSL abstract syntax tree, parser, and pretty-printer
+ The package language-glsl is a Haskell library for the
+ representation, the parsing, and the pretty-printing of
+ GLSL 1.50 code.
+
+Package: libghc-language-glsl-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-language-glsl-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-language-glsl-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
