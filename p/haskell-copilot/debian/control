@@ -1,0 +1,91 @@
+Source: haskell-copilot
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Scott Talbert <swt@techie.net>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-copilot-c99-dev (>= 3.10),
+ libghc-copilot-c99-dev (<< 3.11),
+ libghc-copilot-c99-prof,
+ libghc-copilot-core-dev (>= 3.10),
+ libghc-copilot-core-dev (<< 3.11),
+ libghc-copilot-core-prof,
+ libghc-copilot-language-dev (>= 3.10),
+ libghc-copilot-language-dev (<< 3.11),
+ libghc-copilot-language-prof,
+ libghc-copilot-libraries-dev (>= 3.10),
+ libghc-copilot-libraries-dev (<< 3.11),
+ libghc-copilot-libraries-prof,
+ libghc-copilot-theorem-dev (>= 3.10),
+ libghc-copilot-theorem-dev (<< 3.11),
+ libghc-copilot-theorem-prof,
+ libghc-optparse-applicative-dev (>= 0.14),
+ libghc-optparse-applicative-dev (<< 0.18),
+ libghc-optparse-applicative-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-copilot-c99-doc,
+ libghc-copilot-core-doc,
+ libghc-copilot-language-doc,
+ libghc-copilot-libraries-doc,
+ libghc-copilot-theorem-doc,
+ libghc-optparse-applicative-doc,
+Standards-Version: 4.6.1
+Homepage: https://copilot-language.github.io
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-copilot
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-copilot]
+X-Description: Stream DSL for writing embedded C programs.
+ Copilot is a stream-based runtime verification framework implemented as an
+ embedded domain-specific language (EDSL) in Haskell. Programs can be
+ interpreted for testing, or translated into C99 code to be incorporated in a
+ project, or as a standalone application. The C99 backend output is constant
+ in memory and time, making it suitable for systems with hard realtime
+ requirements.
+ .
+ This package is the main entry-point for using Copilot.
+ .
+ A tutorial, examples, and other information are available at
+ <https://copilot-language.github.io>.
+
+Package: libghc-copilot-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-copilot-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-copilot-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
