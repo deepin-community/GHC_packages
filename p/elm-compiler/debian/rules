@@ -1,0 +1,19 @@
+#!/usr/bin/make -f
+
+DEB_CABAL_PACKAGE = elm
+DEB_DEFAULT_COMPILER = ghc
+DEB_COMPRESS_EXCLUDE = .md
+
+export ELM_HOME := $(CURDIR)/debian/elm-home
+ELM_VERSION := $(shell dpkg-parsechangelog -SVersion | sed -E -e 's/^([^:]:)?([^-]*)(-.*)?$$/\2/')
+PACKAGES_DIR := $(ELM_HOME)/$(ELM_VERSION)/packages
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/hlibrary.mk
+
+pre-build::
+	rm -f $(PACKAGES_DIR)
+	mkdir -p $(ELM_HOME)/$(ELM_VERSION)
+	ln -sf $(CURDIR)/packages $(PACKAGES_DIR)
+
+build/elm-compiler:: build-ghc-stamp

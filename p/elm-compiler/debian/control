@@ -1,0 +1,72 @@
+Source: elm-compiler
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Hilko Bengen <bengen@debian.org>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-http-dev (>= 1:4000.2.5),
+ libghc-http-prof (>= 1:4000.2.5),
+ libghc-sha-dev,
+ libghc-sha-prof,
+ libghc-ansi-terminal-dev (>= 0.8),
+ libghc-ansi-terminal-prof (>= 0.8),
+ libghc-ansi-wl-pprint-dev (>= 0.6.8),
+ libghc-ansi-wl-pprint-prof (>= 0.6.8),
+ libghc-edit-distance-dev (>= 0.2),
+ libghc-edit-distance-prof (>= 0.2),
+ libghc-file-embed-dev,
+ libghc-file-embed-prof,
+ libghc-filelock-dev,
+ libghc-filelock-prof,
+ libghc-http-client-dev (>= 0.6),
+ libghc-http-client-prof (>= 0.6),
+ libghc-http-client-tls-dev (>= 0.3),
+ libghc-http-client-tls-prof (>= 0.3),
+ libghc-http-types-dev (>= 0.12),
+ libghc-http-types-prof (>= 0.12),
+ libghc-language-glsl-dev (>= 0.3),
+ libghc-language-glsl-prof (>= 0.3),
+ libghc-network-dev (>= 2.4),
+ libghc-network-prof (>= 2.4),
+ libghc-raw-strings-qq-dev,
+ libghc-raw-strings-qq-prof,
+ libghc-scientific-dev,
+ libghc-scientific-prof,
+ libghc-snap-core-dev,
+ libghc-snap-core-prof,
+ libghc-snap-server-dev,
+ libghc-snap-server-prof,
+ libghc-unordered-containers-dev,
+ libghc-unordered-containers-prof,
+ libghc-utf8-string-dev,
+ libghc-utf8-string-prof,
+ libghc-vector-dev,
+ libghc-vector-prof,
+ libghc-zip-archive-dev,
+ libghc-zip-archive-prof,
+Standards-Version: 4.6.1
+Homepage: https://elm-lang.org
+
+Package: elm-compiler
+Architecture: any
+Section: misc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: Elm, a delightful language for reliable webapps
+ Elm is a functional language that compiles to JavaScript, It is
+ intended to be used for websites and web apps and has a strong
+ emphasis on simplicity and quality tooling.
+ .
+ This package includes commands like `elm make`, `elm repl`, and many
+ others for helping make Elm developers happy and productive.
+ .
+ ${haskell:Blurb}
