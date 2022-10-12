@@ -1,0 +1,22 @@
+--- a/what4.cabal
++++ b/what4.cabal
+@@ -328,6 +328,10 @@ test-suite expr-builder-smtlib2
+     tasty-checklist >= 1.0.3 && < 1.1,
+     text,
+     versions
++  if arch(x86_64)
++    buildable: True
++  else
++    buildable: False
+ 
+ 
+ test-suite exprs_tests
+@@ -386,4 +390,8 @@ test-suite template_tests
+   build-depends: bv-sized
+                , libBF
+                , transformers
++  if arch(x86_64)
++    buildable: True
++  else
++    buildable: False
+ 
