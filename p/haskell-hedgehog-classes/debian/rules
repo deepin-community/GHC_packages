@@ -1,6 +1,8 @@
 #!/usr/bin/make -f
 
+ifneq ($(DEB_TARGET_ARCH),armhf)
 DEB_ENABLE_TESTS = yes
+endif
 DEB_SETUP_BIN_NAME = debian/hlibrary.setup
 DEB_CABAL_PACKAGE = hedgehog-classes
 DEB_DEFAULT_COMPILER = ghc
