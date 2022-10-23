@@ -1,20 +1,12 @@
+Index: b/gi-freetype2.cabal
+===================================================================
 --- a/gi-freetype2.cabal
 +++ b/gi-freetype2.cabal
-@@ -28,17 +28,11 @@ library
+@@ -28,7 +28,6 @@ library
        build-depends: base >= 4.7 && <5,
                       haskell-gi-base >= 0.26 && < 0.27,
                       haskell-gi >= 0.26 && < 0.27,
 -                     haskell-gi-overloading < 1.1,
                       bytestring >= 0.10 && < 1,
                       containers >= 0.5 && < 1,
-                      text >= 1.0 && < 2,
-                      transformers >= 0.4 && < 1
- 
--      -- Disable overloading when compiling under GHC 8.2.x
--      -- see https://ghc.haskell.org/trac/ghc/ticket/14382
--      if impl(ghc == 8.2.*)
--              build-depends: haskell-gi-overloading == 0.0
--
-       -- Note that the following list of exposed modules and autogen
-       -- modules is for documentation purposes only, so that some
-       -- documentation appears in hackage. The actual list of modules
+                      text >= 1.0 && < 3,
