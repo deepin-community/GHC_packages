@@ -2,7 +2,7 @@ Index: b/test/Network/HTTP/ClientSpec.hs
 ===================================================================
 --- a/test/Network/HTTP/ClientSpec.hs
 +++ b/test/Network/HTTP/ClientSpec.hs
-@@ -15,115 +15,4 @@ main :: IO ()
+@@ -17,140 +17,4 @@ main :: IO ()
  main = hspec spec
  
  spec :: Spec
@@ -12,6 +12,31 @@ Index: b/test/Network/HTTP/ClientSpec.hs
 -        man <- newManager defaultManagerSettings
 -        res <- httpLbs req man
 -        responseStatus res `shouldBe` status200
+-
+-    -- Test the failure condition described in https://github.com/snoyberg/http-client/issues/489
+-    it "keeps connection alive long enough" $ do
+-        req <- parseUrlThrow "http://httpbin.org/"
+-        man <- newManager defaultManagerSettings
+-        res <- responseOpen req man
+-        responseStatus res `shouldBe` status200
+-        let
+-            getChunk = responseBody res
+-            drainAll = do
+-                chunk <- getChunk
+-                if BS.null chunk then pure () else drainAll
+-
+-        -- The returned `BodyReader` used to not contain a reference to the `Managed Connection`,
+-        -- only to the extracted connection and to the release action. Therefore, triggering a GC
+-        -- would close the connection even though we were not done reading.
+-        performGC
+-        -- Not ideal, but weak finalizers run on a separate thread, so it's racing with our drain
+-        -- call
+-        threadDelay 500000
+-
+-        drainAll
+-        -- Calling `responseClose res` here prevents the early collection from happening in this
+-        -- test, but in a larger production application that did involve a `responseClose`, it still
+-        -- occurred.
 -
 -    describe "method in URL" $ do
 -        it "success" $ do
