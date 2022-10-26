@@ -9,3 +9,6 @@ include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
 
 build/haskell-stack :: build-ghc-stamp
+
+# Tests need a HOME
+check-ghc-stamp: export HOME := $(CURDIR)/debian/fake-home
