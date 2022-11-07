@@ -47,12 +47,12 @@ ifneq (,$(filter i386 powerpcspe x32 s390x, $(DEB_HOST_ARCH)))
   EXTRA_CONFIGURE_FLAGS += --enable-unregisterised
 endif
 
-ifeq (yes,$(shell dpkg-vendor --derives-from Ubuntu && echo yes))
-ifeq (armhf,$(DEB_HOST_ARCH))
-  # armhf on Ubuntu needs unregisterised due to performance issues during build.
-  EXTRA_CONFIGURE_FLAGS += --enable-unregisterised
-endif
-endif
+#ifeq (yes,$(shell dpkg-vendor --derives-from Ubuntu && echo yes))
+#ifeq (armhf,$(DEB_HOST_ARCH))
+#  # armhf on Ubuntu needs unregisterised due to performance issues during build.
+#  EXTRA_CONFIGURE_FLAGS += --enable-unregisterised
+#endif
+#endif
 
 # Use system's default ld (ld.bfd) rather than ld.gold, which fails for
 # haskell-cryptohash-sha256 on mips/mipsel. For more information, see
