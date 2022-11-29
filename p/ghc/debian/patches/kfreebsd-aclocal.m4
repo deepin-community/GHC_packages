@@ -2,11 +2,11 @@ Description: Add kfreebsdgnu to GHC_CONVERT_OS in aclocal.m4
 Author: Svante Signell <svante.signell@gmail.com>
 Bug-Debian: https://bugs.debian.org/913140
 
-Index: b/m4/fptools.m4
+Index: ghc-9.2.5/m4/ghc_convert_os.m4
 ===================================================================
---- a/m4/fptools.m4
-+++ b/m4/fptools.m4
-@@ -2144,7 +2144,7 @@ AC_DEFUN([GHC_CONVERT_OS],[
+--- ghc-9.2.5.orig/m4/ghc_convert_os.m4
++++ ghc-9.2.5/m4/ghc_convert_os.m4
+@@ -23,7 +23,7 @@
          $3="openbsd"
          ;;
        # As far as I'm aware, none of these have relevant variants
@@ -15,7 +15,7 @@ Index: b/m4/fptools.m4
          $3="$1"
          ;;
        msys)
-@@ -2164,6 +2164,9 @@ AC_DEFUN([GHC_CONVERT_OS],[
+@@ -43,6 +43,9 @@
                  #      i686-gentoo-freebsd8.2
          $3="freebsd"
          ;;

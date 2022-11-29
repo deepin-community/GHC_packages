@@ -47,13 +47,6 @@ ifneq (,$(filter i386 powerpcspe x32 s390x, $(DEB_HOST_ARCH)))
   EXTRA_CONFIGURE_FLAGS += --enable-unregisterised
 endif
 
-#ifeq (yes,$(shell dpkg-vendor --derives-from Ubuntu && echo yes))
-#ifeq (armhf,$(DEB_HOST_ARCH))
-#  # armhf on Ubuntu needs unregisterised due to performance issues during build.
-#  EXTRA_CONFIGURE_FLAGS += --enable-unregisterised
-#endif
-#endif
-
 # Use system's default ld (ld.bfd) rather than ld.gold, which fails for
 # haskell-cryptohash-sha256 on mips/mipsel. For more information, see
 # https://bugs.debian.org/901947
@@ -66,7 +59,14 @@ ifneq (,$(filter mips mipsel powerpc powerpcspe sparc64, $(DEB_HOST_ARCH)))
 endif
 
 %:
+ifneq (,$(filter s390x arm64 armhf, $(DEB_HOST_ARCH)))
+	# Build fails with out-of-memory on Ubuntu's s390x builders.
+	# Setting `ggc-min-expand=10` doesn't solve this.
+	# For now, reduce number of parallel jobs.
+	dh $@ --max-parallel=2
+else
 	dh $@
+endif
 
 override_dh_autoreconf:
 	dh_autoreconf perl -- boot
