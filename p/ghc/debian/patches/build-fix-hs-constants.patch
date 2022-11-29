@@ -1,0 +1,24 @@
+Origin: https://gitlab.haskell.org/ghc/ghc/-/issues/20287#note_422320
+Description: Fix build on all architectures.
+ exited with an error:
+ ghc: panic! (the 'impossible' happened)
+ (GHC version 9.2.0.20210821:
+ Couldn't find #define HS_CONSTANTS " in
+--- a/compiler/GHC/Unit/State.hs
++++ b/compiler/GHC/Unit/State.hs
+@@ -613,7 +613,13 @@ initUnits logger dflags cached_dbs = do
+       -- really need to use the platform constants but they have not been loaded.
+       case lookupUnitId unit_state rtsUnitId of
+         Nothing   -> return Nothing
+-        Just info -> lookupPlatformConstants (fmap ST.unpack (unitIncludeDirs info))
++        Just info ->
++          let
++            p :: String
++            p = topDir dflags ++ "/include"
++            ps :: [String]
++            ps = fmap ST.unpack (unitIncludeDirs info)
++          in lookupPlatformConstants (p : ps)
+ 
+   return (dbs,unit_state,home_unit,mconstants)
+ 
+
