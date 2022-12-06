@@ -1,0 +1,16 @@
+Description: remove internal agda-mode dependencies
+ agda-mode provides annotation.el and eri.el, which therefore
+ cannot be external dependencies, but are declared so nonetheless
+ .
+Origin: other
+Author: Marcel Fourné <debian@marcelfourne.de>
+Bug-Debian: https://bugs.debian.org/1017415
+Last-Update: 2022-12-06
+
+--- agda-2.6.2.2.orig/src/data/emacs-mode/agda2-mode-pkg.el
++++ agda-2.6.2.2/src/data/emacs-mode/agda2-mode-pkg.el
+@@ -1,3 +1,3 @@
+ (define-package "agda2-mode" "2.6.2.2"
+   "interactive development for Agda, a dependently typed functional programming language"
+-  '((emacs "24.3") (annotation "1.0") (eri "1.0")))
++  '((emacs "24.3")))
