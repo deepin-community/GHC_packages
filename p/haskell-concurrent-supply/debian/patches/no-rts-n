@@ -1,14 +1,11 @@
 --- a/concurrent-supply.cabal
 +++ b/concurrent-supply.cabal
-@@ -42,7 +42,10 @@ test-suite properties
+@@ -42,7 +42,7 @@ test-suite properties
    type: exitcode-stdio-1.0
    main-is: properties.hs
    default-language: Haskell2010
 -  ghc-options: -w -threaded -rtsopts -with-rtsopts=-N
-+  if arch(arm) || arch(mips) || arch(s390x) || arch(i386)
-+    ghc-options: -w -threaded -rtsopts
-+  else
-+    ghc-options: -w -threaded -rtsopts -with-rtsopts=-N
++  ghc-options: -w -threaded -rtsopts
    hs-source-dirs: test
  
    if !flag(test-properties)
