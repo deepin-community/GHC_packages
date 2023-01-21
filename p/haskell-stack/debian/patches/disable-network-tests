@@ -1,0 +1,50 @@
+Index: b/src/test/Stack/ConfigSpec.hs
+===================================================================
+--- a/src/test/Stack/ConfigSpec.hs
++++ b/src/test/Stack/ConfigSpec.hs
+@@ -183,26 +183,26 @@ spec = beforeAll setup $ do
+       boptsReconfigure `shouldBe` True
+       boptsCabalVerbose `shouldBe` True
+ 
+-    it "finds the config file in a parent directory" $ inTempDir $ do
+-      writeFile "package.yaml" "name: foo"
+-      writeFile (toFilePath stackDotYaml) sampleConfig
+-      parentDir <- getCurrentDirectory >>= parseAbsDir
+-      let childDir = "child"
+-      createDirectory childDir
+-      setCurrentDirectory childDir
+-      loadConfig' $ \config -> liftIO $ do
+-        bc <- runRIO config $ withBuildConfig ask
+-        view projectRootL bc `shouldBe` parentDir
++    -- it "finds the config file in a parent directory" $ inTempDir $ do
++    --   writeFile "package.yaml" "name: foo"
++    --   writeFile (toFilePath stackDotYaml) sampleConfig
++    --   parentDir <- getCurrentDirectory >>= parseAbsDir
++    --   let childDir = "child"
++    --   createDirectory childDir
++    --   setCurrentDirectory childDir
++    --   loadConfig' $ \config -> liftIO $ do
++    --     bc <- runRIO config $ withBuildConfig ask
++    --     view projectRootL bc `shouldBe` parentDir
+ 
+-    it "respects the STACK_YAML env variable" $ inTempDir $ do
+-      withSystemTempDir "config-is-here" $ \dir -> do
+-        let stackYamlFp = toFilePath (dir </> stackDotYaml)
+-        writeFile stackYamlFp sampleConfig
+-        writeFile (toFilePath dir ++ "/package.yaml") "name: foo"
+-        withEnvVar "STACK_YAML" stackYamlFp $ loadConfig' $ \config -> liftIO $ do
+-          BuildConfig{..} <- runRIO config $ withBuildConfig ask
+-          bcStackYaml `shouldBe` dir </> stackDotYaml
+-          parent bcStackYaml `shouldBe` dir
++    -- it "respects the STACK_YAML env variable" $ inTempDir $ do
++    --   withSystemTempDir "config-is-here" $ \dir -> do
++    --     let stackYamlFp = toFilePath (dir </> stackDotYaml)
++    --     writeFile stackYamlFp sampleConfig
++    --     writeFile (toFilePath dir ++ "/package.yaml") "name: foo"
++    --     withEnvVar "STACK_YAML" stackYamlFp $ loadConfig' $ \config -> liftIO $ do
++    --       BuildConfig{..} <- runRIO config $ withBuildConfig ask
++    --       bcStackYaml `shouldBe` dir </> stackDotYaml
++    --       parent bcStackYaml `shouldBe` dir
+ 
+     it "STACK_YAML can be relative" $ inTempDir $ do
+         parentDir <- getCurrentDirectory >>= parseAbsDir
