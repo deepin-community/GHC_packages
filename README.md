@@ -13,7 +13,7 @@ feature of our work, hence the choice to put all our packaging into one
 repository.
 
 
-Also, our work is maintaining the debian/ directory, so we decided to track
+Also, our work is maintaining the `debian/` directory, so we decided to track
 only that, and _not_ upstream sources. Therefore, the directory structure for a
 Haskell package foo is as follows:
 
@@ -23,15 +23,15 @@ Haskell package foo is as follows:
     /p/haskell-foo/debian/control -- the usual files
     ...
 
-In particular, /p/haskell-foo/ contains no files besides debian/. So what is
-the point of having the files under the debian/ subdirectory? This way, you can
-extract the upstream sources in there and run your usual
-uscan/debchange/quilt/sbuild/debrelease-commands as usual. The `.gitignore`
-file is set up so that git will not bother you about the extracted upstream
-sources.
+In particular, `/p/haskell-foo/` contains no files besides `debian/`.
+So what is the point of having the files under the `debian/` subdirectory?
+This way, you can extract the upstream sources in there and run your usual
+`uscan`/`debchange`/`quilt`/`sbuild`/`debrelease-commands` as usual.
+The `.gitignore` file is set up so that git will not bother you about the
+extracted upstream sources.
 
-As running uscan or dpkg-buildpackage in that directory will dump files into
-the parent, we introduced the /p/ directory. Again, a `.gitignore` file is set
+As running `uscan` or `dpkg-buildpackage` in that directory will dump files into
+the parent, we introduced the `/p/` directory. Again, a `.gitignore` file is set
 up so that git will not bother you about the tarballs, `deb`-files or
 `changes`-files therein.
 
@@ -76,7 +76,7 @@ knowing what to build and what to upgrade, etc. They are provided in the
 or `git://salsa.debian.org/haskell-team/pkg-haskell-tools.git` for
 read-only access).
 
-All tools are under the `dht` prefix, and it has a manpage (man dht) or at
+All tools are under the `dht` prefix, and it has a manpage (`man dht`) or at
 <file:///usr/share/doc/pkg-haskell-tools/dht.html>.
 
 
