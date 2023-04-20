@@ -1,0 +1,59 @@
+Index: b/glirc.cabal
+===================================================================
+--- a/glirc.cabal
++++ b/glirc.cabal
+@@ -160,7 +160,7 @@ library
+     attoparsec           ^>=0.14,
+     base64-bytestring    >=1.0.0.1&& <1.3,
+     bytestring           >=0.10.8 && <0.12,
+-    config-schema        ^>=1.2.1.0,
++    config-schema,
+     config-value         ^>=0.8,
+     containers           >=0.5.7  && <0.7,
+     curve25519           ^>=0.2.5,
+@@ -187,7 +187,7 @@ library
+     unix                 >=2.7    && <2.8,
+     unordered-containers >=0.2.11 && <0.3,
+     vector               >=0.11   && <0.13,
+-    vty                  >=5.35   && <5.36,
++    vty                  >=5.33   && <5.36,
+ 
+ test-suite test
+   type:                exitcode-stdio-1.0
+Index: b/src/Client/View/Palette.hs
+===================================================================
+--- a/src/Client/View/Palette.hs
++++ b/src/Client/View/Palette.hs
+@@ -87,7 +87,6 @@ isLight (Color240 c) =
+   case color240CodeToRGB c of
+     Just (r, g, b) -> (r `max` g `max` b) > 200
+     Nothing        -> True
+-isLight (RGBColor r g b) = (r `max` g `max` b) > 200
+ 
+ 
+ isoColors :: [Image']
+Index: b/src/Client/EventLoop.hs
+===================================================================
+--- a/src/Client/EventLoop.hs
++++ b/src/Client/EventLoop.hs
+@@ -66,7 +66,7 @@ import           Hookup (ConnectionFailu
+ 
+ -- | Sum of the five possible event types the event loop handles
+ data ClientEvent
+-  = VtyEvent InternalEvent -- ^ Key presses and resizing
++  = VtyEvent Event -- ^ Key presses and resizing
+   | NetworkEvents (NonEmpty (Text, NetworkEvent)) -- ^ Incoming network events
+   | TimerEvent Text TimedAction      -- ^ Timed action and the applicable network
+   | ExtTimerEvent Int                     -- ^ extension ID
+@@ -149,10 +149,8 @@ eventLoop vty st =
+          eventLoop vty =<< clientThreadJoin i result st'
+        TimerEvent networkId action ->
+          eventLoop vty =<< doTimerEvent networkId action st'
+-       VtyEvent (InputEvent vtyEvent) ->
++       VtyEvent vtyEvent ->
+          traverse_ (eventLoop vty) =<< doVtyEvent vty vtyEvent st'
+-       VtyEvent ResumeAfterSignal ->
+-         eventLoop vty =<< updateTerminalSize vty st
+        NetworkEvents networkEvents ->
+          eventLoop vty =<< foldM doNetworkEvent st' networkEvents
+ 
