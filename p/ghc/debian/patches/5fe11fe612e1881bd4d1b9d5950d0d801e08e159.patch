@@ -1,0 +1,22 @@
+From 5fe11fe612e1881bd4d1b9d5950d0d801e08e159 Mon Sep 17 00:00:00 2001
+From: Carter Schonwald <carter.schonwald@gmail.com>
+Date: Fri, 4 Nov 2022 20:06:41 +0000
+Subject: [PATCH] bump llvm upper bound
+
+---
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/configure.ac b/configure.ac
+index 9f8e0fdd0c3..a96a15ffbe7 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -555,7 +555,7 @@ AC_SUBST(InstallNameToolCmd)
+ # versions of LLVM simultaneously, but that stopped working around
+ # 3.5/3.6 release of LLVM.
+ LlvmMinVersion=10  # inclusive
+-LlvmMaxVersion=14 # not inclusive
++LlvmMaxVersion=15 # not inclusive
+ AC_SUBST([LlvmMinVersion])
+ AC_SUBST([LlvmMaxVersion])
+ sUPPORTED_LLVM_VERSION_MIN=$(echo \($LlvmMinVersion\) | sed 's/\./,/')
