@@ -86,7 +86,7 @@ Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  .
  ${haskell:Blurb}
 
-Package: tldr
+Package: tldr-hs
 Architecture: any
 Section: doc
 Depends: ${haskell:Depends},
@@ -95,10 +95,18 @@ Depends: ${haskell:Depends},
  git,
 Recommends: ${haskell:Recommends},
 Suggests: ${haskell:Suggests},
-Conflicts: ${haskell:Conflicts},
- tldr-py (<< 0.7.0-2~),
+Replaces: tldr (<< 0.9.2-3~)
+Breaks: tldr (<< 0.9.2-3~)
 Provides: ${haskell:Provides},
 Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
  ${haskell:LongDescription}
  .
  ${haskell:Blurb}
+
+Package: tldr
+Depends: tldr-hs, ${misc:Depends}
+Architecture: all
+Priority: optional
+Section: oldlibs
+Description: transitional package
+ This is a transitional package. It can safely be removed.
