@@ -8,9 +8,9 @@ DEB_DEFAULT_COMPILER = ghc
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
 
-build/tldr:: build-ghc-stamp
+build/tldr-hs:: build-ghc-stamp
 
-install/tldr:: tldr-hs.1
+install/tldr-hs:: tldr-hs.1
 
 tldr-hs.1:
 	./dist-ghc/build/tldr-hs/tldr-hs --help
