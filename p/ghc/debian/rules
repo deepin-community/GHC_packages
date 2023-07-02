@@ -69,7 +69,7 @@ else
 endif
 
 override_dh_autoreconf:
-	dh_autoreconf perl -- boot
+	dh_autoreconf ./boot.source
 
 override_dh_auto_configure:
 	echo "SRC_HC_OPTS += -lffi -optl-pthread" >> mk/build.mk
@@ -138,6 +138,13 @@ endif
 	# We also want to build the threaded profiling-enabled debug runtime,
 	# because it does no harm
 	echo 'GhcRTSWays += $$(if $$(filter p, $$(GhcLibWays)),thr_debug_p,)' >> mk/build.mk
+
+	# The make build system is completely broken at this point, since it
+	# doesn't pass the '-build-tool-depends' flag (as Handrian does) and require
+	# alex/happy to build from a release tarball.
+	echo 'utils/genprimopcode_CONFIGURE_OPTS += "-f-build-tool-depends"' >> mk/build.mk
+	echo 'compiler_CONFIGURE_OPTS += "-f-build-tool-depends"' >> mk/build.mk
+	echo 'utils/hpc_CONFIGURE_OPTS += "-f-build-tool-depends"' >> mk/build.mk
 
 	# We can't do this with a configure flag in 6.8.1 as libdir is not
 	# defined at the point at which we := it

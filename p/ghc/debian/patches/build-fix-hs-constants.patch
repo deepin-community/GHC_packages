@@ -4,9 +4,11 @@ Description: Fix build on all architectures.
  ghc: panic! (the 'impossible' happened)
  (GHC version 9.2.0.20210821:
  Couldn't find #define HS_CONSTANTS " in
+Index: b/compiler/GHC/Unit/State.hs
+===================================================================
 --- a/compiler/GHC/Unit/State.hs
 +++ b/compiler/GHC/Unit/State.hs
-@@ -613,7 +613,13 @@ initUnits logger dflags cached_dbs = do
+@@ -661,7 +661,13 @@ initUnits logger dflags cached_dbs home_
        -- really need to use the platform constants but they have not been loaded.
        case lookupUnitId unit_state rtsUnitId of
          Nothing   -> return Nothing
@@ -21,4 +23,3 @@ Description: Fix build on all architectures.
  
    return (dbs,unit_state,home_unit,mconstants)
  
-
