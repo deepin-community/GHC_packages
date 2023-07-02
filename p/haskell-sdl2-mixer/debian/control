@@ -1,0 +1,97 @@
+Source: haskell-sdl2-mixer
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Scott Talbert <swt@techie.net>
+Priority: optional
+Section: haskell
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-data-default-class-dev (>= 0.0.1),
+ libghc-data-default-class-prof,
+ libghc-lifted-base-dev (>= 0.2),
+ libghc-lifted-base-prof,
+ libghc-monad-control-dev (>= 1.0),
+ libghc-monad-control-prof,
+ libghc-sdl2-dev (>= 2.0.0),
+ libghc-sdl2-prof,
+ libghc-vector-dev (>= 0.10),
+ libghc-vector-prof,
+ libsdl2-mixer-dev,
+Build-Depends-Indep: ghc-doc,
+ libghc-data-default-class-doc,
+ libghc-lifted-base-doc,
+ libghc-monad-control-doc,
+ libghc-sdl2-doc,
+ libghc-vector-doc,
+Standards-Version: 4.6.2
+Homepage: https://hackage.haskell.org/package/sdl2-mixer
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-sdl2-mixer
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-sdl2-mixer]
+X-Description: Haskell bindings to SDL2_mixer
+ This package contains bindings to the SDL2_mixer library, in both high- and
+ low-level forms:
+ .
+ The SDL namespace contains high-level bindings, where enumerations are split
+ into sum types, and automatic error-checking is performed.
+ .
+ The SDL.Raw namespace contains an almost 1-1 translation of the C API into
+ Haskell FFI calls. As such, this does not contain sum types nor error
+ checking. Thus this namespace is suitable for building your own abstraction
+ over SDL, but is not recommended for day-to-day programming.
+
+Package: libghc-sdl2-mixer-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-sdl2-mixer-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-sdl2-mixer-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: haskell-sdl2-mixer-utils
+Architecture: any
+Section: misc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
