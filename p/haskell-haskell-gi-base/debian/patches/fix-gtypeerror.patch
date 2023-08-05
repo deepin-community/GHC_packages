@@ -1,0 +1,38 @@
+From ba4154155f6ebf3d56b60a64db0f4fdbb1bcad6f Mon Sep 17 00:00:00 2001
+From: Scott Talbert <swt@techie.net>
+Date: Sat, 5 Aug 2023 01:51:26 -0400
+Subject: [PATCH] Correct definition of gTypeError to a run-time type (#414)
+
+Fixes #413
+---
+ base/Data/GI/Base/GType.hsc | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
+diff --git a/base/Data/GI/Base/GType.hsc b/base/Data/GI/Base/GType.hsc
+index 027147b..30d265e 100644
+--- a/Data/GI/Base/GType.hsc
++++ b/Data/GI/Base/GType.hsc
+@@ -107,10 +107,6 @@ gtypeInvalid = GType #const G_TYPE_INVALID
+ gtypeVariant :: GType
+ gtypeVariant = GType #const G_TYPE_VARIANT
+ 
+--- | The `GType` corresponding to 'Data.GI.Base.GError.GError'.
+-gtypeError :: GType
+-gtypeError = GType #const G_TYPE_ERROR
+-
+ -- | The `GType` corresponding to 'Data.GI.Base.BasicTypes.GParamSpec'.
+ gtypeParam :: GType
+ gtypeParam = GType #const G_TYPE_PARAM
+@@ -140,3 +136,9 @@ foreign import ccall haskell_gi_StablePtr_get_type :: CGType
+ -- | The `GType` for boxed `StablePtr`s.
+ gtypeStablePtr :: GType
+ gtypeStablePtr = GType haskell_gi_StablePtr_get_type
++
++foreign import ccall "g_error_get_type" g_error_get_type :: CGType
++
++-- | The `GType` corresponding to 'Data.GI.Base.GError.GError'.
++gtypeError :: GType
++gtypeError = GType g_error_get_type
+-- 
+2.40.1
+
