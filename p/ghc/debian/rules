@@ -59,11 +59,7 @@ ifneq (,$(filter mips mipsel powerpc powerpcspe sparc64, $(DEB_HOST_ARCH)))
 endif
 
 %:
-ifneq (,$(filter mipsel, $(DEB_HOST_ARCH)))
-	dh $@ --max-parallel=2
-else
 	dh $@
-endif
 
 override_dh_autoreconf:
 	dh_autoreconf ./boot.source
@@ -210,9 +206,11 @@ override_dh_auto_install-arch:
 	sed -ri 's,/usr/share/doc/ghc-doc/html/libraries/(.*)\.haddock,/usr/lib/ghc-doc/haddock/ghc/\1.haddock,' debian/tmp/var/lib/ghc/package.conf.d/*.conf
 
 	# Sort out the binaries
+ifeq (NO,$(BUILD_CROSS))
 	if inplace/bin/ghc-stage2 --info | grep '"Have interpreter","NO"'; then \
 	    cd debian/tmp/usr/bin ;rm -f ghci* runghc* runhaskell*; \
 	fi
+endif
 
 	# manpages
 	echo ".so man1/ghc.1" > debian/tmp/usr/share/man/man1/ghc-$(ProjectVersion).1
