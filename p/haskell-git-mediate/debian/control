@@ -1,0 +1,66 @@
+Source: haskell-git-mediate
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-diff-dev (>= 0.4),
+ libghc-diff-prof (>= 0.4),
+ libghc-ansi-terminal-dev (>= 0.6.2),
+ libghc-ansi-terminal-prof (>= 0.6.2),
+ libghc-base-compat-dev (>= 0.8.2),
+ libghc-base-compat-prof (>= 0.8.2),
+ libghc-optparse-applicative-dev (>= 0.11),
+ libghc-optparse-applicative-prof (>= 0.11),
+ libghc-unix-compat-dev (>= 0.4.2.0),
+ libghc-unix-compat-prof (>= 0.4.2.0),
+Standards-Version: 4.6.2
+Homepage: https://github.com/Peaker/git-mediate
+X-Description: tool to help resolving git conflicts
+ In any conflicted state - git-mediate shows you
+ the 2 diffs involved. By applying these diffs to
+ the base version and the other version, you
+ emulate the situation where the patch had already
+ existed when the other had been applied.
+ .
+ Reapply git-mediate, it will validate that you've
+ indeed applied it correctly, and bam: conflict
+ disappeared!
+ .
+ Git-mediate also lets you handle modify/delete
+ conflicts (there's no sane way in git to show
+ what the modification actually was)
+ .
+ Git-mediate also streamlines jumping to the
+ conflicts with your editor, either with the `-e`
+ option to invoke your editor, or via the standard
+ line number format, which is parsed by all major
+ editors, to allow use of "jump to next error"
+ keys.
+ .
+ Git-mediate especially shines with automatic
+ source transformation tools such as renamers.
+ .
+ In a conflicted state, re-apply a rename that
+ caused the conflict, run git-mediate without
+ opening any files, and the conflicts are gone!
+
+Package: git-mediate
+Architecture: any
+Section: vcs
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
