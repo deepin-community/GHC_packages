@@ -5,7 +5,7 @@
    main-is:        Test.hs
    hs-source-dirs: test
 -  ghc-options:    -threaded -with-rtsopts=-N
-+  if arch(arm) || arch(mips) || arch(s390x) || arch(i386)
++  if arch(arm) || arch(mips) || arch(s390x) || arch(i386) || arch(riscv64)
 +    ghc-options:    -threaded
 +  else
 +    ghc-options:    -threaded -with-rtsopts=-N
