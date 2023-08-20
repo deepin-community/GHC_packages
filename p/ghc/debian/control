@@ -13,9 +13,9 @@ Build-Depends:
   devscripts,
   grep-dctrl,
   pkg-config,
-  ghc:native (>= 8.6),
+  ghc:native (>= 9.0),
   libgmp-dev,
-  llvm-14 [arm64 armel armhf],
+  llvm-16 [arm64 armel armhf],
   libffi-dev,
   libncurses-dev,
   python3-sphinx <!cross>,
@@ -32,7 +32,7 @@ Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/gh
 Package: ghc
 Architecture: any
 Depends:
-  llvm-14 [arm64 armel armhf],
+  llvm-16 [arm64 armel armhf],
   gcc,
   libgmp-dev,
   libffi-dev,
@@ -55,7 +55,7 @@ Replaces: ghc6 (<< 7), ghc-dynamic (<< 7.8), ghc-haddock (<< 7.10), ${conflictin
 Conflicts: ghc6 (<< 7), ghc-dynamic (<< 7.8)
 Breaks: cabal-install (<< 1.22), haskell-devscripts (<< 0.8.13),
  ghc-doc (<< 7.10), ghc-haddock (<< 7.10), ${conflicting-devs}
-Suggests: perl, ghc-prof, ghc-doc, haskell-doc, llvm-14
+Suggests: perl, ghc-prof, ghc-doc, haskell-doc, llvm-16
 Description: The Glasgow Haskell Compilation system
  The Glorious Glasgow Haskell Compilation system (GHC) is a compiler for
  Haskell.
