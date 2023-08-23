@@ -1,0 +1,36 @@
+Description: Fix build failure due to new at-spi2-common 2.49.90-2 and cairo
+
+[15 of 19] Compiling GI.Vte.Structs.Regex ( GI/Vte/Structs/Regex.hs, dist-ghc/build/GI/Vte/Structs/Regex.o, dist-ghc/build/GI/Vte/Structs/Regex.dyn_o )
+[16 of 19] Compiling GI.Vte.Structs   ( GI/Vte/Structs.hs, dist-ghc/build/GI/Vte/Structs.o, dist-ghc/build/GI/Vte/Structs.dyn_o )
+[17 of 19] Compiling GI.Vte.Objects.Terminal ( GI/Vte/Objects/Terminal.hs, dist-ghc/build/GI/Vte/Objects/Terminal.o, dist-ghc/build/GI/Vte/Objects/Terminal.dyn_o )
+
+GI/Vte/Objects/Terminal.hs:1910:1: error:
+    Could not load module ‘GI.Cairo.Structs.FontOptions’
+    It is a member of the hidden package ‘gi-cairo-1.0.27’.
+    Perhaps you need to add ‘gi-cairo’ to the build-depends in your .cabal file.
+    Use -v (or `:set -v` in ghci) to see a list of the files searched for.
+     |
+1910 | import qualified GI.Cairo.Structs.FontOptions as Cairo.FontOptions
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-e: error: debian/hlibrary.setup build --builddir=dist-ghc returned exit code 1
+ at /usr/share/perl5/Debian/Debhelper/Dh_Lib.pm line 880.
+	Debian::Debhelper::Dh_Lib::error("debian/hlibrary.setup build --builddir=dist-ghc returned exit"...) called at /usr/share/perl5/Debian/Debhelper/Dh_Lib.pm line 610
+	Debian::Debhelper::Dh_Lib::error_exitcode("debian/hlibrary.setup build --builddir=dist-ghc") called at /usr/share/perl5/Debian/Debhelper/Dh_Lib.pm line 473
+	Debian::Debhelper::Dh_Lib::doit("debian/hlibrary.setup", "build", "--builddir=dist-ghc") called at /usr/share/perl5/Debian/Debhelper/Buildsystem/Haskell/Recipes.pm line 650
+	Debian::Debhelper::Buildsystem::Haskell::Recipes::build_recipe() called at -e line 1
+make: *** [/usr/share/cdbs/1/class/hlibrary.mk:160: build-ghc-stamp] Error 25
+dpkg-buildpackage: error: debian/rules binary subprocess returned exit status 2
+
+Author: Gianfranco Costamagna <locutusofborg@debian.org>
+Last-Update: 2023-08-10
+
+--- haskell-gi-vte-2.91.30.orig/gi-vte.cabal
++++ haskell-gi-vte-2.91.30/gi-vte.cabal
+@@ -35,6 +35,7 @@ library
+       build-depends: base >= 4.7 && <5,
+                      haskell-gi-base >= 0.26 && < 0.27,
+                      haskell-gi >= 0.26 && < 0.27,
++                     gi-cairo == 1.0.*,
+                      gi-pango == 1.0.*,
+                      gi-gtk == 3.0.*,
+                      gi-gio == 2.0.*,
