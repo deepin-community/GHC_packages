@@ -2,7 +2,7 @@ module Main (main) where
 
 import Distribution.Package
 import Distribution.PackageDescription
-import Distribution.PackageDescription.Parsec ( readGenericPackageDescription )
+import Distribution.Simple.PackageDescription (readGenericPackageDescription)
 import Distribution.Pretty                    ( prettyShow )
 import Distribution.Simple.Utils
 import Distribution.Verbosity
