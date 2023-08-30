@@ -1,0 +1,64 @@
+Source: haskell-ansi-terminal-types
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-colour-dev (>= 2.1.0),
+ libghc-colour-prof (>= 2.1.0),
+Build-Depends-Indep: ghc-doc,
+ libghc-colour-doc,
+Standards-Version: 4.6.2
+Homepage: https://github.com/UnkindPartition/ansi-terminal
+X-Description: types and functions used to represent SGR aspects
+ The ANSI standards refer to the visual style of
+ displaying characters as their 'graphic rendition'. The
+ ANSI codes to establish the graphic rendition for
+ subsequent text are referred to as SELECT GRAPHIC RENDITION
+ (SGR). This package exposes modules that export types and
+ functions used to represent SGR aspects.
+
+Package: libghc-ansi-terminal-types-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-ansi-terminal-types-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-ansi-terminal-types-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
