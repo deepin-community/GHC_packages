@@ -1,17 +1,26 @@
+Index: b/bitwise.cabal
+===================================================================
 --- a/bitwise.cabal
 +++ b/bitwise.cabal
-@@ -69,8 +69,8 @@ Library
+@@ -1,5 +1,6 @@
+ Name:                bitwise
+ Version:             1.0.0.1
++x-revision: 8
+ Synopsis:            fast multi-dimensional unboxed bit packed Bool arrays
+ Description:
+   Unboxed multidimensional bit packed Bool arrays with fast aggregate
+@@ -69,8 +70,8 @@ Library
      Data.Array.BitArray.Internal
  
    Build-depends:
 -    base >= 4.7 && < 4.12,
 -    bytestring < 0.11,
-+    base >= 4.7 && < 4.17,
++    base >= 4.7 && < 4.19,
 +    bytestring < 0.12,
      array < 0.6
  
    HS-source-dirs: src
-@@ -86,7 +86,7 @@ Test-Suite bitwise-testsuite
+@@ -86,7 +87,7 @@ Test-Suite bitwise-testsuite
    build-depends:
      bitwise,
      base,
@@ -20,3 +29,12 @@
    Default-Language: Haskell2010
  
  Benchmark bitwise-benchmark
+@@ -97,7 +98,7 @@ Benchmark bitwise-benchmark
+     base,
+     array,
+     bytestring,
+-    criterion >= 0.6 && < 1.5
++    criterion >= 0.6 && < 1.7
+   Default-Language: Haskell2010
+ 
+ source-repository head
