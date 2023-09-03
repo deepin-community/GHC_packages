@@ -6,25 +6,21 @@ Priority: optional
 Section: haskell
 Rules-Requires-Root: no
 Build-Depends:
+ haskell-devscripts (>= 0.13),
  cdbs,
  debhelper (>= 10),
  ghc (>= 8),
  ghc-prof,
- haskell-devscripts (>= 0.13),
- libghc-dependent-sum-dev (>= 0.4.1),
- libghc-dependent-sum-dev (<< 0.8),
- libghc-dependent-sum-prof,
+ libghc-some-dev (>= 1.0.1),
+ libghc-some-dev (<< 1.1),
+ libghc-some-prof,
  libghc-th-abstraction-dev (>= 0.4),
  libghc-th-abstraction-prof,
- libghc-th-extras-dev (>= 0.0.0.2),
- libghc-th-extras-prof,
-Build-Depends-Indep:
- ghc-doc,
- libghc-dependent-sum-doc,
+Build-Depends-Indep: ghc-doc,
+ libghc-some-doc,
  libghc-th-abstraction-doc,
- libghc-th-extras-doc,
 Standards-Version: 4.6.2
-Homepage: https://github.com/obsidiansystems/dependent-sum
+Homepage: https://github.com/obsidiansystems/dependent-sum-template
 Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-dependent-sum-template
 Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-dependent-sum-template]
 X-Description: Automatically generate instances of classes in dependent-sum package
