@@ -2,14 +2,19 @@ Index: b/map-syntax.cabal
 ===================================================================
 --- a/map-syntax.cabal
 +++ b/map-syntax.cabal
-@@ -1,5 +1,6 @@
+@@ -1,5 +1,7 @@
++cabal-version:  >= 1.10
  name:           map-syntax
  version:        0.3
-+x-revision:     4
++x-revision:     8
  synopsis:       Syntax sugar for defining maps
  description:
      Haskell's canonical list of tuples syntax for defining maps is not very
-@@ -15,13 +16,21 @@ cabal-version:  >= 1.10
+@@ -11,17 +13,26 @@ license-file:   LICENSE
+ author:         Doug Beardsley
+ maintainer:     mightybyte@gmail.com
+ build-type:     Simple
+-cabal-version:  >= 1.10
  category:       Data Structures
  
  Tested-With:
@@ -20,7 +25,9 @@ Index: b/map-syntax.cabal
 -  GHC == 8.0.1,
 -  GHC == 8.2.1,
 -  GHC == 8.4.1
-+  GHC == 9.2.2
++  GHC == 9.6.2
++  GHC == 9.4.5
++  GHC == 9.2.8
 +  GHC == 9.0.2
 +  GHC == 8.10.7
 +  GHC == 8.8.4
@@ -38,21 +45,24 @@ Index: b/map-syntax.cabal
  
  extra-source-files:
    .ghci,
-@@ -37,8 +46,8 @@ Library
+@@ -37,9 +48,9 @@ Library
      Data.Map.Syntax
  
    build-depends:
 -    base                       >= 4.3 && < 4.12,
 -    containers                 >= 0.3 && < 0.6,
-+    base                       >= 4.3 && < 4.17,
+-    mtl                        >= 2.0 && < 2.3
++    base                       >= 4.3 && < 5,
 +    containers                 >= 0.3 && < 0.7,
-     mtl                        >= 2.0 && < 2.3
++    mtl                        >= 2.0 && < 2.4
  
    ghc-options: -Wall -fwarn-tabs -funbox-strict-fields -fno-warn-unused-do-bind
-@@ -77,5 +86,5 @@ Test-suite testsuite
+ 
+@@ -77,5 +88,5 @@ Test-suite testsuite
      HUnit                      >= 1.2      && < 2,
      mtl,
      QuickCheck                 >= 2.3.0.2  && < 3,
 -    hspec                      >= 2.2.3    && < 2.6,
-+    hspec                      >= 2.2.3    && < 2.10,
-     transformers               >= 0.3      && < 0.6
+-    transformers               >= 0.3      && < 0.6
++    hspec                      >= 2.2.3    && < 2.12,
++    transformers               >= 0.3      && < 0.7
