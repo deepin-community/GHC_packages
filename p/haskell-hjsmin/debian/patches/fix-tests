@@ -2,9 +2,11 @@ Description: Use 'dist-ghc' as builddir
  Use 'dist-ghc' as builddir when running tests, instead of 'dist-newstyle'
 Author: Ilias Tsitsimpis <iliastsi@debian.org>
 
+Index: b/test/test-cli.hs
+===================================================================
 --- a/test/test-cli.hs
 +++ b/test/test-cli.hs
-@@ -18,7 +18,7 @@
+@@ -18,13 +18,13 @@ main = do
    IO.hSetBuffering IO.stderr LineBuffering
  
    cwd <- getCurrentDirectory
@@ -13,3 +15,26 @@ Author: Ilias Tsitsimpis <iliastsi@debian.org>
  
    -- Set an environment variable for all the exectuables we want to test.
    setExecutableEnvVar "HJSMIN" topdir "hjsmin"
+ 
+   tests <- filter (`notElem` ["core", "data"]) <$> listDirectory "test/cli/"
+-  res <- forM tests $ \ t -> rawSystem ("test/cli/" ++ t ++ "/run") []
++  res <- forM tests $ \ t -> rawSystem "/bin/bash" ["test/cli/" ++ t ++ "/run"]
+   if all (== ExitSuccess) res
+     then exitSuccess
+     else exitFailure
+Index: b/test/cli/core/runner
+===================================================================
+--- a/test/cli/core/runner
++++ b/test/cli/core/runner
+@@ -1,7 +1,7 @@
+-if test -d dist-newstyle ; then
+-    HJSMIN=$(find dist-newstyle -type f -name hjsmin)
+-elif test -d ../dist-newstyle ; then
+-    HJSMIN=$(find ../dist-newstyle -type f -name hjsmin)
++if test -d dist-ghc ; then
++    HJSMIN=$(find dist-ghc -type f -name hjsmin)
++elif test -d ../dist-ghc ; then
++    HJSMIN=$(find ../dist-ghc -type f -name hjsmin)
+     fi
+ 
+ echo
