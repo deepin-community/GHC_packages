@@ -1,19 +1,18 @@
 Remove -with-rtsopts=-N
+Index: b/jira-wiki-markup.cabal
+===================================================================
 --- a/jira-wiki-markup.cabal
 +++ b/jira-wiki-markup.cabal
-@@ -62,7 +62,6 @@
-   ghc-options:         -Wall
-                        -threaded
+@@ -75,7 +75,6 @@ executable jira-wiki-markup
+   build-depends:       jira-wiki-markup
+   ghc-options:         -threaded
                         -rtsopts
 -                       -with-rtsopts=-N
-                        -Wincomplete-uni-patterns
-                        -Wincomplete-record-updates
-                        -Wcompat
-@@ -91,7 +90,6 @@
-   ghc-options:         -Wall
-                        -threaded
+ 
+ test-suite jira-wiki-markup-test
+   import:              common-options
+@@ -92,4 +91,3 @@ test-suite jira-wiki-markup-test
+                      , tasty-hunit
+   ghc-options:         -threaded
                         -rtsopts
 -                       -with-rtsopts=-N
-                        -Wincomplete-uni-patterns
-                        -Wincomplete-record-updates
-                        -Wcompat
