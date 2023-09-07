@@ -1,0 +1,32 @@
+Index: b/profunctors.cabal
+===================================================================
+--- a/profunctors.cabal
++++ b/profunctors.cabal
+@@ -1,6 +1,7 @@
+ name:          profunctors
+ category:      Control, Categories
+ version:       5.6.2
++x-revision: 3
+ license:       BSD3
+ cabal-version: >= 1.10
+ license-file:  LICENSE
+@@ -36,16 +37,16 @@ source-repository head
+ library
+   build-depends:
+     base                >= 4.7     && < 5,
+-    base-orphans        >= 0.8.4   && < 0.9,
++    base-orphans        >= 0.8.4   && < 0.10,
+     bifunctors          >= 5.5.9   && < 6,
+     comonad             >= 5.0.8   && < 6,
+     contravariant       >= 1.5.3   && < 2,
+     distributive        >= 0.5.2   && < 1,
+     tagged              >= 0.8.6.1 && < 1,
+-    transformers        >= 0.3     && < 0.6
++    transformers        >= 0.3     && < 0.7
+ 
+   if !impl(ghc >= 8.0)
+-    build-depends: semigroups >= 0.18.5 && < 0.20
++    build-depends: semigroups >= 0.18.5 && < 0.21
+ 
+   exposed-modules:
+     Data.Profunctor
