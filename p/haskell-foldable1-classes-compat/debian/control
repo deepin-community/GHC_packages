@@ -1,0 +1,66 @@
+Source: haskell-foldable1-classes-compat
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Ilias Tsitsimpis <iliastsi@debian.org>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc (>= 9.4),
+ ghc-prof,
+ libghc-tagged-dev (>= 0.4.4),
+ libghc-tagged-dev (<< 1),
+ libghc-tagged-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-tagged-doc,
+Standards-Version: 4.6.2
+Homepage: https://github.com/haskell-compat/foldable1-classes-compat
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-foldable1-classes-compat
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-foldable1-classes-compat]
+X-Description: Compatibility package for the Foldable1 and Bifoldable1 type classes
+ A compatibility package for the Foldable1 and Bifoldable1 type classes,
+ which were introduced in base-4.18.0.0 (GHC 9.6.1).
+ .
+ Foldable1 and Bifoldable1 classify non-empty data structures that can be
+ folded to a summary value.
+
+Package: libghc-foldable1-classes-compat-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-foldable1-classes-compat-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-foldable1-classes-compat-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
