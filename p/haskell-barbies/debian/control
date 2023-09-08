@@ -1,0 +1,71 @@
+Source: haskell-barbies
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Ilias Tsitsimpis <iliastsi@debian.org>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc (>= 9.4),
+ ghc-prof,
+ libghc-distributive-dev,
+ libghc-distributive-prof,
+ libghc-quickcheck2-dev,
+ libghc-quickcheck2-prof,
+ libghc-tasty-dev,
+ libghc-tasty-prof,
+ libghc-tasty-hunit-dev,
+ libghc-tasty-hunit-prof,
+ libghc-tasty-quickcheck-dev,
+ libghc-tasty-quickcheck-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-distributive-doc,
+Standards-Version: 4.6.2
+Homepage: https://github.com/jcpetruzza/barbies#readme
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-barbies
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-barbies]
+X-Description: Classes for working with types that can change clothes
+ Types that are parametric on a functor are like Barbies that have an outfit
+ for each role. This package provides the basic abstractions to work with them
+ comfortably.
+
+Package: libghc-barbies-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-barbies-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-barbies-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
