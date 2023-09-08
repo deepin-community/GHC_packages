@@ -1,0 +1,63 @@
+Source: haskell-data-functor-logistic
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Ilias Tsitsimpis <iliastsi@debian.org>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc (>= 9.4),
+ ghc-prof,
+ libghc-distributive-dev,
+ libghc-distributive-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-distributive-doc,
+Standards-Version: 4.6.2
+Homepage: https://hackage.haskell.org/package/data-functor-logistic
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-data-functor-logistic
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-data-functor-logistic]
+X-Description: Updatable analogue of Distributive functors
+ This Haskell library introduces the Logistic class to provide settability to
+ containers. Logistic is to setters as Distributive is to getters. This can be
+ useful to complement Distributive.
+
+Package: libghc-data-functor-logistic-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-data-functor-logistic-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-data-functor-logistic-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
