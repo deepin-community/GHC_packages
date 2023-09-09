@@ -6,7 +6,7 @@ Bug-Debian: https://bugs.debian.org/875396
 
 --- a/vector.cabal
 +++ b/vector.cabal
-@@ -162,6 +162,9 @@
+@@ -146,6 +146,9 @@ Library
  
    Ghc-Options: -O2 -Wall
  
@@ -16,7 +16,7 @@ Bug-Debian: https://bugs.debian.org/875396
    if !flag(Wall)
      Ghc-Options: -fno-warn-orphans
  
-@@ -220,6 +223,9 @@
+@@ -204,6 +207,9 @@ test-suite vector-tests-O0
    Ghc-Options: -O0 -threaded
    Ghc-Options: -Wall
  
@@ -25,8 +25,8 @@ Bug-Debian: https://bugs.debian.org/875396
 +
    if !flag(Wall)
      Ghc-Options: -fno-warn-orphans -fno-warn-missing-signatures
-     if impl(ghc >= 8.0) && impl( ghc < 8.1)
-@@ -263,6 +269,9 @@
+     if impl(ghc >= 8.0) && impl(ghc < 8.1)
+@@ -246,6 +252,9 @@ test-suite vector-tests-O2
  
    Ghc-Options: -Wall
    Ghc-Options:  -O2 -threaded
