@@ -1,0 +1,67 @@
+Source: haskell-bitvec
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-primitive-dev (>= 0.5),
+ libghc-primitive-prof (>= 0.5),
+ libghc-vector-dev (>= 0.11),
+ libghc-vector-dev (<< 0.14),
+ libghc-vector-prof (>= 0.11),
+ libghc-vector-prof (<< 0.14),
+ libghc-primitive-dev (<< 0.9),
+ libghc-primitive-prof (<< 0.9),
+Build-Depends-Indep: ghc-doc,
+ libghc-primitive-doc,
+ libghc-vector-doc,
+Standards-Version: 4.6.2
+Homepage: https://github.com/Bodigrim/bitvec
+X-Description: space-efficient bit vectors
+ A newtype over 'Bool' with a better 'Vector' instance: 8x less
+ memory, up to 3500x faster.
+
+Package: libghc-bitvec-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-bitvec-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-bitvec-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
