@@ -1,10 +1,6 @@
 #!/usr/bin/make -f
 
-ifneq (,$(filter hppa m68k powerpc ppc64 sparc64 s390x, $(DEB_HOST_ARCH)))
-	DEB_ENABLE_TESTS = no
-else
-	DEB_ENABLE_TESTS = yes
-endif
+DEB_ENABLE_TESTS = yes
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
