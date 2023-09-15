@@ -6,9 +6,11 @@ Description: Correctly retrieve the type of the socket
 Author: Ilias Tsitsimpis <iliastsi@debian.org>
 Bug: https://github.com/snapframework/io-streams-haproxy/issues/18
 
+Index: b/src/System/IO/Streams/Network/HAProxy.hs
+===================================================================
 --- a/src/System/IO/Streams/Network/HAProxy.hs
 +++ b/src/System/IO/Streams/Network/HAProxy.hs
-@@ -72,15 +72,8 @@
+@@ -72,15 +72,8 @@ socketToProxyInfo s sa = do
      !sty <- getSockType
      return $! makeProxyInfo sa da (addrFamily sa) sty
    where
