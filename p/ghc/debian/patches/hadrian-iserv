@@ -3,9 +3,11 @@ Author: Ilias Tsitsimpis <iliastsi@debian.org>
 Bug: https://gitlab.haskell.org/ghc/ghc/-/issues/22557
 Bug: https://gitlab.haskell.org/ghc/ghc/-/issues/22697
 
+Index: b/hadrian/src/Packages.hs
+===================================================================
 --- a/hadrian/src/Packages.hs
 +++ b/hadrian/src/Packages.hs
-@@ -192,7 +192,7 @@
+@@ -192,7 +192,7 @@ programPath context@Context {..} = do
      -- See: https://github.com/snowleopard/hadrian/issues/570
      -- Likewise for @iserv@ and @unlit@.
      name <- programName context
@@ -14,3 +16,18 @@ Bug: https://gitlab.haskell.org/ghc/ghc/-/issues/22697
                then stageLibPath stage <&> (-/- "bin")
                else stageBinPath stage
      return $ path -/- name <.> exe
+Index: b/hadrian/bindist/Makefile
+===================================================================
+--- a/hadrian/bindist/Makefile
++++ b/hadrian/bindist/Makefile
+@@ -179,7 +179,9 @@ install_lib: lib/settings
+ 		    $(INSTALL_DATA) $$i "$$dest/`dirname $$i`" ;; \
+ 		esac; \
+ 	done; \
+-	chmod ugo+rx "$$dest"/bin/*
++	if test -d "$$dest"/bin/; then \
++		chmod ugo+rx "$$dest"/bin/*; \
++	fi
+ 	for i in $(DOCS); do \
+ 		cp -R $$i "$(DESTDIR)$(docdir)/"; \
+ 	done
