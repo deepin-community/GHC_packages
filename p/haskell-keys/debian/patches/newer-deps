@@ -1,0 +1,36 @@
+Index: b/keys.cabal
+===================================================================
+--- a/keys.cabal
++++ b/keys.cabal
+@@ -1,6 +1,7 @@
+ name:          keys
+ category:      Data Structures, Containers
+ version:       3.12.3
++x-revision: 4
+ license:       BSD3
+ cabal-version: >= 1.10
+ license-file:  LICENSE
+@@ -44,11 +45,11 @@ library
+     comonad              >= 4       && < 6,
+     containers           >= 0.3     && < 0.7,
+     free                 >= 4       && < 6,
+-    hashable             >= 1.1.2.3 && < 1.4,
+-    semigroupoids        >= 5.2     && < 6,
++    hashable             >= 1.1.2.3 && < 1.5,
++    semigroupoids        >= 5.2     && < 7,
+     semigroups           >= 0.8.3.1 && < 1,
+     tagged               >= 0.7.3   && < 1,
+-    transformers         >= 0.2     && < 0.6,
++    transformers         >= 0.2     && < 0.7,
+     transformers-compat  >= 0.3     && < 1,
+     unordered-containers >= 0.2.4   && < 0.3
+ 
+@@ -60,7 +61,7 @@ library
+     build-depends: ghc-prim == 0.2.*
+ 
+   if !impl(ghc >= 8.0)
+-    build-depends: base-orphans >= 0.5.4 && < 0.9
++    build-depends: base-orphans >= 0.5.4 && < 0.10
+ 
+   exposed-modules:
+     Data.Key
