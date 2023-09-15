@@ -12,22 +12,7 @@ Index: b/hadrian/src/Packages.hs
      -- Likewise for @iserv@ and @unlit@.
      name <- programName context
 -    path <- if package `elem` [iserv, touchy, unlit]
-+    path <- if package `elem` [touchy]
++    path <- if package `elem` [touchy, unlit]
                then stageLibPath stage <&> (-/- "bin")
                else stageBinPath stage
      return $ path -/- name <.> exe
-Index: b/hadrian/bindist/Makefile
-===================================================================
---- a/hadrian/bindist/Makefile
-+++ b/hadrian/bindist/Makefile
-@@ -179,7 +179,9 @@ install_lib: lib/settings
- 		    $(INSTALL_DATA) $$i "$$dest/`dirname $$i`" ;; \
- 		esac; \
- 	done; \
--	chmod ugo+rx "$$dest"/bin/*
-+	if test -d "$$dest"/bin/; then \
-+		chmod ugo+rx "$$dest"/bin/*; \
-+	fi
- 	for i in $(DOCS); do \
- 		cp -R $$i "$(DESTDIR)$(docdir)/"; \
- 	done
