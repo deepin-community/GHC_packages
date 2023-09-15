@@ -1,0 +1,39 @@
+Source: haskell-hadrian
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders:
+ Ilias Tsitsimpis <iliastsi@debian.org>,
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc (>= 9.4),
+ libghc-extra-dev (>= 1.4.7),
+ libghc-shake-dev (>= 0.18.3),
+ libghc-shake-dev (<< 0.20),
+ libghc-unordered-containers-dev (>= 0.2.1),
+ libghc-unordered-containers-dev (<< 0.3),
+Standards-Version: 4.6.2
+Homepage: https://www.haskell.org/ghc/
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-hadrian
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-hadrian]
+X-Description: build system for GHC
+ Hadrian is a modular, statically-typed, extensible build system for GHC,
+ introduced in the paper Non-recursive Make Considered Harmful. It consists of
+ a Haskell executable implemented using the shake library, and is used to
+ configure and build GHC.
+
+Package: hadrian
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

@@ -1,0 +1,10 @@
+#!/usr/bin/make -f
+
+# Tests require having the full GHC source code
+DEB_ENABLE_TESTS = no
+DEB_SETUP_GHC_CONFIGURE_ARGS += -f-selftest -f-threaded
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/hlibrary.mk
+
+build/hadrian:: build-ghc-stamp
