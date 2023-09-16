@@ -38,6 +38,7 @@ DEB_HOOGLE_TXT_DIR := /usr/lib/ghc-doc/hoogle/
 # script fails to properly detect them (e.g., it detects 'x86_64-unknown-linux'
 # instead of 'x86_64-linux-gnu'.
 EXTRA_CONFIGURE_FLAGS += --host $(DEB_BUILD_GNU_TYPE) --build $(DEB_BUILD_GNU_TYPE) --target $(DEB_HOST_GNU_TYPE)
+EXTRA_INSTALL_CONFIGURE_FLAGS += --host $(DEB_BUILD_GNU_TYPE) --build $(DEB_BUILD_GNU_TYPE) --target $(DEB_HOST_GNU_TYPE)
 
 # We're cross-building if DEB_BUILD_GNU_TYPE != DEB_HOST_GNU_TYPE
 ifneq ($(DEB_BUILD_GNU_TYPE), $(DEB_HOST_GNU_TYPE))
@@ -94,7 +95,11 @@ endif
 EXTRA_CONFIGURE_FLAGS += --with-system-libffi
 
 # Set LLVM version
-#EXTRA_CONFIGURE_FLAGS += --with-llc=llc-15 --with-opt=opt-15
+# If we don't set these, then the default value (llc / opt) will not work
+# on architectures where the default llc/opt version is different than
+# one of the supported versions.
+EXTRA_CONFIGURE_FLAGS += LLC=llc-15 OPT=opt-15
+EXTRA_INSTALL_CONFIGURE_FLAGS += LLC=llc-15 OPT=opt-15
 
 
 %:
@@ -166,7 +171,8 @@ $(BINDIST)/mk/install.mk:
 	cd $(BINDIST) && \
 		./configure \
 			--prefix=/usr \
-			--docdir=/usr/share/doc/ghc-doc
+			--docdir=/usr/share/doc/ghc-doc \
+			$(EXTRA_INSTALL_CONFIGURE_FLAGS)
 	# We cannot modify 'ghclibdir' through configure, mk/install.mk sets it
 	# to '$(libdir)/$(CrossCompilePrefix)ghc-$(ProjectVersion)'.
 	# Modify 'mk/install.mk' and set 'ghclibdir' to '/usr/lib/ghc'.
