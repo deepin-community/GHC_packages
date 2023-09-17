@@ -13,15 +13,15 @@ Build-Depends:
   devscripts,
   pkg-config,
   ghc:native (>= 9.0),
+  hadrian:native (>= 9.4) <!pkg.ghc.nohadrian>,
   libgmp-dev,
-  hadrian (>= 9.4) <!pkg.ghc.nohadrian>,
   llvm-15 [armel armhf],
   libffi-dev,
   libncurses-dev,
-  python3,
-  python3-sphinx,
-  python3-sphinx-rtd-theme,
-  dpkg-dev (>= 1.16.1.1)
+  python3:native,
+  python3-sphinx <!cross>,
+  python3-sphinx-rtd-theme <!cross>,
+  dpkg-dev,
 Build-Depends-Indep:
   hscolour,
   fop

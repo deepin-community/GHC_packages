@@ -4,9 +4,11 @@ Description: Pass 'mathjax' to Haddock
 Author: Ilias Tsitsimpis <iliastsi@debian.org>
 Bug: https://gitlab.haskell.org/ghc/ghc/-/issues/23625
 
+Index: b/hadrian/src/Settings/Builders/Haddock.hs
+===================================================================
 --- a/hadrian/src/Settings/Builders/Haddock.hs
 +++ b/hadrian/src/Settings/Builders/Haddock.hs
-@@ -32,6 +32,7 @@
+@@ -32,6 +32,7 @@ haddockBuilderArgs = mconcat
              , arg "-o", arg $ takeDirectory output
              , arg "-t", arg "Haskell Hierarchical Libraries"
              , arg "-p", arg "libraries/prologue.txt"
@@ -14,7 +16,7 @@ Bug: https://gitlab.haskell.org/ghc/ghc/-/issues/23625
              , pure [ "--read-interface="
                       ++ (takeFileName . takeDirectory) haddock
                       ++ "," ++ haddock | haddock <- inputs ] ]
-@@ -60,6 +61,7 @@
+@@ -60,6 +61,7 @@ haddockBuilderArgs = mconcat
              , arg "--hyperlinked-source"
              , arg "--hoogle"
              , arg "--quickjump"

@@ -43,9 +43,11 @@ EXTRA_INSTALL_CONFIGURE_FLAGS += --host $(DEB_BUILD_GNU_TYPE) --build $(DEB_BUIL
 # We're cross-building if DEB_BUILD_GNU_TYPE != DEB_HOST_GNU_TYPE
 ifneq ($(DEB_BUILD_GNU_TYPE), $(DEB_HOST_GNU_TYPE))
   # EXTRA_CONFIGURE_FLAGS += --enable-unregisterised
-  # EXTRA_CONFIGURE_FLAGS += --program-prefix=""
   # EXTRA_HADRIAN_FLAGS += --integer-simple
+  # EXTRA_CONFIGURE_FLAGS += --program-prefix=""
   EXTRA_HADRIAN_FLAGS += --flavour=quickest
+  # Do not build docs *at all* (avoid dependency on Sphinx)
+  EXTRA_HADRIAN_FLAGS += --docs=none
   BUILD_CROSS = YES
 else
   BUILD_CROSS = NO
