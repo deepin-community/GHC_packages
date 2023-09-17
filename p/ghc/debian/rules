@@ -199,7 +199,8 @@ debian/tmp: $(BINDIST)/mk/install.mk
 	# See also the debian/ghc.links file.
 	mkdir -p debian/tmp/var/lib/ghc
 	mv debian/tmp/usr/lib/ghc/lib/package.conf.d debian/tmp/var/lib/ghc/
-	rm debian/tmp/var/lib/ghc/package.conf.d/package.cache*
+	rm -f debian/tmp/var/lib/ghc/package.conf.d/package.cache*
+	rm -f debian/tmp/var/lib/ghc/package.conf.d/.stamp
 
 	# Modify the ghc-doc path in package.conf files
 	sed -ri 's,share/doc/ghc-doc/html/libraries/(.*)\.haddock,lib/ghc-doc/haddock/ghc/\1.haddock,' debian/tmp/var/lib/ghc/package.conf.d/*.conf
