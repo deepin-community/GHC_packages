@@ -1,0 +1,22 @@
+Description: Do not call 'ghc-pkg recache' in 'make install'
+ Do not call 'ghc-pkg recache' during 'make install'. We do that for two reasons:
+ .
+   * This will fail if we are building a cross compiler, since we
+     cannot run 'ghc-pkg recache'.
+   * We don't need to do this anyways, since we remove the resulting file
+     from the final deb packages. In Debian, we run 'ghc-pkg recache' during
+     installation of the package.
+Author: Ilias Tsitsimpis <iliastsi@debian.org>
+
+Index: b/hadrian/bindist/Makefile
+===================================================================
+--- a/hadrian/bindist/Makefile
++++ b/hadrian/bindist/Makefile
+@@ -230,7 +230,6 @@ update_package_db: install_bin install_l
+ 	@echo "Updating the package DB"
+ 	$(foreach p, $(PKG_CONFS),\
+ 		$(call patchpackageconf,$(shell echo $(notdir $p) | sed 's/-\([0-9]*[0-9]\.\)*conf//g'),$(shell echo "$p" | sed 's:\0xxx\0:   :g'),$(docdir),$(shell realpath -z --relative-to="$(ActualLibsDir)" "$(docdir)"),$(shell echo $(notdir $p) | sed 's/.conf//g')))
+-	'$(DESTDIR)$(ActualBinsDir)/$(CrossCompilePrefix)ghc-pkg' --global-package-db "$(DESTDIR)$(ActualLibsDir)/package.conf.d" recache
+ 
+ install_mingw:
+ 	@echo "Installing MingGW"

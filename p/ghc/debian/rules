@@ -38,13 +38,11 @@ DEB_HOOGLE_TXT_DIR := /usr/lib/ghc-doc/hoogle/
 # script fails to properly detect them (e.g., it detects 'x86_64-unknown-linux'
 # instead of 'x86_64-linux-gnu'.
 EXTRA_CONFIGURE_FLAGS += --host $(DEB_BUILD_GNU_TYPE) --build $(DEB_BUILD_GNU_TYPE) --target $(DEB_HOST_GNU_TYPE)
-EXTRA_INSTALL_CONFIGURE_FLAGS += --host $(DEB_BUILD_GNU_TYPE) --build $(DEB_BUILD_GNU_TYPE) --target $(DEB_HOST_GNU_TYPE)
 
 # We're cross-building if DEB_BUILD_GNU_TYPE != DEB_HOST_GNU_TYPE
 ifneq ($(DEB_BUILD_GNU_TYPE), $(DEB_HOST_GNU_TYPE))
   # EXTRA_CONFIGURE_FLAGS += --enable-unregisterised
   # EXTRA_HADRIAN_FLAGS += --integer-simple
-  # EXTRA_CONFIGURE_FLAGS += --program-prefix=""
   EXTRA_HADRIAN_FLAGS += --flavour=quickest
   # Do not build docs *at all* (avoid dependency on Sphinx)
   EXTRA_HADRIAN_FLAGS += --docs=none
@@ -145,6 +143,11 @@ override_dh_auto_configure:
 
 override_dh_auto_build-arch: export LC_ALL=C.UTF-8
 override_dh_auto_build-arch: hadrian/hadrian
+ifeq (YES,$(BUILD_CROSS))
+	# See https://gitlab.haskell.org/ghc/ghc/-/issues/23975
+	# and https://gitlab.haskell.org/ghc/ghc/-/issues/22006
+	$(error cross-compilation is not supported)
+endif
 	hadrian/hadrian \
 		-V -j \
 		--docs=no-haddocks --docs=no-sphinx-html --docs=no-sphinx-pdfs \
@@ -158,6 +161,9 @@ override_dh_auto_build-arch: hadrian/hadrian
 # OOM errors on some weak builders.
 override_dh_auto_build-indep: export LC_ALL=C.UTF-8
 override_dh_auto_build-indep: hadrian/hadrian
+ifeq (YES,$(BUILD_CROSS))
+	$(error override_dh_auto_build-indep is not supported when cross compiling)
+endif
 	hadrian/hadrian \
 		-V -j \
 		--docs=no-sphinx-pdfs \
@@ -208,6 +214,7 @@ debian/tmp: $(BINDIST)/mk/install.mk
 	sed -ri 's,share/doc/ghc-doc/html/libraries/(.*)\.haddock,lib/ghc-doc/haddock/ghc/\1.haddock,' debian/tmp/var/lib/ghc/package.conf.d/*.conf
 
 	# manpages
+ifeq (NO,$(BUILD_CROSS))
 	echo ".so man1/ghc.1" > debian/tmp/usr/share/man/man1/ghc-$(ProjectVersion).1
 	if test -e debian/tmp/usr/bin/ghci-$(ProjectVersion); then \
 		echo ".so man1/ghc.1" > debian/tmp/usr/share/man/man1/ghci.1 ;\
@@ -217,6 +224,7 @@ debian/tmp: $(BINDIST)/mk/install.mk
 	cp debian/ghc-pkg.man debian/tmp/usr/share/man/man1/ghc-pkg.1
 	echo ".so man1/ghc-pkg.1" > debian/tmp/usr/share/man/man1/ghc-pkg-$(ProjectVersion).1
 	cp debian/haddock.man debian/tmp/usr/share/man/man1/haddock.1
+endif
 
 	# Delete all the library LICENSE files
 	rm -f debian/tmp/usr/share/doc/ghc-doc/html/libraries/*/LICENSE
@@ -257,7 +265,9 @@ PROF_FILE = \( -name "*.p_*" -o -name "lib*_p.a" \)
 
 override_dh_auto_install-arch: debian/tmp
 	# Manpages
+ifeq (NO,$(BUILD_CROSS))
 	find debian/tmp/usr/share/man $(FILES)           >> debian/ghc.install
+endif
 	# ghc
 	find debian/tmp/usr/bin $(FILES)                 >> debian/ghc.install
 #	find debian/tmp/usr/share/ghc* $(FILES)          >> debian/ghc.install
@@ -276,6 +286,7 @@ override_dh_auto_install-indep: debian/tmp
 		-printf "%p $(DEB_HOOGLE_TXT_DIR)/%f\n" >> debian/ghc-doc.links
 	find debian/tmp/usr/share/doc/ghc-doc/html $(FILES) > debian/ghc-doc.install
 	find debian/tmp/usr/lib/ghc-doc $(FILES)      >> debian/ghc-doc.install
+	echo debian/tmp/usr/share/doc/ghc-doc/index.html >> debian/ghc-doc.install
 	# Normalize paths
 	sed -i s,^debian/tmp,, debian/*.install debian/*.links
 
@@ -284,8 +295,6 @@ override_dh_auto_install-indep: debian/tmp
 # Cleanup and other rules
 
 override_dh_auto_clean: clean-hadrian
-	dh_auto_clean
-
 	# Build artifacts
 	rm -rf _build/
 
@@ -297,6 +306,7 @@ override_dh_auto_clean: clean-hadrian
 	rm -rf debian/tmp-db
 
 override_dh_auto_test:
+ifeq (,$(filter nocheck, $(DEB_BUILD_OPTIONS)))
 	# Do some very simple tests that the compiler actually works
 	rm -rf debian/testghc
 	mkdir debian/testghc
@@ -311,11 +321,13 @@ override_dh_auto_test:
 	@printf "====BEGIN GHC INFO OUTPUT====\n"
 	@_build/stage1/bin/ghc --info
 	@printf "====END GHC INFO OUTPUT====\n"
+endif
 
 override_dh_compress:
 	dh_compress -X.haddock -X.txt
 
 override_dh_gencontrol:
+ifeq (NO,$(BUILD_CROSS))
 	# Generate substvars
 	chmod +x debian/provided_substvars
 	debian/provided_substvars
@@ -323,11 +335,10 @@ override_dh_gencontrol:
 	if test -e debian/tmp/usr/bin/ghci-$(ProjectVersion); then \
 		echo 'ghci=ghc-ghci' >> debian/ghc.substvars ; fi
 	# Add haddock substvars
-ifeq (NO,$(BUILD_CROSS))
 	echo "haddock:Provides=haddock-interface-$$(debian/tmp/usr/lib/ghc/bin/haddock --interface-version)" >> debian/ghc.substvars
 	echo "haddock:Depends=haddock-interface-$$(debian/tmp/usr/lib/ghc/bin/haddock --interface-version)" >> debian/ghc-doc.substvars
-endif
 	dh_haskell_provides
+endif
 	dh_gencontrol
 
 override_dh_shlibdeps:
