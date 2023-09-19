@@ -1,8 +1,6 @@
-Index: b/src/Data/Complex/Lens.hs
-===================================================================
 --- a/src/Data/Complex/Lens.hs
 +++ b/src/Data/Complex/Lens.hs
-@@ -43,7 +43,7 @@ import Data.Complex
+@@ -39,7 +39,7 @@ import Data.Complex
  -- >>> import Control.Lens
  -- >>> import Data.Complex
  -- >>> import Debug.SimpleReflect
@@ -11,7 +9,7 @@ Index: b/src/Data/Complex/Lens.hs
  
  -- | Access the 'realPart' of a 'Complex' number.
  --
-@@ -117,7 +117,7 @@ _magnitude f c = setMag <$> f r
+@@ -115,7 +115,7 @@ _magnitude f c = setMag <$> f r
  
  -- | Access the 'phase' of a 'Complex' number.
  --
@@ -19,8 +17,8 @@ Index: b/src/Data/Complex/Lens.hs
 +-- >>> (mkPolar 10 (2-pi) & _phase +~ pi & view _phase) ~~ 2
  -- True
  --
- -- This isn't /quite/ a legal 'Lens'. Notably the
-@@ -139,7 +139,7 @@ _phase f c = setPhase <$> f theta
+ -- This isn't /quite/ a legal t'Lens'. Notably the
+@@ -137,7 +137,7 @@ _phase f c = setPhase <$> f theta
  -- >>> (2.0 :+ 3.0) & _conjugate . _imagPart -~ 1
  -- 2.0 :+ 4.0
  --
