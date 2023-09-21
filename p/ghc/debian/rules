@@ -213,6 +213,13 @@ debian/tmp: $(BINDIST)/mk/install.mk
 	# Modify the ghc-doc path in package.conf files
 	sed -ri 's,share/doc/ghc-doc/html/libraries/(.*)\.haddock,lib/ghc-doc/haddock/ghc/\1.haddock,' debian/tmp/var/lib/ghc/package.conf.d/*.conf
 
+	# Replace ${pkgroot} in the package.conf files.
+	# The "pkgroot" is the directory containing the package database,
+	# which for us should be '/usr/lib/ghc/lib/'.
+	# The reason we change it here is because we are moving the package.conf
+	# files under '/var/lib/ghc/package.conf.d'.
+	sed -ri 's,\$$\{pkgroot\},/usr/lib/ghc/lib,' debian/tmp/var/lib/ghc/package.conf.d/*.conf
+
 	# manpages
 ifeq (NO,$(BUILD_CROSS))
 	echo ".so man1/ghc.1" > debian/tmp/usr/share/man/man1/ghc-$(ProjectVersion).1
