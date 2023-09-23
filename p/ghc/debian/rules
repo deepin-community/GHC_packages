@@ -55,7 +55,7 @@ endif
 # floating point coprocessor has been removed. GHC now only support floating
 # point via SSE2. This causes a baseline violation on Debian for i386 where
 # there is no SSE support. Fallback to unregisterised builds on i386.
-ifneq (,$(filter i386 powerpcspe x32 s390x riscv64, $(DEB_HOST_ARCH)))
+ifneq (,$(filter i386 powerpcspe x32, $(DEB_HOST_ARCH)))
   EXTRA_CONFIGURE_FLAGS += --enable-unregisterised
 endif
 
@@ -74,7 +74,7 @@ ifneq (,$(filter armhf, $(DEB_HOST_ARCH)))
 	EXTRA_HADRIAN_FLAGS += "*.*.ghc.hs.opts += -D__ARM_PCS_VFP"
 endif
 
-ifneq (,$(filter i386 mips mipsel s390x hppa, $(DEB_HOST_ARCH)))
+ifneq (,$(filter i386 mips mipsel hppa, $(DEB_HOST_ARCH)))
 	EXTRA_HADRIAN_FLAGS += "*.*.ghc.hs.opts += -optc--param -optcggc-min-expand=10"
 endif
 
