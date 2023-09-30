@@ -154,6 +154,13 @@ endif
 		--docs=no-haddocks --docs=no-sphinx-html --docs=no-sphinx-pdfs \
 		binary-dist-dir \
 		$(EXTRA_HADRIAN_FLAGS)
+	# I have noticed that on some rare cases the package cache
+	# generated for stage2 is stale. This is probably an upstream bug,
+	# and it wouldn't affect us (the package cache for binary-dist-dir is
+	# correct), but we use ghc-pkg from stage2 when we generate our control file.
+	# Maybe we should consider using ghc-pkg from binary-dist-dir instead.
+	# As a work-around for now, regenerate the stage2 package cache.
+	_build/stage1/bin/ghc-pkg recache
 
 # This rule is a superset of 'override_dh_auto_build-arch'. It builds everything
 # that the '-arch' rule builds, and then docs on top.
@@ -170,6 +177,13 @@ endif
 		--docs=no-sphinx-pdfs \
 		binary-dist-dir \
 		$(EXTRA_HADRIAN_FLAGS)
+	# I have noticed that on some rare cases the package cache
+	# generated for stage2 is stale. This is probably an upstream bug,
+	# and it wouldn't affect us (the package cache for binary-dist-dir is
+	# correct), but we use ghc-pkg from stage2 when we generate our control file.
+	# Maybe we should consider using ghc-pkg from binary-dist-dir instead.
+	# As a work-around for now, regenerate the stage2 package cache.
+	_build/stage1/bin/ghc-pkg recache
 
 
 # --------------------------------------------------------------------
@@ -329,6 +343,9 @@ ifeq (,$(filter nocheck, $(DEB_BUILD_OPTIONS)))
 	@printf "====BEGIN GHC INFO OUTPUT====\n"
 	@_build/stage1/bin/ghc --info
 	@printf "====END GHC INFO OUTPUT====\n"
+	@printf "====BEGIN GHC-PKG OUTPUT====\n"
+	@_build/stage1/bin/ghc-pkg list
+	@printf "====END GHC-PKG OUTPUT====\n"
 endif
 
 override_dh_compress:
