@@ -1,0 +1,22 @@
+commit 58766a1916b4980792763bab74f0c86e2a7ebf20
+Author: Oleg Grenrus <oleg.grenrus@iki.fi>
+Date:   Thu Jun 1 22:58:28 2023 +0300
+
+    QC-2.14.3 Double generators generates infinite number too
+
+Index: b/tests/PropUtils.hs
+===================================================================
+--- a/tests/PropUtils.hs
++++ b/tests/PropUtils.hs
+@@ -51,8 +51,9 @@ import qualified Data.Aeson.Decoding as
+ 
+ encodeDouble :: Double -> Double -> Property
+ encodeDouble num denom
+-    | isInfinite d || isNaN d = encode d === "null"
+-    | otherwise               = (read . L.unpack . encode) d === d
++    | isNaN d      = encode d === "null"
++    | isInfinite d = if d > 0 then encode d === "\"+inf\"" else encode d === "\"-inf\""
++    | otherwise    = (read . L.unpack . encode) d === d
+   where d = num / denom
+ 
+ encodeInteger :: Integer -> Property
