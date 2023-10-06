@@ -1,0 +1,79 @@
+Source: haskell-vector-hashtables
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Ilias Tsitsimpis <iliastsi@debian.org>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc (>= 9.4),
+ ghc-prof,
+ libghc-hashable-dev,
+ libghc-hashable-prof,
+ libghc-primitive-dev (>= 0.7.1.0),
+ libghc-primitive-prof,
+ libghc-vector-dev,
+ libghc-vector-prof,
+ libghc-quickcheck2-dev (>= 2.12.6.1),
+ libghc-quickcheck2-dev (<< 2.15),
+ libghc-quickcheck2-prof,
+ libghc-hspec-dev (>= 2.6.0),
+ libghc-hspec-dev (<< 2.12),
+ libghc-hspec-prof,
+ libghc-primitive-dev,
+ libghc-quickcheck-instances-dev (>= 0.3.19),
+ libghc-quickcheck-instances-dev (<< 0.4),
+ libghc-quickcheck-instances-prof,
+ hspec-discover,
+Build-Depends-Indep: ghc-doc,
+ libghc-hashable-doc,
+ libghc-primitive-doc,
+ libghc-vector-doc,
+Standards-Version: 4.6.2
+Homepage: https://github.com/klapaucius/vector-hashtables#readme
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-vector-hashtables
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-vector-hashtables]
+X-Description: Efficient vector-based mutable hashtables implementation.
+ This package provides efficient vector-based hashtable implementation similar
+ to .NET Generic Dictionary implementation (at the time of 2015).
+
+Package: libghc-vector-hashtables-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-vector-hashtables-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-vector-hashtables-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
