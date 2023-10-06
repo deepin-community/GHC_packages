@@ -1,3 +1,5 @@
+Index: b/Criterion/EmbeddedData.hs
+===================================================================
 --- a/Criterion/EmbeddedData.hs
 +++ b/Criterion/EmbeddedData.hs
 @@ -20,10 +20,9 @@ module Criterion.EmbeddedData
@@ -12,6 +14,8 @@
  chartContents :: ByteString
 -chartContents = $(embedFile =<< runIO (Chart.file Chart.Chart))
 +chartContents = $(embedFile "/usr/share/javascript/chart.js/Chart.js")
+Index: b/Criterion/Report.hs
+===================================================================
 --- a/Criterion/Report.hs
 +++ b/Criterion/Report.hs
 @@ -66,8 +66,6 @@ import qualified Data.Vector.Unboxed as
@@ -32,13 +36,15 @@
  #endif
  
      readDataFile :: FilePath -> IO T.Text
+Index: b/criterion.cabal
+===================================================================
 --- a/criterion.cabal
 +++ b/criterion.cabal
-@@ -101,7 +101,6 @@ library
+@@ -102,7 +102,6 @@ library
      filepath,
      Glob >= 0.7.2,
      microstache >= 1.0.1 && < 1.1,
 -    js-chart >= 2.9.4 && < 3,
      mtl >= 2,
      mwc-random >= 0.8.0.3,
-     -- TODO: Depend on optparse-applicative-0.17 as the minimum (see #258)
+     -- TODO: Depend on optparse-applicative-0.18 as the minimum (see #258)
