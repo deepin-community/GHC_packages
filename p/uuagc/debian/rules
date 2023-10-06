@@ -12,11 +12,6 @@ else
 EXTERNAL_UUAGC :=
 endif
 
-# Version 0.9.52.2 cannot be bootstrapped using uuagc, since the AG sources
-# (under src-ag) are missing. Fallback to compiling from the included Haskell
-# sources.
-EXTERNAL_UUAGC :=
-
 $(DEB_SETUP_BIN_NAME):
 	if test ! -e Setup.lhs -a ! -e Setup.hs; then echo "No setup script found!"; exit 1; fi
 	for setup in Setup.lhs Setup.hs; do if test -e $$setup; then ghc $(EXTERNAL_UUAGC) --make $$setup -o $(DEB_SETUP_BIN_NAME); exit 0; fi; done
