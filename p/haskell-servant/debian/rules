@@ -1,9 +1,8 @@
 #!/usr/bin/make -f
 
+DEB_ENABLE_TESTS = yes
 ifeq (s390x,$(DEB_HOST_ARCH))
 	DEB_ENABLE_TESTS = no
-else
-	DEB_ENABLE_TESTS = yes
 endif
 
 DEB_CABAL_PACKAGE = servant
