@@ -1,0 +1,75 @@
+Source: haskell-cabal-install-solver
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Ilias Tsitsimpis <iliastsi@debian.org>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc (>= 9.4),
+ ghc-prof,
+ libghc-cabal-syntax-dev (>= 3.8),
+ libghc-cabal-syntax-dev (<< 3.9),
+ libghc-cabal-syntax-prof,
+ libghc-edit-distance-dev (>= 0.2.2),
+ libghc-edit-distance-dev (<< 0.3),
+ libghc-edit-distance-prof,
+ libghc-cabal-syntax-dev,
+ libghc-tasty-dev (>= 1.2.3),
+ libghc-tasty-dev (<< 1.5),
+ libghc-tasty-prof,
+ libghc-tasty-hunit-dev (>= 0.10),
+ libghc-tasty-hunit-prof,
+ libghc-tasty-quickcheck-dev,
+ libghc-tasty-quickcheck-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-cabal-syntax-doc,
+ libghc-edit-distance-doc,
+Standards-Version: 4.6.2
+Homepage: http://www.haskell.org/cabal/
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-cabal-install-solver
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-cabal-install-solver]
+X-Description: The solver component for cabal-install
+ This library provides the solver component used in cabal-install, the
+ command-line interface for Cabal and Hackage.
+
+Package: libghc-cabal-install-solver-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-cabal-install-solver-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-cabal-install-solver-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
