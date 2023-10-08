@@ -1,0 +1,64 @@
+Source: haskell-deriving-aeson
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-aeson-dev (>= 1.4.7.0),
+ libghc-aeson-dev (<< 2.2),
+ libghc-aeson-prof (>= 1.4.7.0),
+ libghc-aeson-prof (<< 2.2),
+ libghc-aeson-dev,
+ libghc-aeson-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-aeson-doc,
+Standards-Version: 4.6.2
+X-Description: type-driven generic aeson instance customisation
+ This package provides a newtype wrapper with
+ FromJSON/ToJSON instances customisable via a phantom type parameter.
+ The instances can be rendered to the original type using DerivingVia.
+
+Package: libghc-deriving-aeson-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-deriving-aeson-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-deriving-aeson-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
