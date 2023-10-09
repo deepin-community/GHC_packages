@@ -1,0 +1,100 @@
+Source: haskell-isomorphism-class
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-hashable-dev (>= 1),
+ libghc-hashable-dev (<< 2),
+ libghc-hashable-prof (>= 1),
+ libghc-hashable-prof (<< 2),
+ libghc-primitive-dev (>= 0.7.3),
+ libghc-primitive-dev (<< 0.9),
+ libghc-primitive-prof (>= 0.7.3),
+ libghc-unordered-containers-dev (>= 0.2),
+ libghc-unordered-containers-dev (<< 0.3),
+ libghc-unordered-containers-prof (>= 0.2),
+ libghc-unordered-containers-prof (<< 0.3),
+ libghc-vector-dev (>= 0.12),
+ libghc-vector-dev (<< 0.14),
+ libghc-vector-prof (>= 0.12),
+ libghc-vector-prof (<< 0.14),
+ libghc-quickcheck2-dev (>= 2.13),
+ libghc-quickcheck2-dev (<< 3),
+ libghc-quickcheck2-prof (>= 2.13),
+ libghc-quickcheck2-prof (<< 3),
+ libghc-tasty-dev (>= 1.2.3),
+ libghc-tasty-dev (<< 2),
+ libghc-tasty-prof (>= 1.2.3),
+ libghc-tasty-prof (<< 2),
+ libghc-tasty-hunit-dev (>= 0.10.0.2),
+ libghc-tasty-hunit-dev (<< 0.11),
+ libghc-tasty-hunit-prof (>= 0.10.0.2),
+ libghc-tasty-hunit-prof (<< 0.11),
+ libghc-tasty-quickcheck-dev (>= 0.10.1),
+ libghc-tasty-quickcheck-dev (<< 0.11),
+ libghc-tasty-quickcheck-prof (>= 0.10.1),
+ libghc-tasty-quickcheck-prof (<< 0.11),
+Build-Depends-Indep: ghc-doc,
+ libghc-hashable-doc,
+ libghc-primitive-doc,
+ libghc-unordered-containers-doc,
+ libghc-vector-doc,
+Standards-Version: 4.6.2
+Homepage: https://github.com/nikita-volkov/isomorphism-class
+X-Description: Isomorphism typeclass solving the conversion problem
+ Isomorphism as a lawful solution to the conversion problem.
+ .
+ Many libraries exist that approach the conversion problem. However
+ all of them provide lawless typeclasses leaving it up to the author
+ of the instance to define what makes a proper conversion. This
+ results in inconsistencies across instances and their behavior
+ being not evident to the user.
+ .
+ This library tackles this problem with a lawful typeclass, making it
+ evident what any of its instances do.
+
+Package: libghc-isomorphism-class-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-isomorphism-class-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-isomorphism-class-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
