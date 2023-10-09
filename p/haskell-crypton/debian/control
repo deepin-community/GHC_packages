@@ -1,0 +1,86 @@
+Source: haskell-crypton
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Ilias Tsitsimpis <iliastsi@debian.org>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc (>= 9.4),
+ ghc-prof,
+ libghc-basement-dev (>= 0.0.6),
+ libghc-basement-prof,
+ libghc-memory-dev (>= 0.14.18),
+ libghc-memory-prof,
+ libghc-tasty-dev,
+ libghc-tasty-prof,
+ libghc-tasty-hunit-dev,
+ libghc-tasty-hunit-prof,
+ libghc-tasty-kat-dev,
+ libghc-tasty-kat-prof,
+ libghc-tasty-quickcheck-dev,
+ libghc-tasty-quickcheck-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-basement-doc,
+ libghc-memory-doc,
+Standards-Version: 4.6.2
+Homepage: https://github.com/kazu-yamamoto/crypton
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-crypton
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-crypton]
+X-Description: cryptography primitives for Haskell
+ A repository of cryptographic primitives.
+   - Symmetric ciphers: AES, DES, 3DES, CAST5, Blowfish, Twofish, Camellia,
+     RC4, Salsa, XSalsa, ChaCha
+   - Hash: SHA1, SHA2, SHA3, SHAKE, MD2, MD4, MD5, Keccak, Skein, Ripemd,
+     Tiger, Whirlpool, Blake2
+   - MAC: HMAC, KMAC, Poly1305
+   - Asymmetric crypto: DSA, RSA, DH, ECDH, ECDSA, ECC, Curve25519, Curve448,
+     Ed25519, Ed448
+   - Key Derivation Function: PBKDF2, Scrypt, HKDF, Argon2, BCrypt, BCryptPBKDF
+   - Cryptographic Random generation: System Entropy, Deterministic Random
+     Generator
+   - Data related: Anti-Forensic Information Splitter (AFIS)
+ .
+ This package strives to be a cryptographic kitchen sink that provides
+ cryptography for everyone.
+
+Package: libghc-crypton-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-crypton-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-crypton-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
