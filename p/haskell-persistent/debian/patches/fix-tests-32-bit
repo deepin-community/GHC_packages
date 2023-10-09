@@ -1,8 +1,10 @@
 Inspired by: https://github.com/yesodweb/persistent/pull/1429
 
+Index: b/test/Database/Persist/THSpec.hs
+===================================================================
 --- a/test/Database/Persist/THSpec.hs
 +++ b/test/Database/Persist/THSpec.hs
-@@ -25,6 +25,7 @@ module Database.Persist.THSpec where
+@@ -26,6 +26,7 @@ module Database.Persist.THSpec where
  
  import Control.Applicative (Const(..))
  import Data.Aeson (decode, encode)
@@ -10,7 +12,7 @@ Inspired by: https://github.com/yesodweb/persistent/pull/1429
  import Data.ByteString.Lazy.Char8 ()
  import Data.Coerce
  import Data.Functor.Identity (Identity(..))
-@@ -237,7 +238,10 @@ spec = describe "THSpec" $ do
+@@ -251,7 +252,10 @@ spec = describe "THSpec" $ do
          it "should have usual haskell name" $ do
              fieldHaskell `shouldBe` FieldNameHS "Id"
          it "should have correct underlying sql type" $ do
