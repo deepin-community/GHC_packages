@@ -81,7 +81,7 @@ endif
 
 ifneq (,$(filter mips64el, $(DEB_HOST_ARCH)))
 	# Pass -mxgot to fix relocation linker errors
-	EXTRA_HADRIAN_FLAGS += "*.GHC.ghc.hs.opts += -optc-mxgot"
+	EXTRA_HADRIAN_FLAGS += "*.*.ghc.hs.opts += -optc-mxgot"
 endif
 
 ifneq (,$(filter x32, $(DEB_HOST_ARCH)))
