@@ -1,0 +1,66 @@
+Source: haskell-gridtables
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-doclayout-dev,
+ libghc-doclayout-prof,
+ libghc-tasty-dev (>= 0.11),
+ libghc-tasty-prof (>= 0.11),
+ libghc-tasty-hunit-dev (>= 0.9),
+ libghc-tasty-hunit-prof (>= 0.9),
+Build-Depends-Indep: ghc-doc,
+ libghc-doclayout-doc,
+Standards-Version: 4.6.2
+Homepage: https://github.com/tarleb/gridtables
+X-Description: parser for reStructuredText-style grid tables
+ Provides a parser for plain-text representations of
+ tables. This package supports table headers, cells
+ spanning multiple columns or rows, as well as a way
+ to specfiy column alignments.
+
+Package: libghc-gridtables-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-gridtables-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-gridtables-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
