@@ -79,10 +79,12 @@ ifneq (,$(filter i386 mips mipsel hppa, $(DEB_HOST_ARCH)))
 	EXTRA_HADRIAN_FLAGS += "*.*.ghc.hs.opts += -optc--param -optcggc-min-expand=10"
 endif
 
-ifneq (,$(filter mips64el, $(DEB_HOST_ARCH)))
-	# Pass -mxgot to fix relocation linker errors
-	EXTRA_HADRIAN_FLAGS += "*.*.ghc.hs.opts += -optc-mxgot"
-endif
+# mips64el compiles fine without it. Keep this commented out in
+# case we need it in the future.
+# ifneq (,$(filter mips64el, $(DEB_HOST_ARCH)))
+# 	# Pass -mxgot to fix relocation linker errors
+# 	EXTRA_HADRIAN_FLAGS += "*.*.ghc.hs.opts += -optc-mxgot"
+# endif
 
 ifneq (,$(filter x32, $(DEB_HOST_ARCH)))
 	EXTRA_HADRIAN_FLAGS += --integer-simple
