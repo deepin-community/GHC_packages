@@ -5,19 +5,23 @@ Priority: optional
 Section: haskell
 Rules-Requires-Root: no
 Build-Depends:
+ haskell-devscripts (>= 0.13),
  cdbs,
  debhelper (>= 10),
  ghc (>= 8.4.3),
  ghc-prof,
- haskell-devscripts (>= 0.13),
+ libghc-commutative-semigroups-dev (>= 0.1),
+ libghc-commutative-semigroups-dev (<< 0.2),
+ libghc-commutative-semigroups-prof,
+ libghc-primes-dev (>= 0.2),
  libghc-primes-dev (<< 0.3),
  libghc-primes-dev (>= 0.2),
  libghc-primes-prof,
  libghc-vector-dev (>= 0.12),
- libghc-vector-dev (<< 0.13),
+ libghc-vector-dev (<< 0.14),
  libghc-vector-prof,
-Build-Depends-Indep:
- ghc-doc,
+Build-Depends-Indep: ghc-doc,
+ libghc-commutative-semigroups-doc,
  libghc-primes-doc,
  libghc-vector-doc,
 Standards-Version: 4.6.2
