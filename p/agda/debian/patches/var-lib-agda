@@ -4,15 +4,16 @@ Index: b/src/full/Agda/Interaction/Library.hs
 ===================================================================
 --- a/src/full/Agda/Interaction/Library.hs
 +++ b/src/full/Agda/Interaction/Library.hs
-@@ -300,16 +300,22 @@ getInstalledLibraries
+@@ -308,7 +308,7 @@ getInstalledLibraries
    -> LibM [AgdaLibFile] -- ^ Content of library files.  (Might have empty @LibName@s.)
  getInstalledLibraries overrideLibFile = mkLibM [] $ do
      filem <- liftIO $ runExceptT $ getLibrariesFile overrideLibFile
 -    case filem of
 +    userlibs <- case filem of
-       Left err -> raiseErrors' [OtherError err] >> return []
-       Right file -> do
-         if not (lfExists file) then return [] else do
+       Left theOverrideLibFile -> do
+         raiseErrors' [ LibrariesFileNotFound theOverrideLibFile ]
+         return []
+@@ -317,9 +317,15 @@ getInstalledLibraries overrideLibFile =
            ls    <- liftIO $ stripCommentLines <$> UTF8.readFile (lfPath file)
            files <- liftIO $ sequence [ (i, ) <$> expandEnvironmentVariables s | (i, s) <- ls ]
            parseLibFiles (Just file) $ nubOn snd files
@@ -21,7 +22,7 @@ Index: b/src/full/Agda/Interaction/Library.hs
 +      parseLibFiles Nothing $ zip [1..] $ map (systemLibDir </>) files
 +    return $ userlibs ++ systemlibs
    `catchIO` \ e -> do
-     raiseErrors' [ OtherError $ unlines ["Failed to read installed libraries.", show e] ]
+     raiseErrors' [ ReadError e "Failed to read installed libraries." ]
      return []
 +  where systemLibDir = "/var/lib/agda"
 +        isLibFile fn = takeExtension fn == ".agda-lib" && not ("." `List.isPrefixOf` fn)
