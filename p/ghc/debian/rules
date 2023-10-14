@@ -342,11 +342,16 @@ ifeq (,$(filter nocheck, $(DEB_BUILD_OPTIONS)))
 	_build/stage1/bin/ghc debian/testghc/foo.hs -o debian/testghc/foo -O2
 	[ "$$(debian/testghc/foo)" = "Foo" ]
 	rm debian/testghc/*
+	# Test runghc
+	echo 'main = putStrLn "Foo"' > debian/testghc/foo.hs
+	[ "$$(_build/stage1/bin/runghc debian/testghc/foo.hs)" = "Foo" ]
+	rm debian/testghc/*
+	# Output information about GHC
 	@printf "====BEGIN GHC INFO OUTPUT====\n"
-	@_build/stage1/bin/ghc --info
+	_build/stage1/bin/ghc --info
 	@printf "====END GHC INFO OUTPUT====\n"
 	@printf "====BEGIN GHC-PKG OUTPUT====\n"
-	@_build/stage1/bin/ghc-pkg list
+	_build/stage1/bin/ghc-pkg list
 	@printf "====END GHC-PKG OUTPUT====\n"
 endif
 
