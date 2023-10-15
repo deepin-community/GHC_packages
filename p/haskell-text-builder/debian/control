@@ -1,0 +1,82 @@
+Source: haskell-text-builder
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-text-builder-dev-dev (>= 0.3),
+ libghc-text-builder-dev-dev (<< 0.4),
+ libghc-text-builder-dev-prof (>= 0.3),
+ libghc-text-builder-dev-prof (<< 0.4),
+ libghc-quickcheck2-dev (>= 2.13),
+ libghc-quickcheck2-dev (<< 3),
+ libghc-quickcheck2-prof (>= 2.13),
+ libghc-quickcheck2-prof (<< 3),
+ libghc-quickcheck-instances-dev (>= 0.3.22),
+ libghc-quickcheck-instances-dev (<< 0.4),
+ libghc-quickcheck-instances-prof (>= 0.3.22),
+ libghc-quickcheck-instances-prof (<< 0.4),
+ libghc-tasty-dev (>= 1.2.3),
+ libghc-tasty-dev (<< 2),
+ libghc-tasty-prof (>= 1.2.3),
+ libghc-tasty-prof (<< 2),
+ libghc-tasty-hunit-dev (>= 0.10.0.2),
+ libghc-tasty-hunit-dev (<< 0.11),
+ libghc-tasty-hunit-prof (>= 0.10.0.2),
+ libghc-tasty-hunit-prof (<< 0.11),
+ libghc-tasty-quickcheck-dev (>= 0.10.1),
+ libghc-tasty-quickcheck-dev (<< 0.11),
+ libghc-tasty-quickcheck-prof (>= 0.10.1),
+ libghc-tasty-quickcheck-prof (<< 0.11),
+Build-Depends-Indep: ghc-doc,
+ libghc-text-builder-dev-doc,
+Standards-Version: 4.6.2
+Homepage: https://github.com/nikita-volkov/text-builder
+X-Description: efficient strict text builder
+ Specification of how to efficiently construct strict Text. Provides
+ instances of Semigroup and Monoid, which have complexity of O(1).
+
+Package: libghc-text-builder-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-text-builder-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-text-builder-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
