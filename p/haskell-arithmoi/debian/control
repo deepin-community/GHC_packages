@@ -1,0 +1,117 @@
+Source: haskell-arithmoi
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-chimera-dev (>= 0.3),
+ libghc-chimera-prof (>= 0.3),
+ libghc-constraints-dev,
+ libghc-constraints-prof,
+ libghc-exact-pi-dev (>= 0.5),
+ libghc-exact-pi-prof (>= 0.5),
+ libghc-integer-logarithms-dev (>= 1.0),
+ libghc-integer-logarithms-prof (>= 1.0),
+ libghc-integer-roots-dev (>= 1.0),
+ libghc-integer-roots-prof (>= 1.0),
+ libghc-mod-dev,
+ libghc-mod-prof,
+ libghc-random-dev (>= 1.0),
+ libghc-random-dev (<< 1.3),
+ libghc-random-prof (>= 1.0),
+ libghc-random-prof (<< 1.3),
+ libghc-semirings-dev (>= 0.5.2),
+ libghc-semirings-prof (>= 0.5.2),
+ libghc-vector-dev (>= 0.12),
+ libghc-vector-prof (>= 0.12),
+ libghc-quickcheck2-dev (>= 2.10),
+ libghc-quickcheck2-prof (>= 2.10),
+ libghc-exact-pi-dev (>= 0.4.1.1),
+ libghc-exact-pi-prof (>= 0.4.1.1),
+ libghc-semirings-dev (>= 0.2),
+ libghc-semirings-prof (>= 0.2),
+ libghc-smallcheck-dev (>= 1.2),
+ libghc-smallcheck-dev (<< 1.3),
+ libghc-smallcheck-prof (>= 1.2),
+ libghc-smallcheck-prof (<< 1.3),
+ libghc-tasty-dev (>= 0.10),
+ libghc-tasty-prof (>= 0.10),
+ libghc-tasty-hunit-dev (>= 0.9),
+ libghc-tasty-hunit-dev (<< 0.11),
+ libghc-tasty-hunit-prof (>= 0.9),
+ libghc-tasty-hunit-prof (<< 0.11),
+ libghc-tasty-quickcheck-dev (>= 0.9),
+ libghc-tasty-quickcheck-dev (<< 0.11),
+ libghc-tasty-quickcheck-prof (>= 0.9),
+ libghc-tasty-quickcheck-prof (<< 0.11),
+ libghc-tasty-rerun-dev (>= 1.1.17),
+ libghc-tasty-rerun-prof (>= 1.1.17),
+ libghc-tasty-smallcheck-dev (>= 0.8),
+ libghc-tasty-smallcheck-dev (<< 0.9),
+ libghc-tasty-smallcheck-prof (>= 0.8),
+ libghc-tasty-smallcheck-prof (<< 0.9),
+ libghc-vector-dev,
+ libghc-vector-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-chimera-doc,
+ libghc-constraints-doc,
+ libghc-exact-pi-doc,
+ libghc-integer-logarithms-doc,
+ libghc-integer-roots-doc,
+ libghc-mod-doc,
+ libghc-random-doc,
+ libghc-semirings-doc,
+ libghc-vector-doc,
+Standards-Version: 4.6.2
+Homepage: https://github.com/Bodigrim/arithmoi
+X-Description: efficient basic number-theoretic functions
+ A library of basic functionality needed for
+ number-theoretic calculations. The aim of this library
+ is to provide efficient implementations of the functions.
+ Primes and related things (totients, factorisation),
+ powers (integer roots and tests, modular exponentiation).
+
+Package: libghc-arithmoi-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-arithmoi-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-arithmoi-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
