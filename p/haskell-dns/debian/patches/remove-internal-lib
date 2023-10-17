@@ -4,11 +4,9 @@ Description: Remove 'dns-internal' internal library
  under other-modules.
 Author: Ilias Tsitsimpis <iliastsi@debian.org>
 
-Index: haskell-dns/dns.cabal
-===================================================================
---- haskell-dns.orig/dns.cabal	2020-06-15 14:55:56.561218309 +0300
-+++ haskell-dns/dns.cabal	2020-06-15 14:56:03.774217730 +0300
-@@ -20,40 +20,6 @@
+--- a/dns.cabal
++++ b/dns.cabal
+@@ -20,41 +20,6 @@ Tested-With:            GHC == 8.0.2
                        , GHC == 8.6.5
                        , GHC == 8.8.1
  
@@ -35,6 +33,7 @@ Index: haskell-dns/dns.cabal
 -                      , base16-bytestring
 -                      , base64-bytestring
 -                      , bytestring
+-                      , case-insensitive
 -                      , containers
 -                      , cryptonite
 -                      , hourglass
@@ -49,7 +48,7 @@ Index: haskell-dns/dns.cabal
  Library
    Default-Language:     Haskell2010
    GHC-Options:          -Wall
-@@ -67,8 +33,19 @@
+@@ -68,8 +33,19 @@ Library
                          Network.DNS.Encode
                          Network.DNS.IO
    Other-Modules:        Network.DNS.Transport
@@ -71,7 +70,7 @@ Index: haskell-dns/dns.cabal
                        , array
                        , async
                        , attoparsec
-@@ -93,7 +70,6 @@
+@@ -94,7 +70,6 @@ Test-Suite network-tests
    Other-Modules:        LookupSpec
                          IOSpec
    Build-Depends:        dns
@@ -79,7 +78,7 @@ Index: haskell-dns/dns.cabal
                        , base
                        , hspec
                        , network
-@@ -108,7 +84,6 @@
+@@ -110,7 +85,6 @@ Test-Suite spec-tests
                          DecodeSpec
                          RoundTripSpec
    Build-Depends:        dns
