@@ -1,8 +1,8 @@
 #! /usr/bin/perl
 
--x 'inplace/bin/ghc-pkg' or die "inplace ghc-pkg not executable or present";
+-x '_build/stage1/bin/ghc-pkg' or die "ghc-pkg not executable or present";
 
-open PKG, 'inplace/bin/ghc-pkg list --simple-output |'
+open PKG, '_build/stage1/bin/ghc-pkg list --simple-output |'
     or die "ghc-pkg list failed: $!";
 
 my @ignored = ('ghc', 'rts');
