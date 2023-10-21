@@ -1,0 +1,88 @@
+Description: Fix tests on 32bit systems
+  Revert commit f089cdbf5dc5b0e396dcad7497871297770d08a5.
+Bug: https://github.com/haskell/aeson/issues/1060
+
+Index: b/tests/JSONTestSuite.hs
+===================================================================
+--- a/tests/JSONTestSuite.hs
++++ b/tests/JSONTestSuite.hs
+@@ -22,69 +22,19 @@ import qualified Data.Aeson.Decoding.Byt
+ 
+ 
+ jsonTestSuiteTest :: FilePath -> TestTree
+-jsonTestSuiteTest path = case take 2 fileName of
+-    "n_"                                                -> negative
+-    "y_"                                                -> positive
+-    "i_" | fileName `HashSet.member` ignore_accepted    -> positive
+-         | otherwise                                    -> negative
+-    _    | fileName `HashSet.member` transform_rejected -> negative
+-         | otherwise                                    -> positive
++jsonTestSuiteTest path = testCase fileName $ do
++    payload <- L.readFile path
++    let result = eitherDecode payload :: Either String Value
++    assertBool (show result) $ case take 2 fileName of
++      "n_"                                                -> isLeft result
++      "y_"                                                -> isRight result
++      "i_" | fileName `HashSet.member` ignore_accepted    -> isRight result
++           | otherwise                                    -> isLeft result
++      _    | fileName `HashSet.member` transform_rejected -> isLeft result
++           | otherwise                                    -> isRight result -- test_transform tests have inconsistent names
+   where
+     fileName = takeFileName path
+ 
+-    diff ref new = ["diff", "-u", ref, new]
+-
+-    positive = testGroup fileName
+-        [ goldenVsStringDiff "decode" diff ("tests" </>  "JSONTestSuite" </> "results" </> fileName -<.> "txt") $ do
+-            payload <- B.readFile path
+-            let result = eitherDecodeStrict payload :: Either String Value
+-            assertBool (show result) (isRight result)
+-            return (LBS8.pack (show result ++ "\n"))
+-
+-        , goldenVsStringDiff "decode via tokens" diff ("tests" </>  "JSONTestSuite" </> "results" </> fileName -<.> "txt") $ do
+-            payload <- B.readFile path
+-            let result = D.eitherDecodeStrict payload :: Either String Value
+-            assertBool (show result) (isRight result)
+-            return (LBS8.pack (show result ++ "\n"))
+-
+-        , goldenVsStringDiff "tokens bs" diff ("tests" </>  "JSONTestSuite" </> "results" </> fileName -<.> "tok") $ do
+-            payload <- B.readFile path
+-            let result = D.bsToTokens payload
+-            return (LBS8.pack (unlines (showTokens (const []) result)))
+-
+-        , goldenVsStringDiff "tokens lbs" diff ("tests" </>  "JSONTestSuite" </> "results" </> fileName -<.> "tok") $ do
+-            payload <- L.readFile path
+-            let result = D.lbsToTokens payload
+-            return (LBS8.pack (unlines (showTokens (const []) result)))
+-
+-        ]
+-
+-    negative = testGroup fileName
+-        [ testCase "decode" $ do
+-            payload <- B.readFile path
+-
+-            let result1 = eitherDecodeStrict payload :: Either String Value
+-            assertBool ("decode:" ++ show result1) (isLeft result1)
+-
+-            let result2 = D.eitherDecodeStrict payload :: Either String Value
+-            assertBool ("strict:" ++ show result2) (isLeft result2)
+-
+-            payloadL <- L.readFile path
+-
+-            let result3 = D.eitherDecode payloadL :: Either String Value
+-            assertBool ("lazy:" ++ show result3) (isLeft result3)
+-
+-        , goldenVsStringDiff "tokens bs" diff ("tests" </>  "JSONTestSuite" </> "results" </> fileName -<.> "tok") $ do
+-            payload <- B.readFile path
+-            let result = D.bsToTokens payload
+-            return (LBS8.pack (unlines (showTokens (const []) result)))
+-
+-        , goldenVsStringDiff "tokens lbs" diff ("tests" </>  "JSONTestSuite" </> "results" </> fileName -<.> "tok") $ do
+-            payload <- L.readFile path
+-            let result = D.lbsToTokens payload
+-            return (LBS8.pack (unlines (showTokens (const []) result)))
+-
+-        ]
+ 
+ showTokens :: Show e => (k -> [String]) -> Tokens k e -> [String]
+ showTokens kont (TkLit l k)      = ("TkLit " ++ show l) : kont k
