@@ -1,0 +1,104 @@
+Source: haskell-quickcheck-classes
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-quickcheck2-dev (>= 2.10.0),
+ libghc-quickcheck2-prof (>= 2.10.0),
+ libghc-aeson-dev (>= 0.9),
+ libghc-aeson-prof (>= 0.9),
+ libghc-primitive-dev (>= 0.6.4),
+ libghc-primitive-dev (<< 0.9),
+ libghc-primitive-prof (>= 0.6.4),
+ libghc-primitive-addr-dev (>= 0.1.0.2),
+ libghc-primitive-addr-dev (<< 0.2),
+ libghc-primitive-addr-prof (>= 0.1.0.2),
+ libghc-primitive-addr-prof (<< 0.2),
+ libghc-quickcheck-classes-base-dev (>= 0.6.2),
+ libghc-quickcheck-classes-base-dev (<< 0.7),
+ libghc-quickcheck-classes-base-prof (>= 0.6.2),
+ libghc-quickcheck-classes-base-prof (<< 0.7),
+ libghc-semigroupoids-dev,
+ libghc-semigroupoids-prof,
+ libghc-semirings-dev (>= 0.4.2),
+ libghc-semirings-prof (>= 0.4.2),
+ libghc-vector-dev (>= 0.12),
+ libghc-vector-prof (>= 0.12),
+ libghc-quickcheck2-dev,
+ libghc-quickcheck2-prof,
+ libghc-aeson-dev,
+ libghc-aeson-prof,
+ libghc-base-orphans-dev (>= 0.5),
+ libghc-base-orphans-prof (>= 0.5),
+ libghc-primitive-dev,
+ libghc-primitive-prof,
+ libghc-tagged-dev,
+ libghc-tagged-prof,
+ libghc-tasty-dev,
+ libghc-tasty-prof,
+ libghc-tasty-quickcheck-dev,
+ libghc-tasty-quickcheck-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-quickcheck2-doc,
+ libghc-aeson-doc,
+ libghc-primitive-doc,
+ libghc-primitive-addr-doc,
+ libghc-quickcheck-classes-base-doc,
+ libghc-semigroupoids-doc,
+ libghc-semirings-doc,
+ libghc-vector-doc,
+Standards-Version: 4.6.2
+Homepage: https://github.com/andrewthad/quickcheck-classes#readme
+X-Description: QuickCheck common typeclasses
+ This library provides QuickCheck properties to ensure
+ that typeclass instances adhere to the set of laws that
+ they are supposed to. There are other libraries that do
+ similar things, such as `genvalidity-hspec` and `checkers`.
+ This library differs from other solutions by not introducing
+ any new typeclasses that the user needs to learn.
+
+Package: libghc-quickcheck-classes-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-quickcheck-classes-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-quickcheck-classes-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
