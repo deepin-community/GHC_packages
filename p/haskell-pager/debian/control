@@ -1,0 +1,68 @@
+Source: haskell-pager
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Clint Adams <clint@debian.org>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-conduit-dev (>= 1.2.3),
+ libghc-conduit-prof (>= 1.2.3),
+ libghc-conduit-extra-dev,
+ libghc-conduit-extra-prof,
+ libghc-resourcet-dev,
+ libghc-resourcet-prof,
+ libghc-safe-dev,
+ libghc-safe-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-conduit-doc,
+ libghc-conduit-extra-doc,
+ libghc-resourcet-doc,
+ libghc-safe-doc,
+Standards-Version: 4.6.2
+Homepage: https://github.com/pharpend/pager
+X-Description: open up a pager, like 'less' or 'more'
+ This opens up the user's $PAGER.
+
+Package: libghc-pager-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-pager-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-pager-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
