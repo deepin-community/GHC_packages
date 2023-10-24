@@ -1,6 +1,8 @@
+Index: b/tests/UnitTests.hs
+===================================================================
 --- a/tests/UnitTests.hs
 +++ b/tests/UnitTests.hs
-@@ -344,7 +344,7 @@
+@@ -344,7 +344,7 @@ commonTestsWith verb site = [
      , testCase "put" $ basicPut verb site
      , testCase "delete" $ basicDelete verb site
      , testCase "404" $ throwsStatusCode verb site
@@ -9,7 +11,7 @@
      , testCase "redirectOverflow" $ redirectOverflow verb site
      , testCase "invalidURL" $ invalidURL verb site
      , testCase "funkyScheme" $ funkyScheme verb site
-@@ -378,8 +378,6 @@
+@@ -378,8 +378,6 @@ httpbinTestsWith verb site = commonTests
  
  -- Tests that our local httpbin clone doesn't yet support.
  httpbinTests verb = [testGroup "httpbin" [
@@ -18,7 +20,7 @@
    ]]
  
  -- Tests that httpbin.org doesn't support.
-@@ -407,8 +405,6 @@
+@@ -407,8 +405,6 @@ testWith tests = do
    s <- Session.newSession
    flip E.finally (killThread tid) .
      defaultMain $ tests <>
