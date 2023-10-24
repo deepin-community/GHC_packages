@@ -1,154 +1,20 @@
 --- a/cryptol.cabal
 +++ b/cryptol.cabal
-@@ -44,7 +44,7 @@
-   Default-language:
-     Haskell2010
-   Build-depends:       base              >= 4.8 && < 5,
--                       base-compat       >= 0.6 && < 0.11,
-+                       base-compat       >= 0.6 && < 0.12,
-                        bytestring        >= 0.10,
-                        array             >= 0.4,
-                        containers        >= 0.5,
---- a/src/Cryptol/Parser/NoPat.hs
-+++ b/src/Cryptol/Parser/NoPat.hs
-@@ -542,10 +542,8 @@
- instance Applicative NoPatM where pure = return; (<*>) = ap
- instance Monad NoPatM where
-   return x  = M (return x)
--  fail x    = M (fail x)
-   M x >>= k = M (x >>= unM . k)
+@@ -74,7 +74,7 @@ library
+                        prettyprinter     >= 1.7.0,
+                        pretty-show,
+                        process           >= 1.2,
+-                       sbv               >= 9.1 && < 10.2,
++                       sbv               >= 9.1 && < 10.3,
+                        simple-smt        >= 0.9.7,
+                        stm               >= 2.4,
+                        strict,
+@@ -85,7 +85,7 @@ library
+                        mtl               >= 2.2.1,
+                        time              >= 1.6.0.1,
+                        panic             >= 0.3,
+-                       what4             >= 1.4 && < 1.5
++                       what4             >= 1.4 && < 1.6
  
--
- -- | Pick a new name, to be used when desugaring patterns.
- newName :: NoPatM PName
- newName = M $ sets $ \s -> let x = names s
---- a/src/Cryptol/Parser/ParserUtils.hs
-+++ b/src/Cryptol/Parser/ParserUtils.hs
-@@ -139,11 +139,13 @@
- 
- instance Monad ParseM where
-   return a  = P (\_ _ s -> Right (a,s))
--  fail s    = panic "[Parser] fail" [s]
-   m >>= k   = P (\cfg p s1 -> case unP m cfg p s1 of
-                             Left e       -> Left e
-                             Right (a,s2) -> unP (k a) cfg p s2)
- 
-+instance MonadFail ParseM where
-+  fail s    = panic "[Parser] fail" [s]
-+
- happyError :: ParseM a
- happyError = P $ \cfg _ s ->
-   case sPrevTok s of
---- a/src/Cryptol/Eval/Monad.hs
-+++ b/src/Cryptol/Eval/Monad.hs
-@@ -166,11 +166,13 @@
- 
- instance Monad Eval where
-   return = Ready
--  fail x = Thunk (\_ -> fail x)
-   (>>=)  = evalBind
-   {-# INLINE return #-}
-   {-# INLINE (>>=) #-}
- 
-+instance MonadFail Eval where
-+  fail x = Thunk (\_ -> fail x)
-+
- instance MonadIO Eval where
-   liftIO = io
- 
---- a/src/Cryptol/IR/FreeVars.hs
-+++ b/src/Cryptol/IR/FreeVars.hs
-@@ -9,7 +9,6 @@
- import qualified Data.Set as Set
- import           Data.Map ( Map )
- import qualified Data.Map as Map
--import           Data.Semigroup (Semigroup(..))
- 
- import Cryptol.TypeCheck.AST
- 
---- a/src/Cryptol/ModuleSystem/Exports.hs
-+++ b/src/Cryptol/ModuleSystem/Exports.hs
-@@ -4,7 +4,6 @@
- import Data.Set(Set)
- import qualified Data.Set as Set
- import Data.Foldable(fold)
--import Data.Semigroup (Semigroup(..))
- import Control.DeepSeq(NFData)
- import GHC.Generics (Generic)
- 
---- a/src/Cryptol/Utils/Patterns.hs
-+++ b/src/Cryptol/Utils/Patterns.hs
-@@ -17,10 +17,11 @@
-   (<*>)  = ap
- 
- instance Monad Match where
--  fail _ = empty
-   Match m >>= f = Match $ \no yes -> m no $ \a ->
-                                      let Match n = f a in
-                                      n no yes
-+instance MonadFail Match where
-+  fail _ = empty
- 
- instance Alternative Match where
-   empty = Match $ \no _ -> no
---- a/src/Cryptol/TypeCheck/Monad.hs
-+++ b/src/Cryptol/TypeCheck/Monad.hs
-@@ -278,9 +278,11 @@
- 
- instance Monad InferM where
-   return x      = IM (return x)
--  fail x        = IM (fail x)
-   IM m >>= f    = IM (m >>= unIM . f)
- 
-+instance MonadFail InferM where
-+  fail x        = IM (fail x)
-+
- instance MonadFix InferM where
-   mfix f        = IM (mfix (unIM . f))
- 
-@@ -835,11 +837,10 @@
- 
- instance Monad KindM where
-   return x      = KM (return x)
--  fail x        = KM (fail x)
-   KM m >>= k    = KM (m >>= unKM . k)
- 
--
--
-+instance MonadFail KindM where
-+  fail x        = KM (fail x)
- 
- {- | The arguments to this function are as follows:
- 
---- a/src/Cryptol/TypeCheck/Sanity.hs
-+++ b/src/Cryptol/TypeCheck/Sanity.hs
-@@ -467,7 +467,6 @@
- 
- instance Monad TcM where
-   return a    = TcM (return a)
--  fail x      = TcM (fail x)
-   TcM m >>= f = TcM (do a <- m
-                         let TcM m1 = f a
-                         m1)
---- a/src/Cryptol/Parser/NoInclude.hs
-+++ b/src/Cryptol/Parser/NoInclude.hs
-@@ -104,6 +104,8 @@
- instance Monad NoIncM where
-   return x = M (return x)
-   m >>= f  = M (unM m >>= unM . f)
-+
-+instance MonadFail NoIncM where
-   fail x   = M (fail x)
- 
- -- | Raise an 'IncludeFailed' error.
---- a/src/Cryptol/ModuleSystem/Monad.hs
-+++ b/src/Cryptol/ModuleSystem/Monad.hs
-@@ -325,6 +325,8 @@
- 
-   {-# INLINE (>>=) #-}
-   m >>= f       = ModuleT (unModuleT m >>= unModuleT . f)
-+
-+instance MonadFail m => MonadFail (ModuleT m) where
-   {-# INLINE fail #-}
-   fail          = ModuleT . raise . OtherFailure
- 
+   if impl(ghc >= 9.0)
+     build-depends:     ghc-bignum        >= 1.0 && < 1.4
