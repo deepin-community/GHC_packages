@@ -1,0 +1,78 @@
+--- a/test/ExprBuilderSMTLib2.hs
++++ b/test/ExprBuilderSMTLib2.hs
+@@ -1159,39 +1159,13 @@ testUnsafeSetAbstractValue2 = testCase "
+         , "compound symbolic expression"
+         ]
+ 
+-testResolveSymBV :: WURB.SearchStrategy -> TestTree
+-testResolveSymBV searchStrat =
+-  testProperty ("test resolveSymBV (" ++ show (PP.pretty searchStrat) ++ ")") $
+-  H.property $ do
+-    let w = knownNat @8
+-    lb <- H.forAll $ HGen.word8 $ HRange.constant 0 maxBound
+-    ub <- H.forAll $ HGen.word8 $ HRange.constant lb maxBound
+-
+-    rbv <- liftIO $ withYices $ \sym proc -> do
+-      bv <- freshConstant sym (safeSymbol "bv") knownRepr
+-      p1 <- bvUge sym bv =<< bvLit sym w (BV.mkBV w (toInteger lb))
+-      p2 <- bvUle sym bv =<< bvLit sym w (BV.mkBV w (toInteger ub))
+-      p3 <- andPred sym p1 p2
+-      assume (solverConn proc) p3
+-      WURB.resolveSymBV sym searchStrat w proc bv
+-
+-    case rbv of
+-      WURB.BVConcrete bv -> do
+-        let bv' = fromInteger $ BV.asUnsigned bv
+-        lb H.=== bv'
+-        ub H.=== bv'
+-      WURB.BVSymbolic bounds -> do
+-        let (lb', ub') = WUBA.ubounds bounds
+-        lb H.=== fromInteger lb'
+-        ub H.=== fromInteger ub'
+-
+ ----------------------------------------------------------------------
+ 
+ 
+ main :: IO ()
+ main = do
+   testLevel <- TestLevel . fromMaybe "0" <$> lookupEnv "CI_TEST_LEVEL"
+-  let solverNames = SolverName <$> [ "cvc4", "cvc5", "yices", "z3" ]
++  let solverNames = SolverName <$> [ "cvc4", "cvc5", "z3" ]
+   solvers <- reportSolverVersions testLevel id
+              =<< (zip solverNames <$> mapM getSolverVersion solverNames)
+   let z3Tests =
+@@ -1278,17 +1252,6 @@ main = do
+ 
+         , testCase "CVC4 #182 test case" $ withCVC4 issue182Test
+         ]
+-  let yicesTests =
+-        [
+-          testResolveSymBV WURB.ExponentialSearch
+-        , testResolveSymBV WURB.BinarySearch
+-
+-        , testCase "Yices 0-tuple" $ withYices zeroTupleTest
+-        , testCase "Yices 1-tuple" $ withYices oneTupleTest
+-        , testCase "Yices pair"    $ withYices pairTest
+-        , testCase "Yices rounding" $ withYices roundingTest
+-        , testCase "Yices #182 test case" $ withYices issue182Test
+-        ]
+   let cvc5Tests = cvc4Tests
+   let skipIfNotPresent nm = if SolverName nm `elem` (fst <$> solvers) then id
+                             else fmap (ignoreTestBecause (nm <> " not present"))
+@@ -1311,5 +1274,4 @@ main = do
+     ]
+     <> (skipIfNotPresent "cvc4" cvc4Tests)
+     <> (skipIfNotPresent "cvc5" cvc5Tests)
+-    <> (skipIfNotPresent "yices" yicesTests)
+     <> (skipIfNotPresent "z3" z3Tests)
+--- a/test/OnlineSolverTest.hs
++++ b/test/OnlineSolverTest.hs
+@@ -61,8 +61,6 @@ allOnlineSolvers =
+     ,  AnOnlineSolver @(SMT2.Writer CVC4) Proxy, cvc4Features, cvc4Options, Just cvc4Timeout)
+   , (SolverName "CVC5"
+     ,  AnOnlineSolver @(SMT2.Writer CVC5) Proxy, cvc5Features, cvc5Options, Just cvc5Timeout)
+-  , (SolverName "Yices"
+-    , AnOnlineSolver @Yices.Connection Proxy, yicesDefaultFeatures, yicesOptions, Just yicesGoalTimeout)
+   , (SolverName "Boolector"
+     , AnOnlineSolver @(SMT2.Writer Boolector) Proxy, boolectorFeatures, boolectorOptions, Just boolectorTimeout)
+ #ifdef TEST_STP
