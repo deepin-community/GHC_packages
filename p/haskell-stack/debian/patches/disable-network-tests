@@ -2,9 +2,9 @@ Index: b/src/test/Stack/ConfigSpec.hs
 ===================================================================
 --- a/src/test/Stack/ConfigSpec.hs
 +++ b/src/test/Stack/ConfigSpec.hs
-@@ -183,26 +183,26 @@ spec = beforeAll setup $ do
+@@ -188,26 +188,26 @@ spec = beforeAll setup $ do
        boptsReconfigure `shouldBe` True
-       boptsCabalVerbose `shouldBe` True
+       boptsCabalVerbose `shouldBe` CabalVerbosity verbose
  
 -    it "finds the config file in a parent directory" $ inTempDir $ do
 -      writeFile "package.yaml" "name: foo"

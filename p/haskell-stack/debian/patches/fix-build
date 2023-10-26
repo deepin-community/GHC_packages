@@ -1,0 +1,43 @@
+From 086f93933d547736a7007fc4110f7816ef21f691 Mon Sep 17 00:00:00 2001
+From: Mike Pilgrem <mpilgrem@users.noreply.github.com>
+Date: Mon, 22 May 2023 22:12:45 +0100
+Subject: [PATCH] Fix #6125 Restore building Stack with Cabal flag
+ disable-git-info
+
+Also extend CI to include `stack build --flag stack:disable-git-info`.
+---
+ .github/workflows/unit-tests.yml |  7 ++++---
+ ChangeLog.md                     |  3 +++
+ src/main/BuildInfo.hs            | 11 ++++-------
+ 3 files changed, 11 insertions(+), 10 deletions(-)
+
+Index: b/src/main/BuildInfo.hs
+===================================================================
+--- a/src/main/BuildInfo.hs
++++ b/src/main/BuildInfo.hs
+@@ -17,21 +17,18 @@ module BuildInfo
+ #ifndef HIDE_DEP_VERSIONS
+ import qualified Build_stack
+ #endif
+-#ifdef USE_GIT_INFO
+ import           Data.Version ( versionBranch )
+-#else
+-import           Data.Version ( showVersion, versionBranch )
+-#endif
+ import           Distribution.System ( buildArch )
+ import qualified Distribution.Text as Cabal ( display )
+ #ifdef USE_GIT_INFO
+ import           GitHash ( giCommitCount, giHash, tGitInfoCwdTry )
+-#endif
+-#ifdef USE_GIT_INFO
+ import           Options.Applicative.Simple ( simpleVersion )
+ #endif
+-import           Stack.Prelude
+ import qualified Paths_stack as Meta
++import           Stack.Prelude
++#ifndef USE_GIT_INFO
++import           Stack.Types.Version ( showStackVersion )
++#endif
+ 
+ versionString' :: String
+ #ifdef USE_GIT_INFO
