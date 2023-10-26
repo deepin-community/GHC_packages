@@ -1,0 +1,83 @@
+From ec51acfc7c663451041de45d1ff1d550b240af3c Mon Sep 17 00:00:00 2001
+From: Felix Yan <felixonmars@archlinux.org>
+Date: Wed, 21 Jun 2023 03:20:26 +0800
+Subject: [PATCH] Fix QUIC addr in ConfigSpec.hs
+
+The addrs were updated in https://github.com/kazu-yamamoto/mighttpd2/commit/499723135a202f573bb60cdfb62c346c53c42c5c without updating the tests, resulting in following test failures:
+
+```
+Failures:
+
+  test/ConfigSpec.hs:14:45:
+  1) Config.parseConfig parses example.conf correctly
+       expected: @@ 21 lines omitted @@
+                   opt_tls_chain_files = "chain.pem",
+                   opt_tls_key_file = "privkey.pem",
+                   opt_quic_port = 443,
+                   opt_quic_addr = ["127.0.0.1", "::1"],
+                   opt_quic_debug_dir = Nothing,
+                   opt_quic_qlog_dir = Nothing,
+                   opt_server_name = "foo",
+                   opt_routing_file = Nothing
+                 }
+        but got: @@ 21 lines omitted @@
+                   opt_tls_chain_files = "chain.pem",
+                   opt_tls_key_file = "privkey.pem",
+                   opt_quic_port = 443,
+                   opt_quic_addr = ["0.0.0.0", "::"],
+                   opt_quic_debug_dir = Nothing,
+                   opt_quic_qlog_dir = Nothing,
+                   opt_server_name = "foo",
+                   opt_routing_file = Nothing
+                 }
+
+  To rerun use: --match "/Config/parseConfig/parses example.conf correctly/"
+
+  test/ConfigSpec.hs:20:45:
+  2) Config.parseDhall parses example.dhall correctly
+       expected: @@ 21 lines omitted @@
+                   opt_tls_chain_files = "chain.pem",
+                   opt_tls_key_file = "privkey.pem",
+                   opt_quic_port = 443,
+                   opt_quic_addr = ["127.0.0.1", "::1"],
+                   opt_quic_debug_dir = Nothing,
+                   opt_quic_qlog_dir = Nothing,
+                   opt_server_name = "foo",
+                   opt_routing_file = Nothing
+                 }
+        but got: @@ 21 lines omitted @@
+                   opt_tls_chain_files = "chain.pem",
+                   opt_tls_key_file = "privkey.pem",
+                   opt_quic_port = 443,
+                   opt_quic_addr = ["0.0.0.0", "::"],
+                   opt_quic_debug_dir = Nothing,
+                   opt_quic_qlog_dir = Nothing,
+                   opt_server_name = "foo",
+                   opt_routing_file = Nothing
+                 }
+
+  To rerun use: --match "/Config/parseDhall/parses example.dhall correctly/"
+
+Randomized with seed 254466943
+
+Finished in 0.0099 seconds
+3 examples, 2 failures
+Test suite spec: FAIL
+```
+---
+ test/ConfigSpec.hs | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+Index: b/test/ConfigSpec.hs
+===================================================================
+--- a/test/ConfigSpec.hs
++++ b/test/ConfigSpec.hs
+@@ -44,7 +44,7 @@ ans = Option
+     , opt_tls_cert_file   = "cert.pem"
+     , opt_tls_chain_files = "chain.pem"
+     , opt_tls_key_file    = "privkey.pem"
+-    , opt_quic_addr = ["127.0.0.1","::1"]
++    , opt_quic_addr = ["0.0.0.0","::"]
+     , opt_quic_port = 443
+     , opt_quic_debug_dir = Nothing
+     , opt_quic_qlog_dir  = Nothing
