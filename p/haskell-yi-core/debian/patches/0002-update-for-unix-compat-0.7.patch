@@ -1,0 +1,97 @@
+From c1c665772b815b9be427a8056fde40df4a5efb04 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Marcel=20Fourn=C3=A9?= <haskell@marcelfourne.de>
+Date: Sat, 18 Mar 2023 17:01:38 +0100
+Subject: [PATCH] update for unix-compat 0.7: System.PosixCompat.User is gone.
+ Previous behaviour of it was erroring out for mingw32_HOST_OS or using
+ System.Posix.User anyway, so let's do that directly ourselves.
+
+---
+ yi-core/src/System/FriendlyPath.hs | 11 ++++++++++-
+ yi-core/src/Yi/Dired.hs            | 10 ++++++++--
+ 2 files changed, 18 insertions(+), 3 deletions(-)
+
+diff --git a/src/System/FriendlyPath.hs b/src/System/FriendlyPath.hs
+index d028cc45..20c330b8 100644
+--- a/src/System/FriendlyPath.hs
++++ b/src/System/FriendlyPath.hs
+@@ -1,3 +1,5 @@
++{-# LANGUAGE CPP #-}
++
+ module System.FriendlyPath
+   ( userToCanonPath
+   , expandTilda
+@@ -7,7 +9,9 @@ module System.FriendlyPath
+ import System.CanonicalizePath (canonicalizePath)
+ import System.Directory        (getHomeDirectory)
+ import System.FilePath         (isAbsolute, normalise, pathSeparator)
+-import System.PosixCompat.User (getUserEntryForName, homeDirectory)
++#ifndef mingw32_HOST_OS
++import System.Posix.User (getUserEntryForName, homeDirectory)
++#endif
+
+
+ -- canonicalizePath follows symlinks, and does not work if the directory does not exist.
+@@ -20,10 +24,15 @@ userToCanonPath f = canonicalizePath =<< expandTilda f
+ expandTilda :: String -> IO FilePath
+ expandTilda ('~':path)
+   | null path || (head path == pathSeparator) = (++ path) <$> getHomeDirectory
++#ifndef mingw32_HOST_OS
+   -- Home directory of another user, e.g. ~root/
+   | otherwise = let username = takeWhile (/= pathSeparator) path
+                     dirname = drop (length username) path
+                 in  (normalise . (++ dirname) . homeDirectory) <$> getUserEntryForName username
++#else
++  -- unix-compat no longer helps
++  | otherwise = ioError $ mkIOError illegalOperationErrorType "Tilda expansion only supported under Unix" Nothing Nothing
++#endif
+ expandTilda path = return path
+
+ -- | Is a user-friendly path absolute?
+diff --git a/src/Yi/Dired.hs b/src/Yi/Dired.hs
+index 4cfaf507..331da36c 100644
+--- a/src/Yi/Dired.hs
++++ b/src/Yi/Dired.hs
+@@ -89,11 +89,13 @@ import           System.PosixCompat.Files (FileStatus, fileExist, fileGroup,
+                                            readSymbolicLink, removeLink, rename,
+                                            unionFileModes)
+ import           System.PosixCompat.Types (FileMode, GroupID, UserID)
+-import           System.PosixCompat.User  (GroupEntry, GroupEntry (..),
++#ifndef mingw32_HOST_OS
++import           System.Posix.User        (GroupEntry, GroupEntry (..),
+                                            UserEntry (..), getAllGroupEntries,
+                                            getAllUserEntries,
+                                            getGroupEntryForID,
+                                            getUserEntryForID, groupID, userID)
++#endif
+ import           Text.Printf              (printf)
+ import           Yi.Buffer
+ import           Yi.Config                (modeTable)
+@@ -665,6 +667,7 @@ diredScanDir dir = do
+                 -> DiredEntries
+                 -> FilePath
+                 -> IO DiredEntries
++#ifndef mingw32_HOST_OS
+     lineForFile d m f = do
+       let fp = d </> f
+       fileStatus <- getSymbolicLinkStatus fp
+@@ -709,7 +712,6 @@ diredScanDir dir = do
+                            , sizeInBytes = sz
+                            , modificationTimeString = modTimeStr}
+
+-
+ -- | Needed on Mac OS X 10.4
+ scanForUid :: UserID -> [UserEntry] -> UserEntry
+ scanForUid uid entries = fromMaybe missingEntry $
+@@ -724,6 +726,10 @@ scanForGid gid entries = fromMaybe missingEntry $
+   where
+     missingEntry = GroupEntry "?" mempty gid mempty
+
++#else
++    -- has been the default for Windows anyway, so just directly do it without unix-compat
++    lineForFile _ m f = return $ M.insert (R.fromString f) DiredNoInfo m
++#endif
+
+ modeString :: FileMode -> R.YiString
+ modeString fm = ""
+--
+2.42.0
