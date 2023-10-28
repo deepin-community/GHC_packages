@@ -1,0 +1,46 @@
+From 3edbf622f5e6dbacb18a5754e1fbb749c5f22581 Mon Sep 17 00:00:00 2001
+From: Adrian Bunk <bunk@debian.org>
+Date: Sat, 28 Oct 2023 19:23:09 +0300
+Subject: Revert "Add unit tests for #22"
+
+This reverts commit 1071631f1360838707ed2014f967f6cfde0bcf40.
+---
+ tests/RunUnitTests.hs | 11 ++---------
+ 1 file changed, 2 insertions(+), 9 deletions(-)
+
+diff --git a/tests/RunUnitTests.hs b/tests/RunUnitTests.hs
+index bd67065..25cf6ec 100644
+--- a/tests/RunUnitTests.hs
++++ b/tests/RunUnitTests.hs
+@@ -1,7 +1,6 @@
+ {-# Language BlockArguments #-}
+ module Main(main) where
+ 
+-import Data.Foldable(traverse_)
+ import System.Exit(exitFailure)
+ import System.IO(hPutStrLn,stderr)
+ import Control.Monad(unless)
+@@ -16,8 +15,6 @@ main =
+      print $ bfFromString 10 (expBits 3 <> precBits 2 <> rnd ToZero) "1.0e200"
+      dblTest "+" (+) (bfAdd (float64 NearEven)) 1 2
+      dblTest "/" (/) (bfDiv (float64 NearEven)) 1 0
+-     traverse_ (\bf -> bfSubnormalTest bf False)
+-       [bfPosZero, bfFromInt 1, bfFromInt 0, bfNaN, bfNegInf, bfPosInf]
+ 
+ check :: String -> Bool -> IO ()
+ check x b = unless b
+@@ -43,9 +40,5 @@ dblTest op opD opBF x y =
+             (res1,Ok) -> Right res1
+             (_, s)    -> Left ("result: " ++ show s)
+ 
+--- Check that calling bfIsSubnormal on a BigFloat value returns the expected
+--- result.
+-bfSubnormalTest :: BigFloat -> Bool -> IO ()
+-bfSubnormalTest bf expected =
+-  check ("bfIsSubnormal (float32 NearEven) " ++ show bf)
+-        (bfIsSubnormal (float32 NearEven) bf == expected)
++
++
+-- 
+2.30.2
+
