@@ -3,7 +3,13 @@
 DEB_ENABLE_TESTS = yes
 DEB_CABAL_PACKAGE = hackage-security
 DEB_DEFAULT_COMPILER = ghc
-DEB_SETUP_GHC_CONFIGURE_ARGS := --flags="-lukko +base64 +use-network-uri"
+DEB_SETUP_GHC_CONFIGURE_ARGS := --flags="-lukko +use-network-uri +Cabal-syntax"
+
+# Disable optimizations on 32bit systems, tests fail otherwise
+# This looks like a GHC 9.4 bug
+ifeq ($(DEB_HOST_ARCH_BITS), 32)
+	DEB_SETUP_GHC_CONFIGURE_ARGS += -O0
+endif
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
