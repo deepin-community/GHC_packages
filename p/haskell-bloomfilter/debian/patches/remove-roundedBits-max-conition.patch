@@ -1,0 +1,15 @@
+http://bugs.debian.org/756801
+
+Index: bloomfilter-2.0.0.0/Data/BloomFilter/Easy.hs
+===================================================================
+--- bloomfilter-2.0.0.0.orig/Data/BloomFilter/Easy.hs	2014-11-13 15:30:23.746100048 +0100
++++ bloomfilter-2.0.0.0/Data/BloomFilter/Easy.hs	2014-11-13 15:30:23.742099973 +0100
+@@ -72,7 +72,7 @@ safeSuggestSizing capacity errRate
+             minimum [((-k) * cap / log (1 - (errRate ** (1 / k))), k)
+                      | k <- [1..100]]
+         roundedBits = nextPowerOfTwo (ceiling bits)
+-    in if roundedBits <= 0 || maxbitstoolarge roundedBits
++    in if roundedBits <= 0
+        then Left  "capacity too large to represent"
+        else Right (roundedBits, truncate hashes)
+   where
