@@ -1,9 +1,9 @@
 #!/usr/bin/make -f
 
-DEB_ENABLE_TESTS = yes
-DEB_SETUP_BIN_NAME = debian/hlibrary.setup
-DEB_CABAL_PACKAGE = what4
-DEB_DEFAULT_COMPILER = ghc
+# Tests for CVC4 fail on Debian, because the cvc4 binary in Debian is
+# compiled without symfpu support.
+# https://github.com/GaloisInc/what4-solvers/issues/23
+DEB_ENABLE_TESTS = no
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
