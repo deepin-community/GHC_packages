@@ -1,0 +1,14 @@
+Description: Add support for loongarch64 
+Last-Update: 2023-10-09
+
+--- haskell-primitive-unaligned-0.1.1.2.orig/primitive-unaligned.cabal
++++ haskell-primitive-unaligned-0.1.1.2/primitive-unaligned.cabal
+@@ -23,7 +23,7 @@ library
+     , base >=4.12.0.0 && <5
+     , primitive >=0.6.4 && <0.9
+   hs-source-dirs: src
+-  if arch(aarch64) || arch(alpha) || arch(ia64) || arch(ppc64) || arch(powerpc64) || arch(powerpc64le) || arch(riscv64) || arch(s390x) || arch(sparc64) || arch(x86_64) || arch(mips64el)
++  if arch(aarch64) || arch(alpha) || arch(ia64) || arch(ppc64) || arch(powerpc64) || arch(powerpc64le) || arch(riscv64) || arch(s390x) || arch(sparc64) || arch(x86_64) || arch(mips64el) || arch(loongarch64)
+     hs-source-dirs: src-64
+   if arch(arm) || arch(hppa) || arch(hppa1_1) || arch(i386) || arch(m68k) || arch(mips) || arch(mipseb) || arch(mipsel) || arch(nios2) || arch(powerpc) || arch(riscv32) || arch(rs6000) || arch(s390) || arch(sh4) || arch(sparc) || arch(vax)
+     hs-source-dirs: src-32
