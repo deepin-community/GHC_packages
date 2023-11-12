@@ -3,6 +3,8 @@
 # Copyright 2009 Kari Pahula
 # Licensed under BSD3, see /usr/share/common-licenses/BSD
 
+use Cwd qw(abs_path);
+
 my @ifaces;
 my %pkgs;
 
@@ -31,6 +33,7 @@ sub addInfo {
         chomp ($dat{ver} = <$fh>);
         chomp ($dat{ifaces} = <$fh>);
         chomp ($dat{html} = <$fh>);
+        $dat{html} = abs_path($dat{html});
         process(\%dat, @_);
     }
 }
