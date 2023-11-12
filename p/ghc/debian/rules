@@ -261,6 +261,11 @@ endif
 	cp debian/gen_contents_index debian/tmp/usr/lib/ghc-doc/
 	chmod +x debian/tmp/usr/lib/ghc-doc/gen_contents_index
 
+	# Delete 'doc-index.html' and 'index.html' files. These are generated at
+	# installation time using 'gen_contents_index'.
+	rm -f debian/tmp/usr/share/doc/ghc-doc/html/libraries/doc-index*.html
+	rm -f debian/tmp/usr/share/doc/ghc-doc/html/libraries/index.html
+
 	# Move haddock files to the correct folder
 	# (Create folders if they don't exist, i.e., if we are building '-arch')
 	mkdir -p debian/tmp/usr/lib/ghc-doc/haddock/ghc/
