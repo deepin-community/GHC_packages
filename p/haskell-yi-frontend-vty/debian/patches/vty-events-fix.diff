@@ -1,0 +1,58 @@
+Description: fixes type mismatch in Debian
+Author: Marcel Fourné <debian@marcelfourne.de>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout https://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: (upstream|backport|vendor|other), (<patch-url>|commit:<commit-id>)
+Bug: <upstream-bugtracker-url>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: (no|not-needed|<patch-forwarded-url>)
+Applied-Upstream: <version>, (<commit-url>|commit:<commid-id>)
+Reviewed-By: <name and email of someone who approved/reviewed the patch>
+Last-Update: 2023-11-12
+
+--- haskell-yi-frontend-vty-0.19.0.orig/src/Yi/Frontend/Vty.hs
++++ haskell-yi-frontend-vty-0.19.0/src/Yi/Frontend/Vty.hs
+@@ -62,6 +62,7 @@ import qualified Graphics.Vty
+                                                         vertCat, withBackColor,
+                                                         withForeColor,
+                                                         withStyle, (<|>))
++import qualified Graphics.Vty.Input.Events      as Vty (InternalEvent(InputEvent))
+ import           System.Exit                    (ExitCode, exitWith)
+ import           Yi.Buffer
+ import           Yi.Config
+@@ -143,10 +144,10 @@ start config submitEvents submitActions
+         getEvent = do
+           event <- atomically (readTChan inputChan)
+           case event of
+-            (Vty.EvResize _ _) -> do
++            (Vty.InputEvent (Vty.EvResize _ _)) -> do
+                 submitActions []
+                 getEvent
+-            _ -> return (fromVtyEvent event)
++            Vty.InputEvent ievent -> return (fromVtyEvent ievent)
+
+         renderLoop :: IO ()
+         renderLoop = do
+--- haskell-yi-frontend-vty-0.19.0.orig/src/Yi/Frontend/Vty/Conversions.hs
++++ haskell-yi-frontend-vty-0.19.0/src/Yi/Frontend/Vty/Conversions.hs
+@@ -6,12 +6,14 @@ module Yi.Frontend.Vty.Conversions
+     ) where
+
+ import           Data.List    (nub, sort)
+-import qualified Graphics.Vty as Vty (Attr, Color, Event (EvKey), Key (KBS, KBackTab, KBegin, KCenter, KChar, KDel, KDown, KEnd, KEnter, KEsc, KFun, KHome, KIns, KLeft, KMenu, KPageDown, KPageUp, KPause, KPrtScr, KRight, KUp),
+-                                      Modifier (..), black, blue, brightBlack,
++import qualified Graphics.Vty as Vty (Attr, Color, black, blue, brightBlack,
+                                       brightBlue, brightCyan, brightGreen,
+                                       brightMagenta, brightRed, brightWhite,
+                                       brightYellow, cyan, green, magenta, red,
+                                       rgbColor, white, yellow)
++import qualified Graphics.Vty.Input.Events as Vty (Event (EvKey),
++                                                   Key (KBS, KBackTab, KBegin, KCenter, KChar, KDel, KDown, KEnd, KEnter, KEsc, KFun, KHome, KIns, KLeft, KMenu, KPageDown, KPageUp, KPause, KPrtScr, KRight, KUp),
++                                                   Modifier (..))
+ import qualified Yi.Event     (Event (..), Key (..), Modifier (MCtrl, MMeta, MShift))
+ import qualified Yi.Style     (Color (..))
