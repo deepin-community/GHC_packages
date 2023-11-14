@@ -48,7 +48,7 @@ sub process {
     return undef if (exists $$pkgs{$p});
     if ($$dat{html} =~ m,^/usr/share/doc/ghc-doc/html/libraries/(.*),) {
         $path = $1;
-    } elsif ($$dat{html} =~ m,^/usr/share/doc/([^/]*-doc/html/.*),) {
+    } elsif ($$dat{html} =~ m,^/usr/share/doc/([^/]*-doc/html.*),) {
         $path = "../../../$1";
     }
 
