@@ -1,0 +1,75 @@
+Source: haskell-prettyprinter-interp
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Scott Talbert <swt@techie.net>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-prettyprinter-dev (>= 1.2),
+ libghc-prettyprinter-dev (<< 1.8),
+ libghc-prettyprinter-prof,
+ libghc-string-interpolate-dev (>= 0.3.1),
+ libghc-string-interpolate-dev (<< 0.4),
+ libghc-string-interpolate-prof,
+ libghc-tasty-dev (>= 1.2),
+ libghc-tasty-dev (<< 1.5),
+ libghc-tasty-prof,
+ libghc-tasty-hunit-dev (>= 0.10.0.2),
+ libghc-tasty-hunit-dev (<< 0.11),
+ libghc-tasty-hunit-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-prettyprinter-doc,
+ libghc-string-interpolate-doc,
+ libghc-tasty-doc,
+ libghc-tasty-hunit-doc,
+Standards-Version: 4.6.1
+Homepage: https://github.com/DigitalBrains1/prettyprinter-interp
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-prettyprinter-interp
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-prettyprinter-interp]
+X-Description: Efficient interpolation for Prettyprinter
+ This package provides efficient interpolation of string-interpolate quasi
+ quoters when used with prettyprinter.
+
+Package: libghc-prettyprinter-interp-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-prettyprinter-interp-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-prettyprinter-interp-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
