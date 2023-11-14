@@ -1,0 +1,98 @@
+Source: haskell-string-interpolate
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Scott Talbert <swt@techie.net>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-hspec-dev (>= 2),
+ libghc-hspec-dev (<< 3),
+ libghc-hspec-prof,
+ libghc-hspec-core-dev (>= 2),
+ libghc-hspec-core-dev (<< 3),
+ libghc-hspec-core-prof,
+ libghc-quickcheck2-dev (<< 2.15),
+ libghc-quickcheck2-prof,
+ libghc-quickcheck-instances-dev (<< 0.4),
+ libghc-quickcheck-instances-prof,
+ libghc-quickcheck-text-dev (<< 0.2),
+ libghc-quickcheck-text-prof,
+ libghc-quickcheck-unicode-dev (<< 1.1),
+ libghc-quickcheck-unicode-prof,
+ libghc-src-exts-dev (<< 1.24),
+ libghc-src-exts-prof,
+ libghc-src-meta-dev (<< 0.9),
+ libghc-src-meta-prof,
+ libghc-split-dev (<< 0.3),
+ libghc-split-prof,
+ libghc-text-conversions-dev (<< 0.4),
+ libghc-text-conversions-prof,
+ libghc-unordered-containers-dev (<< 0.3),
+ libghc-unordered-containers-prof,
+ libghc-utf8-string-dev (<< 1.1),
+ libghc-utf8-string-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-hspec-doc,
+ libghc-hspec-core-doc,
+ libghc-quickcheck2-doc,
+ libghc-quickcheck-instances-doc,
+ libghc-quickcheck-text-doc,
+ libghc-quickcheck-unicode-doc,
+ libghc-src-exts-doc,
+ libghc-src-meta-doc,
+ libghc-split-doc,
+ libghc-text-conversions-doc,
+ libghc-unordered-containers-doc,
+ libghc-utf8-string-doc,
+Standards-Version: 4.6.1
+Homepage: https://gitlab.com/williamyaoh/string-interpolate/blob/master/README.md
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-string-interpolate
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-string-interpolate]
+X-Description: Haskell string/text/bytestring interpolation that just works
+ Unicode-aware string interpolation that handles all textual types.
+ .
+ See README.md for more info.
+
+Package: libghc-string-interpolate-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-string-interpolate-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-string-interpolate-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
