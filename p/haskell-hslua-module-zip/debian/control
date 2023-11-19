@@ -1,0 +1,92 @@
+Source: haskell-hslua-module-zip
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Ilias Tsitsimpis <iliastsi@debian.org>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc (>= 9.4),
+ ghc-prof,
+ libghc-hslua-core-dev (>= 2.3),
+ libghc-hslua-core-dev (<< 2.4),
+ libghc-hslua-core-prof,
+ libghc-hslua-list-dev (>= 1.1),
+ libghc-hslua-list-dev (<< 1.2),
+ libghc-hslua-list-prof,
+ libghc-hslua-marshalling-dev (>= 2.3),
+ libghc-hslua-marshalling-dev (<< 2.4),
+ libghc-hslua-marshalling-prof,
+ libghc-hslua-packaging-dev (>= 2.3),
+ libghc-hslua-packaging-dev (<< 2.4),
+ libghc-hslua-packaging-prof,
+ libghc-hslua-typing-dev (>= 0.1),
+ libghc-hslua-typing-dev (<< 0.2),
+ libghc-hslua-typing-prof,
+ libghc-zip-archive-dev (>= 0.4),
+ libghc-zip-archive-dev (<< 0.5),
+ libghc-zip-archive-prof,
+ libghc-hslua-module-system-dev,
+ libghc-hslua-module-system-prof,
+ libghc-tasty-dev,
+ libghc-tasty-prof,
+ libghc-tasty-hunit-dev,
+ libghc-tasty-hunit-prof,
+ libghc-tasty-lua-dev (>= 1.0),
+ libghc-tasty-lua-dev (<< 1.2),
+ libghc-tasty-lua-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-hslua-core-doc,
+ libghc-hslua-list-doc,
+ libghc-hslua-marshalling-doc,
+ libghc-hslua-packaging-doc,
+ libghc-hslua-typing-doc,
+ libghc-zip-archive-doc,
+Standards-Version: 4.6.2
+Homepage: https://hslua.org/
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-hslua-module-zip
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-hslua-module-zip]
+X-Description: Lua module to work with file zips
+ Module with functions for creating, modifying, and extracting files from zip
+ archives.
+
+Package: libghc-hslua-module-zip-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hslua-module-zip-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hslua-module-zip-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
