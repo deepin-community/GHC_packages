@@ -1,0 +1,317 @@
+Source: haskell-pandoc
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Scott Talbert <swt@techie.net>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-glob-dev (>= 0.7),
+ libghc-glob-dev (<< 0.11),
+ libghc-glob-prof,
+ libghc-juicypixels-dev (>= 3.1.6.1),
+ libghc-juicypixels-dev (<< 3.4),
+ libghc-juicypixels-prof,
+ libghc-sha-dev (>= 1.6),
+ libghc-sha-dev (<< 1.7),
+ libghc-sha-prof,
+ libghc-aeson-dev (>= 2.0.1.0),
+ libghc-aeson-dev (<< 2.2),
+ libghc-aeson-prof,
+ libghc-aeson-pretty-dev (>= 0.8.9),
+ libghc-aeson-pretty-dev (<< 0.9),
+ libghc-aeson-pretty-prof,
+ libghc-attoparsec-dev (>= 0.12),
+ libghc-attoparsec-dev (<< 0.15),
+ libghc-attoparsec-prof,
+ libghc-base64-dev (>= 0.4),
+ libghc-base64-dev (<< 0.5),
+ libghc-base64-prof,
+ libghc-blaze-html-dev (>= 0.9),
+ libghc-blaze-html-dev (<< 0.10),
+ libghc-blaze-html-prof,
+ libghc-blaze-markup-dev (>= 0.8),
+ libghc-blaze-markup-dev (<< 0.9),
+ libghc-blaze-markup-prof,
+ libghc-case-insensitive-dev (>= 1.2),
+ libghc-case-insensitive-dev (<< 1.3),
+ libghc-case-insensitive-prof,
+ libghc-citeproc-dev (>= 0.8.1),
+ libghc-citeproc-dev (<< 0.9),
+ libghc-citeproc-prof,
+ libghc-commonmark-dev (>= 0.2.2),
+ libghc-commonmark-dev (<< 0.3),
+ libghc-commonmark-prof,
+ libghc-commonmark-extensions-dev (>= 0.2.3.3),
+ libghc-commonmark-extensions-dev (<< 0.3),
+ libghc-commonmark-extensions-prof,
+ libghc-commonmark-pandoc-dev (>= 0.2.1.3),
+ libghc-commonmark-pandoc-dev (<< 0.3),
+ libghc-commonmark-pandoc-prof,
+ libghc-connection-dev (>= 0.3.1),
+ libghc-connection-prof,
+ libghc-data-default-dev (>= 0.4),
+ libghc-data-default-dev (<< 0.8),
+ libghc-data-default-prof,
+ libghc-diff-dev (>= 0.2),
+ libghc-diff-dev (<< 0.5),
+ libghc-diff-prof,
+ libghc-doclayout-dev (>= 0.4),
+ libghc-doclayout-dev (<< 0.5),
+ libghc-doclayout-prof,
+ libghc-doctemplates-dev (>= 0.11),
+ libghc-doctemplates-dev (<< 0.12),
+ libghc-doctemplates-prof,
+ libghc-emojis-dev (>= 0.1),
+ libghc-emojis-dev (<< 0.2),
+ libghc-emojis-prof,
+ libghc-file-embed-dev (>= 0.0),
+ libghc-file-embed-dev (<< 0.1),
+ libghc-file-embed-prof,
+ libghc-gridtables-dev (>= 0.1),
+ libghc-gridtables-dev (<< 0.2),
+ libghc-gridtables-prof,
+ libghc-haddock-library-dev (>= 1.10),
+ libghc-haddock-library-dev (<< 1.12),
+ libghc-haddock-library-prof,
+ libghc-http-client-dev (>= 0.4.30),
+ libghc-http-client-dev (<< 0.8),
+ libghc-http-client-prof,
+ libghc-http-client-tls-dev (>= 0.2.4),
+ libghc-http-client-tls-dev (<< 0.4),
+ libghc-http-client-tls-prof,
+ libghc-http-types-dev (>= 0.8),
+ libghc-http-types-dev (<< 0.13),
+ libghc-http-types-prof,
+ libghc-ipynb-dev (>= 0.2),
+ libghc-ipynb-dev (<< 0.3),
+ libghc-ipynb-prof,
+ libghc-jira-wiki-markup-dev (>= 1.5),
+ libghc-jira-wiki-markup-dev (<< 1.6),
+ libghc-jira-wiki-markup-prof,
+ libghc-mime-types-dev (>= 0.1.1),
+ libghc-mime-types-dev (<< 0.2),
+ libghc-mime-types-prof,
+ libghc-network-dev (>= 2.6),
+ libghc-network-prof,
+ libghc-network-uri-dev (>= 2.6),
+ libghc-network-uri-dev (<< 2.8),
+ libghc-network-uri-prof,
+ libghc-pandoc-types-dev (>= 1.23),
+ libghc-pandoc-types-dev (<< 1.24),
+ libghc-pandoc-types-prof,
+ libghc-pretty-show-dev (>= 1.10),
+ libghc-pretty-show-dev (<< 1.11),
+ libghc-pretty-show-prof,
+ libghc-random-dev (>= 1),
+ libghc-random-dev (<< 1.3),
+ libghc-random-prof,
+ libghc-safe-dev (>= 0.3.18),
+ libghc-safe-dev (<< 0.4),
+ libghc-safe-prof,
+ libghc-scientific-dev (>= 0.3),
+ libghc-scientific-dev (<< 0.4),
+ libghc-scientific-prof,
+ libghc-skylighting-dev (>= 0.13.2),
+ libghc-skylighting-dev (<< 0.14),
+ libghc-skylighting-prof,
+ libghc-skylighting-core-dev (>= 0.13.2),
+ libghc-skylighting-core-dev (<< 0.14),
+ libghc-skylighting-core-prof,
+ libghc-split-dev (>= 0.2),
+ libghc-split-dev (<< 0.3),
+ libghc-split-prof,
+ libghc-syb-dev (>= 0.1),
+ libghc-syb-dev (<< 0.8),
+ libghc-syb-prof,
+ libghc-tagsoup-dev (>= 0.14.6),
+ libghc-tagsoup-dev (<< 0.15),
+ libghc-tagsoup-prof,
+ libghc-tasty-dev (>= 0.11),
+ libghc-tasty-dev (<< 1.5),
+ libghc-tasty-prof,
+ libghc-tasty-golden-dev (>= 2.3),
+ libghc-tasty-golden-dev (<< 2.4),
+ libghc-tasty-golden-prof,
+ libghc-tasty-hunit-dev (>= 0.9),
+ libghc-tasty-hunit-dev (<< 0.11),
+ libghc-tasty-hunit-prof,
+ libghc-tasty-quickcheck-dev (>= 0.8),
+ libghc-tasty-quickcheck-dev (<< 0.11),
+ libghc-tasty-quickcheck-prof,
+ libghc-temporary-dev (>= 1.1),
+ libghc-temporary-dev (<< 1.4),
+ libghc-temporary-prof,
+ libghc-texmath-dev (>= 0.12.6),
+ libghc-texmath-dev (<< 0.13),
+ libghc-texmath-prof,
+ libghc-text-conversions-dev (>= 0.3),
+ libghc-text-conversions-dev (<< 0.4),
+ libghc-text-conversions-prof,
+ libghc-unicode-collation-dev (>= 0.1.1),
+ libghc-unicode-collation-dev (<< 0.2),
+ libghc-unicode-collation-prof,
+ libghc-unicode-transforms-dev (>= 0.3),
+ libghc-unicode-transforms-dev (<< 0.5),
+ libghc-unicode-transforms-prof,
+ libghc-xml-dev (>= 1.3.12),
+ libghc-xml-dev (<< 1.4),
+ libghc-xml-prof,
+ libghc-yaml-dev (>= 0.11),
+ libghc-yaml-dev (<< 0.12),
+ libghc-yaml-prof,
+ libghc-zip-archive-dev (>= 0.2.3.4),
+ libghc-zip-archive-dev (<< 0.5),
+ libghc-zip-archive-prof,
+ libghc-zlib-dev (>= 0.5),
+ libghc-zlib-dev (<< 0.7),
+ libghc-zlib-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-glob-doc,
+ libghc-juicypixels-doc,
+ libghc-sha-doc,
+ libghc-aeson-doc,
+ libghc-aeson-pretty-doc,
+ libghc-attoparsec-doc,
+ libghc-base64-doc,
+ libghc-blaze-html-doc,
+ libghc-blaze-markup-doc,
+ libghc-case-insensitive-doc,
+ libghc-citeproc-doc,
+ libghc-commonmark-doc,
+ libghc-commonmark-extensions-doc,
+ libghc-commonmark-pandoc-doc,
+ libghc-connection-doc,
+ libghc-data-default-doc,
+ libghc-diff-doc,
+ libghc-doclayout-doc,
+ libghc-doctemplates-doc,
+ libghc-emojis-doc,
+ libghc-file-embed-doc,
+ libghc-gridtables-doc,
+ libghc-haddock-library-doc,
+ libghc-http-client-doc,
+ libghc-http-client-tls-doc,
+ libghc-http-types-doc,
+ libghc-ipynb-doc,
+ libghc-jira-wiki-markup-doc,
+ libghc-mime-types-doc,
+ libghc-network-doc,
+ libghc-network-uri-doc,
+ libghc-pandoc-types-doc,
+ libghc-pretty-show-doc,
+ libghc-random-doc,
+ libghc-safe-doc,
+ libghc-scientific-doc,
+ libghc-skylighting-doc,
+ libghc-skylighting-core-doc,
+ libghc-split-doc,
+ libghc-syb-doc,
+ libghc-tagsoup-doc,
+ libghc-tasty-doc,
+ libghc-tasty-golden-doc,
+ libghc-tasty-hunit-doc,
+ libghc-tasty-quickcheck-doc,
+ libghc-temporary-doc,
+ libghc-texmath-doc,
+ libghc-text-conversions-doc,
+ libghc-unicode-collation-doc,
+ libghc-unicode-transforms-doc,
+ libghc-xml-doc,
+ libghc-yaml-doc,
+ libghc-zip-archive-doc,
+ libghc-zlib-doc,
+Standards-Version: 4.6.1
+Homepage: https://pandoc.org
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-pandoc
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-pandoc]
+X-Description: Conversion between markup formats
+ Pandoc is a Haskell library for converting from one markup
+ format to another.  The formats it can handle include
+ .
+ - light markup formats (many variants of Markdown,
+ reStructuredText, AsciiDoc, Org-mode, Muse, Textile,
+ txt2tags)
+ - HTML formats (HTML 4 and 5)
+ - Ebook formats (EPUB v2 and v3, FB2)
+ - Documentation formats (GNU TexInfo, Haddock)
+ - Roff formats (man, ms)
+ - TeX formats (LaTeX, ConTeXt)
+ - XML formats (DocBook 4 and 5, JATS, TEI Simple, OpenDocument)
+ - Outline formats (OPML)
+ - Bibliography formats (BibTeX, BibLaTeX, CSL JSON, CSL YAML,
+ RIS)
+ - Word processor formats (Docx, RTF, ODT)
+ - Interactive notebook formats (Jupyter notebook ipynb)
+ - Page layout formats (InDesign ICML)
+ - Wiki markup formats (MediaWiki, DokuWiki, TikiWiki, TWiki,
+ Vimwiki, XWiki, ZimWiki, Jira wiki, Creole)
+ - Slide show formats (LaTeX Beamer, PowerPoint, Slidy,
+ reveal.js, Slideous, S5, DZSlides)
+ - Data formats (CSV and TSV tables)
+ - PDF (via external programs such as pdflatex or wkhtmltopdf)
+ .
+ Pandoc can convert mathematical content in documents
+ between TeX, MathML, Word equations, roff eqn, and plain text.
+ It includes a powerful system for automatic citations
+ and bibliographies, and it can be customized extensively
+ using templates, filters, and custom readers and writers
+ written in Lua.
+
+Package: libghc-pandoc-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-pandoc-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-pandoc-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: pandoc-data
+Architecture: all
+Section: misc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
