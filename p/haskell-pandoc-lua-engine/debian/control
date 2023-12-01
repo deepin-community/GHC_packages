@@ -1,0 +1,136 @@
+Source: haskell-pandoc-lua-engine
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Ilias Tsitsimpis <iliastsi@debian.org>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc (>= 9.4),
+ ghc-prof,
+ libghc-sha-dev (>= 1.6),
+ libghc-sha-dev (<< 1.7),
+ libghc-sha-prof,
+ libghc-citeproc-dev (>= 0.8),
+ libghc-citeproc-dev (<< 0.9),
+ libghc-citeproc-prof,
+ libghc-data-default-dev (>= 0.4),
+ libghc-data-default-dev (<< 0.8),
+ libghc-data-default-prof,
+ libghc-doclayout-dev (>= 0.4),
+ libghc-doclayout-dev (<< 0.5),
+ libghc-doclayout-prof,
+ libghc-doctemplates-dev (>= 0.11),
+ libghc-doctemplates-dev (<< 0.12),
+ libghc-doctemplates-prof,
+ libghc-hslua-dev (>= 2.3),
+ libghc-hslua-dev (<< 2.4),
+ libghc-hslua-prof,
+ libghc-hslua-module-doclayout-dev (>= 1.1),
+ libghc-hslua-module-doclayout-dev (<< 1.2),
+ libghc-hslua-module-doclayout-prof,
+ libghc-hslua-module-path-dev (>= 1.1),
+ libghc-hslua-module-path-dev (<< 1.2),
+ libghc-hslua-module-path-prof,
+ libghc-hslua-module-system-dev (>= 1.1),
+ libghc-hslua-module-system-dev (<< 1.2),
+ libghc-hslua-module-system-prof,
+ libghc-hslua-module-text-dev (>= 1.1),
+ libghc-hslua-module-text-dev (<< 1.2),
+ libghc-hslua-module-text-prof,
+ libghc-hslua-module-version-dev (>= 1.1),
+ libghc-hslua-module-version-dev (<< 1.2),
+ libghc-hslua-module-version-prof,
+ libghc-hslua-module-zip-dev (>= 1.1),
+ libghc-hslua-module-zip-dev (<< 1.2),
+ libghc-hslua-module-zip-prof,
+ libghc-lpeg-dev (>= 1.0.4),
+ libghc-lpeg-dev (<< 1.1),
+ libghc-lpeg-prof,
+ libghc-pandoc-dev (>= 3.0),
+ libghc-pandoc-dev (<< 3.1),
+ libghc-pandoc-prof,
+ libghc-pandoc-lua-marshal-dev (>= 0.2),
+ libghc-pandoc-lua-marshal-dev (<< 0.3),
+ libghc-pandoc-lua-marshal-prof,
+ libghc-pandoc-types-dev (>= 1.22),
+ libghc-pandoc-types-dev (<< 1.24),
+ libghc-pandoc-types-prof,
+ libghc-data-default-dev,
+ libghc-hslua-dev (>= 2.1),
+ libghc-pandoc-dev,
+ libghc-tasty-dev,
+ libghc-tasty-prof,
+ libghc-tasty-golden-dev,
+ libghc-tasty-golden-prof,
+ libghc-tasty-hunit-dev,
+ libghc-tasty-hunit-prof,
+ libghc-tasty-lua-dev (>= 1.0),
+ libghc-tasty-lua-dev (<< 1.2),
+ libghc-tasty-lua-prof,
+ pandoc-data,
+Build-Depends-Indep: ghc-doc,
+ libghc-sha-doc,
+ libghc-citeproc-doc,
+ libghc-data-default-doc,
+ libghc-doclayout-doc,
+ libghc-doctemplates-doc,
+ libghc-hslua-doc,
+ libghc-hslua-module-doclayout-doc,
+ libghc-hslua-module-path-doc,
+ libghc-hslua-module-system-doc,
+ libghc-hslua-module-text-doc,
+ libghc-hslua-module-version-doc,
+ libghc-hslua-module-zip-doc,
+ libghc-lpeg-doc,
+ libghc-pandoc-doc,
+ libghc-pandoc-lua-marshal-doc,
+ libghc-pandoc-types-doc,
+Standards-Version: 4.6.2
+Homepage: https://pandoc.org
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-pandoc-lua-engine
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-pandoc-lua-engine]
+X-Description: Lua engine to power custom pandoc conversions
+ This package provides a pandoc scripting engine based on
+ Lua.
+
+Package: libghc-pandoc-lua-engine-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-pandoc-lua-engine-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-pandoc-lua-engine-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
