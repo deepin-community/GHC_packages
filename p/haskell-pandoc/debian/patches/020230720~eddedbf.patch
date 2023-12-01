@@ -1,0 +1,90 @@
+Description: ix new variant of the vulnerability in CVE-2023-35936
+ Guilhem Moulin noticed that the fix to CVE-2023-35936 was incomplete.
+ An attacker could get around it
+ by double-encoding the malicious extension
+ to create or override arbitrary files.
+ .
+        $ echo '![](data://image/png;base64,cHJpbnQgImhlbGxvIgo=;.lua+%252f%252e%252e%252f%252e%252e%252fb%252elua)' >b.md
+        $ .cabal/bin/pandoc b.md --extract-media=bar
+        <p><img
+        src="bar/2a0eaa89f43fada3e6c577beea4f2f8f53ab6a1d.lua+%2f%2e%2e%2f%2e%2e%2fb%2elua" /></p>
+        $ cat b.lua
+        print "hello"
+        $ find bar
+        bar/
+        bar/2a0eaa89f43fada3e6c577beea4f2f8f53ab6a1d.lua+
+ .
+ This commit adds a test case for this more complex attack
+ and fixes the vulnerability.
+ (The fix is quite simple:
+ if the URL-unescaped filename or extension contains a '%',
+ we just use the sha1 hash of the contents as the canonical name,
+ just as we do if the filename contains '..'.)
+Origin: upstream, https://github.com/jgm/pandoc/commit/eddedbf
+Author: John MacFarlane <jgm@berkeley.edu>
+Bug: https://github.com/jgm/pandoc/security/advisories/GHSA-xj5q-fv23-575g
+Bug-Debian: https://security-tracker.debian.org/tracker/CVE-2023-38745
+Forwarded: yes
+Last-Update: 2023-07-25
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+--- a/src/Text/Pandoc/Class/IO.hs
++++ b/src/Text/Pandoc/Class/IO.hs
+@@ -224,6 +224,8 @@
+            -> m ()
+ writeMedia dir (fp, _mt, bs) = do
+   -- we normalize to get proper path separators for the platform
++  -- we unescape URI encoding, but given how insertMedia
++  -- is written, we shouldn't have any % in a canonical media name...
+   let fullpath = normalise $ dir </> unEscapeString fp
+   liftIOError (createDirectoryIfMissing True) (takeDirectory fullpath)
+   logIOError $ BL.writeFile fullpath bs
+--- a/src/Text/Pandoc/MediaBag.hs
++++ b/src/Text/Pandoc/MediaBag.hs
+@@ -90,16 +90,17 @@
+                        && Windows.isRelative fp''
+                        && isNothing uri
+                        && not (".." `isInfixOf` fp'')
++                       && '%' `notElem` fp''
+                      then fp''
+-                     else showDigest (sha1 contents) <> "." <> ext
++                     else showDigest (sha1 contents) <> ext
+         fallback = case takeExtension fp'' of
+                         ".gz" -> getMimeTypeDef $ dropExtension fp''
+                         _     -> getMimeTypeDef fp''
+         mt = fromMaybe fallback mbMime
+         path = maybe fp'' (unEscapeString . uriPath) uri
+         ext = case takeExtension path of
+-                '.':e -> e
+-                _ -> maybe "" T.unpack $ extensionFromMimeType mt
++                '.':e | '%' `notElem` e -> '.':e
++                _ -> maybe "" (\x -> '.':T.unpack x) $ extensionFromMimeType mt
+ 
+ -- | Lookup a media item in a 'MediaBag', returning mime type and contents.
+ lookupMedia :: FilePath
+--- a/test/Tests/MediaBag.hs
++++ b/test/Tests/MediaBag.hs
+@@ -19,7 +19,7 @@
+         let d = B.doc $
+                   B.para (B.image "../../test/lalune.jpg" "" mempty) <>
+                   B.para (B.image "moon.jpg" "" mempty) <>
+-                  B.para (B.image "data://image/png;base64,cHJpbnQgImhlbGxvIgo=;.lua+%2f%2e%2e%2f%2e%2e%2fa%2elua" "" mempty) <>
++                  B.para (B.image "data:image/png;base64,cHJpbnQgImhlbGxvIgo=;.lua+%2f%2e%2e%2f%2e%2e%2fa%2elua" "" mempty) <>
+                   B.para (B.image "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" "" mempty)
+         runIOorExplode $ do
+           fillMediaBag d
+@@ -34,4 +34,14 @@
+           (exists3 && not exists4)
+         exists5 <- doesFileExist ("foo" </> "d5fceb6532643d0d84ffe09c40c481ecdf59e15a.gif")
+         assertBool "data uri with gif is not properly decoded" exists5
++        -- double-encoded version:
++        let e = B.doc $
++                  B.para (B.image "data:image/png;base64,cHJpbnQgInB3bmVkIgo=;.lua+%252f%252e%252e%252f%252e%252e%252fb%252elua" "" mempty)
++        runIOorExplode $ do
++          fillMediaBag e
++          extractMedia "bar" e
++        exists6 <- doesFileExist ("bar" </> "772ceca21a2751863ec46cb23db0e7fc35b9cff8.png")
++        exists7 <- doesFileExist "b.lua"
++        assertBool "data uri with double-encoded malicious payload gets written outside of destination dir"
++          (exists6 && not exists7)
+   ]
