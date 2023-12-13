@@ -261,6 +261,22 @@ endif
 	cp debian/gen_contents_index debian/tmp/usr/lib/ghc-doc/
 	chmod +x debian/tmp/usr/lib/ghc-doc/gen_contents_index
 
+	# Delete 'doc-index.html' and 'index.html' files. These are generated at
+	# installation time using 'gen_contents_index'.
+	rm -f debian/tmp/usr/share/doc/ghc-doc/html/libraries/doc-index*.html \
+		debian/tmp/usr/share/doc/ghc-doc/html/libraries/index.html \
+		debian/tmp/usr/share/doc/ghc-doc/html/libraries/frames.html \
+		debian/tmp/usr/share/doc/ghc-doc/html/libraries/index-frames.html \
+	    debian/tmp/usr/share/doc/ghc-doc/html/libraries/haddock-util.js \
+	    debian/tmp/usr/share/doc/ghc-doc/html/libraries/hslogo-16.png \
+	    debian/tmp/usr/share/doc/ghc-doc/html/libraries/minus.gif \
+	    debian/tmp/usr/share/doc/ghc-doc/html/libraries/plus.gif \
+	    debian/tmp/usr/share/doc/ghc-doc/html/libraries/ocean.css \
+	    debian/tmp/usr/share/doc/ghc-doc/html/libraries/haddock-bundle.min.js \
+	    debian/tmp/usr/share/doc/ghc-doc/html/libraries/quick-jump.css \
+	    debian/tmp/usr/share/doc/ghc-doc/html/libraries/linuwial.css \
+	    debian/tmp/usr/share/doc/ghc-doc/html/libraries/synopsis.png
+
 	# Move haddock files to the correct folder
 	# (Create folders if they don't exist, i.e., if we are building '-arch')
 	mkdir -p debian/tmp/usr/lib/ghc-doc/haddock/ghc/
