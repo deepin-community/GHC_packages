@@ -67,9 +67,10 @@ endif
 # once #901947 has been fixed.
 # Do the same for powerpcspe, due to https://bugs.debian.org/904915
 # Do the same for sparc64, due to https://bugs.debian.org/908998
-# ifneq (,$(filter mips mipsel powerpc powerpcspe sparc64, $(DEB_HOST_ARCH)))
-#   EXTRA_CONFIGURE_FLAGS += --disable-ld-override
-# endif
+# See also https://bugs.debian.org/1056636
+ifneq (,$(filter mips mipsel powerpc powerpcspe sparc64, $(DEB_HOST_ARCH)))
+  EXTRA_CONFIGURE_FLAGS += --disable-ld-override
+endif
 
 ifneq (,$(filter armhf, $(DEB_HOST_ARCH)))
 	EXTRA_HADRIAN_FLAGS += "*.*.ghc.hs.opts += -D__ARM_PCS_VFP"
