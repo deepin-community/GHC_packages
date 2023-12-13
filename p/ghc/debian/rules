@@ -95,6 +95,10 @@ ifneq (,$(filter noopt, $(DEB_BUILD_OPTIONS)))
 	EXTRA_HADRIAN_FLAGS += "*.*.rts.*.opts += -O0"
 endif
 
+ifneq (,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
+    NUMJOBS = $(patsubst parallel=%,%,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
+endif
+
 # Use system libffi
 EXTRA_CONFIGURE_FLAGS += --with-system-libffi
 
@@ -152,7 +156,7 @@ ifeq (YES,$(BUILD_CROSS))
 	$(error cross-compilation is not supported)
 endif
 	hadrian/hadrian \
-		-V -j \
+		-V -j$(NUMJOBS) \
 		--docs=no-haddocks --docs=no-sphinx-html --docs=no-sphinx-pdfs \
 		binary-dist-dir \
 		$(EXTRA_HADRIAN_FLAGS)
@@ -175,7 +179,7 @@ ifeq (YES,$(BUILD_CROSS))
 	$(error override_dh_auto_build-indep is not supported when cross compiling)
 endif
 	hadrian/hadrian \
-		-V -j \
+		-V -j$(NUMJOBS) \
 		--docs=no-sphinx-pdfs \
 		binary-dist-dir \
 		$(EXTRA_HADRIAN_FLAGS)
