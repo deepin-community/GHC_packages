@@ -1,0 +1,26 @@
+Also applies in 9.6.x
+Can be dropped with 9.8.1
+Debian-Bug: https://bugs.debian.org/1056306
+
+Index: b/src/Oracles/Setting.hs
+===================================================================
+--- a/src/Oracles/Setting.hs
++++ b/src/Oracles/Setting.hs
+@@ -273,7 +273,7 @@ anyHostOs = matchSetting HostOs
+ isElfTarget :: Action Bool
+ isElfTarget = anyTargetOs
+     [ "linux", "freebsd", "dragonfly", "openbsd", "netbsd", "solaris2", "kfreebsdgnu"
+-    , "haiku", "linux-android"
++    , "gnu", "haiku", "linux-android"
+     ]
+ 
+ -- | Check whether the host OS supports the @-rpath@ linker option when
+@@ -282,7 +282,7 @@ isElfTarget = anyTargetOs
+ -- TODO: Windows supports lazy binding (but GHC doesn't currently support
+ --       dynamic way on Windows anyways).
+ hostSupportsRPaths :: Action Bool
+-hostSupportsRPaths = anyHostOs ["linux", "darwin", "freebsd"]
++hostSupportsRPaths = anyHostOs ["linux", "darwin", "freebsd", "gnu"]
+ 
+ -- | Check whether the target supports GHCi.
+ ghcWithInterpreter :: Action Bool
