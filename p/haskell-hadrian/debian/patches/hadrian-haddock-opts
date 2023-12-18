@@ -8,7 +8,7 @@ Index: b/src/Settings/Builders/Haddock.hs
 ===================================================================
 --- a/src/Settings/Builders/Haddock.hs
 +++ b/src/Settings/Builders/Haddock.hs
-@@ -32,6 +32,7 @@ haddockBuilderArgs = mconcat
+@@ -30,6 +30,7 @@ haddockBuilderArgs = mconcat
              , arg "-o", arg $ takeDirectory output
              , arg "-t", arg "Haskell Hierarchical Libraries"
              , arg "-p", arg "libraries/prologue.txt"
@@ -16,7 +16,7 @@ Index: b/src/Settings/Builders/Haddock.hs
              , pure [ "--read-interface="
                       ++ (takeFileName . takeDirectory) haddock
                       ++ "," ++ haddock | haddock <- inputs ] ]
-@@ -60,6 +61,7 @@ haddockBuilderArgs = mconcat
+@@ -58,6 +59,7 @@ haddockBuilderArgs = mconcat
              , arg "--hyperlinked-source"
              , arg "--hoogle"
              , arg "--quickjump"
