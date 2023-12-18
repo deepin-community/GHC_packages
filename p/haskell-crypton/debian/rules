@@ -1,6 +1,8 @@
 #!/usr/bin/make -f
 
+ifneq ($(DEB_HOST_ARCH),armhf)
 DEB_ENABLE_TESTS = yes
+endif
 DEB_SETUP_GHC_CONFIGURE_ARGS += --flags=-support_aesni
 
 include /usr/share/cdbs/1/rules/debhelper.mk
