@@ -1,0 +1,41 @@
+commit fe0675770b66a9ed393884d96e276b8d116fa2a2
+Author: Sylvain Henry <hsyl20@gmail.com>
+Date:   Fri Oct 6 14:01:52 2023 +0200
+
+    Avoid out-of-bound array access in bigNatIsPowerOf2 (fix #24066)
+    
+    bigNatIndex# in the `where` clause wasn't guarded by "bigNatIsZero a".
+
+Index: b/libraries/ghc-bignum/src/GHC/Num/BigNat.hs
+===================================================================
+--- a/libraries/ghc-bignum/src/GHC/Num/BigNat.hs
++++ b/libraries/ghc-bignum/src/GHC/Num/BigNat.hs
+@@ -135,13 +135,8 @@ bigNatIsTwo# ba =
+ bigNatIsPowerOf2# :: BigNat# -> (# (# #) | Word# #)
+ bigNatIsPowerOf2# a
+    | bigNatIsZero a                      = (# (# #) | #)
+-   | True = case wordIsPowerOf2# msw of
+-               (# (# #) | #) -> (# (# #) | #)
+-               (# | c  #) -> case checkAllZeroes (imax -# 1#) of
+-                  0# -> (# (# #) | #)
+-                  _  -> (# | c `plusWord#`
+-                              (int2Word# imax `uncheckedShiftL#` WORD_SIZE_BITS_SHIFT#) #)
+-   where
++   | True =
++    let
+       msw  = bigNatIndex# a imax
+       sz   = bigNatSize# a
+       imax = sz -# 1#
+@@ -150,6 +145,12 @@ bigNatIsPowerOf2# a
+          | True = case bigNatIndex# a i of
+                      0## -> checkAllZeroes (i -# 1#)
+                      _   -> 0#
++    in case wordIsPowerOf2# msw of
++               (# (# #) | #) -> (# (# #) | #)
++               (# | c  #) -> case checkAllZeroes (imax -# 1#) of
++                  0# -> (# (# #) | #)
++                  _  -> (# | c `plusWord#`
++                              (int2Word# imax `uncheckedShiftL#` WORD_SIZE_BITS_SHIFT#) #)
+ 
+ -- | Return the Word# at the given index
+ bigNatIndex# :: BigNat# -> Int# -> Word#
