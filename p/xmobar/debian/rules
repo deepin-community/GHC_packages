@@ -9,7 +9,7 @@ ifneq (,$(filter $(DEB_BUILD_ARCH),mips64el s390x alpha ia64 riscv64 sparc64))
 endif
 
 ifeq ($(DEB_HOST_ARCH_OS),linux)
-    DEB_SETUP_GHC_CONFIGURE_ARGS += --flags="with_xft with_inotify with_iwlib with_mpris with_dbus with_xpm with_uvmeter with_weather with_alsa"
+    DEB_SETUP_GHC_CONFIGURE_ARGS += --flags="with_xft with_inotify with_mpris with_dbus with_xpm with_uvmeter with_weather with_alsa"
 else
     DEB_SETUP_GHC_CONFIGURE_ARGS += --flags="with_xft with_xpm"
 endif
