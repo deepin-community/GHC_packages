@@ -1,0 +1,98 @@
+Source: haskell-typst
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Scott Talbert <swt@techie.net>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-aeson-dev,
+ libghc-aeson-prof,
+ libghc-cassava-dev,
+ libghc-cassava-prof,
+ libghc-ordered-containers-dev,
+ libghc-ordered-containers-prof,
+ libghc-pretty-show-dev,
+ libghc-pretty-show-prof,
+ libghc-regex-tdfa-dev,
+ libghc-regex-tdfa-prof,
+ libghc-scientific-dev,
+ libghc-scientific-prof,
+ libghc-tasty-dev,
+ libghc-tasty-prof,
+ libghc-tasty-golden-dev,
+ libghc-tasty-golden-prof,
+ libghc-typst-symbols-dev (>= 0.1),
+ libghc-typst-symbols-dev (<< 0.2),
+ libghc-typst-symbols-prof,
+ libghc-vector-dev,
+ libghc-vector-prof,
+ libghc-xml-conduit-dev,
+ libghc-xml-conduit-prof,
+ libghc-yaml-dev,
+ libghc-yaml-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-aeson-doc,
+ libghc-cassava-doc,
+ libghc-ordered-containers-doc,
+ libghc-pretty-show-doc,
+ libghc-regex-tdfa-doc,
+ libghc-scientific-doc,
+ libghc-tasty-doc,
+ libghc-tasty-golden-doc,
+ libghc-typst-symbols-doc,
+ libghc-vector-doc,
+ libghc-xml-conduit-doc,
+ libghc-yaml-doc,
+Standards-Version: 4.6.2
+Homepage: https://hackage.haskell.org/package/typst
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-typst
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-typst]
+X-Description: Parsing and evaluating typst syntax.
+ A library for parsing and evaluating typst syntax.
+ Typst (<https://typst.app>) is a document layout and
+ formatting language. This library targets typst 0.4
+ and currently offers only partial support.
+
+Package: libghc-typst-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-typst-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-typst-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
