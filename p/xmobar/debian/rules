@@ -4,7 +4,7 @@ DEB_ENABLE_TESTS = yes
 
 # Work-around a bug in GHC on 64-bit unregistered platforms.
 # https://ghc.haskell.org/trac/ghc/ticket/15853
-ifneq (,$(filter $(DEB_BUILD_ARCH),mips64el s390x alpha ia64 riscv64 sparc64))
+ifneq (,$(filter $(DEB_BUILD_ARCH),mips64el s390x alpha ia64 riscv64 loong64 sparc64))
 	DEB_SETUP_GHC_CONFIGURE_ARGS += --ghc-options="-O0"
 endif
 
