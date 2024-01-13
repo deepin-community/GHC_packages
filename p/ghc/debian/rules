@@ -16,7 +16,7 @@ export HOME = /homedoesnotexistatbuildtime
 export DEB_HOST_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 export DEB_BUILD_GNU_TYPE ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
 export DEB_HOST_ARCH      ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
-export DEB_TARGET_ARCH_ENDIAN	?= $(shell dpkg-architecture -qDEB_TARGET_ARCH_ENDIAN)
+export DEB_TARGET_ARCH_ENDIAN  ?= $(shell dpkg-architecture -qDEB_TARGET_ARCH_ENDIAN)
 
 # Bootstrap GHC
 export GHC := $(firstword $(shell bash -c "type -p ghc"))
@@ -60,6 +60,12 @@ ifneq (,$(filter i386 powerpcspe x32, $(DEB_HOST_ARCH)))
   EXTRA_CONFIGURE_FLAGS += --enable-unregisterised
 endif
 
+# See https://bugs.debian.org/1060196
+ifneq (,$(filter powerpc, $(DEB_HOST_ARCH)))
+  EXTRA_CONFIGURE_FLAGS += --enable-unregisterised
+  EXTRA_HADRIAN_FLAGS += "*.*.ghc.hs.opts += -optc--param -optcggc-min-expand=10 -optc-O3"
+endif
+
 # Use system's default ld (ld.bfd) rather than ld.gold, which fails for
 # haskell-cryptohash-sha256 on mips/mipsel. For more information, see
 # https://bugs.debian.org/901947
@@ -73,11 +79,11 @@ ifneq (,$(filter mips mipsel powerpc powerpcspe sparc64, $(DEB_HOST_ARCH)))
 endif
 
 ifneq (,$(filter armhf, $(DEB_HOST_ARCH)))
-	EXTRA_HADRIAN_FLAGS += "*.*.ghc.hs.opts += -D__ARM_PCS_VFP"
+  EXTRA_HADRIAN_FLAGS += "*.*.ghc.hs.opts += -D__ARM_PCS_VFP"
 endif
 
 ifneq (,$(filter i386 mips mipsel hppa, $(DEB_HOST_ARCH)))
-	EXTRA_HADRIAN_FLAGS += "*.*.ghc.hs.opts += -optc--param -optcggc-min-expand=10"
+  EXTRA_HADRIAN_FLAGS += "*.*.ghc.hs.opts += -optc--param -optcggc-min-expand=10"
 endif
 
 # mips64el compiles fine without it. Keep this commented out in
@@ -88,16 +94,16 @@ endif
 # endif
 
 ifneq (,$(filter x32, $(DEB_HOST_ARCH)))
-	EXTRA_HADRIAN_FLAGS += --integer-simple
+  EXTRA_HADRIAN_FLAGS += --integer-simple
 endif
 
 ifneq (,$(filter noopt, $(DEB_BUILD_OPTIONS)))
-	EXTRA_HADRIAN_FLAGS += "*.*.ghc.*.opts += -H64m -O0"
-	EXTRA_HADRIAN_FLAGS += "*.*.rts.*.opts += -O0"
+  EXTRA_HADRIAN_FLAGS += "*.*.ghc.*.opts += -H64m -O0"
+  EXTRA_HADRIAN_FLAGS += "*.*.rts.*.opts += -O0"
 endif
 
 ifneq (,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
-    NUMJOBS = $(patsubst parallel=%,%,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
+  NUMJOBS = $(patsubst parallel=%,%,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
 endif
 
 # Use system libffi
