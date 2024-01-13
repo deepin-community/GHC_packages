@@ -60,6 +60,11 @@ ifneq (,$(filter i386 powerpcspe x32, $(DEB_HOST_ARCH)))
   EXTRA_CONFIGURE_FLAGS += --enable-unregisterised
 endif
 
+# Build unregisterised on loong64, since llvm-15 is not available
+ifneq (,$(filter loong64, $(DEB_HOST_ARCH)))
+  EXTRA_CONFIGURE_FLAGS += --enable-unregisterised
+endif
+
 # Use system's default ld (ld.bfd) rather than ld.gold, which fails for
 # haskell-cryptohash-sha256 on mips/mipsel. For more information, see
 # https://bugs.debian.org/901947
