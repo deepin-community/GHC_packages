@@ -165,13 +165,14 @@ override_dh_auto_build-arch: hadrian/hadrian
 ifeq (YES,$(BUILD_CROSS))
 	# See https://gitlab.haskell.org/ghc/ghc/-/issues/23975
 	# and https://gitlab.haskell.org/ghc/ghc/-/issues/22006
-	$(error cross-compilation is not supported)
+	$(warning cross-compilation is not supported)
 endif
 	hadrian/hadrian \
 		-V -j$(NUMJOBS) \
 		--docs=no-haddocks --docs=no-sphinx-html --docs=no-sphinx-pdfs \
 		binary-dist-dir \
 		$(EXTRA_HADRIAN_FLAGS)
+ifeq (NO,$(BUILD_CROSS))
 	# I have noticed that on some rare cases the package cache
 	# generated for stage2 is stale. This is probably an upstream bug,
 	# and it wouldn't affect us (the package cache for binary-dist-dir is
@@ -179,6 +180,7 @@ endif
 	# Maybe we should consider using ghc-pkg from binary-dist-dir instead.
 	# As a work-around for now, regenerate the stage2 package cache.
 	_build/stage1/bin/ghc-pkg recache
+endif
 
 # This rule is a superset of 'override_dh_auto_build-arch'. It builds everything
 # that the '-arch' rule builds, and then docs on top.
