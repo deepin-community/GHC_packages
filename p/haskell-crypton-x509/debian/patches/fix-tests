@@ -1,0 +1,24 @@
+From 5281ff115a18621407b41f9560fd6cd65c602fcc Mon Sep 17 00:00:00 2001
+From: Felix Yan <felixonmars@archlinux.org>
+Date: Fri, 9 Jun 2023 04:15:59 +0300
+Subject: [PATCH] Correct dependency in tests
+
+Fixes #1. I believe it's just missing a rename.
+---
+ x509/crypton-x509.cabal | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+Index: b/crypton-x509.cabal
+===================================================================
+--- a/crypton-x509.cabal
++++ b/crypton-x509.cabal
+@@ -54,8 +54,8 @@ Test-Suite test-x509
+                    , tasty-quickcheck
+                    , hourglass
+                    , asn1-types
+-                   , x509
+                    , crypton
++                   , crypton-x509
+   ghc-options:       -Wall -fno-warn-orphans -fno-warn-missing-signatures
+ 
+ source-repository head

@@ -19,5 +19,10 @@ ifneq (,$(filter $(DEB_BUILD_ARCH),mips mipsel))
 	DEB_SETUP_GHC_CONFIGURE_ARGS += --ghc-options="-optc--param -optcggc-min-expand=10"
 endif
 
+# Disable tests on powerpc due to memory constraints
+ifneq (,$(filter $(DEB_BUILD_ARCH),powerpc))
+	DEB_ENABLE_TESTS = no
+endif
+
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk

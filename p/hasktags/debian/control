@@ -5,11 +5,13 @@ Uploaders:
 Priority: optional
 Section: haskell
 Rules-Requires-Root: no
-Build-Depends:
+Build-Depends: debhelper (>= 10),
  haskell-devscripts (>= 0.13),
  cdbs,
  ghc,
  ghc-prof,
+ libghc-hunit-dev,
+ libghc-hunit-prof,
  libghc-json-dev (>= 0.5),
  libghc-json-dev (<< 0.11),
  libghc-json-prof,
@@ -20,10 +22,6 @@ Build-Depends:
  libghc-utf8-string-prof,
  libghc-optparse-applicative-dev,
  libghc-optparse-applicative-prof,
-Build-Depends-Indep: ghc-doc,
- libghc-json-doc,
- libghc-microlens-platform-doc,
- libghc-utf8-string-doc,
 Standards-Version: 4.6.2
 Homepage: https://github.com/MarcWeber/hasktags
 Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/hasktags

@@ -1,0 +1,70 @@
+Source: haskell-hslua-repl
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Scott Talbert <swt@techie.net>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-hslua-core-dev (>= 2.3.1),
+ libghc-hslua-core-dev (<< 2.4),
+ libghc-hslua-core-prof,
+ libghc-isocline-dev (>= 1.0),
+ libghc-isocline-dev (<< 1.1),
+ libghc-isocline-prof,
+ libghc-lua-dev (>= 2.3),
+ libghc-lua-dev (<< 2.4),
+ libghc-lua-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-hslua-core-doc,
+ libghc-isocline-doc,
+ libghc-lua-doc,
+Standards-Version: 4.6.2
+Homepage: https://hslua.org/
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-hslua-repl
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-hslua-repl]
+X-Description: Isocline-based Lua REPL
+ An embeddable Lua REPL built with Isocline and HsLua.
+
+Package: libghc-hslua-repl-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hslua-repl-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-hslua-repl-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

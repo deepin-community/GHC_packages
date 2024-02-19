@@ -19,7 +19,7 @@ Index: b/pandoc.cabal
 ===================================================================
 --- a/pandoc.cabal
 +++ b/pandoc.cabal
-@@ -451,6 +451,7 @@ library
+@@ -454,6 +454,7 @@ library
                   aeson-pretty          >= 0.8.9    && < 0.9,
                   array                 >= 0.5      && < 0.6,
                   attoparsec            >= 0.12     && < 0.15,
@@ -27,9 +27,9 @@ Index: b/pandoc.cabal
                   binary                >= 0.7      && < 0.11,
                   blaze-html            >= 0.9      && < 0.10,
                   blaze-markup          >= 0.8      && < 0.9,
-@@ -467,7 +468,6 @@ library
+@@ -470,7 +471,6 @@ library
                   directory             >= 1.2.3    && < 1.4,
-                  doclayout             >= 0.4      && < 0.5,
+                  doclayout             >= 0.4.0.1  && < 0.5,
                   doctemplates          >= 0.11     && < 0.12,
 -                 base64                >= 0.4      && < 0.5,
                   emojis                >= 0.1      && < 0.2,
@@ -92,7 +92,7 @@ Index: b/src/Text/Pandoc/Readers/HTML.hs
  import Data.Char (isAlphaNum, isLetter)
  import Data.Default (Default (..), def)
  import Data.Foldable (for_)
-@@ -779,7 +779,8 @@ pSvg = do
+@@ -786,7 +786,8 @@ pSvg = do
    contents <- many (notFollowedBy (pCloses "svg") >> pAny)
    closet <- TagClose "svg" <$ (pCloses "svg" <|> eof)
    let rawText = T.strip $ renderTags' (opent : contents ++ [closet])

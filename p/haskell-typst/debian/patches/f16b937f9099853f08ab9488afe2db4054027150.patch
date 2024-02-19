@@ -1,0 +1,22 @@
+From f16b937f9099853f08ab9488afe2db4054027150 Mon Sep 17 00:00:00 2001
+From: Eric Long <i@hack3r.moe>
+Date: Sun, 15 Oct 2023 02:40:56 +0800
+Subject: [PATCH] Increase test timeout to 1s
+
+---
+ test/Main.hs | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/test/Main.hs b/test/Main.hs
+index d7e4126..b6edaeb 100644
+--- a/test/Main.hs
++++ b/test/Main.hs
+@@ -33,7 +33,7 @@ goldenTests :: IO TestTree
+ goldenTests = do
+   inputs <- findByExtension [".typ"] "test/typ"
+   pure $
+-    localOption (Timeout 100000 "100ms") $
++    localOption (Timeout 1000000 "1s") $
+       testGroup "golden tests" (map runTest inputs)
+ 
+ runTest :: FilePath -> TestTree

@@ -1,0 +1,92 @@
+From fea8e05a6c870ea6e032102aaf9c4a2651a60135 Mon Sep 17 00:00:00 2001
+From: John MacFarlane <jgm@berkeley.edu>
+Date: Fri, 18 Aug 2023 16:05:07 -0700
+Subject: [PATCH] Fix tests because of breaking symbol change ident -> equiv.
+
+---
+ test/out/math/spacing-02.out | 2 +-
+ test/out/math/spacing-04.out | 8 ++++----
+ test/typ/math/spacing-02.typ | 2 +-
+ test/typ/math/spacing-04.typ | 8 ++++----
+ 4 files changed, 10 insertions(+), 10 deletions(-)
+
+diff --git a/test/out/math/spacing-02.out b/test/out/math/spacing-02.out
+index 5af9bc7..943708e 100644
+--- a/test/out/math/spacing-02.out
++++ b/test/out/math/spacing-02.out
+@@ -92,7 +92,7 @@
+     , Code
+         "test/typ/math/spacing-02.typ"
+         ( line 5 , column 8 )
+-        (Ident (Identifier "ident"))
++        (Ident (Identifier "equiv"))
+     , Text "c"
+     , Code
+         "test/typ/math/spacing-02.typ"
+diff --git a/test/out/math/spacing-04.out b/test/out/math/spacing-04.out
+index d346781..992a382 100644
+--- a/test/out/math/spacing-04.out
++++ b/test/out/math/spacing-04.out
+@@ -53,7 +53,7 @@
+     , Code
+         "test/typ/math/spacing-04.typ"
+         ( line 4 , column 4 )
+-        (Ident (Identifier "ident"))
++        (Ident (Identifier "equiv"))
+     , Text "b"
+     , Text "+"
+     , Text "c"
+@@ -86,7 +86,7 @@
+                [ Code
+                    "test/typ/math/spacing-04.typ"
+                    ( line 5 , column 11 )
+-                   (Ident (Identifier "ident"))
++                   (Ident (Identifier "equiv"))
+                ]
+            ])
+     , Text "b"
+@@ -147,7 +147,7 @@
+                [ Code
+                    "test/typ/math/spacing-04.typ"
+                    ( line 6 , column 14 )
+-                   (Ident (Identifier "ident"))
++                   (Ident (Identifier "equiv"))
+                ]
+            ])
+     , Text "b"
+@@ -210,7 +210,7 @@
+                [ Code
+                    "test/typ/math/spacing-04.typ"
+                    ( line 8 , column 11 )
+-                   (Ident (Identifier "ident"))
++                   (Ident (Identifier "equiv"))
+                ]
+            , KeyValArg (Identifier "tl") (Block (Content [ Text "a" ]))
+            , KeyValArg (Identifier "tr") (Block (Content [ Text "b" ]))
+diff --git a/test/typ/math/spacing-02.typ b/test/typ/math/spacing-02.typ
+index ec72ed0..fc7342a 100644
+--- a/test/typ/math/spacing-02.typ
++++ b/test/typ/math/spacing-02.typ
+@@ -1,5 +1,5 @@
+ // Test predefined spacings.
+ $a thin b, a med b, a thick b, a quad b$ \
+ $a = thin b$ \
+-$a - b ident c quad (mod 2)$
++$a - b equiv c quad (mod 2)$
+ 
+diff --git a/test/typ/math/spacing-04.typ b/test/typ/math/spacing-04.typ
+index 3c42850..d80983c 100644
+--- a/test/typ/math/spacing-04.typ
++++ b/test/typ/math/spacing-04.typ
+@@ -1,7 +1,7 @@
+ // Test spacing for operators with decorations and modifiers on them
+ #set page(width: auto)
+-$a ident b + c - d => e log 5 op("ln") 6$ \
+-$a cancel(ident) b overline(+) c arrow(-) d hat(=>) e cancel(log) 5 dot(op("ln")) 6$ \
+-$a overbrace(ident) b underline(+) c grave(-) d underbracket(=>) e circle(log) 5 caron(op("ln")) 6$ \
++$a equiv b + c - d => e log 5 op("ln") 6$ \
++$a cancel(equiv) b overline(+) c arrow(-) d hat(=>) e cancel(log) 5 dot(op("ln")) 6$ \
++$a overbrace(equiv) b underline(+) c grave(-) d underbracket(=>) e circle(log) 5 caron(op("ln")) 6$ \
+ \
+-$a attach(ident, tl: a, tr: b) b attach(limits(+), t: a, b: b) c tilde(-) d breve(=>) e attach(limits(log), t: a, b: b) 5 attach(op("ln"), tr: a, bl: b) 6$
++$a attach(equiv, tl: a, tr: b) b attach(limits(+), t: a, b: b) c tilde(-) d breve(=>) e attach(limits(log), t: a, b: b) 5 attach(op("ln"), tr: a, bl: b) 6$
