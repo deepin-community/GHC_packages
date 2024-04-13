@@ -1,0 +1,279 @@
+Description: Use the time library, instead of directly calling into libc
+Author: Ilias Tsitsimpis <iliastsi@debian.org>
+Bug-Debian: https://bugs.debian.org/1068696
+
+Index: b/Data/Hourglass/Internal/Unix.hs
+===================================================================
+--- a/Data/Hourglass/Internal/Unix.hs
++++ b/Data/Hourglass/Internal/Unix.hs
+@@ -10,9 +10,6 @@
+ -- depend on localtime_r and gmtime_r.
+ -- Some obscure unix system might not support them.
+ --
+-{-# LANGUAGE ForeignFunctionInterface #-}
+-{-# LANGUAGE CPP #-}
+-{-# LANGUAGE EmptyDataDecls #-}
+ module Data.Hourglass.Internal.Unix
+     ( dateTimeFromUnixEpochP
+     , dateTimeFromUnixEpoch
+@@ -21,148 +18,53 @@ module Data.Hourglass.Internal.Unix
+     , systemGetElapsedP
+     ) where
+ 
+-import Control.Applicative
+-import Foreign.C.Types
+-import Foreign.Storable
+-import Foreign.Marshal.Alloc
+-import Foreign.Ptr
+ import Data.Hourglass.Types
+-import System.IO.Unsafe
++import Data.Time.Calendar.MonthDay
++import Data.Time.Calendar.OrdinalDate
++import Data.Time.LocalTime hiding (TimeOfDay(..))
++import qualified Data.Time.LocalTime as DTLocalTime
++import Data.Time.Clock.System
+ 
+ -- | convert a unix epoch precise to DateTime
+ dateTimeFromUnixEpochP :: ElapsedP -> DateTime
+-dateTimeFromUnixEpochP (ElapsedP e ns) = fromCP ns $ rawGmTime e
++dateTimeFromUnixEpochP (ElapsedP (Elapsed sec) (NanoSeconds ns)) =
++    DateTime date time
++  where systime = MkSystemTime (fromIntegral sec) (fromIntegral ns)
++        utctime = systemToUTCTime systime
++        LocalTime day timeofday = utcToLocalTime utc utctime
++        (year, dayofyear) = toOrdinalDate day
++        (monthofyear, dayofmonth) = dayOfYearToMonthAndDay (isLeapYear year) dayofyear
++        date = Date
++            { dateYear  = fromIntegral year
++            , dateMonth = toEnum (monthofyear - 1)
++            , dateDay   = dayofmonth
++            }
++        time = TimeOfDay
++            { todHour = fromIntegral $ DTLocalTime.todHour timeofday
++            , todMin  = fromIntegral $ DTLocalTime.todMin timeofday
++            , todSec  = floor $ DTLocalTime.todSec timeofday
++            , todNSec = NanoSeconds ns
++            }
+ 
+ -- | convert a unix epoch to DateTime
+ dateTimeFromUnixEpoch :: Elapsed -> DateTime
+-dateTimeFromUnixEpoch e = fromC $ rawGmTime e
++dateTimeFromUnixEpoch e = dateTimeFromUnixEpochP $ ElapsedP e 0
+ 
+ -- | return the timezone offset in minutes
+ systemGetTimezone :: IO TimezoneOffset
+-systemGetTimezone = TimezoneOffset . fromIntegral . flip div 60 <$> localTime 0
++systemGetTimezone = do
++    TimeZone tzm _ _ <- getCurrentTimeZone
++    return $ TimezoneOffset tzm
+ 
+ ----------------------------------------------------------------------------------------
+ -- | return the current elapsedP
+ systemGetElapsedP :: IO ElapsedP
+-systemGetElapsedP = allocaBytesAligned sofTimespec 8 $ \ptr -> do
+-    c_clock_get ptr
+-    toElapsedP <$> peek (castPtr ptr) <*> peekByteOff (castPtr ptr) sofCTime
+-  where sofTimespec = sofCTime + sofCLong
+-        sofCTime = sizeOf (0 :: CTime)
+-        sofCLong = sizeOf (0 :: CLong)
+-#if (MIN_VERSION_base(4,5,0))
+-        toElapsedP :: CTime -> CLong -> ElapsedP
+-        toElapsedP (CTime sec) nsec = ElapsedP (Elapsed $ Seconds (fromIntegral sec)) (fromIntegral nsec)
+-#else
+-        toElapsedP :: CLong -> CLong -> ElapsedP
+-        toElapsedP sec         nsec = ElapsedP (Elapsed $ Seconds (fromIntegral sec)) (fromIntegral nsec)
+-#endif
++systemGetElapsedP = do
++    MkSystemTime sec nsec <- getSystemTime
++    return $ ElapsedP (fromIntegral sec) (fromIntegral nsec)
+ 
+ -- | return the current elapsed
+ systemGetElapsed :: IO Elapsed
+-systemGetElapsed = allocaBytesAligned sofTimespec 8 $ \ptr -> do
+-    c_clock_get ptr
+-    toElapsed <$> peek (castPtr ptr)
+-  where sofTimespec = sizeOf (0 :: CTime) + sizeOf (0 :: CLong)
+-#if (MIN_VERSION_base(4,5,0))
+-        toElapsed :: CTime -> Elapsed
+-        toElapsed (CTime sec) = Elapsed $ Seconds (fromIntegral sec)
+-#else
+-        toElapsed :: CLong -> Elapsed
+-        toElapsed sec         = Elapsed $ Seconds (fromIntegral sec)
+-#endif
+-
+-foreign import ccall unsafe "hourglass_clock_calendar"
+-    c_clock_get :: Ptr CLong -> IO ()
+-
+-#if (MIN_VERSION_base(4,5,0))
+-foreign import ccall unsafe "gmtime_r"
+-    c_gmtime_r :: Ptr CTime -> Ptr CTm -> IO (Ptr CTm)
+-
+-foreign import ccall unsafe "localtime_r"
+-    c_localtime_r :: Ptr CTime -> Ptr CTm -> IO (Ptr CTm)
+-#else
+-foreign import ccall unsafe "gmtime_r"
+-    c_gmtime_r :: Ptr CLong -> Ptr CTm -> IO (Ptr CTm)
+-
+-foreign import ccall unsafe "localtime_r"
+-    c_localtime_r :: Ptr CLong -> Ptr CTm -> IO (Ptr CTm)
+-#endif
+-
+--- | Return a global time's struct tm based on the number of elapsed second since unix epoch.
+-rawGmTime :: Elapsed -> CTm
+-rawGmTime (Elapsed (Seconds s)) = unsafePerformIO callTime
+-  where callTime =
+-            alloca $ \ctmPtr -> do
+-            alloca $ \ctimePtr -> do
+-                poke ctimePtr ctime
+-                r <- c_gmtime_r ctimePtr ctmPtr
+-                if r == nullPtr
+-                    then error "gmTime failed"
+-                    else peek ctmPtr
+-        ctime = fromIntegral s
+-{-# NOINLINE rawGmTime #-}
+-
+--- | Return a local time's gmtoff (seconds east of UTC)
+---
+--- use the ill defined gmtoff (at offset 40) that might or might not be
+--- available for your platform. worst case scenario it's not initialized
+--- properly.
+-localTime :: Elapsed -> IO CLong
+-localTime (Elapsed (Seconds s)) = callTime
+-  where callTime =
+-            alloca $ \ctmPtr -> do
+-            alloca $ \ctimePtr -> do
+-                poke ctimePtr ctime
+-                r <- c_localtime_r ctimePtr ctmPtr
+-                if r == nullPtr
+-                    then error "localTime failed"
+-                    else peekByteOff ctmPtr 40
+-        ctime = fromIntegral s
+-
+--- | Represent the beginning of struct tm
+-data CTm = CTm
+-    { ctmSec    :: CInt
+-    , ctmMin    :: CInt
+-    , ctmHour   :: CInt
+-    , ctmMDay   :: CInt
+-    , ctmMon    :: CInt
+-    , ctmYear   :: CInt
+-    } deriving (Show,Eq)
+-
+--- | Convert a C structure to a DateTime structure
+-fromC :: CTm -> DateTime
+-fromC ctm = DateTime date time
+-  where date = Date
+-            { dateYear  = fromIntegral $ ctmYear ctm + 1900
+-            , dateMonth = toEnum $ fromIntegral $ ctmMon ctm
+-            , dateDay   = fromIntegral $ ctmMDay ctm
+-            }
+-        time = TimeOfDay
+-            { todHour = fromIntegral $ ctmHour ctm
+-            , todMin  = fromIntegral $ ctmMin ctm
+-            , todSec  = fromIntegral $ ctmSec ctm
+-            , todNSec = 0
+-            }
+-
+--- | Similar to 'fromC' except with nanosecond precision
+-fromCP :: NanoSeconds -> CTm -> DateTime
+-fromCP ns ctm = DateTime d (t { todNSec = ns })
+-  where (DateTime d t) = fromC ctm
+-
+-instance Storable CTm where
+-    alignment _ = 8
+-    sizeOf _    = 60 -- account for 9 ints, alignment + 2 unsigned long at end.
+-    peek ptr    = do
+-        CTm <$> peekByteOff intPtr 0
+-            <*> peekByteOff intPtr 4
+-            <*> peekByteOff intPtr 8
+-            <*> peekByteOff intPtr 12
+-            <*> peekByteOff intPtr 16
+-            <*> peekByteOff intPtr 20
+-      where intPtr = castPtr ptr
+-    poke ptr (CTm f0 f1 f2 f3 f4 f5) = do
+-        mapM_ (uncurry (pokeByteOff intPtr))
+-            [(0,f0), (4,f1), (8,f2), (12,f3), (16,f4), (20,f5)]
+-        --pokeByteOff (castPtr ptr) 36 f9
+-      where intPtr = castPtr ptr
++systemGetElapsed = do
++    ElapsedP e _ <- systemGetElapsedP
++    return e
+Index: b/hourglass.cabal
+===================================================================
+--- a/hourglass.cabal
++++ b/hourglass.cabal
+@@ -40,6 +40,7 @@ Library
+                    , Data.Hourglass.Internal
+                    , Data.Hourglass.Utils
+   Build-depends:     base >= 4 && < 5
++                   , time >= 1.12
+                    , deepseq
+   ghc-options:       -Wall -fwarn-tabs
+   Default-Language:  Haskell2010
+Index: b/Data/Hourglass/Calendar.hs
+===================================================================
+--- a/Data/Hourglass/Calendar.hs
++++ b/Data/Hourglass/Calendar.hs
+@@ -20,6 +20,7 @@ module Data.Hourglass.Calendar
+     , dateTimeFromUnixEpochP
+     ) where
+ 
++import Data.Int
+ import Data.Hourglass.Types
+ import Data.Hourglass.Internal
+ 
+@@ -34,7 +35,7 @@ isLeapYear year
+ 
+ -- | Return the day of the week a specific date fall in
+ getWeekDay :: Date -> WeekDay
+-getWeekDay date = toEnum (d `mod` 7)
++getWeekDay date = toEnum $ fromIntegral (d `mod` 7)
+   where d = daysOfDate date
+ 
+ -- | return the number of days until the beggining of the month specified for a specific year.
+@@ -59,19 +60,25 @@ getDayOfTheYear :: Date -> Int
+ getDayOfTheYear (Date y m d) = daysUntilMonth y m + d
+ 
+ -- | return the number of days before Jan 1st of the year
+-daysBeforeYear :: Int -> Int
++daysBeforeYear :: Int -> Int64
+ daysBeforeYear year = y * 365 + (y `div` 4) - (y `div` 100) + (y `div` 400)
+-  where y = year - 1
++  where y = fromIntegral (year - 1)
+ 
+ -- | Return the number of day since 1 january 1
+-daysOfDate :: Date -> Int
+-daysOfDate (Date y m d) = daysBeforeYear y + daysUntilMonth y m + d
++daysOfDate :: Date -> Int64
++daysOfDate (Date y m d) = daysBeforeYear y + fromIntegral (daysUntilMonth y m + d)
++
++-- | Return the number of days since epoch
++daysOfDateSinceEpoch :: Date -> Int64
++daysOfDateSinceEpoch date = daysOfDate date - epochDays
++  where epochDays = 719163
++-- https://gitlab.haskell.org/ghc/ghc/-/issues/24700
++{-# NOINLINE daysOfDateSinceEpoch #-}
+ 
+ -- | Return the number of seconds to unix epoch of a date considering hour=0,minute=0,second=0
+ dateToUnixEpoch :: Date -> Elapsed
+-dateToUnixEpoch date = Elapsed $ Seconds (fromIntegral (daysOfDate date - epochDays) * secondsPerDay)
+-  where epochDays     = 719163
+-        secondsPerDay = 86400 -- julian day is 24h
++dateToUnixEpoch date = Elapsed $ Seconds (daysOfDateSinceEpoch date * secondsPerDay)
++  where secondsPerDay = 86400 -- julian day is 24h
+ 
+ -- | Return the Date associated with the unix epoch
+ dateFromUnixEpoch :: Elapsed -> Date
+Index: b/Data/Hourglass/Epoch.hs
+===================================================================
+--- a/Data/Hourglass/Epoch.hs
++++ b/Data/Hourglass/Epoch.hs
+@@ -80,6 +80,8 @@ data WindowsEpoch = WindowsEpoch
+ instance Epoch WindowsEpoch where
+     epochName _ = "windows"
+     epochDiffToUnix _ = -11644473600
++    -- https://gitlab.haskell.org/ghc/ghc/-/issues/24700
++    {-# NOINLINE epochDiffToUnix #-}
+ 
+ instance Epoch epoch => Timeable (ElapsedSince epoch) where
+     timeGetElapsedP es = ElapsedP (Elapsed e) 0
