@@ -2,15 +2,12 @@ Index: b/lift-type.cabal
 ===================================================================
 --- a/lift-type.cabal
 +++ b/lift-type.cabal
-@@ -34,7 +34,10 @@ test-suite lift-type-test
+@@ -34,7 +34,7 @@ test-suite lift-type-test
    main-is: Spec.hs
    hs-source-dirs:
        test
 -  ghc-options: -threaded -rtsopts -with-rtsopts=-N
-+  if arch(arm) || arch(mips) || arch(s390x) || arch(i386) || arch(riscv64)
-+    ghc-options: -threaded -rtsopts
-+  else
-+    ghc-options: -threaded -rtsopts -with-rtsopts=-N
++  ghc-options: -threaded -rtsopts
    build-depends:
        base
      , lift-type
