@@ -1,0 +1,85 @@
+Source: haskell-language-c-quote
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders:
+ Kari Pahula <kaol@debian.org>,
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-exception-mtl-dev (>= 0.3),
+ libghc-exception-mtl-dev (<< 0.5),
+ libghc-exception-mtl-prof,
+ libghc-exception-transformers-dev (>= 0.3),
+ libghc-exception-transformers-dev (<< 0.5),
+ libghc-exception-transformers-prof,
+ libghc-src-meta-dev (>= 0.4),
+ libghc-src-meta-dev (<< 0.9),
+ libghc-src-meta-prof,
+ libghc-mainland-pretty-dev (>= 0.7),
+ libghc-mainland-pretty-dev (<< 0.8),
+ libghc-mainland-pretty-prof,
+ libghc-srcloc-dev (>= 0.4),
+ libghc-srcloc-dev (<< 0.7),
+ libghc-srcloc-prof,
+ libghc-syb-dev (>= 0.3),
+ libghc-syb-dev (<< 0.8),
+ libghc-syb-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-exception-mtl-doc,
+ libghc-exception-transformers-doc,
+ libghc-src-meta-doc,
+ libghc-mainland-pretty-doc,
+ libghc-srcloc-doc,
+ libghc-syb-doc,
+Standards-Version: 4.7.0
+Homepage: https://github.com/mainland/language-c-quote
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-language-c-quote
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-language-c-quote]
+X-Description: C/CUDA/OpenCL/Objective-C quasiquoting library
+ This package provides a general parser for the C language, including
+ most GCC extensions and some CUDA and OpenCL extensions as well as
+ the entire Objective-C language.
+
+Package: libghc-language-c-quote-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-language-c-quote-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-language-c-quote-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
