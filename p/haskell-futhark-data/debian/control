@@ -1,0 +1,81 @@
+Source: haskell-futhark-data
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders:
+ Kari Pahula <kaol@debian.org>,
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-bytestring-to-vector-dev (>= 0.3.0.1),
+ libghc-bytestring-to-vector-prof,
+ libghc-half-dev (>= 0.3),
+ libghc-half-prof,
+ libghc-megaparsec-dev (>= 9.0.0),
+ libghc-megaparsec-prof,
+ libghc-scientific-dev (>= 0.3.6),
+ libghc-scientific-prof,
+ libghc-vector-dev (>= 0.12),
+ libghc-vector-prof,
+ libghc-vector-binary-instances-dev (>= 0.2.2.0),
+ libghc-vector-binary-instances-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-bytestring-to-vector-doc,
+ libghc-half-doc,
+ libghc-megaparsec-doc,
+ libghc-scientific-doc,
+ libghc-vector-doc,
+ libghc-vector-binary-instances-doc,
+Standards-Version: 4.7.0
+Homepage: https://hackage.haskell.org/package/futhark-data
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-futhark-data
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-futhark-data]
+X-Description: mplementation of the Futhark data format
+ The Futhark compiler and its tools uses a simple external
+ data representation to encode arrays and scalars.  This
+ package implements both a Haskell-level representation of
+ these values, as well as utility functions for reading
+ and writing values in both the textual and binary format.
+
+Package: libghc-futhark-data-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-futhark-data-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-futhark-data-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
