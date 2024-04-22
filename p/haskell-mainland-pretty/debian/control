@@ -1,0 +1,68 @@
+Source: haskell-mainland-pretty
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders:
+ Kari Pahula <kaol@debian.org>,
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-srcloc-dev (>= 0.2),
+ libghc-srcloc-dev (<< 0.7),
+ libghc-srcloc-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-srcloc-doc,
+Standards-Version: 4.7.0
+Homepage: https://github.com/mainland/mainland-pretty
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-mainland-pretty
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-mainland-pretty]
+X-Description: pretty printing designed for printing source code
+ Pretty printing designed for printing source code based on
+ Wadler's paper /A Prettier Printer/. The main advantage of this
+ library is its ability to automatically track the source
+ locations associated with pretty printed values and output
+ appropriate #line pragmas and its ability to produce output
+ in the form of lazy text using a builder.
+
+Package: libghc-mainland-pretty-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-mainland-pretty-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-mainland-pretty-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
