@@ -1,0 +1,68 @@
+Source: haskell-futhark-server
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders:
+ Kari Pahula <kaol@debian.org>,
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-futhark-data-dev,
+ libghc-futhark-data-prof,
+ libghc-temporary-dev,
+ libghc-temporary-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-futhark-data-doc,
+ libghc-temporary-doc,
+Standards-Version: 4.7.0
+Homepage: https://hackage.haskell.org/package/futhark-server
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-futhark-server
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-futhark-server]
+X-Description: client implementation of the Futhark server protocol
+ Provides an easy way to interact with a running Futhark
+ server-mode program from a Haskell program.  Provides
+ both direct support of the protocol, as well as
+ convenience functions for loading and extracting data.
+
+Package: libghc-futhark-server-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-futhark-server-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-futhark-server-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
