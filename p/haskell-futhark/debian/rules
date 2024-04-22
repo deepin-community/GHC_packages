@@ -1,0 +1,31 @@
+#!/usr/bin/make -f
+
+DEB_SETUP_BIN_NAME = debian/hlibrary.setup
+DEB_CABAL_PACKAGE = futhark
+DEB_DEFAULT_COMPILER = ghc
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/hlibrary.mk
+
+build/futhark:: build-ghc-stamp
+	cd docs; make man
+
+build/futhark-doc::
+	cd docs; make html
+
+common-binary-arch::
+# TODO test other backends (CPU is always available)
+# --concurrency=1 is rather excessive but too much parallelism risks GPU OOM
+# Idea: Use a runner that checks that GPU has a reasonable amount of memory available
+ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
+	set -e\
+	; if [ -r /dev/kfd -a -x /usr/bin/hipcc ]\
+	; then cp -r tests debian\
+	;      dist-ghc/build/futhark/futhark test --backend=hip --concurrency=1 --notty debian/tests\
+	; else echo "W: /dev/kfd unreadable: no available AMD GPU, or hipcc not found"\
+	;      echo "W: tests skipped."\
+	; fi
+endif
+
+cleanbuilddir::
+	rm -rf debian/tests docs/_build

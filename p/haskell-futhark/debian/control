@@ -1,0 +1,208 @@
+Source: haskell-futhark
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders:
+ Kari Pahula <kaol@debian.org>,
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ python3-sphinx,
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-aeson-dev (>= 2.0.0.0),
+ libghc-aeson-prof,
+ libghc-ansi-terminal-dev (>= 0.6.3.1),
+ libghc-ansi-terminal-prof,
+ libghc-base16-bytestring-dev,
+ libghc-base16-bytestring-prof,
+ libghc-blaze-html-dev (>= 0.9.0.1),
+ libghc-blaze-html-prof,
+ libghc-bmp-dev (>= 1.2.6.3),
+ libghc-bmp-prof,
+ libghc-bytestring-to-vector-dev (>= 0.3.0.1),
+ libghc-bytestring-to-vector-prof,
+ libghc-cmark-gfm-dev (>= 0.2.1),
+ libghc-cmark-gfm-prof,
+ libghc-cryptohash-md5-dev,
+ libghc-cryptohash-md5-prof,
+ libghc-directory-tree-dev (>= 0.12.1),
+ libghc-directory-tree-prof,
+ libghc-dlist-dev (>= 0.6.0.1),
+ libghc-dlist-prof,
+ libghc-fgl-dev,
+ libghc-fgl-prof,
+ libghc-fgl-visualize-dev,
+ libghc-fgl-visualize-prof,
+ libghc-file-embed-dev (>= 0.0.14.0),
+ libghc-file-embed-prof,
+ libghc-free-dev (>= 5.1.10),
+ libghc-free-prof,
+ libghc-futhark-data-dev (>= 1.1.0.0),
+ libghc-futhark-data-prof,
+ libghc-futhark-manifest-dev (>= 1.4.0.0),
+ libghc-futhark-manifest-prof,
+ libghc-futhark-server-dev (>= 1.2.2.1),
+ libghc-futhark-server-prof,
+ libghc-githash-dev (>= 0.1.6.1),
+ libghc-githash-prof,
+ libghc-half-dev (>= 0.3),
+ libghc-half-prof,
+ libghc-language-c-quote-dev (>= 0.12),
+ libghc-language-c-quote-prof,
+ libghc-lens-dev,
+ libghc-lens-prof,
+ libghc-mainland-pretty-dev (>= 0.7.1),
+ libghc-mainland-pretty-prof,
+ libghc-megaparsec-dev (>= 9.0.0),
+ libghc-megaparsec-prof,
+ libghc-mwc-random-dev,
+ libghc-mwc-random-prof,
+ libghc-neat-interpolation-dev (>= 0.3),
+ libghc-neat-interpolation-prof,
+ libghc-parallel-dev (>= 3.2.1.0),
+ libghc-parallel-prof,
+ libghc-prettyprinter-dev (>= 1.7),
+ libghc-prettyprinter-prof,
+ libghc-prettyprinter-ansi-terminal-dev (>= 1.1),
+ libghc-prettyprinter-ansi-terminal-prof,
+ libghc-process-extras-dev (>= 0.7.2),
+ libghc-process-extras-prof,
+ libghc-random-dev (>= 1.2.0),
+ libghc-random-prof,
+ libghc-regex-tdfa-dev (>= 1.2),
+ libghc-regex-tdfa-prof,
+ libghc-srcloc-dev (>= 0.4),
+ libghc-srcloc-prof,
+ libghc-statistics-dev,
+ libghc-statistics-prof,
+ libghc-temporary-dev,
+ libghc-temporary-prof,
+ libghc-terminal-size-dev (>= 0.3),
+ libghc-terminal-size-prof,
+ libghc-vector-dev (>= 0.12),
+ libghc-vector-prof,
+ libghc-versions-dev (>= 6.0.0),
+ libghc-versions-prof,
+ libghc-zlib-dev (>= 0.6.3.0),
+ libghc-zlib-prof,
+ hipcc [amd64 arm64 ppc64el] <!nocheck>,
+Build-Depends-Indep: ghc-doc,
+ libghc-aeson-doc,
+ libghc-ansi-terminal-doc,
+ libghc-base16-bytestring-doc,
+ libghc-blaze-html-doc,
+ libghc-bmp-doc,
+ libghc-bytestring-to-vector-doc,
+ libghc-cmark-gfm-doc,
+ libghc-cryptohash-md5-doc,
+ libghc-directory-tree-doc,
+ libghc-dlist-doc,
+ libghc-fgl-doc,
+ libghc-fgl-visualize-doc,
+ libghc-file-embed-doc,
+ libghc-free-doc,
+ libghc-futhark-data-doc,
+ libghc-futhark-manifest-doc,
+ libghc-futhark-server-doc,
+ libghc-githash-doc,
+ libghc-half-doc,
+ libghc-language-c-quote-doc,
+ libghc-lens-doc,
+ libghc-mainland-pretty-doc,
+ libghc-megaparsec-doc,
+ libghc-mwc-random-doc,
+ libghc-neat-interpolation-doc,
+ libghc-parallel-doc,
+ libghc-prettyprinter-doc,
+ libghc-prettyprinter-ansi-terminal-doc,
+ libghc-process-extras-doc,
+ libghc-random-doc,
+ libghc-regex-tdfa-doc,
+ libghc-srcloc-doc,
+ libghc-statistics-doc,
+ libghc-temporary-doc,
+ libghc-terminal-size-doc,
+ libghc-vector-doc,
+ libghc-versions-doc,
+ libghc-zlib-doc,
+Standards-Version: 4.7.0
+Homepage: https://futhark-lang.org
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-futhark
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-futhark]
+X-Description: library files for for Futhark programming language
+ Futhark is a small programming language designed to be compiled to
+ efficient parallel code. It is a statically typed, data-parallel, and
+ purely functional array language in the ML family, and comes with a
+ heavily optimising ahead-of-time compiler that presently generates
+ GPU code via CUDA, HIP and OpenCL, although the language itself is
+ hardware-agnostic.
+
+Package: libghc-futhark-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-futhark-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-futhark-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: futhark
+Architecture: any
+Section: devel
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends:
+ ${haskell:Recommends},
+ futhark-doc,
+Suggests:
+ ${haskell:Suggests},
+ hipcc,
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: optimising compiler for Futhark programming language
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: futhark-doc
+Architecture: all
+Section: doc
+Depends: ${misc:Depends},
+Description: Futhark User's Guide
+ ${haskell:LongDescription}
+ .
+ HTML documentation for the Futhark programming language.

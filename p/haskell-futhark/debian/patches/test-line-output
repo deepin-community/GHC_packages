@@ -1,0 +1,24 @@
+--- a/src/Futhark/CLI/Test.hs
++++ b/src/Futhark/CLI/Test.hs
+@@ -509,6 +509,12 @@
+     running = labelstr <> (T.unwords . reverse . map (T.pack . testCaseProgram) . testStatusRun) ts
+     labelstr = "Now testing: "
+ 
++reportLine :: TestStatus -> IO ()
++reportLine ts =
++  case reverse . map (T.pack . testCaseProgram) . testStatusRun $ ts of
++    [] -> pure ()
++    xs -> T.putStrLn $ T.unwords xs
++
+ moveCursorToTableTop :: IO ()
+ moveCursorToTableTop = cursorUpLine tableLines
+ 
+@@ -535,7 +541,7 @@
+ 
+       report
+         | fancy = reportTable
+-        | otherwise = const (pure ())
++        | otherwise = reportLine
+       clear
+         | fancy = clearFromCursorToScreenEnd
+         | otherwise = pure ()
