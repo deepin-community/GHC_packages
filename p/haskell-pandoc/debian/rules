@@ -2,6 +2,11 @@
 
 DEB_ENABLE_TESTS = yes
 
+# Disable tests on loong64, see https://bugs.debian.org/1069165
+ifneq (,$(filter $(DEB_HOST_ARCH_CPU), loong64))
+DEB_ENABLE_TESTS = no
+endif
+
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
 
