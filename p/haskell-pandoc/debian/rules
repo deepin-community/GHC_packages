@@ -1,11 +1,25 @@
 #!/usr/bin/make -f
 
 DEB_ENABLE_TESTS = yes
-DEB_SETUP_BIN_NAME = debian/hlibrary.setup
-DEB_CABAL_PACKAGE = pandoc
-DEB_DEFAULT_COMPILER = ghc
+
+# Disable tests on loong64, see https://bugs.debian.org/1069165
+ifneq (,$(filter $(DEB_HOST_ARCH_CPU), loong64))
+DEB_ENABLE_TESTS = no
+endif
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/hlibrary.mk
 
 build/haskell-pandoc-data:: build-ghc-stamp
+
+# Override the 'build-ghc-stamp' rule and run 'build_recipe' twice.
+# This is an ugly work-around for https://bugs.debian.org/1070015.
+# This appears to be a GHC bug, and even though build fails the first
+# time on armel, it succeeds with the next try.
+# We should remove this as soon as GHC works correctly.
+build-ghc-stamp: configure-ghc-stamp
+	perl -d:Confess -MDebian::Debhelper::Buildsystem::Haskell::Recipes=/.*/ \
+		-E 'build_recipe' || \
+	perl -d:Confess -MDebian::Debhelper::Buildsystem::Haskell::Recipes=/.*/ \
+		-E 'build_recipe'
+	touch $@

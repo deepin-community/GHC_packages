@@ -1,0 +1,67 @@
+Source: haskell-fgl-visualize
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders:
+ Kari Pahula <kaol@debian.org>,
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts-minimal | haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc,
+ ghc-prof,
+ libghc-dotgen-dev (>= 0.4),
+ libghc-dotgen-prof,
+ libghc-fgl-dev (>= 5.4),
+ libghc-fgl-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-dotgen-doc,
+ libghc-fgl-doc,
+Standards-Version: 4.7.0
+Homepage: https://hackage.haskell.org/package/fgl-visualize
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-fgl-visualize
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-fgl-visualize]
+X-Description: convert FGL graphs to dot (graphviz) files
+ Convert FGL graphs to dot files for easy visualization
+ using the 'dot' tool.  Other visualizations might follow
+ but there are no immediate plans (patches welcome).
+
+Package: libghc-fgl-visualize-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-fgl-visualize-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-fgl-visualize-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}

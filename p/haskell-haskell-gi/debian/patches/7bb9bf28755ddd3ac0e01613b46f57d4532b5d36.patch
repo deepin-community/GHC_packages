@@ -1,0 +1,43 @@
+From 7bb9bf28755ddd3ac0e01613b46f57d4532b5d36 Mon Sep 17 00:00:00 2001
+From: David Shea <reallylongword@gmail.com>
+Date: Sat, 17 Feb 2024 14:37:24 -0500
+Subject: [PATCH] Add scope type "forever" (#427)
+
+Fixes #425
+---
+ lib/Data/GI/CodeGen/Callable.hs | 1 +
+ lib/Data/GI/GIR/Arg.hs          | 2 ++
+ 2 files changed, 3 insertions(+)
+
+Index: b/lib/Data/GI/CodeGen/Callable.hs
+===================================================================
+--- a/lib/Data/GI/CodeGen/Callable.hs
++++ b/lib/Data/GI/CodeGen/Callable.hs
+@@ -573,6 +573,7 @@ prepareClosures callable nameMap = do
+                     n -> let destroyName = escapedArgName $ (args callable)!!n
+                          in line $ "let " <> destroyName <> " = FP.nullFunPtr"
+                 ScopeTypeCall -> line $ "let " <> closureName <> " = nullPtr"
++                ScopeTypeForever -> line $ "let " <> closureName <> " = nullPtr"
+             _ -> badIntroError $ "Closure \"" <> n <> "\" is not a callback."
+ 
+ freeCallCallbacks :: Callable -> Map.Map Text Text -> ExcCodeGen ()
+Index: b/lib/Data/GI/GIR/Arg.hs
+===================================================================
+--- a/lib/Data/GI/GIR/Arg.hs
++++ b/lib/Data/GI/GIR/Arg.hs
+@@ -24,6 +24,7 @@ data Scope = ScopeTypeInvalid
+            | ScopeTypeCall
+            | ScopeTypeAsync
+            | ScopeTypeNotified
++           | ScopeTypeForever
+              deriving (Show, Eq, Ord)
+ 
+ data Arg = Arg {
+@@ -54,6 +55,7 @@ parseScope :: Text -> Parser Scope
+ parseScope "call" = return ScopeTypeCall
+ parseScope "async" = return ScopeTypeAsync
+ parseScope "notified" = return ScopeTypeNotified
++parseScope "forever" = return ScopeTypeForever
+ parseScope s = parseError $ "Unknown scope type \"" <> s <> "\""
+ 
+ parseDirection :: Text -> Parser Direction

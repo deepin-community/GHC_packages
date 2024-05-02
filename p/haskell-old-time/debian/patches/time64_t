@@ -1,0 +1,24 @@
+Description: Use CApiFFI when calling into libc
+Author: Ilias Tsitsimpis <iliastsi@debian.org>
+Bug: https://github.com/haskell/old-time/issues/16
+
+Index: b/System/Time.hsc
+===================================================================
+--- a/System/Time.hsc
++++ b/System/Time.hsc
+@@ -1,5 +1,6 @@
+ #if __GLASGOW_HASKELL__ >= 701
+ {-# LANGUAGE Trustworthy #-}
++{-# LANGUAGE CApiFFI #-}
+ #endif
+ 
+ -----------------------------------------------------------------------------
+@@ -744,7 +745,7 @@ foreign import ccall unsafe "HsTime.h __
+ foreign import ccall unsafe "time.h gmtime"
+     gmtime      :: Ptr CTime -> IO (Ptr CTm)
+ #endif
+-foreign import ccall unsafe "time.h mktime"
++foreign import capi unsafe "time.h mktime"
+     mktime      :: Ptr CTm   -> IO CTime
+ 
+ #if HAVE_GETTIMEOFDAY

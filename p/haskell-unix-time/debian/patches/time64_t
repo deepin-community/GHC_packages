@@ -1,0 +1,23 @@
+Description: Use CApiFFI when calling into libc
+Author: Ilias Tsitsimpis <iliastsi@debian.org>
+Bug: https://github.com/kazu-yamamoto/unix-time/issues/62
+
+Index: b/Data/UnixTime/Sys.hsc
+===================================================================
+--- a/Data/UnixTime/Sys.hsc
++++ b/Data/UnixTime/Sys.hsc
+@@ -1,4 +1,5 @@
+ {-# LANGUAGE ForeignFunctionInterface #-}
++{-# LANGUAGE CApiFFI #-}
+ 
+ module Data.UnixTime.Sys (getUnixTime) where
+ 
+@@ -17,7 +18,7 @@ import Foreign.Storable
+ type CTimeVal = ()
+ type CTimeZone = ()
+ 
+-foreign import ccall unsafe "gettimeofday"
++foreign import capi unsafe "sys/time.h gettimeofday"
+     c_gettimeofday :: Ptr CTimeVal -> Ptr CTimeZone -> IO CInt
+ 
+ -- |

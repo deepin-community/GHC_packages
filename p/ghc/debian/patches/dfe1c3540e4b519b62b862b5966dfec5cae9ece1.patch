@@ -14,11 +14,11 @@ Fixes #24163.
  compiler/GHC/CmmToLlvm/Data.hs | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/compiler/GHC/CmmToLlvm/Data.hs b/compiler/GHC/CmmToLlvm/Data.hs
-index caac121413c..5e8912e3bc7 100644
+Index: b/compiler/GHC/CmmToLlvm/Data.hs
+===================================================================
 --- a/compiler/GHC/CmmToLlvm/Data.hs
 +++ b/compiler/GHC/CmmToLlvm/Data.hs
-@@ -89,6 +89,7 @@ genLlvmData (sec, CmmStaticsRaw lbl xs) = do
+@@ -89,6 +89,7 @@ genLlvmData (sec, CmmStaticsRaw lbl xs)
          align          = case sec of
                              Section CString _ -> if (platformArch platform == ArchS390X)
                                                      then Just 2 else Just 1
@@ -26,6 +26,3 @@ index caac121413c..5e8912e3bc7 100644
                              _                 -> Nothing
          const          = if sectionProtection sec == ReadOnlySection
                              then Constant else Global
--- 
-GitLab
-

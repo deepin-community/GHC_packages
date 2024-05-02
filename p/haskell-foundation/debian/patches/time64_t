@@ -1,0 +1,30 @@
+Description: Use CApiFFI when calling into libc
+Author: Ilias Tsitsimpis <iliastsi@debian.org>
+
+Index: b/Foundation/System/Bindings/Time.hsc
+===================================================================
+--- a/Foundation/System/Bindings/Time.hsc
++++ b/Foundation/System/Bindings/Time.hsc
+@@ -2,6 +2,7 @@
+ -- Module      :  Foundation.System.Bindings.Time
+ -- Maintainer  :  Haskell foundation
+ --
++{-# LANGUAGE CApiFFI #-}
+ 
+ module Foundation.System.Bindings.Time where
+ 
+@@ -116,11 +117,11 @@ foreign import ccall unsafe "foundation_
+ foreign import ccall unsafe "foundation_time_clock_gettime"
+     sysTimeClockGetTime :: CClockId -> Ptr CTimeSpec -> IO CInt
+ #else
+-foreign import ccall unsafe "clock_getres"
++foreign import capi unsafe "time.h clock_getres"
+     sysTimeClockGetRes :: CClockId -> Ptr CTimeSpec -> IO CInt
+-foreign import ccall unsafe "clock_gettime"
++foreign import capi unsafe "time.h clock_gettime"
+     sysTimeClockGetTime :: CClockId -> Ptr CTimeSpec -> IO CInt
+ #endif
+ 
+-foreign import ccall unsafe "gettimeofday"
++foreign import capi unsafe "sys/time.h gettimeofday"
+     sysTimeGetTimeOfDay :: Ptr CTimeVal -> Ptr CTimeZone -> IO CInt

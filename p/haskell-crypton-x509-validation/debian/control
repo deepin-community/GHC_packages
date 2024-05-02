@@ -1,0 +1,97 @@
+Source: haskell-crypton-x509-validation
+Maintainer: Debian Haskell Group <pkg-haskell-maintainers@lists.alioth.debian.org>
+Uploaders: Ilias Tsitsimpis <iliastsi@debian.org>
+Priority: optional
+Section: haskell
+Rules-Requires-Root: no
+Build-Depends: debhelper (>= 10),
+ haskell-devscripts (>= 0.13),
+ cdbs,
+ ghc (>= 9.4),
+ ghc-prof,
+ libghc-asn1-encoding-dev (>= 0.9),
+ libghc-asn1-encoding-dev (<< 0.10),
+ libghc-asn1-encoding-prof,
+ libghc-asn1-types-dev (>= 0.3),
+ libghc-asn1-types-dev (<< 0.4),
+ libghc-asn1-types-prof,
+ libghc-crypton-dev (>= 0.24),
+ libghc-crypton-prof,
+ libghc-crypton-x509-dev (>= 1.7.5),
+ libghc-crypton-x509-prof,
+ libghc-crypton-x509-store-dev (>= 1.6),
+ libghc-crypton-x509-store-prof,
+ libghc-data-default-class-dev,
+ libghc-data-default-class-prof,
+ libghc-hourglass-dev,
+ libghc-hourglass-prof,
+ libghc-memory-dev,
+ libghc-memory-prof,
+ libghc-pem-dev (>= 0.1),
+ libghc-pem-prof,
+ libghc-asn1-encoding-dev,
+ libghc-asn1-types-dev,
+ libghc-crypton-dev,
+ libghc-crypton-x509-dev (>= 1.7.1),
+ libghc-crypton-x509-store-dev,
+ libghc-tasty-dev,
+ libghc-tasty-prof,
+ libghc-tasty-hunit-dev,
+ libghc-tasty-hunit-prof,
+Build-Depends-Indep: ghc-doc,
+ libghc-asn1-encoding-doc,
+ libghc-asn1-types-doc,
+ libghc-crypton-doc,
+ libghc-crypton-x509-doc,
+ libghc-crypton-x509-store-doc,
+ libghc-data-default-class-doc,
+ libghc-hourglass-doc,
+ libghc-memory-doc,
+ libghc-pem-doc,
+Standards-Version: 4.6.2
+Homepage: https://github.com/kazu-yamamoto/crypton-certificate
+Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/haskell-crypton-x509-validation
+Vcs-Git: https://salsa.debian.org/haskell-team/DHG_packages.git [p/haskell-crypton-x509-validation]
+X-Description: X.509 certificate and CRL validation
+ X.509 certificate/CRL checks and validations routines, following
+ RFC5280 / RFC6818.
+
+Package: libghc-crypton-x509-validation-dev
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-crypton-x509-validation-prof
+Architecture: any
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Provides: ${haskell:Provides},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
+
+Package: libghc-crypton-x509-validation-doc
+Architecture: all
+Section: doc
+Depends: ${haskell:Depends},
+ ${misc:Depends},
+Recommends: ${haskell:Recommends},
+Suggests: ${haskell:Suggests},
+Conflicts: ${haskell:Conflicts},
+Description: ${haskell:ShortDescription}${haskell:ShortBlurb}
+ ${haskell:LongDescription}
+ .
+ ${haskell:Blurb}
