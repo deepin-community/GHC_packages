@@ -15,7 +15,7 @@ Build-Depends:
   ghc:native (>= 9.2),
   hadrian:native (>= 9.6.5) <!pkg.ghc.nohadrian>,
   hadrian:native (<< 9.7) <!pkg.ghc.nohadrian>,
-  llvm-15 [armel armhf s390x riscv64],
+  llvm-17 [armel armhf s390x riscv64],
   libgmp-dev,
   libffi-dev,
   libncurses-dev,
@@ -32,7 +32,7 @@ Vcs-Browser: https://salsa.debian.org/haskell-team/DHG_packages/tree/master/p/gh
 Package: ghc
 Architecture: any
 Depends:
-  llvm-15 [armel armhf s390x riscv64],
+  llvm-17 [armel armhf s390x riscv64],
   gcc,
   libgmp-dev,
   libffi-dev,
@@ -53,7 +53,7 @@ Provides:
   ${haddock:Provides}
 Replaces: ${conflicting-devs}
 Breaks: ${conflicting-devs}
-Suggests: perl, ghc-prof, ghc-doc, llvm-15
+Suggests: perl, ghc-prof, ghc-doc, llvm-17
 Description: The Glasgow Haskell Compilation system
  The Glorious Glasgow Haskell Compilation system (GHC) is a compiler for
  Haskell.
