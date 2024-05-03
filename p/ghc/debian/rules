@@ -60,11 +60,6 @@ ifneq (,$(filter i386 powerpcspe x32, $(DEB_HOST_ARCH)))
   EXTRA_CONFIGURE_FLAGS += --enable-unregisterised
 endif
 
-# Build unregisterised on loong64, since llvm-15 is not available
-ifneq (,$(filter loong64, $(DEB_HOST_ARCH)))
-  EXTRA_CONFIGURE_FLAGS += --enable-unregisterised
-endif
-
 # See https://bugs.debian.org/1060196
 ifneq (,$(filter powerpc, $(DEB_HOST_ARCH)))
   EXTRA_CONFIGURE_FLAGS += --enable-unregisterised
