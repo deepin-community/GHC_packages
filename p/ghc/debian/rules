@@ -76,6 +76,7 @@ endif
 # See also https://bugs.debian.org/1056636
 ifneq (,$(filter mips mipsel powerpc powerpcspe sparc64, $(DEB_HOST_ARCH)))
   EXTRA_CONFIGURE_FLAGS += --disable-ld-override
+  EXTRA_INSTALL_CONFIGURE_FLAGS += --disable-ld-override
 endif
 
 ifneq (,$(filter armhf, $(DEB_HOST_ARCH)))
